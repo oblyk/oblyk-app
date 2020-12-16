@@ -1,0 +1,10 @@
+<template>
+  <v-container>
+    Les photos et vidéo
+  </v-container>
+</template>
+<script>
+export default {
+  name: 'CragPhotosPage'
+}
+</script>
