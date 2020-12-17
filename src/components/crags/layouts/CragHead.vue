@@ -29,7 +29,7 @@ export default {
   methods: {
     photoUrl: function () {
       if (this.crag.photo.id !== null) {
-        return `http://localhost:3000${this.crag.photo.url}`
+        return `${process.env.VUE_APP_OBLYK_API_URL}${this.crag.photo.url}`
       } else {
         return ''
       }

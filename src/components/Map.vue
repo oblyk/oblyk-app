@@ -6,19 +6,12 @@
       @load="onMapLoaded"
     >
       <mgl-navigation-control position="top-right" />
-      <mgl-marker v-for="crag in cragMarkers()" :key="crag.id"
-        :coordinates="[crag.longitude, crag.latitude]"
+      <mgl-marker v-for="crag in crags" :key="crag.id"
+        :coordinates="[crag.localization.longitude, crag.localization.latitude]"
         color="#03a9f4"
       >
         <mgl-popup>
-          <v-card light>
-            <v-card-title>
-              {{ crag.name }}<br>
-              <v-btn color="primary" light dense :to="`/crags/${crag.id}/${crag.slug_name}/infos`">
-                voir le site
-              </v-btn>
-            </v-card-title>
-          </v-card>
+          <crag-map-popup :crag="crag" />
         </mgl-popup>
       </mgl-marker>
     </mgl-map>
@@ -27,10 +20,12 @@
 <script>
 import Mapbox from 'mapbox-gl'
 import { MglMap, MglMarker, MglNavigationControl, MglPopup } from 'vue-mapbox'
+import CragMapPopup from '@/components/maps/CragMapPopup'
 
 export default {
   name: 'Map',
   components: {
+    CragMapPopup,
     MglMap,
     MglMarker,
     MglNavigationControl,
@@ -55,7 +50,7 @@ export default {
 
   data () {
     return {
-      accessToken: 'pk.eyJ1IjoiY2x1Y2llbiIsImEiOiJjaWlkYWhuMGswMHRxdmxtMWNyeWpjZGk0In0.-bHAKhr-aUjboWKoE0B-WA',
+      accessToken: process.env.VUE_APP_OBLYK_MAPBOX_TOKEN,
       mapStyle: 'mapbox://styles/clucien/ckingo0rf3thf17qovbo16s3b'
     }
   },
@@ -88,22 +83,6 @@ export default {
           'sky-atmosphere-sun-intensity': 15
         }
       })
-    },
-
-    cragMarkers: function () {
-      const cragMarkers = []
-      for (const crag of this.crags) {
-        cragMarkers.push(
-          {
-            latitude: crag.localization.latitude,
-            longitude: crag.localization.longitude,
-            name: crag.name,
-            slug_name: crag.slug_name,
-            id: crag.id
-          }
-        )
-      }
-      return cragMarkers
     }
   }
 }
@@ -112,6 +91,9 @@ export default {
 #map, .map {
   width: 100%;
   height: 100%;
+}
+.mapboxgl-popup {
+  max-width: 350px !important;
 }
 .mapboxgl-popup-content {
   display: block;
