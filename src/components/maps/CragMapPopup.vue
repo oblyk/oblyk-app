@@ -13,6 +13,7 @@
       {{ crag.localization.country }}, {{ crag.localization.region }}, {{ crag.localization.city }}
     </v-card-subtitle>
     <v-card-actions>
+      <v-spacer></v-spacer>
       <v-btn
         color="primary lighten-2"
         text
