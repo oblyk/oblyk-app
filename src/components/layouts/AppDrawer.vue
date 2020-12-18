@@ -27,21 +27,40 @@
 
     <v-divider></v-divider>
 
+    <!-- If user is connected -->
     <v-list
+      v-if="isLoggedIn"
       nav
       dense
     >
-      <v-list-item
-        v-for="item in isLoggedIn ? connectItems : unConnectItems"
-        :key="item.title"
-        link
-        :to="item.to"
-      >
-        <v-list-item-icon>
-          <v-icon>{{ item.icon }}</v-icon>
-        </v-list-item-icon>
-        <v-list-item-title>{{ item.title }}</v-list-item-title>
-      </v-list-item>
+      <app-drawer-item
+        url="/"
+        icon="mdi-view-dashboard-outline"
+        :title="$t('components.layout.appDrawer.dashboard')"
+      />
+    </v-list>
+
+    <!-- If no user connected -->
+    <v-list
+      v-if="!isLoggedIn"
+      nav
+      dense
+    >
+      <app-drawer-item
+        url="/"
+        icon="mdi-view-dashboard-outline"
+        :title="$t('components.layout.appDrawer.home')"
+      />
+      <app-drawer-item
+        url="/sign-in"
+        icon="mdi-login"
+        :title="$t('components.layout.appDrawer.login')"
+      />
+      <app-drawer-item
+        url="/sign-up"
+        icon="mdi-account-plus"
+        :title="$t('components.layout.appDrawer.signUp')"
+      />
     </v-list>
 
     <v-divider></v-divider>
@@ -56,40 +75,35 @@
       >
         <template v-slot:activator>
           <v-list-item-content>
-            <v-list-item-title>Cartes</v-list-item-title>
+            <v-list-item-title>
+              {{ $t('components.layout.appDrawer.maps') }}
+            </v-list-item-title>
           </v-list-item-content>
         </template>
-
-        <v-list-item
-          :to="{ name: 'CragMapPage' }"
-          link
-        >
-          <v-list-item-icon>
-            <v-icon>mdi-terrain</v-icon>
-          </v-list-item-icon>
-          <v-list-item-title>Carte des falaises</v-list-item-title>
-        </v-list-item>
-
-        <v-list-item link>
-          <v-list-item-icon>
-            <v-icon>mdi-office-building-marker-outline</v-icon>
-          </v-list-item-icon>
-          <v-list-item-title>Carte des salles</v-list-item-title>
-        </v-list-item>
-
-        <v-list-item link>
-          <v-list-item-icon>
-            <v-icon>mdi-account-group</v-icon>
-          </v-list-item-icon>
-          <v-list-item-title>Carte des grimpeurs</v-list-item-title>
-        </v-list-item>
+        <app-drawer-item
+          url="/maps/crags"
+          icon="mdi-terrain"
+          :title="$t('components.layout.appDrawer.mapCrags')"
+        />
+        <app-drawer-item
+          url="/maps/gyms"
+          icon="mdi-office-building-marker-outline"
+          :title="$t('components.layout.appDrawer.mapGyms')"
+        />
+        <app-drawer-item
+          url="/maps/climbers"
+          icon="mdi-account-group"
+          :title="$t('components.layout.appDrawer.mapClimber')"
+        />
       </v-list-group>
 
       <v-list-item link>
         <v-list-item-icon>
           <v-icon>mdi-hammer-wrench</v-icon>
         </v-list-item-icon>
-        <v-list-item-title>Outils</v-list-item-title>
+        <v-list-item-title>
+          {{ $t('components.layout.appDrawer.tools') }}
+        </v-list-item-title>
       </v-list-item>
     </v-list>
   </div>
@@ -97,33 +111,11 @@
 
 <script>
 import store from '@/store'
+import AppDrawerItem from '@/components/layouts/partial/AppDrawerItem'
 
 export default {
   name: 'AppDrawer',
-
-  data () {
-    return {
-      unConnectItems: [
-        {
-          title: 'Accueil',
-          icon: 'mdi-view-dashboard-outline',
-          to: '/'
-        },
-        {
-          title: 'Me connecter',
-          icon: 'mdi-login',
-          to: '/sign-in'
-        }
-      ],
-      connectItems: [
-        {
-          title: 'Dashboard',
-          icon: 'mdi-view-dashboard-outline',
-          to: '/'
-        }
-      ]
-    }
-  },
+  components: { AppDrawerItem },
 
   computed: {
     isLoggedIn: function () {

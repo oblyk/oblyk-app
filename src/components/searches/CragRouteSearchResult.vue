@@ -18,7 +18,7 @@
         </v-list-item-avatar>
         <v-list-item-content>
           <v-list-item-title class="headline">
-            {{ cragRoute.grade_gap.min_grade_text }} {{ cragRoute.grade_gap.max_grade_text }}
+            <crag-route-grade :crag-route="cragRoute" />
             {{ cragRoute.name }}
           </v-list-item-title>
           <v-list-item-subtitle>
@@ -27,9 +27,9 @@
               text
               class="d-inline-block mr-1 mb-0"
             >
-              LIGNE
+              {{ cragRoute.climbing_type }}
             </v-alert>
-            {{ cragRoute.name }}
+            {{ cragRoute.crag.name }}, {{ cragRoute.crag.country }}, {{ cragRoute.crag.region }}
           </v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
@@ -37,8 +37,11 @@
   </div>
 </template>
 <script>
+import CragRouteGrade from '@/components/cragRoutes/shared/CragRouteGrade'
+
 export default {
   name: 'CragRouteSearchResult',
+  components: { CragRouteGrade },
   props: {
     cragRoute: null
   },

@@ -3,7 +3,7 @@
     light
   >
     <v-img
-      :src="cragPhoto()"
+      :src="crag.cover()"
       height="150px"
     ></v-img>
     <v-card-title>
@@ -17,7 +17,7 @@
       <v-btn
         color="primary lighten-2"
         text
-        :to="cragRoute()"
+        :to="crag.url()"
       >
         Voir le site
       </v-btn>
@@ -25,19 +25,16 @@
   </v-card>
 </template>
 <script>
+import CragModel from '@/models/CragModel'
 export default {
   name: 'CragMapPopup',
   props: {
-    crag: null
+    cragData: null
   },
 
-  methods: {
-    cragPhoto: function () {
-      return `${process.env.VUE_APP_OBLYK_API_URL}${this.crag.photo.url}`
-    },
-
-    cragRoute: function () {
-      return `/crags/${this.crag.id}/${this.crag.slug_name}/infos`
+  data () {
+    return {
+      crag: new CragModel(this.cragData)
     }
   }
 }

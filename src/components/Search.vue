@@ -2,19 +2,20 @@
   <div>
     <v-form @submit.prevent="search">
       <v-text-field
-        label="Chercher une falaise, une voie, une salle, etc."
+        :label="$t('components.search.searchLabel')"
         v-model="query"
         append-icon="mdi-magnify"
         outlined
+        autofocus
       ></v-text-field>
     </v-form>
     <div v-if="!load">
       <div v-for="result in results" :key="`${result.record_type}${result.record_id}`">
-        <crag-search-result v-if="result.record_type === 'Crag'" :crag="result.record" class="mb-2" />
-        <crag-route-search-result v-if="result.record_type === 'CragRoute'" :crag-route="result.record" class="mb-2" />
-        <crag-sector-search-result v-if="result.record_type === 'CragSector'" :crag-sector="result.record" class="mb-2" />
-        <gym-search-result v-if="result.record_type === 'Gym'" :gym="result.record" class="mb-2" />
-        <guide-book-search-result v-if="result.record_type === 'GuideBookPaper'" :guide-book="result.record" class="mb-2" />
+        <crag-search-result v-if="result.record_type === 'Crag'" :crag-data="result.record" class="mb-3" />
+        <crag-route-search-result v-if="result.record_type === 'CragRoute'" :crag-route="result.record" class="mb-3" />
+        <crag-sector-search-result v-if="result.record_type === 'CragSector'" :crag-sector="result.record" class="mb-3" />
+        <gym-search-result v-if="result.record_type === 'Gym'" :gym="result.record" class="mb-3" />
+        <guide-book-search-result v-if="result.record_type === 'GuideBookPaper'" :guide-book="result.record" class="mb-3" />
       </div>
     </div>
     <div v-if="load">

@@ -11,7 +11,7 @@
         color="#03a9f4"
       >
         <mgl-popup>
-          <crag-map-popup :crag="crag" />
+          <crag-map-popup :crag-data="crag" />
         </mgl-popup>
       </mgl-marker>
     </mgl-map>

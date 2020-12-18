@@ -49,6 +49,7 @@
 import OblykApi from '@/services/oblyk-api'
 import CragHead from '@/components/crags/layouts/CragHead'
 import Spinner from '@/components/layouts/Spiner'
+import CragModel from '@/models/CragModel'
 
 export default {
   name: 'CragPage',
@@ -74,7 +75,7 @@ export default {
       OblykApi
         .getCrag(this.cragId)
         .then(resp => {
-          this.crag = resp.data
+          this.crag = new CragModel(resp.data)
         })
         .catch(err => {
           console.error(err)

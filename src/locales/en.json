@@ -1,0 +1,37 @@
+{
+  "components" : {
+    "search": {
+      "searchLabel": "Look for a crag, a route, a gym, etc."
+    },
+    "layout": {
+      "appBar": {
+        "login": "Login",
+        "logOut": "Logout"
+      },
+      "appDrawer": {
+        "home": "Home",
+        "dashboard": "Dashboard",
+        "login": "Login",
+        "signUp": "Sign up",
+        "maps": "Maps",
+        "mapCrags": "Crags map",
+        "mapGyms": "Gyms map",
+        "mapClimber": "Climbers map",
+        "tools": "Tools"
+      }
+    }
+  },
+  "models": {
+    "user": {
+      "dateOfBirth": "Date of birth",
+      "firstName": "First name",
+      "lastName": "Last name",
+      "password": "Password",
+      "confirmPassword": "Confirm your password",
+      "email": "Email"
+    },
+    "crag": {
+      "name": "Name"
+    }
+  }
+}

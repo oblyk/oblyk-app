@@ -45,6 +45,26 @@ const actions = {
     })
   },
 
+  signUp ({ commit }, data) {
+    return new Promise((resolve, reject) => {
+      commit('request')
+      OblykApi
+        .signUp(data)
+        .then(resp => {
+          const data = resp.data
+          commit('success', {
+            token: data.token,
+            name: `${data.user.first_name} ${data.user.last_name}`
+          })
+          resolve(resp)
+        })
+        .catch(err => {
+          commit('error')
+          reject(err)
+        })
+    })
+  },
+
   logout ({ commit }) {
     return new Promise(resolve => {
       commit('logout')

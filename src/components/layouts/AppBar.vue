@@ -25,6 +25,7 @@
         offset-y
         bottom
         left
+        :close-on-content-click="false"
       >
         <template v-slot:activator="{ on, attrs }">
           <v-btn
@@ -37,39 +38,9 @@
         </template>
 
         <v-list>
-          <v-list-item link>
-            <v-list-item-action>
-              <v-checkbox
-                v-model="dark"
-              ></v-checkbox>
-            </v-list-item-action>
-
-            <v-list-item-content @click="dark = !dark">
-              <v-list-item-title>Dark theme</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-
-          <v-list-item link @click="logout()" v-if="isLoggedIn">
-            <v-list-item-icon>
-              <v-icon>mdi-logout</v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title>
-                Me déconnecter
-              </v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-
-          <v-list-item link :to="{ name: 'SignIn' }" v-if="!isLoggedIn">
-            <v-list-item-icon>
-              <v-icon>mdi-login</v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title>
-                Me connecter
-              </v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
+          <local-selector />
+          <dark-theme-selector />
+          <login-logout-btn />
         </v-list>
       </v-menu>
     </v-app-bar>
@@ -86,45 +57,28 @@
 
 <script>
 import AppDrawer from '@/components/layouts/AppDrawer'
-import store from '@/store'
+import LocalSelector from '@/components/layouts/partial/LocalSelector'
+import DarkThemeSelector from '@/components/layouts/partial/DarkThemeSelector'
+import LoginLogoutBtn from '@/components/layouts/partial/LoginLogoutBtn'
 
 export default {
   name: 'AppBar',
-  components: { AppDrawer },
+  components: { LoginLogoutBtn, DarkThemeSelector, LocalSelector, AppDrawer },
 
   data () {
     return {
       drawer: true,
-      dark: false,
       title: 'Oblyk'
     }
   },
 
   watch: {
-    dark: function () {
-      this.$vuetify.theme.dark = this.dark
-      localStorage.setItem('darkThem', this.dark)
-    },
-
     '$route' () {
       this.title = this.$route.meta.title
     }
   },
 
-  computed: {
-    isLoggedIn: function () {
-      return store.getters['auth/isLoggedIn']
-    }
-  },
-
-  methods: {
-    logout: function () {
-      store.dispatch('auth/logout')
-    }
-  },
-
   created () {
-    this.dark = (localStorage.getItem('darkThem') === 'true')
     this.title = this.$route.meta.title
   }
 }

@@ -38,10 +38,6 @@ export default {
   },
 
   methods: {
-    submit: function () {
-      this.$refs.form.submit()
-    },
-
     login: function () {
       const email = this.email
       const password = this.password

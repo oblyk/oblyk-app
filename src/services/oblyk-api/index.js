@@ -19,6 +19,14 @@ class OblykApi {
     })
   }
 
+  signUp (data) {
+    return axios({
+      url: `${this.baseUrl}/sessions/sign_up.json`,
+      data: data,
+      method: 'POST'
+    })
+  }
+
   // Search
   search (query) {
     return axios({

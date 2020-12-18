@@ -3,7 +3,7 @@
     <v-card
       link
       flat
-      :to="cragUrl()"
+      :to="crag.url()"
     >
       <v-list-item three-line>
         <v-list-item-avatar
@@ -14,7 +14,7 @@
             size="70"
             tile
           >
-            <v-img :src="cragPhoto()"></v-img>
+            <v-img :src="crag.cover()"></v-img>
           </v-avatar>
         </v-list-item-avatar>
         <v-list-item-content>
@@ -37,19 +37,17 @@
   </div>
 </template>
 <script>
+import CragModel from '@/models/CragModel'
+
 export default {
   name: 'CragSearchResult',
   props: {
-    crag: null
+    cragData: null
   },
 
-  methods: {
-    cragUrl: function () {
-      return `/crags/${this.crag.id}/${this.crag.slug_name}/infos`
-    },
-
-    cragPhoto: function () {
-      return `${process.env.VUE_APP_OBLYK_API_URL}${this.crag.photo.url}`
+  data () {
+    return {
+      crag: new CragModel(this.cragData)
     }
   }
 }

@@ -4,7 +4,7 @@
       dark
       height="500px"
       gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-      :src="photoUrl()"
+      :src="crag.cover()"
     >
       <div class="crag-header-title">
         <h1 class="font-weight-medium loved-by-king">
@@ -24,16 +24,6 @@ export default {
   name: 'CragHead',
   props: {
     crag: Object
-  },
-
-  methods: {
-    photoUrl: function () {
-      if (this.crag.photo.id !== null) {
-        return `${process.env.VUE_APP_OBLYK_API_URL}${this.crag.photo.url}`
-      } else {
-        return ''
-      }
-    }
   }
 }
 </script>

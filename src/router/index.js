@@ -10,6 +10,7 @@ import CragRoutePage from '@/views/crags/CragRoutePage'
 import CragPhotosPage from '@/views/crags/CragPhotosPage'
 import CragGuideBooksPage from '@/views/crags/CragGuideBooksPage'
 import CragMapDetailsPage from '@/views/crags/CragMapDetailsPage'
+import SignUp from '@/views/sessions/SignUp'
 
 Vue.use(VueRouter)
 
@@ -98,6 +99,14 @@ const routes = [
     component: SignIn,
     meta: {
       title: 'Me connecter'
+    }
+  },
+  {
+    path: '/sign-up',
+    name: 'SignUp',
+    component: SignUp,
+    meta: {
+      title: 'Me créer un compte'
     }
   }
 ]

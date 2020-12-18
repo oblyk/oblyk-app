@@ -26,6 +26,7 @@
 </template>
 <script>
 import OblykApi from '@/services/oblyk-api'
+import CragModel from '@/models/CragModel'
 
 export default {
   name: 'CragInfoPage',
@@ -44,7 +45,7 @@ export default {
       OblykApi
         .getCrag(this.$route.params.cragId)
         .then(resp => {
-          this.crag = resp.data
+          this.crag = new CragModel(resp.data)
         })
         .catch(err => {
           console.error(err)

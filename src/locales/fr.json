@@ -1,0 +1,42 @@
+{
+  "components" : {
+    "search": {
+      "searchLabel": "Chercher une falaise, une voie, une salle, etc."
+    },
+    "layout": {
+      "appBar": {
+        "login": "Me connecter",
+        "logOut": "Me déconnecter"
+      },
+      "appDrawer": {
+        "home": "Accueil",
+        "dashboard": "Dashboard",
+        "login": "Me connecter",
+        "signUp": "Créer un compte",
+        "maps": "Cartes",
+        "mapCrags": "Carte des falaises",
+        "mapGyms": "Carte des salles",
+        "mapClimber": "Carte des grimpeurs",
+        "tools": "Outils"
+      }
+    }
+  },
+  "models": {
+    "user": {
+      "dateOfBirth": "Date de naissance",
+      "firstName": "Prénom",
+      "lastName": "Nom",
+      "password": "Mot de passe",
+      "confirmPassword": "Confirmez votre mot de passe",
+      "email": "Email"
+    },
+    "crag": {
+      "name": "Nom"
+    }
+  },
+  "actions": {
+    "cancel": "Annuler",
+    "ok": "ok",
+    "createMyAccount": "Créer mon compte"
+  }
+}
