@@ -14,10 +14,18 @@ export default class GymModel {
   }
 
   bannerUrl () {
-    return `${process.env.VUE_APP_OBLYK_API_URL}${this.banner}`
+    if (this.banner) {
+      return `${process.env.VUE_APP_OBLYK_API_URL}${this.banner}`
+    } else {
+      return require('@/assets/gym-default-banner.jpg')
+    }
   }
 
   logoUrl () {
-    return `${process.env.VUE_APP_OBLYK_API_URL}${this.logo}`
+    if (this.logo) {
+      return `${process.env.VUE_APP_OBLYK_API_URL}${this.logo}`
+    } else {
+      return require('@/assets/svgs/gym-default-logo.svg')
+    }
   }
 }
