@@ -28,4 +28,14 @@ export default class GymModel {
       return require('@/assets/svgs/gym-default-logo.svg')
     }
   }
+
+  climbingTypes () {
+    const list = []
+    if (this.bouldering) list.push('bouldering')
+    if (this.sport_climbing) list.push('sport_climbing')
+    if (this.pan) list.push('pan')
+    if (this.fun_climbing) list.push('fun_climbing')
+    if (this.training_space) list.push('training_space')
+    return list
+  }
 }

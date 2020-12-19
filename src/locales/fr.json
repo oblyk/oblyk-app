@@ -53,6 +53,18 @@
       "trainingSpace":  "Espace d'entrainement",
       "latitude": "Latitude",
       "longitude":  "Longitude"
+    },
+    "climbs": {
+      "sport_climbing": "Voie",
+      "bouldering": "Bloc",
+      "multi_pitch": "Grande voie",
+      "trad_climbing": "Trad",
+      "aid_climbing": "Artif",
+      "deep_water": "Deep water",
+      "via_ferrata": "Via ferrata",
+      "fun_climbing": "Fun Climbing",
+      "training_space": "Espace entrainement",
+      "pan": "Pan"
     }
   },
   "actions": {

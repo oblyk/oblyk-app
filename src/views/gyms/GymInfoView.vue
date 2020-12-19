@@ -8,6 +8,14 @@
           <v-card>
             <v-card-title>Description</v-card-title>
             <v-card-text v-text="gym.description" />
+            <v-card-text>
+              <v-chip
+                class="ma-1"
+                v-for="climb in gym.climbingTypes()" :key="climb"
+              >
+                {{ $t(`models.climbs.${climb}`) }}
+              </v-chip>
+            </v-card-text>
           </v-card>
         </v-col>
         <v-col class="pa-2" md="5">

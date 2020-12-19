@@ -43,7 +43,7 @@ import OsmNominatim from '@/services/osm-nominatim'
 import { MglMap, MglMarker, MglNavigationControl } from 'vue-mapbox'
 
 export default {
-  name: 'MapSelector',
+  name: 'MapInput',
   components: {
     MglMap,
     MglMarker,
