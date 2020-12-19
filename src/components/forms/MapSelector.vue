@@ -63,13 +63,18 @@ export default {
     defaultZoom: {
       type: Number,
       default: 10
+    },
+    styleMap: {
+      type: String,
+      default: 'outdoor',
+      required: false
     }
   },
 
   data () {
     return {
       accessToken: process.env.VUE_APP_OBLYK_MAPBOX_TOKEN,
-      mapStyle: 'mapbox://styles/clucien/ckingo0rf3thf17qovbo16s3b',
+      mapStyle: (this.styleMap === 'outdoor') ? 'mapbox://styles/clucien/ckingo0rf3thf17qovbo16s3b' : 'mapbox://styles/clucien/ckioe0rsh08q417p52hr76t8q',
       inDragEnDrop: false
     }
   },

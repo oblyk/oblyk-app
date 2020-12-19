@@ -18,6 +18,7 @@
       :default-latitude="data.latitude"
       :default-longitude="data.longitude"
       :default-zoom="isEditing() ? 10 : 4"
+      style-map="street"
       class="mb-3"
     />
 
