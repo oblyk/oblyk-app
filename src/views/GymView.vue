@@ -20,45 +20,18 @@
   </div>
 </template>
 <script>
-import GymApi from '@/services/oblyk-api/gym'
+import { Gymable } from '@/concerns/Gymable'
 import Spinner from '@/components/layouts/Spiner'
-import GymModel from '@/models/GymModel'
 import GymHead from '@/components/gyms/layouts/GymHead'
 import GymActionMenu from '@/components/gyms/layouts/GymActionMenu'
 
 export default {
   name: 'GymView',
   components: { GymActionMenu, Spinner, GymHead },
+  mixins: [Gymable],
   props: {
     gymId: null,
     slug: null
-  },
-
-  data () {
-    return {
-      gym: null,
-      load: true
-    }
-  },
-
-  created () {
-    this.getGym()
-  },
-
-  methods: {
-    getGym: function () {
-      GymApi
-        .find(this.gymId)
-        .then(resp => {
-          this.gym = new GymModel(resp.data)
-        })
-        .catch(err => {
-          console.error(err)
-        })
-        .finally(() => {
-          this.load = false
-        })
-    }
   }
 }
 </script>

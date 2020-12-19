@@ -9,8 +9,8 @@ export default class GymModel {
     return `/gyms/${this.id}/${this.slug_name}/${tabs}`
   }
 
-  editUrl () {
-    return `/gyms/${this.id}/${this.slug_name}/edit`
+  editUrl (action = 'edit') {
+    return `/gyms/${this.id}/${this.slug_name}/${action}`
   }
 
   bannerUrl () {

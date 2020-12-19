@@ -29,14 +29,14 @@
     />
 
     <v-row>
-      <v-col>
+      <v-col class="col-4">
         <v-text-field
           outlined
           v-model="data.postal_code"
           :label="$t('models.gym.postalCode')"
         />
       </v-col>
-      <v-col>
+      <v-col class="col-8">
         <v-text-field
           outlined
           v-model="data.city"
@@ -52,14 +52,14 @@
     />
 
     <v-row>
-      <v-col>
+      <v-col class="col-12 col-md-6">
         <v-text-field
           outlined
           v-model="data.email"
           :label="$t('models.gym.email')"
         />
       </v-col>
-      <v-col>
+      <v-col class="col-12 col-md-6">
         <v-text-field
           outlined
           v-model="data.phone_number"

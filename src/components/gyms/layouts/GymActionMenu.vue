@@ -27,7 +27,7 @@
         </v-list-item-content>
       </v-list-item>
 
-      <v-list-item link>
+      <v-list-item link :to="gym.editUrl('logo')">
         <v-list-item-icon>
           <v-icon>mdi-image-album</v-icon>
         </v-list-item-icon>
@@ -36,7 +36,7 @@
         </v-list-item-content>
       </v-list-item>
 
-      <v-list-item link>
+      <v-list-item link :to="gym.editUrl('banner')">
         <v-list-item-icon>
           <v-icon>mdi-image-edit</v-icon>
         </v-list-item-icon>

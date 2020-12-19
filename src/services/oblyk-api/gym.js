@@ -27,6 +27,30 @@ class GymApi extends BaseApi {
     })
   }
 
+  logo (data, gymId) {
+    return axios({
+      url: `${this.baseUrl}/gyms/${gymId}/add_logo.json`,
+      headers: {
+        Authorization: this.authToken(),
+        'Content-Type': 'multipart/form-data'
+      },
+      data: data,
+      method: 'POST'
+    })
+  }
+
+  banner (data, gymId) {
+    return axios({
+      url: `${this.baseUrl}/gyms/${gymId}/add_banner.json`,
+      headers: {
+        Authorization: this.authToken(),
+        'Content-Type': 'multipart/form-data'
+      },
+      data: data,
+      method: 'POST'
+    })
+  }
+
   create (data) {
     return axios({
       url: `${this.baseUrl}/gyms.json`,
