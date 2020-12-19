@@ -3,10 +3,10 @@
 </template>
 <script>
 import Map from '@/components/Map'
-import OblykApi from '@/services/oblyk-api'
+import CragApi from '@/services/oblyk-api/crag'
 
 export default {
-  name: 'CragMapPage',
+  name: 'CragMapView',
   components: { Map },
 
   data () {
@@ -21,8 +21,8 @@ export default {
 
   methods: {
     getCrags: function () {
-      OblykApi
-        .getAllCrags()
+      CragApi
+        .all()
         .then(resp => {
           this.crags = resp.data
         })

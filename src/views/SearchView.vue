@@ -11,7 +11,7 @@
 import SearchFiled from '@/components/Search'
 
 export default {
-  name: 'Search',
+  name: 'SearchView',
   components: { SearchFiled }
 }
 </script>

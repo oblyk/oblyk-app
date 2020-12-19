@@ -9,7 +9,7 @@ export default class CragModel {
     return `/crags/${this.id}/${this.slug_name}/${tabs}`
   }
 
-  cover () {
+  coverUrl () {
     return `${process.env.VUE_APP_OBLYK_API_URL}${this.photo.url}`
   }
 }

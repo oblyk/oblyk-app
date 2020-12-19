@@ -32,10 +32,33 @@
     },
     "crag": {
       "name": "Nom"
+    },
+    "gym": {
+      "name": "Nom de la salle",
+      "description": "Description",
+      "address":  "Adresse",
+      "postalCode": "Code postal",
+      "codeCountry":  "Code pays",
+      "country": "Pays",
+      "city":  "Ville",
+      "bigCity": "Grande ville proche",
+      "region":  "Région",
+      "email": "Email",
+      "phoneNumber":  "Telephone",
+      "webSite": "Site internet",
+      "bouldering":  "Bloc",
+      "sportClimbing": "Voie",
+      "pan":  "Pan",
+      "funClimbing": "Fun climbing",
+      "trainingSpace":  "Espace d'entrainement",
+      "latitude": "Latitude",
+      "longitude":  "Longitude"
     }
   },
   "actions": {
+    "submit": "Envoyer",
     "cancel": "Annuler",
+    "edit": "Editer",
     "ok": "ok",
     "createMyAccount": "Créer mon compte"
   }

@@ -1,10 +1,10 @@
 <template>
   <v-container>
-    Les voies
+    Les photos et vidéo
   </v-container>
 </template>
 <script>
 export default {
-  name: 'CragRoutePage'
+  name: 'CragPhotosView'
 }
 </script>

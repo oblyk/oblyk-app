@@ -4,7 +4,7 @@
       dark
       height="500px"
       gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-      :src="crag.cover()"
+      :src="crag.coverUrl()"
     >
       <div class="crag-header-title">
         <h1 class="font-weight-medium loved-by-king">

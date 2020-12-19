@@ -1,10 +1,10 @@
 <template>
   <v-container>
-    Détail de la carte
+    Les voies
   </v-container>
 </template>
 <script>
 export default {
-  name: 'CragMapDetailsPage'
+  name: 'CragRouteView'
 }
 </script>

@@ -3,7 +3,7 @@
     <v-card
       link
       flat
-      :to="gymUrl()"
+      :to="gym.url()"
     >
       <v-list-item three-line>
         <v-list-item-avatar
@@ -14,7 +14,7 @@
             size="70"
             tile
           >
-
+            <v-img :src="gym.logoUrl()"></v-img>
           </v-avatar>
         </v-list-item-avatar>
         <v-list-item-content>
@@ -29,7 +29,7 @@
             >
               SALLE
             </v-alert>
-            {{ gym.localization.country }}, {{ gym.localization.city }}
+            {{ gym.country }}, {{ gym.city }}
           </v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
@@ -37,19 +37,17 @@
   </div>
 </template>
 <script>
+import GymModel from '@/models/GymModel'
+
 export default {
   name: 'GymSearchResult',
   props: {
-    gym: null
+    gymData: null
   },
 
-  methods: {
-    gymUrl: function () {
-      return `/gym/${this.gym.id}/${this.gym.slug_name}/infos`
-    },
-
-    gymPhoto: function () {
-      return `${process.env.VUE_APP_OBLYK_API_URL}${this.gym.logo.url}`
+  data () {
+    return {
+      gym: new GymModel(this.gymData)
     }
   }
 }

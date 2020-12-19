@@ -37,7 +37,7 @@ import HomeBoxHelp from '@/components/homes/HomeBoxHelp'
 import HomeBoxGuideBook from '@/components/homes/HomeBoxGuideBook'
 
 export default {
-  name: 'Home',
+  name: 'HomeView',
   components: {
     HomeBoxGuideBook,
     HomeBoxHelp,

@@ -7,3 +7,14 @@
   display: inline-block;
   line-height: 0.75;
 }
+
+.global-form-width {
+  max-width: 600px;
+  margin-top: 2rem;
+}
+
+@media only screen and (max-width: 600px) {
+  .global-form-width {
+    margin-top: -0.5rem;
+  }
+}

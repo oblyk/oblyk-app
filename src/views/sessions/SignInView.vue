@@ -1,7 +1,8 @@
 <template>
   <v-container>
-    <v-row class="mt-10" justify="center">
-      <v-col sm="12" md="4" align-self="center">
+    <v-row justify="center">
+      <v-col class="global-form-width" align-self="center">
+        <h2 class="mb-4">Me connecter</h2>
         <sign-in-form v-if="!isLoggedIn"/>
 
         <p v-if="isLoggedIn">
@@ -20,7 +21,7 @@ import SignInForm from '@/components/sessions/SignInForm'
 import store from '@/store'
 
 export default {
-  name: 'SignIn',
+  name: 'SignInView',
   components: { SignInForm },
 
   computed: {

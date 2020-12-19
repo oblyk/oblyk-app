@@ -3,39 +3,45 @@
     light
   >
     <v-img
-      :src="crag.coverUrl()"
+      :src="gym.bannerUrl()"
       height="150px"
     ></v-img>
     <v-card-title>
-      {{ crag.name }}
+      <v-avatar class="mr-1">
+        <img
+          :src="gym.logoUrl()"
+          :alt="`logo ${gym.name}`"
+        >
+      </v-avatar>
+      {{ gym.name }}
     </v-card-title>
     <v-card-subtitle>
-      {{ crag.localization.country }}, {{ crag.localization.region }}, {{ crag.localization.city }}
+      {{ gym.country }}, {{ gym.city }}
     </v-card-subtitle>
     <v-card-actions>
       <v-spacer></v-spacer>
       <v-btn
         color="primary lighten-2"
         text
-        :to="crag.url()"
+        :to="gym.url()"
       >
-        Voir le site
+        Voir la salle
       </v-btn>
     </v-card-actions>
   </v-card>
 </template>
 <script>
-import CragModel from '@/models/CragModel'
+import GymModel from '@/models/GymModel'
 
 export default {
-  name: 'CragMapPopup',
+  name: 'GymMapPopup',
   props: {
-    cragData: null
+    gymData: null
   },
 
   data () {
     return {
-      crag: new CragModel(this.cragData)
+      gym: new GymModel(this.gymData)
     }
   }
 }

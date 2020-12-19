@@ -1,4 +1,4 @@
-import OblykApi from '@/services/oblyk-api'
+import SessionApi from '@/services/oblyk-api/session'
 
 // initial state
 const state = {
@@ -28,7 +28,7 @@ const actions = {
     return new Promise((resolve, reject) => {
       commit('request')
       const user = { email: data.email, password: data.password }
-      OblykApi
+      SessionApi
         .login(user)
         .then(resp => {
           const data = resp.data
@@ -48,7 +48,7 @@ const actions = {
   signUp ({ commit }, data) {
     return new Promise((resolve, reject) => {
       commit('request')
-      OblykApi
+      SessionApi
         .signUp(data)
         .then(resp => {
           const data = resp.data

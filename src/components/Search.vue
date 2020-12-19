@@ -14,7 +14,7 @@
         <crag-search-result v-if="result.record_type === 'Crag'" :crag-data="result.record" class="mb-3" />
         <crag-route-search-result v-if="result.record_type === 'CragRoute'" :crag-route="result.record" class="mb-3" />
         <crag-sector-search-result v-if="result.record_type === 'CragSector'" :crag-sector="result.record" class="mb-3" />
-        <gym-search-result v-if="result.record_type === 'Gym'" :gym="result.record" class="mb-3" />
+        <gym-search-result v-if="result.record_type === 'Gym'" :gym-data="result.record" class="mb-3" />
         <guide-book-search-result v-if="result.record_type === 'GuideBookPaper'" :guide-book="result.record" class="mb-3" />
       </div>
     </div>
@@ -24,7 +24,7 @@
   </div>
 </template>
 <script>
-import OblykApi from '@/services/oblyk-api'
+import SearchApi from '@/services/oblyk-api/search'
 import Spinner from '@/components/layouts/Spiner'
 import CragSearchResult from '@/components/searches/CragSearchResult'
 import CragRouteSearchResult from '@/components/searches/CragRouteSearchResult'
@@ -54,7 +54,7 @@ export default {
   methods: {
     search: function () {
       this.load = true
-      OblykApi
+      SearchApi
         .search(this.query)
         .then(resp => {
           this.results = resp.data

@@ -2,6 +2,7 @@
   <div>
     <v-app-bar
       app
+      :dense="isMobile"
       color="secondary"
       class="custom-app-bar"
       elevate-on-scroll
@@ -16,9 +17,11 @@
 
       <v-btn
         icon
-        :to="{ name: 'Search' }"
+        :to="{ name: 'SearchView' }"
       >
-        <v-icon>mdi-magnify</v-icon>
+        <v-icon>
+          mdi-magnify
+        </v-icon>
       </v-btn>
 
       <v-menu
@@ -68,7 +71,8 @@ export default {
   data () {
     return {
       drawer: true,
-      title: 'Oblyk'
+      title: 'Oblyk',
+      isMobile: false
     }
   },
 
@@ -80,6 +84,18 @@ export default {
 
   created () {
     this.title = this.$route.meta.title
+  },
+
+  mounted () {
+    this.onResize()
+
+    window.addEventListener('resize', this.onResize, { passive: true })
+  },
+
+  methods: {
+    onResize () {
+      this.isMobile = window.innerWidth < 600
+    }
   }
 }
 </script>

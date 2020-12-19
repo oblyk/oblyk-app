@@ -1,10 +1,10 @@
 <template>
   <v-container>
-    Les photos et vidéo
+    Détail de la carte
   </v-container>
 </template>
 <script>
 export default {
-  name: 'CragPhotosPage'
+  name: 'CragMapDetailsView'
 }
 </script>

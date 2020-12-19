@@ -5,13 +5,27 @@
       :mapStyle="mapStyle"
       @load="onMapLoaded"
     >
+
+      <!-- Controller -->
       <mgl-navigation-control position="top-right" />
+
+      <!-- Crags markers -->
       <mgl-marker v-for="crag in crags" :key="crag.id"
         :coordinates="[crag.localization.longitude, crag.localization.latitude]"
         color="#03a9f4"
       >
         <mgl-popup>
           <crag-map-popup :crag-data="crag" />
+        </mgl-popup>
+      </mgl-marker>
+
+      <!-- Gyms markers -->
+      <mgl-marker v-for="gym in gyms" :key="gym.id"
+                  :coordinates="[gym.longitude, gym.latitude]"
+                  color="#9c27b0"
+      >
+        <mgl-popup>
+          <gym-map-popup :gym-data="gym" />
         </mgl-popup>
       </mgl-marker>
     </mgl-map>
@@ -21,10 +35,12 @@
 import Mapbox from 'mapbox-gl'
 import { MglMap, MglMarker, MglNavigationControl, MglPopup } from 'vue-mapbox'
 import CragMapPopup from '@/components/maps/CragMapPopup'
+import GymMapPopup from '@/components/maps/GymMapPopup'
 
 export default {
   name: 'Map',
   components: {
+    GymMapPopup,
     CragMapPopup,
     MglMap,
     MglMarker,
@@ -40,11 +56,14 @@ export default {
     crags: {
       type: Array,
       required: false
+    },
+    gyms: {
+      type: Array,
+      required: false
     }
   },
 
   created () {
-    // We need to set mapbox-gl library here in order to use it in template
     this.mapbox = Mapbox
   },
 

@@ -46,13 +46,13 @@
   </div>
 </template>
 <script>
-import OblykApi from '@/services/oblyk-api'
+import CragApi from '@/services/oblyk-api/crag'
 import CragHead from '@/components/crags/layouts/CragHead'
 import Spinner from '@/components/layouts/Spiner'
 import CragModel from '@/models/CragModel'
 
 export default {
-  name: 'CragPage',
+  name: 'CragView',
   components: { Spinner, CragHead },
   props: {
     cragId: null,
@@ -72,8 +72,8 @@ export default {
 
   methods: {
     getCrag: function () {
-      OblykApi
-        .getCrag(this.cragId)
+      CragApi
+        .find(this.cragId)
         .then(resp => {
           this.crag = new CragModel(resp.data)
         })

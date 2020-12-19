@@ -97,6 +97,24 @@
         />
       </v-list-group>
 
+      <v-list-group
+        prepend-icon="mdi-book-plus-multiple"
+        no-action
+      >
+        <template v-slot:activator>
+          <v-list-item-content>
+            <v-list-item-title>
+              Contribuer
+            </v-list-item-title>
+          </v-list-item-content>
+        </template>
+        <app-drawer-item
+          url="/gyms/new"
+          icon="mdi-office-building"
+          :title="'Ajouter une salle'"
+        />
+      </v-list-group>
+
       <v-list-item link>
         <v-list-item-icon>
           <v-icon>mdi-hammer-wrench</v-icon>
