@@ -1,15 +1,8 @@
 <template>
   <div>
     <v-list class="avatar-drawer">
-      <v-list-item class="px-2" v-if="isLoggedIn">
-        <v-list-item-avatar>
-          <v-img src="https://randomuser.me/api/portraits/men/85.jpg"></v-img>
-        </v-list-item-avatar>
 
-        <v-list-item-content>
-          <v-list-item-title>{{ currentUser.name }}</v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
+      <app-drawer-avatar />
 
       <v-list-item class="px-2" v-if="!isLoggedIn">
         <v-list-item-avatar>
@@ -133,11 +126,12 @@
 import AppDrawerItem from '@/components/layouts/partial/AppDrawerItem'
 import { Sessionable } from '@/concerns/Sessionable'
 import MyGyms from '@/components/layouts/partial/MyGyms'
+import AppDrawerAvatar from '@/components/layouts/partial/AppDrawerAvatar'
 
 export default {
   name: 'AppDrawer',
   mixins: [Sessionable],
-  components: { MyGyms, AppDrawerItem },
+  components: { AppDrawerAvatar, MyGyms, AppDrawerItem },
 
   computed: {
     dark: function () {
