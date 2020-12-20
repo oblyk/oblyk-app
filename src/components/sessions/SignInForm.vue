@@ -60,7 +60,7 @@ export default {
           password
         })
         .then(() => {
-          this.$router.push(this.redirectTo)
+          this.$router.push(this.redirectTo || '/')
         })
         .catch(err => {
           console.error(err)

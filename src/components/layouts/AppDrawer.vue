@@ -40,6 +40,8 @@
       />
     </v-list>
 
+    <my-gyms />
+
     <!-- If no user connected -->
     <v-list
       v-if="!isLoggedIn"
@@ -130,11 +132,12 @@
 <script>
 import AppDrawerItem from '@/components/layouts/partial/AppDrawerItem'
 import { Sessionable } from '@/concerns/Sessionable'
+import MyGyms from '@/components/layouts/partial/MyGyms'
 
 export default {
   name: 'AppDrawer',
   mixins: [Sessionable],
-  components: { AppDrawerItem },
+  components: { MyGyms, AppDrawerItem },
 
   computed: {
     dark: function () {
