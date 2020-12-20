@@ -1,36 +1,48 @@
 <template>
   <v-form @submit.prevent="login">
+
     <v-text-field
       outlined
       v-model="email"
-      label="Email"
+      :label="$t('models.user.email')"
       type="email"
       required
-    ></v-text-field>
+    />
 
     <v-text-field
       outlined
       v-model="password"
-      label="Mot de passe"
+      :label="$t('models.user.password')"
       :type="showPassword ? 'text' : 'password'"
       required
       :append-icon="showPassword ? 'mdi-eye-off' : 'mdi-eye'"
       @click:append="showPassword = !showPassword"
-    ></v-text-field>
+    />
 
-    <div class="text-right">
-      <v-btn color="primary" type="submit">
-        Me connecter
-      </v-btn>
-    </div>
+    <submit-form
+      submit-local-key="actions.signIn"
+      :overlay="overlay"
+    />
+
   </v-form>
 </template>
 
 <script>
+import SubmitForm from '@/components/forms/SubmitForm'
 export default {
   name: 'SignInForm',
+  components: { SubmitForm },
+  props: {
+    redirectTo: {
+      type: String,
+      required: false,
+      default: '/'
+    }
+  },
+
   data () {
     return {
+      overlay: false,
       email: null,
       password: null,
       showPassword: false
@@ -41,16 +53,20 @@ export default {
     login: function () {
       const email = this.email
       const password = this.password
+      this.overlay = true
       this.$store
         .dispatch('auth/login', {
           email,
           password
         })
         .then(() => {
-          this.$router.push('/')
+          this.$router.push(this.redirectTo)
         })
         .catch(err => {
           console.error(err)
+        })
+        .then(() => {
+          this.overlay = false
         })
     }
   }

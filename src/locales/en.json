@@ -3,6 +3,10 @@
     "search": {
       "searchLabel": "Look for a crag, a route, a gym, etc."
     },
+    "session": {
+      "connectAlert": "You must be logged in to access this page",
+      "alreadyConnected": "You are logged in"
+    },
     "layout": {
       "appBar": {
         "login": "Login",
@@ -72,6 +76,8 @@
     "cancel": "Cancel",
     "edit": "Edit",
     "ok": "ok",
-    "createMyAccount": "Creat my account"
+    "createMyAccount": "Creat my account",
+    "signIn": "Sign in",
+    "signUp": "Sign up"
   }
 }

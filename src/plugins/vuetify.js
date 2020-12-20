@@ -16,13 +16,15 @@ export default new Vuetify({
         primary: '#1e88e5',
         secondary: '#fff',
         accent: '#2979ff',
-        error: '#b71c1c'
+        error: '#b71c1c',
+        warning: '#fb8c00'
       },
       dark: {
         primary: '#1565c0',
         secondary: '#121212',
         accent: '#448aff',
-        error: '#b71c1c'
+        error: '#b71c1c',
+        warning: '#fb8c00'
       }
     }
   }

@@ -9,7 +9,7 @@
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
 
-      <v-toolbar-title class="loved-by-king oblyk-app-title">
+      <v-toolbar-title class="oblyk-app-title">
         {{ title }}
       </v-toolbar-title>
 
@@ -121,6 +121,6 @@ export default {
 }
 
 .oblyk-app-title {
-  font-size: 1.6rem !important;
+  font-size: 1.2rem !important;
 }
 </style>

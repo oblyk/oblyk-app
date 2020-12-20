@@ -24,20 +24,17 @@
   </div>
 </template>
 <script>
+import { Sessionable } from '@/concerns/Sessionable'
 import store from '@/store'
 
 export default {
   name: 'LoginLogoutBtn',
-
-  computed: {
-    isLoggedIn: function () {
-      return store.getters['auth/isLoggedIn']
-    }
-  },
+  mixins: [Sessionable],
 
   methods: {
     logout: function () {
       store.dispatch('auth/logout')
+      this.$router.push('/')
     }
   }
 }

@@ -7,7 +7,7 @@
         </v-list-item-avatar>
 
         <v-list-item-content>
-          <v-list-item-title>{{ userName }}</v-list-item-title>
+          <v-list-item-title>{{ currentUser.name }}</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
 
@@ -128,22 +128,15 @@
 </template>
 
 <script>
-import store from '@/store'
 import AppDrawerItem from '@/components/layouts/partial/AppDrawerItem'
+import { Sessionable } from '@/concerns/Sessionable'
 
 export default {
   name: 'AppDrawer',
+  mixins: [Sessionable],
   components: { AppDrawerItem },
 
   computed: {
-    isLoggedIn: function () {
-      return store.getters['auth/isLoggedIn']
-    },
-
-    userName: function () {
-      return store.getters['auth/getName']
-    },
-
     dark: function () {
       return this.$vuetify.theme.dark
     }

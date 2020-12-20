@@ -2,32 +2,54 @@
   <v-container>
     <v-row justify="center">
       <v-col class="global-form-width" align-self="center">
-        <h2 class="mb-4">Me connecter</h2>
-        <sign-in-form v-if="!isLoggedIn"/>
+
+        <div v-if="!isLoggedIn">
+          <h2 class="mb-4">{{  $t('actions.signIn') }}</h2>
+
+          <v-alert
+            v-if="redirectTo !== null"
+            outlined
+            type="warning"
+          >
+            {{ $t('components.session.connectAlert') }}
+          </v-alert>
+
+          <sign-in-form :redirect-to="redirectTo"/>
+        </div>
 
         <p v-if="isLoggedIn">
-          vous êtes connecté
-          <v-btn @click="logout()">
-            me déconnecter
-          </v-btn>
+          <v-alert
+            outlined
+            type="info"
+          >
+            {{ $t('components.session.alreadyConnected') }}
+          </v-alert>
         </p>
+
       </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script>
+import { Sessionable } from '@/concerns/Sessionable'
 import SignInForm from '@/components/sessions/SignInForm'
 import store from '@/store'
 
 export default {
   name: 'SignInView',
+  mixins: [Sessionable],
   components: { SignInForm },
 
-  computed: {
-    isLoggedIn: function () {
-      return store.getters['auth/isLoggedIn']
+  data () {
+    return {
+      redirectTo: null
     }
+  },
+
+  created () {
+    const urlParams = new URLSearchParams(window.location.search)
+    this.redirectTo = urlParams.get('redirect_to')
   },
 
   methods: {

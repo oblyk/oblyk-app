@@ -28,7 +28,7 @@ router.beforeEach((to, from, next) => {
       next()
       return
     }
-    next('/sign-in')
+    next(`/sign-in?redirect_to=${to.fullPath}`)
   } else {
     next()
   }
