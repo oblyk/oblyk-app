@@ -7,22 +7,21 @@
       :src="gym.bannerUrl()"
     >
       <div class="gym-header-title">
-        <h1 class="font-weight-medium">
-          <v-avatar
-            size="62"
+        <v-avatar
+          size="80"
+          class="float-left mr-3"
+        >
+          <img
+            :src="gym.logoUrl()"
+            :alt="`logo ${gym.name}`"
           >
-            <img
-              :src="gym.logoUrl()"
-              :alt="`logo ${gym.name}`"
-            >
-          </v-avatar>
+        </v-avatar>
+        <h1 class="font-weight-medium">
           {{ gym.name }}
         </h1>
-        <div>
-          <span>
-            {{ gym.country }}, {{ gym.city }}
-          </span>
-        </div>
+        <span>
+          {{ gym.country }}, {{ gym.city }}
+        </span>
       </div>
     </v-img>
   </div>
