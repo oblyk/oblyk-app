@@ -2,7 +2,7 @@
   <div>
     <v-img
       dark
-      height="500px"
+      class="gym-header-banner"
       gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
       :src="gym.bannerUrl()"
     >
@@ -35,6 +35,10 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+.gym-header-banner {
+  height: 500px;
+  max-height: 100%;
+}
 .gym-header-title {
   position: absolute;
   width: 100%;
