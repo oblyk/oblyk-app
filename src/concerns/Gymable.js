@@ -5,16 +5,17 @@ export const Gymable = {
   data () {
     return {
       gym: null,
-      load: true
+      loadingGym: true
     }
   },
 
   created () {
-    this.getGym()
+    if (this.$route.params.gymId) this.getGym()
   },
 
   methods: {
     getGym: function () {
+      this.loadingGym = true
       GymApi
         .find(this.$route.params.gymId)
         .then(resp => {
@@ -24,7 +25,7 @@ export const Gymable = {
           console.error(err)
         })
         .finally(() => {
-          this.load = false
+          this.loadingGym = false
         })
     }
   }

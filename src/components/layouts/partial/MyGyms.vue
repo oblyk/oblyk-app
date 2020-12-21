@@ -7,7 +7,7 @@
       dense
     >
       <v-list-group
-        prepend-icon="mdi-map"
+        prepend-icon="mdi-home-group"
         no-action
       >
         <template v-slot:activator>

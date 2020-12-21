@@ -38,4 +38,9 @@ export default class GymModel {
     if (this.training_space) list.push('training_space')
     return list
   }
+
+  firstSpaceUrl () {
+    const space = this.gym_spaces[0]
+    return `/gyms/${this.id}/${this.slug_name}/spaces/${space.id}/${space.slug_name}`
+  }
 }

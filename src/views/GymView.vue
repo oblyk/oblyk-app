@@ -1,6 +1,8 @@
 <template>
   <div>
-    <div v-if="!load">
+    <spinner v-if="loadingGym" />
+
+    <div v-if="!loadingGym">
       <gym-head :gym="gym" />
 
       <v-tabs show-arrows >
@@ -8,8 +10,16 @@
           Info
         </v-tab>
 
-        <v-tab to="topo">
-          Topos
+        <v-tab
+          :to="gym.firstSpaceUrl()"
+        >
+          <v-badge
+            color="primary"
+            inline
+            :content="gym.gym_spaces.length"
+          >
+            Topos
+          </v-badge>
         </v-tab>
 
         <gym-action-menu
@@ -19,7 +29,6 @@
       </v-tabs>
       <router-view></router-view>
     </div>
-    <spinner v-if="load" />
   </div>
 </template>
 <script>

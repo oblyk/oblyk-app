@@ -1,8 +1,8 @@
 <template>
   <div>
-    <spinner v-if="load" />
+    <spinner v-if="loadingGym" />
 
-    <v-container v-if="!load">
+    <v-container v-if="!loadingGym">
       <v-row justify="center">
         <v-col class="global-form-width">
           <h2 class="mb-4">Changer le logo {{ gym.name }}</h2>

@@ -1,8 +1,8 @@
 <template>
   <div>
-    <spinner v-if="load"></spinner>
+    <spinner v-if="loadingGym"></spinner>
 
-    <v-container v-if="!load">
+    <v-container v-if="!loadingGym">
       <v-row>
         <v-col class="pa-2" md="7">
           <v-card>
