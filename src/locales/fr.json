@@ -8,6 +8,9 @@
       "alreadyConnected": "Vous êtes connecté·e",
       "stayConnected": "Rester connecté·e"
     },
+    "gymSpace": {
+      "create": "+ Créer un nouvel espace"
+    },
     "layout": {
       "appBar": {
         "login": "Me connecter",

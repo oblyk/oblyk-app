@@ -5,7 +5,6 @@ import GymEditView from '@/views/gyms/actions/GymEditView'
 import GymNewView from '@/views/gyms/actions/GymNewView'
 import GymLogoView from '@/views/gyms/actions/GymLogoView'
 import GymBannerView from '@/views/gyms/actions/GymBannerView'
-import GymSpaceView from '@/views/gyms/GymSpaceView'
 
 export default [
   {
@@ -68,13 +67,5 @@ export default [
     meta: {
       requiresAuth: true
     }
-  },
-
-  // Space
-  {
-    path: '/gyms/:gymId/:slug/spaces/:gymSpaceId/:slug',
-    name: 'GymSpace',
-    component: GymSpaceView,
-    props: true
   }
 ]

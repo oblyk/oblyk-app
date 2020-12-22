@@ -7,6 +7,9 @@
       "connectAlert": "You must be logged in to access this page",
       "alreadyConnected": "You are logged in"
     },
+    "gymSpace": {
+      "create": "+ Create a new space"
+    },
     "layout": {
       "appBar": {
         "login": "Login",

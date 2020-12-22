@@ -2,22 +2,24 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import store from '@/store/index'
 
-import GeneralRoutes from '@/router/modules/general'
-import SearchRoutes from '@/router/modules/search'
-import SessionRoutes from '@/router/modules/session'
-import CragRoutes from '@/router/modules/crag'
-import GymRoutes from '@/router/modules/gym'
+import GeneralRouter from '@/router/modules/generalRouter'
+import SearchRouter from '@/router/modules/searchRouter'
+import SessionRouter from '@/router/modules/sessionRouter'
+import CragRouter from '@/router/modules/cragRouter'
+import GymRouter from '@/router/modules/gymRouter'
+import GymSpaceRouter from '@/router/modules/gymSpaceRouter'
 
 Vue.use(VueRouter)
 
 const router = new VueRouter({
   mode: 'history',
   routes: [
-    ...GeneralRoutes,
-    ...SearchRoutes,
-    ...GymRoutes,
-    ...CragRoutes,
-    ...SessionRoutes
+    ...GeneralRouter,
+    ...SearchRouter,
+    ...GymRouter,
+    ...GymSpaceRouter,
+    ...CragRouter,
+    ...SessionRouter
   ]
 })
 

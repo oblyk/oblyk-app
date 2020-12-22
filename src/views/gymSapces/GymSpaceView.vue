@@ -3,8 +3,8 @@
     <spinner v-if="loadingGymSpace"></spinner>
 
     <div class="gym-spaces-routes-and-plan" v-if="!loadingGymSpace">
-      <v-row>
-        <v-col sm="12" md="3">
+      <v-row class="gym-spaces-routes-and-plan-row">
+        <v-col sm="12" md="3" class="routes-col">
           <gym-space-route :gym-space="gymSpace" />
         </v-col>
         <v-col sm="12" md="9" class="pt-0 pb-0">
@@ -17,8 +17,8 @@
 <script>
 import { GymSpaceable } from '@/concerns/GymSpaceable'
 import Spinner from '@/components/layouts/Spiner'
-import GymSpaceRoute from '@/components/gyms/GymSpaceRoute'
-import GymSpacePlan from '@/components/gyms/GymSpacePlan'
+import GymSpaceRoute from '@/components/gymSpaces/GymSpaceRoute'
+import GymSpacePlan from '@/components/gymSpaces/GymSpacePlan'
 
 export default {
   name: 'GymSpaceView',
@@ -26,3 +26,10 @@ export default {
   mixins: [GymSpaceable]
 }
 </script>
+<style lang="scss">
+.gym-spaces-routes-and-plan {
+  .gym-spaces-routes-and-plan-row {
+    margin-left: 0;
+  }
+}
+</style>
