@@ -120,7 +120,7 @@ export default {
         last_name: this.lastName,
         first_name: this.firstName,
         date_of_birth: this.dateOfBirth,
-        rememberMe: this.rememberMe
+        remember_me: this.rememberMe
       }
       this.$store
         .dispatch('auth/signUp', data)
