@@ -57,6 +57,9 @@ export default {
   props: {
     cragId: null,
     slug: null
+  },
+  watch: {
+    '$route.params.cragId': 'getCrag'
   }
 }
 </script>
