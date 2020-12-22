@@ -4,7 +4,10 @@ import SessionApi from '@/services/oblyk-api/session'
 const state = {
   status: '',
   token: '',
-  name: ''
+  expired_at: '',
+  refresh_token: '',
+  name: '',
+  id: ''
 }
 
 // getters
@@ -13,8 +16,24 @@ const getters = {
     return !!state.token
   },
 
+  expiredAt: state => {
+    return new Date(state.expired_at * 1000)
+  },
+
+  rememberMe: state => {
+    return !!state.refresh_token
+  },
+
   getToken: state => {
     return state.token
+  },
+
+  getRefreshToken: state => {
+    return state.refresh_token
+  },
+
+  getUserId: state => {
+    return state.id
   },
 
   getName: state => {
@@ -27,14 +46,44 @@ const actions = {
   login ({ commit }, data) {
     return new Promise((resolve, reject) => {
       commit('request')
-      const user = { email: data.email, password: data.password }
+      const user = {
+        email: data.email,
+        password: data.password,
+        remember_me: data.rememberMe
+      }
       SessionApi
         .login(user)
         .then(resp => {
           const data = resp.data
           commit('success', {
             token: data.token,
-            name: `${data.user.first_name} ${data.user.last_name}`
+            refresh_token: data.refresh_token,
+            expired_at: data.expired_at,
+            name: `${data.user.first_name} ${data.user.last_name}`,
+            id: data.user.id
+          })
+          resolve(resp)
+        })
+        .catch(err => {
+          commit('error')
+          reject(err)
+        })
+    })
+  },
+
+  async refresh ({ commit }) {
+    return new Promise((resolve, reject) => {
+      commit('request')
+      SessionApi
+        .refreshSession()
+        .then(resp => {
+          const data = resp.data
+          commit('success', {
+            token: data.token,
+            refresh_token: data.refresh_token,
+            expired_at: data.expired_at,
+            name: `${data.user.first_name} ${data.user.last_name}`,
+            id: data.user.id
           })
           resolve(resp)
         })
@@ -54,7 +103,10 @@ const actions = {
           const data = resp.data
           commit('success', {
             token: data.token,
-            name: `${data.user.first_name} ${data.user.last_name}`
+            expired_at: data.expired_at,
+            refresh_token: data.refresh_token,
+            name: `${data.user.first_name} ${data.user.last_name}`,
+            id: data.user.id
           })
           resolve(resp)
         })
@@ -82,7 +134,9 @@ const mutations = {
   success (state, payload) {
     state.status = 'success'
     state.token = payload.token
-    state.uuid = payload.uuid
+    state.refresh_token = payload.refresh_token
+    state.expired_at = payload.expired_at
+    state.id = payload.id
     state.name = payload.name
   },
 
@@ -93,7 +147,10 @@ const mutations = {
   logout (state) {
     state.status = ''
     state.token = ''
+    state.expired_at = ''
+    state.refresh_token = ''
     state.name = ''
+    state.id = ''
   }
 }
 

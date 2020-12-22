@@ -17,5 +17,16 @@ class SessionApi extends BaseApi {
       method: 'POST'
     })
   }
+
+  async refreshSession () {
+    return axios({
+      url: `${this.baseUrl}/sessions/tokens.json`,
+      data: {
+        id: this.authId(),
+        refresh_token: this.authRefreshToken()
+      },
+      method: 'POST'
+    })
+  }
 }
 export default new SessionApi()

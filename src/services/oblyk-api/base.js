@@ -5,7 +5,14 @@ export default class BaseApi {
     this.baseUrl = `${process.env.VUE_APP_OBLYK_API_URL}/api/v1`
   }
 
-  // Get token and uuid from store
+  authId () {
+    return store.getters['auth/getUserId']
+  }
+
+  authRefreshToken () {
+    return store.getters['auth/getRefreshToken']
+  }
+
   authToken () {
     return `Bearer ${store.getters['auth/getToken']}`
   }

@@ -19,6 +19,11 @@
       @click:append="showPassword = !showPassword"
     />
 
+    <v-checkbox
+      v-model="rememberMe"
+      label="Rester connecté"
+    />
+
     <submit-form
       submit-local-key="actions.signIn"
       :overlay="overlay"
@@ -45,7 +50,8 @@ export default {
       overlay: false,
       email: null,
       password: null,
-      showPassword: false
+      showPassword: false,
+      rememberMe: false
     }
   },
 
@@ -53,11 +59,13 @@ export default {
     login: function () {
       const email = this.email
       const password = this.password
+      const rememberMe = this.rememberMe
       this.overlay = true
       this.$store
         .dispatch('auth/login', {
           email,
-          password
+          password,
+          rememberMe
         })
         .then(() => {
           this.$router.push(this.redirectTo || '/')

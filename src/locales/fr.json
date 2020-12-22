@@ -4,7 +4,7 @@
       "searchLabel": "Chercher une falaise, une voie, une salle, etc."
     },
     "session": {
-      "connectAlert": "Vous devez être connecté pour accéder à cette page",
+      "connectAlert": "Vous devez être connecté·e pour accéder à cette page",
       "alreadyConnected": "Vous êtes connecté·e"
     },
     "layout": {
