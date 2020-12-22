@@ -21,7 +21,7 @@
 
     <v-checkbox
       v-model="rememberMe"
-      label="Rester connecté"
+      :label="$t('components.session.stayConnected')"
     />
 
     <submit-form

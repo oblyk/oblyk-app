@@ -80,17 +80,22 @@
       </v-date-picker>
     </v-dialog>
 
-    <div class="text-right">
-      <v-btn color="primary" type="submit">
-        {{ $t('actions.createMyAccount') }}
-      </v-btn>
-    </div>
+    <v-checkbox
+      v-model="rememberMe"
+      :label="$t('components.session.stayConnected')"
+    />
+
+    <submit-form
+      submit-local-key="actions.createMyAccount"
+    />
   </v-form>
 </template>
 
 <script>
+import SubmitForm from '@/components/forms/SubmitForm'
 export default {
   name: 'SignUpForm',
+  components: { SubmitForm },
   data () {
     return {
       email: null,
@@ -101,7 +106,8 @@ export default {
       lastName: null,
       firstName: null,
       dateOfBirth: null,
-      dateOfBirthModal: false
+      dateOfBirthModal: false,
+      rememberMe: false
     }
   },
 
@@ -113,7 +119,8 @@ export default {
         password_confirmation: this.passwordConfirmation,
         last_name: this.lastName,
         first_name: this.firstName,
-        date_of_birth: this.dateOfBirth
+        date_of_birth: this.dateOfBirth,
+        rememberMe: this.rememberMe
       }
       this.$store
         .dispatch('auth/signUp', data)

@@ -5,7 +5,8 @@
     },
     "session": {
       "connectAlert": "Vous devez être connecté·e pour accéder à cette page",
-      "alreadyConnected": "Vous êtes connecté·e"
+      "alreadyConnected": "Vous êtes connecté·e",
+      "stayConnected": "Rester connecté·e"
     },
     "layout": {
       "appBar": {
