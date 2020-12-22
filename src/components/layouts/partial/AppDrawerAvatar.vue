@@ -12,7 +12,7 @@
 <script>
 import { Sessionable } from '@/concerns/Sessionable'
 import UserApi from '@/services/oblyk-api/user'
-import UserModel from '@/models/UserModel'
+import User from '@/models/User'
 
 export default {
   name: 'AppDrawerAvatar',
@@ -40,7 +40,7 @@ export default {
       UserApi
         .current()
         .then(resp => {
-          this.user = new UserModel(resp.data)
+          this.user = new User(resp.data)
         }).then(() => {
           this.load = false
         })

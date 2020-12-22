@@ -84,7 +84,7 @@
 </template>
 <script>
 import GymApi from '@/services/oblyk-api/gym'
-import GymModel from '@/models/GymModel'
+import Gym from '@/models/Gym'
 import MapInput from '@/components/forms/MapInput'
 import SubmitForm from '@/components/forms/SubmitForm'
 import ClimbingTypeInput from '@/components/forms/ClimbingTypeInput'
@@ -173,7 +173,7 @@ export default {
 
       promise
         .then((resp) => {
-          const gym = new GymModel(resp.data)
+          const gym = new Gym(resp.data)
           this.$router.push(gym.url())
         })
         .catch((err) => {

@@ -31,7 +31,7 @@
   </v-card>
 </template>
 <script>
-import GymModel from '@/models/GymModel'
+import Gym from '@/models/Gym'
 
 export default {
   name: 'GymMapPopup',
@@ -41,7 +41,7 @@ export default {
 
   data () {
     return {
-      gym: new GymModel(this.gymData)
+      gym: new Gym(this.gymData)
     }
   }
 }

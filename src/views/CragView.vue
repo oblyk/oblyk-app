@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="!load">
+    <div v-if="!loadingCrag">
       <crag-head :crag="crag" />
       <v-tabs
         show-arrows
@@ -42,48 +42,21 @@
 
       <router-view></router-view>
     </div>
-    <spinner v-if="load" />
+    <spinner v-if="loadingCrag" />
   </div>
 </template>
 <script>
-import CragApi from '@/services/oblyk-api/crag'
+import { Cragable } from '@/concerns/Cragable'
 import CragHead from '@/components/crags/layouts/CragHead'
 import Spinner from '@/components/layouts/Spiner'
-import CragModel from '@/models/CragModel'
 
 export default {
   name: 'CragView',
   components: { Spinner, CragHead },
+  mixins: [Cragable],
   props: {
     cragId: null,
     slug: null
-  },
-
-  data () {
-    return {
-      crag: null,
-      load: true
-    }
-  },
-
-  created () {
-    this.getCrag()
-  },
-
-  methods: {
-    getCrag: function () {
-      CragApi
-        .find(this.cragId)
-        .then(resp => {
-          this.crag = new CragModel(resp.data)
-        })
-        .catch(err => {
-          console.error(err)
-        })
-        .finally(() => {
-          this.load = false
-        })
-    }
   }
 }
 </script>

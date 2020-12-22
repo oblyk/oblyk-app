@@ -25,7 +25,7 @@
   </v-card>
 </template>
 <script>
-import CragModel from '@/models/CragModel'
+import Crag from '@/models/Crag'
 
 export default {
   name: 'CragMapPopup',
@@ -35,7 +35,7 @@ export default {
 
   data () {
     return {
-      crag: new CragModel(this.cragData)
+      crag: new Crag(this.cragData)
     }
   }
 }

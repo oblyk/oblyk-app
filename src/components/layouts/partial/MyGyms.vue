@@ -45,8 +45,8 @@
 <script>
 import { Sessionable } from '@/concerns/Sessionable'
 import UserApi from '@/services/oblyk-api/user'
-import UserModel from '@/models/UserModel'
-import GymModel from '@/models/GymModel'
+import User from '@/models/User'
+import Gym from '@/models/Gym'
 
 export default {
   name: 'MyGyms',
@@ -74,7 +74,7 @@ export default {
       UserApi
         .current()
         .then(resp => {
-          this.user = new UserModel(resp.data)
+          this.user = new User(resp.data)
         }).then(() => {
           this.load = false
         })
@@ -83,7 +83,7 @@ export default {
     gyms: function () {
       const gymList = []
       for (const gym of this.user.gyms) {
-        gymList.push(new GymModel(gym))
+        gymList.push(new Gym(gym))
       }
       return gymList
     }

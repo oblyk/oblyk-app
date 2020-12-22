@@ -1,5 +1,4 @@
-import GymApi from '@/services/oblyk-api/gym'
-import GymModel from '@/models/GymModel'
+import Gym from '@/models/Gym'
 
 export const Gymable = {
   data () {
@@ -16,15 +15,14 @@ export const Gymable = {
   methods: {
     getGym: function () {
       this.loadingGym = true
-      GymApi
+      new Gym()
         .find(this.$route.params.gymId)
-        .then(resp => {
-          this.gym = new GymModel(resp.data)
+        .then((resp) => {
+          this.gym = resp
         })
-        .catch(err => {
+        .catch((err) => {
           console.error(err)
-        })
-        .finally(() => {
+        }).finally(() => {
           this.loadingGym = false
         })
     }

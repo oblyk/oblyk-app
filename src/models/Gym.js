@@ -1,8 +1,9 @@
-export default class GymModel {
-  constructor (attributes) {
-    for (const attribute in (attributes || {})) {
-      this[attribute] = attributes[attribute]
-    }
+import ActiveData from '@/models/ActiveData'
+import GymApi from '@/services/oblyk-api/gym'
+
+export default class Gym extends ActiveData {
+  find (id) {
+    return this.apiFind(GymApi, id)
   }
 
   url (tabs = 'infos') {
@@ -41,6 +42,6 @@ export default class GymModel {
 
   firstSpaceUrl () {
     const space = this.gym_spaces[0]
-    return `/gyms/${this.id}/${this.slug_name}/spaces/${space.id}/${space.slug_name}`
+    return (space) ? `/gyms/${this.id}/${this.slug_name}/spaces/${space.id}/${space.slug_name}` : ''
   }
 }

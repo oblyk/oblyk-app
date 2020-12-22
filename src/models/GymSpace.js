@@ -1,8 +1,9 @@
-export default class GymSpaceModel {
-  constructor (attributes) {
-    for (const attribute in (attributes || {})) {
-      this[attribute] = attributes[attribute]
-    }
+import ActiveData from '@/models/ActiveData'
+import GymSpaceApi from '@/services/oblyk-api/gymSpace'
+
+export default class GymSpace extends ActiveData {
+  find (gymId, spaceId) {
+    return this.apiFind(GymSpaceApi, gymId, spaceId)
   }
 
   url () {

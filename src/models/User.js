@@ -1,8 +1,9 @@
-export default class UserModel {
-  constructor (attributes) {
-    for (const attribute in (attributes || {})) {
-      this[attribute] = attributes[attribute]
-    }
+import ActiveData from '@/models/ActiveData'
+import UserApi from '@/services/oblyk-api/user'
+
+export default class User extends ActiveData {
+  find (id) {
+    return this.apiFind(UserApi, id)
   }
 
   url (tabs = 'infos') {

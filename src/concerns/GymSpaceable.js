@@ -1,5 +1,4 @@
-import GymSpaceApi from '@/services/oblyk-api/gymSpace'
-import GymSpaceModel from '@/models/GymSpaceModel'
+import GymSpace from '@/models/GymSpace'
 
 export const GymSpaceable = {
   data () {
@@ -10,24 +9,23 @@ export const GymSpaceable = {
   },
 
   created () {
-    if (this.$route.params.gymId && this.$route.params.gymSpaceId) this.getGym()
+    if (this.$route.params.gymId && this.$route.params.gymSpaceId) this.getGymSpace()
   },
 
   methods: {
-    getGym: function () {
+    getGymSpace: function () {
       this.loadingGymSpace = true
-      GymSpaceApi
+      new GymSpace()
         .find(
           this.$route.params.gymId,
           this.$route.params.gymSpaceId
         )
-        .then(resp => {
-          this.gymSpace = new GymSpaceModel(resp.data)
+        .then((resp) => {
+          this.gymSpace = resp
         })
-        .catch(err => {
+        .catch((err) => {
           console.error(err)
-        })
-        .finally(() => {
+        }).finally(() => {
           this.loadingGymSpace = false
         })
     }
