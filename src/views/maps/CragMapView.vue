@@ -3,7 +3,7 @@
 </template>
 <script>
 import Map from '@/components/Map'
-import CragApi from '@/services/oblyk-api/crag'
+import CragApi from '@/services/oblyk-api/cragApi'
 
 export default {
   name: 'CragMapView',

@@ -12,7 +12,7 @@
   </div>
 </template>
 <script>
-import GymSpaceApi from '@/services/oblyk-api/gymSpace'
+import GymSpaceApi from '@/services/oblyk-api/gymSpaceApi'
 
 export default {
   name: 'GymSpaceSelector',

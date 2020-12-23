@@ -1,5 +1,5 @@
 import axios from 'axios'
-import BaseApi from '@/services/oblyk-api/base'
+import BaseApi from '@/services/oblyk-api/baseApi'
 
 class GymSpaceApi extends BaseApi {
   all (gymId) {
@@ -21,7 +21,7 @@ class GymSpaceApi extends BaseApi {
       url: `${this.baseUrl}/gyms/${data.gym_id}/gym_spaces/${data.id}.json`,
       headers: { Authorization: this.authToken() },
       data: {
-        gym: data
+        gym_space: data
       },
       method: 'PUT'
     })
@@ -32,7 +32,7 @@ class GymSpaceApi extends BaseApi {
       url: `${this.baseUrl}/gyms/${data.gym_id}/gym_spaces.json`,
       headers: { Authorization: this.authToken() },
       data: {
-        gym: data
+        gym_space: data
       },
       method: 'POST'
     })

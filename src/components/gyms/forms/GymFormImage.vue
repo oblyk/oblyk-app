@@ -15,7 +15,7 @@
   </v-form>
 </template>
 <script>
-import GymApi from '@/services/oblyk-api/gym'
+import GymApi from '@/services/oblyk-api/gymApi'
 import Gym from '@/models/Gym'
 import SubmitForm from '@/components/forms/SubmitForm'
 

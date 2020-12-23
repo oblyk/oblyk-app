@@ -8,6 +8,7 @@ import SessionRouter from '@/router/modules/sessionRouter'
 import CragRouter from '@/router/modules/cragRouter'
 import GymRouter from '@/router/modules/gymRouter'
 import GymSpaceRouter from '@/router/modules/gymSpaceRouter'
+import GymGradeRouter from '@/router/modules/gymGradeRouter'
 
 Vue.use(VueRouter)
 
@@ -17,6 +18,7 @@ const router = new VueRouter({
     ...GeneralRouter,
     ...SearchRouter,
     ...GymRouter,
+    ...GymGradeRouter,
     ...GymSpaceRouter,
     ...CragRouter,
     ...SessionRouter

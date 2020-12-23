@@ -5,6 +5,7 @@ import GymEditView from '@/views/gyms/actions/GymEditView'
 import GymNewView from '@/views/gyms/actions/GymNewView'
 import GymLogoView from '@/views/gyms/actions/GymLogoView'
 import GymBannerView from '@/views/gyms/actions/GymBannerView'
+import GymGradeListView from '@/views/gyms/GymGradeListView'
 
 export default [
   {
@@ -16,7 +17,7 @@ export default [
     }
   },
   {
-    path: '/gyms/:gymId/:slug',
+    path: '/gyms/:gymId/:gymSlug',
     name: 'GymView',
     component: GymView,
     props: true,
@@ -30,11 +31,18 @@ export default [
         meta: {
           title: 'Infos salle'
         }
+      },
+      {
+        path: 'grades-list',
+        component: GymGradeListView,
+        meta: {
+          title: 'Liste des difficultés'
+        }
       }
     ]
   },
   {
-    path: '/gyms/:gymId/:slug/edit',
+    path: '/gyms/:gymId/:gymSlug/edit',
     name: 'GymEdit',
     component: GymEditView,
     props: true,
@@ -43,7 +51,7 @@ export default [
     }
   },
   {
-    path: '/gyms/:gymId/:slug/logo',
+    path: '/gyms/:gymId/:gymSlug/logo',
     name: 'GymLogo',
     component: GymLogoView,
     props: true,
@@ -52,7 +60,7 @@ export default [
     }
   },
   {
-    path: '/gyms/:gymId/:slug/banner',
+    path: '/gyms/:gymId/:gymSlug/banner',
     name: 'GymBanner',
     component: GymBannerView,
     props: true,

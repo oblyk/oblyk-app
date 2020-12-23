@@ -10,6 +10,17 @@
     "gymSpace": {
       "create": "+ Create a new space"
     },
+    "gymGrade": {
+      "add": "Add a difficulty system",
+      "explain": "The purpose of the difficulty systems is to make it easier for you to inform your lines afterwards.",
+      "whichSystem": "Which description of the system you use best fits?",
+      "gradeSystem": {
+        "hold_color": "The color of the holds gives the difficulty (with or without quotation)",
+        "tag_color": "The color of the labels gives the difficulty, the holds can have a different color from the labels (but within the same line the color of the holds remains the same).",
+        "grade": "There is no label, the color of the catches does not give the difficulty, only the quotation makes it possible to know the difficulty.",
+        "pan": "The labels give the line layout, the color of the plugs can change within the same line (for example: the pan)."
+      }
+    },
     "layout": {
       "appBar": {
         "login": "Login",
@@ -62,6 +73,10 @@
       "latitude": "Latitude",
       "longitude":  "Longitude"
     },
+    "gymGrade": {
+      "name": "System name",
+      "difficultySystem": "System type"
+    },
     "climbs": {
       "sport_climbing": "Sport Climbing",
       "bouldering": "Bouldering",
@@ -79,6 +94,7 @@
     "submit": "Submit",
     "cancel": "Cancel",
     "edit": "Edit",
+    "create": "Create",
     "ok": "ok",
     "createMyAccount": "Creat my account",
     "signIn": "Sign in",

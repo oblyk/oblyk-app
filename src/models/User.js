@@ -1,5 +1,5 @@
 import ActiveData from '@/models/ActiveData'
-import UserApi from '@/services/oblyk-api/user'
+import UserApi from '@/services/oblyk-api/userApi'
 
 export default class User extends ActiveData {
   find (id) {

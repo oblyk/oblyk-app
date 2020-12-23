@@ -1,5 +1,5 @@
 import axios from 'axios'
-import BaseApi from '@/services/oblyk-api/base'
+import BaseApi from '@/services/oblyk-api/baseApi'
 
 class GymApi extends BaseApi {
   all () {

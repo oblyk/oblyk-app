@@ -3,7 +3,7 @@
 </template>
 <script>
 import Map from '@/components/Map'
-import GymApi from '@/services/oblyk-api/gym'
+import GymApi from '@/services/oblyk-api/gymApi'
 
 export default {
   name: 'GymMapView',

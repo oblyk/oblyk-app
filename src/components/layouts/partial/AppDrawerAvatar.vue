@@ -11,7 +11,7 @@
 </template>
 <script>
 import { Sessionable } from '@/concerns/Sessionable'
-import UserApi from '@/services/oblyk-api/user'
+import UserApi from '@/services/oblyk-api/userApi'
 import User from '@/models/User'
 
 export default {
