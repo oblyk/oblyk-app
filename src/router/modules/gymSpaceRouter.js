@@ -4,7 +4,7 @@ import GymSpaceEditView from '@/views/gymSapces/actions/GymSpaceEditView'
 
 export default [
   {
-    path: '/gyms/:gymId/:gymSlug/spaces/:gymSpaceId/:gymSpaceSlug/infos',
+    path: '/gyms/:gymId/:gymSlug/spaces/:gymSpaceId/:gymSpaceSlug/plan',
     component: GymSpaceView,
     props: true
   },

@@ -42,6 +42,6 @@ export default class Gym extends ActiveData {
 
   firstSpaceUrl () {
     const space = this.gym_spaces[0]
-    return (space) ? `/gyms/${this.id}/${this.slug_name}/spaces/${space.id}/${space.slug_name}` : ''
+    return (space) ? `/gyms/${this.id}/${this.slug_name}/spaces/${space.id}/${space.slug_name}/plan` : ''
   }
 }
