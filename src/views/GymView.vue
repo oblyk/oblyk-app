@@ -10,7 +10,7 @@
   </div>
 </template>
 <script>
-import { Gymable } from '@/concerns/Gymable'
+import { GymConcern } from '@/concerns/GymConcern'
 import Spinner from '@/components/layouts/Spiner'
 import GymHead from '@/components/gyms/layouts/GymHead'
 import GymTabs from '@/components/gyms/layouts/GymTabs'
@@ -18,7 +18,7 @@ import GymTabs from '@/components/gyms/layouts/GymTabs'
 export default {
   name: 'GymView',
   components: { GymTabs, Spinner, GymHead },
-  mixins: [Gymable],
+  mixins: [GymConcern],
   watch: {
     '$route.params.gymId': 'getGym'
   }

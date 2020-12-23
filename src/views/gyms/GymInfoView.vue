@@ -26,13 +26,13 @@
   </div>
 </template>
 <script>
-import { Gymable } from '@/concerns/Gymable'
+import { GymConcern } from '@/concerns/GymConcern'
 import GymContact from '@/components/gyms/GymContact'
 import Spinner from '@/components/layouts/Spiner'
 
 export default {
   name: 'GymInfoView',
   components: { Spinner, GymContact },
-  mixins: [Gymable]
+  mixins: [GymConcern]
 }
 </script>

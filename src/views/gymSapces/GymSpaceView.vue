@@ -15,7 +15,7 @@
   </div>
 </template>
 <script>
-import { GymSpaceable } from '@/concerns/GymSpaceable'
+import { GymSpaceConcern } from '@/concerns/GymSpaceConcern'
 import Spinner from '@/components/layouts/Spiner'
 import GymSpaceRoute from '@/components/gymSpaces/GymSpaceRoute'
 import GymSpacePlan from '@/components/gymSpaces/GymSpacePlan'
@@ -23,7 +23,7 @@ import GymSpacePlan from '@/components/gymSpaces/GymSpacePlan'
 export default {
   name: 'GymSpaceView',
   components: { GymSpacePlan, GymSpaceRoute, Spinner },
-  mixins: [GymSpaceable]
+  mixins: [GymSpaceConcern]
 }
 </script>
 <style lang="scss">

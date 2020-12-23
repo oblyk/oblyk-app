@@ -46,14 +46,14 @@
   </div>
 </template>
 <script>
-import { Cragable } from '@/concerns/Cragable'
+import { CragConcern } from '@/concerns/CragConcern'
 import CragHead from '@/components/crags/layouts/CragHead'
 import Spinner from '@/components/layouts/Spiner'
 
 export default {
   name: 'CragView',
   components: { Spinner, CragHead },
-  mixins: [Cragable],
+  mixins: [CragConcern],
   props: {
     cragId: null,
     slug: null

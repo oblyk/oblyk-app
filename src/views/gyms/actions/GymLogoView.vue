@@ -16,13 +16,13 @@
   </div>
 </template>
 <script>
-import { Gymable } from '@/concerns/Gymable'
+import { GymConcern } from '@/concerns/GymConcern'
 import Spinner from '@/components/layouts/Spiner'
 import GymFormImage from '@/components/gyms/forms/GymFormImage'
 
 export default {
   name: 'GymLogoView',
   components: { GymFormImage, Spinner },
-  mixins: [Gymable]
+  mixins: [GymConcern]
 }
 </script>

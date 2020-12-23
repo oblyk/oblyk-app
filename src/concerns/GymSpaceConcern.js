@@ -1,6 +1,6 @@
 import GymSpace from '@/models/GymSpace'
 
-export const GymSpaceable = {
+export const GymSpaceConcern = {
   data () {
     return {
       gymSpace: null,

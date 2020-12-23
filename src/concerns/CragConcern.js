@@ -1,6 +1,6 @@
 import Crag from '@/models/Crag'
 
-export const Cragable = {
+export const CragConcern = {
   data () {
     return {
       crag: null,

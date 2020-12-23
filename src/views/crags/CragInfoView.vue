@@ -29,12 +29,12 @@
   </div>
 </template>
 <script>
-import { Cragable } from '@/concerns/Cragable'
+import { CragConcern } from '@/concerns/CragConcern'
 import Spinner from '@/components/layouts/Spiner'
 
 export default {
   name: 'CragInfoView',
   components: { Spinner },
-  mixins: [Cragable]
+  mixins: [CragConcern]
 }
 </script>

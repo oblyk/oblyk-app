@@ -1,6 +1,6 @@
 import Gym from '@/models/Gym'
 
-export const Gymable = {
+export const GymConcern = {
   data () {
     return {
       gym: null,
