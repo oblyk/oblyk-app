@@ -11,10 +11,10 @@ export default class ActiveData {
     }
   }
 
-  apiFind (Api, id, secondId = null) {
+  apiFind (Api, id, secondId = null, thirdId = null) {
     return new Promise((resolve, reject) => {
       Api
-        .find(id, secondId)
+        .find(id, secondId, thirdId)
         .then(resp => {
           this.buildData(resp.data)
           resolve(this)

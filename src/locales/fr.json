@@ -15,6 +15,7 @@
       "add": "Ajouter un système de difficultés",
       "explain": "Les systèmes de difficultés ont pour but de vous faciliter la tâche de renseignement de vos lignes par la suite.",
       "whichSystem": "Quelle description du système que vous utilisez correspond le mieux ?",
+      "system": "Système",
       "gradeSystem": {
         "hold_color": "La couleur des prises donnent la difficulté (avec ou sans cotation)",
         "tag_color": "La couleur des étiquettes donnent la difficulté, les prises peuvent avoir une couleur différentes des étiquettes (mais au sein d'une même ligne la couleur des prises reste la même)",
@@ -78,6 +79,12 @@
       "name": "Nom du système",
       "difficultySystem": "Type de système"
     },
+    "gymGradeLine": {
+      "name": "Nom du niveau",
+      "colors": "Couleurs",
+      "order": "Ordre",
+      "gradeText": "Cotation équivalent"
+    },
     "climbs": {
       "sport_climbing": "Voie",
       "bouldering": "Bloc",
@@ -91,16 +98,47 @@
       "pan": "Pan"
     }
   },
+  "colors": {
+    "noColor": "Pas de couleur",
+    "white": "Blanc",
+    "grey": "Gris",
+    "black": "Noir",
+    "pastelBlue": "Bleu pastel",
+    "blue": "Bleu",
+    "navyBlue": "Bleu marine",
+    "fluorescentBlue": "Bleu flo",
+    "pastelGreen": "Vert pastel",
+    "green": "Vert",
+    "firGreen": "Vert sapin",
+    "fluorescentGreen": "Vert flo",
+    "pastelPurple": "Violet pastel",
+    "purple": "Violet",
+    "deepPurple": "Violet profond",
+    "fluorescentPink": "Rose fluo",
+    "pastelRed": "Rouge pastel",
+    "red": "Rouge",
+    "darkRed": "Rouge profond",
+    "pastelOrange": "Orange pastel",
+    "orange": "Orange",
+    "pastelYellow": "Jaune pastel",
+    "yellow": "Jaune",
+    "fluorescentYellow": "Jaune fluo",
+    "brown": "Marron",
+    "beige": "Beige"
+  },
   "actions": {
     "submit": "Envoyer",
     "cancel": "Annuler",
-    "edit": "Editer",
+    "edit": "Modifier",
     "create": "Créer",
+    "delete": "Supprimer",
     "ok": "ok",
     "createMyAccount": "Créer mon compte",
     "changeBanner": "Changer le bandeau",
     "changeLogo": "Changer le logo",
     "signIn": "Me connecter",
-    "signUp": "Créer un compte"
+    "signUp": "Créer un compte",
+    "addLevel": "Ajouter un niveau",
+    "areYouSur": "Êtes-vous sûr ?"
   }
 }

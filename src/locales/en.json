@@ -14,6 +14,7 @@
       "add": "Add a difficulty system",
       "explain": "The purpose of the difficulty systems is to make it easier for you to inform your lines afterwards.",
       "whichSystem": "Which description of the system you use best fits?",
+      "system": "System",
       "gradeSystem": {
         "hold_color": "The color of the holds gives the difficulty (with or without quotation)",
         "tag_color": "The color of the labels gives the difficulty, the holds can have a different color from the labels (but within the same line the color of the holds remains the same).",
@@ -77,6 +78,12 @@
       "name": "System name",
       "difficultySystem": "System type"
     },
+    "gymGradeLine": {
+      "name": "Level name",
+      "colors": "Colors",
+      "order": "Order",
+      "gradeText": "Equivalent grading"
+    },
     "climbs": {
       "sport_climbing": "Sport Climbing",
       "bouldering": "Bouldering",
@@ -90,16 +97,46 @@
       "pan": "Pan"
     }
   },
+  "colors": {
+    "noColor": "No color",
+    "white": "White",
+    "grey": "Grey",
+    "black": "Black",
+    "pastelBlue": "Pastel blue",
+    "blue": "Blue",
+    "navyBlue": "Navy blue",
+    "fluorescentBlue": "Fluorescent blue",
+    "pastelGreen": "Pastel green",
+    "green": "Green",
+    "firGreen": "Fir green",
+    "fluorescentGreen": "Fluorescent green",
+    "pastelPurple": "Pastel purple",
+    "purple": "Purple",
+    "deepPurple": "Deep purple",
+    "fluorescentPink": "Fluorescent pink",
+    "pastelRed": "Pastel red",
+    "red": "Red",
+    "darkRed": "Dark red",
+    "pastelOrange": "Pastel orange",
+    "orange": "Orange",
+    "pastelYellow": "Pastel yellow",
+    "yellow": "Yellow",
+    "fluorescentYellow": "Fluorescent yellow",
+    "brown": "Brown",
+    "beige": "Beige"
+  },
   "actions": {
     "submit": "Submit",
     "cancel": "Cancel",
     "edit": "Edit",
     "create": "Create",
+    "delete": "Delete",
     "ok": "ok",
     "createMyAccount": "Creat my account",
     "changeBanner": "Change banner",
     "changeLogo": "Change logo",
     "signIn": "Sign in",
-    "signUp": "Sign up"
+    "signUp": "Sign up",
+    "addLevel": "Add level"
   }
 }

@@ -15,6 +15,7 @@
     >
       {{ $t(submitLocalKey) }}
     </v-btn>
+    <slot></slot>
   </div>
 </template>
 <script>

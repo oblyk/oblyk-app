@@ -39,5 +39,13 @@ class GymGradeApi extends BaseApi {
       method: 'POST'
     })
   }
+
+  delete (data) {
+    return axios({
+      url: `${this.baseUrl}/gyms/${data.gym.id}/gym_grades/${data.id}.json`,
+      headers: { Authorization: this.authToken() },
+      method: 'DELETE'
+    })
+  }
 }
 export default new GymGradeApi()
