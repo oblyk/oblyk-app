@@ -57,7 +57,14 @@ export default {
       if (this.selectedGymSpaceId === 0) {
         this.$router.push(`/gyms/${this.gymId}/${gymSlugName}/spaces/new`)
       } else {
-        this.$router.push(`/gyms/${this.gymId}/${gymSlugName}/spaces/${this.selectedGymSpaceId}/${this.selectedGymSpaceId.slug_name}`)
+        let selectedGymSpace = null
+
+        for (const gymSpace of this.gymSpaces) {
+          if (gymSpace.id === this.selectedGymSpaceId) {
+            selectedGymSpace = gymSpace
+          }
+        }
+        this.$router.push(`/gyms/${this.gymId}/${gymSlugName}/spaces/${this.selectedGymSpaceId}/${selectedGymSpace.slug_name}/plan`)
       }
     }
   }

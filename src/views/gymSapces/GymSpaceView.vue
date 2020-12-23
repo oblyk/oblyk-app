@@ -23,7 +23,10 @@ import GymSpacePlan from '@/components/gymSpaces/GymSpacePlan'
 export default {
   name: 'GymSpaceView',
   components: { GymSpacePlan, GymSpaceRoute, Spinner },
-  mixins: [GymSpaceConcern]
+  mixins: [GymSpaceConcern],
+  watch: {
+    '$route.params.gymSpaceId': 'getGymSpace'
+  }
 }
 </script>
 <style lang="scss">
