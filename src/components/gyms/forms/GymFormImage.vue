@@ -3,7 +3,6 @@
     @submit.prevent="submit()"
     enctype="multipart/form-data"
   >
-
     <v-file-input
       v-model="file"
       outlined
@@ -11,6 +10,7 @@
       placeholder="Séléctionner un nouveau logo"
     ></v-file-input>
 
+    <close-form />
     <submit-form :overlay="overlay" />
   </v-form>
 </template>
@@ -18,10 +18,11 @@
 import GymApi from '@/services/oblyk-api/gymApi'
 import Gym from '@/models/Gym'
 import SubmitForm from '@/components/forms/SubmitForm'
+import CloseForm from '@/components/forms/CloseForm'
 
 export default {
   name: 'GymFormImage',
-  components: { SubmitForm },
+  components: { CloseForm, SubmitForm },
   props: {
     gym: {
       type: Object,

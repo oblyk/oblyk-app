@@ -97,6 +97,8 @@
     "create": "Create",
     "ok": "ok",
     "createMyAccount": "Creat my account",
+    "changeBanner": "Change banner",
+    "changeLogo": "Change logo",
     "signIn": "Sign in",
     "signUp": "Sign up"
   }

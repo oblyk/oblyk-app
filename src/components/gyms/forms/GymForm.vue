@@ -79,6 +79,7 @@
       :label="$t('models.gym.webSite')"
     />
 
+    <close-form />
     <submit-form :overlay="overlay" />
   </v-form>
 </template>
@@ -88,10 +89,11 @@ import Gym from '@/models/Gym'
 import MapInput from '@/components/forms/MapInput'
 import SubmitForm from '@/components/forms/SubmitForm'
 import ClimbingTypeInput from '@/components/forms/ClimbingTypeInput'
+import CloseForm from '@/components/forms/CloseForm'
 
 export default {
   name: 'GymForm',
-  components: { ClimbingTypeInput, SubmitForm, MapInput },
+  components: { CloseForm, ClimbingTypeInput, SubmitForm, MapInput },
   props: {
     gym: {
       type: Object,

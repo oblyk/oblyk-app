@@ -98,6 +98,8 @@
     "create": "Créer",
     "ok": "ok",
     "createMyAccount": "Créer mon compte",
+    "changeBanner": "Changer le bandeau",
+    "changeLogo": "Changer le logo",
     "signIn": "Me connecter",
     "signUp": "Créer un compte"
   }

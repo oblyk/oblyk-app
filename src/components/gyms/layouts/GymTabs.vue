@@ -27,20 +27,13 @@
         Système de difficulté
       </v-badge>
     </v-tab>
-
-    <gym-action-menu
-      v-if="isLoggedIn"
-      :gym="gym"
-    />
   </v-tabs>
 </template>
 <script>
 import { Sessionable } from '@/concerns/Sessionable'
-import GymActionMenu from '@/components/gyms/layouts/GymActionMenu'
 
 export default {
   name: 'GymTabs',
-  components: { GymActionMenu },
   mixins: [Sessionable],
   props: {
     gym: Object

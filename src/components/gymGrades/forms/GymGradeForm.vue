@@ -39,6 +39,7 @@
       />
     </v-radio-group>
 
+    <close-form />
     <submit-form
       :overlay="submitOverlay"
       :submit-local-key="submitText()"
@@ -50,10 +51,11 @@ import { FormHelpers } from '@/mixins/FormHelpers'
 import SubmitForm from '@/components/forms/SubmitForm'
 import GymGradeApi from '@/services/oblyk-api/gymGradeApi'
 import GymGrade from '@/models/GymGrade'
+import CloseForm from '@/components/forms/CloseForm'
 
 export default {
   name: 'GymGradeForm',
-  components: { SubmitForm },
+  components: { CloseForm, SubmitForm },
   mixins: [FormHelpers],
   props: {
     gymId: null,
