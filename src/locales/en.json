@@ -5,10 +5,13 @@
     },
     "session": {
       "connectAlert": "You must be logged in to access this page",
-      "alreadyConnected": "You are logged in"
+      "alreadyConnected": "You are logged in",
+      "stayConnected": "Stay connected"
     },
     "gymSpace": {
-      "create": "+ Create a new space"
+      "create": "+ Create a new space",
+      "addNew": "Add a new space",
+      "explain": "A <cite>\"space\"</cite> and a large area of a room that can contain several sectors. example: \"Lane space\", \"Block space\", \"Pan\", etc.<br> It is up to you to find the best division for your room."
     },
     "gymGrade": {
       "noSystem": "No system of difficulty is currently reported.",
@@ -78,6 +81,13 @@
     "gymGrade": {
       "name": "System name",
       "difficultySystem": "System type"
+    },
+    "gymSpace": {
+      "name": "Space name",
+      "description": "Description",
+      "order": "Order of importance",
+      "climbingType": "Majority climbing type",
+      "gymGradeId": "Difficulty system"
     },
     "gymGradeLine": {
       "name": "Level name",

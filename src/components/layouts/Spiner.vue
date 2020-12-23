@@ -1,5 +1,5 @@
 <template>
-  <div class="spinner-area">
+  <div class="spinner-area" v-bind:class="fullHeight ? 'full-height' : 'small-height'">
     <v-row class="spinner-row">
      <v-col align-self="center">
        <v-progress-circular
@@ -13,12 +13,23 @@
 </template>
 <script>
 export default {
-  name: 'Spinner'
+  name: 'Spinner',
+  props: {
+    fullHeight: {
+      type: Boolean,
+      default: true
+    }
+  }
 }
 </script>
 <style lang="scss">
 .spinner-area {
-  height: calc(100vh - 64px);
+  &.full-height {
+    height: calc(100vh - 64px);
+  }
+  &.small-height {
+    height: 5em
+  }
   width: 100%;
   text-align: center;
   .spinner-row {

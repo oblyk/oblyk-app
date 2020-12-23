@@ -9,7 +9,9 @@
       "stayConnected": "Rester connecté·e"
     },
     "gymSpace": {
-      "create": "+ Créer un nouvel espace"
+      "create": "+ Créer un nouvel espace",
+      "addNew": "Ajouter un nouvel espace",
+      "explain": "Un <cite>\"espace\"</cite> et une grande zone d'une salle qui peut contenir plusieurs secteurs. exemple : \"Espace de voie\", \"Espace de bloc\", \"Pan\", etc.<br>À vous de trouver la meilleurs division pour votre salle."
     },
     "gymGrade": {
       "noSystem": "Aucun système de difficulté est renseigné pour l'instant",
@@ -75,6 +77,13 @@
       "trainingSpace":  "Espace d'entrainement",
       "latitude": "Latitude",
       "longitude":  "Longitude"
+    },
+    "gymSpace": {
+      "name": "Nom de l'espace",
+      "description": "Description",
+      "order": "Ordre d'importance",
+      "climbingType": "Type d'escalade majoritaire",
+      "gymGradeId": "Système de difficulté"
     },
     "gymGrade": {
       "name": "Nom du système",
