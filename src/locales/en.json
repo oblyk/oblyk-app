@@ -11,7 +11,9 @@
     "gymSpace": {
       "create": "+ Create a new space",
       "addNew": "Add a new space",
-      "explain": "A <cite>\"space\"</cite> and a large area of a room that can contain several sectors. example: \"Lane space\", \"Block space\", \"Pan\", etc.<br> It is up to you to find the best division for your room."
+      "explain": "A <cite>\"space\"</cite> and a large area of a room that can contain several sectors. example: \"Lane space\", \"Block space\", \"Pan\", etc.<br> It is up to you to find the best division for your room.",
+      "explainMissingPlan": "Upload a plan of <cite>\"%{name}\"</cite> on which you can draw the sectors.",
+      "uploadPlanFor": "Upload a plan for : %{name}"
     },
     "gymGrade": {
       "noSystem": "No system of difficulty is currently reported.",
@@ -146,9 +148,13 @@
     "createMyAccount": "Creat my account",
     "changeBanner": "Change banner",
     "changeLogo": "Change logo",
+    "changePlan": "Change plan",
     "signIn": "Sign in",
     "signUp": "Sign up",
     "addLevel": "Add level",
-    "addSystem": "Add system"
+    "areYouSur": "Are you sur ?",
+    "addSystem": "Add system",
+    "uploadMap": "Upload map",
+    "browse": "Browse ..."
   }
 }

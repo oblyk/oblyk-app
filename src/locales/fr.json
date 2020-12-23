@@ -11,7 +11,9 @@
     "gymSpace": {
       "create": "+ Créer un nouvel espace",
       "addNew": "Ajouter un nouvel espace",
-      "explain": "Un <cite>\"espace\"</cite> et une grande zone d'une salle qui peut contenir plusieurs secteurs. exemple : \"Espace de voie\", \"Espace de bloc\", \"Pan\", etc.<br>À vous de trouver la meilleurs division pour votre salle."
+      "explain": "Un <cite>\"espace\"</cite> et une grande zone d'une salle qui peut contenir plusieurs secteurs. exemple : \"Espace de voie\", \"Espace de bloc\", \"Pan\", etc.<br>À vous de trouver la meilleurs division pour votre salle.",
+      "explainMissingPlan": "Uploader une plan de <cite>\"%{name}\"</cite> sur lequel vous pourrez tracer les secteurs",
+      "uploadPlanFor": "Télécharger un plan pour : %{name}"
     },
     "gymGrade": {
       "noSystem": "Aucun système de difficulté est renseigné pour l'instant",
@@ -146,10 +148,13 @@
     "createMyAccount": "Créer mon compte",
     "changeBanner": "Changer le bandeau",
     "changeLogo": "Changer le logo",
+    "changePlan": "Changer le plan",
     "signIn": "Me connecter",
     "signUp": "Créer un compte",
     "addLevel": "Ajouter un niveau",
     "areYouSur": "Êtes-vous sûr ?",
-    "addSystem": "Ajouter un système"
+    "addSystem": "Ajouter un système",
+    "uploadMap": "Télécharger un plan",
+    "browse": "Parcourir ..."
   }
 }

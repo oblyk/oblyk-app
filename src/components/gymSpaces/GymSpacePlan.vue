@@ -46,5 +46,23 @@ export default {
 <style lang="scss">
 .gym-space-map {
   height: calc(100vh - 64px);
+  .leaflet-container {
+    background-color: #1e1e1e;
+  }
+}
+.theme--light {
+  .gym-space-map {
+    .leaflet-container {
+      background-color: #ffffff;
+    }
+  }
+}
+
+.theme--dark {
+  .gym-space-map {
+    .leaflet-container {
+      background-color: #1e1e1e;
+    }
+  }
 }
 </style>

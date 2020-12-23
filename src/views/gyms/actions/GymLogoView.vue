@@ -5,7 +5,7 @@
     <v-container v-if="!loadingGym">
       <v-row justify="center">
         <v-col class="global-form-width">
-          <h2 class="mb-4">Changer le logo {{ gym.name }}</h2>
+          <h2 class="mb-4">{{ $t('actions.changeLogo') }}</h2>
           <gym-form-image
             :gym="gym"
             upload-type="logo"

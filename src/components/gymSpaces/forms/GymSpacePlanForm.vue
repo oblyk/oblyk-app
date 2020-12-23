@@ -4,63 +4,56 @@
     enctype="multipart/form-data"
   >
     <v-file-input
-      v-model="file"
+      v-model="plan"
       outlined
       truncate-length="15"
       :placeholder="$t('actions.browse')"
     ></v-file-input>
 
     <close-form />
-    <submit-form :overlay="overlay" />
+    <submit-form :overlay="submitOverlay" />
   </v-form>
 </template>
 <script>
-import GymApi from '@/services/oblyk-api/gymApi'
-import Gym from '@/models/Gym'
+import { FormHelpers } from '@/mixins/FormHelpers'
+import GymSpaceApi from '@/services/oblyk-api/gymSpaceApi'
+import GymSpace from '@/models/GymSpace'
 import SubmitForm from '@/components/forms/SubmitForm'
 import CloseForm from '@/components/forms/CloseForm'
 
 export default {
-  name: 'GymFormImage',
+  name: 'GymSpacePlanForm',
+  mixins: [FormHelpers],
   components: { CloseForm, SubmitForm },
   props: {
-    gym: {
+    gymSpace: {
       type: Object,
       required: false
-    },
-    uploadType: String
+    }
   },
 
   data () {
     return {
-      overlay: false,
-      file: null
+      plan: null
     }
   },
 
   methods: {
     submit: function () {
-      this.overlay = true
+      this.submitOverlay = true
       const formData = new FormData()
-      let promise
+      formData.append('gym_space[plan]', this.plan)
 
-      if (this.uploadType === 'logo') {
-        formData.append('gym[logo]', this.file)
-        promise = GymApi.logo(formData, this.gym.id)
-      } else {
-        formData.append('gym[banner]', this.file)
-        promise = GymApi.banner(formData, this.gym.id)
-      }
-
-      promise
+      GymSpaceApi
+        .plan(formData, this.gymSpace.gym.id, this.gymSpace.id)
         .then((resp) => {
-          const gym = new Gym(resp.data)
-          this.$router.push(gym.url())
+          const gymSpace = new GymSpace(resp.data)
+          this.$router.push(gymSpace.url())
         })
         .catch((err) => {
           console.error(err)
         }).then(() => {
-          this.overlay = false
+          this.submitOverlay = false
         })
     }
   }
