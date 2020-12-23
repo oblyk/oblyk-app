@@ -16,10 +16,10 @@
       "explain": "Les systèmes de difficultés ont pour but de vous faciliter la tâche de renseignement de vos lignes par la suite.",
       "whichSystem": "Quelle description du système que vous utilisez correspond le mieux ?",
       "gradeSystem": {
-        "hold_color": "La couleur des prises donne la difficulté (avec ou sans cotation)",
-        "tag_color": "La couleur des étiquettes donne la difficulté, les prises peuvent avoir une couleur différentes des étiquettes (mais au sein d'une même ligne la couleur des prises reste la même)",
-        "grade": "Il n'y a pas d'étiquette, la couleur des prises ne donne pas la difficulté, seul la cotation permet de pour connaître la difficulté",
-        "pan": "Les étiquettes donnes le tracé de la ligne, la couleur des prises peuvent changer au sein d'une même ligne (par exemple : le pan)"
+        "hold_color": "La couleur des prises donnent la difficulté (avec ou sans cotation)",
+        "tag_color": "La couleur des étiquettes donnent la difficulté, les prises peuvent avoir une couleur différentes des étiquettes (mais au sein d'une même ligne la couleur des prises reste la même)",
+        "grade": "Il n'y a pas d'étiquette, la couleur des prises ne donnent pas la difficulté, seul la cotation permet de pour connaître la difficulté",
+        "pan": "Les étiquettes donnent le tracé de la ligne, la couleur des prises peuvent changer au sein d'une même ligne (par exemple : le pan)"
       }
     },
     "layout": {
