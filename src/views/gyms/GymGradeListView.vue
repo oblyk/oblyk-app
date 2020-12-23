@@ -11,13 +11,17 @@
         <gym-grade-card :gym-grade="gymGradeModel(gymGrade)" />
       </div>
 
-      <p class="text-right mt-3">
+      <p class="text-center mt-10 mb-10" v-if="gymGrades.length === 0">
+        {{ $t('components.gymGrade.noSystem') }}
+      </p>
+
+      <p class="mt-3" v-bind:class="gymGrades.length === 0 ? 'text-center' : 'text-right'">
         <v-btn
           color="primary"
           outlined
           :to="`/gyms/${gymId}/${gymSlug}/grades/new`"
         >
-          Ajouter un système
+          {{ $t('actions.addSystem') }}
         </v-btn>
       </p>
     </v-container>

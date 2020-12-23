@@ -11,6 +11,7 @@
       "create": "+ Create a new space"
     },
     "gymGrade": {
+      "noSystem": "No system of difficulty is currently reported.",
       "add": "Add a difficulty system",
       "explain": "The purpose of the difficulty systems is to make it easier for you to inform your lines afterwards.",
       "whichSystem": "Which description of the system you use best fits?",
@@ -137,6 +138,7 @@
     "changeLogo": "Change logo",
     "signIn": "Sign in",
     "signUp": "Sign up",
-    "addLevel": "Add level"
+    "addLevel": "Add level",
+    "addSystem": "Add system"
   }
 }

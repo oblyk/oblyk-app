@@ -12,6 +12,7 @@
       "create": "+ Créer un nouvel espace"
     },
     "gymGrade": {
+      "noSystem": "Aucun système de difficulté est renseigné pour l'instant",
       "add": "Ajouter un système de difficultés",
       "explain": "Les systèmes de difficultés ont pour but de vous faciliter la tâche de renseignement de vos lignes par la suite.",
       "whichSystem": "Quelle description du système que vous utilisez correspond le mieux ?",
@@ -139,6 +140,7 @@
     "signIn": "Me connecter",
     "signUp": "Créer un compte",
     "addLevel": "Ajouter un niveau",
-    "areYouSur": "Êtes-vous sûr ?"
+    "areYouSur": "Êtes-vous sûr ?",
+    "addSystem": "Ajouter un système"
   }
 }
