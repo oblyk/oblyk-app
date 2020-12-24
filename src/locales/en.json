@@ -15,6 +15,11 @@
       "explainMissingPlan": "Upload a plan of <cite>\"%{name}\"</cite> on which you can draw the sectors.",
       "uploadPlanFor": "Upload a plan for : %{name}"
     },
+    "gymSector": {
+      "addNew": "Create a new sector",
+      "addNewExplain": "A sector is a small division of a space, for example: The large slope, slabs, etc.. This is where the lines will be filled in.",
+      "resultingParametersOf": "Resulting from the parameters of : %{name}"
+    },
     "gymGrade": {
       "noSystem": "No system of difficulty is currently reported.",
       "add": "Add a difficulty system",
@@ -83,6 +88,14 @@
     "gymGrade": {
       "name": "System name",
       "difficultySystem": "System type"
+    },
+    "gymSector": {
+      "name": "Secteur name",
+      "description": "Description",
+      "groupSectorName": "Name of the grouping",
+      "climbingType": "Climbing type",
+      "height": "Sector height",
+      "gymGradeId": "Difficulty system"
     },
     "gymSpace": {
       "name": "Space name",

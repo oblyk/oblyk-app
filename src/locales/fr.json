@@ -15,6 +15,12 @@
       "explainMissingPlan": "Uploader une plan de <cite>\"%{name}\"</cite> sur lequel vous pourrez tracer les secteurs",
       "uploadPlanFor": "Télécharger un plan pour : %{name}"
     },
+    "gymSector": {
+      "addNew": "Créer un nouveau secteur",
+      "addNewExplain": "Un secteur est une petite division d'un espace, exemple : Grand devers droite, couloir 4, etc. C'est là que seront renseignées les lignes",
+      "explainGroupName": "Vous pouvez grouper vos couloirs / secteurs avec 'Nom du regroupement', exemple vous pouvez avoir 3 secteurs : 'Couloir 1', 'Couloir 2', 'Couloir 3', groupé dans 'Les dalles'",
+      "resultingParametersOf": "Issu des paramètres de : %{name}"
+    },
     "gymGrade": {
       "noSystem": "Aucun système de difficulté est renseigné pour l'instant",
       "add": "Ajouter un système de difficultés",
@@ -57,7 +63,7 @@
       "email": "Email"
     },
     "crag": {
-      "name": "Nom"
+      "name": "Nom du site"
     },
     "gym": {
       "name": "Nom de la salle",
@@ -85,6 +91,14 @@
       "description": "Description",
       "order": "Ordre d'importance",
       "climbingType": "Type d'escalade majoritaire",
+      "gymGradeId": "Système de difficulté"
+    },
+    "gymSector": {
+      "name": "Nom du secteur",
+      "description": "Description",
+      "groupSectorName": "Nom du regroupement",
+      "climbingType": "Type d'escalade",
+      "height": "Hauteur du secteur",
       "gymGradeId": "Système de difficulté"
     },
     "gymGrade": {
