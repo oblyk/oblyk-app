@@ -28,13 +28,26 @@
         {{ $t('actions.edit') }}
       </v-btn>
     </div>
+
+    <gym-sector-list :gym-space="gymSpace" />
+
+    <v-btn
+      class="mt-4"
+      :to="gymSpace.newSectorUrl()"
+    >
+      <v-icon leff>
+        mdi-plus
+      </v-icon>
+      Ajouter un secteur
+    </v-btn>
   </div>
 </template>
 <script>
 import GymSpaceSelector from '@/components/gymSpaces/GymSpaceSelector'
+import GymSectorList from '@/components/gymSectors/GymSectorList'
 export default {
   name: 'GymSpaceRoute',
-  components: { GymSpaceSelector },
+  components: { GymSectorList, GymSpaceSelector },
   props: {
     gymSpace: Object
   }

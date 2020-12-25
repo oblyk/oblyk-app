@@ -6,6 +6,7 @@
       :items="gymSpaces"
       item-text="name"
       item-value="id"
+      :label="$t('components.gymSpace.name')"
       v-if="!loadingGymSpaces"
       @change="onChange()"
     />

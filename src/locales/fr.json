@@ -9,6 +9,7 @@
       "stayConnected": "Rester connecté·e"
     },
     "gymSpace": {
+      "name": "Espace",
       "create": "+ Créer un nouvel espace",
       "addNew": "Ajouter un nouvel espace",
       "explain": "Un <cite>\"espace\"</cite> et une grande zone d'une salle qui peut contenir plusieurs secteurs. exemple : \"Espace de voie\", \"Espace de bloc\", \"Pan\", etc.<br>À vous de trouver la meilleurs division pour votre salle.",

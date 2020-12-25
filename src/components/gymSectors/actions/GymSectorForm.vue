@@ -91,7 +91,7 @@ export default {
       data: {
         id: (this.gymSector || {}).id,
         name: (this.gymSector || {}).name,
-        group_sector_name: (this.gymSector || {}).groupSectorName,
+        group_sector_name: (this.gymSector || {}).group_sector_name,
         height: (this.gymSector || {}).height,
         description: (this.gymSector || {}).description,
         climbing_type: (this.gymSector || {}).climbing_type || this.gymSpace.climbing_type,

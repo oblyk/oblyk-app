@@ -3,15 +3,44 @@
     <spinner v-if="loadingGymSpace"></spinner>
 
     <div class="gym-spaces-routes-and-plan" v-if="!loadingGymSpace">
+
       <v-row class="gym-spaces-routes-and-plan-row">
-        <v-col sm="12" md="3" class="routes-col">
+        <v-col
+          class="gym-space-routes-col"
+          v-show="!mobilInterface || linePanel"
+          v-bind:class="mobilInterface ? 'mobil-interface mr-3' : 'desktop-interface'">
           <gym-space-route :gym-space="gymSpace" />
         </v-col>
-        <v-col sm="12" md="9" class="pt-0 pb-0">
+
+        <v-col
+          v-show="!mobilInterface || planPanel"
+          class="col gym-space-plan-col pt-0 pb-0 pl-0 pr-0"
+          v-bind:class="mobilInterface ? 'mobil-interface' : 'desktop-interface'"
+        >
           <gym-space-plan v-if="gymSpace.plan" :gym-space="gymSpace" />
           <gym-space-plan-missing v-if="!gymSpace.plan" :gym-space="gymSpace" />
         </v-col>
       </v-row>
+
+      <v-bottom-navigation
+        app v-if="mobilInterface"
+        height="40"
+        horizontal
+        grow
+      >
+        <v-btn
+          @click="showLine()"
+        >
+          <span>Ouvertures</span>
+          <v-icon>mdi-arrow-decision</v-icon>
+        </v-btn>
+        <v-btn
+          @click="showPlan()"
+        >
+          <span>Plan</span>
+          <v-icon>mdi-map-legend</v-icon>
+        </v-btn>
+      </v-bottom-navigation>
     </div>
   </div>
 </template>
@@ -28,6 +57,36 @@ export default {
   mixins: [GymSpaceConcern],
   watch: {
     '$route.params.gymSpaceId': 'getGymSpace'
+  },
+
+  data () {
+    return {
+      mobilInterface: true,
+      linePanel: true,
+      planPanel: false
+    }
+  },
+
+  mounted () {
+    this.onResize()
+
+    window.addEventListener('resize', this.onResize, { passive: true })
+  },
+
+  methods: {
+    onResize () {
+      this.mobilInterface = window.innerWidth < 700
+    },
+
+    showPlan: function () {
+      this.linePanel = false
+      this.planPanel = true
+    },
+
+    showLine: function () {
+      this.linePanel = true
+      this.planPanel = false
+    }
   }
 }
 </script>
@@ -35,6 +94,14 @@ export default {
 .gym-spaces-routes-and-plan {
   .gym-spaces-routes-and-plan-row {
     margin-left: 0;
+    .gym-space-routes-col {
+      &.desktop-interface {
+        max-width: 400px;
+      }
+    }
+    .gym-space-plan-col {
+
+    }
   }
 }
 </style>
