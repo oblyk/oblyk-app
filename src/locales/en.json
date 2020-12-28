@@ -8,6 +8,16 @@
       "alreadyConnected": "You are logged in",
       "stayConnected": "Stay connected"
     },
+    "gym": {
+      "tabs": {
+        "info": "Info",
+        "guideBook": "Guide book",
+        "difficultySystem": "Difficulty System"
+      },
+      "firstSpaceExplain": "The spaces allow you to fill in your routes and boulders so that your climbers can consult them and keep a notebook of ascents!",
+      "createFirstSpace": "Create my first Space",
+      "administratorRequired": "You must be a gym administrator to access this page."
+    },
     "gymSpace": {
       "name": "Space",
       "create": "+ Create a new space",

@@ -7,7 +7,8 @@ const state = {
   expired_at: '',
   refresh_token: '',
   name: '',
-  id: ''
+  id: '',
+  administered_gyms: []
 }
 
 // getters
@@ -22,6 +23,10 @@ const getters = {
 
   rememberMe: state => {
     return !!state.refresh_token
+  },
+
+  administeredGyms: state => {
+    return state.administered_gyms
   },
 
   getToken: state => {
@@ -60,7 +65,8 @@ const actions = {
             refresh_token: data.refresh_token,
             expired_at: data.expired_at,
             name: `${data.user.first_name} ${data.user.last_name}`,
-            id: data.user.id
+            id: data.user.id,
+            administered_gyms: data.administered_gyms
           })
           resolve(resp)
         })
@@ -83,7 +89,8 @@ const actions = {
             refresh_token: data.refresh_token,
             expired_at: data.expired_at,
             name: `${data.user.first_name} ${data.user.last_name}`,
-            id: data.user.id
+            id: data.user.id,
+            administered_gyms: data.administered_gyms
           })
           resolve(resp)
         })
@@ -106,7 +113,8 @@ const actions = {
             expired_at: data.expired_at,
             refresh_token: data.refresh_token,
             name: `${data.user.first_name} ${data.user.last_name}`,
-            id: data.user.id
+            id: data.user.id,
+            administered_gyms: data.administered_gyms
           })
           resolve(resp)
         })
@@ -138,6 +146,7 @@ const mutations = {
     state.expired_at = payload.expired_at
     state.id = payload.id
     state.name = payload.name
+    state.administered_gyms = payload.administered_gyms
   },
 
   error (state) {
@@ -151,6 +160,7 @@ const mutations = {
     state.refresh_token = ''
     state.name = ''
     state.id = ''
+    state.administered_gyms = []
   }
 }
 

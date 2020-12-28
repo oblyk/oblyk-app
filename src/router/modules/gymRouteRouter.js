@@ -7,21 +7,37 @@ export default [
   {
     path: '/gyms/:gymId/:gymSlug/spaces/:gymSpaceId/:gymSpaceSlug/sectors/:gymSectorId/routes/new',
     component: GymRouteNewView,
-    props: true
+    props: true,
+    meta: {
+      requiresAuth: true,
+      requiresGymAdministrator: true
+    }
   },
   {
     path: '/gyms/:gymId/:gymSlug/spaces/:gymSpaceId/:gymSpaceSlug/routes/:gymRouteId/edit',
     component: GymRouteEditView,
-    props: true
+    props: true,
+    meta: {
+      requiresAuth: true,
+      requiresGymAdministrator: true
+    }
   },
   {
     path: '/gyms/:gymId/:gymSlug/spaces/:gymSpaceId/:gymSpaceSlug/routes/:gymRouteId/picture',
     component: GymRoutePictureView,
-    props: true
+    props: true,
+    meta: {
+      requiresAuth: true,
+      requiresGymAdministrator: true
+    }
   },
   {
     path: '/gyms/:gymId/:gymSlug/spaces/:gymSpaceId/:gymSpaceSlug/routes/:gymRouteId/thumbnail',
     component: GymRouteThumbnailView,
-    props: true
+    props: true,
+    meta: {
+      requiresAuth: true,
+      requiresGymAdministrator: true
+    }
   }
 ]

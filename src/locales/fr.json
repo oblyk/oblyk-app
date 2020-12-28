@@ -8,6 +8,16 @@
       "alreadyConnected": "Vous êtes connecté·e",
       "stayConnected": "Rester connecté·e"
     },
+    "gym": {
+      "tabs": {
+        "info": "Info",
+        "guideBook": "Topo",
+        "difficultySystem": "Système de difficulté"
+      },
+      "firstSpaceExplain": "Les espaces vous permets de renseigné vos voies et bloc pour que vos grimpeur puissent les consulter et tenir un carnet de croix !",
+      "createFirstSpace": "Créer mon premier Espace",
+      "administratorRequired": "Vous devez être administrateur de la salle pour avoir accès à cette page."
+    },
     "gymSpace": {
       "name": "Espace",
       "create": "+ Créer un nouvel espace",

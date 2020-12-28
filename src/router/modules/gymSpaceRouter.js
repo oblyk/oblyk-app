@@ -12,16 +12,28 @@ export default [
   {
     path: '/gyms/:gymId/:gymSlug/spaces/:gymSpaceId/:gymSpaceSlug/edit',
     component: GymSpaceEditView,
-    props: true
+    props: true,
+    meta: {
+      requiresAuth: true,
+      requiresGymAdministrator: true
+    }
   },
   {
     path: '/gyms/:gymId/:gymSlug/spaces/:gymSpaceId/:gymSpaceSlug/upload-plan',
     component: GymSpacePlanView,
-    props: true
+    props: true,
+    meta: {
+      requiresAuth: true,
+      requiresGymAdministrator: true
+    }
   },
   {
     path: '/gyms/:gymId/:gymSlug/spaces/new',
     component: GymSpaceNewView,
-    props: true
+    props: true,
+    meta: {
+      requiresAuth: true,
+      requiresGymAdministrator: true
+    }
   }
 ]

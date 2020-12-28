@@ -42,4 +42,18 @@ router.beforeEach((to, from, next) => {
   }
 })
 
+// check if the user is an gym administrator
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresGymAdministrator)) {
+    const administeredGyms = store.getters['auth/administeredGyms']
+    const gymId = parseInt(to.params.gymId)
+    if (administeredGyms.includes(gymId)) {
+      next()
+      return
+    }
+    next(`/gyms/${to.params.gymId}/${to.params.gymSlug}/administrator-required`)
+  } else {
+    next()
+  }
+})
 export default router

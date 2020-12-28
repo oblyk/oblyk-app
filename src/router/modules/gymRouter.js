@@ -6,6 +6,8 @@ import GymNewView from '@/views/gyms/actions/GymNewView'
 import GymLogoView from '@/views/gyms/actions/GymLogoView'
 import GymBannerView from '@/views/gyms/actions/GymBannerView'
 import GymGradeListView from '@/views/gyms/GymGradeListView'
+import GymFirstSpaceView from '@/views/gyms/GymFirstSpaceView'
+import GymAdministratorRequiredView from '@/views/gyms/GymAdministratorRequiredView'
 
 export default [
   {
@@ -33,10 +35,20 @@ export default [
         }
       },
       {
+        path: 'first-space',
+        component: GymFirstSpaceView
+      },
+      {
+        path: 'administrator-required',
+        component: GymAdministratorRequiredView
+      },
+      {
         path: 'grades-list',
         component: GymGradeListView,
         meta: {
-          title: 'Liste des difficultés'
+          title: 'Liste des difficultés',
+          requiresAuth: true,
+          requiresGymAdministrator: true
         }
       }
     ]

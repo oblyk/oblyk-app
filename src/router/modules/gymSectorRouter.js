@@ -5,11 +5,19 @@ export default [
   {
     path: '/gyms/:gymId/:gymSlug/spaces/:gymSpaceId/:gymSpaceSlug/sectors/new',
     component: GymSectorNewView,
-    props: true
+    props: true,
+    meta: {
+      requiresAuth: true,
+      requiresGymAdministrator: true
+    }
   },
   {
     path: '/gyms/:gymId/:gymSlug/spaces/:gymSpaceId/:gymSpaceSlug/sectors/:gymSectorId/edit',
     component: GymSectorEditView,
-    props: true
+    props: true,
+    meta: {
+      requiresAuth: true,
+      requiresGymAdministrator: true
+    }
   }
 ]
