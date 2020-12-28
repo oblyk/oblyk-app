@@ -8,6 +8,7 @@ import GymBannerView from '@/views/gyms/actions/GymBannerView'
 import GymGradeListView from '@/views/gyms/GymGradeListView'
 import GymFirstSpaceView from '@/views/gyms/GymFirstSpaceView'
 import GymAdministratorRequiredView from '@/views/gyms/GymAdministratorRequiredView'
+import GymAdministrationRequestView from '@/views/gyms/GymAdministrationRequestView'
 
 export default [
   {
@@ -61,6 +62,10 @@ export default [
     meta: {
       requiresAuth: true
     }
+  },
+  {
+    path: '/gyms/:gymId/:gymSlug/administration-request',
+    component: GymAdministrationRequestView
   },
   {
     path: '/gyms/:gymId/:gymSlug/logo',

@@ -1,4 +1,6 @@
 import store from '@/store'
+import UserApi from '@/services/oblyk-api/userApi'
+import User from '@/models/User'
 
 export const Sessionable = {
   computed: {
@@ -10,6 +12,21 @@ export const Sessionable = {
       return {
         name: store.getters['auth/getName']
       }
+    }
+  },
+
+  methods: {
+    getCurrentUser: function () {
+      return new Promise((resolve, reject) => {
+        UserApi
+          .current()
+          .then(resp => {
+            resolve(new User(resp.data))
+          })
+          .catch(err => {
+            reject(err)
+          })
+      })
     }
   }
 }

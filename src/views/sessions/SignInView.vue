@@ -7,7 +7,7 @@
           <h2 class="mb-4">{{  $t('actions.signIn') }}</h2>
 
           <v-alert
-            v-if="redirectTo !== null"
+            v-if="redirectTo !== null && alert"
             outlined
             type="warning"
           >
@@ -43,13 +43,17 @@ export default {
 
   data () {
     return {
-      redirectTo: null
+      redirectTo: null,
+      alert: true
     }
   },
 
   created () {
     const urlParams = new URLSearchParams(window.location.search)
     this.redirectTo = urlParams.get('redirect_to')
+
+    const alertParams = urlParams.get('alert')
+    this.alert = !(alertParams === 'false')
   },
 
   methods: {

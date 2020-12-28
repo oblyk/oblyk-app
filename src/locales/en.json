@@ -16,7 +16,15 @@
       },
       "firstSpaceExplain": "The spaces allow you to fill in your routes and boulders so that your climbers can consult them and keep a notebook of ascents!",
       "createFirstSpace": "Create my first Space",
-      "administratorRequired": "You must be a gym administrator to access this page."
+      "administratorRequired": "You must be a gym administrator to access this page.",
+      "IAmManager": "I am the manger"
+    },
+    "gymAdministrationRequest": {
+      "helloName": "Hello %{name}",
+      "isAlreadyAdministered": "This gym is already managed by its manager.",
+      "needAccount": "To take over the management of a climbing gym, you need an oblyk account in your name.",
+      "explainJustification": "Please fill out the form below and give us some information that will allow us to verify that you are entitled to manage this climbing gym.",
+      "requestIsSent": "We have registered your request !<br> We will process it as soon as possible."
     },
     "gymSpace": {
       "name": "Space",
@@ -121,6 +129,12 @@
       "trainingSpace":  "Training space",
       "latitude": "Latitude",
       "longitude":  "Longitude"
+    },
+    "gymAdministratorRequest": {
+      "justification": "Justification",
+      "email":"Email",
+      "firstName": "First name",
+      "lastName":"Last name"
     },
     "gymGrade": {
       "name": "System name",
@@ -232,6 +246,7 @@
     "addPicture": "Add picture",
     "defineThumbnail": "Define thumbnail",
     "createAndPicture": "Create + Picture",
-    "finish": "Finish"
+    "finish": "Finish",
+    "backToName": "Back to %{name}"
   }
 }

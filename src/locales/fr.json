@@ -16,7 +16,15 @@
       },
       "firstSpaceExplain": "Les espaces vous permets de renseigner vos voies et bloc pour que vos grimpeurs puissent les consulter et tenir un carnet de croix !",
       "createFirstSpace": "Créer mon premier Espace",
-      "administratorRequired": "Vous devez être administrateur de la salle pour avoir accès à cette page."
+      "administratorRequired": "Vous devez être administrateur de la salle pour avoir accès à cette page.",
+      "IAmManager": "Je suis le gérant"
+    },
+    "gymAdministrationRequest": {
+      "helloName": "Bonjour %{name}",
+      "isAlreadyAdministered": "Cette salle est déjà administrée par son gérant.",
+      "needAccount": "Pour prendre la gestion d'une salles d'escalade, il vous faut une compte oblyk à votre nom.",
+      "explainJustification": "Merci de remplir le formulaire ci-dessous en nous donnant des éléments qui nous permettrai de vérifier que vous êtes bien en droit de gérer cette salle.",
+      "requestIsSent": "Nous avons bien enregistré votre demande !<br> Nous la traiteront le plus rapidement possible."
     },
     "gymSpace": {
       "name": "Espace",
@@ -120,6 +128,12 @@
       "trainingSpace":  "Espace d'entrainement",
       "latitude": "Latitude",
       "longitude":  "Longitude"
+    },
+    "gymAdministratorRequest": {
+      "justification": "Justification",
+      "email":"Email",
+      "firstName": "Prénom",
+      "lastName":"Nom"
     },
     "gymSpace": {
       "name": "Nom de l'espace",
@@ -239,6 +253,7 @@
     "addPicture": "Ajouter une photo",
     "defineThumbnail": "Définir la miniature",
     "createAndPicture": "Créer + Photo",
-    "finish": "Terminer"
+    "finish": "Terminer",
+    "backToName": "Retour à %{name}"
   }
 }

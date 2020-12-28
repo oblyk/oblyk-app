@@ -16,6 +16,18 @@
                 {{ $t(`models.climbs.${climb}`) }}
               </v-chip>
             </v-card-text>
+            <v-card-text
+              v-if="!gym.administered"
+              class="text-center"
+            >
+              <v-btn
+                outlined
+                to="administration-request"
+                color="primary"
+              >
+                {{ $t('components.gym.IAmManager') }}
+              </v-btn>
+            </v-card-text>
           </v-card>
         </v-col>
         <v-col class="pa-2" md="5">
