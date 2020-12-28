@@ -96,7 +96,7 @@ export default {
     margin-left: 0;
     .gym-space-routes-col {
       &.desktop-interface {
-        max-width: 400px;
+        max-width: 450px;
       }
     }
     .gym-space-plan-col {

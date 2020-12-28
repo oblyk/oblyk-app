@@ -10,17 +10,24 @@
       <strong>
         {{ $t('components.gymGrade.system') }} :
       </strong>
-      {{ $t(`components.gymGrade.gradeSystem.${gymGrade.difficulty_system}`) }}
+      <span v-html="$t(`components.gymGrade.gradeSystem.${gymGrade.difficulty_system}`)" />
       <v-simple-table>
         <template v-slot:default>
           <tbody>
             <tr
-              v-for="gradeLine in gymGrade.grade_lines"
+              v-for="gradeLine in gymGrade.gradeLines"
               :key="gradeLine.id"
-              @click="!presentation ? $router.push(gradeLineModel(gradeLine).url('edit')) : null"
+              @click="!presentation ? $router.push(gradeLine.url('edit')) : null"
             >
-              <td>{{ gradeLine.order }}</td>
-              <td>
+              <td class="smallest-table-column">
+                {{ gradeLine.order }}
+              </td>
+              <td class="smallest-table-column">
+                <strong>
+                  {{ gradeLine.gradeValue }}
+                </strong>
+              </td>
+              <td class="smallest-table-column">
                 <v-icon
                   v-for="(color, index) in gradeLine.colors"
                   :key="index"
@@ -28,10 +35,9 @@
                 >
                   mdi-circle
                 </v-icon>
+              </td>
+              <td>
                 {{ gradeLine.name }}
-                <strong>
-                  ~{{ gradeLine.grade_text}}
-                </strong>
               </td>
             </tr>
           </tbody>
@@ -75,7 +81,6 @@
 </template>
 
 <script>
-import GymGradeLine from '@/models/GymGradeLine'
 import GymGradeApi from '@/services/oblyk-api/gymGradeApi'
 
 export default {
@@ -96,10 +101,6 @@ export default {
   },
 
   methods: {
-    gradeLineModel: function (gradeLine) {
-      return new GymGradeLine(gradeLine)
-    },
-
     deleteGrade: function () {
       if (confirm(this.$t('actions.areYouSur'))) {
         this.loadingDelete = true

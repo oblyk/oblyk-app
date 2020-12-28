@@ -20,19 +20,43 @@
       "addNew": "Créer un nouveau secteur",
       "addNewExplain": "Un secteur est une petite division d'un espace, exemple : Grand devers droite, couloir 4, etc. C'est là que seront renseignées les lignes",
       "explainGroupName": "Vous pouvez grouper vos couloirs / secteurs avec 'Nom du regroupement', exemple vous pouvez avoir 3 secteurs : 'Couloir 1', 'Couloir 2', 'Couloir 3', groupé dans 'Les dalles'",
-      "resultingParametersOf": "Issu des paramètres de : %{name}"
+      "resultingParametersOf": "Issu des paramètres de : %{name}",
+      "editSectorPolygon": "Éditer le tracer sur le plan",
+      "clicOnPlan": "Cliquez sur la carte, ou déplacez les poignets blanche pour éditer le tracer du secteur sur le plan.",
+      "clicOnFinish": "Une fois fini cliquez sur terminer"
+    },
+    "gymRoute": {
+      "addNew": "Ajouter une nouvelle ligne",
+      "resultingParametersOf": "Issu des paramètres du secteur : %{name}",
+      "automaticParameters": "Issu du système de difficulté choisi",
+      "addPitch": "Ajouter une longueur",
+      "removePitch": "Supprimer une longueur",
+      "multiPitchRoute": "Ligne de plusieur longeur",
+      "noRoute": "Aucune ligne trouvée",
+      "sorts": {
+        "opened_at": "Trier par date d'ouverture",
+        "sector": "Trier par secteur",
+        "grade": "Trier par difficulté"
+      }
     },
     "gymGrade": {
       "noSystem": "Aucun système de difficulté est renseigné pour l'instant",
       "add": "Ajouter un système de difficultés",
       "explain": "Les systèmes de difficultés ont pour but de vous faciliter la tâche de renseignement de vos lignes par la suite.",
-      "whichSystem": "Quelle description du système que vous utilisez correspond le mieux ?",
+      "whichSystem": "Comment identifier vous vos lignes ? (couleur de prise, etiquette, etc.)",
+      "whichGradeSystem": "Quelle système de valeur utilisez vous pour coter vos lignes ?",
       "system": "Système",
       "gradeSystem": {
-        "hold_color": "La couleur des prises donnent la difficulté (avec ou sans cotation)",
-        "tag_color": "La couleur des étiquettes donnent la difficulté, les prises peuvent avoir une couleur différentes des étiquettes (mais au sein d'une même ligne la couleur des prises reste la même)",
-        "grade": "Il n'y a pas d'étiquette, la couleur des prises ne donnent pas la difficulté, seul la cotation permet de pour connaître la difficulté",
-        "pan": "Les étiquettes donnent le tracé de la ligne, la couleur des prises peuvent changer au sein d'une même ligne (par exemple : le pan)"
+        "hold_color": "La couleur des prises indiquent la difficulté <cite>(recommandé pour le bloc)</cite>",
+        "tag_color": "Les étiquettes au départ des lignes indiquent la difficulté <cite>(recommandé pour la voie en salle privée)</cite>",
+        "pan": "Les étiquettes sur toutes les prises de la ligne indiquent la difficulté <cite>(recommandé pour le pan)</cite>",
+        "grade": "Pas d'étiquette, pas de couleur de prise spécifique, la cotation est indiqué pour la ligne <cite>(recommandé pour la voie en club)</cite>"
+      }
+    },
+    "gymGradeLine": {
+      "colors": {
+        "hold": "Couleur des prises",
+        "tag": "Couleur des étiquettes"
       }
     },
     "layout": {
@@ -100,17 +124,46 @@
       "groupSectorName": "Nom du regroupement",
       "climbingType": "Type d'escalade",
       "height": "Hauteur du secteur",
-      "gymGradeId": "Système de difficulté"
+      "gymGradeId": "Système de difficulté",
+      "canBeMoreThanOnePitch": "Peut avoir des lignes avec plus d'une longueur"
+    },
+    "gymRoute": {
+      "name":  "Nom de la ligne, ou référence",
+      "height": "Hauteur",
+      "heightBySection": "Hauteur L.%{index}",
+      "heightTotal": "Hauteur total",
+      "climbingType":  "Type de grimpe",
+      "favorite": "Favori",
+      "openers":  "Ouvreurs",
+      "polyline": "Tracé",
+      "holdColors":  "Couleurs des prises",
+      "tagColors": "Couleur des étiquettes",
+      "sections":  "Sections",
+      "gymSectorId": "Secteur",
+      "gymGradeLineId":  "Difficulté",
+      "gradeValueAppreciation": "Cotation par les grimpeurs",
+      "note":  "Note",
+      "noteCount": "Nombre de note",
+      "ascentsCount":  "Nombre d'ascension",
+      "sectionsCount": "Nombre de section",
+      "maxGradeText":  "Cotation max",
+      "minGradeText": "Cotation min",
+      "points": "Points",
+      "grade": "Cotation",
+      "gradeBySection": "Cotation L.%{index}"
     },
     "gymGrade": {
       "name": "Nom du système",
-      "difficultySystem": "Type de système"
+      "difficultySystem": "Type de système",
+      "useGradeSystem": "System de cotation 'normal' <cite>(7a, 6b+, etc.)</cite>",
+      "usePointSystem": "System de cotation par point <cite>(50pts, 500pts, etc.)</cite>"
     },
     "gymGradeLine": {
       "name": "Nom du niveau",
       "colors": "Couleurs",
       "order": "Ordre",
-      "gradeText": "Cotation équivalent"
+      "gradeText": "Cotation moyenne de ce niveau",
+      "points": "Points pour ce niveau"
     },
     "climbs": {
       "sport_climbing": "Voie",
@@ -164,12 +217,18 @@
     "changeBanner": "Changer le bandeau",
     "changeLogo": "Changer le logo",
     "changePlan": "Changer le plan",
+    "createNewSpace": "Créer un nouvel espace",
+    "addSector": "Ajouter un secteur",
     "signIn": "Me connecter",
     "signUp": "Créer un compte",
     "addLevel": "Ajouter un niveau",
     "areYouSur": "Êtes-vous sûr ?",
     "addSystem": "Ajouter un système",
     "uploadMap": "Télécharger un plan",
-    "browse": "Parcourir ..."
+    "browse": "Parcourir ...",
+    "addPicture": "Ajouter une photo",
+    "defineThumbnail": "Définir la miniature",
+    "createAndPicture": "Créer + Photo",
+    "finish": "Terminer"
   }
 }

@@ -19,6 +19,10 @@
   }
 }
 
+.v-application--is-ltr .v-text-field .v-input__prepend-inner {
+  padding-right: 10px;
+}
+
 .smallest-table-column {
   width: 10px;
   white-space: nowrap;

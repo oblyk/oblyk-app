@@ -30,6 +30,17 @@
             mdi-pencil
           </v-icon>
         </v-btn>
+
+        <v-btn
+          :to="sector.url('routes/new')"
+          icon
+          small
+        >
+          <v-icon small>
+            mdi-tag-plus
+          </v-icon>
+        </v-btn>
+
         <v-btn
           icon
           small

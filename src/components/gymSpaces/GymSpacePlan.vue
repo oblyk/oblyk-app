@@ -22,6 +22,7 @@
         v-for="sector in sectorPolygons()"
         :key="sector.id"
         :lat-lngs="sector.jsonPolygon"
+        @click="filterBySector(sector.id)"
         :ref="`polygon-sector-${sector.id}`"
       />
     </editable-map>
@@ -149,13 +150,20 @@ export default {
         }).finally(() => {
           this.reloadingData = false
         })
+    },
+
+    filterBySector: function (sectorId) {
+      this.$root.$emit('filtreBySector', sectorId)
     }
   }
 }
 </script>
 <style lang="scss">
 .gym-space-map {
-  position: relative;
+  position: fixed;
+  right: 0;
+  top: 64px;
+  width: calc(100vw - 765px);
   height: calc(100vh - 64px);
   .leaflet-container {
     background-color: #1e1e1e;

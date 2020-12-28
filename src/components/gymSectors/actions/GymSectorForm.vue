@@ -35,6 +35,11 @@
         :label="$t('models.gymSector.description')"
       />
 
+      <v-checkbox
+        v-model="data.can_be_more_than_one_pitch"
+        :label="$t('models.gymSector.canBeMoreThanOnePitch')"
+      />
+
       <v-subheader>
         {{ $t('components.gymSector.resultingParametersOf', { name: gymSpace.name }) }}
       </v-subheader>
@@ -94,6 +99,7 @@ export default {
         group_sector_name: (this.gymSector || {}).group_sector_name,
         height: (this.gymSector || {}).height,
         description: (this.gymSector || {}).description,
+        can_be_more_than_one_pitch: (this.gymSector || {}).can_be_more_than_one_pitch,
         climbing_type: (this.gymSector || {}).climbing_type || this.gymSpace.climbing_type,
         gym_grade_id: (this.gymSector || {}).gym_grade_id || this.gymSpace.gym_grade_id,
         gym_space_id: this.gymSpace.id,

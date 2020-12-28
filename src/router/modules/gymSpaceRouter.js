@@ -1,7 +1,7 @@
-import GymSpaceView from '@/views/gymSapces/GymSpaceView'
-import GymSpaceNewView from '@/views/gymSapces/actions/GymSpaceNewView'
-import GymSpaceEditView from '@/views/gymSapces/actions/GymSpaceEditView'
-import GymSpacePlanView from '@/views/gymSapces/actions/GymSpacePlanView'
+import GymSpaceView from '@/views/gymSpaces/GymSpaceView'
+import GymSpaceNewView from '@/views/gymSpaces/actions/GymSpaceNewView'
+import GymSpaceEditView from '@/views/gymSpaces/actions/GymSpaceEditView'
+import GymSpacePlanView from '@/views/gymSpaces/actions/GymSpacePlanView'
 
 export default [
   {

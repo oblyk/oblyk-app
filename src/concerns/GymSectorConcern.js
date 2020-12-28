@@ -14,18 +14,22 @@ export const GymSectorConcern = {
       this.$route.params.gymSpaceId &&
       this.$route.params.gymSectorId
     ) {
-      this.getGymSector()
+      this.getGymSector(
+        this.$route.params.gymId,
+        this.$route.params.gymSpaceId,
+        this.$route.params.gymSectorId
+      )
     }
   },
 
   methods: {
-    getGymSector: function () {
+    getGymSector: function (gymId, gymSpaceId, gymSectorId) {
       this.loadingGymSector = true
       new GymSector()
         .find(
-          this.$route.params.gymId,
-          this.$route.params.gymSpaceId,
-          this.$route.params.gymSectorId
+          gymId,
+          gymSpaceId,
+          gymSectorId
         )
         .then((resp) => {
           this.gymSector = resp

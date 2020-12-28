@@ -7,9 +7,12 @@
       item-text="name"
       item-value="id"
       :label="$t('components.gymSpace.name')"
-      v-if="!loadingGymSpaces"
+      v-if="!loadingGymSpaces && gymSpaces.length > 1"
       @change="onChange()"
     />
+    <h1 class="title mb-7" v-if="gymSpaces.length === 1">
+      {{ gymSpace.name }}
+    </h1>
   </div>
 </template>
 <script>
@@ -18,12 +21,12 @@ import GymSpaceApi from '@/services/oblyk-api/gymSpaceApi'
 export default {
   name: 'GymSpaceSelector',
   props: {
-    gymId: Number
+    gymSpace: Object
   },
 
   data () {
     return {
-      selectedGymSpaceId: parseInt(this.$route.params.gymSpaceId),
+      selectedGymSpaceId: this.gymSpace.id,
       gymSpaces: [],
       loadingGymSpaces: true
     }
@@ -37,7 +40,7 @@ export default {
     getAllGymSpace: function () {
       this.loadingGymSpaces = true
       GymSpaceApi
-        .all(this.gymId)
+        .all(this.gymSpace.gym.id)
         .then(resp => {
           this.gymSpaces = resp.data
           this.gymSpaces.push({
@@ -54,9 +57,8 @@ export default {
     onChange: function () {
       if (this.loadingGymSpaces) return
 
-      const gymSlugName = this.$route.params.gymSlug
       if (this.selectedGymSpaceId === 0) {
-        this.$router.push(`/gyms/${this.gymId}/${gymSlugName}/spaces/new`)
+        this.$router.push(this.gymSpace.gymUrl('spaces/new'))
       } else {
         let selectedGymSpace = null
 
@@ -65,7 +67,7 @@ export default {
             selectedGymSpace = gymSpace
           }
         }
-        this.$router.push(`/gyms/${this.gymId}/${gymSlugName}/spaces/${this.selectedGymSpaceId}/${selectedGymSpace.slug_name}/plan`)
+        this.$router.push(`/gyms/${this.gymSpace.gym.id}/${this.gymSpace.gym.slug_name}/spaces/${this.selectedGymSpaceId}/${selectedGymSpace.slug_name}/plan`)
       }
     }
   }
