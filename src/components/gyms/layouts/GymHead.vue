@@ -6,7 +6,10 @@
       gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
       :src="gym.bannerUrl()"
     >
-      <v-tooltip left>
+      <v-tooltip
+        left
+        v-if="userCanTouch()"
+      >
         <template v-slot:activator="{ on, attrs }">
           <v-btn
             v-if="isLoggedIn"
@@ -32,13 +35,13 @@
           size="80"
           class="float-left mr-3"
         >
-          <v-tooltip top>
+          <v-tooltip top :disabled="!userCanTouch()">
             <template v-slot:activator="{ on, attrs }">
               <v-img
                 class="hover-gym-logo"
                 v-bind="attrs"
                 v-on="on"
-                @click="isLoggedIn ? $router.push(gym.url('logo')) : null"
+                @click="userCanTouch() ? $router.push(gym.url('logo')) : null"
                 :src="gym.logoUrl()"
                 :alt="`logo ${gym.name}`"
               />
@@ -59,9 +62,9 @@
             small
             outlined
             class="ml-1"
-            v-if="isLoggedIn"
+            v-if="userCanTouch()"
           >
-            Modifier
+            {{ $t('actions.edit') }}
           </v-btn>
         </span>
       </div>
@@ -69,13 +72,19 @@
   </div>
 </template>
 <script>
-import { Sessionable } from '@/concerns/Sessionable'
+import { SessionConcern } from '@/concerns/SessionConcern'
 
 export default {
   name: 'GymHead',
-  mixins: [Sessionable],
+  mixins: [SessionConcern],
   props: {
     gym: Object
+  },
+
+  methods: {
+    userCanTouch: function () {
+      return this.isLoggedIn && (!this.gym.administered || this.currentUserIsGymAdmin())
+    }
   }
 }
 </script>

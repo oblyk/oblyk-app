@@ -39,11 +39,11 @@
   </v-tabs>
 </template>
 <script>
-import { Sessionable } from '@/concerns/Sessionable'
+import { SessionConcern } from '@/concerns/SessionConcern'
 
 export default {
   name: 'GymTabs',
-  mixins: [Sessionable],
+  mixins: [SessionConcern],
   props: {
     gym: Object
   }

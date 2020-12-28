@@ -124,13 +124,13 @@
 
 <script>
 import AppDrawerItem from '@/components/layouts/partial/AppDrawerItem'
-import { Sessionable } from '@/concerns/Sessionable'
+import { SessionConcern } from '@/concerns/SessionConcern'
 import MyGyms from '@/components/layouts/partial/MyGyms'
 import AppDrawerAvatar from '@/components/layouts/partial/AppDrawerAvatar'
 
 export default {
   name: 'AppDrawer',
-  mixins: [Sessionable],
+  mixins: [SessionConcern],
   components: { AppDrawerAvatar, MyGyms, AppDrawerItem },
 
   computed: {

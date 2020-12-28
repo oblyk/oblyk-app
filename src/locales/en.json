@@ -9,6 +9,7 @@
       "stayConnected": "Stay connected"
     },
     "gym": {
+      "addNew": "Add a new climbing gym",
       "tabs": {
         "info": "Info",
         "guideBook": "Guide book",

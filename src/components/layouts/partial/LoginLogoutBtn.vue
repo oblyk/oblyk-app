@@ -24,12 +24,12 @@
   </div>
 </template>
 <script>
-import { Sessionable } from '@/concerns/Sessionable'
+import { SessionConcern } from '@/concerns/SessionConcern'
 import store from '@/store'
 
 export default {
   name: 'LoginLogoutBtn',
-  mixins: [Sessionable],
+  mixins: [SessionConcern],
 
   methods: {
     logout: function () {

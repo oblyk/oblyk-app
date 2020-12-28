@@ -9,6 +9,7 @@
       "stayConnected": "Rester connecté·e"
     },
     "gym": {
+      "addNew": "Ajouter une nouvelle salle",
       "tabs": {
         "info": "Info",
         "guideBook": "Topo",

@@ -5,7 +5,9 @@
     <v-container v-if="!loadingGym">
       <v-row justify="center">
         <v-col class="global-form-width">
-          <h2 class="mb-4">{{ $t('actions.changeLogo') }}</h2>
+          <h2 class="mb-4">
+            {{ $t('actions.changeLogo') }}
+          </h2>
           <gym-form-image
             :gym="gym"
             upload-type="logo"
@@ -19,10 +21,12 @@
 import { GymConcern } from '@/concerns/GymConcern'
 import Spinner from '@/components/layouts/Spiner'
 import GymFormImage from '@/components/gyms/forms/GymFormImage'
+import { SessionConcern } from '@/concerns/SessionConcern'
+import { ProtectedGymConcern } from '@/concerns/ProtectedGymConcern'
 
 export default {
   name: 'GymLogoView',
   components: { GymFormImage, Spinner },
-  mixins: [GymConcern]
+  mixins: [GymConcern, SessionConcern, ProtectedGymConcern]
 }
 </script>

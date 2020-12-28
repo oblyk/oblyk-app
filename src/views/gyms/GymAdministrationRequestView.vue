@@ -63,7 +63,7 @@
   </div>
 </template>
 <script>
-import { Sessionable } from '@/concerns/Sessionable'
+import { SessionConcern } from '@/concerns/SessionConcern'
 import { GymConcern } from '@/concerns/GymConcern'
 import GymAdministratorRequestForm from '@/components/gyms/forms/GymAdministratorRequestForm'
 import Spinner from '@/components/layouts/Spiner'
@@ -71,6 +71,6 @@ import Spinner from '@/components/layouts/Spiner'
 export default {
   name: 'GymAdministrationRequestView',
   components: { Spinner, GymAdministratorRequestForm },
-  mixins: [Sessionable, GymConcern]
+  mixins: [SessionConcern, GymConcern]
 }
 </script>

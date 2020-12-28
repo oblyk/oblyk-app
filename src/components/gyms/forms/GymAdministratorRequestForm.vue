@@ -60,7 +60,7 @@
 </template>
 <script>
 import { FormHelpers } from '@/mixins/FormHelpers'
-import { Sessionable } from '@/concerns/Sessionable'
+import { SessionConcern } from '@/concerns/SessionConcern'
 import GymAdministratorRequestApi from '@/services/oblyk-api/gymAdministratorRequestApi'
 import SubmitForm from '@/components/forms/SubmitForm'
 import CloseForm from '@/components/forms/CloseForm'
@@ -68,7 +68,7 @@ import Spinner from '@/components/layouts/Spiner'
 
 export default {
   name: 'GymAdministratorRequestForm',
-  mixins: [FormHelpers, Sessionable],
+  mixins: [FormHelpers, SessionConcern],
   components: { Spinner, CloseForm, SubmitForm },
   props: {
     gym: Object,

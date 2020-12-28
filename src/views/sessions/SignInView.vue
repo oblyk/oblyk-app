@@ -32,13 +32,13 @@
 </template>
 
 <script>
-import { Sessionable } from '@/concerns/Sessionable'
+import { SessionConcern } from '@/concerns/SessionConcern'
 import SignInForm from '@/components/sessions/SignInForm'
 import store from '@/store'
 
 export default {
   name: 'SignInView',
-  mixins: [Sessionable],
+  mixins: [SessionConcern],
   components: { SignInForm },
 
   data () {

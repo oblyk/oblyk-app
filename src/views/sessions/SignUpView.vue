@@ -23,11 +23,11 @@
 
 <script>
 import SignUpForm from '@/components/sessions/SignUpForm'
-import { Sessionable } from '@/concerns/Sessionable'
+import { SessionConcern } from '@/concerns/SessionConcern'
 
 export default {
   name: 'SignUpView',
-  mixins: [Sessionable],
+  mixins: [SessionConcern],
   components: { SignUpForm }
 }
 </script>

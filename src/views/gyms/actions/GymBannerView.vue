@@ -19,10 +19,12 @@
 import { GymConcern } from '@/concerns/GymConcern'
 import Spinner from '@/components/layouts/Spiner'
 import GymFormImage from '@/components/gyms/forms/GymFormImage'
+import { SessionConcern } from '@/concerns/SessionConcern'
+import { ProtectedGymConcern } from '@/concerns/ProtectedGymConcern'
 
 export default {
   name: 'GymBannerView',
   components: { GymFormImage, Spinner },
-  mixins: [GymConcern]
+  mixins: [GymConcern, SessionConcern, ProtectedGymConcern]
 }
 </script>

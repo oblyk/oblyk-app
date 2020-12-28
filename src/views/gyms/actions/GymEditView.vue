@@ -16,10 +16,12 @@
 import { GymConcern } from '@/concerns/GymConcern'
 import GymForm from '@/components/gyms/forms/GymForm'
 import Spinner from '@/components/layouts/Spiner'
+import { SessionConcern } from '@/concerns/SessionConcern'
+import { ProtectedGymConcern } from '@/concerns/ProtectedGymConcern'
 
 export default {
   name: 'GymEditView',
   components: { Spinner, GymForm },
-  mixins: [GymConcern]
+  mixins: [GymConcern, SessionConcern, ProtectedGymConcern]
 }
 </script>

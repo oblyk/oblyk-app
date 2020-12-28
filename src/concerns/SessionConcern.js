@@ -2,7 +2,7 @@ import store from '@/store'
 import UserApi from '@/services/oblyk-api/userApi'
 import User from '@/models/User'
 
-export const Sessionable = {
+export const SessionConcern = {
   computed: {
     isLoggedIn: function () {
       return store.getters['auth/isLoggedIn']
@@ -12,6 +12,10 @@ export const Sessionable = {
       return {
         name: store.getters['auth/getName']
       }
+    },
+
+    administeredGyms: function () {
+      return store.getters['auth/administeredGyms']
     }
   },
 
@@ -27,6 +31,16 @@ export const Sessionable = {
             reject(err)
           })
       })
+    },
+
+    currentUserIsGymAdmin: function () {
+      if (!this.isLoggedIn) return false
+
+      const gymId = this.$route.params.gymId
+
+      if (gymId === undefined) return false
+
+      return (this.administeredGyms.includes(parseInt(gymId)))
     }
   }
 }

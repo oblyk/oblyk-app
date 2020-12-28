@@ -10,13 +10,13 @@
   </v-list-item>
 </template>
 <script>
-import { Sessionable } from '@/concerns/Sessionable'
+import { SessionConcern } from '@/concerns/SessionConcern'
 import UserApi from '@/services/oblyk-api/userApi'
 import User from '@/models/User'
 
 export default {
   name: 'AppDrawerAvatar',
-  mixins: [Sessionable],
+  mixins: [SessionConcern],
 
   data () {
     return {
