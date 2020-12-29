@@ -45,7 +45,6 @@
       "addNewExplain": "A sector is a small division of a space, for example: The large slope, slabs, etc.. This is where the lines will be filled in.",
       "explainGroupName": "You can group your corridors / sectors with 'Group name', example you can have 3 sectors: 'Corridor 1', 'Corridor 2', 'Corridor 3', grouped in 'Slabs'.",
       "resultingParametersOf": "Resulting from the parameters of : %{name}",
-      "canBeMoreThanOnePitch": "Can be more than one pitch",
       "editSectorPolygon": "Edit the drawing on the plan",
       "clicOnPlan": "Click on the map, or move the white wrists to edit the plot of the area on the map.",
       "clicOnFinish": "Once finished click on finish"
@@ -142,9 +141,12 @@
       "firstName": "First name",
       "lastName":"Last name"
     },
-    "gymGrade": {
-      "name": "System name",
-      "difficultySystem": "System type"
+    "gymSpace": {
+      "name": "Space name",
+      "description": "Description",
+      "order": "Order of importance",
+      "climbingType": "Majority climbing type",
+      "gymGradeId": "Difficulty system"
     },
     "gymSector": {
       "name": "Secteur name",
@@ -152,11 +154,14 @@
       "groupSectorName": "Name of the grouping",
       "climbingType": "Climbing type",
       "height": "Sector height",
-      "gymGradeId": "Difficulty system"
+      "gymGradeId": "Difficulty system",
+      "canBeMoreThanOnePitch": "Can have lines with more than one pitch"
     },
     "gymRoute": {
       "name":  "Route name",
       "height": "Height",
+      "heightBySection": "Height L.%{index}",
+      "heightTotal": "Height total",
       "climbingType":  "Climbing type",
       "favorite": "Favorite",
       "openers":  "Openers",
@@ -172,14 +177,16 @@
       "ascentsCount":  "Number of ascents",
       "sectionsCount": "Number of sections",
       "maxGradeText":  "Max grade",
-      "minGradeText": "Min grade"
+      "minGradeText": "Min grade",
+      "points": "Points",
+      "grade": "Grade",
+      "gradeBySection": "Grade L.%{index}"
     },
-    "gymSpace": {
-      "name": "Space name",
-      "description": "Description",
-      "order": "Order of importance",
-      "climbingType": "Majority climbing type",
-      "gymGradeId": "Difficulty system"
+    "gymGrade": {
+      "name": "System name",
+      "difficultySystem": "System type",
+      "useGradeSystem": "'Normal' grade system <cite>(7a, 6b+, etc.)</cite>",
+      "usePointSystem": "Grade system by points <cite>(50pts, 500pts, etc.)</cite>"
     },
     "gymGradeLine": {
       "name": "Level name",
