@@ -46,7 +46,7 @@ const getters = {
   }
 }
 
-// actions
+// forms
 const actions = {
   login ({ commit }, data) {
     return new Promise((resolve, reject) => {

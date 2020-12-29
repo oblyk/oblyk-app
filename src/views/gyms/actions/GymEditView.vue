@@ -14,10 +14,10 @@
 </template>
 <script>
 import { GymConcern } from '@/concerns/GymConcern'
-import GymForm from '@/components/gyms/forms/GymForm'
-import Spinner from '@/components/layouts/Spiner'
 import { SessionConcern } from '@/concerns/SessionConcern'
 import { ProtectedGymConcern } from '@/concerns/ProtectedGymConcern'
+import GymForm from '@/components/gyms/forms/GymForm'
+import Spinner from '@/components/layouts/Spiner'
 
 export default {
   name: 'GymEditView',

@@ -8,7 +8,7 @@
           <h2 class="mb-4">
             {{ $t('actions.changeLogo') }}
           </h2>
-          <gym-form-image
+          <gym-image-form
             :gym="gym"
             upload-type="logo"
           />
@@ -19,14 +19,14 @@
 </template>
 <script>
 import { GymConcern } from '@/concerns/GymConcern'
-import Spinner from '@/components/layouts/Spiner'
-import GymFormImage from '@/components/gyms/forms/GymFormImage'
 import { SessionConcern } from '@/concerns/SessionConcern'
 import { ProtectedGymConcern } from '@/concerns/ProtectedGymConcern'
+import Spinner from '@/components/layouts/Spiner'
+import GymImageForm from '@/components/gyms/forms/GymImageForm'
 
 export default {
   name: 'GymLogoView',
-  components: { GymFormImage, Spinner },
+  components: { GymImageForm, Spinner },
   mixins: [GymConcern, SessionConcern, ProtectedGymConcern]
 }
 </script>

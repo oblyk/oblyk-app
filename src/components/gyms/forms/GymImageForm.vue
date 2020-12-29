@@ -21,7 +21,7 @@ import SubmitForm from '@/components/forms/SubmitForm'
 import CloseForm from '@/components/forms/CloseForm'
 
 export default {
-  name: 'GymFormImage',
+  name: 'GymImageForm',
   components: { CloseForm, SubmitForm },
   props: {
     gym: {

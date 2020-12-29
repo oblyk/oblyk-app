@@ -20,7 +20,7 @@
 <script>
 import Spinner from '@/components/layouts/Spiner'
 import { GymSectorConcern } from '@/concerns/GymSectorConcern'
-import GymRouteForm from '@/components/gymRoutes/actions/GymRouteForm'
+import GymRouteForm from '@/components/gymRoutes/forms/GymRouteForm'
 
 export default {
   name: 'GymRouteNewView',

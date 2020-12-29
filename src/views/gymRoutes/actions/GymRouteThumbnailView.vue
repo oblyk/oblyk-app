@@ -17,7 +17,7 @@
 <script>
 import { GymRouteConcern } from '@/concerns/GymRouteConcern'
 import Spinner from '@/components/layouts/Spiner'
-import GymRouteThumbnailForm from '@/components/gymRoutes/actions/GymRouteThumbnailForm'
+import GymRouteThumbnailForm from '@/components/gymRoutes/forms/GymRouteThumbnailForm'
 
 export default {
   name: 'GymRouteThumbnailView',

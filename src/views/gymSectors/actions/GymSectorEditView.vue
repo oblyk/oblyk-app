@@ -26,7 +26,7 @@
 <script>
 import { GymSpaceConcern } from '@/concerns/GymSpaceConcern'
 import Spinner from '@/components/layouts/Spiner'
-import GymSectorForm from '@/components/gymSectors/actions/GymSectorForm'
+import GymSectorForm from '@/components/gymSectors/forms/GymSectorForm'
 import { GymSectorConcern } from '@/concerns/GymSectorConcern'
 
 export default {
