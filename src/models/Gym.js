@@ -10,10 +10,6 @@ export default class Gym extends ActiveData {
     return `/gyms/${this.id}/${this.slug_name}/${tabs}`
   }
 
-  editUrl (action = 'edit') {
-    return `/gyms/${this.id}/${this.slug_name}/${action}`
-  }
-
   bannerUrl () {
     if (this.banner) {
       return `${process.env.VUE_APP_OBLYK_API_URL}${this.banner}`
