@@ -5,7 +5,7 @@
     <v-container v-if="!loadingGym">
       <v-row>
         <v-col class="pa-2" md="7">
-          <v-card>
+          <v-card class="full-height">
             <v-card-title>Description</v-card-title>
             <v-card-text v-text="gym.description" />
             <v-card-text>

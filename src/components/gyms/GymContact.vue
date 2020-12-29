@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card class="full-height">
     <v-card-title>
       Contact & Localisation
     </v-card-title>
