@@ -15,7 +15,7 @@ export const FormHelpers = {
     },
 
     submitText: function () {
-      return this.isEditingForm() ? 'forms.edit' : 'forms.create'
+      return this.isEditingForm() ? 'actions.edit' : 'actions.create'
     }
   }
 }

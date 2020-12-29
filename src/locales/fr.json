@@ -83,6 +83,13 @@
         "tag": "Couleur des étiquettes"
       }
     },
+    "word": {
+      "title": "Lexique",
+      "new": "Nouvelle définition",
+      "addNew": "Ajouter une définition",
+      "backToGlossary": "Retour au lexique",
+      "searchDefinition": "Chercher une définition"
+    },
     "layout": {
       "appBar": {
         "login": "Me connecter",
@@ -206,6 +213,10 @@
       "fun_climbing": "Fun Climbing",
       "training_space": "Espace entrainement",
       "pan": "Pan"
+    },
+    "word": {
+      "name": "Mot",
+      "definition": "Définition"
     }
   },
   "colors": {

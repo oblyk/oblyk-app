@@ -110,14 +110,23 @@
         />
       </v-list-group>
 
-      <v-list-item link>
-        <v-list-item-icon>
-          <v-icon>mdi-hammer-wrench</v-icon>
-        </v-list-item-icon>
-        <v-list-item-title>
-          {{ $t('components.layout.appDrawer.tools') }}
-        </v-list-item-title>
-      </v-list-item>
+      <v-list-group
+        prepend-icon="mdi-tools"
+        no-action
+      >
+        <template v-slot:activator>
+          <v-list-item-content>
+            <v-list-item-title>
+              {{ $t('components.layout.appDrawer.tools') }}
+            </v-list-item-title>
+          </v-list-item-content>
+        </template>
+        <app-drawer-item
+          url="/glossary"
+          icon="mdi-book-open-variant"
+          :title="$t('components.word.title')"
+        />
+      </v-list-group>
     </v-list>
   </div>
 </template>

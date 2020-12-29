@@ -83,6 +83,13 @@
         "tag": "Tag colors"
       }
     },
+    "word": {
+      "title": "Glossary",
+      "new": "New definition",
+      "addNew": "Add a definition",
+      "backToGlossary": "Back to glossary",
+      "searchDefinition": "Search a definition"
+    },
     "layout": {
       "appBar": {
         "login": "Login",
@@ -206,6 +213,10 @@
       "fun_climbing": "Fun Climbing",
       "training_space": "Training space",
       "pan": "Pan"
+    },
+    "word": {
+      "name": "Word",
+      "definition": "Definition"
     }
   },
   "colors": {

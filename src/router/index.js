@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import store from '@/store/index'
 
 import GeneralRouter from '@/router/modules/generalRouter'
+import WordRouter from '@/router/modules/wordRouter'
 import SearchRouter from '@/router/modules/searchRouter'
 import SessionRouter from '@/router/modules/sessionRouter'
 import CragRouter from '@/router/modules/cragRouter'
@@ -18,6 +19,7 @@ const router = new VueRouter({
   mode: 'history',
   routes: [
     ...GeneralRouter,
+    ...WordRouter,
     ...SearchRouter,
     ...GymRouter,
     ...GymGradeRouter,
