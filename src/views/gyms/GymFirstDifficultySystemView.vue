@@ -7,34 +7,21 @@
         <v-col v-if="currentUserIsGymAdmin()">
           <p class="text-center mb-7">
             <v-icon x-large>
-              mdi-map-legend
+              mdi-tag-multiple
             </v-icon>
           </p>
-          <p class="text-center">
-            {{ $t('components.gym.firstSpaceExplain') }}
+          <p class="heading text-center">
+            {{ $t('components.gym.firstDifficultySystemExplain') }}
           </p>
-
-          <div v-if="gym.gym_grades_count === 0">
-            <p class="text-center">
-              {{ $t('components.gym.createDifficultyFirst') }}
-            </p>
-
-            <p class="text-center">
-              <v-btn
-                text
-                color="primary"
-                :to="gym.url('first-difficulty-system')"
-              >
-                {{ $t('components.gym.difficultySystem') }}
-              </v-btn>
-            </p>
-          </div>
-          <p v-if="gym.gym_grades_count > 0" class="text-center mt-10">
+          <p class="heading text-center">
+            {{ $t('components.gym.firstDifficultySystemExplainTow') }}
+          </p>
+          <p class="text-center mt-10">
             <v-btn
               color="primary"
-              :to="gym.url('spaces/new')"
+              :to="gym.url('grades/new')"
             >
-              {{ $t('components.gym.createFirstSpace') }}
+              {{ $t('components.gym.createDifficultySystemSpace') }}
             </v-btn>
           </p>
         </v-col>

@@ -5,7 +5,7 @@
     </v-tab>
 
     <v-tab
-      v-if="gym.gym_spaces.length == 0"
+      v-if="gym.gym_spaces.length === 0"
       to="first-space"
     >
       {{ $t('components.gym.tabs.guideBook') }}
@@ -26,7 +26,7 @@
 
     <v-tab
       v-if="gym.gym_grades_count > 0"
-      :to="'grades-list'"
+      to="grades-list"
     >
       <v-badge
         color="primary"
@@ -35,6 +35,13 @@
       >
         {{ $t('components.gym.tabs.difficultySystem') }}
       </v-badge>
+    </v-tab>
+
+    <v-tab
+      v-if="gym.gym_grades_count === 0"
+      to="first-difficulty-system"
+    >
+      {{ $t('components.gym.tabs.difficultySystem') }}
     </v-tab>
   </v-tabs>
 </template>

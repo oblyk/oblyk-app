@@ -17,6 +17,11 @@
       },
       "firstSpaceExplain": "Les espaces vous permets de renseigner vos voies et bloc pour que vos grimpeurs puissent les consulter et tenir un carnet de croix !",
       "createFirstSpace": "Créer mon premier Espace",
+      "createDifficultyFirst": "Mais avant de créer vos espaces, il faut que vous renseignez vos système de difficulté",
+      "firstDifficultySystemExplain": "Les systèmes de difficulté vous permettes de définir comment fonctionne vos cotations dans votre salle.",
+      "firstDifficultySystemExplainTow": "Ils vous permettent aussi d'aller plus vite dans le renseignement vos lignes.",
+      "createDifficultySystemSpace": "Créer mon premier système de difficulté",
+      "difficultySystem": "Système de difficulté ?",
       "administratorRequired": "Vous devez être administrateur de la salle pour avoir accès à cette page.",
       "IAmManager": "Je suis le gérant"
     },

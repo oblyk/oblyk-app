@@ -17,6 +17,11 @@
       },
       "firstSpaceExplain": "The spaces allow you to fill in your routes and boulders so that your climbers can consult them and keep a notebook of ascents!",
       "createFirstSpace": "Create my first Space",
+      "createDifficultyFirst": "But before creating your spaces, you have to fill in your difficulty systems",
+      "firstDifficultySystemExplain": "Difficulty systems allow you to define how your quotations work in your climbing gym.",
+      "firstDifficultySystemExplainTow": "They also allow you to go faster in the information your routes.",
+      "createDifficultySystemSpace": "Creating my first difficulty system",
+      "difficultySystem": "Difficulty system ?",
       "administratorRequired": "You must be a gym administrator to access this page.",
       "IAmManager": "I am the manger"
     },

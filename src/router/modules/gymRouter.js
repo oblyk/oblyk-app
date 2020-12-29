@@ -9,6 +9,7 @@ import GymGradeListView from '@/views/gyms/GymGradeListView'
 import GymFirstSpaceView from '@/views/gyms/GymFirstSpaceView'
 import GymAdministratorRequiredView from '@/views/gyms/GymAdministratorRequiredView'
 import GymAdministrationRequestView from '@/views/gyms/GymAdministrationRequestView'
+import GymFirstDifficultySystemView from '@/views/gyms/GymFirstDifficultySystemView'
 
 export default [
   {
@@ -38,6 +39,10 @@ export default [
       {
         path: 'first-space',
         component: GymFirstSpaceView
+      },
+      {
+        path: 'first-difficulty-system',
+        component: GymFirstDifficultySystemView
       },
       {
         path: 'administrator-required',
