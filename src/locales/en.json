@@ -13,7 +13,7 @@
       "tabs": {
         "info": "Info",
         "guideBook": "Guide book",
-        "difficultySystem": "Difficulty System"
+        "admin": "Admin"
       },
       "firstSpaceExplain": "The spaces allow you to fill in your routes and boulders so that your climbers can consult them and keep a notebook of ascents!",
       "createFirstSpace": "Create my first Space",
@@ -24,6 +24,14 @@
       "difficultySystem": "Difficulty system ?",
       "administratorRequired": "You must be a gym administrator to access this page.",
       "IAmManager": "I am the manger"
+    },
+    "gymAdmin": {
+      "welcome": "Welcome to the administration page of %{name}",
+      "publicPage": "Public page",
+      "GuideBookSettings": "Guide books settings",
+      "gestionSettings": "Gestion",
+      "team": "Team",
+      "difficultySystem": "Difficulty system"
     },
     "gymAdministrationRequest": {
       "helloName": "Hello %{name}",
@@ -112,6 +120,7 @@
   "models": {
     "user": {
       "dateOfBirth": "Date of birth",
+      "name": "Name",
       "firstName": "First name",
       "lastName": "Last name",
       "password": "Password",
@@ -271,6 +280,7 @@
     "defineThumbnail": "Define thumbnail",
     "createAndPicture": "Create + Picture",
     "finish": "Finish",
-    "backToName": "Back to %{name}"
+    "backToName": "Back to %{name}",
+    "addMember": "Add a member"
   }
 }

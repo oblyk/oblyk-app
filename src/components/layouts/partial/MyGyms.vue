@@ -21,7 +21,7 @@
         <v-list-item
           v-for="gym in gyms()"
           :key="gym.id"
-          :to="gym.url()"
+          :to="gym.url('admin')"
           link
         >
           <v-list-item-icon>

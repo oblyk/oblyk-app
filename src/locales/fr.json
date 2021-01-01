@@ -13,7 +13,7 @@
       "tabs": {
         "info": "Info",
         "guideBook": "Topo",
-        "difficultySystem": "Système de difficulté"
+        "admin": "Admin"
       },
       "firstSpaceExplain": "Les espaces vous permets de renseigner vos voies et bloc pour que vos grimpeurs puissent les consulter et tenir un carnet de croix !",
       "createFirstSpace": "Créer mon premier Espace",
@@ -24,6 +24,14 @@
       "difficultySystem": "Système de difficulté ?",
       "administratorRequired": "Vous devez être administrateur de la salle pour avoir accès à cette page.",
       "IAmManager": "Je suis le gérant"
+    },
+    "gymAdmin": {
+      "welcome": "Bienvenue sur la page d'administration de %{name}",
+      "publicPage": "Page publique",
+      "GuideBookSettings": "Paramètres topos",
+      "gestionSettings": "Gestion",
+      "team": "Équipe",
+      "difficultySystem": "Système de difficulté"
     },
     "gymAdministrationRequest": {
       "helloName": "Bonjour %{name}",
@@ -112,6 +120,7 @@
   "models": {
     "user": {
       "dateOfBirth": "Date de naissance",
+      "name": "Nom",
       "firstName": "Prénom",
       "lastName": "Nom",
       "password": "Mot de passe",
@@ -271,6 +280,7 @@
     "defineThumbnail": "Définir la miniature",
     "createAndPicture": "Créer + Photo",
     "finish": "Terminer",
-    "backToName": "Retour à %{name}"
+    "backToName": "Retour à %{name}",
+    "addMember": "Ajouter un membre"
   }
 }

@@ -5,11 +5,12 @@ import GymEditView from '@/views/gyms/actions/GymEditView'
 import GymNewView from '@/views/gyms/actions/GymNewView'
 import GymLogoView from '@/views/gyms/actions/GymLogoView'
 import GymBannerView from '@/views/gyms/actions/GymBannerView'
-import GymGradeListView from '@/views/gyms/GymGradeListView'
+import GymGradeListView from '@/views/gymGrades/GymGradeListView'
 import GymFirstSpaceView from '@/views/gyms/GymFirstSpaceView'
 import GymAdministratorRequiredView from '@/views/gyms/GymAdministratorRequiredView'
 import GymAdministrationRequestView from '@/views/gyms/GymAdministrationRequestView'
-import GymFirstDifficultySystemView from '@/views/gyms/GymFirstDifficultySystemView'
+import GymFirstDifficultySystemView from '@/views/gymGrades/GymFirstDifficultySystemView'
+import GymAdminView from '@/views/gyms/GymAdminView'
 
 export default [
   {
@@ -41,21 +42,8 @@ export default [
         component: GymFirstSpaceView
       },
       {
-        path: 'first-difficulty-system',
-        component: GymFirstDifficultySystemView
-      },
-      {
         path: 'administrator-required',
         component: GymAdministratorRequiredView
-      },
-      {
-        path: 'grades-list',
-        component: GymGradeListView,
-        meta: {
-          title: 'Liste des difficultés',
-          requiresAuth: true,
-          requiresGymAdministrator: true
-        }
       }
     ]
   },
@@ -66,6 +54,22 @@ export default [
     props: true,
     meta: {
       requiresAuth: true
+    }
+  },
+  {
+    path: '/gyms/:gymId/:gymSlug/first-difficulty-system',
+    component: GymFirstDifficultySystemView,
+    meta: {
+      requiresAuth: true,
+      requiresGymAdministrator: true
+    }
+  },
+  {
+    path: '/gyms/:gymId/:gymSlug/grades-list',
+    component: GymGradeListView,
+    meta: {
+      requiresAuth: true,
+      requiresGymAdministrator: true
     }
   },
   {
@@ -88,6 +92,15 @@ export default [
     props: true,
     meta: {
       requiresAuth: true
+    }
+  },
+  {
+    path: '/gyms/:gymId/:gymSlug/admin',
+    component: GymAdminView,
+    props: true,
+    meta: {
+      requiresAuth: true,
+      requiresGymAdministrator: true
     }
   },
   {

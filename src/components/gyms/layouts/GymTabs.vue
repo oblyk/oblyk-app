@@ -24,24 +24,8 @@
       </v-badge>
     </v-tab>
 
-    <v-tab
-      v-if="gym.gym_grades_count > 0"
-      to="grades-list"
-    >
-      <v-badge
-        color="primary"
-        inline
-        :content="gym.gym_grades_count"
-      >
-        {{ $t('components.gym.tabs.difficultySystem') }}
-      </v-badge>
-    </v-tab>
-
-    <v-tab
-      v-if="gym.gym_grades_count === 0"
-      to="first-difficulty-system"
-    >
-      {{ $t('components.gym.tabs.difficultySystem') }}
+    <v-tab v-if="currentUserIsGymAdmin()" to="admin">
+      {{ $t('components.gym.tabs.admin') }}
     </v-tab>
   </v-tabs>
 </template>
