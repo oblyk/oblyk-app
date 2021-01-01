@@ -101,8 +101,7 @@ export default {
         const words = []
         for (const word of this.glossary) {
           if (
-            word.name.toLowerCase().indexOf(this.searchWord.toLowerCase()) !== -1 ||
-            word.definition.toLowerCase().indexOf(this.searchWord.toLowerCase()) !== -1
+            word.name.toLowerCase().indexOf(this.searchWord.toLowerCase()) !== -1
           ) {
             words.push(word)
           }
