@@ -87,7 +87,7 @@ export default {
           this.filteredWords()
         })
         .catch(err => {
-          console.error(err)
+          this.$root.$emit('alertFromApiError', err, 'word')
         })
         .finally(() => {
           this.loadingGlossary = false

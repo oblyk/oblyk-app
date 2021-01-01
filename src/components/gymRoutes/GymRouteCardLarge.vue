@@ -100,7 +100,7 @@ export default {
           this.gymRoute = resp
         })
         .catch((err) => {
-          console.error(err)
+          this.$root.$emit('alertFromApiError', err, 'gymRoute')
         }).finally(() => {
           this.loadingRoute = false
         })

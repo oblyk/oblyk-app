@@ -31,7 +31,7 @@ export const GymRouteConcern = {
           this.gymRoute = resp
         })
         .catch((err) => {
-          console.error(err)
+          this.$root.$emit('alertFromApiError', err, 'gymRoute')
         }).finally(() => {
           this.loadingGymRoute = false
         })

@@ -48,7 +48,7 @@ export default {
           this.$router.push(this.gym.url('administrators'))
         })
         .catch((err) => {
-          console.error(err)
+          this.$root.$emit('alertFromApiError', err, 'gymAdministrator')
         }).then(() => {
           this.submitOverlay = false
         })

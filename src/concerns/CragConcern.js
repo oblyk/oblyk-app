@@ -21,7 +21,7 @@ export const CragConcern = {
           this.crag = resp
         })
         .catch((err) => {
-          console.error(err)
+          this.$root.$emit('alertFromApiError', err, 'crag')
         }).finally(() => {
           this.loadingCrag = false
         })

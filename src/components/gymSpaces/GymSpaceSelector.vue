@@ -48,7 +48,7 @@ export default {
             id: 0
           })
         }).catch(err => {
-          console.error(err)
+          this.$root.$emit('alertFromApiError', err, 'gymSpace')
         }).finally(() => {
           this.loadingGymSpaces = false
         })

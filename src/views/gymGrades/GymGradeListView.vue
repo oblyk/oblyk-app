@@ -58,7 +58,7 @@ export default {
           this.gymGrades = resp.data
         })
         .catch(err => {
-          console.error(err)
+          this.$root.$emit('alertFromApiError', err, 'gymGrade')
         })
         .finally(() => {
           this.loadingGymGrades = false

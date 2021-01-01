@@ -38,7 +38,7 @@
         <v-text-field
           outlined
           v-model="data.postal_code"
-          :label="$t('models.gym.postalCode')"
+          :label="$t('models.gym.postal_code')"
         />
       </v-col>
       <v-col class="col-8">
@@ -53,7 +53,7 @@
     <v-text-field
       outlined
       v-model="data.big_city"
-      :label="$t('models.gym.bigCity')"
+      :label="$t('models.gym.big_city')"
     />
 
     <v-row>
@@ -68,7 +68,7 @@
         <v-text-field
           outlined
           v-model="data.phone_number"
-          :label="$t('models.gym.phoneNumber')"
+          :label="$t('models.gym.phone_number')"
         />
       </v-col>
     </v-row>
@@ -76,7 +76,7 @@
     <v-text-field
       outlined
       v-model="data.web_site"
-      :label="$t('models.gym.webSite')"
+      :label="$t('models.gym.web_site')"
     />
 
     <close-form />
@@ -179,7 +179,7 @@ export default {
           this.$router.push(gym.url())
         })
         .catch((err) => {
-          console.error(err)
+          this.$root.$emit('alertFromApiError', err, 'gym')
         }).then(() => {
           this.overlay = false
         })

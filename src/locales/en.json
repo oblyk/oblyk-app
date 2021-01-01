@@ -1,5 +1,11 @@
 {
   "components" : {
+    "appAlert": {
+      "500": "An unexpected error occurred, please try again later.",
+      "400": "Items seem to be missing, please fill in the following fields",
+      "401": "You are not authorized to do this action.",
+      "422": "The following elements do not seem to be correct :"
+    },
     "search": {
       "searchLabel": "Look for a crag, a route, a gym, etc."
     },
@@ -119,12 +125,12 @@
   },
   "models": {
     "user": {
-      "dateOfBirth": "Date of birth",
+      "date_of_birth": "Date of birth",
       "name": "Name",
-      "firstName": "First name",
-      "lastName": "Last name",
+      "first_name": "First name",
+      "last_name": "Last name",
       "password": "Password",
-      "confirmPassword": "Confirm your password",
+      "confirm_password": "Confirm your password",
       "email": "Email"
     },
     "crag": {
@@ -134,81 +140,84 @@
       "name": "Gym name",
       "description": "Description",
       "address":  "Address",
-      "postalCode": "Postal code",
-      "codeCountry":  "Code country",
+      "postal_code": "Postal code",
+      "code_country":  "Code country",
       "country": "Country",
       "city":  "City",
-      "bigCity": "Big city",
+      "big_city": "Big city",
       "region":  "Region",
       "email": "Email",
-      "phoneNumber":  "Phone number",
-      "webSite": "Web site",
+      "phone_number":  "Phone number",
+      "web_site": "Web site",
       "bouldering":  "Bouldering",
-      "sportClimbing": "Sport climbing",
+      "sport_climbing": "Sport climbing",
       "pan":  "Pan",
-      "funClimbing": "Fun climbing",
-      "trainingSpace":  "Training space",
+      "fun_climbing": "Fun climbing",
+      "training_space":  "Training space",
       "latitude": "Latitude",
       "longitude":  "Longitude"
     },
     "gymAdministratorRequest": {
       "justification": "Justification",
       "email":"Email",
-      "firstName": "First name",
-      "lastName":"Last name"
+      "first_name": "First name",
+      "last_name":"Last name"
+    },
+    "gymAdministrator": {
+      "email": "Email"
     },
     "gymSpace": {
       "name": "Space name",
       "description": "Description",
       "order": "Order of importance",
-      "climbingType": "Majority climbing type",
-      "gymGradeId": "Difficulty system"
+      "climbing_type": "Majority climbing type",
+      "gym_grade_id": "Difficulty system"
     },
     "gymSector": {
       "name": "Secteur name",
       "description": "Description",
-      "groupSectorName": "Name of the grouping",
-      "climbingType": "Climbing type",
+      "group_sector_name": "Name of the grouping",
+      "climbing_type": "Climbing type",
       "height": "Sector height",
-      "gymGradeId": "Difficulty system",
-      "canBeMoreThanOnePitch": "Can have lines with more than one pitch"
+      "gym_grade_id": "Difficulty system",
+      "can_be_more_than_one_pitch": "Can have lines with more than one pitch"
     },
     "gymRoute": {
       "name":  "Route name",
       "height": "Height",
-      "heightBySection": "Height L.%{index}",
-      "heightTotal": "Height total",
-      "climbingType":  "Climbing type",
+      "height_by_section": "Height L.%{index}",
+      "height_total": "Height total",
+      "climbing_type":  "Climbing type",
       "favorite": "Favorite",
       "openers":  "Openers",
       "polyline": "Polyline",
-      "holdColors":  "Hold colors",
-      "tagColors": "Tag colors",
+      "hold_colors":  "Hold colors",
+      "tag_colors": "Tag colors",
       "sections":  "Sections",
-      "gymSectorId": "Gym sector",
-      "gymGradeLineId":  "Gym grade line",
-      "gradeValueAppreciation": "Grade value appreciation",
+      "gym_sector_id": "Gym sector",
+      "gym_grade_line_id":  "Gym grade line",
+      "grade_value_appreciation": "Grade value appreciation",
       "note":  "Note",
-      "noteCount": "Number of note",
-      "ascentsCount":  "Number of ascents",
-      "sectionsCount": "Number of sections",
-      "maxGradeText":  "Max grade",
-      "minGradeText": "Min grade",
+      "note_count": "Number of note",
+      "ascents_count":  "Number of ascents",
+      "sections_count": "Number of sections",
+      "max_grade_text":  "Max grade",
+      "min_grade_text": "Min grade",
       "points": "Points",
       "grade": "Grade",
-      "gradeBySection": "Grade L.%{index}"
+      "grade_by_section": "Grade L.%{index}"
     },
     "gymGrade": {
       "name": "System name",
       "difficultySystem": "System type",
-      "useGradeSystem": "'Normal' grade system <cite>(7a, 6b+, etc.)</cite>",
-      "usePointSystem": "Grade system by points <cite>(50pts, 500pts, etc.)</cite>"
+      "use_grade_system": "'Normal' grade system <cite>(7a, 6b+, etc.)</cite>",
+      "use_point_system": "Grade system by points <cite>(50pts, 500pts, etc.)</cite>"
     },
     "gymGradeLine": {
       "name": "Level name",
       "colors": "Colors",
       "order": "Order",
-      "gradeText": "Average rating of this level",
+      "grade_text": "Average rating of this level",
       "points": "Points for this level"
     },
     "climbs": {

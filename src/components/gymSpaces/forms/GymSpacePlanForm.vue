@@ -51,7 +51,7 @@ export default {
           this.$router.push(gymSpace.url())
         })
         .catch((err) => {
-          console.error(err)
+          this.$root.$emit('alertFromApiError', err, 'gymSpace')
         }).then(() => {
           this.submitOverlay = false
         })

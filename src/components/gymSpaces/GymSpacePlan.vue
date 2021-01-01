@@ -146,7 +146,7 @@ export default {
           this.space = resp
         })
         .catch((err) => {
-          console.error(err)
+          this.$root.$emit('alertFromApiError', err, 'gymSpace')
         }).finally(() => {
           this.reloadingData = false
         })

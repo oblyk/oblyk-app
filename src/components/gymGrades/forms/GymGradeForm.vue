@@ -55,7 +55,7 @@
       v-model="data.use_grade_system"
     >
       <template v-slot:label>
-        <span v-html="$t('models.gymGrade.useGradeSystem')"  />
+        <span v-html="$t('models.gymGrade.use_grade_system')"  />
       </template>
     </v-checkbox>
 
@@ -63,7 +63,7 @@
       v-model="data.use_point_system"
     >
       <template v-slot:label>
-        <span v-html="$t('models.gymGrade.usePointSystem')"  />
+        <span v-html="$t('models.gymGrade.use_point_system')"  />
       </template>
     </v-checkbox>
 
@@ -117,7 +117,7 @@ export default {
           this.$router.push(gymGrade.url())
         })
         .catch((err) => {
-          console.error(err)
+          this.$root.$emit('alertFromApiError', err, 'gymGrade')
         }).then(() => {
           this.submitOverlay = false
         })

@@ -11,7 +11,7 @@
         :items="gymGradeLines"
         item-text="text"
         item-value="value"
-        :label="$t('models.gymRoute.gymGradeLineId')"
+        :label="$t('models.gymRoute.gym_grade_line_id')"
         @change="onChangeDifficulty()"
         outlined
         required
@@ -64,7 +64,7 @@
               v-for="(value, index) in data.sections"
               :key="index"
               v-model="value.grade"
-              :label="multiPitch ? $t('models.gymRoute.gradeBySection', { index: index + 1 }) : $t('models.gymRoute.grade')"
+              :label="multiPitch ? $t('models.gymRoute.grade_by_section', { index: index + 1 }) : $t('models.gymRoute.grade')"
             />
           </div>
 
@@ -76,7 +76,7 @@
               v-for="(value, index) in data.sections"
               :key="index"
               v-model="value.height"
-              :label="$t('models.gymRoute.heightBySection', { index: index + 1 })"
+              :label="$t('models.gymRoute.height_by_section', { index: index + 1 })"
             />
           </div>
         </div>
@@ -142,7 +142,7 @@
           :items="climbingGymList"
           item-text="text"
           item-value="value"
-          :label="$t('models.gymRoute.climbingType')"
+          :label="$t('models.gymRoute.climbing_type')"
           outlined
           required
         ></v-select>
@@ -153,7 +153,7 @@
           v-model="data.height"
           type="number"
           min="0"
-          :label="multiPitch ? $t('models.gymRoute.heightTotal') : $t('models.gymRoute.height')"
+          :label="multiPitch ? $t('models.gymRoute.height_total') : $t('models.gymRoute.height')"
           required
         />
       </div>
@@ -258,7 +258,7 @@ export default {
           }
         })
         .catch(err => {
-          console.error(err)
+          this.$root.$emit('alertFromApiError', err, 'gymRoute')
         }).then(() => {
           this.submitOverlay = false
         })

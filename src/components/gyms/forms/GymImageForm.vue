@@ -58,7 +58,7 @@ export default {
           this.$router.push(gym.url())
         })
         .catch((err) => {
-          console.error(err)
+          this.$root.$emit('alertFromApiError', err, 'gym')
         }).then(() => {
           this.overlay = false
         })

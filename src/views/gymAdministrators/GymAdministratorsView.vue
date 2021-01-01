@@ -90,7 +90,7 @@ export default {
           this.gymAdministrators = resp.data
         })
         .catch(err => {
-          console.error(err)
+          this.$root.$emit('alertFromApiError', err, 'gymAdministrator')
         })
         .finally(() => {
           this.loadingGymAdministrators = false
@@ -106,8 +106,8 @@ export default {
             this.getGymAdministrators()
           })
           .catch(err => {
+            this.$root.$emit('alertFromApiError', err, 'gymAdministrator')
             this.loadingGymAdministrators = false
-            console.error(err)
           })
       }
     }

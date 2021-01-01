@@ -28,14 +28,14 @@
       <v-text-field
         outlined
         v-model="data.first_name"
-        :label="$t('models.gymAdministratorRequest.firstName')"
+        :label="$t('models.gymAdministratorRequest.first_name')"
         required
       />
 
       <v-text-field
         outlined
         v-model="data.last_name"
-        :label="$t('models.gymAdministratorRequest.lastName')"
+        :label="$t('models.gymAdministratorRequest.last_name')"
         required
       />
 
@@ -108,7 +108,7 @@ export default {
           this.submitted = true
         })
         .catch(err => {
-          console.error(err)
+          this.$root.$emit('alertFromApiError', err, 'gymAdministratorRequest')
         }).then(() => {
           this.submitOverlay = false
         })

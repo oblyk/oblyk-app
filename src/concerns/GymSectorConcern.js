@@ -35,7 +35,7 @@ export const GymSectorConcern = {
           this.gymSector = resp
         })
         .catch((err) => {
-          console.error(err)
+          this.$root.$emit('alertFromApiError', err, 'gymSector')
         }).finally(() => {
           this.loadingGymSector = false
         })

@@ -71,7 +71,7 @@ export default {
           this.$router.push(this.redirectTo || '/')
         })
         .catch(err => {
-          console.error(err)
+          this.$root.$emit('alertFromApiError', err, 'user')
         })
         .then(() => {
           this.overlay = false

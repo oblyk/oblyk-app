@@ -31,7 +31,7 @@
         :items="climbingGymList"
         item-text="text"
         item-value="value"
-        :label="$t('models.gymSpace.climbingType')"
+        :label="$t('models.gymSpace.climbing_type')"
         outlined
       ></v-select>
 
@@ -40,7 +40,7 @@
         :items="gymGrades"
         item-text="text"
         item-value="value"
-        :label="$t('models.gymSpace.gymGradeId')"
+        :label="$t('models.gymSpace.gym_grade_id')"
         outlined
       ></v-select>
 
@@ -108,7 +108,7 @@ export default {
           this.$router.push(gymSpace.url())
         })
         .catch((err) => {
-          console.error(err)
+          this.$root.$emit('alertFromApiError', err, 'gymSpace')
         }).then(() => {
           this.overlay = false
         })

@@ -53,7 +53,7 @@ export default {
           this.$router.push(gymRoute.url('thumbnail'))
         })
         .catch((err) => {
-          console.error(err)
+          this.$root.$emit('alertFromApiError', err, 'gymRoute')
         }).then(() => {
           this.submitOverlay = false
         })

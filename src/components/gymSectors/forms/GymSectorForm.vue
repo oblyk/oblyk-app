@@ -16,7 +16,7 @@
       <v-text-field
         outlined
         v-model="data.group_sector_name"
-        :label="$t('models.gymSector.groupSectorName')"
+        :label="$t('models.gymSector.group_sector_name')"
         required
       />
 
@@ -37,7 +37,7 @@
 
       <v-checkbox
         v-model="data.can_be_more_than_one_pitch"
-        :label="$t('models.gymSector.canBeMoreThanOnePitch')"
+        :label="$t('models.gymSector.can_be_more_than_one_pitch')"
       />
 
       <v-subheader>
@@ -49,7 +49,7 @@
         :items="climbingGymList"
         item-text="text"
         item-value="value"
-        :label="$t('models.gymSector.climbingType')"
+        :label="$t('models.gymSector.climbing_type')"
         outlined
       ></v-select>
 
@@ -58,7 +58,7 @@
         :items="gymGrades"
         item-text="text"
         item-value="value"
-        :label="$t('models.gymSector.gymGradeId')"
+        :label="$t('models.gymSector.gym_grade_id')"
         outlined
       ></v-select>
 
@@ -130,7 +130,7 @@ export default {
           this.$router.push(this.gymSpace.url())
         })
         .catch(err => {
-          console.error(err)
+          this.$root.$emit('alertFromApiError', err, 'gymSector')
         }).then(() => {
           this.overlay = false
         })

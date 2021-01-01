@@ -19,7 +19,7 @@
 - [ ] Ajouter le 'ouvert à'
 - [ ] Ajouter les tags
 - [ ] Ajouter le coup de coeur
-- [ ] Faire la suppression d'un secteur
+- [ ] Faire le démontage d'un secteur
 - [ ] Améliorer l'interaction avec le plan
 - [ ] Améliorer le responsive du plan des secteurs
 - [ ] Fair l'ajout au carnet de croix
@@ -29,6 +29,7 @@
 - [ ] Améliorer la page "Info" d'une salle
 - [x] Faire page admin d'une salle
 - [ ] Statistique
+- [ ] Faire carte Espace dans zone admin
 
 ## TODO User
 - [ ] Déplacer le profil dans la bar d'application
@@ -43,13 +44,14 @@
 
 ## TODO Global
 - [ ] Faire apparaitre l'élément principal de la page dans la barre d'application
-- [ ] Faire la gestion des erreurs
+- [x] Faire la gestion des erreurs
 - [ ] Faire le stockage hors ligne
 - [ ] Système de notification push
 - [ ] Commentable
 - [ ] Followable
 - [ ] Linkable
 - [ ] Videoable
+- [ ] améliorer la sid barre (selection en thème sombre pas beau)
 
 ## TODO News
 - [ ] Newsletter

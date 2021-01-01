@@ -31,7 +31,7 @@ export const GymGradeLineConcern = {
           this.gymGradeLine = resp
         })
         .catch(err => {
-          console.error(err)
+          this.$root.$emit('alertFromApiError', err, 'gymGradeLine')
         }).finally(() => {
           this.loadingGymGradeLine = false
         })

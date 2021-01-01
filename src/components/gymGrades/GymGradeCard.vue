@@ -110,7 +110,7 @@ export default {
             this.$router.push(this.gymGrade.listUrl())
           })
           .catch(err => {
-            console.error(err)
+            this.$root.$emit('alertFromApiError', err, 'gymGrade')
           })
           .then(() => {
             this.loadingDelete = false

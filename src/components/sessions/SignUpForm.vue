@@ -21,7 +21,7 @@
     <v-text-field
       outlined
       v-model="passwordConfirmation"
-      :label="$t('models.user.confirmPassword')"
+      :label="$t('models.user.confirm_password')"
       :type="showPasswordConfirmation ? 'text' : 'password'"
       required
       :append-icon="showPasswordConfirmation ? 'mdi-eye-off' : 'mdi-eye'"
@@ -31,14 +31,14 @@
     <v-text-field
       outlined
       v-model="firstName"
-      :label="$t('models.user.firstName')"
+      :label="$t('models.user.first_name')"
       required
     />
 
     <v-text-field
       outlined
       v-model="lastName"
-      :label="$t('models.user.lastName')"
+      :label="$t('models.user.last_name')"
     />
 
     <v-dialog
@@ -51,7 +51,7 @@
       <template v-slot:activator="{ on, attrs }">
         <v-text-field
           v-model="dateOfBirth"
-          :label="$t('models.user.dateOfBirth')"
+          :label="$t('models.user.date_of_birth')"
           readonly
           outlined
           v-bind="attrs"
@@ -87,15 +87,18 @@
 
     <submit-form
       submit-local-key="actions.createMyAccount"
+      :overlay="submitOverlay"
     />
   </v-form>
 </template>
 
 <script>
 import SubmitForm from '@/components/forms/SubmitForm'
+import { FormHelpers } from '@/mixins/FormHelpers'
 export default {
   name: 'SignUpForm',
   components: { SubmitForm },
+  mixins: [FormHelpers],
   data () {
     return {
       email: null,
@@ -113,6 +116,7 @@ export default {
 
   methods: {
     signUp: function () {
+      this.submitOverlay = true
       const data = {
         email: this.email,
         password: this.password,
@@ -128,7 +132,10 @@ export default {
           this.$router.push('/')
         })
         .catch(err => {
-          console.error(err)
+          this.$root.$emit('alertFromApiError', err, 'user')
+        })
+        .finally(() => {
+          this.submitOverlay = false
         })
     }
   }

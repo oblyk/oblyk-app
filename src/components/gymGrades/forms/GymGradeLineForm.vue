@@ -10,7 +10,7 @@
     <v-text-field
       outlined
       v-model="data.grade_text"
-      :label="$t('models.gymGradeLine.gradeText')"
+      :label="$t('models.gymGradeLine.grade_text')"
       :required="(gymGrade.use_grade_system)"
       v-show="(gymGrade.use_grade_system)"
       hint="Exemple: 6a, 7a, 7c+, etc."
@@ -102,7 +102,7 @@ export default {
           this.$router.push(this.gymGrade.url())
         })
         .catch(err => {
-          console.error(err)
+          this.$root.$emit('alertFromApiError', err, 'gymGradeLine')
         }).then(() => {
           this.submitOverlay = false
         })
@@ -117,7 +117,7 @@ export default {
             this.$router.push(this.gymGrade.url())
           })
           .catch(err => {
-            console.error(err)
+            this.$root.$emit('alertFromApiError', err, 'gymGradeLine')
           })
           .then(() => {
             this.submitOverlay = false

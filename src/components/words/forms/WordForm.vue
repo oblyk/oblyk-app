@@ -60,7 +60,7 @@ export default {
           this.$router.push(word.url())
         })
         .catch((err) => {
-          console.error(err)
+          this.$root.$emit('alertFromApiError', err, 'word')
         }).then(() => {
           this.submitOverlay = false
         })

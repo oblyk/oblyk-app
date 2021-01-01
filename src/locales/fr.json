@@ -1,5 +1,11 @@
 {
   "components" : {
+    "appAlert": {
+      "500": "Une erreur inattendue s'est produite, merci d'essayer plus tard.",
+      "400": "Des éléments semblent manquer, merci de renseigner les champs.",
+      "401": "Vous n'êtes pas autorisé à faire cette action",
+      "422": "Les éléments suivant ne semblent pas correct :"
+    },
     "search": {
       "searchLabel": "Chercher une falaise, une voie, une salle, etc."
     },
@@ -119,12 +125,12 @@
   },
   "models": {
     "user": {
-      "dateOfBirth": "Date de naissance",
+      "date_of_birth": "Date de naissance",
       "name": "Nom",
-      "firstName": "Prénom",
-      "lastName": "Nom",
+      "first_name": "Prénom",
+      "last_name": "Nom",
       "password": "Mot de passe",
-      "confirmPassword": "Confirmez votre mot de passe",
+      "confirm_password": "Confirmez votre mot de passe",
       "email": "Email"
     },
     "crag": {
@@ -134,81 +140,84 @@
       "name": "Nom de la salle",
       "description": "Description",
       "address":  "Adresse",
-      "postalCode": "Code postal",
-      "codeCountry":  "Code pays",
+      "postal_code": "Code postal",
+      "code_country":  "Code pays",
       "country": "Pays",
       "city":  "Ville",
-      "bigCity": "Grande ville proche",
+      "big_city": "Grande ville proche",
       "region":  "Région",
       "email": "Email",
-      "phoneNumber":  "Telephone",
-      "webSite": "Site internet",
+      "phone_number":  "Telephone",
+      "web_site": "Site internet",
       "bouldering":  "Bloc",
-      "sportClimbing": "Voie",
+      "sport_climbing": "Voie",
       "pan":  "Pan",
-      "funClimbing": "Fun climbing",
-      "trainingSpace":  "Espace d'entrainement",
+      "fun_climbing": "Fun climbing",
+      "training_space":  "Espace d'entrainement",
       "latitude": "Latitude",
       "longitude":  "Longitude"
     },
     "gymAdministratorRequest": {
       "justification": "Justification",
       "email":"Email",
-      "firstName": "Prénom",
-      "lastName":"Nom"
+      "first_name": "Prénom",
+      "last_name":"Nom"
+    },
+    "gymAdministrator": {
+      "user": "Un compte oblyk associé à ce mail"
     },
     "gymSpace": {
       "name": "Nom de l'espace",
       "description": "Description",
       "order": "Ordre d'importance",
-      "climbingType": "Type d'escalade majoritaire",
-      "gymGradeId": "Système de difficulté"
+      "climbing_type": "Type d'escalade majoritaire",
+      "gym_grade_id": "Système de difficulté"
     },
     "gymSector": {
       "name": "Nom du secteur",
       "description": "Description",
-      "groupSectorName": "Nom du regroupement",
-      "climbingType": "Type d'escalade",
+      "group_sector_name": "Nom du regroupement",
+      "climbing_type": "Type d'escalade",
       "height": "Hauteur du secteur",
-      "gymGradeId": "Système de difficulté",
-      "canBeMoreThanOnePitch": "Peut avoir des lignes avec plus d'une longueur"
+      "gym_grade_id": "Système de difficulté",
+      "can_be_more_than_one_pitch": "Peut avoir des lignes avec plus d'une longueur"
     },
     "gymRoute": {
       "name":  "Nom de la ligne, ou référence",
       "height": "Hauteur",
-      "heightBySection": "Hauteur L.%{index}",
-      "heightTotal": "Hauteur total",
-      "climbingType":  "Type de grimpe",
+      "height_by_section": "Hauteur L.%{index}",
+      "height_total": "Hauteur total",
+      "climbing_type":  "Type de grimpe",
       "favorite": "Favori",
       "openers":  "Ouvreurs",
       "polyline": "Tracé",
-      "holdColors":  "Couleurs des prises",
-      "tagColors": "Couleur des étiquettes",
+      "hold_colors":  "Couleurs des prises",
+      "tag_colors": "Couleur des étiquettes",
       "sections":  "Sections",
-      "gymSectorId": "Secteur",
-      "gymGradeLineId":  "Difficulté",
-      "gradeValueAppreciation": "Cotation par les grimpeurs",
+      "gym_sector_id": "Secteur",
+      "gym_grade_line_id":  "Difficulté",
+      "grade_value_appreciation": "Cotation par les grimpeurs",
       "note":  "Note",
-      "noteCount": "Nombre de note",
-      "ascentsCount":  "Nombre d'ascension",
-      "sectionsCount": "Nombre de section",
-      "maxGradeText":  "Cotation max",
-      "minGradeText": "Cotation min",
+      "note_count": "Nombre de note",
+      "ascents_count":  "Nombre d'ascension",
+      "sections_count": "Nombre de section",
+      "max_grade_text":  "Cotation max",
+      "min_grade_text": "Cotation min",
       "points": "Points",
       "grade": "Cotation",
-      "gradeBySection": "Cotation L.%{index}"
+      "grade_by_section": "Cotation L.%{index}"
     },
     "gymGrade": {
       "name": "Nom du système",
-      "difficultySystem": "Type de système",
-      "useGradeSystem": "System de cotation 'normal' <cite>(7a, 6b+, etc.)</cite>",
-      "usePointSystem": "System de cotation par point <cite>(50pts, 500pts, etc.)</cite>"
+      "difficulty_system": "Type de système",
+      "use_grade_system": "System de cotation 'normal' <cite>(7a, 6b+, etc.)</cite>",
+      "use_point_system": "System de cotation par point <cite>(50pts, 500pts, etc.)</cite>"
     },
     "gymGradeLine": {
       "name": "Nom du niveau",
       "colors": "Couleurs",
       "order": "Ordre",
-      "gradeText": "Cotation moyenne de ce niveau",
+      "grade_text": "Cotation moyenne de ce niveau",
       "points": "Points pour ce niveau"
     },
     "climbs": {

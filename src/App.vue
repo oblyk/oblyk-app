@@ -4,15 +4,17 @@
     <v-main>
       <router-view/>
     </v-main>
+    <app-alert />
   </v-app>
 </template>
 
 <script>
 import AppBar from '@/components/layouts/AppBar'
+import AppAlert from '@/components/layouts/AppAlert'
 
 export default {
   name: 'App',
-  components: { AppBar },
+  components: { AppAlert, AppBar },
 
   created () {
     const storedLang = (localStorage.getItem('lang') || 'fr')

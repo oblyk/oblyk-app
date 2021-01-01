@@ -21,7 +21,7 @@ export const WordConcern = {
           this.word = resp
         })
         .catch((err) => {
-          console.error(err)
+          this.$root.$emit('alertFromApiError', err, 'word')
         }).finally(() => {
           this.loadingWord = false
         })

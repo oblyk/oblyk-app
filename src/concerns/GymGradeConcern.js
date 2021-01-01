@@ -24,7 +24,7 @@ export const GymGradeConcern = {
           this.gymGrade = resp
         })
         .catch(err => {
-          console.error(err)
+          this.$root.$emit('alertFromApiError', err, 'gymGrade')
         }).finally(() => {
           this.loadingGymGrade = false
         })
