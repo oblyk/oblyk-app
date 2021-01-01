@@ -7,6 +7,7 @@
       "422": "The following elements do not seem to be correct :"
     },
     "search": {
+      "title": "Search",
       "searchLabel": "Look for a crag, a route, a gym, etc."
     },
     "session": {

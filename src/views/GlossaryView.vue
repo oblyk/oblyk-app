@@ -74,6 +74,15 @@ export default {
     this.getGlossary()
   },
 
+  mounted () {
+    this.$root.$emit(
+      'setAppTitle',
+      {
+        title: this.$t('components.word.title')
+      }
+    )
+  },
+
   methods: {
     getGlossary: function () {
       ApiWord

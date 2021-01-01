@@ -43,7 +43,7 @@
 - [ ] Tick-list
 
 ## TODO Global
-- [ ] Faire apparaitre l'élément principal de la page dans la barre d'application
+- [x] Faire apparaitre l'élément principal de la page dans la barre d'application
 - [x] Faire la gestion des erreurs
 - [ ] Faire le stockage hors ligne
 - [ ] Système de notification push

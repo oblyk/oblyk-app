@@ -45,6 +45,15 @@ export default {
     HomeBoxAscentsLog,
     HomeBoxCragInfo,
     AppFooter
+  },
+
+  mounted () {
+    this.$root.$emit(
+      'setAppTitle',
+      {
+        title: 'Oblyk'
+      }
+    )
   }
 }
 </script>

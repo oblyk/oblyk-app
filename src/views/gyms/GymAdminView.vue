@@ -56,6 +56,9 @@ export default {
     DifficultySystemCard,
     Spinner
   },
-  mixins: [GymConcern]
+  mixins: [GymConcern],
+  watch: {
+    '$route.params.gymId': 'getGym'
+  }
 }
 </script>

@@ -7,6 +7,7 @@
       "422": "Les éléments suivant ne semblent pas correct :"
     },
     "search": {
+      "title": "Chercher",
       "searchLabel": "Chercher une falaise, une voie, une salle, etc."
     },
     "session": {

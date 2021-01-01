@@ -14,7 +14,16 @@ import CloseForm from '@/components/forms/CloseForm'
 
 export default {
   name: 'SearchView',
-  components: { CloseForm, SearchFiled }
+  components: { CloseForm, SearchFiled },
+
+  mounted () {
+    this.$root.$emit(
+      'setAppTitle',
+      {
+        title: this.$t('components.search.title')
+      }
+    )
+  }
 }
 </script>
 <style lang="scss" scoped>

@@ -19,6 +19,13 @@ export const CragConcern = {
         .find(this.$route.params.cragId)
         .then((resp) => {
           this.crag = resp
+          this.$root.$emit(
+            'setAppTitle',
+            {
+              title: this.crag.name,
+              avatar: this.crag.coverUrl()
+            }
+          )
         })
         .catch((err) => {
           this.$root.$emit('alertFromApiError', err, 'crag')

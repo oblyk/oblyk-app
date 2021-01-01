@@ -10,6 +10,16 @@
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
 
       <v-toolbar-title class="oblyk-app-title">
+        <v-avatar
+          :size="isMobile ? 32 : 48"
+          v-if="avatar"
+          :class="isMobile ? 'mr-1' : 'mr-3'"
+        >
+          <v-img
+            :src="avatarSource"
+            :alt="`avatar ${title}`"
+          />
+        </v-avatar>
         {{ title }}
       </v-toolbar-title>
 
@@ -72,29 +82,31 @@ export default {
     return {
       drawer: true,
       title: 'Oblyk',
+      avatar: false,
+      avatarSource: '',
       isMobile: false
     }
-  },
-
-  watch: {
-    '$route' () {
-      this.title = this.$route.meta.title
-    }
-  },
-
-  created () {
-    this.title = this.$route.meta.title
   },
 
   mounted () {
     this.onResize()
 
     window.addEventListener('resize', this.onResize, { passive: true })
+
+    this.$root.$on('setAppTitle', (data) => {
+      this.setAppTitle(data)
+    })
   },
 
   methods: {
-    onResize () {
+    onResize: function () {
       this.isMobile = window.innerWidth < 600
+    },
+
+    setAppTitle: function (data) {
+      this.title = (data || {}).title
+      this.avatarSource = (data || {}).avatar
+      this.avatar = (data.avatar)
     }
   }
 }
