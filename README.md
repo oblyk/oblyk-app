@@ -13,7 +13,7 @@
 - [ ] Massif
 
 ## TODO Indoor
-- [ ] Gestion de l'administration (CRUD)
+- [x] Gestion de l'administration (CRUD)
 - [ ] Faire le système de division des points auto
 - [ ] Améliorer les infos d'une voie
 - [ ] Ajouter le 'ouvert à'
@@ -27,7 +27,7 @@
 - [ ] Limiter les interactions si pas connecté ou pas admin
 - [ ] Faire le système de following de la salle
 - [ ] Améliorer la page "Info" d'une salle
-- [ ] Faire page admin d'une salle
+- [x] Faire page admin d'une salle
 - [ ] Statistique
 
 ## TODO User
