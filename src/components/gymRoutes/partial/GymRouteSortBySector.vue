@@ -6,7 +6,10 @@
       </v-icon>
       {{ gymRoute.gym_sector_name }}
     </v-col>
-    <v-col class="gym-sector-actions-menu-col text-right pb-0">
+    <v-col
+      v-if="currentUserIsGymAdmin()"
+      class="gym-sector-actions-menu-col text-right pb-0"
+    >
       <v-btn
         icon
         @click="startEditSectorPolygon()"
@@ -29,8 +32,11 @@
   </v-row>
 </template>
 <script>
+import { SessionConcern } from '@/concerns/SessionConcern'
+
 export default {
   name: 'GymRouteSortBySector',
+  mixins: [SessionConcern],
   props: {
     gymRoute: Object
   },

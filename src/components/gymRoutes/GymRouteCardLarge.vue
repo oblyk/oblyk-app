@@ -9,7 +9,10 @@
         gradient="to bottom, rgba(0, 0, 0, 0.5) 0%, transparent 100px"
       >
         <p class="pt-2 pr-2 pl-1">
-          <gym-route-action-menu :gym-route="gymRoute" />
+          <gym-route-action-menu
+            v-if="currentUserIsGymAdmin()"
+            :gym-route="gymRoute"
+          />
 
           <v-btn
             @click="changeCardSize()"
@@ -46,7 +49,7 @@
           </div>
         </v-col>
       </v-row>
-      <v-card-actions>
+      <v-card-actions v-if="isLoggedIn">
         <v-spacer />
         <v-btn
           right
@@ -68,10 +71,12 @@ import GymRouteGradeAndPoint from '@/components/gymRoutes/partial/GymRouteGradeA
 import GymRouteActionMenu from '@/components/gymRoutes/partial/GymRouteActionMenu'
 import Spinner from '@/components/layouts/Spiner'
 import GymRoute from '@/models/GymRoute'
+import { SessionConcern } from '@/concerns/SessionConcern'
 
 export default {
   name: 'GymRouteCardLarge',
   components: { Spinner, GymRouteActionMenu, GymRouteGradeAndPoint, GymRouteTagAndHold },
+  mixins: [SessionConcern],
   props: {
     gymRouteProp: Object,
     changeCardSize: Function

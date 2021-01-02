@@ -12,7 +12,10 @@
             :gym-space="gymSpace"
           />
         </div>
-        <div class="col space-actions-btn">
+        <div
+          v-if="currentUserIsGymAdmin()"
+          class="col space-actions-btn"
+        >
           <gym-space-action-menu :gym-space="gymSpace" />
         </div>
       </div>
@@ -32,14 +35,17 @@
     </div>
   </div>
 </template>
+
 <script>
 import GymSpaceSelector from '@/components/gymSpaces/GymSpaceSelector'
 import GymSpaceActionMenu from '@/components/gymSpaces/GymSpaceActionMenu'
 import GymSpaceRouteList from '@/components/gymRoutes/GymSpaceRouteList'
 import GymSectorEditingPlan from '@/components/gymSectors/GymSectorEditingPlan'
+import { SessionConcern } from '@/concerns/SessionConcern'
 
 export default {
   name: 'GymSpaceRoute',
+  mixins: [SessionConcern],
   components: {
     GymSectorEditingPlan,
     GymSpaceRouteList,
@@ -70,6 +76,7 @@ export default {
   }
 }
 </script>
+
 <style lang="scss" scoped>
 .gym-space-description {
   margin-top: -1.2em;

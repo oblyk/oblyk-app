@@ -16,10 +16,12 @@
   </div>
 </template>
 <script>
+import { SessionConcern } from '@/concerns/SessionConcern'
 import GymSpaceApi from '@/services/oblyk-api/gymSpaceApi'
 
 export default {
   name: 'GymSpaceSelector',
+  mixins: [SessionConcern],
   props: {
     gymSpace: Object
   },
@@ -43,10 +45,12 @@ export default {
         .all(this.gymSpace.gym.id)
         .then(resp => {
           this.gymSpaces = resp.data
-          this.gymSpaces.push({
-            name: this.$t('components.gymSpace.create'),
-            id: 0
-          })
+          if (this.currentUserIsGymAdmin()) {
+            this.gymSpaces.push({
+              name: this.$t('components.gymSpace.create'),
+              id: 0
+            })
+          }
         }).catch(err => {
           this.$root.$emit('alertFromApiError', err, 'gymSpace')
         }).finally(() => {

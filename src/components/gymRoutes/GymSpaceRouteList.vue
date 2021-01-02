@@ -33,7 +33,7 @@
       <gym-route-card :gym-route="route" />
 
       <!-- Add route in sector -->
-      <div v-if="sort === 'sector' && (index === routes.length -  1 || route.gym_sector_name !== routes[index + 1].gym_sector_name)">
+      <div v-if="currentUserIsGymAdmin() && sort === 'sector' && (index === routes.length -  1 || route.gym_sector_name !== routes[index + 1].gym_sector_name)">
         <gym-route-add-in-sort-by-sector :gym-route="route" />
       </div>
     </div>
@@ -51,10 +51,12 @@ import GymRouteCard from '@/components/gymRoutes/GymRouteCarde'
 import GymSpaceRouteSort from '@/components/gymRoutes/partial/GymSpaceRouteSort'
 import GymRouteSortBySector from '@/components/gymRoutes/partial/GymRouteSortBySector'
 import GymRouteAddInSortBySector from '@/components/gymRoutes/partial/GymRouteAddInSortBySector'
+import { SessionConcern } from '@/concerns/SessionConcern'
 
 export default {
   name: 'GymSpaceRouteList',
   components: { GymRouteAddInSortBySector, GymRouteSortBySector, GymSpaceRouteSort, GymRouteCard },
+  mixins: [SessionConcern],
   props: {
     gymSpace: Object
   },
