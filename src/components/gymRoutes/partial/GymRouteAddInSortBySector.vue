@@ -7,9 +7,9 @@
       :to="gymRoute.gymSectorUrl('routes/new')"
     >
       <v-icon left>
-        mdi-plus
+        mdi-source-branch-plus
       </v-icon>
-      Ajouter une ligne
+      {{ $t('actions.addLine') }}
     </v-btn>
   </div>
 </template>

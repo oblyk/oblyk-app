@@ -9,6 +9,7 @@
 - [ ] Linkable
 - [ ] Videoable
 - [ ] Favicon, meta title
+- [ ] Faire page 404
 - [ ] Paramétrage des web workers PWA
 - [ ] Système de notification push
 - [ ] Faire le stockage hors ligne
@@ -16,6 +17,7 @@
 ## TODO Indoor
 - [x] Gestion de l'administration (CRUD)
 - [x] Faire le système de division des points auto
+- [x] Faire l'ajout de voie sans secteur défini
 - [ ] Limiter les interactions si pas connecté ou pas admin
 - [ ] Ajouter le 'ouvert à'
 - [ ] Ajouter les tags
@@ -28,7 +30,7 @@
 - [ ] Faire le système de following de la salle
 - [x] Faire page admin d'une salle
 - [x] Faire carte Espace dans zone admin
-- [ ] Fair l'ajout au carnet de croix
+- [ ] Faire l'ajout au carnet de croix
 - [ ] Faire le système d'options payantes (standard, +, pro)
 - [ ] Faire les groupes de salles (climb up, Arkose, Mroc, etc...)
 - [ ] Statistique

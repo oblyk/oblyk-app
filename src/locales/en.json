@@ -58,6 +58,7 @@
     },
     "gymSector": {
       "addNew": "Create a new sector",
+      "chooseSector": "Choose a sector",
       "addNewExplain": "A sector is a small division of a space, for example: The large slope, slabs, etc.. This is where the lines will be filled in.",
       "explainGroupName": "You can group your corridors / sectors with 'Group name', example you can have 3 sectors: 'Corridor 1', 'Corridor 2', 'Corridor 3', grouped in 'Slabs'.",
       "resultingParametersOf": "Resulting from the parameters of : %{name}",
@@ -285,7 +286,8 @@
     "changeLogo": "Change logo",
     "changePlan": "Change plan",
     "createNewSpace": "Create a new space",
-    "addSector": "Ajouter un secteur",
+    "addSector": "Add sector",
+    "addLine": "Add line",
     "signIn": "Sign in",
     "signUp": "Sign up",
     "addLevel": "Add level",

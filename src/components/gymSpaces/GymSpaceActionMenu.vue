@@ -44,7 +44,22 @@
 
       <v-divider/>
 
-      <!-- Create a new space -->
+      <!-- New line -->
+      <v-list-item
+        link
+        :to="gymSpace.url('select-sector')"
+      >
+        <v-list-item-icon>
+          <v-icon>mdi-source-branch-plus</v-icon>
+        </v-list-item-icon>
+        <v-list-item-content>
+          <v-list-item-title>
+            {{ $t('actions.addLine') }}
+          </v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+
+      <!-- Create a new secteur -->
       <v-list-item
         link
         :to="gymSpace.url('sectors/new')"

@@ -2,6 +2,7 @@ import GymSpaceView from '@/views/gymSpaces/GymSpaceView'
 import GymSpaceNewView from '@/views/gymSpaces/actions/GymSpaceNewView'
 import GymSpaceEditView from '@/views/gymSpaces/actions/GymSpaceEditView'
 import GymSpacePlanView from '@/views/gymSpaces/actions/GymSpacePlanView'
+import SelectGymSectorView from '@/views/gymRoutes/SelectGymSectorView'
 
 export default [
   {
@@ -30,6 +31,15 @@ export default [
   {
     path: '/gyms/:gymId/:gymSlug/spaces/new',
     component: GymSpaceNewView,
+    props: true,
+    meta: {
+      requiresAuth: true,
+      requiresGymAdministrator: true
+    }
+  },
+  {
+    path: '/gyms/:gymId/:gymSlug/spaces/:gymSpaceId/:gymSpaceSlug/select-sector',
+    component: SelectGymSectorView,
     props: true,
     meta: {
       requiresAuth: true,
