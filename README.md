@@ -22,10 +22,11 @@
 - [ ] Ajouter le 'ouvert à'
 - [ ] Ajouter les tags
 - [ ] Ajouter le coup de coeur
+- [ ] Pouvoir démonter une ligne
 - [ ] Finir les infos d'une voie
 - [ ] Finir la page "Info" d'une salle
 - [ ] Finir le responsive du plan des secteurs
-- [ ] Faire l'interaction avec le plan 'surbrillance'
+- [x] Faire l'interaction avec le plan 'surbrillance'
 - [ ] Faire le démontage d'un secteur
 - [ ] Faire le système de following de la salle
 - [x] Faire page admin d'une salle

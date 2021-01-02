@@ -21,6 +21,9 @@
       <editable-polygon
         v-for="sector in sectorPolygons()"
         :key="sector.id"
+        :fill-opacity="0"
+        :weight="2"
+        dash-array="5px"
         :lat-lngs="sector.jsonPolygon"
         @click="filterBySector(sector.id)"
         :ref="`polygon-sector-${sector.id}`"
@@ -65,13 +68,17 @@ export default {
       drawingSectorPolygon: null,
       editingSectorId: null,
       isNewPolygon: false,
-      space: this.gymSpace
+      space: this.gymSpace,
+      savingPolygon: false
     }
   },
 
   mounted () {
     this.$root.$on('startEditSectorPolygon', (gymSectorId) => {
       this.startEditSectorPolygon(gymSectorId)
+    })
+    this.$root.$on('activeSector', (gymSectorId) => {
+      this.activeSector(gymSectorId)
     })
     this.$root.$on('stopEditingSectorPolygon', () => {
       this.stopEditingSectorPolygon()
@@ -117,7 +124,35 @@ export default {
       return sectorPolygon
     },
 
+    clearSectorSelection: function () {
+      for (const ref in this.$refs) {
+        if (ref.includes('polygon-sector-')) {
+          const polygon = this.$refs[ref][0]
+          if (polygon !== undefined) {
+            polygon.setWeight(2)
+            polygon.setFillOpacity(0)
+            polygon.setDashArray('5px')
+          }
+        }
+      }
+    },
+
+    activeSector: function (gymSectorId) {
+      this.clearSectorSelection()
+      if (this.$refs[`polygon-sector-${gymSectorId}`]) {
+        const polygonSector = this.$refs[`polygon-sector-${gymSectorId}`][0]
+        if (polygonSector !== undefined) {
+          polygonSector.setFillOpacity(0.5)
+          polygonSector.setWeight(3)
+          polygonSector.setDashArray('none')
+        }
+      }
+    },
+
     saveSectorPolygon: function (polygon) {
+      if (this.savingPolygon) return
+
+      this.savingPolygon = true
       const data = {
         gym_id: this.space.gym.id,
         gym_space_id: this.space.id,
@@ -132,6 +167,9 @@ export default {
         })
         .catch(() => {
           this.reloadingData = false
+        })
+        .finally(() => {
+          this.savingPolygon = false
         })
     },
 
@@ -154,6 +192,7 @@ export default {
 
     filterBySector: function (sectorId) {
       this.$root.$emit('filtreBySector', sectorId)
+      this.activeSector(sectorId)
     }
   }
 }
@@ -192,6 +231,25 @@ export default {
     .leaflet-container {
       background-color: #1e1e1e;
     }
+  }
+}
+
+.leaflet-interactive {
+  //fill-opacity: 0;
+  transition: fill-opacity 0.3s;
+  //stroke-width: 2px;
+  //stroke-dasharray: 5px;
+  &:hover {
+    stroke-width: 3px;
+    stroke-dasharray: none;
+    fill-opacity: 0.2;
+  }
+  &.active {
+    fill-opacity: 0.5;
+    stroke-width: 3px;
+    stroke-dasharray: none;
+    fill: white;
+    stroke: white;
   }
 }
 </style>

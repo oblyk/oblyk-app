@@ -1,6 +1,9 @@
 <template>
   <div>
-    <div @click="changeCardSize()">
+    <div
+      @mouseenter="$root.$emit('activeSector', gymRoute.gym_sector_id)"
+      @click="changeCardSize()"
+    >
       <gym-route-card-small
         :gym-route="gymRoute"
         v-if="!showLargeCard"
@@ -8,6 +11,7 @@
     </div>
 
     <gym-route-card-large
+      @mouseenter="$root.$emit('activeSector', gymRoute.gym_sector_id)"
       :gym-route-prop="gymRoute"
       :change-card-size="changeCardSize"
       v-if="showLargeCard"
