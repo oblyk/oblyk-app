@@ -20,6 +20,9 @@
       </v-row>
       <v-row>
         <v-col class="col-sm-12 col-md-6 col-lg-3 pa-2">
+          <gym-space-card :gym="gym" />
+        </v-col>
+        <v-col class="col-sm-12 col-md-6 col-lg-3 pa-2">
           <difficulty-system-card :gym="gym" />
         </v-col>
       </v-row>
@@ -47,10 +50,12 @@ import Spinner from '@/components/layouts/Spiner'
 import DifficultySystemCard from '@/components/gyms/admin/DifficultySystemCard'
 import GymTeamCard from '@/components/gyms/admin/GymTeamCard'
 import GymWelcomeCard from '@/components/gyms/admin/GymWelcomeCard'
+import GymSpaceCard from '@/components/gyms/admin/GymSpaceCard'
 
 export default {
   name: 'GymAdminView',
   components: {
+    GymSpaceCard,
     GymWelcomeCard,
     GymTeamCard,
     DifficultySystemCard,

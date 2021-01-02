@@ -38,7 +38,8 @@
       "GuideBookSettings": "Paramètres topos",
       "gestionSettings": "Gestion",
       "team": "Équipe",
-      "difficultySystem": "Système de difficulté"
+      "difficultySystem": "Système de difficulté",
+      "spaces": "Espaces"
     },
     "gymAdministrationRequest": {
       "helloName": "Bonjour %{name}",

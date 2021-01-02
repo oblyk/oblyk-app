@@ -29,7 +29,7 @@
 - [ ] Améliorer la page "Info" d'une salle
 - [x] Faire page admin d'une salle
 - [ ] Statistique
-- [ ] Faire carte Espace dans zone admin
+- [x] Faire carte Espace dans zone admin
 
 ## TODO User
 - [ ] Déplacer le profil dans la bar d'application

@@ -38,7 +38,8 @@
       "GuideBookSettings": "Guide books settings",
       "gestionSettings": "Gestion",
       "team": "Team",
-      "difficultySystem": "Difficulty system"
+      "difficultySystem": "Difficulty system",
+      "spaces": "Spaces"
     },
     "gymAdministrationRequest": {
       "helloName": "Hello %{name}",
