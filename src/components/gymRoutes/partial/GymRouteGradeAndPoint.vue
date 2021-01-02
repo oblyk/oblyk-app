@@ -1,15 +1,14 @@
 <template>
   <div class="text-center">
     <strong
-      v-if="gymRoute.points"
+      v-if="gymRoute.points_to_s"
     >
-      {{ gymRoute.points }} pts
+      {{ gymRoute.points_to_s }}
     </strong>
     <strong
-      v-for="(section, index) of gymRoute.sections"
-      :key="index"
+      v-if="gymRoute.grade_to_s"
     >
-      {{ section.grade }}
+      {{ gymRoute.grade_to_s }}
     </strong>
   </div>
 </template>

@@ -86,6 +86,7 @@
       "whichSystem": "Comment identifier vous vos lignes ? (couleur de prise, etiquette, etc.)",
       "whichGradeSystem": "Quelle système de valeur utilisez vous pour coter vos lignes ?",
       "system": "Système",
+      "value": "Valeur",
       "gradeSystem": {
         "hold_color": "La couleur des prises indiquent la difficulté <cite>(recommandé pour le bloc)</cite>",
         "tag_color": "Les étiquettes au départ des lignes indiquent la difficulté <cite>(recommandé pour la voie en salle privée)</cite>",
@@ -97,6 +98,10 @@
       "colors": {
         "hold": "Couleur des prises",
         "tag": "Couleur des étiquettes"
+      },
+      "hints": {
+        "grade": "Exemple: 6a, 7a, 7c+, etc.",
+        "points": "Exemple: 500, 50, 200, etc."
       }
     },
     "word": {
@@ -213,7 +218,8 @@
       "name": "Nom du système",
       "difficulty_system": "Type de système",
       "use_grade_system": "System de cotation 'normal' <cite>(7a, 6b+, etc.)</cite>",
-      "use_point_system": "System de cotation par point <cite>(50pts, 500pts, etc.)</cite>"
+      "use_point_system": "System de cotation par point fixe <cite>(50pts, 500pts, etc.)</cite>",
+      "use_point_division_system": "System de cotation par division des points <cite>(1000 pts / nombre d'ascension)</cite>"
     },
     "gymGradeLine": {
       "name": "Nom du niveau",

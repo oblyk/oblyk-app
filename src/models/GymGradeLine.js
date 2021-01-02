@@ -17,8 +17,9 @@ export default class GymGradeLine extends ActiveData {
   get gradeValue () {
     let gradeText = ''
     let points = ''
-    if (this.grade_text) gradeText = `~${this.grade_text}`
-    if (this.points) points = `${this.points}pts`
+    if (this.gym_grade.use_grade_system && this.grade_text) gradeText = `~${this.grade_text}`
+    if (this.gym_grade.use_point_system && this.points) points = `${this.points}pts`
+    if (this.gym_grade.use_point_division_system) points = '1000 pts / n'
 
     return `${gradeText} ${points}`.trim()
   }

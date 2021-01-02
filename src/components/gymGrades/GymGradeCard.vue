@@ -7,10 +7,20 @@
       {{ gymGrade.name }}
     </v-card-title>
     <v-card-text>
-      <strong>
-        {{ $t('components.gymGrade.system') }} :
-      </strong>
-      <span v-html="$t(`components.gymGrade.gradeSystem.${gymGrade.difficulty_system}`)" />
+      <p>
+        <strong>
+          {{ $t('components.gymGrade.system') }} :
+        </strong>
+        <span v-html="$t(`components.gymGrade.gradeSystem.${gymGrade.difficulty_system}`)" />
+      </p>
+      <p>
+        <strong>
+          {{ $t('components.gymGrade.value') }} :
+        </strong>
+        <span v-html="$t('models.gymGrade.use_grade_system')" v-if="gymGrade.use_grade_system" />
+        <span v-html="$t('models.gymGrade.use_point_system')" v-if="gymGrade.use_point_system" />
+        <span v-html="$t('models.gymGrade.use_point_division_system')" v-if="gymGrade.use_point_division_system" />
+      </p>
       <v-simple-table>
         <template v-slot:default>
           <tbody>

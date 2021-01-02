@@ -13,7 +13,7 @@
       :label="$t('models.gymGradeLine.grade_text')"
       :required="(gymGrade.use_grade_system)"
       v-show="(gymGrade.use_grade_system)"
-      hint="Exemple: 6a, 7a, 7c+, etc."
+      :hint="$t('components.gymGradeLine.hints.grade')"
     />
 
     <v-text-field
@@ -22,7 +22,7 @@
       :label="$t('models.gymGradeLine.points')"
       :required="(gymGrade.use_point_system)"
       v-show="(gymGrade.use_point_system)"
-      hint="Exemple: 500, 50, 200, etc."
+      :hint="$t('components.gymGradeLine.hints.points')"
     />
 
     <v-text-field

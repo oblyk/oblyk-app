@@ -60,10 +60,20 @@
     </v-checkbox>
 
     <v-checkbox
+      @change="uncheckDivisionPoint()"
       v-model="data.use_point_system"
     >
       <template v-slot:label>
         <span v-html="$t('models.gymGrade.use_point_system')"  />
+      </template>
+    </v-checkbox>
+
+    <v-checkbox
+      @change="uncheckPoint()"
+      v-model="data.use_point_division_system"
+    >
+      <template v-slot:label>
+        <span v-html="$t('models.gymGrade.use_point_division_system')"  />
       </template>
     </v-checkbox>
 
@@ -100,8 +110,9 @@ export default {
         name: (this.gymGrade || {}).name,
         gym_id: this.gymId,
         difficulty_system: (this.gymGrade || {}).difficulty_system,
-        use_grade_system: (this.gymGrade || {}).use_grade_system,
-        use_point_system: (this.gymGrade || {}).use_point_system
+        use_grade_system: (this.gymGrade || {}).use_grade_system || false,
+        use_point_system: (this.gymGrade || {}).use_point_system || false,
+        use_point_division_system: (this.gymGrade || {}).use_point_division_system || false
       }
     }
   },
@@ -121,6 +132,14 @@ export default {
         }).then(() => {
           this.submitOverlay = false
         })
+    },
+
+    uncheckDivisionPoint: function () {
+      if (this.data.use_point_system) this.data.use_point_division_system = false
+    },
+
+    uncheckPoint: function () {
+      if (this.data.use_point_division_system) this.data.use_point_system = false
     }
   }
 }

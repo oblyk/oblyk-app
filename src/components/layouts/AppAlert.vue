@@ -40,9 +40,11 @@ export default {
       } else if (status === 422) {
         this.messages.push(this.$t('components.appAlert.422'))
         for (const error in data.error) {
-          const item = this.$t(`models.${object}.${error}`)
-          const rule = data.error[error][0]
-          this.messages.push(`- ${item} ${rule}`)
+          let item = ''
+          if (error !== 'base') item = this.$t(`models.${object}.${error}`)
+          for (const rule of data.error[error]) {
+            this.messages.push(`- ${item} ${rule}`)
+          }
         }
       } else {
         this.messages.push(this.$t('components.appAlert.500'))

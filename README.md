@@ -15,15 +15,15 @@
 
 ## TODO Indoor
 - [x] Gestion de l'administration (CRUD)
-- [ ] Faire le système de division des points auto
+- [x] Faire le système de division des points auto
 - [ ] Limiter les interactions si pas connecté ou pas admin
 - [ ] Ajouter le 'ouvert à'
 - [ ] Ajouter les tags
 - [ ] Ajouter le coup de coeur
-- [ ] Améliorer les infos d'une voie
-- [ ] Améliorer la page "Info" d'une salle
-- [ ] Améliorer le responsive du plan des secteurs
-- [ ] Améliorer l'interaction avec le plan
+- [ ] Finir les infos d'une voie
+- [ ] Finir la page "Info" d'une salle
+- [ ] Finir le responsive du plan des secteurs
+- [ ] Faire l'interaction avec le plan 'surbrillance'
 - [ ] Faire le démontage d'un secteur
 - [ ] Faire le système de following de la salle
 - [x] Faire page admin d'une salle
@@ -36,6 +36,7 @@
 ## TODO User
 - [ ] Déplacer le profil dans la bar d'application
 - [ ] Améliorer la création d'un compte (photo, partenaire, etc.)
+- [ ] Mot de passe oublié
 - [ ] Faire le "dashboard"
 - [ ] Faire la messagerie
 - [ ] Faire le système de relation
@@ -43,6 +44,7 @@
 - [ ] Topothèque
 - [ ] Tick-list
 - [ ] Faire le "Flux"
+- [ ] Supprimer un compte 
 
 ## TODO Crag
 - [ ] Falaise
