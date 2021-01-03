@@ -3,7 +3,7 @@
 ## TODO Global
 - [x] Faire apparaitre l'élément principal de la page dans la barre d'application
 - [x] Faire la gestion des erreurs
-- [ ] améliorer la sid barre (selection en thème sombre pas beau)
+- [ ] Améliorer la sid barre (selection en thème sombre pas beau)
 - [ ] Commentable
 - [ ] Followable
 - [ ] Linkable
@@ -12,6 +12,7 @@
 - [ ] Faire page 404
 - [ ] Paramétrage des web workers PWA
 - [ ] Système de notification push
+___
 - [ ] Faire le stockage hors ligne
 
 ## TODO Indoor
@@ -32,6 +33,7 @@
 - [x] Faire page admin d'une salle
 - [x] Faire carte Espace dans zone admin
 - [ ] Faire l'ajout au carnet de croix
+___
 - [ ] Faire le système d'options payantes (standard, +, pro)
 - [ ] Faire les groupes de salles (climb up, Arkose, Mroc, etc...)
 - [ ] Statistique
@@ -49,7 +51,7 @@
 - [ ] Faire le "Flux"
 - [ ] Supprimer un compte 
 
-## TODO Crag
+## TODO Outdoor
 - [ ] Falaise
 - [ ] Secteur
 - [ ] Voies
@@ -58,7 +60,7 @@
 - [ ] Topo
 - [ ] Massif
 
-## TODO Partner
+## TODO Recherche partenaire de grimpe
 - [ ] Paramétrage à la création d'un compte
 - [ ] Changement des paramètres dans son profil
 - [ ] La carte des grimpeurs
@@ -67,7 +69,7 @@
 - [ ] Newsletter
 - [ ] Système de news (CRUD)
 
-## TODO pages autres
+## TODO Autres pages
 - [ ] Mention légale
 - [ ] Le projet
 - [ ] Don
