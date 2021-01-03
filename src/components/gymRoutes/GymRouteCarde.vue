@@ -14,6 +14,7 @@
       @mouseenter="$root.$emit('activeSector', gymRoute.gym_sector_id)"
       :gym-route-prop="gymRoute"
       :change-card-size="changeCardSize"
+      :get-space-routes="getSpaceRoutes"
       v-if="showLargeCard"
     />
   </div>
@@ -26,7 +27,8 @@ export default {
   name: 'GymRouteCard',
   components: { GymRouteCardLarge, GymRouteCardSmall },
   props: {
-    gymRoute: Object
+    gymRoute: Object,
+    getSpaceRoutes: Function
   },
 
   data () {

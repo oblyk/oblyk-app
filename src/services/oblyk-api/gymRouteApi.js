@@ -41,6 +41,14 @@ class GymRouteApi extends BaseApi {
     })
   }
 
+  dismount (gymId, gymRouteId) {
+    return axios({
+      url: `${this.baseUrl}/gyms/${gymId}/gym_routes/${gymRouteId}/dismount.json`,
+      headers: { Authorization: this.authToken() },
+      method: 'PUT'
+    })
+  }
+
   picture (data, gymId, gymRouteId) {
     return axios({
       url: `${this.baseUrl}/gyms/${gymId}/gym_routes/${gymRouteId}/add_picture.json`,

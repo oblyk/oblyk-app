@@ -61,14 +61,48 @@
           </v-list-item-title>
         </v-list-item-content>
       </v-list-item>
+
+      <v-divider/>
+
+      <v-list-item
+        link
+        @click="dismount()"
+      >
+        <v-list-item-icon>
+          <v-icon>mdi-backburger</v-icon>
+        </v-list-item-icon>
+        <v-list-item-content>
+          <v-list-item-title>
+            {{ $t('actions.dismount') }}
+          </v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+
     </v-list>
   </v-menu>
 </template>
 <script>
+import gymRouteApi from '@/services/oblyk-api/gymRouteApi'
+
 export default {
   name: 'GymRouteActionMenu',
   props: {
-    gymRoute: Object
+    gymRoute: Object,
+    getSpaceRoutes: Function
+  },
+
+  methods: {
+    dismount: function () {
+      gymRouteApi
+        .dismount(
+          this.gymRoute.gym.id,
+          this.gymRoute.id
+        ).then(() => {
+          this.getSpaceRoutes()
+        }).catch((err) => {
+          this.$root.$emit('alertFromApiError', err, 'gymRoute')
+        })
+    }
   }
 }
 </script>

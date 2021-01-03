@@ -11,6 +11,7 @@
         <p class="pt-2 pr-2 pl-1">
           <gym-route-action-menu
             v-if="currentUserIsGymAdmin()"
+            :get-space-routes="getSpaceRoutes"
             :gym-route="gymRoute"
           />
 
@@ -79,7 +80,8 @@ export default {
   mixins: [SessionConcern],
   props: {
     gymRouteProp: Object,
-    changeCardSize: Function
+    changeCardSize: Function,
+    getSpaceRoutes: Function
   },
   data () {
     return {

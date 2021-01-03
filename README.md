@@ -22,8 +22,7 @@ ___
 - [x] Limiter les interactions si pas connecté ou pas admin
 - [x] Ajouter le 'ouvert à'
 - [x] Ajouter les tags
-- [ ] Ajouter le coup de coeur
-- [ ] Pouvoir démonter une ligne
+- [x] Pouvoir démonter une ligne
 - [ ] Finir les infos d'une voie
 - [ ] Finir la page "Info" d'une salle
 - [ ] Finir le responsive du plan des secteurs
@@ -34,6 +33,7 @@ ___
 - [x] Faire carte Espace dans zone admin
 - [ ] Faire l'ajout au carnet de croix
 ___
+- [ ] Ajouter le coup de coeur
 - [ ] Faire le système d'options payantes (standard, +, pro)
 - [ ] Faire les groupes de salles (climb up, Arkose, Mroc, etc...)
 - [ ] Statistique

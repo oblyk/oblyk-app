@@ -357,6 +357,7 @@
     "browse": "Browse ...",
     "addPicture": "Add picture",
     "defineThumbnail": "Define thumbnail",
+    "dismount": "Dismount routes",
     "createAndPicture": "Create + Picture",
     "finish": "Finish",
     "backToName": "Back to %{name}",
