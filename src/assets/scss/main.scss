@@ -23,6 +23,15 @@
   padding-right: 10px;
 }
 
+.v-select.v-select--chips:not(.v-text-field--single-line).v-text-field--box .v-select__selections, .v-select.v-select--chips:not(.v-text-field--single-line).v-text-field--enclosed .v-select__selections {
+  min-height: 42px;
+  padding-bottom: 3px;
+}
+
+.v-text-field--full-width .v-input__prepend-outer, .v-text-field--full-width .v-input__prepend-inner, .v-text-field--full-width .v-input__append-inner, .v-text-field--full-width .v-input__append-outer, .v-text-field--enclosed .v-input__prepend-outer, .v-text-field--enclosed .v-input__prepend-inner, .v-text-field--enclosed .v-input__append-inner, .v-text-field--enclosed .v-input__append-outer {
+  margin-top: 19px;
+}
+
 .smallest-table-column {
   width: 10px;
   white-space: nowrap;

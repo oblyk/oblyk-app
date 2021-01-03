@@ -5,7 +5,7 @@
     item-text="text"
     item-value="value"
     chips
-    label="Type d'escalade"
+    :label="$t('components.input.climbing_type')"
     multiple
     outlined
     @change="onChange()"

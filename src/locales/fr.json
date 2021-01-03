@@ -6,6 +6,10 @@
       "401": "Vous n'êtes pas autorisé à faire cette action",
       "422": "Les éléments suivant ne semblent pas correct :"
     },
+    "input": {
+      "climbing_type": "Type d'escalade",
+      "tags": "Tags"
+    },
     "search": {
       "title": "Chercher",
       "searchLabel": "Chercher une falaise, une voie, une salle, etc."
@@ -195,6 +199,7 @@
       "name":  "Nom de la ligne, ou référence",
       "height": "Hauteur",
       "height_by_section": "Hauteur L.%{index}",
+      "tags_by_section": "Tags L.%{index}",
       "height_total": "Hauteur total",
       "climbing_type":  "Type de grimpe",
       "favorite": "Favori",
@@ -215,6 +220,7 @@
       "min_grade_text": "Cotation min",
       "points": "Points",
       "grade": "Cotation",
+      "tags": "Tags",
       "grade_by_section": "Cotation L.%{index}"
     },
     "gymGrade": {
@@ -246,6 +252,58 @@
     "word": {
       "name": "Mot",
       "definition": "Définition"
+    },
+    "tags": {
+      "crimps": "Réglettes",
+      "slopers": "Plats",
+      "prow": "Proue",
+      "arete": "Arête",
+      "slab": "Dalle",
+      "vertical_wall": "Mur vertical",
+      "overhang": "Dévers",
+      "slight_overhang": "Léger dévers",
+      "roof": "Toit",
+      "pockets": "Trous",
+      "dyno": "Jeté",
+      "traverse": "Traversée",
+      "l_r_traverse": "Traversée g->d",
+      "r_l_traverse": "Traversée d->g",
+      "jugs": "Bacs",
+      "pinches": "Pinces",
+      "dihedral": "Dièdre",
+      "chimney": "Cheminée",
+      "mantle": "Réta",
+      "balancy": "Équilibre",
+      "physical": "Physique",
+      "endurance": "Conti",
+      "resistance": "Rési",
+      "runout": "Engagé",
+      "compression": "Compression",
+      "crack": "Fissure",
+      "underclings": "Inversées",
+      "high": "Haut",
+      "exposed": "Expo",
+      "pillar": "Pilier",
+      "ledge": "Vire",
+      "technical": "Technique",
+      "tiny_crimps": "Grattons",
+      "mono": "Monodoigts",
+      "jamming": "Renfougne",
+      "kneebar": "Genou",
+      "polished": "Patiné",
+      "dropknee": "Lolotte",
+      "heel_hook": "Talon",
+      "toe_hook": "Contre-pointe",
+      "smearing": "Adhérence",
+      "tufas": "Colonnettes",
+      "yaniro": "Yaniro",
+      "flake": "Écaille",
+      "layback": "Dülfer",
+      "sidepull": "Prise verticale",
+      "slots": "Boîtes aux lettres",
+      "morpho": "Morpho",
+      "bouldery_move": "Pas de bloc",
+      "bulge": "Surplomb"
     }
   },
   "colors": {

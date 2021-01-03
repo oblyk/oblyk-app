@@ -48,16 +48,26 @@
         <!-- Points -->
         <v-text-field
           outlined
+          v-if="(gymGrade.use_point_system)"
           type="number"
-          v-show="(gymGrade.use_point_system)"
           :required="(gymGrade.use_point_system)"
           v-model="data.points"
           :label="$t('models.gymRoute.points')"
         />
 
+        <!-- Tags -->
+        <div v-if="!gymGrade.use_grade_system">
+          <tags-input
+            v-for="(value, index) in data.sections"
+            :key="index"
+            v-model="value.tags"
+            :label="multiPitch ? $t('models.gymRoute.tags_by_section', { index: index + 1 }) : $t('models.gymRoute.tags')"
+          />
+        </div>
+
         <div class="row" v-show="(gymGrade.use_grade_system)">
-          <div class="col">
-            <!-- Grade by section -->
+          <!-- Grade by section -->
+          <div class="col-sm-3">
             <v-text-field
               outlined
               :required="(gymGrade.use_grade_system)"
@@ -69,7 +79,7 @@
           </div>
 
           <!-- height by section if more than one pitch -->
-          <div class="col" v-if="multiPitch && data.sections.length > 1">
+          <div class="col-sm-3" v-if="multiPitch && data.sections.length > 1">
             <v-text-field
               outlined
               type="number"
@@ -77,6 +87,16 @@
               :key="index"
               v-model="value.height"
               :label="$t('models.gymRoute.height_by_section', { index: index + 1 })"
+            />
+          </div>
+
+          <!-- Tags by section if more than one pitch -->
+          <div class="col">
+            <tags-input
+              v-for="(value, index) in data.sections"
+              :key="index"
+              v-model="value.tags"
+              :label="multiPitch ? $t('models.gymRoute.tags_by_section', { index: index + 1 }) : $t('models.gymRoute.tags')"
             />
           </div>
         </div>
@@ -194,10 +214,11 @@ import ColorInput from '@/components/forms/ColorInput'
 import GymRoute from '@/models/GymRoute'
 import DatePickerInput from '@/components/forms/DatePickerInput'
 import { DateHelpers } from '@/mixins/DateHelpers'
+import TagsInput from '@/components/forms/TagsInput'
 
 export default {
   name: 'GymRouteForm',
-  components: { DatePickerInput, ColorInput, Spinner, SubmitForm, CloseForm },
+  components: { TagsInput, DatePickerInput, ColorInput, Spinner, SubmitForm, CloseForm },
   mixins: [FormHelpers, HoldColorsHelpers, DateHelpers],
   props: {
     gymSector: Object,
@@ -229,7 +250,7 @@ export default {
         gym_space_id: this.gymSector.gym_space.id,
         gym_sector_id: this.gymSector.id,
         gym_id: this.gymSector.gym.id,
-        sections: (this.gymRoute || {}).sections || [{ grade: null, height: null }]
+        sections: (this.gymRoute || {}).sections || [{ grade: null, height: null, tags: [] }]
       },
       climbingGymList: [
         { text: this.$t('models.climbs.sport_climbing'), value: 'sport_climbing' },

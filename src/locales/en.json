@@ -6,6 +6,10 @@
       "401": "You are not authorized to do this action.",
       "422": "The following elements do not seem to be correct :"
     },
+    "input": {
+      "climbing_type": "Climbing type",
+      "tags": "Tags"
+    },
     "search": {
       "title": "Search",
       "searchLabel": "Look for a crag, a route, a gym, etc."
@@ -195,6 +199,7 @@
       "name":  "Route name",
       "height": "Height",
       "height_by_section": "Height L.%{index}",
+      "tags_by_section": "Tags L.%{index}",
       "height_total": "Height total",
       "climbing_type":  "Climbing type",
       "favorite": "Favorite",
@@ -215,6 +220,7 @@
       "min_grade_text": "Min grade",
       "points": "Points",
       "grade": "Grade",
+      "tags": "Tags",
       "grade_by_section": "Grade L.%{index}"
     },
     "gymGrade": {
@@ -246,6 +252,58 @@
     "word": {
       "name": "Word",
       "definition": "Definition"
+    },
+    "tags": {
+      "crimps":  "Crimps",
+      "slopers": "Slopers",
+      "prow":  "Prow",
+      "arete": "Arete",
+      "slab":  "Slab",
+      "vertical_wall": "Vertical wall",
+      "overhang":  "Overhang",
+      "slight_overhang": "Slight overhang",
+      "roof":  "Roof",
+      "pockets": "Pockets",
+      "dyno":  "Dyno",
+      "traverse": "Traverse",
+      "l_r_traverse":  "L->r traverse",
+      "r_l_traverse": "R->l traverse",
+      "jugs":  "Jugs",
+      "pinches": "Pinches",
+      "dihedral":  "Dihedral",
+      "chimney": "Chimney",
+      "mantle":  "Mantle",
+      "balancy": "Balancy",
+      "physical":  "Physical",
+      "endurance": "Endurance",
+      "resistance":  "Resistance",
+      "runout": "Runout",
+      "compression":  "Compression",
+      "crack": "Crack",
+      "underclings":  "Underclings",
+      "high": "High",
+      "exposed":  "Exposed",
+      "pillar": "Pillar",
+      "ledge":  "Ledge",
+      "technical": "Technical",
+      "tiny_crimps":  "Tiny crimps",
+      "mono": "Mono",
+      "jamming":  "Jamming",
+      "kneebar": "Kneebar",
+      "polished":  "Polished",
+      "dropknee": "Dropknee",
+      "heel_hook":  "Heel hook",
+      "toe_hook": "Toe hook",
+      "smearing":  "Smearing",
+      "tufas": "Tufas",
+      "yaniro":  "Yaniro",
+      "flake": "Flake",
+      "layback":  "Layback",
+      "sidepull": "Sidepull",
+      "slots":  "Slots",
+      "morpho": "Morpho",
+      "bouldery_move":  "Bouldery move",
+      "bulge": "Bulge"
     }
   },
   "colors": {

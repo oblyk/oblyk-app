@@ -21,7 +21,7 @@ ___
 - [x] Faire l'ajout de voie sans secteur défini
 - [x] Limiter les interactions si pas connecté ou pas admin
 - [x] Ajouter le 'ouvert à'
-- [ ] Ajouter les tags
+- [x] Ajouter les tags
 - [ ] Ajouter le coup de coeur
 - [ ] Pouvoir démonter une ligne
 - [ ] Finir les infos d'une voie
