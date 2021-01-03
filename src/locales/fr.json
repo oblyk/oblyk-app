@@ -68,6 +68,7 @@
     },
     "gymRoute": {
       "addNew": "Ajouter une nouvelle ligne",
+      "editRoute": "Modifier la ligne",
       "resultingParametersOf": "Issu des paramètres du secteur : %{name}",
       "automaticParameters": "Issu du système de difficulté choisi",
       "addPitch": "Ajouter une longueur",
@@ -198,6 +199,7 @@
       "climbing_type":  "Type de grimpe",
       "favorite": "Favori",
       "openers":  "Ouvreurs",
+      "opened_at":  "Date d'ouverture",
       "polyline": "Tracé",
       "hold_colors":  "Couleurs des prises",
       "tag_colors": "Couleur des étiquettes",
@@ -301,5 +303,8 @@
     "finish": "Terminer",
     "backToName": "Retour à %{name}",
     "addMember": "Ajouter un membre"
+  },
+  "date": {
+    "format_dd_mm_yyyy": "jj/mm/aaaa"
   }
 }

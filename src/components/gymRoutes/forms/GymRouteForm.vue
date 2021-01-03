@@ -124,6 +124,12 @@
           label="Couleurs des prises"
           icon="mdi-chart-bubble"
         />
+
+        <!-- Open at -->
+        <date-picker-input
+          :label="$t('models.gymRoute.opened_at')"
+          v-model="data.opened_at"
+        />
       </div>
 
       <p class="subtitle-2">
@@ -186,11 +192,13 @@ import GymRouteApi from '@/services/oblyk-api/gymRouteApi'
 import GymGrade from '@/models/GymGrade'
 import ColorInput from '@/components/forms/ColorInput'
 import GymRoute from '@/models/GymRoute'
+import DatePickerInput from '@/components/forms/DatePickerInput'
+import { DateHelpers } from '@/mixins/DateHelpers'
 
 export default {
   name: 'GymRouteForm',
-  components: { ColorInput, Spinner, SubmitForm, CloseForm },
-  mixins: [FormHelpers, HoldColorsHelpers],
+  components: { DatePickerInput, ColorInput, Spinner, SubmitForm, CloseForm },
+  mixins: [FormHelpers, HoldColorsHelpers, DateHelpers],
   props: {
     gymSector: Object,
     gymRoute: {
@@ -215,7 +223,7 @@ export default {
         grade: (this.gymRoute || {}).grade,
         tag_colors: (this.gymRoute || {}).tag_colors,
         hold_colors: (this.gymRoute || {}).hold_colors,
-        opened_at: (this.gymRoute || {}).opened_at,
+        opened_at: (this.gymRoute || {}).opened_at || this.today().format('YYYY-DD-MM'),
         climbing_type: (this.gymRoute || {}).climbing_type || this.gymSector.climbing_type,
         gym_grade_line_id: (this.gymRoute || {}).gym_grade_line_id,
         gym_space_id: this.gymSector.gym_space.id,

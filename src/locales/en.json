@@ -68,6 +68,7 @@
     },
     "gymRoute": {
       "addNew": "Add a new route",
+      "editRoute": "Edit route",
       "resultingParametersOf": "Resulting parameters of sector : %{name}",
       "automaticParameters": "Automatic parameters",
       "addPitch": "Add pitch",
@@ -198,6 +199,7 @@
       "climbing_type":  "Climbing type",
       "favorite": "Favorite",
       "openers":  "Openers",
+      "opened_at":  "Open date",
       "polyline": "Polyline",
       "hold_colors":  "Hold colors",
       "tag_colors": "Tag colors",
@@ -301,5 +303,8 @@
     "finish": "Finish",
     "backToName": "Back to %{name}",
     "addMember": "Add a member"
+  },
+  "date": {
+    "format_dd_mm_yyyy": "dd/mm/yyyy"
   }
 }

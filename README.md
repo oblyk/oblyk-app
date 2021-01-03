@@ -19,7 +19,7 @@
 - [x] Faire le système de division des points auto
 - [x] Faire l'ajout de voie sans secteur défini
 - [x] Limiter les interactions si pas connecté ou pas admin
-- [ ] Ajouter le 'ouvert à'
+- [x] Ajouter le 'ouvert à'
 - [ ] Ajouter les tags
 - [ ] Ajouter le coup de coeur
 - [ ] Pouvoir démonter une ligne

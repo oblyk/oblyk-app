@@ -6,7 +6,7 @@
       <v-row justify="center">
         <v-col class="global-form-width">
           <h2 class="mb-4">
-            {{ $t('components.gymRoute.addNew') }}
+            {{ $t('components.gymRoute.editRoute') }}
           </h2>
           <gym-route-form
             :gym-sector="gymRoute.GymSector"
