@@ -49,7 +49,9 @@ ___
 - [ ] Topothèque
 - [ ] Tick-list
 - [ ] Faire le "Flux"
-- [ ] Supprimer un compte 
+---
+- [ ] Supprimer son compte 
+- [ ] Export de ses données
 
 ## TODO Outdoor
 - [ ] Falaise
@@ -59,6 +61,8 @@ ___
 - [ ] Marche d'approche
 - [ ] Topo
 - [ ] Massif
+---
+- [ ] Système d'alerte
 
 ## TODO Recherche partenaire de grimpe
 - [ ] Paramétrage à la création d'un compte
