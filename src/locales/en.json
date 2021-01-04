@@ -6,6 +6,9 @@
       "401": "You are not authorized to do this action.",
       "422": "The following elements do not seem to be correct :"
     },
+    "loadMore": {
+      "loadMore": "Load more"
+    },
     "input": {
       "climbing_type": "Climbing type",
       "tags": "Tags"

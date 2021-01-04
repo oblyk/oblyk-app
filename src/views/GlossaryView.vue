@@ -8,13 +8,20 @@
           <h1>
             {{ $t('components.word.title') }}
           </h1>
+
+          <!-- Search -->
           <v-text-field
             :label="$t('components.word.searchDefinition')"
             outlined
+            :loading="searching"
+            clearable
             hide-details
-            @keyup="filteredWords()"
+            @keyup="search()"
+            @click:clear="onSearch = false"
             v-model="searchWord"
           />
+
+          <!-- add new word -->
           <div class="text-right">
             <v-btn
               v-if="isLoggedIn"
@@ -26,23 +33,39 @@
               {{ $t('components.word.addNew') }}
             </v-btn>
           </div>
-          <div v-for="(word, index) in words" :key="word.id">
-            <p
-              v-if="index === 0 || (glossary[index - 1].name.charAt(0).toUpperCase() !== word.name.charAt(0).toUpperCase())"
-            >
-              <v-alert
-                dense
-                text
-                class="d-inline-block mb-0 mt-3"
-              >
-                {{ word.name.charAt(0).toUpperCase() }}
-              </v-alert>
-            </p>
 
-            <word-card
-              :word="word"
-              class="mb-4"
-            />
+          <!-- Glossary list -->
+          <div v-if="!onSearch">
+            <div v-for="(word, index) in glossary" :key="word.id">
+              <p
+                v-if="index === 0 || (glossary[index - 1].name.charAt(0).toUpperCase() !== word.name.charAt(0).toUpperCase())"
+              >
+                <v-alert
+                  dense
+                  text
+                  class="d-inline-block mb-0 mt-3"
+                >
+                  {{ word.name.charAt(0).toUpperCase() }}
+                </v-alert>
+              </p>
+
+              <word-card
+                :word="word"
+                class="mb-4"
+              />
+            </div>
+
+            <loading-more :get-function="getGlossary" />
+          </div>
+
+          <!-- Search results list -->
+          <div v-if="onSearch">
+            <div v-for="word in searchResults" :key="`result-${word.id}`">
+              <word-card
+                :word="word"
+                class="mb-4"
+              />
+            </div>
           </div>
         </v-col>
       </v-row>
@@ -55,23 +78,29 @@ import ApiWord from '@/services/oblyk-api/wordApi'
 import Word from '@/models/Word'
 import WordCard from '@/components/words/WordCard'
 import { SessionConcern } from '@/concerns/SessionConcern'
+import LoadingMore from '@/components/layouts/LoadingMore'
 
 export default {
   name: 'GlossaryView',
   mixins: [SessionConcern],
-  components: { WordCard, Spinner },
+  components: { LoadingMore, WordCard, Spinner },
 
   data () {
     return {
       glossary: [],
       loadingGlossary: true,
+      searching: false,
+      onSearch: false,
       searchWord: '',
+      previousSearchWord: null,
+      searchTimeOut: null,
+      searchResults: [],
       words: []
     }
   },
 
   created () {
-    this.getGlossary()
+    this.getGlossary(1)
   },
 
   mounted () {
@@ -84,39 +113,63 @@ export default {
   },
 
   methods: {
-    getGlossary: function () {
+    getGlossary: function (page) {
       ApiWord
-        .all()
+        .all(page)
         .then(resp => {
-          const words = []
           for (const word of resp.data) {
-            words.push(new Word(word))
+            this.glossary.push(new Word(word))
           }
-          this.glossary = words
-          this.filteredWords()
+          if (resp.data.length === 0) this.$root.$emit('nothingMoreToLoad')
         })
         .catch(err => {
           this.$root.$emit('alertFromApiError', err, 'word')
         })
         .finally(() => {
           this.loadingGlossary = false
+          this.$root.$emit('moreIsLoaded')
         })
     },
 
-    filteredWords: function () {
-      if (this.searchWord === null || this.searchWord === '') {
-        this.words = this.glossary
-      } else {
-        const words = []
-        for (const word of this.glossary) {
-          if (
-            word.name.toLowerCase().indexOf(this.searchWord.toLowerCase()) !== -1
-          ) {
-            words.push(word)
-          }
-        }
-        this.words = words
+    search () {
+      if (this.previousSearchWord === this.searchWord) {
+        this.searching = false
+        return
       }
+
+      this.onSearch = true
+      this.searching = true
+
+      if (this.searchTimeOut) {
+        clearTimeout(this.searchTimeOut)
+        this.searchTimeOut = null
+      }
+      this.searchTimeOut = setTimeout(() => {
+        this.getSearch()
+      }, 500)
+    },
+
+    getSearch () {
+      // Cancel old search
+      ApiWord.cancelSearch()
+
+      ApiWord
+        .search(this.searchWord)
+        .then(resp => {
+          this.searchResults = []
+          for (const word of resp.data) {
+            this.searchResults.push(new Word(word))
+          }
+          this.previousSearchWord = this.searchWord
+        })
+        .catch(err => {
+          if (err.response !== undefined) {
+            this.$root.$emit('alertFromApiError', err, 'word')
+          }
+        })
+        .finally(() => {
+          this.searching = false
+        })
     }
   }
 }

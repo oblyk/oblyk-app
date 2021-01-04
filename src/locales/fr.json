@@ -6,6 +6,9 @@
       "401": "Vous n'êtes pas autorisé à faire cette action",
       "422": "Les éléments suivant ne semblent pas correct :"
     },
+    "loadMore": {
+      "loadMore": "Charger plus"
+    },
     "input": {
       "climbing_type": "Type d'escalade",
       "tags": "Tags"

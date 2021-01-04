@@ -16,6 +16,7 @@
         <crag-sector-search-result v-if="result.record_type === 'CragSector'" :crag-sector="result.record" class="mb-3" />
         <gym-search-result v-if="result.record_type === 'Gym'" :gym-data="result.record" class="mb-3" />
         <guide-book-search-result v-if="result.record_type === 'GuideBookPaper'" :guide-book="result.record" class="mb-3" />
+        <word-card v-if="result.record_type === 'Word'" :word="recordObject('Word', result.record)" class="mb-3" />
       </div>
     </div>
     <div v-if="load">
@@ -31,10 +32,13 @@ import CragRouteSearchResult from '@/components/searches/CragRouteSearchResult'
 import GymSearchResult from '@/components/searches/GymSearchResult'
 import GuideBookSearchResult from '@/components/searches/GuideBookSearchResult'
 import CragSectorSearchResult from '@/components/searches/CragSectorSearchResult'
+import WordCard from '@/components/words/WordCard'
+import Word from '@/models/Word'
 
 export default {
   name: 'SearchFiled',
   components: {
+    WordCard,
     CragSectorSearchResult,
     GuideBookSearchResult,
     GymSearchResult,
@@ -62,6 +66,12 @@ export default {
         .then(() => {
           this.load = false
         })
+    },
+
+    recordObject: function (type, data) {
+      if (type === 'Word') {
+        return new Word(data)
+      }
     }
   }
 }

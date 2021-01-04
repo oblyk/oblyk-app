@@ -2,11 +2,31 @@ import axios from 'axios'
 import BaseApi from '@/services/oblyk-api/baseApi'
 
 class WordApi extends BaseApi {
-  all () {
+  constructor () {
+    super()
+    this.tokenSearchSource = null
+  }
+
+  all (page = 1) {
     return axios({
-      url: `${this.baseUrl}/words.json`,
+      url: `${this.baseUrl}/words.json?page=${page}`,
       method: 'GET'
     })
+  }
+
+  search (query) {
+    const CancelToken = axios.CancelToken
+    this.tokenSearchSource = CancelToken.source()
+
+    return axios({
+      cancelToken: this.tokenSearchSource.token,
+      url: `${this.baseUrl}/words/search.json?query=${query}`,
+      method: 'GET'
+    })
+  }
+
+  cancelSearch () {
+    if (this.tokenSearchSource) this.tokenSearchSource.cancel()
   }
 
   find (wordId) {

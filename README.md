@@ -79,3 +79,5 @@ ___
 - [ ] Don
 - [ ] Les cotations
 - [ ] Aides
+- [x] Ajout du infinity scroll sur le lexique
+- [x] Recherche en elastic search sur le lexique
