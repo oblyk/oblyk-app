@@ -1,34 +1,39 @@
 <template>
-  <div class="gym-space-map">
-    <spinner v-if="reloadingData" />
+  <div
+    v-resize="setWidthMap"
+    ref="map-col-box"
+  >
+    <div class="gym-space-map" ref="map-area">
+      <spinner v-if="reloadingData" />
 
-    <editable-map
-      v-if="!reloadingData"
-      editable
-      ref="map"
-      :min-zoom="minZoom"
-      :crs="crs"
-      :options="{ zoomControl: false }"
-      style="height: 100%; width: 100%"
-      @ready="onReadyMap()"
-    >
-      <l-image-overlay
-        :url="url"
-        :bounds="bounds"
-      />
-      <l-control-zoom position="topright"></l-control-zoom>
+      <editable-map
+        v-if="!reloadingData"
+        editable
+        ref="map"
+        :min-zoom="minZoom"
+        :crs="crs"
+        :options="{ zoomControl: false }"
+        style="height: 100%; width: 100%"
+        @ready="onReadyMap()"
+      >
+        <l-image-overlay
+          :url="url"
+          :bounds="bounds"
+        />
+        <l-control-zoom position="topright"></l-control-zoom>
 
-      <editable-polygon
-        v-for="sector in sectorPolygons()"
-        :key="sector.id"
-        :fill-opacity="0"
-        :weight="2"
-        dash-array="5px"
-        :lat-lngs="sector.jsonPolygon"
-        @click="filterBySector(sector.id)"
-        :ref="`polygon-sector-${sector.id}`"
-      />
-    </editable-map>
+        <editable-polygon
+          v-for="sector in sectorPolygons()"
+          :key="sector.id"
+          :fill-opacity="0"
+          :weight="2"
+          dash-array="5px"
+          :lat-lngs="sector.jsonPolygon"
+          @click="filterBySector(sector.id)"
+          :ref="`polygon-sector-${sector.id}`"
+        />
+      </editable-map>
+    </div>
   </div>
 </template>
 <script>
@@ -83,12 +88,25 @@ export default {
     this.$root.$on('stopEditingSectorPolygon', () => {
       this.stopEditingSectorPolygon()
     })
+    this.$root.$on('setWidthMap', () => {
+      this.setWidthMap()
+    })
+    this.setWidthMap()
   },
 
   methods: {
     onReadyMap: function () {
       this.map = this.$refs.map.mapObject
       this.setMapView()
+    },
+
+    setWidthMap: function () {
+      const width = this.$refs['map-col-box'].offsetWidth
+      if (width === 0) {
+        this.$refs['map-area'].style.width = '100%'
+      } else {
+        this.$refs['map-area'].style.width = `${this.$refs['map-col-box'].offsetWidth - 10}px`
+      }
     },
 
     setMapView: function () {
@@ -221,7 +239,7 @@ export default {
 .theme--light {
   .gym-space-map {
     .leaflet-container {
-      background-color: #ffffff;
+      background-color: #f5f5f5;
     }
   }
 }
@@ -234,11 +252,14 @@ export default {
   }
 }
 
+@media only screen and (max-width: 700px) {
+  .gym-space-map {
+    top: 48px;
+    height: calc(100vh - 88px);
+  }
+}
 .leaflet-interactive {
-  //fill-opacity: 0;
   transition: fill-opacity 0.3s;
-  //stroke-width: 2px;
-  //stroke-dasharray: 5px;
   &:hover {
     stroke-width: 3px;
     stroke-dasharray: none;

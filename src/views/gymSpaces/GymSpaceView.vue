@@ -13,6 +13,7 @@
         </v-col>
 
         <v-col
+          ref="gym-space-ma-area"
           v-show="!mobilInterface || planPanel"
           class="col gym-space-plan-col pt-0 pb-0 pl-0 pr-0"
           v-bind:class="mobilInterface ? 'mobil-interface' : 'desktop-interface'"
@@ -23,7 +24,8 @@
       </v-row>
 
       <v-bottom-navigation
-        app v-if="mobilInterface"
+        app
+        v-if="mobilInterface"
         height="40"
         horizontal
         grow
