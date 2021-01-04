@@ -7,7 +7,9 @@
     </v-list-item-action>
 
     <v-list-item-content @click="dark = !dark">
-      <v-list-item-title>Dark theme</v-list-item-title>
+      <v-list-item-title>
+        {{ $t('components.layout.appBar.darkTheme') }}
+      </v-list-item-title>
     </v-list-item-content>
   </v-list-item>
 </template>

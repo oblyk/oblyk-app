@@ -126,7 +126,8 @@
     "layout": {
       "appBar": {
         "login": "Login",
-        "logOut": "Logout"
+        "logOut": "Logout",
+        "darkTheme": "Dark theme"
       },
       "appDrawer": {
         "home": "Home",

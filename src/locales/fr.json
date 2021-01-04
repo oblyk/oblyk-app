@@ -126,7 +126,8 @@
     "layout": {
       "appBar": {
         "login": "Me connecter",
-        "logOut": "Me déconnecter"
+        "logOut": "Me déconnecter",
+        "darkTheme": "Thème sombre"
       },
       "appDrawer": {
         "home": "Accueil",
