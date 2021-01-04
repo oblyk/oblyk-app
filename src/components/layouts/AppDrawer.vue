@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="oblyk-app-drawer">
     <v-list class="avatar-drawer">
 
       <app-drawer-avatar />
@@ -153,5 +153,26 @@ export default {
 .avatar-drawer {
   padding-top: 3px !important;
   padding-bottom: 4px !important;
+}
+
+.theme--light {
+  .oblyk-app-drawer {
+    .v-list-item__title {
+      color: black;
+      caret-color: black;
+    }
+    .v-list-group__header {
+      color: #777777;
+    }
+  }
+}
+
+.theme--dark {
+  .oblyk-app-drawer {
+    .v-list-item__title, .v-icon, .v-list-group__header {
+      color: white;
+      caret-color: white;
+    }
+  }
 }
 </style>
