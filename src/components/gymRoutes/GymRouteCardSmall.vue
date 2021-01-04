@@ -67,8 +67,6 @@ export default {
   white-space: nowrap;
 }
 .gym-grade-col {
-  border-left-style: solid;
-  border-width: 1px;
   max-width: 100px;
 }
 .gym-route-sector-col {

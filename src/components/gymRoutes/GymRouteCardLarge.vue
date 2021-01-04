@@ -45,11 +45,35 @@
         <v-col class="pt-0">
           <div class="gym-route-more-information-row">
             <v-col>
-              coucou je suis plus d'information
+
+              <!-- Tags -->
+              <gym-route-tags :gym-route="gymRoute" />
+
+              <!-- Other information -->
+              <table class="gym-route-information mt-2">
+                <tr>
+                  <th class="smallest-table-column">{{ $t('models.gymRoute.ascents') }}</th>
+                  <td>{{ gymRoute.ascents_count || 0 }}</td>
+                </tr>
+                <tr v-if="gymRoute.opened_at">
+                  <th class="smallest-table-column">{{ $t('models.gymRoute.opened_at') }}</th>
+                  <td>{{ humanizeDate(gymRoute.opened_at) }}</td>
+                </tr>
+                <tr>
+                  <th class="smallest-table-column">{{ $t('models.gymRoute.gym_sector_id') }}</th>
+                  <td>{{ gymRoute.gym_sector.name }}</td>
+                </tr>
+                <tr v-if="gymRoute.openers">
+                  <th class="smallest-table-column">{{ $t('models.gymRoute.openers') }}</th>
+                  <td>{{ gymRoute.openers }}</td>
+                </tr>
+              </table>
             </v-col>
           </div>
         </v-col>
       </v-row>
+
+      <!-- Action -->
       <v-card-actions v-if="isLoggedIn">
         <v-spacer />
         <v-btn
@@ -73,11 +97,13 @@ import GymRouteActionMenu from '@/components/gymRoutes/partial/GymRouteActionMen
 import Spinner from '@/components/layouts/Spiner'
 import GymRoute from '@/models/GymRoute'
 import { SessionConcern } from '@/concerns/SessionConcern'
+import { DateHelpers } from '@/mixins/DateHelpers'
+import GymRouteTags from '@/components/gymRoutes/partial/GymRouteTags'
 
 export default {
   name: 'GymRouteCardLarge',
-  components: { Spinner, GymRouteActionMenu, GymRouteGradeAndPoint, GymRouteTagAndHold },
-  mixins: [SessionConcern],
+  components: { GymRouteTags, Spinner, GymRouteActionMenu, GymRouteGradeAndPoint, GymRouteTagAndHold },
+  mixins: [SessionConcern, DateHelpers],
   props: {
     gymRouteProp: Object,
     changeCardSize: Function,
@@ -127,6 +153,14 @@ export default {
   border-left-style: solid;
   border-width: 1px;
   max-width: 100px;
+}
+.gym-route-information {
+  width: 100%;
+  .smallest-table-column {
+    font-weight: lighter;
+    text-align: right;
+    padding-right: 0.5em;
+  }
 }
 .v-application {
   &.theme--dark {
