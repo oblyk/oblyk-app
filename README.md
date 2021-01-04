@@ -23,8 +23,8 @@ ___
 - [x] Ajouter le 'ouvert à'
 - [x] Ajouter les tags
 - [x] Pouvoir démonter une ligne
-- [ ] Finir les infos d'une voie
-- [ ] Finir la page "Info" d'une salle
+- [x] Finir les infos d'une voie
+- [x] Finir la page "Info" d'une salle
 - [ ] Finir le responsive du plan des secteurs
 - [x] Faire l'interaction avec le plan 'surbrillance'
 - [ ] Faire le démontage d'un secteur

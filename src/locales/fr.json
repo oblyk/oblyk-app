@@ -37,7 +37,10 @@
       "createDifficultySystemSpace": "Créer mon premier système de difficulté",
       "difficultySystem": "Système de difficulté ?",
       "administratorRequired": "Vous devez être administrateur de la salle pour avoir accès à cette page.",
-      "IAmManager": "Je suis le gérant"
+      "IAmManager": "Je suis le gérant",
+      "contactAndLocalization": "Contact & Localisation",
+      "seePhoneNumber": "Voir le numéro de téléphone",
+      "seeEmail": "Voir l'email"
     },
     "gymAdmin": {
       "welcome": "Bienvenue sur la page d'administration de %{name}",
@@ -365,7 +368,11 @@
     "createAndPicture": "Créer + Photo",
     "finish": "Terminer",
     "backToName": "Retour à %{name}",
-    "addMember": "Ajouter un membre"
+    "addMember": "Ajouter un membre",
+    "seeOnTheMap": "Voir sur la carte"
+  },
+  "common": {
+    "noInformation": "Non renseigné"
   },
   "date": {
     "format_dd_mm_yyyy": "jj/mm/aaaa"

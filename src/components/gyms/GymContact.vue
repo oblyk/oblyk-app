@@ -1,55 +1,84 @@
 <template>
   <v-card class="full-height">
     <v-card-title>
-      Contact & Localisation
+      {{ $t('components.gym.contactAndLocalization') }}
     </v-card-title>
     <v-card-text>
       <v-list dense>
-        <v-list-item-group>
-          <v-list-item to="/maps/gyms">
-            <v-list-item-icon>
-              <v-icon>mdi-map</v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title>
-                {{ gym.country }}, {{ gym.city }}
-                <v-btn small class="ml-2">
-                  Voir sur la carte
-                </v-btn>
-              </v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-          <v-list-item>
-            <v-list-item-icon>
-              <v-icon>mdi-phone</v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title>
-                {{ gym.phone_number || 'non renseigne'  }}
-              </v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-          <v-list-item>
-            <v-list-item-icon>
-              <v-icon>mdi-web</v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title>
-                {{ gym.web_site || 'non renseigne'  }}
-              </v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-          <v-list-item>
-            <v-list-item-icon>
-              <v-icon>mdi-email</v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title>
-                {{ gym.email || 'non renseigne'  }}
-              </v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list-item-group>
+
+        <!-- Address -->
+        <v-list-item to="/maps/gyms">
+          <v-list-item-icon>
+            <v-icon>mdi-map</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>
+              {{ gym.country }}, {{ gym.city }}
+              <v-btn small class="ml-2">
+                {{ $t('actions.seeOnTheMap') }}
+              </v-btn>
+            </v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
+        <!-- Web site -->
+        <v-list-item>
+          <v-list-item-icon>
+            <v-icon>mdi-web</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title
+              v-if="gym.web_site"
+            >
+              <a :href="gym.web_site">
+                {{ gym.web_site }}
+              </a>
+            </v-list-item-title>
+            <v-list-item-title v-else>
+              {{ $t('common.noInformation') }}
+            </v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
+        <!-- Phone number -->
+        <v-list-item>
+          <v-list-item-icon>
+            <v-icon>mdi-phone</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content @click="showPhoneNumber = true">
+            <v-list-item-title v-if="gym.phone_number">
+              <span v-if="showPhoneNumber">
+                {{ gym.phone_number }}
+              </span>
+              <span v-else>
+                {{ $t('components.gym.seePhoneNumber') }}
+              </span>
+            </v-list-item-title>
+            <v-list-item-title v-else>
+              {{ $t('common.noInformation') }}
+            </v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
+        <!-- Email -->
+        <v-list-item>
+          <v-list-item-icon>
+            <v-icon>mdi-email</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content @click="showEmail = true">
+            <v-list-item-title v-if="gym.email">
+              <span v-if="showEmail">
+                {{ gym.email }}
+              </span>
+              <span v-else>
+                {{ $t('components.gym.seeEmail') }}
+              </span>
+            </v-list-item-title>
+            <v-list-item-title v-else>
+              {{ $t('common.noInformation') }}
+            </v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
       </v-list>
     </v-card-text>
   </v-card>
@@ -59,6 +88,12 @@ export default {
   name: 'GymContact',
   props: {
     gym: Object
+  },
+  data () {
+    return {
+      showPhoneNumber: false,
+      showEmail: false
+    }
   }
 }
 </script>
