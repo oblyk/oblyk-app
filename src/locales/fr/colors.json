@@ -1,0 +1,30 @@
+{
+  "colors": {
+    "noColor": "Pas de couleur",
+    "white": "Blanc",
+    "grey": "Gris",
+    "black": "Noir",
+    "pastelBlue": "Bleu pastel",
+    "blue": "Bleu",
+    "navyBlue": "Bleu marine",
+    "fluorescentBlue": "Bleu flo",
+    "pastelGreen": "Vert pastel",
+    "green": "Vert",
+    "firGreen": "Vert sapin",
+    "fluorescentGreen": "Vert flo",
+    "pastelPurple": "Violet pastel",
+    "purple": "Violet",
+    "deepPurple": "Violet profond",
+    "fluorescentPink": "Rose fluo",
+    "pastelRed": "Rouge pastel",
+    "red": "Rouge",
+    "darkRed": "Rouge profond",
+    "pastelOrange": "Orange pastel",
+    "orange": "Orange",
+    "pastelYellow": "Jaune pastel",
+    "yellow": "Jaune",
+    "fluorescentYellow": "Jaune fluo",
+    "brown": "Marron",
+    "beige": "Beige"
+  }
+}

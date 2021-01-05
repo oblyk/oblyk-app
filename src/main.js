@@ -9,21 +9,15 @@ import './services/axios'
 
 Vue.config.productionTip = false
 
-function loadLocaleMessages () {
-  const locales = require.context(
-    './locales',
-    true,
-    /[A-Za-z0-9-_,\s]+\.json$/i
-  )
-  const messages = {}
-  locales.keys().forEach(key => {
-    const matched = key.match(/([A-Za-z0-9-_]+)\./i)
-    if (matched && matched.length > 1) {
-      const locale = matched[1]
-      messages[locale] = locales(key)
-    }
-  })
-  return messages
+function loadLocaleMessages (lang) {
+  return {
+    ...require(`./locales/${lang}/actions.json`),
+    ...require(`./locales/${lang}/colors.json`),
+    ...require(`./locales/${lang}/common.json`),
+    ...require(`./locales/${lang}/components.json`),
+    ...require(`./locales/${lang}/models.json`),
+    ...require(`./locales/${lang}/termsOfUse.json`)
+  }
 }
 
 Vue.use(VueI18n)
@@ -31,7 +25,10 @@ Vue.use(VueI18n)
 const i18n = new VueI18n({
   locale: 'fr',
   fallbackLocale: 'fr',
-  messages: loadLocaleMessages()
+  messages: {
+    fr: loadLocaleMessages('fr'),
+    en: loadLocaleMessages('en')
+  }
 })
 
 new Vue({

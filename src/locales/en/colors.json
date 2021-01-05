@@ -1,0 +1,30 @@
+{
+  "colors": {
+    "noColor": "No color",
+    "white": "White",
+    "grey": "Grey",
+    "black": "Black",
+    "pastelBlue": "Pastel blue",
+    "blue": "Blue",
+    "navyBlue": "Navy blue",
+    "fluorescentBlue": "Fluorescent blue",
+    "pastelGreen": "Pastel green",
+    "green": "Green",
+    "firGreen": "Fir green",
+    "fluorescentGreen": "Fluorescent green",
+    "pastelPurple": "Pastel purple",
+    "purple": "Purple",
+    "deepPurple": "Deep purple",
+    "fluorescentPink": "Fluorescent pink",
+    "pastelRed": "Pastel red",
+    "red": "Red",
+    "darkRed": "Dark red",
+    "pastelOrange": "Pastel orange",
+    "orange": "Orange",
+    "pastelYellow": "Pastel yellow",
+    "yellow": "Yellow",
+    "fluorescentYellow": "Fluorescent yellow",
+    "brown": "Brown",
+    "beige": "Beige"
+  }
+}

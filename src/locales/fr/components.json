@@ -1,0 +1,146 @@
+{
+  "components" : {
+    "appAlert": {
+      "500": "Une erreur inattendue s'est produite, merci d'essayer plus tard.",
+      "400": "Des éléments semblent manquer, merci de renseigner les champs.",
+      "401": "Vous n'êtes pas autorisé à faire cette action",
+      "422": "Les éléments suivant ne semblent pas correct :"
+    },
+    "loadMore": {
+      "loadMore": "Charger plus"
+    },
+    "input": {
+      "climbing_type": "Type d'escalade",
+      "tags": "Tags"
+    },
+    "search": {
+      "title": "Chercher",
+      "searchLabel": "Chercher une falaise, une voie, une salle, etc."
+    },
+    "session": {
+      "connectAlert": "Vous devez être connecté·e pour accéder à cette page",
+      "alreadyConnected": "Vous êtes connecté·e",
+      "stayConnected": "Rester connecté·e"
+    },
+    "gym": {
+      "addNew": "Ajouter une nouvelle salle",
+      "tabs": {
+        "info": "Info",
+        "guideBook": "Topo",
+        "admin": "Admin"
+      },
+      "firstSpaceExplain": "Les espaces vous permets de renseigner vos voies et bloc pour que vos grimpeurs puissent les consulter et tenir un carnet de croix !",
+      "createFirstSpace": "Créer mon premier Espace",
+      "createDifficultyFirst": "Mais avant de créer vos espaces, il faut que vous renseignez vos système de difficulté",
+      "firstDifficultySystemExplain": "Les systèmes de difficulté vous permettes de définir comment fonctionne vos cotations dans votre salle.",
+      "firstDifficultySystemExplainTow": "Ils vous permettent aussi d'aller plus vite dans le renseignement vos lignes.",
+      "createDifficultySystemSpace": "Créer mon premier système de difficulté",
+      "difficultySystem": "Système de difficulté ?",
+      "administratorRequired": "Vous devez être administrateur de la salle pour avoir accès à cette page.",
+      "IAmManager": "Je suis le gérant",
+      "contactAndLocalization": "Contact & Localisation",
+      "seePhoneNumber": "Voir le numéro de téléphone",
+      "seeEmail": "Voir l'email"
+    },
+    "gymAdmin": {
+      "welcome": "Bienvenue sur la page d'administration de %{name}",
+      "publicPage": "Page publique",
+      "GuideBookSettings": "Paramètres topos",
+      "gestionSettings": "Gestion",
+      "team": "Équipe",
+      "difficultySystem": "Système de difficulté",
+      "spaces": "Espaces"
+    },
+    "gymAdministrationRequest": {
+      "helloName": "Bonjour %{name}",
+      "isAlreadyAdministered": "Cette salle est déjà administrée par son gérant.",
+      "needAccount": "Pour prendre la gestion d'une salles d'escalade, il vous faut une compte oblyk à votre nom.",
+      "explainJustification": "Merci de remplir le formulaire ci-dessous en nous donnant des éléments qui nous permettrai de vérifier que vous êtes bien en droit de gérer cette salle.",
+      "requestIsSent": "Nous avons bien enregistré votre demande !<br> Nous la traiteront le plus rapidement possible."
+    },
+    "gymSpace": {
+      "name": "Espace",
+      "create": "+ Créer un nouvel espace",
+      "addNew": "Ajouter un nouvel espace",
+      "explain": "Un <cite>\"espace\"</cite> et une grande zone d'une salle qui peut contenir plusieurs secteurs. exemple : \"Espace de voie\", \"Espace de bloc\", \"Pan\", etc.<br>À vous de trouver la meilleurs division pour votre salle.",
+      "explainMissingPlan": "Uploader une plan de <cite>\"%{name}\"</cite> sur lequel vous pourrez tracer les secteurs",
+      "uploadPlanFor": "Télécharger un plan pour : %{name}"
+    },
+    "gymSector": {
+      "addNew": "Créer un nouveau secteur",
+      "chooseSector": "Choisissez un secteur",
+      "addNewExplain": "Un secteur est une petite division d'un espace, exemple : Grand devers droite, couloir 4, etc. C'est là que seront renseignées les lignes",
+      "explainGroupName": "Vous pouvez grouper vos couloirs / secteurs avec 'Nom du regroupement', exemple vous pouvez avoir 3 secteurs : 'Couloir 1', 'Couloir 2', 'Couloir 3', groupé dans 'Les dalles'",
+      "resultingParametersOf": "Issu des paramètres de : %{name}",
+      "editSectorPolygon": "Éditer le tracer sur le plan",
+      "clicOnPlan": "Cliquez sur la carte, ou déplacez les poignets blanche pour éditer le tracer du secteur sur le plan.",
+      "clicOnFinish": "Une fois fini cliquez sur terminer"
+    },
+    "gymRoute": {
+      "addNew": "Ajouter une nouvelle ligne",
+      "editRoute": "Modifier la ligne",
+      "resultingParametersOf": "Issu des paramètres du secteur : %{name}",
+      "automaticParameters": "Issu du système de difficulté choisi",
+      "addPitch": "Ajouter une longueur",
+      "removePitch": "Supprimer une longueur",
+      "multiPitchRoute": "Ligne de plusieur longeur",
+      "noRoute": "Aucune ligne trouvée",
+      "sorts": {
+        "opened_at": "Trier par date d'ouverture",
+        "sector": "Trier par secteur",
+        "grade": "Trier par difficulté"
+      }
+    },
+    "gymGrade": {
+      "noSystem": "Aucun système de difficulté est renseigné pour l'instant",
+      "add": "Ajouter un système de difficultés",
+      "explain": "Les systèmes de difficultés ont pour but de vous faciliter la tâche de renseignement de vos lignes par la suite.",
+      "whichSystem": "Comment identifier vous vos lignes ? (couleur de prise, etiquette, etc.)",
+      "whichGradeSystem": "Quelle système de valeur utilisez vous pour coter vos lignes ?",
+      "system": "Système",
+      "value": "Valeur",
+      "gradeSystem": {
+        "hold_color": "La couleur des prises indiquent la difficulté <cite>(recommandé pour le bloc)</cite>",
+        "tag_color": "Les étiquettes au départ des lignes indiquent la difficulté <cite>(recommandé pour la voie en salle privée)</cite>",
+        "pan": "Les étiquettes sur toutes les prises de la ligne indiquent la difficulté <cite>(recommandé pour le pan)</cite>",
+        "grade": "Pas d'étiquette, pas de couleur de prise spécifique, la cotation est indiqué pour la ligne <cite>(recommandé pour la voie en club)</cite>"
+      }
+    },
+    "gymGradeLine": {
+      "colors": {
+        "hold": "Couleur des prises",
+        "tag": "Couleur des étiquettes"
+      },
+      "hints": {
+        "grade": "Exemple: 6a, 7a, 7c+, etc.",
+        "points": "Exemple: 500, 50, 200, etc."
+      }
+    },
+    "word": {
+      "title": "Lexique",
+      "new": "Nouvelle définition",
+      "addNew": "Ajouter une définition",
+      "backToGlossary": "Retour au lexique",
+      "searchDefinition": "Chercher une définition"
+    },
+    "layout": {
+      "appBar": {
+        "login": "Me connecter",
+        "logOut": "Me déconnecter",
+        "darkTheme": "Thème sombre"
+      },
+      "appDrawer": {
+        "home": "Accueil",
+        "dashboard": "Dashboard",
+        "login": "Me connecter",
+        "signUp": "Créer un compte",
+        "maps": "Cartes",
+        "mapCrags": "Carte des falaises",
+        "mapGyms": "Carte des salles",
+        "mapClimber": "Carte des grimpeurs",
+        "tools": "Outils",
+        "myGyms": "Mes salles"
+      }
+    }
+  }
+}

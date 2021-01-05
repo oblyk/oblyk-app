@@ -1,0 +1,32 @@
+{
+  "actions": {
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "create": "Create",
+    "delete": "Delete",
+    "ok": "ok",
+    "createMyAccount": "Creat my account",
+    "changeBanner": "Change banner",
+    "changeLogo": "Change logo",
+    "changePlan": "Change plan",
+    "createNewSpace": "Create a new space",
+    "addSector": "Add sector",
+    "addLine": "Add line",
+    "signIn": "Sign in",
+    "signUp": "Sign up",
+    "addLevel": "Add level",
+    "areYouSur": "Are you sur ?",
+    "addSystem": "Add system",
+    "uploadMap": "Upload map",
+    "browse": "Browse ...",
+    "addPicture": "Add picture",
+    "defineThumbnail": "Define thumbnail",
+    "dismount": "Dismount routes",
+    "createAndPicture": "Create + Picture",
+    "finish": "Finish",
+    "backToName": "Back to %{name}",
+    "addMember": "Add a member",
+    "seeOnTheMap": "See on the map"
+  }
+}

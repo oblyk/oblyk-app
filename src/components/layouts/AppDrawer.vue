@@ -58,7 +58,7 @@
       />
     </v-list>
 
-    <v-divider></v-divider>
+    <v-divider />
 
     <v-list
       nav
@@ -127,6 +127,13 @@
           :title="$t('components.word.title')"
         />
       </v-list-group>
+
+      <app-drawer-item
+        class="mt-10"
+        url="/terms-of-use"
+        icon="mdi-scale-balance"
+        :title="$t('termsOfUser.title')"
+      />
     </v-list>
   </div>
 </template>

@@ -1,0 +1,8 @@
+{
+  "common": {
+    "noInformation": "Non renseigné"
+  },
+  "date": {
+    "format_dd_mm_yyyy": "jj/mm/aaaa"
+  }
+}
