@@ -36,7 +36,7 @@ ___
 ___
 - [ ] Ajouter le coup de coeur
 - [ ] Faire le système d'options payantes (standard, +, pro)
-- [ ] Faire les groupes de salles (climb up, Arkose, Mroc, etc...)
+- [ ] Faire les groupes de salles (climb up, Arkose, Mroc, etc.)
 - [ ] Statistique
 
 ## TODO User

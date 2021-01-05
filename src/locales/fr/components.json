@@ -127,11 +127,15 @@
       "appBar": {
         "login": "Me connecter",
         "logOut": "Me déconnecter",
-        "darkTheme": "Thème sombre"
+        "darkTheme": "Thème sombre",
+        "user": {
+          "avatar": "Photo de profil",
+          "settings": "Paramètres",
+          "messenger": "Messagerie"
+        }
       },
       "appDrawer": {
         "home": "Accueil",
-        "dashboard": "Dashboard",
         "login": "Me connecter",
         "signUp": "Créer un compte",
         "maps": "Cartes",
@@ -139,7 +143,21 @@
         "mapGyms": "Carte des salles",
         "mapClimber": "Carte des grimpeurs",
         "tools": "Outils",
-        "myGyms": "Mes salles"
+        "helps": "Aides",
+        "about": "À propos",
+        "donation": "Don",
+        "subHeaders": {
+          "account": "Compte",
+          "myGyms": "Mes salles",
+          "mapsAndTools": "Cartes & Outils",
+          "project": "Le projet"
+        },
+        "user": {
+          "ascents": "Croix",
+          "subscribers": "Abonnés",
+          "guideBooks": "Topothèque",
+          "favorites": "Favoris"
+        }
       }
     }
   }

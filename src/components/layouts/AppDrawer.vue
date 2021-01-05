@@ -1,10 +1,7 @@
 <template>
   <div class="oblyk-app-drawer">
     <v-list class="avatar-drawer">
-
-      <app-drawer-avatar />
-
-      <v-list-item class="px-2" v-if="!isLoggedIn">
+      <v-list-item class="px-2 oblyk-title" to="/">
         <v-list-item-avatar>
           <img :src="require('@/assets/svgs/logo-black.svg')" alt="" v-if="!dark">
           <img :src="require('@/assets/svgs/logo-white.svg')" alt="" v-if="dark">
@@ -18,7 +15,7 @@
       </v-list-item>
     </v-list>
 
-    <v-divider></v-divider>
+    <v-divider />
 
     <!-- If user is connected -->
     <v-list
@@ -26,10 +23,22 @@
       nav
       dense
     >
+      <v-subheader>{{ currentUser.name }}</v-subheader>
       <app-drawer-item
-        url="/"
-        icon="mdi-view-dashboard-outline"
-        :title="$t('components.layout.appDrawer.dashboard')"
+        icon="mdi-check-all"
+        :title="$t('components.layout.appDrawer.user.ascents')"
+      />
+      <app-drawer-item
+        icon="mdi-account-star-outline"
+        :title="$t('components.layout.appDrawer.user.subscribers')"
+      />
+      <app-drawer-item
+        icon="mdi-bookshelf"
+        :title="$t('components.layout.appDrawer.user.guideBooks')"
+      />
+      <app-drawer-item
+        icon="mdi-star"
+        :title="$t('components.layout.appDrawer.user.favorites')"
       />
     </v-list>
 
@@ -41,11 +50,9 @@
       nav
       dense
     >
-      <app-drawer-item
-        url="/"
-        icon="mdi-view-dashboard-outline"
-        :title="$t('components.layout.appDrawer.home')"
-      />
+      <v-subheader>
+        {{ $t('components.layout.appDrawer.subHeaders.account') }}
+      </v-subheader>
       <app-drawer-item
         url="/sign-in"
         icon="mdi-login"
@@ -58,7 +65,9 @@
       />
     </v-list>
 
-    <v-divider />
+    <v-subheader>
+      {{ $t('components.layout.appDrawer.subHeaders.mapsAndTools') }}
+    </v-subheader>
 
     <v-list
       nav
@@ -128,8 +137,27 @@
         />
       </v-list-group>
 
+      <v-subheader>
+        {{ $t('components.layout.appDrawer.subHeaders.project') }}
+      </v-subheader>
+
       <app-drawer-item
-        class="mt-10"
+        icon="mdi-information-outline"
+        :title="$t('components.layout.appDrawer.about')"
+      />
+
+      <app-drawer-item
+        icon="mdi-school"
+        :title="$t('components.layout.appDrawer.helps')"
+      />
+
+      <app-drawer-item
+        icon="mdi-cards-heart"
+        icon-color="red"
+        :title="$t('components.layout.appDrawer.donation')"
+      />
+
+      <app-drawer-item
         url="/terms-of-use"
         icon="mdi-scale-balance"
         :title="$t('termsOfUser.title')"
@@ -142,12 +170,11 @@
 import AppDrawerItem from '@/components/layouts/partial/AppDrawerItem'
 import { SessionConcern } from '@/concerns/SessionConcern'
 import MyGyms from '@/components/layouts/partial/MyGyms'
-import AppDrawerAvatar from '@/components/layouts/partial/AppDrawerAvatar'
 
 export default {
   name: 'AppDrawer',
   mixins: [SessionConcern],
-  components: { AppDrawerAvatar, MyGyms, AppDrawerItem },
+  components: { MyGyms, AppDrawerItem },
 
   computed: {
     dark: function () {
@@ -162,6 +189,13 @@ export default {
   padding-bottom: 4px !important;
 }
 
+.oblyk-app-drawer {
+  .v-subheader {
+    height: 30px;
+    margin-top: 1em;
+  }
+}
+
 .theme--light {
   .oblyk-app-drawer {
     .v-list-item__title {
@@ -171,6 +205,12 @@ export default {
     .v-list-group__header {
       color: #777777;
     }
+  }
+}
+
+.oblyk-title.v-list-item--active {
+  &:before {
+    background: none;
   }
 }
 

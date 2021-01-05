@@ -127,7 +127,12 @@
       "appBar": {
         "login": "Login",
         "logOut": "Logout",
-        "darkTheme": "Dark theme"
+        "darkTheme": "Dark theme",
+        "user": {
+          "avatar": "Account avatar",
+          "settings": "Settings",
+          "messenger": "Messenger"
+        }
       },
       "appDrawer": {
         "home": "Home",
@@ -139,7 +144,21 @@
         "mapGyms": "Gyms map",
         "mapClimber": "Climbers map",
         "tools": "Tools",
-        "myGyms": "My gyms"
+        "helps": "Helpes",
+        "about": "About",
+        "donation": "Donation",
+        "subHeaders": {
+          "account": "Account",
+          "myGyms": "My climbing gyms",
+          "mapsAndTools": "Maps & Tools",
+          "project": "Project"
+        },
+        "user": {
+          "ascents": "Ascents",
+          "subscribers": "Subscribers",
+          "guideBooks": "Guide books",
+          "favorites": "Favorites"
+        }
       }
     }
   }

@@ -1,44 +1,34 @@
 <template>
   <div v-if="isLoggedIn && !load && gyms().length > 0">
-    <v-divider></v-divider>
+
+    <v-subheader>
+      {{ $t('components.layout.appDrawer.subHeaders.myGyms') }}
+    </v-subheader>
 
     <v-list
       nav
       dense
     >
-      <v-list-group
-        prepend-icon="mdi-home-group"
-        no-action
+      <v-list-item
+        v-for="gym in gyms()"
+        :key="gym.id"
+        :to="gym.url('admin')"
+        link
       >
-        <template v-slot:activator>
-          <v-list-item-content>
-            <v-list-item-title>
-              {{ $t('components.layout.appDrawer.myGyms') }}
-            </v-list-item-title>
-          </v-list-item-content>
-        </template>
-
-        <v-list-item
-          v-for="gym in gyms()"
-          :key="gym.id"
-          :to="gym.url('admin')"
-          link
-        >
-          <v-list-item-icon>
-            <v-avatar
-              size="28"
+        <v-list-item-icon>
+          <v-avatar
+            size="28"
+          >
+            <img
+              :src="gym.logoUrl()"
+              :alt="`logo ${gym.name}`"
             >
-              <img
-                :src="gym.logoUrl()"
-                :alt="`logo ${gym.name}`"
-              >
-            </v-avatar>
-          </v-list-item-icon>
-          <v-list-item-title>
-            {{ gym.name }}
-          </v-list-item-title>
-        </v-list-item>
-      </v-list-group>
+          </v-avatar>
+        </v-list-item-icon>
+        <v-list-item-title>
+          {{ gym.name }}
+        </v-list-item-title>
+      </v-list-item>
     </v-list>
   </div>
 </template>

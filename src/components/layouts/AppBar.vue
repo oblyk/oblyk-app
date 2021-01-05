@@ -53,6 +53,46 @@
         <v-list>
           <local-selector />
           <dark-theme-selector />
+        </v-list>
+      </v-menu>
+
+      <!-- User Avatar -->
+      <v-menu
+        offset-y
+        bottom
+        left
+      >
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn
+            icon
+            v-bind="attrs"
+            v-on="on"
+          >
+            <v-avatar
+              :size="isMobile ? 40 : 48"
+              color="third"
+            >
+              <v-img v-if="user" :src="user.avatarUrl()"/>
+              <v-img v-if="!user" :src="require('@/assets/svgs/user-default-avatar.svg')"/>
+            </v-avatar>
+          </v-btn>
+        </template>
+
+        <v-list>
+          <div v-if="isLoggedIn">
+            <v-list-item>
+              <v-list-item-content>
+                <v-list-item-title class="font-weight-bold">
+                  {{ currentUser.name }}
+                </v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+            <v-divider/>
+            <app-drawer-item :title="$t('components.layout.appBar.user.avatar')" icon="mdi-camera-account" />
+            <app-drawer-item :title="$t('components.layout.appBar.user.settings')" icon="mdi-settings" />
+            <app-drawer-item :title="$t('components.layout.appBar.user.messenger')" icon="mdi-forum" />
+            <v-divider/>
+          </div>
           <login-logout-btn />
         </v-list>
       </v-menu>
@@ -73,10 +113,13 @@ import AppDrawer from '@/components/layouts/AppDrawer'
 import LocalSelector from '@/components/layouts/partial/LocalSelector'
 import DarkThemeSelector from '@/components/layouts/partial/DarkThemeSelector'
 import LoginLogoutBtn from '@/components/layouts/partial/LoginLogoutBtn'
+import { SessionConcern } from '@/concerns/SessionConcern'
+import AppDrawerItem from '@/components/layouts/partial/AppDrawerItem'
 
 export default {
   name: 'AppBar',
-  components: { LoginLogoutBtn, DarkThemeSelector, LocalSelector, AppDrawer },
+  mixins: [SessionConcern],
+  components: { AppDrawerItem, LoginLogoutBtn, DarkThemeSelector, LocalSelector, AppDrawer },
 
   data () {
     return {
@@ -84,7 +127,8 @@ export default {
       title: 'Oblyk',
       avatar: false,
       avatarSource: '',
-      isMobile: false
+      isMobile: false,
+      user: null
     }
   },
 
@@ -96,6 +140,12 @@ export default {
     this.$root.$on('setAppTitle', (data) => {
       this.setAppTitle(data)
     })
+
+    if (this.isLoggedIn) {
+      this.getCurrentUser().then((user) => {
+        this.user = user
+      })
+    }
   },
 
   methods: {
