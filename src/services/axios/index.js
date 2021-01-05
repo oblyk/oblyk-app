@@ -8,7 +8,6 @@ axios.interceptors.request.use(async function (config) {
     store.getters['auth/expiredAt'] < new Date() && // session is expired
     config.url.indexOf('/sessions/token') === -1 // not in refresh token route
   ) {
-    console.log('refresh token !')
     await store.dispatch('auth/refresh') // refresh token
     config.headers.authorization = `Bearer ${store.getters['auth/getToken']}`
     return config

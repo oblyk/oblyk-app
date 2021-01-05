@@ -7,11 +7,17 @@ export default [
     name: 'HomeView',
     component: HomeView,
     meta: {
-      title: 'Oblyk'
+      noPaddingTop: true,
+      title: 'home',
+      showTitle: false
     }
   },
   {
     path: '/terms-of-use',
-    component: TermsOfUseView
+    component: TermsOfUseView,
+    meta: {
+      title: 'termsOfUse',
+      showTitle: false
+    }
   }
 ]

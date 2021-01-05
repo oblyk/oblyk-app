@@ -19,13 +19,6 @@ export const GymConcern = {
         .find(this.$route.params.gymId)
         .then((resp) => {
           this.gym = resp
-          this.$root.$emit(
-            'setAppTitle',
-            {
-              title: this.gym.name,
-              avatar: this.gym.logoUrl()
-            }
-          )
         })
         .catch((err) => {
           this.$root.$emit('alertFromApiError', err, 'gym')

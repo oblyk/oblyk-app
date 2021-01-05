@@ -3,17 +3,15 @@
     <v-parallax
       :src="require('@/assets/oblyk-home-baume-rousse.jpg')"
       class="text-center home-parallax"
-      :height="600"
+      id="home-parallax"
+      :height="parallaxHeight"
     >
-      <img
-        class="oblyk-logo"
-        :src="require('@/assets/svgs/logo-white.svg')"
-        alt=""
-      />
-
       <h1 class="font-weight-medium loved-by-king oblyk-title">
         Oblyk
       </h1>
+      <h3>
+        Outdoor & Indoor Climbing Community
+      </h3>
     </v-parallax>
     <v-container class="home-container">
 
@@ -47,13 +45,14 @@ export default {
     AppFooter
   },
 
+  data () {
+    return {
+      parallaxHeight: document.documentElement.clientHeight
+    }
+  },
+
   mounted () {
-    this.$root.$emit(
-      'setAppTitle',
-      {
-        title: 'Oblyk'
-      }
-    )
+    document.getElementById('home-parallax').style.maxHeight = '100vh'
   }
 }
 </script>

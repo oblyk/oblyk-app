@@ -8,7 +8,11 @@ export default [
   {
     path: '/gyms/:gymId/:gymSlug/spaces/:gymSpaceId/:gymSpaceSlug/plan',
     component: GymSpaceView,
-    props: true
+    props: true,
+    meta: {
+      objectName: 'gym',
+      showAvatar: true
+    }
   },
   {
     path: '/gyms/:gymId/:gymSlug/spaces/:gymSpaceId/:gymSpaceSlug/edit',
@@ -16,7 +20,9 @@ export default [
     props: true,
     meta: {
       requiresAuth: true,
-      requiresGymAdministrator: true
+      requiresGymAdministrator: true,
+      objectName: 'gym',
+      showAvatar: true
     }
   },
   {
@@ -25,7 +31,9 @@ export default [
     props: true,
     meta: {
       requiresAuth: true,
-      requiresGymAdministrator: true
+      requiresGymAdministrator: true,
+      objectName: 'gym',
+      showAvatar: true
     }
   },
   {
@@ -34,7 +42,9 @@ export default [
     props: true,
     meta: {
       requiresAuth: true,
-      requiresGymAdministrator: true
+      requiresGymAdministrator: true,
+      objectName: 'gym',
+      showAvatar: true
     }
   },
   {
@@ -43,7 +53,9 @@ export default [
     props: true,
     meta: {
       requiresAuth: true,
-      requiresGymAdministrator: true
+      requiresGymAdministrator: true,
+      objectName: 'gym',
+      showAvatar: true
     }
   }
 ]

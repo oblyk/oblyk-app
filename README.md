@@ -8,7 +8,7 @@
 - [ ] Followable
 - [ ] Linkable
 - [ ] Videoable
-- [ ] Favicon, meta title
+- [x] Favicon, meta title
 - [ ] Faire page 404
 - [ ] Paramétrage des web workers PWA
 - [ ] Système de notification push
@@ -40,7 +40,7 @@ ___
 - [ ] Statistique
 
 ## TODO User
-- [ ] Déplacer le profil dans la bar d'application
+- [x] Déplacer le profil dans la bar d'application
 - [ ] Améliorer la création d'un compte (photo, partenaire, etc.)
 - [ ] Mot de passe oublié
 - [ ] Faire le "dashboard"

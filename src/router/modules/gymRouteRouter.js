@@ -10,7 +10,8 @@ export default [
     props: true,
     meta: {
       requiresAuth: true,
-      requiresGymAdministrator: true
+      requiresGymAdministrator: true,
+      objectName: 'gym'
     }
   },
   {
@@ -19,7 +20,8 @@ export default [
     props: true,
     meta: {
       requiresAuth: true,
-      requiresGymAdministrator: true
+      requiresGymAdministrator: true,
+      objectName: 'gym'
     }
   },
   {
@@ -28,7 +30,8 @@ export default [
     props: true,
     meta: {
       requiresAuth: true,
-      requiresGymAdministrator: true
+      requiresGymAdministrator: true,
+      objectName: 'gym'
     }
   },
   {
@@ -37,7 +40,8 @@ export default [
     props: true,
     meta: {
       requiresAuth: true,
-      requiresGymAdministrator: true
+      requiresGymAdministrator: true,
+      objectName: 'gym'
     }
   }
 ]

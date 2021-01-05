@@ -148,6 +148,7 @@
         "about": "About",
         "donation": "Donation",
         "subHeaders": {
+          "me": "Me",
           "account": "Account",
           "myGyms": "My climbing gyms",
           "mapsAndTools": "Maps & Tools",

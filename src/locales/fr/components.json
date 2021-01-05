@@ -147,6 +147,7 @@
         "about": "À propos",
         "donation": "Don",
         "subHeaders": {
+          "me": "Moi",
           "account": "Compte",
           "myGyms": "Mes salles",
           "mapsAndTools": "Cartes & Outils",

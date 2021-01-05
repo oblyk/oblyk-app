@@ -6,7 +6,8 @@ export default [
     name: 'SearchView',
     component: SearchView,
     meta: {
-      title: 'Chercher'
+      title: 'search',
+      showTitle: true
     }
   }
 ]

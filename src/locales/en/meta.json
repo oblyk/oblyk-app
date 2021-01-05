@@ -1,0 +1,34 @@
+{
+  "meta": {
+    "termsOfUse": {
+      "title": "Terms and conditions of use"
+    },
+    "cragMap": {
+      "title": "Crags map"
+    },
+    "gymMap": {
+      "title": "Gyms map"
+    },
+    "newGym": {
+      "title": "New climbing gym"
+    },
+    "search": {
+      "title": "Search"
+    },
+    "signIn": {
+      "title": "Connect"
+    },
+    "signUp": {
+      "title": "Sign up"
+    },
+    "glossary": {
+      "title": "Glossary"
+    },
+    "newWord": {
+      "title": "New definition"
+    },
+    "home": {
+      "title": "Oblyk"
+    }
+  }
+}

@@ -16,7 +16,8 @@ function loadLocaleMessages (lang) {
     ...require(`./locales/${lang}/common.json`),
     ...require(`./locales/${lang}/components.json`),
     ...require(`./locales/${lang}/models.json`),
-    ...require(`./locales/${lang}/termsOfUse.json`)
+    ...require(`./locales/${lang}/termsOfUse.json`),
+    ...require(`./locales/${lang}/meta.json`)
   }
 }
 

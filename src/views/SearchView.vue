@@ -8,24 +8,17 @@
     </v-row>
   </v-container>
 </template>
+
 <script>
 import SearchFiled from '@/components/Search'
 import CloseForm from '@/components/forms/CloseForm'
 
 export default {
   name: 'SearchView',
-  components: { CloseForm, SearchFiled },
-
-  mounted () {
-    this.$root.$emit(
-      'setAppTitle',
-      {
-        title: this.$t('components.search.title')
-      }
-    )
-  }
+  components: { CloseForm, SearchFiled }
 }
 </script>
+
 <style lang="scss" scoped>
 .search-form-width {
   max-width: 700px;

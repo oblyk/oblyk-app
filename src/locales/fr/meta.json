@@ -1,0 +1,34 @@
+{
+  "meta": {
+    "termsOfUse": {
+      "title": "Condition d'utilisation"
+    },
+    "cragMap": {
+      "title": "Carte des falaises"
+    },
+    "gymMap": {
+      "title": "Carte des salles"
+    },
+    "newGym": {
+      "title": "Nouvelle salle"
+    },
+    "search": {
+      "title": "Chercher"
+    },
+    "signIn": {
+      "title": "Connexion"
+    },
+    "signUp": {
+      "title": "Créer un compte"
+    },
+    "glossary": {
+      "title": "Lexique"
+    },
+    "newWord": {
+      "title": "Nouvelle définition"
+    },
+    "home": {
+      "title": "Oblyk"
+    }
+  }
+}

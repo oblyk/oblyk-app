@@ -1,0 +1,108 @@
+<template>
+  <div>
+    <v-avatar
+      :size="isMobile ? 32 : 48"
+      v-if="avatar && showAvatar"
+      :class="isMobile ? 'mr-1' : 'mr-3'"
+    >
+      <v-img
+        :src="avatar"
+        :alt="`avatar ${title}`"
+      />
+    </v-avatar>
+    <span v-if="(showTitle && hasTitle) || showAvatar">
+      {{ title }}
+    </span>
+  </div>
+</template>
+
+<script>
+import Word from '@/models/Word'
+import Gym from '@/models/Gym'
+import Crag from '@/models/Crag'
+
+export default {
+  name: 'AppBarTitle',
+
+  data () {
+    return {
+      hasTitle: true,
+      justTitle: true,
+      objectName: null,
+      objectId: null,
+      showTitle: true,
+      showAvatar: false,
+      title: null,
+      avatar: null,
+      isMobile: false
+    }
+  },
+
+  watch: {
+    $route: function () {
+      this.getRouteInformation()
+    },
+
+    title: function () {
+      document.title = this.title || 'Oblyk'
+    }
+  },
+
+  mounted () {
+    this.getRouteInformation()
+    this.onResize()
+
+    window.addEventListener('resize', this.onResize, { passive: true })
+  },
+
+  methods: {
+    onResize: function () {
+      this.isMobile = window.innerWidth < 600
+    },
+
+    getRouteInformation: function () {
+      this.hasTitle = !this.$route.meta.noPaddingTop
+      this.justTitle = this.$route.meta.title
+      this.showTitle = this.justTitle && this.$route.meta.showTitle
+      this.showAvatar = this.$route.meta.showAvatar
+
+      if (this.$route.meta.objectName) {
+        const routeObjectName = this.$route.meta.objectName
+        const routeObjectId = this.$route.params[`${routeObjectName}Id`]
+        if (
+          routeObjectId !== this.objectId ||
+          routeObjectName !== this.objectName
+        ) {
+          this.objectId = routeObjectId
+          this.objectName = routeObjectName
+          this.getObject()
+        }
+      } else {
+        this.objectId = null
+        this.objectName = null
+        this.avatar = null
+        this.getTitle()
+      }
+    },
+
+    getTitle: function () {
+      if (this.justTitle) {
+        this.title = this.$t(`meta.${this.$route.meta.title}.title`)
+      } else {
+        this.title = null
+      }
+    },
+
+    getObject: function () {
+      if (this.objectName === 'word') {
+        new Word().find(this.objectId).then(object => { this.title = object.name })
+      } else if (this.objectName === 'gym') {
+        new Gym().find(this.objectId).then(object => { this.title = object.name; this.avatar = object.logoUrl() })
+      } else if (this.objectName === 'crag') {
+        new Crag().find(this.objectId).then(object => { this.title = object.name })
+      }
+      document.title = this.title || 'Oblyk'
+    }
+  }
+}
+</script>

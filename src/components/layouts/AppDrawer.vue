@@ -1,7 +1,7 @@
 <template>
   <div class="oblyk-app-drawer">
-    <v-list class="avatar-drawer">
-      <v-list-item class="px-2 oblyk-title" to="/">
+    <v-list color="pb-O">
+      <v-list-item class="oblyk-title" to="/">
         <v-list-item-avatar>
           <img :src="require('@/assets/svgs/logo-black.svg')" alt="" v-if="!dark">
           <img :src="require('@/assets/svgs/logo-white.svg')" alt="" v-if="dark">
@@ -15,15 +15,15 @@
       </v-list-item>
     </v-list>
 
-    <v-divider />
-
     <!-- If user is connected -->
     <v-list
       v-if="isLoggedIn"
       nav
       dense
     >
-      <v-subheader>{{ currentUser.name }}</v-subheader>
+      <v-subheader class="mt-0">
+        {{ $t('components.layout.appDrawer.subHeaders.me') }}
+      </v-subheader>
       <app-drawer-item
         icon="mdi-check-all"
         :title="$t('components.layout.appDrawer.user.ascents')"
@@ -184,11 +184,6 @@ export default {
 }
 </script>
 <style lang="scss">
-.avatar-drawer {
-  padding-top: 3px !important;
-  padding-bottom: 4px !important;
-}
-
 .oblyk-app-drawer {
   .v-subheader {
     height: 30px;

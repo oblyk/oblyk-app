@@ -9,54 +9,58 @@ import CragMapDetailsView from '@/views/crags/CragMapDetailsView'
 export default [
   {
     path: '/maps/crags',
-    name: 'CragMapView',
     component: CragMapView,
     meta: {
-      title: 'Carte des falaises'
+      title: 'cragMap',
+      showTitle: true
     }
   },
   {
     path: '/crags/:cragId/:slug',
-    name: 'CragView',
     component: CragView,
     props: true,
     meta: {
-      title: 'Infos site'
+      noPaddingTop: true
     },
     children: [
       {
         path: 'infos',
         component: CragInfoView,
         meta: {
-          title: 'Infos site'
+          noPaddingTop: true,
+          objectName: 'crag'
         }
       },
       {
         path: 'routes',
         component: CragRouteView,
         meta: {
-          title: 'Les lignes'
+          noPaddingTop: true,
+          objectName: 'crag'
         }
       },
       {
         path: 'photos',
         component: CragPhotosView,
         meta: {
-          title: 'Photos & Vidéos'
+          noPaddingTop: true,
+          objectName: 'crag'
         }
       },
       {
         path: 'guide-books',
         component: CragGuideBooksView,
         meta: {
-          title: 'Les topos'
+          noPaddingTop: true,
+          objectName: 'crag'
         }
       },
       {
         path: 'maps',
         component: CragMapDetailsView,
         meta: {
-          title: 'Carte'
+          noPaddingTop: true,
+          objectName: 'crag'
         }
       }
     ]

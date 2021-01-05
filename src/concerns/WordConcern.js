@@ -19,12 +19,6 @@ export const WordConcern = {
         .find(this.$route.params.wordId)
         .then((resp) => {
           this.word = resp
-          this.$root.$emit(
-            'setAppTitle',
-            {
-              title: this.word.name
-            }
-          )
         })
         .catch((err) => {
           this.$root.$emit('alertFromApiError', err, 'word')

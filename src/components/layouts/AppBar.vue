@@ -3,27 +3,16 @@
     <v-app-bar
       app
       :dense="isMobile"
-      color="secondary"
       class="custom-app-bar"
       elevate-on-scroll
     >
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
 
       <v-toolbar-title class="oblyk-app-title">
-        <v-avatar
-          :size="isMobile ? 32 : 48"
-          v-if="avatar"
-          :class="isMobile ? 'mr-1' : 'mr-3'"
-        >
-          <v-img
-            :src="avatarSource"
-            :alt="`avatar ${title}`"
-          />
-        </v-avatar>
-        {{ title }}
+        <app-bar-title />
       </v-toolbar-title>
 
-      <v-spacer></v-spacer>
+      <v-spacer />
 
       <v-btn
         icon
@@ -70,10 +59,11 @@
           >
             <v-avatar
               :size="isMobile ? 40 : 48"
-              color="third"
             >
-              <v-img v-if="user" :src="user.avatarUrl()"/>
-              <v-img v-if="!user" :src="require('@/assets/svgs/user-default-avatar.svg')"/>
+              <v-img v-if="user && user.avatar" :src="user.avatarUrl()"/>
+              <v-icon v-else>
+                mdi-account-circle
+              </v-icon>
             </v-avatar>
           </v-btn>
         </template>
@@ -115,18 +105,23 @@ import DarkThemeSelector from '@/components/layouts/partial/DarkThemeSelector'
 import LoginLogoutBtn from '@/components/layouts/partial/LoginLogoutBtn'
 import { SessionConcern } from '@/concerns/SessionConcern'
 import AppDrawerItem from '@/components/layouts/partial/AppDrawerItem'
+import AppBarTitle from '@/components/layouts/partial/AppBarTitle'
 
 export default {
   name: 'AppBar',
   mixins: [SessionConcern],
-  components: { AppDrawerItem, LoginLogoutBtn, DarkThemeSelector, LocalSelector, AppDrawer },
+  components: {
+    AppBarTitle,
+    AppDrawerItem,
+    LoginLogoutBtn,
+    DarkThemeSelector,
+    LocalSelector,
+    AppDrawer
+  },
 
   data () {
     return {
       drawer: true,
-      title: 'Oblyk',
-      avatar: false,
-      avatarSource: '',
       isMobile: false,
       user: null
     }
@@ -136,10 +131,6 @@ export default {
     this.onResize()
 
     window.addEventListener('resize', this.onResize, { passive: true })
-
-    this.$root.$on('setAppTitle', (data) => {
-      this.setAppTitle(data)
-    })
 
     if (this.isLoggedIn) {
       this.getCurrentUser().then((user) => {
@@ -151,12 +142,6 @@ export default {
   methods: {
     onResize: function () {
       this.isMobile = window.innerWidth < 600
-    },
-
-    setAppTitle: function (data) {
-      this.title = (data || {}).title
-      this.avatarSource = (data || {}).avatar
-      this.avatar = (data.avatar)
     }
   }
 }
@@ -165,21 +150,37 @@ export default {
 <style lang="scss">
 .v-application {
   &.theme--dark {
-    .secondary.custom-app-bar {
-      border-bottom-color: #272727 !important;
+    .custom-app-bar.v-app-bar--is-scrolled {
+      background-color: rgba(18, 18, 18, 0.7) !important;
     }
   }
   &.theme--light {
-    .secondary.custom-app-bar {
-      border-bottom-color: #e0e0e0 !important;
+    .custom-app-bar.v-app-bar--is-scrolled {
+      background-color: rgba(255, 255, 255, 0.6) !important;
+    }
+    &.no-padding-top-in-app {
+      .custom-app-bar:not(.v-app-bar--is-scrolled) {
+        color: white;
+        .v-btn__content {
+          .v-icon {
+            color: white;
+          }
+        }
+      }
     }
   }
 }
 
 .custom-app-bar {
+  background-color: rgba(0,0,0,0) !important;
+}
+
+.custom-app-bar.v-app-bar--is-scrolled {
+  background-color: rgba(18, 18, 18, 0.7) !important;
+}
+
+.custom-app-bar {
   box-shadow: none !important;
-  border-bottom-style: solid !important;
-  border-bottom-width: 1px !important;
 }
 
 .oblyk-app-title {

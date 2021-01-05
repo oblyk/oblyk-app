@@ -8,28 +8,58 @@ export default [
   {
     path: '/gyms/:gymId/:gymSlug/grades/:gymGradeId/infos',
     component: GymGradeView,
-    props: true
+    props: true,
+    meta: {
+      requiresAuth: true,
+      requiresGymAdministrator: true,
+      objectName: 'gym',
+      showAvatar: true
+    }
   },
   {
     path: '/gyms/:gymId/:gymSlug/grades/:gymGradeId/edit',
     component: GymGradeEditView,
-    props: true
+    props: true,
+    meta: {
+      requiresAuth: true,
+      requiresGymAdministrator: true,
+      objectName: 'gym',
+      showAvatar: true
+    }
   },
   {
     path: '/gyms/:gymId/:gymSlug/grades/new',
     component: GymGradeNewView,
-    props: true
+    props: true,
+    meta: {
+      requiresAuth: true,
+      requiresGymAdministrator: true,
+      objectName: 'gym',
+      showAvatar: true
+    }
   },
 
   // Grade line
   {
     path: '/gyms/:gymId/:gymSlug/grades/:gymGradeId/grade-lines/new',
     component: GymGradeLineNewView,
-    props: true
+    props: true,
+    meta: {
+      requiresAuth: true,
+      requiresGymAdministrator: true,
+      objectName: 'gym',
+      showAvatar: true
+    }
   },
   {
     path: '/gyms/:gymId/:gymSlug/grades/:gymGradeId/grade-lines/:gymGradeLineId/edit',
     component: GymGradeLineEditView,
-    props: true
+    props: true,
+    meta: {
+      requiresAuth: true,
+      requiresGymAdministrator: true,
+      objectName: 'gym',
+      showAvatar: true
+    }
   }
 ]
