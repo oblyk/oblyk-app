@@ -54,6 +54,7 @@
     </div>
   </div>
 </template>
+
 <script>
 import { SessionConcern } from '@/concerns/SessionConcern'
 import GymRouteCard from '@/components/gymRoutes/GymRouteCarde'
@@ -62,11 +63,18 @@ import GymRouteSortBySector from '@/components/gymRoutes/partial/GymRouteSortByS
 import GymRouteAddInSortBySector from '@/components/gymRoutes/partial/GymRouteAddInSortBySector'
 import Spinner from '@/components/layouts/Spiner'
 import gymRouteApi from '@/services/oblyk-api/gymRouteApi'
+import GymSectorApi from '@/services/oblyk-api/gymSectorApi'
 import GymRoute from '@/models/GymRoute'
 
 export default {
   name: 'GymSpaceRouteList',
-  components: { Spinner, GymRouteAddInSortBySector, GymRouteSortBySector, GymSpaceRouteSort, GymRouteCard },
+  components: {
+    Spinner,
+    GymRouteAddInSortBySector,
+    GymRouteSortBySector,
+    GymSpaceRouteSort,
+    GymRouteCard
+  },
   mixins: [SessionConcern],
   props: {
     gymSpace: Object
@@ -89,6 +97,11 @@ export default {
     this.$root.$on('filtreBySector', (gymSectorId) => {
       this.filtreBySector(gymSectorId)
     })
+
+    this.$root.$on('dismountGymRoutesInSector', (gymId, spaceId, sectorId) => {
+      this.dismountRoutes(gymId, spaceId, sectorId)
+    })
+
     this.getRoutes()
   },
 
@@ -146,6 +159,23 @@ export default {
       this.routes = this.gymRoutes
       this.filter.text = null
       this.filter.icon = null
+    },
+
+    dismountRoutes: function (gymId, spaceId, sectorId) {
+      this.loadingRoutes = true
+      GymSectorApi
+        .dismountRoutes(
+          gymId,
+          spaceId,
+          sectorId
+        )
+        .then(() => {
+          this.getRoutes()
+        })
+        .catch(err => {
+          this.$root.$emit('alertFromApiError', err, 'gymRoute')
+          this.loadingRoutes = false
+        })
     }
   }
 }

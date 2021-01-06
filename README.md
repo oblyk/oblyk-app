@@ -27,7 +27,7 @@ ___
 - [x] Finir la page "Info" d'une salle
 - [ ] Finir le responsive du plan des secteurs
 - [x] Faire l'interaction avec le plan 'surbrillance'
-- [ ] Faire le démontage d'un secteur
+- [x] Faire le démontage d'un secteur
 - [ ] Faire le système de following de la salle
 - [x] Faire page admin d'une salle
 - [x] Faire carte Espace dans zone admin

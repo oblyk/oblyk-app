@@ -10,24 +10,60 @@
       v-if="currentUserIsGymAdmin()"
       class="gym-sector-actions-menu-col text-right pb-0"
     >
-      <v-btn
-        icon
-        @click="startEditSectorPolygon()"
-        :title="$t('components.gymSector.editSectorPolygon')"
-      >
-        <v-icon small>
-          mdi-vector-polygon
-        </v-icon>
-      </v-btn>
-      <v-btn
-        icon
-        :to="gymRoute.gymSectorUrl('edit')"
-        :title="$t('actions.edit')"
-      >
-        <v-icon small>
-          mdi-pencil
-        </v-icon>
-      </v-btn>
+      <v-menu offset-y left>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn
+            icon
+            v-bind="attrs"
+            v-on="on"
+          >
+            <v-icon>
+              mdi-dots-vertical
+            </v-icon>
+          </v-btn>
+        </template>
+        <v-list>
+
+          <!-- Edit Sector -->
+          <v-list-item
+            link
+            :to="gymRoute.gymSectorUrl('edit')"
+          >
+            <v-list-item-icon>
+              <v-icon>mdi-pencil</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>
+              {{ $t('actions.editSector') }}
+            </v-list-item-title>
+          </v-list-item>
+
+          <!-- Dismount all routes in sector -->
+          <v-list-item
+            link
+            @click="dismountRoutes()"
+          >
+            <v-list-item-icon>
+              <v-icon>mdi-collapse-all-outline</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>
+              {{ $t('actions.dismountAllRoutes') }}
+            </v-list-item-title>
+          </v-list-item>
+
+          <!-- Edit polyline -->
+          <v-list-item
+            link
+            @click="startEditSectorPolygon()"
+          >
+            <v-list-item-icon>
+              <v-icon>mdi-vector-polygon</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>
+              {{ $t('components.gymSector.editSectorPolygon') }}
+            </v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
     </v-col>
   </v-row>
 </template>
@@ -45,6 +81,15 @@ export default {
     startEditSectorPolygon: function () {
       this.$root.$emit('startEditSectorPolygon', this.gymRoute.gym_sector_id)
       this.$root.$emit('showEditingExplain', true)
+    },
+
+    dismountRoutes: function () {
+      this.$root.$emit(
+        'dismountGymRoutesInSector',
+        this.gymRoute.gym.id,
+        this.gymRoute.gym_space.id,
+        this.gymRoute.gym_sector.id
+      )
     }
   }
 }

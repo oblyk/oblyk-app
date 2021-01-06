@@ -73,7 +73,7 @@
         </v-list-item-icon>
         <v-list-item-content>
           <v-list-item-title>
-            {{ $t('actions.dismount') }}
+            {{ $t('actions.dismountRoute') }}
           </v-list-item-title>
         </v-list-item-content>
       </v-list-item>

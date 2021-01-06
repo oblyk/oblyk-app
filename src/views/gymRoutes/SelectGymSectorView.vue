@@ -32,9 +32,11 @@
 </template>
 <script>
 import { GymSpaceConcern } from '@/concerns/GymSpaceConcern'
+import Spinner from '@/components/layouts/Spiner'
 
 export default {
   name: 'SelectGymSectorView',
+  components: { Spinner },
   mixins: [GymSpaceConcern]
 }
 </script>

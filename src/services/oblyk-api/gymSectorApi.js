@@ -27,6 +27,14 @@ class GymSectorApi extends BaseApi {
     })
   }
 
+  dismountRoutes (gymId, spaceId, sectorId) {
+    return axios({
+      url: `${this.baseUrl}/gyms/${gymId}/gym_spaces/${spaceId}/gym_sectors/${sectorId}/dismount_routes.json`,
+      headers: { Authorization: this.authToken() },
+      method: 'DELETE'
+    })
+  }
+
   create (data) {
     return axios({
       url: `${this.baseUrl}/gyms/${data.gym_id}/gym_spaces/${data.gym_space_id}/gym_sectors.json`,
