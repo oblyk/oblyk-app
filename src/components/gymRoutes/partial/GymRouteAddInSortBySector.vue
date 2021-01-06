@@ -4,7 +4,7 @@
       text
       color="primary"
       small
-      :to="gymRoute.gymSectorUrl('routes/new')"
+      :to="gymSector.url('routes/new')"
     >
       <v-icon left>
         mdi-source-branch-plus
@@ -17,7 +17,7 @@
 export default {
   name: 'GymRouteAddInSortBySector',
   props: {
-    gymRoute: Object
+    gymSector: Object
   }
 }
 </script>

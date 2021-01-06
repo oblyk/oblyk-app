@@ -9,9 +9,10 @@ class GymRouteApi extends BaseApi {
     })
   }
 
-  allInSpace (gymId, spaceId) {
+  allInSpace (gymId, spaceId, groupBy, orderBy) {
     return axios({
       url: `${this.baseUrl}/gyms/${gymId}/gym_spaces/${spaceId}/gym_routes.json`,
+      params: { group_by: groupBy, order_by: orderBy },
       method: 'GET'
     })
   }

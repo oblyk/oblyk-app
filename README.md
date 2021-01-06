@@ -28,6 +28,7 @@ ___
 - [ ] Finir le responsive du plan des secteurs
 - [x] Faire l'interaction avec le plan 'surbrillance'
 - [x] Faire le démontage d'un secteur
+- [x] Finir "ordre par" des routes
 - [ ] Faire le système de following de la salle
 - [x] Faire page admin d'une salle
 - [x] Faire carte Espace dans zone admin

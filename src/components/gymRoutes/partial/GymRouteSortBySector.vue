@@ -4,7 +4,7 @@
       <v-icon left small>
         mdi-texture-box
       </v-icon>
-      {{ gymRoute.gym_sector_name }}
+      {{ gymSector.name }}
     </v-col>
     <v-col
       v-if="currentUserIsGymAdmin()"
@@ -27,7 +27,7 @@
           <!-- Edit Sector -->
           <v-list-item
             link
-            :to="gymRoute.gymSectorUrl('edit')"
+            :to="gymSector.url('edit')"
           >
             <v-list-item-icon>
               <v-icon>mdi-pencil</v-icon>
@@ -74,21 +74,21 @@ export default {
   name: 'GymRouteSortBySector',
   mixins: [SessionConcern],
   props: {
-    gymRoute: Object
+    gymSector: Object
   },
 
   methods: {
     startEditSectorPolygon: function () {
-      this.$root.$emit('startEditSectorPolygon', this.gymRoute.gym_sector_id)
+      this.$root.$emit('startEditSectorPolygon', this.gymSector.id)
       this.$root.$emit('showEditingExplain', true)
     },
 
     dismountRoutes: function () {
       this.$root.$emit(
         'dismountGymRoutesInSector',
-        this.gymRoute.gym.id,
-        this.gymRoute.gym_space.id,
-        this.gymRoute.gym_sector.id
+        this.gymSector.gym.id,
+        this.gymSector.gym_space.id,
+        this.gymSector.id
       )
     }
   }

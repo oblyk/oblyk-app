@@ -5,6 +5,7 @@
       @click="changeCardSize()"
     >
       <gym-route-card-small
+        :placement="placement"
         :gym-route="gymRoute"
         v-if="!showLargeCard"
       />
@@ -28,7 +29,11 @@ export default {
   components: { GymRouteCardLarge, GymRouteCardSmall },
   props: {
     gymRoute: Object,
-    getSpaceRoutes: Function
+    getSpaceRoutes: Function,
+    placement: {
+      type: String,
+      required: false
+    }
   },
 
   data () {

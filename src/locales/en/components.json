@@ -85,6 +85,7 @@
       "removePitch": "Remove pitch",
       "multiPitchRoute": "Route with more than one pitch",
       "noRoute": "No route found",
+      "noRouteInSector": "No route in this sector",
       "sorts": {
         "opened_at": "Sort by opening date",
         "sector": "Sort by sector",

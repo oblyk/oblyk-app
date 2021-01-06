@@ -1,5 +1,9 @@
 <template>
-  <v-card link>
+  <v-card
+    link
+    class="gym-route-small-card"
+    v-bind:class="`placement-${placement}`"
+  >
     <v-row>
       <v-col
         class="pt-0 pb-0 gym-route-image-col"
@@ -51,16 +55,39 @@ export default {
   name: 'GymRouteCardSmall',
   components: { GymRouteGradeAndPoint, GymRouteTagAndHold },
   props: {
-    gymRoute: Object
+    gymRoute: Object,
+    placement: {
+      type: String,
+      required: false
+    }
   }
 }
 </script>
 <style lang="scss" scoped>
+.placement-first {
+  border-radius: 6px 6px 0 0;
+  .gym-route-image-col .gym-route-image {
+    border-radius: 6px 0 0 0 !important;
+  }
+}
+.placement-last {
+  border-radius: 0 0 6px 6px;
+  .gym-route-image-col .gym-route-image {
+    border-radius: 0 0 0 6px !important;
+  }
+}
+.placement-middle {
+  border-radius: 0;
+}
+.placement-unique {
+  border-radius: 6px;
+  .gym-route-image-col .gym-route-image {
+    border-radius: 6px 0 0 6px !important;
+  }
+}
+
 .gym-route-image-col {
   max-width: 70px;
-  .gym-route-image {
-    border-radius: 4px 0 0 4px !important;
-  }
 }
 .gym-grade-tag-and-hold-col {
   max-width: 85px;
@@ -74,6 +101,9 @@ export default {
 }
 .v-application {
   &.theme--dark {
+    .gym-route-small-card {
+      margin-top: 1px;
+    }
     .gym-grade-col {
       border-left-color: #4b4b4b;
     }
