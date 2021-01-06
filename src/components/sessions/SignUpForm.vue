@@ -28,57 +28,38 @@
       @click:append="showPasswordConfirmation = !showPasswordConfirmation"
     />
 
-    <v-text-field
-      outlined
-      v-model="firstName"
-      :label="$t('models.user.first_name')"
-      required
-    />
-
-    <v-text-field
-      outlined
-      v-model="lastName"
-      :label="$t('models.user.last_name')"
-    />
-
-    <v-dialog
-      ref="dialog"
-      v-model="dateOfBirthModal"
-      :return-value.sync="dateOfBirth"
-      persistent
-      width="290px"
-    >
-      <template v-slot:activator="{ on, attrs }">
+    <v-row>
+      <v-col>
         <v-text-field
-          v-model="dateOfBirth"
-          :label="$t('models.user.date_of_birth')"
-          readonly
           outlined
-          v-bind="attrs"
-          v-on="on"
-        ></v-text-field>
-      </template>
-      <v-date-picker
-        v-model="dateOfBirth"
-        scrollable
-      >
-        <v-spacer></v-spacer>
-        <v-btn
-          text
-          color="primary"
-          @click="dateOfBirthModal = false"
-        >
-          {{ $t('actions.cancel') }}
-        </v-btn>
-        <v-btn
-          text
-          color="primary"
-          @click="$refs.dialog.save(dateOfBirth)"
-        >
-          {{ $t('actions.ok') }}
-        </v-btn>
-      </v-date-picker>
-    </v-dialog>
+          v-model="firstName"
+          :label="$t('models.user.first_name')"
+          required
+        />
+      </v-col>
+      <v-col>
+        <v-text-field
+          outlined
+          v-model="lastName"
+          :label="$t('models.user.last_name')"
+        />
+      </v-col>
+    </v-row>
+
+    <date-picker-input
+      v-model="dateOfBirth"
+      :label="$t('models.user.date_of_birth')"
+    />
+
+    <v-checkbox
+      class="mt-0"
+      hide-details
+      v-model="termsOfUse"
+      :label="$t('components.session.termsOfUse')"
+    />
+    <router-link to="/terms-of-use" class="ml-8">
+      {{ $t('termsOfUse.title') }}
+    </router-link>
 
     <v-checkbox
       v-model="rememberMe"
@@ -88,19 +69,37 @@
     <submit-form
       submit-local-key="actions.createMyAccount"
       :overlay="submitOverlay"
-    />
+    >
+     <v-btn
+      text
+      to="/sign-in"
+      color="primary"
+      class="float-right"
+     >
+       {{ $t('actions.signIn') }}
+     </v-btn>
+    </submit-form>
   </v-form>
 </template>
 
 <script>
 import SubmitForm from '@/components/forms/SubmitForm'
 import { FormHelpers } from '@/mixins/FormHelpers'
+import DatePickerInput from '@/components/forms/DatePickerInput'
 export default {
   name: 'SignUpForm',
-  components: { SubmitForm },
+  components: { DatePickerInput, SubmitForm },
   mixins: [FormHelpers],
+  props: {
+    redirectTo: {
+      type: String,
+      required: false
+    }
+  },
+
   data () {
     return {
+      termsOfUse: false,
       email: null,
       password: null,
       passwordConfirmation: null,
@@ -110,13 +109,19 @@ export default {
       firstName: null,
       dateOfBirth: null,
       dateOfBirthModal: false,
-      rememberMe: false
+      rememberMe: true
     }
   },
 
   methods: {
     signUp: function () {
+      if (!this.termsOfUse) {
+        this.$root.$emit('alerteSimpleError', this.$t('components.session.youMustBeAgree'))
+        return
+      }
+
       this.submitOverlay = true
+
       const data = {
         email: this.email,
         password: this.password,
@@ -129,7 +134,11 @@ export default {
       this.$store
         .dispatch('auth/signUp', data)
         .then(() => {
-          this.$router.push('/')
+          if (this.redirectTo) {
+            this.$router.push(this.redirectTo)
+          } else {
+            this.$router.push('/me/new/avatar')
+          }
         })
         .catch(err => {
           this.$root.$emit('alertFromApiError', err, 'user')

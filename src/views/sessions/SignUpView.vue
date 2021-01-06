@@ -6,7 +6,10 @@
           {{ $t('actions.signUp') }}
         </h2>
 
-        <sign-up-form v-if="!isLoggedIn"/>
+        <sign-up-form
+          v-if="!isLoggedIn"
+          :redirect-to="redirectTo"
+        />
 
         <p v-if="isLoggedIn">
           <v-alert
@@ -28,6 +31,17 @@ import { SessionConcern } from '@/concerns/SessionConcern'
 export default {
   name: 'SignUpView',
   mixins: [SessionConcern],
-  components: { SignUpForm }
+  components: { SignUpForm },
+
+  data () {
+    return {
+      redirectTo: null
+    }
+  },
+
+  created () {
+    const urlParams = new URLSearchParams(window.location.search)
+    this.redirectTo = urlParams.get('redirect_to')
+  }
 }
 </script>

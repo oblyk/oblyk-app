@@ -47,7 +47,10 @@
 export default {
   name: 'DatePickerInput',
   props: {
-    value: String,
+    value: {
+      type: String,
+      required: false
+    },
     label: String
   },
 

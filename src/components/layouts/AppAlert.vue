@@ -27,6 +27,9 @@ export default {
     this.$root.$on('alertFromApiError', (err, object) => {
       this.fromApiError(err, object)
     })
+    this.$root.$on('alerteSimpleError', (message) => {
+      this.simpleError(message)
+    })
   },
 
   methods: {
@@ -49,6 +52,13 @@ export default {
       } else {
         this.messages.push(this.$t('components.appAlert.500'))
       }
+      this.show = true
+      this.type = 'error'
+    },
+
+    simpleError: function (message) {
+      this.clear()
+      this.messages.push(message)
       this.show = true
       this.type = 'error'
     },

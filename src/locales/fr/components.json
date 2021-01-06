@@ -20,7 +20,9 @@
     "session": {
       "connectAlert": "Vous devez être connecté·e pour accéder à cette page",
       "alreadyConnected": "Vous êtes connecté·e",
-      "stayConnected": "Rester connecté·e"
+      "stayConnected": "Rester connecté·e",
+      "termsOfUse": "J'ai lu et j'accepte les conditions d'utilisation d'Oblyk",
+      "youMustBeAgree": "Vous devez accepter les conditions d'utilisation d'Oblyk"
     },
     "gym": {
       "addNew": "Ajouter une nouvelle salle",

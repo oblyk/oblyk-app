@@ -20,7 +20,9 @@
     "session": {
       "connectAlert": "You must be logged in to access this page",
       "alreadyConnected": "You are logged in",
-      "stayConnected": "Stay connected"
+      "stayConnected": "Stay connected",
+      "termsOfUse": "I have read and accept the terms and conditions of use of Oblyk",
+      "youMustBeAgree": "You must agree to the oblyk terms of use"
     },
     "gym": {
       "addNew": "Add a new climbing gym",

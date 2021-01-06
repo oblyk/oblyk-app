@@ -70,11 +70,12 @@
         <v-list>
           <div v-if="isLoggedIn && user">
             <v-list-item>
-              <v-list-item-content>
-                <v-list-item-title class="font-weight-bold">
-                  {{ currentUser.name }}
-                </v-list-item-title>
-              </v-list-item-content>
+              <v-list-item-avatar v-if="!loadingUserCurrent">
+                <img :src="userCurrent.avatarUrl()" :alt="`avatar ${currentUser.name}`">
+              </v-list-item-avatar>
+              <v-list-item-title class="font-weight-bold">
+                {{ currentUser.name }}
+              </v-list-item-title>
             </v-list-item>
             <v-divider/>
             <app-drawer-item :title="$t('components.layout.appBar.user.avatar')" icon="mdi-camera-account" :url="user.meUrl('avatar')" />
@@ -105,10 +106,11 @@ import LoginLogoutBtn from '@/components/layouts/partial/LoginLogoutBtn'
 import { SessionConcern } from '@/concerns/SessionConcern'
 import AppDrawerItem from '@/components/layouts/partial/AppDrawerItem'
 import AppBarTitle from '@/components/layouts/partial/AppBarTitle'
+import { UserCurrentConcern } from '@/concerns/UserCurrentConcern'
 
 export default {
   name: 'AppBar',
-  mixins: [SessionConcern],
+  mixins: [SessionConcern, UserCurrentConcern],
   components: {
     AppBarTitle,
     AppDrawerItem,
@@ -135,6 +137,16 @@ export default {
       this.getCurrentUser().then((user) => {
         this.user = user
       })
+    }
+  },
+
+  watch: {
+    isLoggedIn: function () {
+      if (this.isLoggedIn) {
+        this.getCurrentUser().then((user) => {
+          this.user = user
+        })
+      }
     }
   },
 

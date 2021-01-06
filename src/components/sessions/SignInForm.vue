@@ -17,9 +17,11 @@
       required
       :append-icon="showPassword ? 'mdi-eye-off' : 'mdi-eye'"
       @click:append="showPassword = !showPassword"
+      hide-details
     />
 
     <v-checkbox
+      class="mb-5"
       v-model="rememberMe"
       :label="$t('components.session.stayConnected')"
     />
@@ -27,7 +29,16 @@
     <submit-form
       submit-local-key="actions.signIn"
       :overlay="overlay"
-    />
+    >
+      <v-btn
+        text
+        to="/sign-up"
+        color="primary"
+        class="float-right"
+      >
+        {{ $t('actions.signUp') }}
+      </v-btn>
+    </submit-form>
 
   </v-form>
 </template>
