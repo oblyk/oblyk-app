@@ -60,8 +60,7 @@
             <v-avatar
               :size="isMobile ? 40 : 48"
             >
-              <v-img v-if="user && user.avatar" :src="user.avatarUrl()"/>
-              <v-icon v-else>
+              <v-icon>
                 mdi-account-circle
               </v-icon>
             </v-avatar>
@@ -69,7 +68,7 @@
         </template>
 
         <v-list>
-          <div v-if="isLoggedIn">
+          <div v-if="isLoggedIn && user">
             <v-list-item>
               <v-list-item-content>
                 <v-list-item-title class="font-weight-bold">
@@ -78,7 +77,7 @@
               </v-list-item-content>
             </v-list-item>
             <v-divider/>
-            <app-drawer-item :title="$t('components.layout.appBar.user.avatar')" icon="mdi-camera-account" />
+            <app-drawer-item :title="$t('components.layout.appBar.user.avatar')" icon="mdi-camera-account" :url="user.meUrl('avatar')" />
             <app-drawer-item :title="$t('components.layout.appBar.user.settings')" icon="mdi-settings" />
             <app-drawer-item :title="$t('components.layout.appBar.user.messenger')" icon="mdi-forum" />
             <v-divider/>

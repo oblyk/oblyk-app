@@ -6,6 +6,7 @@ import GeneralRouter from '@/router/modules/generalRouter'
 import WordRouter from '@/router/modules/wordRouter'
 import SearchRouter from '@/router/modules/searchRouter'
 import SessionRouter from '@/router/modules/sessionRouter'
+import UserRouter from '@/router/modules/userRouter'
 import CragRouter from '@/router/modules/cragRouter'
 import GymRouter from '@/router/modules/gymRouter'
 import GymAdministratorRouter from '@/router/modules/gymAdministratorRouter'
@@ -29,7 +30,8 @@ const router = new VueRouter({
     ...GymSectorRouter,
     ...GymRouteRouter,
     ...CragRouter,
-    ...SessionRouter
+    ...SessionRouter,
+    ...UserRouter
   ]
 })
 

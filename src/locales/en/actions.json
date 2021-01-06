@@ -22,11 +22,13 @@
     "browse": "Browse ...",
     "addPicture": "Add picture",
     "defineThumbnail": "Define thumbnail",
+    "upload": "Upload",
     "dismount": "Dismount routes",
     "createAndPicture": "Create + Picture",
     "finish": "Finish",
     "backToName": "Back to %{name}",
     "addMember": "Add a member",
-    "seeOnTheMap": "See on the map"
+    "seeOnTheMap": "See on the map",
+    "myAvatar": "My avatar"
   }
 }

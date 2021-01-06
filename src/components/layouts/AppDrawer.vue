@@ -26,18 +26,22 @@
       </v-subheader>
       <app-drawer-item
         icon="mdi-check-all"
+        icon-color="blue"
         :title="$t('components.layout.appDrawer.user.ascents')"
       />
       <app-drawer-item
         icon="mdi-account-star-outline"
+        icon-color="green"
         :title="$t('components.layout.appDrawer.user.subscribers')"
       />
       <app-drawer-item
         icon="mdi-bookshelf"
+        icon-color="deep-purple"
         :title="$t('components.layout.appDrawer.user.guideBooks')"
       />
       <app-drawer-item
         icon="mdi-star"
+        icon-color="amber"
         :title="$t('components.layout.appDrawer.user.favorites')"
       />
     </v-list>

@@ -29,7 +29,7 @@ export default {
     submitLocalKey: {
       type: String,
       required: false,
-      default: 'forms.submit'
+      default: 'actions.submit'
     },
     submitBtnColor: {
       type: String,

@@ -9,5 +9,29 @@ class UserApi extends BaseApi {
       method: 'GET'
     })
   }
+
+  avatar (data) {
+    return axios({
+      url: `${this.baseUrl}/users/current/avatar.json`,
+      headers: {
+        Authorization: this.authToken(),
+        'Content-Type': 'multipart/form-data'
+      },
+      data: data,
+      method: 'POST'
+    })
+  }
+
+  banner (data) {
+    return axios({
+      url: `${this.baseUrl}/users/current/banner.json`,
+      headers: {
+        Authorization: this.authToken(),
+        'Content-Type': 'multipart/form-data'
+      },
+      data: data,
+      method: 'POST'
+    })
+  }
 }
 export default new UserApi()

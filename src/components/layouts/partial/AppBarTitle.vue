@@ -20,9 +20,11 @@
 import Word from '@/models/Word'
 import Gym from '@/models/Gym'
 import Crag from '@/models/Crag'
+import { SessionConcern } from '@/concerns/SessionConcern'
 
 export default {
   name: 'AppBarTitle',
+  mixins: [SessionConcern],
 
   data () {
     return {
@@ -100,6 +102,8 @@ export default {
         new Gym().find(this.objectId).then(object => { this.title = object.name; this.avatar = object.logoUrl() })
       } else if (this.objectName === 'crag') {
         new Crag().find(this.objectId).then(object => { this.title = object.name })
+      } else if (this.objectName === 'me') {
+        this.getCurrentUser().then(user => { this.title = user.first_name; this.avatar = user.avatarUrl() })
       }
       document.title = this.title || 'Oblyk'
     }

@@ -22,11 +22,13 @@
     "browse": "Parcourir ...",
     "addPicture": "Ajouter une photo",
     "defineThumbnail": "Définir la miniature",
+    "upload": "Télécharger",
     "dismount": "Démonter la ligne",
     "createAndPicture": "Créer + Photo",
     "finish": "Terminer",
     "backToName": "Retour à %{name}",
     "addMember": "Ajouter un membre",
-    "seeOnTheMap": "Voir sur la carte"
+    "seeOnTheMap": "Voir sur la carte",
+    "myAvatar": "Mon avatar"
   }
 }

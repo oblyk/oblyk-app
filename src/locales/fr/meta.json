@@ -29,6 +29,9 @@
     },
     "home": {
       "title": "Oblyk"
+    },
+    "userAvatar": {
+      "title": "Photo de profil"
     }
   }
 }
