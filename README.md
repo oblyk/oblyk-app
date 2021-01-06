@@ -32,8 +32,8 @@ ___
 - [ ] Faire le système de following de la salle
 - [x] Faire page admin d'une salle
 - [x] Faire carte Espace dans zone admin
-- [ ] Faire un tableau des voies et secteur sur la zone admin
 - [ ] Faire l'ajout au carnet de croix
+- [ ] Faire un tableau des voies et secteur sur la zone admin
 ___
 - [ ] Ajouter le coup de coeur
 - [ ] Faire le système d'options payantes (standard, +, pro)

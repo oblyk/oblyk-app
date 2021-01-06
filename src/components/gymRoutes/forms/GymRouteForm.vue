@@ -244,7 +244,7 @@ export default {
         grade: (this.gymRoute || {}).grade,
         tag_colors: (this.gymRoute || {}).tag_colors,
         hold_colors: (this.gymRoute || {}).hold_colors,
-        opened_at: (this.gymRoute || {}).opened_at || this.today().format('YYYY-DD-MM'),
+        opened_at: (this.gymRoute || {}).opened_at || this.today().format('YYYY-MM-DD'),
         climbing_type: (this.gymRoute || {}).climbing_type || this.gymSector.climbing_type,
         gym_grade_line_id: (this.gymRoute || {}).gym_grade_line_id,
         gym_space_id: this.gymSector.gym_space.id,

@@ -39,6 +39,12 @@
           :placement="placement"
           :get-routes="getRoutes"
         />
+        <!-- if no routes in opened_ats -->
+        <div v-if="openedAts.length === 0">
+          <p class="text-center text--disabled">
+            {{ $t('components.gymRoute.noRoute') }}
+          </p>
+        </div>
       </div>
 
       <!-- If sort by grade -->
@@ -48,24 +54,8 @@
           :placement="placement"
           :get-routes="getRoutes"
         />
-      </div>
-
-      <!-- If sort by opened_at or difficulty -->
-      <div v-else>
-        <div
-          v-for="(route, index) in gymRoutes"
-          :key="`gym-route-card-${route.id}`"
-        >
-          <!-- Route card -->
-          <gym-route-card
-            :placement="placement(index, gymRoutes.length)"
-            :gym-route="route"
-            :get-space-routes="getRoutes"
-          />
-        </div>
-
-        <!-- if no routes -->
-        <div v-if="gymRoutes.length === 0">
+        <!-- if no routes in grade -->
+        <div v-if="grades.length === 0">
           <p class="text-center text--disabled">
             {{ $t('components.gymRoute.noRoute') }}
           </p>
@@ -77,7 +67,6 @@
 
 <script>
 import { SessionConcern } from '@/concerns/SessionConcern'
-import GymRouteCard from '@/components/gymRoutes/GymRouteCarde'
 import GymSpaceRouteSort from '@/components/gymRoutes/partial/GymSpaceRouteSort'
 import Spinner from '@/components/layouts/Spiner'
 import gymRouteApi from '@/services/oblyk-api/gymRouteApi'
@@ -95,8 +84,7 @@ export default {
     GymRoutesByOpenedAt,
     GymRoutesBySector,
     Spinner,
-    GymSpaceRouteSort,
-    GymRouteCard
+    GymSpaceRouteSort
   },
   mixins: [SessionConcern],
   props: {
