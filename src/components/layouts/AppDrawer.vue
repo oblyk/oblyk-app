@@ -164,7 +164,7 @@
       <app-drawer-item
         url="/terms-of-use"
         icon="mdi-scale-balance"
-        :title="$t('termsOfUser.title')"
+        :title="$t('termsOfUse.title')"
       />
     </v-list>
   </div>

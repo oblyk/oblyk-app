@@ -63,7 +63,7 @@ export default {
   }
 }
 </script>
-<style>
+<style scoped>
 h3 {
   font-family: "Loved by the King", sans-serif;
   font-size: 2em;

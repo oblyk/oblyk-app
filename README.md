@@ -77,7 +77,7 @@ ___
 - [ ] Système de news (CRUD)
 
 ## TODO Autres pages
-- [ ] Mention légale
+- [x] Mention légale
 - [ ] Le projet
 - [ ] Don
 - [ ] Les cotations
