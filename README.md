@@ -4,6 +4,7 @@
 - [x] Faire apparaitre l'élément principal de la page dans la barre d'application
 - [x] Faire la gestion des erreurs
 - [x] Améliorer la sid barre (selection en thème sombre pas beau)
+- [ ] Faire pied de page
 - [ ] Markdown
 - [ ] Commentable
 - [ ] Followable

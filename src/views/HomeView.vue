@@ -9,19 +9,19 @@
       <h1 class="font-weight-medium loved-by-king oblyk-title">
         Oblyk
       </h1>
-      <h3>
+      <h3 class="loved-by-king oblyk-subtitle">
         Outdoor & Indoor Climbing Community
       </h3>
     </v-parallax>
-    <v-container class="home-container">
 
+    <v-container class="home-container">
       <home-box-crag-info class="home-boxes" />
       <home-box-ascents-log class="home-boxes" />
       <home-box-partner class="home-boxes" />
       <home-box-help class="home-boxes" />
       <home-box-guide-book class="home-boxes" />
-
     </v-container>
+
     <app-footer />
   </div>
 </template>
@@ -58,13 +58,11 @@ export default {
 </script>
 
 <style lang="scss">
-.oblyk-logo {
-  max-width: 200px;
-  margin-left: auto;
-  margin-right: auto;
-}
 .oblyk-title {
   font-size: 7rem;
+}
+.oblyk-subtitle {
+  font-size: 2em;
 }
 .home-container {
   max-width: 1200px;
