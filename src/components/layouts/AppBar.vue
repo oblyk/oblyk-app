@@ -150,12 +150,12 @@ export default {
 .v-application {
   &.theme--dark {
     .custom-app-bar.v-app-bar--is-scrolled {
-      background-color: rgba(18, 18, 18, 0.7) !important;
+      background-color: rgba(18, 18, 18, 0.8) !important;
     }
   }
   &.theme--light {
     .custom-app-bar.v-app-bar--is-scrolled {
-      background-color: rgba(255, 255, 255, 0.6) !important;
+      background-color: rgba(255, 255, 255, 0.7) !important;
     }
     &.no-padding-top-in-app {
       .custom-app-bar:not(.v-app-bar--is-scrolled) {
