@@ -9,7 +9,7 @@
         la communauté, tu peux consulter celle-ci en utilisant la recherche ou en naviguant sur la carte des falaises.
       </p>
       <p class="text-right">
-        <v-btn outlined color="primary" :to="{ name: 'CragMapView' }">
+        <v-btn outlined color="primary" to="/maps/crags">
           La carte des falaises
         </v-btn>
       </p>

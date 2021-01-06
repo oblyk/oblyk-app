@@ -9,7 +9,7 @@
       </v-list-item-title>
     </v-list-item>
 
-    <v-list-item link :to="{ name: 'SignInView' }" v-if="!isLoggedIn">
+    <v-list-item link to="/sign-in" v-if="!isLoggedIn">
       <v-list-item-icon>
         <v-icon>mdi-login</v-icon>
       </v-list-item-icon>

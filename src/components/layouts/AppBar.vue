@@ -16,7 +16,7 @@
 
       <v-btn
         icon
-        :to="{ name: 'SearchView' }"
+        to="/search"
       >
         <v-icon>
           mdi-magnify
