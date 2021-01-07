@@ -3,6 +3,24 @@
     "termsOfUse": {
       "title": "Condition d'utilisation"
     },
+    "about": {
+      "title": "À propos d'Oblyk"
+    },
+    "news": {
+      "title": "Actualités d'Oblyk"
+    },
+    "helps": {
+      "title": "Aides"
+    },
+    "supportUs": {
+      "title": "Nous soutenir"
+    },
+    "contact": {
+      "title": "Contact"
+    },
+    "reportProblem": {
+      "title": "Signaler un problème"
+    },
     "cragMap": {
       "title": "Carte des falaises"
     },

@@ -26,6 +26,7 @@
     },
     "gym": {
       "addNew": "Add a new climbing gym",
+      "newGym": "New climbing gym",
       "tabs": {
         "info": "Info",
         "guideBook": "Guide book",
@@ -139,7 +140,6 @@
       },
       "appDrawer": {
         "home": "Home",
-        "dashboard": "Dashboard",
         "login": "Login",
         "signUp": "Sign up",
         "maps": "Maps",
@@ -149,7 +149,9 @@
         "tools": "Tools",
         "helps": "Helpes",
         "about": "About",
-        "donation": "Donation",
+        "donation": "Support us",
+        "news": "News",
+        "contribute": "Contribute",
         "subHeaders": {
           "me": "Me",
           "account": "Account",
@@ -163,6 +165,21 @@
           "guideBooks": "Guide books",
           "favorites": "Favorites"
         }
+      },
+      "footer": {
+        "clickToTop": "Click to return to the top of the page",
+        "itIsTimeToGoBackUp": "It's time to go back up !",
+        "moreAboutOblyk": "More about oblyk",
+        "followUs": "Follow us",
+        "news": "News",
+        "contact": "Contact",
+        "about": "About us",
+        "donation": "Support us",
+        "reportProblem": "Report a problem",
+        "helps": "Helps",
+        "termsOfUse": "Terms of use",
+        "facebook": "Facebook",
+        "github": "github"
       }
     }
   }

@@ -112,14 +112,14 @@
         <template v-slot:activator>
           <v-list-item-content>
             <v-list-item-title>
-              Contribuer
+              {{ $t('components.layout.appDrawer.contribute') }}
             </v-list-item-title>
           </v-list-item-content>
         </template>
         <app-drawer-item
           url="/gyms/new"
           icon="mdi-office-building"
-          :title="'Ajouter une salle'"
+          :title="$t('components.gym.newGym')"
         />
       </v-list-group>
 
@@ -146,25 +146,28 @@
       </v-subheader>
 
       <app-drawer-item
+        url="/news"
+        icon="mdi-newspaper-variant-multiple"
+        :title="$t('components.layout.appDrawer.news')"
+      />
+
+      <app-drawer-item
+        url="/about"
         icon="mdi-information-outline"
         :title="$t('components.layout.appDrawer.about')"
       />
 
       <app-drawer-item
+        url="/helps"
         icon="mdi-school"
         :title="$t('components.layout.appDrawer.helps')"
       />
 
       <app-drawer-item
+        url="/support-us"
         icon="mdi-cards-heart"
         icon-color="red"
         :title="$t('components.layout.appDrawer.donation')"
-      />
-
-      <app-drawer-item
-        url="/terms-of-use"
-        icon="mdi-scale-balance"
-        :title="$t('termsOfUse.title')"
       />
     </v-list>
   </div>

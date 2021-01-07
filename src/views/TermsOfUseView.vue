@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-container class="terms-of-use-container">
+    <v-container class="common-page-container">
       <h1>{{ $t('termsOfUse.title') }}</h1>
       <h2 class="mt-10">{{ $t('termsOfUse.summary') }}</h2>
       <ul>
@@ -169,12 +169,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.terms-of-use-container {
-  max-width: 1100px;
-
-  h3 {
-    margin-top: 3em;
-    margin-bottom: 0.5em;
-  }
+h3 {
+  margin-top: 3em;
+  margin-bottom: 0.5em;
+}
+p {
+  text-align: justify;
+  hyphens: auto;
 }
 </style>

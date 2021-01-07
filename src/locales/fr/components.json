@@ -26,6 +26,7 @@
     },
     "gym": {
       "addNew": "Ajouter une nouvelle salle",
+      "newGym": "Nouvelle salle",
       "tabs": {
         "info": "Info",
         "guideBook": "Topo",
@@ -148,7 +149,9 @@
         "tools": "Outils",
         "helps": "Aides",
         "about": "À propos",
-        "donation": "Don",
+        "donation": "Nous soutenir",
+        "news": "Actualités",
+        "contribute": "Contribuer",
         "subHeaders": {
           "me": "Moi",
           "account": "Compte",
@@ -162,6 +165,21 @@
           "guideBooks": "Topothèque",
           "favorites": "Favoris"
         }
+      },
+      "footer": {
+        "clickToTop": "Cliquez pour retourner en au de la page",
+        "itIsTimeToGoBackUp": "Il est temps de remonter !",
+        "moreAboutOblyk": "Plus sur oblyk",
+        "followUs": "Nous suivre",
+        "news": "Actualités",
+        "contact": "Contact",
+        "about": "À propos",
+        "donation": "Nous soutenir",
+        "reportProblem": "Signaler un problème",
+        "helps": "Aides",
+        "termsOfUse": "Mentions légales",
+        "facebook": "Facebook",
+        "github": "github"
       }
     }
   }

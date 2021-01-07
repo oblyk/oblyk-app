@@ -1,6 +1,26 @@
 {
   "common": {
-    "noInformation": "Non renseigné"
+    "noInformation": "Non renseigné",
+    "pages": {
+      "about": {
+        "title": "À propos d'Oblyk"
+      },
+      "news": {
+        "title": "Les nouvelles d'Oblyk"
+      },
+      "helps": {
+        "title": "Aides"
+      },
+      "supportUs": {
+        "title": "Nous soutenir"
+      },
+      "contact": {
+        "title": "Contact"
+      },
+      "reportProblem": {
+        "title": "Signaler un problème"
+      }
+    }
   },
   "date": {
     "format_dd_mm_yyyy": "jj/mm/aaaa"

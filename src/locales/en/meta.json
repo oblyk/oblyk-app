@@ -3,6 +3,24 @@
     "termsOfUse": {
       "title": "Terms and conditions of use"
     },
+    "about": {
+      "title": "About Oblyk"
+    },
+    "news": {
+      "title": "Oblyk news"
+    },
+    "helps": {
+      "title": "Helps"
+    },
+    "supportUs": {
+      "title": "Support us"
+    },
+    "contact": {
+      "title": "Contact"
+    },
+    "reportProblem": {
+      "title": "Report a problem"
+    },
     "cragMap": {
       "title": "Crags map"
     },
