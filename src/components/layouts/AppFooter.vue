@@ -2,9 +2,10 @@
   <v-footer padless class="app-footer">
     <v-container class="footer-container">
       <v-row>
+
+        <!-- It's time to go back up -->
         <v-col
-          class="back-to-the-to-col"
-          cols="md-4"
+          class="back-to-the-to-col col-12 col-md-4 order-3 order-md-0"
           :title="$t('components.layout.footer.clickToTop')"
           @click="backToTheTop()"
         >
@@ -18,7 +19,11 @@
             />
           </div>
         </v-col>
-        <v-col cols="md-4">
+
+        <!-- About oblyk -->
+        <v-col
+          class="col-12 col-md-4 order-0 order-md-1"
+        >
           <p class="font-weight-bold">
             {{ $t('components.layout.footer.moreAboutOblyk') }}
           </p>
@@ -39,7 +44,11 @@
             {{ $t('components.layout.footer.reportProblem') }}
           </router-link>
         </v-col>
-        <v-col cols="md-4">
+
+        <!-- Follow us -->
+        <v-col
+          class="col-12 col-md-4 order-1 order-md-3"
+        >
           <p class="font-weight-bold">
             {{ $t('components.layout.footer.followUs') }}
           </p>
