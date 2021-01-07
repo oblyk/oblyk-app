@@ -130,7 +130,11 @@
     "user": {
       "tabs": {
         "feed": "Feed",
-        "settings": "Settings"
+        "messenger": "messenger",
+        "subscribers": "Subscribers",
+        "ascents": "Ascents",
+        "guideBooks": "Guide book library",
+        "favorites": "Favorites"
       }
     },
     "layout": {
@@ -140,6 +144,7 @@
         "darkTheme": "Dark theme",
         "user": {
           "avatar": "Account avatar",
+          "banner": "Banner picture",
           "settings": "Settings",
           "messenger": "Messenger"
         }
@@ -168,6 +173,7 @@
         },
         "user": {
           "feed": "Feed",
+          "messenger": "Messenger",
           "ascents": "Ascents",
           "subscribers": "Subscribers",
           "guideBooks": "Guide books",

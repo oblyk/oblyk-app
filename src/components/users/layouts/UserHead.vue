@@ -21,6 +21,22 @@
         </h1>
         <span>
           {{ humanizeDate(user.date_of_birth, 'L') }}
+
+          <v-btn
+            v-if="itsMe()"
+            small
+            icon
+            class="ml-2"
+            :title="$t('actions.editMyProfile')"
+            :to="user.meUrl('settings')"
+          >
+            <v-icon
+              small
+            >
+              mdi-pencil
+            </v-icon>
+          </v-btn>
+
           <v-btn
             v-if="itsMe()"
             small

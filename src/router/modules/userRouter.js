@@ -12,36 +12,34 @@ export default [
     path: '/me/:userSlug/avatar',
     component: MyAvatarView,
     meta: {
+      requiresAuth: true,
       title: 'myAvatar',
-      showTitle: false,
-      showAvatar: true,
-      objectName: 'me'
+      showTitle: true
     }
   },
   {
     path: '/me/:userSlug/banner',
     component: MyBannerView,
     meta: {
+      requiresAuth: true,
       title: 'myBanner',
-      showTitle: false,
-      showAvatar: true,
-      objectName: 'me'
+      showTitle: true
     }
   },
   {
     path: '/me/:userSlug/settings',
     component: MyEditView,
     meta: {
+      requiresAuth: true,
       title: 'mySettings',
-      showTitle: false,
-      showAvatar: true,
-      objectName: 'me'
+      showTitle: true
     }
   },
   {
     path: '/me/:userSlug/ascents',
     component: MyAscentsView,
     meta: {
+      requiresAuth: true,
       title: 'myAscents',
       showTitle: true
     }
@@ -50,6 +48,7 @@ export default [
     path: '/me/:userSlug/subscribers',
     component: MySubscribersView,
     meta: {
+      requiresAuth: true,
       title: 'mySubscribers',
       showTitle: true
     }
@@ -58,6 +57,7 @@ export default [
     path: '/me/:userSlug/guide-books',
     component: MyGuideBooksView,
     meta: {
+      requiresAuth: true,
       title: 'myGuideBooks',
       showTitle: true
     }
@@ -66,6 +66,7 @@ export default [
     path: '/me/:userSlug/favorites',
     component: MyFavoritesView,
     meta: {
+      requiresAuth: true,
       title: 'myFavorites',
       showTitle: true
     }
@@ -74,6 +75,7 @@ export default [
     path: '/me/:userSlug/messenger',
     component: MessengerView,
     meta: {
+      requiresAuth: true,
       title: 'messenger',
       showTitle: true
     }

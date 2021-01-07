@@ -130,7 +130,11 @@
     "user": {
       "tabs": {
         "feed": "Fil",
-        "settings": "Paramètres"
+        "messenger": "Messagerie",
+        "subscribers": "Abonnés",
+        "ascents": "Croix",
+        "guideBooks": "Topothèque",
+        "favorites": "Favoris"
       }
     },
     "layout": {
@@ -140,6 +144,7 @@
         "darkTheme": "Thème sombre",
         "user": {
           "avatar": "Photo de profil",
+          "banner": "Photo du bandeau",
           "settings": "Paramètres",
           "messenger": "Messagerie"
         }
@@ -168,6 +173,7 @@
         },
         "user": {
           "feed": "Fil",
+          "messenger": "Messagerie",
           "ascents": "Croix",
           "subscribers": "Abonnés",
           "guideBooks": "Topothèque",
