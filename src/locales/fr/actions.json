@@ -34,6 +34,8 @@
     "myAvatar": "Mon avatar",
     "changeAvatar": "Changer ma photo de profil",
     "mySettings": "Mes paramètres",
-    "editMyProfile": "Modifier mon profil"
+    "editMyProfile": "Modifier mon profil",
+    "no": "Non",
+    "yes": "Oui"
   }
 }

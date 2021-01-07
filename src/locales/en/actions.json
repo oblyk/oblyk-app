@@ -34,6 +34,8 @@
     "myAvatar": "My avatar",
     "changeAvatar": "Change my profil picture",
     "mySettings": "My settings",
-    "editMyProfile": "Edit my profile"
+    "editMyProfile": "Edit my profile",
+    "no": "No",
+    "yes": "Yes"
   }
 }

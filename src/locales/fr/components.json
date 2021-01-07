@@ -133,6 +133,8 @@
       "successfulEditMessage": "Votre profile à été mis à jour",
       "whatClimbingType": "Quel type d'escalade pratiquez-vous ?",
       "whichLevel": "Dans quel niveau aimez-vous grimper ?",
+      "bePartPartner": "Voulez vous faire partie de la carte des grimpeurs ?",
+      "bePartPartnerExplain": "Faire partie de la carte des grimpeurs vous permet de trouver des gens avec qui grimper !",
       "tabs": {
         "feed": "Fil",
         "messenger": "Messagerie",

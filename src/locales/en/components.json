@@ -132,7 +132,9 @@
       "partnerSearch": "Partner search",
       "successfulEditMessage": "Your profile has been updated",
       "whatClimbingType": "What type of climbing do you practice ?",
-      "whichLevel": "In which level do you like to climb ?",
+      "whichLevel": "In which level do you like tso climb ?",
+      "bePartPartner": "Be part of the climbers' map?",
+      "bePartPartnerExplain": "Being part of the climbing map allows you to find people to climb with!",
       "tabs": {
         "feed": "Feed",
         "messenger": "messenger",
