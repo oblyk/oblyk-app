@@ -135,6 +135,9 @@
       "whichLevel": "In which level do you like tso climb ?",
       "bePartPartner": "Be part of the climbers' map?",
       "bePartPartnerExplain": "Being part of the climbing map allows you to find people to climb with!",
+      "localizationDeactivated": "localization disabled",
+      "activateLocalization": "Activate localization",
+      "activateLocalizationExplain": "Localization allows me to have information about what's going on around me (and is indispensable for the search for a partner).",
       "tabs": {
         "feed": "Feed",
         "messenger": "messenger",

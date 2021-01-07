@@ -8,6 +8,7 @@
           <h2 class="mb-4">
             {{ $t('components.user.partnerSearch') }}
           </h2>
+          <enable-localization :user="meUser" />
           <partner-form :user="meUser" submit-methode="put" />
         </v-col>
       </v-row>
@@ -19,10 +20,11 @@
 import { MeUserConcern } from '@/concerns/MeUserConcern'
 import Spinner from '@/components/layouts/Spiner'
 import PartnerForm from '@/components/users/forms/PartnerForm'
+import EnableLocalization from '@/components/users/notificationCard/EnableLocalization'
 
 export default {
   name: 'MyPartnerSettingsView',
-  components: { PartnerForm, Spinner },
+  components: { EnableLocalization, PartnerForm, Spinner },
   mixins: [MeUserConcern]
 }
 </script>
