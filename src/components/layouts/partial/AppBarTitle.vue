@@ -1,18 +1,22 @@
 <template>
-  <div>
-    <v-avatar
-      :size="isMobile ? 32 : 48"
-      v-if="avatar && showAvatar"
-      :class="isMobile ? 'mr-1' : 'mr-3'"
+  <div class="global-app-title">
+    <router-link
+      :to="url"
     >
-      <v-img
-        :src="avatar"
-        :alt="`avatar ${title}`"
-      />
-    </v-avatar>
-    <span v-if="(showTitle && hasTitle) || showAvatar">
-      {{ title }}
-    </span>
+      <v-avatar
+        :size="isMobile ? 32 : 48"
+        v-if="avatar && showAvatar"
+        :class="isMobile ? 'mr-1' : 'mr-3'"
+      >
+        <v-img
+          :src="avatar"
+          :alt="`avatar ${title}`"
+        />
+      </v-avatar>
+      <span v-if="(showTitle && hasTitle) || showAvatar">
+        {{ title }}
+      </span>
+    </router-link>
   </div>
 </template>
 
@@ -36,6 +40,7 @@ export default {
       showAvatar: false,
       title: null,
       avatar: null,
+      url: null,
       isMobile: false
     }
   },
@@ -67,6 +72,7 @@ export default {
       this.justTitle = this.$route.meta.title
       this.showTitle = this.justTitle && this.$route.meta.showTitle
       this.showAvatar = this.$route.meta.showAvatar
+      this.url = null
 
       if (this.$route.meta.objectName) {
         const routeObjectName = this.$route.meta.objectName
@@ -99,14 +105,23 @@ export default {
       if (this.objectName === 'word') {
         new Word().find(this.objectId).then(object => { this.title = object.name })
       } else if (this.objectName === 'gym') {
-        new Gym().find(this.objectId).then(object => { this.title = object.name; this.avatar = object.logoUrl() })
+        new Gym().find(this.objectId).then(object => { this.title = object.name; this.avatar = object.logoUrl(); this.url = object.url() })
       } else if (this.objectName === 'crag') {
-        new Crag().find(this.objectId).then(object => { this.title = object.name })
+        new Crag().find(this.objectId).then(object => { this.title = object.name; this.url = object.url() })
       } else if (this.objectName === 'me') {
-        this.getCurrentUser().then(user => { this.title = user.first_name; this.avatar = user.avatarUrl() })
+        this.getCurrentUser().then(user => { this.title = user.first_name; this.avatar = user.avatarUrl(); this.url = user.url() })
       }
       document.title = this.title || 'Oblyk'
     }
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.global-app-title {
+  a {
+    color: inherit !important;
+    text-decoration: none;
+  }
+}
+</style>
