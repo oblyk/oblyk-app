@@ -138,6 +138,8 @@
       "localizationDeactivated": "Localisation désactivée",
       "activateLocalization": "Activer la localisation",
       "activateLocalizationExplain": "La localisation permet d'avoir des informations sur ce qu'il se passe autour de moi (et est indispensable pour la recherche de partenaire)",
+      "uploadBanner": "Uploadez une bandeau pour donner du style à vote compte!",
+      "uploadAvatar": "Avec un photo de profile c'est plus beau !",
       "tabs": {
         "feed": "Fil",
         "messenger": "Messagerie",

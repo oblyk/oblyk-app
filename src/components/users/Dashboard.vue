@@ -13,6 +13,12 @@
           class="mb-3"
         />
 
+        <!-- Avatar missing -->
+        <avatar-missing :user="meUser" />
+
+        <!-- Banner missing -->
+        <banner-missing :user="meUser" />
+
         <!-- Enable partner search -->
         <enable-partner-search
           v-if="meUser.partner_search === null"
@@ -31,10 +37,12 @@ import UserHead from '@/components/users/layouts/UserHead'
 import UserTabs from '@/components/users/layouts/UserTabs'
 import EnablePartnerSearch from '@/components/users/notificationCard/EnablePartnerSearch'
 import EnableLocalization from '@/components/users/notificationCard/EnableLocalization'
+import BannerMissing from '@/components/users/notificationCard/BannerMissing'
+import AvatarMissing from '@/components/users/notificationCard/AvatarMissing'
 export default {
   name: 'Dashboard',
   mixins: [MeUserConcern],
-  components: { EnableLocalization, EnablePartnerSearch, UserTabs, UserHead, Spinner }
+  components: { AvatarMissing, BannerMissing, EnableLocalization, EnablePartnerSearch, UserTabs, UserHead, Spinner }
 }
 </script>
 
