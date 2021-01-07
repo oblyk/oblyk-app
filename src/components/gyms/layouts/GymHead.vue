@@ -6,50 +6,15 @@
       gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
       :src="gym.bannerUrl()"
     >
-      <v-tooltip
-        left
-        v-if="userCanTouch()"
-      >
-        <template v-slot:activator="{ on, attrs }">
-          <v-btn
-            v-if="isLoggedIn"
-            :to="gym.url('banner')"
-            class="change-gym-banner"
-            icon
-            v-bind="attrs"
-            v-on="on"
-            large
-            outlined
-          >
-            <v-icon>
-              mdi-camera
-            </v-icon>
-          </v-btn>
-        </template>
-        <span>
-          {{ $t('actions.changeBanner') }}
-        </span>
-      </v-tooltip>
       <div class="gym-header-title">
         <v-avatar
           size="80"
           class="float-left mr-3"
         >
-          <v-tooltip top :disabled="!userCanTouch()">
-            <template v-slot:activator="{ on, attrs }">
-              <v-img
-                class="hover-gym-logo"
-                v-bind="attrs"
-                v-on="on"
-                @click="userCanTouch() ? $router.push(gym.url('logo')) : null"
-                :src="gym.logoUrl()"
-                :alt="`logo ${gym.name}`"
-              />
-            </template>
-            <span>
-              {{ $t('actions.changeLogo') }}
-            </span>
-          </v-tooltip>
+          <v-img
+            :src="gym.logoUrl()"
+            :alt="`logo ${gym.name}`"
+          />
         </v-avatar>
         <h1 class="font-weight-medium">
           {{ gym.name }}
@@ -65,6 +30,37 @@
             v-if="userCanTouch()"
           >
             {{ $t('actions.edit') }}
+          </v-btn>
+
+          <v-btn
+            :to="gym.url('banner')"
+            small
+            :title="$t('actions.changeBanner')"
+            outlined
+            class="ml-2"
+            v-if="userCanTouch()"
+          >
+            <v-icon
+              small
+            >
+              mdi-panorama
+            </v-icon>
+          </v-btn>
+
+          <v-btn
+            :to="gym.url('logo')"
+            small
+            :title="$t('actions.changeLogo')"
+            icon
+            outlined
+            class="ml-2"
+            v-if="userCanTouch()"
+          >
+            <v-icon
+              small
+            >
+              mdi-image
+            </v-icon>
           </v-btn>
         </span>
       </div>
@@ -92,12 +88,6 @@ export default {
 .gym-header-banner {
   height: 500px;
   max-height: 100%;
-  .hover-gym-logo {
-    cursor: pointer;
-    &:hover {
-      opacity: 0.8;
-    }
-  }
   .change-gym-banner {
     float: right;
     margin-right: 5px;
