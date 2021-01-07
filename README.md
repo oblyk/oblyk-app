@@ -54,6 +54,7 @@ ___
 - [ ] Topothèque
 - [ ] Tick-list
 - [ ] Faire le "Flux"
+- [ ] Mes photos
 ---
 - [ ] Supprimer son compte 
 - [ ] Export de ses données

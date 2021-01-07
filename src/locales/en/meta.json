@@ -60,6 +60,9 @@
     "mySettings": {
       "title": "My Settings"
     },
+    "myPartnerSettings": {
+      "title": "Partner search settings"
+    },
     "myAscents": {
       "title": "My ascents"
     },

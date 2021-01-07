@@ -6,9 +6,9 @@
       <v-row justify="center">
         <v-col class="global-form-width">
           <h2 class="mb-4">
-            {{ $t('components.user.globalInformation') }}
+            {{ $t('components.user.partnerSearch') }}
           </h2>
-          <user-form :user="meUser" submit-methode="put" />
+          <partner-form :user="meUser" submit-methode="put" />
         </v-col>
       </v-row>
     </v-container>
@@ -18,11 +18,11 @@
 <script>
 import { MeUserConcern } from '@/concerns/MeUserConcern'
 import Spinner from '@/components/layouts/Spiner'
-import UserForm from '@/components/users/forms/UserForm'
+import PartnerForm from '@/components/users/forms/PartnerForm'
 
 export default {
-  name: 'MyEditView',
-  components: { UserForm, Spinner },
+  name: 'MyPartnerSettingsView',
+  components: { PartnerForm, Spinner },
   mixins: [MeUserConcern]
 }
 </script>

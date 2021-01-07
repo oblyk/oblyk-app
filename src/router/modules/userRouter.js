@@ -6,6 +6,7 @@ import MySubscribersView from '@/views/me/MySubscribersView'
 import MyGuideBooksView from '@/views/me/MyGuideBooksView'
 import MyFavoritesView from '@/views/me/MyFavoritesView'
 import MessengerView from '@/views/me/MessengerView'
+import MyPartnerSettingsView from '@/views/me/actions/MyPartnerSettingsView'
 
 export default [
   {
@@ -32,7 +33,16 @@ export default [
     meta: {
       requiresAuth: true,
       title: 'mySettings',
-      showTitle: true
+      showTitle: false
+    }
+  },
+  {
+    path: '/me/:userSlug/partner-settings',
+    component: MyPartnerSettingsView,
+    meta: {
+      requiresAuth: true,
+      title: 'myPartnerSettings',
+      showTitle: false
     }
   },
   {

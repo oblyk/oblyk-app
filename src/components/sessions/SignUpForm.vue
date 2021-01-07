@@ -116,7 +116,7 @@ export default {
   methods: {
     signUp: function () {
       if (!this.termsOfUse) {
-        this.$root.$emit('alerteSimpleError', this.$t('components.session.youMustBeAgree'))
+        this.$root.$emit('alertSimpleError', this.$t('components.session.youMustBeAgree'))
         return
       }
 

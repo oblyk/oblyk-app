@@ -10,6 +10,17 @@ class UserApi extends BaseApi {
     })
   }
 
+  update (data) {
+    return axios({
+      url: `${this.baseUrl}/users/current.json`,
+      headers: { Authorization: this.authToken() },
+      data: {
+        user: data
+      },
+      method: 'PUT'
+    })
+  }
+
   avatar (data) {
     return axios({
       url: `${this.baseUrl}/users/current/avatar.json`,

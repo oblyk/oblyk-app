@@ -8,6 +8,11 @@ export const DateHelpers = {
     humanizeDate: function (date, format = 'LL') {
       moment.locale(this.$vuetify.lang.current)
       return moment(date).format(format)
+    },
+
+    yearsOld: function (dateOfBirth, toS = true) {
+      const yearsOld = moment().diff(moment(dateOfBirth), 'years')
+      return toS ? `${yearsOld}${this.$t('date.yearsOld')}` : yearsOld
     }
   }
 }

@@ -128,6 +128,11 @@
       "searchDefinition": "Chercher une définition"
     },
     "user": {
+      "globalInformation": "Information général",
+      "partnerSearch": "Recherche de partenaire",
+      "successfulEditMessage": "Votre profile à été mis à jour",
+      "whatClimbingType": "Quel type d'escalade pratiquez-vous ?",
+      "whichLevel": "Dans quel niveau aimez-vous grimper ?",
       "tabs": {
         "feed": "Fil",
         "messenger": "Messagerie",

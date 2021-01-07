@@ -5,9 +5,14 @@
       "name": "Name",
       "first_name": "First name",
       "last_name": "Last name",
+      "description": "Me in a few words",
       "password": "Password",
       "confirm_password": "Confirm your password",
-      "email": "Email"
+      "email": "Email",
+      "genre": "Genre",
+      "partner_search": "Be part of the partner search",
+      "grade_min": "Heating grade",
+      "grade_max": "Projet grade"
     },
     "crag": {
       "name": "Name"
@@ -116,6 +121,11 @@
     "word": {
       "name": "Word",
       "definition": "Definition"
+    },
+    "genres": {
+      "undefined": "Undefined",
+      "male": "Male",
+      "female": "Female"
     },
     "tags": {
       "crimps":  "Crimps",

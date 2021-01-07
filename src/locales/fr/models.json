@@ -5,9 +5,14 @@
       "name": "Nom",
       "first_name": "Prénom",
       "last_name": "Nom",
+      "description": "Moi en quelques mots",
       "password": "Mot de passe",
       "confirm_password": "Confirmez votre mot de passe",
-      "email": "Email"
+      "email": "Email",
+      "genre": "Genre",
+      "partner_search": "Faire partie de la recherche de partenaire",
+      "grade_min": "Cotation \"d'échauffement\"",
+      "grade_max": "Cotation projet"
     },
     "crag": {
       "name": "Nom du site"
@@ -116,6 +121,11 @@
     "word": {
       "name": "Mot",
       "definition": "Définition"
+    },
+    "genres": {
+      "undefined": "Indéfini",
+      "male": "Homme",
+      "female": "Femme"
     },
     "tags": {
       "crimps": "Réglettes",

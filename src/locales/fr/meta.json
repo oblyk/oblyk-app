@@ -60,6 +60,9 @@
     "mySettings": {
       "title": "Mes paramètres"
     },
+    "myPartnerSettings": {
+      "title": "Paramètre de la recherche de partenaire"
+    },
     "myAscents": {
       "title": "Mes croix"
     },

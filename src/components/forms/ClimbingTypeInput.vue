@@ -38,7 +38,7 @@ export default {
         { text: this.$t('models.climbs.aid_climbing'), value: 'aid_climbing' },
         { text: this.$t('models.climbs.deep_water'), value: 'deep_water' },
         { text: this.$t('models.climbs.via_ferrata'), value: 'via_ferrata' },
-        { text: this.$t('models.climbs.pan'), value: 'via_ferrata' }
+        { text: this.$t('models.climbs.pan'), value: 'pan' }
       ],
       climbingGymList: [
         { text: this.$t('models.climbs.sport_climbing'), value: 'sport_climbing' },

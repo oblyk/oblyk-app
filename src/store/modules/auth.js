@@ -133,6 +133,12 @@ const actions = {
     })
   },
 
+  updateUserName ({ commit }, data) {
+    commit('updated', {
+      name: `${data.first_name} ${data.last_name}`
+    })
+  },
+
   logout ({ commit }) {
     return new Promise(resolve => {
       commit('logout')
@@ -156,6 +162,10 @@ const mutations = {
     state.name = payload.name
     state.slug_name = payload.slug_name
     state.administered_gyms = payload.administered_gyms
+  },
+
+  updated (state, payload) {
+    state.name = payload.name
   },
 
   error (state) {

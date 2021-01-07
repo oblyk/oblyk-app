@@ -2,22 +2,26 @@
   <div>
     <spinner v-if="loadingMeUser" />
 
-    <v-container v-if="!loadingMeUser">
-      <v-row>
-        <v-col>
-          ...
-        </v-col>
-      </v-row>
-    </v-container>
+    <div v-if="!loadingMeUser">
+      <user-tabs :user="meUser" />
+      <v-container>
+        <v-row>
+          <v-col>
+            ...
+          </v-col>
+        </v-row>
+      </v-container>
+    </div>
   </div>
 </template>
 <script>
 import { MeUserConcern } from '@/concerns/MeUserConcern'
 import Spinner from '@/components/layouts/Spiner'
+import UserTabs from '@/components/users/layouts/UserTabs'
 
 export default {
   name: 'MyAscentsView',
-  components: { Spinner },
+  components: { UserTabs, Spinner },
   mixins: [MeUserConcern]
 }
 </script>

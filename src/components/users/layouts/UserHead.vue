@@ -20,7 +20,12 @@
           {{ user.full_name }}
         </h1>
         <span>
-          {{ humanizeDate(user.date_of_birth, 'L') }}
+          <span v-if="user.genre">
+            {{ $t(`models.genres.${user.genre}`)}},
+          </span>
+          <span v-if="user.date_of_birth">
+            {{ yearsOld(user.date_of_birth) }}
+          </span>
 
           <v-btn
             v-if="itsMe()"

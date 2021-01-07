@@ -23,6 +23,7 @@
     }
   },
   "date": {
+    "yearsOld": " years old",
     "format_dd_mm_yyyy": "dd/mm/yyyy"
   }
 }

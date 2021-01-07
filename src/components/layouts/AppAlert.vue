@@ -27,8 +27,13 @@ export default {
     this.$root.$on('alertFromApiError', (err, object) => {
       this.fromApiError(err, object)
     })
-    this.$root.$on('alerteSimpleError', (message) => {
+
+    this.$root.$on('alertSimpleError', (message) => {
       this.simpleError(message)
+    })
+
+    this.$root.$on('alertSimpleSuccess', (message) => {
+      this.successAlert(message)
     })
   },
 
@@ -57,10 +62,18 @@ export default {
     },
 
     simpleError: function (message) {
+      this.simpleAlert(message, 'error')
+    },
+
+    successAlert: function (message) {
+      this.simpleAlert(message, 'success')
+    },
+
+    simpleAlert: function (message, type) {
       this.clear()
       this.messages.push(message)
       this.show = true
-      this.type = 'error'
+      this.type = type
     },
 
     clear: function () {
