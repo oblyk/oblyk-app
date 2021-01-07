@@ -1,8 +1,8 @@
 <template>
   <div>
-    <spinner v-if="loadingUserCurrent" />
+    <spinner v-if="loadingMeUser" />
 
-    <v-container v-if="!loadingUserCurrent">
+    <v-container v-if="!loadingMeUser">
       <v-row>
         <v-col>
           ...
@@ -12,12 +12,12 @@
   </div>
 </template>
 <script>
-import { UserCurrentConcern } from '@/concerns/UserCurrentConcern'
+import { MeUserConcern } from '@/concerns/MeUserConcern'
 import Spinner from '@/components/layouts/Spiner'
 
 export default {
   name: 'MySubscribersView',
   components: { Spinner },
-  mixins: [UserCurrentConcern]
+  mixins: [MeUserConcern]
 }
 </script>

@@ -1,30 +1,30 @@
 import { SessionConcern } from '@/concerns/SessionConcern'
 
-export const UserCurrentConcern = {
+export const MeUserConcern = {
   mixins: [SessionConcern],
 
   data () {
     return {
-      userCurrent: null,
-      loadingUserCurrent: true
+      meUser: null,
+      loadingMeUser: true
     }
   },
 
   created () {
-    if (this.isLoggedIn) this.getUserCurrent()
+    if (this.isLoggedIn) this.getMeUser()
   },
 
   methods: {
-    getUserCurrent: function () {
-      this.loadingUserCurrent = true
+    getMeUser: function () {
+      this.loadingMeUser = true
       this.getCurrentUser()
         .then((user) => {
-          this.userCurrent = user
+          this.meUser = user
         })
         .catch((err) => {
           this.$root.$emit('alertFromApiError', err, 'user')
         }).finally(() => {
-          this.loadingUserCurrent = false
+          this.loadingMeUser = false
         })
     }
   }

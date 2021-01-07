@@ -70,8 +70,8 @@
         <v-list>
           <div v-if="isLoggedIn && user">
             <v-list-item>
-              <v-list-item-avatar v-if="!loadingUserCurrent">
-                <img :src="userCurrent.avatarUrl()" :alt="`avatar ${currentUser.name}`">
+              <v-list-item-avatar v-if="!loadingMeUser">
+                <img :src="meUser.avatarUrl()" :alt="`avatar ${currentUser.name}`">
               </v-list-item-avatar>
               <v-list-item-title class="font-weight-bold">
                 {{ currentUser.name }}
@@ -107,11 +107,11 @@ import LoginLogoutBtn from '@/components/layouts/partial/LoginLogoutBtn'
 import { SessionConcern } from '@/concerns/SessionConcern'
 import AppDrawerItem from '@/components/layouts/partial/AppDrawerItem'
 import AppBarTitle from '@/components/layouts/partial/AppBarTitle'
-import { UserCurrentConcern } from '@/concerns/UserCurrentConcern'
+import { MeUserConcern } from '@/concerns/MeUserConcern'
 
 export default {
   name: 'AppBar',
-  mixins: [SessionConcern, UserCurrentConcern],
+  mixins: [SessionConcern, MeUserConcern],
   components: {
     AppBarTitle,
     AppDrawerItem,

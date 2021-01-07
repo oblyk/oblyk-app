@@ -1,22 +1,22 @@
 <template>
   <div>
-    <spinner v-if="loadingUserCurrent" />
+    <spinner v-if="loadingMeUser" />
 
     <div v-else>
-      <user-head :user="userCurrent" />
-      <user-tabs :user="userCurrent" />
+      <user-head :user="meUser" />
+      <user-tabs :user="meUser" />
     </div>
   </div>
 </template>
 
 <script>
 import Spinner from '@/components/layouts/Spiner'
-import { UserCurrentConcern } from '@/concerns/UserCurrentConcern'
+import { MeUserConcern } from '@/concerns/MeUserConcern'
 import UserHead from '@/components/users/layouts/UserHead'
 import UserTabs from '@/components/users/layouts/UserTabs'
 export default {
   name: 'Dashboard',
-  mixins: [UserCurrentConcern],
+  mixins: [MeUserConcern],
   components: { UserTabs, UserHead, Spinner }
 }
 </script>
