@@ -127,6 +127,12 @@
       "backToGlossary": "Back to glossary",
       "searchDefinition": "Search a definition"
     },
+    "user": {
+      "tabs": {
+        "feed": "Feed",
+        "settings": "Settings"
+      }
+    },
     "layout": {
       "appBar": {
         "login": "Login",
@@ -152,6 +158,7 @@
         "donation": "Support us",
         "news": "News",
         "contribute": "Contribute",
+        "oblyk": "Oblyk",
         "subHeaders": {
           "me": "Me",
           "account": "Account",
@@ -160,6 +167,7 @@
           "project": "Project"
         },
         "user": {
+          "feed": "Feed",
           "ascents": "Ascents",
           "subscribers": "Subscribers",
           "guideBooks": "Guide books",

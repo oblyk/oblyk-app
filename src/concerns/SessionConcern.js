@@ -10,7 +10,9 @@ export const SessionConcern = {
 
     currentUser: function () {
       return {
-        name: store.getters['auth/getName']
+        name: store.getters['auth/getName'],
+        slugName: store.getters['auth/getSlugName'],
+        id: store.getters['auth/getUserId']
       }
     },
 

@@ -6,15 +6,24 @@ import HelpsView from '@/views/HelpsView'
 import SupportUsView from '@/views/SupportUsView'
 import ContactView from '@/views/ContactView'
 import ReportProblemView from '@/views/ReportProblemView'
+import OblykView from '@/views/OblykView'
 
 export default [
   {
     path: '/',
-    name: 'HomeView',
     component: HomeView,
     meta: {
       noPaddingTop: true,
       title: 'home',
+      showTitle: false
+    }
+  },
+  {
+    path: '/oblyk',
+    component: OblykView,
+    meta: {
+      noPaddingTop: true,
+      title: 'oblyk',
       showTitle: false
     }
   },

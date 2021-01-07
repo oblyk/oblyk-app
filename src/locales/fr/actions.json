@@ -31,6 +31,8 @@
     "backToName": "Retour à %{name}",
     "addMember": "Ajouter un membre",
     "seeOnTheMap": "Voir sur la carte",
-    "myAvatar": "Mon avatar"
+    "myAvatar": "Mon avatar",
+    "changeAvatar": "Changer ma photo de profil",
+    "mySettings": "Mes paramètres"
   }
 }

@@ -79,8 +79,8 @@
             </v-list-item>
             <v-divider/>
             <app-drawer-item :title="$t('components.layout.appBar.user.avatar')" icon="mdi-camera-account" :url="user.meUrl('avatar')" />
-            <app-drawer-item :title="$t('components.layout.appBar.user.settings')" icon="mdi-settings" />
-            <app-drawer-item :title="$t('components.layout.appBar.user.messenger')" icon="mdi-forum" />
+            <app-drawer-item :title="$t('components.layout.appBar.user.settings')" icon="mdi-settings" :url="user.meUrl('settings')" />
+            <app-drawer-item :title="$t('components.layout.appBar.user.messenger')" icon="mdi-forum" :url="user.meUrl('messenger')"/>
             <v-divider/>
           </div>
           <login-logout-btn />

@@ -25,21 +25,31 @@
         {{ $t('components.layout.appDrawer.subHeaders.me') }}
       </v-subheader>
       <app-drawer-item
+        url="/"
+        icon="mdi-arrow-decision-outline"
+        icon-color="orange"
+        :title="$t('components.layout.appDrawer.user.feed')"
+      />
+      <app-drawer-item
+        :url="`/me/${currentUser.slugName}/ascents`"
         icon="mdi-check-all"
         icon-color="blue"
         :title="$t('components.layout.appDrawer.user.ascents')"
       />
       <app-drawer-item
+        :url="`/me/${currentUser.slugName}/subscribers`"
         icon="mdi-account-star-outline"
         icon-color="green"
         :title="$t('components.layout.appDrawer.user.subscribers')"
       />
       <app-drawer-item
+        :url="`/me/${currentUser.slugName}/guide-books`"
         icon="mdi-bookshelf"
         icon-color="deep-purple"
         :title="$t('components.layout.appDrawer.user.guideBooks')"
       />
       <app-drawer-item
+        :url="`/me/${currentUser.slugName}/favorites`"
         icon="mdi-star"
         icon-color="amber"
         :title="$t('components.layout.appDrawer.user.favorites')"
@@ -144,6 +154,13 @@
       <v-subheader>
         {{ $t('components.layout.appDrawer.subHeaders.project') }}
       </v-subheader>
+
+      <app-drawer-item
+        v-if="isLoggedIn"
+        url="/oblyk"
+        icon="mdi-terrain"
+        :title="$t('components.layout.appDrawer.oblyk')"
+      />
 
       <app-drawer-item
         url="/news"

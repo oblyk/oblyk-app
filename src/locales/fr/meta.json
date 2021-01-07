@@ -48,8 +48,32 @@
     "home": {
       "title": "Oblyk"
     },
-    "userAvatar": {
+    "oblyk": {
+      "title": "Oblyk"
+    },
+    "myAvatar": {
       "title": "Photo de profil"
+    },
+    "myBanner": {
+      "title": "Bandeau"
+    },
+    "mySettings": {
+      "title": "Mes paramètres"
+    },
+    "myAscents": {
+      "title": "Mes croix"
+    },
+    "mySubscribers": {
+      "title": "Abonnés"
+    },
+    "myGuideBooks": {
+      "title": "Topothèque"
+    },
+    "myFavorites": {
+      "title": "Mes favoris"
+    },
+    "messenger": {
+      "title": "Messagerie"
     }
   }
 }

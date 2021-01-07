@@ -23,7 +23,7 @@ import Spinner from '@/components/layouts/Spiner'
 import UserImageForm from '@/components/users/forms/UserImageForm'
 
 export default {
-  name: 'UserAvatarView',
+  name: 'MyAvatarView',
   components: { UserImageForm, Spinner },
   mixins: [UserCurrentConcern]
 }

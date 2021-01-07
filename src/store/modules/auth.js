@@ -7,6 +7,7 @@ const state = {
   expired_at: '',
   refresh_token: '',
   name: '',
+  slug_name: '',
   id: '',
   administered_gyms: []
 }
@@ -43,6 +44,10 @@ const getters = {
 
   getName: state => {
     return state.name
+  },
+
+  getSlugName: state => {
+    return state.slug_name
   }
 }
 
@@ -65,6 +70,7 @@ const actions = {
             refresh_token: data.refresh_token,
             expired_at: data.expired_at,
             name: `${data.user.first_name} ${data.user.last_name}`,
+            slug_name: data.user.slug_name,
             id: data.user.id,
             administered_gyms: data.administered_gyms
           })
@@ -89,6 +95,7 @@ const actions = {
             refresh_token: data.refresh_token,
             expired_at: data.expired_at,
             name: `${data.user.first_name} ${data.user.last_name}`,
+            slug_name: data.user.slug_name,
             id: data.user.id,
             administered_gyms: data.administered_gyms
           })
@@ -113,6 +120,7 @@ const actions = {
             expired_at: data.expired_at,
             refresh_token: data.refresh_token,
             name: `${data.user.first_name} ${data.user.last_name}`,
+            slug_name: data.user.slug_name,
             id: data.user.id,
             administered_gyms: data.administered_gyms
           })
@@ -146,6 +154,7 @@ const mutations = {
     state.expired_at = payload.expired_at
     state.id = payload.id
     state.name = payload.name
+    state.slug_name = payload.slug_name
     state.administered_gyms = payload.administered_gyms
   },
 
@@ -159,6 +168,7 @@ const mutations = {
     state.expired_at = ''
     state.refresh_token = ''
     state.name = ''
+    state.slug_name = ''
     state.id = ''
     state.administered_gyms = []
   }

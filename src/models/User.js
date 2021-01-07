@@ -6,7 +6,7 @@ export default class User extends ActiveData {
     return this.apiFind(UserApi, id)
   }
 
-  meUrl (page = 'infos') {
+  meUrl (page = '') {
     return `/me/${this.slug_name}/${page}`
   }
 

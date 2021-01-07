@@ -127,6 +127,12 @@
       "backToGlossary": "Retour au lexique",
       "searchDefinition": "Chercher une définition"
     },
+    "user": {
+      "tabs": {
+        "feed": "Fil",
+        "settings": "Paramètres"
+      }
+    },
     "layout": {
       "appBar": {
         "login": "Me connecter",
@@ -152,6 +158,7 @@
         "donation": "Nous soutenir",
         "news": "Actualités",
         "contribute": "Contribuer",
+        "oblyk": "Oblyk",
         "subHeaders": {
           "me": "Moi",
           "account": "Compte",
@@ -160,6 +167,7 @@
           "project": "Le projet"
         },
         "user": {
+          "feed": "Fil",
           "ascents": "Croix",
           "subscribers": "Abonnés",
           "guideBooks": "Topothèque",

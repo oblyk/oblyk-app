@@ -81,8 +81,10 @@ ___
 ## TODO Autres pages
 - [x] Mention légale
 - [ ] Le projet
-- [ ] Don
+- [ ] Nous soutenir
 - [ ] Les cotations
 - [ ] Aides
+- [ ] Contact
+- [ ] Actualité
 - [x] Ajout du infinity scroll sur le lexique
 - [x] Recherche en elastic search sur le lexique

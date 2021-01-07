@@ -5,9 +5,9 @@ export const DateHelpers = {
       return moment()
     },
 
-    humanizeDate: function (date) {
+    humanizeDate: function (date, format = 'LL') {
       moment.locale(this.$vuetify.lang.current)
-      return moment(date).format('LL')
+      return moment(date).format(format)
     }
   }
 }

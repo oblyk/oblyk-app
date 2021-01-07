@@ -19,7 +19,6 @@
 </template>
 <script>
 import UserApi from '@/services/oblyk-api/userApi'
-import User from '@/models/User'
 import SubmitForm from '@/components/forms/SubmitForm'
 import CloseForm from '@/components/forms/CloseForm'
 import { FormHelpers } from '@/mixins/FormHelpers'
@@ -57,9 +56,8 @@ export default {
       }
 
       promise
-        .then((resp) => {
-          const user = new User(resp.data)
-          this.$router.push(user.url())
+        .then(() => {
+          this.$router.push('/')
         })
         .catch((err) => {
           this.$root.$emit('alertFromApiError', err, 'user')
