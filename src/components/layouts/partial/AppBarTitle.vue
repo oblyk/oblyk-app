@@ -2,6 +2,7 @@
   <div class="global-app-title">
     <router-link
       :to="url"
+      v-if="url"
     >
       <v-avatar
         :size="isMobile ? 32 : 48"
@@ -17,6 +18,22 @@
         {{ title }}
       </span>
     </router-link>
+
+    <div v-else>
+      <v-avatar
+        :size="isMobile ? 32 : 48"
+        v-if="avatar && showAvatar"
+        :class="isMobile ? 'mr-1' : 'mr-3'"
+      >
+        <v-img
+          :src="avatar"
+          :alt="`avatar ${title}`"
+        />
+      </v-avatar>
+      <span v-if="(showTitle && hasTitle) || showAvatar">
+        {{ title }}
+      </span>
+    </div>
   </div>
 </template>
 
@@ -72,7 +89,6 @@ export default {
       this.justTitle = this.$route.meta.title
       this.showTitle = this.justTitle && this.$route.meta.showTitle
       this.showAvatar = this.$route.meta.showAvatar
-      this.url = null
 
       if (this.$route.meta.objectName) {
         const routeObjectName = this.$route.meta.objectName
@@ -86,6 +102,7 @@ export default {
           this.getObject()
         }
       } else {
+        this.url = null
         this.objectId = null
         this.objectName = null
         this.avatar = null
