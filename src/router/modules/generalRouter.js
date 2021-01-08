@@ -7,6 +7,7 @@ import SupportUsView from '@/views/SupportUsView'
 import ContactView from '@/views/ContactView'
 import ReportProblemView from '@/views/ReportProblemView'
 import OblykView from '@/views/OblykView'
+import GradeView from '@/views/GradeView'
 
 export default [
   {
@@ -80,6 +81,14 @@ export default [
     component: ReportProblemView,
     meta: {
       title: 'reportProblem',
+      showTitle: false
+    }
+  },
+  {
+    path: '/grades',
+    component: GradeView,
+    meta: {
+      title: 'grade',
       showTitle: false
     }
   }

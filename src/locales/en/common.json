@@ -25,6 +25,9 @@
       },
       "reportProblem": {
         "title": "Report a problem"
+      },
+      "grade": {
+        "title": "Grades"
       }
     }
   }

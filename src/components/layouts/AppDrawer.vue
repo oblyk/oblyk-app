@@ -150,10 +150,17 @@
             </v-list-item-title>
           </v-list-item-content>
         </template>
+
         <app-drawer-item
           url="/glossary"
           icon="mdi-book-open-variant"
           :title="$t('components.word.title')"
+        />
+
+        <app-drawer-item
+          url="/grades"
+          icon="mdi-numeric-7-box-multiple"
+          :title="$t('common.pages.grade.title')"
         />
       </v-list-group>
 

@@ -21,6 +21,9 @@
     "reportProblem": {
       "title": "Signaler un problème"
     },
+    "grade": {
+      "title": "Les cotations"
+    },
     "cragMap": {
       "title": "Carte des falaises"
     },
