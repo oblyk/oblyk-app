@@ -1,4 +1,8 @@
 {
+  "date": {
+    "yearsOld": "ans",
+    "format_dd_mm_yyyy": "jj/mm/aaaa"
+  },
   "common": {
     "noInformation": "Non renseigné",
     "pages": {
@@ -15,15 +19,13 @@
         "title": "Nous soutenir"
       },
       "contact": {
-        "title": "Contact"
+        "title": "Contact",
+        "paragraphe": "Pour toutes questions : que ce soit une demande d'aide, une suggestion d'amélioration, un bug trouvé, une demande d'informations, etc.<br>Envoyez nous un mail",
+        "quickResponse": "On essayera de vous répondre rapidement, promis !"
       },
       "reportProblem": {
         "title": "Signaler un problème"
       }
     }
-  },
-  "date": {
-    "yearsOld": "ans",
-    "format_dd_mm_yyyy": "jj/mm/aaaa"
   }
 }
