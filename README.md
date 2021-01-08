@@ -71,8 +71,8 @@ ___
 - [ ] Système d'alerte
 
 ## TODO Recherche partenaire de grimpe
-- [ ] Paramétrage à la création d'un compte
-- [ ] Changement des paramètres dans son profil
+- [X] Paramétrage à la création d'un compte
+- [X] Changement des paramètres dans son profil
 - [ ] La carte des grimpeurs
 
 ## TODO News
