@@ -25,25 +25,13 @@
           <v-btn
             :to="gym.url('edit')"
             small
-            outlined
+            icon
+            :title="$t('actions.edit')"
             class="ml-1"
             v-if="userCanTouch()"
           >
-            {{ $t('actions.edit') }}
-          </v-btn>
-
-          <v-btn
-            :to="gym.url('banner')"
-            small
-            :title="$t('actions.changeBanner')"
-            outlined
-            class="ml-2"
-            v-if="userCanTouch()"
-          >
-            <v-icon
-              small
-            >
-              mdi-panorama
+            <v-icon small>
+              mdi-pencil
             </v-icon>
           </v-btn>
 
@@ -52,14 +40,28 @@
             small
             :title="$t('actions.changeLogo')"
             icon
-            outlined
             class="ml-2"
             v-if="userCanTouch()"
           >
             <v-icon
               small
             >
-              mdi-image
+              mdi-alpha-l-circle
+            </v-icon>
+          </v-btn>
+
+          <v-btn
+            :to="gym.url('banner')"
+            small
+            :title="$t('actions.changeBanner')"
+            icon
+            class="ml-2"
+            v-if="userCanTouch()"
+          >
+            <v-icon
+              small
+            >
+              mdi-panorama
             </v-icon>
           </v-btn>
         </span>
