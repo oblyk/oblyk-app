@@ -173,6 +173,12 @@ const actions = {
     })
   },
 
+  updateSubscribes ({ commit }, data) {
+    commit('updatedSubscribes', {
+      subscribes: data.subscribes
+    })
+  },
+
   logout ({ commit }) {
     return new Promise(resolve => {
       commit('logout')
@@ -201,6 +207,10 @@ const mutations = {
 
   updated (state, payload) {
     state.name = payload.name
+  },
+
+  updatedSubscribes (state, payload) {
+    state.subscribes = payload.subscribes
   },
 
   error (state) {

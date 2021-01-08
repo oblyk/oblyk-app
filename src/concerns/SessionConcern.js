@@ -51,7 +51,6 @@ export const SessionConcern = {
 
     iAmSubscribedToThis: function (type, id) {
       let IAmSubscribed = false
-      console.log(this.mySubscribes)
       for (const subscribe of this.mySubscribes) {
         if (subscribe.followable_type === type && subscribe.followable_id === id) IAmSubscribed = true
       }

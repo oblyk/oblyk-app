@@ -2,6 +2,8 @@
   <v-btn
     v-if="isLoggedIn"
     outlined
+    :loading="requesting"
+    @click="changeSubscription()"
   >
     <v-icon
       left
@@ -15,6 +17,8 @@
 
 <script>
 import { SessionConcern } from '@/concerns/SessionConcern'
+import FollowApi from '@/services/oblyk-api/followApi'
+import store from '@/store'
 
 export default {
   name: 'SubscribeBtn',
@@ -22,6 +26,12 @@ export default {
   props: {
     subscribeType: String,
     subscribeId: Number
+  },
+
+  data () {
+    return {
+      requesting: false
+    }
   },
 
   methods: {
@@ -39,6 +49,31 @@ export default {
 
     label: function () {
       return this.subscribed() ? this.$t('actions.unsubscribe') : this.$t('actions.subscribe')
+    },
+
+    changeSubscription: function () {
+      this.requesting = true
+
+      const data = {
+        followable_id: this.subscribeId,
+        followable_type: this.subscribeType
+      }
+
+      const promise = (this.subscribed()) ? FollowApi.delete(data) : FollowApi.create(data)
+
+      promise
+        .then(resp => {
+          console.log(resp)
+          store.dispatch('auth/updateSubscribes', {
+            subscribes: resp.data
+          })
+        })
+        .catch((err) => {
+          console.error(err)
+        })
+        .finally(() => {
+          this.requesting = false
+        })
     }
   }
 }
