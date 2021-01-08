@@ -133,6 +133,31 @@ const actions = {
     })
   },
 
+  newPassword ({ commit }, data) {
+    return new Promise((resolve, reject) => {
+      commit('request')
+      SessionApi
+        .newPassword(data)
+        .then(resp => {
+          const data = resp.data
+          commit('success', {
+            token: data.token,
+            expired_at: data.expired_at,
+            refresh_token: data.refresh_token,
+            name: `${data.user.first_name} ${data.user.last_name}`,
+            slug_name: data.user.slug_name,
+            id: data.user.id,
+            administered_gyms: data.administered_gyms
+          })
+          resolve(resp)
+        })
+        .catch(err => {
+          commit('error')
+          reject(err)
+        })
+    })
+  },
+
   updateUserName ({ commit }, data) {
     commit('updated', {
       name: `${data.first_name} ${data.last_name}`

@@ -10,6 +10,22 @@ class SessionApi extends BaseApi {
     })
   }
 
+  resetPassword (data) {
+    return axios({
+      url: `${this.baseUrl}/sessions/reset_password.json`,
+      data: data,
+      method: 'POST'
+    })
+  }
+
+  newPassword (data) {
+    return axios({
+      url: `${this.baseUrl}/sessions/new_password.json`,
+      data: data,
+      method: 'PUT'
+    })
+  }
+
   signUp (data) {
     return axios({
       url: `${this.baseUrl}/sessions/sign_up.json`,

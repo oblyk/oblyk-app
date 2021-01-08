@@ -47,7 +47,7 @@ ___
 ## TODO User
 - [x] Déplacer le profil dans la bar d'application
 - [x] Améliorer la création d'un compte (photo, partenaire, etc.)
-- [ ] Mot de passe oublié
+- [x] Mot de passe oublié
 - [ ] Faire le "dashboard"
 - [ ] Faire la messagerie
 - [ ] Faire le système de relation

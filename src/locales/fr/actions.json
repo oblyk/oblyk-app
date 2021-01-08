@@ -41,6 +41,8 @@
     "editMyProfile": "Modifier mon profil",
     "no": "Non",
     "yes": "Oui",
-    "activate": "Activer"
+    "activate": "Activer",
+    "newPassword": "Nouveau mot de passe",
+    "changeMyPassword": "Changer mom mot de passe"
   }
 }

@@ -80,6 +80,12 @@
     },
     "messenger": {
       "title": "Messenger"
+    },
+    "resetPassword": {
+      "title": "Forgotten password"
+    },
+    "newPassword": {
+      "title": "New password"
     }
   }
 }

@@ -22,7 +22,14 @@
       "alreadyConnected": "Vous êtes connecté·e",
       "stayConnected": "Rester connecté·e",
       "termsOfUse": "J'ai lu et j'accepte les conditions d'utilisation d'Oblyk",
-      "youMustBeAgree": "Vous devez accepter les conditions d'utilisation d'Oblyk"
+      "youMustBeAgree": "Vous devez accepter les conditions d'utilisation d'Oblyk",
+      "forgottenPassword": "Mot de passe oublié ?",
+      "forgottenPasswordExplain": "Renseigner votre adresse mail pour que nous puissions vous envoyer un lien de résiliation de votre mot de passe.",
+      "newPassword": "Nouveau mot de passe",
+      "sentCancellationLink": "Nous vous avons envoyé un lien de résiliation par mail.",
+      "checkYourMailBox": "Consultez votre boîte mail !",
+      "resetPasswordError": "Adresse mail invalide ou sans compte associé",
+      "newPasswordError": "Le lien a expiré, ou les deux mots de passe ne sont pas identique"
     },
     "gym": {
       "addNew": "Ajouter une nouvelle salle",

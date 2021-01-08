@@ -39,7 +39,11 @@
         {{ $t('actions.signUp') }}
       </v-btn>
     </submit-form>
-
+    <p class="text-right mt-2">
+      <router-link to="/reset-password">
+        {{ $t('components.session.forgottenPassword') }}
+      </router-link>
+    </p>
   </v-form>
 </template>
 
