@@ -138,8 +138,8 @@
       "localizationDeactivated": "localization disabled",
       "activateLocalization": "Activate localization",
       "activateLocalizationExplain": "Localization allows me to have information about what's going on around me (and is indispensable for the search for a partner).",
-      "uploadBanner": "Upload a banner to give style to your account!",
-      "uploadAvatar": "With a profile picture it's more beautiful!",
+      "uploadBanner": "<strong>TIPS !</strong> Upload a banner to customize the header of this page.",
+      "uploadAvatar": "<strong>TIPS !</strong> Add a profile picture to your account.",
       "tabs": {
         "feed": "Feed",
         "messenger": "messenger",

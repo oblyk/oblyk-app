@@ -2,7 +2,7 @@
   <v-card v-if="offerToUpload">
     <v-card-text>
       <v-icon left color="primary">mdi-panorama</v-icon>
-      {{ $t('components.user.uploadBanner') }}
+      <span v-html="$t('components.user.uploadBanner')" />
     </v-card-text>
     <v-card-actions>
       <v-spacer />

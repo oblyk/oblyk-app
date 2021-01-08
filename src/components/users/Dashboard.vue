@@ -14,10 +14,10 @@
         />
 
         <!-- Avatar missing -->
-        <avatar-missing :user="meUser" />
+        <avatar-missing :user="meUser" class="mb-3" />
 
         <!-- Banner missing -->
-        <banner-missing :user="meUser" />
+        <banner-missing :user="meUser" class="mb-3" />
 
         <!-- Enable partner search -->
         <enable-partner-search

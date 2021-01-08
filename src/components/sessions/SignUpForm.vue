@@ -1,5 +1,15 @@
 <template>
   <v-form @submit.prevent="signUp">
+    <v-select
+      v-model="language"
+      :items="locales"
+      item-value="value"
+      item-text="text"
+      :label="$t('models.user.language')"
+      @input="changeLanguage()"
+      outlined
+    />
+
     <v-text-field
       outlined
       v-model="email"
@@ -109,11 +119,22 @@ export default {
       firstName: null,
       dateOfBirth: null,
       dateOfBirthModal: false,
-      rememberMe: true
+      rememberMe: true,
+      language: this.$vuetify.lang.current,
+      locales: [
+        { text: 'Français', value: 'fr' },
+        { text: 'English', value: 'en' }
+      ]
     }
   },
 
   methods: {
+    changeLanguage: function () {
+      this.$vuetify.lang.current = this.language
+      this.$i18n.locale = this.language
+      localStorage.setItem('lang', this.language)
+    },
+
     signUp: function () {
       if (!this.termsOfUse) {
         this.$root.$emit('alertSimpleError', this.$t('components.session.youMustBeAgree'))
@@ -129,7 +150,8 @@ export default {
         last_name: this.lastName,
         first_name: this.firstName,
         date_of_birth: this.dateOfBirth,
-        remember_me: this.rememberMe
+        remember_me: this.rememberMe,
+        language: this.language
       }
       this.$store
         .dispatch('auth/signUp', data)
@@ -137,7 +159,7 @@ export default {
           if (this.redirectTo) {
             this.$router.push(this.redirectTo)
           } else {
-            this.$router.push('/me/new/avatar')
+            this.$router.push('/')
           }
         })
         .catch(err => {

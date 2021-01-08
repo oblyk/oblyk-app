@@ -12,7 +12,8 @@
       "genre": "Genre",
       "partner_search": "Faire partie de la recherche de partenaire",
       "grade_min": "Cotation \"d'échauffement\"",
-      "grade_max": "Cotation projet"
+      "grade_max": "Cotation projet",
+      "language": "Langue préférée"
     },
     "crag": {
       "name": "Nom du site"

@@ -30,12 +30,23 @@
         :label="$t('models.user.date_of_birth')"
       />
 
+      <!-- Genre -->
       <v-select
         v-model="data.genre"
         :items="genreList"
         item-value="value"
         item-text="text"
         :label="$t('models.user.genre')"
+        outlined
+      />
+
+      <!-- Language -->
+      <v-select
+        v-model="data.language"
+        :items="locales"
+        item-value="value"
+        item-text="text"
+        :label="$t('models.user.language')"
         outlined
       />
 
@@ -86,17 +97,21 @@ export default {
   data () {
     return {
       data: {
-        id: (this.user || {}).id,
         first_name: (this.user || {}).first_name,
         last_name: (this.user || {}).last_name,
         description: (this.user || {}).description,
         date_of_birth: (this.user || {}).date_of_birth,
-        genre: (this.user || {}).genre
+        genre: (this.user || {}).genre,
+        language: (this.user || {}).language
       },
       genreList: [
         { text: this.$t('models.genres.undefined'), value: null },
         { text: this.$t('models.genres.male'), value: 'male' },
         { text: this.$t('models.genres.female'), value: 'female' }
+      ],
+      locales: [
+        { text: 'Français', value: 'fr' },
+        { text: 'English', value: 'en' }
       ]
     }
   },

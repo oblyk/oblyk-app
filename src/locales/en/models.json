@@ -12,7 +12,8 @@
       "genre": "Genre",
       "partner_search": "Be part of the partner search",
       "grade_min": "Heating grade",
-      "grade_max": "Projet grade"
+      "grade_max": "Projet grade",
+      "language": "Preferred language"
     },
     "crag": {
       "name": "Name"

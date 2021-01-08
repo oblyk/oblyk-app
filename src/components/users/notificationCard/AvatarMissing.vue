@@ -2,7 +2,7 @@
   <v-card v-if="offerToUpload">
     <v-card-text>
       <v-icon left color="primary">mdi-account-circle</v-icon>
-      {{ $t('components.user.uploadAvatar') }}
+      <span v-html="$t('components.user.uploadAvatar')"></span>
     </v-card-text>
     <v-card-actions>
       <v-spacer />

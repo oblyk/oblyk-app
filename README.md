@@ -15,6 +15,7 @@
 - [ ] Faire page 404
 - [ ] Paramétrage des web workers PWA
 - [ ] Système de notification push
+- [ ] SEO (https://www.digitalocean.com/community/tutorials/vuejs-vue-seo-tips)
 ___
 - [ ] Faire le stockage hors ligne
 
