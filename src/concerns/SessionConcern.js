@@ -18,6 +18,10 @@ export const SessionConcern = {
 
     administeredGyms: function () {
       return store.getters['auth/administeredGyms']
+    },
+
+    mySubscribes: function () {
+      return store.getters['auth/getSubscribes']
     }
   },
 
@@ -43,6 +47,15 @@ export const SessionConcern = {
       if (gymId === undefined) return false
 
       return (this.administeredGyms.includes(parseInt(gymId)))
+    },
+
+    iAmSubscribedToThis: function (type, id) {
+      let IAmSubscribed = false
+      console.log(this.mySubscribes)
+      for (const subscribe of this.mySubscribes) {
+        if (subscribe.followable_type === type && subscribe.followable_id === id) IAmSubscribed = true
+      }
+      return IAmSubscribed
     }
   }
 }

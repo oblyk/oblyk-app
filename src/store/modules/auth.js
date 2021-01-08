@@ -9,7 +9,8 @@ const state = {
   name: '',
   slug_name: '',
   id: '',
-  administered_gyms: []
+  administered_gyms: [],
+  subscribes: []
 }
 
 // getters
@@ -48,6 +49,10 @@ const getters = {
 
   getSlugName: state => {
     return state.slug_name
+  },
+
+  getSubscribes: state => {
+    return state.subscribes
   }
 }
 
@@ -72,7 +77,8 @@ const actions = {
             name: `${data.user.first_name} ${data.user.last_name}`,
             slug_name: data.user.slug_name,
             id: data.user.id,
-            administered_gyms: data.administered_gyms
+            administered_gyms: data.administered_gyms,
+            subscribes: data.subscribes
           })
           resolve(resp)
         })
@@ -97,7 +103,8 @@ const actions = {
             name: `${data.user.first_name} ${data.user.last_name}`,
             slug_name: data.user.slug_name,
             id: data.user.id,
-            administered_gyms: data.administered_gyms
+            administered_gyms: data.administered_gyms,
+            subscribes: data.subscribes
           })
           resolve(resp)
         })
@@ -122,7 +129,8 @@ const actions = {
             name: `${data.user.first_name} ${data.user.last_name}`,
             slug_name: data.user.slug_name,
             id: data.user.id,
-            administered_gyms: data.administered_gyms
+            administered_gyms: data.administered_gyms,
+            subscribes: data.subscribes
           })
           resolve(resp)
         })
@@ -147,7 +155,8 @@ const actions = {
             name: `${data.user.first_name} ${data.user.last_name}`,
             slug_name: data.user.slug_name,
             id: data.user.id,
-            administered_gyms: data.administered_gyms
+            administered_gyms: data.administered_gyms,
+            subscribes: data.subscribes
           })
           resolve(resp)
         })
@@ -187,6 +196,7 @@ const mutations = {
     state.name = payload.name
     state.slug_name = payload.slug_name
     state.administered_gyms = payload.administered_gyms
+    state.subscribes = payload.subscribes
   },
 
   updated (state, payload) {
@@ -206,6 +216,7 @@ const mutations = {
     state.slug_name = ''
     state.id = ''
     state.administered_gyms = []
+    state.subscribes = []
   }
 }
 

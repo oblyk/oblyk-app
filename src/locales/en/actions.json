@@ -43,6 +43,8 @@
     "yes": "Yes",
     "activate": "Activate",
     "newPassword": "New password",
-    "changeMyPassword": "Changer mon mot de passe"
+    "changeMyPassword": "Changer mon mot de passe",
+    "subscribe": "Subscribe",
+    "unsubscribe": "Unsubscribe"
   }
 }

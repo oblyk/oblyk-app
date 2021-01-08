@@ -18,6 +18,7 @@
         </v-avatar>
         <h1 class="font-weight-medium">
           {{ gym.name }}
+          <subscribe-btn subscribeType="Gym" :subscribeId="gym.id" />
         </h1>
         <span>
           {{ gym.country }}, {{ gym.city }}
@@ -71,9 +72,11 @@
 </template>
 <script>
 import { SessionConcern } from '@/concerns/SessionConcern'
+import SubscribeBtn from '@/components/forms/SubscribeBtn'
 
 export default {
   name: 'GymHead',
+  components: { SubscribeBtn },
   mixins: [SessionConcern],
   props: {
     gym: Object
