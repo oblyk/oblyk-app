@@ -6,12 +6,16 @@ export default class Crag extends ActiveData {
     return this.apiFind(CragApi, id)
   }
 
-  url (tabs = 'infos') {
-    return `/crags/${this.id}/${this.slug_name}/${tabs}`
+  url (page = 'infos') {
+    return `/crags/${this.id}/${this.slug_name}/${page}`
   }
 
   coverUrl () {
-    return `${process.env.VUE_APP_OBLYK_API_URL}${this.photo.url}`
+    if (this.photo.url) {
+      return `${process.env.VUE_APP_OBLYK_API_URL}${this.photo.url}`
+    } else {
+      return require('@/assets/default-crag-banner.jpg')
+    }
   }
 
   climbingTypes () {
