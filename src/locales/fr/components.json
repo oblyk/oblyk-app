@@ -31,7 +31,11 @@
       "resetPasswordError": "Adresse mail invalide ou sans compte associé",
       "newPasswordError": "Le lien a expiré, ou les deux mots de passe ne sont pas identique"
     },
+    "crag": {
+      "type": "Falaise"
+    },
     "gym": {
+      "type": "Salle",
       "addNew": "Ajouter une nouvelle salle",
       "newGym": "Nouvelle salle",
       "tabs": {

@@ -14,41 +14,40 @@
             size="70"
             tile
           >
-            <v-img :src="crag.coverUrl()"></v-img>
+            <v-img :src="crag.coverUrl()" />
           </v-avatar>
         </v-list-item-avatar>
         <v-list-item-content>
-          <v-list-item-title class="headline">
-            {{ crag.name }}
+          <v-list-item-title class="font-weight-bold">
+            <span class="vertical-align-middle">
+              {{ crag.name }}
+            </span>
+            <subscribe-btn subscribe-type="Crag" :subscribe-id="crag.id" :large="false" />
           </v-list-item-title>
-          <v-list-item-subtitle>
+          <v-list-item-subtitle class="mt-n3 mb-4">
             <v-alert
               dense
               text
-              class="d-inline-block mr-1 mb-0"
+              class="d-inline-block mr-1 mb-0 pl-2 pr-2 pt-0 pb-0"
             >
-              SITE
+              {{ $t('components.crag.type') }}
             </v-alert>
-            {{ crag.localization.country }}, {{ crag.localization.region }}, {{ crag.localization.city }}
+            {{ crag.country }}, {{ crag.city }}
           </v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
     </v-card>
   </div>
 </template>
+
 <script>
-import Crag from '@/models/Crag'
+import SubscribeBtn from '@/components/forms/SubscribeBtn'
 
 export default {
-  name: 'CragSearchResult',
+  name: 'CragSmallCard',
+  components: { SubscribeBtn },
   props: {
-    cragData: null
-  },
-
-  data () {
-    return {
-      crag: new Crag(this.cragData)
-    }
+    crag: Object
   }
 }
 </script>

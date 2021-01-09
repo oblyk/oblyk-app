@@ -18,6 +18,10 @@
   min-height: calc(100vh - 400px);
 }
 
+.vertical-align-middle {
+  vertical-align: middle;
+}
+
 .theme--light {
   .v-main__wrap {
     background-color: #f5f5f5;

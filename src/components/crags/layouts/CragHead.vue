@@ -9,11 +9,11 @@
       <div class="crag-header-title">
         <h1 class="font-weight-medium loved-by-king">
           {{ crag.name }}
-          <subscribe-btn :subscribe-id="crag.id" subscribe-type="Crag" />
+          <subscribe-btn :subscribe-id="crag.id" subscribe-type="Crag" :incrementable="true" />
         </h1>
         <div>
           <span>
-            {{ crag.localization.country }}, {{ crag.localization.region }}, {{ crag.localization.city }}
+            {{ crag.country }}, {{ crag.region }}, {{ crag.city }}
           </span>
         </div>
       </div>

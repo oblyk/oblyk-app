@@ -2,17 +2,20 @@
   <v-btn
     class="subscribe-btn"
     v-if="isLoggedIn"
-    outlined
+    :outlined="large"
+    :icon="!large"
     :loading="requesting"
-    @click="changeSubscription()"
+    @click.prevent="changeSubscription()"
   >
     <v-icon
-      left
+      :left="large"
       :color="color()"
     >
       {{ icon() }}
     </v-icon>
-    {{ label() }}
+    <span v-if="large">
+      {{ label() }}
+    </span>
   </v-btn>
 </template>
 
@@ -26,7 +29,15 @@ export default {
   mixins: [SessionConcern],
   props: {
     subscribeType: String,
-    subscribeId: Number
+    subscribeId: Number,
+    incrementable: {
+      type: Boolean,
+      default: false
+    },
+    large: {
+      type: Boolean,
+      default: true
+    }
   },
 
   data () {
@@ -36,7 +47,7 @@ export default {
   },
 
   created () {
-    if (this.subscribed()) {
+    if (this.subscribed() && this.incrementable) {
       FollowApi.increment(this.subscribeType, this.subscribeId)
     }
   },
@@ -70,7 +81,6 @@ export default {
 
       promise
         .then(resp => {
-          console.log(resp)
           store.dispatch('auth/updateSubscribes', {
             subscribes: resp.data
           })

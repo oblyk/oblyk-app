@@ -48,6 +48,7 @@ ___
 - [x] Déplacer le profil dans la bar d'application
 - [x] Améliorer la création d'un compte (photo, partenaire, etc.)
 - [x] Mot de passe oublié
+- [X] Favoris
 - [ ] Faire le "dashboard"
 - [ ] Faire la messagerie
 - [ ] Faire le système de relation

@@ -10,6 +10,14 @@ class UserApi extends BaseApi {
     })
   }
 
+  subscribes () {
+    return axios({
+      url: `${this.baseUrl}/users/current/subscribes.json`,
+      headers: { Authorization: this.authToken() },
+      method: 'GET'
+    })
+  }
+
   update (data) {
     return axios({
       url: `${this.baseUrl}/users/current.json`,

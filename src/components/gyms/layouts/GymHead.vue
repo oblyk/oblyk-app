@@ -18,7 +18,7 @@
         </v-avatar>
         <h1 class="font-weight-medium">
           {{ gym.name }}
-          <subscribe-btn subscribeType="Gym" :subscribeId="gym.id" />
+          <subscribe-btn subscribeType="Gym" :subscribeId="gym.id" :incrementable="true" />
         </h1>
         <span>
           {{ gym.country }}, {{ gym.city }}

@@ -31,7 +31,11 @@
       "resetPasswordError": "Invalid e-mail address or without associated account",
       "newPasswordError": "The link has expired, or the two passwords are not identical"
     },
+    "crag": {
+      "type": "Crag"
+    },
     "gym": {
+      "type": "Gym",
       "addNew": "Add a new climbing gym",
       "newGym": "New climbing gym",
       "tabs": {

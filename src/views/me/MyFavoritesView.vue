@@ -4,12 +4,16 @@
 
     <div v-if="!loadingMeUser">
       <user-tabs :user="meUser" />
-      <v-container>
-        <v-row>
-          <v-col>
-            ...
-          </v-col>
-        </v-row>
+      <spinner v-if="loadingSubscribes" />
+
+      <v-container v-if="!loadingSubscribes" class="my-favorites-container">
+        <div
+          v-for="(subscribe, index) in subscribes"
+          :key="`subscribe-${index}`"
+        >
+          <gym-small-card class="mb-2" v-if="subscribe.followable_type === 'Gym'" :gym="recordObject('Gym', subscribe.followable_object)" />
+          <crag-small-card class="mb-2" v-if="subscribe.followable_type === 'Crag'" :crag="recordObject('Crag', subscribe.followable_object)" />
+        </div>
       </v-container>
     </div>
   </div>
@@ -18,10 +22,65 @@
 import { MeUserConcern } from '@/concerns/MeUserConcern'
 import Spinner from '@/components/layouts/Spiner'
 import UserTabs from '@/components/users/layouts/UserTabs'
+import UserApi from '@/services/oblyk-api/userApi'
+import GymSmallCard from '@/components/gyms/GymSmallCard'
+import Word from '@/models/Word'
+import Gym from '@/models/Gym'
+import Crag from '@/models/Crag'
+import CragSmallCard from '@/components/crags/CragSmallCard'
 
 export default {
   name: 'MyFavoritesView',
-  components: { UserTabs, Spinner },
-  mixins: [MeUserConcern]
+  components: {
+    CragSmallCard,
+    GymSmallCard,
+    UserTabs,
+    Spinner
+  },
+  mixins: [MeUserConcern],
+
+  data () {
+    return {
+      loadingSubscribes: true,
+      subscribes: []
+    }
+  },
+
+  mounted () {
+    this.getSubscribes()
+  },
+
+  methods: {
+    getSubscribes: function () {
+      this.loadingSubscribes = true
+      UserApi
+        .subscribes()
+        .then(resp => {
+          this.subscribes = resp.data
+        })
+        .catch(err => {
+          this.$root.$emit('alertFromApiError', err, 'user')
+        })
+        .finally(() => {
+          this.loadingSubscribes = false
+        })
+    },
+
+    recordObject: function (type, data) {
+      if (type === 'Word') {
+        return new Word(data)
+      } else if (type === 'Gym') {
+        return new Gym(data)
+      } else if (type === 'Crag') {
+        return new Crag(data)
+      }
+    }
+  }
 }
 </script>
+
+<style>
+.my-favorites-container {
+  max-width: 600px;
+}
+</style>
