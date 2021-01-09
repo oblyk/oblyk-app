@@ -11,7 +11,7 @@
 
       <!-- Crags markers -->
       <mgl-marker v-for="crag in crags" :key="crag.id"
-        :coordinates="[crag.localization.longitude, crag.localization.latitude]"
+        :coordinates="[crag.longitude, crag.latitude]"
         color="#03a9f4"
       >
         <mgl-popup>

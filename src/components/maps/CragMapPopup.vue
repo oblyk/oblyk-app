@@ -10,7 +10,7 @@
       {{ crag.name }}
     </v-card-title>
     <v-card-subtitle>
-      {{ crag.localization.country }}, {{ crag.localization.region }}, {{ crag.localization.city }}
+      {{ crag.country }}, {{ crag.region }}, {{ crag.city }}
     </v-card-subtitle>
     <v-card-actions>
       <v-spacer></v-spacer>
