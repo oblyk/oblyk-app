@@ -10,7 +10,7 @@
         </v-col>
         <v-col class="col-md-6">
           <p class="mt-2" v-html="$t('common.pages.supportUs.noLimite')" />
-          <p class="mt-2" v-html="$t('common.pages.supportUs.freeBut')" />
+          <p class="mt-2 font-weight-bold" v-html="$t('common.pages.supportUs.freeBut')" />
           <p class="mt-2" v-html="$t('common.pages.supportUs.unfortunately')" />
         </v-col>
       </v-row>
