@@ -1,5 +1,6 @@
 <template>
   <v-btn
+    class="subscribe-btn"
     v-if="isLoggedIn"
     outlined
     :loading="requesting"
@@ -31,6 +32,12 @@ export default {
   data () {
     return {
       requesting: false
+    }
+  },
+
+  created () {
+    if (this.subscribed()) {
+      FollowApi.increment(this.subscribeType, this.subscribeId)
     }
   },
 
@@ -78,3 +85,9 @@ export default {
   }
 }
 </script>
+
+<style>
+.subscribe-btn {
+  font-family: "Roboto", sans-serif;
+}
+</style>

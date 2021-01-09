@@ -11,6 +11,18 @@ class FollowApi extends BaseApi {
     })
   }
 
+  increment (followableType, followableId) {
+    return axios({
+      url: `${this.baseUrl}/follows/increment.json`,
+      headers: { Authorization: this.authToken() },
+      data: {
+        followable_type: followableType,
+        followable_id: followableId
+      },
+      method: 'PUT'
+    })
+  }
+
   delete (data) {
     return axios({
       url: `${this.baseUrl}/follows.json`,

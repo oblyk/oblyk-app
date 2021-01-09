@@ -9,6 +9,7 @@
       <div class="crag-header-title">
         <h1 class="font-weight-medium loved-by-king">
           {{ crag.name }}
+          <subscribe-btn :subscribe-id="crag.id" subscribe-type="Crag" />
         </h1>
         <div>
           <span>
@@ -20,8 +21,10 @@
   </div>
 </template>
 <script>
+import SubscribeBtn from '@/components/forms/SubscribeBtn'
 export default {
   name: 'CragHead',
+  components: { SubscribeBtn },
   props: {
     crag: Object
   }
