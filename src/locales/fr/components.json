@@ -11,7 +11,12 @@
     },
     "input": {
       "climbing_type": "Type d'escalade",
-      "tags": "Tags"
+      "tags": "Tags",
+      "rocks": "Type de roche",
+      "rain": "Exposition à la pluie",
+      "sun": "Ensoleillement",
+      "seasons": "Saisons favorables",
+      "orientations": "Orientations"
     },
     "search": {
       "title": "Chercher",
@@ -32,7 +37,8 @@
       "newPasswordError": "Le lien a expiré, ou les deux mots de passe ne sont pas identique"
     },
     "crag": {
-      "type": "Falaise"
+      "type": "Falaise",
+      "newCrag": "Nouvelle falaise"
     },
     "gym": {
       "type": "Salle",

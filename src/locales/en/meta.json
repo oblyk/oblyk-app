@@ -86,6 +86,12 @@
     },
     "newPassword": {
       "title": "New password"
+    },
+    "newCrag": {
+      "title": "New crag"
+    },
+    "editCrag": {
+      "title": "Edit crag"
     }
   }
 }

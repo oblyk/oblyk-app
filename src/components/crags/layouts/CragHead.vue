@@ -14,6 +14,18 @@
         <div>
           <span>
             {{ crag.country }}, {{ crag.region }}, {{ crag.city }}
+            <v-btn
+              :to="crag.url('edit')"
+              small
+              icon
+              :title="$t('actions.edit')"
+              class="ml-1"
+              v-if="isLoggedIn"
+            >
+            <v-icon small>
+              mdi-pencil
+            </v-icon>
+          </v-btn>
           </span>
         </div>
       </div>
@@ -22,9 +34,11 @@
 </template>
 <script>
 import SubscribeBtn from '@/components/forms/SubscribeBtn'
+import { SessionConcern } from '@/concerns/SessionConcern'
 export default {
   name: 'CragHead',
   components: { SubscribeBtn },
+  mixins: [SessionConcern],
   props: {
     crag: Object
   }

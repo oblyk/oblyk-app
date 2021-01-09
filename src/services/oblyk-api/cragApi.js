@@ -15,5 +15,27 @@ class CragApi extends BaseApi {
       method: 'GET'
     })
   }
+
+  create (data) {
+    return axios({
+      url: `${this.baseUrl}/crags.json`,
+      headers: { Authorization: this.authToken() },
+      data: {
+        crag: data
+      },
+      method: 'POST'
+    })
+  }
+
+  update (data) {
+    return axios({
+      url: `${this.baseUrl}/crags/${data.id}.json`,
+      headers: { Authorization: this.authToken() },
+      data: {
+        crag: data
+      },
+      method: 'PUT'
+    })
+  }
 }
 export default new CragApi()

@@ -132,6 +132,15 @@
             </v-list-item-title>
           </v-list-item-content>
         </template>
+
+        <!-- New crag -->
+        <app-drawer-item
+          url="/crags/new"
+          icon="mdi-terrain"
+          :title="$t('components.crag.newCrag')"
+        />
+
+        <!-- New gym -->
         <app-drawer-item
           url="/gyms/new"
           icon="mdi-office-building"

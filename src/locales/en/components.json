@@ -11,7 +11,12 @@
     },
     "input": {
       "climbing_type": "Climbing type",
-      "tags": "Tags"
+      "tags": "Tags",
+      "rocks": "Rock type",
+      "rain": "Rain exposure",
+      "sun": "Sunshine",
+      "seasons": "Favorable seasons",
+      "orientations": "Orientations"
     },
     "search": {
       "title": "Search",
@@ -32,7 +37,8 @@
       "newPasswordError": "The link has expired, or the two passwords are not identical"
     },
     "crag": {
-      "type": "Crag"
+      "type": "Crag",
+      "newCrag": "New Crag"
     },
     "gym": {
       "type": "Gym",

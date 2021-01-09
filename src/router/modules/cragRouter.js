@@ -5,6 +5,8 @@ import CragRouteView from '@/views/crags/CragRouteView'
 import CragPhotosView from '@/views/crags/CragPhotosView'
 import CragGuideBooksView from '@/views/crags/CragGuideBooksView'
 import CragMapDetailsView from '@/views/crags/CragMapDetailsView'
+import CragNewView from '@/views/crags/actions/CragNewView'
+import CragEditView from '@/views/crags/actions/CragEditView'
 
 export default [
   {
@@ -13,6 +15,24 @@ export default [
     meta: {
       title: 'cragMap',
       showTitle: true
+    }
+  },
+  {
+    path: '/crags/new',
+    component: CragNewView,
+    meta: {
+      requiresAuth: true,
+      title: 'newCrag',
+      showTitle: false
+    }
+  },
+  {
+    path: '/crags/:cragId/:slug/edit',
+    component: CragEditView,
+    meta: {
+      requiresAuth: true,
+      objectName: 'crag',
+      showAvatar: true
     }
   },
   {
