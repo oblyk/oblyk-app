@@ -83,7 +83,7 @@ ___
 ## TODO Autres pages
 - [x] Mention légale
 - [ ] Le projet
-- [ ] Nous soutenir
+- [x] Nous soutenir
 - [ ] Les cotations
 - [ ] Aides
 - [x] Contact
