@@ -38,7 +38,14 @@
     },
     "crag": {
       "type": "Crag",
-      "newCrag": "New Crag"
+      "newCrag": "New Crag",
+      "tabs": {
+        "info": "Info",
+        "routes": "Routes",
+        "media": "Photos & Videos",
+        "guideBooks": "Guide books",
+        "map": "Map"
+      }
     },
     "gym": {
       "type": "Gym",

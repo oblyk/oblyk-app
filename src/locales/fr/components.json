@@ -38,7 +38,14 @@
     },
     "crag": {
       "type": "Falaise",
-      "newCrag": "Nouvelle falaise"
+      "newCrag": "Nouvelle falaise",
+      "tabs": {
+        "info": "Info",
+        "routes": "Voies",
+        "media": "Photos & Videos",
+        "guideBooks": "Topos",
+        "map": "Carte"
+      }
     },
     "gym": {
       "type": "Salle",
