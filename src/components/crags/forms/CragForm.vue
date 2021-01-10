@@ -97,6 +97,8 @@ export default {
         country: (this.crag || {}).country,
         city: (this.crag || {}).city,
         region: (this.crag || {}).region,
+        latitude: (this.crag || {}).latitude,
+        longitude: (this.crag || {}).longitude,
         rocks: (this.crag || {}).rocks,
         rain: (this.crag || {}).rain,
         sun: (this.crag || {}).sun,
