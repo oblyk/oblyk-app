@@ -5,15 +5,6 @@
     <v-tab to="infos">
       {{ $t('components.crag.tabs.info') }}
     </v-tab>
-    <v-tab to="routes">
-      <v-badge
-        color="primary"
-        inline
-        :content="crag.routes_figures.route_count"
-      >
-        {{ $t('components.crag.tabs.routes') }}
-      </v-badge>
-    </v-tab>
     <v-tab to="photos">
       <v-badge
         color="primary"

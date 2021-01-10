@@ -4,25 +4,19 @@
 
     <v-container v-if="!loadingCrag">
       <v-row>
-        <v-col class="pa-2" md="7">
-          <v-card>
-            <v-card-title>Info sur {{ crag.name }}</v-card-title>
-            <v-card-text>
-              {{ crag.name }} est un site d'escalade de [climbing_type] de [roche], situé à
-              {{ crag.city }} dans le département {{ crag.region }}
-              ({{ crag.code_country }})<br>
-              On y trouve {{ crag.routes_figures.route_count }} lignes allant de {{ crag.routes_figures.grade.min_text }}
-              à {{ crag.routes_figures.grade.max_text }}
-            </v-card-text>
-          </v-card>
+        <v-col class="pa-2 col-12 col-md-4">
+          <crag-info :crag="crag" />
         </v-col>
-        <v-col class="pa-2" md="5">
-          <v-card>
-            <v-card-title>Orientation</v-card-title>
-            <v-card-text>
-              balbla orientation
-            </v-card-text>
-          </v-card>
+        <v-col class="pa-2 col-12 col-md-4">
+          <crag-guides-card :crag="crag" />
+        </v-col>
+        <v-col class="pa-2 col-12 col-md-4">
+          <crag-localization :crag="crag" />
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col>
+          <crag-routes :crag="crag" />
         </v-col>
       </v-row>
     </v-container>
@@ -31,10 +25,14 @@
 <script>
 import { CragConcern } from '@/concerns/CragConcern'
 import Spinner from '@/components/layouts/Spiner'
+import CragInfo from '@/components/crags/CragDescription'
+import CragRoutes from '@/components/cragRoutes/CragRoutes'
+import CragLocalization from '@/components/crags/CragLocalization'
+import CragGuidesCard from '@/components/crags/CragGuidesCard'
 
 export default {
   name: 'CragInfoView',
-  components: { Spinner },
+  components: { CragGuidesCard, CragLocalization, CragRoutes, CragInfo, Spinner },
   mixins: [CragConcern]
 }
 </script>

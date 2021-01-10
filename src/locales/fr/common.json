@@ -5,6 +5,8 @@
   },
   "common": {
     "noInformation": "Non renseigné",
+    "informations": "Informations",
+    "meters": "mètres",
     "pages": {
       "about": {
         "title": "À propos d'Oblyk"

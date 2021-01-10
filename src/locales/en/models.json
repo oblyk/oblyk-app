@@ -26,6 +26,8 @@
       "country": "Country",
       "city": "City",
       "region": "Region",
+      "climbing_types": "Climbing types",
+      "seasons": "Favorable seasons",
       "sport_climbing": "Sport climbing",
       "bouldering": "Bouldering",
       "multi_pitch": "Multi pitch",

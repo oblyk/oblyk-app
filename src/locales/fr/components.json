@@ -39,13 +39,20 @@
     "crag": {
       "type": "Falaise",
       "newCrag": "Nouvelle falaise",
+      "descriptionOf": "Description de %{name}",
+      "localization": "Localisation",
+      "lines": "Lignes",
+      "rangingFrom": "Allant de %{min} à %{max}",
+      "noGuide": "Pas de topo renseigné",
       "tabs": {
         "info": "Info",
-        "routes": "Voies",
         "media": "Photos & Videos",
         "guideBooks": "Topos",
         "map": "Carte"
       }
+    },
+    "cragRoute": {
+      "routes": "Les lignes"
     },
     "gym": {
       "type": "Salle",

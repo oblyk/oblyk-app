@@ -26,6 +26,8 @@
       "country": "Pays",
       "city": "Ville",
       "region": "Région",
+      "climbing_types": "Type d'escalade",
+      "seasons": "Saison favorable",
       "sport_climbing": "Voie",
       "bouldering": "Bloc",
       "multi_pitch": "Grande voie",

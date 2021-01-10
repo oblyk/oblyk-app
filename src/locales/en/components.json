@@ -39,13 +39,20 @@
     "crag": {
       "type": "Crag",
       "newCrag": "New Crag",
+      "descriptionOf": "Description of %{name}",
+      "localization": "Localization",
+      "lines": "Lines",
+      "rangingFrom": "Ranging from %{min} to %{max}",
+      "noGuide": "No guide filled in",
       "tabs": {
         "info": "Info",
-        "routes": "Routes",
         "media": "Photos & Videos",
         "guideBooks": "Guide books",
         "map": "Map"
       }
+    },
+    "cragRoute": {
+      "routes": "Routes"
     },
     "gym": {
       "type": "Gym",

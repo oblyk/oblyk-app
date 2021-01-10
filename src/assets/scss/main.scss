@@ -54,6 +54,15 @@
   font-size: 4em;
 }
 
+.span-comma {
+  span:after {
+    content: ', ';
+  }
+  span:last-child:after {
+    content: '';
+  }
+}
+
 @media only screen and (max-width: 600px) {
   .global-form-width {
     margin-top: -0.5rem;
