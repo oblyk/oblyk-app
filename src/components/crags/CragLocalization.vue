@@ -31,13 +31,7 @@
           <v-list-item-content>
             <v-list-item-title>
               {{ crag.latitude }}, {{ crag.longitude }}
-              <v-btn
-                class="ml-5"
-                icon
-                small
-              >
-                <v-icon small>mdi-qrcode-scan</v-icon>
-              </v-btn>
+              <qr-code-btn :value="`${crag.latitude}, ${crag.longitude}`" />
               <v-btn
                 icon
                 small
@@ -66,8 +60,10 @@
   </v-card>
 </template>
 <script>
+import QrCodeBtn from '@/components/forms/QrCodeBtn'
 export default {
   name: 'CragLocalization',
+  components: { QrCodeBtn },
   props: {
     crag: Object
   }
