@@ -92,6 +92,12 @@
     },
     "editCrag": {
       "title": "Modifier une falaise"
+    },
+    "newPhoto": {
+      "title": "Ajouter une photo"
+    },
+    "editPhoto": {
+      "title": "Modifier une photo"
     }
   }
 }

@@ -25,6 +25,11 @@
 
         <loading-more :get-function="getRoutes" />
       </v-list>
+
+      <!-- If no routes -->
+      <v-card-text v-if="routes.length === 0" class="text-center text--disabled pb-10">
+        {{ $t('components.crag.noRoutes') }}
+      </v-card-text>
     </v-card>
   </div>
 </template>

@@ -153,6 +153,16 @@
       "name": "Word",
       "definition": "Definition"
     },
+    "photo": {
+      "description": "Picture description",
+      "source": "If the photo is not of you, please cite the source",
+      "exif_model": "Model",
+      "exif_make": "Brand",
+      "licence": "Photo license",
+      "copyright_by": "BY - The source of the photo must be cited",
+      "copyright_nc": "NC - The photo may not be used for commercial purposes.",
+      "copyright_nd": "ND - You do not authorize to modify this photo"
+    },
     "genres": {
       "undefined": "Undefined",
       "male": "Male",

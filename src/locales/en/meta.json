@@ -92,6 +92,12 @@
     },
     "editCrag": {
       "title": "Edit crag"
+    },
+    "newPhoto": {
+      "title": "Add picture"
+    },
+    "editPhoto": {
+      "title": "Edit picture"
     }
   }
 }

@@ -44,6 +44,7 @@
       "lines": "Lines",
       "rangingFrom": "Ranging from %{min} to %{max}",
       "noGuide": "No guide filled in",
+      "noRoutes": "There are no routes registered on this site yet.",
       "tabs": {
         "info": "Info",
         "media": "Photos & Videos",

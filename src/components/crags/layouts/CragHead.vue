@@ -4,7 +4,7 @@
       dark
       height="500px"
       gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-      :src="crag.coverUrl()"
+      :src="src"
     >
       <div class="crag-header-title">
         <h1 class="font-weight-medium loved-by-king">
@@ -32,15 +32,35 @@
     </v-img>
   </div>
 </template>
+
 <script>
 import SubscribeBtn from '@/components/forms/SubscribeBtn'
 import { SessionConcern } from '@/concerns/SessionConcern'
+
 export default {
   name: 'CragHead',
   components: { SubscribeBtn },
   mixins: [SessionConcern],
   props: {
     crag: Object
+  },
+
+  data () {
+    return {
+      src: this.crag.coverUrl()
+    }
+  },
+
+  mounted () {
+    this.$root.$on('updateCragBannerSrc', (src) => {
+      this.updateCragBannerSrc(src)
+    })
+  },
+
+  methods: {
+    updateCragBannerSrc: function (src) {
+      this.src = src
+    }
   }
 }
 </script>

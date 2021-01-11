@@ -8,10 +8,10 @@
           <crag-info :crag="crag" />
         </v-col>
         <v-col class="pa-2 col-12 col-md-4">
-          <crag-guides-card :crag="crag" />
+          <crag-localization :crag="crag" />
         </v-col>
         <v-col class="pa-2 col-12 col-md-4">
-          <crag-localization :crag="crag" />
+          <crag-guides-card :crag="crag" />
         </v-col>
       </v-row>
       <v-row>
