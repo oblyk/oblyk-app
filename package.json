@@ -17,6 +17,7 @@
     "register-service-worker": "^1.7.1",
     "sass": "^1.30.0",
     "vue": "^2.6.11",
+    "vue-clipboard2": "^0.3.1",
     "vue-cropper": "^0.5.6",
     "vue-i18n": "^8.22.2",
     "vue-mapbox": "^0.4.1",

@@ -7,8 +7,10 @@ import vuetify from './plugins/vuetify'
 import VueI18n from 'vue-i18n'
 import './services/axios'
 import VueQrcode from '@chenfengyuan/vue-qrcode'
+import VueClipboard from 'vue-clipboard2'
 
 Vue.component(VueQrcode.name, VueQrcode)
+Vue.use(VueClipboard)
 
 Vue.config.productionTip = false
 

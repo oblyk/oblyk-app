@@ -46,6 +46,8 @@
     "newPassword": "New password",
     "changeMyPassword": "Changer mon mot de passe",
     "subscribe": "Subscribe",
-    "unsubscribe": "Unsubscribe"
+    "unsubscribe": "Unsubscribe",
+    "valueCopied": "%{value} copied !",
+    "errorHasOccurred": "An error has occurred"
   }
 }

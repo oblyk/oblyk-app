@@ -30,14 +30,9 @@
 
           <v-list-item-content>
             <v-list-item-title>
-              {{ crag.latitude }}, {{ crag.longitude }}
-              <qr-code-btn :value="`${crag.latitude}, ${crag.longitude}`" />
-              <v-btn
-                icon
-                small
-              >
-                <v-icon small>mdi-content-copy</v-icon>
-              </v-btn>
+              {{ latLng }}
+              <qr-code-btn :value="latLng" />
+              <copy-btn :message="latLng" />
             </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
@@ -61,11 +56,18 @@
 </template>
 <script>
 import QrCodeBtn from '@/components/forms/QrCodeBtn'
+import CopyBtn from '@/components/forms/CopyBtn'
 export default {
   name: 'CragLocalization',
-  components: { QrCodeBtn },
+  components: { CopyBtn, QrCodeBtn },
   props: {
     crag: Object
+  },
+
+  data () {
+    return {
+      latLng: `${this.crag.latitude}, ${this.crag.longitude}`
+    }
   }
 }
 </script>
