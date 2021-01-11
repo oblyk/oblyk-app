@@ -1,6 +1,6 @@
 <template>
   <v-alert
-    v-if="show"
+    v-model="show"
     class="app-alert"
     :type="type"
     dismissible
