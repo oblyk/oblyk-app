@@ -24,4 +24,8 @@ export default class ActiveData {
         })
     })
   }
+
+  get className () {
+    return this.constructor.name
+  }
 }

@@ -71,6 +71,16 @@
     "cragRoute": {
       "routes": "Routes"
     },
+    "guideBookPaper": {
+      "pointOfSale": "Point of sale",
+      "tabs": {
+        "info": "Info",
+        "photos": "Photos",
+        "crags": "Crags",
+        "links": "Links",
+        "map": "Map"
+      }
+    },
     "gym": {
       "type": "Gym",
       "addNew": "Add a new climbing gym",

@@ -1,0 +1,29 @@
+<template>
+  <div>
+    <spinner v-if="loadingGuideBookPaper" />
+
+    <v-container v-if="!loadingGuideBookPaper">
+      <v-row justify="center">
+        <v-col class="global-form-width">
+          <h2 class="mb-4">{{ $t('actions.changeCover') }}</h2>
+          <guide-book-paper-cover-form
+            :guide-book-paper="guideBookPaper"
+          />
+        </v-col>
+      </v-row>
+    </v-container>
+  </div>
+</template>
+
+<script>
+import { SessionConcern } from '@/concerns/SessionConcern'
+import { GuideBookPaperConcern } from '@/concerns/GuideBookPaperConcern'
+import Spinner from '@/components/layouts/Spiner'
+import GuideBookPaperCoverForm from '@/components/guideBookPapers/forms/GuideBookPaperCoverForm'
+
+export default {
+  name: 'GuideBookPaperCoverView',
+  components: { GuideBookPaperCoverForm, Spinner },
+  mixins: [GuideBookPaperConcern, SessionConcern]
+}
+</script>

@@ -71,6 +71,16 @@
     "cragRoute": {
       "routes": "Les lignes"
     },
+    "guideBookPaper": {
+      "pointOfSale": "Point de vente",
+      "tabs": {
+        "info": "Infos",
+        "photos": "Photos",
+        "crags": "Sites",
+        "links": "Liens",
+        "map": "Carte"
+      }
+    },
     "gym": {
       "type": "Salle",
       "addNew": "Ajouter une nouvelle salle",

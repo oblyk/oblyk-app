@@ -48,6 +48,17 @@
       "west": "West",
       "north_west": "North west"
     },
+    "guideBookPaper": {
+      "name": "Title",
+      "author":  "Author",
+      "editor": "Editor",
+      "publication_year":  "Publication year",
+      "price": "Price",
+      "price_cents": "Cents",
+      "ean":  "Ean",
+      "number_of_page":  "Number of page",
+      "weight": "Weight"
+    },
     "gym": {
       "name": "Gym name",
       "description": "Description",

@@ -9,6 +9,20 @@ class GuideBookPaperApi extends BaseApi {
     })
   }
 
+  crags (id) {
+    return axios({
+      url: `${this.baseUrl}/guide_book_papers/${id}/crags.json`,
+      method: 'GET'
+    })
+  }
+
+  photos (id) {
+    return axios({
+      url: `${this.baseUrl}/guide_book_papers/${id}/photos.json`,
+      method: 'GET'
+    })
+  }
+
   find (id) {
     return axios({
       url: `${this.baseUrl}/guide_book_papers/${id}.json`,
@@ -24,6 +38,18 @@ class GuideBookPaperApi extends BaseApi {
         guide_book_paper: data
       },
       method: 'PUT'
+    })
+  }
+
+  cover (data, guideBookPaperId) {
+    return axios({
+      url: `${this.baseUrl}/guide_book_papers/${guideBookPaperId}/add_cover.json`,
+      headers: {
+        Authorization: this.authToken(),
+        'Content-Type': 'multipart/form-data'
+      },
+      data: data,
+      method: 'POST'
     })
   }
 

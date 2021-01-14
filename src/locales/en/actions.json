@@ -49,6 +49,7 @@
     "subscribe": "Subscribe",
     "unsubscribe": "Unsubscribe",
     "valueCopied": "%{value} copied !",
-    "errorHasOccurred": "An error has occurred"
+    "errorHasOccurred": "An error has occurred",
+    "changeCover": "Change cover"
   }
 }

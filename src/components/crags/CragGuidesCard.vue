@@ -21,13 +21,34 @@
           v-for="(guide, index) in guides"
           :key="`guide-${index}`"
         >
-          <v-img
-            height="200"
-            contain
-            :src="guide.coverUrl()"
-          />
-          <div class="text-truncate mt-1 text-center">
-            {{ guide.name }}
+          <div
+            v-if="guide.className === 'GuideBookPaper'"
+          >
+            <router-link
+              :to="guide.url()"
+            >
+              <v-img
+                height="200"
+                contain
+                :src="guide.coverUrl()"
+              />
+              <div class="text-truncate mt-1 text-center">
+                {{ guide.name }}
+              </div>
+            </router-link>
+          </div>
+
+          <div v-else>
+           <a :href="guide.url">
+             <v-img
+               height="200"
+               contain
+               :src="guide.coverUrl()"
+             />
+             <div class="text-truncate mt-1 text-center">
+               {{ guide.name }}
+             </div>
+           </a>
           </div>
         </div>
         <p

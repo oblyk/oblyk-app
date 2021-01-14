@@ -48,6 +48,17 @@
       "west": "Ouest",
       "north_west": "Nord Ouest"
     },
+    "guideBookPaper": {
+      "name": "Titre",
+      "author":  "Auteur",
+      "editor": "Éditeur",
+      "publication_year":  "Année de publication",
+      "price": "Prix",
+      "price_cents": "Centime",
+      "ean":  "Ean",
+      "number_of_page":  "Nombre de page",
+      "weight": "Poids"
+    },
     "gym": {
       "name": "Nom de la salle",
       "description": "Description",

@@ -27,7 +27,7 @@ export default [
     }
   },
   {
-    path: '/crags/:cragId/:slug/edit',
+    path: '/crags/:cragId/:cragSlug/edit',
     component: CragEditView,
     meta: {
       requiresAuth: true,
@@ -36,7 +36,7 @@ export default [
     }
   },
   {
-    path: '/crags/:cragId/:slug',
+    path: '/crags/:cragId/:cragSlug',
     component: CragView,
     props: true,
     meta: {

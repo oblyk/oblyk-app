@@ -49,6 +49,7 @@
     "subscribe": "S'abonner",
     "unsubscribe": "Me désabonner",
     "valueCopied": "%{value} copié !",
-    "errorHasOccurred": "Une erreur s'est produite"
+    "errorHasOccurred": "Une erreur s'est produite",
+    "changeCover": "Changer la couverture"
   }
 }

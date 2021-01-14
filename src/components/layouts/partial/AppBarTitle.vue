@@ -42,6 +42,7 @@ import Word from '@/models/Word'
 import Gym from '@/models/Gym'
 import Crag from '@/models/Crag'
 import { SessionConcern } from '@/concerns/SessionConcern'
+import GuideBookPaper from '@/models/GuideBookPaper'
 
 export default {
   name: 'AppBarTitle',
@@ -125,6 +126,8 @@ export default {
         new Gym().find(this.objectId).then(object => { this.title = object.name; this.avatar = object.logoUrl(); this.url = object.url() })
       } else if (this.objectName === 'crag') {
         new Crag().find(this.objectId).then(object => { this.title = object.name; this.url = object.url() })
+      } else if (this.objectName === 'guideBookPaper') {
+        new GuideBookPaper().find(this.objectId).then(object => { this.title = object.name; this.url = object.url() })
       } else if (this.objectName === 'me') {
         this.getCurrentUser().then(user => { this.title = user.first_name; this.avatar = user.avatarUrl(); this.url = user.url() })
       }
