@@ -26,6 +26,14 @@ export default class Gym extends ActiveData {
     }
   }
 
+  mapThumbnailCoverUrl () {
+    if (this.map_thumbnail_url) {
+      return `${process.env.VUE_APP_OBLYK_API_URL}${this.map_thumbnail_url}`
+    } else {
+      return require('@/assets/gym-default-banner.jpg')
+    }
+  }
+
   climbingTypes () {
     const list = []
     if (this.bouldering) list.push('bouldering')

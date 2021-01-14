@@ -22,6 +22,22 @@
       "title": "Chercher",
       "searchLabel": "Chercher une falaise, une voie, une salle, etc."
     },
+    "map": {
+      "site": "Site",
+      "place": "Lieux",
+      "type": "Type",
+      "lines": "Lignes",
+      "rangingFrom": "allant de",
+      "to": "à",
+      "legend": {
+        "boulder": "Bloc",
+        "sportClimbing": "Voie",
+        "multiPitch": "Grande voie / Trad / Artif",
+        "deepWater": "Deep water",
+        "viaFerrata": "Via Ferrata",
+        "funClimbing": "Fun Climbing"
+      }
+    },
     "session": {
       "connectAlert": "Vous devez être connecté·e pour accéder à cette page",
       "alreadyConnected": "Vous êtes connecté·e",

@@ -14,7 +14,7 @@
             size="70"
             tile
           >
-            <v-img :src="crag.coverUrl()" />
+            <v-img :src="crag.thumbnailCoverUrl()" />
           </v-avatar>
         </v-list-item-avatar>
         <v-list-item-content>

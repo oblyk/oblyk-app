@@ -18,6 +18,22 @@ export default class Crag extends ActiveData {
     }
   }
 
+  thumbnailCoverUrl () {
+    if (this.photo.thumbnail_url) {
+      return `${process.env.VUE_APP_OBLYK_API_URL}${this.photo.thumbnail_url}`
+    } else {
+      return require('@/assets/default-crag-banner.jpg')
+    }
+  }
+
+  mapThumbnailCoverUrl () {
+    if (this.map_thumbnail_url) {
+      return `${process.env.VUE_APP_OBLYK_API_URL}${this.map_thumbnail_url}`
+    } else {
+      return require('@/assets/default-crag-banner.jpg')
+    }
+  }
+
   climbingTypes () {
     const list = []
     if (this.sport_climbing) list.push('sport_climbing')

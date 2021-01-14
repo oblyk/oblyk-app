@@ -9,6 +9,13 @@ class CragApi extends BaseApi {
     })
   }
 
+  geoJson () {
+    return axios({
+      url: `${this.baseUrl}/crags/geo_json.json`,
+      method: 'GET'
+    })
+  }
+
   find (cragId) {
     return axios({
       url: `${this.baseUrl}/crags/${cragId}.json`,

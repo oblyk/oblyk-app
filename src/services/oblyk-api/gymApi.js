@@ -9,6 +9,13 @@ class GymApi extends BaseApi {
     })
   }
 
+  geoJson () {
+    return axios({
+      url: `${this.baseUrl}/gyms/geo_json.json`,
+      method: 'GET'
+    })
+  }
+
   find (gymId) {
     return axios({
       url: `${this.baseUrl}/gyms/${gymId}.json`,

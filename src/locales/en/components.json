@@ -22,6 +22,22 @@
       "title": "Search",
       "searchLabel": "Look for a crag, a route, a gym, etc."
     },
+    "map": {
+      "site": "Site",
+      "place": "Place",
+      "type": "Type",
+      "lines": "Lines",
+      "rangingFrom": "Ranging from",
+      "to": "to",
+      "legend": {
+        "boulder": "Boulder",
+        "sportClimbing": "Sport climbing",
+        "multiPitch": "Mutli pitch / Trad / Aid",
+        "deepWater": "Deep water",
+        "viaFerrata": "Via Ferrata",
+        "funClimbing": "Fun Climbing"
+      }
+    },
     "session": {
       "connectAlert": "You must be logged in to access this page",
       "alreadyConnected": "You are logged in",
