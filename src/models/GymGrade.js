@@ -1,5 +1,5 @@
 import ActiveData from '@/models/ActiveData'
-import GymGradeApi from '@/services/oblyk-api/gymGradeApi'
+import GymGradeApi from '@/services/oblyk-api/GymGradeApi'
 import GymGradeLine from '@/models/GymGradeLine'
 
 export default class GymGrade extends ActiveData {

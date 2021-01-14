@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import CragRouteApi from '@/services/oblyk-api/cragRouteApi'
+import CragRouteApi from '@/services/oblyk-api/CragRouteApi'
 import CragRoute from '@/models/CragRoute'
 import Spinner from '@/components/layouts/Spiner'
 import CragRouteListItem from '@/components/cragRoutes/CragRouteListItem'

@@ -1,4 +1,4 @@
-import SessionApi from '@/services/oblyk-api/sessionApi'
+import SessionApi from '@/services/oblyk-api/SessionApi'
 
 // initial state
 const state = {

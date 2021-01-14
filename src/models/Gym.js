@@ -1,5 +1,5 @@
 import ActiveData from '@/models/ActiveData'
-import GymApi from '@/services/oblyk-api/gymApi'
+import GymApi from '@/services/oblyk-api/GymApi'
 
 export default class Gym extends ActiveData {
   find (id) {

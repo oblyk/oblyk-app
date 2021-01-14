@@ -56,7 +56,7 @@
 
 <script>
 import { SessionConcern } from '@/concerns/SessionConcern'
-import CragApi from '@/services/oblyk-api/cragApi'
+import CragApi from '@/services/oblyk-api/CragApi'
 import Crag from '@/models/Crag'
 
 export default {

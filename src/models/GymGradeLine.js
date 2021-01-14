@@ -1,5 +1,5 @@
 import ActiveData from '@/models/ActiveData'
-import GymGradeLineApi from '@/services/oblyk-api/gymGradeLineApi'
+import GymGradeLineApi from '@/services/oblyk-api/GymGradeLineApi'
 
 export default class GymGradeLine extends ActiveData {
   find (gymId, gradeId, gradeLineId) {

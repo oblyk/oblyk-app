@@ -61,7 +61,7 @@
 <script>
 import { FormHelpers } from '@/mixins/FormHelpers'
 import SubmitForm from '@/components/forms/SubmitForm'
-import GymGradeLineApi from '@/services/oblyk-api/gymGradeLineApi'
+import GymGradeLineApi from '@/services/oblyk-api/GymGradeLineApi'
 import CloseForm from '@/components/forms/CloseForm'
 import ColorInput from '@/components/forms/ColorInput'
 

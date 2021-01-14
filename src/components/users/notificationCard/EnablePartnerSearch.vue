@@ -43,7 +43,7 @@
   </v-card>
 </template>
 <script>
-import UserApi from '@/services/oblyk-api/userApi'
+import UserApi from '@/services/oblyk-api/UserApi'
 import OverlayForm from '@/components/forms/OverlayForm'
 
 export default {

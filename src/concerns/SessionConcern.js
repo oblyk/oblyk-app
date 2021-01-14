@@ -1,5 +1,5 @@
 import store from '@/store'
-import UserApi from '@/services/oblyk-api/userApi'
+import UserApi from '@/services/oblyk-api/UserApi'
 import User from '@/models/User'
 
 export const SessionConcern = {

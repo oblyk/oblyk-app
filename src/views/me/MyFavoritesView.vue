@@ -22,7 +22,7 @@
 import { MeUserConcern } from '@/concerns/MeUserConcern'
 import Spinner from '@/components/layouts/Spiner'
 import UserTabs from '@/components/users/layouts/UserTabs'
-import UserApi from '@/services/oblyk-api/userApi'
+import UserApi from '@/services/oblyk-api/UserApi'
 import GymSmallCard from '@/components/gyms/GymSmallCard'
 import Word from '@/models/Word'
 import Gym from '@/models/Gym'

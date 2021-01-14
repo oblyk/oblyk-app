@@ -74,7 +74,7 @@
 </template>
 <script>
 import Spinner from '@/components/layouts/Spiner'
-import ApiWord from '@/services/oblyk-api/wordApi'
+import ApiWord from '@/services/oblyk-api/WordApi'
 import Word from '@/models/Word'
 import WordCard from '@/components/words/WordCard'
 import { SessionConcern } from '@/concerns/SessionConcern'

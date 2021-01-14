@@ -21,7 +21,7 @@
 
 <script>
 import { SessionConcern } from '@/concerns/SessionConcern'
-import FollowApi from '@/services/oblyk-api/followApi'
+import FollowApi from '@/services/oblyk-api/FollowApi'
 import store from '@/store'
 
 export default {

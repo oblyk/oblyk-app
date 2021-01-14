@@ -1,5 +1,5 @@
 import ActiveData from '@/models/ActiveData'
-import WordApi from '@/services/oblyk-api/wordApi'
+import WordApi from '@/services/oblyk-api/WordApi'
 
 export default class Word extends ActiveData {
   find (id) {

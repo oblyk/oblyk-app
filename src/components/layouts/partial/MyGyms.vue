@@ -34,7 +34,7 @@
 </template>
 <script>
 import { SessionConcern } from '@/concerns/SessionConcern'
-import UserApi from '@/services/oblyk-api/userApi'
+import UserApi from '@/services/oblyk-api/UserApi'
 import User from '@/models/User'
 import Gym from '@/models/Gym'
 

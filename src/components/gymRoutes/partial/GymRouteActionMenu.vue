@@ -82,7 +82,7 @@
   </v-menu>
 </template>
 <script>
-import gymRouteApi from '@/services/oblyk-api/gymRouteApi'
+import gymRouteApi from '@/services/oblyk-api/GymRouteApi'
 
 export default {
   name: 'GymRouteActionMenu',

@@ -16,7 +16,7 @@
 </template>
 <script>
 import { FormHelpers } from '@/mixins/FormHelpers'
-import GymSpaceApi from '@/services/oblyk-api/gymSpaceApi'
+import GymSpaceApi from '@/services/oblyk-api/GymSpaceApi'
 import GymSpace from '@/models/GymSpace'
 import SubmitForm from '@/components/forms/SubmitForm'
 import CloseForm from '@/components/forms/CloseForm'

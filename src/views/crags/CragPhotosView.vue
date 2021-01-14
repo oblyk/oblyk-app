@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import CragApi from '@/services/oblyk-api/cragApi'
+import CragApi from '@/services/oblyk-api/CragApi'
 import Spinner from '@/components/layouts/Spiner'
 import PhotoGallery from '@/components/photos/PhotoGallery'
 import { SessionConcern } from '@/concerns/SessionConcern'

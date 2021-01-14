@@ -1,5 +1,5 @@
 import axios from 'axios'
-import BaseApi from '@/services/oblyk-api/baseApi'
+import BaseApi from '@/services/oblyk-api/BaseApi'
 
 class CragRouteApi extends BaseApi {
   allInCrag (cragId, page = 1) {

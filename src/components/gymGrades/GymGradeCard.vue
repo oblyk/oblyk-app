@@ -91,7 +91,7 @@
 </template>
 
 <script>
-import GymGradeApi from '@/services/oblyk-api/gymGradeApi'
+import GymGradeApi from '@/services/oblyk-api/GymGradeApi'
 
 export default {
   name: 'GymGradeCard',

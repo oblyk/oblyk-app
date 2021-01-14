@@ -1,5 +1,5 @@
 import ActiveData from '@/models/ActiveData'
-import PhotoApi from '@/services/oblyk-api/photoApi'
+import PhotoApi from '@/services/oblyk-api/PhotoApi'
 
 export default class Photo extends ActiveData {
   find (id) {

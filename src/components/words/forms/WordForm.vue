@@ -24,7 +24,7 @@
 <script>
 import { FormHelpers } from '@/mixins/FormHelpers'
 import SubmitForm from '@/components/forms/SubmitForm'
-import WordApi from '@/services/oblyk-api/wordApi'
+import WordApi from '@/services/oblyk-api/WordApi'
 import CloseForm from '@/components/forms/CloseForm'
 import Word from '@/models/Word'
 

@@ -1,5 +1,5 @@
 import ActiveData from '@/models/ActiveData'
-import GymRouteApi from '@/services/oblyk-api/gymRouteApi'
+import GymRouteApi from '@/services/oblyk-api/GymRouteApi'
 import GymSector from '@/models/GymSector'
 import GymSpace from '@/models/GymSpace'
 

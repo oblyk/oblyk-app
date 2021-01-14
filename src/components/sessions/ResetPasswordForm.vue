@@ -30,7 +30,7 @@
 
 <script>
 import SubmitForm from '@/components/forms/SubmitForm'
-import SessionApi from '@/services/oblyk-api/sessionApi'
+import SessionApi from '@/services/oblyk-api/SessionApi'
 
 export default {
   name: 'ResetPasswordForm',

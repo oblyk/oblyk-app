@@ -47,7 +47,7 @@
 </template>
 <script>
 import { FormHelpers } from '@/mixins/FormHelpers'
-import PhotoApi from '@/services/oblyk-api/photoApi'
+import PhotoApi from '@/services/oblyk-api/PhotoApi'
 import SubmitForm from '@/components/forms/SubmitForm'
 import CloseForm from '@/components/forms/CloseForm'
 

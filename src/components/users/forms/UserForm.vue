@@ -81,7 +81,7 @@
 </template>
 <script>
 import { FormHelpers } from '@/mixins/FormHelpers'
-import UserApi from '@/services/oblyk-api/userApi'
+import UserApi from '@/services/oblyk-api/UserApi'
 import SubmitForm from '@/components/forms/SubmitForm'
 import DatePickerInput from '@/components/forms/DatePickerInput'
 import store from '@/store'

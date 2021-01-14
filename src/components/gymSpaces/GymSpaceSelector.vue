@@ -17,7 +17,7 @@
 </template>
 <script>
 import { SessionConcern } from '@/concerns/SessionConcern'
-import GymSpaceApi from '@/services/oblyk-api/gymSpaceApi'
+import GymSpaceApi from '@/services/oblyk-api/GymSpaceApi'
 
 export default {
   name: 'GymSpaceSelector',

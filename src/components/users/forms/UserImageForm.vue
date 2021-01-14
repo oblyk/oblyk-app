@@ -18,7 +18,7 @@
   </v-form>
 </template>
 <script>
-import UserApi from '@/services/oblyk-api/userApi'
+import UserApi from '@/services/oblyk-api/UserApi'
 import SubmitForm from '@/components/forms/SubmitForm'
 import CloseForm from '@/components/forms/CloseForm'
 import { FormHelpers } from '@/mixins/FormHelpers'

@@ -29,7 +29,7 @@
 </template>
 <script>
 import Spinner from '@/components/layouts/Spiner'
-import GymGradeApi from '@/services/oblyk-api/gymGradeApi'
+import GymGradeApi from '@/services/oblyk-api/GymGradeApi'
 import GymGradeCard from '@/components/gymGrades/GymGradeCard'
 import GymGrade from '@/models/GymGrade'
 

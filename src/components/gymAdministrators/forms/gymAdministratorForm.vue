@@ -17,7 +17,7 @@
 <script>
 import { FormHelpers } from '@/mixins/FormHelpers'
 import SubmitForm from '@/components/forms/SubmitForm'
-import GymAdministratorApi from '@/services/oblyk-api/gymAdministratorApi'
+import GymAdministratorApi from '@/services/oblyk-api/GymAdministratorApi'
 import CloseForm from '@/components/forms/CloseForm'
 
 export default {

@@ -1,5 +1,5 @@
 import ActiveData from '@/models/ActiveData'
-import CragApi from '@/services/oblyk-api/cragApi'
+import CragApi from '@/services/oblyk-api/CragApi'
 
 export default class Crag extends ActiveData {
   find (id) {

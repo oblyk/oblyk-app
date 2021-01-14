@@ -63,7 +63,7 @@
 </template>
 <script>
 import Spinner from '@/components/layouts/Spiner'
-import GymAdministratorApi from '@/services/oblyk-api/gymAdministratorApi'
+import GymAdministratorApi from '@/services/oblyk-api/GymAdministratorApi'
 
 export default {
   name: 'GymAdministratorsView',

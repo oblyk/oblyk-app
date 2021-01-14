@@ -76,7 +76,7 @@
 </template>
 <script>
 import { FormHelpers } from '@/mixins/FormHelpers'
-import UserApi from '@/services/oblyk-api/userApi'
+import UserApi from '@/services/oblyk-api/UserApi'
 import SubmitForm from '@/components/forms/SubmitForm'
 import ClimbingTypeInput from '@/components/forms/ClimbingTypeInput'
 

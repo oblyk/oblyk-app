@@ -57,8 +57,8 @@ import { FormHelpers } from '@/mixins/FormHelpers'
 import CloseForm from '@/components/forms/CloseForm'
 import SubmitForm from '@/components/forms/SubmitForm'
 import Spinner from '@/components/layouts/Spiner'
-import GymGradeApi from '@/services/oblyk-api/gymGradeApi'
-import GymSpaceApi from '@/services/oblyk-api/gymSpaceApi'
+import GymGradeApi from '@/services/oblyk-api/GymGradeApi'
+import GymSpaceApi from '@/services/oblyk-api/GymSpaceApi'
 import GymSpace from '@/models/GymSpace'
 
 export default {

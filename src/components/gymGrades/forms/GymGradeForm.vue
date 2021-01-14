@@ -87,7 +87,7 @@
 <script>
 import { FormHelpers } from '@/mixins/FormHelpers'
 import SubmitForm from '@/components/forms/SubmitForm'
-import GymGradeApi from '@/services/oblyk-api/gymGradeApi'
+import GymGradeApi from '@/services/oblyk-api/GymGradeApi'
 import GymGrade from '@/models/GymGrade'
 import CloseForm from '@/components/forms/CloseForm'
 

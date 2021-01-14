@@ -23,7 +23,7 @@
 </template>
 <script>
 import { FormHelpers } from '@/mixins/FormHelpers'
-import GymRouteApi from '@/services/oblyk-api/gymRouteApi'
+import GymRouteApi from '@/services/oblyk-api/GymRouteApi'
 import CloseForm from '@/components/forms/CloseForm'
 import SubmitForm from '@/components/forms/SubmitForm'
 import GymRoute from '@/models/GymRoute'

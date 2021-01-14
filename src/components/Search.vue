@@ -25,7 +25,7 @@
   </div>
 </template>
 <script>
-import SearchApi from '@/services/oblyk-api/searchApi'
+import SearchApi from '@/services/oblyk-api/SearchApi'
 import Spinner from '@/components/layouts/Spiner'
 import CragRouteSearchResult from '@/components/searches/CragRouteSearchResult'
 import GuideBookSearchResult from '@/components/searches/GuideBookSearchResult'

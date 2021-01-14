@@ -61,7 +61,7 @@
 <script>
 import { FormHelpers } from '@/mixins/FormHelpers'
 import { SessionConcern } from '@/concerns/SessionConcern'
-import GymAdministratorRequestApi from '@/services/oblyk-api/gymAdministratorRequestApi'
+import GymAdministratorRequestApi from '@/services/oblyk-api/GymAdministratorRequestApi'
 import SubmitForm from '@/components/forms/SubmitForm'
 import CloseForm from '@/components/forms/CloseForm'
 import Spinner from '@/components/layouts/Spiner'

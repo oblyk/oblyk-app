@@ -1,5 +1,5 @@
 import ActiveData from '@/models/ActiveData'
-import GuideBookPaperApi from '@/services/oblyk-api/guideBookPaperApi'
+import GuideBookPaperApi from '@/services/oblyk-api/GuideBookPaperApi'
 
 export default class GuideBookPaper extends ActiveData {
   find (id) {

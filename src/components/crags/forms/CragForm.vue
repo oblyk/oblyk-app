@@ -55,7 +55,7 @@
 <script>
 import { FormHelpers } from '@/mixins/FormHelpers'
 import SubmitForm from '@/components/forms/SubmitForm'
-import CragApi from '@/services/oblyk-api/cragApi'
+import CragApi from '@/services/oblyk-api/CragApi'
 import CloseForm from '@/components/forms/CloseForm'
 import Crag from '@/models/Crag'
 import ClimbingTypeInput from '@/components/forms/ClimbingTypeInput'

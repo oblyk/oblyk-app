@@ -43,7 +43,7 @@
 
 <script>
 import Spinner from '@/components/layouts/Spiner'
-import CragApi from '@/services/oblyk-api/cragApi'
+import CragApi from '@/services/oblyk-api/CragApi'
 import GuideBookPaper from '@/models/GuideBookPaper'
 import GuideBookPdf from '@/models/GuideBookPdf'
 import GuideBookWeb from '@/models/GuideBookWeb'

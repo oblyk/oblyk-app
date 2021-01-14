@@ -52,7 +52,7 @@
   </div>
 </template>
 <script>
-import UserApi from '@/services/oblyk-api/userApi'
+import UserApi from '@/services/oblyk-api/UserApi'
 import { LocalizationHelpers } from '@/mixins/LocalizationHelpers'
 
 export default {

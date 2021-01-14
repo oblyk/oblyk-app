@@ -1,27 +1,27 @@
 import axios from 'axios'
-import BaseApi from '@/services/oblyk-api/baseApi'
+import BaseApi from '@/services/oblyk-api/BaseApi'
 
-class GuideBookWebApi extends BaseApi {
+class GuideBookPaperApi extends BaseApi {
   all () {
     return axios({
-      url: `${this.baseUrl}/guide_book_webs.json`,
+      url: `${this.baseUrl}/guide_book_papers.json`,
       method: 'GET'
     })
   }
 
   find (id) {
     return axios({
-      url: `${this.baseUrl}/guide_book_webs/${id}.json`,
+      url: `${this.baseUrl}/guide_book_papers/${id}.json`,
       method: 'GET'
     })
   }
 
   update (data) {
     return axios({
-      url: `${this.baseUrl}/guide_book_webs/${data.id}.json`,
+      url: `${this.baseUrl}/guide_book_papers/${data.id}.json`,
       headers: { Authorization: this.authToken() },
       data: {
-        guide_book_web: data
+        guide_book_paper: data
       },
       method: 'PUT'
     })
@@ -29,13 +29,13 @@ class GuideBookWebApi extends BaseApi {
 
   create (data) {
     return axios({
-      url: `${this.baseUrl}/guide_book_webs.json`,
+      url: `${this.baseUrl}/guide_book_papers.json`,
       headers: { Authorization: this.authToken() },
       data: {
-        guide_book_web: data
+        guide_book_paper: data
       },
       method: 'POST'
     })
   }
 }
-export default new GuideBookWebApi()
+export default new GuideBookPaperApi()

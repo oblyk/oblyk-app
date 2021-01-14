@@ -1,5 +1,5 @@
 import ActiveData from '@/models/ActiveData'
-import GymSectorApi from '@/services/oblyk-api/gymSectorApi'
+import GymSectorApi from '@/services/oblyk-api/GymSectorApi'
 
 export default class GymSector extends ActiveData {
   find (gymId, spaceId, sectorId) {

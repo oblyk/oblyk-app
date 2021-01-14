@@ -40,7 +40,7 @@
 import { CRS } from 'leaflet'
 import { LImageOverlay, LControlZoom } from 'vue2-leaflet'
 import { EditableMap, EditablePolygon } from 'vue2-leaflet-editable'
-import GymSectorApi from '@/services/oblyk-api/gymSectorApi'
+import GymSectorApi from '@/services/oblyk-api/GymSectorApi'
 
 import 'leaflet/dist/leaflet.css'
 import { MapDrawingHelpers } from '@/mixins/MapDrawingHelpers'
