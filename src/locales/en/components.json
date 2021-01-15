@@ -81,6 +81,9 @@
         "map": "Map"
       }
     },
+    "placeOfSale": {
+      "noPlace": "There is no point of sale filled in for the moment."
+    },
     "gym": {
       "type": "Gym",
       "addNew": "Add a new climbing gym",

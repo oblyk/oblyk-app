@@ -56,6 +56,8 @@
     "editComment": "Éditer le commentaire",
     "reportProblem": "Signaler un problème",
     "addVideo": "Ajouter une vidéo",
-    "editVideo": "Éditer la vidéo"
+    "editVideo": "Éditer la vidéo",
+    "addPlaceOfSale": "Ajouter un point de vente",
+    "editPlaceOfSale": "Modifier le point de vente"
   }
 }

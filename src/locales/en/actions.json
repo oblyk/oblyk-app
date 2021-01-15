@@ -56,6 +56,8 @@
     "editComment": "Edit comment",
     "reportProblem": "Report a problem",
     "addVideo": "Add video",
-    "editVideo": "Edit video"
+    "editVideo": "Edit video",
+    "addPlaceOfSale": "Add place of sale",
+    "editPlaceOfSale": "Edit place of sale"
   }
 }

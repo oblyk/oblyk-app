@@ -291,6 +291,20 @@
       "south_west": "South West",
       "west": "West",
       "north_west": "North West"
+    },
+    "placeOfSale": {
+      "name": "Name",
+      "url": "Web site",
+      "description": "Description",
+      "latitude": "Latitude",
+      "longitude": "Longitude",
+      "code_country": "Code country",
+      "country": "Country",
+      "postal_code": "Postal code",
+      "city": "City",
+      "region": "Region",
+      "address": "Address",
+      "guide_book_paper_id": "Guide book"
     }
   }
 }

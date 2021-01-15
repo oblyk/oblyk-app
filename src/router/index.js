@@ -20,6 +20,7 @@ import LinkRouter from '@/router/modules/LinkRouter'
 import CommentRouter from '@/router/modules/CommentRouter'
 import ReportRouter from '@/router/modules/ReportRouter'
 import VideoRouter from '@/router/modules/VideoRouter'
+import PlaceOfSaleRouter from '@/router/modules/PlaceOfSaleRouter'
 
 Vue.use(VueRouter)
 
@@ -43,7 +44,8 @@ const router = new VueRouter({
     ...LinkRouter,
     ...CommentRouter,
     ...ReportRouter,
-    ...VideoRouter
+    ...VideoRouter,
+    ...PlaceOfSaleRouter
   ]
 })
 

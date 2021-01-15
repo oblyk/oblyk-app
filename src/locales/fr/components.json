@@ -81,6 +81,9 @@
         "map": "Carte"
       }
     },
+    "placeOfSale": {
+      "noPlace": "il n'y a pas de lieu de vente renseigné pour l'instant."
+    },
     "gym": {
       "type": "Salle",
       "addNew": "Ajouter une nouvelle salle",

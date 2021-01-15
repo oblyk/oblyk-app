@@ -291,6 +291,20 @@
       "south_west": "Sud Ouest",
       "west": "Ouest",
       "north_west": "Nord Ouest"
+    },
+    "placeOfSale": {
+      "name": "Nom",
+      "url": "Site internet",
+      "description": "Description",
+      "latitude": "Latitude",
+      "longitude": "Longitude",
+      "code_country": "Code pays",
+      "country": "Pays",
+      "postal_code": "Code postal",
+      "city": "Ville",
+      "region": "Région",
+      "address": "Adresse",
+      "guide_book_paper_id": "Topo"
     }
   }
 }

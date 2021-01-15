@@ -22,7 +22,7 @@ import { GuideBookPaperConcern } from '@/concerns/GuideBookPaperConcern'
 import Spinner from '@/components/layouts/Spiner'
 import GuideBookPaperDescription from '@/components/guideBookPapers/GuideBookPaperDescription'
 import GuideBookPaperCover from '@/components/guideBookPapers/GuideBookPaperCover'
-import GuideBookPaperBuy from '@/components/guideBookPapers/GuideBookPaperBuy'
+import GuideBookPaperBuy from '@/components/guideBookPapers/GuideBookPaperPlaceOfSales'
 
 export default {
   name: 'GuideBookPaperInfoView',
