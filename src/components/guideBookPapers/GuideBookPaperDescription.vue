@@ -105,12 +105,26 @@
         </template>
       </v-simple-table>
     </v-card-text>
+    <v-card-title class="pb-0 text-h6 font-weight-regular">
+      <v-icon left small>
+        mdi-comment
+      </v-icon>
+      {{ $t('components.comment.climbersComments') }}
+    </v-card-title>
+    <v-card-text>
+      <comment-list
+        :commentable-id="guideBookPaper.id"
+        commentable-type="GuideBookPaper"
+      />
+    </v-card-text>
   </v-card>
 </template>
 
 <script>
+import CommentList from '@/components/comments/CommentList'
 export default {
   name: 'GuideBookPaperDescription',
+  components: { CommentList },
   props: {
     guideBookPaper: Object
   }

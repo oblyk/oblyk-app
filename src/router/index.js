@@ -17,6 +17,7 @@ import GymGradeRouter from '@/router/modules/GymGradeRouter'
 import PhotoRouter from '@/router/modules/PhotoRouter'
 import GuideBookPaperRouter from '@/router/modules/GuideBookPaperRouter'
 import LinkRouter from '@/router/modules/LinkRouter'
+import CommentRouter from '@/router/modules/CommentRouter'
 
 Vue.use(VueRouter)
 
@@ -37,7 +38,8 @@ const router = new VueRouter({
     ...UserRouter,
     ...PhotoRouter,
     ...GuideBookPaperRouter,
-    ...LinkRouter
+    ...LinkRouter,
+    ...CommentRouter
   ]
 })
 

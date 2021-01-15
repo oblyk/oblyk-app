@@ -188,6 +188,10 @@
     "link": {
       "noLink": "Il n'y a pas de lien référencé ici pour l'instant"
     },
+    "comment": {
+      "noComment": "Il n'y a pas de commentaire ici pour l'instant",
+      "climbersComments": "Commentaires des grimpeurs"
+    },
     "user": {
       "globalInformation": "Information général",
       "partnerSearch": "Recherche de partenaire",

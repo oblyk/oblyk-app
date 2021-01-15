@@ -44,7 +44,7 @@ export default {
   name: 'LinkList',
   components: { Spinner, LinkCard },
   props: {
-    linkableId: String,
+    linkableId: [String, Number],
     linkableType: String
   },
 

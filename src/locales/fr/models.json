@@ -169,6 +169,9 @@
       "url": "Url",
       "description": "Description"
     },
+    "comment": {
+      "body": "Commentaire"
+    },
     "photo": {
       "description": "Description de la photo",
       "source": "Si la photo n'est pas de vous, merci de citer la source",

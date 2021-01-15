@@ -51,6 +51,8 @@
     "valueCopied": "%{value} copié !",
     "errorHasOccurred": "Une erreur s'est produite",
     "changeCover": "Changer la couverture",
-    "addLink": "Ajouter un lien"
+    "addLink": "Ajouter un lien",
+    "addComment": "Ajouter un commentaire",
+    "editComment": "Editer le commentaire"
   }
 }
