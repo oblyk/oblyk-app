@@ -50,6 +50,7 @@
     "unsubscribe": "Me désabonner",
     "valueCopied": "%{value} copié !",
     "errorHasOccurred": "Une erreur s'est produite",
-    "changeCover": "Changer la couverture"
+    "changeCover": "Changer la couverture",
+    "addLink": "Ajouter un lien"
   }
 }

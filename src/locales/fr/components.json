@@ -185,6 +185,9 @@
       "backToGlossary": "Retour au lexique",
       "searchDefinition": "Chercher une définition"
     },
+    "link": {
+      "noLink": "Il n'y a pas de lien référencé ici pour l'instant"
+    },
     "user": {
       "globalInformation": "Information général",
       "partnerSearch": "Recherche de partenaire",

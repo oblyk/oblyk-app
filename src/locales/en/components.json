@@ -185,6 +185,9 @@
       "backToGlossary": "Back to glossary",
       "searchDefinition": "Search a definition"
     },
+    "link": {
+      "noLink": "There is no link referenced here for the moment"
+    },
     "user": {
       "globalInformation": "General Information",
       "partnerSearch": "Partner search",

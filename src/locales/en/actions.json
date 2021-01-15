@@ -50,6 +50,7 @@
     "unsubscribe": "Unsubscribe",
     "valueCopied": "%{value} copied !",
     "errorHasOccurred": "An error has occurred",
-    "changeCover": "Change cover"
+    "changeCover": "Change cover",
+    "addLink": "Add link"
   }
 }

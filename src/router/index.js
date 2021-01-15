@@ -16,6 +16,7 @@ import GymRouteRouter from '@/router/modules/GymRouteRouter'
 import GymGradeRouter from '@/router/modules/GymGradeRouter'
 import PhotoRouter from '@/router/modules/PhotoRouter'
 import GuideBookPaperRouter from '@/router/modules/GuideBookPaperRouter'
+import LinkRouter from '@/router/modules/LinkRouter'
 
 Vue.use(VueRouter)
 
@@ -35,7 +36,8 @@ const router = new VueRouter({
     ...SessionRouter,
     ...UserRouter,
     ...PhotoRouter,
-    ...GuideBookPaperRouter
+    ...GuideBookPaperRouter,
+    ...LinkRouter
   ]
 })
 

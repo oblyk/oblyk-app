@@ -9,7 +9,7 @@
 - [ ] Markdown
 - [ ] Commentable
 - [ ] Followable
-- [ ] Linkable
+- [x] Linkable
 - [ ] Videoable
 - [x] Favicon, meta title
 - [ ] Faire page 404
@@ -65,9 +65,12 @@ ___
 - [ ] Falaise
 - [ ] Secteur
 - [ ] Voies
+- [ ] Photos et Video
 - [ ] Parking
 - [ ] Marche d'approche
-- [ ] Topo
+- [ ] Topo Papier
+- [ ] Topo Web
+- [ ] Topo PDF
 - [ ] Massif
 ---
 - [ ] Système d'alerte

@@ -23,6 +23,13 @@ class GuideBookPaperApi extends BaseApi {
     })
   }
 
+  links (id) {
+    return axios({
+      url: `${this.baseUrl}/guide_book_papers/${id}/links.json`,
+      method: 'GET'
+    })
+  }
+
   find (id) {
     return axios({
       url: `${this.baseUrl}/guide_book_papers/${id}.json`,

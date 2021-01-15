@@ -7,7 +7,6 @@ export default class GuideBookPaper extends ActiveData {
   }
 
   url (page = 'infos') {
-    console.log('id')
     return `/guide-book-papers/${this.id}/${this.slug_name}/${page}`
   }
 
