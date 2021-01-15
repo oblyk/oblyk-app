@@ -17,7 +17,7 @@
       <v-btn
         color="primary lighten-2"
         text
-        :to="crag.url()"
+        :to="crag.path()"
       >
         Voir le site
       </v-btn>

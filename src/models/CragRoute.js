@@ -1,7 +1,7 @@
 import ActiveData from '@/models/ActiveData'
 
 export default class CragRoute extends ActiveData {
-  url (tabs = 'infos') {
+  path (tabs = 'infos') {
     return `/crag-routes/${this.id}/${this.slug_name}`
   }
 

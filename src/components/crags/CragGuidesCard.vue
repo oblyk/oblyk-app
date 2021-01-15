@@ -25,7 +25,7 @@
             v-if="guide.className === 'GuideBookPaper'"
           >
             <router-link
-              :to="guide.url()"
+              :to="guide.path()"
             >
               <v-img
                 height="200"

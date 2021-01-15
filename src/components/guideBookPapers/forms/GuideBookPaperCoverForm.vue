@@ -47,7 +47,7 @@ export default {
           this.guideBookPaper.id
         )
         .then(() => {
-          this.$router.push(this.guideBookPaper.url())
+          this.$router.push(this.guideBookPaper.path())
         })
         .catch((err) => {
           this.$root.$emit('alertFromApiError', err, 'guide_book_paper')

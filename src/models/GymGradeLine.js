@@ -6,11 +6,11 @@ export default class GymGradeLine extends ActiveData {
     return this.apiFind(GymGradeLineApi, gymId, gradeId, gradeLineId)
   }
 
-  url (tabs = 'infos') {
+  path (tabs = 'infos') {
     return `/gyms/${this.gym.id}/${this.gym.slug_name}/grades/${this.gym_grade.id}/grade-lines/${this.id}/${tabs}`
   }
 
-  gradeUrl (tabs = 'infos') {
+  gradePath (tabs = 'infos') {
     return `/gyms/${this.gym.id}/${this.gym.slug_name}/grades/${this.id}/${tabs}`
   }
 

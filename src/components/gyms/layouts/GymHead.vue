@@ -24,7 +24,7 @@
           {{ gym.country }}, {{ gym.city }}
 
           <v-btn
-            :to="gym.url('edit')"
+            :to="gym.path('edit')"
             small
             icon
             :title="$t('actions.edit')"
@@ -37,7 +37,7 @@
           </v-btn>
 
           <v-btn
-            :to="gym.url('logo')"
+            :to="gym.path('logo')"
             small
             :title="$t('actions.changeLogo')"
             icon
@@ -52,7 +52,7 @@
           </v-btn>
 
           <v-btn
-            :to="gym.url('banner')"
+            :to="gym.path('banner')"
             small
             :title="$t('actions.changeBanner')"
             icon

@@ -6,7 +6,7 @@ export default class Photo extends ActiveData {
     return this.apiFind(PhotoApi, id)
   }
 
-  url (page = '') {
+  path (page = '') {
     return `/photos/${this.illustrable.type}/${this.illustrable.id}/${this.id}/${page}`
   }
 

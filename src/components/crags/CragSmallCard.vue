@@ -3,7 +3,7 @@
     <v-card
       link
       flat
-      :to="crag.url()"
+      :to="crag.path()"
     >
       <v-list-item three-line>
         <v-list-item-avatar

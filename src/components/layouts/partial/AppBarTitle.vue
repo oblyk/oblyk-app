@@ -123,13 +123,13 @@ export default {
       if (this.objectName === 'word') {
         new Word().find(this.objectId).then(object => { this.title = object.name })
       } else if (this.objectName === 'gym') {
-        new Gym().find(this.objectId).then(object => { this.title = object.name; this.avatar = object.logoUrl(); this.url = object.url() })
+        new Gym().find(this.objectId).then(object => { this.title = object.name; this.avatar = object.logoUrl(); this.url = object.path() })
       } else if (this.objectName === 'crag') {
-        new Crag().find(this.objectId).then(object => { this.title = object.name; this.url = object.url() })
+        new Crag().find(this.objectId).then(object => { this.title = object.name; this.url = object.path() })
       } else if (this.objectName === 'guideBookPaper') {
-        new GuideBookPaper().find(this.objectId).then(object => { this.title = object.name; this.url = object.url() })
+        new GuideBookPaper().find(this.objectId).then(object => { this.title = object.name; this.url = object.path() })
       } else if (this.objectName === 'me') {
-        this.getCurrentUser().then(user => { this.title = user.first_name; this.avatar = user.avatarUrl(); this.url = user.url() })
+        this.getCurrentUser().then(user => { this.title = user.first_name; this.avatar = user.avatarUrl(); this.url = user.path() })
       }
       document.title = this.title || 'Oblyk'
     }

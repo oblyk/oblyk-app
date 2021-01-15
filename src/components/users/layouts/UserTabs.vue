@@ -13,7 +13,7 @@
       </span>
     </v-tab>
 
-    <v-tab :to="user.meUrl('messenger')">
+    <v-tab :to="user.mePath('messenger')">
       <v-icon
         :small="!isMobile"
         left
@@ -26,7 +26,7 @@
       </span>
     </v-tab>
 
-    <v-tab :to="user.meUrl('subscribers')">
+    <v-tab :to="user.mePath('subscribers')">
       <v-icon
         :small="!isMobile"
         left
@@ -39,7 +39,7 @@
       </span>
     </v-tab>
 
-    <v-tab :to="user.meUrl('ascents')">
+    <v-tab :to="user.mePath('ascents')">
       <v-icon
         :small="!isMobile"
         left
@@ -52,7 +52,7 @@
       </span>
     </v-tab>
 
-    <v-tab :to="user.meUrl('favorites')">
+    <v-tab :to="user.mePath('favorites')">
       <v-icon
         :small="!isMobile"
         left
@@ -65,7 +65,7 @@
       </span>
     </v-tab>
 
-    <v-tab :to="user.meUrl('guide-books')">
+    <v-tab :to="user.mePath('guide-books')">
       <v-icon
         :small="!isMobile"
         left

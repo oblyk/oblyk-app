@@ -12,7 +12,7 @@
       <v-list-item
         v-for="gym in gyms()"
         :key="gym.id"
-        :to="gym.url('admin')"
+        :to="gym.path('admin')"
         link
       >
         <v-list-item-icon>

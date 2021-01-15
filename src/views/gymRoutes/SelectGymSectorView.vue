@@ -10,7 +10,7 @@
           </h2>
           <v-card
             link
-            :to="gymSpace.url(`sectors/${sector.id}/routes/new`)"
+            :to="gymSpace.path(`sectors/${sector.id}/routes/new`)"
             class="mb-4"
             v-for="sector in gymSpace.gym_sectors"
             :key="sector.id"

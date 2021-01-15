@@ -99,7 +99,7 @@ export default {
 
       promise
         .then(() => {
-          this.$router.push(this.gymGrade.url())
+          this.$router.push(this.gymGrade.path())
         })
         .catch(err => {
           this.$root.$emit('alertFromApiError', err, 'gymGradeLine')
@@ -114,7 +114,7 @@ export default {
         GymGradeLineApi
           .delete(this.data)
           .then(() => {
-            this.$router.push(this.gymGrade.url())
+            this.$router.push(this.gymGrade.path())
           })
           .catch(err => {
             this.$root.$emit('alertFromApiError', err, 'gymGradeLine')

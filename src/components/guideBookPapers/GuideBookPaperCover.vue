@@ -11,7 +11,7 @@
     <p>
       <v-btn
         v-if="isLoggedIn"
-        :to="guideBookPaper.url('cover')"
+        :to="guideBookPaper.path('cover')"
         class="mt-4"
         text
         color="primary"

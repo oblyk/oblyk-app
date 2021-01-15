@@ -8,15 +8,15 @@ export default class GymRoute extends ActiveData {
     return this.apiFind(GymRouteApi, gymId, spaceId, routeId)
   }
 
-  url (tabs = 'infos') {
+  path (tabs = 'infos') {
     return `/gyms/${this.gym.id}/${this.gym.slug_name}/spaces/${this.gym_space.id}/${this.gym_space.slug_name}/routes/${this.id}/${tabs}`
   }
 
-  gymSpaceUrl (tabs = 'plan') {
+  gymSpacePath (tabs = 'plan') {
     return `/gyms/${this.gym.id}/${this.gym.slug_name}/spaces/${this.gym_space.id}/${this.gym_space.slug_name}/${tabs}`
   }
 
-  gymSectorUrl (tabs = 'infos') {
+  gymSectorPath (tabs = 'infos') {
     return `/gyms/${this.gym.id}/${this.gym.slug_name}/spaces/${this.gym_space.id}/${this.gym_space.slug_name}/sectors/${this.gym_sector_id}/${tabs}`
   }
 

@@ -281,9 +281,9 @@ export default {
         .then(resp => {
           const gymRoute = new GymRoute(resp.data)
           if (this.nextAction === 'picture') {
-            this.$router.push(gymRoute.url('picture'))
+            this.$router.push(gymRoute.path('picture'))
           } else {
-            this.$router.push(gymRoute.gymSpaceUrl())
+            this.$router.push(gymRoute.gymSpacePath())
           }
         })
         .catch(err => {

@@ -66,7 +66,7 @@
           text
           class="float-right"
           color="primary"
-          :to="user.meUrl('partner-settings')"
+          :to="user.mePath('partner-settings')"
         >
           <v-icon
             left

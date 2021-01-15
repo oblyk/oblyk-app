@@ -6,11 +6,11 @@ export default class Word extends ActiveData {
     return this.apiFind(WordApi, id)
   }
 
-  url (page = 'infos') {
+  path (page = 'infos') {
     return `/words/${this.id}/${this.slug_name}/${page}`
   }
 
-  glossaryUrl () {
+  glossaryPath () {
     return '/glossary'
   }
 }

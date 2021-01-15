@@ -57,7 +57,7 @@ export default {
       promise
         .then((resp) => {
           const word = new Word(resp.data)
-          this.$router.push(word.url())
+          this.$router.push(word.path())
         })
         .catch((err) => {
           this.$root.$emit('alertFromApiError', err, 'word')

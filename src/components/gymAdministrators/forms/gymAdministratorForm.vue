@@ -45,7 +45,7 @@ export default {
       GymAdministratorApi
         .create(this.data)
         .then(() => {
-          this.$router.push(this.gym.url('administrators'))
+          this.$router.push(this.gym.path('administrators'))
         })
         .catch((err) => {
           this.$root.$emit('alertFromApiError', err, 'gymAdministrator')

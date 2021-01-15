@@ -12,7 +12,7 @@ export const ProtectedGymConcern = {
 
       // if current user administre gym but the right one
       if (!this.administeredGyms.includes(this.gym.id)) {
-        this.$router.push(this.gym.url('administrator-required'))
+        this.$router.push(this.gym.path('administrator-required'))
       }
     }
   }

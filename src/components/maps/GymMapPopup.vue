@@ -23,7 +23,7 @@
       <v-btn
         color="primary lighten-2"
         text
-        :to="gym.url()"
+        :to="gym.path()"
       >
         Voir la salle
       </v-btn>

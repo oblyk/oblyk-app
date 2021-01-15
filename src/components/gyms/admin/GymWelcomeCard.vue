@@ -16,7 +16,7 @@
     </v-card-text>
     <v-card-actions>
       <v-btn
-        :to="gym.url()"
+        :to="gym.path()"
         text
         color="primary"
       >

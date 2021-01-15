@@ -3,7 +3,7 @@
     <v-card
       link
       flat
-      :to="gym.url()"
+      :to="gym.path()"
     >
       <v-list-item three-line>
         <v-list-item-avatar

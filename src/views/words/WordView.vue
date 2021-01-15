@@ -10,7 +10,7 @@
             :word="word"
           />
           <v-btn
-            :to="word.glossaryUrl()"
+            :to="word.glossaryPath()"
             text
             class="mt-2"
             color="primary"

@@ -1,6 +1,6 @@
 <template>
   <v-card
-    :to="gym.url('administrators')"
+    :to="gym.path('administrators')"
     class="full-height"
   >
     <v-card-title>

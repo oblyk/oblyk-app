@@ -181,7 +181,7 @@ export default {
       promise
         .then((resp) => {
           const crag = new Crag(resp.data)
-          this.$router.push(crag.url())
+          this.$router.push(crag.path())
         })
         .catch((err) => {
           this.$root.$emit('alertFromApiError', err, 'crag')

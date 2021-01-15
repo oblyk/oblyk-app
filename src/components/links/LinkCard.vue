@@ -16,7 +16,7 @@
       <owner-label
         :owner="link.creator"
         :history="link.history"
-        :edit-path="`${link.editUrl()}?redirect_to=${redirectTo}`"
+        :edit-path="`${link.path('edit')}?redirect_to=${redirectTo}`"
         :delete-function="deleteLink"
         :reports="{ type: 'Link', id: link.id }"
       />

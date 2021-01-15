@@ -11,7 +11,7 @@
         <v-btn
           outlined
           color="primary"
-          :to="gym.url()"
+          :to="gym.path()"
         >
           {{ $t('actions.backToName', { name: gym.name }) }}
         </v-btn>

@@ -19,7 +19,7 @@
       <!-- Edit route -->
       <v-list-item
         link
-        :to="gymRoute.url('edit')"
+        :to="gymRoute.path('edit')"
       >
         <v-list-item-icon>
           <v-icon>mdi-pencil</v-icon>
@@ -34,7 +34,7 @@
       <!-- Add picture -->
       <v-list-item
         link
-        :to="gymRoute.url('picture')"
+        :to="gymRoute.path('picture')"
       >
         <v-list-item-icon>
           <v-icon>mdi-camera</v-icon>
@@ -50,7 +50,7 @@
       <v-list-item
         link
         v-if="gymRoute.hasPicture"
-        :to="gymRoute.url('thumbnail')"
+        :to="gymRoute.path('thumbnail')"
       >
         <v-list-item-icon>
           <v-icon>mdi-crop</v-icon>

@@ -13,7 +13,7 @@
 
     <v-tab
       v-if="gym.gym_spaces.length > 0"
-      :to="gym.firstSpaceUrl()"
+      :to="gym.firstSpacePath()"
     >
       <v-badge
         color="primary"

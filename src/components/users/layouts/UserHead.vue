@@ -33,7 +33,7 @@
             icon
             class="ml-2"
             :title="$t('actions.editMyProfile')"
-            :to="user.meUrl('settings')"
+            :to="user.mePath('settings')"
           >
             <v-icon
               small
@@ -48,7 +48,7 @@
             icon
             class="ml-2"
             :title="$t('actions.changeAvatar')"
-            :to="user.meUrl('avatar')"
+            :to="user.mePath('avatar')"
           >
             <v-icon
               small
@@ -61,7 +61,7 @@
             small
             icon
             class="ml-2"
-            :to="user.meUrl('banner')"
+            :to="user.mePath('banner')"
             :title="$t('actions.changeBanner')"
           >
             <v-icon

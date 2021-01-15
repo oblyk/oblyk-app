@@ -44,7 +44,7 @@
       <v-btn
         icon
         dark
-        :to="photo.url('edit')"
+        :to="photo.path('edit')"
       >
         <v-icon small>
           mdi-pencil

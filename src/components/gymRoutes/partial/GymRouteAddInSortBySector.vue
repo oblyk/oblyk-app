@@ -4,7 +4,7 @@
       text
       color="primary"
       small
-      :to="gymSector.url('routes/new')"
+      :to="gymSector.path('routes/new')"
     >
       <v-icon left>
         mdi-source-branch-plus

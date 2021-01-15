@@ -50,7 +50,7 @@ export default {
         )
         .then((resp) => {
           const gymRoute = new GymRoute(resp.data)
-          this.$router.push(gymRoute.url('thumbnail'))
+          this.$router.push(gymRoute.path('thumbnail'))
         })
         .catch((err) => {
           this.$root.$emit('alertFromApiError', err, 'gymRoute')

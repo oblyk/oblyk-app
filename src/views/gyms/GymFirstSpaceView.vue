@@ -23,7 +23,7 @@
               <v-btn
                 text
                 color="primary"
-                :to="gym.url('first-difficulty-system')"
+                :to="gym.path('first-difficulty-system')"
               >
                 {{ $t('components.gym.difficultySystem') }}
               </v-btn>
@@ -32,7 +32,7 @@
           <p v-if="gym.gym_grades_count > 0" class="text-center mt-10">
             <v-btn
               color="primary"
-              :to="gym.url('spaces/new')"
+              :to="gym.path('spaces/new')"
             >
               {{ $t('components.gym.createFirstSpace') }}
             </v-btn>

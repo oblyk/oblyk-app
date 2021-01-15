@@ -15,7 +15,7 @@
           <span>
             {{ crag.country }}, {{ crag.region }}, {{ crag.city }}
             <v-btn
-              :to="crag.url('edit')"
+              :to="crag.path('edit')"
               small
               icon
               :title="$t('actions.edit')"

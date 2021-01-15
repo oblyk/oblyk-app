@@ -6,7 +6,7 @@ export default class Gym extends ActiveData {
     return this.apiFind(GymApi, id)
   }
 
-  url (tabs = 'infos') {
+  path (tabs = 'infos') {
     return `/gyms/${this.id}/${this.slug_name}/${tabs}`
   }
 
@@ -44,7 +44,7 @@ export default class Gym extends ActiveData {
     return list
   }
 
-  firstSpaceUrl () {
+  firstSpacePath () {
     const space = this.gym_spaces[0]
     return (space) ? `/gyms/${this.id}/${this.slug_name}/spaces/${space.id}/${space.slug_name}/plan` : ''
   }

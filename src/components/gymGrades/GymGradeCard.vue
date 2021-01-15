@@ -1,6 +1,6 @@
 <template>
   <v-card
-    :to="presentation ? gymGrade.url() : null"
+    :to="presentation ? gymGrade.path() : null"
     :hover="presentation"
   >
     <v-card-title>
@@ -27,7 +27,7 @@
             <tr
               v-for="gradeLine in gymGrade.gradeLines"
               :key="gradeLine.id"
-              @click="!presentation ? $router.push(gradeLine.url('edit')) : null"
+              @click="!presentation ? $router.push(gradeLine.path('edit')) : null"
             >
               <td class="smallest-table-column">
                 {{ gradeLine.order }}
@@ -69,7 +69,7 @@
           color="primary"
           class="ml-2"
           outlined
-          :to="gymGrade.url('grade-lines/new')"
+          :to="gymGrade.path('grade-lines/new')"
         >
           <v-icon left>
             mdi-plus
@@ -80,7 +80,7 @@
         <v-btn
           color="primary"
           class="ml-2"
-          :to="gymGrade.url('edit')"
+          :to="gymGrade.path('edit')"
           outlined
         >
           {{ $t('actions.edit') }}
@@ -117,7 +117,7 @@ export default {
         GymGradeApi
           .delete(this.gymGrade)
           .then(() => {
-            this.$router.push(this.gymGrade.listUrl())
+            this.$router.push(this.gymGrade.listPath())
           })
           .catch(err => {
             this.$root.$emit('alertFromApiError', err, 'gymGrade')

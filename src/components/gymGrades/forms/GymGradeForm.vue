@@ -125,7 +125,7 @@ export default {
       promise
         .then((resp) => {
           const gymGrade = new GymGrade(resp.data)
-          this.$router.push(gymGrade.url())
+          this.$router.push(gymGrade.path())
         })
         .catch((err) => {
           this.$root.$emit('alertFromApiError', err, 'gymGrade')

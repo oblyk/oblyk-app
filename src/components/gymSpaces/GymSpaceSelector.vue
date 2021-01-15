@@ -62,7 +62,7 @@ export default {
       if (this.loadingGymSpaces) return
 
       if (this.selectedGymSpaceId === 0) {
-        this.$router.push(this.gymSpace.gymUrl('spaces/new'))
+        this.$router.push(this.gymSpace.gymPath('spaces/new'))
       } else {
         let selectedGymSpace = null
 

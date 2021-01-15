@@ -6,11 +6,11 @@ export default class User extends ActiveData {
     return this.apiFind(UserApi, id)
   }
 
-  meUrl (page = '') {
+  mePath (page = '') {
     return `/me/${this.slug_name}/${page}`
   }
 
-  userUrl (tabs = 'infos') {
+  userPath (tabs = 'infos') {
     return `/users/${this.id}/${this.slug_name}/${tabs}`
   }
 

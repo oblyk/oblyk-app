@@ -6,7 +6,7 @@ export default class Crag extends ActiveData {
     return this.apiFind(CragApi, id)
   }
 
-  url (page = 'infos') {
+  path (page = 'infos') {
     return `/crags/${this.id}/${this.slug_name}/${page}`
   }
 

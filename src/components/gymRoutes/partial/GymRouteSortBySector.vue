@@ -27,7 +27,7 @@
           <!-- Edit Sector -->
           <v-list-item
             link
-            :to="gymSector.url('edit')"
+            :to="gymSector.path('edit')"
           >
             <v-list-item-icon>
               <v-icon>mdi-pencil</v-icon>

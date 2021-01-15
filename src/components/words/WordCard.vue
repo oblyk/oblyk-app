@@ -1,7 +1,7 @@
 <template>
   <v-card
     :link="presentation"
-    :to="presentation ? word.url() : null"
+    :to="presentation ? word.path() : null"
   >
     <v-card-title>
       {{ word.name }}
@@ -14,7 +14,7 @@
     >
       <v-spacer />
       <v-btn
-        :to="word.url('edit')"
+        :to="word.path('edit')"
         right
         text
         color="primary"

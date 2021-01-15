@@ -61,7 +61,7 @@
           text
           class="float-right"
           color="primary"
-          :to="user.meUrl('settings')"
+          :to="user.mePath('settings')"
         >
           <v-icon
             left

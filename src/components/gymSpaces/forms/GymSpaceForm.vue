@@ -105,7 +105,7 @@ export default {
       promise
         .then((resp) => {
           const gymSpace = new GymSpace(resp.data)
-          this.$router.push(gymSpace.url())
+          this.$router.push(gymSpace.path())
         })
         .catch((err) => {
           this.$root.$emit('alertFromApiError', err, 'gymSpace')

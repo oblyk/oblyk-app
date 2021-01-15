@@ -186,6 +186,10 @@
       "copyright_nc": "NC - La photo ne peut pas être utilisé à des fins commercial",
       "copyright_nd": "ND - Vous n'autorisez pas à modifier cette photo"
     },
+    "video": {
+      "description": "Description",
+      "url": "Lien de la vidéo"
+    },
     "genres": {
       "undefined": "Indéfini",
       "male": "Homme",

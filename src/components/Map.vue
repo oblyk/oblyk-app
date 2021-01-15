@@ -278,7 +278,7 @@ export default {
         document
           .getElementById(`see-map-model-${uniqueId}`)
           .addEventListener('click', () => {
-            this.$router.push(model.url())
+            this.$router.push(model.path())
           })
       })
 

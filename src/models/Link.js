@@ -6,7 +6,7 @@ export default class Link extends ActiveData {
     return this.apiFind(LinkApi, id)
   }
 
-  editUrl () {
-    return `/links/${this.id}/edit`
+  path (page = 'info') {
+    return `/links/${this.id}/${page}`
   }
 }

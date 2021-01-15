@@ -6,7 +6,7 @@ export default class Comment extends ActiveData {
     return this.apiFind(CommentApi, id)
   }
 
-  url (page = 'infos') {
+  path (page = 'infos') {
     return `/comments/${this.id}/${page}`
   }
 }

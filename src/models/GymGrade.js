@@ -7,11 +7,11 @@ export default class GymGrade extends ActiveData {
     return this.apiFind(GymGradeApi, gymId, gradeId)
   }
 
-  url (tabs = 'infos') {
+  path (tabs = 'infos') {
     return `/gyms/${this.gym.id}/${this.gym.slug_name}/grades/${this.id}/${tabs}`
   }
 
-  listUrl () {
+  listPath () {
     return `/gyms/${this.gym.id}/${this.gym.slug_name}/grades-list`
   }
 

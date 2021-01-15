@@ -6,7 +6,7 @@
       <gym-grade-card :gym-grade="gymGrade" :presentation="false" />
       <div class="mt-4">
         <v-btn
-          :to="gymGrade.listUrl()"
+          :to="gymGrade.listPath()"
           icon
         >
           <v-icon>mdi-arrow-left</v-icon>

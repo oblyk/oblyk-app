@@ -6,7 +6,7 @@ export default class GuideBookPaper extends ActiveData {
     return this.apiFind(GuideBookPaperApi, id)
   }
 
-  url (page = 'infos') {
+  path (page = 'infos') {
     return `/guide-book-papers/${this.id}/${this.slug_name}/${page}`
   }
 

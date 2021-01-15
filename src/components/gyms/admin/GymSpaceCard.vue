@@ -1,6 +1,6 @@
 <template>
   <v-card
-    :to="gym.gym_spaces.length > 0 ? gym.firstSpaceUrl() : gym.url('first-space')"
+    :to="gym.gym_spaces.length > 0 ? gym.firstSpacePath() : gym.path('first-space')"
     class="full-height"
   >
     <v-card-title>

@@ -8,12 +8,12 @@ export default class GymSpace extends ActiveData {
     return this.apiFind(GymSpaceApi, gymId, spaceId)
   }
 
-  gymUrl (tabs = 'infos') {
+  gymPath (tabs = 'infos') {
     return `/gyms/${this.gym.id}/${this.gym.slug_name}/${tabs}`
   }
 
-  url (tabs = 'plan') {
-    return `${this.gymUrl('spaces')}/${this.id}/${this.slug_name}/${tabs}`
+  path (tabs = 'plan') {
+    return `${this.gymPath('spaces')}/${this.id}/${this.slug_name}/${tabs}`
   }
 
   planUrl () {

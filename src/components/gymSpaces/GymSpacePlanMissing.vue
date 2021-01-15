@@ -11,7 +11,7 @@
     />
     <p class="text-center">
       <v-btn
-        :to="gymSpace.url('upload-plan')"
+        :to="gymSpace.path('upload-plan')"
         outlined
       >
         {{ $t('actions.uploadMap') }}
