@@ -10,7 +10,7 @@
 - [x] Commentable
 - [ ] Followable
 - [x] Linkable
-- [ ] Videoable
+- [X] Videoable
 - [x] Favicon, meta title
 - [ ] Faire page 404
 - [ ] Paramétrage des web workers PWA

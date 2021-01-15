@@ -53,7 +53,9 @@
     "changeCover": "Changer la couverture",
     "addLink": "Ajouter un lien",
     "addComment": "Ajouter un commentaire",
-    "editComment": "Editer le commentaire",
-    "reportProblem": "Signaler un problème"
+    "editComment": "Éditer le commentaire",
+    "reportProblem": "Signaler un problème",
+    "addVideo": "Ajouter une vidéo",
+    "editVideo": "Éditer la vidéo"
   }
 }

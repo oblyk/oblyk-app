@@ -2,23 +2,16 @@
   <v-form @submit.prevent="submit()">
     <v-text-field
       outlined
-      v-model="data.name"
-      required
-      :label="$t('models.link.name')"
-    />
-
-    <v-text-field
-      outlined
       v-model="data.url"
       required
-      :label="$t('models.link.url')"
+      :label="$t('models.video.url')"
     />
 
     <v-textarea
       outlined
       required
       v-model="data.description"
-      :label="$t('models.link.description')"
+      :label="$t('models.video.description')"
     />
 
     <close-form />
@@ -31,15 +24,15 @@
 <script>
 import { FormHelpers } from '@/mixins/FormHelpers'
 import SubmitForm from '@/components/forms/SubmitForm'
-import LinkApi from '@/services/oblyk-api/LinkApi'
+import VideoApi from '@/services/oblyk-api/VideoApi'
 import CloseForm from '@/components/forms/CloseForm'
 
 export default {
-  name: 'LinkForm',
+  name: 'VideoForm',
   components: { CloseForm, SubmitForm },
   mixins: [FormHelpers],
   props: {
-    link: {
+    video: {
       type: Object,
       required: false
     }
@@ -49,12 +42,11 @@ export default {
     return {
       redirectTo: null,
       data: {
-        id: (this.link || {}).id,
-        name: (this.link || {}).name,
-        url: (this.link || {}).url,
-        description: (this.link || {}).description,
-        linkable_type: (this.link || {}).linkable_type || this.$route.params.linkableType,
-        linkable_id: (this.link || {}).linkable_id || this.$route.params.linkableId
+        id: (this.video || {}).id,
+        url: (this.video || {}).url,
+        description: (this.video || {}).description,
+        viewable_type: (this.video || {}).viewable_type || this.$route.params.viewableType,
+        viewable_id: (this.video || {}).viewable_id || this.$route.params.viewableId
       }
     }
   },
@@ -67,14 +59,14 @@ export default {
   methods: {
     submit: function () {
       this.submitOverlay = true
-      const promise = (this.isEditingForm()) ? LinkApi.update(this.data) : LinkApi.create(this.data)
+      const promise = (this.isEditingForm()) ? VideoApi.update(this.data) : VideoApi.create(this.data)
 
       promise
         .then(() => {
           this.$router.push(this.redirectTo)
         })
         .catch(err => {
-          this.$root.$emit('alertFromApiError', err, 'link')
+          this.$root.$emit('alertFromApiError', err, 'video')
         })
         .then(() => {
           this.submitOverlay = false

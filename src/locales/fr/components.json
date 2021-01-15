@@ -198,6 +198,12 @@
       "thanks": "Merci d'avance pour ton aide !",
       "success": "Nous avons bien reçu votre signalement, merci !"
     },
+    "photo" : {
+      "noPhoto": "Il n'y a pas de photo ici pour l'instant"
+    },
+    "video" : {
+      "noVideo": "Il n'y a pas de vidéo ici pour l'instant"
+    },
     "user": {
       "globalInformation": "Information général",
       "partnerSearch": "Recherche de partenaire",

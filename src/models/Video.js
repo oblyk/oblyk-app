@@ -7,6 +7,6 @@ export default class Video extends ActiveData {
   }
 
   path (page = '') {
-    return `/videos/${this.viewable.type}/${this.viewable.id}/${this.id}/${page}`
+    return `/videos/${this.viewable_type}/${this.viewable_id}/${this.id}/${page}`
   }
 }

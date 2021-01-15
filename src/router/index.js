@@ -19,6 +19,7 @@ import GuideBookPaperRouter from '@/router/modules/GuideBookPaperRouter'
 import LinkRouter from '@/router/modules/LinkRouter'
 import CommentRouter from '@/router/modules/CommentRouter'
 import ReportRouter from '@/router/modules/ReportRouter'
+import VideoRouter from '@/router/modules/VideoRouter'
 
 Vue.use(VueRouter)
 
@@ -41,7 +42,8 @@ const router = new VueRouter({
     ...GuideBookPaperRouter,
     ...LinkRouter,
     ...CommentRouter,
-    ...ReportRouter
+    ...ReportRouter,
+    ...VideoRouter
   ]
 })
 

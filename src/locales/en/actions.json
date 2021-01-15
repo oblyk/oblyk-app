@@ -54,6 +54,8 @@
     "addLink": "Add link",
     "addComment": "Add comment",
     "editComment": "Edit comment",
-    "reportProblem": "Report a problem"
+    "reportProblem": "Report a problem",
+    "addVideo": "Add video",
+    "editVideo": "Edit video"
   }
 }

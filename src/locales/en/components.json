@@ -198,6 +198,12 @@
       "thanks": "Thank you in advance for your help!",
       "success": "We have received your report, thank you!"
     },
+    "photo" : {
+      "noPhoto": "There is no picture here for the moment"
+    },
+    "video" : {
+      "noVideo": "There is no video here for the moment"
+    },
     "user": {
       "globalInformation": "General Information",
       "partnerSearch": "Partner search",

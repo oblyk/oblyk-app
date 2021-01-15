@@ -7,6 +7,13 @@
     >
       <photo-thumbnail :photo="photo" />
     </v-col>
+    <v-col
+      v-if="photos().length === 0"
+    >
+      <p class="text-center text--disabled mt-5 mb-5">
+        {{ $t('components.photo.noPhoto') }}
+      </p>
+    </v-col>
   </v-row>
 </template>
 
