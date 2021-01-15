@@ -6,6 +6,7 @@
         :history="comment.history"
         :owner="comment.creator"
         :edit-path="`${comment.url('edit')}?redirect_to=${redirectTo}`"
+        :reports="{ type: 'Comment', id: comment.id }"
         :delete-function="deleteComment"
       />
     </div>

@@ -18,6 +18,7 @@
         :history="link.history"
         :edit-path="`${link.editUrl()}?redirect_to=${redirectTo}`"
         :delete-function="deleteLink"
+        :reports="{ type: 'Link', id: link.id }"
       />
     </v-card-text>
   </v-card>

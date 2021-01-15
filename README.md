@@ -5,9 +5,9 @@
 - [x] Faire la gestion des erreurs
 - [x] Améliorer la sid barre (selection en thème sombre pas beau)
 - [x] Faire pied de page
-- [ ] Faire système d'alerte généralisé
+- [x] Faire système d'alerte généralisé
 - [ ] Markdown
-- [ ] Commentable
+- [x] Commentable
 - [ ] Followable
 - [x] Linkable
 - [ ] Videoable

@@ -25,6 +25,17 @@
     >
       <v-icon x-small>mdi-delete</v-icon>
     </v-btn>
+
+    <!-- Report btn -->
+    <v-btn
+      v-if="reports && isLoggedIn"
+      :to="`/reports/${reports.type}/${reports.id}/new?redirect_to=${$route.fullPath}`"
+      :title="$t('actions.reportProblem')"
+      icon
+      small
+    >
+      <v-icon x-small>mdi-flag</v-icon>
+    </v-btn>
   </div>
 </template>
 
@@ -52,8 +63,8 @@ export default {
       type: Function,
       required: false
     },
-    signalPath: {
-      type: String,
+    reports: {
+      type: Object,
       required: false
     }
   },

@@ -172,6 +172,10 @@
     "comment": {
       "body": "Commentaire"
     },
+    "report": {
+      "report_from_url": "Page",
+      "body": "Message"
+    },
     "photo": {
       "description": "Description de la photo",
       "source": "Si la photo n'est pas de vous, merci de citer la source",

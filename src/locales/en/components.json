@@ -192,6 +192,12 @@
       "noComment": "There is no comment here for the moment",
       "climbersComments": "Comments from climbers"
     },
+    "report": {
+      "aProblem": "Oh a problem ...",
+      "describeProblem": "Describe the problem you encountered so that we can solve it.",
+      "thanks": "Thank you in advance for your help!",
+      "success": "We have received your report, thank you!"
+    },
     "user": {
       "globalInformation": "General Information",
       "partnerSearch": "Partner search",
