@@ -13,34 +13,46 @@
         <v-icon small left>mdi-format-align-justify</v-icon>
         {{ link.description }}
       </p>
+      <owner-label
+        :owner="link.creator"
+        :history="link.history"
+        :edit-path="`${link.editUrl()}?redirect_to=${redirectTo}`"
+        :delete-function="deleteLink"
+      />
     </v-card-text>
-
-    <v-card-actions v-if="isLoggedIn">
-      <v-spacer/>
-      <v-btn
-        :to="`${link.editUrl()}?redirect_to=${redirectTo}`"
-        text
-        color="primary"
-      >
-        {{ $t('actions.edit') }}
-      </v-btn>
-    </v-card-actions>
   </v-card>
 </template>
 
 <script>
-import { SessionConcern } from '@/concerns/SessionConcern'
+import OwnerLabel from '@/components/users/OwnerLabel'
+import LinkApi from '@/services/oblyk-api/LinkApi'
 
 export default {
   name: 'LinkCard',
-  mixins: [SessionConcern],
+  components: { OwnerLabel },
   props: {
-    link: Object
+    link: Object,
+    getLinks: Function
   },
 
   data () {
     return {
       redirectTo: this.$route.fullPath
+    }
+  },
+
+  methods: {
+    deleteLink: function () {
+      if (confirm(this.$t('actions.areYouSur'))) {
+        LinkApi
+          .delete(this.link.id)
+          .then(() => {
+            this.getLinks()
+          })
+          .catch(err => {
+            this.$root.$emit('alertFromApiError', err, 'link')
+          })
+      }
     }
   }
 }

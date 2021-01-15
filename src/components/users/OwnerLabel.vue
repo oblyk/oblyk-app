@@ -1,5 +1,6 @@
 <template>
   <div class="caption">
+    {{ $t('common.by') }}
     <router-link class="owner-label-link" :to="user.userUrl()" v-text="owner.name" />
     {{ $t('common.at') }} {{ humanizeDate(history.created_at) }}
 

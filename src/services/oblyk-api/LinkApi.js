@@ -42,11 +42,10 @@ class LinkApi extends BaseApi {
     })
   }
 
-  delete (data) {
+  delete (linkId) {
     return axios({
-      url: `${this.baseUrl}/links.json`,
+      url: `${this.baseUrl}/links/${linkId}.json`,
       headers: { Authorization: this.authToken() },
-      data: data,
       method: 'DELETE'
     })
   }

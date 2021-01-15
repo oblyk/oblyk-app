@@ -9,7 +9,10 @@
         :key="link.id"
         class="mt-3"
       >
-        <link-card :link="link" />
+        <link-card
+          :link="link"
+          :get-links="getLinks"
+        />
       </div>
 
       <!-- No link -->
@@ -62,9 +65,11 @@ export default {
 
   methods: {
     getLinks: function () {
+      this.loadingLinks = true
       LinkApi
         .allInLinkable(this.linkableType, this.linkableId)
         .then(resp => {
+          this.links = []
           for (const link of resp.data) {
             this.links.push(new Link(link))
           }
