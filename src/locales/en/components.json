@@ -72,6 +72,7 @@
       "routes": "Routes"
     },
     "guideBookPaper": {
+      "type": "Guide book",
       "pointOfSale": "Point of sale",
       "tabs": {
         "info": "Info",

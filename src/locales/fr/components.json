@@ -72,6 +72,7 @@
       "routes": "Les lignes"
     },
     "guideBookPaper": {
+      "type": "Topo",
       "pointOfSale": "Point de vente",
       "tabs": {
         "info": "Infos",

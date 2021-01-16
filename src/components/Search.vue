@@ -15,7 +15,7 @@
         <crag-sector-search-result v-if="result.record_type === 'CragSector'" :crag-sector="result.record" class="mb-3" />
         <gym-small-card class="mb-2" v-if="result.record_type === 'Gym'" :gym="recordObject('Gym', result.record)" />
         <crag-small-card class="mb-2" v-if="result.record_type === 'Crag'" :crag="recordObject('Crag', result.record)" />
-        <guide-book-search-result v-if="result.record_type === 'GuideBookPaper'" :guide-book="result.record" class="mb-3" />
+        <guide-book-paper-small-card class="mb-2" v-if="result.record_type === 'GuideBookPaper'" :guide-book-paper="recordObject('GuideBookPaper', result.record)" />
         <word-card v-if="result.record_type === 'Word'" :word="recordObject('Word', result.record)" class="mb-3" />
       </div>
     </div>
@@ -28,7 +28,6 @@
 import SearchApi from '@/services/oblyk-api/SearchApi'
 import Spinner from '@/components/layouts/Spiner'
 import CragRouteSearchResult from '@/components/searches/CragRouteSearchResult'
-import GuideBookSearchResult from '@/components/searches/GuideBookSearchResult'
 import CragSectorSearchResult from '@/components/searches/CragSectorSearchResult'
 import WordCard from '@/components/words/WordCard'
 import Word from '@/models/Word'
@@ -36,15 +35,17 @@ import Gym from '@/models/Gym'
 import Crag from '@/models/Crag'
 import GymSmallCard from '@/components/gyms/GymSmallCard'
 import CragSmallCard from '@/components/crags/CragSmallCard'
+import GuideBookPaperSmallCard from '@/components/guideBookPapers/GuideBookPaperSmallCard'
+import GuideBookPaper from '@/models/GuideBookPaper'
 
 export default {
   name: 'SearchFiled',
   components: {
+    GuideBookPaperSmallCard,
     CragSmallCard,
     GymSmallCard,
     WordCard,
     CragSectorSearchResult,
-    GuideBookSearchResult,
     CragRouteSearchResult,
     Spinner
   },
@@ -77,6 +78,8 @@ export default {
         return new Gym(data)
       } else if (type === 'Crag') {
         return new Crag(data)
+      } else if (type === 'GuideBookPaper') {
+        return new GuideBookPaper(data)
       }
     }
   }
