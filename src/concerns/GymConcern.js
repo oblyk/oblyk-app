@@ -3,27 +3,36 @@ import Gym from '@/models/Gym'
 export const GymConcern = {
   data () {
     return {
-      gym: null,
-      loadingGym: true
+      gym: null
     }
   },
 
-  created () {
-    if (this.$route.params.gymId) this.getGym()
+  beforeRouteEnter (to, from, next) {
+    new Gym()
+      .find(to.params.gymId)
+      .then(resp => {
+        next(vm => {
+          vm.gym = resp
+        })
+      })
+      .catch(err => {
+        next(vm => vm.$root.$emit('alertFromApiError', err, 'gym'))
+      })
   },
 
-  methods: {
-    getGym: function () {
-      this.loadingGym = true
+  beforeRouteUpdate (to, from, next) {
+    if (from.params.gymId === to.params.gymId) {
+      next()
+    } else {
       new Gym()
-        .find(this.$route.params.gymId)
-        .then((resp) => {
+        .find(to.params.gymId)
+        .then(resp => {
           this.gym = resp
+          next()
         })
-        .catch((err) => {
+        .catch(err => {
           this.$root.$emit('alertFromApiError', err, 'gym')
-        }).finally(() => {
-          this.loadingGym = false
+          next()
         })
     }
   }

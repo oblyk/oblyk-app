@@ -1,62 +1,61 @@
 <template>
-  <div>
-    <v-container class="global-form-width">
-      <spinner v-if="loadingGym" />
+  <v-container
+    class="global-form-width"
+    v-if="gym"
+  >
+    <v-row>
+      <v-col v-if="currentUserIsGymAdmin()">
+        <p class="text-center mb-7">
+          <v-icon x-large>
+            mdi-map-legend
+          </v-icon>
+        </p>
+        <p class="text-center">
+          {{ $t('components.gym.firstSpaceExplain') }}
+        </p>
 
-      <v-row v-if="!loadingGym">
-        <v-col v-if="currentUserIsGymAdmin()">
-          <p class="text-center mb-7">
-            <v-icon x-large>
-              mdi-map-legend
-            </v-icon>
-          </p>
+        <div v-if="gym.gym_grades_count === 0">
           <p class="text-center">
-            {{ $t('components.gym.firstSpaceExplain') }}
+            {{ $t('components.gym.createDifficultyFirst') }}
           </p>
 
-          <div v-if="gym.gym_grades_count === 0">
-            <p class="text-center">
-              {{ $t('components.gym.createDifficultyFirst') }}
-            </p>
-
-            <p class="text-center">
-              <v-btn
-                text
-                color="primary"
-                :to="gym.path('first-difficulty-system')"
-              >
-                {{ $t('components.gym.difficultySystem') }}
-              </v-btn>
-            </p>
-          </div>
-          <p v-if="gym.gym_grades_count > 0" class="text-center mt-10">
+          <p class="text-center">
             <v-btn
+              text
               color="primary"
-              :to="gym.path('spaces/new')"
+              :to="gym.path('first-difficulty-system')"
             >
-              {{ $t('components.gym.createFirstSpace') }}
+              {{ $t('components.gym.difficultySystem') }}
             </v-btn>
           </p>
-        </v-col>
+        </div>
+        <p v-if="gym.gym_grades_count > 0" class="text-center mt-10">
+          <v-btn
+            color="primary"
+            :to="gym.path('spaces/new')"
+          >
+            {{ $t('components.gym.createFirstSpace') }}
+          </v-btn>
+        </p>
+      </v-col>
 
-        <v-col v-else>
-          <p class="text--disabled text-center">
-            {{ $t('components.gym.administratorRequired') }}
-          </p>
-        </v-col>
-      </v-row>
-    </v-container>
-  </div>
+      <v-col v-else>
+        <p class="text--disabled text-center">
+          {{ $t('components.gym.administratorRequired') }}
+        </p>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 <script>
 import { SessionConcern } from '@/concerns/SessionConcern'
-import { GymConcern } from '@/concerns/GymConcern'
-import Spinner from '@/components/layouts/Spiner'
 
 export default {
   name: 'GymFirstSpaceView',
-  components: { Spinner },
-  mixins: [SessionConcern, GymConcern],
+  mixins: [SessionConcern],
+  props: {
+    gym: Object
+  },
 
   methods: {
     userCanTouch: function () {

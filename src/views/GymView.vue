@@ -1,26 +1,18 @@
 <template>
-  <div>
-    <spinner v-if="loadingGym" />
-
-    <div v-if="!loadingGym">
-      <gym-head :gym="gym" />
-      <gym-tabs :gym="gym" />
-      <router-view></router-view>
-    </div>
+  <div v-if="gym">
+    <gym-head :gym="gym" />
+    <gym-tabs :gym="gym" />
+    <router-view :gym="gym" />
   </div>
 </template>
 <script>
 import { GymConcern } from '@/concerns/GymConcern'
-import Spinner from '@/components/layouts/Spiner'
 import GymHead from '@/components/gyms/layouts/GymHead'
 import GymTabs from '@/components/gyms/layouts/GymTabs'
 
 export default {
   name: 'GymView',
-  components: { GymTabs, Spinner, GymHead },
-  mixins: [GymConcern],
-  watch: {
-    '$route.params.gymId': 'getGym'
-  }
+  components: { GymTabs, GymHead },
+  mixins: [GymConcern]
 }
 </script>

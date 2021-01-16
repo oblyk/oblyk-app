@@ -16,7 +16,7 @@ export const CragConcern = {
         })
       })
       .catch(err => {
-        next(vm => vm.emitError(err))
+        next(vm => vm.$root.$emit('alertFromApiError', err, 'crag'))
       })
   },
 

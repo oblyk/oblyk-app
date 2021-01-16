@@ -18,6 +18,9 @@
 </template>
 <script>
 export default {
-  name: 'GymAdministratorRequiredView'
+  name: 'GymAdministratorRequiredView',
+  props: {
+    gym: Object
+  }
 }
 </script>
