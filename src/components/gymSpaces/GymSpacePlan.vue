@@ -23,7 +23,7 @@
         <l-control-zoom position="topright"></l-control-zoom>
 
         <editable-polygon
-          v-for="sector in sectorPolygons()"
+          v-for="sector in sectorPolygons"
           :key="sector.id"
           :fill-opacity="0"
           :weight="2"
@@ -66,15 +66,30 @@ export default {
     return {
       reloadingData: false,
       map: null,
-      url: this.gymSpace.planUrl(),
-      bounds: [[0, 0], [this.gymSpace.scheme_height / 6, this.gymSpace.scheme_width / 6]],
       minZoom: -2,
       crs: CRS.Simple,
       drawingSectorPolygon: null,
       editingSectorId: null,
       isNewPolygon: false,
-      space: this.gymSpace,
       savingPolygon: false
+    }
+  },
+
+  computed: {
+    url: function () {
+      return this.gymSpace.planUrl()
+    },
+
+    sectorPolygons: function () {
+      const sectorPolygon = []
+      for (const sector of this.gymSpace.GymSectors) {
+        if (sector.polygon) sectorPolygon.push(sector)
+      }
+      return sectorPolygon
+    },
+
+    bounds: function () {
+      return [[0, 0], [this.gymSpace.scheme_height / 6, this.gymSpace.scheme_width / 6]]
     }
   },
 
@@ -110,7 +125,7 @@ export default {
     },
 
     setMapView: function () {
-      this.map.setView([this.space.scheme_height / 12, this.space.scheme_width / 12], 1)
+      this.map.setView([this.gymSpace.scheme_height / 12, this.gymSpace.scheme_width / 12], 1)
     },
 
     startEditSectorPolygon: function (gymSectorId) {
@@ -132,14 +147,6 @@ export default {
       this.map.editTools.stopDrawing()
       this.drawingSectorPolygon.disableEdit()
       this.saveSectorPolygon(this.drawingSectorPolygon._latlngs)
-    },
-
-    sectorPolygons: function () {
-      const sectorPolygon = []
-      for (const sector of this.space.GymSectors) {
-        if (sector.polygon) sectorPolygon.push(sector)
-      }
-      return sectorPolygon
     },
 
     clearSectorSelection: function () {
@@ -172,8 +179,8 @@ export default {
 
       this.savingPolygon = true
       const data = {
-        gym_id: this.space.gym.id,
-        gym_space_id: this.space.id,
+        gym_id: this.gymSpace.gym.id,
+        gym_space_id: this.gymSpace.id,
         id: this.editingSectorId,
         polygon: JSON.stringify(this.latLgnToArray(polygon))
       }
@@ -195,11 +202,11 @@ export default {
       this.reloadingData = true
       new GymSpace()
         .find(
-          this.space.gym.id,
-          this.space.id
+          this.gymSpace.gym.id,
+          this.gymSpace.id
         )
         .then((resp) => {
-          this.space = resp
+          this.gymSpace = resp
         })
         .catch((err) => {
           this.$root.$emit('alertFromApiError', err, 'gymSpace')

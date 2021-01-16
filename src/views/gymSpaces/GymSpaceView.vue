@@ -1,65 +1,60 @@
 <template>
-  <div>
-    <spinner v-if="loadingGymSpace"></spinner>
+  <div class="gym-spaces-routes-and-plan" v-if="gymSpace">
 
-    <div class="gym-spaces-routes-and-plan" v-if="!loadingGymSpace">
+    <v-row class="gym-spaces-routes-and-plan-row">
+      <v-col
+        class="gym-space-routes-col"
+        v-show="!mobilInterface || linePanel"
+        v-bind:class="mobilInterface ? 'mobil-interface mr-3' : 'desktop-interface'">
+        <gym-space-route :gym-space="gymSpace" />
+      </v-col>
 
-      <v-row class="gym-spaces-routes-and-plan-row">
-        <v-col
-          class="gym-space-routes-col"
-          v-show="!mobilInterface || linePanel"
-          v-bind:class="mobilInterface ? 'mobil-interface mr-3' : 'desktop-interface'">
-          <gym-space-route :gym-space="gymSpace" />
-        </v-col>
-
-        <v-col
-          ref="gym-space-ma-area"
-          v-show="!mobilInterface || planPanel"
-          class="col gym-space-plan-col pt-0 pb-0 pl-0 pr-0"
-          v-bind:class="mobilInterface ? 'mobil-interface' : 'desktop-interface'"
-        >
-          <gym-space-plan v-if="gymSpace.plan" :gym-space="gymSpace" />
-          <gym-space-plan-missing v-if="!gymSpace.plan" :gym-space="gymSpace" />
-        </v-col>
-      </v-row>
-
-      <v-bottom-navigation
-        app
-        v-if="mobilInterface"
-        height="40"
-        horizontal
-        grow
+      <v-col
+        ref="gym-space-ma-area"
+        v-show="!mobilInterface || planPanel"
+        class="col gym-space-plan-col pt-0 pb-0 pl-0 pr-0"
+        v-bind:class="mobilInterface ? 'mobil-interface' : 'desktop-interface'"
       >
-        <v-btn
-          @click="showLine()"
-        >
-          <span>Ouvertures</span>
-          <v-icon>mdi-arrow-decision</v-icon>
-        </v-btn>
-        <v-btn
-          @click="showPlan()"
-        >
-          <span>Plan</span>
-          <v-icon>mdi-map-legend</v-icon>
-        </v-btn>
-      </v-bottom-navigation>
-    </div>
+        <gym-space-plan :gym-space="gymSpace" v-if="gymSpace.plan" />
+        <gym-space-plan-missing :gym-space="gymSpace" v-if="!gymSpace.plan" />
+      </v-col>
+    </v-row>
+
+    <v-bottom-navigation
+      app
+      v-if="mobilInterface"
+      height="40"
+      horizontal
+      grow
+    >
+      <v-btn
+        @click="showLine()"
+      >
+        <span>Ouvertures</span>
+        <v-icon>mdi-arrow-decision</v-icon>
+      </v-btn>
+      <v-btn
+        @click="showPlan()"
+      >
+        <span>Plan</span>
+        <v-icon>mdi-map-legend</v-icon>
+      </v-btn>
+    </v-bottom-navigation>
   </div>
 </template>
 <script>
 import { GymSpaceConcern } from '@/concerns/GymSpaceConcern'
-import Spinner from '@/components/layouts/Spiner'
 import GymSpaceRoute from '@/components/gymSpaces/GymSpaceRoute'
 import GymSpacePlan from '@/components/gymSpaces/GymSpacePlan'
 import GymSpacePlanMissing from '@/components/gymSpaces/GymSpacePlanMissing'
 
 export default {
   name: 'GymSpaceView',
-  components: { GymSpacePlanMissing, GymSpacePlan, GymSpaceRoute, Spinner },
+  components: { GymSpacePlanMissing, GymSpacePlan, GymSpaceRoute },
   mixins: [GymSpaceConcern],
-  watch: {
-    '$route.params.gymSpaceId': 'getGymSpace'
-  },
+  // watch: {
+  //   '$route.params.gymSpaceId': 'getGymSpace'
+  // },
 
   data () {
     return {
@@ -92,6 +87,7 @@ export default {
   }
 }
 </script>
+
 <style lang="scss">
 .gym-spaces-routes-and-plan {
   .gym-spaces-routes-and-plan-row {

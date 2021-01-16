@@ -123,6 +123,9 @@ export default {
     sort: function () {
       this.getRoutes()
       localStorage.setItem('gym_route_sort', this.sort)
+    },
+    gymSpace: function () {
+      this.getRoutes()
     }
   },
 
