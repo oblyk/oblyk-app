@@ -3,8 +3,12 @@
     Les voies
   </v-container>
 </template>
+
 <script>
 export default {
-  name: 'CragRouteView'
+  name: 'CragRouteView',
+  props: {
+    crag: Object
+  }
 }
 </script>

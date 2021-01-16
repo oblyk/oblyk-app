@@ -3,27 +3,36 @@ import Crag from '@/models/Crag'
 export const CragConcern = {
   data () {
     return {
-      crag: null,
-      loadingCrag: true
+      crag: null
     }
   },
 
-  created () {
-    if (this.$route.params.cragId) this.getCrag()
+  beforeRouteEnter (to, from, next) {
+    new Crag()
+      .find(to.params.cragId)
+      .then(resp => {
+        next(vm => {
+          vm.crag = resp
+        })
+      })
+      .catch(err => {
+        next(vm => vm.emitError(err))
+      })
   },
 
-  methods: {
-    getCrag: function () {
-      this.loadingCrag = true
+  beforeRouteUpdate (to, from, next) {
+    if (from.params.cragId === to.params.cragId) {
+      next()
+    } else {
       new Crag()
-        .find(this.$route.params.cragId)
-        .then((resp) => {
+        .find(to.params.cragId)
+        .then(resp => {
           this.crag = resp
+          next()
         })
-        .catch((err) => {
+        .catch(err => {
           this.$root.$emit('alertFromApiError', err, 'crag')
-        }).finally(() => {
-          this.loadingCrag = false
+          next()
         })
     }
   }

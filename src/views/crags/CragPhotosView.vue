@@ -4,7 +4,7 @@
     <spinner v-if="loadingPhotos" :full-height="false"/>
     <div v-if="!loadingPhotos">
       <v-btn
-        :to="`/photos/Crag/${cragId}/new?redirect_to=${this.$route.fullPath}`"
+        :to="`/photos/Crag/${crag.id}/new?redirect_to=${this.$route.fullPath}`"
         text
         color="primary"
         v-if="isLoggedIn"
@@ -20,7 +20,7 @@
     <spinner v-if="loadingVideos" :full-height="false" />
     <div v-if="!loadingVideos">
       <v-btn
-        :to="`/videos/Crag/${cragId}/new?redirect_to=${this.$route.fullPath}`"
+        :to="`/videos/Crag/${crag.id}/new?redirect_to=${this.$route.fullPath}`"
         text
         color="primary"
         v-if="isLoggedIn"
@@ -64,14 +64,16 @@ export default {
   name: 'CragPhotosView',
   components: { VideoCard, PhotoGallery, Spinner },
   mixins: [SessionConcern],
+  props: {
+    crag: Object
+  },
 
   data () {
     return {
       loadingPhotos: true,
       loadingVideos: true,
       photos: [],
-      videos: [],
-      cragId: this.$route.params.cragId
+      videos: []
     }
   },
 
@@ -84,7 +86,7 @@ export default {
     getPhotos: function () {
       this.loadingPhotos = true
       CragApi
-        .photos(this.cragId)
+        .photos(this.crag.id)
         .then(resp => {
           this.photos = resp.data
         })
@@ -99,7 +101,7 @@ export default {
     getVideos: function () {
       this.loadingVideos = true
       CragApi
-        .videos(this.cragId)
+        .videos(this.crag.id)
         .then(resp => {
           this.videos = []
           for (const video of resp.data) {

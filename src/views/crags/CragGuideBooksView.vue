@@ -5,6 +5,10 @@
 </template>
 <script>
 export default {
-  name: 'CragGuideBooksView'
+  name: 'CragGuideBooksView',
+
+  props: {
+    crag: Object
+  }
 }
 </script>

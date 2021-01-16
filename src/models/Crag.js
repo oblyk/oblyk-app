@@ -2,6 +2,10 @@ import ActiveData from '@/models/ActiveData'
 import CragApi from '@/services/oblyk-api/CragApi'
 
 export default class Crag extends ActiveData {
+  get (id, callback) {
+    this.apiFind(CragApi, id).then(resp => { callback(resp) })
+  }
+
   find (id) {
     return this.apiFind(CragApi, id)
   }
