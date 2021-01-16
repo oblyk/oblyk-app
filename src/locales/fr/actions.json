@@ -48,6 +48,8 @@
     "changeMyPassword": "Changer mom mot de passe",
     "subscribe": "S'abonner",
     "unsubscribe": "Me désabonner",
+    "addToLibrary": "Ajouter à ma topothèque",
+    "removeFromLibrary": "Retirer de ma topothèque",
     "valueCopied": "%{value} copié !",
     "errorHasOccurred": "Une erreur s'est produite",
     "changeCover": "Changer la couverture",

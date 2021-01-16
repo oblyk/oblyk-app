@@ -104,6 +104,20 @@
           </tbody>
         </template>
       </v-simple-table>
+
+      <!-- Add to library btn -->
+      <div v-if="isLoggedIn" class="text-center mt-7">
+        <subscribe-btn
+          subscribe-type="GuideBookPaper"
+          :subscribe-id="guideBookPaper.id"
+          :large="true"
+          followed-color="deep-purple"
+          followed-icon="mdi-bookshelf"
+          unfollowed-icon="mdi-bookshelf"
+          subscribe-label="actions.addToLibrary"
+          unsubscribe-label="actions.removeFromLibrary"
+        />
+      </div>
     </v-card-text>
     <v-card-title class="pb-0 text-h6 font-weight-regular">
       <v-icon left small>
@@ -121,10 +135,14 @@
 </template>
 
 <script>
+import { SessionConcern } from '@/concerns/SessionConcern'
 import CommentList from '@/components/comments/CommentList'
+import SubscribeBtn from '@/components/forms/SubscribeBtn'
+
 export default {
   name: 'GuideBookPaperDescription',
-  components: { CommentList },
+  components: { SubscribeBtn, CommentList },
+  mixins: [SessionConcern],
   props: {
     guideBookPaper: Object
   }

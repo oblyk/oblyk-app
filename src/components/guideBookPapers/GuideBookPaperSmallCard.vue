@@ -22,7 +22,16 @@
             <span class="vertical-align-middle">
               {{ guideBookPaper.name }}
             </span>
-            <subscribe-btn subscribe-type="GuideBookPaper" :subscribe-id="guideBookPaper.id" :large="false" />
+            <subscribe-btn
+              subscribe-type="GuideBookPaper"
+              :subscribe-id="guideBookPaper.id"
+              :large="false"
+              followed-color="deep-purple"
+              followed-icon="mdi-bookshelf"
+              unfollowed-icon="mdi-bookshelf"
+              subscribe-label="actions.addToLibrary"
+              unsubscribe-label="actions.removeFromLibrary"
+            />
           </v-list-item-title>
           <v-list-item-subtitle class="mt-n3 mb-4">
             <v-alert

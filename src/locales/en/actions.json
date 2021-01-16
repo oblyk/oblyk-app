@@ -48,6 +48,8 @@
     "changeMyPassword": "Changer mon mot de passe",
     "subscribe": "Subscribe",
     "unsubscribe": "Unsubscribe",
+    "addToLibrary": "Add in my library",
+    "removeFromLibrary": "Remove from my library",
     "valueCopied": "%{value} copied !",
     "errorHasOccurred": "An error has occurred",
     "changeCover": "Change cover",

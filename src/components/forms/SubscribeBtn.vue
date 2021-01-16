@@ -5,6 +5,7 @@
     :outlined="large"
     :icon="!large"
     :loading="requesting"
+    :title="label()"
     @click.prevent="changeSubscription()"
   >
     <v-icon
@@ -37,6 +38,26 @@ export default {
     large: {
       type: Boolean,
       default: true
+    },
+    followedIcon: {
+      type: String,
+      default: 'mdi-star'
+    },
+    followedColor: {
+      type: String,
+      default: 'ambre'
+    },
+    unfollowedIcon: {
+      type: String,
+      default: 'mdi-star-outline'
+    },
+    subscribeLabel: {
+      type: String,
+      default: 'actions.subscribe'
+    },
+    unsubscribeLabel: {
+      type: String,
+      default: 'actions.unsubscribe'
     }
   },
 
@@ -58,15 +79,15 @@ export default {
     },
 
     icon: function () {
-      return this.subscribed() ? 'mdi-star' : 'mdi-star-outline'
+      return this.subscribed() ? this.followedIcon : this.unfollowedIcon
     },
 
     color: function () {
-      return this.subscribed() ? 'amber' : ''
+      return this.subscribed() ? this.followedColor : ''
     },
 
     label: function () {
-      return this.subscribed() ? this.$t('actions.unsubscribe') : this.$t('actions.subscribe')
+      return this.subscribed() ? this.$t(this.unsubscribeLabel) : this.$t(this.subscribeLabel)
     },
 
     changeSubscription: function () {
@@ -86,7 +107,7 @@ export default {
           })
         })
         .catch((err) => {
-          console.error(err)
+          this.$root.$emit('alertFromApiError', err, 'follow')
         })
         .finally(() => {
           this.requesting = false
