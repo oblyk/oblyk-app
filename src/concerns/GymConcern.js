@@ -10,28 +10,24 @@ export const GymConcern = {
   beforeRouteEnter (to, from, next) {
     if (!to.params.gymId) {
       next()
-      return
-    }
-
-    new Gym()
-      .find(to.params.gymId)
-      .then(resp => {
-        next(vm => {
-          vm.gym = resp
+    } else {
+      new Gym()
+        .find(to.params.gymId)
+        .then(resp => {
+          next(vm => {
+            vm.gym = resp
+          })
         })
-      })
-      .catch(err => {
-        next(vm => vm.$root.$emit('alertFromApiError', err, 'gym'))
-      })
+        .catch(err => {
+          next(vm => vm.$root.$emit('alertFromApiError', err, 'gym'))
+        })
+    }
   },
 
   beforeRouteUpdate (to, from, next) {
     if (!to.params.gymId) {
       next()
-      return
-    }
-
-    if (from.params.gymId === to.params.gymId) {
+    } else if (from.params.gymId === to.params.gymId) {
       next()
     } else {
       new Gym()

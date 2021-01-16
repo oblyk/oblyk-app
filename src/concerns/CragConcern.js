@@ -10,28 +10,24 @@ export const CragConcern = {
   beforeRouteEnter (to, from, next) {
     if (!to.params.cragId) {
       next()
-      return
-    }
-
-    new Crag()
-      .find(to.params.cragId)
-      .then(resp => {
-        next(vm => {
-          vm.crag = resp
+    } else {
+      new Crag()
+        .find(to.params.cragId)
+        .then(resp => {
+          next(vm => {
+            vm.crag = resp
+          })
         })
-      })
-      .catch(err => {
-        next(vm => vm.$root.$emit('alertFromApiError', err, 'crag'))
-      })
+        .catch(err => {
+          next(vm => vm.$root.$emit('alertFromApiError', err, 'crag'))
+        })
+    }
   },
 
   beforeRouteUpdate (to, from, next) {
     if (!to.params.cragId) {
       next()
-      return
-    }
-
-    if (from.params.cragId === to.params.cragId) {
+    } else if (from.params.cragId === to.params.cragId) {
       next()
     } else {
       new Crag()
