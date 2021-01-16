@@ -3,27 +3,42 @@ import Word from '@/models/Word'
 export const WordConcern = {
   data () {
     return {
-      word: null,
-      loadingWord: true
+      word: null
     }
   },
 
-  created () {
-    if (this.$route.params.wordId) this.getWord()
+  beforeRouteEnter (to, from, next) {
+    if (!to.params.wordId) {
+      next()
+    } else {
+      new Word()
+        .find(to.params.wordId)
+        .then(resp => {
+          next(vm => {
+            vm.word = resp
+          })
+        })
+        .catch(err => {
+          next(vm => vm.$root.$emit('alertFromApiError', err, 'word'))
+        })
+    }
   },
 
-  methods: {
-    getWord: function () {
-      this.loadingWord = true
+  beforeRouteUpdate (to, from, next) {
+    if (!to.params.wordId) {
+      next()
+    } else if (from.params.wordId === to.params.wordId) {
+      next()
+    } else {
       new Word()
-        .find(this.$route.params.wordId)
-        .then((resp) => {
+        .find(to.params.wordId)
+        .then(resp => {
           this.word = resp
+          next()
         })
-        .catch((err) => {
+        .catch(err => {
           this.$root.$emit('alertFromApiError', err, 'word')
-        }).finally(() => {
-          this.loadingWord = false
+          next()
         })
     }
   }
