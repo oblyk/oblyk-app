@@ -8,6 +8,11 @@ export const GymConcern = {
   },
 
   beforeRouteEnter (to, from, next) {
+    if (!to.params.gymId) {
+      next()
+      return
+    }
+
     new Gym()
       .find(to.params.gymId)
       .then(resp => {
@@ -21,6 +26,11 @@ export const GymConcern = {
   },
 
   beforeRouteUpdate (to, from, next) {
+    if (!to.params.gymId) {
+      next()
+      return
+    }
+
     if (from.params.gymId === to.params.gymId) {
       next()
     } else {

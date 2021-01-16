@@ -25,12 +25,14 @@ import CragSmallCard from '@/components/crags/CragSmallCard'
 export default {
   name: 'GuideBookPaperCragsView',
   components: { CragSmallCard, Spinner },
+  props: {
+    guideBookPaper: Object
+  },
 
   data () {
     return {
       crags: [],
-      loadingCrags: true,
-      guideBookPaperId: this.$route.params.guideBookPaperId
+      loadingCrags: true
     }
   },
 
@@ -41,7 +43,7 @@ export default {
   methods: {
     getCrags: function () {
       GuideBookPaperApi
-        .crags(this.guideBookPaperId)
+        .crags(this.guideBookPaper.id)
         .then(resp => {
           for (const crag of resp.data) {
             this.crags.push(new Crag(crag))

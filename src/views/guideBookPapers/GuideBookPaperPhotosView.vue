@@ -19,12 +19,14 @@ import PhotoGallery from '@/components/photos/PhotoGallery'
 export default {
   name: 'GuideBookPaperPhotosView',
   components: { PhotoGallery, Spinner },
+  props: {
+    guideBookPaper: Object
+  },
 
   data () {
     return {
       photosData: [],
-      loadingPhotos: true,
-      guideBookPaperId: this.$route.params.guideBookPaperId
+      loadingPhotos: true
     }
   },
 
@@ -35,13 +37,14 @@ export default {
   methods: {
     getPhotos: function () {
       GuideBookPaperApi
-        .photos(this.guideBookPaperId)
+        .photos(this.guideBookPaper.id)
         .then(resp => {
           this.photosData = resp.data
         })
         .catch(err => {
           this.$root.$emit('alertFromApiError', err, 'photo')
-        }).then(() => {
+        })
+        .then(() => {
           this.loadingPhotos = false
         })
     }

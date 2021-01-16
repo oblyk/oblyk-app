@@ -12,6 +12,9 @@
 <script>
 
 export default {
-  name: 'GuideBookPaperMapView'
+  name: 'GuideBookPaperMapView',
+  props: {
+    guideBookPaper: Object
+  }
 }
 </script>

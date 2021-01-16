@@ -3,27 +3,46 @@ import GuideBookPaper from '@/models/GuideBookPaper'
 export const GuideBookPaperConcern = {
   data () {
     return {
-      guideBookPaper: null,
-      loadingGuideBookPaper: true
+      guideBookPaper: null
     }
   },
 
-  created () {
-    if (this.$route.params.guideBookPaperId) this.getGuideBookPaper()
+  beforeRouteEnter (to, from, next) {
+    if (!to.params.guideBookPaperId) {
+      next()
+      return
+    }
+
+    new GuideBookPaper()
+      .find(to.params.guideBookPaperId)
+      .then(resp => {
+        next(vm => {
+          vm.guideBookPaper = resp
+        })
+      })
+      .catch(err => {
+        next(vm => vm.$root.$emit('alertFromApiError', err, 'guideBookPaper'))
+      })
   },
 
-  methods: {
-    getGuideBookPaper: function () {
-      this.loadingGuideBookPaper = true
+  beforeRouteUpdate (to, from, next) {
+    if (!to.params.guideBookPaperId) {
+      next()
+      return
+    }
+
+    if (from.params.guideBookPaperId === to.params.guideBookPaperId) {
+      next()
+    } else {
       new GuideBookPaper()
-        .find(this.$route.params.guideBookPaperId)
-        .then((resp) => {
+        .find(to.params.guideBookPaperId)
+        .then(resp => {
           this.guideBookPaper = resp
+          next()
         })
-        .catch((err) => {
+        .catch(err => {
           this.$root.$emit('alertFromApiError', err, 'guideBookPaper')
-        }).finally(() => {
-          this.loadingGuideBookPaper = false
+          next()
         })
     }
   }

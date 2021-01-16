@@ -46,20 +46,17 @@ import DifficultySystemCard from '@/components/gyms/admin/DifficultySystemCard'
 import GymTeamCard from '@/components/gyms/admin/GymTeamCard'
 import GymWelcomeCard from '@/components/gyms/admin/GymWelcomeCard'
 import GymSpaceCard from '@/components/gyms/admin/GymSpaceCard'
+import { GymConcern } from '@/concerns/GymConcern'
 
 export default {
   name: 'GymAdminView',
+  mixins: [GymConcern],
+
   components: {
     GymSpaceCard,
     GymWelcomeCard,
     GymTeamCard,
     DifficultySystemCard
-  },
-  props: {
-    gym: Object
-  },
-  watch: {
-    '$route.params.gymId': 'getGym'
   }
 }
 </script>
