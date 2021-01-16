@@ -6,7 +6,7 @@
       <user-tabs :user="meUser" />
       <spinner v-if="loadingSubscribes" />
 
-      <v-container v-if="!loadingSubscribes" class="my-favorites-container">
+      <v-container v-if="!loadingSubscribes">
         <div
           v-for="(subscribe, index) in subscribes"
           :key="`subscribe-${index}`"
@@ -78,9 +78,3 @@ export default {
   }
 }
 </script>
-
-<style>
-.my-favorites-container {
-  max-width: 600px;
-}
-</style>

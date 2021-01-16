@@ -49,11 +49,11 @@ ___
 - [x] Améliorer la création d'un compte (photo, partenaire, etc.)
 - [x] Mot de passe oublié
 - [X] Favoris
+- [x] Topothèque
 - [ ] Faire le "dashboard"
 - [ ] Faire la messagerie
 - [ ] Faire le système de relation
 - [ ] Mes croix / Stats
-- [ ] Topothèque
 - [ ] Tick-list
 - [ ] Faire le "Flux"
 - [ ] Mes photos

@@ -45,7 +45,7 @@ export default {
     },
     followedColor: {
       type: String,
-      default: 'ambre'
+      default: 'amber'
     },
     unfollowedIcon: {
       type: String,
