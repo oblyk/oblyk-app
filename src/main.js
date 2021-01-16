@@ -6,6 +6,7 @@ import store from './store'
 import vuetify from './plugins/vuetify'
 import VueI18n from 'vue-i18n'
 import './services/axios'
+import './services/nprogress'
 import VueQrcode from '@chenfengyuan/vue-qrcode'
 import VueClipboard from 'vue-clipboard2'
 

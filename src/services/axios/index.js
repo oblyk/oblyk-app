@@ -2,6 +2,7 @@ import axios from 'axios'
 import store from '@/store'
 import router from '@/router'
 
+// REFRESH TOKEN INTERCEPTORS
 axios.interceptors.request.use(async function (config) {
   if (
     store.getters['auth/rememberMe'] && // have tools for refresh token
@@ -30,3 +31,20 @@ axios.interceptors.response.use(
     }
   }
 )
+
+// LOADING INTERCEPTORS
+axios.interceptors.request.use(config => {
+  store.commit('loader/START_LOADING')
+  return config
+}, error => {
+  store.commit('loader/FINISH_LOADING')
+  return Promise.reject(error)
+})
+
+axios.interceptors.response.use(response => {
+  store.commit('loader/FINISH_LOADING')
+  return response
+}, error => {
+  store.commit('loader/FINISH_LOADING')
+  return Promise.reject(error)
+})

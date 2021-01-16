@@ -2,6 +2,11 @@
   font-family: "Loved by the King", sans-serif;
 }
 
+#nprogress .bar {
+  background: #1e88e5 !important;
+  height: 3px !important;
+}
+
 .color-grade-span {
   border-bottom: 0.15em solid;
   display: inline-block;

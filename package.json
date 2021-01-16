@@ -15,6 +15,7 @@
     "mapbox-gl": "^2.0.0",
     "mapbox-gl-controls": "^1.7.0",
     "moment": "^2.29.1",
+    "nprogress": "^0.2.0",
     "register-service-worker": "^1.7.1",
     "sass": "^1.30.0",
     "vue": "^2.6.11",

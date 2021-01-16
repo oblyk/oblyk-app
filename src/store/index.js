@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import auth from './modules/auth'
+import loader from './modules/loader'
 import createLogger from 'vuex/dist/logger'
 import createPersistedState from 'vuex-persistedstate'
 
@@ -12,7 +13,8 @@ if (debug) plugins.push(createLogger())
 
 export default new Vuex.Store({
   modules: {
-    auth
+    auth,
+    loader
   },
   strict: debug,
   plugins: plugins
