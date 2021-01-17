@@ -242,6 +242,12 @@ export const MapHelpers = {
         if (error) throw error
         map.addImage('gym-marker-111', image, { sdf: false })
       })
+
+      // Place of sales
+      map.loadImage(require('@/assets/markers/place-of-sale-marker.png'), (error, image) => {
+        if (error) throw error
+        map.addImage('place-of-sale-marker', image, { sdf: false })
+      })
     }
   }
 }

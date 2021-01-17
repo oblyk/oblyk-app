@@ -27,6 +27,8 @@ import '@/services/mapbox/3d-control/style.scss'
 import '@/services/mapbox/oblyk-legend/style.scss'
 import Crag from '@/models/Crag'
 import Gym from '@/models/Gym'
+import GuideBookPaperApi from '@/services/oblyk-api/GuideBookPaperApi'
+import PlaceOfSale from '@/models/PlaceOfSale'
 
 export default {
   name: 'Map',
@@ -40,7 +42,11 @@ export default {
       default: 'outdoor',
       required: false
     },
-    geoJsonType: String
+    geoJsonType: String,
+    geoJsonId: {
+      type: Number,
+      required: false
+    }
   },
 
   created () {
@@ -130,6 +136,8 @@ export default {
         await CragApi.geoJson().then(resp => { geoJson = resp.data })
       } else if (this.geoJsonType === 'Gyms') {
         await GymApi.geoJson().then(resp => { geoJson = resp.data })
+      } else if (this.geoJsonType === 'GuideBookPaper') {
+        await GuideBookPaperApi.geoJson(this.geoJsonId).then(resp => { geoJson = resp.data })
       }
 
       map.addSource('geoJsonData', {
@@ -225,6 +233,8 @@ export default {
           model = new Crag(this.convertNull(feature.properties))
         } else if (feature.properties.type === 'Gym') {
           model = new Gym(this.convertNull(feature.properties))
+        } else if (feature.properties.type === 'PlaceOfSale') {
+          model = new PlaceOfSale(this.convertNull(feature.properties))
         }
 
         while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
@@ -248,12 +258,46 @@ export default {
           `
         }
 
+        let climbingPart = ''
+        let coverPart = ''
+        if (feature.properties.type === 'Crag' || feature.properties.type === 'Gym') {
+          coverPart = `<div class="map-popup-cover" style="background-image: url(${model.mapThumbnailCoverUrl()})"></div>`
+          climbingPart = `
+            <tr>
+                <th>${this.$t('components.map.type')}</th>
+                <td>${model.climbingTypes().map((climb) => { return this.$t(`models.climbs.${climb}`) }).join(', ')}</td>
+              </tr>
+            `
+        }
+
+        let urlPart = ''
+        if (feature.properties.url !== null) {
+          urlPart =
+            `
+              <tr>
+                <th>Url</th>
+                <td><a href="${model.url}">${model.url}</a></td>
+              </tr>
+            `
+        }
+
+        let descriptionPart = ''
+        if (feature.properties.description) {
+          descriptionPart =
+            `
+              <tr>
+                <th></th>
+                <td colspan="2">${model.description}</td>
+              </tr>
+            `
+        }
+
         new Mapbox
           .Popup()
           .setLngLat(coordinates)
           .setHTML(
             `
-            <div class="map-popup-cover" style="background-image: url(${model.mapThumbnailCoverUrl()})"></div>
+            ${coverPart}
             <table class="map-popup-information-table">
               <tr>
                 <td colspan="2" class="${feature.properties.type === 'Crag' ? 'loved-by-king' : 'gym-map-title'}">${model.name}</td>
@@ -262,10 +306,9 @@ export default {
                 <th>${this.$t('components.map.place')}</th>
                 <td>${model.localization}</td>
               </tr>
-              <tr>
-                <th>${this.$t('components.map.type')}</th>
-                <td>${model.climbingTypes().map((climb) => { return this.$t(`models.climbs.${climb}`) }).join(', ')}</td>
-              </tr>
+              ${urlPart}
+              ${descriptionPart}
+              ${climbingPart}
               ${linePart}
             </table>
             <div class="map-popup-link-area">

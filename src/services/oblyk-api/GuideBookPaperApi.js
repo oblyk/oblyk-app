@@ -16,6 +16,13 @@ class GuideBookPaperApi extends BaseApi {
     })
   }
 
+  geoJson (id) {
+    return axios({
+      url: `${this.baseUrl}/guide_book_papers/${id}/geo_json.json`,
+      method: 'GET'
+    })
+  }
+
   photos (id) {
     return axios({
       url: `${this.baseUrl}/guide_book_papers/${id}/photos.json`,
