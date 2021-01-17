@@ -12,6 +12,16 @@
           <tbody>
             <tr>
               <th class="smallest-table-column text-right">
+                {{ $t('common.type') }}
+              </th>
+              <td>
+                <v-chip>
+                  {{ $t('components.guideBookPaper.type') }}
+                </v-chip>
+              </td>
+            </tr>
+            <tr>
+              <th class="smallest-table-column text-right">
                 {{ $t('models.guideBookPaper.author') }}
               </th>
               <td>
