@@ -1,5 +1,3 @@
-import CragNewView from '@/views/crags/actions/CragNewView'
-import CragEditView from '@/views/crags/actions/CragEditView'
 import GuideBookPaperView from '@/views/GuideBookPaperView'
 import GuideBookPaperInfoView from '@/views/guideBookPapers/GuideBookPaperInfoView'
 import GuideBookPaperCragsView from '@/views/guideBookPapers/GuideBookPaperCragsView'
@@ -7,11 +5,13 @@ import GuideBookPaperCoverView from '@/views/guideBookPapers/actions/GuideBookPa
 import GuideBookPaperPhotosView from '@/views/guideBookPapers/GuideBookPaperPhotosView'
 import GuideBookPaperLinkView from '@/views/guideBookPapers/GuideBookPaperLinkView'
 import GuideBookPaperMapView from '@/views/guideBookPapers/GuideBookPaperMapView'
+import GuideBookPaperEditView from '@/views/guideBookPapers/actions/GuideBookPaperEditView'
+import GuideBookPaperNewView from '@/views/guideBookPapers/actions/GuideBookPaperNewView'
 
 export default [
   {
     path: '/guide-book-papers/new',
-    component: CragNewView,
+    component: GuideBookPaperNewView,
     meta: {
       requiresAuth: true,
       title: 'newCrag',
@@ -20,7 +20,7 @@ export default [
   },
   {
     path: '/guide-book-papers/:guideBookPaperId/:guideBookPaperSlug/edit',
-    component: CragEditView,
+    component: GuideBookPaperEditView,
     meta: {
       requiresAuth: true,
       objectName: 'guideBookPaper',

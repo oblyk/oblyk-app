@@ -55,9 +55,11 @@
       "publication_year":  "Publication year",
       "price": "Price",
       "price_cents": "Cents",
+      "price_euro": "Price in (€)",
       "ean":  "Ean",
       "number_of_page":  "Number of page",
-      "weight": "Weight"
+      "weight": "Weight",
+      "weight_in_gram": "Weight in gram"
     },
     "gym": {
       "name": "Gym name",

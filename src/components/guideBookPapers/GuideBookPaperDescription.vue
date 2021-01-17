@@ -7,7 +7,7 @@
       {{ $t('common.informations') }}
     </v-card-title>
     <v-card-text>
-      <v-simple-table>
+      <v-simple-table class="no-hover-table">
         <template v-slot:default>
           <tbody>
             <tr>
@@ -99,6 +99,25 @@
                 <span v-else class="text--disabled">
                   {{ $t('common.noInformation') }}
                 </span>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2" class="text-right">
+                <v-btn
+                  text
+                  small
+                  color="primary"
+                  :to="guideBookPaper.path('edit')"
+                  v-if="isLoggedIn"
+                >
+                  <v-icon
+                    small
+                    left
+                  >
+                    mdi-pencil
+                  </v-icon>
+                  {{ $t('actions.edit') }}
+                </v-btn>
               </td>
             </tr>
           </tbody>
