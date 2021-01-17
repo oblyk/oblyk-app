@@ -53,7 +53,7 @@ export default {
       searching: false,
       onSearch: false,
       searchResults: [],
-      previousQuery: null,
+      previousQuery: null
     }
   },
 
