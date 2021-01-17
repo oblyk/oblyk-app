@@ -114,6 +114,20 @@
             <tr>
               <td colspan="2" class="text-right">
                 <v-btn
+                  icon
+                  small
+                  :title="$t('actions.reportProblem')"
+                  color="primary"
+                  :to="`/reports/GuideBookPaper/${guideBookPaper.id}/new?redirect_to=${$route.fullPath}`"
+                  v-if="isLoggedIn"
+                >
+                  <v-icon
+                    small
+                  >
+                    mdi-flag
+                  </v-icon>
+                </v-btn>
+                <v-btn
                   text
                   small
                   color="primary"
