@@ -53,6 +53,7 @@
       "newPasswordError": "Le lien a expiré, ou les deux mots de passe ne sont pas identique"
     },
     "crag": {
+      "searchCrag": "Chercher une falaise",
       "type": "Falaise",
       "newCrag": "Nouvelle falaise",
       "descriptionOf": "Description de %{name}",
@@ -74,6 +75,8 @@
     "guideBookPaper": {
       "type": "Topo",
       "pointOfSale": "Point de vente",
+      "removeFromGuideBook": "Retirer du topo",
+      "addCragInGuide": "Ajouter un site à ce topo",
       "tabs": {
         "info": "Infos",
         "photos": "Photos",

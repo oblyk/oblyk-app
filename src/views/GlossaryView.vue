@@ -74,7 +74,7 @@
 </template>
 <script>
 import Spinner from '@/components/layouts/Spiner'
-import ApiWord from '@/services/oblyk-api/WordApi'
+import WordApi from '@/services/oblyk-api/WordApi'
 import Word from '@/models/Word'
 import WordCard from '@/components/words/WordCard'
 import { SessionConcern } from '@/concerns/SessionConcern'
@@ -105,7 +105,7 @@ export default {
 
   methods: {
     getGlossary: function (page) {
-      ApiWord
+      WordApi
         .all(page)
         .then(resp => {
           for (const word of resp.data) {
@@ -142,9 +142,9 @@ export default {
 
     getSearch () {
       // Cancel old search
-      ApiWord.cancelSearch()
+      WordApi.cancelSearch()
 
-      ApiWord
+      WordApi
         .search(this.searchWord)
         .then(resp => {
           this.searchResults = []

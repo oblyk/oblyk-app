@@ -59,7 +59,8 @@
       "ean":  "Ean",
       "number_of_page":  "Nombre de page",
       "weight": "Poids",
-      "weight_in_gram": "Poids en gramme"
+      "weight_in_gram": "Poids en gramme",
+      "crag": "Site d'escalade"
     },
     "gym": {
       "name": "Nom de la salle",

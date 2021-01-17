@@ -77,5 +77,31 @@ class GuideBookPaperApi extends BaseApi {
       method: 'POST'
     })
   }
+
+  addCrag (guideBookPaperId, cragId) {
+    return axios({
+      url: `${this.baseUrl}/guide_book_papers/${guideBookPaperId}/add_crag.json`,
+      headers: { Authorization: this.authToken() },
+      data: {
+        guide_book_paper: {
+          crag_id: cragId
+        }
+      },
+      method: 'POST'
+    })
+  }
+
+  removeCrag (guideBookPaperId, cragId) {
+    return axios({
+      url: `${this.baseUrl}/guide_book_papers/${guideBookPaperId}/remove_crag.json`,
+      headers: { Authorization: this.authToken() },
+      data: {
+        guide_book_paper: {
+          crag_id: cragId
+        }
+      },
+      method: 'DELETE'
+    })
+  }
 }
 export default new GuideBookPaperApi()

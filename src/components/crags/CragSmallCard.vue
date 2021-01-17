@@ -3,7 +3,7 @@
     <v-card
       link
       flat
-      :to="crag.path()"
+      :to="linkable ? crag.path() : null"
     >
       <v-list-item three-line>
         <v-list-item-avatar
@@ -47,7 +47,12 @@ export default {
   name: 'CragSmallCard',
   components: { SubscribeBtn },
   props: {
-    crag: Object
+    crag: Object,
+    linkable: {
+      type: Boolean,
+      required: false,
+      default: true
+    }
   }
 }
 </script>

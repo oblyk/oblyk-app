@@ -3,6 +3,11 @@ import store from '@/store'
 export default class BaseApi {
   constructor () {
     this.baseUrl = `${process.env.VUE_APP_OBLYK_API_URL}/api/v1`
+    this.tokenSearchSource = null
+  }
+
+  cancelSearch () {
+    if (this.tokenSearchSource) this.tokenSearchSource.cancel()
   }
 
   authId () {

@@ -59,7 +59,8 @@
       "ean":  "Ean",
       "number_of_page":  "Number of page",
       "weight": "Weight",
-      "weight_in_gram": "Weight in gram"
+      "weight_in_gram": "Weight in gram",
+      "crag": "Crag"
     },
     "gym": {
       "name": "Gym name",

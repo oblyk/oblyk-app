@@ -21,6 +21,7 @@ import CommentRouter from '@/router/modules/CommentRouter'
 import ReportRouter from '@/router/modules/ReportRouter'
 import VideoRouter from '@/router/modules/VideoRouter'
 import PlaceOfSaleRouter from '@/router/modules/PlaceOfSaleRouter'
+import GuideBookPaperCragRouter from '@/router/modules/GuideBookPaperCragRouter'
 
 Vue.use(VueRouter)
 
@@ -41,6 +42,7 @@ const router = new VueRouter({
     ...UserRouter,
     ...PhotoRouter,
     ...GuideBookPaperRouter,
+    ...GuideBookPaperCragRouter,
     ...LinkRouter,
     ...CommentRouter,
     ...ReportRouter,

@@ -53,6 +53,7 @@
       "newPasswordError": "The link has expired, or the two passwords are not identical"
     },
     "crag": {
+      "searchCrag": "Crag search",
       "type": "Crag",
       "newCrag": "New Crag",
       "descriptionOf": "Description of %{name}",
@@ -74,6 +75,8 @@
     "guideBookPaper": {
       "type": "Guide book",
       "pointOfSale": "Point of sale",
+      "removeFromGuideBook": "Remove from guide book",
+      "addCragInGuide": "Add crag in this guide book",
       "tabs": {
         "info": "Info",
         "photos": "Photos",

@@ -9,6 +9,17 @@ class CragApi extends BaseApi {
     })
   }
 
+  search (query) {
+    const CancelToken = axios.CancelToken
+    this.tokenSearchSource = CancelToken.source()
+
+    return axios({
+      cancelToken: this.tokenSearchSource.token,
+      url: `${this.baseUrl}/crags/search.json?query=${query}`,
+      method: 'GET'
+    })
+  }
+
   geoJson () {
     return axios({
       url: `${this.baseUrl}/crags/geo_json.json`,
