@@ -51,7 +51,6 @@ export default {
     return {
       accessToken: process.env.VUE_APP_OBLYK_MAPBOX_TOKEN,
       mapStyle: 'mapbox://styles/clucien/ckingo0rf3thf17qovbo16s3b?optimize=true',
-      geoJsonLayer: {},
       defaultLatitude: parseFloat(localStorage.getItem('map-latitude') || '4.5'),
       defaultLongitude: parseFloat(localStorage.getItem('map-longitude') || '45'),
       defaultPitch: parseFloat(localStorage.getItem('map-pitch') || '0'),
@@ -219,12 +218,13 @@ export default {
 
       map.on('click', 'unclustered-point', (e) => {
         const coordinates = e.features[0].geometry.coordinates.slice()
+        const feature = e.features[0]
         let model
 
-        if (this.geoJsonType === 'Crags') {
-          model = new Crag(this.convertNull(e.features[0].properties))
-        } else if (this.geoJsonType === 'Gyms') {
-          model = new Gym(this.convertNull(e.features[0].properties))
+        if (feature.properties.type === 'Crag') {
+          model = new Crag(this.convertNull(feature.properties))
+        } else if (feature.properties.type === 'Gym') {
+          model = new Gym(this.convertNull(feature.properties))
         }
 
         while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
@@ -235,7 +235,7 @@ export default {
         const routeCount = model.route_count || 0
 
         let linePart = ''
-        if (this.geoJsonType === 'Crags' && routeCount > 0) {
+        if (feature.properties.type === 'Crag' && routeCount > 0) {
           linePart = `
             <tr>
               <th>${this.$t('components.map.lines')}</th>
@@ -256,7 +256,7 @@ export default {
             <div class="map-popup-cover" style="background-image: url(${model.mapThumbnailCoverUrl()})"></div>
             <table class="map-popup-information-table">
               <tr>
-                <td colspan="2" class="${this.geoJsonType === 'Crags' ? 'loved-by-king' : 'gym-map-title'}">${model.name}</td>
+                <td colspan="2" class="${feature.properties.type === 'Crag' ? 'loved-by-king' : 'gym-map-title'}">${model.name}</td>
               </tr>
               <tr>
                 <th>${this.$t('components.map.place')}</th>
@@ -326,6 +326,7 @@ export default {
 }
 .map-popup-information-table {
   width: 300px;
+  color: black;
   th {
     width: 10px;
     text-align: right;

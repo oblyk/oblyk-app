@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import Map from '@/components/Map'
+import Map from '@/components/maps/Map'
 
 export default {
   name: 'CragMapView',
