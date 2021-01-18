@@ -68,7 +68,7 @@ ___
 - [ ] Photos et Video
 - [ ] Parking
 - [ ] Marche d'approche
-- [ ] Topo Papier
+- [x] Topo Papier
 - [ ] Topo Web
 - [ ] Topo PDF
 - [ ] Massif
