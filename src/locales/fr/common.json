@@ -10,6 +10,9 @@
     "at": "le",
     "by": "Par",
     "type": "Type",
+    "from": "De",
+    "to": "À",
+    "field": "Champ",
     "pages": {
       "about": {
         "title": "À propos d'Oblyk"

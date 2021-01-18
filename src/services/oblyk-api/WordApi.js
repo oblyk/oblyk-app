@@ -27,6 +27,13 @@ class WordApi extends BaseApi {
     })
   }
 
+  versions (wordId) {
+    return axios({
+      url: `${this.baseUrl}/words/${wordId}/versions.json`,
+      method: 'GET'
+    })
+  }
+
   update (data) {
     return axios({
       url: `${this.baseUrl}/words/${data.id}.json`,

@@ -209,6 +209,15 @@
       "thanks": "Thank you in advance for your help!",
       "success": "We have received your report, thank you!"
     },
+    "version" : {
+      "noVersion": "There is no modification history for this item.",
+      "contribution": "contribution | contributions",
+      "event": {
+        "update": "Update",
+        "create": "Create",
+        "destroy": "Destroy"
+      }
+    },
     "photo" : {
       "noPhoto": "There is no picture here for the moment"
     },

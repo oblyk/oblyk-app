@@ -209,6 +209,15 @@
       "thanks": "Merci d'avance pour ton aide !",
       "success": "Nous avons bien reçu votre signalement, merci !"
     },
+    "version" : {
+      "noVersion": "Il n'y a pas d'historique de modification pour cet item",
+      "contribution": "contribution | contributions",
+      "event": {
+        "update": "Mise à jour",
+        "create": "Création",
+        "destroy": "Suppression"
+      }
+    },
     "photo" : {
       "noPhoto": "Il n'y a pas de photo ici pour l'instant"
     },

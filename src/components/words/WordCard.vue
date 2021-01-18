@@ -9,6 +9,13 @@
     <v-card-text>
       {{ word.definition }}
     </v-card-text>
+    <v-card-text v-if="!presentation">
+      <contributions-label
+        :versions-count="word.versions_count"
+        :version-id="word.id"
+        version-type="Word"
+      />
+    </v-card-text>
     <v-card-actions
       v-if="!presentation && isLoggedIn"
     >
@@ -26,9 +33,11 @@
 </template>
 <script>
 import { SessionConcern } from '@/concerns/SessionConcern'
+import ContributionsLabel from '@/components/globals/ContributionsLable'
 
 export default {
   name: 'WordCard',
+  components: { ContributionsLabel },
   mixins: [SessionConcern],
   props: {
     word: Object,

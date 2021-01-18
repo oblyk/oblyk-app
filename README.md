@@ -12,6 +12,7 @@
 - [x] Linkable
 - [X] Videoable
 - [x] Favicon, meta title
+- [ ] Système de versionning
 - [ ] Faire page 404
 - [ ] Paramétrage des web workers PWA
 - [ ] Système de notification push
