@@ -62,6 +62,7 @@
       "rangingFrom": "Allant de %{min} à %{max}",
       "noGuide": "Pas de topo renseigné",
       "noRoutes": "Il n'y a pas encore de ligne enregistrées sur ce site",
+      "guideAroundThisCrag": "Topos à 50km autour de",
       "tabs": {
         "info": "Info",
         "media": "Photos & Videos",
@@ -77,6 +78,9 @@
       "pointOfSale": "Point de vente",
       "removeFromGuideBook": "Retirer du topo",
       "addCragInGuide": "Ajouter un site à ce topo",
+      "searchGuideBookPaper": "Chercher un topo papier",
+      "explainNewTopo": "Si vous n'avez pas trouvé en cherchant, ou dans les topos à proximité, vous pouvez ajouter un nouveau topo :",
+      "noGuideAround": "Pas de topo trouvé à 50km au alentour",
       "tabs": {
         "info": "Infos",
         "photos": "Photos",

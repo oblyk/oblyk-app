@@ -27,6 +27,13 @@ class CragApi extends BaseApi {
     })
   }
 
+  guideBooksAround (cragId) {
+    return axios({
+      url: `${this.baseUrl}/crags/${cragId}/guide_books_around.json`,
+      method: 'GET'
+    })
+  }
+
   find (cragId) {
     return axios({
       url: `${this.baseUrl}/crags/${cragId}.json`,

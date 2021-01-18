@@ -62,6 +62,7 @@
       "rangingFrom": "Ranging from %{min} to %{max}",
       "noGuide": "No guide filled in",
       "noRoutes": "There are no routes registered on this site yet.",
+      "guideAroundThisCrag": "Guide books at 50km around",
       "tabs": {
         "info": "Info",
         "media": "Photos & Videos",
@@ -77,6 +78,9 @@
       "pointOfSale": "Point of sale",
       "removeFromGuideBook": "Remove from guide book",
       "addCragInGuide": "Add crag in this guide book",
+      "searchGuideBookPaper": "Search a paper guide book",
+      "explainNewTopo": "If you didn't find what you were looking for in the search engine, or in the guide books nearby, you can add a new guide books :",
+      "noGuideAround": "No guide book found 50km away",
       "tabs": {
         "info": "Info",
         "photos": "Photos",

@@ -9,6 +9,13 @@ class GuideBookPaperApi extends BaseApi {
     })
   }
 
+  search (query) {
+    return axios({
+      url: `${this.baseUrl}/guide_book_papers/search.json?query=${query}`,
+      method: 'GET'
+    })
+  }
+
   crags (id) {
     return axios({
       url: `${this.baseUrl}/guide_book_papers/${id}/crags.json`,

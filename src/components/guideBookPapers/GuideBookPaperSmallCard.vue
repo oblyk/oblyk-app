@@ -3,7 +3,7 @@
     <v-card
       link
       flat
-      :to="guideBookPaper.path()"
+      :to="linkable ? guideBookPaper.path() : null"
     >
       <v-list-item three-line>
         <v-list-item-avatar
@@ -56,7 +56,12 @@ export default {
   name: 'GuideBookPaperSmallCard',
   components: { SubscribeBtn },
   props: {
-    guideBookPaper: Object
+    guideBookPaper: Object,
+    linkable: {
+      type: Boolean,
+      required: false,
+      default: true
+    }
   }
 }
 </script>
