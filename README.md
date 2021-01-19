@@ -7,6 +7,7 @@
 - [x] Faire pied de page
 - [x] Faire système d'alerte généralisé
 - [ ] Markdown
+- [ ] Visionneuse photo
 - [x] Commentable
 - [x] Followable
 - [x] Linkable
@@ -66,6 +67,7 @@ ___
 - [ ] Falaise
 - [ ] Secteur
 - [ ] Voies
+- [ ] Liens
 - [ ] Photos et Video
 - [ ] Parking
 - [ ] Marche d'approche

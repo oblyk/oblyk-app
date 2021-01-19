@@ -36,7 +36,11 @@
               </v-icon>
               {{ $t('models.guideBookPdf.pdf_file') }}
             </a> |
-            {{ guideBookPdf.author }}, {{ guideBookPdf.editor }}, {{ guideBookPdf.publication_year }}
+            <span class="span-comma">
+              <span v-if="guideBookPdf.author">{{ guideBookPdf.author }}</span>
+              <span v-if="guideBookPdf.editor">{{ guideBookPdf.editor }}</span>
+              <span v-if="guideBookPdf.publication_year">{{ guideBookPdf.publication_year }}</span>
+            </span>
           </v-list-item-subtitle>
           <v-list-item-subtitle class="mt-n3 mb-4">
             {{ guideBookPdf.description }}

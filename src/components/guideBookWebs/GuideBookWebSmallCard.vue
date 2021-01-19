@@ -28,7 +28,7 @@
               </v-btn>
             </span>
           </v-list-item-title>
-          <v-list-item-subtitle class="mb-1 mt-n6">
+          <v-list-item-subtitle class="mb-1 mt-n6 text-truncate">
             <a :href="guideBookWeb.url" class="vertical-align-middle">
               {{ guideBookWeb.url }}
             </a>
