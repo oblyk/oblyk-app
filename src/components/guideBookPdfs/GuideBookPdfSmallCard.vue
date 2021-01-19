@@ -1,0 +1,67 @@
+<template>
+  <div>
+    <v-card flat>
+      <v-list-item three-line>
+        <v-list-item-avatar
+          rounded="0"
+          size="70"
+        >
+          <v-img
+            :src="guideBookPdf.coverUrl()"
+            contain
+            max-width="70px"
+            max-height="70px"
+          />
+        </v-list-item-avatar>
+        <v-list-item-content>
+          <v-list-item-title class="font-weight-bold mt-n1">
+            <span class="vertical-align-middle">
+              {{ guideBookPdf.name }}
+              <v-btn
+                v-if="isLoggedIn && currentUser.id === guideBookPdf.creator.id"
+                icon
+                :to="`${guideBookPdf.path('edit')}?redirect_to=${$route.fullPath}`"
+              >
+                <v-icon small>mdi-pencil</v-icon>
+              </v-btn>
+            </span>
+          </v-list-item-title>
+          <v-list-item-subtitle class="mb-3 mt-n1">
+            <a
+              class="link-to-pdf-file"
+              :href="guideBookPdf.url"
+            >
+              <v-icon left small class="mb-1" color="red darken-1">
+                mdi-file-pdf
+              </v-icon>
+              {{ $t('models.guideBookPdf.pdf_file') }}
+            </a> |
+            {{ guideBookPdf.author }}, {{ guideBookPdf.editor }}, {{ guideBookPdf.publication_year }}
+          </v-list-item-subtitle>
+          <v-list-item-subtitle class="mt-n3 mb-4">
+            {{ guideBookPdf.description }}
+          </v-list-item-subtitle>
+        </v-list-item-content>
+      </v-list-item>
+    </v-card>
+  </div>
+</template>
+
+<script>
+import { SessionConcern } from '@/concerns/SessionConcern'
+
+export default {
+  name: 'GuideBookPdfSmallCard',
+  mixins: [SessionConcern],
+  props: {
+    guideBookPdf: Object
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+.link-to-pdf-file {
+  color: #e53935;
+  text-decoration: none;
+}
+</style>

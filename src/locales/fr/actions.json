@@ -63,6 +63,7 @@
     "editPlaceOfSale": "Modifier le point de vente",
     "addGuideBook": "Ajouter un topo",
     "addWebGuideBook": "Ajouter un topo web",
-    "addPdfGuideBook": "Ajouter un topo PDF"
+    "addPdfGuideBook": "Ajouter un topo PDF",
+    "seeNumberMore": "Voir %{number} de plus"
   }
 }

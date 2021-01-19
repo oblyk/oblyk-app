@@ -20,7 +20,7 @@ import { GuideBookWebConcern } from '@/concerns/GuideBookWebConcern'
 import GuideBookWebForm from '@/components/guideBookWebs/forms/GuideBookWebForm'
 
 export default {
-  name: 'GuideBookPaperNewView',
+  name: 'GuideBookWebEditView',
   mixins: [GuideBookWebConcern],
   components: { GuideBookWebForm }
 }

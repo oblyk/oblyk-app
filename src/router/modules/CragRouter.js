@@ -9,6 +9,7 @@ import CragNewView from '@/views/crags/actions/CragNewView'
 import CragEditView from '@/views/crags/actions/CragEditView'
 import AddGuideBookOnCragView from '@/views/crags/actions/AddGuideBookOnCragView'
 import GuideBookWebNewView from '@/views/guideBookWebs/actions/GuideBookWebNewView'
+import GuideBookPdfNewView from '@/views/guideBookPdfs/actions/GuideBookPdfNewView'
 
 export default [
   {
@@ -49,6 +50,16 @@ export default [
   {
     path: '/crags/:cragId/:cragSlug/new-web-guide-book',
     component: GuideBookWebNewView,
+    props: true,
+    meta: {
+      requiresAuth: true,
+      objectName: 'crag',
+      showAvatar: true
+    }
+  },
+  {
+    path: '/crags/:cragId/:cragSlug/new-pdf-guide-book',
+    component: GuideBookPdfNewView,
     props: true,
     meta: {
       requiresAuth: true,

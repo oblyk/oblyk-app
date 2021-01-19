@@ -6,6 +6,10 @@ export default class GuideBookWeb extends ActiveData {
     return this.apiFind(GuideBookWebApi, id)
   }
 
+  path (page = 'info') {
+    return `/guide-book-webs/${this.id}/${page}`
+  }
+
   coverUrl () {
     return require('@/assets/svgs/web-guide-book-default.svg')
   }

@@ -69,9 +69,10 @@ ___
 - [ ] Photos et Video
 - [ ] Parking
 - [ ] Marche d'approche
+- [ ] Carte
 - [x] Topo Papier
-- [ ] Topo Web
-- [ ] Topo PDF
+- [x] Topo Web
+- [x] Topo PDF
 - [ ] Massif
 ---
 - [ ] Système d'alerte

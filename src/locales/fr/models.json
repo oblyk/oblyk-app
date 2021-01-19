@@ -72,7 +72,8 @@
       "description": "Description",
       "author": "Auteur",
       "publication_year": "Année de publication",
-      "crag": "Site d'escalade"
+      "crag": "Site d'escalade",
+      "pdf_file": "Fichier PDF"
     },
     "gym": {
       "name": "Nom de la salle",

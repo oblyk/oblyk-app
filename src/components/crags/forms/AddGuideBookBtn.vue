@@ -4,10 +4,10 @@
       <v-btn
         text
         color="primary"
-        small
         v-bind="attrs"
         v-on="on"
       >
+        <v-icon left>mdi-plus</v-icon>
         {{ $t('actions.addGuideBook') }}
       </v-btn>
     </template>

@@ -72,7 +72,8 @@
       "description": "Description",
       "author": "Author",
       "publication_year": "Publication year",
-      "crag": "Crag"
+      "crag": "Crag",
+      "pdf_file": "PDF file"
     },
     "gym": {
       "name": "Gym name",

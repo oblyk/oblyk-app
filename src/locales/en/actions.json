@@ -63,6 +63,7 @@
     "editPlaceOfSale": "Edit place of sale",
     "addGuideBook": "Add a guide book",
     "addWebGuideBook": "Add a web guide book",
-    "addPdfGuideBook": "Add a PDF guide book"
+    "addPdfGuideBook": "Add a PDF guide book",
+    "seeNumberMore": "See %{number} more"
   }
 }

@@ -24,6 +24,7 @@ import PlaceOfSaleRouter from '@/router/modules/PlaceOfSaleRouter'
 import GuideBookPaperCragRouter from '@/router/modules/GuideBookPaperCragRouter'
 import VersionRouter from '@/router/modules/VersionRouter'
 import GuideBookWebRouter from '@/router/modules/GuideBookWebRouter'
+import GuideBookPdfRouter from '@/router/modules/GuideBookPdfRouter'
 
 Vue.use(VueRouter)
 
@@ -51,7 +52,8 @@ const router = new VueRouter({
     ...VideoRouter,
     ...PlaceOfSaleRouter,
     ...VersionRouter,
-    ...GuideBookWebRouter
+    ...GuideBookWebRouter,
+    ...GuideBookPdfRouter
   ]
 })
 

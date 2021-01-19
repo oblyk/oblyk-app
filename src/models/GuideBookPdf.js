@@ -6,6 +6,10 @@ export default class GuideBookPdf extends ActiveData {
     return this.apiFind(GuideBookPdfApi, id)
   }
 
+  path (page = 'info') {
+    return `/guide-book-pdfs/${this.id}/${page}`
+  }
+
   get url () {
     return `${process.env.VUE_APP_OBLYK_API_URL}${this.pdf_file}`
   }

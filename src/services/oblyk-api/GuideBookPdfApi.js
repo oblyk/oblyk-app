@@ -30,10 +30,11 @@ class GuideBookPdfApi extends BaseApi {
   create (data) {
     return axios({
       url: `${this.baseUrl}/guide_book_pdfs.json`,
-      headers: { Authorization: this.authToken() },
-      data: {
-        guide_book_pdf: data
+      headers: {
+        Authorization: this.authToken(),
+        'Content-Type': 'multipart/form-data'
       },
+      data: data,
       method: 'POST'
     })
   }

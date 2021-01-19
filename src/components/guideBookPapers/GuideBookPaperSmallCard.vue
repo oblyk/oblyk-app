@@ -33,7 +33,7 @@
               unsubscribe-label="actions.removeFromLibrary"
             />
           </v-list-item-title>
-          <v-list-item-subtitle class="mt-n3 mb-4">
+          <v-list-item-subtitle class="mt-n3 mb-4 text-truncate">
             <v-alert
               dense
               text
