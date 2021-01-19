@@ -67,7 +67,7 @@ ___
 - [ ] Falaise
 - [ ] Secteur
 - [ ] Voies
-- [ ] Liens
+- [x] Liens
 - [ ] Photos et Video
 - [ ] Parking
 - [ ] Marche d'approche

@@ -14,6 +14,15 @@
         {{ $t('components.crag.tabs.media') }}
       </v-badge>
     </v-tab>
+    <v-tab to="links">
+      <v-badge
+        color="primary"
+        inline
+        :content="crag.link_count"
+      >
+        {{ $t('components.crag.tabs.links') }}
+      </v-badge>
+    </v-tab>
     <v-tab to="guide-books">
       <v-badge
         color="primary"

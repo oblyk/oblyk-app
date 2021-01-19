@@ -10,6 +10,7 @@ import CragEditView from '@/views/crags/actions/CragEditView'
 import AddGuideBookOnCragView from '@/views/crags/actions/AddGuideBookOnCragView'
 import GuideBookWebNewView from '@/views/guideBookWebs/actions/GuideBookWebNewView'
 import GuideBookPdfNewView from '@/views/guideBookPdfs/actions/GuideBookPdfNewView'
+import CragLinkView from '@/views/crags/CragLinkView'
 
 export default [
   {
@@ -94,6 +95,14 @@ export default [
       {
         path: 'photos',
         component: CragPhotosView,
+        meta: {
+          noPaddingTop: true,
+          objectName: 'crag'
+        }
+      },
+      {
+        path: 'links',
+        component: CragLinkView,
         meta: {
           noPaddingTop: true,
           objectName: 'crag'
