@@ -7,7 +7,7 @@
       {{ $t('common.informations') }}
     </v-card-title>
     <v-card-text>
-      <v-simple-table>
+      <v-simple-table class="no-hover-table">
         <template v-slot:default>
           <tbody>
             <tr>
@@ -68,6 +68,15 @@
                 </span>
               </td>
             </tr>
+            <tr>
+              <td colspan="2" class="text-right">
+                <contributions-label
+                  version-type="crag"
+                  :version-id="crag.id"
+                  :versions-count="crag.versions_count"
+                />
+              </td>
+            </tr>
           </tbody>
         </template>
       </v-simple-table>
@@ -75,8 +84,10 @@
   </v-card>
 </template>
 <script>
+import ContributionsLabel from '@/components/globals/ContributionsLable'
 export default {
   name: 'CragInfo',
+  components: { ContributionsLabel },
   props: {
     crag: Object
   }

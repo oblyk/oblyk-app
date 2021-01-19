@@ -113,6 +113,15 @@
             </tr>
             <tr>
               <td colspan="2" class="text-right">
+                <contributions-label
+                  version-type="guideBookPaper"
+                  :version-id="guideBookPaper.id"
+                  :versions-count="guideBookPaper.versions_count"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2" class="text-right">
                 <v-btn
                   icon
                   small
@@ -181,10 +190,11 @@
 import { SessionConcern } from '@/concerns/SessionConcern'
 import CommentList from '@/components/comments/CommentList'
 import SubscribeBtn from '@/components/forms/SubscribeBtn'
+import ContributionsLabel from '@/components/globals/ContributionsLable'
 
 export default {
   name: 'GuideBookPaperDescription',
-  components: { SubscribeBtn, CommentList },
+  components: { ContributionsLabel, SubscribeBtn, CommentList },
   mixins: [SessionConcern],
   props: {
     guideBookPaper: Object

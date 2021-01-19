@@ -79,13 +79,31 @@
             </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+
+        <!-- Contribution -->
+        <v-list-item>
+          <v-list-item-icon>
+            <v-icon>mdi-history</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>
+              <contributions-label
+                version-type="gym"
+                :versions-count="gym.versions_count"
+                :version-id="gym.id"
+              />
+            </v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
       </v-list>
     </v-card-text>
   </v-card>
 </template>
 <script>
+import ContributionsLabel from '@/components/globals/ContributionsLable'
 export default {
   name: 'GymContact',
+  components: { ContributionsLabel },
   props: {
     gym: Object
   },

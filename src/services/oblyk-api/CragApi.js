@@ -9,6 +9,13 @@ class CragApi extends BaseApi {
     })
   }
 
+  versions (cragId) {
+    return axios({
+      url: `${this.baseUrl}/crags/${cragId}/versions.json`,
+      method: 'GET'
+    })
+  }
+
   search (query) {
     const CancelToken = axios.CancelToken
     this.tokenSearchSource = CancelToken.source()

@@ -9,7 +9,7 @@
         :key="`version-${versionIndex}`"
         class="mb-7"
       >
-        <p class="mb-1">
+        <p class="mb-1 text-decoration-underline">
           {{ $t(`components.version.event.${version.event}` )}}
           {{ $t('common.at') }}
           {{ humanizeDate(version.created_at) }}
@@ -25,21 +25,27 @@
             v-for="(change, changeIndex) in version.changes"
             :key="`version-${versionIndex}-${changeIndex}`"
           >
-            <table class="mb-2">
+            <table
+              v-if="!(change[0] === null && change[1] === false)"
+              class="mb-2">
               <tr>
                 <th class="text-right pr-2">{{ $t('common.field') }} :</th>
-                <td>{{ $t(`models.${versionType.toLowerCase()}.${changeIndex}`) }}</td>
+                <td>{{ $t(`models.${versionType}.${changeIndex}`) }}</td>
               </tr>
               <tr v-if="change[0] !== null">
                 <th class="text-right pr-2">{{ $t('common.from') }} :</th>
-                <td>{{ change[0] }}</td>
+                <td>
+                  {{ changeValue(change[0], changeIndex) }}
+                </td>
               </tr>
               <tr>
                 <th class="text-right pr-2">
                   <span v-if="change[0] !== null">{{ $t('common.to') }} :</span>
                   <v-icon v-if="change[0] === null" small>mdi-arrow-right</v-icon>
                 </th>
-                <td>{{ change[1] }}</td>
+                <td>
+                  {{ changeValue(change[1], changeIndex) }}
+                </td>
               </tr>
             </table>
           </div>
@@ -56,10 +62,13 @@
 </template>
 
 <script>
-import WordApi from '@/services/oblyk-api/WordApi'
-import Spinner from '@/components/layouts/Spiner'
 import { DateHelpers } from '@/mixins/DateHelpers'
+import Spinner from '@/components/layouts/Spiner'
 import CloseForm from '@/components/forms/CloseForm'
+import WordApi from '@/services/oblyk-api/WordApi'
+import CragApi from '@/services/oblyk-api/CragApi'
+import GuideBookPaperApi from '@/services/oblyk-api/GuideBookPaperApi'
+import GymApi from '@/services/oblyk-api/GymApi'
 
 export default {
   name: 'VersionsView',
@@ -84,7 +93,25 @@ export default {
   methods: {
     getVersion: function () {
       if (this.versionType === 'word') {
-        WordApi.versions(this.versionId).then(resp => { this.version = resp.data; console.log(this.version) }).finally(() => { this.loadingVersions = false })
+        WordApi.versions(this.versionId).then(resp => { this.version = resp.data }).finally(() => { this.loadingVersions = false })
+      } else if (this.versionType === 'crag') {
+        CragApi.versions(this.versionId).then(resp => { this.version = resp.data }).finally(() => { this.loadingVersions = false })
+      } else if (this.versionType === 'guideBookPaper') {
+        GuideBookPaperApi.versions(this.versionId).then(resp => { this.version = resp.data }).finally(() => { this.loadingVersions = false })
+      } else if (this.versionType === 'gym') {
+        GymApi.versions(this.versionId).then(resp => { this.version = resp.data }).finally(() => { this.loadingVersions = false })
+      }
+    },
+
+    changeValue: function (change, key) {
+      if (change === false) {
+        return this.$t('actions.no')
+      } else if (change === true) {
+        return this.$t('actions.yes')
+      } else if (typeof change === 'object') {
+        return change.map((value) => { return this.$t(`models.${key}.${value}`) }).join(', ')
+      } else {
+        return change
       }
     }
   },

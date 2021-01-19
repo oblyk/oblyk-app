@@ -16,7 +16,7 @@ export default {
 
   methods: {
     versionPath: function () {
-      return `/versions/${this.versionType.toLowerCase()}/${this.versionId}/changes`
+      return `/versions/${this.versionType}/${this.versionId}/changes`
     }
   }
 }

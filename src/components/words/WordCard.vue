@@ -13,7 +13,7 @@
       <contributions-label
         :versions-count="word.versions_count"
         :version-id="word.id"
-        version-type="Word"
+        version-type="word"
       />
     </v-card-text>
     <v-card-actions

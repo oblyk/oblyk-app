@@ -9,6 +9,13 @@ class GuideBookPaperApi extends BaseApi {
     })
   }
 
+  versions (guideBookPaperId) {
+    return axios({
+      url: `${this.baseUrl}/guide_book_papers/${guideBookPaperId}/versions.json`,
+      method: 'GET'
+    })
+  }
+
   search (query) {
     return axios({
       url: `${this.baseUrl}/guide_book_papers/search.json?query=${query}`,
