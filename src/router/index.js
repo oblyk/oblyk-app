@@ -23,6 +23,7 @@ import VideoRouter from '@/router/modules/VideoRouter'
 import PlaceOfSaleRouter from '@/router/modules/PlaceOfSaleRouter'
 import GuideBookPaperCragRouter from '@/router/modules/GuideBookPaperCragRouter'
 import VersionRouter from '@/router/modules/VersionRouter'
+import GuideBookWebRouter from '@/router/modules/GuideBookWebRouter'
 
 Vue.use(VueRouter)
 
@@ -49,7 +50,8 @@ const router = new VueRouter({
     ...ReportRouter,
     ...VideoRouter,
     ...PlaceOfSaleRouter,
-    ...VersionRouter
+    ...VersionRouter,
+    ...GuideBookWebRouter
   ]
 })
 

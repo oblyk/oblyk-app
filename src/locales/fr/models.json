@@ -62,6 +62,18 @@
       "weight_in_gram": "Poids en gramme",
       "crag": "Site d'escalade"
     },
+    "guideBookWeb": {
+      "name": "Nom du topo",
+      "url": "Lien vers le topo",
+      "crag": "Site d'escalade"
+    },
+    "guideBookPdf": {
+      "name": "Nom du topo",
+      "description": "Description",
+      "author": "Auteur",
+      "publication_year": "Année de publication",
+      "crag": "Site d'escalade"
+    },
     "gym": {
       "name": "Nom de la salle",
       "description": "Description",

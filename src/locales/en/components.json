@@ -73,7 +73,14 @@
     "cragRoute": {
       "routes": "Routes"
     },
+    "guideBookWeb": {
+      "fullName": "Web guide book"
+    },
+    "guideBookPdf": {
+      "fullName": "PDF guide book"
+    },
     "guideBookPaper": {
+      "fullName": "Paper guide book",
       "type": "Guide book",
       "pointOfSale": "Point of sale",
       "removeFromGuideBook": "Remove from guide book",

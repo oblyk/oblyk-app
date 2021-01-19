@@ -61,6 +61,8 @@
     "editVideo": "Éditer la vidéo",
     "addPlaceOfSale": "Ajouter un point de vente",
     "editPlaceOfSale": "Modifier le point de vente",
-    "addGuideBook": "Ajouter un topo"
+    "addGuideBook": "Ajouter un topo",
+    "addWebGuideBook": "Ajouter un topo web",
+    "addPdfGuideBook": "Ajouter un topo PDF"
   }
 }

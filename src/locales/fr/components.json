@@ -73,7 +73,14 @@
     "cragRoute": {
       "routes": "Les lignes"
     },
+    "guideBookWeb": {
+      "fullName": "Topo Web"
+    },
+    "guideBookPdf": {
+      "fullName": "Topo PDF"
+    },
     "guideBookPaper": {
+      "fullName": "Topo papier",
       "type": "Topo",
       "pointOfSale": "Point de vente",
       "removeFromGuideBook": "Retirer du topo",

@@ -20,6 +20,7 @@
         @click="addGuideBookPaper(guideBookPaper)"
       >
         <guide-book-paper-small-card
+          class="mb-3"
           :guide-book-paper="guideBookPaper"
           :linkable="false"
         />

@@ -62,6 +62,18 @@
       "weight_in_gram": "Weight in gram",
       "crag": "Crag"
     },
+    "guideBookWeb": {
+      "name": "Guide name",
+      "url": "Link to the guide",
+      "crag": "Crag"
+    },
+    "guideBookPdf": {
+      "name": "Guide name",
+      "description": "Description",
+      "author": "Author",
+      "publication_year": "Publication year",
+      "crag": "Crag"
+    },
     "gym": {
       "name": "Gym name",
       "description": "Description",

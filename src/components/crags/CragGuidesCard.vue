@@ -52,10 +52,11 @@
           </div>
         </div>
         <p
-          class="text-center"
+          class="text-center mt-10"
           v-if="guides.length === 0"
         >
-          {{ $t('components.crag.noGuide') }}
+          {{ $t('components.crag.noGuide') }}<br>
+          <add-guide-book-btn :crag="crag" />
         </p>
       </div>
     </v-card-text>
@@ -68,10 +69,11 @@ import CragApi from '@/services/oblyk-api/CragApi'
 import GuideBookPaper from '@/models/GuideBookPaper'
 import GuideBookPdf from '@/models/GuideBookPdf'
 import GuideBookWeb from '@/models/GuideBookWeb'
+import AddGuideBookBtn from '@/components/crags/forms/AddGuideBookBtn'
 
 export default {
   name: 'CragGuidesCard',
-  components: { Spinner },
+  components: { AddGuideBookBtn, Spinner },
   props: {
     crag: Object
   },

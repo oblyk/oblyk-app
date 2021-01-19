@@ -8,6 +8,7 @@ import CragMapDetailsView from '@/views/crags/CragMapDetailsView'
 import CragNewView from '@/views/crags/actions/CragNewView'
 import CragEditView from '@/views/crags/actions/CragEditView'
 import AddGuideBookOnCragView from '@/views/crags/actions/AddGuideBookOnCragView'
+import GuideBookWebNewView from '@/views/guideBookWebs/actions/GuideBookWebNewView'
 
 export default [
   {
@@ -39,6 +40,16 @@ export default [
   {
     path: '/crags/:cragId/:cragSlug/add-on-guide-book',
     component: AddGuideBookOnCragView,
+    meta: {
+      requiresAuth: true,
+      objectName: 'crag',
+      showAvatar: true
+    }
+  },
+  {
+    path: '/crags/:cragId/:cragSlug/new-web-guide-book',
+    component: GuideBookWebNewView,
+    props: true,
     meta: {
       requiresAuth: true,
       objectName: 'crag',
