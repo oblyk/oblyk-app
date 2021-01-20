@@ -1,3 +1,4 @@
+import GymMapboxView from '@/views/maps/GymMapboxView'
 import GymMapView from '@/views/maps/GymMapView'
 import GymView from '@/views/GymView'
 import GymInfoView from '@/views/gyms/GymInfoView'
@@ -13,6 +14,14 @@ import GymFirstDifficultySystemView from '@/views/gymGrades/GymFirstDifficultySy
 import GymAdminView from '@/views/gyms/GymAdminView'
 
 export default [
+  {
+    path: '/maps/3d/gyms',
+    component: GymMapboxView,
+    meta: {
+      title: 'gymMap',
+      showTitle: true
+    }
+  },
   {
     path: '/maps/gyms',
     component: GymMapView,

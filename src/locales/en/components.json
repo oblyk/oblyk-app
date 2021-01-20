@@ -29,6 +29,15 @@
       "lines": "Lines",
       "rangingFrom": "Ranging from",
       "to": "to",
+      "input": {
+        "title": "Localization",
+        "explain": "Click on the map, or drag the marker to change the location."
+      },
+      "layers": {
+        "relief": "Relief",
+        "street": "Map",
+        "satellite": "Satellite"
+      },
       "legend": {
         "boulder": "Boulder",
         "sportClimbing": "Sport climbing",

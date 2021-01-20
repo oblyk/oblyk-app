@@ -1,15 +1,35 @@
 <template>
-  <Map
-    map-style-type="outdoor"
-    geo-json-type="Crags"
+  <leaflet-map
+    map-style="outdoor"
+    :geo-jsons="geoJsons"
   />
 </template>
 
 <script>
-import Map from '@/components/maps/Map'
-
+import LeafletMap from '@/components/maps/LeafletMap'
+import CragApi from '@/services/oblyk-api/CragApi'
 export default {
   name: 'CragMapView',
-  components: { Map }
+  components: { LeafletMap },
+
+  data () {
+    return {
+      geoJsons: null
+    }
+  },
+
+  mounted () {
+    this.getGeoJson()
+  },
+
+  methods: {
+    getGeoJson: function () {
+      CragApi
+        .geoJson()
+        .then(resp => {
+          this.geoJsons = { features: resp.data.features }
+        })
+    }
+  }
 }
 </script>

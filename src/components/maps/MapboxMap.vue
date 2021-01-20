@@ -31,7 +31,7 @@ import GuideBookPaperApi from '@/services/oblyk-api/GuideBookPaperApi'
 import PlaceOfSale from '@/models/PlaceOfSale'
 
 export default {
-  name: 'Map',
+  name: 'MapboxMap',
   components: {
     MglMap
   },

@@ -100,7 +100,6 @@ export default {
   watch: {
     price: function () {
       if (this.price) {
-        console.log(this.price)
         this.data.price_cents = this.price * 100
       }
     }

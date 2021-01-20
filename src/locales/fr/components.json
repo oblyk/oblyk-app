@@ -29,6 +29,15 @@
       "lines": "Lignes",
       "rangingFrom": "allant de",
       "to": "à",
+      "input": {
+        "title": "Localisation",
+        "explain": "Cliquez sur la carte, ou glisser le marquer pour changer la localisation"
+      },
+      "layers": {
+        "relief": "Relief",
+        "street": "Carte",
+        "satellite": "Satellite"
+      },
       "legend": {
         "boulder": "Bloc",
         "sportClimbing": "Voie",

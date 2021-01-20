@@ -1,32 +1,41 @@
 <template>
   <div class="mb-7">
     <p class="subtitle-2 mb-0">
-      Localisation
+      {{ $t('components.map.input.title') }}
     </p>
     <p class="mb-1 caption">
-      <cite>Cliquez sur la carte, ou glisser le marquer pour changer la localisation</cite>
+      <cite>{{ $t('components.map.input.explain') }}</cite>
     </p>
     <div class="map-selector">
-      <mgl-map
-        :accessToken="accessToken"
-        :mapStyle="mapStyle"
-        @load="onMapLoaded"
-        @click="moveMarker"
+      <l-map
         :zoom="defaultZoom"
+        :center="[defaultLatitude, defaultLongitude]"
+        :options="{
+          zoomControl: false,
+          worldCopyJump: true
+        }"
+        @click="clickOnMap"
       >
-        <!-- Controller -->
-        <mgl-navigation-control position="top-right"/>
+        <l-control-zoom position="topright" />
 
-        <!-- Draggable marker -->
-        <mgl-marker
-          v-if="value.longitude"
-          :coordinates="[value.longitude, value.latitude]"
-          draggable
-          color="#e91e63"
-          anchor="bottom"
-          @dragend="onDragEnd"
+        <!-- Layer Selector -->
+        <l-control position="topright" >
+          <leaflet-layer-selector v-model="layerIndex" map-style="outdoor" />
+        </l-control>
+
+        <l-tile-layer
+          :url="layer.url"
+          :attribution="layer.attribution"
         />
-      </mgl-map>
+
+        <l-marker
+          ref="draggableMaker"
+          :draggable="true"
+          :icon="icon"
+          :lat-lng="newMarker"
+          @dragend="onMarkerDragEnd"
+        />
+      </l-map>
     </div>
     <p class="caption mt-1">
       <cite v-if="value.latitude">
@@ -38,16 +47,20 @@
   </div>
 </template>
 <script>
-import Mapbox from 'mapbox-gl'
+import { latLng, icon } from 'leaflet'
+import { LMap, LTileLayer, LMarker, LControl, LControlZoom } from 'vue2-leaflet'
 import OsmNominatim from '@/services/osm-nominatim'
-import { MglMap, MglMarker, MglNavigationControl } from 'vue-mapbox'
+import LeafletLayerSelector from '@/components/maps/leafletControls/LeafletLayerSelector'
 
 export default {
   name: 'MapInput',
   components: {
-    MglMap,
-    MglMarker,
-    MglNavigationControl
+    LeafletLayerSelector,
+    LMap,
+    LMarker,
+    LTileLayer,
+    LControl,
+    LControlZoom
   },
 
   props: {
@@ -62,7 +75,7 @@ export default {
     },
     defaultZoom: {
       type: Number,
-      default: 10
+      default: 5
     },
     styleMap: {
       type: String,
@@ -73,40 +86,60 @@ export default {
 
   data () {
     return {
-      accessToken: process.env.VUE_APP_OBLYK_MAPBOX_TOKEN,
-      mapStyle: (this.styleMap === 'outdoor') ? 'mapbox://styles/clucien/ckingo0rf3thf17qovbo16s3b' : 'mapbox://styles/clucien/ckioe0rsh08q417p52hr76t8q',
-      inDragEnDrop: false
+      layerIndex: 0,
+      newMarker: latLng(
+        this.defaultLatitude,
+        this.defaultLongitude
+      ),
+      layers: [
+        {
+          name: 'Mapbox terrain',
+          url: 'https://api.mapbox.com/styles/v1/clucien/ckingo0rf3thf17qovbo16s3b/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiY2x1Y2llbiIsImEiOiJjaWlkYWhuMGswMHRxdmxtMWNyeWpjZGk0In0.-bHAKhr-aUjboWKoE0B-WA',
+          attribution: '&copy; <a href="https://www.mapbox.com/about/maps/">Mapbox</a> &copy; <a href="https://www.openstreetmap.org/about/">Open Street Map</a> contributors'
+        },
+        {
+          name: 'Mapbox street',
+          url: 'https://api.mapbox.com/styles/v1/clucien/ckioe0rsh08q417p52hr76t8q/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiY2x1Y2llbiIsImEiOiJjaWlkYWhuMGswMHRxdmxtMWNyeWpjZGk0In0.-bHAKhr-aUjboWKoE0B-WA',
+          attribution: '&copy; <a href="https://www.mapbox.com/about/maps/">Mapbox</a> &copy; <a href="https://www.openstreetmap.org/about/">Open Street Map</a> contributors'
+        },
+        {
+          name: 'Mapbox satelite',
+          url: 'https://api.mapbox.com/styles/v1/clucien/ckjulgum0007217plefa1328h/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiY2x1Y2llbiIsImEiOiJjaWlkYWhuMGswMHRxdmxtMWNyeWpjZGk0In0.-bHAKhr-aUjboWKoE0B-WA',
+          attribution: '&copy; <a href="https://www.mapbox.com/about/maps/">Mapbox</a> &copy; <a href="https://www.openstreetmap.org/about/">Open Street Map</a> contributors'
+        }
+      ],
+      icon: icon({
+        iconUrl: require('@/assets/markers/new-marker.png'),
+        iconSize: [23, 30],
+        iconAnchor: [11.5, 30],
+        popupAnchor: [0, 0]
+      })
     }
   },
 
-  created () {
-    this.mapbox = Mapbox
+  computed: {
+    layer () {
+      return this.layers[this.layerIndex]
+    }
   },
 
   methods: {
-    onMapLoaded: function (event) {
-      const map = event.map
-      map.setRenderWorldCopies(false)
-      map.setCenter([
-        this.defaultLongitude,
-        this.defaultLatitude
-      ])
+    onMarkerDragEnd: function () {
+      const center = this.$refs.draggableMaker.mapObject.getLatLng()
+      this.value.latitude = center.lat.toPrecision(6)
+      this.value.longitude = center.lng.toPrecision(6)
+      this.addressDetail()
     },
 
-    moveMarker: function (event) {
-      if (!this.inDragEnDrop) {
-        this.value.latitude = event.mapboxEvent.lngLat.lat.toPrecision(6)
-        this.value.longitude = event.mapboxEvent.lngLat.lng.toPrecision(6)
-        this.addressDetail()
-      } else {
-        this.inDragEnDrop = false
-      }
-    },
-
-    onDragEnd: function (event) {
-      this.inDragEnDrop = true
-      this.value.latitude = event.marker._lngLat.lat.toPrecision(6)
-      this.value.longitude = event.marker._lngLat.lng.toPrecision(6)
+    clickOnMap: function (e) {
+      this.$root.$emit('hideLeafletMapLayerSelector')
+      this.value.latitude = e.latlng.lat.toPrecision(6)
+      this.value.longitude = e.latlng.lng.toPrecision(6)
+      this.newMarker = [
+        this.value.latitude,
+        this.value.longitude
+      ]
+      this.addressDetail()
     },
 
     addressDetail: function () {
@@ -134,12 +167,8 @@ export default {
   width: 100%;
   height: 350px;
 
-  .mapboxgl-map {
-    border-radius: 4px;
-
-    .mapboxgl-canvas {
-      cursor: crosshair;
-    }
+  .leaflet-container {
+    cursor: crosshair;
   }
 }
 </style>

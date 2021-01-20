@@ -1,15 +1,36 @@
 <template>
-  <Map
-    map-style-type="street"
-    geo-json-type="Gyms"
+  <leaflet-map
+    map-style="indoor"
+    :geo-jsons="geoJsons"
   />
 </template>
 
 <script>
-import Map from '@/components/maps/Map'
+import LeafletMap from '@/components/maps/LeafletMap'
+import GymApi from '@/services/oblyk-api/GymApi'
 
 export default {
   name: 'GymMapView',
-  components: { Map }
+  components: { LeafletMap },
+
+  data () {
+    return {
+      geoJsons: null
+    }
+  },
+
+  mounted () {
+    this.getGeoJson()
+  },
+
+  methods: {
+    getGeoJson: function () {
+      GymApi
+        .geoJson()
+        .then(resp => {
+          this.geoJsons = { features: resp.data.features }
+        })
+    }
+  }
 }
 </script>
