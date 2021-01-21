@@ -31,7 +31,8 @@ export const MapPopupHelpers = {
           `
       }
 
-      return `
+      const popup = document.createElement('div')
+      popup.innerHTML = `
         <div class="map-popup-cover" style="background-image: url(${crag.mapThumbnailCoverUrl()})"></div>
         <table class="map-popup-information-table">
           <tr>
@@ -48,15 +49,19 @@ export const MapPopupHelpers = {
           ${linePart}
         </table>
         <div class="map-popup-link-area">
-          <button onclick="location.href = '${crag.path()}'">${this.$t('actions.see')}</button>
+          <button>${this.$t('actions.see')}</button>
         </div>
       `
+      popup.querySelector('button').addEventListener('click', () => { this.$router.push(crag.path()) })
+
+      return popup
     },
 
     gymPopup: function (feature) {
       const gym = new Gym(feature.properties)
 
-      return `
+      const popup = document.createElement('div')
+      popup.innerHTML = `
         <div class="map-popup-cover" style="background-image: url(${gym.mapThumbnailCoverUrl()})"></div>
         <table class="map-popup-information-table">
           <tr>
@@ -72,9 +77,12 @@ export const MapPopupHelpers = {
           </tr>
         </table>
         <div class="map-popup-link-area">
-          <button onclick="location.href = '${gym.path()}'">${this.$t('actions.see')}</button>
+          <button>${this.$t('actions.see')}</button>
         </div>
       `
+      popup.querySelector('button').addEventListener('click', () => { this.$router.push(gym.path()) })
+
+      return popup
     },
 
     placeOfSalePopup: function (feature) {
