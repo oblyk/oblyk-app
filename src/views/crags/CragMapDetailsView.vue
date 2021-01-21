@@ -1,14 +1,51 @@
 <template>
-  <v-container>
-    Détail de la carte
-  </v-container>
+  <leaflet-map
+    class="crag-map"
+    :track-location="false"
+    :geo-jsons="geoJsons"
+    :zoom-force="16"
+    :latitude-force="parseFloat(crag.latitude)"
+    :longitude-force="parseFloat(crag.longitude)"
+    :scroll-wheel-zoom="false"
+    map-style="outdoor"
+  />
 </template>
 
 <script>
+import LeafletMap from '@/components/maps/LeafletMap'
+import CragApi from '@/services/oblyk-api/CragApi'
+
 export default {
   name: 'CragMapDetailsView',
+  components: { LeafletMap },
   props: {
     crag: Object
+  },
+
+  data () {
+    return {
+      geoJsons: null
+    }
+  },
+
+  mounted () {
+    this.getGeoJson()
+  },
+
+  methods: {
+    getGeoJson: function () {
+      CragApi
+        .geoJsonAround(this.crag.id)
+        .then(resp => {
+          this.geoJsons = { features: resp.data.features }
+        })
+    }
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.crag-map {
+  height: calc(100vh - 250px);
+}
+</style>

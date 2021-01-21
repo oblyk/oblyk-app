@@ -5,7 +5,8 @@
     :center="center"
     :options="{
       zoomControl: false,
-      worldCopyJump: true
+      worldCopyJump: true,
+      scrollWheelZoom: scrollWheelZoom
     }"
     @click="hideOpensControl"
     @move="savePosition"
@@ -64,6 +65,23 @@ export default {
       type: Boolean,
       required: false,
       default: true
+    },
+    zoomForce: {
+      type: Number,
+      required: false
+    },
+    latitudeForce: {
+      type: Number,
+      required: false
+    },
+    longitudeForce: {
+      type: Number,
+      required: false
+    },
+    scrollWheelZoom: {
+      type: Boolean,
+      required: false,
+      default: true
     }
   },
 
@@ -83,10 +101,10 @@ export default {
       map: null,
       showLayersSelector: false,
       layerIndex: 0,
-      zoom: parseFloat(localStorage.getItem('map-zoom') || '10'),
+      zoom: this.zoomForce || parseFloat(localStorage.getItem('map-zoom') || '10'),
       center: L.latLng(
-        parseFloat(localStorage.getItem('map-latitude') || '45'),
-        parseFloat(localStorage.getItem('map-longitude') || '4.5')
+        this.latitudeForce || parseFloat(localStorage.getItem('map-latitude') || '45'),
+        this.longitudeForce || parseFloat(localStorage.getItem('map-longitude') || '4.5')
       ),
       layers: [
         {

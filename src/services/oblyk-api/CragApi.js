@@ -41,6 +41,13 @@ class CragApi extends BaseApi {
     })
   }
 
+  geoJsonAround (cragId) {
+    return axios({
+      url: `${this.baseUrl}/crags/${cragId}/geo_json_around.json`,
+      method: 'GET'
+    })
+  }
+
   find (cragId) {
     return axios({
       url: `${this.baseUrl}/crags/${cragId}.json`,
