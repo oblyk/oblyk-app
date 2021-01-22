@@ -22,10 +22,10 @@
               class="ml-1"
               v-if="isLoggedIn"
             >
-            <v-icon small>
-              mdi-pencil
-            </v-icon>
-          </v-btn>
+              <v-icon small>
+                mdi-pencil
+              </v-icon>
+            </v-btn>
           </span>
         </div>
       </div>

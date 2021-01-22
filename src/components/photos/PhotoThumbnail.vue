@@ -33,8 +33,9 @@
       <v-btn
         icon
         dark
-        v-if="cragId"
+        v-if="cragSectorId || cragId"
         @click="defineAsBanner()"
+        :title="defineBtnTitle()"
         :loading="updatingBanner"
       >
         <v-icon small>
@@ -58,6 +59,8 @@
 import { SessionConcern } from '@/concerns/SessionConcern'
 import CragApi from '@/services/oblyk-api/CragApi'
 import Crag from '@/models/Crag'
+import CragSectorApi from '@/services/oblyk-api/CragSectorApi'
+import CragSector from '@/models/CragSector'
 
 export default {
   name: 'PhotoThumbnail',
@@ -70,24 +73,55 @@ export default {
     return {
       photoOver: false,
       updatingBanner: false,
-      cragId: this.$route.params.cragId
+      cragId: this.$route.params.cragId,
+      cragSectorId: this.$route.params.cragSectorId
     }
   },
 
   methods: {
+    bannerType: function () {
+      return (this.cragSectorId) ? 'cragSector' : 'crag'
+    },
+
+    defineBtnTitle: function () {
+      const bannerType = this.bannerType()
+      if (bannerType === 'cragSector') {
+        return this.$t('components.gallery.defineCragSectorBanner')
+      } else if (bannerType === 'crag') {
+        return this.$t('components.gallery.defineCragBanner')
+      }
+    },
+
     defineAsBanner: function () {
       this.updatingBanner = true
-      CragApi
-        .update({
+      const bannerType = this.bannerType()
+      let promise
+
+      if (bannerType === 'cragSector') {
+        promise = CragSectorApi.update({
+          photo_id: this.photo.id,
+          crag_id: this.cragId,
+          id: this.cragSectorId
+        })
+      } else if (bannerType === 'crag') {
+        promise = CragApi.update({
           photo_id: this.photo.id,
           id: this.cragId
         })
+      }
+
+      promise
         .then((resp) => {
-          const crag = new Crag(resp.data)
-          this.$root.$emit('updateCragBannerSrc', crag.coverUrl())
+          if (bannerType === 'crag') {
+            const crag = new Crag(resp.data)
+            this.$root.$emit('updateCragBannerSrc', crag.coverUrl())
+          } else if (bannerType === 'cragSector') {
+            const cragSector = new CragSector(resp.data)
+            this.$root.$emit('updateCragSectorBannerSrc', cragSector.coverUrl())
+          }
         })
         .catch(err => {
-          this.$root.$emit('alertFromApiError', err, 'crag')
+          this.$root.$emit('alertFromApiError', err, bannerType)
         })
         .finally(() => {
           this.updatingBanner = false

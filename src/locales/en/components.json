@@ -18,6 +18,10 @@
       "seasons": "Favorable seasons",
       "orientations": "Orientations"
     },
+    "gallery": {
+      "defineCragSectorBanner": "Define as sector banner",
+      "defineCragBanner": "Define as crag banner"
+    },
     "search": {
       "title": "Search",
       "searchLabel": "Look for a crag, a route, a gym, etc."
@@ -79,6 +83,9 @@
         "guideBooks": "Guide books",
         "map": "Map"
       }
+    },
+    "cragSector": {
+      "newSector": "New sector"
     },
     "cragRoute": {
       "routes": "Routes"

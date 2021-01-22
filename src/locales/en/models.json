@@ -62,6 +62,23 @@
       "weight_in_gram": "Weight in gram",
       "crag": "Crag"
     },
+    "cragSector": {
+      "name": "Name",
+      "description": "Description",
+      "rain": "Exposure to rain",
+      "sun": "Exposure to the sun",
+      "latitude": "Latitude",
+      "longitude": "Longitude",
+      "north": "North",
+      "north_east": "North East",
+      "east": "East",
+      "south_east": "South East",
+      "south": "South",
+      "south_west": "South West",
+      "west": "West",
+      "north_west": "North West",
+      "crag": "Crag"
+    },
     "guideBookWeb": {
       "name": "Guide name",
       "url": "Link to the guide",

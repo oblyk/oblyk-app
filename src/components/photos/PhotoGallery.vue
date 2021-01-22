@@ -3,7 +3,8 @@
     <v-col
       v-for="(photo, index) in photos()"
       :key="`photo-${index}`"
-      class="col-12 col-md-4 col-lg-2 d-flex child-flex"
+      class="col-12 col-md-4 d-flex child-flex"
+      v-bind:class="lgCol"
     >
       <photo-thumbnail :photo="photo" />
     </v-col>
@@ -25,7 +26,12 @@ export default {
   name: 'PhotoGallery',
   components: { PhotoThumbnail },
   props: {
-    photosData: Array
+    photosData: Array,
+    lgCol: {
+      type: String,
+      required: false,
+      default: 'col-lg-2'
+    }
   },
 
   methods: {

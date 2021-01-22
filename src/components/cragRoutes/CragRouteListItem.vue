@@ -22,6 +22,16 @@
         <grade-route-note :route="route" />
       </v-list-item-title>
       <v-list-item-subtitle>
+        <span v-if="route.sector.id">
+          <v-icon x-small>
+            mdi-texture-box
+          </v-icon>
+          <router-link
+            :to="route.cragSector.path()"
+          >
+            {{ route.cragSector.name }}
+          </router-link>
+        </span>
         <span v-if="route.height">
           {{ route.height }} {{ $t('common.meters') }},
         </span>

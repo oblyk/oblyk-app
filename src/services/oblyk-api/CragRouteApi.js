@@ -9,6 +9,13 @@ class CragRouteApi extends BaseApi {
     })
   }
 
+  allInCragSector (cragSectorId, page = 1) {
+    return axios({
+      url: `${this.baseUrl}/crag_sectors/${cragSectorId}/crag_routes.json?page=${page}`,
+      method: 'GET'
+    })
+  }
+
   find (cragId, routeId) {
     return axios({
       url: `${this.baseUrl}/crags/${cragId}/crag_routes/${routeId}.json`,

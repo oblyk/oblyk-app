@@ -18,6 +18,10 @@
       "seasons": "Saisons favorables",
       "orientations": "Orientations"
     },
+    "gallery": {
+      "defineCragSectorBanner": "Définir comme bandeau du secteur",
+      "defineCragBanner": "Définir comme bandeau du site"
+    },
     "search": {
       "title": "Chercher",
       "searchLabel": "Chercher une falaise, une voie, une salle, etc."
@@ -79,6 +83,9 @@
         "guideBooks": "Topos",
         "map": "Carte"
       }
+    },
+    "cragSector": {
+      "newSector": "Nouveau secteur"
     },
     "cragRoute": {
       "routes": "Les lignes"

@@ -45,7 +45,12 @@ export default {
   name: 'CragRoutes',
   components: { LoadingMore, CragRouteListItem, Spinner },
   props: {
-    crag: Object
+    crag: {
+      type: Object
+    },
+    cragSector: {
+      type: Object
+    }
   },
 
   data () {
@@ -61,8 +66,13 @@ export default {
 
   methods: {
     getRoutes: function (page) {
-      CragRouteApi
-        .allInCrag(this.crag.id, page)
+      let promise
+      if (this.crag) {
+        promise = CragRouteApi.allInCrag(this.crag.id, page)
+      } else if (this.cragSector) {
+        promise = CragRouteApi.allInCragSector(this.cragSector.id, page)
+      }
+      promise
         .then(resp => {
           for (const route of resp.data) {
             this.routes.push(new CragRoute(route))
