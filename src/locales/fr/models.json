@@ -65,6 +65,10 @@
       "north_west": "Nord Ouest",
       "crag": "Falaise"
     },
+    "park": {
+      "description": "Description",
+      "crag": "Falaise"
+    },
     "guideBookPaper": {
       "name": "Titre",
       "author": "Auteur",

@@ -79,6 +79,10 @@
       "north_west": "North West",
       "crag": "Crag"
     },
+    "park": {
+      "description": "Description",
+      "crag": "Crag"
+    },
     "guideBookWeb": {
       "name": "Guide name",
       "url": "Link to the guide",

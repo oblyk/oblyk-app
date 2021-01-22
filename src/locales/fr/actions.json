@@ -64,6 +64,7 @@
     "addGuideBook": "Ajouter un topo",
     "addWebGuideBook": "Ajouter un topo web",
     "addPdfGuideBook": "Ajouter un topo PDF",
-    "seeNumberMore": "Voir %{number} de plus"
+    "seeNumberMore": "Voir %{number} de plus",
+    "addPark": "Ajouter un parking"
   }
 }

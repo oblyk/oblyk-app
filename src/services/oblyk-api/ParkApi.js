@@ -21,7 +21,7 @@ class ParkApi extends BaseApi {
       url: `${this.baseUrl}/crags/${data.crag_id}/parks.json`,
       headers: { Authorization: this.authToken() },
       data: {
-        crag_sector: data
+        park: data
       },
       method: 'POST'
     })
@@ -32,7 +32,7 @@ class ParkApi extends BaseApi {
       url: `${this.baseUrl}/crags/${data.crag_id}/parks/${data.id}.json`,
       headers: { Authorization: this.authToken() },
       data: {
-        crag_sector: data
+        park: data
       },
       method: 'PUT'
     })

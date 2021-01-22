@@ -148,14 +148,21 @@ export const MapPopupHelpers = {
     parkPopup: function (feature) {
       const park = new Park(feature.properties)
 
-      return `
+      const popup = document.createElement('div')
+      popup.innerHTML = `
         <table class="map-popup-information-table mb-2">
           <tr>
             <th></th>
             <td class="pb-3 pt-3">${park.description}</td>
           </tr>
         </table>
+        <div class="map-popup-link-area">
+          <button>${this.$t('actions.edit')}</button>
+        </div>
       `
+      popup.querySelector('button').addEventListener('click', () => { this.$router.push(park.path('edit')) })
+
+      return popup
     }
   }
 }

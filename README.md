@@ -69,9 +69,9 @@ ___
 - [ ] Voies
 - [x] Liens
 - [ ] Photos et Video
-- [ ] Parking
+- [x] Parking
 - [ ] Marche d'approche
-- [ ] Carte
+- [x] Carte
 - [x] Topo Papier
 - [x] Topo Web
 - [x] Topo PDF
