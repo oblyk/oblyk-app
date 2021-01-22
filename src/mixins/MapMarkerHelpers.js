@@ -128,6 +128,16 @@ export const MapMarkerHelpers = {
         // Point of sales
         'place-of-sale-marker': L.icon({
           iconUrl: require('@/assets/markers/place-of-sale-marker.png'), iconSize: [23, 30], iconAnchor: [11.5, 30], popupAnchor: [0, 0]
+        }),
+
+        // Sector
+        'sector-marker': L.icon({
+          iconUrl: require('@/assets/markers/sector-marker.png'), iconSize: [30, 30], iconAnchor: [15, 15], popupAnchor: [0, -15]
+        }),
+
+        // Park
+        'park-marker': L.icon({
+          iconUrl: require('@/assets/markers/park-marker.png'), iconSize: [23, 30], iconAnchor: [11.5, 30], popupAnchor: [0, 0]
         })
       }
     }

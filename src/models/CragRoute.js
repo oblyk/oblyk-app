@@ -6,8 +6,16 @@ export default class CragRoute extends ActiveData {
     return `/crag-routes/${this.id}/${this.slug_name}`
   }
 
-  cover () {
+  coverUrl () {
     return `${process.env.VUE_APP_OBLYK_API_URL}${this.photo.url}`
+  }
+
+  thumbnailCoverUrl () {
+    if (this.photo.thumbnail_url) {
+      return `${process.env.VUE_APP_OBLYK_API_URL}${this.photo.thumbnail_url}`
+    } else {
+      return require('@/assets/default-crag-banner.jpg')
+    }
   }
 
   get cragSector () {

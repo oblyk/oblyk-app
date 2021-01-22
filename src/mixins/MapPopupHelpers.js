@@ -1,6 +1,8 @@
 import Crag from '@/models/Crag'
 import Gym from '@/models/Gym'
 import PlaceOfSale from '@/models/PlaceOfSale'
+import CragSector from '@/models/CragSector'
+import Park from '@/models/Park'
 
 export const MapPopupHelpers = {
   methods: {
@@ -11,6 +13,10 @@ export const MapPopupHelpers = {
         return this.gymPopup(feature)
       } else if (feature.properties.type === 'PlaceOfSale') {
         return this.placeOfSalePopup(feature)
+      } else if (feature.properties.type === 'CragSector') {
+        return this.cragSectorPopup(feature)
+      } else if (feature.properties.type === 'Park') {
+        return this.parkPopup(feature)
       }
     },
 
@@ -53,6 +59,29 @@ export const MapPopupHelpers = {
         </div>
       `
       popup.querySelector('button').addEventListener('click', () => { this.$router.push(crag.path()) })
+
+      return popup
+    },
+
+    cragSectorPopup: function (feature) {
+      const cragSector = new CragSector(feature.properties)
+
+      const popup = document.createElement('div')
+      popup.innerHTML = `
+        <div class="map-popup-cover" style="background-image: url(${cragSector.mapThumbnailCoverUrl()})"></div>
+        <table class="map-popup-information-table">
+          <tr>
+            <td colspan="2" class="loved-by-king">${cragSector.name}</td>
+          </tr>
+          <tr>
+            <td colspan="2">${cragSector.description}</td>
+          </tr>
+        </table>
+        <div class="map-popup-link-area">
+          <button>${this.$t('actions.see')}</button>
+        </div>
+      `
+      popup.querySelector('button').addEventListener('click', () => { this.$router.push(cragSector.path()) })
 
       return popup
     },
@@ -111,6 +140,19 @@ export const MapPopupHelpers = {
           <tr>
             <th></th>
             <td class="pb-3 pt-3">${placeOfSale.description}</td>
+          </tr>
+        </table>
+      `
+    },
+
+    parkPopup: function (feature) {
+      const park = new Park(feature.properties)
+
+      return `
+        <table class="map-popup-information-table mb-2">
+          <tr>
+            <th></th>
+            <td class="pb-3 pt-3">${park.description}</td>
           </tr>
         </table>
       `
