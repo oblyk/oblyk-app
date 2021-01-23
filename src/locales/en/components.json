@@ -86,7 +86,8 @@
       }
     },
     "cragSector": {
-      "newSector": "New sector"
+      "newSector": "New sector",
+      "sectorOf": "Sector of"
     },
     "cragRoute": {
       "routes": "Routes"

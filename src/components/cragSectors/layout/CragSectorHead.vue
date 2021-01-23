@@ -13,6 +13,7 @@
       </h1>
       <div>
         <router-link
+          class="discrete-link"
           :to="cragSector.Crag.path()"
         >
           <v-icon small>mdi-terrain</v-icon>

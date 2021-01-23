@@ -13,14 +13,6 @@
         :label="$t('models.cragSector.name')"
       />
 
-      <v-textarea
-        outlined
-        required
-        hide-details
-        v-model="data.description"
-        :label="$t('models.cragSector.description')"
-      />
-
       <v-checkbox
         v-model="setLocalization"
         label="donner une localisation"
@@ -87,7 +79,6 @@ export default {
       data: {
         id: (this.cragSector || {}).id,
         name: (this.cragSector || {}).name,
-        description: (this.cragSector || {}).description,
         latitude: (this.cragSector || {}).latitude,
         longitude: (this.cragSector || {}).longitude,
         rain: (this.cragSector || {}).rain,
