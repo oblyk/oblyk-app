@@ -69,6 +69,14 @@
       "description": "Description",
       "crag": "Falaise"
     },
+    "approach": {
+      "description": "Description",
+      "approach_type": "Type de marche",
+      "length": "Distance",
+      "time": "Temps",
+      "type": "Type",
+      "crag": "Falaise"
+    },
     "guideBookPaper": {
       "name": "Titre",
       "author": "Auteur",
@@ -328,6 +336,14 @@
       "south_west": "Sud Ouest",
       "west": "Ouest",
       "north_west": "Nord Ouest"
+    },
+    "approachType": {
+      "steep_descent": "Descente raide",
+      "soft_descent": "Descente douce",
+      "flat": "Plat",
+      "soft_ascent": "Monté douce",
+      "steep_ascent": "Monté raide",
+      "various": "Varié"
     },
     "placeOfSale": {
       "name": "Nom",

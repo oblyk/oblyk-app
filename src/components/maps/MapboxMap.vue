@@ -386,6 +386,9 @@ export default {
     padding: 10px;
     font-size: 2em;
   }
+  cite {
+    color: #808080;
+  }
 }
 .map-popup-link-area {
   text-align: right;

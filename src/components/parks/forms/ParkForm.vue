@@ -1,28 +1,36 @@
 <template>
-  <v-form @submit.prevent="submit()">
-    <v-textarea
-      outlined
-      required
-      hide-details
-      v-model="data.description"
-      :label="$t('models.park.description')"
-    />
+  <div>
+    <spinner v-if="loadingGeoJson" />
 
-    <map-input
-      v-model="localization"
-      :default-latitude="data.latitude || crag.latitude"
-      :default-longitude="data.longitude || crag.longitude"
-      :default-zoom="15"
-      style-map="outdoor"
-      class="mb-3"
-    />
+    <v-form
+      v-if="!loadingGeoJson"
+      @submit.prevent="submit()"
+    >
+      <v-textarea
+        outlined
+        required
+        hide-details
+        v-model="data.description"
+        :label="$t('models.park.description')"
+      />
 
-    <close-form />
-    <submit-form
-      :overlay="submitOverlay"
-      :submit-local-key="submitText()"
-    />
-  </v-form>
+      <map-input
+        v-model="localization"
+        :default-latitude="data.latitude || crag.latitude"
+        :default-longitude="data.longitude || crag.longitude"
+        :geo-jsons="geoJsons"
+        :default-zoom="15"
+        style-map="outdoor"
+        class="mb-3"
+      />
+
+      <close-form />
+      <submit-form
+        :overlay="submitOverlay"
+        :submit-local-key="submitText()"
+      />
+    </v-form>
+  </div>
 </template>
 
 <script>
@@ -31,10 +39,11 @@ import SubmitForm from '@/components/forms/SubmitForm'
 import ParkApi from '@/services/oblyk-api/ParkApi'
 import CloseForm from '@/components/forms/CloseForm'
 import MapInput from '@/components/forms/MapInput'
+import Spinner from '@/components/layouts/Spiner'
 
 export default {
   name: 'ParkForm',
-  components: { MapInput, CloseForm, SubmitForm },
+  components: { Spinner, MapInput, CloseForm, SubmitForm },
   mixins: [FormHelpers],
   props: {
     crag: Object,
@@ -46,6 +55,8 @@ export default {
 
   data () {
     return {
+      geoJsons: null,
+      loadingGeoJson: true,
       localization: {
         latitude: (this.park || {}).latitude,
         longitude: (this.park || {}).longitude
@@ -70,19 +81,40 @@ export default {
     }
   },
 
+  mounted () {
+    this.getGeoJsonAround()
+  },
+
   methods: {
     submit: function () {
       this.submitOverlay = true
       const promise = (this.isEditingForm()) ? ParkApi.update(this.data) : ParkApi.create(this.data)
 
       promise
-        .then((resp) => {
+        .then(() => {
           this.$router.push(this.crag.path('maps'))
         })
         .catch((err) => {
           this.$root.$emit('alertFromApiError', err, 'park')
-        }).then(() => {
+        })
+        .then(() => {
           this.submitOverlay = false
+        })
+    },
+
+    getGeoJsonAround: function () {
+      this.loadingGeoJson = true
+      const parkId = (this.isEditingForm() ? this.park.id : null)
+      ParkApi
+        .geoJsonAround(
+          this.data.crag_id,
+          parkId
+        )
+        .then((resp) => {
+          this.geoJsons = { features: resp.data.features }
+        })
+        .finally(() => {
+          this.loadingGeoJson = false
         })
     }
   }

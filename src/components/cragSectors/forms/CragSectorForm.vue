@@ -1,45 +1,53 @@
 <template>
-  <v-form @submit.prevent="submit()">
-    <v-text-field
-      outlined
-      v-model="data.name"
-      required
-      :label="$t('models.cragSector.name')"
-    />
+  <div>
+    <spinner v-if="loadingGeoJson" />
 
-    <v-textarea
-      outlined
-      required
-      hide-details
-      v-model="data.description"
-      :label="$t('models.cragSector.description')"
-    />
+    <v-form
+      v-if="!loadingGeoJson"
+      @submit.prevent="submit()"
+    >
+      <v-text-field
+        outlined
+        v-model="data.name"
+        required
+        :label="$t('models.cragSector.name')"
+      />
 
-    <v-checkbox
-      v-model="setLocalization"
-      label="donner une localisation"
-    />
+      <v-textarea
+        outlined
+        required
+        hide-details
+        v-model="data.description"
+        :label="$t('models.cragSector.description')"
+      />
 
-    <map-input
-      v-if="setLocalization"
-      v-model="localization"
-      :default-latitude="data.latitude || crag.latitude"
-      :default-longitude="data.longitude || crag.longitude"
-      :default-zoom="15"
-      style-map="outdoor"
-      class="mb-3"
-    />
+      <v-checkbox
+        v-model="setLocalization"
+        label="donner une localisation"
+      />
 
-    <rain-input v-model="data.rain" />
-    <sun-input v-model="data.sun" />
-    <orientation-input v-model="orientations" />
+      <map-input
+        v-if="setLocalization"
+        v-model="localization"
+        :default-latitude="data.latitude || crag.latitude"
+        :default-longitude="data.longitude || crag.longitude"
+        :geo-jsons="geoJsons"
+        :default-zoom="15"
+        style-map="outdoor"
+        class="mb-3"
+      />
 
-    <close-form />
-    <submit-form
-      :overlay="submitOverlay"
-      :submit-local-key="submitText()"
-    />
-  </v-form>
+      <rain-input v-model="data.rain" />
+      <sun-input v-model="data.sun" />
+      <orientation-input v-model="orientations" />
+
+      <close-form />
+      <submit-form
+        :overlay="submitOverlay"
+        :submit-local-key="submitText()"
+      />
+    </v-form>
+  </div>
 </template>
 
 <script>
@@ -52,10 +60,11 @@ import MapInput from '@/components/forms/MapInput'
 import RainInput from '@/components/forms/RainInput'
 import SunInput from '@/components/forms/SunInput'
 import OrientationInput from '@/components/forms/OrientationInput'
+import Spinner from '@/components/layouts/Spiner'
 
 export default {
   name: 'CragSectorForm',
-  components: { OrientationInput, SunInput, RainInput, MapInput, CloseForm, SubmitForm },
+  components: { Spinner, OrientationInput, SunInput, RainInput, MapInput, CloseForm, SubmitForm },
   mixins: [FormHelpers],
   props: {
     crag: Object,
@@ -67,6 +76,8 @@ export default {
 
   data () {
     return {
+      loadingGeoJson: true,
+      geoJsons: null,
       setLocalization: ((this.cragSector || {}).latitude),
       localization: {
         latitude: (this.cragSector || {}).latitude,
@@ -117,6 +128,10 @@ export default {
     }
   },
 
+  mounted () {
+    this.getGeoJsonAround()
+  },
+
   methods: {
     submit: function () {
       this.submitOverlay = true
@@ -136,6 +151,22 @@ export default {
           this.$root.$emit('alertFromApiError', err, 'cragSector')
         }).then(() => {
           this.submitOverlay = false
+        })
+    },
+
+    getGeoJsonAround: function () {
+      this.loadingGeoJson = true
+      const cragSectorId = (this.isEditingForm() ? this.cragSector.id : null)
+      CragSectorApi
+        .geoJsonAround(
+          this.data.crag_id,
+          cragSectorId
+        )
+        .then((resp) => {
+          this.geoJsons = { features: resp.data.features }
+        })
+        .finally(() => {
+          this.loadingGeoJson = false
         })
     }
   }

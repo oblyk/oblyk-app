@@ -16,7 +16,8 @@
       "rain": "Rain exposure",
       "sun": "Sunshine",
       "seasons": "Favorable seasons",
-      "orientations": "Orientations"
+      "orientations": "Orientations",
+      "approachType": "Approach type"
     },
     "gallery": {
       "defineCragSectorBanner": "Define as sector banner",
@@ -89,6 +90,18 @@
     },
     "cragRoute": {
       "routes": "Routes"
+    },
+    "approach": {
+      "newPolylineExplain": "Click at each point where the approach step passes from the parking lot.",
+      "editPolylineExplain": "Move the white squares to change the path of the approach step",
+      "walking_time": {
+        "steep_descent": "(at 6km/h)",
+        "soft_descent": "(at 6km/h)",
+        "flat": "(at 4km/h)",
+        "soft_ascent": "(at 4km/h)",
+        "steep_ascent": "(at 2.5km/h)",
+        "various": "(at 2.5km/h)"
+      }
     },
     "guideBookWeb": {
       "fullName": "Web guide book"

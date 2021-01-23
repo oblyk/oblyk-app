@@ -16,7 +16,8 @@
       "rain": "Exposition à la pluie",
       "sun": "Ensoleillement",
       "seasons": "Saisons favorables",
-      "orientations": "Orientations"
+      "orientations": "Orientations",
+      "approachType": "Type d'approche"
     },
     "gallery": {
       "defineCragSectorBanner": "Définir comme bandeau du secteur",
@@ -89,6 +90,18 @@
     },
     "cragRoute": {
       "routes": "Les lignes"
+    },
+    "approach": {
+      "newPolylineExplain": "Cliquer à chaque endroit où passe la marche d’approche en partant du parkings",
+      "editPolylineExplain": "Déplacer les carrés blanc pour modifier le tracé de la marche d'approche",
+      "walking_time": {
+        "steep_descent": "(à 6km/h)",
+        "soft_descent": "(à 6km/h)",
+        "flat": "(à 4km/h)",
+        "soft_ascent": "(à 4km/h)",
+        "steep_ascent": "(à 2.5km/h)",
+        "various": "(à 2.5km/h)"
+      }
     },
     "guideBookWeb": {
       "fullName": "Topo Web"

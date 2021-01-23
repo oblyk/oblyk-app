@@ -28,6 +28,12 @@
           :attribution="layer.attribution"
         />
 
+        <l-geo-json
+          v-if="geoJsons"
+          :geojson="geoJsons"
+          :options="geoJsonOptions"
+        />
+
         <l-marker
           ref="draggableMaker"
           :draggable="true"
@@ -47,18 +53,22 @@
   </div>
 </template>
 <script>
-import { latLng, icon } from 'leaflet'
-import { LMap, LTileLayer, LMarker, LControl, LControlZoom } from 'vue2-leaflet'
+import L, { latLng, icon } from 'leaflet'
+import { LMap, LTileLayer, LMarker, LControl, LControlZoom, LGeoJson } from 'vue2-leaflet'
 import OsmNominatim from '@/services/osm-nominatim'
 import LeafletLayerSelector from '@/components/maps/leafletControls/LeafletLayerSelector'
+import { MapMarkerHelpers } from '@/mixins/MapMarkerHelpers'
+import { MapPopupHelpers } from '@/mixins/MapPopupHelpers'
 
 export default {
   name: 'MapInput',
+  mixins: [MapMarkerHelpers, MapPopupHelpers],
   components: {
     LeafletLayerSelector,
     LMap,
     LMarker,
     LTileLayer,
+    LGeoJson,
     LControl,
     LControlZoom
   },
@@ -80,6 +90,10 @@ export default {
     styleMap: {
       type: String,
       default: 'outdoor',
+      required: false
+    },
+    geoJsons: {
+      type: Object,
       required: false
     }
   },
@@ -113,7 +127,11 @@ export default {
         iconSize: [23, 30],
         iconAnchor: [11.5, 30],
         popupAnchor: [0, 0]
-      })
+      }),
+      geoJsonOptions: {
+        onEachFeature: this.onEachFeatureFunction(),
+        pointToLayer: this.pointToLayerFunction()
+      }
     }
   },
 
@@ -124,6 +142,18 @@ export default {
   },
 
   methods: {
+    pointToLayerFunction () {
+      return (feature, latLng) => {
+        return L.marker(latLng, { icon: this.markers[feature.properties.icon] })
+      }
+    },
+
+    onEachFeatureFunction () {
+      return (feature, layer) => {
+        layer.bindPopup(this.getHtmlPopup(feature))
+      }
+    },
+
     onMarkerDragEnd: function () {
       const center = this.$refs.draggableMaker.mapObject.getLatLng()
       this.value.latitude = center.lat.toPrecision(6)

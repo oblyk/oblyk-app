@@ -10,27 +10,44 @@
       :scroll-wheel-zoom="false"
       map-style="outdoor"
     />
-    <v-btn
-      class="mb-5 mt-5"
-      text
-      color="primary"
-      :to="crag.path('parks/new')"
+    <div
+      v-if="isLoggedIn"
     >
-      <v-icon left>
-        mdi-parking
-      </v-icon>
-      {{ $t('actions.addPark') }}
-    </v-btn>
+      <v-btn
+        class="mb-5 mt-5"
+        text
+        color="primary"
+        :to="crag.path('parks/new')"
+      >
+        <v-icon left>
+          mdi-parking
+        </v-icon>
+        {{ $t('actions.addPark') }}
+      </v-btn>
+      <v-btn
+        class="mb-5 mt-5"
+        text
+        color="primary"
+        :to="crag.path('approaches/new')"
+      >
+        <v-icon left>
+          mdi-walk
+        </v-icon>
+        {{ $t('actions.addApproach') }}
+      </v-btn>
+    </div>
   </div>
 </template>
 
 <script>
 import LeafletMap from '@/components/maps/LeafletMap'
 import CragApi from '@/services/oblyk-api/CragApi'
+import { SessionConcern } from '@/concerns/SessionConcern'
 
 export default {
   name: 'CragMapDetailsView',
   components: { LeafletMap },
+  mixins: [SessionConcern],
   props: {
     crag: Object
   },

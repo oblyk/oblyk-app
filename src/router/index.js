@@ -27,6 +27,7 @@ import GuideBookWebRouter from '@/router/modules/GuideBookWebRouter'
 import GuideBookPdfRouter from '@/router/modules/GuideBookPdfRouter'
 import CragSectorRouter from '@/router/modules/CragSectorRouter'
 import ParkRouter from '@/router/modules/ParkRouter'
+import ApproachRouter from '@/router/modules/ApproachRouter'
 
 Vue.use(VueRouter)
 
@@ -57,7 +58,8 @@ const router = new VueRouter({
     ...GuideBookWebRouter,
     ...GuideBookPdfRouter,
     ...CragSectorRouter,
-    ...ParkRouter
+    ...ParkRouter,
+    ...ApproachRouter
   ]
 })
 

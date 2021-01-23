@@ -9,6 +9,16 @@ class ParkApi extends BaseApi {
     })
   }
 
+  geoJsonAround (cragId, parkId) {
+    return axios({
+      url: `${this.baseUrl}/crags/${cragId}/parks/geo_json_around.json`,
+      params: {
+        exclude_id: parkId
+      },
+      method: 'GET'
+    })
+  }
+
   find (cragId, parkId) {
     return axios({
       url: `${this.baseUrl}/crags/${cragId}/parks/${parkId}.json`,

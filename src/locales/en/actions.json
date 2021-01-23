@@ -65,6 +65,7 @@
     "addWebGuideBook": "Add a web guide book",
     "addPdfGuideBook": "Add a PDF guide book",
     "seeNumberMore": "See %{number} more",
-    "addPark": "Add a parking"
+    "addPark": "Add a parking",
+    "addApproach": "Add approach"
   }
 }

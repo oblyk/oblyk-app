@@ -3,6 +3,7 @@ import Gym from '@/models/Gym'
 import PlaceOfSale from '@/models/PlaceOfSale'
 import CragSector from '@/models/CragSector'
 import Park from '@/models/Park'
+import Approach from '@/models/Approach'
 
 export const MapPopupHelpers = {
   methods: {
@@ -17,6 +18,8 @@ export const MapPopupHelpers = {
         return this.cragSectorPopup(feature)
       } else if (feature.properties.type === 'Park') {
         return this.parkPopup(feature)
+      } else if (feature.properties.type === 'Approach') {
+        return this.approachPopup(feature)
       }
     },
 
@@ -161,6 +164,48 @@ export const MapPopupHelpers = {
         </div>
       `
       popup.querySelector('button').addEventListener('click', () => { this.$router.push(park.path('edit')) })
+
+      return popup
+    },
+
+    approachPopup: function (feature) {
+      const approach = new Approach(feature.properties)
+
+      const popup = document.createElement('div')
+
+      let approachTypePart = ''
+      if (approach.approach_type) {
+        approachTypePart = `
+          <tr>
+            <th>Type :</th>
+            <td class="">${this.$t(`models.approachType.${approach.approach_type}`)}</td>
+          </tr>
+        `
+      }
+
+      popup.innerHTML = `
+        <table class="map-popup-information-table mb-2">
+          <tr>
+            <td colspan="2" class="pa-2">${approach.description}</td>
+          </tr>
+          ${approachTypePart}
+          <tr>
+            <th>${this.$t('models.approach.length')} :</th>
+            <td class="">${approach.length} ${this.$t('common.meters')}</td>
+          </tr>
+          <tr>
+            <th>${this.$t('models.approach.time')} :</th>
+            <td class="">
+              ~${approach.walking_time} ${this.$t('common.minutes')}
+              <cite>${this.$t(`components.approach.walking_time.${approach.approach_type}`)}</cite>
+            </td>
+          </tr>
+        </table>
+        <div class="map-popup-link-area">
+          <button>${this.$t('actions.edit')}</button>
+        </div>
+      `
+      popup.querySelector('button').addEventListener('click', () => { this.$router.push(approach.path('edit')) })
 
       return popup
     }

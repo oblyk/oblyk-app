@@ -48,20 +48,6 @@
       "west": "West",
       "north_west": "North west"
     },
-    "guideBookPaper": {
-      "name": "Title",
-      "author":  "Author",
-      "editor": "Editor",
-      "publication_year":  "Publication year",
-      "price": "Price",
-      "price_cents": "Cents",
-      "price_euro": "Price in (€)",
-      "ean":  "Ean",
-      "number_of_page":  "Number of page",
-      "weight": "Weight",
-      "weight_in_gram": "Weight in gram",
-      "crag": "Crag"
-    },
     "cragSector": {
       "name": "Name",
       "description": "Description",
@@ -81,6 +67,28 @@
     },
     "park": {
       "description": "Description",
+      "crag": "Crag"
+    },
+    "approach": {
+      "description": "Description",
+      "approach_type": "Approach type",
+      "length": "Distance",
+      "time": "Time",
+      "type": "Type",
+      "crag": "Crag"
+    },
+    "guideBookPaper": {
+      "name": "Title",
+      "author":  "Author",
+      "editor": "Editor",
+      "publication_year":  "Publication year",
+      "price": "Price",
+      "price_cents": "Cents",
+      "price_euro": "Price in (€)",
+      "ean":  "Ean",
+      "number_of_page":  "Number of page",
+      "weight": "Weight",
+      "weight_in_gram": "Weight in gram",
       "crag": "Crag"
     },
     "guideBookWeb": {
@@ -328,6 +336,14 @@
       "south_west": "South West",
       "west": "West",
       "north_west": "North West"
+    },
+    "approachType": {
+      "steep_descent": "Steep descent",
+      "soft_descent": "Soft descent",
+      "flat": "Flat",
+      "soft_ascent": "Soft ascent",
+      "steep_ascent": "Steep ascent",
+      "various": "Various"
     },
     "placeOfSale": {
       "name": "Name",
