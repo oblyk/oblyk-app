@@ -52,6 +52,7 @@ export default {
   methods: {
     onChange: function () {
       this.$emit('input', this.layerIndex)
+      this.showLayersSelector = false
     }
   }
 }
