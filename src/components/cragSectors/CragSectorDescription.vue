@@ -19,7 +19,12 @@
             {{ $t('components.input.orientations') }} :
           </th>
           <td>
-            {{ cragSector.orientations().map((climb) => { return $t(`models.crag.${climb}`) }).join(', ') }}
+            <span v-if="cragSector.orientations().length > 0">
+              {{ cragSector.orientations().map((climb) => { return $t(`models.crag.${climb}`) }).join(', ') }}
+            </span>
+            <cite v-else class="text--disabled">
+              {{ $t('common.noInformation')}}
+            </cite>
           </td>
         </tr>
         <tr>
@@ -27,7 +32,12 @@
             {{ $t('components.input.rain') }} :
           </th>
           <td>
-            {{ $t(`models.rains.${cragSector.rain}`) }}
+            <span v-if="cragSector.rain">
+              {{ $t(`models.rains.${cragSector.rain}`) }}
+            </span>
+            <cite v-if="!cragSector.rain" class="text--disabled">
+              {{ $t('common.noInformation')}}
+            </cite>
           </td>
         </tr>
         <tr>
@@ -35,7 +45,12 @@
             {{ $t('components.input.sun') }} :
           </th>
           <td>
-            {{ $t(`models.suns.${cragSector.sun}`) }}
+            <span v-if="cragSector.sun">
+              {{ $t(`models.suns.${cragSector.sun}`) }}
+            </span>
+            <cite v-if="!cragSector.sun" class="text--disabled">
+              {{ $t('common.noInformation')}}
+            </cite>
           </td>
         </tr>
         <tr>
@@ -73,6 +88,7 @@
 
 <script>
 import ContributionsLabel from '@/components/globals/ContributionsLable'
+
 export default {
   name: 'CragSectorDescription',
   components: { ContributionsLabel },
