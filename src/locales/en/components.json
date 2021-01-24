@@ -87,10 +87,20 @@
     },
     "cragSector": {
       "newSector": "New sector",
-      "sectorOf": "Sector of"
+      "sectorOf": "Sector of",
+      "sectors": "Sectors",
+      "allSectors": "All sectors"
     },
     "cragRoute": {
-      "routes": "Routes"
+      "routes": "Routes",
+      "searchRoute": "Search route",
+      "sortRouteLabel": "Sort routes",
+      "sort": {
+        "difficulty_desc": "From the hardest to the easiest",
+        "difficulty_asc": "From the easiest to the hardest",
+        "name": "By name",
+        "note": "By note"
+      }
     },
     "approach": {
       "newPolylineExplain": "Click at each point where the approach step passes from the parking lot.",

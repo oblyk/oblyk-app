@@ -6,7 +6,7 @@
       <router-view :crag-sector="cragSector" />
     </v-card>
     <crag-routes
-      class="mt-4"
+      class="mt-4 mb-10"
       :crag-sector="cragSector"
     />
   </div>

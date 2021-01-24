@@ -87,10 +87,20 @@
     },
     "cragSector": {
       "newSector": "Nouveau secteur",
-      "sectorOf": "Secteur de"
+      "sectorOf": "Secteur de",
+      "sectors": "Les secteurs",
+      "allSectors": "Tout les secteurs"
     },
     "cragRoute": {
-      "routes": "Les lignes"
+      "routes": "Les lignes",
+      "searchRoute": "Chercher une voie",
+      "sortRouteLabel": "Trier les voies",
+      "sort": {
+        "difficulty_desc": "Du plus dur au plus facile",
+        "difficulty_asc": "Du plus facile au plus dur",
+        "name": "Par nom",
+        "note": "Par note"
+      }
     },
     "approach": {
       "newPolylineExplain": "Cliquer à chaque endroit où passe la marche d’approche en partant du parkings",
