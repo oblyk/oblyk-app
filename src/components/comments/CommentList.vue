@@ -18,7 +18,8 @@
       <!-- No comment -->
       <p
         v-if="comments.length === 0"
-        class="text--disabled text-center mt-10"
+        class="text--disabled text-center"
+        v-bind:class="mTopNoComment"
       >
         {{ $t('components.comment.noComment') }}
       </p>
@@ -49,7 +50,11 @@ export default {
   components: { CommentCard, Spinner },
   props: {
     commentableId: [String, Number],
-    commentableType: String
+    commentableType: String,
+    mTopNoComment: {
+      type: String,
+      default: 'mt-10'
+    }
   },
 
   data () {
