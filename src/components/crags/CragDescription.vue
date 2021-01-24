@@ -69,6 +69,30 @@
               </td>
             </tr>
             <tr>
+              <th class="smallest-table-column text-right">
+                Localisation
+              </th>
+              <td>
+                {{ crag.city }}, {{ crag.region }}, {{ crag.country }}
+              </td>
+            </tr>
+            <tr>
+              <th class="smallest-table-column text-right"></th>
+              <td>
+                {{ latLng }}
+                <qr-code-btn :value="latLng" />
+                <copy-btn :message="latLng" />
+              </td>
+            </tr>
+            <tr>
+              <th class="smallest-table-column text-right">
+                Orientations
+              </th>
+              <td>
+                {{ crag.orientations().map((climb) => { return $t(`models.crag.${climb}`) }).join(', ') }}
+              </td>
+            </tr>
+            <tr>
               <td colspan="2" class="text-right">
                 <contributions-label
                   version-type="crag"
@@ -85,11 +109,19 @@
 </template>
 <script>
 import ContributionsLabel from '@/components/globals/ContributionsLable'
+import QrCodeBtn from '@/components/forms/QrCodeBtn'
+import CopyBtn from '@/components/forms/CopyBtn'
 export default {
   name: 'CragInfo',
-  components: { ContributionsLabel },
+  components: { CopyBtn, QrCodeBtn, ContributionsLabel },
   props: {
     crag: Object
+  },
+
+  data () {
+    return {
+      latLng: `${this.crag.latitude}, ${this.crag.longitude}`
+    }
   }
 }
 </script>

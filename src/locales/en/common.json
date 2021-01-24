@@ -6,6 +6,7 @@
   "common": {
     "noInformation": "No information",
     "informations": "Informations",
+    "comments": "Comments",
     "meters": "meters",
     "minutes": "minutes",
     "at": "at",
