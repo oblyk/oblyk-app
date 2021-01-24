@@ -65,7 +65,7 @@ ___
 
 ## TODO Outdoor
 - [ ] Falaise
-- [ ] Secteur
+- [x] Secteur
 - [ ] Voies
 - [x] Liens
 - [ ] Photos et Video
