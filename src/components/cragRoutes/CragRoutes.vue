@@ -12,7 +12,10 @@
             </v-icon>
             {{ $t('components.cragRoute.routes') }}
           </v-col>
-          <v-col class="add-sector-or-route">
+          <v-col
+            v-if="isLoggedIn"
+            class="add-sector-or-route"
+          >
             <add-sector-or-route-btn
               :crag="crag"
               :crag-sector="cragSector"
@@ -79,6 +82,7 @@ import AddSectorOrRouteBtn from '@/components/cragRoutes/partial/AddSectorOrRout
 import CragSectorSelector from '@/components/cragRoutes/partial/CragSectorSelector'
 import CragRouteSort from '@/components/cragRoutes/partial/CragRouteSort'
 import CragRouteSearch from '@/components/cragRoutes/partial/CragRouteSearch'
+import { SessionConcern } from '@/concerns/SessionConcern'
 
 export default {
   name: 'CragRoutes',
@@ -91,6 +95,7 @@ export default {
     CragRouteListItem,
     Spinner
   },
+  mixins: [SessionConcern],
   props: {
     crag: {
       type: Object

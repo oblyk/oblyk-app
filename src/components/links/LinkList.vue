@@ -25,7 +25,10 @@
     </div>
 
     <!-- Add link-->
-    <div class="text-right mt-4">
+    <div
+      v-if="isLoggedIn"
+      class="text-right mt-4"
+    >
       <v-btn
         :to="`/links/${linkableType}/${linkableId}/new?redirect_to=${redirectTo}`"
         text
@@ -42,10 +45,12 @@ import LinkCard from '@/components/links/LinkCard'
 import Spinner from '@/components/layouts/Spiner'
 import LinkApi from '@/services/oblyk-api/LinkApi'
 import Link from '@/models/Link'
+import { SessionConcern } from '@/concerns/SessionConcern'
 
 export default {
   name: 'LinkList',
   components: { Spinner, LinkCard },
+  mixins: [SessionConcern],
   props: {
     linkableId: [String, Number],
     linkableType: String

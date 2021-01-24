@@ -24,7 +24,10 @@
           {{ $t('components.placeOfSale.noPlace') }}
         </p>
 
-        <div class="text-right mt-3">
+        <div
+          v-if="isLoggedIn"
+          class="text-right mt-3"
+        >
           <v-btn
             :to="`${guideBookPaper.path('place-of-sales/new')}?redirect_to=${$route.fullPath}`"
             text
@@ -47,10 +50,12 @@ import GuideBookPaperApi from '@/services/oblyk-api/GuideBookPaperApi'
 import PlaceOfSale from '@/models/PlaceOfSale'
 import PlaceOfSaleCard from '@/components/placeOfSales/PlaceOfSaleCard'
 import Spinner from '@/components/layouts/Spiner'
+import { SessionConcern } from '@/concerns/SessionConcern'
 
 export default {
   name: 'GuideBookPaperPlaceOfSales',
   components: { Spinner, PlaceOfSaleCard },
+  mixins: [SessionConcern],
   props: {
     guideBookPaper: Object
   },

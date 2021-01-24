@@ -26,7 +26,10 @@
     </div>
 
     <!-- Add comment-->
-    <div class="text-right mt-4">
+    <div
+      v-if="isLoggedIn"
+      class="text-right mt-4"
+    >
       <v-btn
         :to="`/comments/${commentableType}/${commentableId}/new?redirect_to=${redirectTo}`"
         text
@@ -44,10 +47,12 @@ import Spinner from '@/components/layouts/Spiner'
 import CommentApi from '@/services/oblyk-api/CommentApi'
 import Comment from '@/models/Comment'
 import CommentCard from '@/components/comments/CommentCard'
+import { SessionConcern } from '@/concerns/SessionConcern'
 
 export default {
   name: 'CommentList',
   components: { CommentCard, Spinner },
+  mixins: [SessionConcern],
   props: {
     commentableId: [String, Number],
     commentableType: String,
