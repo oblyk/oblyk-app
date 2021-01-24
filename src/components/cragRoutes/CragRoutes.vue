@@ -7,10 +7,20 @@
 
     <v-card v-if="!loadingRoutes">
       <v-card-title>
-        <v-icon left>
-          mdi-source-branch
-        </v-icon>
-        {{ $t('components.cragRoute.routes') }}
+        <v-row>
+          <v-col>
+            <v-icon left>
+              mdi-source-branch
+            </v-icon>
+            {{ $t('components.cragRoute.routes') }}
+          </v-col>
+          <v-col class="add-sector-or-route">
+            <add-sector-or-route-btn
+              :crag="crag"
+              :crag-sector="cragSector"
+            />
+          </v-col>
+        </v-row>
       </v-card-title>
       <v-list
         subheader
@@ -40,10 +50,11 @@ import CragRoute from '@/models/CragRoute'
 import Spinner from '@/components/layouts/Spiner'
 import CragRouteListItem from '@/components/cragRoutes/CragRouteListItem'
 import LoadingMore from '@/components/layouts/LoadingMore'
+import AddSectorOrRouteBtn from '@/components/cragRoutes/partial/AddSectorOrRouteBtn'
 
 export default {
   name: 'CragRoutes',
-  components: { LoadingMore, CragRouteListItem, Spinner },
+  components: { AddSectorOrRouteBtn, LoadingMore, CragRouteListItem, Spinner },
   props: {
     crag: {
       type: Object
@@ -90,3 +101,10 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.add-sector-or-route {
+  max-width: 120px;
+  text-align: right;
+}
+</style>
