@@ -9,7 +9,7 @@
     <v-card-text>
       <guide-list
         :crag="crag"
-        :limite="2"
+        :limite="3"
         link-to-more="guide-books"
       />
     </v-card-text>
