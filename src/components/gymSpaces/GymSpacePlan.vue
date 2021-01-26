@@ -109,6 +109,13 @@ export default {
     this.setWidthMap()
   },
 
+  beforeDestroy () {
+    this.$root.$off('startEditSectorPolygon')
+    this.$root.$off('activeSector')
+    this.$root.$off('stopEditingSectorPolygon')
+    this.$root.$off('setWidthMap')
+  },
+
   methods: {
     onReadyMap: function () {
       this.map = this.$refs.map.mapObject

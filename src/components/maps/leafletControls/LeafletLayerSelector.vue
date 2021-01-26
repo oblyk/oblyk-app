@@ -49,6 +49,10 @@ export default {
     this.$root.$on('hideLeafletMapLayerSelector', () => { this.showLayersSelector = false })
   },
 
+  beforeDestroy () {
+    this.$root.$off('hideLeafletMapLayerSelector')
+  },
+
   methods: {
     onChange: function () {
       this.$emit('input', this.layerIndex)

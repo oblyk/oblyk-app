@@ -87,6 +87,32 @@
   text-decoration: none;
 }
 
+.climbs-pastille {
+  &:before {
+    content: '';
+    display: inline-block;
+    height: 12px;
+    width: 12px;
+    vertical-align: inherit;
+    margin-right: 0.5em;
+    border-radius: 50%;
+  }
+  &.sport_climbing:before { background-color: #3a71c7; }
+  &.bouldering:before { background-color: #ffcb00; }
+  &.multi_pitch:before { background-color: #ff5656; }
+  &.trad_climbing:before { background-color: #ff5656; }
+  &.aid_climbing:before { background-color: #ff5656; }
+  &.deep_water:before { background-color: #86ccdd; }
+  &.via_ferrata:before { background-color: #3cc770; }
+  &.fun_climbing:before { background-color: #ff80b2; }
+}
+
+.leaflet-pane {
+  z-index: 5 !important;
+}
+.leaflet-top {
+  z-index: 6 !important;
+}
 @media only screen and (max-width: 600px) {
   .global-form-width {
     margin-top: -0.5rem;

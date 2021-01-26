@@ -18,19 +18,34 @@
         </v-col>
       </v-row>
     </v-container>
+    <crag-route-drawer />
   </div>
 </template>
+
 <script>
 import CragInfo from '@/components/crags/CragDescription'
 import CragRoutes from '@/components/cragRoutes/CragRoutes'
 import CragGuidesCard from '@/components/crags/CragGuidesCard'
 import CragComment from '@/components/crags/CragComment'
+import CragRouteDrawer from '@/components/cragRoutes/CragRouteDrawer'
 
 export default {
   name: 'CragInfoView',
-  components: { CragComment, CragGuidesCard, CragRoutes, CragInfo },
+  components: {
+    CragRouteDrawer,
+    CragComment,
+    CragGuidesCard,
+    CragRoutes,
+    CragInfo
+  },
   props: {
     crag: Object
+  },
+
+  data () {
+    return {
+      drawer: false
+    }
   }
 }
 </script>

@@ -1,35 +1,26 @@
 <template>
-  <v-list-item>
-    <v-list-item-avatar
-      tile
-      class="border-color-grade"
-    >
-      <div
-        class="grade-color-bar"
-        :style="`background-image: linear-gradient(${gradeValueToColor(route.grade_gap.min_grade_value)} 50%, ${gradeValueToColor(route.grade_gap.max_grade_value)} 50%);`"
-      />
-      <strong class="grade-value">
-        {{ route.grade_to_s }}
-      </strong>
-    </v-list-item-avatar>
-
+  <v-list-item
+    link
+    @click="$root.$emit('getCragRouteInDrawer', route.crag.id, route.id)"
+  >
+    <crag-route-avatar class="grade-route-in-list" :crag-route="route" />
     <v-list-item-content>
-      <v-list-item-title>
-        <strong v-if="route.sections_count > 1">
-          {{ route.sections_count }}L.
-        </strong>
+      <v-list-item-title
+        class="climbs-pastille"
+        v-bind:class="route.climbing_type"
+      >
         {{ route.name }}
         <grade-route-note :route="route" />
       </v-list-item-title>
       <v-list-item-subtitle>
-        <span v-if="route.sector.id">
+        <span v-if="route.crag_sector.id">
           <v-icon x-small>
             mdi-texture-box
           </v-icon>
           <router-link
-            :to="route.cragSector.path()"
+            :to="route.CragSector.path()"
           >
-            {{ route.cragSector.name }}
+            {{ route.CragSector.name }}
           </router-link>
         </span>
         <span v-if="route.height">
@@ -50,13 +41,12 @@
 </template>
 
 <script>
-import { GradeMixin } from '@/mixins/GradeMixin'
-import GradeRouteNote from '@/components/cragRoutes/partial/GradeRouteNote'
+import GradeRouteNote from '@/components/cragRoutes/partial/CragRouteNote'
+import CragRouteAvatar from '@/components/cragRoutes/partial/CragRouteAvatar'
 
 export default {
   name: 'CragRouteListItem',
-  components: { GradeRouteNote },
-  mixins: [GradeMixin],
+  components: { CragRouteAvatar, GradeRouteNote },
   props: {
     route: Object
   }
@@ -64,19 +54,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.border-color-grade {
-  min-width: 60px !important;
-  width: 60px !important;
-  justify-content: flex-start;
-  .grade-color-bar {
-    border-radius: 3px;
-    height: 100%;
-    width: 6px;
-  }
-  .grade-value {
-    display: inline-block;
-    width: 54px;
-    text-align: center;
-  }
+.grade-route-in-list {
+  font-size: 1.2em;
 }
 </style>

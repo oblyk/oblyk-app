@@ -57,6 +57,10 @@ export default {
     })
   },
 
+  beforeDestroy () {
+    this.$root.$off('updateCragBannerSrc')
+  },
+
   methods: {
     updateCragBannerSrc: function (src) {
       this.src = src

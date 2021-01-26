@@ -36,6 +36,13 @@ class CragRouteApi extends BaseApi {
     })
   }
 
+  versions (cragRouteId) {
+    return axios({
+      url: `${this.baseUrl}/crag_routes/${cragRouteId}/versions.json`,
+      method: 'GET'
+    })
+  }
+
   find (cragId, routeId) {
     return axios({
       url: `${this.baseUrl}/crags/${cragId}/crag_routes/${routeId}.json`,

@@ -119,6 +119,11 @@ export default {
     this.getRoutes()
   },
 
+  beforeDestroy () {
+    this.$root.$off('filtreBySector')
+    this.$root.$off('dismountGymRoutesInSector')
+  },
+
   watch: {
     sort: function () {
       this.getRoutes()

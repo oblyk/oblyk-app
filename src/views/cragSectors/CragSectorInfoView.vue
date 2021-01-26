@@ -1,15 +1,19 @@
 <template>
-  <v-container>
-    <crag-sector-description :crag-sector="cragSector" />
-  </v-container>
+  <div>
+    <v-container>
+      <crag-sector-description :crag-sector="cragSector" />
+    </v-container>
+    <crag-route-drawer />
+  </div>
 </template>
 
 <script>
 import CragSectorDescription from '@/components/cragSectors/CragSectorDescription'
+import CragRouteDrawer from '@/components/cragRoutes/CragRouteDrawer'
 
 export default {
   name: 'CragSectorInfoView',
-  components: { CragSectorDescription },
+  components: { CragRouteDrawer, CragSectorDescription },
   props: {
     cragSector: Object
   }

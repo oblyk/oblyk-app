@@ -67,6 +67,7 @@
       "newPasswordError": "Le lien a expiré, ou les deux mots de passe ne sont pas identique"
     },
     "crag": {
+      "coverFrom": "Photo du site",
       "searchCrag": "Chercher une falaise",
       "type": "Falaise",
       "newCrag": "Nouvelle falaise",
@@ -86,15 +87,18 @@
       }
     },
     "cragSector": {
+      "coverFrom": "Photo du secteur",
       "newSector": "Nouveau secteur",
       "sectorOf": "Secteur de",
       "sectors": "Les secteurs",
       "allSectors": "Tout les secteurs"
     },
     "cragRoute": {
+      "coverFrom": "Photo de la ligne",
       "routes": "Les lignes",
       "searchRoute": "Chercher une voie",
       "sortRouteLabel": "Trier les voies",
+      "climberOpinion": "L'avis des grimpeurs",
       "sort": {
         "difficulty_desc": "Du plus dur au plus facile",
         "difficulty_asc": "Du plus facile au plus dur",

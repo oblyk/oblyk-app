@@ -69,6 +69,10 @@ export default {
     })
   },
 
+  beforeDestroy () {
+    this.$root.$off('showEditingExplain')
+  },
+
   methods: {
     showEditingExplain: function (visible) {
       this.editingSectorPolygon = visible

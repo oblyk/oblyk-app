@@ -43,7 +43,7 @@
 
 <script>
 export default {
-  name: 'GradeRouteNote',
+  name: 'CragRouteNote',
   props: {
     route: Object
   }

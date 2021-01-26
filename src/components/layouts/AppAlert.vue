@@ -37,6 +37,12 @@ export default {
     })
   },
 
+  beforeDestroy () {
+    this.$root.$off('alertFromApiError')
+    this.$root.$off('alertSimpleError')
+    this.$root.$off('alertSimpleSuccess')
+  },
+
   methods: {
     fromApiError: function (err, object) {
       const data = err.response.data

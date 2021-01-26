@@ -67,6 +67,7 @@
       "newPasswordError": "The link has expired, or the two passwords are not identical"
     },
     "crag": {
+      "coverFrom": "Crag picture",
       "searchCrag": "Crag search",
       "type": "Crag",
       "newCrag": "New Crag",
@@ -86,15 +87,18 @@
       }
     },
     "cragSector": {
+      "coverFrom": "Sector picture",
       "newSector": "New sector",
       "sectorOf": "Sector of",
       "sectors": "Sectors",
       "allSectors": "All sectors"
     },
     "cragRoute": {
+      "coverFrom": "Route picture",
       "routes": "Routes",
       "searchRoute": "Search route",
       "sortRouteLabel": "Sort routes",
+      "climberOpinion": "Climber's opinion",
       "sort": {
         "difficulty_desc": "From the hardest to the easiest",
         "difficulty_asc": "From the easiest to the hardest",

@@ -65,6 +65,28 @@
       "north_west": "Nord Ouest",
       "crag": "Falaise"
     },
+    "cragRoute": {
+      "name": "Nom",
+      "height": "Hauteur",
+      "open_year": "Année d'ouverture",
+      "opener": "Ouvreurs",
+      "sections": "Sections",
+      "climbing_type": "Type",
+      "difficulty_appreciation": "Appréciation de la difficulté",
+      "note": "Note",
+      "note_count": "Nombre de note",
+      "ascents_count": "Nombre de d'ascension",
+      "sections_count": "Nombre de section",
+      "tags": "Tags",
+      "crag": "Site",
+      "crag_sector": "Secteur",
+      "anchor": "Relais",
+      "incline_type": "Inclinaison",
+      "bolt_type": "Type de point",
+      "anchor_type": "Type de relais",
+      "reception_type": "Type de réception",
+      "start_type": "Type de départ"
+    },
     "park": {
       "description": "Description",
       "crag": "Falaise"
@@ -314,6 +336,40 @@
     "rains": {
       "protected": "Protégé de la pluie",
       "exposed": "Exposé à la pluie"
+    },
+    "anchorType": {
+      "bolted_anchor_chains": "2 points chainé",
+      "bolted_anchor_no_chains": "2 points non chainé",
+      "pigtail_anchors": "Tête de bélier",
+      "traditional_anchor": "Sur friends",
+      "no_anchor": "Pas de relais"
+    },
+    "boltType": {
+      "forged_eye_bolts": "Broches",
+      "bolt_hangers": "Plaquettes",
+      "open_staple_bolts": "Crochet",
+      "staple_u_bolts": "Anneau",
+      "no_bolts": "Pas de point"
+    },
+    "inclineType" : {
+      "slab": "Dalle positive",
+      "vertical": "Mur vertical",
+      "slight_overhang": "Léger dévers",
+      "overhang": "Dévers",
+      "roof": "Toit"
+    },
+    "receptionType" : {
+      "good": "Bonne",
+      "correct": "Correcte",
+      "bad": "Mauvaise",
+      "dangerous": "Dangereuse"
+    },
+    "startType": {
+      "sit": "Assis",
+      "down": "Bas",
+      "stand": "Debout",
+      "jump": "Sauté",
+      "run_and_jump": "Run and jump"
     },
     "suns": {
       "sunny_all_day": "Soleil toute la journée",

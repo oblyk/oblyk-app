@@ -70,6 +70,7 @@ import CragApi from '@/services/oblyk-api/CragApi'
 import GuideBookPaperApi from '@/services/oblyk-api/GuideBookPaperApi'
 import GymApi from '@/services/oblyk-api/GymApi'
 import CragSectorApi from '@/services/oblyk-api/CragSectorApi'
+import CragRouteApi from '@/services/oblyk-api/CragRouteApi'
 
 export default {
   name: 'VersionsView',
@@ -99,6 +100,8 @@ export default {
         CragApi.versions(this.versionId).then(resp => { this.version = resp.data }).finally(() => { this.loadingVersions = false })
       } else if (this.versionType === 'cragSector') {
         CragSectorApi.versions(this.versionId).then(resp => { this.version = resp.data }).finally(() => { this.loadingVersions = false })
+      } else if (this.versionType === 'cragRoute') {
+        CragRouteApi.versions(this.versionId).then(resp => { this.version = resp.data }).finally(() => { this.loadingVersions = false })
       } else if (this.versionType === 'guideBookPaper') {
         GuideBookPaperApi.versions(this.versionId).then(resp => { this.version = resp.data }).finally(() => { this.loadingVersions = false })
       } else if (this.versionType === 'gym') {

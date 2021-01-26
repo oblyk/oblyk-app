@@ -5,25 +5,32 @@
     gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
     :src="src"
   >
+    <p
+      class="text-right pr-5"
+      v-if="cragRoute.coverFrom"
+    >
+      <small>{{ $t(`components.${cragRoute.coverFrom}.coverFrom`) }}</small>
+    </p>
     <div
-      class="crag-sector-header-title"
+      class="crag-route-header-title"
     >
       <h1 class="loved-by-king font-weight-medium ">
-        {{ cragSector.name }}
+        <crag-route-avatar :crag-route="cragRoute" />
+        {{ cragRoute.name }}
       </h1>
       <div>
         <router-link
           class="discrete-link"
-          :to="cragSector.Crag.path()"
+          :to="cragRoute.Crag.path()"
         >
           <v-icon small>mdi-terrain</v-icon>
-          {{ cragSector.crag.name }}
+          {{ cragRoute.crag.name }}
         </router-link>
       </div>
       <div>
-        {{ cragSector.crag.country }}, {{ cragSector.crag.region }}, {{ cragSector.crag.city }}
+        {{ cragRoute.crag.country }}, {{ cragRoute.crag.region }}, {{ cragRoute.crag.city }}
         <v-btn
-          :to="cragSector.path('edit')"
+          :to="cragRoute.path('edit')"
           small
           icon
           :title="$t('actions.edit')"
@@ -40,40 +47,26 @@
 </template>
 <script>
 import { SessionConcern } from '@/concerns/SessionConcern'
+import CragRouteAvatar from '@/components/cragRoutes/partial/CragRouteAvatar'
 
 export default {
-  name: 'CragSectorHead',
+  name: 'CragRouteHead',
+  components: { CragRouteAvatar },
   mixins: [SessionConcern],
   props: {
-    cragSector: Object
+    cragRoute: Object
   },
 
   data () {
     return {
-      src: this.cragSector.coverUrl()
-    }
-  },
-
-  mounted () {
-    this.$root.$on('updateCragSectorBannerSrc', (src) => {
-      this.updateCragSectorBannerSrc(src)
-    })
-  },
-
-  beforeDestroy () {
-    this.$root.$off('updateCragSectorBannerSrc')
-  },
-
-  methods: {
-    updateCragSectorBannerSrc: function (src) {
-      this.src = src
+      src: this.cragRoute.coverUrl()
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.crag-sector-header-title {
+.crag-route-header-title {
   position: absolute;
   width: 100%;
   padding: 0.5em 0.5em 1em 1em;

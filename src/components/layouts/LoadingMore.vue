@@ -45,6 +45,11 @@ export default {
     })
   },
 
+  beforeDestroy () {
+    this.$root.$off('moreIsLoaded')
+    this.$root.$off('nothingMoreToLoad')
+  },
+
   methods: {
     onBottomPage (entries, observer) {
       if (

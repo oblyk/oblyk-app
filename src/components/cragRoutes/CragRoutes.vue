@@ -131,6 +131,11 @@ export default {
     this.getRoutes()
   },
 
+  beforeDestroy () {
+    this.$root.$off('searchCragRoutesResults')
+    this.$root.$off('reloadCragRouteList')
+  },
+
   methods: {
     areaResize: function () {
       const area = this.$refs['crag-route-area']

@@ -65,6 +65,28 @@
       "north_west": "North West",
       "crag": "Crag"
     },
+    "cragRoute": {
+      "name": "Name",
+      "height": "Height",
+      "open_year": "Open year",
+      "opener": "Openers",
+      "sections": "Sections",
+      "climbing_type": "Climbing type",
+      "difficulty_appreciation": "Difficulty appreciation",
+      "note": "Note",
+      "note_count": "Note count",
+      "ascents_count": "Ascents count",
+      "sections_count": "Sections count",
+      "tags": "Tags",
+      "crag": "Crag",
+      "crag_sector": "Sector",
+      "anchor": "Anchor",
+      "incline_type": "Incline",
+      "bolt_type": "Bolt type",
+      "anchor_type": "Anchor type",
+      "reception_type": "Reception type",
+      "start_type": "Start type"
+    },
     "park": {
       "description": "Description",
       "crag": "Crag"
@@ -314,6 +336,40 @@
     "rains": {
       "protected": "Protected from the rain",
       "exposed": "Exposed to rain"
+    },
+    "anchorType": {
+      "bolted_anchor_chains": "Bolted anchor chains",
+      "bolted_anchor_no_chains": "Bolted anchor no chains",
+      "pigtail_anchors": "Pigtail anchors",
+      "traditional_anchor": "Traditional anchor",
+      "no_anchor": "No anchor"
+    },
+    "boltType": {
+      "forged_eye_bolts": "Forged eye bolts",
+      "bolt_hangers": "Bolt hangers",
+      "open_staple_bolts": "Open staple bolts",
+      "staple_u_bolts": "Staple u bolts",
+      "no_bolts": "No bolts"
+    },
+    "inclineType" : {
+      "slab": "Slab",
+      "vertical": "Vertical wall",
+      "slight_overhang": "Slight overhang",
+      "overhang": "Overhang",
+      "roof": "Roof"
+    },
+    "receptionType" : {
+      "good": "Good",
+      "correct": "Correct",
+      "bad": "Bad",
+      "dangerous": "Dangerous"
+    },
+    "startType": {
+      "sit": "Sit",
+      "down": "Down",
+      "stand": "Stand",
+      "jump": "Jump",
+      "run_and_jump": "Run and jump"
     },
     "suns": {
       "sunny_all_day": "Sunny all day",
