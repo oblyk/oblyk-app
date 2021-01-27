@@ -43,6 +43,20 @@ class CragRouteApi extends BaseApi {
     })
   }
 
+  photos (cragRouteId) {
+    return axios({
+      url: `${this.baseUrl}/crag_routes/${cragRouteId}/photos.json`,
+      method: 'GET'
+    })
+  }
+
+  videos (cragRouteId) {
+    return axios({
+      url: `${this.baseUrl}/crag_routes/${cragRouteId}/videos.json`,
+      method: 'GET'
+    })
+  }
+
   find (cragId, routeId) {
     return axios({
       url: `${this.baseUrl}/crags/${cragId}/crag_routes/${routeId}.json`,
@@ -52,7 +66,7 @@ class CragRouteApi extends BaseApi {
 
   create (data) {
     return axios({
-      url: `${this.baseUrl}//crags/${data.crag_id}/crag_routes.json`,
+      url: `${this.baseUrl}/crags/${data.crag_id}/crag_routes.json`,
       headers: { Authorization: this.authToken() },
       data: {
         crag_route: data
@@ -63,7 +77,7 @@ class CragRouteApi extends BaseApi {
 
   update (data) {
     return axios({
-      url: `${this.baseUrl}//crags/${data.crag_id}/crag_routes/${data.id}.json`,
+      url: `${this.baseUrl}/crags/${data.crag_id}/crag_routes/${data.id}.json`,
       headers: { Authorization: this.authToken() },
       data: {
         crag_route: data

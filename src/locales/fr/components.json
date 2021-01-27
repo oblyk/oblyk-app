@@ -20,6 +20,7 @@
       "approachType": "Type d'approche"
     },
     "gallery": {
+      "defineCragRouteBanner": "Définir comme bandeau de la ligne",
       "defineCragSectorBanner": "Définir comme bandeau du secteur",
       "defineCragBanner": "Définir comme bandeau du site"
     },

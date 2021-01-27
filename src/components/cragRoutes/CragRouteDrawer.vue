@@ -13,6 +13,7 @@
       />
       <div class="pr-3 pl-3 pt-1">
         <crag-route-description :crag-route="cragRoute" />
+        <crag-route-comments :crag-route="cragRoute" />
       </div>
     </div>
   </v-navigation-drawer>
@@ -24,10 +25,16 @@ import CragRouteApi from '@/services/oblyk-api/CragRouteApi'
 import CragRoute from '@/models/CragRoute'
 import CragRouteHead from '@/components/cragRoutes/layout/CragRouteHead'
 import CragRouteDescription from '@/components/cragRoutes/CragRouteDescription'
+import CragRouteComments from '@/components/cragRoutes/CragRouteComments'
 
 export default {
   name: 'CragRouteDrawer',
-  components: { CragRouteDescription, CragRouteHead, Spinner },
+  components: {
+    CragRouteComments,
+    CragRouteDescription,
+    CragRouteHead,
+    Spinner
+  },
   data () {
     return {
       cragRouteDrawer: false,

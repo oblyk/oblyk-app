@@ -20,6 +20,7 @@
       "approachType": "Approach type"
     },
     "gallery": {
+      "defineCragRouteBanner": "Define as route banner",
       "defineCragSectorBanner": "Define as sector banner",
       "defineCragBanner": "Define as crag banner"
     },

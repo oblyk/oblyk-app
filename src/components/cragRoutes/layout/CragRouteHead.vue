@@ -61,6 +61,18 @@ export default {
     return {
       src: this.cragRoute.coverUrl()
     }
+  },
+
+  mounted () {
+    this.$root.$on('updateCragRouteBannerSrc', (src) => {
+      this.updateCragRouteBannerSrc(src)
+    })
+  },
+
+  methods: {
+    updateCragRouteBannerSrc: function (src) {
+      this.src = src
+    }
   }
 }
 </script>

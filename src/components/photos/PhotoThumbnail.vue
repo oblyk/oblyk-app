@@ -61,6 +61,8 @@ import CragApi from '@/services/oblyk-api/CragApi'
 import Crag from '@/models/Crag'
 import CragSectorApi from '@/services/oblyk-api/CragSectorApi'
 import CragSector from '@/models/CragSector'
+import CragRouteApi from '@/services/oblyk-api/CragRouteApi'
+import CragRoute from '@/models/CragRoute'
 
 export default {
   name: 'PhotoThumbnail',
@@ -74,18 +76,27 @@ export default {
       photoOver: false,
       updatingBanner: false,
       cragId: this.$route.params.cragId,
-      cragSectorId: this.$route.params.cragSectorId
+      cragSectorId: this.$route.params.cragSectorId,
+      cragRouteId: this.$route.params.cragRouteId
     }
   },
 
   methods: {
     bannerType: function () {
-      return (this.cragSectorId) ? 'cragSector' : 'crag'
+      if (this.cragRouteId) {
+        return 'cragRoute'
+      } else if (this.cragSectorId) {
+        return 'cragSector'
+      } else {
+        return 'crag'
+      }
     },
 
     defineBtnTitle: function () {
       const bannerType = this.bannerType()
-      if (bannerType === 'cragSector') {
+      if (bannerType === 'cragRoute') {
+        return this.$t('components.gallery.defineCragRouteBanner')
+      } else if (bannerType === 'cragSector') {
         return this.$t('components.gallery.defineCragSectorBanner')
       } else if (bannerType === 'crag') {
         return this.$t('components.gallery.defineCragBanner')
@@ -97,7 +108,13 @@ export default {
       const bannerType = this.bannerType()
       let promise
 
-      if (bannerType === 'cragSector') {
+      if (bannerType === 'cragRoute') {
+        promise = CragRouteApi.update({
+          photo_id: this.photo.id,
+          crag_id: this.cragId,
+          id: this.cragRouteId
+        })
+      } else if (bannerType === 'cragSector') {
         promise = CragSectorApi.update({
           photo_id: this.photo.id,
           crag_id: this.cragId,
@@ -111,13 +128,16 @@ export default {
       }
 
       promise
-        .then((resp) => {
+        .then(resp => {
           if (bannerType === 'crag') {
             const crag = new Crag(resp.data)
             this.$root.$emit('updateCragBannerSrc', crag.coverUrl())
           } else if (bannerType === 'cragSector') {
             const cragSector = new CragSector(resp.data)
             this.$root.$emit('updateCragSectorBannerSrc', cragSector.coverUrl())
+          } else if (bannerType === 'cragRoute') {
+            const cragRoute = new CragRoute(resp.data)
+            this.$root.$emit('updateCragRouteBannerSrc', cragRoute.coverUrl())
           }
         })
         .catch(err => {

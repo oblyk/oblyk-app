@@ -16,7 +16,12 @@
                 </th>
                 <td>
                   <crag-route-avatar :crag-route="cragRoute" />
-                  {{ cragRoute.name }}
+                  <router-link
+                    class="discrete-link font-weight-bold"
+                    :to="cragRoute.path()"
+                  >
+                    {{ cragRoute.name }}
+                  </router-link>
                 </td>
               </tr>
 
@@ -40,7 +45,7 @@
               <!-- Difficulty appreciation -->
               <tr>
                 <th
-                  :title="$t('models.cragRoute.models.cragRoute.difficulty_appreciation')"
+                  :title="$t('models.cragRoute.difficulty_appreciation')"
                   class="smallest-table-column text-right"
                 >
                   <v-icon>mdi-gauge</v-icon>
@@ -53,13 +58,21 @@
               <!-- Open year -->
               <tr>
                 <th
-                  :title="$t('models.cragRoute.climbing_type')"
+                  :title="$t('models.cragRoute.open_year')"
                   class="smallest-table-column text-right"
                 >
                   <v-icon>mdi-calendar</v-icon>
                 </th>
                 <td>
-                  {{ cragRoute.open_year }}
+                  <span v-if="cragRoute.open_year">
+                    {{ cragRoute.open_year }}
+                  </span>
+                  <cite
+                    class="text--disabled"
+                    v-else
+                  >
+                    {{ $t('common.noInformation') }}
+                  </cite>
                 </td>
               </tr>
 
@@ -75,6 +88,12 @@
                   <span v-if="cragRoute.sections[0].incline_type">
                     {{ $t(`models.inclineType.${cragRoute.sections[0].incline_type}`) }}
                   </span>
+                  <cite
+                    class="text--disabled"
+                    v-else
+                  >
+                    {{ $t('common.noInformation') }}
+                  </cite>
                 </td>
               </tr>
 
@@ -90,6 +109,12 @@
                   <span v-if="cragRoute.sections[0].anchor_type">
                     {{ $t(`models.anchorType.${cragRoute.sections[0].anchor_type}`) }}
                   </span>
+                  <cite
+                    class="text--disabled"
+                    v-else
+                  >
+                    {{ $t('common.noInformation') }}
+                  </cite>
                 </td>
               </tr>
 
@@ -105,6 +130,12 @@
                   <span v-if="cragRoute.sections[0].reception_type">
                     {{ $t(`models.receptionType.${cragRoute.sections[0].reception_type}`) }}
                   </span>
+                  <cite
+                    class="text--disabled"
+                    v-else
+                  >
+                    {{ $t('common.noInformation') }}
+                  </cite>
                 </td>
               </tr>
             </tbody>
@@ -144,6 +175,12 @@
                   >
                     {{ cragRoute.CragSector.name }}
                   </router-link>
+                  <cite
+                    class="text--disabled"
+                    v-else
+                  >
+                    {{ $t('common.noInformation') }}
+                  </cite>
                 </td>
               </tr>
 
@@ -172,9 +209,15 @@
                   <v-icon>mdi-arrow-expand-vertical</v-icon>
                 </th>
                 <td>
-                <span v-if="cragRoute.height">
-                  {{ cragRoute.height }} {{ $t('common.meters') }}
-                </span>
+                  <span v-if="cragRoute.height">
+                    {{ cragRoute.height }} {{ $t('common.meters') }}
+                  </span>
+                  <cite
+                    class="text--disabled"
+                    v-else
+                  >
+                    {{ $t('common.noInformation') }}
+                  </cite>
                 </td>
               </tr>
 
@@ -190,6 +233,12 @@
                   <span v-if="cragRoute.sections[0].bolt_type">
                     {{ $t(`models.boltType.${cragRoute.sections[0].bolt_type}`) }}
                   </span>
+                  <cite
+                    class="text--disabled"
+                    v-else
+                  >
+                    {{ $t('common.noInformation') }}
+                  </cite>
                 </td>
               </tr>
 
@@ -205,6 +254,12 @@
                   <span v-if="cragRoute.sections[0].start_type">
                     {{ $t(`models.startType.${cragRoute.sections[0].start_type}`) }}
                   </span>
+                  <cite
+                    class="text--disabled"
+                    v-else
+                  >
+                    {{ $t('common.noInformation') }}
+                  </cite>
                 </td>
               </tr>
             </tbody>
@@ -226,7 +281,15 @@
                   </v-icon>
                 </th>
                 <td>
-                  {{ cragRoute.opener }}
+                  <span v-if="cragRoute.opener">
+                    {{ cragRoute.opener }}
+                  </span>
+                  <cite
+                    class="text--disabled"
+                    v-else
+                  >
+                    {{ $t('common.noInformation') }}
+                  </cite>
                 </td>
               </tr>
             </tbody>
@@ -246,20 +309,6 @@
         :versions-count="cragRoute.versions_count"
       />
     </div>
-
-    <div>
-      <p>
-        <v-icon left>
-          mdi-comment-account
-        </v-icon>
-        {{ $t('components.cragRoute.climberOpinion') }}
-      </p>
-      <comment-list
-        :commentable-id="cragRoute.id"
-        commentable-type="CragRoute"
-        m-top-no-comment="mt-1"
-      />
-    </div>
   </div>
 </template>
 
@@ -268,10 +317,10 @@ import CragRouteAvatar from '@/components/cragRoutes/partial/CragRouteAvatar'
 import CragRouteNote from '@/components/cragRoutes/partial/CragRouteNote'
 import CragRouteSectionList from '@/components/cragRoutes/CragRouteSectionList'
 import ContributionsLabel from '@/components/globals/ContributionsLable'
-import CommentList from '@/components/comments/CommentList'
+
 export default {
   name: 'CragRouteDescription',
-  components: { CommentList, ContributionsLabel, CragRouteSectionList, CragRouteNote, CragRouteAvatar },
+  components: { ContributionsLabel, CragRouteSectionList, CragRouteNote, CragRouteAvatar },
   props: {
     cragRoute: Object
   }

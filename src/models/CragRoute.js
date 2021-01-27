@@ -1,8 +1,13 @@
 import ActiveData from '@/models/ActiveData'
 import CragSector from '@/models/CragSector'
 import Crag from '@/models/Crag'
+import CragRouteApi from '@/services/oblyk-api/CragRouteApi'
 
 export default class CragRoute extends ActiveData {
+  find (CragId, id) {
+    return this.apiFind(CragRouteApi, CragId, id)
+  }
+
   path (page = 'infos') {
     return `/crags/${this.crag.id}/${this.crag.slug_name}/routes/${this.id}/${this.slug_name}/${page}`
   }
