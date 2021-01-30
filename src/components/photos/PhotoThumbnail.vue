@@ -3,6 +3,7 @@
     @mouseenter="photoOver = true"
     @mouseleave="photoOver = false"
     :src="photo.thumbnailUrl()"
+    @click="goToViewer()"
     max-height="200"
     :gradient="photoOver ? 'to top, rgba(0, 0, 0, 0.4) 0%, transparent 72px' : 'to top, rgba(0, 0, 0, 0) 0%, transparent 72px'"
   >
@@ -34,7 +35,7 @@
         icon
         dark
         v-if="cragSectorId || cragId"
-        @click="defineAsBanner()"
+        @click.prevent="defineAsBanner()"
         :title="defineBtnTitle()"
         :loading="updatingBanner"
       >
@@ -45,6 +46,7 @@
       <v-btn
         icon
         dark
+        @click.stop=""
         :to="photo.path('edit')"
       >
         <v-icon small>
@@ -63,6 +65,7 @@ import CragSectorApi from '@/services/oblyk-api/CragSectorApi'
 import CragSector from '@/models/CragSector'
 import CragRouteApi from '@/services/oblyk-api/CragRouteApi'
 import CragRoute from '@/models/CragRoute'
+import router from '@/router'
 
 export default {
   name: 'PhotoThumbnail',
@@ -146,6 +149,10 @@ export default {
         .finally(() => {
           this.updatingBanner = false
         })
+    },
+
+    goToViewer: function () {
+      router.push(`/photos/${this.photo.id}`)
     }
   }
 }

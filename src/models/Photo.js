@@ -17,4 +17,13 @@ export default class Photo extends ActiveData {
   thumbnailUrl () {
     return `${process.env.VUE_APP_OBLYK_API_URL}${this.thumbnail}`
   }
+
+  get copy () {
+    const copies = []
+    if (this.copyright_by) copies.push('BY')
+    if (this.copyright_nc) copies.push('NC')
+    if (this.copyright_nd) copies.push('ND')
+
+    return copies.join(' - ')
+  }
 }

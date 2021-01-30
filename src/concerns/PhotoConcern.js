@@ -3,27 +3,42 @@ import Photo from '@/models/Photo'
 export const PhotoConcern = {
   data () {
     return {
-      photo: null,
-      loadingPhoto: true
+      photo: null
     }
   },
 
-  created () {
-    if (this.$route.params.photoId) this.getPhoto()
+  beforeRouteEnter (to, from, next) {
+    if (!to.params.photoId) {
+      next()
+    } else {
+      new Photo()
+        .find(to.params.photoId)
+        .then(resp => {
+          next(vm => {
+            vm.photo = resp
+          })
+        })
+        .catch(err => {
+          next(vm => vm.$root.$emit('alertFromApiError', err, 'photo'))
+        })
+    }
   },
 
-  methods: {
-    getPhoto: function () {
-      this.loadingPhoto = true
+  beforeRouteUpdate (to, from, next) {
+    if (!to.params.photoId) {
+      next()
+    } else if (from.params.photoId === to.params.photoId) {
+      next()
+    } else {
       new Photo()
-        .find(this.$route.params.photoId)
-        .then((resp) => {
+        .find(to.params.photoId)
+        .then(resp => {
           this.photo = resp
+          next()
         })
-        .catch((err) => {
+        .catch(err => {
           this.$root.$emit('alertFromApiError', err, 'photo')
-        }).finally(() => {
-          this.loadingPhoto = false
+          next()
         })
     }
   }
