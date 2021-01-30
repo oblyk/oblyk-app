@@ -98,7 +98,7 @@
               </tr>
 
               <!-- Anchor -->
-              <tr v-if="cragRoute.sections.length === 1 && cragRoute.isAnchorable">
+              <tr v-if="cragRoute.sections.length === 1 && cragRoute.isAnchorable()">
                 <th
                   :title="$t('models.cragRoute.anchor_type')"
                   class="smallest-table-column text-right"
@@ -119,7 +119,7 @@
               </tr>
 
               <!-- Reception -->
-              <tr v-if="cragRoute.sections.length === 1 && cragRoute.isReceptionable">
+              <tr v-if="cragRoute.sections.length === 1 && cragRoute.isReceptionable()">
                 <th
                   :title="$t('models.cragRoute.reception_type')"
                   class="smallest-table-column text-right"
@@ -222,7 +222,7 @@
               </tr>
 
               <!-- Bolt -->
-              <tr v-if="cragRoute.sections.length === 1 && cragRoute.isBoltable">
+              <tr v-if="cragRoute.sections.length === 1 && cragRoute.isBoltable()">
                 <th
                   :title="$t('models.cragRoute.bolt_type')"
                   class="smallest-table-column text-right"
@@ -243,7 +243,7 @@
               </tr>
 
               <!-- Start -->
-              <tr v-if="cragRoute.sections.length === 1 && cragRoute.isStartable">
+              <tr v-if="cragRoute.sections.length === 1 && cragRoute.isStartable()">
                 <th
                   :title="$t('models.cragRoute.start_type')"
                   class="smallest-table-column text-right"
@@ -260,6 +260,17 @@
                   >
                     {{ $t('common.noInformation') }}
                   </cite>
+                </td>
+              </tr>
+
+              <!-- Version -->
+              <tr>
+                <td colspan="2" class="text-right">
+                  <contributions-label
+                    version-type="cragRoute"
+                    :version-id="cragRoute.id"
+                    :versions-count="cragRoute.versions_count"
+                  />
                 </td>
               </tr>
             </tbody>
@@ -299,15 +310,14 @@
     </v-row>
 
     <div v-if="cragRoute.sections.length > 1">
+      <v-divider class="mt-3 mb-5" />
+      <p>
+        <v-icon left>
+          mdi-source-branch
+        </v-icon>
+        {{ $t('components.cragRoute.pitches') }}
+      </p>
       <crag-route-section-list :crag-route="cragRoute" />
-    </div>
-
-    <div class="text-right">
-      <contributions-label
-        version-type="cragRoute"
-        :version-id="cragRoute.id"
-        :versions-count="cragRoute.versions_count"
-      />
     </div>
   </div>
 </template>

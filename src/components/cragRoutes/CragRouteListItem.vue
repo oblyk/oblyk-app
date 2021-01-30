@@ -11,6 +11,30 @@
       >
         {{ route.name }}
         <grade-route-note :route="route" />
+        <v-icon
+          :title="$tc('components.photo.countInfos', route.photos_count, { count: route.photos_count } )"
+          v-if="route.photos_count > 0"
+          small
+          class="ml-3"
+        >
+          mdi-camera
+        </v-icon>
+        <v-icon
+          :title="$tc('components.video.countInfos', route.videos_count, { count: route.videos_count } )"
+          v-if="route.videos_count > 0"
+          small
+          class="ml-3"
+        >
+          mdi-filmstrip
+        </v-icon>
+        <v-icon
+          :title="$tc('components.comment.countInfos', route.comments_count, { count: route.comments_count } )"
+          v-if="route.comments_count > 0"
+          small
+          class="ml-3"
+        >
+          mdi-comment
+        </v-icon>
       </v-list-item-title>
       <v-list-item-subtitle>
         <span v-if="route.crag_sector.id">
@@ -18,6 +42,7 @@
             mdi-texture-box
           </v-icon>
           <router-link
+            @click.stop=""
             :to="route.CragSector.path()"
           >
             {{ route.CragSector.name }}

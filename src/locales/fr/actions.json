@@ -67,6 +67,8 @@
     "addPdfGuideBook": "Ajouter un topo PDF",
     "seeNumberMore": "Voir %{number} de plus",
     "addPark": "Ajouter un parking",
-    "addApproach": "Ajouter une approche"
+    "addApproach": "Ajouter une approche",
+    "createAndQuite": "Créer & quitter",
+    "continueToAdd": "Continuer d'ajouter"
   }
 }

@@ -17,9 +17,15 @@
       "sun": "Ensoleillement",
       "seasons": "Saisons favorables",
       "orientations": "Orientations",
-      "approachType": "Type d'approche"
+      "approachType": "Type d'approche",
+      "anchorType": "Type de relais",
+      "boltType": "Type de point",
+      "receptionType": "Type de reception",
+      "startType": "Type de départ",
+      "inclineType": "Inclinaison"
     },
     "gallery": {
+      "title": "Photos",
       "defineCragRouteBanner": "Définir comme bandeau de la ligne",
       "defineCragSectorBanner": "Définir comme bandeau du secteur",
       "defineCragBanner": "Définir comme bandeau du site"
@@ -75,7 +81,7 @@
       "descriptionOf": "Description de %{name}",
       "localization": "Localisation",
       "lines": "Lignes",
-      "rangingFrom": "Allant de %{min} à %{max}",
+      "rangingFrom": "Allant de <strong>%{min}</strong> à <strong>%{max}</strong>",
       "noGuide": "Pas de topo renseigné",
       "noRoutes": "Il n'y a pas encore de ligne enregistrées sur ce site",
       "guideAroundThisCrag": "Topos à 50km autour de",
@@ -100,6 +106,16 @@
       "searchRoute": "Chercher une voie",
       "sortRouteLabel": "Trier les voies",
       "climberOpinion": "L'avis des grimpeurs",
+      "new": "Ajouter une nouvelle ligne",
+      "gradeExample": "exemple: 7a, 6c+, 5.10, B15, etc.",
+      "pitch": "Longueur",
+      "pitches": "Longueurs",
+      "inMeters": "en mètres",
+      "addPitch": "Ajouter une longueur",
+      "removePitch": "Supprimer une longueur",
+      "routeAdded": "Ligne : '%{name}' ajoutée",
+      "tips": "<strong>Tips</strong> : utiliser <kbd>tab</kbd> pour naviguer, <kbd>espace</kbd> pour ouvrir les listes",
+      "similarRoute": "Une ligne ressemble | {count} lignes ressemblent",
       "sort": {
         "difficulty_desc": "Du plus dur au plus facile",
         "difficulty_asc": "Du plus facile au plus dur",
@@ -253,6 +269,7 @@
       "noLink": "Il n'y a pas de lien référencé ici pour l'instant"
     },
     "comment": {
+      "countInfos": "Un commentaire posté | %{count} commentaires postés",
       "noComment": "Il n'y a pas de commentaire ici pour l'instant",
       "climbersComments": "Commentaires des grimpeurs"
     },
@@ -272,9 +289,12 @@
       }
     },
     "photo" : {
+      "countInfos": "Une photo postée | %{count} photos postées",
       "noPhoto": "Il n'y a pas de photo ici pour l'instant"
     },
     "video" : {
+      "countInfos": "Une video postée | %{count} vidéos postées",
+      "title": "Vidéos",
       "noVideo": "Il n'y a pas de vidéo ici pour l'instant"
     },
     "user": {

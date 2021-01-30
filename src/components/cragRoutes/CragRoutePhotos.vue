@@ -1,8 +1,18 @@
 <template>
   <div>
+    <p>
+      <v-icon left>
+        mdi-image
+      </v-icon>
+      {{ $t('components.gallery.title') }}
+    </p>
+
     <spinner v-if="loadingPhotos" :full-height="false"/>
     <div v-if="!loadingPhotos">
-      <photo-gallery :photos-data="photos" />
+      <photo-gallery
+        :photos-data="photos"
+        :lg-col="lgCol"
+      />
       <p class="text-right">
         <v-btn
           :to="`/photos/CragRoute/${cragRoute.id}/new?redirect_to=${this.$route.fullPath}`"
@@ -32,7 +42,8 @@ export default {
   components: { PhotoGallery, Spinner },
   mixins: [SessionConcern],
   props: {
-    cragRoute: Object
+    cragRoute: Object,
+    lgCol: String
   },
 
   data () {

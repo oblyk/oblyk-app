@@ -6,6 +6,8 @@
     item-text="text"
     item-value="value"
     chips
+    :dense="dense"
+    :hide-details="hideDetails"
     prepend-inner-icon="mdi-pound"
     :label="label ? label : $t('components.input.tags')"
     multiple
@@ -22,6 +24,14 @@ export default {
     label: {
       type: String,
       required: false
+    },
+    dense: {
+      type: Boolean,
+      default: false
+    },
+    hideDetails: {
+      type: Boolean,
+      default: false
     }
   },
 

@@ -1,13 +1,13 @@
 <template>
   <v-text-field
     outlined
-    prepend-inner-icon="mdi-magnify"
+    :prepend-inner-icon="icon"
     @click:clear="clearSearch()"
     v-model="query"
     :loading="searching"
-    hide-details
+    :hide-details="hideDetail"
     clearable
-    :label="$t('components.cragRoute.searchRoute')"
+    :label="$t(labelKey)"
     @keyup="search()"
   />
 </template>
@@ -21,12 +21,28 @@ export default {
   props: {
     value: String,
     crag: Object,
-    cragSector: Object
+    cragSector: Object,
+    labelKey: {
+      type: String,
+      default: 'components.cragRoute.searchRoute'
+    },
+    icon: {
+      type: String,
+      default: 'mdi-magnify'
+    },
+    hideDetail: {
+      type: Boolean,
+      default: true
+    },
+    eventTrigger: {
+      type: String,
+      default: 'searchCragRoutesResults'
+    }
   },
 
   data () {
     return {
-      query: null,
+      query: this.value,
       searching: false,
       onSearch: false,
       searchResults: [],
@@ -36,7 +52,7 @@ export default {
 
   watch: {
     query: function () {
-      if (this.query === '') {
+      if (this.query === '' || this.query === null) {
         this.clearSearch()
       }
     }
@@ -48,6 +64,8 @@ export default {
     },
 
     search: function () {
+      this.$emit('input', this.query)
+
       if (this.previousQuery === this.query) {
         this.searching = false
         return
@@ -82,7 +100,7 @@ export default {
             this.searchResults.push(new CragRoute(cragRoute))
           }
           this.previousQuery = this.query
-          this.$root.$emit('searchCragRoutesResults', this.searchResults)
+          this.$root.$emit(this.eventTrigger, this.searchResults)
         })
         .catch(err => {
           if (err.response !== undefined) {

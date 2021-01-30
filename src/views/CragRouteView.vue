@@ -16,7 +16,12 @@
     </v-card>
     <v-card class="mt-5">
       <v-container>
-        <crag-route-photos :crag-route="cragRoute" />
+        <crag-route-photos lg-col="col-lg-4" :crag-route="cragRoute" />
+      </v-container>
+    </v-card>
+    <v-card class="mt-5">
+      <v-container>
+        <crag-route-videos lg-col="col-lg-4" :crag-route="cragRoute" />
       </v-container>
     </v-card>
   </div>
@@ -28,10 +33,12 @@ import CragRouteHead from '@/components/cragRoutes/layout/CragRouteHead'
 import CragRouteDescription from '@/components/cragRoutes/CragRouteDescription'
 import CragRouteComments from '@/components/cragRoutes/CragRouteComments'
 import CragRoutePhotos from '@/components/cragRoutes/CragRoutePhotos'
+import CragRouteVideos from '@/components/cragRoutes/CragRouteVideos'
 
 export default {
   name: 'CragRouteView',
   components: {
+    CragRouteVideos,
     CragRoutePhotos,
     CragRouteComments,
     CragRouteDescription,

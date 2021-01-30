@@ -68,6 +68,7 @@
     "cragRoute": {
       "name": "Name",
       "height": "Height",
+      "total_height": "Total height",
       "open_year": "Open year",
       "opener": "Openers",
       "sections": "Sections",
@@ -83,9 +84,12 @@
       "anchor": "Anchor",
       "incline_type": "Incline",
       "bolt_type": "Bolt type",
+      "bolt_count": "Bolt count",
       "anchor_type": "Anchor type",
       "reception_type": "Reception type",
-      "start_type": "Start type"
+      "start_type": "Start type",
+      "grade": "Grade",
+      "description": "Description"
     },
     "park": {
       "description": "Description",

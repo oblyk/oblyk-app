@@ -4,6 +4,7 @@ import CragSectorInfoView from '@/views/cragSectors/CragSectorInfoView'
 import CragSectorView from '@/views/CragSectorView'
 import CragSectorPhotosView from '@/views/cragSectors/CragSectorPhotosView'
 import CragSectorMapView from '@/views/cragSectors/CragSectorMapView'
+import CragRouteNewView from '@/views/cragRoutes/actions/CragRouteNewView'
 
 export default [
   {
@@ -21,6 +22,15 @@ export default [
     meta: {
       requiresAuth: true,
       objectName: 'cragSector',
+      showAvatar: false
+    }
+  },
+  {
+    path: '/crags/:cragId/:cragSlug/sectors/:cragSectorId/:cragSectorSlug/routes/new',
+    component: CragRouteNewView,
+    meta: {
+      requiresAuth: true,
+      objectName: 'crag',
       showAvatar: false
     }
   },

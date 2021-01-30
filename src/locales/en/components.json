@@ -17,9 +17,15 @@
       "sun": "Sunshine",
       "seasons": "Favorable seasons",
       "orientations": "Orientations",
-      "approachType": "Approach type"
+      "approachType": "Approach type",
+      "anchorType": "Anchor type",
+      "boltType": "Bolt type",
+      "receptionType": "Reception type",
+      "startType": "Start type",
+      "inclineType": "Incline"
     },
     "gallery": {
+      "title": "Pictures",
       "defineCragRouteBanner": "Define as route banner",
       "defineCragSectorBanner": "Define as sector banner",
       "defineCragBanner": "Define as crag banner"
@@ -75,7 +81,7 @@
       "descriptionOf": "Description of %{name}",
       "localization": "Localization",
       "lines": "Lines",
-      "rangingFrom": "Ranging from %{min} to %{max}",
+      "rangingFrom": "Ranging from <strong>%{min}</strong> to <strong>%{max}</strong>",
       "noGuide": "No guide filled in",
       "noRoutes": "There are no routes registered on this site yet.",
       "guideAroundThisCrag": "Guide books at 50km around",
@@ -100,6 +106,16 @@
       "searchRoute": "Search route",
       "sortRouteLabel": "Sort routes",
       "climberOpinion": "Climber's opinion",
+      "new": "add a new route",
+      "gradeExample": "example: 7a, 6c+, 5.10, B15, etc.",
+      "pitch": "Pitch",
+      "pitches": "Pitches",
+      "inMeters": "in meters",
+      "addPitch": "Add pitch",
+      "removePitch": "Remove pitch",
+      "routeAdded": "Route : '%{name}' added",
+      "tips": "<strong>Tips</strong> : use <kbd>tab</kbd> for navigate, <kbd>espace</kbd> for open lists",
+      "similarRoute": "One route looks like | {count} routes looks like",
       "sort": {
         "difficulty_desc": "From the hardest to the easiest",
         "difficulty_asc": "From the easiest to the hardest",
@@ -253,6 +269,7 @@
       "noLink": "There is no link referenced here for the moment"
     },
     "comment": {
+      "countInfos": "One comment posted | %{count} comments posted",
       "noComment": "There is no comment here for the moment",
       "climbersComments": "Comments from climbers"
     },
@@ -272,9 +289,12 @@
       }
     },
     "photo" : {
+      "countInfos": "One photo posted | %{count} photos posted",
       "noPhoto": "There is no picture here for the moment"
     },
     "video" : {
+      "title": "Videos",
+      "countInfos": "One video posted | %{count} videos posted",
       "noVideo": "There is no video here for the moment"
     },
     "user": {

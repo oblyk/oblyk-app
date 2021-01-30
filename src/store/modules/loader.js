@@ -20,7 +20,7 @@ const actions = {
 
 const mutations = {
   START_LOADING: state => state.loading++,
-  FINISH_LOADING: state => state.loading--
+  FINISH_LOADING: state => { state.loading = 0 }
 }
 
 export default {

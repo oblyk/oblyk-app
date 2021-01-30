@@ -60,18 +60,14 @@
                 {{ $t('components.crag.lines') }} :
               </th>
               <td>
-                {{ cragSector.routes_figures.route_count }} {{ $t('components.crag.lines') }}.
-                <span v-if="cragSector.routes_figures.route_count > 0">
-              {{
-                    $t(
-                      'components.crag.rangingFrom',
-                      {
-                        min: cragSector.routes_figures.grade.min_text,
-                        max: cragSector.routes_figures.grade.max_text
-                      }
-                    )
-                  }}
-            </span>
+                {{ cragSector.routes_figures.count }} {{ $t('components.crag.lines') }}.
+                <span
+                  v-if="cragSector.routes_figures.count > 0"
+                  v-html=" $t('components.crag.rangingFrom', {
+                    min: cragSector.routes_figures.grade.min_text,
+                    max: cragSector.routes_figures.grade.max_text
+                  })"
+                />
               </td>
             </tr>
             <tr>

@@ -68,10 +68,11 @@
     "cragRoute": {
       "name": "Nom",
       "height": "Hauteur",
+      "total_height": "Hauteur totale",
       "open_year": "Année d'ouverture",
       "opener": "Ouvreurs",
       "sections": "Sections",
-      "climbing_type": "Type",
+      "climbing_type": "Type de grimpe",
       "difficulty_appreciation": "Appréciation de la difficulté",
       "note": "Note",
       "note_count": "Nombre de note",
@@ -83,9 +84,12 @@
       "anchor": "Relais",
       "incline_type": "Inclinaison",
       "bolt_type": "Type de point",
+      "bolt_count": "Nombre de point",
       "anchor_type": "Type de relais",
       "reception_type": "Type de réception",
-      "start_type": "Type de départ"
+      "start_type": "Type de départ",
+      "grade": "Cotation",
+      "description": "Description"
     },
     "park": {
       "description": "Description",

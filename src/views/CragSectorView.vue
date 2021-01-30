@@ -9,6 +9,7 @@
       class="mt-4 mb-10"
       :crag-sector="cragSector"
     />
+    <crag-route-drawer />
   </div>
 </template>
 <script>
@@ -16,10 +17,11 @@ import { CragSectorConcern } from '@/concerns/CragSectorConcern'
 import CragSectorHead from '@/components/cragSectors/layout/CragSectorHead'
 import CragSectorTabs from '@/components/cragSectors/layout/CragSectorTabs'
 import CragRoutes from '@/components/cragRoutes/CragRoutes'
+import CragRouteDrawer from '@/components/cragRoutes/CragRouteDrawer'
 
 export default {
   name: 'CragSectorView',
-  components: { CragRoutes, CragSectorTabs, CragSectorHead },
+  components: { CragRouteDrawer, CragRoutes, CragSectorTabs, CragSectorHead },
   mixins: [CragSectorConcern]
 }
 </script>

@@ -13,7 +13,12 @@
       />
       <div class="pr-3 pl-3 pt-1">
         <crag-route-description :crag-route="cragRoute" />
+        <v-divider class="mt-5 mb-5" />
         <crag-route-comments :crag-route="cragRoute" />
+        <v-divider class="mt-5 mb-5" />
+        <crag-route-photos :crag-route="cragRoute" lg-col="col-lg-6" />
+        <v-divider class="mt-5 mb-5" />
+        <crag-route-videos :crag-route="cragRoute" lg-col="col-lg-6" />
       </div>
     </div>
   </v-navigation-drawer>
@@ -26,10 +31,14 @@ import CragRoute from '@/models/CragRoute'
 import CragRouteHead from '@/components/cragRoutes/layout/CragRouteHead'
 import CragRouteDescription from '@/components/cragRoutes/CragRouteDescription'
 import CragRouteComments from '@/components/cragRoutes/CragRouteComments'
+import CragRoutePhotos from '@/components/cragRoutes/CragRoutePhotos'
+import CragRouteVideos from '@/components/cragRoutes/CragRouteVideos'
 
 export default {
   name: 'CragRouteDrawer',
   components: {
+    CragRouteVideos,
+    CragRoutePhotos,
     CragRouteComments,
     CragRouteDescription,
     CragRouteHead,
