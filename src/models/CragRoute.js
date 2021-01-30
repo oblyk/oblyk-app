@@ -39,6 +39,10 @@ export default class CragRoute extends ActiveData {
   thumbnailCoverUrl () {
     if (this.photo.thumbnail_url) {
       return `${process.env.VUE_APP_OBLYK_API_URL}${this.photo.thumbnail_url}`
+    } else if (this.crag_sector.photo.thumbnail_url) {
+      return `${process.env.VUE_APP_OBLYK_API_URL}${this.crag_sector.photo.thumbnail_url}`
+    } else if (this.crag.photo.thumbnail_url) {
+      return `${process.env.VUE_APP_OBLYK_API_URL}${this.crag.photo.thumbnail_url}`
     } else {
       return require('@/assets/default-crag-banner.jpg')
     }

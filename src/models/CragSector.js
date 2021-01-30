@@ -14,14 +14,28 @@ export default class CragSector extends ActiveData {
   coverUrl () {
     if (this.photo.url) {
       return `${process.env.VUE_APP_OBLYK_API_URL}${this.photo.url}`
+    } else if (this.crag.photo.url) {
+      return `${process.env.VUE_APP_OBLYK_API_URL}${this.crag.photo.url}`
     } else {
       return require('@/assets/default-crag-banner.jpg')
+    }
+  }
+
+  get coverFrom () {
+    if (this.photo.url) {
+      return 'cragSector'
+    } else if (this.crag.photo.url) {
+      return 'crag'
+    } else {
+      return null
     }
   }
 
   thumbnailCoverUrl () {
     if (this.photo.thumbnail_url) {
       return `${process.env.VUE_APP_OBLYK_API_URL}${this.photo.thumbnail_url}`
+    } else if (this.crag.photo.thumbnail_url) {
+      return `${process.env.VUE_APP_OBLYK_API_URL}${this.crag.photo.thumbnail_url}`
     } else {
       return require('@/assets/default-crag-banner.jpg')
     }
@@ -30,6 +44,8 @@ export default class CragSector extends ActiveData {
   mapThumbnailCoverUrl () {
     if (this.map_thumbnail_url) {
       return `${process.env.VUE_APP_OBLYK_API_URL}${this.map_thumbnail_url}`
+    } else if (this.crag.photo.map_thumbnail_url) {
+      return `${process.env.VUE_APP_OBLYK_API_URL}${this.crag.photo.map_thumbnail_url}`
     } else {
       return require('@/assets/default-crag-banner.jpg')
     }

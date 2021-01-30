@@ -44,7 +44,7 @@ export default {
   methods: {
     getCragSectors: function () {
       this.loadingCragSectors = true
-      const cragId = this.crag ? this.crag.id : this.cragSector.id
+      const cragId = this.crag ? this.crag.id : this.cragSector.crag_id
 
       this.cragSectors = [
         {

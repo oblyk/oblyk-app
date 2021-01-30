@@ -5,6 +5,12 @@
     gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
     :src="src"
   >
+    <p
+        class="text-right pr-5"
+        v-if="cragSector.coverFrom"
+    >
+      <small>{{ $t(`components.${cragSector.coverFrom}.coverFrom`) }}</small>
+    </p>
     <div
       class="crag-sector-header-title"
     >

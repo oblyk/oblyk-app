@@ -42,8 +42,8 @@ export default [
         path: 'infos',
         component: CragSectorInfoView,
         meta: {
-          objectName: 'crag',
-          showAvatar: true
+          objectName: 'cragSector',
+          showAvatar: false
         }
       },
       {
@@ -51,7 +51,7 @@ export default [
         component: CragSectorPhotosView,
         meta: {
           objectName: 'crag',
-          showAvatar: true
+          showAvatar: false
         }
       },
       {
@@ -59,7 +59,7 @@ export default [
         component: CragSectorMapView,
         meta: {
           objectName: 'crag',
-          showAvatar: true
+          showAvatar: false
         }
       }
     ]
