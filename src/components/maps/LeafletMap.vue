@@ -44,6 +44,7 @@
     </v-marker-cluster>
   </l-map>
 </template>
+
 <script>
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'

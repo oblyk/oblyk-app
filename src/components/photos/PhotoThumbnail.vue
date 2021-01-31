@@ -35,7 +35,7 @@
         icon
         dark
         v-if="cragSectorId || cragId"
-        @click.prevent="defineAsBanner()"
+        @click.stop="defineAsBanner()"
         :title="defineBtnTitle()"
         :loading="updatingBanner"
       >
@@ -47,7 +47,7 @@
         icon
         dark
         @click.stop=""
-        :to="photo.path('edit')"
+        :to="`${photo.path('edit')}?redirect_to=${$route.fullPath}`"
       >
         <v-icon small>
           mdi-pencil
@@ -71,7 +71,8 @@ export default {
   name: 'PhotoThumbnail',
   mixins: [SessionConcern],
   props: {
-    photo: Object
+    photo: Object,
+    photosGallery: Array
   },
 
   data () {
@@ -152,7 +153,7 @@ export default {
     },
 
     goToViewer: function () {
-      router.push(`/photos/${this.photo.id}`)
+      router.push(`/photos/${this.photo.id}?photos=${this.photosGallery.join('-')}&redirect_to=${this.$route.fullPath}`)
     }
   }
 }

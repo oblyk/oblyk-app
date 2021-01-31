@@ -138,6 +138,11 @@ export const MapMarkerHelpers = {
         // Park
         'park-marker': L.icon({
           iconUrl: require('@/assets/markers/park-marker.png'), iconSize: [23, 30], iconAnchor: [11.5, 30], popupAnchor: [0, 0]
+        }),
+
+        // Photo
+        'photo-marker': L.icon({
+          iconUrl: require('@/assets/markers/photo-marker.png'), iconSize: [23, 30], iconAnchor: [11.5, 30], popupAnchor: [0, 0]
         })
       }
     }

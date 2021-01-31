@@ -2,7 +2,7 @@
   <div class="close-form-btn">
     <v-btn
       class="close-btn"
-      @click="$router.go(-1)"
+      @click="backTo"
       icon
       :large="!isMobile"
     >
@@ -10,9 +10,14 @@
     </v-btn>
   </div>
 </template>
+
 <script>
 export default {
   name: 'CloseForm',
+  props: {
+    backToUrl: String
+  },
+
   data () {
     return {
       isMobile: false
@@ -24,6 +29,14 @@ export default {
   },
 
   methods: {
+    backTo: function () {
+      if (this.backToUrl) {
+        this.$router.push(this.backToUrl)
+      } else {
+        this.$router.go(-1)
+      }
+    },
+
     onResize () {
       this.isMobile = window.innerWidth < 600
     }

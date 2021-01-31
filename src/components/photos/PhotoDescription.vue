@@ -1,18 +1,19 @@
 <template>
   <div class="pb-5 photo-description">
     <!-- Description -->
-    <v-card-text>
+    <v-card-text v-if="photo.description">
       {{ photo.description }}
     </v-card-text>
 
     <!-- Crag, Sector, Route, etc. -->
     <v-card-title class="caption pb-0">
       <router-link
-        :to="illustrableObject().path()"
-        class="discrete-link"
+        :title="illustrableObject.name"
+        :to="illustrableObject.path()"
+        class="discrete-link text-truncate"
       >
         <v-icon left small>mdi-terrain</v-icon>
-        {{ illustrableObject().name }}
+        {{ illustrableObject.name }}
       </router-link>
     </v-card-title>
 
@@ -50,25 +51,13 @@
     </v-card-title>
   </div>
 </template>
-<script>
-import Crag from '@/models/Crag'
-import CragSector from '@/models/CragSector'
 
+<script>
 export default {
   name: 'PhotoDescription',
   props: {
-    photo: Object
-  },
-
-  methods: {
-    illustrableObject: function () {
-      const object = this.photo.illustrable
-      if (object.type === 'Crag') {
-        return new Crag(object)
-      } else if (object === 'CragSector') {
-        return new CragSector(object)
-      }
-    }
+    photo: Object,
+    illustrableObject: Object
   }
 }
 </script>

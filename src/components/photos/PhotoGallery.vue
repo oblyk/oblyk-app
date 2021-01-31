@@ -6,7 +6,10 @@
       class="col-12 col-md-4 d-flex child-flex"
       v-bind:class="lgCol"
     >
-      <photo-thumbnail :photo="photo" />
+      <photo-thumbnail
+        :photo="photo"
+        :photos-gallery="photosGallery()"
+      />
     </v-col>
     <v-col
       v-if="photos().length === 0"
@@ -41,6 +44,10 @@ export default {
         photos.push(new Photo(photo))
       }
       return photos
+    },
+
+    photosGallery: function () {
+      return this.photosData.map(photo => { return photo.id })
     }
   }
 }

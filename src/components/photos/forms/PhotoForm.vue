@@ -94,8 +94,8 @@ export default {
       } else {
         formData.append('photo[illustrable_id]', this.$route.params.illustrableId)
         formData.append('photo[illustrable_type]', this.$route.params.illustrableType)
-        formData.append('photo[description]', this.data.description)
-        formData.append('photo[source]', this.data.source)
+        formData.append('photo[description]', this.data.description || '')
+        formData.append('photo[source]', this.data.source || '')
         formData.append('photo[copyright_by]', this.data.copyright_by)
         formData.append('photo[copyright_nc]', this.data.copyright_nc)
         formData.append('photo[copyright_nd]', this.data.copyright_nd)

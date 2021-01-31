@@ -1,5 +1,7 @@
 <template>
-  <div class="full-height photo-map-viewer">
+  <div
+    class="full-height photo-map-viewer"
+  >
     <editable-map
       editable
       ref="map"
@@ -34,14 +36,23 @@ export default {
 
   computed: {
     bounds: function () {
-      return [[0, 0], [this.photo.photo_height / 6, this.photo.photo_width / 6]]
+      return [[0, 0], [this.photo.photo_height / 10, this.photo.photo_width / 10]]
+    },
+
+    url: function () {
+      return this.photo.pictureUrl()
+    }
+  },
+
+  watch: {
+    photo: function () {
+      this.setMapView()
     }
   },
 
   data () {
     return {
-      crs: CRS.Simple,
-      url: this.photo.pictureUrl()
+      crs: CRS.Simple
     }
   },
 
@@ -52,7 +63,7 @@ export default {
     },
 
     setMapView: function () {
-      this.map.setView([this.photo.photo_height / 12, this.photo.photo_width / 12], 1)
+      this.map.fitBounds(this.bounds)
     }
   }
 }
