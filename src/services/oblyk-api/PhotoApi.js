@@ -2,6 +2,16 @@ import axios from 'axios'
 import BaseApi from '@/services/oblyk-api/BaseApi'
 
 class PhotoApi extends BaseApi {
+  collection (photoIds) {
+    return axios({
+      url: `${this.baseUrl}/photos.json`,
+      params: {
+        photo_ids: photoIds
+      },
+      method: 'GET'
+    })
+  }
+
   find (photoId) {
     return axios({
       url: `${this.baseUrl}/photos/${photoId}.json`,

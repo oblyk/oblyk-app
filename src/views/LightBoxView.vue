@@ -19,6 +19,13 @@
     <!-- Photo info -->
     <photo-card-info class="photo-information" :photo="photo" />
 
+    <!-- Photo collection -->
+    <photo-collection
+      class="photo-collection"
+      :photos-gallery="photosGallery"
+      :back-to-url="redirectTo"
+    />
+
     <!-- Picture viewer -->
     <v-col class="full-height pb-0 pt-0">
       <photo-viewer :photo="photo" />
@@ -41,10 +48,11 @@ import PhotoViewer from '@/components/photos/PhotoViewer'
 import PhotoCardInfo from '@/components/photos/PhotoCardInfo'
 import CloseForm from '@/components/forms/CloseForm'
 import LightBoxArrow from '@/components/photos/LightBoxArrow'
+import PhotoCollection from '@/components/photos/PhotoCollection'
 
 export default {
   name: 'LightBoxView',
-  components: { LightBoxArrow, CloseForm, PhotoCardInfo, PhotoViewer },
+  components: { PhotoCollection, LightBoxArrow, CloseForm, PhotoCardInfo, PhotoViewer },
   mixins: [PhotoConcern],
 
   created () {
@@ -66,6 +74,13 @@ export default {
 .photo-information {
   left: 10px;
   top: 10px;
+  z-index: 15;
+  max-width: 100%;
+  position: absolute;
+}
+.photo-collection {
+  left: 10px;
+  top: 50px;
   z-index: 10;
   max-width: 100%;
   position: absolute;

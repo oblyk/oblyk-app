@@ -3,7 +3,7 @@
     <v-row class="spinner-row">
      <v-col align-self="center">
        <v-progress-circular
-         :size="50"
+         :size="size"
          color="primary"
          indeterminate
        />
@@ -18,6 +18,10 @@ export default {
     fullHeight: {
       type: Boolean,
       default: true
+    },
+    size: {
+      type: Number,
+      default: 50
     }
   }
 }
