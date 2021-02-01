@@ -1,5 +1,6 @@
 import ActiveData from '@/models/ActiveData'
 import CragApi from '@/services/oblyk-api/CragApi'
+import Area from '@/models/Area'
 
 export default class Crag extends ActiveData {
   get (id, callback) {
@@ -70,5 +71,13 @@ export default class Crag extends ActiveData {
     if (this.west) list.push('west')
     if (this.north_west) list.push('north_west')
     return list
+  }
+
+  get Areas () {
+    const areas = []
+    for (const area of this.areas) {
+      areas.push(new Area(area))
+    }
+    return areas
   }
 }

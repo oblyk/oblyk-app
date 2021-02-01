@@ -10,6 +10,8 @@
       <v-simple-table class="no-hover-table">
         <template v-slot:default>
           <tbody>
+
+            <!-- Climbing type -->
             <tr>
               <th class="smallest-table-column text-right">
                 {{ $t('models.crag.climbing_types') }}
@@ -23,6 +25,8 @@
                 </span>
               </td>
             </tr>
+
+            <!-- Rocks -->
             <tr>
               <th class="smallest-table-column text-right">
                 {{ $t('models.crag.rocks') }}
@@ -36,6 +40,8 @@
                 </span>
               </td>
             </tr>
+
+            <!-- Seasons -->
             <tr>
               <th class="smallest-table-column text-right">
                 {{ $t('models.crag.seasons') }}
@@ -49,6 +55,8 @@
                 </span>
               </td>
             </tr>
+
+            <!-- Lines -->
             <tr>
               <th class="smallest-table-column text-right">
                 {{ $t('components.crag.lines') }}
@@ -64,9 +72,11 @@
                 />
               </td>
             </tr>
+
+            <!-- Localization -->
             <tr>
               <th class="smallest-table-column text-right">
-                Localisation
+                {{ $t('components.crag.localization') }}
               </th>
               <td>
                 {{ crag.city }}, {{ crag.region }}, {{ crag.country }}
@@ -80,14 +90,49 @@
                 <copy-btn :message="latLng" />
               </td>
             </tr>
+
+            <!-- Orientations -->
             <tr>
               <th class="smallest-table-column text-right">
-                Orientations
+                {{ $t('components.crag.orientations') }}
               </th>
               <td>
                 {{ crag.orientations().map((climb) => { return $t(`models.crag.${climb}`) }).join(', ') }}
               </td>
             </tr>
+
+            <!-- Areas -->
+            <tr>
+              <th class="smallest-table-column text-right">
+                {{ $t('components.crag.group') }}
+              </th>
+              <td>
+                <router-link
+                  v-for="area in crag.Areas"
+                  :key="`area-${area.id}`"
+                  :to="area.path()"
+                >
+                  <v-chip
+                    small
+                    class="mr-1"
+                  >
+                    {{ area.name }}
+                  </v-chip>
+                </router-link>
+                <v-btn
+                  :title="$t('components.crag.addOnArea')"
+                  v-if="isLoggedIn"
+                  icon small fab
+                  :to="crag.path('add-on-area')"
+                >
+                  <v-icon>
+                    mdi-plus
+                  </v-icon>
+                </v-btn>
+              </td>
+            </tr>
+
+            <!-- Contribution -->
             <tr>
               <td colspan="2" class="text-right">
                 <contributions-label
@@ -107,9 +152,11 @@
 import ContributionsLabel from '@/components/globals/ContributionsLable'
 import QrCodeBtn from '@/components/forms/QrCodeBtn'
 import CopyBtn from '@/components/forms/CopyBtn'
+import { SessionConcern } from '@/concerns/SessionConcern'
 export default {
   name: 'CragInfo',
   components: { CopyBtn, QrCodeBtn, ContributionsLabel },
+  mixins: [SessionConcern],
   props: {
     crag: Object
   },

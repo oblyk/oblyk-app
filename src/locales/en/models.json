@@ -91,6 +91,9 @@
       "grade": "Grade",
       "description": "Description"
     },
+    "area": {
+      "name": "Name"
+    },
     "park": {
       "description": "Description",
       "crag": "Crag"
@@ -238,7 +241,8 @@
     "link": {
       "name": "Title",
       "url": "Url",
-      "description": "Description"
+      "description": "Description",
+      "linkable_type": "Source type"
     },
     "comment": {
       "body": "Comment"

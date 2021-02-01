@@ -69,6 +69,7 @@
     "addPark": "Ajouter un parking",
     "addApproach": "Ajouter une approche",
     "createAndQuite": "Créer & quitter",
-    "continueToAdd": "Continuer d'ajouter"
+    "continueToAdd": "Continuer d'ajouter",
+    "addArea": "Ajouter un nouveau groupe"
   }
 }

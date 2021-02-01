@@ -91,6 +91,9 @@
       "grade": "Cotation",
       "description": "Description"
     },
+    "area": {
+      "name": "Nom"
+    },
     "park": {
       "description": "Description",
       "crag": "Falaise"
@@ -238,7 +241,8 @@
     "link": {
       "name": "Titre",
       "url": "Url",
-      "description": "Description"
+      "description": "Description",
+      "linkable_type": "Type de source"
     },
     "comment": {
       "body": "Commentaire"

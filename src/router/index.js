@@ -29,6 +29,7 @@ import CragSectorRouter from '@/router/modules/CragSectorRouter'
 import ParkRouter from '@/router/modules/ParkRouter'
 import ApproachRouter from '@/router/modules/ApproachRouter'
 import CragRouteRouter from '@/router/modules/CragRouteRouter'
+import AreaRouter from '@/router/modules/AreaRouter'
 
 Vue.use(VueRouter)
 
@@ -61,7 +62,8 @@ const router = new VueRouter({
     ...CragSectorRouter,
     ...ParkRouter,
     ...ApproachRouter,
-    ...CragRouteRouter
+    ...CragRouteRouter,
+    ...AreaRouter
   ]
 })
 

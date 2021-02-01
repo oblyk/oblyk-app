@@ -69,6 +69,7 @@
     "addPark": "Add a parking",
     "addApproach": "Add approach",
     "createAndQuite": "Create & quite",
-    "continueToAdd": "Continue to add"
+    "continueToAdd": "Continue to add",
+    "addArea": "Add new crags group"
   }
 }

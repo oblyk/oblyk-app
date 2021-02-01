@@ -80,11 +80,17 @@
       "newCrag": "New Crag",
       "descriptionOf": "Description of %{name}",
       "localization": "Localization",
+      "orientations": "Orientations",
+      "group": "Crags group",
       "lines": "Lines",
       "rangingFrom": "Ranging from <strong>%{min}</strong> to <strong>%{max}</strong>",
       "noGuide": "No guide filled in",
       "noRoutes": "There are no routes registered on this site yet.",
       "guideAroundThisCrag": "Guide books at 50km around",
+      "areaAroundThisCrag": "Groups at 50km around",
+      "addOnArea": "Add this crag on group",
+      "addThisCragInArea": "Add this crag in group",
+      "addThisCragInGuideBook": "Add this crag in guide book",
       "tabs": {
         "info": "Info",
         "media": "Photos & Videos",
@@ -121,6 +127,23 @@
         "difficulty_asc": "From the easiest to the hardest",
         "name": "By name",
         "note": "By note"
+      }
+    },
+    "area": {
+      "description": "<strong>%{name}</strong> is a grouping of %{crags} climbing crags.<br>These crags contain in total %{routes}, ranging from <strong>%{min}</strong> to <strong>%{max}</strong>",
+      "groupTitle": "%{count} Crags regroupement",
+      "type": "Crags group",
+      "new": "New crag area",
+      "addCragInArea": "Add crag",
+      "removeFromArea": "Remove crag",
+      "searchArea": "Search crag group",
+      "explainNewTopo": "If you didn't find what you were looking for in the search engine, or in the crags group nearby, you can add a new group :",
+      "noGuideAround": "No crags group found 50km away",
+      "cragsMap": "Crags map",
+      "tabs": {
+        "info": "Infos",
+        "crags": "Crags",
+        "photos": "photos"
       }
     },
     "approach": {

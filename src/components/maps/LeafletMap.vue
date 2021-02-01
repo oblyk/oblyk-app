@@ -31,8 +31,9 @@
       :attribution="layer.attribution"
     />
 
-    <!-- GeoJson & Marker cluster -->
+    <!-- GeoJson & Marker cluster if clustered -->
     <v-marker-cluster
+      v-if="clustered"
       :options="{ disableClusteringAtZoom: 12 }"
     >
       <l-geo-json
@@ -42,6 +43,13 @@
         :options="geoJsonOptions"
       />
     </v-marker-cluster>
+
+    <!-- GeoJson & Marker cluster if not clustered -->
+    <l-geo-json
+      v-if="!clustered"
+      :geojson="geoJsons"
+      :options="geoJsonOptions"
+    />
   </l-map>
 </template>
 
@@ -80,6 +88,11 @@ export default {
       required: false
     },
     scrollWheelZoom: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
+    clustered: {
       type: Boolean,
       required: false,
       default: true

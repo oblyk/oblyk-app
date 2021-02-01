@@ -80,11 +80,17 @@
       "newCrag": "Nouvelle falaise",
       "descriptionOf": "Description de %{name}",
       "localization": "Localisation",
+      "orientations": "Orientations",
+      "group": "Groupe de site",
       "lines": "Lignes",
       "rangingFrom": "Allant de <strong>%{min}</strong> à <strong>%{max}</strong>",
       "noGuide": "Pas de topo renseigné",
       "noRoutes": "Il n'y a pas encore de ligne enregistrées sur ce site",
       "guideAroundThisCrag": "Topos à 50km autour de",
+      "areaAroundThisCrag": "Groupe de site à 50km autre de",
+      "addOnArea": "Ajouter ce site dans un group",
+      "addThisCragInArea": "Ajouter ce site à un groupe",
+      "addThisCragInGuideBook": "Ajouter ce site à un topo",
       "tabs": {
         "info": "Info",
         "media": "Photos & Videos",
@@ -121,6 +127,23 @@
         "difficulty_asc": "Du plus facile au plus dur",
         "name": "Par nom",
         "note": "Par note"
+      }
+    },
+    "area": {
+      "description": "<strong>%{name}</strong> est un groupement de %{crags} site d'escalades.<br>Ces sites contiennent au total %{routes}, allant de <strong>%{min}</strong> à <strong>%{max}</strong>",
+      "groupTitle": "Groupe de %{count} sites",
+      "type": "Groupe de sites",
+      "new": "Nouvelle zone de falaise",
+      "addCragInArea": "Ajouter un site",
+      "removeFromArea": "Retirer le site",
+      "searchArea": "Chercher un groupe de site",
+      "explainNewTopo": "Si vous n'avez pas trouvé en cherchant, ou dans les groupes à proximité, vous pouvez ajouter un nouveau groupe :",
+      "noGuideAround": "Pas de groupe de site trouvé à 50km au alentour",
+      "cragsMap": "Carte des sites",
+      "tabs": {
+        "info": "Infos",
+        "crags": "Sites",
+        "photos": "photos"
       }
     },
     "approach": {

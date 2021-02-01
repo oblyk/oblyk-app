@@ -4,9 +4,9 @@
       <v-row justify="center">
         <v-col class="global-form-width">
           <h2 class="mb-4">
-            {{ $t('components.crag.addThisCragInGuideBook') }}
+            {{ $t('components.crag.addThisCragInArea') }}
           </h2>
-          <add-guide-book-on-crag-form :crag="crag" />
+          <add-area-on-crag-form :crag="crag" />
         </v-col>
       </v-row>
     </v-container>
@@ -14,11 +14,11 @@
 </template>
 <script>
 import { CragConcern } from '@/concerns/CragConcern'
-import AddGuideBookOnCragForm from '@/components/guideBookPaperCrags/forms/AddGuideBookOnCragForm'
+import AddAreaOnCragForm from '@/components/areas/forms/AddAreaOnCragForm'
 
 export default {
-  name: 'AddGuideBookOnCragView',
-  components: { AddGuideBookOnCragForm },
+  name: 'AddAreaOnCragView',
+  components: { AddAreaOnCragForm },
   mixins: [CragConcern]
 }
 </script>
