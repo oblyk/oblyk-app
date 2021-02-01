@@ -28,7 +28,8 @@
       "title": "Photos",
       "defineCragRouteBanner": "Définir comme bandeau de la ligne",
       "defineCragSectorBanner": "Définir comme bandeau du secteur",
-      "defineCragBanner": "Définir comme bandeau du site"
+      "defineCragBanner": "Définir comme bandeau du site",
+      "defineAreaBanner": "Définir comme bandeau du groupe"
     },
     "search": {
       "title": "Chercher",

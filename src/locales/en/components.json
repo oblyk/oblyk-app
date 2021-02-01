@@ -28,7 +28,8 @@
       "title": "Pictures",
       "defineCragRouteBanner": "Define as route banner",
       "defineCragSectorBanner": "Define as sector banner",
-      "defineCragBanner": "Define as crag banner"
+      "defineCragBanner": "Define as crag banner",
+      "defineAreaBanner": "Define as group banner"
     },
     "search": {
       "title": "Search",

@@ -34,7 +34,7 @@
       <v-btn
         icon
         dark
-        v-if="cragSectorId || cragId"
+        v-if="cragSectorId || cragId || areaId"
         @click.stop="defineAsBanner()"
         :title="defineBtnTitle()"
         :loading="updatingBanner"
@@ -66,6 +66,8 @@ import CragSector from '@/models/CragSector'
 import CragRouteApi from '@/services/oblyk-api/CragRouteApi'
 import CragRoute from '@/models/CragRoute'
 import router from '@/router'
+import AreaApi from '@/services/oblyk-api/AreaApi'
+import Area from '@/models/Area'
 
 export default {
   name: 'PhotoThumbnail',
@@ -79,6 +81,7 @@ export default {
     return {
       photoOver: false,
       updatingBanner: false,
+      areaId: this.$route.params.areaId,
       cragId: this.$route.params.cragId,
       cragSectorId: this.$route.params.cragSectorId,
       cragRouteId: this.$route.params.cragRouteId
@@ -89,6 +92,8 @@ export default {
     bannerType: function () {
       if (this.cragRouteId) {
         return 'cragRoute'
+      } else if (this.areaId) {
+        return 'area'
       } else if (this.cragSectorId) {
         return 'cragSector'
       } else {
@@ -104,6 +109,8 @@ export default {
         return this.$t('components.gallery.defineCragSectorBanner')
       } else if (bannerType === 'crag') {
         return this.$t('components.gallery.defineCragBanner')
+      } else if (bannerType === 'area') {
+        return this.$t('components.gallery.defineAreaBanner')
       }
     },
 
@@ -129,6 +136,11 @@ export default {
           photo_id: this.photo.id,
           id: this.cragId
         })
+      } else if (bannerType === 'area') {
+        promise = AreaApi.update({
+          photo_id: this.photo.id,
+          id: this.areaId
+        })
       }
 
       promise
@@ -142,6 +154,9 @@ export default {
           } else if (bannerType === 'cragRoute') {
             const cragRoute = new CragRoute(resp.data)
             this.$root.$emit('updateCragRouteBannerSrc', cragRoute.coverUrl())
+          } else if (bannerType === 'area') {
+            const area = new Area(resp.data)
+            this.$root.$emit('updateAreaBannerSrc', area.coverUrl())
           }
         })
         .catch(err => {
