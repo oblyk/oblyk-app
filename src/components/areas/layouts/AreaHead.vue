@@ -6,6 +6,12 @@
       gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
       :src="src"
     >
+      <div
+        v-if="area.photo.illustrable_name"
+        class="area-photo-of"
+      >
+        <small>{{ area.photo.illustrable_name }}</small>
+      </div>
       <div class="area-header-title">
         <h1 class="font-weight-medium loved-by-king">
           {{ area.name }}
@@ -63,6 +69,11 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+.area-photo-of {
+  position: absolute;
+  bottom: 5px;
+  right: 10px;
+}
 .area-header-title {
   position: absolute;
   width: 100%;
