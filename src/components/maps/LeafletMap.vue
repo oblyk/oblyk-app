@@ -154,6 +154,16 @@ export default {
     }
   },
 
+  mounted () {
+    this.$root.$on('fitMapOnGeoJsonBounds', () => {
+      this.fitGeoJsonBounds()
+    })
+  },
+
+  beforeDestroy () {
+    this.$root.$off('fitMapOnGeoJsonBounds')
+  },
+
   computed: {
     layer () {
       return this.layers[this.layerIndex]
@@ -199,6 +209,11 @@ export default {
 
       const zoom = this.$refs.leafletMap.mapObject.getZoom()
       localStorage.setItem('map-zoom', zoom)
+    },
+
+    fitGeoJsonBounds: function () {
+      const bounds = L.geoJson(this.geoJsons).getBounds()
+      this.$refs.leafletMap.mapObject.fitBounds(bounds)
     }
   }
 }

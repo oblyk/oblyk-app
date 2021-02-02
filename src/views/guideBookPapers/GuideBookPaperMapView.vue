@@ -3,6 +3,7 @@
     <leaflet-map
       map-style="outdoor"
       :geo-jsons="geoJsons"
+      :clustered="false"
       :trackLocation="false"
     />
   </div>
@@ -35,6 +36,9 @@ export default {
         .geoJson(this.guideBookPaper.id)
         .then(resp => {
           this.geoJsons = { features: resp.data.features }
+          setTimeout(() => {
+            this.$root.$emit('fitMapOnGeoJsonBounds')
+          }, 1000)
         })
     }
   }

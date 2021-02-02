@@ -48,6 +48,9 @@ export default {
         .geoJson(this.area.id)
         .then(resp => {
           this.geoJsons = { features: resp.data.features }
+          setTimeout(() => {
+            this.$root.$emit('fitMapOnGeoJsonBounds')
+          }, 1000)
         })
     }
   }
