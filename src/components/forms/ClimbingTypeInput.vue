@@ -8,9 +8,10 @@
     :label="$t('components.input.climbing_type')"
     multiple
     outlined
-    @change="onChange()"
+    @change="onChange"
   ></v-select>
 </template>
+
 <script>
 export default {
   name: 'ClimbingTypeInput',

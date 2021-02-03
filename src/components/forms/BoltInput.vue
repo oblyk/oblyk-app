@@ -8,15 +8,22 @@
     prepend-inner-icon="mdi-nut"
     :label="$t('components.input.boltType')"
     outlined
+    v-disabled-icon-focus
+    :tabindex="tabindex"
     :dense="dense"
+    ref="boltInput"
     clearable
-    @change="onChange()"
-  ></v-select>
+    @focus="onFocus"
+    @change="onChange"
+  />
 </template>
 
 <script>
+import { InputHelpers } from '@/mixins/InputHelpers'
+
 export default {
   name: 'BoltInput',
+  mixins: [InputHelpers],
   props: {
     value: String,
     dense: {
@@ -26,7 +33,8 @@ export default {
     hideDetails: {
       type: Boolean,
       default: false
-    }
+    },
+    tabindex: Number
   },
 
   data () {
@@ -45,6 +53,10 @@ export default {
   methods: {
     onChange: function () {
       this.$emit('input', this.bolt)
+    },
+
+    onFocus: function () {
+      this.$refs.boltInput.isMenuActive = true
     }
   }
 }

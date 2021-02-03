@@ -7,16 +7,24 @@
     prepend-inner-icon="mdi-angle-acute"
     :label="$t('components.input.inclineType')"
     outlined
+    :tabindex="tabindex"
+    v-disabled-icon-focus
     clearable
-    @change="onChange()"
+    ref="inclineInput"
+    @change="onChange"
+    @focus="onFocus"
   ></v-select>
 </template>
 
 <script>
+import { InputHelpers } from '@/mixins/InputHelpers'
+
 export default {
   name: 'InclineInput',
+  mixins: [InputHelpers],
   props: {
-    value: String
+    value: String,
+    tabindex: Number
   },
 
   data () {
@@ -35,6 +43,10 @@ export default {
   methods: {
     onChange: function () {
       this.$emit('input', this.incline)
+    },
+
+    onFocus: function () {
+      this.$refs.inclineInput.isMenuActive = true
     }
   }
 }

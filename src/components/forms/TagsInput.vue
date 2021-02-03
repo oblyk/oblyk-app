@@ -1,5 +1,5 @@
 <template>
-  <v-select
+  <v-autocomplete
     v-model="tags"
     :items="tagsList"
     class="tags-inputs"
@@ -11,9 +11,11 @@
     prepend-inner-icon="mdi-pound"
     :label="label ? label : $t('components.input.tags')"
     multiple
+    deletable-chips
+    :tabindex="tabindex"
     outlined
-    @change="onChange()"
-  ></v-select>
+    @change="onChange"
+  />
 </template>
 <script>
 export default {
@@ -32,7 +34,8 @@ export default {
     hideDetails: {
       type: Boolean,
       default: false
-    }
+    },
+    tabindex: Number
   },
 
   data () {
@@ -90,6 +93,12 @@ export default {
         { text: this.$t('models.tags.bulge'), value: 'bulge' }
       ],
       tags: this.value
+    }
+  },
+
+  watch: {
+    value: function () {
+      this.tags = this.value
     }
   },
 

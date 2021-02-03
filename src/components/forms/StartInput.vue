@@ -7,16 +7,24 @@
     prepend-inner-icon="mdi-arrow-expand-up"
     :label="$t('components.input.startType')"
     outlined
+    :tabindex="tabindex"
+    v-disabled-icon-focus
     clearable
-    @change="onChange()"
+    ref="startInput"
+    @change="onChange"
+    @focus="onFocus"
   ></v-select>
 </template>
 
 <script>
+import { InputHelpers } from '@/mixins/InputHelpers'
+
 export default {
   name: 'StartInput',
+  mixins: [InputHelpers],
   props: {
-    value: String
+    value: String,
+    tabindex: Number
   },
 
   data () {
@@ -35,6 +43,10 @@ export default {
   methods: {
     onChange: function () {
       this.$emit('input', this.start)
+    },
+
+    onFocus: function () {
+      this.$refs.startInput.isMenuActive = true
     }
   }
 }

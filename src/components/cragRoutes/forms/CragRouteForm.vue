@@ -7,11 +7,14 @@
           :label="$t('models.cragRoute.crag_sector')"
           :items="crag.sectors"
           v-model="data.crag_sector_id"
+          tabindex="1"
           outlined
           clearable
           prepend-inner-icon="mdi-texture-box"
           item-value="id"
           item-text="name"
+          v-disabled-icon-focus
+          ref="cragSectorInput"
         />
       </v-col>
       <v-col class="pb-0">
@@ -19,10 +22,12 @@
           :label="$t('models.cragRoute.climbing_type')"
           :items="climbingCragList"
           v-model="data.climbing_type"
+          tabindex="2"
           outlined
           prepend-inner-icon="mdi-source-branch"
           item-value="value"
           item-text="text"
+          ref="climbingTypeInput"
         />
       </v-col>
     </v-row>
@@ -31,6 +36,7 @@
       v-if="!isEditingForm()"
       icon="mdi-format-letter-case"
       :crag="crag"
+      :tabindex="3"
       label-key="models.cragRoute.name"
       :hide-detail="false"
       v-model="data.name"
@@ -40,6 +46,7 @@
     <v-text-field
       v-if="isEditingForm()"
       outlined
+      tabindex="3"
       prepend-inner-icon="mdi-format-letter-case"
       :label="$t('models.cragRoute.name')"
       v-model="data.name"
@@ -67,7 +74,7 @@
               class="text--disabled"
               v-if="similarRoute.CragSector.name"
             >
-              (secteur : {{ similarRoute.CragSector.name }})
+              ({{ $t('models.cragRoute.crag_sector') }} : {{ similarRoute.CragSector.name }})
             </cite>
           </router-link>
         </li>
@@ -78,6 +85,7 @@
     <div v-if="sectionnable()">
       <v-text-field
         outlined
+        tabindex="4"
         prepend-inner-icon="mdi-arrow-expand-vertical"
         type="number"
         v-model="data.height"
@@ -100,6 +108,7 @@
               <!-- Grade -->
               <v-text-field
                 outlined
+                :tabindex="5 + index * 7"
                 prepend-inner-icon="mdi-numeric-7-box-multiple-outline"
                 v-model="data.sections[index].grade"
                 hide-details
@@ -110,6 +119,7 @@
               <v-text-field
                 outlined
                 hide-details
+                :tabindex="6 + index * 7"
                 prepend-inner-icon="mdi-arrow-expand-vertical"
                 type="number"
                 v-model="data.sections[index].height"
@@ -122,12 +132,14 @@
           <v-row>
             <v-col>
               <anchor-input
+                :tabindex="7 + index * 7"
                 :hide-details="true"
                 v-model="data.sections[index].anchor_type"
               />
             </v-col>
             <v-col>
               <bolt-input
+                :tabindex="8 + index * 7"
                 :hide-details="true"
                 v-model="data.sections[index].bolt_type"
               />
@@ -135,6 +147,7 @@
             <v-col>
               <v-text-field
                 outlined
+                :tabindex="9 + index * 7"
                 prepend-inner-icon="mdi-dots-vertical"
                 type="number"
                 hide-details
@@ -145,11 +158,13 @@
           </v-row>
           <tags-input
             class="mb-4"
+            :tabindex="10 + index * 7"
             :hide-details="true"
             v-model="data.sections[index].tags"
           />
           <v-textarea
             outlined
+            :tabindex="11 + index * 7"
             :hide-details="true"
             :label="$t('models.cragRoute.description')"
             rows="2"
@@ -163,14 +178,14 @@
           icon
           v-if="data.sections.length > 1"
           :title="$t('components.cragRoute.removePitch')"
-          @click="removePitch()"
+          @click="removePitch"
         >
           <v-icon>mdi-minus</v-icon>
         </v-btn>
         <v-btn
           icon
           :title="$t('components.cragRoute.addPitch')"
-          @click="addPitch()"
+          @click="addPitch"
         >
           <v-icon>mdi-plus</v-icon>
         </v-btn>
@@ -183,6 +198,7 @@
       <!-- Grade -->
       <v-text-field
         outlined
+        tabindex="4"
         prepend-inner-icon="mdi-numeric-7-box-multiple-outline"
         v-model="data.sections[0].grade"
         :hint="$t('components.cragRoute.gradeExample')"
@@ -191,6 +207,7 @@
 
       <v-text-field
         outlined
+        tabindex="5"
         prepend-inner-icon="mdi-arrow-expand-vertical"
         type="number"
         v-model="data.height"
@@ -199,18 +216,21 @@
       />
 
       <incline-input
+        :tabindex="6"
         v-model="data.sections[0].incline_type"
       />
 
       <v-row v-if="startable() || receptionable()">
         <v-col class="pb-0 pt-0">
           <start-input
+            :tabindex="7"
             v-if="startable()"
             v-model="data.sections[0].start_type"
           />
         </v-col>
         <v-col class="pb-0 pt-0">
           <reception-input
+            :tabindex="8"
             v-if="receptionable()"
             v-model="data.sections[0].reception_type"
           />
@@ -220,17 +240,20 @@
       <v-row v-if="anchorable() || boltable()">
         <v-col class="pb-0 pt-0">
           <anchor-input
+            :tabindex="9"
             v-if="anchorable()"
             v-model="data.sections[0].anchor_type"
           />
         </v-col>
         <v-col class="pb-0 pt-0">
           <bolt-input
+            :tabindex="10"
             v-model="data.sections[0].bolt_type"
           />
         </v-col>
         <v-col class="pb-0 pt-0">
           <v-text-field
+            tabindex="11"
             outlined
             prepend-inner-icon="mdi-dots-vertical"
             type="number"
@@ -241,14 +264,17 @@
       </v-row>
 
       <tags-input
+        :tabindex="12"
         v-model="data.sections[0].tags"
       />
     </div>
 
+    <!-- Common of all routes -->
     <v-row>
       <v-col class="pt-0">
         <v-text-field
           outlined
+          :tabindex="12 + 7 * data.sections.length"
           prepend-inner-icon="mdi-bolt"
           v-model="data.opener"
           :label="$t('models.cragRoute.opener')"
@@ -257,6 +283,7 @@
       <v-col class="pt-0">
         <v-text-field
           outlined
+          :tabindex="13 + 7 * data.sections.length"
           prepend-inner-icon="mdi-calendar"
           v-model="data.open_year"
           type="number"
@@ -267,10 +294,12 @@
 
     <close-form/>
     <submit-form
+      :tabindex="14 + 7 * data.sections.length"
       :overlay="submitOverlay"
       :submit-local-key="submitCragRouteText()"
     >
       <v-btn
+        :tabindex="15 + 7 * data.sections.length"
         class="float-right mr-2"
         text
         @click="submit(false)"
@@ -295,6 +324,7 @@ import StartInput from '@/components/forms/StartInput'
 import InclineInput from '@/components/forms/InclineInput'
 import TagsInput from '@/components/forms/TagsInput'
 import CragRouteSearch from '@/components/cragRoutes/partial/CragRouteSearch'
+import { InputHelpers } from '@/mixins/InputHelpers'
 
 export default {
   name: 'CragRouteForm',
@@ -309,7 +339,7 @@ export default {
     CloseForm,
     SubmitForm
   },
-  mixins: [FormHelpers],
+  mixins: [FormHelpers, InputHelpers],
   props: {
     crag: Object,
     cragSector: Object,
@@ -393,7 +423,10 @@ export default {
               this.data.sections = [this.defaultSection()]
             } else {
               this.data.sections[0].grade = null
+              this.data.sections[0].tags = []
+              this.data.sections[0].bolt_count = null
             }
+            this.$root.$emit('clearRouteSearchGiveFocus')
             this.$root.$emit('alertSimpleSuccess', this.$t('components.cragRoute.routeAdded', { name: route.name }))
           }
         })

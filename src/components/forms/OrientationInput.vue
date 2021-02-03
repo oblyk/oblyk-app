@@ -9,12 +9,17 @@
     :label="$t('components.input.orientations')"
     multiple
     outlined
-    @change="onChange()"
+    ref="orientationInput"
+    @change="onChange"
+    @focus="onFocus"
   ></v-select>
 </template>
 <script>
+import { InputHelpers } from '@/mixins/InputHelpers'
+
 export default {
   name: 'OrientationInput',
+  mixins: [InputHelpers],
   props: {
     value: Array
   },
@@ -38,6 +43,10 @@ export default {
   methods: {
     onChange: function () {
       this.$emit('input', this.orientations)
+    },
+
+    onFocus: function () {
+      this.$refs.orientationInput.isMenuActive = true
     }
   }
 }

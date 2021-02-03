@@ -10,6 +10,7 @@
     </v-btn>
     <v-btn
       color="primary"
+      :tabindex="tabindex"
       :type="submitBtnColor"
       class="float-right"
     >
@@ -35,7 +36,8 @@ export default {
       type: String,
       required: false,
       default: 'primary'
-    }
+    },
+    tabindex: Number
   }
 }
 </script>

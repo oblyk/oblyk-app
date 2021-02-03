@@ -9,14 +9,21 @@
     prepend-inner-icon="mdi-source-fork"
     :label="$t('components.input.anchorType')"
     outlined
+    v-disabled-icon-focus
+    :tabindex="tabindex"
     clearable
-    @change="onChange()"
+    ref="anchorInput"
+    @change="onChange"
+    @focus="onFocus"
   ></v-select>
 </template>
 
 <script>
+import { InputHelpers } from '@/mixins/InputHelpers'
+
 export default {
   name: 'AnchorInput',
+  mixins: [InputHelpers],
   props: {
     value: String,
     dense: {
@@ -26,7 +33,8 @@ export default {
     hideDetails: {
       type: Boolean,
       default: false
-    }
+    },
+    tabindex: Number
   },
 
   data () {
@@ -45,6 +53,10 @@ export default {
   methods: {
     onChange: function () {
       this.$emit('input', this.anchor)
+    },
+
+    onFocus: function () {
+      this.$refs.anchorInput.isMenuActive = true
     }
   }
 }

@@ -7,16 +7,24 @@
     prepend-inner-icon="mdi-selection-ellipse-arrow-inside"
     :label="$t('components.input.receptionType')"
     outlined
+    v-disabled-icon-focus
+    :tabindex="tabindex"
     clearable
-    @change="onChange()"
+    ref="receptionInput"
+    @change="onChange"
+    @focus="onFocus"
   ></v-select>
 </template>
 
 <script>
+import { InputHelpers } from '@/mixins/InputHelpers'
+
 export default {
   name: 'ReceptionInput',
+  mixins: [InputHelpers],
   props: {
-    value: String
+    value: String,
+    tabindex: Number
   },
 
   data () {
@@ -34,6 +42,10 @@ export default {
   methods: {
     onChange: function () {
       this.$emit('input', this.reception)
+    },
+
+    onFocus: function () {
+      this.$refs.receptionInput.isMenuActive = true
     }
   }
 }

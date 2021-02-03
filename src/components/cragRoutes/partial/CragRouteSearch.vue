@@ -2,13 +2,15 @@
   <v-text-field
     outlined
     :prepend-inner-icon="icon"
-    @click:clear="clearSearch()"
     v-model="query"
     :loading="searching"
     :hide-details="hideDetail"
+    :tabindex="tabindex"
     clearable
     :label="$t(labelKey)"
-    @keyup="search()"
+    ref="cragRouteSearchInput"
+    @keyup="search"
+    @click:clear="clearSearch"
   />
 </template>
 
@@ -37,7 +39,8 @@ export default {
     eventTrigger: {
       type: String,
       default: 'searchCragRoutesResults'
-    }
+    },
+    tabindex: Number
   },
 
   data () {
@@ -51,6 +54,10 @@ export default {
   },
 
   watch: {
+    value: function () {
+      this.query = this.value
+    },
+
     query: function () {
       if (this.query === '' || this.query === null) {
         this.clearSearch()
@@ -58,7 +65,21 @@ export default {
     }
   },
 
+  mounted () {
+    this.$root.$on('clearRouteSearchGiveFocus', () => {
+      this.giveFocus()
+    })
+  },
+
+  beforeDestroy () {
+    this.$root.$off('clearRouteSearchGiveFocus')
+  },
+
   methods: {
+    giveFocus: function () {
+      this.$refs.cragRouteSearchInput.focus()
+    },
+
     clearSearch: function () {
       this.$root.$emit('reloadCragRouteList')
     },

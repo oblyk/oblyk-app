@@ -6,14 +6,20 @@
     item-value="value"
     :label="$t('components.input.sun')"
     outlined
+    v-disabled-icon-focus
     clearable
-    @change="onChange()"
+    ref="sunInput"
+    @change="onChange"
+    @focus="onFocus"
   ></v-select>
 </template>
 
 <script>
+import { InputHelpers } from '@/mixins/InputHelpers'
+
 export default {
   name: 'SunInput',
+  mixins: [InputHelpers],
   props: {
     value: String
   },
@@ -33,6 +39,10 @@ export default {
   methods: {
     onChange: function () {
       this.$emit('input', this.sun)
+    },
+
+    onFocus: function () {
+      this.$refs.sunInput.isMenuActive = true
     }
   }
 }
