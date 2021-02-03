@@ -7,7 +7,8 @@
 - [x] Faire pied de page
 - [x] Faire système d'alerte généralisé
 - [ ] Markdown
-- [ ] Visionneuse photo
+- [x] Visionneuse photo
+- [ ] Annotation des photos
 - [x] Commentable
 - [x] Followable
 - [x] Linkable
@@ -64,18 +65,18 @@ ___
 - [ ] Export de ses données
 
 ## TODO Outdoor
-- [ ] Falaise
+- [X] Falaise
 - [x] Secteur
-- [ ] Voies
+- [x] Voies
 - [x] Liens
-- [ ] Photos et Video
+- [x] Photos et Video
 - [x] Parking
 - [x] Marche d'approche
 - [x] Carte
 - [x] Topo Papier
 - [x] Topo Web
 - [x] Topo PDF
-- [ ] Massif
+- [x] Massif
 ---
 - [ ] Système d'alerte
 
