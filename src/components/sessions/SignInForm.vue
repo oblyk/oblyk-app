@@ -66,7 +66,7 @@ export default {
       email: null,
       password: null,
       showPassword: false,
-      rememberMe: false
+      rememberMe: true
     }
   },
 

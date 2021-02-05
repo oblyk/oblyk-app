@@ -10,7 +10,8 @@ const state = {
   slug_name: '',
   id: '',
   administered_gyms: [],
-  subscribes: []
+  subscribes: [],
+  ascent_crag_routes: []
 }
 
 // getters
@@ -53,6 +54,10 @@ const getters = {
 
   getSubscribes: state => {
     return state.subscribes
+  },
+
+  getAscentCragRoutes: state => {
+    return state.ascent_crag_routes
   }
 }
 
@@ -78,7 +83,8 @@ const actions = {
             slug_name: data.user.slug_name,
             id: data.user.id,
             administered_gyms: data.administered_gyms,
-            subscribes: data.subscribes
+            subscribes: data.subscribes,
+            ascent_crag_routes: data.ascent_crag_routes
           })
           resolve(resp)
         })
@@ -96,15 +102,10 @@ const actions = {
         .refreshSession()
         .then(resp => {
           const data = resp.data
-          commit('success', {
+          commit('refresh', {
             token: data.token,
             refresh_token: data.refresh_token,
-            expired_at: data.expired_at,
-            name: `${data.user.first_name} ${data.user.last_name}`,
-            slug_name: data.user.slug_name,
-            id: data.user.id,
-            administered_gyms: data.administered_gyms,
-            subscribes: data.subscribes
+            expired_at: data.expired_at
           })
           resolve(resp)
         })
@@ -130,7 +131,8 @@ const actions = {
             slug_name: data.user.slug_name,
             id: data.user.id,
             administered_gyms: data.administered_gyms,
-            subscribes: data.subscribes
+            subscribes: data.subscribes,
+            ascent_crag_routes: data.ascent_crag_routes
           })
           resolve(resp)
         })
@@ -156,7 +158,8 @@ const actions = {
             slug_name: data.user.slug_name,
             id: data.user.id,
             administered_gyms: data.administered_gyms,
-            subscribes: data.subscribes
+            subscribes: data.subscribes,
+            ascent_crag_routes: data.ascent_crag_routes
           })
           resolve(resp)
         })
@@ -176,6 +179,12 @@ const actions = {
   updateSubscribes ({ commit }, data) {
     commit('updatedSubscribes', {
       subscribes: data.subscribes
+    })
+  },
+
+  updateAscentCragRoutes ({ commit }, data) {
+    commit('updatedAscentCragRoutes', {
+      ascent_crag_routes: data.ascent_crag_routes
     })
   },
 
@@ -203,6 +212,14 @@ const mutations = {
     state.slug_name = payload.slug_name
     state.administered_gyms = payload.administered_gyms
     state.subscribes = payload.subscribes
+    state.ascent_crag_routes = payload.ascent_crag_routes
+  },
+
+  refresh (state, payload) {
+    state.status = 'success'
+    state.token = payload.token
+    state.refresh_token = payload.refresh_token
+    state.expired_at = payload.expired_at
   },
 
   updated (state, payload) {
@@ -211,6 +228,10 @@ const mutations = {
 
   updatedSubscribes (state, payload) {
     state.subscribes = payload.subscribes
+  },
+
+  updatedAscentCragRoutes (state, payload) {
+    state.ascent_crag_routes = payload.ascent_crag_routes
   },
 
   error (state) {
@@ -227,6 +248,7 @@ const mutations = {
     state.id = ''
     state.administered_gyms = []
     state.subscribes = []
+    state.ascent_crag_routes = []
   }
 }
 

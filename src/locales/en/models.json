@@ -91,6 +91,22 @@
       "grade": "Grade",
       "description": "Description"
     },
+    "ascentCragRoute": {
+      "type": "Type",
+      "ascent_status": "Ascent status",
+      "roping_status": "Roping status",
+      "attempt": "Number of attempt",
+      "crag_route_id": "Crag route",
+      "crag_route": "Crag route",
+      "sections": "Sections",
+      "height": "Height",
+      "climbing_type": "Climbing type",
+      "note": "Note",
+      "comment": "My comment",
+      "private_comment": "Comment is private",
+      "released_at": "Released at",
+      "grade_appreciation_text": "Grade in my logbook"
+    },
     "area": {
       "name": "Name"
     },
@@ -400,6 +416,30 @@
       "south_west": "South West",
       "west": "West",
       "north_west": "North West"
+    },
+    "ascentStatus": {
+      "project": "Project",
+      "sent": "Sent",
+      "red_point": "Red point",
+      "flash": "Flash",
+      "onsight": "Onsight",
+      "repetition": "Repetition"
+    },
+    "ropingStatus": {
+      "lead_climb": "Lead climb",
+      "top_rope": "Top rope",
+      "multi_pitch_leader": "Lead (multi pitch)",
+      "multi_pitch_second": "Second (multi pitch)",
+      "multi_pitch_alternate_lead": "Alternate lead (multi pitch)"
+    },
+    "note": {
+      "terrible": "Terrible!",
+      "ugly": "Ugly",
+      "not_outstanding": "Not outstanding",
+      "decent": "Decent",
+      "nice": "Nice",
+      "very_nice": "Very nice",
+      "classic": "Classic!"
     },
     "approachType": {
       "steep_descent": "Steep descent",

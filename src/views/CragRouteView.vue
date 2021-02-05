@@ -11,6 +11,17 @@
     </v-card>
     <v-card class="mt-5">
       <v-container>
+        <p class="mb-0">
+          <v-icon left>
+            mdi-check-all
+          </v-icon>
+          {{ $t('components.cragRoute.inMyLogbook') }}
+        </p>
+        <crag-route-ascent :crag-route="cragRoute" />
+      </v-container>
+    </v-card>
+    <v-card class="mt-5">
+      <v-container>
         <crag-route-comments :crag-route="cragRoute" />
       </v-container>
     </v-card>
@@ -34,10 +45,12 @@ import CragRouteDescription from '@/components/cragRoutes/CragRouteDescription'
 import CragRouteComments from '@/components/cragRoutes/CragRouteComments'
 import CragRoutePhotos from '@/components/cragRoutes/CragRoutePhotos'
 import CragRouteVideos from '@/components/cragRoutes/CragRouteVideos'
+import CragRouteAscent from '@/components/cragRoutes/CragRouteAscent'
 
 export default {
   name: 'CragRouteView',
   components: {
+    CragRouteAscent,
     CragRouteVideos,
     CragRoutePhotos,
     CragRouteComments,

@@ -58,6 +58,16 @@ export default class CragRoute extends ActiveData {
     return new Crag(this.crag)
   }
 
+  isRopable (value = null) {
+    const accepted = [
+      'sport_climbing',
+      'multi_pitch',
+      'trad_climbing',
+      'aid_climbing'
+    ]
+    return accepted.includes(value || this.climbing_type)
+  }
+
   isAnchorable (value = null) {
     const accepted = [
       'sport_climbing',

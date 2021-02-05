@@ -22,7 +22,10 @@
       "boltType": "Bolt type",
       "receptionType": "Reception type",
       "startType": "Start type",
-      "inclineType": "Incline"
+      "inclineType": "Incline",
+      "ascentStatus": "Ascent status",
+      "ropingStatus": "Roping status",
+      "note": "Note"
     },
     "gallery": {
       "title": "Pictures",
@@ -113,6 +116,7 @@
       "searchRoute": "Search route",
       "sortRouteLabel": "Sort routes",
       "climberOpinion": "Climber's opinion",
+      "inMyLogbook": "In my logbook",
       "new": "add a new route",
       "gradeExample": "example: 7a, 6c+, 5.10, B15, etc.",
       "pitch": "Pitch",
@@ -129,6 +133,15 @@
         "name": "By name",
         "note": "By note"
       }
+    },
+    "ascentCragRoute": {
+      "new": "Add %{name} in my logbook",
+      "edit": "Edit my ascent on %{name}",
+      "myOpinion": "my opinion on %{name}",
+      "pitchMade": "Pitches made",
+      "ascentMadeOn": "Ascent made on %{date}",
+      "numberOfAttempt": "Number of attempt : %{number}",
+      "myCommentaire": "My comment"
     },
     "area": {
       "description": "<strong>%{name}</strong> is a grouping of %{crags} climbing crags.<br>These crags contain in total %{routes}, ranging from <strong>%{min}</strong> to <strong>%{max}</strong>",

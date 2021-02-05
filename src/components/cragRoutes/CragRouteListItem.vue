@@ -9,6 +9,7 @@
         class="climbs-pastille"
         v-bind:class="route.climbing_type"
       >
+        <ascent-crag-route-status-icon :crag-route="route" />
         {{ route.name }}
         <grade-route-note :route="route" />
         <v-icon
@@ -43,6 +44,7 @@
           </v-icon>
           <router-link
             @click.stop=""
+            class="text-decoration-none"
             :to="route.CragSector.path()"
           >
             {{ route.CragSector.name }}
@@ -68,10 +70,11 @@
 <script>
 import GradeRouteNote from '@/components/cragRoutes/partial/CragRouteNote'
 import CragRouteAvatar from '@/components/cragRoutes/partial/CragRouteAvatar'
+import AscentCragRouteStatusIcon from '@/components/ascentCragRoutes/AscentCragRouteStatusIcon'
 
 export default {
   name: 'CragRouteListItem',
-  components: { CragRouteAvatar, GradeRouteNote },
+  components: { AscentCragRouteStatusIcon, CragRouteAvatar, GradeRouteNote },
   props: {
     route: Object
   }

@@ -70,6 +70,8 @@
     "addApproach": "Add approach",
     "createAndQuite": "Create & quite",
     "continueToAdd": "Continue to add",
-    "addArea": "Add new crags group"
+    "addArea": "Add new crags group",
+    "addRepetition": "Add a repetition",
+    "addInMyLogbook": "Add on my logbook"
   }
 }

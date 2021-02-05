@@ -12,6 +12,10 @@
         :crag-route="cragRoute"
       />
       <div class="pr-3 pl-3 pt-1">
+        <crag-route-ascent
+          v-if="isLoggedIn"
+          :crag-route="cragRoute"
+        />
         <crag-route-description :crag-route="cragRoute" />
         <v-divider class="mt-5 mb-5" />
         <crag-route-comments :crag-route="cragRoute" />
@@ -33,10 +37,14 @@ import CragRouteDescription from '@/components/cragRoutes/CragRouteDescription'
 import CragRouteComments from '@/components/cragRoutes/CragRouteComments'
 import CragRoutePhotos from '@/components/cragRoutes/CragRoutePhotos'
 import CragRouteVideos from '@/components/cragRoutes/CragRouteVideos'
+import CragRouteAscent from '@/components/cragRoutes/CragRouteAscent'
+import { SessionConcern } from '@/concerns/SessionConcern'
 
 export default {
   name: 'CragRouteDrawer',
+  mixins: [SessionConcern],
   components: {
+    CragRouteAscent,
     CragRouteVideos,
     CragRoutePhotos,
     CragRouteComments,

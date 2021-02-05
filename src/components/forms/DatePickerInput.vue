@@ -13,6 +13,7 @@
         :label="label"
         readonly
         clearable
+        :prepend-inner-icon="icon"
         :placeholder="$t('date.format_dd_mm_yyyy')"
         @blur="date = parseDate(dateFormatted)"
         v-bind="attrs"
@@ -51,7 +52,8 @@ export default {
       type: String,
       required: false
     },
-    label: String
+    label: String,
+    icon: String
   },
 
   data () {

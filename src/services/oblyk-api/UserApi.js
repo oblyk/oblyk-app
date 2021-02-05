@@ -18,6 +18,14 @@ class UserApi extends BaseApi {
     })
   }
 
+  ascentCragRoutes () {
+    return axios({
+      url: `${this.baseUrl}/users/current/ascent_crag_routes.json`,
+      headers: { Authorization: this.authToken() },
+      method: 'GET'
+    })
+  }
+
   library () {
     return axios({
       url: `${this.baseUrl}/users/current/library.json`,

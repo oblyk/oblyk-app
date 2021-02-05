@@ -70,6 +70,8 @@
     "addApproach": "Ajouter une approche",
     "createAndQuite": "Créer & quitter",
     "continueToAdd": "Continuer d'ajouter",
-    "addArea": "Ajouter un nouveau groupe"
+    "addArea": "Ajouter un nouveau groupe",
+    "addRepetition": "Ajouter une répétition",
+    "addInMyLogbook": "Ajouter à mon carnet"
   }
 }

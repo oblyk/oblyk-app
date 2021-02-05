@@ -22,7 +22,10 @@
       "boltType": "Type de point",
       "receptionType": "Type de reception",
       "startType": "Type de départ",
-      "inclineType": "Inclinaison"
+      "inclineType": "Inclinaison",
+      "ascentStatus": "Statut de l'ascension",
+      "ropingStatus": "Mode",
+      "note": "Note"
     },
     "gallery": {
       "title": "Photos",
@@ -113,6 +116,7 @@
       "searchRoute": "Chercher une voie",
       "sortRouteLabel": "Trier les voies",
       "climberOpinion": "L'avis des grimpeurs",
+      "inMyLogbook": "Dans mon carnet",
       "new": "Ajouter une nouvelle ligne",
       "gradeExample": "exemple: 7a, 6c+, 5.10, B15, etc.",
       "pitch": "Longueur",
@@ -129,6 +133,15 @@
         "name": "Par nom",
         "note": "Par note"
       }
+    },
+    "ascentCragRoute": {
+      "new": "Ajouter %{name} à mon carnet",
+      "edit": "Modifier ma sur %{name}",
+      "myOpinion": "Mon avis sur %{name}",
+      "pitchMade": "Longueurs faites",
+      "ascentMadeOn": "Croix faite le %{date}",
+      "numberOfAttempt": "Nombre d'essais : <strong>%{number}</strong>",
+      "myCommentaire": "Mon commentaire"
     },
     "area": {
       "description": "<strong>%{name}</strong> est un groupement de %{crags} site d'escalades.<br>Ces sites contiennent au total %{routes}, allant de <strong>%{min}</strong> à <strong>%{max}</strong>",
