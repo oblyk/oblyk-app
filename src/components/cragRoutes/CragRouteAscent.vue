@@ -12,22 +12,10 @@
         />
       </div>
       <div class="text-right">
-        <v-btn
-          text
-          color="primary"
-          small
-          :to="cragRoute.path('ascents/new')"
-        >
-          <v-icon left>
-            mdi-check
-          </v-icon>
-          <span v-if="ascents.length > 0">
-            {{ $t('actions.addRepetition') }}
-          </span>
-          <span v-if="ascents.length === 0">
-            {{ $t('actions.addInMyLogbook') }}
-          </span>
-        </v-btn>
+        <add-ascent-btn
+          :crag-route="cragRoute"
+          :is-repetition="ascents.length > 0"
+        />
       </div>
     </v-col>
   </v-row>
@@ -38,11 +26,12 @@ import { DateHelpers } from '@/mixins/DateHelpers'
 import AscentCragRouteApi from '@/services/oblyk-api/AscentCragRouteApi'
 import AscentCragRoute from '@/models/AscentCragRoute'
 import AscentCragRouteSmallCard from '@/components/ascentCragRoutes/AscentCragRouteSmallCard'
+import AddAscentBtn from '@/components/ascentCragRoutes/AddAscentBtn'
 
 export default {
   name: 'CragRouteAscent',
   mixins: [DateHelpers],
-  components: { AscentCragRouteSmallCard },
+  components: { AddAscentBtn, AscentCragRouteSmallCard },
   props: {
     cragRoute: Object
   },

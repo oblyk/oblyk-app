@@ -21,6 +21,7 @@ export default {
 
   data () {
     return {
+      appModal: true,
       hasPaddingTop: true
     }
   },

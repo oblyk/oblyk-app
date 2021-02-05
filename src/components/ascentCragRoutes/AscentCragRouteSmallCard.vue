@@ -13,13 +13,10 @@
         >
           <v-icon small>mdi-delete</v-icon>
         </v-btn>
-        <v-btn
-          small
-          icon
-          :to="ascentCragRoute.path('edit')"
-        >
-          <v-icon small>mdi-pencil</v-icon>
-        </v-btn>
+        <edit-ascent-btn
+          :crag-route="cragRoute"
+          :ascent-crag-route="ascentCragRoute"
+        />
       </div>
       <ascent-crag-route-status-icon
         :crag-route="cragRoute"
@@ -48,11 +45,12 @@ import Note from '@/components/notes/Note'
 import NoteClass from '@/models/Note'
 import AscentCragRouteApi from '@/services/oblyk-api/AscentCragRouteApi'
 import store from '@/store'
+import EditAscentBtn from '@/components/ascentCragRoutes/EditAscentBtn'
 
 export default {
   name: 'AscentCragRouteSmallCard',
   mixins: [DateHelpers],
-  components: { Note, AscentCragRouteStatusIcon },
+  components: { EditAscentBtn, Note, AscentCragRouteStatusIcon },
   props: {
     ascentCragRoute: Object,
     cragRoute: Object

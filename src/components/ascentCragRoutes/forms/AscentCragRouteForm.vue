@@ -111,7 +111,8 @@ export default {
     ascentCragRoute: {
       type: Object,
       required: false
-    }
+    },
+    callback: Function
   },
 
   data () {
@@ -142,7 +143,11 @@ export default {
           store.dispatch('auth/updateAscentCragRoutes', {
             ascent_crag_routes: resp.data
           })
-          this.$router.push(this.cragRoute.path())
+          if (this.callback) {
+            this.callback()
+          } else {
+            this.$router.push(this.cragRoute.path())
+          }
         })
         .catch(err => {
           this.$root.$emit('alertFromApiError', err, 'cragSector')

@@ -33,6 +33,12 @@ export default {
     }
   },
 
+  watch: {
+    cragRouteAscents: function () {
+      this.findAscentInLogBook()
+    }
+  },
+
   created () {
     this.findAscentInLogBook()
   },
@@ -42,9 +48,10 @@ export default {
       for (const ascent of this.cragRouteAscents) {
         if (this.cragRoute.id === ascent.crag_route_id) {
           this.ascentInLogBook = ascent
-          break
+          return
         }
       }
+      this.ascentInLogBook = null
     },
 
     icon: function () {
