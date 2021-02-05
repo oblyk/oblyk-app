@@ -31,6 +31,10 @@ export default {
     }
   },
 
+  mounted () {
+    document.getElementById('oblyk-splash-screen').style.display = 'none'
+  },
+
   created () {
     const storedLang = (localStorage.getItem('lang') || 'fr')
 
