@@ -77,6 +77,18 @@
       "resetPasswordError": "Adresse mail invalide ou sans compte associé",
       "newPasswordError": "Le lien a expiré, ou les deux mots de passe ne sont pas identique"
     },
+    "note": {
+      "noVote": "Pas de note",
+      "noteCount": "Nombre de vote",
+      "votes": "Votes",
+      "notes": "Notes"
+    },
+    "difficulty": {
+      "noVote": "pas de vote de difficulté",
+      "hard": "Dur pour la cote",
+      "just": "juste, bien coté",
+      "soft": "facile pour la cote"
+    },
     "crag": {
       "coverFrom": "Photo du site",
       "searchCrag": "Chercher une falaise",
@@ -141,7 +153,9 @@
       "pitchMade": "Longueurs faites",
       "ascentMadeOn": "Croix faite le %{date}",
       "numberOfAttempt": "Nombre d'essais : <strong>%{number}</strong>",
-      "myCommentaire": "Mon commentaire"
+      "myCommentaire": "Mon commentaire",
+      "privateComment": "commentaire privé",
+      "publicComment": "commentaire public"
     },
     "area": {
       "description": "<strong>%{name}</strong> est un groupement de %{crags} site d'escalades.<br>Ces sites contiennent au total %{routes}, allant de <strong>%{min}</strong> à <strong>%{max}</strong>",

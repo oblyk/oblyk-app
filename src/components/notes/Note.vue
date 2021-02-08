@@ -1,5 +1,9 @@
 <template>
-  <span v-if="note" class="route-note">
+  <span
+    v-if="note"
+    :title="noteLabel()"
+    class="route-note"
+  >
     <span v-if="note === 0">
       <v-icon small>mdi-star-outline</v-icon>
       <v-icon small>mdi-star-outline</v-icon>
@@ -39,10 +43,19 @@
 </template>
 
 <script>
+import Note from '@/models/Note'
+
 export default {
   name: 'Note',
   props: {
     note: Number
+  },
+
+  methods: {
+    noteLabel: function () {
+      const noteText = new Note().valueToText(this.note)
+      return this.$t(`models.note.${noteText}`)
+    }
   }
 }
 </script>

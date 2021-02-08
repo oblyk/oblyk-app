@@ -77,6 +77,18 @@
       "resetPasswordError": "Invalid e-mail address or without associated account",
       "newPasswordError": "The link has expired, or the two passwords are not identical"
     },
+    "note": {
+      "noVote": "no note",
+      "noteCount": "Note count",
+      "votes": "Votes",
+      "notes": "Notes"
+    },
+    "difficulty": {
+      "noVote": "no difficulty vote",
+      "hard": "hard for grade",
+      "just": "right grade",
+      "soft": "easy for grade"
+    },
     "crag": {
       "coverFrom": "Crag picture",
       "searchCrag": "Crag search",
@@ -141,7 +153,9 @@
       "pitchMade": "Pitches made",
       "ascentMadeOn": "Ascent made on %{date}",
       "numberOfAttempt": "Number of attempt : %{number}",
-      "myCommentaire": "My comment"
+      "myCommentaire": "My comment",
+      "privateComment": "private comment",
+      "publicComment": "public comment"
     },
     "area": {
       "description": "<strong>%{name}</strong> is a grouping of %{crags} climbing crags.<br>These crags contain in total %{routes}, ranging from <strong>%{min}</strong> to <strong>%{max}</strong>",

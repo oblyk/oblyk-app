@@ -51,7 +51,16 @@
                   <v-icon>mdi-gauge</v-icon>
                 </th>
                 <td>
-                  Difficulté
+                  <crag-route-difficulty-modal
+                    v-if="cragRoute.votes"
+                    :crag-route="cragRoute"
+                  />
+                  <cite
+                    class="text--disabled"
+                    v-else
+                  >
+                    {{ $t('components.difficulty.noVote') }}
+                  </cite>
                 </td>
               </tr>
 
@@ -156,7 +165,16 @@
                   <v-icon>mdi-star-half-full</v-icon>
                 </th>
                 <td>
-                  <crag-route-note :route="cragRoute" />
+                  <crag-route-note-modal
+                    v-if="cragRoute.note"
+                    :crag-route="cragRoute"
+                  />
+                  <cite
+                    class="text--disabled"
+                    v-else
+                  >
+                    {{ $t('components.note.noVote') }}
+                  </cite>
                 </td>
               </tr>
 
@@ -324,13 +342,14 @@
 
 <script>
 import CragRouteAvatar from '@/components/cragRoutes/partial/CragRouteAvatar'
-import CragRouteNote from '@/components/cragRoutes/partial/CragRouteNote'
 import CragRouteSectionList from '@/components/cragRoutes/CragRouteSectionList'
 import ContributionsLabel from '@/components/globals/ContributionsLable'
+import CragRouteNoteModal from '@/components/cragRoutes/partial/CragRouteNoteModal'
+import CragRouteDifficultyModal from '@/components/cragRoutes/partial/CragRouteDifficultyModal'
 
 export default {
   name: 'CragRouteDescription',
-  components: { ContributionsLabel, CragRouteSectionList, CragRouteNote, CragRouteAvatar },
+  components: { CragRouteDifficultyModal, CragRouteNoteModal, ContributionsLabel, CragRouteSectionList, CragRouteAvatar },
   props: {
     cragRoute: Object
   }

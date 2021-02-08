@@ -100,4 +100,17 @@ export default class CragRoute extends ActiveData {
     ]
     return accepted.includes(value || this.climbing_type)
   }
+
+  difficultyAverage () {
+    const votes = (this.votes || {}).difficulty_appreciations
+    if (votes === null) return null
+
+    let sumGradeValue = 0
+    let countVote = 0
+    for (const vote in votes) {
+      sumGradeValue += votes[vote].count * vote
+      countVote += votes[vote].count
+    }
+    return sumGradeValue / countVote
+  }
 }

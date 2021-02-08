@@ -12,11 +12,11 @@
         :crag-route="cragRoute"
       />
       <div class="pr-3 pl-3 pt-1">
+        <crag-route-description :crag-route="cragRoute" />
         <crag-route-ascent
           v-if="isLoggedIn"
           :crag-route="cragRoute"
         />
-        <crag-route-description :crag-route="cragRoute" />
         <v-divider class="mt-5 mb-5" />
         <crag-route-comments :crag-route="cragRoute" />
         <v-divider class="mt-5 mb-5" />
@@ -98,11 +98,19 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 .crag-route-drawer {
   width: 700px !important;
   max-width: calc(100vw - 50px);
   position: fixed;
   height: 100vh !important;
+}
+
+.theme--light {
+  .crag-route-drawer {
+    .v-card, .v-data-table {
+      background-color: #f5f5f5;
+    }
+  }
 }
 </style>

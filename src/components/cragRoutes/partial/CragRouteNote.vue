@@ -1,7 +1,10 @@
 <template>
   <span v-if="route.note" class="route-note">
     <note :note="route.note" />
-    <span class="text--disabled number-of-note">
+    <span
+      :title="`${route.note_count} ${$t('components.note.votes')}`"
+      class="text--disabled number-of-note"
+    >
       ({{ route.note_count }})
     </span>
   </span>

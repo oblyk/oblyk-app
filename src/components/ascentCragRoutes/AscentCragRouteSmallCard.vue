@@ -26,12 +26,31 @@
       <span v-if="cragRoute.isRopable()">
         , {{ $t('common.in') }} {{ $t(`models.ropingStatus.${ascentCragRoute.roping_status}`) }}
       </span>
+      <span v-if="ascentCragRoute.grade_appreciation_text">
+        , {{ ascentCragRoute.grade_appreciation_text }}
+      </span>
       <div v-if="ascentCragRoute.attempt" v-html="$t('components.ascentCragRoute.numberOfAttempt', { number: ascentCragRoute.attempt})" />
       <div v-if="ascentCragRoute.comment">
         <v-divider class="mb-2 mt-2" />
         {{ ascentCragRoute.comment }}
         <div v-if="ascentCragRoute.note" class="mt-2">
           <note :note="ascentCragRoute.note" /> {{ $t(`models.note.${noteText(ascentCragRoute.note)}`)}}
+        </div>
+        <div class="text--disabled" v-if="ascentCragRoute.private_comment">
+          <v-icon x-small>
+            mdi-lock
+          </v-icon>
+          <small>
+            {{ $t('components.ascentCragRoute.privateComment') }}
+          </small>
+        </div>
+        <div class="text--disabled" v-if="!ascentCragRoute.private_comment">
+          <v-icon x-small>
+            mdi-lock-open
+          </v-icon>
+          <small>
+            {{ $t('components.ascentCragRoute.publicComment') }}
+          </small>
         </div>
       </div>
     </v-card-text>

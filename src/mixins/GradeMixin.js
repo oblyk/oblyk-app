@@ -11,6 +11,17 @@ export const GradeMixin = {
         'rgb(171,55,200)', 'rgb(157,51,184)', 'rgb(144,46,168)', 'rgb(130,42,152)', 'rgb(117,37,136)', 'rgb(103,33,120)',
         'rgb(255,59,59)', 'rgb(255,42,42)', 'rgb(221,25,25)', 'rgb(204,17,17)', 'rgb(187,8,8)', 'rgb(170,0,0)',
         'rgb(128,128,128)', 'rgb(102,102,102)', 'rgb(77,77,77)', 'rgb(51,51,51)', 'rgb(25,25,25)', 'rgb(0,0,0)'
+      ],
+      gradeByValue: [
+        '1a', '1a+', '1b', '1b+', '1c', '1c+',
+        '2a', '2a+', '2b', '2b+', '2c', '2c+',
+        '3a', '3a+', '3b', '3b+', '3c', '3c+',
+        '4a', '4a+', '4b', '4b+', '4c', '4c+',
+        '5a', '5a+', '5b', '5b+', '5c', '5c+',
+        '6a', '6a+', '6b', '6b+', '6c', '6c+',
+        '7a', '7a+', '7b', '7b+', '7c', '7c+',
+        '8a', '8a+', '8b', '8b+', '8c', '8c+',
+        '9a', '9a+', '9b', '9b+', '9c', '9c+'
       ]
     }
   },
@@ -22,6 +33,10 @@ export const GradeMixin = {
 
     gradeValueToColor: function (value) {
       return this.gradeColorByValue[value]
+    },
+
+    gradeValueToText: function (value) {
+      return this.gradeByValue[value]
     }
   }
 }
