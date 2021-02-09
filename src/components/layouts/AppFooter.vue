@@ -52,18 +52,18 @@
           <p class="font-weight-bold">
             {{ $t('components.layout.footer.followUs') }}
           </p>
-          <router-link class="d-block" to="https://www.facebook.com/pageoblyk/">
+          <a class="d-block" href="https://www.facebook.com/pageoblyk/">
             <v-icon small left>
               mdi-facebook
             </v-icon>
             {{ $t('components.layout.footer.facebook') }}
-          </router-link>
-          <router-link class="d-block" to="https://github.com/lucien-chastan/oblyk">
+          </a>
+          <a class="d-block" href="https://github.com/lucien-chastan/oblyk">
             <v-icon small left>
               mdi-github
             </v-icon>
             {{ $t('components.layout.footer.github') }}
-          </router-link>
+          </a>
         </v-col>
       </v-row>
       <v-divider class="mt-2 mb-2" />

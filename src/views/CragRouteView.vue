@@ -9,7 +9,10 @@
         <crag-route-description :crag-route="cragRoute" />
       </v-container>
     </v-card>
-    <v-card class="mt-5">
+    <v-card
+      class="mt-5"
+      v-if="isLoggedIn"
+    >
       <v-container>
         <p class="mb-0">
           <v-icon left>
@@ -40,6 +43,7 @@
 
 <script>
 import { CragRouteConcern } from '@/concerns/CragRouteConcern'
+import { SessionConcern } from '@/concerns/SessionConcern'
 import CragRouteHead from '@/components/cragRoutes/layout/CragRouteHead'
 import CragRouteDescription from '@/components/cragRoutes/CragRouteDescription'
 import CragRouteComments from '@/components/cragRoutes/CragRouteComments'
@@ -57,7 +61,7 @@ export default {
     CragRouteDescription,
     CragRouteHead
   },
-  mixins: [CragRouteConcern]
+  mixins: [CragRouteConcern, SessionConcern]
 }
 </script>
 
