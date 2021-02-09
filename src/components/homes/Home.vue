@@ -20,6 +20,7 @@
       <home-box-partner class="home-boxes" />
       <home-box-help class="home-boxes" />
       <home-box-guide-book class="home-boxes" />
+      <home-box-figures />
     </v-container>
 
     <app-footer />
@@ -33,10 +34,12 @@ import HomeBoxAscentsLog from '@/components/homes/HomeBoxAscentsLog'
 import HomeBoxPartner from '@/components/homes/HomeBoxPartner'
 import HomeBoxHelp from '@/components/homes/HomeBoxHelp'
 import HomeBoxGuideBook from '@/components/homes/HomeBoxGuideBook'
+import HomeBoxFigures from '@/components/homes/HomeBoxFigures'
 
 export default {
   name: 'Home',
   components: {
+    HomeBoxFigures,
     HomeBoxGuideBook,
     HomeBoxHelp,
     HomeBoxPartner,

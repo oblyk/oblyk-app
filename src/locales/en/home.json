@@ -1,0 +1,27 @@
+{
+  "home": {
+    "figures": {
+      "title": "Oblyk in a few figures",
+      "crags": "Crags",
+      "climbers": "Climbers",
+      "gyms": "Gyms",
+      "routes": "Routes",
+      "ascents": "Ascents",
+      "photos": "Photos",
+      "guides": "Guides",
+      "comments": "Comments",
+      "videos": "Videos",
+      "in24Hours": {
+        "crags": "One crag was added today | %{count} crags were added today",
+        "climbers": "One climber arrived today | %{count} climbers arrived today",
+        "gyms": "One gym was added today | %{count} gyms have been added today",
+        "routes": "One route was added today | %{count} routes have been added today",
+        "ascents": "One ascent was made today | %{count} ascents were made today",
+        "photos": "One photo was taken today | %{count} photos were taken today",
+        "guides": "One guide has been added today | %{count} guides have been added today",
+        "comments": "One comment was posted today | %{count} comments were posted today",
+        "videos": "One video was added today | %{count} videos were added today"
+      }
+    }
+  }
+}

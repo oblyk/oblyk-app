@@ -23,7 +23,8 @@ function loadLocaleMessages (lang) {
     ...require(`./locales/${lang}/components.json`),
     ...require(`./locales/${lang}/models.json`),
     ...require(`./locales/${lang}/termsOfUse.json`),
-    ...require(`./locales/${lang}/meta.json`)
+    ...require(`./locales/${lang}/meta.json`),
+    ...require(`./locales/${lang}/home.json`)
   }
 }
 

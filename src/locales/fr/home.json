@@ -1,0 +1,27 @@
+{
+  "home": {
+    "figures": {
+      "title": "Oblyk en quelques chiffres",
+      "crags": "Falaises",
+      "climbers": "Grimpeurs",
+      "gyms": "Salles",
+      "routes": "Lignes",
+      "ascents": "Croix",
+      "photos": "Photos",
+      "guides": "Topos",
+      "comments": "Commentaires",
+      "videos": "Vidéos",
+      "in24Hours": {
+        "crags": "Une falaise a été ajoutée aujourd'hui | %{count} falaises ont été ajoutées aujourd'hui",
+        "climbers": "Un grimpeur est arrivé aujourd'hui | %{count} grimpeurs sont arrivés aujourd'hui",
+        "gyms": "Une salle a été ajoutée aujourd'hui | %{count} salles ont été ajoutées aujourd'hui",
+        "routes": "Une ligne a été ajoutée aujourd'hui | %{count} lignes ont été ajoutées aujourd'hui",
+        "ascents": "Une croix a été faite aujourd'hui | %{count} croix ont été faites aujourd'hui",
+        "photos": "Une photo a été prise aujourd'hui | %{count} photos ont été prises aujourd'hui",
+        "guides": "Un topo a été ajouté aujourd'hui | %{count} topos ont été ajoutés aujourd'hui",
+        "comments": "Un commentaire a été posté aujourd'hui | %{count} commentaires ont été postés aujourd'hui",
+        "videos": "Une vidéo a été ajoutée aujourd'hui | %{count} videos ont été ajoutées aujourd'hui"
+      }
+    }
+  }
+}
