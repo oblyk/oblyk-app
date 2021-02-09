@@ -1,4 +1,5 @@
 import Word from '@/models/Word'
+import store from '@/store'
 
 export const WordConcern = {
   data () {
@@ -11,6 +12,7 @@ export const WordConcern = {
     if (!to.params.wordId) {
       next()
     } else {
+      store.commit('loader/START_LOADING')
       new Word()
         .find(to.params.wordId)
         .then(resp => {
@@ -21,6 +23,9 @@ export const WordConcern = {
         .catch(err => {
           next(vm => vm.$root.$emit('alertFromApiError', err, 'word'))
         })
+        .finally(() => {
+          store.commit('loader/FINISH_LOADING')
+        })
     }
   },
 
@@ -30,6 +35,7 @@ export const WordConcern = {
     } else if (from.params.wordId === to.params.wordId) {
       next()
     } else {
+      store.commit('loader/START_LOADING')
       new Word()
         .find(to.params.wordId)
         .then(resp => {
@@ -39,6 +45,9 @@ export const WordConcern = {
         .catch(err => {
           this.$root.$emit('alertFromApiError', err, 'word')
           next()
+        })
+        .finally(() => {
+          store.commit('loader/FINISH_LOADING')
         })
     }
   }

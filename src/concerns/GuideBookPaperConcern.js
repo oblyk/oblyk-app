@@ -1,4 +1,5 @@
 import GuideBookPaper from '@/models/GuideBookPaper'
+import store from '@/store'
 
 export const GuideBookPaperConcern = {
   data () {
@@ -12,7 +13,7 @@ export const GuideBookPaperConcern = {
       next()
       return
     }
-
+    store.commit('loader/START_LOADING')
     new GuideBookPaper()
       .find(to.params.guideBookPaperId)
       .then(resp => {
@@ -22,6 +23,9 @@ export const GuideBookPaperConcern = {
       })
       .catch(err => {
         next(vm => vm.$root.$emit('alertFromApiError', err, 'guideBookPaper'))
+      })
+      .finally(() => {
+        store.commit('loader/FINISH_LOADING')
       })
   },
 
@@ -34,6 +38,7 @@ export const GuideBookPaperConcern = {
     if (from.params.guideBookPaperId === to.params.guideBookPaperId) {
       next()
     } else {
+      store.commit('loader/START_LOADING')
       new GuideBookPaper()
         .find(to.params.guideBookPaperId)
         .then(resp => {
@@ -43,6 +48,9 @@ export const GuideBookPaperConcern = {
         .catch(err => {
           this.$root.$emit('alertFromApiError', err, 'guideBookPaper')
           next()
+        })
+        .finally(() => {
+          store.commit('loader/FINISH_LOADING')
         })
     }
   }

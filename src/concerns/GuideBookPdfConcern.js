@@ -1,4 +1,5 @@
 import GuideBookPdf from '@/models/GuideBookPdf'
+import store from '@/store'
 
 export const GuideBookPdfConcern = {
   data () {
@@ -12,7 +13,7 @@ export const GuideBookPdfConcern = {
       next()
       return
     }
-
+    store.commit('loader/START_LOADING')
     new GuideBookPdf()
       .find(to.params.guideBookPdfId)
       .then(resp => {
@@ -22,6 +23,9 @@ export const GuideBookPdfConcern = {
       })
       .catch(err => {
         next(vm => vm.$root.$emit('alertFromApiError', err, 'guideBookPdf'))
+      })
+      .finally(() => {
+        store.commit('loader/FINISH_LOADING')
       })
   },
 
@@ -34,6 +38,7 @@ export const GuideBookPdfConcern = {
     if (from.params.guideBookPdfId === to.params.guideBookPdfId) {
       next()
     } else {
+      store.commit('loader/START_LOADING')
       new GuideBookPdf()
         .find(to.params.guideBookPdfId)
         .then(resp => {
@@ -43,6 +48,9 @@ export const GuideBookPdfConcern = {
         .catch(err => {
           this.$root.$emit('alertFromApiError', err, 'guideBookPdf')
           next()
+        })
+        .finally(() => {
+          store.commit('loader/FINISH_LOADING')
         })
     }
   }

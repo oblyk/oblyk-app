@@ -1,4 +1,5 @@
 import CragRoute from '@/models/CragRoute'
+import store from '@/store'
 
 export const CragRouteConcern = {
   data () {
@@ -11,6 +12,7 @@ export const CragRouteConcern = {
     if (!to.params.cragId || !to.params.cragRouteId) {
       next()
     } else {
+      store.commit('loader/START_LOADING')
       new CragRoute()
         .find(
           to.params.cragId,
@@ -24,6 +26,9 @@ export const CragRouteConcern = {
         .catch(err => {
           next(vm => vm.$root.$emit('alertFromApiError', err, 'cragRoute'))
         })
+        .finally(() => {
+          store.commit('loader/FINISH_LOADING')
+        })
     }
   },
 
@@ -33,6 +38,7 @@ export const CragRouteConcern = {
     } else if (from.params.cragRouteId === to.params.cragRouteId) {
       next()
     } else {
+      store.commit('loader/START_LOADING')
       new CragRoute()
         .find(
           to.params.cragId,
@@ -45,6 +51,9 @@ export const CragRouteConcern = {
         .catch(err => {
           this.$root.$emit('alertFromApiError', err, 'cragRoute')
           next()
+        })
+        .finally(() => {
+          store.commit('loader/FINISH_LOADING')
         })
     }
   }

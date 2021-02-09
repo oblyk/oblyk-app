@@ -1,4 +1,5 @@
 import Area from '@/models/Area'
+import store from '@/store'
 
 export const AreaConcern = {
   data () {
@@ -11,6 +12,7 @@ export const AreaConcern = {
     if (!to.params.areaId) {
       next()
     } else {
+      store.commit('loader/START_LOADING')
       new Area()
         .find(to.params.areaId)
         .then(resp => {
@@ -21,6 +23,9 @@ export const AreaConcern = {
         .catch(err => {
           next(vm => vm.$root.$emit('alertFromApiError', err, 'area'))
         })
+        .finally(() => {
+          store.commit('loader/FINISH_LOADING')
+        })
     }
   },
 
@@ -30,6 +35,7 @@ export const AreaConcern = {
     } else if (from.params.areaId === to.params.areaId) {
       next()
     } else {
+      store.commit('loader/START_LOADING')
       new Area()
         .find(to.params.areaId)
         .then(resp => {
@@ -39,6 +45,9 @@ export const AreaConcern = {
         .catch(err => {
           this.$root.$emit('alertFromApiError', err, 'area')
           next()
+        })
+        .finally(() => {
+          store.commit('loader/FINISH_LOADING')
         })
     }
   }

@@ -1,4 +1,5 @@
 import GuideBookWeb from '@/models/GuideBookWeb'
+import store from '@/store'
 
 export const GuideBookWebConcern = {
   data () {
@@ -12,7 +13,7 @@ export const GuideBookWebConcern = {
       next()
       return
     }
-
+    store.commit('loader/START_LOADING')
     new GuideBookWeb()
       .find(to.params.guideBookWebId)
       .then(resp => {
@@ -22,6 +23,9 @@ export const GuideBookWebConcern = {
       })
       .catch(err => {
         next(vm => vm.$root.$emit('alertFromApiError', err, 'guideBookWeb'))
+      })
+      .finally(() => {
+        store.commit('loader/FINISH_LOADING')
       })
   },
 
@@ -34,6 +38,7 @@ export const GuideBookWebConcern = {
     if (from.params.guideBookWebId === to.params.guideBookWebId) {
       next()
     } else {
+      store.commit('loader/START_LOADING')
       new GuideBookWeb()
         .find(to.params.guideBookWebId)
         .then(resp => {
@@ -43,6 +48,9 @@ export const GuideBookWebConcern = {
         .catch(err => {
           this.$root.$emit('alertFromApiError', err, 'guideBookWeb')
           next()
+        })
+        .finally(() => {
+          store.commit('loader/FINISH_LOADING')
         })
     }
   }

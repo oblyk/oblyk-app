@@ -8,6 +8,7 @@
 <script>
 import LeafletMap from '@/components/maps/LeafletMap'
 import GymApi from '@/services/oblyk-api/GymApi'
+import store from '@/store'
 
 export default {
   name: 'GymMapView',
@@ -25,10 +26,14 @@ export default {
 
   methods: {
     getGeoJson: function () {
+      store.commit('loader/START_LOADING')
       GymApi
         .geoJson()
         .then(resp => {
           this.geoJsons = { features: resp.data.features }
+        })
+        .finally(() => {
+          store.commit('loader/FINISH_LOADING')
         })
     }
   }

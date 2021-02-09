@@ -1,4 +1,5 @@
 import GymSpace from '@/models/GymSpace'
+import store from '@/store'
 
 export const GymSpaceConcern = {
   data () {
@@ -11,6 +12,7 @@ export const GymSpaceConcern = {
     if (!to.params.gymId || !to.params.gymSpaceId) {
       next()
     } else {
+      store.commit('loader/START_LOADING')
       new GymSpace()
         .find(
           to.params.gymId,
@@ -24,6 +26,9 @@ export const GymSpaceConcern = {
         .catch(err => {
           next(vm => vm.$root.$emit('alertFromApiError', err, 'gymSpace'))
         })
+        .finally(() => {
+          store.commit('loader/FINISH_LOADING')
+        })
     }
   },
 
@@ -33,6 +38,7 @@ export const GymSpaceConcern = {
     } else if (from.params.gymSpaceId === to.params.gymSpaceId) {
       next()
     } else {
+      store.commit('loader/START_LOADING')
       new GymSpace()
         .find(
           to.params.gymId,
@@ -45,6 +51,9 @@ export const GymSpaceConcern = {
         .catch(err => {
           this.$root.$emit('alertFromApiError', err, 'gymSpace')
           next()
+        })
+        .finally(() => {
+          store.commit('loader/FINISH_LOADING')
         })
     }
   }

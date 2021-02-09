@@ -1,4 +1,5 @@
 import Approach from '@/models/Approach'
+import store from '@/store'
 
 export const ApproachConcern = {
   data () {
@@ -11,6 +12,7 @@ export const ApproachConcern = {
     if (!to.params.cragId || !to.params.approachId) {
       next()
     } else {
+      store.commit('loader/START_LOADING')
       new Approach()
         .find(
           to.params.cragId,
@@ -24,6 +26,9 @@ export const ApproachConcern = {
         .catch(err => {
           next(vm => vm.$root.$emit('alertFromApiError', err, 'approach'))
         })
+        .finally(() => {
+          store.commit('loader/FINISH_LOADING')
+        })
     }
   },
 
@@ -33,6 +38,7 @@ export const ApproachConcern = {
     } else if (from.params.approachId === to.params.approachId) {
       next()
     } else {
+      store.commit('loader/START_LOADING')
       new Approach()
         .find(
           to.params.cragId,
@@ -45,6 +51,9 @@ export const ApproachConcern = {
         .catch(err => {
           this.$root.$emit('alertFromApiError', err, 'approach')
           next()
+        })
+        .finally(() => {
+          store.commit('loader/FINISH_LOADING')
         })
     }
   }

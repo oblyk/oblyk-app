@@ -1,4 +1,5 @@
 import CragSector from '@/models/CragSector'
+import store from '@/store'
 
 export const CragSectorConcern = {
   data () {
@@ -11,6 +12,7 @@ export const CragSectorConcern = {
     if (!to.params.cragId || !to.params.cragSectorId) {
       next()
     } else {
+      store.commit('loader/START_LOADING')
       new CragSector()
         .find(
           to.params.cragId,
@@ -24,6 +26,9 @@ export const CragSectorConcern = {
         .catch(err => {
           next(vm => vm.$root.$emit('alertFromApiError', err, 'cragSector'))
         })
+        .finally(() => {
+          store.commit('loader/FINISH_LOADING')
+        })
     }
   },
 
@@ -33,6 +38,7 @@ export const CragSectorConcern = {
     } else if (from.params.cragSectorId === to.params.cragSectorId) {
       next()
     } else {
+      store.commit('loader/START_LOADING')
       new CragSector()
         .find(
           to.params.cragId,
@@ -45,6 +51,9 @@ export const CragSectorConcern = {
         .catch(err => {
           this.$root.$emit('alertFromApiError', err, 'cragSector')
           next()
+        })
+        .finally(() => {
+          store.commit('loader/FINISH_LOADING')
         })
     }
   }

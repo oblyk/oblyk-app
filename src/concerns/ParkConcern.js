@@ -1,4 +1,5 @@
 import Park from '@/models/Park'
+import store from '@/store'
 
 export const ParkConcern = {
   data () {
@@ -11,6 +12,7 @@ export const ParkConcern = {
     if (!to.params.cragId || !to.params.parkId) {
       next()
     } else {
+      store.commit('loader/START_LOADING')
       new Park()
         .find(
           to.params.cragId,
@@ -24,6 +26,9 @@ export const ParkConcern = {
         .catch(err => {
           next(vm => vm.$root.$emit('alertFromApiError', err, 'park'))
         })
+        .finally(() => {
+          store.commit('loader/FINISH_LOADING')
+        })
     }
   },
 
@@ -33,6 +38,7 @@ export const ParkConcern = {
     } else if (from.params.parkId === to.params.parkId) {
       next()
     } else {
+      store.commit('loader/START_LOADING')
       new Park()
         .find(
           to.params.cragId,
@@ -45,6 +51,9 @@ export const ParkConcern = {
         .catch(err => {
           this.$root.$emit('alertFromApiError', err, 'park')
           next()
+        })
+        .finally(() => {
+          store.commit('loader/FINISH_LOADING')
         })
     }
   }
