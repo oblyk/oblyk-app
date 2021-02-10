@@ -2,15 +2,12 @@
   <v-row>
     <v-col align-self="center" cols="md-6">
       <h2 class="loved-by-king">
-        Check les infos des falaises
+        {{ $t('home.crags.title') }}
       </h2>
-      <p>
-        Oblyk est une grande base de donnée des falaises d'escalade de France et du monde constamment enrichie par
-        la communauté, tu peux consulter celle-ci en utilisant la recherche ou en naviguant sur la carte des falaises.
-      </p>
+      <p v-html="$t('home.crags.body')" />
       <p class="text-right">
         <v-btn outlined color="primary" to="/maps/crags">
-          La carte des falaises
+          {{ $t('home.crags.action') }}
         </v-btn>
       </p>
     </v-col>

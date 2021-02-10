@@ -1,5 +1,10 @@
 {
   "home": {
+    "crags": {
+      "title": "Check les infos des falaises",
+      "body": "Oblyk est une grande base de donnée des <strong>falaises d'escalade</strong> de France et du monde constamment <strong>enrichie par la communauté</strong>, tu peux consulter celle-ci en utilisant la recherche ou en naviguant sur la <strong>carte des falaises.</strong>",
+      "action" : "La carte des falaises"
+    },
     "figures": {
       "title": "Oblyk en quelques chiffres",
       "crags": "Falaises",

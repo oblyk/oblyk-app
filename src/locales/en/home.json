@@ -1,5 +1,10 @@
 {
   "home": {
+    "crags": {
+      "title": "Check crags information",
+      "body": "Oblyk is a big <strong>climbing spots</strong> database from France and the world, always <strong>updated by the community</strong>. You can see it using the search or using the <strong>crags map</strong>.",
+      "action" : "Crags map"
+    },
     "figures": {
       "title": "Oblyk in a few figures",
       "crags": "Crags",
