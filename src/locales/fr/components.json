@@ -27,6 +27,34 @@
       "ropingStatus": "Mode",
       "note": "Note"
     },
+    "markdown": {
+      "tips": "<strong>Tips :</strong> Utilise la <a>notation markdown</a> pour plus de style!",
+      "modalTitle": "La notation markdown",
+      "explain": {
+        "whatIsIt": "Le Markdown est un langage de balisage léger. Il permet grace à des symboles simples de styliser un text.",
+        "list": "Voici une liste des symboles que vous pouvez utiliser.",
+        "italic": "Italique",
+        "bold": "Gras",
+        "strikethroughText": "Texte barré",
+        "link": "Lien",
+        "table": "Tableau",
+        "neverTooMuch": "Il y a jamais trop de force",
+        "aBrute": "Une Brute",
+        "thisIs": "C'est",
+        "butIsGood": "mais c'est bon",
+        "tooHard": "trop dur",
+        "teachesMarkdown": "m'apprend le markdown",
+        "this": "Ça",
+        "is": "c'est",
+        "complicated": "compliqué",
+        "column": "Colonne",
+        "alignedTo": "Alignée à",
+        "alignedIn": "Alignée au",
+        "left": "Gauche",
+        "center": "Centre",
+        "right": "Droite"
+      }
+    },
     "gallery": {
       "title": "Photos",
       "defineCragRouteBanner": "Définir comme bandeau de la ligne",

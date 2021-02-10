@@ -27,6 +27,34 @@
       "ropingStatus": "Roping status",
       "note": "Note"
     },
+    "markdown": {
+      "tips": "<strong>Tips :</strong> Use the <a>markdown notation</a> for more style!",
+      "modalTitle": "The markdown rating",
+      "explain": {
+        "whatIsIt": "Markdown is a light markup language. It allows using simple symbols to stylize a text.",
+        "list": "Here is a list of symbols you can use.",
+        "italic": "Italic",
+        "bold": "Bold",
+        "strikethroughText": "Strikethrough text",
+        "link": "Link",
+        "table": "Table",
+        "neverTooMuch": "There is never too much strength",
+        "aBrute": "A Brute",
+        "thisIs": "This is",
+        "butIsGood": "but is good",
+        "tooHard": "too hard",
+        "teachesMarkdown": "teaches me the markdown",
+        "this": "This",
+        "is": "is",
+        "complicated": "complicated",
+        "column": "Column",
+        "alignedTo": "Aligned to",
+        "alignedIn": "Aligned in",
+        "left": "Left",
+        "center": "Center",
+        "right": "Right"
+      }
+    },
     "gallery": {
       "title": "Pictures",
       "defineCragRouteBanner": "Define as route banner",

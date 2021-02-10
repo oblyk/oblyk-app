@@ -1,6 +1,6 @@
 <template>
   <div class="comment-card">
-    <div class="comment-message" v-html="comment.body"></div>
+    <markdown-text :text="comment.body" />
     <div class="comment-owner">
       <owner-label
         :history="comment.history"
@@ -17,10 +17,11 @@
 import { SessionConcern } from '@/concerns/SessionConcern'
 import OwnerLabel from '@/components/users/OwnerLabel'
 import CommentApi from '@/services/oblyk-api/CommentApi'
+import MarkdownText from '@/components/ui/MarkdownText'
 
 export default {
   name: 'CommentCard',
-  components: { OwnerLabel },
+  components: { MarkdownText, OwnerLabel },
   mixins: [SessionConcern],
   props: {
     comment: Object,
@@ -54,8 +55,6 @@ export default {
 .comment-card {
   border-radius: 5px;
   padding: 10px;
-
-  .comment-message {}
 }
 
 .theme--light {

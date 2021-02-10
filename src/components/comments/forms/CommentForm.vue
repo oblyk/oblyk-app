@@ -1,8 +1,6 @@
 <template>
   <v-form @submit.prevent="submit()">
-    <v-textarea
-      outlined
-      required
+    <markdown-input
       v-model="data.body"
       :label="$t('models.comment.body')"
     />
@@ -18,10 +16,11 @@ import { FormHelpers } from '@/mixins/FormHelpers'
 import SubmitForm from '@/components/forms/SubmitForm'
 import CommentApi from '@/services/oblyk-api/CommentApi'
 import CloseForm from '@/components/forms/CloseForm'
+import MarkdownInput from '@/components/forms/MarkdownInput'
 
 export default {
   name: 'CommentForm',
-  components: { CloseForm, SubmitForm },
+  components: { MarkdownInput, CloseForm, SubmitForm },
   mixins: [FormHelpers],
   props: {
     comment: {
