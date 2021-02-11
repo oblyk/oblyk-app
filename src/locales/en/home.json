@@ -5,6 +5,10 @@
       "body": "Oblyk is a big <strong>climbing spots</strong> database from France and the world, always <strong>updated by the community</strong>. You can see it using the search or using the <strong>crags map</strong>.",
       "action" : "Crags map"
     },
+    "ascents": {
+      "title": "Hold a sendlist",
+      "body": "Good for memory, progression and motivation, <strong>holding a sendlist</strong> has many good points.<br>Oblyk helps you doing that an easy way, you can <strong>see your improvement</strong> many ways to analyse and display your sendlist."
+    },
     "figures": {
       "title": "Oblyk in a few figures",
       "crags": "Crags",

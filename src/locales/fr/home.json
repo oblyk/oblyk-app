@@ -5,6 +5,10 @@
       "body": "Oblyk est une grande base de donnée des <strong>falaises d'escalade</strong> de France et du monde constamment <strong>enrichie par la communauté</strong>, tu peux consulter celle-ci en utilisant la recherche ou en naviguant sur la <strong>carte des falaises.</strong>",
       "action" : "La carte des falaises"
     },
+    "ascents": {
+      "title": "Tiens un carnet de croix",
+      "body": "Bon pour la mémoire, la progression et la motivation, tenir un <strong>carnet de croix</strong> à beaucoup d'avantages.<br> Oblyk te permet de le faire facilement, tu pourras ensuite <strong>visualiser ta progression</strong> grâce à de nombreuses façons d'analyser et d'afficher ton carnet de croix."
+    },
     "figures": {
       "title": "Oblyk en quelques chiffres",
       "crags": "Falaises",
