@@ -32,7 +32,7 @@
       <div v-if="ascentCragRoute.attempt" v-html="$t('components.ascentCragRoute.numberOfAttempt', { number: ascentCragRoute.attempt})" />
       <div v-if="ascentCragRoute.comment">
         <v-divider class="mb-2 mt-2" />
-        {{ ascentCragRoute.comment }}
+        <markdown-text :text="ascentCragRoute.comment" />
         <div v-if="ascentCragRoute.note" class="mt-2">
           <note :note="ascentCragRoute.note" /> {{ $t(`models.note.${noteText(ascentCragRoute.note)}`)}}
         </div>
@@ -65,11 +65,12 @@ import NoteClass from '@/models/Note'
 import AscentCragRouteApi from '@/services/oblyk-api/AscentCragRouteApi'
 import store from '@/store'
 import EditAscentBtn from '@/components/ascentCragRoutes/EditAscentBtn'
+import MarkdownText from '@/components/ui/MarkdownText'
 
 export default {
   name: 'AscentCragRouteSmallCard',
   mixins: [DateHelpers],
-  components: { EditAscentBtn, Note, AscentCragRouteStatusIcon },
+  components: { MarkdownText, EditAscentBtn, Note, AscentCragRouteStatusIcon },
   props: {
     ascentCragRoute: Object,
     cragRoute: Object

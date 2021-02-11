@@ -7,7 +7,7 @@
       {{ word.name }}
     </v-card-title>
     <v-card-text>
-      {{ word.definition }}
+      <markdown-text :text="word.definition" />
     </v-card-text>
     <v-card-text v-if="!presentation">
       <contributions-label
@@ -34,10 +34,11 @@
 <script>
 import { SessionConcern } from '@/concerns/SessionConcern'
 import ContributionsLabel from '@/components/globals/ContributionsLable'
+import MarkdownText from '@/components/ui/MarkdownText'
 
 export default {
   name: 'WordCard',
-  components: { ContributionsLabel },
+  components: { MarkdownText, ContributionsLabel },
   mixins: [SessionConcern],
   props: {
     word: Object,

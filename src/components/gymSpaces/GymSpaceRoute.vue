@@ -21,9 +21,9 @@
       </div>
 
       <!-- Space description -->
-      <p class="gym-space-description">
-        {{ gymSpace.description }}
-      </p>
+      <div class="gym-space-description">
+        <markdown-text :text="gymSpace.description" />
+      </div>
 
       <!-- Route list -->
       <gym-space-route-list :gym-space="gymSpace" />
@@ -42,11 +42,13 @@ import GymSpaceActionMenu from '@/components/gymSpaces/GymSpaceActionMenu'
 import GymSpaceRouteList from '@/components/gymRoutes/GymSpaceRouteList'
 import GymSectorEditingPlan from '@/components/gymSectors/GymSectorEditingPlan'
 import { SessionConcern } from '@/concerns/SessionConcern'
+import MarkdownText from '@/components/ui/MarkdownText'
 
 export default {
   name: 'GymSpaceRoute',
   mixins: [SessionConcern],
   components: {
+    MarkdownText,
     GymSectorEditingPlan,
     GymSpaceRouteList,
     GymSpaceActionMenu,

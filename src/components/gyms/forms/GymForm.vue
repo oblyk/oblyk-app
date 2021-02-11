@@ -7,8 +7,7 @@
       required
     />
 
-    <v-textarea
-      outlined
+    <markdown-input
       v-model="data.description"
       :label="$t('models.gym.description')"
     />
@@ -90,10 +89,11 @@ import MapInput from '@/components/forms/MapInput'
 import SubmitForm from '@/components/forms/SubmitForm'
 import ClimbingTypeInput from '@/components/forms/ClimbingTypeInput'
 import CloseForm from '@/components/forms/CloseForm'
+import MarkdownInput from '@/components/forms/MarkdownInput'
 
 export default {
   name: 'GymForm',
-  components: { CloseForm, ClimbingTypeInput, SubmitForm, MapInput },
+  components: { MarkdownInput, CloseForm, ClimbingTypeInput, SubmitForm, MapInput },
   props: {
     gym: {
       type: Object,

@@ -2,7 +2,7 @@
   <div class="pb-5 photo-description">
     <!-- Description -->
     <v-card-text v-if="photo.description">
-      {{ photo.description }}
+      <markdown-text :text="photo.description" />
     </v-card-text>
 
     <!-- Crag, Sector, Route, etc. -->
@@ -53,8 +53,10 @@
 </template>
 
 <script>
+import MarkdownText from '@/components/ui/MarkdownText'
 export default {
   name: 'PhotoDescription',
+  components: { MarkdownText },
   props: {
     photo: Object,
     illustrableObject: Object

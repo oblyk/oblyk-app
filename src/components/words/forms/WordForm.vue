@@ -7,9 +7,7 @@
       :label="$t('models.word.name')"
     />
 
-    <v-textarea
-      outlined
-      required
+    <markdown-input
       v-model="data.definition"
       :label="$t('models.word.definition')"
     />
@@ -27,10 +25,11 @@ import SubmitForm from '@/components/forms/SubmitForm'
 import WordApi from '@/services/oblyk-api/WordApi'
 import CloseForm from '@/components/forms/CloseForm'
 import Word from '@/models/Word'
+import MarkdownInput from '@/components/forms/MarkdownInput'
 
 export default {
   name: 'WordForm',
-  components: { CloseForm, SubmitForm },
+  components: { MarkdownInput, CloseForm, SubmitForm },
   mixins: [FormHelpers],
   props: {
     word: {

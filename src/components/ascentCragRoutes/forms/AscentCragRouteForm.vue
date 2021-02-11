@@ -65,11 +65,9 @@
       />
 
       <!-- Comment -->
-      <v-textarea
-        outlined
+      <markdown-input
         v-model="data.comment"
         :label="$t('models.ascentCragRoute.comment')"
-        hide-details
       />
 
       <v-checkbox
@@ -98,10 +96,11 @@ import NoteInput from '@/components/forms/NoteInput'
 import { DateHelpers } from '@/mixins/DateHelpers'
 import CragRoute from '@/models/CragRoute'
 import store from '@/store'
+import MarkdownInput from '@/components/forms/MarkdownInput'
 
 export default {
   name: 'AscentCragRouteForm',
-  components: { NoteInput, DatePickerInput, AscentStatusInput, RopingStatusInput, CloseForm, SubmitForm },
+  components: { MarkdownInput, NoteInput, DatePickerInput, AscentStatusInput, RopingStatusInput, CloseForm, SubmitForm },
   mixins: [
     FormHelpers,
     DateHelpers

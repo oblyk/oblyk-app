@@ -11,8 +11,7 @@
       :placeholder="$t('actions.browse')"
     />
 
-    <v-textarea
-      outlined
+    <markdown-input
       v-model="data.description"
       :label="$t('models.photo.description')"
     />
@@ -50,10 +49,11 @@ import { FormHelpers } from '@/mixins/FormHelpers'
 import PhotoApi from '@/services/oblyk-api/PhotoApi'
 import SubmitForm from '@/components/forms/SubmitForm'
 import CloseForm from '@/components/forms/CloseForm'
+import MarkdownInput from '@/components/forms/MarkdownInput'
 
 export default {
   name: 'PhotoForm',
-  components: { CloseForm, SubmitForm },
+  components: { MarkdownInput, CloseForm, SubmitForm },
   mixins: [FormHelpers],
 
   props: {

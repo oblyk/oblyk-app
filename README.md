@@ -6,13 +6,13 @@
 - [x] Améliorer la sid barre (selection en thème sombre pas beau)
 - [x] Faire pied de page
 - [x] Faire système d'alerte généralisé
-- [ ] Markdown
+- [x] Markdown
 - [x] Visionneuse photo
 - [ ] Annotation des photos
 - [x] Commentable
 - [x] Followable
 - [x] Linkable
-- [X] Videoable
+- [x] Videoable
 - [x] Favicon, meta title
 - [x] Système de versionning
 - [ ] Faire page 404
@@ -51,7 +51,7 @@ ___
 - [x] Déplacer le profil dans la bar d'application
 - [x] Améliorer la création d'un compte (photo, partenaire, etc.)
 - [x] Mot de passe oublié
-- [X] Favoris
+- [x] Favoris
 - [x] Topothèque
 - [ ] Faire le "dashboard"
 - [ ] Faire la messagerie
@@ -65,7 +65,7 @@ ___
 - [ ] Export de ses données
 
 ## TODO Outdoor
-- [X] Falaise
+- [x] Falaise
 - [x] Secteur
 - [x] Voies
 - [x] Liens
@@ -81,8 +81,8 @@ ___
 - [ ] Système d'alerte
 
 ## TODO Recherche partenaire de grimpe
-- [X] Paramétrage à la création d'un compte
-- [X] Changement des paramètres dans son profil
+- [x] Paramétrage à la création d'un compte
+- [x] Changement des paramètres dans son profil
 - [ ] La carte des grimpeurs
 
 ## TODO News

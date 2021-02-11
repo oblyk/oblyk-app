@@ -1,7 +1,9 @@
 <template>
   <v-card class="full-height">
     <v-card-title>Description</v-card-title>
-    <v-card-text v-text="gym.description" />
+    <v-card-text>
+      <markdown-text :text="gym.description" />
+    </v-card-text>
     <v-card-text>
       <v-chip
         class="ma-1"
@@ -26,8 +28,10 @@
 </template>
 
 <script>
+import MarkdownText from '@/components/ui/MarkdownText'
 export default {
   name: 'GymDescription',
+  components: { MarkdownText },
   props: {
     gym: Object
   }

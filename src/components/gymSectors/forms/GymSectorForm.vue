@@ -29,8 +29,7 @@
         required
       />
 
-      <v-textarea
-        outlined
+      <markdown-input
         v-model="data.description"
         :label="$t('models.gymSector.description')"
       />
@@ -77,10 +76,11 @@ import SubmitForm from '@/components/forms/SubmitForm'
 import Spinner from '@/components/layouts/Spiner'
 import GymGradeApi from '@/services/oblyk-api/GymGradeApi'
 import GymSectorApi from '@/services/oblyk-api/GymSectorApi'
+import MarkdownInput from '@/components/forms/MarkdownInput'
 
 export default {
   name: 'GymSectorForm',
-  components: { Spinner, SubmitForm, CloseForm },
+  components: { MarkdownInput, Spinner, SubmitForm, CloseForm },
   mixins: [FormHelpers],
   props: {
     gymSpace: Object,

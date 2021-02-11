@@ -25,7 +25,7 @@
           class="ascent-comment-card"
           v-if="comment.type === 'AscentComment'"
         >
-          {{ comment.comment.comment }}
+          <markdown-text :text="comment.comment.comment" />
           <div>
             <note v-if="comment.comment.note" :note="comment.comment.note" />
             <small>
@@ -71,10 +71,11 @@ import CommentCard from '@/components/comments/CommentCard'
 import Spinner from '@/components/layouts/Spiner'
 import Note from '@/components/notes/Note'
 import { DateHelpers } from '@/mixins/DateHelpers'
+import MarkdownText from '@/components/ui/MarkdownText'
 
 export default {
   name: 'CragRouteComments',
-  components: { Note, Spinner, CommentCard },
+  components: { MarkdownText, Note, Spinner, CommentCard },
   mixins: [SessionConcern, DateHelpers],
   props: {
     cragRoute: Object
