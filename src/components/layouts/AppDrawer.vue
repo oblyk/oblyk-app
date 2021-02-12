@@ -60,11 +60,6 @@
         icon-color="deep-purple"
         :title="$t('components.layout.appDrawer.user.guideBooks')"
       />
-      <app-drawer-item
-        :url="`/me/${currentUser.slugName}/settings/general`"
-        icon="mdi-cog"
-        :title="$t('components.layout.appDrawer.user.settings')"
-      />
     </v-list>
 
     <my-gyms />
