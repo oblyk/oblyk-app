@@ -395,7 +395,12 @@
         "subscribers": "Subscribers",
         "ascents": "Ascents",
         "guideBooks": "Guide book library",
-        "favorites": "Favorites"
+        "favorites": "Favorites",
+        "settings": "Settings"
+      },
+      "settingTabs": {
+        "general": "General",
+        "partner": "Partner search"
       }
     },
     "layout": {
@@ -438,7 +443,8 @@
           "ascents": "Ascents",
           "subscribers": "Subscribers",
           "guideBooks": "Guide books",
-          "favorites": "Favorites"
+          "favorites": "Favorites",
+          "settings": "Settings"
         }
       },
       "footer": {

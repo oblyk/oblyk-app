@@ -45,9 +45,7 @@
         </v-row>
 
         <!-- Bio -->
-        <v-textarea
-          outlined
-          required
+        <markdown-input
           v-model="data.description"
           :label="$t('models.user.description')"
         />
@@ -56,21 +54,7 @@
       <submit-form
         :overlay="submitOverlay"
         :submit-local-key="submitText()"
-      >
-        <v-btn
-          text
-          class="float-right"
-          color="primary"
-          :to="user.mePath('settings')"
-        >
-          <v-icon
-            left
-          >
-            mdi-tune
-          </v-icon>
-          {{ $t('components.user.globalInformation') }}
-        </v-btn>
-      </submit-form>
+      />
     </v-form>
   </div>
 </template>
@@ -79,11 +63,12 @@ import { FormHelpers } from '@/mixins/FormHelpers'
 import UserApi from '@/services/oblyk-api/UserApi'
 import SubmitForm from '@/components/forms/SubmitForm'
 import ClimbingTypeInput from '@/components/forms/ClimbingTypeInput'
+import MarkdownInput from '@/components/forms/MarkdownInput'
 
 export default {
   name: 'PartnerForm',
   mixins: [FormHelpers],
-  components: { ClimbingTypeInput, SubmitForm },
+  components: { MarkdownInput, ClimbingTypeInput, SubmitForm },
   props: {
     user: Object
   },

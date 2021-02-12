@@ -77,6 +77,17 @@
         {{ $t('components.user.tabs.guideBooks') }}
       </span>
     </v-tab>
+    <v-tab :to="user.mePath('settings/general')">
+      <v-icon
+        :small="!isMobile"
+        left
+      >
+        mdi-cog
+      </v-icon>
+      <span class="hidden-sm-only hidden-xs-only">
+        {{ $t('components.user.tabs.settings') }}
+      </span>
+    </v-tab>
   </v-tabs>
 </template>
 

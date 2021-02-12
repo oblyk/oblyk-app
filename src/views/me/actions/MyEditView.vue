@@ -1,28 +1,24 @@
 <template>
-  <div>
-    <spinner v-if="loadingMeUser" />
-
-    <v-container v-if="!loadingMeUser">
-      <v-row justify="center">
-        <v-col class="global-form-width">
-          <h2 class="mb-4">
-            {{ $t('components.user.globalInformation') }}
-          </h2>
-          <user-form :user="meUser" submit-methode="put" />
-        </v-col>
-      </v-row>
-    </v-container>
-  </div>
+  <v-container>
+    <v-row justify="center">
+      <v-col class="global-form-width">
+        <h2 class="mb-4">
+          {{ $t('components.user.globalInformation') }}
+        </h2>
+        <user-form :user="user" submit-methode="put" />
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
-import { MeUserConcern } from '@/concerns/MeUserConcern'
-import Spinner from '@/components/layouts/Spiner'
 import UserForm from '@/components/users/forms/UserForm'
 
 export default {
   name: 'MyEditView',
-  components: { UserForm, Spinner },
-  mixins: [MeUserConcern]
+  components: { UserForm },
+  props: {
+    user: Object
+  }
 }
 </script>

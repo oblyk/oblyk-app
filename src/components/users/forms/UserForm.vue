@@ -51,9 +51,7 @@
       />
 
       <!-- Bio -->
-      <v-textarea
-        outlined
-        required
+      <markdown-input
         v-model="data.description"
         :label="$t('models.user.description')"
       />
@@ -61,21 +59,7 @@
       <submit-form
         :overlay="submitOverlay"
         :submit-local-key="submitText()"
-      >
-        <v-btn
-          text
-          class="float-right"
-          color="primary"
-          :to="user.mePath('partner-settings')"
-        >
-          <v-icon
-            left
-          >
-            mdi-account-search
-          </v-icon>
-          {{ $t('components.user.partnerSearch') }}
-        </v-btn>
-      </submit-form>
+      />
     </v-form>
   </div>
 </template>
@@ -85,11 +69,12 @@ import UserApi from '@/services/oblyk-api/UserApi'
 import SubmitForm from '@/components/forms/SubmitForm'
 import DatePickerInput from '@/components/forms/DatePickerInput'
 import store from '@/store'
+import MarkdownInput from '@/components/forms/MarkdownInput'
 
 export default {
   name: 'UserForm',
   mixins: [FormHelpers],
-  components: { DatePickerInput, SubmitForm },
+  components: { MarkdownInput, DatePickerInput, SubmitForm },
   props: {
     user: Object
   },

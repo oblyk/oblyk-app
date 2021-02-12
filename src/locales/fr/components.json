@@ -395,7 +395,12 @@
         "subscribers": "Abonnés",
         "ascents": "Croix",
         "guideBooks": "Topothèque",
-        "favorites": "Favoris"
+        "favorites": "Favoris",
+        "settings": "Paramètres"
+      },
+      "settingTabs": {
+        "general": "Généraux",
+        "partner": "Partenaires"
       }
     },
     "layout": {
@@ -438,7 +443,8 @@
           "ascents": "Croix",
           "subscribers": "Abonnés",
           "guideBooks": "Topothèque",
-          "favorites": "Favoris"
+          "favorites": "Favoris",
+          "settings": "Paramètres"
         }
       },
       "footer": {

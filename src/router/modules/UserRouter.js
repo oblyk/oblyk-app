@@ -1,12 +1,13 @@
 import MyAvatarView from '@/views/me/actions/MyAvatarView'
 import MyBannerView from '@/views/me/actions/MyBannerView'
-import MyEditView from '@/views/me/actions/MyEditView'
 import MyAscentsView from '@/views/me/MyAscentsView'
 import MySubscribersView from '@/views/me/MySubscribersView'
 import MyGuideBooksView from '@/views/me/MyGuideBooksView'
 import MyFavoritesView from '@/views/me/MyFavoritesView'
 import MessengerView from '@/views/me/MessengerView'
 import MyPartnerSettingsView from '@/views/me/actions/MyPartnerSettingsView'
+import SettingsView from '@/views/me/SettingsView'
+import MyEditView from '@/views/me/actions/MyEditView'
 
 export default [
   {
@@ -29,21 +30,32 @@ export default [
   },
   {
     path: '/me/:userSlug/settings',
-    component: MyEditView,
+    component: SettingsView,
     meta: {
       requiresAuth: true,
       title: 'mySettings',
       showTitle: false
-    }
-  },
-  {
-    path: '/me/:userSlug/partner-settings',
-    component: MyPartnerSettingsView,
-    meta: {
-      requiresAuth: true,
-      title: 'myPartnerSettings',
-      showTitle: false
-    }
+    },
+    children: [
+      {
+        path: 'general',
+        component: MyEditView,
+        meta: {
+          requiresAuth: true,
+          title: 'mySettings',
+          showTitle: false
+        }
+      },
+      {
+        path: 'partner',
+        component: MyPartnerSettingsView,
+        meta: {
+          requiresAuth: true,
+          title: 'myPartnerSettings',
+          showTitle: false
+        }
+      }
+    ]
   },
   {
     path: '/me/:userSlug/ascents',
