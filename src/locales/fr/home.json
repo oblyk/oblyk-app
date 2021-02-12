@@ -13,6 +13,13 @@
       "title": "Trouve un partenaire de grimpe",
       "body": "Tu arrives dans une nouvelle région, tu aimerais trouver quelqu'un avec qui <strong>grimper en falaise ou en salle</strong> ?<br>Regarde du côté de notre <strong>carte des grimpeurs</strong>, peut-être que tu trouveras quelqu'un avec qui grimper."
     },
+    "supportUs": {
+      "title": "Nous soutenir",
+      "body1": "Sur Oblyk il n'y a aucune limitation, pas de compte premium, ni pub, ni lien ou article sponsorisé, tous est gratuit ! ; )",
+      "body2": "Si tout est gratuit et qu'Oblyk ne perçoit aucun revenu, cela veut-il dire qu'Oblyk ne coûte rien à développer ?",
+      "body3": "Malheureusement non, comme tout site internet, Oblyk doit être hébergé dans un datacenter et louer un nom de domaine pour pouvoir éxister sur la toile.<br>Et ça par contre, ce n'est pas gratuit ... ",
+      "action": "Nous soutenir"
+    },
     "figures": {
       "title": "Oblyk en quelques chiffres",
       "crags": "Falaises",

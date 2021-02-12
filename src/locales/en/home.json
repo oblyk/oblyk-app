@@ -13,6 +13,13 @@
       "title": "Find a climbing partner",
       "body": "Coming in a new region, looking for someone to <strong>climb with, in the gym or outdoor</strong>?<bt>Look into the <strong>map of climber</strong>, maybe you will find somebody to climb with. "
     },
+    "supportUs": {
+      "title": "Support Us",
+      "body1": "In Oblyk there are no limits, no premium account, no adds, no sponsored link, everything free ! ; )",
+      "body2": "If it is free and Oblyk doesn't get any money, does it mean it is a zero cost project ?",
+      "body3": "Unfortunately no, as every website, oblyk need to be hosted in a data center and rent a domain name to exist.<br>And that is not free... ",
+      "action": "Support Us"
+    },
     "figures": {
       "title": "Oblyk in a few figures",
       "crags": "Crags",
