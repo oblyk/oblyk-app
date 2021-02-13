@@ -16,7 +16,7 @@ import UserTabs from '@/components/users/layouts/UserTabs'
 import UserSettingsTabs from '@/components/users/layouts/UserSettingsTabs'
 
 export default {
-  name: 'SettingsView',
+  name: 'MySettingsView',
   components: { UserSettingsTabs, UserTabs, Spinner },
   mixins: [MeUserConcern]
 }

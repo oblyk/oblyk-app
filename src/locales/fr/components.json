@@ -401,6 +401,11 @@
       "settingTabs": {
         "general": "Généraux",
         "partner": "Partenaires"
+      },
+      "ascentTabs": {
+        "sendList": "Carnet",
+        "tickList": "Tick list",
+        "analytiks": "Analytiks"
       }
     },
     "layout": {

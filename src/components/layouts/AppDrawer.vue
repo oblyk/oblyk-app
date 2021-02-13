@@ -37,7 +37,7 @@
         :title="$t('components.layout.appDrawer.user.messenger')"
       />
       <app-drawer-item
-        :url="`/me/${currentUser.slugName}/ascents`"
+        :url="`/me/${currentUser.slugName}/ascents/send-list`"
         icon="mdi-check-all"
         icon-color="blue"
         :title="$t('components.layout.appDrawer.user.ascents')"

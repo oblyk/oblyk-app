@@ -6,8 +6,11 @@ import MyGuideBooksView from '@/views/me/MyGuideBooksView'
 import MyFavoritesView from '@/views/me/MyFavoritesView'
 import MessengerView from '@/views/me/MessengerView'
 import MyPartnerSettingsView from '@/views/me/actions/MyPartnerSettingsView'
-import SettingsView from '@/views/me/SettingsView'
+import MySettingsView from '@/views/me/MySettingsView'
 import MyEditView from '@/views/me/actions/MyEditView'
+import MySendList from '@/views/me/MySendList'
+import MyTickList from '@/views/me/MyTickList'
+import MyAnalytiks from '@/views/me/MyAnalytiks'
 
 export default [
   {
@@ -30,7 +33,7 @@ export default [
   },
   {
     path: '/me/:userSlug/settings',
-    component: SettingsView,
+    component: MySettingsView,
     meta: {
       requiresAuth: true,
       title: 'mySettings',
@@ -64,7 +67,36 @@ export default [
       requiresAuth: true,
       title: 'myAscents',
       showTitle: true
-    }
+    },
+    children: [
+      {
+        path: 'send-list',
+        component: MySendList,
+        meta: {
+          requiresAuth: true,
+          title: 'myAscents',
+          showTitle: true
+        }
+      },
+      {
+        path: 'tick-list',
+        component: MyTickList,
+        meta: {
+          requiresAuth: true,
+          title: 'myAscents',
+          showTitle: true
+        }
+      },
+      {
+        path: 'analytiks',
+        component: MyAnalytiks,
+        meta: {
+          requiresAuth: true,
+          title: 'myAscents',
+          showTitle: true
+        }
+      }
+    ]
   },
   {
     path: '/me/:userSlug/subscribers',

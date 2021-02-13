@@ -4,24 +4,21 @@
 
     <div v-if="!loadingMeUser">
       <user-tabs :user="meUser" />
-      <v-container>
-        <v-row>
-          <v-col>
-            ...
-          </v-col>
-        </v-row>
-      </v-container>
+      <user-accents-tabs :user="meUser" />
+      <router-view :user="meUser" />
     </div>
   </div>
 </template>
+
 <script>
 import { MeUserConcern } from '@/concerns/MeUserConcern'
 import Spinner from '@/components/layouts/Spiner'
 import UserTabs from '@/components/users/layouts/UserTabs'
+import UserAccentsTabs from '@/components/users/layouts/UserAscentsTabs'
 
 export default {
   name: 'MyAscentsView',
-  components: { UserTabs, Spinner },
+  components: { UserAccentsTabs, UserTabs, Spinner },
   mixins: [MeUserConcern]
 }
 </script>

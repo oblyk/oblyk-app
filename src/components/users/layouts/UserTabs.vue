@@ -39,7 +39,7 @@
       </span>
     </v-tab>
 
-    <v-tab :to="user.mePath('ascents')">
+    <v-tab :to="user.mePath('ascents/send-list')">
       <v-icon
         :small="!isMobile"
         left

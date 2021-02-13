@@ -401,6 +401,11 @@
       "settingTabs": {
         "general": "General",
         "partner": "Partner search"
+      },
+      "ascentTabs": {
+        "sendList": "Send list",
+        "tickList": "Tick list",
+        "analytiks": "Analytiks"
       }
     },
     "layout": {
