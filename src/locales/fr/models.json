@@ -105,7 +105,7 @@
       "comment": "Mon commentaire",
       "private_comment": "Commentaire privé",
       "released_at": "Réalisé le",
-      "grade_appreciation_text": "Cotation dans mon carnet"
+      "hardness_status": "Appréciation de la difficulté"
     },
     "area": {
       "name": "Nom"
@@ -432,6 +432,11 @@
       "multi_pitch_leader": "Tête (multi pitch)",
       "multi_pitch_second": "Second (multi pitch)",
       "multi_pitch_alternate_lead": "Réversible (multi pitch)"
+    },
+    "hardnessStatus": {
+      "easy_for_the_grade": "Facile pour la cotation",
+      "this_grade_is_accurate": "Juste, bien côté",
+      "sandbagged": "Dur pour la cotation !"
     },
     "note": {
       "terrible": "Horrible !",

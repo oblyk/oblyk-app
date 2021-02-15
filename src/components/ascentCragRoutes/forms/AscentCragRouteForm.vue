@@ -55,13 +55,11 @@
       <!-- Note -->
       <note-input v-model="data.note" />
 
-      <!-- Grade -->
-      <v-text-field
-        outlined
+      <!-- Hardness status -->
+      <hardness-status-input
         v-if="cragRoute.sections.length === 1"
-        prepend-inner-icon="mdi-numeric-7-box-multiple-outline"
-        v-model="data.grade_appreciation_text"
-        :label="$t('models.ascentCragRoute.grade_appreciation_text')"
+        v-model="data.hardness_status"
+        :label="$t('models.ascentCragRoute.hardness_status')"
       />
 
       <!-- Comment -->
@@ -97,10 +95,11 @@ import { DateHelpers } from '@/mixins/DateHelpers'
 import CragRoute from '@/models/CragRoute'
 import store from '@/store'
 import MarkdownInput from '@/components/forms/MarkdownInput'
+import HardnessStatusInput from '@/components/forms/HardnessStatusInput'
 
 export default {
   name: 'AscentCragRouteForm',
-  components: { MarkdownInput, NoteInput, DatePickerInput, AscentStatusInput, RopingStatusInput, CloseForm, SubmitForm },
+  components: { HardnessStatusInput, MarkdownInput, NoteInput, DatePickerInput, AscentStatusInput, RopingStatusInput, CloseForm, SubmitForm },
   mixins: [
     FormHelpers,
     DateHelpers
@@ -123,7 +122,7 @@ export default {
         attempt: (this.ascentCragRoute || {}).attempt,
         released_at: (this.ascentCragRoute || {}).released_at || this.today().format('YYYY-MM-DD'),
         note: (this.ascentCragRoute || {}).note,
-        grade_appreciation_text: (this.ascentCragRoute || {}).grade_appreciation_text || this.cragRoute.grade_gap.min_grade_text,
+        hardness_status: (this.ascentCragRoute || {}).hardness_status,
         comment: (this.ascentCragRoute || {}).comment,
         private_comment: (this.ascentCragRoute || {}).private_comment || false,
         selected_sections: (this.ascentCragRoute || {}).selected_sections || this.cragRoute.sections.map((section, index) => index),

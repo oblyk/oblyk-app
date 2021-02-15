@@ -14,15 +14,10 @@
           class="mr-2"
           :crag-route="cragRoute"
         />
-        <span v-if="cragRoute.difficultyAverage() > cragRoute.grade_gap.min_grade_value">
-          {{ $t('components.difficulty.hard') }}
-        </span>
-        <span v-if="cragRoute.difficultyAverage() === cragRoute.grade_gap.min_grade_value">
-          {{ $t('components.difficulty.just') }}
-        </span>
-        <span v-if="cragRoute.difficultyAverage() < cragRoute.grade_gap.min_grade_value">
-          {{ $t('components.difficulty.soft') }}
-        </span>
+        {{ $t(`components.difficulty.${cragRoute.difficultyAppreciationStatus()}`)}}
+        <small class="text--disabled ml-1">
+          ({{ countVote() }})
+        </small>
       </v-btn>
     </template>
     <v-card>
@@ -36,10 +31,10 @@
             <thead>
               <tr>
                 <th class="text-left">
-                  Cotation proposé
+                  {{ $t('models.ascentCragRoute.hardness_status') }}
                 </th>
                 <th class="text-left">
-                  Nombre
+                  {{ $t('common.votes') }}
                 </th>
                 <th class="text-left">
                   %
@@ -47,18 +42,37 @@
               </tr>
             </thead>
             <tbody>
-              <tr
-                v-for="(grade, index) in grades()"
-                :key="`grade-${index}`"
-              >
+              <tr v-if="difficulty.easy_for_the_grade">
                 <td>
-                  {{ grade.gradeText }}
+                  {{ $t('models.hardnessStatus.easy_for_the_grade') }}
                 </td>
                 <td>
-                  {{ grade.count }}
+                  {{ difficulty.easy_for_the_grade.count }}
                 </td>
                 <td>
-                  {{ Math.round(grade.ratio) }}%
+                  {{ Math.round(difficulty.easy_for_the_grade.count / countVote() * 100) }}%
+                </td>
+              </tr>
+              <tr v-if="difficulty.this_grade_is_accurate">
+                <td>
+                  {{ $t('models.hardnessStatus.this_grade_is_accurate') }}
+                </td>
+                <td>
+                  {{ difficulty.this_grade_is_accurate.count }}
+                </td>
+                <td>
+                  {{ Math.round(difficulty.this_grade_is_accurate.count / countVote() * 100) }}%
+                </td>
+              </tr>
+              <tr v-if="difficulty.sandbagged">
+                <td>
+                  {{ $t('models.hardnessStatus.sandbagged') }}
+                </td>
+                <td>
+                  {{ difficulty.sandbagged.count }}
+                </td>
+                <td>
+                  {{ Math.round(difficulty.sandbagged.count / countVote() * 100) }}%
                 </td>
               </tr>
             </tbody>
@@ -83,12 +97,13 @@ export default {
 
   data () {
     return {
-      difficultyModal: false
+      difficultyModal: false,
+      difficulty: (this.cragRoute.votes.difficulty_appreciations || {})
     }
   },
 
   methods: {
-    grades: function () {
+    countVote: function () {
       const votes = (this.cragRoute.votes || {}).difficulty_appreciations
       if (!votes) return null
 
@@ -97,16 +112,7 @@ export default {
         countVote += votes[key].count
       })
 
-      const grades = []
-      Object.keys(votes).forEach(key => {
-        grades.push({
-          gradeValue: key,
-          gradeText: this.gradeValueToText(parseInt(key) - 1),
-          count: votes[key].count,
-          ratio: votes[key].count / countVote * 100
-        })
-      })
-      return grades
+      return countVote
     }
   }
 }

@@ -101,16 +101,32 @@ export default class CragRoute extends ActiveData {
     return accepted.includes(value || this.climbing_type)
   }
 
-  difficultyAverage () {
-    const votes = (this.votes || {}).difficulty_appreciations
-    if (votes === null) return null
-
-    let sumGradeValue = 0
-    let countVote = 0
-    for (const vote in votes) {
-      sumGradeValue += votes[vote].count * vote
-      countVote += votes[vote].count
+  difficultyAppreciationStatus () {
+    const appreciation = this.difficulty_appreciation
+    if (appreciation >= 0.6) {
+      return 'hard'
+    } else if (appreciation >= 0.2) {
+      return 'pretty_hard'
+    } else if (appreciation >= -0.2) {
+      return 'just'
+    } else if (appreciation >= -0.6) {
+      return 'pretty_soft'
+    } else {
+      return 'soft'
     }
-    return sumGradeValue / countVote
+  }
+
+  difficultyAppreciationIcon () {
+    if (this.difficultyAppreciationStatus() === 'hard') {
+      return 'mdi-arrow-up'
+    } else if (this.difficultyAppreciationStatus() === 'pretty_hard') {
+      return 'mdi-arrow-top-right'
+    } else if (this.difficultyAppreciationStatus() === 'just') {
+      return 'mdi-arrow-right'
+    } else if (this.difficultyAppreciationStatus() === 'pretty_soft') {
+      return 'mdi-arrow-bottom-right'
+    } else if (this.difficultyAppreciationStatus() === 'soft') {
+      return 'mdi-arrow-down'
+    }
   }
 }

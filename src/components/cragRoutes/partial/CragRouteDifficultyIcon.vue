@@ -2,21 +2,8 @@
   <span>
     <v-icon
       small
-      v-if="cragRoute.difficultyAverage() > cragRoute.grade_gap.min_grade_value"
     >
-      mdi-arrow-up-bold-outline
-    </v-icon>
-    <v-icon
-      small
-      v-if="cragRoute.difficultyAverage() === cragRoute.grade_gap.min_grade_value"
-    >
-      mdi-arrow-right-bold-outline
-    </v-icon>
-    <v-icon
-      small
-      v-if="cragRoute.difficultyAverage() < cragRoute.grade_gap.min_grade_value"
-    >
-      mdi-arrow-down-bold-outline
+      {{ cragRoute.difficultyAppreciationIcon() }}
     </v-icon>
   </span>
 </template>

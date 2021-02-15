@@ -52,7 +52,7 @@
                 </th>
                 <td>
                   <crag-route-difficulty-modal
-                    v-if="cragRoute.votes"
+                    v-if="cragRoute.difficulty_appreciation"
                     :crag-route="cragRoute"
                   />
                   <cite

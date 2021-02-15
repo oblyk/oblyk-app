@@ -25,6 +25,7 @@
       "inclineType": "Incline",
       "ascentStatus": "Ascent status",
       "ropingStatus": "Roping status",
+      "hardnessStatus": "Difficulty appreciation",
       "note": "Note"
     },
     "markdown": {
@@ -114,7 +115,9 @@
     "difficulty": {
       "noVote": "no difficulty vote",
       "hard": "hard for grade",
+      "pretty_hard": "pretty hard",
       "just": "right grade",
+      "pretty_soft": "pretty soft",
       "soft": "easy for grade"
     },
     "crag": {

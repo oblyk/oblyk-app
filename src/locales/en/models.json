@@ -105,7 +105,7 @@
       "comment": "My comment",
       "private_comment": "Comment is private",
       "released_at": "Released at",
-      "grade_appreciation_text": "Grade in my logbook"
+      "hardness_status": "Difficulty appreciation"
     },
     "area": {
       "name": "Name"
@@ -432,6 +432,11 @@
       "multi_pitch_leader": "Lead (multi pitch)",
       "multi_pitch_second": "Second (multi pitch)",
       "multi_pitch_alternate_lead": "Alternate lead (multi pitch)"
+    },
+    "hardnessStatus": {
+      "easy_for_the_grade": "Easy for the grade",
+      "this_grade_is_accurate": "This grade is accurate",
+      "sandbagged": "Sandbagged !"
     },
     "note": {
       "terrible": "Terrible!",
