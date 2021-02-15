@@ -12,6 +12,14 @@
         />
       </div>
       <div class="text-right">
+        <add-in-tick-list-btn
+          v-if="ascents.length === 0"
+          :crag-route="cragRoute"
+        />
+        <remove-from-tick-list-btn
+          v-if="ascents.length === 0"
+          :crag-route="cragRoute"
+        />
         <add-ascent-btn
           :crag-route="cragRoute"
           :is-repetition="ascents.length > 0"
@@ -27,11 +35,13 @@ import AscentCragRouteApi from '@/services/oblyk-api/AscentCragRouteApi'
 import AscentCragRoute from '@/models/AscentCragRoute'
 import AscentCragRouteSmallCard from '@/components/ascentCragRoutes/AscentCragRouteSmallCard'
 import AddAscentBtn from '@/components/ascentCragRoutes/AddAscentBtn'
+import AddInTickListBtn from '@/components/tickLists/forms/AddInTickListBtn'
+import RemoveFromTickListBtn from '@/components/tickLists/forms/RemoveFromTickListBtn'
 
 export default {
   name: 'CragRouteAscent',
   mixins: [DateHelpers],
-  components: { AddAscentBtn, AscentCragRouteSmallCard },
+  components: { RemoveFromTickListBtn, AddInTickListBtn, AddAscentBtn, AscentCragRouteSmallCard },
   props: {
     cragRoute: Object
   },

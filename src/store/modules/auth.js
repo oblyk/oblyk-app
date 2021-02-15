@@ -11,7 +11,8 @@ const state = {
   id: '',
   administered_gyms: [],
   subscribes: [],
-  ascent_crag_routes: []
+  ascent_crag_routes: [],
+  tick_list: []
 }
 
 // getters
@@ -58,6 +59,10 @@ const getters = {
 
   getAscentCragRoutes: state => {
     return state.ascent_crag_routes
+  },
+
+  getTickList: state => {
+    return state.tick_list
   }
 }
 
@@ -84,7 +89,8 @@ const actions = {
             id: data.user.id,
             administered_gyms: data.administered_gyms,
             subscribes: data.subscribes,
-            ascent_crag_routes: data.ascent_crag_routes
+            ascent_crag_routes: data.ascent_crag_routes,
+            tick_list: data.tick_list
           })
           resolve(resp)
         })
@@ -132,7 +138,8 @@ const actions = {
             id: data.user.id,
             administered_gyms: data.administered_gyms,
             subscribes: data.subscribes,
-            ascent_crag_routes: data.ascent_crag_routes
+            ascent_crag_routes: data.ascent_crag_routes,
+            tick_list: data.tick_list
           })
           resolve(resp)
         })
@@ -159,7 +166,8 @@ const actions = {
             id: data.user.id,
             administered_gyms: data.administered_gyms,
             subscribes: data.subscribes,
-            ascent_crag_routes: data.ascent_crag_routes
+            ascent_crag_routes: data.ascent_crag_routes,
+            tick_list: data.tick_list
           })
           resolve(resp)
         })
@@ -188,6 +196,12 @@ const actions = {
     })
   },
 
+  updateTickList ({ commit }, data) {
+    commit('updatedTickList', {
+      tick_list: data.tick_list
+    })
+  },
+
   logout ({ commit }) {
     return new Promise(resolve => {
       commit('logout')
@@ -213,6 +227,7 @@ const mutations = {
     state.administered_gyms = payload.administered_gyms
     state.subscribes = payload.subscribes
     state.ascent_crag_routes = payload.ascent_crag_routes
+    state.tick_list = payload.tick_list
   },
 
   refresh (state, payload) {
@@ -234,6 +249,10 @@ const mutations = {
     state.ascent_crag_routes = payload.ascent_crag_routes
   },
 
+  updatedTickList (state, payload) {
+    state.tick_list = payload.tick_list
+  },
+
   error (state) {
     state.status = 'error'
   },
@@ -249,6 +268,7 @@ const mutations = {
     state.administered_gyms = []
     state.subscribes = []
     state.ascent_crag_routes = []
+    state.tick_list = []
   }
 }
 

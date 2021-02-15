@@ -72,6 +72,8 @@
     "continueToAdd": "Continuer d'ajouter",
     "addArea": "Ajouter un nouveau groupe",
     "addRepetition": "Ajouter une répétition",
-    "addInMyLogbook": "Ajouter à mon carnet"
+    "addInMyLogbook": "Ajouter à mon carnet",
+    "addInMyTickList": "Ajouter à ma tick list",
+    "removeFromMyTickList": "Supprimer de ma tick list"
   }
 }

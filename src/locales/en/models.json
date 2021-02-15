@@ -423,7 +423,8 @@
       "red_point": "Red point",
       "flash": "Flash",
       "onsight": "Onsight",
-      "repetition": "Repetition"
+      "repetition": "Repetition",
+      "tick_list": "Tick list"
     },
     "ropingStatus": {
       "lead_climb": "Lead climb",

@@ -1,7 +1,7 @@
 <template>
   <v-icon
     small
-    v-if="ascentInLogBook"
+    v-if="ascentInLogBook || inMyTickList"
     :title="title()"
     color="amber darken-1"
   >
@@ -30,6 +30,11 @@ export default {
   computed: {
     cragRouteAscents: function () {
       return store.getters['auth/getAscentCragRoutes']
+    },
+
+    inMyTickList: function () {
+      const tickList = store.getters['auth/getTickList'] || []
+      return (tickList.includes(this.cragRoute.id))
     }
   },
 
@@ -54,32 +59,36 @@ export default {
       this.ascentInLogBook = null
     },
 
+    status: function () {
+      const tickStatus = this.inMyTickList ? 'tick_list' : null
+      return this.ascentStatus || (this.ascentInLogBook || {}).ascent_status || tickStatus
+    },
+
     icon: function () {
-      const status = this.ascentStatus || this.ascentInLogBook.ascent_status
-      if (status === 'project') {
+      if (this.status() === 'project') {
         return 'mdi-crop-square'
-      } else if (status === 'sent') {
+      } else if (this.status() === 'sent') {
         return 'mdi-checkbox-marked-circle'
-      } else if (status === 'red_point') {
+      } else if (this.status() === 'red_point') {
         return 'mdi-record-circle-outline'
-      } else if (status === 'flash') {
+      } else if (this.status() === 'flash') {
         return 'mdi-flash'
-      } else if (status === 'onsight') {
+      } else if (this.status() === 'onsight') {
         return 'mdi-eye'
-      } else if (status === 'repetition') {
+      } else if (this.status() === 'repetition') {
         return 'mdi-autorenew'
-      } else if (status === 'tick_list') {
-        return 'mdi-code-brackets'
+      } else if (this.status() === 'tick_list') {
+        return 'mdi-crop-free'
       }
     },
 
     title: function () {
-      const status = this.$t(`models.ascentStatus.${this.ascentInLogBook.ascent_status}`)
+      const status = this.$t(`models.ascentStatus.${this.status()}`)
       let date = ''
-      if (this.ascentInLogBook.released_at) {
-        date = this.humanizeDate(this.cragRouteAscents.released_at)
+      if ((this.ascentInLogBook || {}).released_at) {
+        date = `${this.humanizeDate(this.cragRouteAscents.released_at)} :`
       }
-      return `${date} : ${status}`
+      return `${date} ${status}`
     }
   }
 }

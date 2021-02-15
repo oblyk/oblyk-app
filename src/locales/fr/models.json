@@ -423,7 +423,8 @@
       "red_point": "Après travail",
       "flash": "Flash",
       "onsight": "À vue",
-      "repetition": "Répétition"
+      "repetition": "Répétition",
+      "tick_list": "Tick list"
     },
     "ropingStatus": {
       "lead_climb": "Tête",

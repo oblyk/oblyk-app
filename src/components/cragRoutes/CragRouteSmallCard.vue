@@ -19,7 +19,11 @@
       </v-list-item-avatar>
       <v-list-item-content>
         <v-list-item-title class="font-weight-bold">
-          <span class="vertical-align-middle">
+          <span
+            v-bind:class="cragRoute.climbing_type"
+            class="climbs-pastille vertical-align-middle"
+          >
+            <ascent-crag-route-status-icon :crag-route="cragRoute" />
             {{ cragRoute.grade_to_s }} -
             {{ cragRoute.name }}
           </span>
@@ -41,8 +45,10 @@
 </template>
 
 <script>
+import AscentCragRouteStatusIcon from '@/components/ascentCragRoutes/AscentCragRouteStatusIcon'
 export default {
   name: 'CragRouteSmallCard',
+  components: { AscentCragRouteStatusIcon },
   props: {
     cragRoute: Object,
     linkable: {

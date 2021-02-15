@@ -57,7 +57,7 @@ ___
 - [ ] Faire la messagerie
 - [ ] Faire le système de relation
 - [ ] Mes croix / Stats
-- [ ] Tick-list
+- [x] Tick-list
 - [ ] Faire le "Flux"
 - [ ] Mes photos
 ---

@@ -72,6 +72,8 @@
     "continueToAdd": "Continue to add",
     "addArea": "Add new crags group",
     "addRepetition": "Add a repetition",
-    "addInMyLogbook": "Add on my logbook"
+    "addInMyLogbook": "Add on my logbook",
+    "addInMyTickList": "Add on my tick list",
+    "removeFromMyTickList": "Remove from my tick list"
   }
 }

@@ -26,6 +26,14 @@ class UserApi extends BaseApi {
     })
   }
 
+  tickList () {
+    return axios({
+      url: `${this.baseUrl}/users/current/tick_lists.json`,
+      headers: { Authorization: this.authToken() },
+      method: 'GET'
+    })
+  }
+
   library () {
     return axios({
       url: `${this.baseUrl}/users/current/library.json`,
