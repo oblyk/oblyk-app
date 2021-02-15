@@ -53,10 +53,12 @@ ___
 - [x] Mot de passe oublié
 - [x] Favoris
 - [x] Topothèque
-- [ ] Faire le "dashboard"
+- [x] Faire le "dashboard"
+- [ ] Faire le profil d'un autre
 - [ ] Faire la messagerie
 - [ ] Faire le système de relation
-- [ ] Mes croix / Stats
+- [ ] Mes croix
+- [ ] Analytiks
 - [x] Tick-list
 - [ ] Faire le "Flux"
 - [ ] Mes photos
