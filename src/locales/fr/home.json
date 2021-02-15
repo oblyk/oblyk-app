@@ -20,6 +20,11 @@
       "body3": "Malheureusement non, comme tout site internet, Oblyk doit être hébergé dans un datacenter et louer un nom de domaine pour pouvoir éxister sur la toile.<br>Et ça par contre, ce n'est pas gratuit ... ",
       "action": "Nous soutenir"
     },
+    "oblykAndGuide": {
+      "title": "Oblyk et les topos",
+      "body1": "Vous pourriez vous demander si Oblyk peut remplacer les topos papier et par extension nuire au développement des <strong>sites d'escalade</strong> ?<br> Sachez que nous nous sommes beaucoup posé cette question aussi. Et la réponse est non, Oblyk ne peut pas remplacer un topo !<br>Les topos contiennent des informations indispensables que nous ne permettons pas d'ajouter sur oblyk",
+      "body2": "<strong>Acheter un topo</strong>, c'est soutenir des passionnés qui donnent énormément pour maintenir, développer, nettoyer les <strong>sites d'escalade</strong> sur lesquels vous allez grimper gratuitement."
+    },
     "figures": {
       "title": "Oblyk en quelques chiffres",
       "crags": "Falaises",
