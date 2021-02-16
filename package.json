@@ -10,6 +10,7 @@
   "dependencies": {
     "@chenfengyuan/vue-qrcode": "^1.0.2",
     "axios": "^0.21.1",
+    "chart.js": "^2.9.4",
     "core-js": "^3.6.5",
     "dompurify": "^2.2.6",
     "leaflet": "^1.7.1",
@@ -21,6 +22,7 @@
     "register-service-worker": "^1.7.1",
     "sass": "^1.30.0",
     "vue": "^2.6.11",
+    "vue-chartjs": "^3.5.1",
     "vue-clipboard2": "^0.3.1",
     "vue-cropper": "^0.5.6",
     "vue-i18n": "^8.22.2",

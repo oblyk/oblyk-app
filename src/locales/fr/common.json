@@ -10,12 +10,14 @@
     "meters": "mètres",
     "votes": "Votes",
     "minutes": "minutes",
+    "number": "nombre",
     "at": "le",
     "in": "en",
     "by": "Par",
     "type": "Type",
     "from": "De",
     "to": "À",
+    "open": "Ouvert",
     "field": "Champ",
     "pages": {
       "about": {

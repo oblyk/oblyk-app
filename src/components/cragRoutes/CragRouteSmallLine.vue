@@ -4,7 +4,7 @@
     @click="$root.$emit('getCragRouteInDrawer', route.crag.id, route.id)"
   >
     <crag-route-avatar class="grade-route-in-list" :crag-route="route" />
-    <v-list-item-content>
+    <v-list-item-content class="pt-1 pb-1">
       <v-list-item-title
         class="climbs-pastille"
         v-bind:class="route.climbing_type"
@@ -38,23 +38,23 @@
         </v-icon>
       </v-list-item-title>
       <v-list-item-subtitle>
-        <span v-if="route.crag_sector.id">
-          <v-icon x-small>
-            mdi-texture-box
-          </v-icon>
-          <router-link
-            @click.stop=""
-            class="text-decoration-none"
-            :to="route.CragSector.path()"
-          >
-            {{ route.CragSector.name }}
-          </router-link>
+      <span>
+        <v-icon x-small>
+          mdi-terrain
+        </v-icon>
+        <router-link
+          @click.stop=""
+          class="text-decoration-none"
+          :to="route.Crag.path()"
+        >
+          {{ route.Crag.name }}
+        </router-link>
         </span>
-        <span v-if="route.height">
-          {{ route.height }} {{ $t('common.meters') }},
-        </span>
-        <span v-if="route.opener || route.open_year">
-          {{ $t('common.open') }}
+          <span v-if="route.height">
+            {{ route.height }} {{ $t('common.meters') }},
+          </span>
+          <span v-if="route.opener || route.open_year">
+            {{ $t('common.open') }}
           <span v-if="route.opener">
             {{ $t('common.by') }} {{ route.opener }}
           </span>
@@ -73,7 +73,7 @@ import CragRouteAvatar from '@/components/cragRoutes/partial/CragRouteAvatar'
 import AscentCragRouteStatusIcon from '@/components/ascentCragRoutes/AscentCragRouteStatusIcon'
 
 export default {
-  name: 'CragRouteListItem',
+  name: 'CragRouteSmallLine',
   components: { AscentCragRouteStatusIcon, CragRouteAvatar, GradeRouteNote },
   props: {
     route: Object

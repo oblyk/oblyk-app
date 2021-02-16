@@ -340,6 +340,20 @@
         "points": "Exemple: 500, 50, 200, etc."
       }
     },
+    "logBook": {
+      "inFewFigures": "En quelque chiffres",
+      "climbingType": "Type d'escalade",
+      "grades": "Cotations",
+      "myOutdoorAscents": "Mes croix outdoor",
+      "figures": {
+        "countries": "%{count} pays | %{count} pays",
+        "crags": "%{count} site | %{count} sites",
+        "regions": "%{count} région | %{count} régions",
+        "ascents": "%{count} croix | %{count} croix",
+        "meters": "%{count} mètre grimpé | %{count} mètres grimpé",
+        "max_grade": "%{grade} max"
+      }
+    },
     "word": {
       "title": "Lexique",
       "new": "Nouvelle définition",

@@ -10,12 +10,14 @@
     "meters": "meters",
     "votes": "Votes",
     "minutes": "minutes",
+    "number": "number",
     "at": "at",
     "in": "in",
     "by": "By",
     "type": "Type",
     "from": "From",
     "to": "To",
+    "open": "Open",
     "field": "Field",
     "pages": {
       "about": {

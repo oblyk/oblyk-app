@@ -36,7 +36,7 @@ export const GradeMixin = {
     },
 
     gradeValueToText: function (value) {
-      return this.gradeByValue[value]
+      return this.gradeByValue[value - 1]
     }
   }
 }

@@ -340,6 +340,20 @@
         "points": "Example: 500, 50, 200, etc."
       }
     },
+    "logBook": {
+      "inFewFigures": "In few figures",
+      "climbingType": "Climbing type",
+      "grades": "Grades",
+      "myOutdoorAscents": "My outdoor ascents",
+      "figures": {
+        "countries": "%{count} country | %{count} countries",
+        "crags": "%{count} crag | %{count} crags",
+        "regions": "%{count} region | %{count} regions",
+        "ascents": "%{count} ascent | %{count} ascents",
+        "meters": "%{count} meter climbed | %{count} meters climbed",
+        "max_grade": "%{grade} max"
+      }
+    },
     "word": {
       "title": "Glossary",
       "new": "New definition",
