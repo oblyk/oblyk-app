@@ -35,8 +35,6 @@ export default {
         labels.push(this.gradeValueToText(label))
       }
 
-      console.log(this.data.datasets)
-
       return {
         datasets: [{
           data: this.data.datasets[0].data,

@@ -346,6 +346,8 @@
       "grades": "Grades",
       "myOutdoorAscents": "My outdoor ascents",
       "sortByLabel": "Sort ascents by",
+      "emptyProject": "Your project list is empty",
+      "emptyTickList": "You don't have any route in your tick list for the moment",
       "sortItem": {
         "difficulty": "Difficulty",
         "crag": "Crag",
@@ -428,6 +430,7 @@
       "ascentTabs": {
         "sendList": "Send list",
         "tickList": "Tick list",
+        "projects": "Projects",
         "analytiks": "Analytiks"
       }
     },

@@ -11,6 +11,7 @@ import MyEditView from '@/views/me/actions/MyEditView'
 import MySendListView from '@/views/me/MySendListView'
 import MyTickListView from '@/views/me/MyTickListView'
 import MyAnalytiksView from '@/views/me/MyAnalytiksView'
+import MyProjectView from '@/views/me/MyProjectView'
 
 export default [
   {
@@ -81,6 +82,15 @@ export default [
       {
         path: 'tick-list',
         component: MyTickListView,
+        meta: {
+          requiresAuth: true,
+          title: 'myAscents',
+          showTitle: true
+        }
+      },
+      {
+        path: 'projects',
+        component: MyProjectView,
         meta: {
           requiresAuth: true,
           title: 'myAscents',

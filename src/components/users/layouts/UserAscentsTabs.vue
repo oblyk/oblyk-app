@@ -9,6 +9,9 @@
     <v-tab :to="user.mePath('ascents/tick-list')">
       {{ $t('components.user.ascentTabs.tickList') }}
     </v-tab>
+    <v-tab :to="user.mePath('ascents/projects')">
+      {{ $t('components.user.ascentTabs.projects') }}
+    </v-tab>
     <v-tab :to="user.mePath('ascents/analytiks')">
       {{ $t('components.user.ascentTabs.analytiks') }}
     </v-tab>

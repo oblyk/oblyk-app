@@ -22,7 +22,7 @@
 import CragRouteSmallLine from '@/components/cragRoutes/CragRouteSmallLine'
 
 export default {
-  name: 'TickListCragRoute',
+  name: 'CragRouteByCragList',
   components: { CragRouteSmallLine },
   props: {
     cragRoutes: Array

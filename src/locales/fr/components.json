@@ -346,6 +346,8 @@
       "grades": "Cotations",
       "myOutdoorAscents": "Mes croix outdoor",
       "sortByLabel": "Trier les croix par",
+      "emptyProject": "Votre liste de projet est vide",
+      "emptyTickList": "Vous n'avez aucune ligne dans votre tick list pour l'instant",
       "sortItem": {
         "difficulty": "Difficulté",
         "crags": "Site",
@@ -428,6 +430,7 @@
       "ascentTabs": {
         "sendList": "Carnet",
         "tickList": "Tick list",
+        "projects": "Projets",
         "analytiks": "Analytiks"
       }
     },
