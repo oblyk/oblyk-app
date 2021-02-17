@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: 'MyAnalytiks',
+  name: 'MyAnalytiksView',
   props: {
     user: Object
   }

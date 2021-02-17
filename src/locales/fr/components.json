@@ -345,6 +345,12 @@
       "climbingType": "Type d'escalade",
       "grades": "Cotations",
       "myOutdoorAscents": "Mes croix outdoor",
+      "sortByLabel": "Trier les croix par",
+      "sortItem": {
+        "difficulty": "Difficulté",
+        "crags": "Site",
+        "released_at": "Date"
+      },
       "figures": {
         "countries": "%{count} pays | %{count} pays",
         "crags": "%{count} site | %{count} sites",

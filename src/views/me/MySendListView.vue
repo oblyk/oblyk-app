@@ -36,8 +36,25 @@
     <v-card
       class="mt-3"
     >
-      Liste des croix
+      <v-card-text>
+        <v-select
+          :items="sortItems"
+          item-text="text"
+          item-value="value"
+          v-model="order"
+          :label="$t('components.logBook.sortByLabel')"
+          outlined
+        />
+
+        <spinner v-if="loadingAscendedCragRoutes" :full-height="false" />
+        <log-book-list
+          :break="order"
+          v-if="!loadingAscendedCragRoutes"
+          :crag-routes="cragRoutes"
+        />
+      </v-card-text>
     </v-card>
+    <crag-route-drawer />
   </v-container>
 </template>
 
@@ -47,10 +64,13 @@ import LogBookOutdoorApi from '@/services/oblyk-api/LogBookOutdoorApi'
 import Spinner from '@/components/layouts/Spiner'
 import LogBookClimbingTypeChart from '@/components/logBooks/outdoors/LogBookClimbingTypeChart'
 import LogBookGradeChart from '@/components/logBooks/outdoors/LogBookGradeChart'
+import CragRoute from '@/models/CragRoute'
+import LogBookList from '@/components/logBooks/outdoors/LogBookList'
+import CragRouteDrawer from '@/components/cragRoutes/CragRouteDrawer'
 
 export default {
-  name: 'MySendList',
-  components: { LogBookGradeChart, LogBookClimbingTypeChart, Spinner, LogBookFigures },
+  name: 'MySendListView',
+  components: { CragRouteDrawer, LogBookList, LogBookGradeChart, LogBookClimbingTypeChart, Spinner, LogBookFigures },
   props: {
     user: Object
   },
@@ -64,7 +84,24 @@ export default {
       climbingTypeData: {},
 
       loadingGradeChart: true,
-      gradeData: {}
+      gradeData: {},
+
+      loadingAscendedCragRoutes: true,
+      cragRoutes: [],
+
+      order: 'difficulty',
+
+      sortItems: [
+        { text: this.$t('components.logBook.sortItem.difficulty'), value: 'difficulty' },
+        { text: this.$t('components.logBook.sortItem.crags'), value: 'crags' },
+        { text: this.$t('components.logBook.sortItem.released_at'), value: 'released_at' }
+      ]
+    }
+  },
+
+  watch: {
+    order: function () {
+      this.ascendedCragRoutes()
     }
   },
 
@@ -72,6 +109,7 @@ export default {
     this.getFigures()
     this.getClimbingTypeChart()
     this.getGradeChart()
+    this.ascendedCragRoutes()
   },
 
   methods: {
@@ -108,6 +146,21 @@ export default {
         })
         .finally(() => {
           this.loadingGradeChart = false
+        })
+    },
+
+    ascendedCragRoutes: function () {
+      this.loadingAscendedCragRoutes = true
+      LogBookOutdoorApi
+        .ascendedCragRoutes(this.order)
+        .then(resp => {
+          this.cragRoutes = []
+          for (const route of resp.data) {
+            this.cragRoutes.push(new CragRoute(route))
+          }
+        })
+        .finally(() => {
+          this.loadingAscendedCragRoutes = false
         })
     }
   }

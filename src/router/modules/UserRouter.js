@@ -8,9 +8,9 @@ import MessengerView from '@/views/me/MessengerView'
 import MyPartnerSettingsView from '@/views/me/actions/MyPartnerSettingsView'
 import MySettingsView from '@/views/me/MySettingsView'
 import MyEditView from '@/views/me/actions/MyEditView'
-import MySendList from '@/views/me/MySendList'
-import MyTickList from '@/views/me/MyTickList'
-import MyAnalytiks from '@/views/me/MyAnalytiks'
+import MySendListView from '@/views/me/MySendListView'
+import MyTickListView from '@/views/me/MyTickListView'
+import MyAnalytiksView from '@/views/me/MyAnalytiksView'
 
 export default [
   {
@@ -71,7 +71,7 @@ export default [
     children: [
       {
         path: 'send-list',
-        component: MySendList,
+        component: MySendListView,
         meta: {
           requiresAuth: true,
           title: 'myAscents',
@@ -80,7 +80,7 @@ export default [
       },
       {
         path: 'tick-list',
-        component: MyTickList,
+        component: MyTickListView,
         meta: {
           requiresAuth: true,
           title: 'myAscents',
@@ -89,7 +89,7 @@ export default [
       },
       {
         path: 'analytiks',
-        component: MyAnalytiks,
+        component: MyAnalytiksView,
         meta: {
           requiresAuth: true,
           title: 'myAscents',

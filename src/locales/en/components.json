@@ -345,6 +345,12 @@
       "climbingType": "Climbing type",
       "grades": "Grades",
       "myOutdoorAscents": "My outdoor ascents",
+      "sortByLabel": "Sort ascents by",
+      "sortItem": {
+        "difficulty": "Difficulty",
+        "crag": "Crag",
+        "released_at": "Date"
+      },
       "figures": {
         "countries": "%{count} country | %{count} countries",
         "crags": "%{count} crag | %{count} crags",

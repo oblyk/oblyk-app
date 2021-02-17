@@ -18,7 +18,7 @@ import CragRouteDrawer from '@/components/cragRoutes/CragRouteDrawer'
 import store from '@/store'
 
 export default {
-  name: 'MyTickList',
+  name: 'MyTickListView',
   components: { CragRouteDrawer, Spinner, TickListCragRoute },
   props: {
     user: Object
