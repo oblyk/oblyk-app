@@ -4,7 +4,7 @@ import BaseApi from '@/services/oblyk-api/BaseApi'
 class CurrentUserApi extends BaseApi {
   current () {
     return axios({
-      url: `${this.baseUrl}/users/current.json`,
+      url: `${this.baseUrl}/current_users.json`,
       headers: { Authorization: this.authToken() },
       method: 'GET'
     })
@@ -12,7 +12,7 @@ class CurrentUserApi extends BaseApi {
 
   subscribes () {
     return axios({
-      url: `${this.baseUrl}/users/current/subscribes.json`,
+      url: `${this.baseUrl}/current_users/subscribes.json`,
       headers: { Authorization: this.authToken() },
       method: 'GET'
     })
@@ -20,7 +20,7 @@ class CurrentUserApi extends BaseApi {
 
   ascentCragRoutes () {
     return axios({
-      url: `${this.baseUrl}/users/current/ascent_crag_routes.json`,
+      url: `${this.baseUrl}/current_users/ascent_crag_routes.json`,
       headers: { Authorization: this.authToken() },
       method: 'GET'
     })
@@ -28,7 +28,7 @@ class CurrentUserApi extends BaseApi {
 
   ascendedCragsGeoJson () {
     return axios({
-      url: `${this.baseUrl}/users/current/ascended_crags_geo_json.json`,
+      url: `${this.baseUrl}/current_users/ascended_crags_geo_json.json`,
       headers: { Authorization: this.authToken() },
       method: 'GET'
     })
@@ -36,7 +36,7 @@ class CurrentUserApi extends BaseApi {
 
   tickList () {
     return axios({
-      url: `${this.baseUrl}/users/current/tick_lists.json`,
+      url: `${this.baseUrl}/current_users/tick_lists.json`,
       headers: { Authorization: this.authToken() },
       method: 'GET'
     })
@@ -44,7 +44,7 @@ class CurrentUserApi extends BaseApi {
 
   projects () {
     return axios({
-      url: `${this.baseUrl}/users/current/projects.json`,
+      url: `${this.baseUrl}/current_users/projects.json`,
       headers: { Authorization: this.authToken() },
       method: 'GET'
     })
@@ -52,7 +52,7 @@ class CurrentUserApi extends BaseApi {
 
   library () {
     return axios({
-      url: `${this.baseUrl}/users/current/library.json`,
+      url: `${this.baseUrl}/current_users/library.json`,
       headers: { Authorization: this.authToken() },
       method: 'GET'
     })
@@ -60,7 +60,7 @@ class CurrentUserApi extends BaseApi {
 
   update (data) {
     return axios({
-      url: `${this.baseUrl}/users/current.json`,
+      url: `${this.baseUrl}/current_users.json`,
       headers: { Authorization: this.authToken() },
       data: {
         user: data
@@ -71,7 +71,7 @@ class CurrentUserApi extends BaseApi {
 
   avatar (data) {
     return axios({
-      url: `${this.baseUrl}/users/current/avatar.json`,
+      url: `${this.baseUrl}/current_users/avatar.json`,
       headers: {
         Authorization: this.authToken(),
         'Content-Type': 'multipart/form-data'
@@ -83,7 +83,7 @@ class CurrentUserApi extends BaseApi {
 
   banner (data) {
     return axios({
-      url: `${this.baseUrl}/users/current/banner.json`,
+      url: `${this.baseUrl}/current_users/banner.json`,
       headers: {
         Authorization: this.authToken(),
         'Content-Type': 'multipart/form-data'

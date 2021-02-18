@@ -31,6 +31,7 @@ import ApproachRouter from '@/router/modules/ApproachRouter'
 import CragRouteRouter from '@/router/modules/CragRouteRouter'
 import AreaRouter from '@/router/modules/AreaRouter'
 import AscentCragRouteRouter from '@/router/modules/AscentCragRouteRouter'
+import UserRouter from '@/router/modules/UserRouter'
 
 Vue.use(VueRouter)
 
@@ -65,7 +66,8 @@ const router = new VueRouter({
     ...ApproachRouter,
     ...CragRouteRouter,
     ...AreaRouter,
-    ...AscentCragRouteRouter
+    ...AscentCragRouteRouter,
+    ...UserRouter
   ]
 })
 
