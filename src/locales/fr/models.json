@@ -13,7 +13,10 @@
       "partner_search": "Faire partie de la recherche de partenaire",
       "grade_min": "Cotation \"d'échauffement\"",
       "grade_max": "Cotation projet",
-      "language": "Langue préférée"
+      "language": "Langue préférée",
+      "public_profile": "Profil publique",
+      "public_outdoor_ascents": "Carnet de croix outdoor publique",
+      "public_indoor_ascents": "Carnet de croix indoor publique"
     },
     "crag": {
       "name": "Nom du site",

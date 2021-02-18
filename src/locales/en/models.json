@@ -13,7 +13,10 @@
       "partner_search": "Be part of the partner search",
       "grade_min": "Heating grade",
       "grade_max": "Projet grade",
-      "language": "Preferred language"
+      "language": "Preferred language",
+      "public_profile": "Public profile",
+      "public_outdoor_ascents": "Public outdoor ascents",
+      "public_indoor_ascents": "Public indoor ascents"
     },
     "crag": {
       "name": "Name",

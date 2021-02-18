@@ -13,6 +13,7 @@ import MyTickListView from '@/views/me/MyTickListView'
 import MyAnalytiksView from '@/views/me/MyAnalytiksView'
 import MyProjectView from '@/views/me/MyProjectView'
 import MyMapView from '@/views/me/MyMapView'
+import MyPrivacyView from '@/views/me/actions/MyPrivacyView'
 
 export default [
   {
@@ -48,7 +49,7 @@ export default [
     meta: {
       requiresAuth: true,
       title: 'mySettings',
-      showTitle: false
+      showTitle: true
     },
     children: [
       {
@@ -57,7 +58,16 @@ export default [
         meta: {
           requiresAuth: true,
           title: 'mySettings',
-          showTitle: false
+          showTitle: true
+        }
+      },
+      {
+        path: 'privacy',
+        component: MyPrivacyView,
+        meta: {
+          requiresAuth: true,
+          title: 'mySettings',
+          showTitle: true
         }
       },
       {
@@ -65,8 +75,8 @@ export default [
         component: MyPartnerSettingsView,
         meta: {
           requiresAuth: true,
-          title: 'myPartnerSettings',
-          showTitle: false
+          title: 'mySettings',
+          showTitle: true
         }
       }
     ]

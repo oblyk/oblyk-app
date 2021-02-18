@@ -33,7 +33,7 @@
             icon
             class="ml-2"
             :title="$t('actions.editMyProfile')"
-            :to="user.mePath('settings')"
+            :to="user.mePath('settings/general')"
           >
             <v-icon
               small

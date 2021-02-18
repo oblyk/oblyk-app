@@ -22,9 +22,7 @@ axios.interceptors.response.use(
   async function (error) {
     // redirect to sign-in page if user not authorized
     if (error.response.status === 401) {
-      await store.dispatch('auth/logout')
-      await router.push(`/sign-in?redirect_to=${window.location.pathname}`)
-
+      await router.push('/oblyk?unauthorized=true')
       return Promise.reject(error)
     } else {
       return Promise.reject(error)

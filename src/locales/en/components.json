@@ -406,6 +406,7 @@
     },
     "user": {
       "globalInformation": "General Information",
+      "privacyParameters": "Privacy parameters",
       "partnerSearch": "Partner search",
       "successfulEditMessage": "Your profile has been updated",
       "whatClimbingType": "What type of climbing do you practice ?",
@@ -428,6 +429,7 @@
       },
       "settingTabs": {
         "general": "General",
+        "privacy": "Privacy",
         "partner": "Partner search"
       },
       "ascentTabs": {
@@ -435,6 +437,16 @@
         "tickList": "Tick list",
         "projects": "Projects",
         "analytiks": "Analytiks"
+      },
+      "public_explain": {
+        "profile": "Your profile is <strong>open</strong> for consultation by other climbers, <strong>whether or not they are connected</strong> to Oblyk.<br>The climbers can <strong>follow you without waiting for your validation.</strong>",
+        "outdoor_ascents": "Your <strong>outdoor send-list</strong> can be consulted by <strong>climbers connected</strong> to Oblyk.",
+        "indoor_ascents": "Your <strong>indoor send-list</strong> can be consulted by <strong>climbers connected</strong> to Oblyk."
+      },
+      "private_explain": {
+        "profile": "Your profile can <strong>only be viewed by climbers connected</strong> to Oblyk.<br>You must <strong>manually accept</strong> climbers who want to follow you.",
+        "outdoor_ascents": "Your outdoor send-list can <strong>only be consulted by your subscribers.</strong>",
+        "indoor_ascents": "Your indoor send-list can <strong>only be consulted by your subscribers.</strong>"
       }
     },
     "layout": {
