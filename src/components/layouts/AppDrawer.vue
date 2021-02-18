@@ -105,6 +105,12 @@
           </v-list-item-content>
         </template>
         <app-drawer-item
+          v-if="isLoggedIn"
+          url="/maps/my-map"
+          icon="mdi-map-check"
+          :title="$t('components.layout.appDrawer.myMap')"
+        />
+        <app-drawer-item
           url="/maps/crags"
           icon="mdi-terrain"
           :title="$t('components.layout.appDrawer.mapCrags')"

@@ -12,8 +12,18 @@ import MySendListView from '@/views/me/MySendListView'
 import MyTickListView from '@/views/me/MyTickListView'
 import MyAnalytiksView from '@/views/me/MyAnalytiksView'
 import MyProjectView from '@/views/me/MyProjectView'
+import MyMapView from '@/views/me/MyMapView'
 
 export default [
+  {
+    path: '/maps/my-map',
+    component: MyMapView,
+    meta: {
+      requiresAuth: true,
+      title: 'myMap',
+      showTitle: true
+    }
+  },
   {
     path: '/me/:userSlug/avatar',
     component: MyAvatarView,

@@ -26,6 +26,14 @@ class UserApi extends BaseApi {
     })
   }
 
+  ascendedCragsGeoJson () {
+    return axios({
+      url: `${this.baseUrl}/users/current/ascended_crags_geo_json.json`,
+      headers: { Authorization: this.authToken() },
+      method: 'GET'
+    })
+  }
+
   tickList () {
     return axios({
       url: `${this.baseUrl}/users/current/tick_lists.json`,

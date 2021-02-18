@@ -61,7 +61,7 @@ ___
 - [x] Analytiks
 - [x] Tick-list
 - [x] Mes projets
-- [ ] My map
+- [x] My map
 - [ ] Faire le "Flux"
 - [ ] Mes photos
 ---
