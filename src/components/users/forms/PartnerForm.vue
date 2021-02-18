@@ -58,9 +58,10 @@
     </v-form>
   </div>
 </template>
+
 <script>
 import { FormHelpers } from '@/mixins/FormHelpers'
-import UserApi from '@/services/oblyk-api/UserApi'
+import CurrentUserApi from '@/services/oblyk-api/CurrentUserApi'
 import SubmitForm from '@/components/forms/SubmitForm'
 import ClimbingTypeInput from '@/components/forms/ClimbingTypeInput'
 import MarkdownInput from '@/components/forms/MarkdownInput'
@@ -136,7 +137,7 @@ export default {
     submit: function () {
       this.submitOverlay = true
 
-      UserApi
+      CurrentUserApi
         .update(this.data)
         .then(() => {
           this.$router.push('/')

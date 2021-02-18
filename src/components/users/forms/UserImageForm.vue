@@ -17,8 +17,9 @@
     />
   </v-form>
 </template>
+
 <script>
-import UserApi from '@/services/oblyk-api/UserApi'
+import CurrentUserApi from '@/services/oblyk-api/CurrentUserApi'
 import SubmitForm from '@/components/forms/SubmitForm'
 import CloseForm from '@/components/forms/CloseForm'
 import { FormHelpers } from '@/mixins/FormHelpers'
@@ -49,10 +50,10 @@ export default {
 
       if (this.uploadType === 'avatar') {
         formData.append('user[avatar]', this.file)
-        promise = UserApi.avatar(formData)
+        promise = CurrentUserApi.avatar(formData)
       } else {
         formData.append('user[banner]', this.file)
-        promise = UserApi.banner(formData)
+        promise = CurrentUserApi.banner(formData)
       }
 
       promise

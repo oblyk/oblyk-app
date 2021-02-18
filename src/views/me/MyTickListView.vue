@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import UserApi from '@/services/oblyk-api/UserApi'
+import CurrentUserApi from '@/services/oblyk-api/CurrentUserApi'
 import Spinner from '@/components/layouts/Spiner'
 import CragRoute from '@/models/CragRoute'
 import CragRouteDrawer from '@/components/cragRoutes/CragRouteDrawer'
@@ -56,7 +56,7 @@ export default {
   methods: {
     getTickList: function () {
       this.loadingTickList = true
-      UserApi
+      CurrentUserApi
         .tickList()
         .then(resp => {
           const routes = []

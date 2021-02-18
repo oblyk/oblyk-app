@@ -1,7 +1,7 @@
 import axios from 'axios'
 import BaseApi from '@/services/oblyk-api/BaseApi'
 
-class UserApi extends BaseApi {
+class CurrentUserApi extends BaseApi {
   current () {
     return axios({
       url: `${this.baseUrl}/users/current.json`,
@@ -93,4 +93,4 @@ class UserApi extends BaseApi {
     })
   }
 }
-export default new UserApi()
+export default new CurrentUserApi()

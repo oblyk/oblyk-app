@@ -51,8 +51,9 @@
     </v-card>
   </div>
 </template>
+
 <script>
-import UserApi from '@/services/oblyk-api/UserApi'
+import CurrentUserApi from '@/services/oblyk-api/CurrentUserApi'
 import { LocalizationHelpers } from '@/mixins/LocalizationHelpers'
 
 export default {
@@ -108,7 +109,7 @@ export default {
     },
 
     updateUserLocalization: function () {
-      UserApi
+      CurrentUserApi
         .update({
           latitude: this.currentLatitude,
           longitude: this.currentLongitude,

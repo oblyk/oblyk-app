@@ -18,11 +18,12 @@
     </div>
   </div>
 </template>
+
 <script>
 import { MeUserConcern } from '@/concerns/MeUserConcern'
 import Spinner from '@/components/layouts/Spiner'
 import UserTabs from '@/components/users/layouts/UserTabs'
-import UserApi from '@/services/oblyk-api/UserApi'
+import CurrentUserApi from '@/services/oblyk-api/CurrentUserApi'
 import GymSmallCard from '@/components/gyms/GymSmallCard'
 import Word from '@/models/Word'
 import Gym from '@/models/Gym'
@@ -53,7 +54,7 @@ export default {
   methods: {
     getSubscribes: function () {
       this.loadingSubscribes = true
-      UserApi
+      CurrentUserApi
         .subscribes()
         .then(resp => {
           this.subscribes = resp.data

@@ -63,9 +63,10 @@
     </v-form>
   </div>
 </template>
+
 <script>
 import { FormHelpers } from '@/mixins/FormHelpers'
-import UserApi from '@/services/oblyk-api/UserApi'
+import CurrentUserApi from '@/services/oblyk-api/CurrentUserApi'
 import SubmitForm from '@/components/forms/SubmitForm'
 import DatePickerInput from '@/components/forms/DatePickerInput'
 import store from '@/store'
@@ -105,7 +106,7 @@ export default {
     submit: function () {
       this.submitOverlay = true
 
-      UserApi
+      CurrentUserApi
         .update(this.data)
         .then(() => {
           store.dispatch('auth/updateUserName', {

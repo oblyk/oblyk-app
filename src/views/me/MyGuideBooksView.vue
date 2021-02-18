@@ -20,11 +20,12 @@
     </div>
   </div>
 </template>
+
 <script>
 import { MeUserConcern } from '@/concerns/MeUserConcern'
 import Spinner from '@/components/layouts/Spiner'
 import UserTabs from '@/components/users/layouts/UserTabs'
-import UserApi from '@/services/oblyk-api/UserApi'
+import CurrentUserApi from '@/services/oblyk-api/CurrentUserApi'
 import GuideBookPaper from '@/models/GuideBookPaper'
 import GuideBookPaperSmallCard from '@/components/guideBookPapers/GuideBookPaperSmallCard'
 
@@ -47,7 +48,7 @@ export default {
   methods: {
     getSubscribes: function () {
       this.loadingSubscribes = true
-      UserApi
+      CurrentUserApi
         .library()
         .then(resp => {
           this.subscribes = resp.data

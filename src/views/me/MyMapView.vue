@@ -9,7 +9,7 @@
 
 <script>
 import store from '@/store'
-import UserApi from '@/services/oblyk-api/UserApi'
+import CurrentUserApi from '@/services/oblyk-api/CurrentUserApi'
 import LeafletMap from '@/components/maps/LeafletMap'
 
 export default {
@@ -28,7 +28,7 @@ export default {
   methods: {
     getGeoJson: function () {
       store.commit('loader/START_LOADING')
-      UserApi
+      CurrentUserApi
         .ascendedCragsGeoJson()
         .then(resp => {
           this.geoJsons = { features: resp.data.features }

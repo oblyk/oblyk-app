@@ -1,5 +1,5 @@
 import store from '@/store'
-import UserApi from '@/services/oblyk-api/UserApi'
+import CurrentUserApi from '@/services/oblyk-api/CurrentUserApi'
 import User from '@/models/User'
 
 export const SessionConcern = {
@@ -28,7 +28,7 @@ export const SessionConcern = {
   methods: {
     getCurrentUser: function () {
       return new Promise((resolve, reject) => {
-        UserApi
+        CurrentUserApi
           .current()
           .then(resp => {
             resolve(new User(resp.data))

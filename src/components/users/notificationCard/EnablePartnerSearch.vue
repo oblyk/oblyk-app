@@ -42,8 +42,9 @@
     <overlay-form :overlay="answerSending" />
   </v-card>
 </template>
+
 <script>
-import UserApi from '@/services/oblyk-api/UserApi'
+import CurrentUserApi from '@/services/oblyk-api/CurrentUserApi'
 import OverlayForm from '@/components/forms/OverlayForm'
 
 export default {
@@ -63,7 +64,7 @@ export default {
   methods: {
     no: function () {
       this.answerSending = true
-      UserApi
+      CurrentUserApi
         .update({ partner_search: false })
         .then(() => {
           this.IHaveAnAnswer = true
@@ -78,7 +79,7 @@ export default {
 
     yes: function () {
       this.answerSending = true
-      UserApi
+      CurrentUserApi
         .update({ partner_search: true })
         .then(() => {
           this.$router.push(this.user.mePath('settings/partner'))

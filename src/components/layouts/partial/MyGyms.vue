@@ -32,9 +32,10 @@
     </v-list>
   </div>
 </template>
+
 <script>
 import { SessionConcern } from '@/concerns/SessionConcern'
-import UserApi from '@/services/oblyk-api/UserApi'
+import CurrentUserApi from '@/services/oblyk-api/CurrentUserApi'
 import User from '@/models/User'
 import Gym from '@/models/Gym'
 
@@ -61,7 +62,7 @@ export default {
 
   methods: {
     getCurrentUser: function () {
-      UserApi
+      CurrentUserApi
         .current()
         .then(resp => {
           this.user = new User(resp.data)
