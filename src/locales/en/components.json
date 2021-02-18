@@ -343,7 +343,10 @@
     "logBook": {
       "inFewFigures": "In few figures",
       "climbingType": "Climbing type",
-      "grades": "Grades",
+      "grades": "Ascents by grades",
+      "years": "Ascents by years",
+      "months": "Ascents by months",
+      "evolution": "Evolution",
       "myOutdoorAscents": "My outdoor ascents",
       "sortByLabel": "Sort ascents by",
       "emptyProject": "Your project list is empty",

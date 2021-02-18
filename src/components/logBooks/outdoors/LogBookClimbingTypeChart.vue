@@ -3,30 +3,42 @@
     <p class="font-weight-bold">
       {{ $t('components.logBook.climbingType') }}
     </p>
-    <div class="climbing-type-chart height-140">
+    <div
+      class="climbing-type-chart"
+      v-bind:class="heightClass"
+    >
       <doughnut-chart
         :data="chartData()"
         :options="{
           responsive: true,
           maintainAspectRatio: false,
-          legend: { display: false }
+          legend: {
+            display: legend,
+            position: legendPosition
+          }
         }"
       />
     </div>
-    <!-- Climbing type legend -->
-    <climbing-type-legend class="mt-3" />
   </div>
 </template>
 
 <script>
 import DoughnutChart from '@/components/charts/DoughnutChart'
-import ClimbingTypeLegend from '@/components/ui/ClimbingTypeLegend'
 
 export default {
   name: 'LogBookClimbingTypeChart',
-  components: { ClimbingTypeLegend, DoughnutChart },
+  components: { DoughnutChart },
   props: {
-    data: Object
+    data: Object,
+    legend: Boolean,
+    heightClass: {
+      type: String,
+      default: 'height-140'
+    },
+    legendPosition: {
+      type: String,
+      default: 'top'
+    }
   },
 
   methods: {
@@ -56,6 +68,10 @@ export default {
 
   &.height-140 {
     height: 140px
+  }
+
+  &.height-250 {
+    height: 250px
   }
 }
 </style>

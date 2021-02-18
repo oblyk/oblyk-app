@@ -1,10 +1,10 @@
 <template>
   <div>
     <p class="font-weight-bold">
-      {{ $t('components.logBook.grades') }}
+      {{ $t('components.logBook.years') }}
     </p>
     <div
-      class="grade-chart"
+      class="year-chart"
       v-bind:class="heightClass"
     >
       <bar-chart
@@ -28,11 +28,9 @@
 
 <script>
 import BarChart from '@/components/charts/BarChart'
-import { GradeMixin } from '@/mixins/GradeMixin'
 
 export default {
-  name: 'LogBookGradeChart',
-  mixins: [GradeMixin],
+  name: 'LogBookYearChart',
   components: { BarChart },
   props: {
     data: Object,
@@ -44,18 +42,13 @@ export default {
 
   methods: {
     chartData: function () {
-      const labels = []
-      for (const label of this.data.labels) {
-        labels.push(this.gradeValueToText(label))
-      }
-
       return {
         datasets: [{
           data: this.data.datasets[0].data,
           backgroundColor: this.data.datasets[0].backgroundColor,
           label: this.$t('common.number')
         }],
-        labels: labels
+        labels: this.data.labels
       }
     }
   }
@@ -63,7 +56,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.grade-chart {
+.year-chart {
   flex-grow: 1;
   min-height: 0;
 

@@ -1,10 +1,10 @@
 <template>
   <div>
     <p class="font-weight-bold">
-      {{ $t('components.logBook.grades') }}
+      {{ $t('components.logBook.months') }}
     </p>
     <div
-      class="grade-chart"
+      class="month-chart"
       v-bind:class="heightClass"
     >
       <bar-chart
@@ -28,11 +28,11 @@
 
 <script>
 import BarChart from '@/components/charts/BarChart'
-import { GradeMixin } from '@/mixins/GradeMixin'
+import { DateHelpers } from '@/mixins/DateHelpers'
 
 export default {
-  name: 'LogBookGradeChart',
-  mixins: [GradeMixin],
+  name: 'LogBookMonthChart',
+  mixins: [DateHelpers],
   components: { BarChart },
   props: {
     data: Object,
@@ -46,7 +46,7 @@ export default {
     chartData: function () {
       const labels = []
       for (const label of this.data.labels) {
-        labels.push(this.gradeValueToText(label))
+        labels.push(this.humanizeDate(`${label}-01`, 'MMMM YYYY'))
       }
 
       return {
@@ -63,7 +63,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.grade-chart {
+.month-chart {
   flex-grow: 1;
   min-height: 0;
 

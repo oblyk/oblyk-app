@@ -26,6 +26,30 @@ class LogBookOutdoorApi extends BaseApi {
     })
   }
 
+  yearChart () {
+    return axios({
+      url: `${this.baseUrl}/users/current/log_book/outdoor/chartjs/years.json`,
+      headers: { Authorization: this.authToken() },
+      method: 'GET'
+    })
+  }
+
+  monthChart () {
+    return axios({
+      url: `${this.baseUrl}/users/current/log_book/outdoor/chartjs/months.json`,
+      headers: { Authorization: this.authToken() },
+      method: 'GET'
+    })
+  }
+
+  evolutionChart () {
+    return axios({
+      url: `${this.baseUrl}/users/current/log_book/outdoor/chartjs/evolution.json`,
+      headers: { Authorization: this.authToken() },
+      method: 'GET'
+    })
+  }
+
   ascendedCragRoutes (order = 'difficulty') {
     return axios({
       url: `${this.baseUrl}/users/current/ascended_crag_routes.json`,

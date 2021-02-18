@@ -343,7 +343,10 @@
     "logBook": {
       "inFewFigures": "En quelque chiffres",
       "climbingType": "Type d'escalade",
-      "grades": "Cotations",
+      "grades": "Croix par cotations",
+      "years": "Croix par années",
+      "months": "Croix par mois",
+      "evolution": "Évolution",
       "myOutdoorAscents": "Mes croix outdoor",
       "sortByLabel": "Trier les croix par",
       "emptyProject": "Votre liste de projet est vide",

@@ -57,9 +57,11 @@ ___
 - [ ] Faire le profil d'un autre
 - [ ] Faire la messagerie
 - [ ] Faire le système de relation
-- [ ] Mes croix
-- [ ] Analytiks
+- [x] Mes croix
+- [x] Analytiks
 - [x] Tick-list
+- [x] Mes projets
+- [ ] My map
 - [ ] Faire le "Flux"
 - [ ] Mes photos
 ---

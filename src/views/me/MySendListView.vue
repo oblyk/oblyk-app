@@ -10,7 +10,10 @@
             <log-book-climbing-type-chart
               v-if="!loadingClimbingTypeChart"
               :data="climbingTypeData"
+              :legend="false"
             />
+            <!-- Climbing type legend -->
+            <climbing-type-legend class="mt-3" />
           </v-col>
 
           <!-- Climbing grade chart -->
@@ -67,10 +70,11 @@ import LogBookGradeChart from '@/components/logBooks/outdoors/LogBookGradeChart'
 import CragRoute from '@/models/CragRoute'
 import LogBookList from '@/components/logBooks/outdoors/LogBookList'
 import CragRouteDrawer from '@/components/cragRoutes/CragRouteDrawer'
+import ClimbingTypeLegend from '@/components/ui/ClimbingTypeLegend'
 
 export default {
   name: 'MySendListView',
-  components: { CragRouteDrawer, LogBookList, LogBookGradeChart, LogBookClimbingTypeChart, Spinner, LogBookFigures },
+  components: { ClimbingTypeLegend, CragRouteDrawer, LogBookList, LogBookGradeChart, LogBookClimbingTypeChart, Spinner, LogBookFigures },
   props: {
     user: Object
   },
