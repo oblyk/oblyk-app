@@ -2,6 +2,7 @@ import SignInView from '@/views/sessions/SignInView'
 import SignUpView from '@/views/sessions/SignUpView'
 import ResetPasswordView from '@/views/sessions/ResetPasswordView'
 import NewPasswordView from '@/views/sessions/NewPasswordView'
+import PrivacyStepView from '@/views/sessions/PrivacyStepView'
 
 export default [
   {
@@ -17,6 +18,15 @@ export default [
     component: SignUpView,
     meta: {
       title: 'signUp',
+      showTitle: false
+    }
+  },
+  {
+    path: '/privacy',
+    component: PrivacyStepView,
+    meta: {
+      requiresAuth: true,
+      title: 'privacy',
       showTitle: false
     }
   },

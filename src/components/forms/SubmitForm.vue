@@ -3,6 +3,7 @@
     <overlay-form :overlay="overlay"/>
 
     <v-btn
+      v-if="goBackBtn"
       @click="$router.go(-1)"
       icon
     >
@@ -37,7 +38,11 @@ export default {
       required: false,
       default: 'primary'
     },
-    tabindex: Number
+    tabindex: Number,
+    goBackBtn: {
+      type: Boolean,
+      default: true
+    }
   }
 }
 </script>

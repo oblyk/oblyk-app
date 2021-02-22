@@ -29,8 +29,9 @@
 
     <submit-form
       class="mt-10"
+      :go-back-btn="goBackBtn"
       :overlay="submitOverlay"
-      :submit-local-key="submitText()"
+      submit-local-key="actions.save"
     />
   </v-form>
 </template>
@@ -45,7 +46,15 @@ export default {
   mixins: [FormHelpers],
   components: { SubmitForm },
   props: {
-    user: Object
+    user: Object,
+    redirectTo: {
+      type: String,
+      default: '/'
+    },
+    goBackBtn: {
+      type: Boolean,
+      default: true
+    }
   },
 
   data () {
@@ -65,7 +74,7 @@ export default {
       CurrentUserApi
         .update(this.data)
         .then(() => {
-          this.$router.push('/')
+          this.$router.push(this.redirectTo)
         })
         .catch(err => {
           this.$root.$emit('alertFromApiError', err, 'user')

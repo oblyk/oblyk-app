@@ -1,5 +1,6 @@
 <template>
   <v-form @submit.prevent="signUp">
+    <!-- Language -->
     <v-select
       v-model="language"
       :items="locales"
@@ -10,6 +11,7 @@
       outlined
     />
 
+    <!-- Email -->
     <v-text-field
       outlined
       v-model="email"
@@ -18,6 +20,7 @@
       required
     />
 
+    <!-- Password -->
     <v-text-field
       outlined
       v-model="password"
@@ -28,6 +31,7 @@
       @click:append="showPassword = !showPassword"
     />
 
+    <!-- Password confirmation -->
     <v-text-field
       outlined
       v-model="passwordConfirmation"
@@ -38,6 +42,7 @@
       @click:append="showPasswordConfirmation = !showPasswordConfirmation"
     />
 
+    <!-- Name & Last name -->
     <v-row>
       <v-col>
         <v-text-field
@@ -56,21 +61,29 @@
       </v-col>
     </v-row>
 
-    <date-picker-input
+    <!-- Date of birth -->
+    <date-of-birth-input
       v-model="dateOfBirth"
-      :label="$t('models.user.date_of_birth')"
     />
 
+    <!-- Genre -->
+    <genre-input
+      v-model="genre"
+    />
+
+    <!-- Term of use -->
     <v-checkbox
       class="mt-0"
       hide-details
       v-model="termsOfUse"
       :label="$t('components.session.termsOfUse')"
     />
+
     <router-link to="/terms-of-use" class="ml-8">
       {{ $t('termsOfUse.title') }}
     </router-link>
 
+    <!-- Stay connect -->
     <v-checkbox
       v-model="rememberMe"
       :label="$t('components.session.stayConnected')"
@@ -95,10 +108,12 @@
 <script>
 import SubmitForm from '@/components/forms/SubmitForm'
 import { FormHelpers } from '@/mixins/FormHelpers'
-import DatePickerInput from '@/components/forms/DatePickerInput'
+import DateOfBirthInput from '@/components/forms/DateOfBirthInput'
+import GenreInput from '@/components/forms/GenreInput'
+
 export default {
   name: 'SignUpForm',
-  components: { DatePickerInput, SubmitForm },
+  components: { GenreInput, DateOfBirthInput, SubmitForm },
   mixins: [FormHelpers],
   props: {
     redirectTo: {
@@ -118,7 +133,7 @@ export default {
       lastName: null,
       firstName: null,
       dateOfBirth: null,
-      dateOfBirthModal: false,
+      genre: null,
       rememberMe: true,
       language: this.$vuetify.lang.current,
       locales: [
@@ -159,7 +174,7 @@ export default {
           if (this.redirectTo) {
             this.$router.push(this.redirectTo)
           } else {
-            this.$router.push('/')
+            this.$router.push('/privacy')
           }
         })
         .catch(err => {

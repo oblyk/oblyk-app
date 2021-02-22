@@ -53,7 +53,7 @@
 
       <submit-form
         :overlay="submitOverlay"
-        :submit-local-key="submitText()"
+        submit-local-key="actions.save"
       />
     </v-form>
   </div>

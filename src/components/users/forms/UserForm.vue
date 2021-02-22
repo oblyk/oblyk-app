@@ -25,20 +25,12 @@
       </v-row>
 
       <!-- Date of birth -->
-      <date-picker-input
+      <date-of-birth-input
         v-model="data.date_of_birth"
-        :label="$t('models.user.date_of_birth')"
       />
 
       <!-- Genre -->
-      <v-select
-        v-model="data.genre"
-        :items="genreList"
-        item-value="value"
-        item-text="text"
-        :label="$t('models.user.genre')"
-        outlined
-      />
+      <genre-input v-model="data.genre" />
 
       <!-- Language -->
       <v-select
@@ -58,7 +50,7 @@
 
       <submit-form
         :overlay="submitOverlay"
-        :submit-local-key="submitText()"
+        submit-local-key="actions.save"
       />
     </v-form>
   </div>
@@ -68,14 +60,15 @@
 import { FormHelpers } from '@/mixins/FormHelpers'
 import CurrentUserApi from '@/services/oblyk-api/CurrentUserApi'
 import SubmitForm from '@/components/forms/SubmitForm'
-import DatePickerInput from '@/components/forms/DatePickerInput'
 import store from '@/store'
 import MarkdownInput from '@/components/forms/MarkdownInput'
+import DateOfBirthInput from '@/components/forms/DateOfBirthInput'
+import GenreInput from '@/components/forms/GenreInput'
 
 export default {
   name: 'UserForm',
   mixins: [FormHelpers],
-  components: { MarkdownInput, DatePickerInput, SubmitForm },
+  components: { GenreInput, DateOfBirthInput, MarkdownInput, SubmitForm },
   props: {
     user: Object
   },
@@ -90,11 +83,6 @@ export default {
         genre: (this.user || {}).genre,
         language: (this.user || {}).language
       },
-      genreList: [
-        { text: this.$t('models.genres.undefined'), value: null },
-        { text: this.$t('models.genres.male'), value: 'male' },
-        { text: this.$t('models.genres.female'), value: 'female' }
-      ],
       locales: [
         { text: 'Français', value: 'fr' },
         { text: 'English', value: 'en' }
