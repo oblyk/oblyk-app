@@ -8,7 +8,7 @@ const state = {
   refresh_token: '',
   name: '',
   slug_name: '',
-  id: '',
+  uuid: '',
   administered_gyms: [],
   subscribes: [],
   ascent_crag_routes: [],
@@ -41,8 +41,8 @@ const getters = {
     return state.refresh_token
   },
 
-  getUserId: state => {
-    return state.id
+  getUserUuid: state => {
+    return state.uuid
   },
 
   getName: state => {
@@ -86,7 +86,7 @@ const actions = {
             expired_at: data.expired_at,
             name: `${data.user.first_name} ${data.user.last_name}`,
             slug_name: data.user.slug_name,
-            id: data.user.id,
+            uuid: data.user.uuid,
             administered_gyms: data.administered_gyms,
             subscribes: data.subscribes,
             ascent_crag_routes: data.ascent_crag_routes,
@@ -135,7 +135,7 @@ const actions = {
             refresh_token: data.refresh_token,
             name: `${data.user.first_name} ${data.user.last_name}`,
             slug_name: data.user.slug_name,
-            id: data.user.id,
+            uuid: data.user.uuid,
             administered_gyms: data.administered_gyms,
             subscribes: data.subscribes,
             ascent_crag_routes: data.ascent_crag_routes,
@@ -163,7 +163,7 @@ const actions = {
             refresh_token: data.refresh_token,
             name: `${data.user.first_name} ${data.user.last_name}`,
             slug_name: data.user.slug_name,
-            id: data.user.id,
+            uuid: data.user.uuid,
             administered_gyms: data.administered_gyms,
             subscribes: data.subscribes,
             ascent_crag_routes: data.ascent_crag_routes,
@@ -221,7 +221,7 @@ const mutations = {
     state.token = payload.token
     state.refresh_token = payload.refresh_token
     state.expired_at = payload.expired_at
-    state.id = payload.id
+    state.uuid = payload.uuid
     state.name = payload.name
     state.slug_name = payload.slug_name
     state.administered_gyms = payload.administered_gyms
@@ -264,7 +264,7 @@ const mutations = {
     state.refresh_token = ''
     state.name = ''
     state.slug_name = ''
-    state.id = ''
+    state.uuid = ''
     state.administered_gyms = []
     state.subscribes = []
     state.ascent_crag_routes = []

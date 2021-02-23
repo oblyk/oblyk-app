@@ -88,7 +88,7 @@ export default {
 
   methods: {
     itsMe: function () {
-      return (this.loggedInUser.id === this.user.id)
+      return (this.loggedInUser.uuid === this.user.uuid)
     }
   }
 }

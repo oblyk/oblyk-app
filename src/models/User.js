@@ -15,8 +15,8 @@ export default class User extends ActiveData {
     return `/me/${this.slug_name}/${page}`
   }
 
-  userPath (tabs = 'infos') {
-    return `/users/${this.id}/${this.slug_name}/${tabs}`
+  userPath () {
+    return `/users/${this.uuid}/${this.slug_name}`
   }
 
   avatarUrl () {

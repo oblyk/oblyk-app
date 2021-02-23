@@ -10,8 +10,8 @@ export default class BaseApi {
     if (this.tokenSearchSource) this.tokenSearchSource.cancel()
   }
 
-  authId () {
-    return store.getters['auth/getUserId']
+  authUuid () {
+    return store.getters['auth/getUserUuid']
   }
 
   authRefreshToken () {

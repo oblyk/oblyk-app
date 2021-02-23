@@ -38,7 +38,7 @@ class SessionApi extends BaseApi {
     return axios({
       url: `${this.baseUrl}/sessions/tokens.json`,
       data: {
-        id: this.authId(),
+        uuid: this.authUuid(),
         refresh_token: this.authRefreshToken()
       },
       method: 'POST'

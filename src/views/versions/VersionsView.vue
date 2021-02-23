@@ -15,7 +15,7 @@
           {{ humanizeDate(version.created_at) }}
           <span v-if="version.user">
             {{ $t('common.by').toLowerCase() }}
-            <router-link :to="`/users/${version.user.slug_name}/${version.user.id}`">
+            <router-link :to="`/users/${version.user.uuid}/${version.user.slug_name}`">
               {{ version.user.name }}
             </router-link>
           </span>

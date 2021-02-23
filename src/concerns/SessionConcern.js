@@ -12,7 +12,7 @@ export const SessionConcern = {
       return {
         name: store.getters['auth/getName'],
         slugName: store.getters['auth/getSlugName'],
-        id: store.getters['auth/getUserId']
+        uuid: store.getters['auth/getUserUuid']
       }
     },
 
