@@ -34,4 +34,17 @@ export default class User extends ActiveData {
       return require('@/assets/user-default-banner.jpg')
     }
   }
+
+  climbingTypes () {
+    const list = []
+    if (this.sport_climbing) list.push('sport_climbing')
+    if (this.bouldering) list.push('bouldering')
+    if (this.multi_pitch) list.push('multi_pitch')
+    if (this.trad_climbing) list.push('trad_climbing')
+    if (this.aid_climbing) list.push('aid_climbing')
+    if (this.deep_water) list.push('deep_water')
+    if (this.via_ferrata) list.push('via_ferrata')
+    if (this.pan) list.push('pan')
+    return list
+  }
 }

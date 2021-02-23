@@ -76,7 +76,7 @@ export default {
 
   data () {
     return {
-      climbingTypes: this.gym ? this.gym.climbingTypes() : [],
+      climbingTypes: this.user ? this.user.climbingTypes() : [],
       gradesList: [
         { text: '3a', value: 13 },
         { text: '3b', value: 15 },
