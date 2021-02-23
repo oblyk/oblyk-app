@@ -11,7 +11,7 @@ export default class ActiveData {
     }
   }
 
-  apiFind (Api, id, secondId = null, thirdId = null) {
+  apiFind (Api, id = null, secondId = null, thirdId = null) {
     return new Promise((resolve, reject) => {
       Api
         .find(id, secondId, thirdId)

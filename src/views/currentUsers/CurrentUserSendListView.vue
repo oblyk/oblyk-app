@@ -73,7 +73,7 @@ import CragRouteDrawer from '@/components/cragRoutes/CragRouteDrawer'
 import ClimbingTypeLegend from '@/components/ui/ClimbingTypeLegend'
 
 export default {
-  name: 'MySendListView',
+  name: 'CurrentUserSendListView',
   components: { ClimbingTypeLegend, CragRouteDrawer, LogBookList, LogBookGradeChart, LogBookClimbingTypeChart, Spinner, LogBookFigures },
   props: {
     user: Object

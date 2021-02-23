@@ -1,9 +1,9 @@
 <template>
   <div>
-    <spinner v-if="loadingMeUser" />
+    <spinner v-if="loadingCurrentUser" />
 
-    <div v-if="!loadingMeUser">
-      <user-tabs :user="meUser" />
+    <div v-if="!loadingCurrentUser">
+      <user-tabs :user="currentUser" />
       <spinner v-if="loadingSubscribes" />
 
       <v-container v-if="!loadingSubscribes">
@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import { MeUserConcern } from '@/concerns/MeUserConcern'
+import { CurrentUserConcern } from '@/concerns/CurrentUserConcern'
 import Spinner from '@/components/layouts/Spiner'
 import UserTabs from '@/components/users/layouts/UserTabs'
 import CurrentUserApi from '@/services/oblyk-api/CurrentUserApi'
@@ -31,14 +31,14 @@ import Crag from '@/models/Crag'
 import CragSmallCard from '@/components/crags/CragSmallCard'
 
 export default {
-  name: 'MyFavoritesView',
+  name: 'CurrentUserFavoritesView',
   components: {
     CragSmallCard,
     GymSmallCard,
     UserTabs,
     Spinner
   },
-  mixins: [MeUserConcern],
+  mixins: [CurrentUserConcern],
 
   data () {
     return {

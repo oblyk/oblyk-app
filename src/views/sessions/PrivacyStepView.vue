@@ -2,7 +2,7 @@
   <v-container>
     <v-row
       justify="center"
-      v-if="meUser"
+      v-if="currentUser"
     >
       <v-col class="global-form-width" align-self="center">
         <h2 class="mb-4">
@@ -26,11 +26,11 @@
 <script>
 import { SessionConcern } from '@/concerns/SessionConcern'
 import UserPrivacyForm from '@/components/users/forms/PrivacyForm'
-import { MeUserConcern } from '@/concerns/MeUserConcern'
+import { CurrentUserConcern } from '@/concerns/CurrentUserConcern'
 
 export default {
   name: 'PrivacyStepView',
-  mixins: [SessionConcern, MeUserConcern],
+  mixins: [SessionConcern, CurrentUserConcern],
   components: { UserPrivacyForm },
 
   data () {
@@ -46,7 +46,7 @@ export default {
 
   methods: {
     overRideUser: function () {
-      const user = this.meUser
+      const user = this.currentUser
       user.public_profile = true
       user.public_outdoor_ascents = true
       user.public_indoor_ascents = true

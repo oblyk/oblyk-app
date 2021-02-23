@@ -1,24 +1,24 @@
-import MyAvatarView from '@/views/me/actions/MyAvatarView'
-import MyBannerView from '@/views/me/actions/MyBannerView'
-import MyAscentsView from '@/views/me/MyAscentsView'
-import MySubscribersView from '@/views/me/MySubscribersView'
-import MyGuideBooksView from '@/views/me/MyGuideBooksView'
-import MyFavoritesView from '@/views/me/MyFavoritesView'
-import MessengerView from '@/views/me/MessengerView'
-import MyPartnerSettingsView from '@/views/me/actions/MyPartnerSettingsView'
-import MySettingsView from '@/views/me/MySettingsView'
-import MyEditView from '@/views/me/actions/MyEditView'
-import MySendListView from '@/views/me/MySendListView'
-import MyTickListView from '@/views/me/MyTickListView'
-import MyAnalytiksView from '@/views/me/MyAnalytiksView'
-import MyProjectView from '@/views/me/MyProjectView'
-import MyMapView from '@/views/me/MyMapView'
-import MyPrivacyView from '@/views/me/actions/MyPrivacyView'
+import CurrentUserAvatarView from '@/views/currentUsers/actions/CurrentUserAvatarView'
+import CurrentUserBannerView from '@/views/currentUsers/actions/CurrentUserBannerView'
+import CurrentUserAscentsView from '@/views/currentUsers/CurrentUserAscentsView'
+import CurrentUserSubscribersView from '@/views/currentUsers/CurrentUserSubscribersView'
+import CurrentUserGuideBooksView from '@/views/currentUsers/CurrentUserGuideBooksView'
+import CurrentUserFavoritesView from '@/views/currentUsers/CurrentUserFavoritesView'
+import CurrentUserMessengerView from '@/views/currentUsers/CurrentUserMessengerView'
+import CurrentUserPartnerSettingsView from '@/views/currentUsers/actions/CurrentUserPartnerSettingsView'
+import CurrentUserSettingsView from '@/views/currentUsers/CurrentUserSettingsView'
+import CurrentUserEditView from '@/views/currentUsers/actions/CurrentUserEditView'
+import CurrentUserSendListView from '@/views/currentUsers/CurrentUserSendListView'
+import CurrentUserTickListView from '@/views/currentUsers/CurrentUserTickListView'
+import CurrentUserAnalytiksView from '@/views/currentUsers/CurrentUserAnalytiksView'
+import CurrentUserProjectView from '@/views/currentUsers/CurrentUserProjectView'
+import CurrentUserMapView from '@/views/currentUsers/CurrentUserMapView'
+import CurrentUserPrivacyView from '@/views/currentUsers/actions/CurrentUserPrivacyView'
 
 export default [
   {
     path: '/maps/my-map',
-    component: MyMapView,
+    component: CurrentUserMapView,
     meta: {
       requiresAuth: true,
       title: 'myMap',
@@ -27,7 +27,7 @@ export default [
   },
   {
     path: '/me/:userSlug/avatar',
-    component: MyAvatarView,
+    component: CurrentUserAvatarView,
     meta: {
       requiresAuth: true,
       title: 'myAvatar',
@@ -36,7 +36,7 @@ export default [
   },
   {
     path: '/me/:userSlug/banner',
-    component: MyBannerView,
+    component: CurrentUserBannerView,
     meta: {
       requiresAuth: true,
       title: 'myBanner',
@@ -45,7 +45,7 @@ export default [
   },
   {
     path: '/me/:userSlug/settings',
-    component: MySettingsView,
+    component: CurrentUserSettingsView,
     meta: {
       requiresAuth: true,
       title: 'mySettings',
@@ -54,7 +54,7 @@ export default [
     children: [
       {
         path: 'general',
-        component: MyEditView,
+        component: CurrentUserEditView,
         meta: {
           requiresAuth: true,
           title: 'mySettings',
@@ -63,7 +63,7 @@ export default [
       },
       {
         path: 'privacy',
-        component: MyPrivacyView,
+        component: CurrentUserPrivacyView,
         meta: {
           requiresAuth: true,
           title: 'mySettings',
@@ -72,7 +72,7 @@ export default [
       },
       {
         path: 'partner',
-        component: MyPartnerSettingsView,
+        component: CurrentUserPartnerSettingsView,
         meta: {
           requiresAuth: true,
           title: 'mySettings',
@@ -83,7 +83,7 @@ export default [
   },
   {
     path: '/me/:userSlug/ascents',
-    component: MyAscentsView,
+    component: CurrentUserAscentsView,
     meta: {
       requiresAuth: true,
       title: 'myAscents',
@@ -92,7 +92,7 @@ export default [
     children: [
       {
         path: 'send-list',
-        component: MySendListView,
+        component: CurrentUserSendListView,
         meta: {
           requiresAuth: true,
           title: 'myAscents',
@@ -101,7 +101,7 @@ export default [
       },
       {
         path: 'tick-list',
-        component: MyTickListView,
+        component: CurrentUserTickListView,
         meta: {
           requiresAuth: true,
           title: 'myAscents',
@@ -110,7 +110,7 @@ export default [
       },
       {
         path: 'projects',
-        component: MyProjectView,
+        component: CurrentUserProjectView,
         meta: {
           requiresAuth: true,
           title: 'myAscents',
@@ -119,7 +119,7 @@ export default [
       },
       {
         path: 'analytiks',
-        component: MyAnalytiksView,
+        component: CurrentUserAnalytiksView,
         meta: {
           requiresAuth: true,
           title: 'myAscents',
@@ -130,7 +130,7 @@ export default [
   },
   {
     path: '/me/:userSlug/subscribers',
-    component: MySubscribersView,
+    component: CurrentUserSubscribersView,
     meta: {
       requiresAuth: true,
       title: 'mySubscribers',
@@ -139,7 +139,7 @@ export default [
   },
   {
     path: '/me/:userSlug/guide-books',
-    component: MyGuideBooksView,
+    component: CurrentUserGuideBooksView,
     meta: {
       requiresAuth: true,
       title: 'myGuideBooks',
@@ -148,7 +148,7 @@ export default [
   },
   {
     path: '/me/:userSlug/favorites',
-    component: MyFavoritesView,
+    component: CurrentUserFavoritesView,
     meta: {
       requiresAuth: true,
       title: 'myFavorites',
@@ -157,7 +157,7 @@ export default [
   },
   {
     path: '/me/:userSlug/messenger',
-    component: MessengerView,
+    component: CurrentUserMessengerView,
     meta: {
       requiresAuth: true,
       title: 'messenger',

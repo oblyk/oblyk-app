@@ -18,7 +18,7 @@
             <span class="vertical-align-middle">
               {{ guideBookPdf.name }}
               <v-btn
-                v-if="isLoggedIn && currentUser.id === guideBookPdf.creator.id"
+                v-if="isLoggedIn && loggedInUser.id === guideBookPdf.creator.id"
                 icon
                 :to="`${guideBookPdf.path('edit')}?redirect_to=${$route.fullPath}`"
               >

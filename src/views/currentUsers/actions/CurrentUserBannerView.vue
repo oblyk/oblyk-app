@@ -1,15 +1,15 @@
 <template>
   <div>
-    <spinner v-if="loadingMeUser" />
+    <spinner v-if="loadingCurrentUser" />
 
-    <v-container v-if="!loadingMeUser">
+    <v-container v-if="!loadingCurrentUser">
       <v-row justify="center">
         <v-col class="global-form-width">
           <h2 class="mb-4">
             {{ $t('actions.changeBanner') }}
           </h2>
           <user-image-form
-            :user="meUser"
+            :user="currentUser"
             upload-type="banner"
           />
         </v-col>
@@ -18,13 +18,13 @@
   </div>
 </template>
 <script>
-import { MeUserConcern } from '@/concerns/MeUserConcern'
+import { CurrentUserConcern } from '@/concerns/CurrentUserConcern'
 import Spinner from '@/components/layouts/Spiner'
 import UserImageForm from '@/components/users/forms/UserImageForm'
 
 export default {
-  name: 'MyBannerView',
+  name: 'CurrentUserBannerView',
   components: { UserImageForm, Spinner },
-  mixins: [MeUserConcern]
+  mixins: [CurrentUserConcern]
 }
 </script>

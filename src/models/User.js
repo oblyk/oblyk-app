@@ -1,9 +1,14 @@
 import ActiveData from '@/models/ActiveData'
 import CurrentUserApi from '@/services/oblyk-api/CurrentUserApi'
+import UserApi from '@/services/oblyk-api/UserApi'
 
 export default class User extends ActiveData {
   find (id) {
-    return this.apiFind(CurrentUserApi, id)
+    return this.apiFind(UserApi, id)
+  }
+
+  findCurrent () {
+    return this.apiFind(CurrentUserApi)
   }
 
   mePath (page = '') {

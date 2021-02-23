@@ -8,7 +8,7 @@ export const SessionConcern = {
       return store.getters['auth/isLoggedIn']
     },
 
-    currentUser: function () {
+    loggedInUser: function () {
       return {
         name: store.getters['auth/getName'],
         slugName: store.getters['auth/getSlugName'],
@@ -26,7 +26,7 @@ export const SessionConcern = {
   },
 
   methods: {
-    getCurrentUser: function () {
+    getLoggedInUser: function () {
       return new Promise((resolve, reject) => {
         CurrentUserApi
           .current()

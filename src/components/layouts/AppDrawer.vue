@@ -31,31 +31,31 @@
         :title="$t('components.layout.appDrawer.user.feed')"
       />
       <app-drawer-item
-        :url="`/me/${currentUser.slugName}/messenger`"
+        :url="`/me/${loggedInUser.slugName}/messenger`"
         icon="mdi-forum"
         icon-color="teal"
         :title="$t('components.layout.appDrawer.user.messenger')"
       />
       <app-drawer-item
-        :url="`/me/${currentUser.slugName}/ascents/send-list`"
+        :url="`/me/${loggedInUser.slugName}/ascents/send-list`"
         icon="mdi-check-all"
         icon-color="blue"
         :title="$t('components.layout.appDrawer.user.ascents')"
       />
       <app-drawer-item
-        :url="`/me/${currentUser.slugName}/subscribers`"
+        :url="`/me/${loggedInUser.slugName}/subscribers`"
         icon="mdi-account-star-outline"
         icon-color="green"
         :title="$t('components.layout.appDrawer.user.subscribers')"
       />
       <app-drawer-item
-        :url="`/me/${currentUser.slugName}/favorites`"
+        :url="`/me/${loggedInUser.slugName}/favorites`"
         icon="mdi-star"
         icon-color="amber"
         :title="$t('components.layout.appDrawer.user.favorites')"
       />
       <app-drawer-item
-        :url="`/me/${currentUser.slugName}/guide-books`"
+        :url="`/me/${loggedInUser.slugName}/guide-books`"
         icon="mdi-bookshelf"
         icon-color="deep-purple"
         :title="$t('components.layout.appDrawer.user.guideBooks')"

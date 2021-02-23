@@ -70,11 +70,11 @@
         <v-list>
           <div v-if="isLoggedIn && user">
             <v-list-item>
-              <v-list-item-avatar v-if="!loadingMeUser">
-                <img :src="meUser.avatarUrl()" :alt="`avatar ${currentUser.name}`">
+              <v-list-item-avatar v-if="!loadingCurrentUser">
+                <img :src="user.avatarUrl()" :alt="`avatar ${user.name}`">
               </v-list-item-avatar>
               <v-list-item-title class="font-weight-bold">
-                {{ currentUser.name }}
+                {{ loggedInUser.name }}
               </v-list-item-title>
             </v-list-item>
             <v-divider/>
@@ -107,11 +107,11 @@ import LoginLogoutBtn from '@/components/layouts/partial/LoginLogoutBtn'
 import { SessionConcern } from '@/concerns/SessionConcern'
 import AppDrawerItem from '@/components/layouts/partial/AppDrawerItem'
 import AppBarTitle from '@/components/layouts/partial/AppBarTitle'
-import { MeUserConcern } from '@/concerns/MeUserConcern'
+import { CurrentUserConcern } from '@/concerns/CurrentUserConcern'
 
 export default {
   name: 'AppBar',
-  mixins: [SessionConcern, MeUserConcern],
+  mixins: [SessionConcern, CurrentUserConcern],
   components: {
     AppBarTitle,
     AppDrawerItem,
@@ -135,18 +135,22 @@ export default {
     window.addEventListener('resize', this.onResize, { passive: true })
 
     if (this.isLoggedIn) {
-      this.getCurrentUser().then((user) => {
-        this.user = user
-      })
+      this
+        .getLoggedInUser()
+        .then((user) => {
+          this.user = user
+        })
     }
   },
 
   watch: {
     isLoggedIn: function () {
       if (this.isLoggedIn) {
-        this.getCurrentUser().then((user) => {
-          this.user = user
-        })
+        this
+          .getLoggedInUser()
+          .then((user) => {
+            this.user = user
+          })
       }
     }
   },

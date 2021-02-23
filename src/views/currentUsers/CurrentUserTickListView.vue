@@ -1,15 +1,15 @@
 <template>
   <v-container>
-    <spinner v-if="loadingProjects" />
+    <spinner v-if="loadingTickList" />
     <crag-route-by-crag-list
-      v-if="!loadingProjects"
-      :crag-routes="projects"
+      v-if="!loadingTickList"
+      :crag-routes="tickList"
     />
     <p
-      v-if="!loadingProjects && projects.length === 0"
+      v-if="!loadingTickList && tickList.length === 0"
       class="text-center text--disabled mt-4 mb-4"
     >
-      {{ $t('components.logBook.emptyProject') }}
+      {{ $t('components.logBook.emptyTickList') }}
     </p>
     <crag-route-drawer />
   </v-container>
@@ -24,52 +24,52 @@ import store from '@/store'
 import CragRouteByCragList from '@/components/cragRoutes/CragRouteByCragList'
 
 export default {
-  name: 'MyProjectView',
+  name: 'CurrentUserTickListView',
   components: { CragRouteByCragList, CragRouteDrawer, Spinner },
   props: {
     user: Object
   },
 
   computed: {
-    computedAscentCragRoutes: function () {
-      return store.getters['auth/getAscentCragRoutes']
+    computedTickList: function () {
+      return store.getters['auth/getTickList']
     }
   },
 
   watch: {
-    computedAscentCragRoutes: function () {
-      this.getProjects()
+    computedTickList: function () {
+      this.getTickList()
     }
   },
 
   data () {
     return {
-      loadingProjects: true,
-      projects: []
+      loadingTickList: true,
+      tickList: []
     }
   },
 
   mounted () {
-    this.getProjects()
+    this.getTickList()
   },
 
   methods: {
-    getProjects: function () {
-      this.loadingProjects = true
+    getTickList: function () {
+      this.loadingTickList = true
       CurrentUserApi
-        .projects()
+        .tickList()
         .then(resp => {
           const routes = []
           for (const route of resp.data) {
             routes.push(new CragRoute(route))
           }
-          this.projects = routes
+          this.tickList = routes
         })
         .catch(err => {
-          this.$root.$emit('alertFromApiError', err, 'cragRoute')
+          this.$root.$emit('alertFromApiError', err, 'tickList')
         })
         .finally(() => {
-          this.loadingProjects = false
+          this.loadingTickList = false
         })
     }
   }

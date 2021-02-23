@@ -20,7 +20,7 @@
             <span class="vertical-align-middle">
               {{ guideBookWeb.name }}
               <v-btn
-                v-if="isLoggedIn && currentUser.id === guideBookWeb.creator.id"
+                v-if="isLoggedIn && loggedInUser.id === guideBookWeb.creator.id"
                 icon
                 :to="`${guideBookWeb.path('edit')}?redirect_to=${$route.fullPath}`"
               >

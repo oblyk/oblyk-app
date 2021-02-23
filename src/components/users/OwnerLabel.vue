@@ -6,7 +6,7 @@
 
     <!-- Edit btn -->
     <v-btn
-      v-if="editPath && isLoggedIn && currentUser.id === user.id"
+      v-if="editPath && isLoggedIn && loggedInUser.id === user.id"
       :to="editPath"
       :title="$t('actions.edit')"
       icon
@@ -17,7 +17,7 @@
 
     <!-- Delete btn -->
     <v-btn
-      v-if="deleteFunction && isLoggedIn && currentUser.id === user.id"
+      v-if="deleteFunction && isLoggedIn && loggedInUser.id === user.id"
       @click="deleteFunction()"
       :title="$t('actions.delete')"
       icon

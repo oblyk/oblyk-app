@@ -13,7 +13,7 @@ import CurrentUserApi from '@/services/oblyk-api/CurrentUserApi'
 import LeafletMap from '@/components/maps/LeafletMap'
 
 export default {
-  name: 'MyMapView',
+  name: 'CurrentUserMapView',
   components: { LeafletMap },
   data () {
     return {
@@ -32,9 +32,11 @@ export default {
         .ascendedCragsGeoJson()
         .then(resp => {
           this.geoJsons = { features: resp.data.features }
-          setTimeout(() => {
-            this.$root.$emit('fitMapOnGeoJsonBounds')
-          }, 1000)
+          if (resp.data.features.length > 0) {
+            setTimeout(() => {
+              this.$root.$emit('fitMapOnGeoJsonBounds')
+            }, 1000)
+          }
         })
         .finally(() => {
           store.commit('loader/FINISH_LOADING')
