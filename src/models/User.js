@@ -11,12 +11,12 @@ export default class User extends ActiveData {
     return this.apiFind(CurrentUserApi)
   }
 
-  mePath (page = '') {
+  currentUserPath (page = '') {
     return `/me/${this.slug_name}/${page}`
   }
 
-  userPath () {
-    return `/users/${this.uuid}/${this.slug_name}`
+  userPath (page = 'profile') {
+    return `/users/${this.uuid}/${this.slug_name}/${page}`
   }
 
   avatarUrl () {

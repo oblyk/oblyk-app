@@ -424,13 +424,20 @@
       "activateLocalizationExplain": "Localization allows me to have information about what's going on around me (and is indispensable for the search for a partner).",
       "uploadBanner": "<strong>TIPS !</strong> Upload a banner to customize the header of this page.",
       "uploadAvatar": "<strong>TIPS !</strong> Add a profile picture to your account.",
+      "bioIsEmpty": "%{name} has not yet written his bio",
+      "bio": "Bio",
+      "oblykContribution": "Oblyk contribution",
       "tabs": {
         "feed": "Feed",
+        "profile": "Profile",
+        "followers": "Followers",
         "messenger": "messenger",
         "subscribers": "Subscribers",
+        "subscribes": "Subscribes",
         "ascents": "Ascents",
         "guideBooks": "Guide book library",
         "favorites": "Favorites",
+        "media": "Pictures",
         "settings": "Settings"
       },
       "settingTabs": {

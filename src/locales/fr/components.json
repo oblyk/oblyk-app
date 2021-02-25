@@ -424,13 +424,20 @@
       "activateLocalizationExplain": "La localisation permet d'avoir des informations sur ce qu'il se passe autour de moi (et est indispensable pour la recherche de partenaire)",
       "uploadBanner": "<strong>TIPS !</strong> Upload un bandeau pour personnaliser l'entête de cette page.",
       "uploadAvatar": "<strong>TIPS !</strong> Ajout une photo de profil à ton compte.",
+      "bioIsEmpty": "%{name} n'a pas encore rédigé sa bio",
+      "bio": "Bio",
+      "oblykContribution": "Contribution à Oblyk",
       "tabs": {
         "feed": "Fil",
+        "profile": "Profil",
+        "followers": "Abonnés",
         "messenger": "Messagerie",
         "subscribers": "Abonnés",
+        "subscribes": "Abonnements",
         "ascents": "Croix",
         "guideBooks": "Topothèque",
         "favorites": "Favoris",
+        "media": "Photos",
         "settings": "Paramètres"
       },
       "settingTabs": {

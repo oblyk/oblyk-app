@@ -1,9 +1,9 @@
 <template>
-  <div>
-    <v-container class="user-page-container">
-      <p>En tête</p>
-      <p>Bio</p>
-      <p>Croix</p>
+  <div v-if="user">
+    <user-head :user="user" />
+    <user-tabs :user="user" />
+    <v-container>
+      <router-view :user="user" />
     </v-container>
     <app-footer />
   </div>
@@ -11,15 +11,13 @@
 
 <script>
 import AppFooter from '@/components/layouts/AppFooter'
+import { UserConcern } from '@/concerns/UserConcern'
+import UserHead from '@/components/users/layouts/UserHead'
+import UserTabs from '@/components/users/layouts/UserTabs'
 
 export default {
   name: 'UserView',
-  components: { AppFooter }
+  mixins: [UserConcern],
+  components: { UserTabs, UserHead, AppFooter }
 }
 </script>
-
-<style lang="scss" scoped>
-.user-page-container {
-  max-width: 1000px;
-}
-</style>

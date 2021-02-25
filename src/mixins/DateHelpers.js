@@ -13,6 +13,11 @@ export const DateHelpers = {
     yearsOld: function (dateOfBirth, toS = true) {
       const yearsOld = moment().diff(moment(dateOfBirth), 'years')
       return toS ? `${yearsOld}${this.$t('date.yearsOld')}` : yearsOld
+    },
+
+    dateFromNow: function (date) {
+      moment.locale(this.$vuetify.lang.current)
+      return moment(date).fromNow()
     }
   }
 }

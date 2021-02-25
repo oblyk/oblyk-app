@@ -1,45 +1,73 @@
 <template>
   <v-tabs show-arrows >
-    <v-tab to="/">
-      <v-icon
-        :small="!isMobile"
-        color="orange"
-        left
-      >
-        mdi-arrow-decision-outline
-      </v-icon>
-      <span class="hidden-sm-only hidden-xs-only">
-        {{ $t('components.user.tabs.feed') }}
-      </span>
-    </v-tab>
 
-    <v-tab :to="user.mePath('messenger')">
+    <!-- Profil -->
+    <v-tab :to="user.userPath()">
       <v-icon
         :small="!isMobile"
-        left
         color="teal"
+        left
       >
-        mdi-forum
+        mdi-account-box
       </v-icon>
       <span class="hidden-sm-only hidden-xs-only">
-        {{ $t('components.user.tabs.messenger') }}
+        {{ $t('components.user.tabs.profile') }}
       </span>
     </v-tab>
 
-    <v-tab :to="user.mePath('subscribers')">
+    <!-- Media -->
+    <v-tab :to="user.userPath('media')">
+      <v-icon
+        :small="!isMobile"
+        left
+        color="blue"
+      >
+        mdi-camera
+      </v-icon>
+      <span class="hidden-sm-only hidden-xs-only">
+        {{ $t('components.user.tabs.media') }}
+      </span>
+    </v-tab>
+
+    <!-- Subscribes -->
+    <v-tab :to="user.userPath('subscribes')">
+      <v-icon
+        :small="!isMobile"
+        left
+        color="amber"
+      >
+        mdi-star
+      </v-icon>
+      <span class="mr-1">
+        {{ user.subscribes_count }}
+      </span>
+      <span class="hidden-sm-only hidden-xs-only">
+        {{ $t('components.user.tabs.subscribes') }}
+      </span>
+    </v-tab>
+
+    <!-- Followers -->
+    <v-tab :to="user.userPath('followers')">
       <v-icon
         :small="!isMobile"
         left
         color="green"
       >
-        mdi-account-star-outline
+        mdi-tooltip-account
       </v-icon>
+      <span class="mr-1">
+        {{ user.followers_count }}
+      </span>
       <span class="hidden-sm-only hidden-xs-only">
-        {{ $t('components.user.tabs.subscribers') }}
+        {{ $t('components.user.tabs.followers') }}
       </span>
     </v-tab>
 
-    <v-tab :to="user.mePath('ascents/send-list')">
+    <!-- Ascents -->
+    <v-tab
+      :to="user.userPath('ascents')"
+      v-if="user.public_outdoor_ascents"
+    >
       <v-icon
         :small="!isMobile"
         left
@@ -49,43 +77,6 @@
       </v-icon>
       <span class="hidden-sm-only hidden-xs-only">
         {{ $t('components.user.tabs.ascents') }}
-      </span>
-    </v-tab>
-
-    <v-tab :to="user.mePath('favorites')">
-      <v-icon
-        :small="!isMobile"
-        left
-        color="amber"
-      >
-        mdi-star
-      </v-icon>
-      <span class="hidden-sm-only hidden-xs-only">
-        {{ $t('components.user.tabs.favorites') }}
-      </span>
-    </v-tab>
-
-    <v-tab :to="user.mePath('guide-books')">
-      <v-icon
-        :small="!isMobile"
-        left
-        color="deep-purple"
-      >
-        mdi-bookshelf
-      </v-icon>
-      <span class="hidden-sm-only hidden-xs-only">
-        {{ $t('components.user.tabs.guideBooks') }}
-      </span>
-    </v-tab>
-    <v-tab :to="user.mePath('settings/general')">
-      <v-icon
-        :small="!isMobile"
-        left
-      >
-        mdi-cog
-      </v-icon>
-      <span class="hidden-sm-only hidden-xs-only">
-        {{ $t('components.user.tabs.settings') }}
       </span>
     </v-tab>
   </v-tabs>

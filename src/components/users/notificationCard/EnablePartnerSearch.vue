@@ -82,7 +82,7 @@ export default {
       CurrentUserApi
         .update({ partner_search: true })
         .then(() => {
-          this.$router.push(this.user.mePath('settings/partner'))
+          this.$router.push(this.user.currentUserPath('settings/partner'))
         })
         .catch(err => {
           this.$root.$emit('alertFromApiError', err, 'user')

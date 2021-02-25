@@ -15,7 +15,7 @@
         {{ $t('actions.dontAskMeAgain') }}
       </v-btn>
       <v-btn
-        :to="user.mePath('banner')"
+        :to="user.currentUserPath('banner')"
         right
         text
         color="primary"

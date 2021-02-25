@@ -4,7 +4,7 @@
 
     <div v-else>
       <user-head :user="currentUser" />
-      <user-tabs :user="currentUser" />
+      <current-user-tabs :user="currentUser" />
       <v-container class="dashboard-container">
 
         <!-- Get localization -->
@@ -31,18 +31,19 @@
 </template>
 
 <script>
-import Spinner from '@/components/layouts/Spiner'
 import { CurrentUserConcern } from '@/concerns/CurrentUserConcern'
+import Spinner from '@/components/layouts/Spiner'
 import UserHead from '@/components/users/layouts/UserHead'
-import UserTabs from '@/components/users/layouts/UserTabs'
 import EnablePartnerSearch from '@/components/users/notificationCard/EnablePartnerSearch'
 import EnableLocalization from '@/components/users/notificationCard/EnableLocalization'
 import BannerMissing from '@/components/users/notificationCard/BannerMissing'
 import AvatarMissing from '@/components/users/notificationCard/AvatarMissing'
+import CurrentUserTabs from '@/components/users/layouts/CurrentUserTabs'
+
 export default {
   name: 'Dashboard',
   mixins: [CurrentUserConcern],
-  components: { AvatarMissing, BannerMissing, EnableLocalization, EnablePartnerSearch, UserTabs, UserHead, Spinner }
+  components: { CurrentUserTabs, AvatarMissing, BannerMissing, EnableLocalization, EnablePartnerSearch, UserHead, Spinner }
 }
 </script>
 

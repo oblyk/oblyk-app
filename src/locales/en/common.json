@@ -1,7 +1,8 @@
 {
   "date": {
     "yearsOld": " years old",
-    "format_dd_mm_yyyy": "dd/mm/yyyy"
+    "format_dd_mm_yyyy": "dd/mm/yyyy",
+    "lastActivity": "last activity %{date} ago"
   },
   "common": {
     "noInformation": "No information",

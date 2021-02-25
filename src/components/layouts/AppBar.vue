@@ -78,10 +78,10 @@
               </v-list-item-title>
             </v-list-item>
             <v-divider/>
-            <app-drawer-item :title="$t('components.layout.appBar.user.messenger')" icon="mdi-forum" :url="user.mePath('messenger')"/>
-            <app-drawer-item :title="$t('components.layout.appBar.user.avatar')" icon="mdi-account-circle" :url="user.mePath('avatar')" />
-            <app-drawer-item :title="$t('components.layout.appBar.user.banner')" icon="mdi-panorama" :url="user.mePath('banner')" />
-            <app-drawer-item :title="$t('components.layout.appBar.user.settings')" icon="mdi-settings" :url="user.mePath('settings/general')" />
+            <app-drawer-item :title="$t('components.layout.appBar.user.messenger')" icon="mdi-forum" :url="user.currentUserPath('messenger')"/>
+            <app-drawer-item :title="$t('components.layout.appBar.user.avatar')" icon="mdi-account-circle" :url="user.currentUserPath('avatar')" />
+            <app-drawer-item :title="$t('components.layout.appBar.user.banner')" icon="mdi-panorama" :url="user.currentUserPath('banner')" />
+            <app-drawer-item :title="$t('components.layout.appBar.user.settings')" icon="mdi-settings" :url="user.currentUserPath('settings/general')" />
             <v-divider/>
           </div>
           <login-logout-btn />

@@ -12,7 +12,7 @@
 <script>
 import { CurrentUserConcern } from '@/concerns/CurrentUserConcern'
 import Spinner from '@/components/layouts/Spiner'
-import UserTabs from '@/components/users/layouts/UserTabs'
+import UserTabs from '@/components/users/layouts/CurrentUserTabs'
 import UserSettingsTabs from '@/components/users/layouts/UserSettingsTabs'
 
 export default {

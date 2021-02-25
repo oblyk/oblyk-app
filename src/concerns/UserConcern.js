@@ -1,4 +1,3 @@
-import Gym from '@/models/Gym'
 import store from '@/store'
 import User from '@/models/User'
 
@@ -15,7 +14,7 @@ export const UserConcern = {
     } else {
       store.commit('loader/START_LOADING')
       new User()
-        .find(to.params.userUuid, false)
+        .find(to.params.userUuid)
         .then(resp => {
           next(vm => {
             vm.user = resp
@@ -38,7 +37,7 @@ export const UserConcern = {
     } else {
       store.commit('loader/START_LOADING')
       new User()
-        .find(to.params.userUuid, false)
+        .find(to.params.userUuid)
         .then(resp => {
           this.user = resp
           next()

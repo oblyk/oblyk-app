@@ -22,7 +22,7 @@
 <script>
 import { CurrentUserConcern } from '@/concerns/CurrentUserConcern'
 import Spinner from '@/components/layouts/Spiner'
-import UserTabs from '@/components/users/layouts/UserTabs'
+import UserTabs from '@/components/users/layouts/CurrentUserTabs'
 import CurrentUserApi from '@/services/oblyk-api/CurrentUserApi'
 import GymSmallCard from '@/components/gyms/GymSmallCard'
 import Word from '@/models/Word'
