@@ -146,5 +146,25 @@ export const MapMarkerHelpers = {
         })
       }
     }
+  },
+
+  methods: {
+    userMarker: function (properties) {
+      let avatarSrc
+      if (properties.avatar_thumbnail_url) {
+        avatarSrc = `${process.env.VUE_APP_OBLYK_API_URL}${properties.avatar_thumbnail_url}`
+      } else {
+        avatarSrc = require('@/assets/markers/user-marker-avatar.svg')
+      }
+      return L.divIcon({
+        iconSize: [30, 40],
+        iconAnchor: [15, 40],
+        className: 'user-partner-map-marker',
+        html: `
+          <img class="user-partner-map-marker-avatar" alt="${properties.full_name}" src="${avatarSrc}">
+          <img class="user-partner-map-marker-caret" alt="" src="${require('@/assets/markers/user-marker-caret.svg')}">
+        `
+      })
+    }
   }
 }

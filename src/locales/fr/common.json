@@ -15,11 +15,15 @@
     "at": "le",
     "in": "en",
     "by": "Par",
+    "and": "et",
     "type": "Type",
     "from": "De",
     "to": "À",
     "open": "Ouvert",
     "field": "Champ",
+    "practice": "pratique",
+    "between": "entre",
+    "level": "niveau",
     "pages": {
       "about": {
         "title": "À propos d'Oblyk"

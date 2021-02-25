@@ -9,5 +9,21 @@ class UserApi extends BaseApi {
       method: 'GET'
     })
   }
+
+  contribution (userUuid) {
+    return axios({
+      url: `${this.baseUrl}/users/${userUuid}/contribution.json`,
+      headers: { Authorization: this.authToken() },
+      method: 'GET'
+    })
+  }
+
+  userPartnerGeoJson (userUuid) {
+    return axios({
+      url: `${this.baseUrl}/users/${userUuid}/partner_user_geo_json.json`,
+      headers: { Authorization: this.authToken() },
+      method: 'GET'
+    })
+  }
 }
 export default new UserApi()

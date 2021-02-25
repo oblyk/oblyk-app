@@ -15,11 +15,15 @@
     "at": "at",
     "in": "in",
     "by": "By",
+    "and": "and",
     "type": "Type",
     "from": "From",
     "to": "To",
     "open": "Open",
     "field": "Field",
+    "practice": "practice",
+    "level": "level",
+    "between": "between",
     "pages": {
       "about": {
         "title": "About Oblyk"

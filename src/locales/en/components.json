@@ -429,6 +429,8 @@
       "completeBio": "Complete your bio",
       "oblykContribution": "Oblyk contribution",
       "partnerMapTitle": "Choose where you want to appear on the map",
+      "emptyContribution": "%{name} has not yet contributed to Oblyk",
+      "climbersMap": "In climbers map",
       "tabs": {
         "feed": "Feed",
         "profile": "Profile",
@@ -462,6 +464,15 @@
         "profile": "Your profile can <strong>only be viewed by climbers connected</strong> to Oblyk.<br>You must <strong>manually accept</strong> climbers who want to follow you.",
         "outdoor_ascents": "Your outdoor send-list can <strong>only be consulted by your subscribers.</strong>",
         "indoor_ascents": "Your indoor send-list can <strong>only be consulted by your subscribers.</strong>"
+      },
+      "contribution": {
+        "crags": "Crags",
+        "gyms": "Climbing gyms",
+        "routes": "Routes",
+        "photos": "Pictures",
+        "videos": "Videos",
+        "guide": "Guide books",
+        "comments": "Comments"
       }
     },
     "layout": {

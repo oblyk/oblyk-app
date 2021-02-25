@@ -35,6 +35,22 @@ export default class User extends ActiveData {
     }
   }
 
+  thumbnailBannerUrl () {
+    if (this.banner_thumbnail_url) {
+      return `${process.env.VUE_APP_OBLYK_API_URL}${this.banner_thumbnail_url}`
+    } else {
+      return require('@/assets/user-default-banner.jpg')
+    }
+  }
+
+  thumbnailAvatarUrl () {
+    if (this.avatar_thumbnail_url) {
+      return `${process.env.VUE_APP_OBLYK_API_URL}${this.avatar_thumbnail_url}`
+    } else {
+      return require('@/assets/markers/user-marker-avatar.svg')
+    }
+  }
+
   climbingTypes () {
     const list = []
     if (this.sport_climbing) list.push('sport_climbing')

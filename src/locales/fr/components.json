@@ -429,6 +429,8 @@
       "completeBio": "Complétez votre bio",
       "oblykContribution": "Contribution à Oblyk",
       "partnerMapTitle": "Choisissez l'endroit où vous souhaitez apparaître sur la carte",
+      "emptyContribution": "%{name} n'a pas encore contribué à Oblyk",
+      "climbersMap": "Sur la carte des grimpeurs",
       "tabs": {
         "feed": "Fil",
         "profile": "Profil",
@@ -462,6 +464,15 @@
         "profile": "Votre profil est consultable <strong>uniquement par les grimpeurs connectés</strong> à oblyk.<br>Vous devez <strong>accepter manuellement</strong> les grimpeurs qui veulent vous suivre.",
         "outdoor_ascents": "Votre carnet de croix outdoor est <strong>consultable uniquement pas vos abonnées.</strong>",
         "indoor_ascents": "Votre carnet de croix indoor est <strong>consultable uniquement pas vos abonnées.</strong>"
+      },
+      "contribution": {
+        "crags": "Sites",
+        "gyms": "Salles",
+        "routes": "Lignes",
+        "photos": "Photos",
+        "videos": "Vidéos",
+        "guides": "Topos",
+        "comments": "Commentaires"
       }
     },
     "layout": {

@@ -19,6 +19,10 @@ export default class BaseApi {
   }
 
   authToken () {
-    return `Bearer ${store.getters['auth/getToken']}`
+    if (store.getters['auth/getToken']) {
+      return `Bearer ${store.getters['auth/getToken']}`
+    } else {
+      return null
+    }
   }
 }

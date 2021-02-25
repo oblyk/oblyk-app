@@ -181,7 +181,11 @@ export default {
   methods: {
     pointToLayerFunction () {
       return (feature, latLng) => {
-        return L.marker(latLng, { icon: this.markers[feature.properties.icon] })
+        if (feature.properties.icon === 'partner-user') {
+          return L.marker(latLng, { icon: this.userMarker(feature.properties) })
+        } else {
+          return L.marker(latLng, { icon: this.markers[feature.properties.icon] })
+        }
       }
     },
 
@@ -231,8 +235,52 @@ export default {
 }
 .map-popup-cover {
   width: 100%;
+  position: relative;
+  .user-map-popup-name-and-avatar {
+    position: absolute;
+    bottom: 0;
+    width: 300px;
+    padding-left: 5px;
+    padding-bottom: 5px;
+    .user-map-popup-avatar {
+      height: 70px;
+      width: 70px;
+      border-radius: 50%;
+      object-fit: contain;
+    }
+    .user-map-popup-name {
+      margin-left: 5px;
+      display: inline-block;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 3px;
+      margin-top: 10px;
+      vertical-align: top;
+      background-color: rgba(0,0,0,0.8);
+    }
+  }
 }
-
+.map-popup-information-table {
+  .map-popup-information-bio {
+    padding-right: 8px;
+    padding-left: 8px;
+  }
+}
+.user-partner-map-marker {
+  .user-partner-map-marker-avatar {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    object-fit: contain;
+  }
+  .user-partner-map-marker-caret {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -5px;
+    height: 10px;
+  }
+}
 .leaflet-container a.leaflet-popup-close-button {
   padding-top: 7px;
   width: 30px;
