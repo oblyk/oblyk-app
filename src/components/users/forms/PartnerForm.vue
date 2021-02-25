@@ -44,10 +44,24 @@
           </v-col>
         </v-row>
 
+        <p class="mt-5">
+          {{ $t('components.user.completeBio') }}
+        </p>
         <!-- Bio -->
         <markdown-input
           v-model="data.description"
           :label="$t('models.user.description')"
+        />
+
+        <!-- Partner map -->
+        <map-input
+          v-model="partnerLocalization"
+          :default-latitude="data.partner_latitude"
+          :default-longitude="data.partner_longitude"
+          :default-zoom="data.partner_latitude ? 10 : 4"
+          title-key="components.user.partnerMapTitle"
+          style-map="outdoor"
+          class="mb-3"
         />
       </div>
 
@@ -65,11 +79,12 @@ import CurrentUserApi from '@/services/oblyk-api/CurrentUserApi'
 import SubmitForm from '@/components/forms/SubmitForm'
 import ClimbingTypeInput from '@/components/forms/ClimbingTypeInput'
 import MarkdownInput from '@/components/forms/MarkdownInput'
+import MapInput from '@/components/forms/MapInput'
 
 export default {
   name: 'PartnerForm',
   mixins: [FormHelpers],
-  components: { MarkdownInput, ClimbingTypeInput, SubmitForm },
+  components: { MapInput, MarkdownInput, ClimbingTypeInput, SubmitForm },
   props: {
     user: Object
   },
@@ -77,6 +92,10 @@ export default {
   data () {
     return {
       climbingTypes: this.user ? this.user.climbingTypes() : [],
+      partnerLocalization: {
+        latitude: (this.user || {}).partner_latitude || (this.user || {}).latitude,
+        longitude: (this.user || {}).partner_longitude || (this.user || {}).longitude
+      },
       gradesList: [
         { text: '3a', value: 13 },
         { text: '3b', value: 15 },
@@ -112,12 +131,21 @@ export default {
         pan: (this.user || {}).pan,
         grade_min: (this.user || {}).grade_min,
         grade_max: (this.user || {}).grade_max,
-        description: (this.user || {}).description
+        description: (this.user || {}).description,
+        partner_latitude: (this.user || {}).partner_latitude || (this.user || {}).latitude,
+        partner_longitude: (this.user || {}).partner_longitude || (this.user || {}).longitude
       }
     }
   },
 
   watch: {
+    partnerLocalization: {
+      handler: function () {
+        this.data.partner_latitude = this.partnerLocalization.latitude
+        this.data.partner_longitude = this.partnerLocalization.longitude
+      },
+      deep: true
+    },
     climbingTypes: {
       handler: function () {
         this.data.bouldering = this.climbingTypes.indexOf('bouldering') !== -1

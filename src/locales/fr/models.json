@@ -5,7 +5,7 @@
       "name": "Nom",
       "first_name": "Prénom",
       "last_name": "Nom",
-      "description": "Moi en quelques mots",
+      "description": "Bio",
       "password": "Mot de passe",
       "confirm_password": "Confirmez votre mot de passe",
       "email": "Email",

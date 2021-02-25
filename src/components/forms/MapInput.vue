@@ -1,7 +1,7 @@
 <template>
   <div class="mb-7">
     <p class="subtitle-2 mb-0">
-      {{ $t('components.map.input.title') }}
+      {{ $t(titleKey) }}
     </p>
     <p class="mb-1 caption">
       <cite>{{ $t('components.map.input.explain') }}</cite>
@@ -95,6 +95,10 @@ export default {
     geoJsons: {
       type: Object,
       required: false
+    },
+    titleKey: {
+      type: String,
+      default: 'components.map.input.title'
     }
   },
 

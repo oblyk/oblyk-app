@@ -421,12 +421,14 @@
       "bePartPartnerExplain": "Faire partie de la carte des grimpeurs vous permet de trouver des gens avec qui grimper !",
       "localizationDeactivated": "Localisation désactivée",
       "activateLocalization": "Activer la localisation",
-      "activateLocalizationExplain": "La localisation permet d'avoir des informations sur ce qu'il se passe autour de moi (et est indispensable pour la recherche de partenaire)",
+      "activateLocalizationExplain": "La localisation permet d'avoir des informations sur ce qu'il se passe autour de moi (et est pratique pour la carte des grimpeurs)",
       "uploadBanner": "<strong>TIPS !</strong> Upload un bandeau pour personnaliser l'entête de cette page.",
       "uploadAvatar": "<strong>TIPS !</strong> Ajout une photo de profil à ton compte.",
       "bioIsEmpty": "%{name} n'a pas encore rédigé sa bio",
       "bio": "Bio",
+      "completeBio": "Complétez votre bio",
       "oblykContribution": "Contribution à Oblyk",
+      "partnerMapTitle": "Choisissez l'endroit où vous souhaitez apparaître sur la carte",
       "tabs": {
         "feed": "Fil",
         "profile": "Profil",
@@ -443,7 +445,7 @@
       "settingTabs": {
         "general": "Généraux",
         "privacy": "Confidentialité",
-        "partner": "Partenaires"
+        "partner": "Carte des grimpeurs"
       },
       "ascentTabs": {
         "sendList": "Carnet",
