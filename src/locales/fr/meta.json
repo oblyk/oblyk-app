@@ -101,6 +101,9 @@
     },
     "editPhoto": {
       "title": "Modifier une photo"
+    },
+    "partnerMap": {
+      "title": "Carte des grimpeurs"
     }
   }
 }

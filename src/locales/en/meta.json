@@ -101,6 +101,9 @@
     },
     "editPhoto": {
       "title": "Edit picture"
+    },
+    "partnerMap": {
+      "title": "Climbers Map"
     }
   }
 }

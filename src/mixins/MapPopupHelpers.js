@@ -267,7 +267,7 @@ export const MapPopupHelpers = {
           <button>${this.$t('actions.see')}</button>
         </div>
       `
-      popup.querySelector('button').addEventListener('click', () => { this.$router.push(user.path()) })
+      popup.querySelector('button').addEventListener('click', () => { this.$router.push(user.userPath()) })
 
       return popup
     }
