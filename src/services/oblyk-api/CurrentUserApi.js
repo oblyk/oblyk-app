@@ -10,9 +10,25 @@ class CurrentUserApi extends BaseApi {
     })
   }
 
+  favorites () {
+    return axios({
+      url: `${this.baseUrl}/current_users/favorites.json`,
+      headers: { Authorization: this.authToken() },
+      method: 'GET'
+    })
+  }
+
   subscribes () {
     return axios({
       url: `${this.baseUrl}/current_users/subscribes.json`,
+      headers: { Authorization: this.authToken() },
+      method: 'GET'
+    })
+  }
+
+  followers () {
+    return axios({
+      url: `${this.baseUrl}/current_users/followers.json`,
       headers: { Authorization: this.authToken() },
       method: 'GET'
     })

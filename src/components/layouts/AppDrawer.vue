@@ -43,7 +43,7 @@
         :title="$t('components.layout.appDrawer.user.ascents')"
       />
       <app-drawer-item
-        :url="`/me/${loggedInUser.slugName}/subscribers`"
+        :url="`/me/${loggedInUser.slugName}/community/followers`"
         icon="mdi-account-star-outline"
         icon-color="green"
         :title="$t('components.layout.appDrawer.user.subscribers')"

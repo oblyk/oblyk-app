@@ -25,7 +25,6 @@ import Spinner from '@/components/layouts/Spiner'
 import UserTabs from '@/components/users/layouts/CurrentUserTabs'
 import CurrentUserApi from '@/services/oblyk-api/CurrentUserApi'
 import GymSmallCard from '@/components/gyms/GymSmallCard'
-import Word from '@/models/Word'
 import Gym from '@/models/Gym'
 import Crag from '@/models/Crag'
 import CragSmallCard from '@/components/crags/CragSmallCard'
@@ -48,14 +47,14 @@ export default {
   },
 
   mounted () {
-    this.getSubscribes()
+    this.getFavorites()
   },
 
   methods: {
-    getSubscribes: function () {
+    getFavorites: function () {
       this.loadingSubscribes = true
       CurrentUserApi
-        .subscribes()
+        .favorites()
         .then(resp => {
           this.subscribes = resp.data
         })
@@ -68,9 +67,7 @@ export default {
     },
 
     recordObject: function (type, data) {
-      if (type === 'Word') {
-        return new Word(data)
-      } else if (type === 'Gym') {
+      if (type === 'Gym') {
         return new Gym(data)
       } else if (type === 'Crag') {
         return new Crag(data)

@@ -1,7 +1,7 @@
 import CurrentUserAvatarView from '@/views/currentUsers/actions/CurrentUserAvatarView'
 import CurrentUserBannerView from '@/views/currentUsers/actions/CurrentUserBannerView'
 import CurrentUserAscentsView from '@/views/currentUsers/CurrentUserAscentsView'
-import CurrentUserSubscribersView from '@/views/currentUsers/CurrentUserSubscribersView'
+import CurrentUserSubscribesView from '@/views/currentUsers/CurrentUserSubscribesView'
 import CurrentUserGuideBooksView from '@/views/currentUsers/CurrentUserGuideBooksView'
 import CurrentUserFavoritesView from '@/views/currentUsers/CurrentUserFavoritesView'
 import CurrentUserMessengerView from '@/views/currentUsers/CurrentUserMessengerView'
@@ -14,6 +14,8 @@ import CurrentUserAnalytiksView from '@/views/currentUsers/CurrentUserAnalytiksV
 import CurrentUserProjectView from '@/views/currentUsers/CurrentUserProjectView'
 import CurrentUserMapView from '@/views/currentUsers/CurrentUserMapView'
 import CurrentUserPrivacyView from '@/views/currentUsers/actions/CurrentUserPrivacyView'
+import CurrentUserCommunityView from '@/views/currentUsers/CurrentUserCommunityView'
+import CurrentUserFollowersView from '@/views/currentUsers/CurrentUserFollowersView'
 
 export default [
   {
@@ -129,13 +131,33 @@ export default [
     ]
   },
   {
-    path: '/me/:userSlug/subscribers',
-    component: CurrentUserSubscribersView,
+    path: '/me/:userSlug/community',
+    component: CurrentUserCommunityView,
     meta: {
       requiresAuth: true,
       title: 'mySubscribers',
       showTitle: true
-    }
+    },
+    children: [
+      {
+        path: 'followers',
+        component: CurrentUserFollowersView,
+        meta: {
+          requiresAuth: true,
+          title: 'mySubscribers',
+          showTitle: true
+        }
+      },
+      {
+        path: 'subscribes',
+        component: CurrentUserSubscribesView,
+        meta: {
+          requiresAuth: true,
+          title: 'mySubscribers',
+          showTitle: true
+        }
+      }
+    ]
   },
   {
     path: '/me/:userSlug/guide-books',

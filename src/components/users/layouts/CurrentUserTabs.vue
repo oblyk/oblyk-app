@@ -26,16 +26,16 @@
       </span>
     </v-tab>
 
-    <v-tab :to="user.currentUserPath('subscribers')">
+    <v-tab :to="user.currentUserPath('community/followers')">
       <v-icon
         :small="!isMobile"
         left
         color="green"
       >
-        mdi-account-star-outline
+        mdi-account-group
       </v-icon>
       <span class="hidden-sm-only hidden-xs-only">
-        {{ $t('components.user.tabs.subscribers') }}
+        {{ $t('components.user.tabs.community') }}
       </span>
     </v-tab>
 

@@ -446,7 +446,8 @@
         "media": "Pictures & Videos",
         "photos": "Photos",
         "videos": "Videos",
-        "settings": "Settings"
+        "settings": "Settings",
+        "community": "Community"
       },
       "settingTabs": {
         "general": "General",
