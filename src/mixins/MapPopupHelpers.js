@@ -234,6 +234,7 @@ export const MapPopupHelpers = {
       }
 
       const level = `${this.gradeValueToText(user.grade_min)} ~ ${this.gradeValueToText(user.grade_max)}`
+      const lastActivity = this.$t('date.lastActivity', { date: this.dateFromNow(user.last_activity_at) })
 
       const popup = document.createElement('div')
       popup.innerHTML = `
@@ -259,6 +260,9 @@ export const MapPopupHelpers = {
             <td>${level}</td>
           </tr>
         </table>
+        <p class="user-map-popup-last-activity-at">
+          <small>${lastActivity}</small>
+        </p>
         <div class="map-popup-link-area">
           <button>${this.$t('actions.see')}</button>
         </div>

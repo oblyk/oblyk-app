@@ -266,6 +266,11 @@ export default {
     padding-left: 8px;
   }
 }
+.user-map-popup-last-activity-at {
+  text-align: right;
+  margin: 0 !important;
+  padding-right: 8px;
+}
 .user-partner-map-marker {
   .user-partner-map-marker-avatar {
     height: 30px;
