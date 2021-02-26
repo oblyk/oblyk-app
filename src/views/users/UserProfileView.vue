@@ -1,7 +1,7 @@
 <template>
   <v-row>
     <v-col
-      class="col-12"
+      class="col-12 d-flex flex-column"
       v-bind:class="user.partner_search ? 'col-md-6' : ''"
     >
       <!-- User bio -->

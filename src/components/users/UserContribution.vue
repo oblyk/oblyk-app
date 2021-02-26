@@ -1,5 +1,5 @@
 <template>
-  <v-card class="user-contribution">
+  <v-card class="user-contribution full-height">
     <v-card-title>
       <v-icon left>
         mdi-book-plus-multiple
@@ -16,7 +16,7 @@
       <v-row v-else>
         <!-- Crags -->
         <v-col
-          class="col-3 figures"
+          class="col-4 col-lg-3 figures"
           v-if="contribution.crags_count !== 0"
         >
           {{ contribution.crags_count }} <br>
@@ -27,7 +27,7 @@
 
         <!-- Gyms -->
         <v-col
-          class="col-3 figures"
+          class="col-4 col-lg-3 figures"
           v-if="contribution.gyms_count !== 0"
         >
           {{ contribution.gyms_count }} <br>
@@ -38,7 +38,7 @@
 
         <!-- Routes -->
         <v-col
-          class="col-3 figures"
+          class="col-4 col-lg-3 figures"
           v-if="contribution.routes_count !== 0"
         >
           {{ contribution.routes_count }} <br>
@@ -49,7 +49,7 @@
 
         <!-- Photos -->
         <v-col
-          class="col-3 figures"
+          class="col-4 col-lg-3 figures"
           v-if="contribution.photos_count !== 0"
         >
           {{ contribution.photos_count }} <br>
@@ -60,7 +60,7 @@
 
         <!-- Videos -->
         <v-col
-          class="col-3 figures"
+          class="col-4 col-lg-3 figures"
           v-if="contribution.videos_count !== 0"
         >
           {{ contribution.videos_count }} <br>
@@ -71,7 +71,7 @@
 
         <!-- Guide books -->
         <v-col
-          class="col-3 figures"
+          class="col-4 col-lg-3 figures"
           v-if="contribution.guides_count !== 0"
         >
           {{ contribution.guides_count }} <br>
@@ -82,7 +82,7 @@
 
         <!-- Comments -->
         <v-col
-          class="col-3 figures"
+          class="col-4 col-lg-3 figures"
           v-if="contribution.comments_count !== 0"
         >
           {{ contribution.comments_count }} <br>

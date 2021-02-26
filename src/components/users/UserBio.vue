@@ -1,12 +1,12 @@
 <template>
-  <v-card>
+  <v-card class="full-height">
     <v-card-title>
       <v-icon left>
         mdi-text-account
       </v-icon>
       {{ $t('components.user.bio') }}
     </v-card-title>
-    <v-card-text class="pb-2">
+    <v-card-text>
       <!-- Bio -->
       <markdown-text :text="user.description" />
 
@@ -19,7 +19,7 @@
       </p>
 
       <!-- Activity -->
-      <p class="text-right mb-0 pb-0">
+      <p class="text-right mb-0 pb-0 last-activity-label">
         <small>
           {{ $t('date.lastActivity', { date: dateFromNow(user.last_activity_at) }) }}
         </small>
@@ -41,3 +41,11 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.last-activity-label {
+  position: absolute;
+  bottom: 0;
+  right: 5px;
+}
+</style>
