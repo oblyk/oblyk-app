@@ -411,6 +411,7 @@
       "noVideo": "There is no video here for the moment"
     },
     "user": {
+      "type": "Climber",
       "globalInformation": "General Information",
       "privacyParameters": "Privacy parameters",
       "partnerSearch": "Partner search",
@@ -431,6 +432,7 @@
       "partnerMapTitle": "Choose where you want to appear on the map",
       "emptyContribution": "%{name} has not yet contributed to Oblyk",
       "climbersMap": "In climbers map",
+      "followersEmpty": "%{name} doesn't have a subscription yet.",
       "tabs": {
         "feed": "Feed",
         "profile": "Profile",

@@ -411,6 +411,7 @@
       "noVideo": "Il n'y a pas de vidéo ici pour l'instant"
     },
     "user": {
+      "type": "Grimpeur",
       "globalInformation": "Information général",
       "privacyParameters": "Paramètres de confidentialité",
       "partnerSearch": "Recherche de partenaire",
@@ -431,6 +432,7 @@
       "partnerMapTitle": "Choisissez l'endroit où vous souhaitez apparaître sur la carte",
       "emptyContribution": "%{name} n'a pas encore contribué à Oblyk",
       "climbersMap": "Sur la carte des grimpeurs",
+      "followersEmpty": "%{name} n'a pas encore d'abonné.",
       "tabs": {
         "feed": "Fil",
         "profile": "Profil",

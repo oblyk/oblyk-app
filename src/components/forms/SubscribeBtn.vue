@@ -30,7 +30,7 @@ export default {
   mixins: [SessionConcern],
   props: {
     subscribeType: String,
-    subscribeId: Number,
+    subscribeId: [Number, String],
     incrementable: {
       type: Boolean,
       default: false
@@ -47,6 +47,10 @@ export default {
       type: String,
       default: 'amber'
     },
+    waitingFollowColor: {
+      type: String,
+      default: 'pink'
+    },
     unfollowedIcon: {
       type: String,
       default: 'mdi-star-outline'
@@ -58,6 +62,10 @@ export default {
     unsubscribeLabel: {
       type: String,
       default: 'actions.unsubscribe'
+    },
+    requestMadeLabel: {
+      type: String,
+      default: 'actions.cancelRequest'
     }
   },
 
@@ -75,6 +83,10 @@ export default {
 
   methods: {
     subscribed: function () {
+      return ['subscribe', 'subscribeRequestMade'].includes(this.subscribedStatus())
+    },
+
+    subscribedStatus: function () {
       return this.iAmSubscribedToThis(this.subscribeType, this.subscribeId)
     },
 
@@ -87,7 +99,11 @@ export default {
     },
 
     label: function () {
-      return this.subscribed() ? this.$t(this.unsubscribeLabel) : this.$t(this.subscribeLabel)
+      if (this.subscribed()) {
+        return this.subscribedStatus() === 'subscribe' ? this.$t(this.unsubscribeLabel) : this.$t(this.requestMadeLabel)
+      } else {
+        return this.$t(this.subscribeLabel)
+      }
     },
 
     changeSubscription: function () {

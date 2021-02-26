@@ -75,6 +75,8 @@
     "addInMyLogbook": "Ajouter à mon carnet",
     "addInMyTickList": "Ajouter à ma tick list",
     "removeFromMyTickList": "Supprimer de ma tick list",
-    "save": "Sauvegarder"
+    "save": "Sauvegarder",
+    "requestMade": "Demande faite",
+    "cancelRequest": "Annuler la demande"
   }
 }

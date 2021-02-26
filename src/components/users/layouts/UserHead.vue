@@ -18,6 +18,15 @@
         </v-avatar>
         <h1 class="font-weight-medium loved-by-king">
           {{ user.full_name }}
+          <subscribe-btn
+            v-if="!itsMe()"
+            subscribe-type="User"
+            :subscribe-id="user.id"
+            unfollowed-icon="mdi-account-outline"
+            followed-icon="mdi-account"
+            followedColor="green"
+            :large="true"
+          />
         </h1>
         <span>
           <span v-if="user.genre">
@@ -78,9 +87,11 @@
 <script>
 import { SessionConcern } from '@/concerns/SessionConcern'
 import { DateHelpers } from '@/mixins/DateHelpers'
+import SubscribeBtn from '@/components/forms/SubscribeBtn'
 
 export default {
   name: 'UserHead',
+  components: { SubscribeBtn },
   mixins: [SessionConcern, DateHelpers],
   props: {
     user: Object

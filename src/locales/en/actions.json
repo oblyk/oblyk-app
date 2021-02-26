@@ -75,6 +75,8 @@
     "addInMyLogbook": "Add on my logbook",
     "addInMyTickList": "Add on my tick list",
     "removeFromMyTickList": "Remove from my tick list",
-    "save": "Save"
+    "save": "Save",
+    "requestMade": "Request made",
+    "cancelRequest": "Cancel request"
   }
 }

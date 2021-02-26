@@ -50,9 +50,11 @@ export const SessionConcern = {
     },
 
     iAmSubscribedToThis: function (type, id) {
-      let IAmSubscribed = false
+      let IAmSubscribed = 'unsubscribe'
       for (const subscribe of this.mySubscribes) {
-        if (subscribe.followable_type === type && subscribe.followable_id === id) IAmSubscribed = true
+        if (subscribe.followable_type === type && subscribe.followable_id === id) {
+          IAmSubscribed = subscribe.accepted ? 'subscribe' : 'subscribeRequestMade'
+        }
       }
       return IAmSubscribed
     }

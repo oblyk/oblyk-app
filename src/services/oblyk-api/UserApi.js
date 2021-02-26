@@ -34,6 +34,22 @@ class UserApi extends BaseApi {
     })
   }
 
+  subscribes (userUuid) {
+    return axios({
+      url: `${this.baseUrl}/users/${userUuid}/subscribes.json`,
+      headers: { Authorization: this.authToken() },
+      method: 'GET'
+    })
+  }
+
+  followers (userUuid) {
+    return axios({
+      url: `${this.baseUrl}/users/${userUuid}/followers.json`,
+      headers: { Authorization: this.authToken() },
+      method: 'GET'
+    })
+  }
+
   userPartnerGeoJson (userUuid) {
     return axios({
       url: `${this.baseUrl}/users/${userUuid}/partner_user_geo_json.json`,
