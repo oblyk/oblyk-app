@@ -4,6 +4,8 @@ import UserProfileView from '@/views/users/UserProfileView'
 import UserSubscribesView from '@/views/users/UserSubscribesView'
 import UserFollowersView from '@/views/users/UserFollowersView'
 import UserMediaView from '@/views/users/UserMediaView'
+import UserPhotoView from '@/views/users/UserPhotoView'
+import UserVideoView from '@/views/users/UserVideoView'
 
 export default [
   {
@@ -39,7 +41,23 @@ export default [
         component: UserMediaView,
         meta: {
           noPaddingTop: true
-        }
+        },
+        children: [
+          {
+            path: 'photos',
+            component: UserPhotoView,
+            meta: {
+              noPaddingTop: true
+            }
+          },
+          {
+            path: 'videos',
+            component: UserVideoView,
+            meta: {
+              noPaddingTop: true
+            }
+          }
+        ]
       },
       {
         path: 'ascents',

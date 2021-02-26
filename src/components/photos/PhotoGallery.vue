@@ -1,9 +1,11 @@
 <template>
-  <v-row>
+  <v-row
+    no-gutters
+  >
     <v-col
       v-for="(photo, index) in photos()"
       :key="`photo-${index}`"
-      class="col-12 col-md-4 d-flex child-flex"
+      class="col-6 col-md-4 d-flex child-flex pa-1"
       v-bind:class="lgCol"
     >
       <photo-thumbnail

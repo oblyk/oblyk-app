@@ -63,7 +63,7 @@
 
 <script>
 import LogBookFigures from '@/components/logBooks/outdoors/LogBookFigures'
-import LogBookOutdoorApi from '@/services/oblyk-api/LogBookOutdoorApi'
+import UserApi from '@/services/oblyk-api/UserApi'
 import Spinner from '@/components/layouts/Spiner'
 import LogBookClimbingTypeChart from '@/components/logBooks/outdoors/LogBookClimbingTypeChart'
 import LogBookGradeChart from '@/components/logBooks/outdoors/LogBookGradeChart'
@@ -74,7 +74,15 @@ import ClimbingTypeLegend from '@/components/ui/ClimbingTypeLegend'
 
 export default {
   name: 'UserAscentView',
-  components: { ClimbingTypeLegend, CragRouteDrawer, LogBookList, LogBookGradeChart, LogBookClimbingTypeChart, Spinner, LogBookFigures },
+  components: {
+    ClimbingTypeLegend,
+    CragRouteDrawer,
+    LogBookList,
+    LogBookGradeChart,
+    LogBookClimbingTypeChart,
+    Spinner,
+    LogBookFigures
+  },
   props: {
     user: Object
   },
@@ -119,8 +127,8 @@ export default {
   methods: {
     getFigures: function () {
       this.loadingFigures = true
-      LogBookOutdoorApi
-        .figures()
+      UserApi
+        .outdoorFigures(this.user.uuid)
         .then(resp => {
           this.figures = resp.data
         })
@@ -131,8 +139,8 @@ export default {
 
     getClimbingTypeChart: function () {
       this.loadingClimbingTypeChart = true
-      LogBookOutdoorApi
-        .climbingTypeChart()
+      UserApi
+        .outdoorClimbTypesChart(this.user.uuid)
         .then(resp => {
           this.climbingTypeData = resp.data
         })
@@ -143,8 +151,8 @@ export default {
 
     getGradeChart: function () {
       this.loadingGradeChart = true
-      LogBookOutdoorApi
-        .gradeChart()
+      UserApi
+        .outdoorGradesChart(this.user.uuid)
         .then(resp => {
           this.gradeData = resp.data
         })
@@ -155,8 +163,8 @@ export default {
 
     ascendedCragRoutes: function () {
       this.loadingAscendedCragRoutes = true
-      LogBookOutdoorApi
-        .ascendedCragRoutes(this.order)
+      UserApi
+        .ascendedCragRoutes(this.user.uuid, this.order)
         .then(resp => {
           this.cragRoutes = []
           for (const route of resp.data) {

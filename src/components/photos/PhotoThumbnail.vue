@@ -5,6 +5,7 @@
     :src="photo.thumbnailUrl()"
     @click="goToViewer()"
     max-height="200"
+    class="photo-thumbnail"
     :gradient="photoOver ? 'to top, rgba(0, 0, 0, 0.4) 0%, transparent 72px' : 'to top, rgba(0, 0, 0, 0) 0%, transparent 72px'"
   >
     <template v-slot:placeholder>
@@ -175,6 +176,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.photo-thumbnail {
+  border-radius: 2px;
+  cursor: pointer;
+}
 .photo-actions {
   position: absolute;
   text-align: right;

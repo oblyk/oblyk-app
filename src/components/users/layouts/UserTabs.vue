@@ -1,5 +1,7 @@
 <template>
-  <v-tabs show-arrows >
+  <v-tabs
+    show-arrows
+  >
 
     <!-- Profil -->
     <v-tab :to="user.userPath()">
@@ -16,7 +18,7 @@
     </v-tab>
 
     <!-- Media -->
-    <v-tab :to="user.userPath('media')">
+    <v-tab :to="user.userPath('media/photos')">
       <v-icon
         :small="!isMobile"
         left
@@ -24,6 +26,9 @@
       >
         mdi-camera
       </v-icon>
+      <span class="mr-1">
+        {{ user.photos_count + user.videos_count }}
+      </span>
       <span class="hidden-sm-only hidden-xs-only">
         {{ $t('components.user.tabs.media') }}
       </span>

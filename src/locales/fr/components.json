@@ -441,7 +441,9 @@
         "ascents": "Croix",
         "guideBooks": "Topothèque",
         "favorites": "Favoris",
-        "media": "Photos",
+        "media": "Photos & Vidéos",
+        "photos": "Photos",
+        "videos": "Vidéos",
         "settings": "Paramètres"
       },
       "settingTabs": {

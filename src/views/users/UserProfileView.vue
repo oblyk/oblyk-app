@@ -1,37 +1,39 @@
 <template>
-  <v-row>
-    <v-col
-      class="col-12 d-flex flex-column"
-      v-bind:class="user.partner_search ? 'col-md-6' : ''"
-    >
-      <!-- User bio -->
-      <v-row>
-        <v-col class="pt-0">
-          <user-bio :user="user" />
-        </v-col>
-      </v-row>
+  <v-container>
+    <v-row>
+      <v-col
+        class="col-12 d-flex flex-column"
+        v-bind:class="user.partner_search ? 'col-md-6' : ''"
+      >
+        <!-- User bio -->
+        <v-row>
+          <v-col class="pt-0">
+            <user-bio :user="user" />
+          </v-col>
+        </v-row>
 
-      <!-- User contribution -->
-      <v-row>
-        <v-col class="pb-0">
-          <spinner v-if="loadingContribution" :full-height="false" />
-          <user-contribution
-            v-if="!loadingContribution"
-            :user="user"
-            :contribution="contribution"
-          />
-        </v-col>
-      </v-row>
-    </v-col>
+        <!-- User contribution -->
+        <v-row>
+          <v-col class="pb-0">
+            <spinner v-if="loadingContribution" :full-height="false" />
+            <user-contribution
+              v-if="!loadingContribution"
+              :user="user"
+              :contribution="contribution"
+            />
+          </v-col>
+        </v-row>
+      </v-col>
 
-    <!-- User partner search -->
-    <v-col
-      class="col-12 col-md-6"
-      v-if="user.partner_search && user.partner_latitude"
-    >
-      <user-partner-map :user="user" />
-    </v-col>
-  </v-row>
+      <!-- User partner search -->
+      <v-col
+        class="col-12 col-md-6"
+        v-if="user.partner_search && user.partner_latitude"
+      >
+        <user-partner-map :user="user" />
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>

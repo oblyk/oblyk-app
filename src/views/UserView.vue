@@ -2,9 +2,7 @@
   <div v-if="user">
     <user-head :user="user" />
     <user-tabs :user="user" />
-    <v-container>
-      <router-view :user="user" />
-    </v-container>
+    <router-view :user="user" />
     <app-footer />
   </div>
 </template>

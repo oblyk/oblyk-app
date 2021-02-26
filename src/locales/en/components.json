@@ -441,7 +441,9 @@
         "ascents": "Ascents",
         "guideBooks": "Guide book library",
         "favorites": "Favorites",
-        "media": "Pictures",
+        "media": "Pictures & Videos",
+        "photos": "Photos",
+        "videos": "Videos",
         "settings": "Settings"
       },
       "settingTabs": {
