@@ -471,6 +471,9 @@
       "region": "Région",
       "address": "Adresse",
       "guide_book_paper_id": "Topo"
+    },
+    "conversationMessage": {
+      "body": "Message"
     }
   }
 }

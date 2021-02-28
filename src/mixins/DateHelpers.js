@@ -18,6 +18,15 @@ export const DateHelpers = {
     dateFromNow: function (date) {
       moment.locale(this.$vuetify.lang.current)
       return moment(date).fromNow()
+    },
+
+    dateIsAfterDate: function (firstDate, secondDate) {
+      return moment(secondDate).isAfter(moment(firstDate))
+    },
+
+    humanizeDateDuration: function (date) {
+      moment.locale(this.$vuetify.lang.current)
+      return moment.duration(moment().diff(moment(date), 'minutes'), 'minutes').humanize()
     }
   }
 }

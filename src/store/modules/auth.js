@@ -9,6 +9,7 @@ const state = {
   name: '',
   slug_name: '',
   uuid: '',
+  id: '',
   administered_gyms: [],
   subscribes: [],
   ascent_crag_routes: [],
@@ -43,6 +44,10 @@ const getters = {
 
   getUserUuid: state => {
     return state.uuid
+  },
+
+  getUserId: state => {
+    return state.id
   },
 
   getName: state => {
@@ -87,6 +92,7 @@ const actions = {
             name: `${data.user.first_name} ${data.user.last_name}`,
             slug_name: data.user.slug_name,
             uuid: data.user.uuid,
+            id: data.user.id,
             administered_gyms: data.administered_gyms,
             subscribes: data.subscribes,
             ascent_crag_routes: data.ascent_crag_routes,
@@ -136,6 +142,7 @@ const actions = {
             name: `${data.user.first_name} ${data.user.last_name}`,
             slug_name: data.user.slug_name,
             uuid: data.user.uuid,
+            id: data.user.id,
             administered_gyms: data.administered_gyms,
             subscribes: data.subscribes,
             ascent_crag_routes: data.ascent_crag_routes,
@@ -164,6 +171,7 @@ const actions = {
             name: `${data.user.first_name} ${data.user.last_name}`,
             slug_name: data.user.slug_name,
             uuid: data.user.uuid,
+            id: data.user.id,
             administered_gyms: data.administered_gyms,
             subscribes: data.subscribes,
             ascent_crag_routes: data.ascent_crag_routes,
@@ -222,6 +230,7 @@ const mutations = {
     state.refresh_token = payload.refresh_token
     state.expired_at = payload.expired_at
     state.uuid = payload.uuid
+    state.id = payload.id
     state.name = payload.name
     state.slug_name = payload.slug_name
     state.administered_gyms = payload.administered_gyms
@@ -265,6 +274,7 @@ const mutations = {
     state.name = ''
     state.slug_name = ''
     state.uuid = ''
+    state.id = ''
     state.administered_gyms = []
     state.subscribes = []
     state.ascent_crag_routes = []

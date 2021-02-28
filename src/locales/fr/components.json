@@ -480,6 +480,9 @@
         "comments": "Commentaires"
       }
     },
+    "messenger": {
+      "messageEmpty": "Il n'y a pas de message dans cette conversation pour l'instant"
+    },
     "layout": {
       "appBar": {
         "login": "Me connecter",

@@ -23,10 +23,11 @@
 import User from '@/models/User'
 import CurrentUserApi from '@/services/oblyk-api/CurrentUserApi'
 import UserSmallCard from '@/components/users/UserSmallCard'
+import Spinner from '@/components/layouts/Spiner'
 
 export default {
   name: 'CurrentUserFollowersView',
-  components: { UserSmallCard },
+  components: { Spinner, UserSmallCard },
   props: {
     user: Object
   },

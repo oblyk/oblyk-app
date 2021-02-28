@@ -77,6 +77,7 @@
     "removeFromMyTickList": "Remove from my tick list",
     "save": "Save",
     "requestMade": "Request made",
-    "cancelRequest": "Cancel request"
+    "cancelRequest": "Cancel request",
+    "writeMessage": "Write a message"
   }
 }

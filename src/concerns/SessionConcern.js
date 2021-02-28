@@ -12,7 +12,8 @@ export const SessionConcern = {
       return {
         name: store.getters['auth/getName'],
         slugName: store.getters['auth/getSlugName'],
-        uuid: store.getters['auth/getUserUuid']
+        uuid: store.getters['auth/getUserUuid'],
+        id: store.getters['auth/getUserId']
       }
     },
 
@@ -57,6 +58,10 @@ export const SessionConcern = {
         }
       }
       return IAmSubscribed
+    },
+
+    loggedInUserUserPath: function (page = '') {
+      return `/me/${this.loggedInUser.slugName}/${page}`
     }
   }
 }

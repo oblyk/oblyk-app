@@ -16,6 +16,7 @@ import CurrentUserMapView from '@/views/currentUsers/CurrentUserMapView'
 import CurrentUserPrivacyView from '@/views/currentUsers/actions/CurrentUserPrivacyView'
 import CurrentUserCommunityView from '@/views/currentUsers/CurrentUserCommunityView'
 import CurrentUserFollowersView from '@/views/currentUsers/CurrentUserFollowersView'
+import CurrentUserConversationView from '@/views/currentUsers/CurrentUserConversationView'
 
 export default [
   {
@@ -184,6 +185,18 @@ export default [
       requiresAuth: true,
       title: 'messenger',
       showTitle: true
-    }
+    },
+    children: [
+      {
+        path: ':conversationId',
+        component: CurrentUserConversationView,
+        props: true,
+        meta: {
+          requiresAuth: true,
+          title: 'messenger',
+          showTitle: true
+        }
+      }
+    ]
   }
 ]

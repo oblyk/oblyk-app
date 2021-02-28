@@ -36,6 +36,13 @@
             {{ yearsOld(user.date_of_birth) }}
           </span>
 
+          <small
+            class="ml-2"
+            v-if="!itsMe()"
+          >
+            {{ $t('date.lastActivity', { date: dateFromNow(user.last_activity_at) }) }}
+          </small>
+
           <v-btn
             v-if="itsMe()"
             small

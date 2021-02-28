@@ -480,6 +480,9 @@
         "comments": "Comments"
       }
     },
+    "messenger": {
+      "messageEmpty": "There is no message in this conversation at the moment."
+    },
     "layout": {
       "appBar": {
         "login": "Login",

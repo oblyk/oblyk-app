@@ -54,8 +54,7 @@ ___
 - [x] Favoris
 - [x] Topothèque
 - [x] Faire le "dashboard"
-- [ ] Faire le profil d'un autre
-- [ ] Faire la messagerie
+- [x] Faire le profil d'un autre
 - [ ] Faire le système de relation
 - [x] Mes croix
 - [x] Analytiks
@@ -67,6 +66,20 @@ ___
 ---
 - [ ] Supprimer son compte 
 - [ ] Export de ses données
+
+## TODO Messenger
+- [ ] Insérer le message après envoi
+- [ ] Faire système de brouillon en stockage local
+- [x] Corriger 'read' dans la liste des conversations
+- [x] Corriger 'qui a écrit le dernier message'
+- [ ] Finir responsive auto-grow
+- [ ] Web socket / cable
+- [ ] Système de notification
+- [ ] Pouvoir modifier un message
+- [ ] Pouvoir supprimer un message
+- [ ] autoscroll bottom + scroll top infini
+- [ ] ctrl+enter pour retour à la ligne, entre pour envoyer
+- [ ] Pouvoir créer une discussion (à plusieurs ou one to one)
 
 ## TODO Outdoor
 - [x] Falaise

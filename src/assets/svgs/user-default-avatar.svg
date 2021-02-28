@@ -5,15 +5,13 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   width="38.259533mm"
-   height="38.343723mm"
-   viewBox="0 0 38.259533 38.343723"
    version="1.1"
-   id="svg847">
-  <defs
-     id="defs841" />
+   width="20"
+   height="20"
+   viewBox="0 0 20 20"
+   id="svg4">
   <metadata
-     id="metadata844">
+     id="metadata10">
     <rdf:RDF>
       <cc:Work
          rdf:about="">
@@ -24,14 +22,16 @@
       </cc:Work>
     </rdf:RDF>
   </metadata>
-  <g
-     style="stroke:#121212"
-     id="layer1"
-     transform="translate(-74.669998,-131.17338)">
-    <path
-       id="path33"
-       transform="matrix(0.26458333,0,0,0.26458333,74.669998,131.17338)"
-       d="M 72.466797 0.009765625 L 0 72.484375 L 72.4375 144.92383 L 144.60352 72.757812 L 136.61719 64.769531 L 136.66797 64.71875 L 72.466797 0.009765625 z M 72.408203 32.142578 L 112.61719 72.675781 L 92.509766 92.779297 L 72.4375 72.707031 L 52.365234 92.78125 L 32.066406 72.484375 L 72.408203 32.142578 z "
-       style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;vector-effect:none;fill:#121212;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:22.67716599;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate" />
-  </g>
+  <defs
+     id="defs8" />
+  <circle
+     r="8.3474579"
+     cy="10"
+     cx="10"
+     id="path8"
+     style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:25.16846085;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+  <path
+     d="m 10,17.2 c -2.5,0 -4.71,-1.28 -6,-3.2 0.03,-2 4,-3.1 6,-3.1 2,0 5.97,1.1 6,3.1 -1.29,1.92 -3.5,3.2 -6,3.2 M 10,3 A 3,3 0 0 1 13,6 3,3 0 0 1 10,9 3,3 0 0 1 7,6 3,3 0 0 1 10,3 M 10,0 A 10,10 0 0 0 0,10 10,10 0 0 0 10,20 10,10 0 0 0 20,10 C 20,4.47 15.5,0 10,0 Z"
+     id="path2"
+     style="fill:#4400aa" />
 </svg>

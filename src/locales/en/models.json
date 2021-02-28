@@ -471,6 +471,9 @@
       "region": "Region",
       "address": "Address",
       "guide_book_paper_id": "Guide book"
+    },
+    "conversationMessage": {
+      "body": "Message"
     }
   }
 }

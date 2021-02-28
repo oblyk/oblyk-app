@@ -18,7 +18,8 @@ export default new Vuetify({
         third: '#bdbdbd',
         accent: '#2979ff',
         error: '#b71c1c',
-        warning: '#fb8c00'
+        warning: '#fb8c00',
+        myMessage: '#f5f5f5'
       },
       dark: {
         primary: '#1565c0',
@@ -26,7 +27,8 @@ export default new Vuetify({
         third: '#424242',
         accent: '#448aff',
         error: '#b71c1c',
-        warning: '#fb8c00'
+        warning: '#fb8c00',
+        myMessage: '#121212'
       }
     }
   }

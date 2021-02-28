@@ -5,6 +5,8 @@
       v-model="body"
       :label="label"
       hide-details
+      :auto-grow="autoGrow"
+      :rows="rows"
       @focus="showTips = true"
       @blur="showTips = false"
       @input="onChange"
@@ -47,6 +49,14 @@ export default {
     hideDetail: {
       type: Boolean,
       default: false
+    },
+    rows: {
+      type: Number,
+      default: 5
+    },
+    autoGrow: {
+      type: Boolean,
+      default: false
     }
   },
 
@@ -55,6 +65,12 @@ export default {
       markdownModal: false,
       showTips: false,
       body: this.value
+    }
+  },
+
+  watch: {
+    value: function () {
+      this.body = this.value
     }
   },
 

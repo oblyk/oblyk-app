@@ -4,10 +4,10 @@
     show-arrows
   >
     <v-tab :to="user.currentUserPath('community/followers')">
-      Followers
+      {{ $t('components.user.tabs.followers') }}
     </v-tab>
     <v-tab :to="user.currentUserPath('community/subscribes')">
-      Abonnements
+      {{ $t('components.user.tabs.subscribes') }}
     </v-tab>
   </v-tabs>
 </template>

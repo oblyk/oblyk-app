@@ -17,24 +17,22 @@
       >
         {{ $t('components.user.bioIsEmpty', { name: user.first_name} ) }}
       </p>
-
-      <!-- Activity -->
-      <p class="text-right mb-0 pb-0 last-activity-label">
-        <small>
-          {{ $t('date.lastActivity', { date: dateFromNow(user.last_activity_at) }) }}
-        </small>
-      </p>
     </v-card-text>
+    <v-card-actions>
+      <v-spacer />
+      <start-conversation-btn :user="user" />
+    </v-card-actions>
   </v-card>
 </template>
 
 <script>
 import { DateHelpers } from '@/mixins/DateHelpers'
 import MarkdownText from '@/components/ui/MarkdownText'
+import StartConversationBtn from '@/components/messengers/forms/StartConversationBtn'
 
 export default {
   name: 'UserBio',
-  components: { MarkdownText },
+  components: { StartConversationBtn, MarkdownText },
   mixins: [DateHelpers],
   props: {
     user: Object
