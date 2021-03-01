@@ -1,5 +1,6 @@
 <template>
   <v-sheet
+    :dark="!itsMyMessage()"
     class="pa-2 rounded-lg mb-2"
     :color="itsMyMessage() ? 'myMessage' : 'primary'"
     v-bind:class="itsMyMessage() ? 'ml-10' : 'mr-10'"

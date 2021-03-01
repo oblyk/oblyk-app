@@ -9,11 +9,12 @@ import './services/axios'
 import './services/nprogress'
 import VueQrcode from '@chenfengyuan/vue-qrcode'
 import VueClipboard from 'vue-clipboard2'
+import ActionCableVue from 'actioncable-vue'
+
+Vue.config.productionTip = false
 
 Vue.component(VueQrcode.name, VueQrcode)
 Vue.use(VueClipboard)
-
-Vue.config.productionTip = false
 
 function loadLocaleMessages (lang) {
   return {
@@ -29,6 +30,12 @@ function loadLocaleMessages (lang) {
 }
 
 Vue.use(VueI18n)
+
+Vue.use(ActionCableVue, {
+  debug: true,
+  debugLevel: 'error',
+  connectImmediately: false
+})
 
 const i18n = new VueI18n({
   locale: 'fr',

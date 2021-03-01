@@ -30,17 +30,9 @@
 </template>
 <script>
 import { SessionConcern } from '@/concerns/SessionConcern'
-import store from '@/store'
 
 export default {
   name: 'LoginLogoutBtn',
-  mixins: [SessionConcern],
-
-  methods: {
-    logout: function () {
-      store.dispatch('auth/logout')
-      this.$router.push('/')
-    }
-  }
+  mixins: [SessionConcern]
 }
 </script>

@@ -1,11 +1,10 @@
 <template>
   <div class="full-height">
-    <spinner v-if="loadingConversation" />
+    <spinner v-if="loadingConversation"/>
     <v-sheet
       class="full-height rounded"
       v-if="!loadingConversation"
     >
-
       <!-- Title -->
       <div
         class="conversation-title pa-3"
@@ -31,6 +30,7 @@
         <!-- Message list -->
         <div
           class="message-list"
+          ref="conversationMessageList"
         >
           <spinner
             v-if="loadingConversationMessages"
@@ -50,7 +50,7 @@
 
         <!-- Post message form -->
         <div class="post-message-form">
-          <conversation-message-form :conversation="conversation" />
+          <conversation-message-form :conversation="conversation"/>
         </div>
       </div>
     </v-sheet>
@@ -60,15 +60,25 @@
 <script>
 import { ConversationConcern } from '@/concerns/ConversationConcern'
 import { SessionConcern } from '@/concerns/SessionConcern'
+import { ConversationChannel } from '@/channels/ConversationChannel'
 import Spinner from '@/components/layouts/Spiner'
 import ConversationMessageForm from '@/components/messengers/forms/ConversationMessageForm'
 import ConversationMessageApi from '@/services/oblyk-api/ConversationMessageApi'
+import ConversationApi from '@/services/oblyk-api/ConversationApi'
 import ConversationMessageList from '@/components/messengers/ConversationMessageList'
 
 export default {
   name: 'CurrentUserConversationView',
-  components: { ConversationMessageList, ConversationMessageForm, Spinner },
-  mixins: [ConversationConcern, SessionConcern],
+  components: {
+    ConversationMessageList,
+    ConversationMessageForm,
+    Spinner
+  },
+  mixins: [
+    ConversationConcern,
+    SessionConcern,
+    ConversationChannel
+  ],
   props: {
     user: Object
   },
@@ -81,20 +91,32 @@ export default {
     }
   },
 
-  watch: {
-    '$route.params.conversationId': 'watchConversation'
-  },
-
   mounted () {
+    this.$cable.subscribe(
+      {
+        channel: 'ConversationChannel',
+        conversation_id: this.$route.params.conversationId
+      }
+    )
+
     this.getMessages()
     this.onResize()
     window.addEventListener('resize', this.onResize, { passive: true })
+
+    this.$root.$on('scrollToBottomConversation', () => {
+      this.scrollToBottom()
+    })
+  },
+
+  beforeDestroy () {
+    this.unsubscribeChannel()
+    ConversationApi.read(this.conversation.id)
+    this.$root.$off('scrollToBottomConversation')
   },
 
   methods: {
-    watchConversation: function () {
-      this.getMessages()
-      this.getConversation()
+    unsubscribeChannel: function () {
+      this.$cable.unsubscribe('ConversationChannel')
     },
 
     getMessages: function () {
@@ -115,6 +137,11 @@ export default {
 
     onResize: function () {
       this.isMobile = window.innerWidth < 960
+    },
+
+    scrollToBottom: function () {
+      const list = this.$refs.conversationMessageList
+      list.scrollTo(0, list.scrollHeight)
     }
   }
 }
@@ -124,17 +151,20 @@ export default {
 .conversation-title {
   height: 53px;
 }
+
 .message-list-and-post-form {
   height: calc(100% - 53px);
   max-height: calc(100% - 53px);
   display: flex;
   flex-direction: column;
+
   .message-list {
     flex: 2;
     overflow-y: auto;
     overflow-x: hidden;
     padding: 0 8px 0 8px;
   }
+
   .post-message-form {
     min-height: 80px;
     flex: 0;

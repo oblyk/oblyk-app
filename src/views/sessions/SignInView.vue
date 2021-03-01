@@ -34,7 +34,6 @@
 <script>
 import { SessionConcern } from '@/concerns/SessionConcern'
 import SignInForm from '@/components/sessions/SignInForm'
-import store from '@/store'
 
 export default {
   name: 'SignInView',
@@ -54,12 +53,6 @@ export default {
 
     const alertParams = urlParams.get('alert')
     this.alert = !(alertParams === 'false')
-  },
-
-  methods: {
-    logout: function () {
-      store.dispatch('auth/logout')
-    }
   }
 }
 </script>

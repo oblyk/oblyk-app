@@ -68,18 +68,20 @@ ___
 - [ ] Export de ses données
 
 ## TODO Messenger
-- [ ] Insérer le message après envoi
-- [ ] Faire système de brouillon en stockage local
+- [x] Insérer le message après envoi
 - [x] Corriger 'read' dans la liste des conversations
 - [x] Corriger 'qui a écrit le dernier message'
 - [ ] Finir responsive auto-grow
-- [ ] Web socket / cable
+- [x] Web socket / cable
 - [ ] Système de notification
+- [ ] autoscroll bottom + scroll top infini
+- [x] ctrl+enter pour retour à la ligne, entre pour envoyer
+- [ ] Pouvoir créer une discussion (à plusieurs ou one to one)
+- [x] Faire système de brouillon en stockage local
+----
+- [ ] Faire le "is typing"
 - [ ] Pouvoir modifier un message
 - [ ] Pouvoir supprimer un message
-- [ ] autoscroll bottom + scroll top infini
-- [ ] ctrl+enter pour retour à la ligne, entre pour envoyer
-- [ ] Pouvoir créer une discussion (à plusieurs ou one to one)
 
 ## TODO Outdoor
 - [x] Falaise

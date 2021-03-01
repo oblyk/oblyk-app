@@ -1,7 +1,7 @@
 <template>
   <div>
     <div
-      v-for="(message, index) in conversationMessages"
+      v-for="(message, index) in messages"
       :key="message.id"
     >
       <conversation-message-item-list
@@ -15,6 +15,7 @@
 <script>
 import ConversationMessageItemList from '@/components/messengers/ConversationMessageItemList'
 import ConversationMessage from '@/models/ConversationMessage'
+
 export default {
   name: 'ConversationMessageList',
   components: { ConversationMessageItemList },
@@ -22,9 +23,35 @@ export default {
     conversationMessages: Array
   },
 
+  data () {
+    return {
+      messages: this.conversationMessages
+    }
+  },
+
+  mounted () {
+    this.$root.$on('receivedConversationMessage', (data) => {
+      this.receivedConversationMessage(data)
+    })
+    this.$root.$emit('scrollToBottomConversation')
+  },
+
+  beforeDestroy () {
+    this.$root.$off('receivedConversationMessage')
+  },
+
   methods: {
     messageObject: function (message) {
       return new ConversationMessage(message)
+    },
+
+    receivedConversationMessage: function (data) {
+      this.messages.push(data)
+      if (data.message_status === 'new_message') {
+        setTimeout(() => {
+          this.$root.$emit('scrollToBottomConversation')
+        }, 500)
+      }
     }
   }
 }

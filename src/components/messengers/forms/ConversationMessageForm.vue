@@ -4,12 +4,15 @@
       <v-col
         class="pb-0"
       >
-        <markdown-input
+        <v-textarea
+          outlined
           v-model="data.body"
-          :rows="1"
-          :hide-detail="true"
-          :auto-grow="true"
           :label="$t('models.conversationMessage.body')"
+          hide-details
+          :auto-grow="true"
+          :rows="1"
+          @keydown="onKeyDown"
+          @keyup="saveDraft"
         />
       </v-col>
       <v-col class="submit-message-col pl-0 pb-0">
@@ -17,6 +20,7 @@
           @click="submit()"
           class="mt-1"
           large
+          :loading="messageSending"
           icon
         >
           <v-icon>
@@ -31,12 +35,9 @@
 <script>
 import { FormHelpers } from '@/mixins/FormHelpers'
 import ConversationMessageApi from '@/services/oblyk-api/ConversationMessageApi'
-import ConversationMessage from '@/models/ConversationMessage'
-import MarkdownInput from '@/components/forms/MarkdownInput'
 
 export default {
   name: 'ConversationMessageForm',
-  components: { MarkdownInput },
   mixins: [FormHelpers],
   props: {
     conversationMessage: Object,
@@ -45,6 +46,8 @@ export default {
 
   data () {
     return {
+      messageSending: false,
+      draftStorageKey: `draftConversationMessage:${this.conversation.id}`,
       data: {
         id: (this.conversationMessage || {}).id,
         conversation_id: (this.conversationMessage || {}).conversation_id || this.conversation.id,
@@ -53,22 +56,45 @@ export default {
     }
   },
 
+  mounted () {
+    if (!this.isEditingForm()) {
+      this.data.body = localStorage.getItem(this.draftStorageKey)
+    }
+  },
+
   methods: {
+    onKeyDown: function (event) {
+      if (event.key === 'Enter' && !event.ctrlKey && !event.shiftKey) {
+        this.submit()
+        return
+      }
+      if (event.key === 'Enter' && event.ctrlKey) {
+        this.data.body += '\n'
+      }
+    },
+
+    saveDraft: function () {
+      if (!this.isEditingForm()) {
+        localStorage.setItem(this.draftStorageKey, this.data.body)
+      }
+    },
+
     submit: function () {
-      this.submitOverlay = true
+      if (this.data.body === null || this.data.body === '') return
+
+      this.messageSending = true
       const promise = (this.isEditingForm()) ? ConversationMessageApi.update(this.data) : ConversationMessageApi.create(this.data)
 
       promise
-        .then(resp => {
-          const conversationMessage = new ConversationMessage(resp.data)
-          console.log(conversationMessage)
+        .then(() => {
           this.data.body = null
+          localStorage.removeItem(this.draftStorageKey)
         })
         .catch(err => {
           this.$root.$emit('alertFromApiError', err, 'conversationMessage')
         })
         .then(() => {
-          this.submitOverlay = false
+          this.messageSending = false
         })
     }
   }

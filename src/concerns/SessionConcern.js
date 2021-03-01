@@ -23,6 +23,10 @@ export const SessionConcern = {
 
     mySubscribes: function () {
       return store.getters['auth/getSubscribes']
+    },
+
+    getToken: function () {
+      return store.getters['auth/getToken']
     }
   },
 
@@ -62,6 +66,10 @@ export const SessionConcern = {
 
     loggedInUserUserPath: function (page = '') {
       return `/me/${this.loggedInUser.slugName}/${page}`
+    },
+
+    logout: function () {
+      store.dispatch('auth/logout')
     }
   }
 }

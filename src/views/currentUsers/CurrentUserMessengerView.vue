@@ -23,7 +23,7 @@
         v-show="messageList"
         class="col-12 col-md-8 col-lg-9 pr-6 pl-6 pl-md-3 full-height"
       >
-        <router-view :user="currentUser" />
+        <router-view :key="$route.fullPath" :user="currentUser" />
       </v-col>
     </v-row>
   </div>
@@ -31,6 +31,7 @@
 
 <script>
 import { CurrentUserConcern } from '@/concerns/CurrentUserConcern'
+import { Cable } from '@/channels/Cable'
 import Spinner from '@/components/layouts/Spiner'
 import ConversationList from '@/components/messengers/ConversationsList'
 import ConversationApi from '@/services/oblyk-api/ConversationApi'
@@ -38,7 +39,7 @@ import ConversationApi from '@/services/oblyk-api/ConversationApi'
 export default {
   name: 'CurrentUserMessengerView',
   components: { ConversationList, Spinner },
-  mixins: [CurrentUserConcern],
+  mixins: [CurrentUserConcern, Cable],
 
   data () {
     return {
