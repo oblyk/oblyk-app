@@ -76,7 +76,7 @@ ___
 - [ ] Système de notification
 - [ ] autoscroll bottom + scroll top infini
 - [x] ctrl+enter pour retour à la ligne, entre pour envoyer
-- [ ] Pouvoir créer une discussion (à plusieurs ou one to one)
+- [x] Pouvoir créer une discussion (à plusieurs ou one to one)
 - [x] Faire système de brouillon en stockage local
 ----
 - [ ] Faire le "is typing"
