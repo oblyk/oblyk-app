@@ -10,6 +10,18 @@ class UserApi extends BaseApi {
     })
   }
 
+  search (query) {
+    const CancelToken = axios.CancelToken
+    this.tokenSearchSource = CancelToken.source()
+
+    return axios({
+      cancelToken: this.tokenSearchSource.token,
+      headers: { Authorization: this.authToken() },
+      url: `${this.baseUrl}/users/search.json?query=${query}`,
+      method: 'GET'
+    })
+  }
+
   contribution (userUuid) {
     return axios({
       url: `${this.baseUrl}/users/${userUuid}/contribution.json`,

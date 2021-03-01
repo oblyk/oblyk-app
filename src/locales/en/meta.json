@@ -84,6 +84,9 @@
     "messenger": {
       "title": "Messenger"
     },
+    "newConversation": {
+      "title": "New conversation"
+    },
     "resetPassword": {
       "title": "Forgotten password"
     },

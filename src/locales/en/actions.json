@@ -78,6 +78,7 @@
     "save": "Save",
     "requestMade": "Request made",
     "cancelRequest": "Cancel request",
-    "writeMessage": "Write a message"
+    "writeMessage": "Write a message",
+    "newConversation": "New conversation"
   }
 }

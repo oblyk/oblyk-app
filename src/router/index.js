@@ -33,6 +33,7 @@ import AreaRouter from '@/router/modules/AreaRouter'
 import AscentCragRouteRouter from '@/router/modules/AscentCragRouteRouter'
 import UserRouter from '@/router/modules/UserRouter'
 import PartnerRouter from '@/router/modules/PartnerRouter'
+import MessengerRouter from '@/router/modules/MessengerRouter'
 
 Vue.use(VueRouter)
 
@@ -69,7 +70,8 @@ const router = new VueRouter({
     ...AreaRouter,
     ...AscentCragRouteRouter,
     ...UserRouter,
-    ...PartnerRouter
+    ...PartnerRouter,
+    ...MessengerRouter
   ]
 })
 

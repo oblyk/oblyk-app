@@ -3,6 +3,7 @@
     class="conversation-list"
     two-line
   >
+    <!-- Conversation list -->
     <div
       v-for="(conversation, index) in conversations"
       :key="index"
@@ -11,6 +12,19 @@
         :conversation="conversationObject(conversation)"
       />
     </div>
+
+    <!-- New conversation -->
+    <v-btn
+      fab
+      to="/messenger/new"
+      :title="$t('actions.newConversation')"
+      class="conversation-add-btn"
+      color="primary"
+    >
+      <v-icon>
+        mdi-comment-plus
+      </v-icon>
+    </v-btn>
   </v-list>
 </template>
 
@@ -39,5 +53,11 @@ export default {
   padding-top: 0;
   margin-left: 10px;
   border-radius: 5px;
+  position: relative;
+  .conversation-add-btn {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+  }
 }
 </style>

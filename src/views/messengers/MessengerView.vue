@@ -37,7 +37,7 @@ import ConversationList from '@/components/messengers/ConversationsList'
 import ConversationApi from '@/services/oblyk-api/ConversationApi'
 
 export default {
-  name: 'CurrentUserMessengerView',
+  name: 'MessengerView',
   components: { ConversationList, Spinner },
   mixins: [CurrentUserConcern, Cable],
 

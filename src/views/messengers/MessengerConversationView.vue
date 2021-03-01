@@ -68,7 +68,7 @@ import ConversationApi from '@/services/oblyk-api/ConversationApi'
 import ConversationMessageList from '@/components/messengers/ConversationMessageList'
 
 export default {
-  name: 'CurrentUserConversationView',
+  name: 'MessengerConversationView',
   components: {
     ConversationMessageList,
     ConversationMessageForm,

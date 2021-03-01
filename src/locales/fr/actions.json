@@ -78,6 +78,7 @@
     "save": "Sauvegarder",
     "requestMade": "Demande faite",
     "cancelRequest": "Annuler la demande",
-    "writeMessage": "Écrire un message"
+    "writeMessage": "Écrire un message",
+    "newConversation": "Nouvelle conversation"
   }
 }

@@ -4,7 +4,6 @@ import CurrentUserAscentsView from '@/views/currentUsers/CurrentUserAscentsView'
 import CurrentUserSubscribesView from '@/views/currentUsers/CurrentUserSubscribesView'
 import CurrentUserGuideBooksView from '@/views/currentUsers/CurrentUserGuideBooksView'
 import CurrentUserFavoritesView from '@/views/currentUsers/CurrentUserFavoritesView'
-import CurrentUserMessengerView from '@/views/currentUsers/CurrentUserMessengerView'
 import CurrentUserPartnerSettingsView from '@/views/currentUsers/actions/CurrentUserPartnerSettingsView'
 import CurrentUserSettingsView from '@/views/currentUsers/CurrentUserSettingsView'
 import CurrentUserEditView from '@/views/currentUsers/actions/CurrentUserEditView'
@@ -16,7 +15,6 @@ import CurrentUserMapView from '@/views/currentUsers/CurrentUserMapView'
 import CurrentUserPrivacyView from '@/views/currentUsers/actions/CurrentUserPrivacyView'
 import CurrentUserCommunityView from '@/views/currentUsers/CurrentUserCommunityView'
 import CurrentUserFollowersView from '@/views/currentUsers/CurrentUserFollowersView'
-import CurrentUserConversationView from '@/views/currentUsers/CurrentUserConversationView'
 
 export default [
   {
@@ -177,26 +175,5 @@ export default [
       title: 'myFavorites',
       showTitle: true
     }
-  },
-  {
-    path: '/me/:userSlug/messenger',
-    component: CurrentUserMessengerView,
-    meta: {
-      requiresAuth: true,
-      title: 'messenger',
-      showTitle: true
-    },
-    children: [
-      {
-        path: ':conversationId',
-        component: CurrentUserConversationView,
-        props: true,
-        meta: {
-          requiresAuth: true,
-          title: 'messenger',
-          showTitle: true
-        }
-      }
-    ]
   }
 ]

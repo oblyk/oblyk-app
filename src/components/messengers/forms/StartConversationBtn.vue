@@ -51,7 +51,7 @@ export default {
         .create(data)
         .then(resp => {
           this.$router.push(
-            this.loggedInUserUserPath(`/messenger/${resp.data.id}`)
+            this.loggedInUserUserPath(`messenger/${resp.data.id}`)
           )
         })
         .catch(err => {

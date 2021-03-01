@@ -433,6 +433,7 @@
       "emptyContribution": "%{name} n'a pas encore contribué à Oblyk",
       "climbersMap": "Sur la carte des grimpeurs",
       "followersEmpty": "%{name} n'a pas encore d'abonné.",
+      "searchUser": "Chercher un grimpeur",
       "tabs": {
         "feed": "Fil",
         "profile": "Profil",

@@ -433,6 +433,7 @@
       "emptyContribution": "%{name} has not yet contributed to Oblyk",
       "climbersMap": "In climbers map",
       "followersEmpty": "%{name} doesn't have a subscription yet.",
+      "searchUser": "Search for a climber",
       "tabs": {
         "feed": "Feed",
         "profile": "Profile",

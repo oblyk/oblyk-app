@@ -3,15 +3,18 @@
     <v-card
       link
       flat
-      :to="user.userPath()"
+      :to="linkable ? user.userPath() : null"
     >
-      <v-list-item three-line>
+      <v-list-item
+        :two-line="small"
+        :three-line="!small"
+      >
         <v-list-item-avatar
-          size="70"
+          :size="small ? '45' : '70'"
         >
           <v-avatar
             color="grey"
-            size="70"
+            :size="small ? '45' : '70'"
             tile
           >
             <v-img :src="user.thumbnailAvatarUrl()" />
@@ -23,6 +26,7 @@
               {{ user.full_name }}
             </span>
             <subscribe-btn
+              v-if="subscribable"
               subscribe-type="User"
               :subscribe-id="user.id"
               unfollowed-icon="mdi-account-outline"
@@ -31,7 +35,10 @@
               :large="false"
             />
           </v-list-item-title>
-          <v-list-item-subtitle class="mt-n3 mb-4">
+          <v-list-item-subtitle
+            v-if="!small"
+            class="mt-n3 mb-4"
+          >
             <v-alert
               dense
               text
@@ -53,7 +60,20 @@ export default {
   name: 'UserSmallCard',
   components: { SubscribeBtn },
   props: {
-    user: Object
+    user: Object,
+    linkable: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
+    subscribable: {
+      type: Boolean,
+      default: true
+    },
+    small: {
+      type: Boolean,
+      default: false
+    }
   }
 }
 </script>
