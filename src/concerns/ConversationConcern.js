@@ -17,12 +17,13 @@ export const ConversationConcern = {
       this.loadingConversation = true
       new Conversation()
         .find(this.$route.params.conversationId)
-        .then((resp) => {
+        .then(resp => {
           this.conversation = resp
         })
-        .catch((err) => {
+        .catch(err => {
           this.$root.$emit('alertFromApiError', err, 'conversation')
-        }).finally(() => {
+        })
+        .finally(() => {
           this.loadingConversation = false
         })
     }

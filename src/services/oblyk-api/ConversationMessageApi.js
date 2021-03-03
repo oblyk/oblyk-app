@@ -2,9 +2,9 @@ import axios from 'axios'
 import BaseApi from '@/services/oblyk-api/BaseApi'
 
 class ConversationMessageApi extends BaseApi {
-  all (conversationId) {
+  all (conversationId, page = 1) {
     return axios({
-      url: `${this.baseUrl}/conversations/${conversationId}/conversation_messages.json`,
+      url: `${this.baseUrl}/conversations/${conversationId}/conversation_messages.json?page=${page}`,
       headers: { Authorization: this.authToken() },
       method: 'GET'
     })

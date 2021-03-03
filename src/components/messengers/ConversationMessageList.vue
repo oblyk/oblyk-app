@@ -23,9 +23,9 @@ export default {
     conversationMessages: Array
   },
 
-  data () {
-    return {
-      messages: this.conversationMessages
+  computed: {
+    messages: function () {
+      return this.conversationMessages
     }
   },
 

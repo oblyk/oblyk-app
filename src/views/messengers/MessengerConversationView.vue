@@ -32,12 +32,12 @@
           class="message-list"
           ref="conversationMessageList"
         >
-          <spinner
-            v-if="loadingConversationMessages"
-            :full-height="false"
+          <loading-more
+            v-if="!initialLoad"
+            :get-function="getMessages"
           />
           <conversation-message-list
-            v-if="!loadingConversationMessages"
+            v-if="!initialLoad"
             :conversation-messages="conversationMessages"
           />
           <p
@@ -66,10 +66,12 @@ import ConversationMessageForm from '@/components/messengers/forms/ConversationM
 import ConversationMessageApi from '@/services/oblyk-api/ConversationMessageApi'
 import ConversationApi from '@/services/oblyk-api/ConversationApi'
 import ConversationMessageList from '@/components/messengers/ConversationMessageList'
+import LoadingMore from '@/components/layouts/LoadingMore'
 
 export default {
   name: 'MessengerConversationView',
   components: {
+    LoadingMore,
     ConversationMessageList,
     ConversationMessageForm,
     Spinner
@@ -85,49 +87,62 @@ export default {
 
   data () {
     return {
+      initialLoad: true,
       conversationMessages: [],
       loadingConversationMessages: true,
-      isMobile: false
+      isMobile: false,
+      previousScrollHeightMinusScrollTop: 0
     }
   },
 
   mounted () {
-    this.$cable.subscribe(
-      {
-        channel: 'ConversationChannel',
-        conversation_id: this.$route.params.conversationId
-      }
-    )
-
-    this.getMessages()
-    this.onResize()
-    window.addEventListener('resize', this.onResize, { passive: true })
-
     this.$root.$on('scrollToBottomConversation', () => {
       this.scrollToBottom()
     })
+    this.cableSubscribe()
+    this.getMessages()
+    this.onResize()
+    window.addEventListener('resize', this.onResize, { passive: true })
   },
 
   beforeDestroy () {
-    this.unsubscribeChannel()
+    this.cableUnsubscribe()
     ConversationApi.read(this.conversation.id)
     this.$root.$off('scrollToBottomConversation')
   },
 
   methods: {
-    unsubscribeChannel: function () {
+    cableSubscribe: function () {
+      this.cableUnsubscribe()
+      this.$cable.subscribe(
+        {
+          channel: 'ConversationChannel',
+          conversation_id: this.$route.params.conversationId
+        }
+      )
+    },
+
+    cableUnsubscribe: function () {
       this.$cable.unsubscribe('ConversationChannel')
     },
 
-    getMessages: function () {
+    getMessages: function (page = 1) {
+      if (!this.initialLoad) this.recordScrollPosition()
       this.loadingConversationMessages = true
       ConversationMessageApi
-        .all(this.$route.params.conversationId)
+        .all(
+          this.$route.params.conversationId,
+          page
+        )
         .then(resp => {
-          this.conversationMessages = resp.data
+          if (resp.data.length < 25) this.$root.$emit('nothingMoreToLoad')
+          this.conversationMessages.unshift(...resp.data)
         })
         .finally(() => {
           this.loadingConversationMessages = false
+          this.initialLoad = false
+          if (!this.initialLoad) this.restoreScrollPosition()
+          this.$root.$emit('moreIsLoaded')
         })
     },
 
@@ -142,6 +157,18 @@ export default {
     scrollToBottom: function () {
       const list = this.$refs.conversationMessageList
       list.scrollTo(0, list.scrollHeight)
+    },
+
+    recordScrollPosition: function () {
+      const list = this.$refs.conversationMessageList
+      if (typeof list === 'undefined') return
+      this.previousScrollHeightMinusScrollTop = list.scrollHeight - list.scrollTop
+    },
+
+    restoreScrollPosition: function () {
+      const list = this.$refs.conversationMessageList
+      if (typeof list === 'undefined') return
+      list.scrollTop = list.scrollHeight - this.previousScrollHeightMinusScrollTop - 60
     }
   }
 }
