@@ -7,6 +7,10 @@
       {{ $t('common.informations') }}
     </v-card-title>
     <v-card-text>
+
+      <!-- Alerts list-->
+      <alert-list :object-id="crag.id" object-type="Crag" />
+
       <v-simple-table class="no-hover-table">
         <template v-slot:default>
           <tbody>
@@ -153,9 +157,10 @@ import ContributionsLabel from '@/components/globals/ContributionsLable'
 import QrCodeBtn from '@/components/forms/QrCodeBtn'
 import CopyBtn from '@/components/forms/CopyBtn'
 import { SessionConcern } from '@/concerns/SessionConcern'
+import AlertList from '@/components/alerts/AlertList'
 export default {
   name: 'CragInfo',
-  components: { CopyBtn, QrCodeBtn, ContributionsLabel },
+  components: { AlertList, CopyBtn, QrCodeBtn, ContributionsLabel },
   mixins: [SessionConcern],
   props: {
     crag: Object

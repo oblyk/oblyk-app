@@ -474,6 +474,10 @@
     },
     "conversationMessage": {
       "body": "Message"
+    },
+    "alert": {
+      "description": "Description",
+      "alert_type": "Alert type"
     }
   }
 }

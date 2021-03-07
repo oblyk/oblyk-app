@@ -79,6 +79,7 @@
     "requestMade": "Request made",
     "cancelRequest": "Cancel request",
     "writeMessage": "Write a message",
-    "newConversation": "New conversation"
+    "newConversation": "New conversation",
+    "addAlert": "Add alert"
   }
 }

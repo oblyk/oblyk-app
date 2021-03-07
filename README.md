@@ -96,7 +96,7 @@ ___
 - [x] Topo Web
 - [x] Topo PDF
 - [x] Massif
-- [ ] Système d'alerte
+- [x] Système d'alerte
 
 ## TODO Recherche partenaire de grimpe
 - [x] Paramétrage à la création d'un compte

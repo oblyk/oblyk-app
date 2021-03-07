@@ -126,6 +126,15 @@
       "pretty_soft": "Plutôt facile",
       "soft": "facile pour la cote"
     },
+    "alert": {
+      "editAlert": "Modifier l'alerte",
+      "types": {
+        "good": "Bonne (vert)",
+        "warning": "Attention (jaune)",
+        "info": "Info (bleu)",
+        "bad": "Mauvais (rouge)"
+      }
+    },
     "crag": {
       "coverFrom": "Photo du site",
       "searchCrag": "Chercher une falaise",

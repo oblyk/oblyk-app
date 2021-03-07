@@ -8,6 +8,10 @@ export const SessionConcern = {
       return store.getters['auth/isLoggedIn']
     },
 
+    isSuperAdmin: function () {
+      return store.getters['auth/isSuperAdmin']
+    },
+
     loggedInUser: function () {
       return {
         name: store.getters['auth/getName'],

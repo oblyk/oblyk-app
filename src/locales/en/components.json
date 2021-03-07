@@ -126,6 +126,15 @@
       "pretty_soft": "pretty soft",
       "soft": "easy for grade"
     },
+    "alert": {
+      "editAlert": "Edit alert",
+      "types": {
+        "good": "Good (green)",
+        "warning": "Warning (yellow)",
+        "info": "Info (blue)",
+        "bad": "Bad (red)"
+      }
+    },
     "crag": {
       "coverFrom": "Crag picture",
       "searchCrag": "Crag search",

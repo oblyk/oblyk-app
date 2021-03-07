@@ -26,6 +26,10 @@
                 mdi-pencil
               </v-icon>
             </v-btn>
+            <crag-super-admin-action
+              v-if="isSuperAdmin"
+              :crag="crag"
+            />
           </span>
         </div>
       </div>
@@ -36,10 +40,11 @@
 <script>
 import SubscribeBtn from '@/components/forms/SubscribeBtn'
 import { SessionConcern } from '@/concerns/SessionConcern'
+import CragSuperAdminAction from '@/components/crags/forms/CragSuperAdminAction'
 
 export default {
   name: 'CragHead',
-  components: { SubscribeBtn },
+  components: { CragSuperAdminAction, SubscribeBtn },
   mixins: [SessionConcern],
   props: {
     crag: Object
