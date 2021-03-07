@@ -10,14 +10,9 @@ axios.interceptors.request.use(async function (config) {
     config.url.indexOf('/sessions/token') === -1 // not in refresh token route
   ) {
     await store.dispatch('auth/refresh') // refresh token
-    const token = store.getters['auth/getToken']
-
-    // reconnecte cable
-    await this.$cable.connection.disconnect()
-    await this.$cable.connection.connect(`ws://localhost:3000/cable?token=${token}`)
 
     // change authorization headers
-    config.headers.authorization = `Bearer ${token}`
+    config.headers.authorization = `Bearer ${store.getters['auth/getToken']}`
     return config
   } else {
     return config

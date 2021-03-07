@@ -83,12 +83,6 @@
       {{ $t('termsOfUse.title') }}
     </router-link>
 
-    <!-- Stay connect -->
-    <v-checkbox
-      v-model="rememberMe"
-      :label="$t('components.session.stayConnected')"
-    />
-
     <submit-form
       submit-local-key="actions.createMyAccount"
       :overlay="submitOverlay"

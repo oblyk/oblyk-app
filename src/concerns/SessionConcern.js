@@ -27,6 +27,10 @@ export const SessionConcern = {
 
     getToken: function () {
       return store.getters['auth/getToken']
+    },
+
+    getRefreshToken: function () {
+      return store.getters['auth/getRefreshToken']
     }
   },
 

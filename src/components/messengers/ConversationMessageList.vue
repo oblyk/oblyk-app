@@ -36,10 +36,6 @@ export default {
     this.$root.$emit('scrollToBottomConversation')
   },
 
-  beforeDestroy () {
-    this.$root.$off('receivedConversationMessage')
-  },
-
   methods: {
     messageObject: function (message) {
       return new ConversationMessage(message)
@@ -47,11 +43,9 @@ export default {
 
     receivedConversationMessage: function (data) {
       this.messages.push(data)
-      if (data.message_status === 'new_message') {
-        setTimeout(() => {
-          this.$root.$emit('scrollToBottomConversation')
-        }, 500)
-      }
+      setTimeout(() => {
+        this.$root.$emit('scrollToBottomConversation')
+      }, 500)
     }
   }
 }

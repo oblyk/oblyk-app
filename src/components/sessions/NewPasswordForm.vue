@@ -23,12 +23,6 @@
       @click:append="showPasswordConfirmation = !showPasswordConfirmation"
     />
 
-    <v-checkbox
-      class="mb-5"
-      v-model="rememberMe"
-      :label="$t('components.session.stayConnected')"
-    />
-
     <submit-form
       submit-local-key="actions.changeMyPassword"
       :overlay="overlay"

@@ -11,11 +11,9 @@
 <script>
 import AppBar from '@/components/layouts/AppBar'
 import AppAlert from '@/components/layouts/AppAlert'
-import { Cable } from '@/channels/Cable'
 
 export default {
   name: 'App',
-  mixins: [Cable],
   components: {
     AppAlert,
     AppBar
@@ -35,6 +33,7 @@ export default {
   },
 
   mounted () {
+    // hide splash screen
     document.getElementById('oblyk-splash-screen').style.display = 'none'
   },
 
@@ -47,9 +46,6 @@ export default {
     // Set lang
     this.$vuetify.lang.current = storedLang
     this.$i18n.locale = storedLang
-
-    // Connect cable
-    this.connectCable()
 
     this.hasPaddingTopInApp()
   },

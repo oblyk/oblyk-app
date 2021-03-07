@@ -4,8 +4,22 @@ import BaseApi from '@/services/oblyk-api/BaseApi'
 class ConversationMessageApi extends BaseApi {
   all (conversationId, page = 1) {
     return axios({
-      url: `${this.baseUrl}/conversations/${conversationId}/conversation_messages.json?page=${page}`,
+      url: `${this.baseUrl}/conversations/${conversationId}/conversation_messages.json`,
       headers: { Authorization: this.authToken() },
+      params: {
+        page: page
+      },
+      method: 'GET'
+    })
+  }
+
+  lastMessages (conversationId, date) {
+    return axios({
+      url: `${this.baseUrl}/conversations/${conversationId}/conversation_messages/last_messages.json`,
+      headers: { Authorization: this.authToken() },
+      params: {
+        posted_after_at: date
+      },
       method: 'GET'
     })
   }

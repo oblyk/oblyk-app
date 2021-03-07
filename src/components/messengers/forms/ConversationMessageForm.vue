@@ -66,7 +66,7 @@ export default {
     onKeyDown: function (event) {
       if (event.key === 'Enter' && !event.ctrlKey && !event.shiftKey) {
         this.submit()
-        return
+        return false
       }
       if (event.key === 'Enter' && event.ctrlKey) {
         this.data.body += '\n'
@@ -86,8 +86,9 @@ export default {
       const promise = (this.isEditingForm()) ? ConversationMessageApi.update(this.data) : ConversationMessageApi.create(this.data)
 
       promise
-        .then(() => {
+        .then(resp => {
           this.data.body = null
+          this.$root.$emit('receivedConversationMessage', resp.data)
           localStorage.removeItem(this.draftStorageKey)
         })
         .catch(err => {

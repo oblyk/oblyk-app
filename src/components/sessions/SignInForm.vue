@@ -20,12 +20,6 @@
       hide-details
     />
 
-    <v-checkbox
-      class="mb-5"
-      v-model="rememberMe"
-      :label="$t('components.session.stayConnected')"
-    />
-
     <submit-form
       submit-local-key="actions.signIn"
       :overlay="overlay"
@@ -49,6 +43,7 @@
 
 <script>
 import SubmitForm from '@/components/forms/SubmitForm'
+
 export default {
   name: 'SignInForm',
   components: { SubmitForm },

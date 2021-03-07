@@ -5,6 +5,10 @@ export const DateHelpers = {
       return moment()
     },
 
+    utcDate: function () {
+      return moment.utc().format()
+    },
+
     humanizeDate: function (date, format = 'LL') {
       moment.locale(this.$vuetify.lang.current)
       return moment(date).format(format)
