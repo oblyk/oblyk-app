@@ -8,6 +8,7 @@ const state = {
   refresh_token: '',
   name: '',
   slug_name: '',
+  super_admin: false,
   uuid: '',
   id: '',
   administered_gyms: [],
@@ -20,6 +21,10 @@ const state = {
 const getters = {
   isLoggedIn: state => {
     return !!state.token
+  },
+
+  isSuperAdmin: state => {
+    return state.super_admin
   },
 
   expiredAt: state => {
@@ -91,6 +96,7 @@ const actions = {
             expired_at: data.expired_at,
             name: `${data.user.first_name} ${data.user.last_name}`,
             slug_name: data.user.slug_name,
+            super_admin: data.user.super_admin || false,
             uuid: data.user.uuid,
             id: data.user.id,
             administered_gyms: data.administered_gyms,
@@ -141,6 +147,7 @@ const actions = {
             refresh_token: data.refresh_token,
             name: `${data.user.first_name} ${data.user.last_name}`,
             slug_name: data.user.slug_name,
+            super_admin: data.user.super_admin || false,
             uuid: data.user.uuid,
             id: data.user.id,
             administered_gyms: data.administered_gyms,
@@ -170,6 +177,7 @@ const actions = {
             refresh_token: data.refresh_token,
             name: `${data.user.first_name} ${data.user.last_name}`,
             slug_name: data.user.slug_name,
+            super_admin: data.user.super_admin || false,
             uuid: data.user.uuid,
             id: data.user.id,
             administered_gyms: data.administered_gyms,
@@ -233,6 +241,7 @@ const mutations = {
     state.id = payload.id
     state.name = payload.name
     state.slug_name = payload.slug_name
+    state.super_admin = payload.super_admin
     state.administered_gyms = payload.administered_gyms
     state.subscribes = payload.subscribes
     state.ascent_crag_routes = payload.ascent_crag_routes
@@ -273,6 +282,7 @@ const mutations = {
     state.refresh_token = ''
     state.name = ''
     state.slug_name = ''
+    state.super_admin = false
     state.uuid = ''
     state.id = ''
     state.administered_gyms = []

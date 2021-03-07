@@ -88,6 +88,19 @@ router.beforeEach((to, from, next) => {
   }
 })
 
+// check if the user is super admin
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresSuperAdmin)) {
+    if (store.getters['auth/isSuperAdmin']) {
+      next()
+      return
+    }
+    next('/')
+  } else {
+    next()
+  }
+})
+
 // check if the user is an gym administrator
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresGymAdministrator)) {
