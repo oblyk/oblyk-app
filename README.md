@@ -17,7 +17,7 @@
 - [x] Système de versionning
 - [ ] Faire page 404
 - [ ] Paramétrage des web workers PWA
-- [ ] Système de notification push
+- [ ] Système de notification
 - [ ] SEO (https://www.digitalocean.com/community/tutorials/vuejs-vue-seo-tips)
 ___
 - [ ] Faire le stockage hors ligne
@@ -79,7 +79,7 @@ ___
 - [x] Pouvoir créer une discussion (à plusieurs ou one to one)
 - [x] Faire système de brouillon en stockage local
 ----
-- [ ] Faire le "is typing"
+- [ ] Mettre en place Cable
 - [ ] Pouvoir modifier un message
 - [ ] Pouvoir supprimer un message
 
@@ -96,7 +96,6 @@ ___
 - [x] Topo Web
 - [x] Topo PDF
 - [x] Massif
----
 - [ ] Système d'alerte
 
 ## TODO Recherche partenaire de grimpe
