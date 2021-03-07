@@ -246,7 +246,7 @@ export default {
       height: 70px;
       width: 70px;
       border-radius: 50%;
-      object-fit: contain;
+      object-fit: cover;
     }
     .user-map-popup-name {
       margin-left: 5px;
@@ -276,7 +276,7 @@ export default {
     height: 30px;
     width: 30px;
     border-radius: 50%;
-    object-fit: contain;
+    object-fit: cover;
   }
   .user-partner-map-marker-caret {
     display: block;

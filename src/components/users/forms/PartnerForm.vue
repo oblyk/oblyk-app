@@ -168,7 +168,12 @@ export default {
       CurrentUserApi
         .update(this.data)
         .then(() => {
-          this.$router.push('/')
+          if (this.data.partner_latitude !== null) {
+            localStorage.setItem('map-latitude', this.data.partner_latitude)
+            localStorage.setItem('map-longitude', this.data.partner_longitude)
+            localStorage.setItem('map-zoom', '12')
+          }
+          this.$router.push('/maps/climbers')
         })
         .catch((err) => {
           this.$root.$emit('alertFromApiError', err, 'user')

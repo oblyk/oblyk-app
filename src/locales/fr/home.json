@@ -11,7 +11,8 @@
     },
     "partner": {
       "title": "Trouve un partenaire de grimpe",
-      "body": "Tu arrives dans une nouvelle région, tu aimerais trouver quelqu'un avec qui <strong>grimper en falaise ou en salle</strong> ?<br>Regarde du côté de notre <strong>carte des grimpeurs</strong>, peut-être que tu trouveras quelqu'un avec qui grimper."
+      "body": "Tu arrives dans une nouvelle région, tu aimerais trouver quelqu'un avec qui <strong>grimper en falaise ou en salle</strong> ?<br>Regarde du côté de notre <strong>carte des grimpeurs</strong>, peut-être que tu trouveras quelqu'un avec qui grimper.",
+      "action": "En savoir plus"
     },
     "supportUs": {
       "title": "Nous soutenir",

@@ -5,6 +5,11 @@
         {{ $t('home.partner.title') }}
       </h2>
       <p v-html="$t('home.partner.body')" />
+      <p class="text-right">
+        <v-btn outlined color="primary" to="/about/partner-search">
+          {{ $t('home.partner.action') }}
+        </v-btn>
+      </p>
     </v-col>
     <v-col align-self="center" cols="md-6">
       <v-img :src="require('@/assets/svgs/homes/partner.svg')" />

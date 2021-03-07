@@ -8,6 +8,7 @@ import ContactView from '@/views/ContactView'
 import ReportProblemView from '@/views/ReportProblemView'
 import OblykView from '@/views/OblykView'
 import GradeView from '@/views/GradeView'
+import AboutPartnerView from '@/views/AboutPartnerView'
 
 export default [
   {
@@ -41,6 +42,14 @@ export default [
     component: AboutView,
     meta: {
       title: 'about',
+      showTitle: false
+    }
+  },
+  {
+    path: '/about/partner-search',
+    component: AboutPartnerView,
+    meta: {
+      title: 'aboutPartner',
       showTitle: false
     }
   },

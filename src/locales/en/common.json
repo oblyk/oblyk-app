@@ -48,6 +48,34 @@
       },
       "grade": {
         "title": "Grades"
+      },
+      "partner": {
+        "title": "Partner search",
+        "howIsWork": "How does it work ?",
+        "explain": "Coming in a new region, looking for someone to climb with, in the gym or outdoor? You may find happiness here!",
+        "connect": "To see registered climbers, you have to register your own account !",
+        "steps": {
+          "configuration": {
+            "title": "Step 1 : My profile",
+            "body": "If you want other people to contact you, you need to add a few information about you, which style (bouldering, artif, routes, bigwall..) wich grade you like to climb,...",
+            "action": "How I am ?"
+          },
+          "location": {
+            "title": "Step 2 : Climbing area",
+            "body": "To show you climbers around you, we need to know first where you are climbing !<br>You can make a list of your climbing spots, Oblyk will show you climbers around you.",
+            "action": "Where do I climb?"
+          },
+          "climberMap": {
+            "title": "Step 3 : Climbers map",
+            "body": "Now you have filled your climbing spot and tilled us more about you, you can use le climbers map to find someone you'd like to climb with.",
+            "action": "Climbers Map"
+          },
+          "contact": {
+            "title": "Step 4 : Contact",
+            "body": "Did you find someone to climb with? Send him a message with Oblyk messenger.<br>Free to you to set up as you want.",
+            "action": "My messenger"
+          }
+        }
       }
     }
   }
