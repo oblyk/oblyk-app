@@ -105,7 +105,7 @@ ___
 
 ## TODO News
 - [ ] Newsletter
-- [ ] Système de news (CRUD)
+- [ ] Actualité (CRUD)
 
 ## TODO Autres pages
 - [x] Mention légale
@@ -114,6 +114,5 @@ ___
 - [ ] Les cotations
 - [ ] Aides
 - [x] Contact
-- [ ] Actualité
 - [x] Ajout du infinity scroll sur le lexique
 - [x] Recherche en elastic search sur le lexique
