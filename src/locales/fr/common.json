@@ -24,6 +24,7 @@
     "practice": "pratique",
     "between": "entre",
     "level": "niveau",
+    "example": "exemple",
     "me": "Moi",
     "pages": {
       "about": {
@@ -52,7 +53,32 @@
         "title": "Signaler un problème"
       },
       "grade": {
-        "title": "Les cotations"
+        "title": "Les cotations",
+        "intro": "Oblyk permet d'utiliser plusieurs formats pour les cotations (Française, Anglaise, Américaine, etc.). Pour chacune des cotations il est donné un code couleur pour se rendre compte rapidement du niveau de difficulté même si on est pas habitué au système de cotation affiché.",
+        "equivalence": "Le tableau d'équivalence suivant est contestable, il a pour vocation de donner un ordre d'idée de la difficulté d'une cotation et non pas de donner exactement l'équivalence d'un système vers un autre.",
+        "weighting": "Sur oblyk, chaque cotation peut prendre les pondérations suivante :",
+        "developerBonus": "Petit bonus pour les développeurs :",
+        "regexpExplain": "Si vous avez besoin de valider qu'une chaîne de texte est conforme à l'un de ces systèmes de cotation, voici l'expression régulière que vous pouvez utiliser :",
+        "list": {
+          "strongGrade": "cotation forte",
+          "weakGrade": "cotation faible",
+          "almostStrongGrade": "cotation qui mérite presque un +",
+          "almostWeakGrade": "idem que /+ mais en -",
+          "gradeToConfirmed": "cotation estimée mais à confirmer",
+          "gradeBetweenAAndB": "cotation entre un Xa+ et un Xb",
+          "gradeBetweenBAndC": "cotation entre un Xb+ et un Xc"
+        },
+        "grade_names": {
+          "fr": "Fr",
+          "en": "En",
+          "usa_r": "USA voie",
+          "usa_b": "USA bloc",
+          "de_r": "DE voie",
+          "pd": "Annot",
+          "mp": "Grande voie",
+          "trad": "Artif",
+          "rgb": "RVB()"
+        }
       },
       "partner": {
         "title": "La recherche de partenaire",

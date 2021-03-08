@@ -111,7 +111,7 @@ ___
 - [x] Mention légale
 - [ ] Le projet
 - [x] Nous soutenir
-- [ ] Les cotations
+- [x] Les cotations
 - [ ] Aides
 - [x] Contact
 - [x] Ajout du infinity scroll sur le lexique

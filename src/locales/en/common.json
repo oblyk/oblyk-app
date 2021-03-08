@@ -23,6 +23,7 @@
     "field": "Field",
     "practice": "practice",
     "level": "level",
+    "example": "example",
     "between": "between",
     "me": "Me",
     "pages": {
@@ -47,7 +48,32 @@
         "title": "Report a problem"
       },
       "grade": {
-        "title": "Grades"
+        "title": "Grades",
+        "intro": "Oblyk allows the use of many climbing grades system (French, English, American,...).For each one, a color code is given to quickly show routes difficulties even if not familiar with the grade system.",
+        "equivalence": "The following equivalence table is questionable, its purpose is to give an order of idea of the difficulty of a grade and not to give exactly the equivalence of one system to another.",
+        "weighting": "In Oblyk, each grades can have following weights :",
+        "developerBonus": "Developers Bonus:",
+        "regexpExplain": "If you need to check that a text string is true with one of those grades system, here is regular expression you may use :",
+        "list": {
+          "strongGrade": "hard grade",
+          "weakGrade": "weak grade",
+          "almostStrongGrade": "grade who deserves a +",
+          "almostWeakGrade": "same as /+ but as -",
+          "gradeToConfirmed": "estimated grade, but to be confirmed",
+          "gradeBetweenAAndB": "grade between Xa+ and Xb",
+          "gradeBetweenBAndC": "grade between Xb+ and Xc"
+        },
+        "grade_names": {
+          "fr": "Fr",
+          "en": "En",
+          "usa_r": "USA route",
+          "usa_b": "USA boulder",
+          "de_r": "DE route",
+          "pd": "Annot",
+          "mp": "Multi-pitch",
+          "trad": "Artif",
+          "rgb": "RGB()"
+        }
       },
       "partner": {
         "title": "Partner search",
