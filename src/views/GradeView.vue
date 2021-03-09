@@ -20,7 +20,11 @@
         <li><strong>+/c</strong> : {{ $t('common.pages.grade.list.gradeBetweenBAndC') }} <span class="text--disabled">({{ $t('common.example')}} : 6b+/c)</span></li>
       </ul>
 
-      <v-simple-table class="mt-5 mb-5">
+      <v-simple-table
+        class="mt-5 mb-5"
+        fixed-header
+        height="calc(100vh - 200px)"
+      >
         <template v-slot:default>
           <thead>
             <tr>
