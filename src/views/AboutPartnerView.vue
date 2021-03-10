@@ -26,6 +26,8 @@
         </p>
       </div>
 
+      <partner-figures />
+
       <!-- Profile -->
       <v-row class="about-partner-row mt-16">
         <v-col class="col-12 col-md-6" order-md="last">
@@ -101,10 +103,11 @@
 <script>
 import AppFooter from '@/components/layouts/AppFooter'
 import { SessionConcern } from '@/concerns/SessionConcern'
+import PartnerFigures from '@/components/partners/PartnerFigures'
 
 export default {
   name: 'AboutPartnerView',
-  components: { AppFooter },
+  components: { PartnerFigures, AppFooter },
   mixins: [SessionConcern]
 }
 </script>

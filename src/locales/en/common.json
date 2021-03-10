@@ -20,6 +20,7 @@
     "from": "From",
     "to": "To",
     "open": "Open",
+    "close" : "Close",
     "field": "Field",
     "practice": "practice",
     "level": "level",
@@ -37,7 +38,12 @@
         "title": "Aides"
       },
       "supportUs": {
-        "title": "Support us"
+        "title": "Support us",
+        "noLimite": "In Oblyk there are no limits, no premium account, no adds, no sponsored link, everything free! ; )",
+        "freeBut": "If it is free and Oblyk doesn't get any money, does it mean it is a zero cost project?",
+        "unfortunately": "Unfortunately no, as every website, oblyk need to be hosted in a data center and rent a domain name to exist.<br>And that is not free...",
+        "extraEuro": "If you have a few money to spent, you like the work done and want to encourage Oblyk development, you can make a donation ; )<br>It is for us a priceless help! You will help us continue the development and ensure it's future ; )",
+        "thanks": "Thank you in advance for your generosity!"
       },
       "contact": {
         "title": "Contact",
@@ -76,10 +82,13 @@
         }
       },
       "partner": {
+        "welcomeOnMap": "Welcome to the Oblyk Climbers Map!",
         "title": "Partner search",
         "howIsWork": "How does it work ?",
         "explain": "Coming in a new region, looking for someone to climb with, in the gym or outdoor? You may find happiness here!",
         "connect": "To see registered climbers, you have to register your own account !",
+        "figuresGlobal": "Already %{global} climbers are registered to the map",
+        "figuresWeekly": ", including %{weekly} new this week!",
         "steps": {
           "configuration": {
             "title": "Step 1 : My profile",

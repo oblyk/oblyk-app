@@ -20,6 +20,7 @@
     "from": "De",
     "to": "À",
     "open": "Ouvert",
+    "close" : "Fermer",
     "field": "Champ",
     "practice": "pratique",
     "between": "entre",
@@ -81,10 +82,13 @@
         }
       },
       "partner": {
+        "welcomeOnMap": "Bienvenue sur la carte des grimpeurs de Oblyk!",
         "title": "La recherche de partenaire",
         "howIsWork": "Comment ça marche ?",
         "explain": "Tu arrives dans une nouvelle région, tu cherches quelqu'un pour t'accompagner lors de tes sorties falaises ou pour aller grimper à la salle du coin ? Tu trouveras peut-être ton bonheur ici !",
         "connect": "Pour voir les grimpeurs inscrits sur la recherche de partenaire, il faut déjà que tu aies un compte !",
+        "figuresGlobal": "Déjà <strong>%{global} grimpeurs</strong> sont inscrit à la carte",
+        "figuresWeekly": ", dont <strong>%{weekly} nouveaux</strong> cette semaine !",
         "steps": {
           "configuration": {
             "title": "Étape 1 : Mon profil",

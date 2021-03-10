@@ -101,10 +101,9 @@ ___
 ## TODO Recherche partenaire de grimpe
 - [x] Paramétrage à la création d'un compte
 - [x] Changement des paramètres dans son profil
-- [ ] La carte des grimpeurs
+- [x] La carte des grimpeurs
 
 ## TODO News
-- [ ] Newsletter
 - [ ] Actualité (CRUD)
 
 ## TODO Autres pages

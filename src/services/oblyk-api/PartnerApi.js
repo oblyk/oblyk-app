@@ -5,7 +5,13 @@ class PartnerApi extends BaseApi {
   geoJson () {
     return axios({
       url: `${this.baseUrl}/partners/geo_json.json`,
-      headers: { Authorization: this.authToken() },
+      method: 'GET'
+    })
+  }
+
+  figures () {
+    return axios({
+      url: `${this.baseUrl}/partners/figures.json`,
       method: 'GET'
     })
   }
