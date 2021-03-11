@@ -1,7 +1,7 @@
 <template>
   <div class="enable-localization-card">
     <!-- If localisation is accepted -->
-    <p class="caption" v-if="this.localisationStatus === 'accepted'">
+    <p class="caption" v-if="this.localisationStatus === 'accepted' && showLocalization">
       <v-icon x-small left>mdi-map-marker</v-icon> {{ user.localization }}
     </p>
 
@@ -60,7 +60,11 @@ export default {
   name: 'EnableLocalization',
   mixins: [LocalizationHelpers],
   props: {
-    user: Object
+    user: Object,
+    showLocalization: {
+      type: Boolean,
+      default: true
+    }
   },
 
   data () {

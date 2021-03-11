@@ -153,6 +153,8 @@
       "addOnArea": "Ajouter ce site dans un group",
       "addThisCragInArea": "Ajouter ce site à un groupe",
       "addThisCragInGuideBook": "Ajouter ce site à un topo",
+      "cragAround": "%{count} site dans les environs | %{count} sites dans les environs",
+      "cragCount": "%{count} site | %{count} sites",
       "tabs": {
         "info": "Info",
         "media": "Photos & Videos",
@@ -278,7 +280,9 @@
       "IAmManager": "Je suis le gérant",
       "contactAndLocalization": "Contact & Localisation",
       "seePhoneNumber": "Voir le numéro de téléphone",
-      "seeEmail": "Voir l'email"
+      "seeEmail": "Voir l'email",
+      "gymAround": "%{count} salle dans les environs | %{count} salles dans les environs",
+      "gymCount": "%{count} salle | %{count} salles"
     },
     "gymAdmin": {
       "welcome": "Bienvenue sur la page d'administration de %{name}",
@@ -443,6 +447,9 @@
       "climbersMap": "Sur la carte des grimpeurs",
       "followersEmpty": "%{name} n'a pas encore d'abonné.",
       "searchUser": "Chercher un grimpeur",
+      "userAround": "%{count} grimpeur around | %{count} grimpeurs around",
+      "userCount": "%{count} grimpeur | %{count} grimpeurs",
+      "distanceAround": "%{distance}km autour de",
       "tabs": {
         "feed": "Fil",
         "profile": "Profil",

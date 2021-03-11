@@ -48,6 +48,18 @@ class CragApi extends BaseApi {
     })
   }
 
+  cragsAround (latitude, longitude, distance = '20km') {
+    return axios({
+      url: `${this.baseUrl}/crags/crags_around.json`,
+      params: {
+        latitude: latitude,
+        longitude: longitude,
+        distance: distance
+      },
+      method: 'GET'
+    })
+  }
+
   geoJsonAround (cragId) {
     return axios({
       url: `${this.baseUrl}/crags/${cragId}/geo_json_around.json`,

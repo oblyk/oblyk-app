@@ -11,6 +11,7 @@
         <enable-localization
           :user="currentUser"
           class="mb-3"
+          :show-localization="false"
         />
 
         <!-- Avatar missing -->
@@ -24,6 +25,11 @@
           v-if="currentUser.partner_search === null"
           :user="currentUser"
           class="mb-3"
+        />
+
+        <!-- Crag, Gym and climbers around -->
+        <around-card
+          :user="currentUser"
         />
       </v-container>
     </div>
@@ -39,11 +45,12 @@ import EnableLocalization from '@/components/users/notificationCard/EnableLocali
 import BannerMissing from '@/components/users/notificationCard/BannerMissing'
 import AvatarMissing from '@/components/users/notificationCard/AvatarMissing'
 import CurrentUserTabs from '@/components/users/layouts/CurrentUserTabs'
+import AroundCard from '@/components/users/AroundCard'
 
 export default {
   name: 'Dashboard',
   mixins: [CurrentUserConcern],
-  components: { CurrentUserTabs, AvatarMissing, BannerMissing, EnableLocalization, EnablePartnerSearch, UserHead, Spinner }
+  components: { AroundCard, CurrentUserTabs, AvatarMissing, BannerMissing, EnableLocalization, EnablePartnerSearch, UserHead, Spinner }
 }
 </script>
 

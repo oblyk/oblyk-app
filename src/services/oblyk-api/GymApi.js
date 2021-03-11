@@ -23,6 +23,18 @@ class GymApi extends BaseApi {
     })
   }
 
+  gymsAround (latitude, longitude, distance = '20km') {
+    return axios({
+      url: `${this.baseUrl}/gyms/gyms_around.json`,
+      params: {
+        latitude: latitude,
+        longitude: longitude,
+        distance: distance
+      },
+      method: 'GET'
+    })
+  }
+
   find (gymId) {
     return axios({
       url: `${this.baseUrl}/gyms/${gymId}.json`,

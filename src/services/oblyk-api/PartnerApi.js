@@ -15,5 +15,18 @@ class PartnerApi extends BaseApi {
       method: 'GET'
     })
   }
+
+  partnersAround (latitude, longitude, distance = '20km') {
+    return axios({
+      url: `${this.baseUrl}/partners/partners_around.json`,
+      headers: { Authorization: this.authToken() },
+      params: {
+        latitude: latitude,
+        longitude: longitude,
+        distance: distance
+      },
+      method: 'GET'
+    })
+  }
 }
 export default new PartnerApi()

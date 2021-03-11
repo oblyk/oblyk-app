@@ -153,6 +153,8 @@
       "addOnArea": "Add this crag on group",
       "addThisCragInArea": "Add this crag in group",
       "addThisCragInGuideBook": "Add this crag in guide book",
+      "cragAround": "%{count} crag around | %{count} crags around",
+      "cragCount": "%{count} crag | %{count} crags",
       "tabs": {
         "info": "Info",
         "media": "Photos & Videos",
@@ -278,7 +280,9 @@
       "IAmManager": "I am the manger",
       "contactAndLocalization": "Contact & Localization",
       "seePhoneNumber": "See phone number",
-      "seeEmail": "See email"
+      "seeEmail": "See email",
+      "gymAround": "%{count} gym around | %{count} gyms around",
+      "gymCount": "%{count} gym | %{count} gyms"
     },
     "gymAdmin": {
       "welcome": "Welcome to the administration page of %{name}",
@@ -443,6 +447,9 @@
       "climbersMap": "In climbers map",
       "followersEmpty": "%{name} doesn't have a subscription yet.",
       "searchUser": "Search for a climber",
+      "userAround": "%{count} climber around | %{count} climbers around",
+      "userCount": "%{count} climber | %{count} climbers",
+      "distanceAround": "%{distance}km around",
       "tabs": {
         "feed": "Feed",
         "profile": "Profile",
