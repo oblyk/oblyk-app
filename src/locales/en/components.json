@@ -499,7 +499,8 @@
     },
     "feed": {
       "newWord": "New definition of %{name}",
-      "newCrag": "New crag : %{name}"
+      "newCrag": "New crag : %{name}",
+      "newGuideBookPaper": "New paper guide book : %{name}"
     },
     "messenger": {
       "messageEmpty": "There is no message in this conversation at the moment."

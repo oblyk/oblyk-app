@@ -40,6 +40,12 @@
             <v-icon left small>mdi-terrain</v-icon>
             {{ $t('components.feed.newCrag', { name: feed.feed_object.name})}}
           </div>
+
+          <!-- Guide Book Paper -->
+          <div v-if="feed.feedable_type === 'GuideBookPaper'">
+            <v-icon left small>mdi-book-open-page-variant</v-icon>
+            {{ $t('components.feed.newGuideBookPaper', { name: feed.feed_object.name})}}
+          </div>
         </v-card-title>
 
         <!-- Feed card content -->
@@ -48,6 +54,7 @@
         >
           <word-feed-card :word="recordToObject('Word', feed.feed_object)" v-if="feed.feedable_type === 'Word'" />
           <crag-feed-card :crag="recordToObject('Crag', feed.feed_object)" v-if="feed.feedable_type === 'Crag'" />
+          <guide-book-paper-feed-card :guide-book-paper="recordToObject('GuideBookPaper', feed.feed_object)" v-if="feed.feedable_type === 'GuideBookPaper'" />
         </v-card-text>
       </v-card>
     </div>
@@ -61,11 +68,17 @@ import LoadingMore from '@/components/layouts/LoadingMore'
 import CurrentUserApi from '@/services/oblyk-api/CurrentUserApi'
 import WordFeedCard from '@/components/words/WordFeedCard'
 import CragFeedCard from '@/components/crags/CragFeedCard'
+import GuideBookPaperFeedCard from '@/components/guideBookPapers/GuideBookPaperFeedCard'
 
 export default {
   name: 'UserFeed',
   mixins: [DateHelpers, RecordToObjectHelpers],
-  components: { CragFeedCard, WordFeedCard, LoadingMore },
+  components: {
+    GuideBookPaperFeedCard,
+    CragFeedCard,
+    WordFeedCard,
+    LoadingMore
+  },
   props: {
     User: Object
   },
