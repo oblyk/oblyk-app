@@ -497,6 +497,10 @@
         "comments": "Commentaires"
       }
     },
+    "feed": {
+      "newWord": "Nouvelle définition de %{name}",
+      "newCrag": "Nouvelle falaise : %{name}"
+    },
     "messenger": {
       "messageEmpty": "Il n'y a pas de message dans cette conversation pour l'instant"
     },

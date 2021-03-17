@@ -31,6 +31,10 @@ export const DateHelpers = {
     humanizeDateDuration: function (date) {
       moment.locale(this.$vuetify.lang.current)
       return moment.duration(moment().diff(moment(date), 'minutes'), 'minutes').humanize()
+    },
+
+    isSameDay: function (firstDate, secondDate) {
+      return moment(firstDate).format('YYYY-MM-DD') === moment(secondDate).format('YYYY-MM-DD')
     }
   }
 }

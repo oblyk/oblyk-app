@@ -10,6 +10,14 @@ class CurrentUserApi extends BaseApi {
     })
   }
 
+  feed (page = 1) {
+    return axios({
+      url: `${this.baseUrl}/current_users/feed.json?page=${page}`,
+      headers: { Authorization: this.authToken() },
+      method: 'GET'
+    })
+  }
+
   favorites () {
     return axios({
       url: `${this.baseUrl}/current_users/favorites.json`,

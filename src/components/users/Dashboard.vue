@@ -31,6 +31,10 @@
         <around-card
           :user="currentUser"
         />
+
+        <!-- Feed -->
+        <user-feed :user="currentUser" />
+
       </v-container>
     </div>
   </div>
@@ -46,11 +50,22 @@ import BannerMissing from '@/components/users/notificationCard/BannerMissing'
 import AvatarMissing from '@/components/users/notificationCard/AvatarMissing'
 import CurrentUserTabs from '@/components/users/layouts/CurrentUserTabs'
 import AroundCard from '@/components/users/AroundCard'
+import UserFeed from '@/components/users/UserFeed'
 
 export default {
   name: 'Dashboard',
   mixins: [CurrentUserConcern],
-  components: { AroundCard, CurrentUserTabs, AvatarMissing, BannerMissing, EnableLocalization, EnablePartnerSearch, UserHead, Spinner }
+  components: {
+    UserFeed,
+    AroundCard,
+    CurrentUserTabs,
+    AvatarMissing,
+    BannerMissing,
+    EnableLocalization,
+    EnablePartnerSearch,
+    UserHead,
+    Spinner
+  }
 }
 </script>
 
