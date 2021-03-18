@@ -504,7 +504,8 @@
       "newGuideBookPaper": "New paper guide book : %{name}",
       "newGuideBookPdf": "New pdf guide book on :",
       "newGuideBookWeb": "New web guide book on :",
-      "newVideo": "New video on :"
+      "newVideo": "New video on :",
+      "newAlert": "New alert on :"
     },
     "messenger": {
       "messageEmpty": "There is no message in this conversation at the moment."

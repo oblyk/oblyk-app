@@ -7,6 +7,7 @@ import GuideBookPaper from '@/models/GuideBookPaper'
 import GuideBookPdf from '@/models/GuideBookPdf'
 import GuideBookWeb from '@/models/GuideBookWeb'
 import Video from '@/models/Video'
+import Alert from '@/models/Alert'
 
 export const RecordToObjectHelpers = {
   methods: {
@@ -29,6 +30,8 @@ export const RecordToObjectHelpers = {
         return new GuideBookWeb(data)
       } else if (type === 'Video') {
         return new Video(data)
+      } else if (type === 'Alert') {
+        return new Alert(data)
       }
     }
   }

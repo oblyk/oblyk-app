@@ -54,6 +54,7 @@
           <word-feed-card :word="recordToObject('Word', feed.feed_object)" v-if="feed.feedable_type === 'Word'" />
           <crag-feed-card :crag="recordToObject('Crag', feed.feed_object)" v-if="feed.feedable_type === 'Crag'" />
           <gym-feed-card :gym="recordToObject('Gym', feed.feed_object)" v-if="feed.feedable_type === 'Gym'" />
+          <alert-feed-card :alert="recordToObject('Alert', feed.feed_object)" v-if="feed.feedable_type === 'Alert'" />
 
           <!-- Guide books -->
           <guide-book-paper-feed-card
@@ -93,12 +94,15 @@ import GuideBookPdfFeedCard from '@/components/guideBookPdfs/GuideBookPdfFeedCar
 import Crag from '@/models/Crag'
 import GuideBookWebFeedCard from '@/components/guideBookWebs/GuideBookWebFeedCard'
 import CragRoute from '@/models/CragRoute'
+import CragSector from '@/models/CragSector'
 import VideoFeedCard from '@/components/videos/VideoFeedCard'
+import AlertFeedCard from '@/components/alerts/AlertFeedCard'
 
 export default {
   name: 'UserFeed',
   mixins: [DateHelpers, RecordToObjectHelpers],
   components: {
+    AlertFeedCard,
     VideoFeedCard,
     GuideBookWebFeedCard,
     GuideBookPdfFeedCard,
@@ -140,11 +144,11 @@ export default {
     },
 
     linkable: function (type) {
-      return !['GuideBookPdf', 'GuideBookWeb', 'Video'].includes(type)
+      return !['GuideBookPdf', 'GuideBookWeb', 'Video', 'Alert'].includes(type)
     },
 
     haveParent: function (type) {
-      return ['GuideBookPdf', 'GuideBookWeb', 'Video'].includes(type)
+      return ['GuideBookPdf', 'GuideBookWeb', 'Video', 'Alert'].includes(type)
     },
 
     titleLocalKey: function (type) {
@@ -155,6 +159,7 @@ export default {
       if (type === 'GuideBookWeb') return 'components.feed.newGuideBookWeb'
       if (type === 'Gym') return 'components.feed.newGym'
       if (type === 'Video') return 'components.feed.newVideo'
+      if (type === 'Alert') return 'components.feed.newAlert'
     },
 
     titleIcon: function (type) {
@@ -165,6 +170,7 @@ export default {
       if (type === 'GuideBookWeb') return 'mdi-earth'
       if (type === 'Gym') return 'mdi-home-roof'
       if (type === 'Video') return 'mdi-camera'
+      if (type === 'Alert') return 'mdi-alert-box-outline'
     },
 
     parentObject: function (type, feedObject) {
@@ -176,6 +182,15 @@ export default {
           return new Crag(feedObject.viewable)
         } else if (feedObject.viewable_type === 'CragRoute') {
           return new CragRoute(feedObject.viewable)
+        }
+      }
+      if (type === 'Alert') {
+        if (feedObject.alertable_type === 'Crag') {
+          return new Crag(feedObject.alertable)
+        } else if (feedObject.alertable_type === 'CragRoute') {
+          return new CragRoute(feedObject.alertable)
+        } else if (feedObject.alertable_type === 'CragSector') {
+          return new CragSector(feedObject.alertable)
         }
       }
     }

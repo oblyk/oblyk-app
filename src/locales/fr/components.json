@@ -504,7 +504,8 @@
       "newGuideBookPaper": "Nouveau topo papier : %{name}",
       "newGuideBookPdf": "Nouveau topo PDF sur :",
       "newGuideBookWeb": "Nouveau topo web sur :",
-      "newVideo": "Nouvelle vidéo sur :"
+      "newVideo": "Nouvelle vidéo sur :",
+      "newAlert": "Nouvelle alerte sur :"
     },
     "messenger": {
       "messageEmpty": "Il n'y a pas de message dans cette conversation pour l'instant"
