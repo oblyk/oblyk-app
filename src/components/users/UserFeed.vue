@@ -21,24 +21,24 @@
       <!-- Feed card -->
       <v-card
         elevation="0"
-        class="feed-card  mb-3"
-        :to="linkable(feed.feedable_type) ? recordToObject(feed.feedable_type, feed.feed_object).path() : ''"
+        class="feed-card mb-5"
+        :to="!haveParent(feed.feedable_type) ? recordToObject(feed.feedable_type, feed.feed_object).path() : ''"
       >
 
         <!-- Feed card title -->
         <v-card-title
           class="feed-card-title"
         >
-          <v-icon left small v-text="titleIcon(feed.feedable_type)" />
+          <v-icon left small v-text="headers[feed.feedable_type].icon" />
 
           <!-- No parent -->
           <span v-if="!haveParent(feed.feedable_type)">
-            {{ $t(titleLocalKey(feed.feedable_type), { name: feed.feed_object.name } ) }}
+            {{ $t(headers[feed.feedable_type].title, { name: feed.feed_object.name } ) }}
           </span>
 
           <!-- With parent -->
           <span v-if="haveParent(feed.feedable_type)">
-            {{ $t(titleLocalKey(feed.feedable_type) ) }}
+            {{ $t(headers[feed.feedable_type].title ) }}
             <router-link
               :to="parentObject(feed.feedable_type, feed.feed_object).path()"
             >
@@ -65,7 +65,6 @@
             :guide-book-pdf="recordToObject('GuideBookPdf', feed.feed_object)"
             v-if="feed.feedable_type === 'GuideBookPdf'"
           />
-
           <guide-book-web-feed-card
             :guide-book-web="recordToObject('GuideBookWeb', feed.feed_object)"
             v-if="feed.feedable_type === 'GuideBookWeb'"
@@ -78,6 +77,8 @@
         </v-card-text>
       </v-card>
     </div>
+
+    <!-- Load more feed -->
     <loading-more :get-function="getFeeds" />
   </div>
 </template>
@@ -119,7 +120,17 @@ export default {
   data () {
     return {
       feeds: [],
-      loadingFeeds: true
+      loadingFeeds: true,
+      headers: {
+        Word: { icon: 'mdi-book-open-variant', title: 'components.feed.newWord' },
+        Crag: { icon: 'mdi-terrain', title: 'components.feed.newCrag' },
+        GuideBookPaper: { icon: 'mdi-book-open-page-variant', title: 'components.feed.newGuideBookPaper' },
+        GuideBookPdf: { icon: 'mdi-file-pdf-outline', title: 'components.feed.newGuideBookPdf' },
+        GuideBookWeb: { icon: 'mdi-earth', title: 'components.feed.newGuideBookWeb' },
+        Gym: { icon: 'mdi-home-roof', title: 'components.feed.newGym' },
+        Video: { icon: 'mdi-film', title: 'components.feed.newVideo' },
+        Alert: { icon: 'mdi-alert-box-outline', title: 'components.feed.newAlert' }
+      }
     }
   },
 
@@ -132,9 +143,7 @@ export default {
       CurrentUserApi
         .feed(page)
         .then(resp => {
-          for (const feed of resp.data) {
-            this.feeds.push(feed)
-          }
+          this.feeds = this.feeds.concat(this.groupFeed(resp.data))
           if (resp.data.length === 0) this.$root.$emit('nothingMoreToLoad')
         })
         .finally(() => {
@@ -143,34 +152,12 @@ export default {
         })
     },
 
-    linkable: function (type) {
-      return !['GuideBookPdf', 'GuideBookWeb', 'Video', 'Alert'].includes(type)
+    groupFeed: function (feeds) {
+      return feeds
     },
 
     haveParent: function (type) {
       return ['GuideBookPdf', 'GuideBookWeb', 'Video', 'Alert'].includes(type)
-    },
-
-    titleLocalKey: function (type) {
-      if (type === 'Word') return 'components.feed.newWord'
-      if (type === 'Crag') return 'components.feed.newCrag'
-      if (type === 'GuideBookPaper') return 'components.feed.newGuideBookPaper'
-      if (type === 'GuideBookPdf') return 'components.feed.newGuideBookPdf'
-      if (type === 'GuideBookWeb') return 'components.feed.newGuideBookWeb'
-      if (type === 'Gym') return 'components.feed.newGym'
-      if (type === 'Video') return 'components.feed.newVideo'
-      if (type === 'Alert') return 'components.feed.newAlert'
-    },
-
-    titleIcon: function (type) {
-      if (type === 'Word') return 'mdi-book-open-variant'
-      if (type === 'Crag') return 'mdi-terrain'
-      if (type === 'GuideBookPaper') return 'mdi-book-open-page-variant'
-      if (type === 'GuideBookPdf') return 'mdi-file-pdf-outline'
-      if (type === 'GuideBookWeb') return 'mdi-earth'
-      if (type === 'Gym') return 'mdi-home-roof'
-      if (type === 'Video') return 'mdi-camera'
-      if (type === 'Alert') return 'mdi-alert-box-outline'
     },
 
     parentObject: function (type, feedObject) {
