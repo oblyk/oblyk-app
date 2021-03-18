@@ -4,6 +4,8 @@ import Crag from '@/models/Crag'
 import CragRoute from '@/models/CragRoute'
 import CragSector from '@/models/CragSector'
 import GuideBookPaper from '@/models/GuideBookPaper'
+import GuideBookPdf from '@/models/GuideBookPdf'
+import GuideBookWeb from '@/models/GuideBookWeb'
 
 export const RecordToObjectHelpers = {
   methods: {
@@ -20,6 +22,10 @@ export const RecordToObjectHelpers = {
         return new CragSector(data)
       } else if (type === 'GuideBookPaper') {
         return new GuideBookPaper(data)
+      } else if (type === 'GuideBookPdf') {
+        return new GuideBookPdf(data)
+      } else if (type === 'GuideBookWeb') {
+        return new GuideBookWeb(data)
       }
     }
   }

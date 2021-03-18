@@ -500,7 +500,10 @@
     "feed": {
       "newWord": "Nouvelle définition de %{name}",
       "newCrag": "Nouvelle falaise : %{name}",
-      "newGuideBookPaper": "Nouveau topo papier : %{name}"
+      "newGym": "Nouvelle salle : %{name}",
+      "newGuideBookPaper": "Nouveau topo papier : %{name}",
+      "newGuideBookPdf": "Nouveau topo PDF sur :",
+      "newGuideBookWeb": "Nouveau topo web sur :"
     },
     "messenger": {
       "messageEmpty": "Il n'y a pas de message dans cette conversation pour l'instant"

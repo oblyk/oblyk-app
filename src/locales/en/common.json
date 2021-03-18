@@ -19,6 +19,7 @@
     "type": "Type",
     "from": "From",
     "to": "To",
+    "on": "on",
     "open": "Open",
     "close" : "Close",
     "field": "Field",
