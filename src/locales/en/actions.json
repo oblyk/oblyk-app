@@ -1,5 +1,6 @@
 {
   "actions": {
+    "addedBy": "Added by",
     "submit": "Submit",
     "cancel": "Cancel",
     "edit": "Edit",

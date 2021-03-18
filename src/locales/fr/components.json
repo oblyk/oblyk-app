@@ -503,7 +503,8 @@
       "newGym": "Nouvelle salle : %{name}",
       "newGuideBookPaper": "Nouveau topo papier : %{name}",
       "newGuideBookPdf": "Nouveau topo PDF sur :",
-      "newGuideBookWeb": "Nouveau topo web sur :"
+      "newGuideBookWeb": "Nouveau topo web sur :",
+      "newVideo": "Nouvelle vidéo sur :"
     },
     "messenger": {
       "messageEmpty": "Il n'y a pas de message dans cette conversation pour l'instant"

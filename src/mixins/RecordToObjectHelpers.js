@@ -6,6 +6,7 @@ import CragSector from '@/models/CragSector'
 import GuideBookPaper from '@/models/GuideBookPaper'
 import GuideBookPdf from '@/models/GuideBookPdf'
 import GuideBookWeb from '@/models/GuideBookWeb'
+import Video from '@/models/Video'
 
 export const RecordToObjectHelpers = {
   methods: {
@@ -26,6 +27,8 @@ export const RecordToObjectHelpers = {
         return new GuideBookPdf(data)
       } else if (type === 'GuideBookWeb') {
         return new GuideBookWeb(data)
+      } else if (type === 'Video') {
+        return new Video(data)
       }
     }
   }

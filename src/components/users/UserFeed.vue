@@ -69,6 +69,11 @@
             :guide-book-web="recordToObject('GuideBookWeb', feed.feed_object)"
             v-if="feed.feedable_type === 'GuideBookWeb'"
           />
+
+          <video-feed-card
+            :video="recordToObject('Video', feed.feed_object)"
+            v-if="feed.feedable_type === 'Video'"
+          />
         </v-card-text>
       </v-card>
     </div>
@@ -87,11 +92,14 @@ import GymFeedCard from '@/components/gyms/GymFeedCard'
 import GuideBookPdfFeedCard from '@/components/guideBookPdfs/GuideBookPdfFeedCard'
 import Crag from '@/models/Crag'
 import GuideBookWebFeedCard from '@/components/guideBookWebs/GuideBookWebFeedCard'
+import CragRoute from '@/models/CragRoute'
+import VideoFeedCard from '@/components/videos/VideoFeedCard'
 
 export default {
   name: 'UserFeed',
   mixins: [DateHelpers, RecordToObjectHelpers],
   components: {
+    VideoFeedCard,
     GuideBookWebFeedCard,
     GuideBookPdfFeedCard,
     GymFeedCard,
@@ -132,11 +140,11 @@ export default {
     },
 
     linkable: function (type) {
-      return !['GuideBookPdf', 'GuideBookWeb'].includes(type)
+      return !['GuideBookPdf', 'GuideBookWeb', 'Video'].includes(type)
     },
 
     haveParent: function (type) {
-      return ['GuideBookPdf', 'GuideBookWeb'].includes(type)
+      return ['GuideBookPdf', 'GuideBookWeb', 'Video'].includes(type)
     },
 
     titleLocalKey: function (type) {
@@ -146,6 +154,7 @@ export default {
       if (type === 'GuideBookPdf') return 'components.feed.newGuideBookPdf'
       if (type === 'GuideBookWeb') return 'components.feed.newGuideBookWeb'
       if (type === 'Gym') return 'components.feed.newGym'
+      if (type === 'Video') return 'components.feed.newVideo'
     },
 
     titleIcon: function (type) {
@@ -155,11 +164,19 @@ export default {
       if (type === 'GuideBookPdf') return 'mdi-file-pdf-outline'
       if (type === 'GuideBookWeb') return 'mdi-earth'
       if (type === 'Gym') return 'mdi-home-roof'
+      if (type === 'Video') return 'mdi-camera'
     },
 
     parentObject: function (type, feedObject) {
       if (['GuideBookPdf', 'GuideBookWeb'].includes(type)) {
         return new Crag(feedObject.crag)
+      }
+      if (type === 'Video') {
+        if (feedObject.viewable_type === 'Crag') {
+          return new Crag(feedObject.viewable)
+        } else if (feedObject.viewable_type === 'CragRoute') {
+          return new CragRoute(feedObject.viewable)
+        }
       }
     }
   }

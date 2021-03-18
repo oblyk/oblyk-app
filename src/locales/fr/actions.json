@@ -1,5 +1,6 @@
 {
   "actions": {
+    "addedBy": "Ajouté par",
     "submit": "Envoyer",
     "cancel": "Annuler",
     "edit": "Modifier",
