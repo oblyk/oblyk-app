@@ -8,6 +8,7 @@ import GuideBookPdf from '@/models/GuideBookPdf'
 import GuideBookWeb from '@/models/GuideBookWeb'
 import Video from '@/models/Video'
 import Alert from '@/models/Alert'
+import Photo from '@/models/Photo'
 
 export const RecordToObjectHelpers = {
   methods: {
@@ -32,6 +33,8 @@ export const RecordToObjectHelpers = {
         return new Video(data)
       } else if (type === 'Alert') {
         return new Alert(data)
+      } else if (type === 'Photo') {
+        return new Photo(data)
       }
     }
   }

@@ -33,7 +33,7 @@
         />
 
         <!-- Feed -->
-        <user-feed :user="currentUser" />
+        <feed :user="currentUser" />
 
       </v-container>
     </div>
@@ -50,13 +50,13 @@ import BannerMissing from '@/components/users/notificationCard/BannerMissing'
 import AvatarMissing from '@/components/users/notificationCard/AvatarMissing'
 import CurrentUserTabs from '@/components/users/layouts/CurrentUserTabs'
 import AroundCard from '@/components/users/AroundCard'
-import UserFeed from '@/components/users/UserFeed'
+import Feed from '@/components/feeds/Feed'
 
 export default {
   name: 'Dashboard',
   mixins: [CurrentUserConcern],
   components: {
-    UserFeed,
+    Feed,
     AroundCard,
     CurrentUserTabs,
     AvatarMissing,
