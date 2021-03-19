@@ -35,6 +35,8 @@
         <!-- Feed -->
         <feed :user="currentUser" />
 
+        <!-- Right Side Drawer for crag routes -->
+        <crag-route-drawer />
       </v-container>
     </div>
   </div>
@@ -51,11 +53,13 @@ import AvatarMissing from '@/components/users/notificationCard/AvatarMissing'
 import CurrentUserTabs from '@/components/users/layouts/CurrentUserTabs'
 import AroundCard from '@/components/users/AroundCard'
 import Feed from '@/components/feeds/Feed'
+import CragRouteDrawer from '@/components/cragRoutes/CragRouteDrawer'
 
 export default {
   name: 'Dashboard',
   mixins: [CurrentUserConcern],
   components: {
+    CragRouteDrawer,
     Feed,
     AroundCard,
     CurrentUserTabs,

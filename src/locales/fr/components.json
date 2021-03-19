@@ -506,7 +506,8 @@
       "newGuideBookWeb": "Nouveau topo web sur :",
       "newVideo": "Nouvelle vidéo sur :",
       "newAlert": "Nouvelle alerte sur :",
-      "newPhotos": "Une Nouvelle photo on : | %{count} nouvelles photos sur : "
+      "newPhotos": "Une Nouvelle photo sur : | %{count} nouvelles photos sur : ",
+      "newCragRoutes": "Une nouvelle ligne sur : | %{count} nouvelles lignes sur :"
     },
     "messenger": {
       "messageEmpty": "Il n'y a pas de message dans cette conversation pour l'instant"

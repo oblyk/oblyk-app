@@ -1,7 +1,7 @@
 <template>
   <v-list-item
     link
-    @click="$root.$emit('getCragRouteInDrawer', route.crag.id, route.id)"
+    @click="$root.$emit('getCragRouteInDrawer', route.crag.id, route.id); callback()"
   >
     <crag-route-avatar class="grade-route-in-list" :crag-route="route" />
     <v-list-item-content>
@@ -76,7 +76,8 @@ export default {
   name: 'CragRouteListItem',
   components: { AscentCragRouteStatusIcon, CragRouteAvatar, GradeRouteNote },
   props: {
-    route: Object
+    route: Object,
+    callback: Function
   }
 }
 </script>
