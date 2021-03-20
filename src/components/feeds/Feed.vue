@@ -78,7 +78,7 @@ export default {
       // Loop on the feed and group groupable elements
       for (const feed of feeds) {
         if (this.isGroupable(feed.feedable_type)) {
-          const key = `${feed.parent_type}${feed.parent_id}`
+          const key = `${feed.feedable_type}${feed.parent_type}${feed.parent_id}`
           groupedByKeys[key] = (groupedByKeys[key] || {
             name: feed.parent_object.name,
             id: feed.parent_object.id,
