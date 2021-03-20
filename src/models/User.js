@@ -19,6 +19,10 @@ export default class User extends ActiveData {
     return `/users/${this.uuid}/${this.slug_name}/${page}`
   }
 
+  path (page = 'profile') {
+    return this.userPath(page)
+  }
+
   avatarUrl () {
     if (this.avatar) {
       return `${process.env.VUE_APP_OBLYK_API_URL}${this.avatar}`

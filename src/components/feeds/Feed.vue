@@ -104,11 +104,11 @@ export default {
     },
 
     isGroupable: function (type) {
-      return ['Photo', 'CragRoute'].includes(type)
+      return ['Photo', 'CragRoute', 'AscentCragRoute'].includes(type)
     },
 
     isGroup: function (type) {
-      return ['Photos', 'CragRoutes'].includes(type)
+      return ['Photos', 'CragRoutes', 'AscentCragRoutes'].includes(type)
     }
   }
 }

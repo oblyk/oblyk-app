@@ -200,6 +200,7 @@
       "myOpinion": "my opinion on %{name}",
       "pitchMade": "Pitches made",
       "ascentMadeOn": "Ascent made on %{date}",
+      "madeOn": "made on %{date}",
       "numberOfAttempt": "Number of attempt : %{number}",
       "myCommentaire": "My comment",
       "privateComment": "private comment",
@@ -502,12 +503,13 @@
       "newCrag": "New crag : %{name}",
       "newGym": "New climbing gym : %{name}",
       "newGuideBookPaper": "New paper guide book : %{name}",
-      "newGuideBookPdf": "New pdf guide book on :",
-      "newGuideBookWeb": "New web guide book on :",
-      "newVideo": "New video on :",
-      "newAlert": "New alert on :",
-      "newPhotos": "One new photo on : | %{count} new photos on :",
-      "newCragRoutes": "One new route on : | %{count} new routes on :"
+      "newGuideBookPdf": "New pdf guide book on : ",
+      "newGuideBookWeb": "New web guide book on : ",
+      "newVideo": "New video on : ",
+      "newAlert": "New alert on : ",
+      "newPhotos": "One new photo on : | %{count} new photos on : ",
+      "newCragRoutes": "One new route on : | %{count} new routes on : ",
+      "newAscentCragRoutes": "One new ascent by : | %{count} new ascents by : "
     },
     "messenger": {
       "messageEmpty": "There is no message in this conversation at the moment."

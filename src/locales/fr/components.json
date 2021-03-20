@@ -200,6 +200,7 @@
       "myOpinion": "Mon avis sur %{name}",
       "pitchMade": "Longueurs faites",
       "ascentMadeOn": "Croix faite le %{date}",
+      "madeOn": "fait le %{date}",
       "numberOfAttempt": "Nombre d'essais : <strong>%{number}</strong>",
       "myCommentaire": "Mon commentaire",
       "privateComment": "commentaire privé",
@@ -502,12 +503,13 @@
       "newCrag": "Nouvelle falaise : %{name}",
       "newGym": "Nouvelle salle : %{name}",
       "newGuideBookPaper": "Nouveau topo papier : %{name}",
-      "newGuideBookPdf": "Nouveau topo PDF sur :",
-      "newGuideBookWeb": "Nouveau topo web sur :",
-      "newVideo": "Nouvelle vidéo sur :",
-      "newAlert": "Nouvelle alerte sur :",
+      "newGuideBookPdf": "Nouveau topo PDF sur : ",
+      "newGuideBookWeb": "Nouveau topo web sur : ",
+      "newVideo": "Nouvelle vidéo sur : ",
+      "newAlert": "Nouvelle alerte sur : ",
       "newPhotos": "Une Nouvelle photo sur : | %{count} nouvelles photos sur : ",
-      "newCragRoutes": "Une nouvelle ligne sur : | %{count} nouvelles lignes sur :"
+      "newCragRoutes": "Une nouvelle ligne sur : | %{count} nouvelles lignes sur : ",
+      "newAscentCragRoutes": "Une nouvelle croix par : | %{count} nouvelles croix par : "
     },
     "messenger": {
       "messageEmpty": "Il n'y a pas de message dans cette conversation pour l'instant"

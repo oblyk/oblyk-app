@@ -38,6 +38,8 @@
           </router-link>
         </v-card-title>
         <v-card-text>
+
+          <!-- New crag route -->
           <v-list
             v-if="feed.group_type === 'CragRoutes'"
           >
@@ -45,6 +47,18 @@
               v-for="cragRoute in cragRoutes()"
               :key="cragRoute.id"
               :route="cragRoute"
+              :callback="closePopup"
+            />
+          </v-list>
+
+          <!-- New ascents -->
+          <v-list
+            v-if="feed.group_type === 'AscentCragRoutes'"
+          >
+            <crag-route-feed-list-item
+              v-for="ascentCragRoute in ascentCragRoutes()"
+              :key="ascentCragRoute.id"
+              :ascent="ascentCragRoute"
               :callback="closePopup"
             />
           </v-list>
@@ -59,11 +73,13 @@ import { RecordToObjectHelpers } from '@/mixins/RecordToObjectHelpers'
 import PhotoGallery from '@/components/photos/PhotoGallery'
 import CragRoute from '@/models/CragRoute'
 import CragRouteListItem from '@/components/cragRoutes/CragRouteListItem'
+import AscentCragRoute from '@/models/AscentCragRoute'
+import CragRouteFeedListItem from '@/components/cragRoutes/CragRouteFeedListItem'
 
 export default {
   name: 'GroupFeedCard',
   mixins: [RecordToObjectHelpers],
-  components: { CragRouteListItem, PhotoGallery },
+  components: { CragRouteFeedListItem, CragRouteListItem, PhotoGallery },
   props: {
     feed: Object
   },
@@ -73,14 +89,15 @@ export default {
       itemsModal: false,
       headers: {
         Photos: { icon: 'mdi-image-multiple', title: 'components.feed.newPhotos' },
-        CragRoutes: { icon: 'mdi-source-branch', title: 'components.feed.newCragRoutes' }
+        CragRoutes: { icon: 'mdi-source-branch', title: 'components.feed.newCragRoutes' },
+        AscentCragRoutes: { icon: 'mdi-check-box-multiple-outline', title: 'components.feed.newAscentCragRoutes' }
       }
     }
   },
 
   methods: {
     popupable: function (type) {
-      return ['CragRoutes'].includes(type)
+      return ['CragRoutes', 'AscentCragRoutes'].includes(type)
     },
 
     closePopup: function () {
@@ -99,6 +116,14 @@ export default {
       const items = []
       for (const item of this.feed.items) {
         items.push(new CragRoute(item.feed_object))
+      }
+      return items
+    },
+
+    ascentCragRoutes: function () {
+      const items = []
+      for (const item of this.feed.items) {
+        items.push(new AscentCragRoute(item.feed_object))
       }
       return items
     }

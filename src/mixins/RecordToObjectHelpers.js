@@ -9,6 +9,8 @@ import GuideBookWeb from '@/models/GuideBookWeb'
 import Video from '@/models/Video'
 import Alert from '@/models/Alert'
 import Photo from '@/models/Photo'
+import AscentCragRoute from '@/models/AscentCragRoute'
+import User from '@/models/User'
 
 export const RecordToObjectHelpers = {
   methods: {
@@ -35,6 +37,10 @@ export const RecordToObjectHelpers = {
         return new Alert(data)
       } else if (type === 'Photo') {
         return new Photo(data)
+      } else if (type === 'AscentCragRoute') {
+        return new AscentCragRoute(data)
+      } else if (type === 'User') {
+        return new User(data)
       }
     }
   }

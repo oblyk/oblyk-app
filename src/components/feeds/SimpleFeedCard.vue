@@ -13,18 +13,16 @@
 
       <!-- No parent -->
       <span v-if="!haveParent(feed.feedable_type)">
-            {{ $t(headers[feed.feedable_type].title, { name: feed.feed_object.name } ) }}
-          </span>
+        {{ $t(headers[feed.feedable_type].title, { name: feed.feed_object.name } ) }}
+      </span>
 
       <!-- With parent -->
       <span v-if="haveParent(feed.feedable_type)">
-            {{ $t(headers[feed.feedable_type].title ) }}
-            <router-link
-              :to="parentObject(feed.feedable_type, feed.feed_object).path()"
-            >
-              {{ parentObject(feed.feedable_type, feed.feed_object).name }}
-            </router-link>
-          </span>
+        {{ $t(headers[feed.feedable_type].title ) }}
+        <router-link :to="parentObject(feed.feedable_type, feed.feed_object).path()">
+          {{ parentObject(feed.feedable_type, feed.feed_object).name }}
+        </router-link>
+      </span>
     </v-card-title>
 
     <!-- Feed card content -->
