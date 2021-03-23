@@ -33,6 +33,7 @@
       <crag-feed-card :crag="recordToObject('Crag', feed.feed_object)" v-if="feed.feedable_type === 'Crag'" />
       <gym-feed-card :gym="recordToObject('Gym', feed.feed_object)" v-if="feed.feedable_type === 'Gym'" />
       <alert-feed-card :alert="recordToObject('Alert', feed.feed_object)" v-if="feed.feedable_type === 'Alert'" />
+      <article-feed-card :article="recordToObject('Article', feed.feed_object)" v-if="feed.feedable_type === 'Article'" />
 
       <!-- Guide books -->
       <guide-book-paper-feed-card
@@ -69,11 +70,13 @@ import VideoFeedCard from '@/components/videos/VideoFeedCard'
 import Crag from '@/models/Crag'
 import CragRoute from '@/models/CragRoute'
 import CragSector from '@/models/CragSector'
+import ArticleFeedCard from '@/components/articles/ArticleFeedCard'
 
 export default {
   name: 'SimpleFeedCard',
   mixins: [RecordToObjectHelpers],
   components: {
+    ArticleFeedCard,
     VideoFeedCard,
     GuideBookWebFeedCard,
     GuideBookPdfFeedCard,
@@ -97,7 +100,8 @@ export default {
         GuideBookWeb: { icon: 'mdi-earth', title: 'components.feed.newGuideBookWeb' },
         Gym: { icon: 'mdi-home-roof', title: 'components.feed.newGym' },
         Video: { icon: 'mdi-film', title: 'components.feed.newVideo' },
-        Alert: { icon: 'mdi-alert-box-outline', title: 'components.feed.newAlert' }
+        Alert: { icon: 'mdi-alert-box-outline', title: 'components.feed.newAlert' },
+        Article: { icon: 'mdi-newspaper-variant-outline', title: 'components.feed.newArticle' }
       }
     }
   },

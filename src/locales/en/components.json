@@ -396,6 +396,7 @@
       "noLink": "There is no link referenced here for the moment"
     },
     "comment": {
+      "comments": "Comments",
       "countInfos": "One comment posted | %{count} comments posted",
       "noComment": "There is no comment here for the moment",
       "climbersComments": "Comments from climbers"
@@ -507,12 +508,18 @@
       "newGuideBookWeb": "New web guide book on : ",
       "newVideo": "New video on : ",
       "newAlert": "New alert on : ",
+      "newArticle": "New article! %{name}",
       "newPhotos": "One new photo on : | %{count} new photos on : ",
       "newCragRoutes": "One new route on : | %{count} new routes on : ",
       "newAscentCragRoutes": "One new ascent by : | %{count} new ascents by : "
     },
     "messenger": {
       "messageEmpty": "There is no message in this conversation at the moment."
+    },
+    "article": {
+      "writtenBy": "Written by %{name}",
+      "readXTimes" : "Read %{count} time | Read %{count} times",
+      "aboutAuthor": "About the author"
     },
     "layout": {
       "appBar": {

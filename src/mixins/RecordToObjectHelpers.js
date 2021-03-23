@@ -11,6 +11,7 @@ import Alert from '@/models/Alert'
 import Photo from '@/models/Photo'
 import AscentCragRoute from '@/models/AscentCragRoute'
 import User from '@/models/User'
+import Article from '@/models/Article'
 
 export const RecordToObjectHelpers = {
   methods: {
@@ -41,6 +42,8 @@ export const RecordToObjectHelpers = {
         return new AscentCragRoute(data)
       } else if (type === 'User') {
         return new User(data)
+      } else if (type === 'Article') {
+        return new Article(data)
       }
     }
   }

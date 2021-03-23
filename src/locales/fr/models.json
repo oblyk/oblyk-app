@@ -478,6 +478,12 @@
     "alert": {
       "description": "Description",
       "alert_type": "Type d'alerte"
+    },
+    "article": {
+      "name": "Titre",
+      "description": "Résumé",
+      "body": "Contenu",
+      "views": "Nombre de vue"
     }
   }
 }
