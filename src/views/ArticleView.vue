@@ -13,7 +13,7 @@
 
       <!-- Footer & About author -->
       <article-footer :article="article" />
-      <article-about-author :article="article" class="mt-5 mb-5" />
+      <about-author-card :article="article" class="mt-5 mb-5" />
 
       <!-- Comments -->
       <p class="font-weight-bold">
@@ -33,14 +33,14 @@ import { ArticleConcern } from '@/concerns/ArticleConcern'
 import AppFooter from '@/components/layouts/AppFooter'
 import ArticleHead from '@/components/articles/layouts/ArticleHead'
 import ArticleFooter from '@/components/articles/layouts/ArticleFooter'
-import ArticleAboutAuthor from '@/components/articles/layouts/ArticleAboutAuthor'
 import CommentList from '@/components/comments/CommentList'
 import ArticleApi from '@/services/oblyk-api/ArticleApi'
+import AboutAuthorCard from '@/components/authors/AboutAuthorCard'
 
 export default {
   name: 'ArticleView',
   mixins: [ArticleConcern],
-  components: { CommentList, ArticleAboutAuthor, ArticleFooter, ArticleHead, AppFooter },
+  components: { AboutAuthorCard, CommentList, ArticleFooter, ArticleHead, AppFooter },
 
   mounted () {
     setTimeout(() => {

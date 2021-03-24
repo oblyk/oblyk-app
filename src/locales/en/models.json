@@ -484,6 +484,10 @@
       "description": "Resume",
       "body": "Content",
       "views": "Number of views"
+    },
+    "author": {
+      "name": "Name",
+      "description": "Bio"
     }
   }
 }

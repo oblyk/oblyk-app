@@ -36,6 +36,7 @@ import PartnerRouter from '@/router/modules/PartnerRouter'
 import MessengerRouter from '@/router/modules/MessengerRouter'
 import AlertRouter from '@/router/modules/AlertRouter'
 import ArticleRouter from '@/router/modules/ArticleRouter'
+import AuthorRouter from '@/router/modules/AuthorRouter'
 
 Vue.use(VueRouter)
 
@@ -75,7 +76,8 @@ const router = new VueRouter({
     ...PartnerRouter,
     ...MessengerRouter,
     ...AlertRouter,
-    ...ArticleRouter
+    ...ArticleRouter,
+    ...AuthorRouter
   ]
 })
 

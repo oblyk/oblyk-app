@@ -484,6 +484,10 @@
       "description": "Résumé",
       "body": "Contenu",
       "views": "Nombre de vue"
+    },
+    "author": {
+      "name": "Nom",
+      "description": "Bio"
     }
   }
 }
