@@ -50,10 +50,20 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .article-container {
   .article-description {
     font-weight: bold;
+  }
+  .article-body {
+    p {
+      hyphens: auto;
+      text-align: justify;
+    }
+    h2 {
+      margin-top: 25px;
+      font-family: "Loved by the King", sans-serif;
+    }
   }
 }
 </style>

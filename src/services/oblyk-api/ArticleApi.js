@@ -9,9 +9,30 @@ class ArticleApi extends BaseApi {
     })
   }
 
+  feed (page = 1) {
+    return axios({
+      url: `${this.baseUrl}/articles/feed.json?page=${page}`,
+      method: 'GET'
+    })
+  }
+
+  last () {
+    return axios({
+      url: `${this.baseUrl}/articles/last.json`,
+      method: 'GET'
+    })
+  }
+
   find (articleId) {
     return axios({
       url: `${this.baseUrl}/articles/${articleId}.json`,
+      method: 'GET'
+    })
+  }
+
+  photos (articleId) {
+    return axios({
+      url: `${this.baseUrl}/articles/${articleId}/photos.json`,
       method: 'GET'
     })
   }
@@ -45,9 +66,17 @@ class ArticleApi extends BaseApi {
     })
   }
 
-  publish (data) {
+  publish (articleId) {
     return axios({
-      url: `${this.baseUrl}/articles/${data.id}/publish.json`,
+      url: `${this.baseUrl}/articles/${articleId}/publish.json`,
+      headers: { Authorization: this.authToken() },
+      method: 'PUT'
+    })
+  }
+
+  unPublish (articleId) {
+    return axios({
+      url: `${this.baseUrl}/articles/${articleId}/un_publish.json`,
       headers: { Authorization: this.authToken() },
       method: 'PUT'
     })

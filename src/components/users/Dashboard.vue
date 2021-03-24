@@ -33,7 +33,7 @@
         />
 
         <!-- Feed -->
-        <feed :user="currentUser" />
+        <feed feed-api="CurrentUserApi" />
 
         <!-- Right Side Drawer for crag routes -->
         <crag-route-drawer />

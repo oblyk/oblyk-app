@@ -483,7 +483,8 @@
       "name": "Titre",
       "description": "Résumé",
       "body": "Contenu",
-      "views": "Nombre de vue"
+      "views": "Nombre de vue",
+      "author_id" : "Identifiant de l'auteur"
     },
     "author": {
       "name": "Nom",

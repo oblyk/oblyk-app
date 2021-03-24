@@ -9,8 +9,9 @@ export default class Article extends ActiveData {
     return this.apiFind(ArticleApi, id)
   }
 
-  path () {
-    return `/articles/${this.id}/${this.slug_name}`
+  path (page = null) {
+    page = page ? `/${page}` : ''
+    return `/articles/${this.id}/${this.slug_name}${page}`
   }
 
   coverUrl () {

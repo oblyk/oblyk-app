@@ -22,6 +22,9 @@
             </v-icon>
             {{ article.comments_count }}
           </span>
+          <span v-if="isLoggedIn && isSuperAdmin">
+            <article-action-menu :article="article" />
+          </span>
         </div>
       </div>
     </v-img>
@@ -30,10 +33,13 @@
 
 <script>
 import { DateHelpers } from '@/mixins/DateHelpers'
+import { SessionConcern } from '@/concerns/SessionConcern'
+import ArticleActionMenu from '@/components/articles/forms/ArticleActionMenu'
 
 export default {
   name: 'ArticleHead',
-  mixins: [DateHelpers],
+  components: { ArticleActionMenu },
+  mixins: [DateHelpers, SessionConcern],
   props: {
     article: Object
   }

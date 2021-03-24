@@ -110,6 +110,12 @@
     },
     "partnerMap": {
       "title": "Climbers Map"
+    },
+    "editArticle": {
+      "title": "Edit article"
+    },
+    "articles": {
+      "title": "Articles"
     }
   }
 }

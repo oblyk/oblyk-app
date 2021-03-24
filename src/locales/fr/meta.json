@@ -110,6 +110,12 @@
     },
     "partnerMap": {
       "title": "Carte des grimpeurs"
+    },
+    "editArticle": {
+      "title": "Modifier l'article"
+    },
+    "articles": {
+      "title": "Les articles"
     }
   }
 }

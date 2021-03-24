@@ -8,6 +8,7 @@
     <!-- Feed card title -->
     <v-card-title
       class="feed-card-title"
+      v-if="showTitleCard(feed.feedable_type)"
     >
       <v-icon left small v-text="headers[feed.feedable_type].icon" />
 
@@ -28,6 +29,7 @@
     <!-- Feed card content -->
     <v-card-text
       class="pb-1"
+      v-bind:class="showTitleCard(feed.feedable_type) ? '' : 'pt-1'"
     >
       <word-feed-card :word="recordToObject('Word', feed.feed_object)" v-if="feed.feedable_type === 'Word'" />
       <crag-feed-card :crag="recordToObject('Crag', feed.feed_object)" v-if="feed.feedable_type === 'Crag'" />
@@ -107,6 +109,10 @@ export default {
   },
 
   methods: {
+    showTitleCard: function (type) {
+      return !['Article'].includes(type)
+    },
+
     haveParent: function (type) {
       return ['GuideBookPdf', 'GuideBookWeb', 'Video', 'Alert', 'Photo'].includes(type)
     },

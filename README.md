@@ -61,7 +61,7 @@ ___
 - [x] Tick-list
 - [x] Mes projets
 - [x] My map
-- [ ] Faire le "Flux"
+- [x] Faire le "Flux"
 - [ ] Mes photos
 ---
 - [ ] Supprimer son compte 

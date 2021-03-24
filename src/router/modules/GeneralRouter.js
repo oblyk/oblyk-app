@@ -1,7 +1,6 @@
 import HomeView from '@/views/HomeView'
 import TermsOfUseView from '@/views/TermsOfUseView'
 import AboutView from '@/views/AboutView'
-import NewsView from '@/views/NewsView'
 import HelpsView from '@/views/HelpsView'
 import SupportUsView from '@/views/SupportUsView'
 import ContactView from '@/views/ContactView'
@@ -50,14 +49,6 @@ export default [
     component: AboutPartnerView,
     meta: {
       title: 'aboutPartner',
-      showTitle: false
-    }
-  },
-  {
-    path: '/news',
-    component: NewsView,
-    meta: {
-      title: 'news',
       showTitle: false
     }
   },

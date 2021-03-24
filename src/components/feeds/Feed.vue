@@ -33,6 +33,7 @@ import LoadingMore from '@/components/layouts/LoadingMore'
 import CurrentUserApi from '@/services/oblyk-api/CurrentUserApi'
 import SimpleFeedCard from '@/components/feeds/SimpleFeedCard'
 import GroupFeedCard from '@/components/feeds/GroupFeedCard'
+import ArticleApi from '@/services/oblyk-api/ArticleApi'
 
 export default {
   name: 'Feed',
@@ -43,7 +44,7 @@ export default {
     LoadingMore
   },
   props: {
-    User: Object
+    feedApi: String
   },
 
   data () {
@@ -58,8 +59,16 @@ export default {
   },
 
   methods: {
+    feedClass: function () {
+      if (this.feedApi === 'CurrentUserApi') {
+        return CurrentUserApi
+      } else if (this.feedApi === 'Article') {
+        return ArticleApi
+      }
+    },
+
     getFeeds: function (page) {
-      CurrentUserApi
+      this.feedClass()
         .feed(page)
         .then(resp => {
           this.feeds = this.feeds.concat(this.groupFeed(resp.data))

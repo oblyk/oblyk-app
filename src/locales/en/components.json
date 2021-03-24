@@ -517,6 +517,9 @@
       "messageEmpty": "There is no message in this conversation at the moment."
     },
     "article": {
+      "whatsNew": "Whats new?",
+      "edit": "Edit article",
+      "articleUpdate": "Article is updated",
       "writtenBy": "Written by %{name}",
       "readXTimes" : "Read %{count} time | Read %{count} times",
       "aboutAuthor": "About the author"

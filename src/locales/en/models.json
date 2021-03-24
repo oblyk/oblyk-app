@@ -483,7 +483,8 @@
       "name": "Title",
       "description": "Resume",
       "body": "Content",
-      "views": "Number of views"
+      "views": "Number of views",
+      "author_id" : "Author identifiant"
     },
     "author": {
       "name": "Name",

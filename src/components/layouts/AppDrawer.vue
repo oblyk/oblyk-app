@@ -191,7 +191,7 @@
       />
 
       <app-drawer-item
-        url="/news"
+        url="/articles"
         icon="mdi-newspaper-variant-multiple"
         :title="$t('components.layout.appDrawer.news')"
       />

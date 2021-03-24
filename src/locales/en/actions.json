@@ -81,6 +81,9 @@
     "cancelRequest": "Cancel request",
     "writeMessage": "Write a message",
     "newConversation": "New conversation",
-    "addAlert": "Add alert"
+    "addAlert": "Add alert",
+    "publish": "Publish",
+    "unPublish": "Un publish",
+    "writeAnArticle": "Write an article"
   }
 }

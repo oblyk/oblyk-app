@@ -20,6 +20,7 @@
       <home-box-partner class="home-boxes" />
       <home-box-help class="home-boxes" />
       <home-box-guide-book class="home-boxes" />
+      <last-article />
       <home-box-figures />
     </v-container>
 
@@ -35,10 +36,12 @@ import HomeBoxPartner from '@/components/homes/HomeBoxPartner'
 import HomeBoxHelp from '@/components/homes/HomeBoxHelp'
 import HomeBoxGuideBook from '@/components/homes/HomeBoxGuideBook'
 import HomeBoxFigures from '@/components/homes/HomeBoxFigures'
+import LastArticle from '@/components/articles/LastArticle'
 
 export default {
   name: 'Home',
   components: {
+    LastArticle,
     HomeBoxFigures,
     HomeBoxGuideBook,
     HomeBoxHelp,
