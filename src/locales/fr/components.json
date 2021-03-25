@@ -417,6 +417,7 @@
       }
     },
     "photo" : {
+      "photos": "Photos",
       "countInfos": "Une photo postée | %{count} photos postées",
       "noPhoto": "Il n'y a pas de photo ici pour l'instant"
     },
@@ -522,7 +523,16 @@
       "articleUpdate": "L'article à été mis à jour",
       "writtenBy": "Rédigé par %{name}",
       "readXTimes" : "Lu %{count} fois | Lu %{count} fois",
-      "aboutAuthor": "À propos de l'auteur"
+      "aboutAuthor": "À propos de l'auteur",
+      "helpers": {
+        "title": "Helpers",
+        "textCenter": "texte centrer",
+        "textDisabled": "texte gris"
+      },
+      "cragList": "Falaises présentes dans cet article",
+      "guideBookPaperList": "Topos présents dans cet article",
+      "addCragInArticle": "Ajouter un falaise dans cet article",
+      "addGuideBookInArticle": "Ajouter un topo dans cet article"
     },
     "layout": {
       "appBar": {

@@ -23,6 +23,42 @@
         </v-list-item-title>
       </v-list-item>
 
+      <!-- Add crag -->
+      <v-list-item
+        :to="article.path('add-crags')"
+      >
+        <v-list-item-icon>
+          <v-icon>mdi-terrain</v-icon>
+        </v-list-item-icon>
+        <v-list-item-title>
+          {{ $t('actions.addCrag') }}
+        </v-list-item-title>
+      </v-list-item>
+
+      <!-- Add guide book -->
+      <v-list-item
+        :to="article.path('add-guide-books')"
+      >
+        <v-list-item-icon>
+          <v-icon>mdi-book-open-variant</v-icon>
+        </v-list-item-icon>
+        <v-list-item-title>
+          {{ $t('actions.addGuideBook') }}
+        </v-list-item-title>
+      </v-list-item>
+
+      <!-- Article photos list -->
+      <v-list-item
+        :to="article.path('photos')"
+      >
+        <v-list-item-icon>
+          <v-icon>mdi-image-multiple</v-icon>
+        </v-list-item-icon>
+        <v-list-item-title>
+          {{ $t('components.photo.photos') }}
+        </v-list-item-title>
+      </v-list-item>
+
       <!-- Change article cover -->
       <v-list-item
         :to="article.path('cover')"

@@ -116,6 +116,9 @@
     },
     "articles": {
       "title": "Les articles"
+    },
+    "articlePhotos": {
+      "title": "Photos de l'article"
     }
   }
 }

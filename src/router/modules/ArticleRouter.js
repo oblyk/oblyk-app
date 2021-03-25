@@ -4,6 +4,8 @@ import ArticleCoverView from '@/views/articles/actions/ArticleCoverView'
 import ArticleListView from '@/views/articles/ArticleListView'
 import ArticleNewView from '@/views/articles/actions/ArticleNewView'
 import ArticlePhotoListView from '@/views/articles/ArticlePhotoListView'
+import AddCragInArticleView from '@/views/articles/actions/AddCragInArticleView'
+import AddGuideBookInArticleView from '@/views/articles/actions/AddGuideBookInArticleView'
 
 export default [
   {
@@ -26,14 +28,30 @@ export default [
     path: '/articles/:articleId/:articleSlug',
     component: ArticleView,
     meta: {
-      title: 'article',
+      objectName: 'article',
       noPaddingTop: true,
-      showTitle: false
+      showAvatar: true
     }
   },
   {
     path: '/articles/:articleId/:articleSlug/edit',
     component: ArticleEditView,
+    meta: {
+      title: 'editArticle',
+      showTitle: true
+    }
+  },
+  {
+    path: '/articles/:articleId/:articleSlug/add-crags',
+    component: AddCragInArticleView,
+    meta: {
+      title: 'editArticle',
+      showTitle: true
+    }
+  },
+  {
+    path: '/articles/:articleId/:articleSlug/add-guide-books',
+    component: AddGuideBookInArticleView,
     meta: {
       title: 'editArticle',
       showTitle: true
@@ -51,7 +69,7 @@ export default [
     path: '/articles/:articleId/:articleSlug/photos',
     component: ArticlePhotoListView,
     meta: {
-      title: 'editArticle',
+      title: 'articlePhotos',
       showTitle: true
     }
   }

@@ -417,6 +417,7 @@
       }
     },
     "photo" : {
+      "photos": "Photos",
       "countInfos": "One photo posted | %{count} photos posted",
       "noPhoto": "There is no picture here for the moment"
     },
@@ -522,7 +523,16 @@
       "articleUpdate": "Article is updated",
       "writtenBy": "Written by %{name}",
       "readXTimes" : "Read %{count} time | Read %{count} times",
-      "aboutAuthor": "About the author"
+      "aboutAuthor": "About the author",
+      "helpers": {
+        "title": "Helpers",
+        "textCenter": "text center",
+        "textDisabled": "text grey"
+      },
+      "cragList": "Crags in this article",
+      "guideBookPaperList": "Guide books in this article",
+      "addCragInArticle": "Add crag in this article",
+      "addGuideBookInArticle": "Add guide book in this article"
     },
     "layout": {
       "appBar": {

@@ -1,7 +1,7 @@
 <template>
   <v-btn
     icon
-    small
+    :small="small"
     v-clipboard:copy="message"
     v-clipboard:success="onCopy"
     v-clipboard:error="onError"
@@ -13,7 +13,11 @@
 export default {
   name: 'CopyBtn',
   props: {
-    message: String
+    message: String,
+    small: {
+      type: Boolean,
+      default: true
+    }
   },
 
   methods: {

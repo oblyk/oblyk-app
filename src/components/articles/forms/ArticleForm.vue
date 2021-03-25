@@ -32,6 +32,19 @@
       :label="$t('models.article.body')"
     />
 
+    <!-- Helpers -->
+    <div class="mb-5">
+      <p class="font-weight-bold">{{ $t('components.article.helpers.title') }}</p>
+      <ul>
+        <li>
+          <code>text-center</code> : {{ $t('components.article.helpers.textCenter') }} <copy-btn message="text-center" />
+        </li>
+        <li>
+          <code>text--disabled</code> : {{ $t('components.article.helpers.textDisabled') }} <copy-btn message="text--disabled" />
+        </li>
+      </ul>
+    </div>
+
     <close-form />
     <submit-form
       :overlay="submitOverlay"
@@ -46,10 +59,11 @@ import SubmitForm from '@/components/forms/SubmitForm'
 import ArticleApi from '@/services/oblyk-api/ArticleApi'
 import CloseForm from '@/components/forms/CloseForm'
 import Article from '@/models/Article'
+import CopyBtn from '@/components/ui/CopyBtn'
 
 export default {
   name: 'ArticleForm',
-  components: { CloseForm, SubmitForm },
+  components: { CopyBtn, CloseForm, SubmitForm },
   mixins: [FormHelpers],
   props: {
     article: Object

@@ -33,6 +33,21 @@ class ArticleApi extends BaseApi {
   photos (articleId) {
     return axios({
       url: `${this.baseUrl}/articles/${articleId}/photos.json`,
+      headers: { Authorization: this.authToken() },
+      method: 'GET'
+    })
+  }
+
+  crags (articleId) {
+    return axios({
+      url: `${this.baseUrl}/articles/${articleId}/crags.json`,
+      method: 'GET'
+    })
+  }
+
+  guideBookPapers (articleId) {
+    return axios({
+      url: `${this.baseUrl}/articles/${articleId}/guide_book_papers.json`,
       method: 'GET'
     })
   }

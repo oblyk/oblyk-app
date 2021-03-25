@@ -20,7 +20,21 @@
           <v-img :src="photo.thumbnailUrl()" />
         </v-col>
         <v-col class="col-9">
-          {{ photo.pictureUrl() }}
+          <div class="text-truncate">
+            {{ photo.pictureUrl() }}
+          </div>
+          <div>
+            <v-btn
+              :to="`${photo.path('edit')}?redirect_to=${$route.fullPath}`"
+              icon
+            >
+              <v-icon small>mdi-pencil</v-icon>
+            </v-btn>
+            <copy-btn
+              :small="false"
+              :message="imgBalise(photo)"
+            />
+          </div>
         </v-col>
       </v-row>
     </v-container>
@@ -31,10 +45,11 @@
 import ArticleApi from '@/services/oblyk-api/ArticleApi'
 import Photo from '@/models/Photo'
 import Spinner from '@/components/layouts/Spiner'
+import CopyBtn from '@/components/ui/CopyBtn'
 
 export default {
   name: 'ArticlePhotoListView',
-  components: { Spinner },
+  components: { CopyBtn, Spinner },
   data () {
     return {
       photos: [],
@@ -60,6 +75,10 @@ export default {
         .finally(() => {
           this.loadingArticlePhotos = false
         })
+    },
+
+    imgBalise: function (photo) {
+      return `<img src="${photo.pictureUrl()}" alt="${photo.description}">`
     }
   }
 }

@@ -152,12 +152,14 @@
     </v-card-text>
   </v-card>
 </template>
+
 <script>
+import { SessionConcern } from '@/concerns/SessionConcern'
 import ContributionsLabel from '@/components/globals/ContributionsLable'
 import QrCodeBtn from '@/components/forms/QrCodeBtn'
-import CopyBtn from '@/components/forms/CopyBtn'
-import { SessionConcern } from '@/concerns/SessionConcern'
+import CopyBtn from '@/components/ui/CopyBtn'
 import AlertList from '@/components/alerts/AlertList'
+
 export default {
   name: 'CragInfo',
   components: { AlertList, CopyBtn, QrCodeBtn, ContributionsLabel },

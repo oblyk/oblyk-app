@@ -11,17 +11,19 @@
         v-html="article.body"
       />
 
-      <!-- Footer & About author -->
+      <!-- Footer, Crags, Guide book & About author -->
       <article-footer :article="article" />
+      <article-crags :article="article" />
+      <article-guide-book-papers :article="article" />
       <about-author-card :article="article" class="mt-5 mb-5" />
 
       <!-- Comments -->
-      <p class="font-weight-bold">
-        <v-icon left small>
+      <h2 class="loved-by-king">
+        <v-icon left>
           mdi-forum
         </v-icon>
         {{ $t('components.comment.comments') }}
-      </p>
+      </h2>
       <comment-list commentable-type="Article" :commentable-id="article.id" />
     </v-container>
     <app-footer />
@@ -36,11 +38,13 @@ import ArticleFooter from '@/components/articles/layouts/ArticleFooter'
 import CommentList from '@/components/comments/CommentList'
 import ArticleApi from '@/services/oblyk-api/ArticleApi'
 import AboutAuthorCard from '@/components/authors/AboutAuthorCard'
+import ArticleCrags from '@/components/articles/ArticleCrags'
+import ArticleGuideBookPapers from '@/components/articles/ArticleGuideBookPapers'
 
 export default {
   name: 'ArticleView',
   mixins: [ArticleConcern],
-  components: { AboutAuthorCard, CommentList, ArticleFooter, ArticleHead, AppFooter },
+  components: { ArticleGuideBookPapers, ArticleCrags, AboutAuthorCard, CommentList, ArticleFooter, ArticleHead, AppFooter },
 
   mounted () {
     setTimeout(() => {
@@ -59,6 +63,9 @@ export default {
     p {
       hyphens: auto;
       text-align: justify;
+    }
+    img {
+      max-width: 100%;
     }
     h2 {
       margin-top: 25px;
