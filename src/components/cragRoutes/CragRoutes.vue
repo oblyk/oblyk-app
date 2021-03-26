@@ -42,7 +42,7 @@
       </v-card-subtitle>
 
       <v-card-text>
-        <crag-route-figures :crag="crag" />
+        <crag-route-figures :crag="crag" :crag-sector="cragSector" />
       </v-card-text>
 
       <spinner

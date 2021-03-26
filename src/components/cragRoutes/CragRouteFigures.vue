@@ -36,11 +36,13 @@
 
 <script>
 import CragApi from '@/services/oblyk-api/CragApi'
+import CragSectorApi from '@/services/oblyk-api/CragSectorApi'
 
 export default {
   name: 'CragRouteFigures',
   props: {
-    crag: Object
+    crag: Object,
+    cragSector: Object
   },
 
   data () {
@@ -58,8 +60,11 @@ export default {
 
   methods: {
     getRouteFigures: function () {
-      CragApi
-        .routeFigures(this.crag.id)
+      const promise = this.cragSector ? CragSectorApi : CragApi
+      const objectId = this.cragSector ? this.cragSector.id : this.crag.id
+
+      promise
+        .routeFigures(objectId)
         .then(resp => {
           const figures = {}
           figures.section_count = resp.data.section_count

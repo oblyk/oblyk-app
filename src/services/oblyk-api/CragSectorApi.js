@@ -68,5 +68,12 @@ class CragSectorApi extends BaseApi {
       method: 'PUT'
     })
   }
+
+  routeFigures (cragSectorId) {
+    return axios({
+      url: `${this.baseUrl}/crag_sectors/${cragSectorId}/route_figures.json`,
+      method: 'GET'
+    })
+  }
 }
 export default new CragSectorApi()
