@@ -102,6 +102,13 @@ class CragApi extends BaseApi {
     })
   }
 
+  routeFigures (cragId) {
+    return axios({
+      url: `${this.baseUrl}/crags/${cragId}/route_figures.json`,
+      method: 'GET'
+    })
+  }
+
   create (data) {
     return axios({
       url: `${this.baseUrl}/crags.json`,

@@ -41,6 +41,10 @@
         </v-row>
       </v-card-subtitle>
 
+      <v-card-text>
+        <crag-route-figures :crag="crag" />
+      </v-card-text>
+
       <spinner
         v-if="loadingRoutes"
         :full-height="false"
@@ -83,10 +87,12 @@ import CragSectorSelector from '@/components/cragRoutes/partial/CragSectorSelect
 import CragRouteSort from '@/components/cragRoutes/partial/CragRouteSort'
 import CragRouteSearch from '@/components/cragRoutes/partial/CragRouteSearch'
 import { SessionConcern } from '@/concerns/SessionConcern'
+import CragRouteFigures from '@/components/cragRoutes/CragRouteFigures'
 
 export default {
   name: 'CragRoutes',
   components: {
+    CragRouteFigures,
     CragRouteSearch,
     CragRouteSort,
     CragSectorSelector,

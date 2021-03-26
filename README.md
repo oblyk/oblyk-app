@@ -98,7 +98,7 @@ ___
 - [x] Topo PDF
 - [x] Massif
 - [x] Système d'alerte
-- [ ] Graph des cotations et type de grimpe
+- [x] Graph des cotations et type de grimpe
 
 ## TODO Recherche partenaire de grimpe
 - [x] Paramétrage à la création d'un compte
