@@ -595,6 +595,11 @@
         "termsOfUse": "Mentions légales",
         "facebook": "Facebook",
         "github": "github"
+      },
+      "errors": {
+        "404": {
+          "title": "Oops ... page introuvable"
+        }
       }
     }
   }

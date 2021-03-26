@@ -15,7 +15,8 @@
 - [x] Videoable
 - [x] Favicon, meta title
 - [x] Système de versionning
-- [ ] Faire page 404
+- [ ] Système de protection par public token
+- [x] Faire page 404
 - [ ] Paramétrage des web workers PWA
 - [ ] Système de notification
 - [ ] SEO (https://www.digitalocean.com/community/tutorials/vuejs-vue-seo-tips)

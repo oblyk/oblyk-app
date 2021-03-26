@@ -595,6 +595,11 @@
         "termsOfUse": "Terms of use",
         "facebook": "Facebook",
         "github": "github"
+      },
+      "errors": {
+        "404": {
+          "title": "Oops ... page not found"
+        }
       }
     }
   }

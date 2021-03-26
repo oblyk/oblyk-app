@@ -37,6 +37,7 @@ import MessengerRouter from '@/router/modules/MessengerRouter'
 import AlertRouter from '@/router/modules/AlertRouter'
 import ArticleRouter from '@/router/modules/ArticleRouter'
 import AuthorRouter from '@/router/modules/AuthorRouter'
+import NotFoundView from '@/views/errors/NotFoundView'
 
 Vue.use(VueRouter)
 
@@ -77,7 +78,11 @@ const router = new VueRouter({
     ...MessengerRouter,
     ...AlertRouter,
     ...ArticleRouter,
-    ...AuthorRouter
+    ...AuthorRouter,
+    {
+      path: '*',
+      component: NotFoundView
+    }
   ]
 })
 

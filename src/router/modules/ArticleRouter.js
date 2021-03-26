@@ -20,6 +20,8 @@ export default [
     path: '/articles/new',
     component: ArticleNewView,
     meta: {
+      requiresAuth: true,
+      requiresSuperAdmin: true,
       title: 'articles',
       showTitle: true
     }
@@ -37,6 +39,8 @@ export default [
     path: '/articles/:articleId/:articleSlug/edit',
     component: ArticleEditView,
     meta: {
+      requiresAuth: true,
+      requiresSuperAdmin: true,
       title: 'editArticle',
       showTitle: true
     }
@@ -45,6 +49,8 @@ export default [
     path: '/articles/:articleId/:articleSlug/add-crags',
     component: AddCragInArticleView,
     meta: {
+      requiresAuth: true,
+      requiresSuperAdmin: true,
       title: 'editArticle',
       showTitle: true
     }
@@ -53,6 +59,8 @@ export default [
     path: '/articles/:articleId/:articleSlug/add-guide-books',
     component: AddGuideBookInArticleView,
     meta: {
+      requiresAuth: true,
+      requiresSuperAdmin: true,
       title: 'editArticle',
       showTitle: true
     }
@@ -61,6 +69,8 @@ export default [
     path: '/articles/:articleId/:articleSlug/cover',
     component: ArticleCoverView,
     meta: {
+      requiresAuth: true,
+      requiresSuperAdmin: true,
       title: 'editArticle',
       showTitle: true
     }
@@ -69,6 +79,8 @@ export default [
     path: '/articles/:articleId/:articleSlug/photos',
     component: ArticlePhotoListView,
     meta: {
+      requiresAuth: true,
+      requiresSuperAdmin: true,
       title: 'articlePhotos',
       showTitle: true
     }

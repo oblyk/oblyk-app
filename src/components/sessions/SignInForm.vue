@@ -17,7 +17,6 @@
       required
       :append-icon="showPassword ? 'mdi-eye-off' : 'mdi-eye'"
       @click:append="showPassword = !showPassword"
-      hide-details
     />
 
     <submit-form
