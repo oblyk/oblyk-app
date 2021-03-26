@@ -10,9 +10,23 @@
       <h4>{{ article.name }}</h4>
       <div v-html="article.description" />
       <article-footer
+        v-if="showFooter"
         class="mt-2"
         :article="article"
       />
+      <p
+        class="text-right"
+        v-if="showReadMore"
+      >
+        <v-btn
+          :to="article.path()"
+          text
+          small
+          color="primary"
+        >
+          {{ $t('actions.readMore') }}
+        </v-btn>
+      </p>
     </v-col>
   </v-row>
 </template>
@@ -23,7 +37,15 @@ export default {
   name: 'ArticleFeedCard',
   components: { ArticleFooter },
   props: {
-    article: Object
+    article: Object,
+    showFooter: {
+      type: Boolean,
+      default: true
+    },
+    showReadMore: {
+      type: Boolean,
+      default: false
+    }
   }
 }
 </script>

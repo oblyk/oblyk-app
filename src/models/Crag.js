@@ -80,4 +80,8 @@ export default class Crag extends ActiveData {
     }
     return areas
   }
+
+  get haveArticles () {
+    return ((this.articles_count || 0) > 0)
+  }
 }

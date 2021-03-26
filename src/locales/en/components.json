@@ -161,7 +161,8 @@
         "links": "Links",
         "guideBooks": "Guide books",
         "map": "Map"
-      }
+      },
+      "relatedArticles": "Related articles"
     },
     "cragSector": {
       "coverFrom": "Sector picture",
@@ -245,6 +246,7 @@
       "fullName": "Paper guide book",
       "type": "Guide book",
       "pointOfSale": "Point of sale",
+      "relatedArticles": "Related articles",
       "removeFromGuideBook": "Remove from guide book",
       "addCragInGuide": "Add crag in this guide book",
       "searchGuideBookPaper": "Search a paper guide book",

@@ -25,4 +25,8 @@ export default class GuideBookPaper extends ActiveData {
       return require('@/assets/svgs/paper-guide-book-default.svg')
     }
   }
+
+  get haveArticles () {
+    return ((this.articles_count || 0) > 0)
+  }
 }

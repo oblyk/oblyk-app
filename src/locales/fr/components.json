@@ -161,7 +161,8 @@
         "links": "Liens",
         "guideBooks": "Topos",
         "map": "Carte"
-      }
+      },
+      "relatedArticles": "Articles liés"
     },
     "cragSector": {
       "coverFrom": "Photo du secteur",
@@ -245,6 +246,7 @@
       "fullName": "Topo papier",
       "type": "Topo",
       "pointOfSale": "Point de vente",
+      "relatedArticles": "Articles liés",
       "removeFromGuideBook": "Retirer du topo",
       "addCragInGuide": "Ajouter un site à ce topo",
       "searchGuideBookPaper": "Chercher un topo papier",

@@ -97,6 +97,7 @@ ___
 - [x] Topo PDF
 - [x] Massif
 - [x] Système d'alerte
+- [ ] Graph des cotations et type de grimpe
 
 ## TODO Recherche partenaire de grimpe
 - [x] Paramétrage à la création d'un compte
@@ -104,7 +105,7 @@ ___
 - [x] La carte des grimpeurs
 
 ## TODO News
-- [ ] Actualité (CRUD)
+- [x] Actualité (CRUD)
 
 ## TODO Autres pages
 - [x] Mention légale

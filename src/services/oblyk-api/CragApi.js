@@ -81,6 +81,13 @@ class CragApi extends BaseApi {
     })
   }
 
+  articles (cragId) {
+    return axios({
+      url: `${this.baseUrl}/crags/${cragId}/articles.json`,
+      method: 'GET'
+    })
+  }
+
   photos (cragId) {
     return axios({
       url: `${this.baseUrl}/crags/${cragId}/photos.json`,
