@@ -4,6 +4,7 @@
       link
       flat
       :to="linkable ? user.userPath() : null"
+      @click="callback ? callback(user) : null"
     >
       <v-list-item
         :two-line="small"
@@ -73,7 +74,8 @@ export default {
     small: {
       type: Boolean,
       default: false
-    }
+    },
+    callback: Function
   }
 }
 </script>

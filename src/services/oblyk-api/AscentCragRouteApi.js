@@ -50,5 +50,31 @@ class AscentCragRouteApi extends BaseApi {
       method: 'DELETE'
     })
   }
+
+  addUser (ascentCragRouteId, userId) {
+    return axios({
+      url: `${this.baseUrl}/ascent_crag_routes/${ascentCragRouteId}/add_ascent_user.json`,
+      headers: { Authorization: this.authToken() },
+      data: {
+        ascent_user: {
+          user_id: userId
+        }
+      },
+      method: 'POST'
+    })
+  }
+
+  removeUser (ascentCragRouteId, userId) {
+    return axios({
+      url: `${this.baseUrl}/ascent_crag_routes/${ascentCragRouteId}/remove_ascent_user.json`,
+      headers: { Authorization: this.authToken() },
+      data: {
+        ascent_user: {
+          user_id: userId
+        }
+      },
+      method: 'DELETE'
+    })
+  }
 }
 export default new AscentCragRouteApi()

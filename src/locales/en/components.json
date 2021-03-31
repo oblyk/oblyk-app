@@ -206,7 +206,8 @@
       "myCommentaire": "My comment",
       "privateComment": "private comment",
       "publicComment": "public comment",
-      "iMadeCountPitch": "I made the %{count} pitch"
+      "iMadeCountPitch": "I made the %{count} pitch",
+      "iWasWith": "I was with"
     },
     "area": {
       "description": "<strong>%{name}</strong> is a grouping of %{crags} climbing crags.<br>These crags contain in total %{routes}, ranging from <strong>%{min}</strong> to <strong>%{max}</strong>",

@@ -35,6 +35,63 @@
       <!-- Number of attempt -->
       <div v-if="ascentCragRoute.attempt" v-html="$t('components.ascentCragRoute.numberOfAttempt', { number: ascentCragRoute.attempt})" />
 
+      <div
+        class="mb-2"
+      >
+        {{ $t('components.ascentCragRoute.iWasWith') }} :
+        <v-chip
+          small
+          close
+          v-for="ascent_user in ascentCragRoute.ascent_users"
+          :key="`${ascent_user.id}`"
+          @click:close="removeAscentUser(ascent_user)"
+          class="mr-1"
+        >
+          {{ ascent_user.user.first_name }}
+        </v-chip>
+        <v-dialog
+          v-model="ascentUserDialog"
+          width="500"
+        >
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn
+              small
+              icon
+              v-bind="attrs"
+              v-on="on"
+              @click="getSubscribeUsers()"
+            >
+              <v-icon small>
+                mdi-plus
+              </v-icon>
+            </v-btn>
+          </template>
+
+          <v-card>
+            <v-card-title class="headline">
+              {{ $t('components.ascentCragRoute.iWasWith') }}
+            </v-card-title>
+
+            <v-card-text>
+              <spinner v-if="loadingSubscribes" :full-height="false" />
+              <div
+                v-else
+                v-for="(subscribe, index) in subscribes"
+                :key="`subscribe-${index}`"
+              >
+                <user-small-card
+                  class="mb-2"
+                  :user="subscribe"
+                  :small="true"
+                  :linkable="false"
+                  :callback="addAscentUser"
+                />
+              </div>
+            </v-card-text>
+          </v-card>
+        </v-dialog>
+      </div>
+
       <div v-if="ascentCragRoute.CragRoute.sections_count > 1">
         <p
           class="text-decoration-underline"
@@ -93,6 +150,7 @@
 
 <script>
 import { DateHelpers } from '@/mixins/DateHelpers'
+import { RecordToObjectHelpers } from '@/mixins/RecordToObjectHelpers'
 import AscentCragRouteStatusIcon from '@/components/ascentCragRoutes/AscentCragRouteStatusIcon'
 import Note from '@/components/notes/Note'
 import NoteClass from '@/models/Note'
@@ -100,14 +158,26 @@ import AscentCragRouteApi from '@/services/oblyk-api/AscentCragRouteApi'
 import store from '@/store'
 import EditAscentBtn from '@/components/ascentCragRoutes/EditAscentBtn'
 import MarkdownText from '@/components/ui/MarkdownText'
+import CurrentUserApi from '@/services/oblyk-api/CurrentUserApi'
+import UserSmallCard from '@/components/users/UserSmallCard'
+import User from '@/models/User'
+import Spinner from '@/components/layouts/Spiner'
 
 export default {
   name: 'AscentCragRouteSmallCard',
-  mixins: [DateHelpers],
-  components: { MarkdownText, EditAscentBtn, Note, AscentCragRouteStatusIcon },
+  mixins: [DateHelpers, RecordToObjectHelpers],
+  components: { Spinner, UserSmallCard, MarkdownText, EditAscentBtn, Note, AscentCragRouteStatusIcon },
   props: {
     ascentCragRoute: Object,
     cragRoute: Object
+  },
+
+  data () {
+    return {
+      ascentUserDialog: false,
+      subscribes: [],
+      loadingSubscribes: true
+    }
   },
 
   methods: {
@@ -129,6 +199,50 @@ export default {
             this.$root.$emit('alertFromApiError', err, 'ascentCragRoute')
           })
       }
+    },
+
+    removeAscentUser: function (ascentUser) {
+      AscentCragRouteApi
+        .removeUser(
+          this.ascentCragRoute.id,
+          ascentUser.user.id
+        ).then(() => {
+          this.$root.$emit('reloadAscentCragRoute')
+        })
+        .catch(err => {
+          this.$root.$emit('alertFromApiError', err, 'ascentUser')
+        })
+    },
+
+    addAscentUser: function (user) {
+      AscentCragRouteApi
+        .addUser(
+          this.ascentCragRoute.id,
+          user.id
+        ).then(() => {
+          this.$root.$emit('reloadAscentCragRoute')
+          this.ascentUserDialog = false
+        })
+        .catch(err => {
+          this.$root.$emit('alertFromApiError', err, 'ascentUser')
+        })
+    },
+
+    getSubscribeUsers: function () {
+      this.loadingSubscribes = true
+      CurrentUserApi
+        .subscribes()
+        .then(resp => {
+          for (const subscribe of resp.data) {
+            this.subscribes.push(new User(subscribe.followable_object))
+          }
+        })
+        .catch(err => {
+          this.$root.$emit('alertFromApiError', err, 'user')
+        })
+        .finally(() => {
+          this.loadingSubscribes = false
+        })
     }
   }
 }
