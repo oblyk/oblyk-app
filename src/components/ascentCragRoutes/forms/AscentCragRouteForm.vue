@@ -68,6 +68,7 @@
         :label="$t('models.ascentCragRoute.comment')"
       />
 
+      <!-- Private comment -->
       <v-checkbox
         v-model="data.private_comment"
         :label="$t('models.ascentCragRoute.private_comment')"
@@ -125,7 +126,7 @@ export default {
         hardness_status: (this.ascentCragRoute || {}).hardness_status,
         comment: (this.ascentCragRoute || {}).comment,
         private_comment: (this.ascentCragRoute || {}).private_comment || false,
-        selected_sections: (this.ascentCragRoute || {}).selected_sections || this.cragRoute.sections.map((section, index) => index),
+        selected_sections: (this.ascentCragRoute || {}).sections_done || this.cragRoute.sections.map((section, index) => index),
         crag_route_id: (this.ascentCragRoute || {}).crag_route_id || this.cragRoute.id
       }
     }

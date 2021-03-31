@@ -432,9 +432,9 @@
     "ropingStatus": {
       "lead_climb": "Tête",
       "top_rope": "Moulinette",
-      "multi_pitch_leader": "Tête (multi pitch)",
-      "multi_pitch_second": "Second (multi pitch)",
-      "multi_pitch_alternate_lead": "Réversible (multi pitch)"
+      "multi_pitch_leader": "Tête (Grande voie)",
+      "multi_pitch_second": "Second (Grande voie)",
+      "multi_pitch_alternate_lead": "Réversible (Grande voie)"
     },
     "hardnessStatus": {
       "easy_for_the_grade": "Facile pour la cotation",

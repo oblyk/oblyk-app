@@ -18,6 +18,8 @@
           :ascent-crag-route="ascentCragRoute"
         />
       </div>
+
+      <!-- Ascent status, Roping status & difficulty appreciation -->
       <ascent-crag-route-status-icon
         :crag-route="cragRoute"
         :ascent-status="ascentCragRoute.ascent_status"
@@ -29,13 +31,45 @@
       <span v-if="ascentCragRoute.grade_appreciation_text">
         , {{ ascentCragRoute.grade_appreciation_text }}
       </span>
+
+      <!-- Number of attempt -->
       <div v-if="ascentCragRoute.attempt" v-html="$t('components.ascentCragRoute.numberOfAttempt', { number: ascentCragRoute.attempt})" />
-      <div v-if="ascentCragRoute.comment">
+
+      <div v-if="ascentCragRoute.CragRoute.sections_count > 1">
+        <p
+          class="text-decoration-underline"
+          v-if="ascentCragRoute.CragRoute.sections_count === ascentCragRoute.sections.length"
+        >
+          {{ $t('components.ascentCragRoute.iMadeCountPitch', { count: ascentCragRoute.CragRoute.sections_count }) }}
+        </p>
+        <div v-else>
+          <p class="mb-0 text-decoration-underline">
+            {{ $t('components.ascentCragRoute.pitchMade') }} :
+          </p>
+          <ul class="list-style-none pl-3">
+            <li
+              v-for="(section, index) in ascentCragRoute.sections"
+              :key="`ascent-section-${index}`"
+            >
+              <strong>L {{ section.index + 1 }} :</strong> {{ section.grade }}
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Comment -->
+      <div v-if="ascentCragRoute.comment || ascentCragRoute.note">
         <v-divider class="mb-2 mt-2" />
-        <markdown-text :text="ascentCragRoute.comment" />
+
+        <!-- Comment -->
+        <markdown-text :text="ascentCragRoute.comment" v-if="ascentCragRoute.comment" />
+
+        <!-- Note -->
         <div v-if="ascentCragRoute.note" class="mt-2">
           <note :note="ascentCragRoute.note" /> {{ $t(`models.note.${noteText(ascentCragRoute.note)}`)}}
         </div>
+
+        <!-- Public or private comment -->
         <div class="text--disabled" v-if="ascentCragRoute.private_comment">
           <v-icon x-small>
             mdi-lock

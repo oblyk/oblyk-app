@@ -205,7 +205,8 @@
       "numberOfAttempt": "Number of attempt : %{number}",
       "myCommentaire": "My comment",
       "privateComment": "private comment",
-      "publicComment": "public comment"
+      "publicComment": "public comment",
+      "iMadeCountPitch": "I made the %{count} pitch"
     },
     "area": {
       "description": "<strong>%{name}</strong> is a grouping of %{crags} climbing crags.<br>These crags contain in total %{routes}, ranging from <strong>%{min}</strong> to <strong>%{max}</strong>",

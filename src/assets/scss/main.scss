@@ -87,6 +87,10 @@
   text-decoration: none;
 }
 
+.list-style-none {
+  list-style: none;
+}
+
 .climbs-pastille {
   &:before {
     content: '';
