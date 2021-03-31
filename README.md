@@ -110,7 +110,7 @@ ___
 
 ## TODO Autres pages
 - [x] Mention légale
-- [ ] Le projet
+- [x] Le projet
 - [x] Nous soutenir
 - [x] Les cotations
 - [ ] Aides
