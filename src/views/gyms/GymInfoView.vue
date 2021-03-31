@@ -1,5 +1,5 @@
 <template>
-  <v-container v-if="gym">
+  <v-container fluid v-if="gym">
     <v-row>
       <v-col class="pa-2" md="7">
         <gym-description :gym="gym" />

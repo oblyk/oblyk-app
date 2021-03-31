@@ -1,5 +1,5 @@
 <template>
-  <v-container v-if="gym">
+  <v-container fluid v-if="gym">
     <v-row>
       <v-col class="col-md-12 pa-2">
         <gym-welcome-card :gym="gym" />

@@ -100,6 +100,7 @@ export default {
 <style lang="scss" scoped>
 .climbs-type, .levels {
   div {
+    color: white;
     font-size: 0.8em;
     height: 14px;
     line-height: 15px;
