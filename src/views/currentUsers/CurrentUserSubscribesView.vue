@@ -7,7 +7,11 @@
         v-for="(subscribe, index) in subscribes"
         :key="`subscribe-${index}`"
       >
-        <user-small-card class="mb-2" :user="recordObject(subscribe.followable_object)" />
+        <user-small-card
+          class="mb-2"
+          :user="recordObject(subscribe.followable_object)"
+          :small="true"
+        />
       </div>
     </div>
   </div>
