@@ -4,84 +4,99 @@ import BaseApi from '@/services/oblyk-api/BaseApi'
 class GymRouteApi extends BaseApi {
   allInGym (gymId) {
     return axios({
+      method: 'GET',
       url: `${this.baseUrl}/gyms/${gymId}/gym_routes.json`,
-      method: 'GET'
+      headers: { HttpApiAccessToken: this.apiAccessToken }
     })
   }
 
   allInSpace (gymId, spaceId, groupBy, orderBy) {
     return axios({
+      method: 'GET',
       url: `${this.baseUrl}/gyms/${gymId}/gym_spaces/${spaceId}/gym_routes.json`,
-      params: { group_by: groupBy, order_by: orderBy },
-      method: 'GET'
+      headers: { HttpApiAccessToken: this.apiAccessToken },
+      params: { group_by: groupBy, order_by: orderBy }
     })
   }
 
   allInSector (gymId, spaceId, sectorId) {
     return axios({
+      method: 'GET',
       url: `${this.baseUrl}/gyms/${gymId}/gym_spaces/${spaceId}/gym_sectors/${sectorId}/gym_routes.json`,
-      method: 'GET'
+      headers: { HttpApiAccessToken: this.apiAccessToken }
     })
   }
 
   find (gymId, spaceId, routeId) {
     return axios({
+      method: 'GET',
       url: `${this.baseUrl}/gyms/${gymId}/gym_spaces/${spaceId}/gym_routes/${routeId}.json`,
-      method: 'GET'
+      headers: { HttpApiAccessToken: this.apiAccessToken }
     })
   }
 
   update (data) {
     return axios({
+      method: 'PUT',
       url: `${this.baseUrl}/gyms/${data.gym_id}/gym_spaces/${data.gym_space_id}/gym_sectors/${data.gym_sector_id}/gym_routes/${data.id}.json`,
-      headers: { Authorization: this.authToken() },
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
       data: {
         gym_route: data
-      },
-      method: 'PUT'
+      }
     })
   }
 
   dismount (gymId, gymRouteId) {
     return axios({
+      method: 'PUT',
       url: `${this.baseUrl}/gyms/${gymId}/gym_routes/${gymRouteId}/dismount.json`,
-      headers: { Authorization: this.authToken() },
-      method: 'PUT'
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
     })
   }
 
   picture (data, gymId, gymRouteId) {
     return axios({
+      method: 'POST',
       url: `${this.baseUrl}/gyms/${gymId}/gym_routes/${gymRouteId}/add_picture.json`,
       headers: {
         Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken,
         'Content-Type': 'multipart/form-data'
       },
-      data: data,
-      method: 'POST'
+      data: data
     })
   }
 
   thumbnail (data, gymId, gymRouteId) {
     return axios({
+      method: 'POST',
       url: `${this.baseUrl}/gyms/${gymId}/gym_routes/${gymRouteId}/add_thumbnail.json`,
       headers: {
         Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken,
         'Content-Type': 'multipart/form-data'
       },
-      data: data,
-      method: 'POST'
+      data: data
     })
   }
 
   create (data) {
     return axios({
+      method: 'POST',
       url: `${this.baseUrl}/gyms/${data.gym_id}/gym_spaces/${data.gym_space_id}/gym_sectors/${data.gym_sector_id}/gym_routes.json`,
-      headers: { Authorization: this.authToken() },
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
       data: {
         gym_route: data
-      },
-      method: 'POST'
+      }
     })
   }
 }

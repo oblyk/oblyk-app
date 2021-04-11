@@ -4,8 +4,9 @@ import BaseApi from '@/services/oblyk-api/BaseApi'
 class AreaApi extends BaseApi {
   all () {
     return axios({
+      method: 'GET',
       url: `${this.baseUrl}/areas.json`,
-      method: 'GET'
+      headers: { HttpApiAccessToken: this.apiAccessToken }
     })
   }
 
@@ -14,85 +15,102 @@ class AreaApi extends BaseApi {
     this.tokenSearchSource = CancelToken.source()
 
     return axios({
-      cancelToken: this.tokenSearchSource.token,
+      method: 'GET',
       url: `${this.baseUrl}/areas/search.json?query=${query}`,
-      method: 'GET'
+      cancelToken: this.tokenSearchSource.token,
+      headers: { HttpApiAccessToken: this.apiAccessToken }
     })
   }
 
   geoJson (areaId) {
     return axios({
+      method: 'GET',
       url: `${this.baseUrl}/areas/${areaId}/geo_json.json`,
-      method: 'GET'
+      headers: { HttpApiAccessToken: this.apiAccessToken }
     })
   }
 
   crags (areaId) {
     return axios({
+      method: 'GET',
       url: `${this.baseUrl}/areas/${areaId}/crags.json`,
-      method: 'GET'
+      headers: { HttpApiAccessToken: this.apiAccessToken }
     })
   }
 
   find (areaId) {
     return axios({
+      method: 'GET',
       url: `${this.baseUrl}/areas/${areaId}.json`,
-      method: 'GET'
+      headers: { HttpApiAccessToken: this.apiAccessToken }
     })
   }
 
   photos (areaId) {
     return axios({
+      method: 'GET',
       url: `${this.baseUrl}/areas/${areaId}/photos.json`,
-      method: 'GET'
+      headers: { HttpApiAccessToken: this.apiAccessToken }
     })
   }
 
   create (data) {
     return axios({
+      method: 'POST',
       url: `${this.baseUrl}/areas.json`,
-      headers: { Authorization: this.authToken() },
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
       data: {
         area: data
-      },
-      method: 'POST'
+      }
     })
   }
 
   update (data) {
     return axios({
+      method: 'PUT',
       url: `${this.baseUrl}/areas/${data.id}.json`,
-      headers: { Authorization: this.authToken() },
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
       data: {
         area: data
-      },
-      method: 'PUT'
+      }
     })
   }
 
   addCrag (areaId, cragId) {
     return axios({
+      method: 'POST',
       url: `${this.baseUrl}/areas/${areaId}/add_crag.json`,
-      headers: { Authorization: this.authToken() },
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
       data: {
         area: {
           crag_id: cragId
         }
-      },
-      method: 'POST'
+      }
     })
   }
 
   removeCrag (areaId, cragId) {
     return axios({
+      method: 'DELETE',
       url: `${this.baseUrl}/areas/${areaId}/remove_crag.json`,
-      headers: { Authorization: this.authToken() },
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
       data: {
         area: {
           crag_id: cragId
         }
-      },
-      method: 'DELETE'
+      }
     })
   }
 }

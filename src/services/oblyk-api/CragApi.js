@@ -4,15 +4,17 @@ import BaseApi from '@/services/oblyk-api/BaseApi'
 class CragApi extends BaseApi {
   all () {
     return axios({
+      method: 'GET',
       url: `${this.baseUrl}/crags.json`,
-      method: 'GET'
+      headers: { HttpApiAccessToken: this.apiAccessToken }
     })
   }
 
   versions (cragId) {
     return axios({
+      method: 'GET',
       url: `${this.baseUrl}/crags/${cragId}/versions.json`,
-      method: 'GET'
+      headers: { HttpApiAccessToken: this.apiAccessToken }
     })
   }
 
@@ -21,113 +23,131 @@ class CragApi extends BaseApi {
     this.tokenSearchSource = CancelToken.source()
 
     return axios({
-      cancelToken: this.tokenSearchSource.token,
+      method: 'GET',
       url: `${this.baseUrl}/crags/search.json?query=${query}`,
-      method: 'GET'
+      cancelToken: this.tokenSearchSource.token,
+      headers: { HttpApiAccessToken: this.apiAccessToken }
     })
   }
 
   geoJson () {
     return axios({
+      method: 'GET',
       url: `${this.baseUrl}/crags/geo_json.json`,
-      method: 'GET'
+      headers: { HttpApiAccessToken: this.apiAccessToken }
     })
   }
 
   guideBooksAround (cragId) {
     return axios({
+      method: 'GET',
       url: `${this.baseUrl}/crags/${cragId}/guide_books_around.json`,
-      method: 'GET'
+      headers: { HttpApiAccessToken: this.apiAccessToken }
     })
   }
 
   areasAround (cragId) {
     return axios({
+      method: 'GET',
       url: `${this.baseUrl}/crags/${cragId}/areas_around.json`,
-      method: 'GET'
+      headers: { HttpApiAccessToken: this.apiAccessToken }
     })
   }
 
   cragsAround (latitude, longitude, distance = '20km') {
     return axios({
+      method: 'GET',
       url: `${this.baseUrl}/crags/crags_around.json`,
+      headers: { HttpApiAccessToken: this.apiAccessToken },
       params: {
         latitude: latitude,
         longitude: longitude,
         distance: distance
-      },
-      method: 'GET'
+      }
     })
   }
 
   geoJsonAround (cragId) {
     return axios({
+      method: 'GET',
       url: `${this.baseUrl}/crags/${cragId}/geo_json_around.json`,
-      method: 'GET'
+      headers: { HttpApiAccessToken: this.apiAccessToken }
     })
   }
 
   find (cragId) {
     return axios({
+      method: 'GET',
       url: `${this.baseUrl}/crags/${cragId}.json`,
-      method: 'GET'
+      headers: { HttpApiAccessToken: this.apiAccessToken }
     })
   }
 
   guides (cragId) {
     return axios({
+      method: 'GET',
       url: `${this.baseUrl}/crags/${cragId}/guides.json`,
-      method: 'GET'
+      headers: { HttpApiAccessToken: this.apiAccessToken }
     })
   }
 
   articles (cragId) {
     return axios({
+      method: 'GET',
       url: `${this.baseUrl}/crags/${cragId}/articles.json`,
-      method: 'GET'
+      headers: { HttpApiAccessToken: this.apiAccessToken }
     })
   }
 
   photos (cragId) {
     return axios({
+      method: 'GET',
       url: `${this.baseUrl}/crags/${cragId}/photos.json`,
-      method: 'GET'
+      headers: { HttpApiAccessToken: this.apiAccessToken }
     })
   }
 
   videos (cragId) {
     return axios({
+      method: 'GET',
       url: `${this.baseUrl}/crags/${cragId}/videos.json`,
-      method: 'GET'
+      headers: { HttpApiAccessToken: this.apiAccessToken }
     })
   }
 
   routeFigures (cragId) {
     return axios({
+      method: 'GET',
       url: `${this.baseUrl}/crags/${cragId}/route_figures.json`,
-      method: 'GET'
+      headers: { HttpApiAccessToken: this.apiAccessToken }
     })
   }
 
   create (data) {
     return axios({
+      method: 'POST',
       url: `${this.baseUrl}/crags.json`,
-      headers: { Authorization: this.authToken() },
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
       data: {
         crag: data
-      },
-      method: 'POST'
+      }
     })
   }
 
   update (data) {
     return axios({
+      method: 'PUT',
       url: `${this.baseUrl}/crags/${data.id}.json`,
-      headers: { Authorization: this.authToken() },
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
       data: {
         crag: data
-      },
-      method: 'PUT'
+      }
     })
   }
 }

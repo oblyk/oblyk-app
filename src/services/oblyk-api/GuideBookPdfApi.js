@@ -4,38 +4,44 @@ import BaseApi from '@/services/oblyk-api/BaseApi'
 class GuideBookPdfApi extends BaseApi {
   all () {
     return axios({
+      method: 'GET',
       url: `${this.baseUrl}/guide_book_pdfs.json`,
-      method: 'GET'
+      headers: { HttpApiAccessToken: this.apiAccessToken }
     })
   }
 
   find (id) {
     return axios({
+      method: 'GET',
       url: `${this.baseUrl}/guide_book_pdfs/${id}.json`,
-      method: 'GET'
+      headers: { HttpApiAccessToken: this.apiAccessToken }
     })
   }
 
   update (data) {
     return axios({
+      method: 'PUT',
       url: `${this.baseUrl}/guide_book_pdfs/${data.id}.json`,
-      headers: { Authorization: this.authToken() },
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
       data: {
         guide_book_pdf: data
-      },
-      method: 'PUT'
+      }
     })
   }
 
   create (data) {
     return axios({
+      method: 'POST',
       url: `${this.baseUrl}/guide_book_pdfs.json`,
       headers: {
         Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken,
         'Content-Type': 'multipart/form-data'
       },
-      data: data,
-      method: 'POST'
+      data: data
     })
   }
 }

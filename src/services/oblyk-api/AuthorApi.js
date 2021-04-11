@@ -4,31 +4,36 @@ import BaseApi from '@/services/oblyk-api/BaseApi'
 class AuthorApi extends BaseApi {
   find (authorId) {
     return axios({
+      method: 'GET',
       url: `${this.baseUrl}/authors/${authorId}.json`,
-      method: 'GET'
+      headers: { HttpApiAccessToken: this.apiAccessToken }
     })
   }
 
   update (data) {
     return axios({
+      method: 'PUT',
       url: `${this.baseUrl}/authors/${data.id}.json`,
-      headers: { Authorization: this.authToken() },
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
       data: {
         author: data
-      },
-      method: 'PUT'
+      }
     })
   }
 
   cover (data, authorId) {
     return axios({
+      method: 'POST',
       url: `${this.baseUrl}/authors/${authorId}/add_cover.json`,
       headers: {
         Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken,
         'Content-Type': 'multipart/form-data'
       },
-      data: data,
-      method: 'POST'
+      data: data
     })
   }
 }

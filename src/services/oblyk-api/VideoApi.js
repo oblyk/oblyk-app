@@ -4,38 +4,48 @@ import BaseApi from '@/services/oblyk-api/BaseApi'
 class VideoApi extends BaseApi {
   find (videoId) {
     return axios({
+      method: 'GET',
       url: `${this.baseUrl}/videos/${videoId}.json`,
-      method: 'GET'
+      headers: { HttpApiAccessToken: this.apiAccessToken }
     })
   }
 
   create (data) {
     return axios({
+      method: 'POST',
       url: `${this.baseUrl}/videos.json`,
-      headers: { Authorization: this.authToken() },
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
       data: {
         video: data
-      },
-      method: 'POST'
+      }
     })
   }
 
   update (data) {
     return axios({
+      method: 'PUT',
       url: `${this.baseUrl}/videos/${data.id}.json`,
-      headers: { Authorization: this.authToken() },
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
       data: {
         video: data
-      },
-      method: 'PUT'
+      }
     })
   }
 
   delete (videoId) {
     return axios({
+      method: 'DELETE',
       url: `${this.baseUrl}/videos/${videoId}.json`,
-      headers: { Authorization: this.authToken() },
-      method: 'DELETE'
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
     })
   }
 }

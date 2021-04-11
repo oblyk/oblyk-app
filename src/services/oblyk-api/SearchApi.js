@@ -4,9 +4,10 @@ import BaseApi from '@/services/oblyk-api/BaseApi'
 class SearchApi extends BaseApi {
   search (query) {
     return axios({
+      method: 'GET',
       url: `${this.baseUrl}/search.json`,
-      params: { query: query },
-      method: 'GET'
+      headers: { HttpApiAccessToken: this.apiAccessToken },
+      params: { query: query }
     })
   }
 }

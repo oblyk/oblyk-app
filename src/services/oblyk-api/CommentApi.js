@@ -4,49 +4,60 @@ import BaseApi from '@/services/oblyk-api/BaseApi'
 class CommentApi extends BaseApi {
   allInCommentable (commentableType, commentableId) {
     return axios({
+      method: 'GET',
       url: `${this.baseUrl}/comments.json`,
+      headers: { HttpApiAccessToken: this.apiAccessToken },
       params: {
         commentable_type: commentableType,
         commentable_id: commentableId
-      },
-      method: 'GET'
+      }
     })
   }
 
   find (commentId) {
     return axios({
+      method: 'GET',
       url: `${this.baseUrl}/comments/${commentId}.json`,
-      method: 'GET'
+      headers: { HttpApiAccessToken: this.apiAccessToken }
     })
   }
 
   create (data) {
     return axios({
+      method: 'POST',
       url: `${this.baseUrl}/comments.json`,
-      headers: { Authorization: this.authToken() },
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
       data: {
         comment: data
-      },
-      method: 'POST'
+      }
     })
   }
 
   update (data) {
     return axios({
+      method: 'PUT',
       url: `${this.baseUrl}/comments/${data.id}.json`,
-      headers: { Authorization: this.authToken() },
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
       data: {
         comment: data
-      },
-      method: 'PUT'
+      }
     })
   }
 
   delete (commentId) {
     return axios({
+      method: 'DELETE',
       url: `${this.baseUrl}/comments/${commentId}.json`,
-      headers: { Authorization: this.authToken() },
-      method: 'DELETE'
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
     })
   }
 }

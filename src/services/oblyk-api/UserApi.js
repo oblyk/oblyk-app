@@ -4,9 +4,12 @@ import BaseApi from '@/services/oblyk-api/BaseApi'
 class UserApi extends BaseApi {
   find (userUuid) {
     return axios({
+      method: 'GET',
       url: `${this.baseUrl}/users/${userUuid}.json`,
-      headers: { Authorization: this.authToken() },
-      method: 'GET'
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
     })
   }
 
@@ -15,93 +18,126 @@ class UserApi extends BaseApi {
     this.tokenSearchSource = CancelToken.source()
 
     return axios({
-      cancelToken: this.tokenSearchSource.token,
-      headers: { Authorization: this.authToken() },
+      method: 'GET',
       url: `${this.baseUrl}/users/search.json?query=${query}`,
-      method: 'GET'
+      cancelToken: this.tokenSearchSource.token,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
     })
   }
 
   contribution (userUuid) {
     return axios({
+      method: 'GET',
       url: `${this.baseUrl}/users/${userUuid}/contribution.json`,
-      headers: { Authorization: this.authToken() },
-      method: 'GET'
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
     })
   }
 
   photos (userUuid) {
     return axios({
+      method: 'GET',
       url: `${this.baseUrl}/users/${userUuid}/photos.json`,
-      headers: { Authorization: this.authToken() },
-      method: 'GET'
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
     })
   }
 
   videos (userUuid) {
     return axios({
+      method: 'GET',
       url: `${this.baseUrl}/users/${userUuid}/videos.json`,
-      headers: { Authorization: this.authToken() },
-      method: 'GET'
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
     })
   }
 
   subscribes (userUuid) {
     return axios({
+      method: 'GET',
       url: `${this.baseUrl}/users/${userUuid}/subscribes.json`,
-      headers: { Authorization: this.authToken() },
-      method: 'GET'
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
     })
   }
 
   followers (userUuid) {
     return axios({
+      method: 'GET',
       url: `${this.baseUrl}/users/${userUuid}/followers.json`,
-      headers: { Authorization: this.authToken() },
-      method: 'GET'
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
     })
   }
 
   userPartnerGeoJson (userUuid) {
     return axios({
+      method: 'GET',
       url: `${this.baseUrl}/users/${userUuid}/partner_user_geo_json.json`,
-      headers: { Authorization: this.authToken() },
-      method: 'GET'
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
     })
   }
 
   outdoorFigures (userUuid) {
     return axios({
+      method: 'GET',
       url: `${this.baseUrl}/users/${userUuid}/outdoor_figures.json`,
-      headers: { Authorization: this.authToken() },
-      method: 'GET'
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
     })
   }
 
   outdoorClimbTypesChart (userUuid) {
     return axios({
+      method: 'GET',
       url: `${this.baseUrl}/users/${userUuid}/outdoor_climb_types_chart.json`,
-      headers: { Authorization: this.authToken() },
-      method: 'GET'
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
     })
   }
 
   ascendedCragRoutes (userUuid, order = 'difficulty') {
     return axios({
+      method: 'GET',
       url: `${this.baseUrl}/users/${userUuid}/ascended_crag_routes.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
       params: {
         order: order
-      },
-      headers: { Authorization: this.authToken() },
-      method: 'GET'
+      }
     })
   }
 
   outdoorGradesChart (userUuid) {
     return axios({
+      method: 'GET',
       url: `${this.baseUrl}/users/${userUuid}/outdoor_grades_chart.json`,
-      headers: { Authorization: this.authToken() },
-      method: 'GET'
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
     })
   }
 }

@@ -4,75 +4,88 @@ import BaseApi from '@/services/oblyk-api/BaseApi'
 class CragSectorApi extends BaseApi {
   all (cragId) {
     return axios({
+      method: 'GET',
       url: `${this.baseUrl}/crags/${cragId}/crag_sectors.json`,
-      method: 'GET'
+      headers: { HttpApiAccessToken: this.apiAccessToken }
     })
   }
 
   geoJsonAround (cragId, cragSectorId) {
     return axios({
+      method: 'GET',
       url: `${this.baseUrl}/crags/${cragId}/crag_sectors/geo_json_around.json`,
+      headers: { HttpApiAccessToken: this.apiAccessToken },
       params: {
         exclude_id: cragSectorId
-      },
-      method: 'GET'
+      }
     })
   }
 
   versions (cragSectorId) {
     return axios({
+      method: 'GET',
       url: `${this.baseUrl}/crag_sectors/${cragSectorId}/versions.json`,
-      method: 'GET'
+      headers: { HttpApiAccessToken: this.apiAccessToken }
     })
   }
 
   photos (cragSectorId) {
     return axios({
+      method: 'GET',
       url: `${this.baseUrl}/crag_sectors/${cragSectorId}/photos.json`,
-      method: 'GET'
+      headers: { HttpApiAccessToken: this.apiAccessToken }
     })
   }
 
   videos (cragSectorId) {
     return axios({
+      method: 'GET',
       url: `${this.baseUrl}/crag_sectors/${cragSectorId}/videos.json`,
-      method: 'GET'
+      headers: { HttpApiAccessToken: this.apiAccessToken }
     })
   }
 
   find (cragId, cragSectorId) {
     return axios({
+      method: 'GET',
       url: `${this.baseUrl}/crags/${cragId}/crag_sectors/${cragSectorId}.json`,
-      method: 'GET'
+      headers: { HttpApiAccessToken: this.apiAccessToken }
     })
   }
 
   create (data) {
     return axios({
+      method: 'POST',
       url: `${this.baseUrl}/crags/${data.crag_id}/crag_sectors.json`,
-      headers: { Authorization: this.authToken() },
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
       data: {
         crag_sector: data
-      },
-      method: 'POST'
+      }
     })
   }
 
   update (data) {
     return axios({
+      method: 'PUT',
       url: `${this.baseUrl}/crags/${data.crag_id}/crag_sectors/${data.id}.json`,
-      headers: { Authorization: this.authToken() },
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
       data: {
         crag_sector: data
-      },
-      method: 'PUT'
+      }
     })
   }
 
   routeFigures (cragSectorId) {
     return axios({
+      method: 'GET',
       url: `${this.baseUrl}/crag_sectors/${cragSectorId}/route_figures.json`,
-      method: 'GET'
+      headers: { HttpApiAccessToken: this.apiAccessToken }
     })
   }
 }

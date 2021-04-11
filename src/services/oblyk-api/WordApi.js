@@ -4,8 +4,9 @@ import BaseApi from '@/services/oblyk-api/BaseApi'
 class WordApi extends BaseApi {
   all (page = 1) {
     return axios({
+      method: 'GET',
       url: `${this.baseUrl}/words.json?page=${page}`,
-      method: 'GET'
+      headers: { HttpApiAccessToken: this.apiAccessToken }
     })
   }
 
@@ -14,45 +15,54 @@ class WordApi extends BaseApi {
     this.tokenSearchSource = CancelToken.source()
 
     return axios({
-      cancelToken: this.tokenSearchSource.token,
+      method: 'GET',
       url: `${this.baseUrl}/words/search.json?query=${query}`,
-      method: 'GET'
+      cancelToken: this.tokenSearchSource.token,
+      headers: { HttpApiAccessToken: this.apiAccessToken }
     })
   }
 
   find (wordId) {
     return axios({
+      method: 'GET',
       url: `${this.baseUrl}/words/${wordId}.json`,
-      method: 'GET'
+      headers: { HttpApiAccessToken: this.apiAccessToken }
     })
   }
 
   versions (wordId) {
     return axios({
+      method: 'GET',
       url: `${this.baseUrl}/words/${wordId}/versions.json`,
-      method: 'GET'
+      headers: { HttpApiAccessToken: this.apiAccessToken }
     })
   }
 
   update (data) {
     return axios({
+      method: 'PUT',
       url: `${this.baseUrl}/words/${data.id}.json`,
-      headers: { Authorization: this.authToken() },
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
       data: {
         word: data
-      },
-      method: 'PUT'
+      }
     })
   }
 
   create (data) {
     return axios({
+      method: 'POST',
       url: `${this.baseUrl}/words.json`,
-      headers: { Authorization: this.authToken() },
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
       data: {
         word: data
-      },
-      method: 'POST'
+      }
     })
   }
 }
