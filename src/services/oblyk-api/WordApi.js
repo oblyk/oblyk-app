@@ -5,7 +5,7 @@ class WordApi extends BaseApi {
   all (page = 1) {
     return axios({
       method: 'GET',
-      url: `${this.baseUrl}/words.json?page=${page}`,
+      url: `${this.baseUrl}/public/words.json?page=${page}`,
       headers: { HttpApiAccessToken: this.apiAccessToken }
     })
   }
@@ -16,7 +16,7 @@ class WordApi extends BaseApi {
 
     return axios({
       method: 'GET',
-      url: `${this.baseUrl}/words/search.json?query=${query}`,
+      url: `${this.baseUrl}/public/words/search.json?query=${query}`,
       cancelToken: this.tokenSearchSource.token,
       headers: { HttpApiAccessToken: this.apiAccessToken }
     })
@@ -25,7 +25,7 @@ class WordApi extends BaseApi {
   find (wordId) {
     return axios({
       method: 'GET',
-      url: `${this.baseUrl}/words/${wordId}.json`,
+      url: `${this.baseUrl}/public/words/${wordId}.json`,
       headers: { HttpApiAccessToken: this.apiAccessToken }
     })
   }
@@ -33,7 +33,7 @@ class WordApi extends BaseApi {
   versions (wordId) {
     return axios({
       method: 'GET',
-      url: `${this.baseUrl}/words/${wordId}/versions.json`,
+      url: `${this.baseUrl}/public/words/${wordId}/versions.json`,
       headers: { HttpApiAccessToken: this.apiAccessToken }
     })
   }
@@ -41,7 +41,7 @@ class WordApi extends BaseApi {
   update (data) {
     return axios({
       method: 'PUT',
-      url: `${this.baseUrl}/words/${data.id}.json`,
+      url: `${this.baseUrl}/public/words/${data.id}.json`,
       headers: {
         Authorization: this.authToken(),
         HttpApiAccessToken: this.apiAccessToken
@@ -55,7 +55,7 @@ class WordApi extends BaseApi {
   create (data) {
     return axios({
       method: 'POST',
-      url: `${this.baseUrl}/words.json`,
+      url: `${this.baseUrl}/public/words.json`,
       headers: {
         Authorization: this.authToken(),
         HttpApiAccessToken: this.apiAccessToken

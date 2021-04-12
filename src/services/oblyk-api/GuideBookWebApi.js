@@ -5,7 +5,7 @@ class GuideBookWebApi extends BaseApi {
   all () {
     return axios({
       method: 'GET',
-      url: `${this.baseUrl}/guide_book_webs.json`,
+      url: `${this.baseUrl}/public/guide_book_webs.json`,
       headers: { HttpApiAccessToken: this.apiAccessToken }
     })
   }
@@ -13,7 +13,7 @@ class GuideBookWebApi extends BaseApi {
   find (id) {
     return axios({
       method: 'GET',
-      url: `${this.baseUrl}/guide_book_webs/${id}.json`,
+      url: `${this.baseUrl}/public/guide_book_webs/${id}.json`,
       headers: { HttpApiAccessToken: this.apiAccessToken }
     })
   }
@@ -21,7 +21,7 @@ class GuideBookWebApi extends BaseApi {
   update (data) {
     return axios({
       method: 'PUT',
-      url: `${this.baseUrl}/guide_book_webs/${data.id}.json`,
+      url: `${this.baseUrl}/public/guide_book_webs/${data.id}.json`,
       headers: {
         Authorization: this.authToken(),
         HttpApiAccessToken: this.apiAccessToken
@@ -35,7 +35,7 @@ class GuideBookWebApi extends BaseApi {
   create (data) {
     return axios({
       method: 'POST',
-      url: `${this.baseUrl}/guide_book_webs.json`,
+      url: `${this.baseUrl}/public/guide_book_webs.json`,
       headers: {
         Authorization: this.authToken(),
         HttpApiAccessToken: this.apiAccessToken

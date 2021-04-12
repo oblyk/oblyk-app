@@ -5,7 +5,7 @@ class CragApi extends BaseApi {
   all () {
     return axios({
       method: 'GET',
-      url: `${this.baseUrl}/crags.json`,
+      url: `${this.baseUrl}/public/crags.json`,
       headers: { HttpApiAccessToken: this.apiAccessToken }
     })
   }
@@ -13,7 +13,7 @@ class CragApi extends BaseApi {
   versions (cragId) {
     return axios({
       method: 'GET',
-      url: `${this.baseUrl}/crags/${cragId}/versions.json`,
+      url: `${this.baseUrl}/public/crags/${cragId}/versions.json`,
       headers: { HttpApiAccessToken: this.apiAccessToken }
     })
   }
@@ -24,7 +24,7 @@ class CragApi extends BaseApi {
 
     return axios({
       method: 'GET',
-      url: `${this.baseUrl}/crags/search.json?query=${query}`,
+      url: `${this.baseUrl}/public/crags/search.json?query=${query}`,
       cancelToken: this.tokenSearchSource.token,
       headers: { HttpApiAccessToken: this.apiAccessToken }
     })
@@ -33,7 +33,7 @@ class CragApi extends BaseApi {
   geoJson () {
     return axios({
       method: 'GET',
-      url: `${this.baseUrl}/crags/geo_json.json`,
+      url: `${this.baseUrl}/public/crags/geo_json.json`,
       headers: { HttpApiAccessToken: this.apiAccessToken }
     })
   }
@@ -41,7 +41,7 @@ class CragApi extends BaseApi {
   guideBooksAround (cragId) {
     return axios({
       method: 'GET',
-      url: `${this.baseUrl}/crags/${cragId}/guide_books_around.json`,
+      url: `${this.baseUrl}/public/crags/${cragId}/guide_books_around.json`,
       headers: { HttpApiAccessToken: this.apiAccessToken }
     })
   }
@@ -49,7 +49,7 @@ class CragApi extends BaseApi {
   areasAround (cragId) {
     return axios({
       method: 'GET',
-      url: `${this.baseUrl}/crags/${cragId}/areas_around.json`,
+      url: `${this.baseUrl}/public/crags/${cragId}/areas_around.json`,
       headers: { HttpApiAccessToken: this.apiAccessToken }
     })
   }
@@ -57,7 +57,7 @@ class CragApi extends BaseApi {
   cragsAround (latitude, longitude, distance = '20km') {
     return axios({
       method: 'GET',
-      url: `${this.baseUrl}/crags/crags_around.json`,
+      url: `${this.baseUrl}/public/crags/crags_around.json`,
       headers: { HttpApiAccessToken: this.apiAccessToken },
       params: {
         latitude: latitude,
@@ -70,7 +70,7 @@ class CragApi extends BaseApi {
   geoJsonAround (cragId) {
     return axios({
       method: 'GET',
-      url: `${this.baseUrl}/crags/${cragId}/geo_json_around.json`,
+      url: `${this.baseUrl}/public/crags/${cragId}/geo_json_around.json`,
       headers: { HttpApiAccessToken: this.apiAccessToken }
     })
   }
@@ -78,7 +78,7 @@ class CragApi extends BaseApi {
   find (cragId) {
     return axios({
       method: 'GET',
-      url: `${this.baseUrl}/crags/${cragId}.json`,
+      url: `${this.baseUrl}/public/crags/${cragId}.json`,
       headers: { HttpApiAccessToken: this.apiAccessToken }
     })
   }
@@ -86,7 +86,7 @@ class CragApi extends BaseApi {
   guides (cragId) {
     return axios({
       method: 'GET',
-      url: `${this.baseUrl}/crags/${cragId}/guides.json`,
+      url: `${this.baseUrl}/public/crags/${cragId}/guides.json`,
       headers: { HttpApiAccessToken: this.apiAccessToken }
     })
   }
@@ -94,7 +94,7 @@ class CragApi extends BaseApi {
   articles (cragId) {
     return axios({
       method: 'GET',
-      url: `${this.baseUrl}/crags/${cragId}/articles.json`,
+      url: `${this.baseUrl}/public/crags/${cragId}/articles.json`,
       headers: { HttpApiAccessToken: this.apiAccessToken }
     })
   }
@@ -102,7 +102,7 @@ class CragApi extends BaseApi {
   photos (cragId) {
     return axios({
       method: 'GET',
-      url: `${this.baseUrl}/crags/${cragId}/photos.json`,
+      url: `${this.baseUrl}/public/crags/${cragId}/photos.json`,
       headers: { HttpApiAccessToken: this.apiAccessToken }
     })
   }
@@ -110,7 +110,7 @@ class CragApi extends BaseApi {
   videos (cragId) {
     return axios({
       method: 'GET',
-      url: `${this.baseUrl}/crags/${cragId}/videos.json`,
+      url: `${this.baseUrl}/public/crags/${cragId}/videos.json`,
       headers: { HttpApiAccessToken: this.apiAccessToken }
     })
   }
@@ -118,7 +118,7 @@ class CragApi extends BaseApi {
   routeFigures (cragId) {
     return axios({
       method: 'GET',
-      url: `${this.baseUrl}/crags/${cragId}/route_figures.json`,
+      url: `${this.baseUrl}/public/crags/${cragId}/route_figures.json`,
       headers: { HttpApiAccessToken: this.apiAccessToken }
     })
   }
@@ -126,7 +126,7 @@ class CragApi extends BaseApi {
   create (data) {
     return axios({
       method: 'POST',
-      url: `${this.baseUrl}/crags.json`,
+      url: `${this.baseUrl}/public/crags.json`,
       headers: {
         Authorization: this.authToken(),
         HttpApiAccessToken: this.apiAccessToken
@@ -140,7 +140,7 @@ class CragApi extends BaseApi {
   update (data) {
     return axios({
       method: 'PUT',
-      url: `${this.baseUrl}/crags/${data.id}.json`,
+      url: `${this.baseUrl}/public/crags/${data.id}.json`,
       headers: {
         Authorization: this.authToken(),
         HttpApiAccessToken: this.apiAccessToken

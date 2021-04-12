@@ -5,7 +5,7 @@ class AreaApi extends BaseApi {
   all () {
     return axios({
       method: 'GET',
-      url: `${this.baseUrl}/areas.json`,
+      url: `${this.baseUrl}/public/areas.json`,
       headers: { HttpApiAccessToken: this.apiAccessToken }
     })
   }
@@ -16,7 +16,7 @@ class AreaApi extends BaseApi {
 
     return axios({
       method: 'GET',
-      url: `${this.baseUrl}/areas/search.json?query=${query}`,
+      url: `${this.baseUrl}/public/areas/search.json?query=${query}`,
       cancelToken: this.tokenSearchSource.token,
       headers: { HttpApiAccessToken: this.apiAccessToken }
     })
@@ -25,7 +25,7 @@ class AreaApi extends BaseApi {
   geoJson (areaId) {
     return axios({
       method: 'GET',
-      url: `${this.baseUrl}/areas/${areaId}/geo_json.json`,
+      url: `${this.baseUrl}/public/areas/${areaId}/geo_json.json`,
       headers: { HttpApiAccessToken: this.apiAccessToken }
     })
   }
@@ -33,7 +33,7 @@ class AreaApi extends BaseApi {
   crags (areaId) {
     return axios({
       method: 'GET',
-      url: `${this.baseUrl}/areas/${areaId}/crags.json`,
+      url: `${this.baseUrl}/public/areas/${areaId}/crags.json`,
       headers: { HttpApiAccessToken: this.apiAccessToken }
     })
   }
@@ -41,7 +41,7 @@ class AreaApi extends BaseApi {
   find (areaId) {
     return axios({
       method: 'GET',
-      url: `${this.baseUrl}/areas/${areaId}.json`,
+      url: `${this.baseUrl}/public/areas/${areaId}.json`,
       headers: { HttpApiAccessToken: this.apiAccessToken }
     })
   }
@@ -49,7 +49,7 @@ class AreaApi extends BaseApi {
   photos (areaId) {
     return axios({
       method: 'GET',
-      url: `${this.baseUrl}/areas/${areaId}/photos.json`,
+      url: `${this.baseUrl}/public/areas/${areaId}/photos.json`,
       headers: { HttpApiAccessToken: this.apiAccessToken }
     })
   }
@@ -57,7 +57,7 @@ class AreaApi extends BaseApi {
   create (data) {
     return axios({
       method: 'POST',
-      url: `${this.baseUrl}/areas.json`,
+      url: `${this.baseUrl}/public/areas.json`,
       headers: {
         Authorization: this.authToken(),
         HttpApiAccessToken: this.apiAccessToken
@@ -71,7 +71,7 @@ class AreaApi extends BaseApi {
   update (data) {
     return axios({
       method: 'PUT',
-      url: `${this.baseUrl}/areas/${data.id}.json`,
+      url: `${this.baseUrl}/public/areas/${data.id}.json`,
       headers: {
         Authorization: this.authToken(),
         HttpApiAccessToken: this.apiAccessToken
@@ -85,7 +85,7 @@ class AreaApi extends BaseApi {
   addCrag (areaId, cragId) {
     return axios({
       method: 'POST',
-      url: `${this.baseUrl}/areas/${areaId}/add_crag.json`,
+      url: `${this.baseUrl}/public/areas/${areaId}/add_crag.json`,
       headers: {
         Authorization: this.authToken(),
         HttpApiAccessToken: this.apiAccessToken
@@ -101,7 +101,7 @@ class AreaApi extends BaseApi {
   removeCrag (areaId, cragId) {
     return axios({
       method: 'DELETE',
-      url: `${this.baseUrl}/areas/${areaId}/remove_crag.json`,
+      url: `${this.baseUrl}/public/areas/${areaId}/remove_crag.json`,
       headers: {
         Authorization: this.authToken(),
         HttpApiAccessToken: this.apiAccessToken

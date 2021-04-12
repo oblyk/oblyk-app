@@ -5,7 +5,7 @@ class CragSectorApi extends BaseApi {
   all (cragId) {
     return axios({
       method: 'GET',
-      url: `${this.baseUrl}/crags/${cragId}/crag_sectors.json`,
+      url: `${this.baseUrl}/public/crags/${cragId}/crag_sectors.json`,
       headers: { HttpApiAccessToken: this.apiAccessToken }
     })
   }
@@ -13,7 +13,7 @@ class CragSectorApi extends BaseApi {
   geoJsonAround (cragId, cragSectorId) {
     return axios({
       method: 'GET',
-      url: `${this.baseUrl}/crags/${cragId}/crag_sectors/geo_json_around.json`,
+      url: `${this.baseUrl}/public/crags/${cragId}/crag_sectors/geo_json_around.json`,
       headers: { HttpApiAccessToken: this.apiAccessToken },
       params: {
         exclude_id: cragSectorId
@@ -24,7 +24,7 @@ class CragSectorApi extends BaseApi {
   versions (cragSectorId) {
     return axios({
       method: 'GET',
-      url: `${this.baseUrl}/crag_sectors/${cragSectorId}/versions.json`,
+      url: `${this.baseUrl}/public/crag_sectors/${cragSectorId}/versions.json`,
       headers: { HttpApiAccessToken: this.apiAccessToken }
     })
   }
@@ -32,7 +32,7 @@ class CragSectorApi extends BaseApi {
   photos (cragSectorId) {
     return axios({
       method: 'GET',
-      url: `${this.baseUrl}/crag_sectors/${cragSectorId}/photos.json`,
+      url: `${this.baseUrl}/public/crag_sectors/${cragSectorId}/photos.json`,
       headers: { HttpApiAccessToken: this.apiAccessToken }
     })
   }
@@ -40,7 +40,7 @@ class CragSectorApi extends BaseApi {
   videos (cragSectorId) {
     return axios({
       method: 'GET',
-      url: `${this.baseUrl}/crag_sectors/${cragSectorId}/videos.json`,
+      url: `${this.baseUrl}/public/crag_sectors/${cragSectorId}/videos.json`,
       headers: { HttpApiAccessToken: this.apiAccessToken }
     })
   }
@@ -48,7 +48,7 @@ class CragSectorApi extends BaseApi {
   find (cragId, cragSectorId) {
     return axios({
       method: 'GET',
-      url: `${this.baseUrl}/crags/${cragId}/crag_sectors/${cragSectorId}.json`,
+      url: `${this.baseUrl}/public/crags/${cragId}/crag_sectors/${cragSectorId}.json`,
       headers: { HttpApiAccessToken: this.apiAccessToken }
     })
   }
@@ -56,7 +56,7 @@ class CragSectorApi extends BaseApi {
   create (data) {
     return axios({
       method: 'POST',
-      url: `${this.baseUrl}/crags/${data.crag_id}/crag_sectors.json`,
+      url: `${this.baseUrl}/public/crags/${data.crag_id}/crag_sectors.json`,
       headers: {
         Authorization: this.authToken(),
         HttpApiAccessToken: this.apiAccessToken
@@ -70,7 +70,7 @@ class CragSectorApi extends BaseApi {
   update (data) {
     return axios({
       method: 'PUT',
-      url: `${this.baseUrl}/crags/${data.crag_id}/crag_sectors/${data.id}.json`,
+      url: `${this.baseUrl}/public/crags/${data.crag_id}/crag_sectors/${data.id}.json`,
       headers: {
         Authorization: this.authToken(),
         HttpApiAccessToken: this.apiAccessToken
@@ -84,7 +84,7 @@ class CragSectorApi extends BaseApi {
   routeFigures (cragSectorId) {
     return axios({
       method: 'GET',
-      url: `${this.baseUrl}/crag_sectors/${cragSectorId}/route_figures.json`,
+      url: `${this.baseUrl}/public/crag_sectors/${cragSectorId}/route_figures.json`,
       headers: { HttpApiAccessToken: this.apiAccessToken }
     })
   }
