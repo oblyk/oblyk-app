@@ -9,13 +9,12 @@
           v-model="data.body"
           :label="$t('models.conversationMessage.body')"
           hide-details
-          :auto-grow="true"
-          :rows="1"
+          :rows="3"
           @keydown="onKeyDown"
           @keyup="saveDraft"
         />
       </v-col>
-      <v-col class="submit-message-col pl-0 pb-0">
+      <v-col class="submit-message-col pl-0 pb-0 pt-9">
         <v-btn
           @click="submit()"
           class="mt-1"
