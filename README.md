@@ -15,7 +15,7 @@
 - [x] Videoable
 - [x] Favicon, meta title
 - [x] Système de versionning
-- [ ] Système de protection par public token
+- [x] Système de protection par public token
 - [x] Faire page 404
 - [ ] Paramétrage des web workers PWA
 - [ ] Système de notification
