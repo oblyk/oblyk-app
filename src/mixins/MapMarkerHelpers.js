@@ -103,6 +103,9 @@ export const MapMarkerHelpers = {
         }),
 
         // Gym markers
+        'gym-marker-000': L.icon({
+          iconUrl: require('@/assets/markers/gym-marker-000.png'), iconSize: [23, 30], iconAnchor: [11.5, 30], popupAnchor: [0, 0]
+        }),
         'gym-marker-001': L.icon({
           iconUrl: require('@/assets/markers/gym-marker-001.png'), iconSize: [23, 30], iconAnchor: [11.5, 30], popupAnchor: [0, 0]
         }),
