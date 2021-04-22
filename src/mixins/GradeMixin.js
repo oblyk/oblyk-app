@@ -32,7 +32,7 @@ export const GradeMixin = {
     },
 
     gradeValueToColor: function (value) {
-      return this.gradeColorByValue[value]
+      return this.gradeColorByValue[value - 1]
     },
 
     gradeValueToText: function (value) {
