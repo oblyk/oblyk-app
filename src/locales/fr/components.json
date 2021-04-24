@@ -67,7 +67,24 @@
     },
     "search": {
       "title": "Chercher",
-      "searchLabel": "Chercher une falaise, une voie, une salle, etc."
+      "searchLabel": "Chercher une falaise, une voie, une salle, etc.",
+      "count": {
+        "area": "1 groupe de sites | {count} groupes de sites",
+        "crag": "1 site | {count} sites",
+        "cragRoute": "1 ligne | {count} lignes",
+        "gym": "1 salle | {count} salles",
+        "user": "1 grimpeur | {count} grimpeurs",
+        "guideBookPaper": "1 topo | {count} topos",
+        "word": "1 mot | {count} mots"
+      },
+      "tabs": {
+        "crag": "Site",
+        "cragRoute": "Ligne",
+        "gym": "Salle",
+        "user": "Grimpeur",
+        "guideBookPaper": "Topo",
+        "word": "Mot"
+      }
     },
     "map": {
       "site": "Site",

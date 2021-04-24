@@ -11,17 +11,18 @@
         :three-line="!small"
       >
         <v-list-item-avatar
-          :size="small ? '45' : '70'"
+          :size="small ? 40 : 70"
+          v-bind:class="small ? 'mt-1 mb-1' : ''"
         >
           <v-avatar
             color="grey"
-            :size="small ? '45' : '70'"
+            :size="small ? 40 : 70"
             tile
           >
             <v-img :src="user.thumbnailAvatarUrl()" />
           </v-avatar>
         </v-list-item-avatar>
-        <v-list-item-content>
+        <v-list-item-content v-bind:class="small ? 'pt-0 pb-0' : ''">
           <v-list-item-title class="font-weight-bold">
             <span class="vertical-align-middle">
               {{ user.full_name }}

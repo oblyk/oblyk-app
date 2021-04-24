@@ -14,14 +14,8 @@
 
       <v-spacer />
 
-      <v-btn
-        icon
-        to="/search"
-      >
-        <v-icon>
-          mdi-magnify
-        </v-icon>
-      </v-btn>
+      <!-- Search dialog -->
+      <global-search-dialog />
 
       <v-menu
         offset-y
@@ -108,11 +102,13 @@ import { SessionConcern } from '@/concerns/SessionConcern'
 import AppDrawerItem from '@/components/layouts/partial/AppDrawerItem'
 import AppBarTitle from '@/components/layouts/partial/AppBarTitle'
 import { CurrentUserConcern } from '@/concerns/CurrentUserConcern'
+import GlobalSearchDialog from '@/components/searches/GlobalSearchDialog'
 
 export default {
   name: 'AppBar',
   mixins: [SessionConcern, CurrentUserConcern],
   components: {
+    GlobalSearchDialog,
     AppBarTitle,
     AppDrawerItem,
     LoginLogoutBtn,

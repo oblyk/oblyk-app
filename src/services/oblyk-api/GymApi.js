@@ -18,6 +18,18 @@ class GymApi extends BaseApi {
     })
   }
 
+  search (query) {
+    const CancelToken = axios.CancelToken
+    this.tokenSearchSource = CancelToken.source()
+
+    return axios({
+      method: 'GET',
+      url: `${this.baseUrl}/gyms/search.json?query=${query}`,
+      cancelToken: this.tokenSearchSource.token,
+      headers: { HttpApiAccessToken: this.apiAccessToken }
+    })
+  }
+
   geoJson () {
     return axios({
       method: 'GET',

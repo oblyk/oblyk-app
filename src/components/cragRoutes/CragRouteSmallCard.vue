@@ -5,19 +5,23 @@
       flat
       :to="linkable ? cragRoute.path() : null"
     >
-      <v-list-item three-line>
+      <v-list-item
+        :three-line="!small"
+        :two-line="small"
+      >
       <v-list-item-avatar
-        size="70"
+        :size="small ? 45 : 70"
+        v-bind:class="small ? 'mt-1 mb-1' : ''"
       >
         <v-avatar
           color="grey"
-          size="70"
+          :size="small ? 45 : 70"
           tile
         >
           <v-img :src="cragRoute.thumbnailCoverUrl()" />
         </v-avatar>
       </v-list-item-avatar>
-      <v-list-item-content>
+      <v-list-item-content v-bind:class="small ? 'pt-2 pb-0' : ''">
         <v-list-item-title class="font-weight-bold">
           <span
             v-bind:class="cragRoute.climbing_type"
@@ -28,7 +32,7 @@
             {{ cragRoute.name }}
           </span>
         </v-list-item-title>
-        <v-list-item-subtitle class="mt-n3 mb-4">
+        <v-list-item-subtitle v-bind:class="small ? 'mt-0 mb-3' : 'mt-n3 mb-4'">
           <v-alert
             dense
             text
@@ -55,6 +59,10 @@ export default {
       type: Boolean,
       required: false,
       default: true
+    },
+    small: {
+      type: Boolean,
+      default: false
     }
   }
 }

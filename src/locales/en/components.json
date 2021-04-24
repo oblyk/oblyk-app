@@ -67,7 +67,24 @@
     },
     "search": {
       "title": "Search",
-      "searchLabel": "Look for a crag, a route, a gym, etc."
+      "searchLabel": "Look for a crag, a route, a gym, etc.",
+      "count": {
+        "area": "1 crags group | {count} crags groups",
+        "crag": "1 crag | {count} crags",
+        "cragRoute": "1 route | {count} routes",
+        "gym": "1 gym | {count} gyms",
+        "user": "1 climber | {count} climbers",
+        "guideBookPaper": "1 guide | {count} guides",
+        "word": "1 word | {count} words"
+      },
+      "tabs": {
+        "crag": "Crag",
+        "cragRoute": "Route",
+        "gym": "Gym",
+        "user": "Climber",
+        "guideBookPaper": "Guide",
+        "word": "Word"
+      }
     },
     "map": {
       "site": "Site",

@@ -2,11 +2,16 @@
   <v-card
     :link="presentation"
     :to="presentation ? word.path() : null"
+    :flat="flat"
   >
-    <v-card-title>
+    <v-card-title
+      v-bind:class="small ? 'pb-0' : ''"
+    >
       {{ word.name }}
     </v-card-title>
-    <v-card-text>
+    <v-card-text
+      v-bind:class="small ? 'pb-0' : ''"
+    >
       <markdown-text :text="word.definition" />
     </v-card-text>
     <v-card-text v-if="!presentation">
@@ -45,6 +50,14 @@ export default {
     presentation: {
       type: Boolean,
       default: true
+    },
+    flat: {
+      type: Boolean,
+      default: false
+    },
+    small: {
+      type: Boolean,
+      default: false
     }
   }
 }
