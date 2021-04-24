@@ -76,6 +76,9 @@ export default {
           }
           if (resp.data.length === 0) this.$root.$emit('nothingMoreToLoad')
         })
+        .catch(() => {
+          this.$root.$emit('nothingMoreToLoad')
+        })
         .finally(() => {
           this.loadingAscendedCragRoutes = false
           this.$root.$emit('moreIsLoaded')
