@@ -8,6 +8,7 @@
     >
       <div class="user-header-title">
         <v-avatar
+          @click="avatarPictureDialog = true"
           size="80"
           class="float-left mr-3"
         >
@@ -89,6 +90,23 @@
         </span>
       </div>
     </v-img>
+
+    <v-dialog
+      v-model="avatarPictureDialog"
+      max-width="290"
+    >
+      <v-card>
+        <v-card-text
+          class="pa-0"
+        >
+          <v-img
+            class="radius rounded-lg"
+            :src="user.avatarUrl()"
+            :alt="`logo ${user.full_name}`"
+          />
+        </v-card-text>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 <script>
@@ -102,6 +120,12 @@ export default {
   mixins: [SessionConcern, DateHelpers],
   props: {
     user: Object
+  },
+
+  data () {
+    return {
+      avatarPictureDialog: false
+    }
   },
 
   methods: {
