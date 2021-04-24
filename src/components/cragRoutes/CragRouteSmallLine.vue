@@ -3,15 +3,15 @@
     link
     @click="$root.$emit('getCragRouteInDrawer', route.crag.id, route.id)"
   >
-    <crag-route-avatar class="grade-route-in-list" :crag-route="route" />
+    <crag-route-avatar class="grade-route-in-list" :crag-route="route"/>
     <v-list-item-content class="pt-1 pb-1">
       <v-list-item-title
         class="climbs-pastille"
         v-bind:class="route.climbing_type"
       >
-        <ascent-crag-route-status-icon :crag-route="route" />
+        <ascent-crag-route-status-icon :crag-route="route"/>
         {{ route.name }}
-        <grade-route-note :route="route" />
+        <grade-route-note :route="route"/>
         <v-icon
           :title="$tc('components.photo.countInfos', route.photos_count, { count: route.photos_count } )"
           v-if="route.photos_count > 0"
@@ -38,29 +38,28 @@
         </v-icon>
       </v-list-item-title>
       <v-list-item-subtitle>
-      <span>
         <v-icon x-small>
           mdi-terrain
         </v-icon>
-        <router-link
-          @click.stop=""
-          class="text-decoration-none"
-          :to="route.Crag.path()"
-        >
-          {{ route.Crag.name }}
-        </router-link>
+        <span @click.stop="">
+          <router-link
+            class="text-decoration-none"
+            :to="route.Crag.path()"
+          >
+            {{ route.Crag.name }}
+          </router-link>,
         </span>
-          <span v-if="route.height">
-            {{ route.height }} {{ $t('common.meters') }},
-          </span>
-          <span v-if="route.opener || route.open_year">
-            {{ $t('common.open') }}
-          <span v-if="route.opener">
-            {{ $t('common.by') }} {{ route.opener }}
-          </span>
-          <span v-if="route.open_year">
-            {{ $t('common.in') }} {{ route.open_year }}
-          </span>
+        <span v-if="route.height">
+          {{ route.height }} {{ $t('common.meters') }},
+        </span>
+        <span v-if="route.opener || route.open_year">
+          {{ $t('common.open') }}
+        </span>
+        <span v-if="route.opener">
+          {{ $t('common.by') }} {{ route.opener }}
+        </span>
+        <span v-if="route.open_year">
+          {{ $t('common.in') }} {{ route.open_year }}
         </span>
       </v-list-item-subtitle>
     </v-list-item-content>
@@ -74,7 +73,11 @@ import AscentCragRouteStatusIcon from '@/components/ascentCragRoutes/AscentCragR
 
 export default {
   name: 'CragRouteSmallLine',
-  components: { AscentCragRouteStatusIcon, CragRouteAvatar, GradeRouteNote },
+  components: {
+    AscentCragRouteStatusIcon,
+    CragRouteAvatar,
+    GradeRouteNote
+  },
   props: {
     route: Object
   }

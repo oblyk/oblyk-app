@@ -38,12 +38,14 @@
         </v-icon>
       </v-list-item-title>
       <v-list-item-subtitle>
-        <span v-if="route.crag_sector.id">
+        <span
+          v-if="route.crag_sector.id"
+          @click.stop=""
+        >
           <v-icon x-small>
             mdi-texture-box
           </v-icon>
           <router-link
-            @click.stop=""
             class="text-decoration-none"
             :to="route.CragSector.path()"
           >
