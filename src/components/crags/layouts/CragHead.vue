@@ -50,9 +50,9 @@ export default {
     crag: Object
   },
 
-  data () {
-    return {
-      src: this.crag.coverUrl()
+  computed: {
+    src: function () {
+      return this.crag.coverUrl()
     }
   },
 

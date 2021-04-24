@@ -1,7 +1,10 @@
 <template>
   <div v-if="guideBookPaper">
     <guide-book-paper-tabs :guide-book-paper="guideBookPaper" />
-    <router-view :guide-book-paper="guideBookPaper" />
+    <router-view
+      :key="$route.params.guideBookPaperId"
+      :guide-book-paper="guideBookPaper"
+    />
   </div>
 </template>
 <script>

@@ -2,7 +2,7 @@
   <div v-if="crag">
     <crag-head :crag="crag" />
     <crag-tabs :crag="crag" />
-    <router-view :crag="crag" />
+    <router-view :key="$route.params.cragId" :crag="crag" />
   </div>
 </template>
 <script>
