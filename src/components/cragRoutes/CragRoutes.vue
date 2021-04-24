@@ -58,8 +58,8 @@
           two-line
         >
           <div
-            v-for="route in routes"
-            :key="route.id"
+            v-for="(route, index) in routes"
+            :key="`crag-route-${index}`"
           >
             <crag-route-list-item :route="route" />
           </div>
