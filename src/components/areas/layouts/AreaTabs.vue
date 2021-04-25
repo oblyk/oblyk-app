@@ -9,14 +9,11 @@
       <v-badge
         color="primary"
         inline
-        v-if="area.crags_count"
+        :value="area.crags_count > 0"
         :content="area.crags_count"
       >
         {{ $t('components.area.tabs.crags') }}
       </v-badge>
-      <span v-else>
-        {{ $t('components.area.tabs.crags') }}
-      </span>
     </v-tab>
     <v-tab to="photos">
       {{ $t('components.area.tabs.photos') }}

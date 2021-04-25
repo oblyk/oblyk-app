@@ -13,14 +13,11 @@
       <v-badge
         color="primary"
         inline
-        v-if="guideBookPaper.crags_count > 0"
+        value="guideBookPaper.crags_count > 0"
         :content="guideBookPaper.crags_count"
       >
         {{ $t('components.guideBookPaper.tabs.crags') }}
       </v-badge>
-      <span v-else>
-        {{ $t('components.guideBookPaper.tabs.crags') }}
-      </span>
     </v-tab>
 
     <!-- Photos tabs -->
@@ -28,14 +25,11 @@
       <v-badge
         color="primary"
         inline
-        v-if="guideBookPaper.photos_count > 0"
+        value="guideBookPaper.photos_count > 0"
         :content="guideBookPaper.photos_count"
       >
         {{ $t('components.guideBookPaper.tabs.photos') }}
       </v-badge>
-      <span v-else>
-        {{ $t('components.guideBookPaper.tabs.photos') }}
-      </span>
     </v-tab>
 
     <!-- Links tabs -->
@@ -43,14 +37,11 @@
       <v-badge
         color="primary"
         inline
+        :value="guideBookPaper.links_count > 0"
         :content="guideBookPaper.links_count"
-        v-if="guideBookPaper.links_count > 0"
       >
         {{ $t('components.guideBookPaper.tabs.links') }}
       </v-badge>
-      <span v-else>
-        {{ $t('components.guideBookPaper.tabs.links') }}
-      </span>
     </v-tab>
 
     <!-- Map tabs -->

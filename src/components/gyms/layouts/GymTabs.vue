@@ -18,6 +18,7 @@
       <v-badge
         color="primary"
         inline
+        :value="gym.gym_spaces.length > 0"
         :content="gym.gym_spaces.length"
       >
         {{ $t('components.gym.tabs.guideBook') }}
