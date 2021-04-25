@@ -50,9 +50,15 @@ export default {
     crag: Object
   },
 
-  computed: {
-    src: function () {
-      return this.crag.coverUrl()
+  watch: {
+    crag: function () {
+      this.src = this.crag.coverUrl()
+    }
+  },
+
+  data () {
+    return {
+      src: this.crag.coverUrl()
     }
   },
 
