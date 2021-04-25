@@ -86,6 +86,19 @@
         "word": "Mot"
       }
     },
+    "notification": {
+      "title": "Notifications",
+      "newEmpty": "Vous n'avez pas de nouvelle notification",
+      "empty": "Vous n'avez pas de notification",
+      "markedAllAsRead": "Tout marquer comme lu",
+      "type": {
+        "new_message": "Nouveau message de %{name}",
+        "new_follower": "%{name} à commencé à vous suivre",
+        "subscribe_accepted": "%{name} a accepté que vous le suiviez",
+        "request_for_follow_up": "%{name} demande à vous suivre",
+        "new_article": "Nouvel article ! %{name}"
+      }
+    },
     "map": {
       "site": "Site",
       "place": "Lieux",

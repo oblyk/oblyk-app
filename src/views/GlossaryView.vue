@@ -115,6 +115,7 @@ export default {
         })
         .catch(err => {
           this.$root.$emit('alertFromApiError', err, 'word')
+          this.$root.$emit('nothingMoreToLoad')
         })
         .finally(() => {
           this.loadingGlossary = false

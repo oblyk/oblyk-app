@@ -17,31 +17,12 @@
       <!-- Search dialog -->
       <global-search-dialog />
 
-      <v-menu
-        offset-y
-        bottom
-        left
-        :close-on-content-click="false"
-      >
-        <template v-slot:activator="{ on, attrs }">
-          <v-btn
-            icon
-            v-bind="attrs"
-            v-on="on"
-          >
-            <v-icon>mdi-dots-vertical</v-icon>
-          </v-btn>
-        </template>
-
-        <v-list>
-          <local-selector />
-          <dark-theme-selector />
-        </v-list>
-      </v-menu>
+      <!-- Notification -->
+      <notification-app-bar v-if="isLoggedIn" />
 
       <!-- User Avatar -->
       <v-menu
-        offset-y
+        :position-y="0"
         bottom
         left
       >
@@ -51,13 +32,9 @@
             v-bind="attrs"
             v-on="on"
           >
-            <v-avatar
-              :size="isMobile ? 40 : 48"
-            >
-              <v-icon>
-                mdi-account-circle
-              </v-icon>
-            </v-avatar>
+            <v-icon>
+              mdi-account-circle
+            </v-icon>
           </v-btn>
         </template>
 
@@ -79,6 +56,29 @@
             <v-divider/>
           </div>
           <login-logout-btn />
+        </v-list>
+      </v-menu>
+
+      <!-- Application options -->
+      <v-menu
+        offset-y
+        bottom
+        left
+        :close-on-content-click="false"
+      >
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn
+            icon
+            v-bind="attrs"
+            v-on="on"
+          >
+            <v-icon>mdi-dots-vertical</v-icon>
+          </v-btn>
+        </template>
+
+        <v-list>
+          <local-selector />
+          <dark-theme-selector />
         </v-list>
       </v-menu>
     </v-app-bar>
@@ -103,11 +103,13 @@ import AppDrawerItem from '@/components/layouts/partial/AppDrawerItem'
 import AppBarTitle from '@/components/layouts/partial/AppBarTitle'
 import { CurrentUserConcern } from '@/concerns/CurrentUserConcern'
 import GlobalSearchDialog from '@/components/searches/GlobalSearchDialog'
+import NotificationAppBar from '@/components/layouts/partial/NotificationAppBar'
 
 export default {
   name: 'AppBar',
   mixins: [SessionConcern, CurrentUserConcern],
   components: {
+    NotificationAppBar,
     GlobalSearchDialog,
     AppBarTitle,
     AppDrawerItem,

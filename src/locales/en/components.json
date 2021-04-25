@@ -86,6 +86,20 @@
         "word": "Word"
       }
     },
+    "notification": {
+      "title": "Notifications",
+      "newEmpty": "You have no new notification",
+      "empty": "You have no notification",
+      "markedAllAsRead": "Marked all as read",
+      "seeMore": "Marked all as read",
+      "type": {
+        "new_message": "new message from %{name}",
+        "new_follower": "%{name} started following you",
+        "subscribe_accepted": "%{name} has agreed to let you follow him",
+        "request_for_follow_up": "%{name} asks to follow you",
+        "new_article": "New article! %{name}"
+      }
+    },
     "map": {
       "site": "Site",
       "place": "Place",
