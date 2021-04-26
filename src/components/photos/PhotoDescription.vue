@@ -43,11 +43,15 @@
 
     <!-- Model et exif -->
     <v-card-title
-      v-if="photo.creator.id"
+      v-if="photo.creator.uuid"
       class="caption pb-0 pt-2"
     >
       <v-icon left small>mdi-account</v-icon>
-      {{ photo.creator.name }}
+      <router-link
+        :to="photo.Creator.path()"
+      >
+        {{ photo.Creator.name }}
+      </router-link>
     </v-card-title>
   </div>
 </template>

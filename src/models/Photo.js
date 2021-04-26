@@ -1,5 +1,6 @@
 import ActiveData from '@/models/ActiveData'
 import PhotoApi from '@/services/oblyk-api/PhotoApi'
+import User from '@/models/User'
 
 export default class Photo extends ActiveData {
   find (id) {
@@ -25,5 +26,9 @@ export default class Photo extends ActiveData {
     if (this.copyright_nd) copies.push('ND')
 
     return copies.join(' - ')
+  }
+
+  get Creator () {
+    return new User(this.creator)
   }
 }
