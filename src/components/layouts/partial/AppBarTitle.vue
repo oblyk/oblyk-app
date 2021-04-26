@@ -90,7 +90,7 @@ export default {
     getRouteInformation: function () {
       this.hasTitle = !this.$route.meta.noPaddingTop
       this.justTitle = this.$route.meta.title
-      this.showTitle = this.justTitle && this.$route.meta.showTitle
+      this.showTitle = this.justTitle || this.$route.meta.showTitle
       this.showAvatar = this.$route.meta.showAvatar
 
       if (this.$route.meta.objectName) {

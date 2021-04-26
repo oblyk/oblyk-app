@@ -43,7 +43,8 @@ export default [
     meta: {
       noPaddingTop: false,
       objectName: 'guideBookPaper',
-      showAvatar: true
+      showTitle: true,
+      showAvatar: false
     },
     children: [
       {
@@ -52,7 +53,8 @@ export default [
         meta: {
           noPaddingTop: false,
           objectName: 'guideBookPaper',
-          showAvatar: true
+          showTitle: true,
+          showAvatar: false
         }
       },
       {
@@ -61,7 +63,8 @@ export default [
         meta: {
           noPaddingTop: false,
           objectName: 'guideBookPaper',
-          showAvatar: true
+          showTitle: true,
+          showAvatar: false
         }
       },
       {
@@ -70,7 +73,8 @@ export default [
         meta: {
           noPaddingTop: false,
           objectName: 'guideBookPaper',
-          showAvatar: true
+          showTitle: true,
+          showAvatar: false
         }
       },
       {
@@ -79,7 +83,8 @@ export default [
         meta: {
           noPaddingTop: false,
           objectName: 'guideBookPaper',
-          showAvatar: true
+          showTitle: true,
+          showAvatar: false
         }
       },
       {
@@ -88,7 +93,8 @@ export default [
         meta: {
           noPaddingTop: false,
           objectName: 'guideBookPaper',
-          showAvatar: true
+          showTitle: true,
+          showAvatar: false
         }
       }
     ]
