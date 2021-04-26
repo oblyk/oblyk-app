@@ -9,8 +9,8 @@
       <v-badge
         color="primary"
         inline
-        :value="(crag.photo_count + crag.video_count) > 0"
-        :content="crag.photo_count + crag.video_count"
+        :value="(crag.all_photos_count + crag.all_videos_count) > 0"
+        :content="crag.all_photos_count + crag.all_videos_count"
       >
         {{ $t('components.crag.tabs.media') }}
       </v-badge>
