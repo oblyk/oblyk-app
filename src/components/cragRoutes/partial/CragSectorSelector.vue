@@ -7,7 +7,7 @@
       :items="cragSectors"
       hide-details
       item-value="id"
-      item-text="name"
+      item-text="nameAndGap"
       prepend-inner-icon="mdi-texture-box"
       :label="$t('components.cragSector.sectors')"
       outlined
@@ -48,7 +48,7 @@ export default {
 
       this.cragSectors = [
         {
-          name: this.$t('components.cragSector.allSectors'), id: 0
+          nameAndGap: this.$t('components.cragSector.allSectors'), id: 0
         }
       ]
       CragSectorApi

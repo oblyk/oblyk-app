@@ -11,6 +11,15 @@ export default class CragSector extends ActiveData {
     return `/crags/${this.crag.id}/${this.crag.slug_name}/sectors/${this.id}/${this.slug_name}/${page}`
   }
 
+  get nameAndGap () {
+    return `${this.name} (${this.gradeGap})`
+  }
+
+  get gradeGap () {
+    const grade = this.routes_figures.grade
+    return `${grade.min_text || '?'} > ${grade.max_text || '?'}`
+  }
+
   coverUrl () {
     if (this.photo.url) {
       return `${process.env.VUE_APP_OBLYK_API_URL}${this.photo.url}`
