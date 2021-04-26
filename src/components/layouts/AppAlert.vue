@@ -19,7 +19,14 @@ export default {
     return {
       show: false,
       type: 'error',
-      messages: []
+      messages: [],
+      timerBeforeClosing: null
+    }
+  },
+
+  watch: {
+    show: function () {
+      if (this.show) this.hideAlert()
     }
   },
 
@@ -84,6 +91,11 @@ export default {
 
     clear: function () {
       this.messages = []
+    },
+
+    hideAlert: function () {
+      if (this.timerBeforeClosing) clearTimeout(this.timerBeforeClosing)
+      this.timerBeforeClosing = setTimeout(() => { this.show = false }, 5000)
     }
   }
 }
