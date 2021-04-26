@@ -26,7 +26,10 @@ export default {
     comment: {
       type: Object,
       required: false
-    }
+    },
+    commentableType: String,
+    commentableId: [Number, String],
+    callback: Function
   },
 
   data () {
@@ -35,8 +38,8 @@ export default {
       data: {
         id: (this.comment || {}).id,
         body: (this.comment || {}).body,
-        commentable_type: (this.comment || {}).commentable_type || this.$route.params.commentableType,
-        commentable_id: (this.comment || {}).commentable_id || this.$route.params.commentableId
+        commentable_type: (this.comment || {}).commentable_type || this.commentableType || this.$route.params.commentableType,
+        commentable_id: (this.comment || {}).commentable_id || this.commentableId || this.$route.params.commentableId
       }
     }
   },
@@ -53,7 +56,11 @@ export default {
 
       promise
         .then(() => {
-          this.$router.push(this.redirectTo)
+          if (this.callback) {
+            this.callback()
+          } else {
+            this.$router.push(this.redirectTo)
+          }
         })
         .catch(err => {
           this.$root.$emit('alertFromApiError', err, 'comment')

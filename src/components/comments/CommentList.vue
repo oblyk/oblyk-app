@@ -30,15 +30,39 @@
       v-if="isLoggedIn"
       class="text-right mt-4"
     >
-      <v-btn
-        :to="`/comments/${commentableType}/${commentableId}/new?redirect_to=${redirectTo}`"
-        text
-        small
-        color="primary"
+      <v-dialog
+        v-model="commentFormDialog"
+        width="600"
       >
-        <v-icon left small>mdi-comment-plus</v-icon>
-        {{ $t('actions.addComment') }}
-      </v-btn>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn
+            v-bind="attrs"
+            v-on="on"
+            text
+            small
+            color="primary"
+          >
+            <v-icon left small>mdi-comment-plus</v-icon>
+            {{ $t('actions.addComment') }}
+          </v-btn>
+        </template>
+
+        <v-card>
+          <v-card-title>
+            {{ $t('actions.addComment') }}
+          </v-card-title>
+
+          <v-card-text>
+            <comment-form
+              :commentable-id="commentableId"
+              :commentable-type="commentableType"
+              :callback="getComments"
+              class="mt-4"
+              submit-methode="post"
+            />
+          </v-card-text>
+        </v-card>
+      </v-dialog>
     </div>
   </div>
 </template>
@@ -48,10 +72,11 @@ import CommentApi from '@/services/oblyk-api/CommentApi'
 import Comment from '@/models/Comment'
 import CommentCard from '@/components/comments/CommentCard'
 import { SessionConcern } from '@/concerns/SessionConcern'
+import CommentForm from '@/components/comments/forms/CommentForm'
 
 export default {
   name: 'CommentList',
-  components: { CommentCard, Spinner },
+  components: { CommentForm, CommentCard, Spinner },
   mixins: [SessionConcern],
   props: {
     commentableId: [String, Number],
@@ -66,7 +91,8 @@ export default {
     return {
       comments: [],
       loadingComments: true,
-      redirectTo: this.$route.fullPath
+      redirectTo: this.$route.fullPath,
+      commentFormDialog: false
     }
   },
 
@@ -77,6 +103,7 @@ export default {
   methods: {
     getComments: function () {
       this.loadingComments = true
+      this.commentFormDialog = false
       CommentApi
         .allInCommentable(this.commentableType, this.commentableId)
         .then(resp => {
