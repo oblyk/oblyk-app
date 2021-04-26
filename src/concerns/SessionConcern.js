@@ -77,7 +77,11 @@ export const SessionConcern = {
     },
 
     logout: function () {
-      store.dispatch('auth/logout')
+      store.dispatch('auth/logout').then(() => {
+        if (this.$route.meta.requiresAuth) {
+          this.$router.push('/')
+        }
+      })
     }
   }
 }

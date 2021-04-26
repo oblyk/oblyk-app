@@ -1,4 +1,19 @@
 {
+  "errors": {
+    "rules": {
+      "email_or_password_suite_not_find": "Pas de compte trouvé pour le mot de passe et l'e-mail donnée",
+      "is_required": "est requis",
+      "is_mandatory": "est obligatoire",
+      "is_already_taken": "est déjà pris",
+      "is_too_short": "est trop court",
+      "must_be_positive": "doit être positif",
+      "is_invalid": "est invalide",
+      "is_not_a_permitted_value": "n'est pas dans la liste des valeurs autorisées",
+      "you_must_choose_at_least_one_system": "Vous devez choisir au moins un système",
+      "you_cannot_have_both_point_systems": "Vous ne pouvez pas avoir les deux systèmes de point",
+      "is_not_in_the_right_format": "n'est pas au bon format"
+    }
+  },
   "models": {
     "user": {
       "date_of_birth": "Date de naissance",

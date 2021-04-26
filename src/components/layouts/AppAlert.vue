@@ -64,7 +64,7 @@ export default {
           let item = ''
           if (error !== 'base') item = this.$t(`models.${object}.${error}`)
           for (const rule of data.error[error]) {
-            this.messages.push(`- ${item} ${rule}`)
+            this.messages.push(`- ${item} ${this.$t(`errors.rules.${rule}`)}`)
           }
         }
       } else {
@@ -106,6 +106,6 @@ export default {
   position: fixed;
   top: 10px;
   right: 10px;
-  z-index: 10;
+  z-index: 300;
 }
 </style>

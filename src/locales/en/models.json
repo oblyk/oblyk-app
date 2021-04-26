@@ -1,4 +1,19 @@
 {
+  "errors": {
+    "rules": {
+      "email_or_password_suite_not_find": "No account found for the given password and e-mail",
+      "is_required": "is required",
+      "is_mandatory": "is mandatory",
+      "is_already_taken": "is already taken",
+      "is_too_short": "is too short",
+      "must_be_positive": "must be positive",
+      "is_invalid": "is invalid",
+      "is_not_a_permitted_value": "is not a permitted value",
+      "you_must_choose_at_least_one_system": "you must choose at least one system",
+      "you_cannot_have_both_point_systems": "you cannot have both point systems",
+      "is_not_in_the_right_format": "is not in the right format"
+    }
+  },
   "models": {
     "user": {
       "date_of_birth": "Date of birth",
