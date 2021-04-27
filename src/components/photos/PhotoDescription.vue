@@ -68,7 +68,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" >
 .photo-description {
   width: 250px;
 }

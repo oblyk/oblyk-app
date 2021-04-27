@@ -3,7 +3,7 @@
     large
     v-if="(direction === 'next' && !isLastPhoto()) || (direction === 'previous' && !isFirstPhoto())"
     icon
-    :to="photoPath()"
+    @click="changePhotoIndex()"
   >
     <v-icon>{{ arrowIcon() }}</v-icon>
   </v-btn>
@@ -13,37 +13,26 @@ export default {
   name: 'LightBoxArrow',
   props: {
     direction: String,
-    photo: Object,
-    photosGallery: Array,
-    backToUrl: String
+    selectedIndex: Number,
+    photosGallery: Array
   },
 
   methods: {
-    photoIndex: function () {
-      let index = 0
-      for (const photoId of this.photosGallery) {
-        if (parseInt(photoId) === this.photo.id) return index
-        index++
-      }
-      return index
+    changePhotoIndex: function () {
+      if (this.direction === 'next') this.$root.$emit('LightBoxChangeSelectedIndex', this.selectedIndex + 1)
+      if (this.direction === 'previous') this.$root.$emit('LightBoxChangeSelectedIndex', this.selectedIndex - 1)
     },
 
     isLastPhoto: function () {
-      return this.photoIndex() === this.photosGallery.length - 1
+      return this.selectedIndex === this.photosGallery.length - 1
     },
 
     isFirstPhoto: function () {
-      return this.photoIndex() === 0
+      return this.selectedIndex === 0
     },
 
     arrowIcon: function () {
       return this.direction === 'next' ? 'mdi-arrow-right' : 'mdi-arrow-left'
-    },
-
-    photoPath: function () {
-      const nextIndex = (this.direction === 'next') ? this.photosGallery[this.photoIndex() + 1] : this.photosGallery[this.photoIndex() - 1]
-
-      return `/photos/${nextIndex}?photos=${this.photosGallery.join('-')}&redirect_to=${this.backToUrl}`
     }
   }
 }

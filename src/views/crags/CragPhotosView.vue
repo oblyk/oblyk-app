@@ -14,7 +14,7 @@
         </v-icon>
         {{ $t('actions.addPicture') }}
       </v-btn>
-      <photo-gallery :photos-data="photos" />
+      <photo-gallery :photos="photos" />
     </div>
 
     <spinner v-if="loadingVideos" :full-height="false" />
@@ -59,6 +59,7 @@ import PhotoGallery from '@/components/photos/PhotoGallery'
 import { SessionConcern } from '@/concerns/SessionConcern'
 import VideoCard from '@/components/videos/VideoCard'
 import Video from '@/models/Video'
+import Photo from '@/models/Photo'
 
 export default {
   name: 'CragPhotosView',
@@ -84,11 +85,14 @@ export default {
 
   methods: {
     getPhotos: function () {
+      this.photos = []
       this.loadingPhotos = true
       CragApi
         .photos(this.crag.id)
         .then(resp => {
-          this.photos = resp.data
+          for (const photo of resp.data) {
+            this.photos.push(new Photo(photo))
+          }
         })
         .catch(err => {
           this.$root.$emit('alertFromApiError', err, 'crag')

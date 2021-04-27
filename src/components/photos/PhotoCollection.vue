@@ -14,30 +14,16 @@
       <v-card-text
         class="photo-collection-area"
       >
-        <p
-          class="text-center"
-          v-if="loadingPhotos"
-        >
-          <spinner
-            :size="40"
-            :full-height="false"
-          />
-        </p>
-        <div
-          v-if="!loadingPhotos"
-        >
-          <router-link
-            v-for="photo in photos"
+        <div>
+          <v-img
+            v-for="(photo, index) in photos"
             :key="photo.id"
-            :to="`/photos/${photo.id}?photos=${photosGallery.join('-')}&redirect_to=${backToUrl}`"
-          >
-            <v-img
-              class="collection-thumbnail-photo"
-              :src="photo.thumbnailUrl()"
-              :height="100"
-              :width="100"
-            />
-          </router-link>
+            class="collection-thumbnail-photo"
+            :src="photo.thumbnailUrl()"
+            :height="100"
+            :width="100"
+            @click="changeSelectedPhoto(index)"
+          />
         </div>
       </v-card-text>
     </v-card>
@@ -45,31 +31,17 @@
 </template>
 
 <script>
-import Spinner from '@/components/layouts/Spiner'
-import PhotoApi from '@/services/oblyk-api/PhotoApi'
-import Photo from '@/models/Photo'
 
 export default {
   name: 'PhotoCollection',
-  components: { Spinner },
   props: {
-    photosGallery: Array,
-    backToUrl: String
+    photos: Array
   },
 
   data () {
     return {
       collection: false,
-      loadingPhotos: true,
-      photos: null
-    }
-  },
-
-  watch: {
-    collection: function () {
-      if (this.collection && this.photos === null) {
-        this.getCollection()
-      }
+      loadingPhotos: true
     }
   },
 
@@ -78,19 +50,8 @@ export default {
       this.collection = false
     },
 
-    getCollection: function () {
-      this.loadingPhotos = true
-      this.photos = []
-      PhotoApi
-        .collection(this.photosGallery)
-        .then(resp => {
-          for (const photo of resp.data) {
-            this.photos.push(new Photo(photo))
-          }
-        })
-        .finally(() => {
-          this.loadingPhotos = false
-        })
+    changeSelectedPhoto: function (photoIndex) {
+      this.$root.$emit('LightBoxChangeSelectedIndex', photoIndex)
     }
   }
 }
@@ -113,5 +74,6 @@ export default {
   margin-right: 5px;
   margin-left: 5px;
   border-radius: 4px;
+  cursor: pointer;
 }
 </style>

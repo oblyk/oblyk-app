@@ -2,7 +2,7 @@
   <div>
     <spinner v-if="loadingPhotos" />
     <div v-if="!loadingPhotos">
-      <photo-gallery :photos-data="photos" />
+      <photo-gallery :photos="photos" />
     </div>
   </div>
 </template>
@@ -11,6 +11,7 @@
 import UserApi from '@/services/oblyk-api/UserApi'
 import Spinner from '@/components/layouts/Spiner'
 import PhotoGallery from '@/components/photos/PhotoGallery'
+import Photo from '@/models/Photo'
 
 export default {
   name: 'UserPhotoView',
@@ -33,10 +34,13 @@ export default {
   methods: {
     getPhotos: function () {
       this.loadingPhotos = true
+      this.photos = []
       UserApi
         .photos(this.user.uuid)
         .then(resp => {
-          this.photos = resp.data
+          for (const photo of resp.data) {
+            this.photos.push(new Photo(photo))
+          }
         })
         .catch(err => {
           this.$root.$emit('alertFromApiError', err, 'user')

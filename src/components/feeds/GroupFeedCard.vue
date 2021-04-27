@@ -20,7 +20,7 @@
       class="pb-1"
       v-if="!popupable(feed.group_type)"
     >
-      <photo-gallery :photos-data="photos()" v-if="feed.group_type === 'Photos'" />
+      <photo-gallery :photos="photos()" v-if="feed.group_type === 'Photos'" />
     </v-card-text>
 
     <!-- Dialog content -->
@@ -75,6 +75,7 @@ import CragRoute from '@/models/CragRoute'
 import CragRouteListItem from '@/components/cragRoutes/CragRouteListItem'
 import AscentCragRoute from '@/models/AscentCragRoute'
 import CragRouteFeedListItem from '@/components/cragRoutes/CragRouteFeedListItem'
+import Photo from '@/models/Photo'
 
 export default {
   name: 'GroupFeedCard',
@@ -107,7 +108,7 @@ export default {
     photos: function () {
       const items = []
       for (const item of this.feed.items) {
-        items.push(item.feed_object)
+        items.push(new Photo(item.feed_object))
       }
       return items
     },

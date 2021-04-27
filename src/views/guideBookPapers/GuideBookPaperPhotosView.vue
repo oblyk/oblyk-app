@@ -5,7 +5,7 @@
     <v-container v-if="!loadingPhotos">
       <v-row>
         <v-col>
-          <photo-gallery :photos-data="photosData" />
+          <photo-gallery :photos="photos" />
         </v-col>
       </v-row>
     </v-container>
@@ -15,6 +15,7 @@
 import Spinner from '@/components/layouts/Spiner'
 import GuideBookPaperApi from '@/services/oblyk-api/GuideBookPaperApi'
 import PhotoGallery from '@/components/photos/PhotoGallery'
+import Photo from '@/models/Photo'
 
 export default {
   name: 'GuideBookPaperPhotosView',
@@ -25,7 +26,7 @@ export default {
 
   data () {
     return {
-      photosData: [],
+      photos: [],
       loadingPhotos: true
     }
   },
@@ -36,10 +37,13 @@ export default {
 
   methods: {
     getPhotos: function () {
+      this.photos = []
       GuideBookPaperApi
         .photos(this.guideBookPaper.id)
         .then(resp => {
-          this.photosData = resp.data
+          for (const photo of resp.data) {
+            this.photos.push(new Photo(photo))
+          }
         })
         .catch(err => {
           this.$root.$emit('alertFromApiError', err, 'photo')

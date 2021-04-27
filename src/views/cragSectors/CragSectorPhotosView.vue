@@ -15,7 +15,7 @@
         {{ $t('actions.addPicture') }}
       </v-btn>
       <photo-gallery
-        :photos-data="photos"
+        :photos="photos"
         lg-col="col-lg-3"
       />
     </div>
@@ -51,6 +51,7 @@ import Spinner from '@/components/layouts/Spiner'
 import PhotoGallery from '@/components/photos/PhotoGallery'
 import VideoCard from '@/components/videos/VideoCard'
 import { SessionConcern } from '@/concerns/SessionConcern'
+import Photo from '@/models/Photo'
 
 export default {
   name: 'CragSectorPhotosView',
@@ -77,10 +78,13 @@ export default {
   methods: {
     getPhotos: function () {
       this.loadingPhotos = true
+      this.photos = []
       CragSectorApi
         .photos(this.cragSector.id)
         .then(resp => {
-          this.photos = resp.data
+          for (const photo of resp.data) {
+            this.photos.push(new Photo(photo))
+          }
         })
         .catch(err => {
           this.$root.$emit('alertFromApiError', err, 'photo')

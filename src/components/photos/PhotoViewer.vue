@@ -69,19 +69,17 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-.theme--light {
-  .photo-map-viewer {
-    .leaflet-container {
-      background-color: #f5f5f5;
-    }
+<style lang="scss">
+.photo-map-viewer {
+  .leaflet-container {
+    background-color: #121212;
   }
-}
-
-.theme--dark {
-  .photo-map-viewer {
-    .leaflet-container {
-      background-color: #121212;
+  .leaflet-control-attribution {
+    background: none !important;
+    padding-bottom: 6px;
+    margin-right: -5px;
+    a {
+      color: white;
     }
   }
 }

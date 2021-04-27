@@ -3,7 +3,7 @@
     @mouseenter="photoOver = true"
     @mouseleave="photoOver = false"
     :src="photo.thumbnailUrl()"
-    @click="goToViewer()"
+    @click="openLightBoxDialog(photoIndex)"
     max-height="200"
     class="photo-thumbnail"
     :gradient="photoOver ? 'to top, rgba(0, 0, 0, 0.4) 0%, transparent 72px' : 'to top, rgba(0, 0, 0, 0) 0%, transparent 72px'"
@@ -66,7 +66,6 @@ import CragSectorApi from '@/services/oblyk-api/CragSectorApi'
 import CragSector from '@/models/CragSector'
 import CragRouteApi from '@/services/oblyk-api/CragRouteApi'
 import CragRoute from '@/models/CragRoute'
-import router from '@/router'
 import AreaApi from '@/services/oblyk-api/AreaApi'
 import Area from '@/models/Area'
 
@@ -75,7 +74,9 @@ export default {
   mixins: [SessionConcern],
   props: {
     photo: Object,
-    photosGallery: Array
+    photosGallery: Array,
+    openLightBoxDialog: Function,
+    photoIndex: Number
   },
 
   data () {
@@ -166,10 +167,6 @@ export default {
         .finally(() => {
           this.updatingBanner = false
         })
-    },
-
-    goToViewer: function () {
-      router.push(`/photos/${this.photo.id}?photos=${this.photosGallery.join('-')}&redirect_to=${this.$route.fullPath}`)
     }
   }
 }

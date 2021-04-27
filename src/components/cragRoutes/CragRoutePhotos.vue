@@ -10,7 +10,7 @@
     <spinner v-if="loadingPhotos" :full-height="false"/>
     <div v-if="!loadingPhotos">
       <photo-gallery
-        :photos-data="photos"
+        :photos="photos"
         :lg-col="lgCol"
       />
       <p class="text-right">
@@ -36,6 +36,7 @@ import Spinner from '@/components/layouts/Spiner'
 import PhotoGallery from '@/components/photos/PhotoGallery'
 import { SessionConcern } from '@/concerns/SessionConcern'
 import CragRouteApi from '@/services/oblyk-api/CragRouteApi'
+import Photo from '@/models/Photo'
 
 export default {
   name: 'CragRoutePhotos',
@@ -60,10 +61,13 @@ export default {
   methods: {
     getPhotos: function () {
       this.loadingPhotos = true
+      this.photos = []
       CragRouteApi
         .photos(this.cragRoute.id)
         .then(resp => {
-          this.photos = resp.data
+          for (const photo of resp.data) {
+            this.photos.push(new Photo(photo))
+          }
         })
         .catch(err => {
           this.$root.$emit('alertFromApiError', err, 'cragRoute')

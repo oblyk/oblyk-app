@@ -1,5 +1,6 @@
 <template>
   <div
+    class="light-box-photo-info"
     v-click-outside="closeInfo"
   >
     <div v-show="!info">
@@ -10,7 +11,7 @@
         <v-icon>mdi-information</v-icon>
       </v-btn>
     </div>
-    <v-card v-show="info">
+    <v-card dark v-show="info">
       <v-tabs
         height="35"
         v-model="tab"
@@ -23,7 +24,7 @@
         </v-tab>
       </v-tabs>
 
-      <v-tabs-items v-model="tab">
+      <v-tabs-items dark v-model="tab">
         <v-tab-item>
           <photo-description
             :photo="photo"
