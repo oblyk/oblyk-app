@@ -47,6 +47,7 @@
       <v-btn
         icon
         dark
+        v-if="photo.creator.uuid === loggedInUser.uuid"
         @click.stop=""
         :to="`${photo.path('edit')}?redirect_to=${$route.fullPath}`"
       >
