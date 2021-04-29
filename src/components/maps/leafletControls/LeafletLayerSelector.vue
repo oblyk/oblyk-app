@@ -11,18 +11,12 @@
         v-model="layerIndex"
       >
         <v-radio
-          v-if="mapStyle === 'outdoor'"
           :label="$t('components.map.layers.relief')"
           :value="0"
         />
         <v-radio
-          v-if="mapStyle === 'indoor'"
-          :label="$t('components.map.layers.street')"
-          :value="1"
-        />
-        <v-radio
           :label="$t('components.map.layers.satellite')"
-          :value="2"
+          :value="1"
         />
       </v-radio-group>
     </div>
