@@ -1,31 +1,34 @@
 <template>
-  <v-list
-    class="conversation-list"
-    two-line
-  >
-    <!-- Conversation list -->
-    <div
-      v-for="(conversation, index) in conversations"
-      :key="index"
+  <div class="conversation-list-and-add-btn">
+    <v-list
+      class="conversation-list"
+      two-line
     >
-      <conversation-item-list
-        :conversation="conversationObject(conversation)"
-      />
-    </div>
+      <!-- Conversation list -->
+      <div
+        v-for="(conversation, index) in conversations"
+        :key="index"
+      >
+        <conversation-item-list
+          :conversation="conversationObject(conversation)"
+        />
+      </div>
+    </v-list>
 
     <!-- New conversation -->
-    <v-btn
-      fab
-      to="/messenger/new"
-      :title="$t('actions.newConversation')"
-      class="conversation-add-btn"
-      color="primary"
-    >
-      <v-icon>
-        mdi-comment-plus
-      </v-icon>
-    </v-btn>
-  </v-list>
+    <div class="conversation-add-btn">
+      <v-btn
+        fab
+        to="/messenger/new"
+        :title="$t('actions.newConversation')"
+        color="primary"
+      >
+        <v-icon>
+          mdi-comment-plus
+        </v-icon>
+      </v-btn>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -48,16 +51,22 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.conversation-list {
-  height: 100%;
-  padding-top: 0;
-  margin-left: 10px;
-  border-radius: 5px;
+.conversation-list-and-add-btn {
   position: relative;
+  .conversation-list {
+    height: 100%;
+    padding-top: 0;
+    margin-left: 10px;
+    border-radius: 5px;
+    position: relative;
+    overflow-y: auto;
+  }
   .conversation-add-btn {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
+    text-align: right;
+    width: 100%;
+    position: sticky;
+    padding-right: 1em;
+    bottom: 0;
   }
 }
 </style>
