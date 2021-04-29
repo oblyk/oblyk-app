@@ -35,7 +35,7 @@
       <v-btn
         icon
         dark
-        v-if="cragSectorId || cragId || areaId"
+        v-if="environnementType"
         @click.stop="defineAsBanner()"
         :title="defineBtnTitle()"
         :loading="updatingBanner"
@@ -76,93 +76,77 @@ export default {
     photo: Object,
     photosGallery: Array,
     openLightBoxDialog: Function,
-    photoIndex: Number
+    photoIndex: Number,
+    environnementType: String,
+    environnementObject: Object
   },
 
   data () {
     return {
       photoOver: false,
-      updatingBanner: false,
-      areaId: this.$route.params.areaId,
-      cragId: this.$route.params.cragId,
-      cragSectorId: this.$route.params.cragSectorId,
-      cragRouteId: this.$route.params.cragRouteId
+      updatingBanner: false
     }
   },
 
   methods: {
-    bannerType: function () {
-      if (this.cragRouteId) {
-        return 'cragRoute'
-      } else if (this.areaId) {
-        return 'area'
-      } else if (this.cragSectorId) {
-        return 'cragSector'
-      } else {
-        return 'crag'
-      }
-    },
-
     defineBtnTitle: function () {
-      const bannerType = this.bannerType()
-      if (bannerType === 'cragRoute') {
+      if (this.environnementType === 'cragRoute') {
         return this.$t('components.gallery.defineCragRouteBanner')
-      } else if (bannerType === 'cragSector') {
+      } else if (this.environnementType === 'cragSector') {
         return this.$t('components.gallery.defineCragSectorBanner')
-      } else if (bannerType === 'crag') {
+      } else if (this.environnementType === 'crag') {
         return this.$t('components.gallery.defineCragBanner')
-      } else if (bannerType === 'area') {
+      } else if (this.environnementType === 'area') {
         return this.$t('components.gallery.defineAreaBanner')
       }
     },
 
     defineAsBanner: function () {
       this.updatingBanner = true
-      const bannerType = this.bannerType()
       let promise
 
-      if (bannerType === 'cragRoute') {
+      if (this.environnementType === 'cragRoute') {
         promise = CragRouteApi.update({
           photo_id: this.photo.id,
-          crag_id: this.cragId,
-          id: this.cragRouteId
+          crag_id: this.environnementObject.crag.id,
+          id: this.environnementObject.id
         })
-      } else if (bannerType === 'cragSector') {
+      } else if (this.environnementType === 'cragSector') {
         promise = CragSectorApi.update({
           photo_id: this.photo.id,
-          crag_id: this.cragId,
-          id: this.cragSectorId
+          crag_id: this.environnementObject.crag.id,
+          id: this.environnementObject.id
         })
-      } else if (bannerType === 'crag') {
+      } else if (this.environnementType === 'crag') {
         promise = CragApi.update({
           photo_id: this.photo.id,
-          id: this.cragId
+          id: this.environnementObject.id
         })
-      } else if (bannerType === 'area') {
+      } else if (this.environnementType === 'area') {
         promise = AreaApi.update({
           photo_id: this.photo.id,
-          id: this.areaId
+          id: this.environnementObject.id
         })
       }
 
       promise
         .then(resp => {
-          if (bannerType === 'crag') {
+          if (this.environnementType === 'crag') {
             const crag = new Crag(resp.data)
             this.$root.$emit('updateCragBannerSrc', crag.coverUrl())
-          } else if (bannerType === 'cragSector') {
+          } else if (this.environnementType === 'cragSector') {
             const cragSector = new CragSector(resp.data)
             this.$root.$emit('updateCragSectorBannerSrc', cragSector.coverUrl())
-          } else if (bannerType === 'cragRoute') {
+          } else if (this.environnementType === 'cragRoute') {
             const cragRoute = new CragRoute(resp.data)
             this.$root.$emit('updateCragRouteBannerSrc', cragRoute.coverUrl())
-          } else if (bannerType === 'area') {
+          } else if (this.environnementType === 'area') {
             const area = new Area(resp.data)
             this.$root.$emit('updateAreaBannerSrc', area.coverUrl())
           }
         })
         .catch(err => {
-          this.$root.$emit('alertFromApiError', err, bannerType)
+          this.$root.$emit('alertFromApiError', err, this.environnementType)
         })
         .finally(() => {
           this.updatingBanner = false

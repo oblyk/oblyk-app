@@ -10,6 +10,8 @@
     <spinner v-if="loadingPhotos" :full-height="false"/>
     <div v-if="!loadingPhotos">
       <photo-gallery
+        environnement-type="cragRoute"
+        :environnement-object="cragRoute"
         :photos="photos"
         :lg-col="lgCol"
       />

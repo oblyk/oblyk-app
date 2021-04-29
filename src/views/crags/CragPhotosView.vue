@@ -14,7 +14,11 @@
         </v-icon>
         {{ $t('actions.addPicture') }}
       </v-btn>
-      <photo-gallery :photos="photos" />
+      <photo-gallery
+        environnement-type="crag"
+        :environnement-object="crag"
+        :photos="photos"
+      />
     </div>
 
     <spinner v-if="loadingVideos" :full-height="false" />

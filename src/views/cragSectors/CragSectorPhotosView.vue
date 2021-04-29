@@ -15,6 +15,8 @@
         {{ $t('actions.addPicture') }}
       </v-btn>
       <photo-gallery
+        environnement-type="cragSector"
+        :environnement-object="cragSector"
         :photos="photos"
         lg-col="col-lg-3"
       />

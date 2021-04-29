@@ -10,6 +10,8 @@
         v-bind:class="lgCol"
       >
         <photo-thumbnail
+          :environnement-type="environnementType"
+          :environnement-object="environnementObject"
           :photo-index="index"
           :photo="photo"
           :photos-gallery="photosGallery()"
@@ -57,7 +59,9 @@ export default {
       type: String,
       required: false,
       default: 'col-lg-2'
-    }
+    },
+    environnementType: String,
+    environnementObject: Object
   },
 
   data () {

@@ -2,7 +2,11 @@
   <v-container>
     <spinner v-if="loadingPhotos" :full-height="false"/>
     <div v-if="!loadingPhotos">
-      <photo-gallery :photos="photos" />
+      <photo-gallery
+        environnement-type="area"
+        :environnement-object="area"
+        :photos="photos"
+      />
     </div>
   </v-container>
 </template>
