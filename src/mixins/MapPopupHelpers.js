@@ -83,9 +83,6 @@ export const MapPopupHelpers = {
           <tr>
             <td colspan="2" class="loved-by-king">${cragSector.name}</td>
           </tr>
-          <tr>
-            <td colspan="2">${cragSector.description}</td>
-          </tr>
         </table>
         <div class="map-popup-link-area">
           <button>${this.$t('actions.see')}</button>
