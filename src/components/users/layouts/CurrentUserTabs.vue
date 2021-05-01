@@ -52,7 +52,7 @@
       </span>
     </v-tab>
 
-    <v-tab :to="user.currentUserPath('favorites')">
+    <v-tab :to="user.currentUserPath('favorites/crags')">
       <v-icon
         :small="!isMobile"
         left

@@ -49,7 +49,7 @@
         :title="$t('components.layout.appDrawer.user.subscribers')"
       />
       <app-drawer-item
-        :url="`/me/${loggedInUser.slugName}/favorites`"
+        :url="`/me/${loggedInUser.slugName}/favorites/crags`"
         icon="mdi-star"
         icon-color="amber"
         :title="$t('components.layout.appDrawer.user.favorites')"

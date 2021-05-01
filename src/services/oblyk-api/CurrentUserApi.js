@@ -24,13 +24,30 @@ class CurrentUserApi extends BaseApi {
     })
   }
 
-  favorites () {
+  favoriteGyms (page = 1) {
     return axios({
       method: 'GET',
-      url: `${this.baseUrl}/current_users/favorites.json`,
+      url: `${this.baseUrl}/current_users/favorite_gyms.json`,
       headers: {
         Authorization: this.authToken(),
         HttpApiAccessToken: this.apiAccessToken
+      },
+      params: {
+        page: page
+      }
+    })
+  }
+
+  favoriteCrags (page = 1) {
+    return axios({
+      method: 'GET',
+      url: `${this.baseUrl}/current_users/favorite_crags.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
+      params: {
+        page: page
       }
     })
   }

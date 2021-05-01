@@ -4,16 +4,9 @@
 
     <div v-if="!loadingCurrentUser">
       <user-tabs :user="currentUser" />
-      <spinner v-if="loadingSubscribes" />
-
-      <v-container v-if="!loadingSubscribes">
-        <div
-          v-for="(subscribe, index) in subscribes"
-          :key="`subscribe-${index}`"
-        >
-          <gym-small-card class="mb-2" v-if="subscribe.followable_type === 'Gym'" :gym="recordObject('Gym', subscribe.followable_object)" />
-          <crag-small-card class="mb-2" v-if="subscribe.followable_type === 'Crag'" :crag="recordObject('Crag', subscribe.followable_object)" />
-        </div>
+      <user-favorite-tabs :user="currentUser" />
+      <v-container>
+        <router-view :user="currentUser" />
       </v-container>
     </div>
   </div>
@@ -24,54 +17,66 @@ import { CurrentUserConcern } from '@/concerns/CurrentUserConcern'
 import Spinner from '@/components/layouts/Spiner'
 import UserTabs from '@/components/users/layouts/CurrentUserTabs'
 import CurrentUserApi from '@/services/oblyk-api/CurrentUserApi'
-import GymSmallCard from '@/components/gyms/GymSmallCard'
 import Gym from '@/models/Gym'
 import Crag from '@/models/Crag'
-import CragSmallCard from '@/components/crags/CragSmallCard'
+import UserFavoriteTabs from '@/components/users/layouts/UserFavoriteTabs'
 
 export default {
   name: 'CurrentUserFavoritesView',
+  mixins: [CurrentUserConcern],
   components: {
-    CragSmallCard,
-    GymSmallCard,
+    UserFavoriteTabs,
     UserTabs,
     Spinner
   },
-  mixins: [CurrentUserConcern],
 
   data () {
     return {
-      loadingSubscribes: true,
-      subscribes: []
+      loadingGyms: true,
+      loadingCrags: true,
+      gyms: [],
+      crags: []
     }
   },
 
   mounted () {
-    this.getFavorites()
+    this.getFavoriteGyms()
+    this.getFavoriteCrags()
   },
 
   methods: {
-    getFavorites: function () {
-      this.loadingSubscribes = true
+    getFavoriteGyms: function () {
+      this.loadingGyms = true
       CurrentUserApi
-        .favorites()
+        .favoriteGyms()
         .then(resp => {
-          this.subscribes = resp.data
+          for (const gym of resp.data) {
+            this.gyms = new Gym(gym)
+          }
         })
         .catch(err => {
           this.$root.$emit('alertFromApiError', err, 'user')
         })
         .finally(() => {
-          this.loadingSubscribes = false
+          this.loadingGyms = false
         })
     },
 
-    recordObject: function (type, data) {
-      if (type === 'Gym') {
-        return new Gym(data)
-      } else if (type === 'Crag') {
-        return new Crag(data)
-      }
+    getFavoriteCrags: function () {
+      this.loadingCrags = true
+      CurrentUserApi
+        .favoriteCrags()
+        .then(resp => {
+          for (const crag of resp.data) {
+            this.crags = new Crag(crag)
+          }
+        })
+        .catch(err => {
+          this.$root.$emit('alertFromApiError', err, 'user')
+        })
+        .finally(() => {
+          this.loadingCrags = false
+        })
     }
   }
 }

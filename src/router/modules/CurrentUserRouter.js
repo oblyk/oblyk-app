@@ -15,6 +15,8 @@ import CurrentUserMapView from '@/views/currentUsers/CurrentUserMapView'
 import CurrentUserPrivacyView from '@/views/currentUsers/actions/CurrentUserPrivacyView'
 import CurrentUserCommunityView from '@/views/currentUsers/CurrentUserCommunityView'
 import CurrentUserFollowersView from '@/views/currentUsers/CurrentUserFollowersView'
+import CurrentUserFavoriteCragsView from '@/views/currentUsers/CurrentUserFavoriteCragsView'
+import CurrentUserFavoriteGymsView from '@/views/currentUsers/CurrentUserFavoriteGymsView'
 
 export default [
   {
@@ -174,6 +176,27 @@ export default [
       requiresAuth: true,
       title: 'myFavorites',
       showTitle: true
-    }
+    },
+
+    children: [
+      {
+        path: 'crags',
+        component: CurrentUserFavoriteCragsView,
+        meta: {
+          requiresAuth: true,
+          title: 'myFavorites',
+          showTitle: true
+        }
+      },
+      {
+        path: 'gyms',
+        component: CurrentUserFavoriteGymsView,
+        meta: {
+          requiresAuth: true,
+          title: 'myFavorites',
+          showTitle: true
+        }
+      }
+    ]
   }
 ]
