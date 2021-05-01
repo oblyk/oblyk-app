@@ -516,7 +516,8 @@
         "sendList": "Carnet",
         "tickList": "Tick list",
         "projects": "Projets",
-        "analytiks": "Analytiks"
+        "analytiks": "Analytiks",
+        "myMap": "Ma carte"
       },
       "public_explain": {
         "profile": "Votre profil est <strong>ouvert</strong> à la consultation par les autres grimpeurs, qu'ils soient <strong>connecté ou non à Oblyk</strong>.<br>Les grimpeurs peuvent <strong>vous suivre sans attendre votre validation.</strong>",

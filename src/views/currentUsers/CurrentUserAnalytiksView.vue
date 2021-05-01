@@ -80,7 +80,14 @@ import LogBookEvolutionChart from '@/components/logBooks/outdoors/LogBookEvoluti
 
 export default {
   name: 'CurrentUserAnalytiksView',
-  components: { LogBookEvolutionChart, LogBookMonthChart, LogBookYearChart, LogBookGradeChart, LogBookClimbingTypeChart, Spinner },
+  components: {
+    LogBookEvolutionChart,
+    LogBookMonthChart,
+    LogBookYearChart,
+    LogBookGradeChart,
+    LogBookClimbingTypeChart,
+    Spinner
+  },
   props: {
     user: Object
   },

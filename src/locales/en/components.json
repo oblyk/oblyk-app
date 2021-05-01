@@ -517,7 +517,8 @@
         "sendList": "Send list",
         "tickList": "Tick list",
         "projects": "Projects",
-        "analytiks": "Analytiks"
+        "analytiks": "Analytiks",
+        "myMap": "My map"
       },
       "public_explain": {
         "profile": "Your profile is <strong>open</strong> for consultation by other climbers, <strong>whether or not they are connected</strong> to Oblyk.<br>The climbers can <strong>follow you without waiting for your validation.</strong>",

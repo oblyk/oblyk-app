@@ -15,6 +15,9 @@
     <v-tab :to="user.currentUserPath('ascents/analytiks')">
       {{ $t('components.user.ascentTabs.analytiks') }}
     </v-tab>
+    <v-tab to="/maps/my-map">
+      {{ $t('components.user.ascentTabs.myMap') }}
+    </v-tab>
   </v-tabs>
 </template>
 
