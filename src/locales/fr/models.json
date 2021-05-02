@@ -513,6 +513,11 @@
     },
     "subscribe": {
       "email": "Votre e-mail"
+    },
+    "emailNotifications": {
+      "new_message": "J'ai un message non lu",
+      "request_for_follow_up": "On demande à me suivre",
+      "new_article": "Il y a un nouvel article"
     }
   }
 }

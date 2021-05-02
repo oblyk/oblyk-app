@@ -28,7 +28,8 @@
       "hardnessStatus": "Appréciation de la difficulté",
       "note": "Note",
       "dateOfBirth": "Date de naissance",
-      "genre": "Genre"
+      "genre": "Genre",
+      "emailNotifications": "Recevoir une notification e-mail quand :"
     },
     "markdown": {
       "tips": "<strong>Tips :</strong> Utilise la <a>notation markdown</a> pour plus de style!",
@@ -495,6 +496,8 @@
       "recoveryNewsletterSettings": "récupération du paramétrage de la newsletter ...",
       "youAreSubscribedToTheNewsletter": "vous êtes inscrit à la newsletter",
       "youAreUnsubscribedToTheNewsletter": "vous êtes désinscrit de la newsletter",
+      "emailNotification": "Notification par email",
+      "recoveryEmailNotificationSettings": "récupération du paramétrage des notifications par email ...",
       "tabs": {
         "feed": "Fil",
         "profile": "Profil",

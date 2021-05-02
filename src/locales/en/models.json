@@ -513,6 +513,11 @@
     },
     "subscribe": {
       "email": "Your e-mail"
+    },
+    "emailNotifications": {
+      "new_message": "I have an unread message",
+      "request_for_follow_up": "They ask to follow me",
+      "new_article": "There is a new article"
     }
   }
 }

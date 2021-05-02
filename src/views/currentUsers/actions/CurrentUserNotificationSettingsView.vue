@@ -6,6 +6,12 @@
           {{ $t('components.user.notificationSetting') }}
         </h2>
         <newsletter-subscribe-switch-form :user="user" />
+        <p class="mt-2">
+          <u>
+            {{ $t('components.user.emailNotification') }}
+          </u>
+        </p>
+        <email-notification-form :user="user" />
       </v-col>
     </v-row>
   </v-container>
@@ -13,9 +19,10 @@
 
 <script>
 import NewsletterSubscribeSwitchForm from '@/components/users/forms/NewsletterSubscribeSwitchForm'
+import EmailNotificationForm from '@/components/users/forms/EmailNotificationForm'
 export default {
   name: 'CurrentUserNotificationSettingsView',
-  components: { NewsletterSubscribeSwitchForm },
+  components: { EmailNotificationForm, NewsletterSubscribeSwitchForm },
   props: {
     user: Object
   }
