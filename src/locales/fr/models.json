@@ -11,7 +11,8 @@
       "is_not_a_permitted_value": "n'est pas dans la liste des valeurs autorisées",
       "you_must_choose_at_least_one_system": "Vous devez choisir au moins un système",
       "you_cannot_have_both_point_systems": "Vous ne pouvez pas avoir les deux systèmes de point",
-      "is_not_in_the_right_format": "n'est pas au bon format"
+      "is_not_in_the_right_format": "n'est pas au bon format",
+      "confirm": "doit être identique"
     }
   },
   "models": {
@@ -23,6 +24,7 @@
       "description": "Bio",
       "password": "Mot de passe",
       "confirm_password": "Confirmez votre mot de passe",
+      "password_confirmation": "Le mot de passe confirmé",
       "email": "Email",
       "genre": "Genre",
       "partner_search": "Faire partie de la recherche de partenaire",

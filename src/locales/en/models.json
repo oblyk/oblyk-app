@@ -11,7 +11,8 @@
       "is_not_a_permitted_value": "is not a permitted value",
       "you_must_choose_at_least_one_system": "you must choose at least one system",
       "you_cannot_have_both_point_systems": "you cannot have both point systems",
-      "is_not_in_the_right_format": "is not in the right format"
+      "is_not_in_the_right_format": "is not in the right format",
+      "confirm": "must be identical"
     }
   },
   "models": {
@@ -23,6 +24,7 @@
       "description": "Bio",
       "password": "Password",
       "confirm_password": "Confirm your password",
+      "password_confirmation": "Confirm password",
       "email": "Email",
       "genre": "Genre",
       "partner_search": "Be part of the partner search",

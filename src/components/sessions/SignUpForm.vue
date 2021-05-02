@@ -71,9 +71,17 @@
       v-model="genre"
     />
 
-    <!-- Term of use -->
+    <!-- Newsletter subscribe -->
     <v-checkbox
       class="mt-0"
+      hide-details
+      v-model="newsletterSubscribe"
+      :label="$t('components.session.newsletterSubscribe')"
+    />
+
+    <!-- Term of use -->
+    <v-checkbox
+      class="mt-3"
       hide-details
       v-model="termsOfUse"
       :label="$t('components.session.termsOfUse')"
@@ -84,6 +92,7 @@
     </router-link>
 
     <submit-form
+      class="mt-7"
       submit-local-key="actions.createMyAccount"
       :overlay="submitOverlay"
     >
@@ -119,6 +128,7 @@ export default {
   data () {
     return {
       termsOfUse: false,
+      newsletterSubscribe: false,
       email: null,
       password: null,
       passwordConfirmation: null,
@@ -160,7 +170,8 @@ export default {
         first_name: this.firstName,
         date_of_birth: this.dateOfBirth,
         remember_me: this.rememberMe,
-        language: this.language
+        language: this.language,
+        newsletter_subscribe: this.newsletterSubscribe
       }
       this.$store
         .dispatch('auth/signUp', data)

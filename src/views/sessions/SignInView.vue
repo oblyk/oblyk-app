@@ -1,44 +1,48 @@
 <template>
-  <v-container>
-    <v-row justify="center">
-      <v-col class="global-form-width" align-self="center">
+  <div>
+    <v-container class="common-page-container">
+      <v-row justify="center">
+        <v-col class="global-form-width" align-self="center">
 
-        <div v-if="!isLoggedIn">
-          <h2 class="mb-4">{{  $t('actions.signIn') }}</h2>
+          <div v-if="!isLoggedIn">
+            <h2 class="mb-4">{{  $t('actions.signIn') }}</h2>
 
-          <v-alert
-            v-if="redirectTo !== null && alert"
-            outlined
-            type="warning"
-          >
-            {{ $t('components.session.connectAlert') }}
-          </v-alert>
+            <v-alert
+              v-if="redirectTo !== null && alert"
+              outlined
+              type="warning"
+            >
+              {{ $t('components.session.connectAlert') }}
+            </v-alert>
 
-          <sign-in-form :redirect-to="redirectTo"/>
-        </div>
+            <sign-in-form :redirect-to="redirectTo"/>
+          </div>
 
-        <p v-if="isLoggedIn">
-          <v-alert
-            outlined
-            type="info"
-          >
-            {{ $t('components.session.alreadyConnected') }}
-          </v-alert>
-        </p>
+          <p v-if="isLoggedIn">
+            <v-alert
+              outlined
+              type="info"
+            >
+              {{ $t('components.session.alreadyConnected') }}
+            </v-alert>
+          </p>
 
-      </v-col>
-    </v-row>
-  </v-container>
+        </v-col>
+      </v-row>
+    </v-container>
+    <app-footer />
+  </div>
 </template>
 
 <script>
 import { SessionConcern } from '@/concerns/SessionConcern'
 import SignInForm from '@/components/sessions/SignInForm'
+import AppFooter from '@/components/layouts/AppFooter'
 
 export default {
   name: 'SignInView',
   mixins: [SessionConcern],
-  components: { SignInForm },
+  components: { AppFooter, SignInForm },
 
   data () {
     return {
