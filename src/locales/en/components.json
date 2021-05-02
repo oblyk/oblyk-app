@@ -91,7 +91,6 @@
       "newEmpty": "You have no new notification",
       "empty": "You have no notification",
       "markedAllAsRead": "Marked all as read",
-      "seeMore": "Marked all as read",
       "type": {
         "new_message": "new message from %{name}",
         "new_follower": "%{name} started following you",
@@ -467,6 +466,7 @@
       "globalInformation": "General Information",
       "privacyParameters": "Privacy parameters",
       "partnerSearch": "Partner search",
+      "notificationSetting": "Notifications parameters",
       "successfulEditMessage": "Your profile has been updated",
       "whatClimbingType": "What type of climbing do you practice ?",
       "whichLevel": "In which level do you like tso climb ?",
@@ -491,6 +491,10 @@
       "userAround": "%{count} climber around | %{count} climbers around",
       "userCount": "%{count} climber | %{count} climbers",
       "distanceAround": "%{distance}km around",
+      "receiveNewsletter": "Receive the newsletter (one per quarter approximately)",
+      "recoveryNewsletterSettings": "recovery of the newsletter settings ...",
+      "youAreSubscribedToTheNewsletter": "you are registered to the newsletter",
+      "youAreUnsubscribedToTheNewsletter": "you are unsubscribed to the newsletter",
       "tabs": {
         "feed": "Feed",
         "profile": "Profile",
@@ -512,7 +516,8 @@
       "settingTabs": {
         "general": "General",
         "privacy": "Privacy",
-        "partner": "Climbers Map"
+        "partner": "Climbers Map",
+        "notifications": "Notifications"
       },
       "ascentTabs": {
         "sendList": "Send list",

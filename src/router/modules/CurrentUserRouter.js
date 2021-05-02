@@ -17,6 +17,7 @@ import CurrentUserCommunityView from '@/views/currentUsers/CurrentUserCommunityV
 import CurrentUserFollowersView from '@/views/currentUsers/CurrentUserFollowersView'
 import CurrentUserFavoriteCragsView from '@/views/currentUsers/CurrentUserFavoriteCragsView'
 import CurrentUserFavoriteGymsView from '@/views/currentUsers/CurrentUserFavoriteGymsView'
+import CurrentUserNotificationSettingsView from '@/views/currentUsers/actions/CurrentUserNotificationSettingsView'
 
 export default [
   {
@@ -76,6 +77,15 @@ export default [
       {
         path: 'partner',
         component: CurrentUserPartnerSettingsView,
+        meta: {
+          requiresAuth: true,
+          title: 'mySettings',
+          showTitle: true
+        }
+      },
+      {
+        path: 'notifications',
+        component: CurrentUserNotificationSettingsView,
         meta: {
           requiresAuth: true,
           title: 'mySettings',

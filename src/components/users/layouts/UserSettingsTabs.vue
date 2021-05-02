@@ -15,6 +15,10 @@
       <v-icon left small>mdi-lock</v-icon>
       {{ $t('components.user.settingTabs.privacy') }}
     </v-tab>
+    <v-tab :to="user.currentUserPath('settings/notifications')">
+      <v-icon left small>mdi-bell</v-icon>
+      {{ $t('components.user.settingTabs.notifications') }}
+    </v-tab>
   </v-tabs>
 </template>
 

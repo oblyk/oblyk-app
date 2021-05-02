@@ -129,6 +129,17 @@ class CurrentUserApi extends BaseApi {
     })
   }
 
+  subscribeToNewsletter () {
+    return axios({
+      method: 'GET',
+      url: `${this.baseUrl}/current_users/subscribe_to_newsletter.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
+    })
+  }
+
   update (data) {
     return axios({
       method: 'PUT',

@@ -466,6 +466,7 @@
       "globalInformation": "Information général",
       "privacyParameters": "Paramètres de confidentialité",
       "partnerSearch": "Recherche de partenaire",
+      "notificationSetting": "Paramètre des notifications",
       "successfulEditMessage": "Votre profile à été mis à jour",
       "whatClimbingType": "Quel type d'escalade pratiquez-vous ?",
       "whichLevel": "Dans quel niveau aimez-vous grimper ?",
@@ -490,6 +491,10 @@
       "userAround": "%{count} grimpeur around | %{count} grimpeurs around",
       "userCount": "%{count} grimpeur | %{count} grimpeurs",
       "distanceAround": "%{distance}km autour de",
+      "receiveNewsletter": "recevoir la newsletter (une par trimestre environ)",
+      "recoveryNewsletterSettings": "récupération du paramétrage de la newsletter ...",
+      "youAreSubscribedToTheNewsletter": "vous êtes inscrit à la newsletter",
+      "youAreUnsubscribedToTheNewsletter": "vous êtes désinscrit de la newsletter",
       "tabs": {
         "feed": "Fil",
         "profile": "Profil",
@@ -511,7 +516,8 @@
       "settingTabs": {
         "general": "Généraux",
         "privacy": "Confidentialité",
-        "partner": "Carte des grimpeurs"
+        "partner": "Carte des grimpeurs",
+        "notifications": "Notifications"
       },
       "ascentTabs": {
         "sendList": "Carnet",
