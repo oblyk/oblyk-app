@@ -4,7 +4,7 @@
 
       <!-- Newsletter Contente -->
       <div
-        class="newsletter-content-area"
+        class="newsletter-content-area mt-9"
         v-html="newsletter.body"
       />
 
