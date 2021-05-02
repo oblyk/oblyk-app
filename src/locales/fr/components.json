@@ -573,6 +573,11 @@
       "addCragInArticle": "Ajouter un falaise dans cet article",
       "addGuideBookInArticle": "Ajouter un topo dans cet article"
     },
+    "newsletter": {
+      "title": "Newsletters",
+      "newsletterUpdate": "La newsletter à été mise à jour",
+      "newsletterSent": "Newsletter envoyé"
+    },
     "layout": {
       "appBar": {
         "login": "Me connecter",
@@ -606,7 +611,8 @@
           "account": "Compte",
           "myGyms": "Mes salles",
           "mapsAndTools": "Cartes & Outils",
-          "project": "Le projet"
+          "project": "Le projet",
+          "admin": "Admin"
         },
         "user": {
           "feed": "Fil",
@@ -631,7 +637,8 @@
         "helps": "Aides",
         "termsOfUse": "Mentions légales",
         "facebook": "Facebook",
-        "github": "github"
+        "github": "github",
+        "newsletter": "Newsletter"
       },
       "errors": {
         "404": {

@@ -38,6 +38,7 @@ import ArticleRouter from '@/router/modules/ArticleRouter'
 import AuthorRouter from '@/router/modules/AuthorRouter'
 import NotFoundView from '@/views/errors/NotFoundView'
 import NotificationRouter from '@/router/modules/NotificationRouter'
+import NewsletterRouter from '@/router/modules/NewsletterRouter'
 
 Vue.use(VueRouter)
 
@@ -79,6 +80,7 @@ const router = new VueRouter({
     ...ArticleRouter,
     ...AuthorRouter,
     ...NotificationRouter,
+    ...NewsletterRouter,
     {
       path: '*',
       component: NotFoundView

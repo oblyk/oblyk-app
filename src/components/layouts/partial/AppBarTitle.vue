@@ -45,6 +45,7 @@ import Crag from '@/models/Crag'
 import Article from '@/models/Article'
 import Area from '@/models/Area'
 import GuideBookPaper from '@/models/GuideBookPaper'
+import Newsletter from '@/models/Newsletter'
 
 export default {
   name: 'AppBarTitle',
@@ -130,6 +131,8 @@ export default {
         new Crag().find(this.objectId).then(object => { this.title = object.name; this.url = object.path() })
       } else if (this.objectName === 'article') {
         new Article().find(this.objectId).then(object => { this.title = object.name; this.url = object.path() })
+      } else if (this.objectName === 'newsletter') {
+        new Newsletter().find(this.objectId).then(object => { this.title = object.name; this.url = object.path() })
       } else if (this.objectName === 'guideBookPaper') {
         new GuideBookPaper().find(this.objectId).then(object => { this.title = object.name; this.url = object.path() })
       } else if (this.objectName === 'area') {

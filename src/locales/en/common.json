@@ -2,7 +2,8 @@
   "date": {
     "yearsOld": " years old",
     "format_dd_mm_yyyy": "dd/mm/yyyy",
-    "lastActivity": "last activity %{date} ago"
+    "lastActivity": "last activity %{date} ago",
+    "sentAt": "sent at %{date}"
   },
   "common": {
     "noInformation": "No information",
@@ -112,6 +113,20 @@
             "action": "My messenger"
           }
         }
+      },
+      "newsletterSubscribe": {
+        "title": "Subscribe to the newsletter",
+        "paragraphe": "About once a quarter we send an email about oblyk acutalities, community expansion, developments of the month and projects to come. ",
+        "stayInformed": "You want to be kept in the loop? enter your e-mail address here!",
+        "successTitle": "You are now registered to our newsletter!",
+        "successParagraphe": "We hope you enjoy hearing from us : )",
+        "successUnsubscribeParagraphe": "You can unsubscribe at any time by going to this page :"
+      },
+      "newsletterUnsubscribe": {
+        "title": "Unsubscribe from the newsletter",
+        "paragraphe": "To unsubscribe from the newsletter, enter your email address here :",
+        "successTitle": "You are now unsubscribed",
+        "successParagraphe": "Thanks for following us so far :)"
       }
     }
   }

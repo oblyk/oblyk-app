@@ -120,6 +120,21 @@
     "articlePhotos": {
       "title": "Photos de l'article"
     },
+    "editNewsletter": {
+      "title": "Modifier la newsletter"
+    },
+    "newsletters": {
+      "title": "Newsletters"
+    },
+    "newsletterPhotos": {
+      "title": "Photos de la Newsletter"
+    },
+    "newsletterSubscribe": {
+      "title": "M'inscrire à la newsletter"
+    },
+    "newsletterUnsubscribe": {
+      "title": "Me désinscrire de la newsletter"
+    },
     "notifications": {
       "title": "Notifications"
     }

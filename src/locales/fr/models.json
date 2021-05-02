@@ -504,6 +504,13 @@
     "author": {
       "name": "Nom",
       "description": "Bio"
+    },
+    "newsletter": {
+      "name": "Titre",
+      "body": "Contenu"
+    },
+    "subscribe": {
+      "email": "Votre e-mail"
     }
   }
 }

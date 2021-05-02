@@ -1,0 +1,60 @@
+<template>
+  <v-form @submit.prevent="submit()">
+    <v-text-field
+      outlined
+      v-model="data.email"
+      required
+      hide-details
+      :label="$t('models.subscribe.email')"
+      class="mb-2"
+    />
+
+    <submit-form
+      :go-back-btn="false"
+      :overlay="submitOverlay"
+      submit-local-key="actions.unsubscribeMe"
+    />
+  </v-form>
+</template>
+
+<script>
+import { FormHelpers } from '@/mixins/FormHelpers'
+import SubmitForm from '@/components/forms/SubmitForm'
+import NewsletterApi from '@/services/oblyk-api/NewsletterApi'
+
+export default {
+  name: 'NewsletterUnsubscribeForm',
+  components: { SubmitForm },
+  mixins: [FormHelpers],
+  props: {
+    email: String
+  },
+
+  data () {
+    return {
+      redirectTo: null,
+      data: {
+        email: this.email
+      }
+    }
+  },
+
+  methods: {
+    submit: function () {
+      this.submitOverlay = true
+
+      NewsletterApi
+        .unsubscribe(this.data)
+        .then(() => {
+          this.$router.push('/newsletters/successful-unsubscribe')
+        })
+        .catch(err => {
+          this.$root.$emit('alertFromApiError', err, 'subscribe')
+        })
+        .finally(() => {
+          this.submitOverlay = false
+        })
+    }
+  }
+}
+</script>

@@ -2,7 +2,8 @@
   "date": {
     "yearsOld": "ans",
     "format_dd_mm_yyyy": "jj/mm/aaaa",
-    "lastActivity": "dernière activité %{date}"
+    "lastActivity": "dernière activité %{date}",
+    "sentAt": "envoyé le %{date}"
   },
   "common": {
     "noInformation": "Non renseigné",
@@ -112,6 +113,20 @@
             "action": "Ma messagerie"
           }
         }
+      },
+      "newsletterSubscribe": {
+        "title": "S'inscrire à la newsletter",
+        "paragraphe": "Environ une fois par trimestre nous envoyons un mail relatant des acutalités d'oblyk, de l'expansion de la communauté, des développements du mois et des projets à venire.",
+        "stayInformed": "Tu veux être tenu au courant ? renseigne ton adresse mail ici !",
+        "successTitle": "Vous être désormais inscrit à notre newsletter!",
+        "successParagraphe": "Nous espérons que vous apprécierez recevoir de nos nouvelles : )",
+        "successUnsubscribeParagraphe": "Vous pouvez vous désinscrire à tout moment en vous rendant sur cette page :"
+      },
+      "newsletterUnsubscribe": {
+        "title": "Se désinscrire de la newsletter",
+        "paragraphe": "Pour vous désinscrire de la newsletter, renseignez votre adresse email ici :",
+        "successTitle": "Vous être désormais désinscrit",
+        "successParagraphe": "Merci de nous avoir suivie jusqu'à présent :)"
       }
     }
   }

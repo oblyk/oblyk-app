@@ -178,6 +178,20 @@
           icon="mdi-numeric-7-box-multiple"
           :title="$t('common.pages.grade.title')"
         />
+
+        <!-- Admin tool -->
+        <v-subheader
+          inset
+          v-if="isLoggedIn && isSuperAdmin"
+        >
+          {{ $t('components.layout.appDrawer.subHeaders.admin') }}
+        </v-subheader>
+        <app-drawer-item
+          v-if="isLoggedIn && isSuperAdmin"
+          url="/newsletters"
+          icon="mdi-email-multiple"
+          :title="$t('components.newsletter.title')"
+        />
       </v-list-group>
 
       <v-subheader>

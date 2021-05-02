@@ -86,6 +86,10 @@
     "unPublish": "Un publish",
     "writeAnArticle": "Write an article",
     "addCrag": "Add crag",
-    "readMore": "Read more"
+    "readMore": "Read more",
+    "writeNewsletter": "Write newsletter",
+    "send": "Send",
+    "subscribeMe": "Subscribe me",
+    "unsubscribeMe": "Unsubscribe me"
   }
 }

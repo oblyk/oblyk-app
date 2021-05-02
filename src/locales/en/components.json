@@ -574,6 +574,11 @@
       "addCragInArticle": "Add crag in this article",
       "addGuideBookInArticle": "Add guide book in this article"
     },
+    "newsletter": {
+      "title": "Newsletters",
+      "newsletterUpdate": "Newsletter is updated",
+      "newsletterSent": "Newsletter sent"
+    },
     "layout": {
       "appBar": {
         "login": "Login",
@@ -607,7 +612,8 @@
           "account": "Account",
           "myGyms": "My climbing gyms",
           "mapsAndTools": "Maps & Tools",
-          "project": "Project"
+          "project": "Project",
+          "admin": "Admin"
         },
         "user": {
           "feed": "Feed",
@@ -632,7 +638,8 @@
         "helps": "Helps",
         "termsOfUse": "Terms of use",
         "facebook": "Facebook",
-        "github": "github"
+        "github": "github",
+        "newsletter": "Newsletter"
       },
       "errors": {
         "404": {

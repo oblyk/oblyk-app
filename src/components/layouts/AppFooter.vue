@@ -64,6 +64,12 @@
             </v-icon>
             {{ $t('components.layout.footer.github') }}
           </a>
+          <router-link to="/newsletters/subscribe">
+            <v-icon small left>
+              mdi-email
+            </v-icon>
+            {{ $t('components.layout.footer.newsletter') }}
+          </router-link>
         </v-col>
       </v-row>
       <v-divider class="mt-2 mb-2" />
