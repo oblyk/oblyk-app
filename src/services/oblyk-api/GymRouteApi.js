@@ -60,32 +60,6 @@ class GymRouteApi extends BaseApi {
     })
   }
 
-  picture (data, gymId, gymRouteId) {
-    return axios({
-      method: 'POST',
-      url: `${this.baseUrl}/gyms/${gymId}/gym_routes/${gymRouteId}/add_picture.json`,
-      headers: {
-        Authorization: this.authToken(),
-        HttpApiAccessToken: this.apiAccessToken,
-        'Content-Type': 'multipart/form-data'
-      },
-      data: data
-    })
-  }
-
-  thumbnail (data, gymId, gymRouteId) {
-    return axios({
-      method: 'POST',
-      url: `${this.baseUrl}/gyms/${gymId}/gym_routes/${gymRouteId}/add_thumbnail.json`,
-      headers: {
-        Authorization: this.authToken(),
-        HttpApiAccessToken: this.apiAccessToken,
-        'Content-Type': 'multipart/form-data'
-      },
-      data: data
-    })
-  }
-
   create (data) {
     return axios({
       method: 'POST',

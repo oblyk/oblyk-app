@@ -37,6 +37,8 @@
     <close-form />
     <submit-form
       :overlay="submitOverlay"
+      :progressable="!isEditingForm()"
+      :progress-value="uploadPercentage"
       :submit-local-key="submitText()"
     />
   </v-form>
@@ -46,11 +48,14 @@ import { FormHelpers } from '@/mixins/FormHelpers'
 import SubmitForm from '@/components/forms/SubmitForm'
 import CloseForm from '@/components/forms/CloseForm'
 import GuideBookPdfApi from '@/services/oblyk-api/GuideBookPdfApi'
+import axios from 'axios'
+import { AppConcern } from '@/concerns/AppConcern'
+import { SessionConcern } from '@/concerns/SessionConcern'
 
 export default {
   name: 'GuideBookPdfForm',
   components: { CloseForm, SubmitForm },
-  mixins: [FormHelpers],
+  mixins: [FormHelpers, AppConcern, SessionConcern],
   props: {
     guideBookPdf: {
       type: Object,
@@ -63,6 +68,7 @@ export default {
     return {
       redirectTo: null,
       file: null,
+      uploadPercentage: 0,
       data: {
         id: (this.guideBookPdf || {}).id,
         crag_id: (this.guideBookPdf || {}).crag_id || this.cragId,
@@ -82,30 +88,50 @@ export default {
   methods: {
     submit: function () {
       this.submitOverlay = true
-      const formData = new FormData()
-      let promise
 
       if (this.isEditingForm()) {
-        promise = GuideBookPdfApi.update(this.data)
+        GuideBookPdfApi
+          .update(this.data)
+          .then(() => {
+            this.$router.push(this.redirectTo)
+          })
+          .catch(err => {
+            this.$root.$emit('alertFromApiError', err, 'guideBookPdf')
+          })
+          .then(() => {
+            this.submitOverlay = false
+          })
       } else {
+        const formData = new FormData()
         formData.append('guide_book_pdf[description]', this.data.description)
         formData.append('guide_book_pdf[name]', this.data.name)
+        formData.append('guide_book_pdf[author]', this.data.author)
         formData.append('guide_book_pdf[publication_year]', this.data.publication_year)
         formData.append('guide_book_pdf[crag_id]', this.data.crag_id)
         formData.append('guide_book_pdf[pdf_file]', this.file)
-        promise = GuideBookPdfApi.create(formData)
+        axios({
+          method: 'POST',
+          url: `${this.baseUrl}/public/guide_book_pdfs.json`,
+          headers: {
+            Authorization: this.getToken,
+            HttpApiAccessToken: this.apiAccessToken,
+            'Content-Type': 'multipart/form-data'
+          },
+          onUploadProgress: (progressEvent) => {
+            this.uploadPercentage = parseInt(Math.round((progressEvent.loaded / progressEvent.total) * 100))
+          },
+          data: formData
+        })
+          .then(() => {
+            this.$router.push(this.redirectTo)
+          })
+          .catch(err => {
+            this.$root.$emit('alertFromApiError', err, 'guideBookPdf')
+          })
+          .then(() => {
+            this.submitOverlay = false
+          })
       }
-
-      promise
-        .then(() => {
-          this.$router.push(this.redirectTo)
-        })
-        .catch(err => {
-          this.$root.$emit('alertFromApiError', err, 'guideBookPdf')
-        })
-        .then(() => {
-          this.submitOverlay = false
-        })
     }
   }
 }

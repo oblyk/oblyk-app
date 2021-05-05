@@ -10,19 +10,25 @@
       :placeholder="$t('actions.browse')"
     />
     <close-form />
-    <submit-form :overlay="submitOverlay" />
+    <submit-form
+      :overlay="submitOverlay"
+      :progressable="true"
+      :progress-value="uploadPercentage"
+    />
   </v-form>
 </template>
 <script>
 import { FormHelpers } from '@/mixins/FormHelpers'
-import GuideBookPaperApi from '@/services/oblyk-api/GuideBookPaperApi'
+import { AppConcern } from '@/concerns/AppConcern'
+import { SessionConcern } from '@/concerns/SessionConcern'
 import SubmitForm from '@/components/forms/SubmitForm'
 import CloseForm from '@/components/forms/CloseForm'
+import axios from 'axios'
 
 export default {
   name: 'GuideBookPaperCoverForm',
   components: { CloseForm, SubmitForm },
-  mixins: [FormHelpers],
+  mixins: [FormHelpers, AppConcern, SessionConcern],
 
   props: {
     guideBookPaper: Object
@@ -30,7 +36,8 @@ export default {
 
   data () {
     return {
-      file: null
+      file: null,
+      uploadPercentage: 0
     }
   },
 
@@ -41,11 +48,19 @@ export default {
 
       formData.append('guide_book_paper[cover]', this.file)
 
-      GuideBookPaperApi
-        .cover(
-          formData,
-          this.guideBookPaper.id
-        )
+      axios({
+        method: 'POST',
+        url: `${this.baseUrl}/public/guide_book_papers/${this.guideBookPaper.id}/add_cover.json`,
+        headers: {
+          Authorization: this.getToken,
+          HttpApiAccessToken: this.apiAccessToken,
+          'Content-Type': 'multipart/form-data'
+        },
+        onUploadProgress: (progressEvent) => {
+          this.uploadPercentage = parseInt(Math.round((progressEvent.loaded / progressEvent.total) * 100))
+        },
+        data: formData
+      })
         .then(() => {
           this.$router.push(this.guideBookPaper.path())
         })

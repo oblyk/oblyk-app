@@ -11,19 +11,25 @@
     ></v-file-input>
 
     <close-form />
-    <submit-form :overlay="submitOverlay" />
+    <submit-form
+      :overlay="submitOverlay"
+      :progressable="true"
+      :progress-value="uploadPercentage"
+    />
   </v-form>
 </template>
 <script>
 import { FormHelpers } from '@/mixins/FormHelpers'
-import GymSpaceApi from '@/services/oblyk-api/GymSpaceApi'
+import { AppConcern } from '@/concerns/AppConcern'
+import { SessionConcern } from '@/concerns/SessionConcern'
 import GymSpace from '@/models/GymSpace'
 import SubmitForm from '@/components/forms/SubmitForm'
 import CloseForm from '@/components/forms/CloseForm'
+import axios from 'axios'
 
 export default {
   name: 'GymSpacePlanForm',
-  mixins: [FormHelpers],
+  mixins: [FormHelpers, AppConcern, SessionConcern],
   components: { CloseForm, SubmitForm },
   props: {
     gymSpace: {
@@ -34,7 +40,8 @@ export default {
 
   data () {
     return {
-      plan: null
+      plan: null,
+      uploadPercentage: 0
     }
   },
 
@@ -44,8 +51,19 @@ export default {
       const formData = new FormData()
       formData.append('gym_space[plan]', this.plan)
 
-      GymSpaceApi
-        .plan(formData, this.gymSpace.gym.id, this.gymSpace.id)
+      axios({
+        method: 'POST',
+        url: `${this.baseUrl}/gyms/${this.gymSpace.gym.id}/gym_spaces/${this.gymSpace.id}/add_plan.json`,
+        headers: {
+          Authorization: this.getToken,
+          HttpApiAccessToken: this.apiAccessToken,
+          'Content-Type': 'multipart/form-data'
+        },
+        onUploadProgress: (progressEvent) => {
+          this.uploadPercentage = parseInt(Math.round((progressEvent.loaded / progressEvent.total) * 100))
+        },
+        data: formData
+      })
         .then((resp) => {
           const gymSpace = new GymSpace(resp.data)
           this.$router.push(gymSpace.path())

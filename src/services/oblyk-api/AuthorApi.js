@@ -23,18 +23,5 @@ class AuthorApi extends BaseApi {
       }
     })
   }
-
-  cover (data, authorId) {
-    return axios({
-      method: 'POST',
-      url: `${this.baseUrl}/authors/${authorId}/add_cover.json`,
-      headers: {
-        Authorization: this.authToken(),
-        HttpApiAccessToken: this.apiAccessToken,
-        'Content-Type': 'multipart/form-data'
-      },
-      data: data
-    })
-  }
 }
 export default new AuthorApi()

@@ -1,5 +1,5 @@
 <template>
-  <v-container v-if="!gym">
+  <v-container v-if="gym">
     <v-row justify="center">
       <v-col class="global-form-width">
         <h2 class="mb-4">{{ $t('actions.changeBanner') }}</h2>

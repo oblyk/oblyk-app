@@ -1,6 +1,10 @@
 <template>
   <div>
-    <overlay-form :overlay="overlay"/>
+    <overlay-form
+      :overlay="overlay"
+      :progressable="progressable"
+      :progress-value="progressValue"
+    />
 
     <v-btn
       v-if="goBackBtn"
@@ -42,7 +46,12 @@ export default {
     goBackBtn: {
       type: Boolean,
       default: true
-    }
+    },
+    progressable: {
+      type: Boolean,
+      default: false
+    },
+    progressValue: Number
   }
 }
 </script>

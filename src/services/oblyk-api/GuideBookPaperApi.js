@@ -96,19 +96,6 @@ class GuideBookPaperApi extends BaseApi {
     })
   }
 
-  cover (data, guideBookPaperId) {
-    return axios({
-      method: 'POST',
-      url: `${this.baseUrl}/public/guide_book_papers/${guideBookPaperId}/add_cover.json`,
-      headers: {
-        Authorization: this.authToken(),
-        HttpApiAccessToken: this.apiAccessToken,
-        'Content-Type': 'multipart/form-data'
-      },
-      data: data
-    })
-  }
-
   create (data) {
     return axios({
       method: 'POST',

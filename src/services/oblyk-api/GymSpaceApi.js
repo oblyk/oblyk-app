@@ -32,19 +32,6 @@ class GymSpaceApi extends BaseApi {
     })
   }
 
-  plan (data, gymId, gymSpaceId) {
-    return axios({
-      method: 'POST',
-      url: `${this.baseUrl}/gyms/${gymId}/gym_spaces/${gymSpaceId}/add_plan.json`,
-      headers: {
-        Authorization: this.authToken(),
-        HttpApiAccessToken: this.apiAccessToken,
-        'Content-Type': 'multipart/form-data'
-      },
-      data: data
-    })
-  }
-
   create (data) {
     return axios({
       method: 'POST',

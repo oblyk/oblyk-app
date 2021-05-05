@@ -10,20 +10,26 @@
       :placeholder="$t('actions.browse')"
     />
     <close-form />
-    <submit-form :overlay="submitOverlay" />
+    <submit-form
+      :overlay="submitOverlay"
+      :progressable="true"
+      :progress-value="uploadPercentage"
+    />
   </v-form>
 </template>
 <script>
 import { FormHelpers } from '@/mixins/FormHelpers'
+import { AppConcern } from '@/concerns/AppConcern'
+import { SessionConcern } from '@/concerns/SessionConcern'
 import SubmitForm from '@/components/forms/SubmitForm'
 import CloseForm from '@/components/forms/CloseForm'
-import ArticleApi from '@/services/oblyk-api/ArticleApi'
 import Article from '@/models/Article'
+import axios from 'axios'
 
 export default {
   name: 'ArticleCoverForm',
   components: { CloseForm, SubmitForm },
-  mixins: [FormHelpers],
+  mixins: [FormHelpers, AppConcern, SessionConcern],
 
   props: {
     article: Object
@@ -32,6 +38,7 @@ export default {
   data () {
     return {
       redirectTo: null,
+      uploadPercentage: 0,
       file: null
     }
   },
@@ -43,11 +50,19 @@ export default {
 
       formData.append('article[cover]', this.file)
 
-      ArticleApi
-        .cover(
-          formData,
-          this.article.id
-        )
+      axios({
+        method: 'POST',
+        url: `${this.baseUrl}/articles/${this.article.id}/add_cover.json`,
+        headers: {
+          Authorization: this.getToken,
+          HttpApiAccessToken: this.apiAccessToken,
+          'Content-Type': 'multipart/form-data'
+        },
+        onUploadProgress: (progressEvent) => {
+          this.uploadPercentage = parseInt(Math.round((progressEvent.loaded / progressEvent.total) * 100))
+        },
+        data: formData
+      })
         .then(resp => {
           const article = new Article(resp.data)
           this.$router.push(article.path())

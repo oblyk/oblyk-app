@@ -153,31 +153,5 @@ class CurrentUserApi extends BaseApi {
       }
     })
   }
-
-  avatar (data) {
-    return axios({
-      method: 'POST',
-      url: `${this.baseUrl}/current_users/avatar.json`,
-      headers: {
-        Authorization: this.authToken(),
-        HttpApiAccessToken: this.apiAccessToken,
-        'Content-Type': 'multipart/form-data'
-      },
-      data: data
-    })
-  }
-
-  banner (data) {
-    return axios({
-      method: 'POST',
-      url: `${this.baseUrl}/current_users/banner.json`,
-      headers: {
-        Authorization: this.authToken(),
-        HttpApiAccessToken: this.apiAccessToken,
-        'Content-Type': 'multipart/form-data'
-      },
-      data: data
-    })
-  }
 }
 export default new CurrentUserApi()

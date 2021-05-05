@@ -21,19 +21,6 @@ class PhotoApi extends BaseApi {
     })
   }
 
-  create (data) {
-    return axios({
-      method: 'POST',
-      url: `${this.baseUrl}/photos.json`,
-      headers: {
-        Authorization: this.authToken(),
-        HttpApiAccessToken: this.apiAccessToken,
-        'Content-Type': 'multipart/form-data'
-      },
-      data: data
-    })
-  }
-
   update (data) {
     return axios({
       method: 'PUT',

@@ -31,18 +31,5 @@ class GuideBookPdfApi extends BaseApi {
       }
     })
   }
-
-  create (data) {
-    return axios({
-      method: 'POST',
-      url: `${this.baseUrl}/public/guide_book_pdfs.json`,
-      headers: {
-        Authorization: this.authToken(),
-        HttpApiAccessToken: this.apiAccessToken,
-        'Content-Type': 'multipart/form-data'
-      },
-      data: data
-    })
-  }
 }
 export default new GuideBookPdfApi()

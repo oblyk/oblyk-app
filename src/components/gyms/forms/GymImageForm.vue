@@ -8,21 +8,28 @@
       outlined
       truncate-length="15"
       :placeholder="$t('actions.browse')"
-    ></v-file-input>
+    />
 
     <close-form />
-    <submit-form :overlay="overlay" />
+    <submit-form
+      :overlay="overlay"
+      :progressable="true"
+      :progress-value="uploadPercentage"
+    />
   </v-form>
 </template>
 <script>
-import GymApi from '@/services/oblyk-api/GymApi'
+import { AppConcern } from '@/concerns/AppConcern'
+import { SessionConcern } from '@/concerns/SessionConcern'
 import Gym from '@/models/Gym'
 import SubmitForm from '@/components/forms/SubmitForm'
 import CloseForm from '@/components/forms/CloseForm'
+import axios from 'axios'
 
 export default {
   name: 'GymImageForm',
   components: { CloseForm, SubmitForm },
+  mixins: [AppConcern, SessionConcern],
   props: {
     gym: {
       type: Object,
@@ -33,6 +40,7 @@ export default {
 
   data () {
     return {
+      uploadPercentage: 0,
       overlay: false,
       file: null
     }
@@ -42,17 +50,29 @@ export default {
     submit: function () {
       this.overlay = true
       const formData = new FormData()
-      let promise
+      let url
 
       if (this.uploadType === 'logo') {
         formData.append('gym[logo]', this.file)
-        promise = GymApi.logo(formData, this.gym.id)
+        url = `${this.baseUrl}/gyms/${this.gym.id}/add_logo.json`
       } else {
         formData.append('gym[banner]', this.file)
-        promise = GymApi.banner(formData, this.gym.id)
+        url = `${this.baseUrl}/gyms/${this.gym.id}/add_banner.json`
       }
 
-      promise
+      axios({
+        method: 'POST',
+        url: url,
+        headers: {
+          Authorization: this.getToken,
+          HttpApiAccessToken: this.apiAccessToken,
+          'Content-Type': 'multipart/form-data'
+        },
+        onUploadProgress: (progressEvent) => {
+          this.uploadPercentage = parseInt(Math.round((progressEvent.loaded / progressEvent.total) * 100))
+        },
+        data: formData
+      })
         .then((resp) => {
           const gym = new Gym(resp.data)
           this.$router.push(gym.path())

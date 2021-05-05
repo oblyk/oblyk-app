@@ -18,27 +18,34 @@
       />
     </div>
     <close-form />
-    <submit-form :overlay="submitOverlay" />
+    <submit-form
+      :overlay="submitOverlay"
+      :progressable="true"
+      :progress-value="uploadPercentage"
+    />
   </v-form>
 </template>
 <script>
 import { FormHelpers } from '@/mixins/FormHelpers'
-import GymRouteApi from '@/services/oblyk-api/GymRouteApi'
+import { VueCropper } from 'vue-cropper'
+import { AppConcern } from '@/concerns/AppConcern'
+import { SessionConcern } from '@/concerns/SessionConcern'
 import CloseForm from '@/components/forms/CloseForm'
 import SubmitForm from '@/components/forms/SubmitForm'
 import GymRoute from '@/models/GymRoute'
-import { VueCropper } from 'vue-cropper'
+import axios from 'axios'
 
 export default {
   name: 'GymRouteThumbnailForm',
   components: { CloseForm, SubmitForm, VueCropper },
-  mixins: [FormHelpers],
+  mixins: [FormHelpers, AppConcern, SessionConcern],
   props: {
     gymRoute: Object
   },
 
   data () {
     return {
+      uploadPercentage: 0,
       file: null
     }
   },
@@ -51,12 +58,19 @@ export default {
       this.$refs.cropper.getCropBlob((data) => {
         formData.append('gym_route[thumbnail]', data)
 
-        GymRouteApi
-          .thumbnail(
-            formData,
-            this.gymRoute.gym.id,
-            this.gymRoute.id
-          )
+        axios({
+          method: 'POST',
+          url: `${this.baseUrl}/gyms/${this.gymRoute.gym.id}/gym_routes/${this.gymRoute.id}/add_thumbnail.json`,
+          headers: {
+            Authorization: this.getToken,
+            HttpApiAccessToken: this.apiAccessToken,
+            'Content-Type': 'multipart/form-data'
+          },
+          onUploadProgress: (progressEvent) => {
+            this.uploadPercentage = parseInt(Math.round((progressEvent.loaded / progressEvent.total) * 100))
+          },
+          data: formData
+        })
           .then((resp) => {
             const gymRoute = new GymRoute(resp.data)
             this.$router.push(gymRoute.gymSpacePath())

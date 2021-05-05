@@ -119,19 +119,6 @@ class ArticleApi extends BaseApi {
     })
   }
 
-  cover (data, articleId) {
-    return axios({
-      method: 'POST',
-      url: `${this.baseUrl}/articles/${articleId}/add_cover.json`,
-      headers: {
-        Authorization: this.authToken(),
-        HttpApiAccessToken: this.apiAccessToken,
-        'Content-Type': 'multipart/form-data'
-      },
-      data: data
-    })
-  }
-
   addCrag (articleId, cragId) {
     return axios({
       method: 'POST',
