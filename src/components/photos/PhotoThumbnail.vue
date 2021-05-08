@@ -1,5 +1,6 @@
 <template>
   <v-img
+    v-if="!deleted"
     @mouseenter="photoOver = true"
     @mouseleave="photoOver = false"
     :src="photo.thumbnailUrl()"
@@ -24,6 +25,8 @@
       class="photo-actions"
       v-if="isLoggedIn && photoOver"
     >
+
+      <!-- Report problem -->
       <v-btn
         icon
         dark
@@ -32,6 +35,8 @@
           mdi-flag
         </v-icon>
       </v-btn>
+
+      <!-- Define as a banner -->
       <v-btn
         icon
         dark
@@ -44,6 +49,21 @@
           mdi-panorama
         </v-icon>
       </v-btn>
+
+      <!-- Destroy -->
+      <v-btn
+        icon
+        dark
+        v-if="photo.creator.uuid === loggedInUser.uuid"
+        @click.stop="deletePhoto()"
+        :loading="deletingPhoto"
+      >
+        <v-icon small>
+          mdi-delete
+        </v-icon>
+      </v-btn>
+
+      <!-- Edit -->
       <v-btn
         icon
         dark
@@ -69,6 +89,7 @@ import CragRouteApi from '@/services/oblyk-api/CragRouteApi'
 import CragRoute from '@/models/CragRoute'
 import AreaApi from '@/services/oblyk-api/AreaApi'
 import Area from '@/models/Area'
+import PhotoApi from '@/services/oblyk-api/PhotoApi'
 
 export default {
   name: 'PhotoThumbnail',
@@ -84,8 +105,10 @@ export default {
 
   data () {
     return {
+      deleted: false,
       photoOver: false,
-      updatingBanner: false
+      updatingBanner: false,
+      deletingPhoto: false
     }
   },
 
@@ -152,6 +175,23 @@ export default {
         .finally(() => {
           this.updatingBanner = false
         })
+    },
+
+    deletePhoto: function () {
+      if (confirm(this.$t('actions.areYouSur'))) {
+        this.deletingPhoto = true
+        PhotoApi
+          .delete(this.photo.id)
+          .then(() => {
+            this.deleted = true
+          })
+          .catch(err => {
+            this.$root.$emit('alertFromApiError', err, 'photo')
+          })
+          .finally(() => {
+            this.deletingPhoto = false
+          })
+      }
     }
   }
 }

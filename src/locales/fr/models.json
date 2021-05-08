@@ -12,7 +12,8 @@
       "you_must_choose_at_least_one_system": "Vous devez choisir au moins un système",
       "you_cannot_have_both_point_systems": "Vous ne pouvez pas avoir les deux systèmes de point",
       "is_not_in_the_right_format": "n'est pas au bon format",
-      "confirm": "doit être identique"
+      "confirm": "doit être identique",
+      "un_destroyable": "L'élément ne peut être supprimé"
     }
   },
   "models": {

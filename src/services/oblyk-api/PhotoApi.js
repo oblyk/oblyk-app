@@ -34,5 +34,16 @@ class PhotoApi extends BaseApi {
       }
     })
   }
+
+  delete (photoId) {
+    return axios({
+      method: 'DELETE',
+      url: `${this.baseUrl}/photos/${photoId}.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
+    })
+  }
 }
 export default new PhotoApi()
