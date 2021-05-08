@@ -17,6 +17,12 @@ import CragForm from '@/components/crags/forms/CragForm'
 
 export default {
   name: 'CragNewView',
-  components: { CragForm }
+  components: { CragForm },
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.crag.new')
+    }
+  }
 }
 </script>

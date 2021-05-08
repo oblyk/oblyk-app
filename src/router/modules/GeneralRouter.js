@@ -15,90 +15,50 @@ export default [
     path: '/',
     component: HomeView,
     meta: {
-      noPaddingTop: true,
-      title: 'home',
-      showTitle: false
+      noPaddingTop: true
     }
   },
   {
     path: '/oblyk',
     component: OblykView,
     meta: {
-      noPaddingTop: true,
-      title: 'oblyk',
-      showTitle: false
+      noPaddingTop: true
     }
   },
   {
     path: '/terms-of-use',
-    component: TermsOfUseView,
-    meta: {
-      title: 'termsOfUse',
-      showTitle: false
-    }
+    component: TermsOfUseView
   },
   {
     path: '/about',
-    component: AboutView,
-    meta: {
-      title: 'about',
-      showTitle: false
-    }
+    component: AboutView
   },
   {
     path: '/about/partner-search',
-    component: AboutPartnerView,
-    meta: {
-      title: 'aboutPartner',
-      showTitle: false
-    }
+    component: AboutPartnerView
   },
   {
     path: '/helps',
-    component: HelpsView,
-    meta: {
-      title: 'helps',
-      showTitle: false
-    }
+    component: HelpsView
   },
   {
     path: '/support-us',
-    component: SupportUsView,
-    meta: {
-      title: 'supportUs',
-      showTitle: false
-    }
+    component: SupportUsView
   },
   {
     path: '/contact',
-    component: ContactView,
-    meta: {
-      title: 'contact',
-      showTitle: false
-    }
+    component: ContactView
   },
   {
     path: '/report-problem',
-    component: ReportProblemView,
-    meta: {
-      title: 'reportProblem',
-      showTitle: false
-    }
+    component: ReportProblemView
   },
   {
     path: '/grades',
-    component: GradeView,
-    meta: {
-      title: 'grade',
-      showTitle: false
-    }
+    component: GradeView
   },
   {
     path: '/go-fly-a-kite',
-    component: GoFlyAKiteView,
-    meta: {
-      title: 'beHumain',
-      showTitle: false
-    }
+    component: GoFlyAKiteView
   }
 ]

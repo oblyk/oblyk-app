@@ -2,9 +2,9 @@
   <div class="mb-16">
     <spinner v-if="loadingLastArticles" :full-height="false" />
     <div v-else>
-      <h2 class="loved-by-king text-center mb-5">
+      <h3 class="loved-by-king text-center mb-5">
         {{ $t('components.article.whatsNew') }}
-      </h2>
+      </h3>
       <div
         class="last-article-container"
         v-for="(article, index) in articles"

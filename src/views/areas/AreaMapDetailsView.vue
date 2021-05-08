@@ -34,7 +34,44 @@ export default {
 
   data () {
     return {
-      geoJsons: null
+      geoJsons: null,
+      areaMapMetaTitle: `${this.$t('meta.generics.map')} ${this.$t('meta.crag.title', {
+        name: (this.area || {}).name,
+        region: (this.area || {}).region
+      })}`,
+      areaMapMetaDescription: `${this.$t('meta.generics.map')} ${this.$t('meta.crag.description', {
+        name: (this.area || {}).name,
+        region: (this.area || {}).region,
+        city: (this.area || {}).city
+      })}`
+    }
+  },
+
+  metaInfo () {
+    return {
+      titleTemplate: this.areaMapMetaTitle,
+      meta: [
+        {
+          vmid: 'og-title',
+          property: 'og:title',
+          content: this.areaMapMetaTitle
+        },
+        {
+          vmid: 'description',
+          name: 'description',
+          content: this.areaMapMetaDescription
+        },
+        {
+          vmid: 'og-description',
+          property: 'og:description',
+          content: this.areaMapMetaDescription
+        },
+        {
+          vmid: 'og-url',
+          property: 'og:url',
+          content: `${process.env.VUE_APP_OBLYK_APP_URL}${this.area.path('guide-books')}`
+        }
+      ]
     }
   },
 

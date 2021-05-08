@@ -6,7 +6,10 @@
       class="custom-app-bar"
       elevate-on-scroll
     >
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
+      <v-app-bar-nav-icon
+        aria-label="open app drawer"
+        @click.stop="drawer = !drawer"
+      />
 
       <v-toolbar-title class="oblyk-app-title">
         <app-bar-title />
@@ -29,6 +32,7 @@
         <template v-slot:activator="{ on, attrs }">
           <v-btn
             icon
+            aria-label="open user menu"
             v-bind="attrs"
             v-on="on"
           >
@@ -69,6 +73,7 @@
         <template v-slot:activator="{ on, attrs }">
           <v-btn
             icon
+            aria-label="open oblyk options"
             v-bind="attrs"
             v-on="on"
           >

@@ -19,6 +19,16 @@ export default {
     AppBar
   },
 
+  metaInfo: {
+    htmlAttrs: {
+      lang: localStorage.getItem('lang') || 'fr'
+    },
+    meta: [
+      { property: 'og:site_name', content: 'Oblyk' },
+      { property: 'og:type', content: 'website' }
+    ]
+  },
+
   data () {
     return {
       appModal: true,

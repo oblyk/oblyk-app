@@ -25,7 +25,44 @@ export default {
   data () {
     return {
       crags: [],
-      loadingCrags: true
+      loadingCrags: true,
+      areaCragsMetaTitle: `${this.$t('meta.generics.crags')} ${this.$t('meta.crag.title', {
+        name: (this.area || {}).name,
+        region: (this.area || {}).region
+      })}`,
+      areaCragsMetaDescription: `${this.$t('meta.generics.crags')} ${this.$t('meta.crag.description', {
+        name: (this.area || {}).name,
+        region: (this.area || {}).region,
+        city: (this.area || {}).city
+      })}`
+    }
+  },
+
+  metaInfo () {
+    return {
+      titleTemplate: this.areaCragsMetaTitle,
+      meta: [
+        {
+          vmid: 'og-title',
+          property: 'og:title',
+          content: this.areaCragsMetaTitle
+        },
+        {
+          vmid: 'description',
+          name: 'description',
+          content: this.areaCragsMetaDescription
+        },
+        {
+          vmid: 'og-description',
+          property: 'og:description',
+          content: this.areaCragsMetaDescription
+        },
+        {
+          vmid: 'og-url',
+          property: 'og:url',
+          content: `${process.env.VUE_APP_OBLYK_APP_URL}${this.area.path('guide-books')}`
+        }
+      ]
     }
   },
 

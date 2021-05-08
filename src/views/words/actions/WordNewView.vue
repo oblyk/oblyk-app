@@ -17,6 +17,12 @@ import WordForm from '@/components/words/forms/WordForm'
 
 export default {
   name: 'WordNewView',
-  components: { WordForm }
+  components: { WordForm },
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.word.new')
+    }
+  }
 }
 </script>

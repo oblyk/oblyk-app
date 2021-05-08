@@ -22,6 +22,12 @@ import AreaForm from '@/components/areas/forms/AreaForm'
 export default {
   name: 'AreaNewView',
   mixins: [AreaConcern],
-  components: { AreaForm }
+  components: { AreaForm },
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.generics.edit', { name: (this.area || {}).name })
+    }
+  }
 }
 </script>

@@ -132,7 +132,7 @@ export default {
   a {
     color: white !important;
     border-radius: 6px;
-    padding: 0 7px;
+    padding: 4px 9px;
     &:hover {
       background-color: #303030;
     }

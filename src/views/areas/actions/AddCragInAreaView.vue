@@ -20,6 +20,12 @@ import AddCragInAreaForm from '@/components/areas/forms/AddCragInAreaForm'
 export default {
   name: 'AddCragInAreaView',
   components: { AddCragInAreaForm },
-  mixins: [AreaConcern]
+  mixins: [AreaConcern],
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.area.addCrag', { name: (this.area || {}).name })
+    }
+  }
 }
 </script>

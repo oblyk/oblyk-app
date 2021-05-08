@@ -250,7 +250,7 @@
       "removeFromArea": "Retirer le site",
       "searchArea": "Chercher un groupe de site",
       "explainNewTopo": "Si vous n'avez pas trouvé en cherchant, ou dans les groupes à proximité, vous pouvez ajouter un nouveau groupe :",
-      "noGuideAround": "Pas de groupe de site trouvé à 50km au alentour",
+      "noAreaAround": "Pas de groupe de site trouvé à 50km au alentour",
       "cragsMap": "Carte des sites",
       "tabs": {
         "info": "Infos",

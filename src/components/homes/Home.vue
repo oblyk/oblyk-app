@@ -9,9 +9,9 @@
       <h1 class="font-weight-medium loved-by-king oblyk-title">
         Oblyk
       </h1>
-      <h3 class="loved-by-king oblyk-subtitle">
+      <h2 class="loved-by-king oblyk-subtitle">
         Outdoor & Indoor Climbing Community
-      </h3>
+      </h2>
     </v-parallax>
 
     <v-container class="home-container">
@@ -72,6 +72,9 @@ export default {
 }
 .home-container {
   max-width: 1200px;
+  h3, h4 {
+    font-size: 2em;
+  }
 }
 .home-boxes {
   margin-top: 3rem;

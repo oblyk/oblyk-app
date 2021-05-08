@@ -24,6 +24,7 @@
     "vue-clipboard2": "^0.3.1",
     "vue-cropper": "^0.5.6",
     "vue-i18n": "^8.22.2",
+    "vue-meta": "^2.4.0",
     "vue-router": "^3.2.0",
     "vue2-leaflet": "^2.6.0",
     "vue2-leaflet-editable": "^0.5.0",

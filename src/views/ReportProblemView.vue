@@ -13,6 +13,18 @@
 import AppFooter from '@/components/layouts/AppFooter'
 export default {
   name: 'ReportProblemView',
-  components: { AppFooter }
+  components: { AppFooter },
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.reportProblem.title'),
+      meta: [
+        { vmid: 'description', name: 'description', content: this.$t('meta.reportProblem.description') },
+        { vmid: 'og-title', property: 'og:title', content: this.$t('meta.reportProblem.title') },
+        { vmid: 'og-description', property: 'og:description', content: this.$t('meta.reportProblem.description') },
+        { vmid: 'og-image', property: 'og:image', content: `${process.env.VUE_APP_OBLYK_APP_URL}/img/images/oblyk-og-image.jpg` }
+      ]
+    }
+  }
 }
 </script>

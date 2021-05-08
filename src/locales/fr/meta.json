@@ -1,31 +1,51 @@
 {
   "meta": {
+    "generics": {
+      "pictures": "Photos -",
+      "links": "Liens -",
+      "map": "Carte -",
+      "guideBooks": "Topos -",
+      "crags": "Sites -",
+      "edit": "Modifier %{name}"
+    },
     "termsOfUse": {
-      "title": "Condition d'utilisation"
+      "title": "Condition d'utilisation",
+      "description": "Voir les conditions générales d'utilisation d'Oblyk, le site communautaire d'escalade : notre politique de confidentialité et nos mentions légales"
     },
     "about": {
-      "title": "À propos d'Oblyk"
+      "title": "À propos d'Oblyk",
+      "description": "En savoir plus sur Oblyk, pourquoi et qui est derrière le projet"
     },
     "aboutPartner": {
-      "title": "La recherche de partenaire d'escalade"
+      "title": "Recherche de partenaire d'escalade, comment ça marche ?",
+      "description": "La recherche de partenaire d'escalade te permet de trouver des grimpeurs autours de toi qui cherche aussi des gens pour grimper. Comment ça fonctionne ?"
     },
     "news": {
       "title": "Actualités d'Oblyk"
     },
     "helps": {
-      "title": "Aides"
+      "title": "Aide, comment utiliser Oblyk",
+      "description": "Avec ce court tutoriel, apprend à te servir d'Oblyk en quelques clics, et profite des outils du site communautaire des grimpeurs"
     },
     "supportUs": {
-      "title": "Nous soutenir"
+      "title": "Supporter Oblyk, faire un don",
+      "description": "Supporter le développement d'Oblyk pour qu'il puisse continuer à évoluer"
     },
     "contact": {
-      "title": "Contact"
+      "title": "Contacter l'équipe d'Oblyk",
+      "description": "Pour toute question, toute proposition, ou tout simplement pour nous aider, n'hésitez pas à nous contacter !"
+    },
+    "goFlyAKiteView": {
+      "title": "Vous êtes un robot ?",
+      "description": "You have an abnormal behavior, we blocked you"
     },
     "reportProblem": {
-      "title": "Signaler un problème"
+      "title": "Signaler un problème",
+      "description": "Vous avez trouvé un problème? dit le nous pour qu'on le corrige"
     },
     "grade": {
-      "title": "Les cotations"
+      "title": "Les cotations sur Oblyk",
+      "description": "Oblyk permet plusieurs notations pour la cotations et un code couleur est associé à une difficulté, voici comment ça marche"
     },
     "cragMap": {
       "title": "Carte des falaises"
@@ -46,16 +66,19 @@
       "title": "Créer un compte"
     },
     "glossary": {
-      "title": "Lexique"
+      "title": "Lexique des terms d'escalade",
+      "description": "Le lexique communautaire des termes de l'escalade pour décoder le parler grimpeur"
     },
-    "newWord": {
-      "title": "Nouvelle définition"
+    "word": {
+      "new": "Nouvelle définition"
     },
     "home": {
-      "title": "Oblyk"
+      "title": "Oblyk - Escalade, Carnet de croix & Carte des grimpeurs",
+      "description": "Oblyk est un site communautaire d'escalade outdoor et indoor, on peut : voir les informations des falaises, noter ses croix, trouver un partenaire d'escalade, etc."
     },
     "oblyk": {
-      "title": "Oblyk"
+      "title": "Oblyk - Escalade, Carnet de croix & Carte des grimpeurs",
+      "description": "Oblyk est un site communautaire d'escalade outdoor et indoor, on peut : voir les informations des falaises, noter ses croix, trouver un partenaire d'escalade, etc."
     },
     "myAvatar": {
       "title": "Photo de profil"
@@ -96,11 +119,18 @@
     "newPassword": {
       "title": "Nouveau mot de passe"
     },
-    "newCrag": {
-      "title": "Nouvelle falaise"
+    "crag": {
+      "title": "%{name}, escalade en %{region}",
+      "description": "%{name} : site d'escalade à %{city} en %{region}. Détail des voies, localisation, topos, photos, etc.",
+      "new": "Ajouter une falaise",
+      "addGuideBook": "Ajouter un topo à %{name}",
+      "addArea": "Ajouter %{name} à une zone"
     },
-    "editCrag": {
-      "title": "Modifier une falaise"
+    "area": {
+      "title": "%{name}, Groupe de sites d'escalade",
+      "description": "Voir le résumé du groupe de sites d'escalade de %{name}, quels spots de grimpe il présente ou encore quelle variété de cotations on y trouve",
+      "new": "Créer un groupe de site",
+      "addCrag": "Ajouter un site à %{name}"
     },
     "newPhoto": {
       "title": "Ajouter une photo"

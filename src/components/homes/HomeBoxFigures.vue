@@ -1,9 +1,9 @@
 <template>
   <v-row>
     <v-col>
-      <h2 class="loved-by-king text-center mb-10">
+      <h4 class="loved-by-king text-center mb-10">
         {{ $t('home.figures.title') }}
-      </h2>
+      </h4>
 
       <spinner v-if="loadingFigures" :full-height="false" />
       <v-row class="oblyk-figures" v-if="!loadingFigures">

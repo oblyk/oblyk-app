@@ -21,7 +21,7 @@
       />
     </div>
 
-    <spinner v-if="loadingVideos" :full-height="false" />
+    <spinner v-if="loadingVideos" :full-height="false"/>
     <div v-if="!loadingVideos">
       <v-btn
         :to="`/videos/Crag/${crag.id}/new?redirect_to=${this.$route.fullPath}`"
@@ -67,7 +67,11 @@ import Photo from '@/models/Photo'
 
 export default {
   name: 'CragPhotosView',
-  components: { VideoCard, PhotoGallery, Spinner },
+  components: {
+    VideoCard,
+    PhotoGallery,
+    Spinner
+  },
   mixins: [SessionConcern],
   props: {
     crag: Object
@@ -78,7 +82,44 @@ export default {
       loadingPhotos: true,
       loadingVideos: true,
       photos: [],
-      videos: []
+      videos: [],
+      cragPhotoMetaTitle: `${this.$t('meta.generics.pictures')} ${this.$t('meta.crag.title', {
+        name: (this.crag || {}).name,
+        region: (this.crag || {}).region
+      })}`,
+      cragPhotoMetaDescription: `${this.$t('meta.generics.pictures')} ${this.$t('meta.crag.description', {
+        name: (this.crag || {}).name,
+        region: (this.crag || {}).region,
+        city: (this.crag || {}).city
+      })}`
+    }
+  },
+
+  metaInfo () {
+    return {
+      titleTemplate: this.cragPhotoMetaTitle,
+      meta: [
+        {
+          vmid: 'og-title',
+          property: 'og:title',
+          content: this.cragPhotoMetaTitle
+        },
+        {
+          vmid: 'description',
+          name: 'description',
+          content: this.cragPhotoMetaDescription
+        },
+        {
+          vmid: 'og-description',
+          property: 'og:description',
+          content: this.cragPhotoMetaDescription
+        },
+        {
+          vmid: 'og-url',
+          property: 'og:url',
+          content: `${process.env.VUE_APP_OBLYK_APP_URL}${this.crag.path('photos')}`
+        }
+      ]
     }
   },
 

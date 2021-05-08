@@ -108,7 +108,19 @@ import PartnerFigures from '@/components/partners/PartnerFigures'
 export default {
   name: 'AboutPartnerView',
   components: { PartnerFigures, AppFooter },
-  mixins: [SessionConcern]
+  mixins: [SessionConcern],
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.aboutPartner.title'),
+      meta: [
+        { vmid: 'description', name: 'description', content: this.$t('meta.aboutPartner.description') },
+        { vmid: 'og-title', property: 'og:title', content: this.$t('meta.aboutPartner.title') },
+        { vmid: 'og-description', property: 'og:description', content: this.$t('meta.aboutPartner.description') },
+        { vmid: 'og-image', property: 'og:image', content: `${process.env.VUE_APP_OBLYK_APP_URL}/img/images/oblyk-og-image.jpg` }
+      ]
+    }
+  }
 }
 </script>
 

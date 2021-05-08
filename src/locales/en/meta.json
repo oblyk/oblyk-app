@@ -1,31 +1,51 @@
 {
   "meta": {
+    "generics": {
+      "pictures": "Pictures -",
+      "links": "Links -",
+      "map": "Maps -",
+      "guideBooks": "Guide books -",
+      "crags": "Crags -",
+      "edit": "Edit %{name}"
+    },
     "termsOfUse": {
-      "title": "Terms and conditions of use"
+      "title": "Terms and conditions of use",
+      "description": "See the general terms of use of Oblyk, the climbing community website : our privacy policy and our legal notice"
     },
     "about": {
-      "title": "About Oblyk"
+      "title": "About Oblyk",
+      "description": "Learn more about Oblyk, why and who is behind the project"
     },
     "aboutPartner": {
-      "title": "Climbing partner search"
+      "title": "Search for a climbing partner, how does it work?",
+      "description": "The climbing partner search allows you to find climbers around you who are also looking for people to climb with. How does it work?"
     },
     "news": {
       "title": "Oblyk news"
     },
     "helps": {
-      "title": "Helps"
+      "title": "Help, how to use Oblyk",
+      "description": "With this short tutorial, learn how to use Oblyk in a few clicks, and take advantage of the tools of the climbers' community site"
     },
     "supportUs": {
-      "title": "Support us"
+      "title": "Support Oblyk, make a donation",
+      "description": "Support the development of Oblyk so that it can continue to evolve"
     },
     "contact": {
-      "title": "Contact"
+      "title": "Contact the Oblyk team",
+      "description": "For any question, any proposal, or simply to help us, do not hesitate to contact us!"
+    },
+    "goFlyAKiteView": {
+      "title": "You are robot?",
+      "": ""
     },
     "reportProblem": {
-      "title": "Report a problem"
+      "title": "Report a problem",
+      "description": "Have you found a problem? Tell us so we can fix it"
     },
     "grade": {
-      "title": "Grades"
+      "title": "Grades on oblyk",
+      "description": "Oblyk allows several notations for scoring and a color code is associated with a difficulty, here is how it works"
     },
     "cragMap": {
       "title": "Crags map"
@@ -46,16 +66,20 @@
       "title": "Sign up"
     },
     "glossary": {
-      "title": "Glossary"
+      "title": "Glossary of climbing terms",
+      "description": "The community lexicon of climbing terms to decode the climber's language",
+      "new": "Create new crag"
     },
-    "newWord": {
-      "title": "New definition"
+    "word": {
+      "new": "New definition"
     },
     "home": {
-      "title": "Oblyk"
+      "title": "Oblyk - Climbing community, Log book & Partner search",
+      "description": "Oblyk is an outdoor and indoor climbing community site, you can: see crag information, keep a logbook, find a climbing partner, etc."
     },
     "oblyk": {
-      "title": "Oblyk"
+      "title": "Oblyk - Climbing community, Log book & Partner search",
+      "description": "Oblyk is an outdoor and indoor climbing community site, you can: see crag information, keep a logbook, find a climbing partner, etc."
     },
     "myAvatar": {
       "title": "Profile avatar"
@@ -96,11 +120,18 @@
     "newPassword": {
       "title": "New password"
     },
-    "newCrag": {
-      "title": "New crag"
+    "crag": {
+      "title": "%{name}, climb in %{region}",
+      "description": "%{name} : climbing crag in %{city} in %{region}. Details of the routes, location, guide books, photos, etc.",
+      "new": "Create new crag",
+      "addGuideBook": "Add paper guide at %{name}",
+      "addArea": "Add %{name} in area"
     },
-    "editCrag": {
-      "title": "Edit crag"
+    "area": {
+      "title": "%{name}, climbing crags group",
+      "description": "See the summary of the group of climbing sites of %{name}, what kind of climbing spots it offers or what variety of grades can be found there",
+      "new": "Create crags group",
+      "addCrag": "Add crag in %{name}"
     },
     "newPhoto": {
       "title": "Add picture"

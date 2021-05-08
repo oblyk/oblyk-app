@@ -55,7 +55,44 @@ export default {
 
   data () {
     return {
-      geoJsons: null
+      geoJsons: null,
+      cragMapMetaTitle: `${this.$t('meta.generics.map')} ${this.$t('meta.crag.title', {
+        name: (this.crag || {}).name,
+        region: (this.crag || {}).region
+      })}`,
+      cragMapMetaDescription: `${this.$t('meta.generics.map')} ${this.$t('meta.crag.description', {
+        name: (this.crag || {}).name,
+        region: (this.crag || {}).region,
+        city: (this.crag || {}).city
+      })}`
+    }
+  },
+
+  metaInfo () {
+    return {
+      titleTemplate: this.cragMapMetaTitle,
+      meta: [
+        {
+          vmid: 'og-title',
+          property: 'og:title',
+          content: this.cragMapMetaTitle
+        },
+        {
+          vmid: 'description',
+          name: 'description',
+          content: this.cragMapMetaDescription
+        },
+        {
+          vmid: 'og-description',
+          property: 'og:description',
+          content: this.cragMapMetaDescription
+        },
+        {
+          vmid: 'og-url',
+          property: 'og:url',
+          content: `${process.env.VUE_APP_OBLYK_APP_URL}${this.crag.path('maps')}`
+        }
+      ]
     }
   },
 

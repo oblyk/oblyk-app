@@ -250,7 +250,7 @@
       "removeFromArea": "Remove crag",
       "searchArea": "Search crag group",
       "explainNewTopo": "If you didn't find what you were looking for in the search engine, or in the crags group nearby, you can add a new group :",
-      "noGuideAround": "No crags group found 50km away",
+      "noAreaAround": "No crags group found 50km away",
       "cragsMap": "Crags map",
       "tabs": {
         "info": "Infos",

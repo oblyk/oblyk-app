@@ -1,7 +1,6 @@
 const CragMapView = () => import(/* webpackChunkName: "crag-routes" */ '@/views/maps/CragMapView')
 const CragView = () => import(/* webpackChunkName: "crag-routes" */ '@/views/CragView')
 const CragInfoView = () => import(/* webpackChunkName: "crag-routes" */ '@/views/crags/CragInfoView')
-const CragRouteView = () => import(/* webpackChunkName: "crag-routes" */ '@/views/crags/CragRouteView')
 const CragPhotosView = () => import(/* webpackChunkName: "crag-routes" */ '@/views/crags/CragPhotosView')
 const CragGuideBooksView = () => import(/* webpackChunkName: "crag-routes" */ '@/views/crags/CragGuideBooksView')
 const CragMapDetailsView = () => import(/* webpackChunkName: "crag-routes" */ '@/views/crags/CragMapDetailsView')
@@ -16,46 +15,34 @@ const AddAreaOnCragView = () => import(/* webpackChunkName: "crag-routes" */ '@/
 export default [
   {
     path: '/maps/crags',
-    component: CragMapView,
-    meta: {
-      title: 'cragMap',
-      showTitle: true
-    }
+    component: CragMapView
   },
   {
     path: '/crags/new',
     component: CragNewView,
     meta: {
-      requiresAuth: true,
-      title: 'newCrag',
-      showTitle: false
+      requiresAuth: true
     }
   },
   {
     path: '/crags/:cragId/:cragSlug/edit',
     component: CragEditView,
     meta: {
-      requiresAuth: true,
-      objectName: 'crag',
-      showAvatar: true
+      requiresAuth: true
     }
   },
   {
     path: '/crags/:cragId/:cragSlug/add-on-guide-book',
     component: AddGuideBookOnCragView,
     meta: {
-      requiresAuth: true,
-      objectName: 'crag',
-      showAvatar: true
+      requiresAuth: true
     }
   },
   {
     path: '/crags/:cragId/:cragSlug/add-on-area',
     component: AddAreaOnCragView,
     meta: {
-      requiresAuth: true,
-      objectName: 'crag',
-      showAvatar: true
+      requiresAuth: true
     }
   },
   {
@@ -63,9 +50,7 @@ export default [
     component: GuideBookWebNewView,
     props: true,
     meta: {
-      requiresAuth: true,
-      objectName: 'crag',
-      showAvatar: true
+      requiresAuth: true
     }
   },
   {
@@ -73,9 +58,7 @@ export default [
     component: GuideBookPdfNewView,
     props: true,
     meta: {
-      requiresAuth: true,
-      objectName: 'crag',
-      showAvatar: true
+      requiresAuth: true
     }
   },
   {
@@ -90,48 +73,35 @@ export default [
         path: 'infos',
         component: CragInfoView,
         meta: {
-          noPaddingTop: true,
-          objectName: 'crag'
-        }
-      },
-      {
-        path: 'routes',
-        component: CragRouteView,
-        meta: {
-          noPaddingTop: true,
-          objectName: 'crag'
+          noPaddingTop: true
         }
       },
       {
         path: 'photos',
         component: CragPhotosView,
         meta: {
-          noPaddingTop: true,
-          objectName: 'crag'
+          noPaddingTop: true
         }
       },
       {
         path: 'links',
         component: CragLinkView,
         meta: {
-          noPaddingTop: true,
-          objectName: 'crag'
+          noPaddingTop: true
         }
       },
       {
         path: 'guide-books',
         component: CragGuideBooksView,
         meta: {
-          noPaddingTop: true,
-          objectName: 'crag'
+          noPaddingTop: true
         }
       },
       {
         path: 'maps',
         component: CragMapDetailsView,
         meta: {
-          noPaddingTop: true,
-          objectName: 'crag'
+          noPaddingTop: true
         }
       }
     ]

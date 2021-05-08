@@ -9,11 +9,17 @@ import './services/axios'
 import './services/nprogress'
 import VueQrcode from '@chenfengyuan/vue-qrcode'
 import VueClipboard from 'vue-clipboard2'
+import VueMeta from 'vue-meta'
 
 Vue.config.productionTip = false
 
 Vue.component(VueQrcode.name, VueQrcode)
 Vue.use(VueClipboard)
+
+Vue.use(VueMeta, {
+  // optional pluginOptions
+  refreshOnceOnNavigation: true
+})
 
 function loadLocaleMessages (lang) {
   return {

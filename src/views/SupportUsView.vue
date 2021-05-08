@@ -27,6 +27,18 @@ import AppFooter from '@/components/layouts/AppFooter'
 import PayPalForm from '@/components/forms/PayPalForm'
 export default {
   name: 'SupportUsView',
-  components: { PayPalForm, AppFooter }
+  components: { PayPalForm, AppFooter },
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.supportUs.title'),
+      meta: [
+        { vmid: 'description', name: 'description', content: this.$t('meta.supportUs.description') },
+        { vmid: 'og-title', property: 'og:title', content: this.$t('meta.supportUs.title') },
+        { vmid: 'og-description', property: 'og:description', content: this.$t('meta.supportUs.description') },
+        { vmid: 'og-image', property: 'og:image', content: `${process.env.VUE_APP_OBLYK_APP_URL}/img/images/oblyk-og-image.jpg` }
+      ]
+    }
+  }
 }
 </script>

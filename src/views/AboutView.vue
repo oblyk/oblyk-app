@@ -200,6 +200,18 @@ export default {
     }
   },
 
+  metaInfo () {
+    return {
+      title: this.$t('meta.about.title'),
+      meta: [
+        { vmid: 'description', name: 'description', content: this.$t('meta.about.description') },
+        { vmid: 'og-title', property: 'og:title', content: this.$t('meta.about.title') },
+        { vmid: 'og-description', property: 'og:description', content: this.$t('meta.about.description') },
+        { vmid: 'og-image', property: 'og:image', content: `${process.env.VUE_APP_OBLYK_APP_URL}/img/images/oblyk-og-image.jpg` }
+      ]
+    }
+  },
+
   mounted () {
     this.getFigures()
   },

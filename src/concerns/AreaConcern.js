@@ -8,6 +8,64 @@ export const AreaConcern = {
     }
   },
 
+  computed: {
+    areaMetaTitle: function () {
+      return this.$t('meta.area.title', {
+        name: (this.area || {}).name
+      })
+    },
+    areaMetaDescription: function () {
+      return this.$t('meta.area.description', {
+        name: (this.area || {}).name
+      })
+    },
+    areaMetaImage: function () {
+      if (this.area && this.area.photo) {
+        return this.area.coverUrl()
+      } else {
+        return `${process.env.VUE_APP_OBLYK_APP_URL}/img/images/oblyk-og-image.jpg`
+      }
+    },
+    areaMetaUrl: function () {
+      if (this.area) {
+        return `${process.env.VUE_APP_OBLYK_APP_URL}${this.area.path()}`
+      }
+    }
+  },
+
+  metaInfo () {
+    return {
+      title: this.areaMetaTitle,
+      meta: [
+        {
+          vmid: 'description',
+          name: 'description',
+          content: this.areaMetaDescription
+        },
+        {
+          vmid: 'og-title',
+          property: 'og:title',
+          content: this.areaMetaTitle
+        },
+        {
+          vmid: 'og-description',
+          property: 'og:description',
+          content: this.areaMetaDescription
+        },
+        {
+          vmid: 'og-image',
+          property: 'og:image',
+          content: this.areaMetaImage
+        },
+        {
+          vmid: 'og-url',
+          property: 'og:url',
+          content: this.areaMetaUrl
+        }
+      ]
+    }
+  },
+
   beforeRouteEnter (to, from, next) {
     if (!to.params.areaId) {
       next()

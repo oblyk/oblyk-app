@@ -6,6 +6,7 @@
     <template v-slot:activator="{ on, attrs }">
       <v-btn
         icon
+        aria-label="open oblyk search"
         v-bind="attrs"
         v-on="on"
       >

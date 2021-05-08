@@ -1,9 +1,9 @@
 <template>
   <v-row>
     <v-col align-self="center" cols="md-6">
-      <h2 class="loved-by-king">
+      <h3 class="loved-by-king">
         {{ $t('home.partner.title') }}
-      </h2>
+      </h3>
       <p v-html="$t('home.partner.body')" />
       <p class="text-right">
         <v-btn outlined color="primary" to="/about/partner-search">

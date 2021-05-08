@@ -8,6 +8,18 @@ export const WordConcern = {
     }
   },
 
+  metaInfo () {
+    return {
+      title: `${(this.word || {}).name} - ${this.$t('meta.glossary.title')}`,
+      meta: [
+        { vmid: 'description', name: 'description', content: (this.word || {}).definition },
+        { vmid: 'og-title', property: 'og:title', content: `${(this.word || {}).name} - ${this.$t('meta.glossary.title')}` },
+        { vmid: 'og-description', property: 'og:description', content: (this.word || {}).definition },
+        { vmid: 'og-image', property: 'og:image', content: `${process.env.VUE_APP_OBLYK_APP_URL}/img/images/oblyk-og-image.jpg` }
+      ]
+    }
+  },
+
   beforeRouteEnter (to, from, next) {
     if (!to.params.wordId) {
       next()

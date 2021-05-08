@@ -1,9 +1,9 @@
 <template>
   <v-row>
     <v-col align-self="center" cols="md-6" order-md="last">
-      <h2 class="loved-by-king">
+      <h3 class="loved-by-king">
         {{ $t('home.supportUs.title') }}
-      </h2>
+      </h3>
       <p v-html="$t('home.supportUs.body1')" />
       <p v-html="$t('home.supportUs.body2')" />
       <p v-html="$t('home.supportUs.body3')" />

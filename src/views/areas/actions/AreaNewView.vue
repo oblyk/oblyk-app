@@ -17,6 +17,12 @@ import AreaForm from '@/components/areas/forms/AreaForm'
 
 export default {
   name: 'AreaNewView',
-  components: { AreaForm }
+  components: { AreaForm },
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.area.new')
+    }
+  }
 }
 </script>

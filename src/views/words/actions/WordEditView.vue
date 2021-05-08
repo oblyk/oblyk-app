@@ -22,6 +22,12 @@ import WordForm from '@/components/words/forms/WordForm'
 export default {
   name: 'WordNewView',
   mixins: [WordConcern],
-  components: { WordForm }
+  components: { WordForm },
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.generics.edit', { name: (this.word || {}).name })
+    }
+  }
 }
 </script>

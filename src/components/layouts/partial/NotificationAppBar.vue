@@ -18,6 +18,7 @@
         offset-y="18"
       >
         <v-btn
+          aria-label="open notification menu"
           v-bind="attrs"
           v-on="on"
           icon

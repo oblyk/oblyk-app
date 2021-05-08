@@ -6,34 +6,24 @@ const WordView = () => import(/* webpackChunkName: "word-routes" */ '@/views/wor
 export default [
   {
     path: '/glossary',
-    component: GlossaryView,
-    meta: {
-      title: 'glossary',
-      showTitle: false
-    }
+    component: GlossaryView
   },
   {
     path: '/words/:wordId/:wordSlug/infos',
-    component: WordView,
-    meta: {
-      objectName: 'word'
-    }
+    component: WordView
   },
   {
     path: '/words/new',
     component: WordNewView,
     meta: {
-      requiresAuth: true,
-      title: 'newWord',
-      showTitle: false
+      requiresAuth: true
     }
   },
   {
     path: '/words/:wordId/:wordSlug/edit',
     component: WordEditView,
     meta: {
-      requiresAuth: true,
-      objectName: 'word'
+      requiresAuth: true
     }
   }
 ]
