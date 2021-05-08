@@ -1,4 +1,3 @@
-import CragMapboxView from '@/views/maps/CragMapboxView'
 import CragMapView from '@/views/maps/CragMapView'
 import CragView from '@/views/CragView'
 import CragInfoView from '@/views/crags/CragInfoView'
@@ -15,14 +14,6 @@ import CragLinkView from '@/views/crags/CragLinkView'
 import AddAreaOnCragView from '@/views/crags/actions/AddAreaOnCragView'
 
 export default [
-  {
-    path: '/maps/3d/crags',
-    component: CragMapboxView,
-    meta: {
-      title: 'cragMap',
-      showTitle: true
-    }
-  },
   {
     path: '/maps/crags',
     component: CragMapView,

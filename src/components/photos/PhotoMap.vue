@@ -44,8 +44,8 @@ export default {
 
   data () {
     return {
-      layerUrl: 'https://api.mapbox.com/styles/v1/clucien/ckingo0rf3thf17qovbo16s3b/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiY2x1Y2llbiIsImEiOiJjaWlkYWhuMGswMHRxdmxtMWNyeWpjZGk0In0.-bHAKhr-aUjboWKoE0B-WA',
-      layerAttribution: '&copy; <a href="https://www.mapbox.com/about/maps/">Mapbox</a> &copy; <a href="https://www.openstreetmap.org/about/">Open Street Map</a> contributors',
+      layerUrl: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}',
+      layerAttribution: '&copy; <a href="https://www.esrifrance.fr/">Esri</a> &copy; <a href="https://www.openstreetmap.org/about/">Open Street Map</a> contributors',
       geoJsons: null,
       geoJsonOptions: {
         pointToLayer: this.pointToLayerFunction()

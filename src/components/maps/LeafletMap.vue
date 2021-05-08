@@ -130,21 +130,6 @@ export default {
           name: 'Eseri Satelite',
           url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
           attribution: '&copy; <a href="https://www.esrifrance.fr/">Esri</a> &copy; <a href="https://www.openstreetmap.org/about/">Open Street Map</a> contributors'
-        },
-        {
-          name: 'Mapbox terrain',
-          url: 'https://api.mapbox.com/styles/v1/clucien/ckingo0rf3thf17qovbo16s3b/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiY2x1Y2llbiIsImEiOiJjaWlkYWhuMGswMHRxdmxtMWNyeWpjZGk0In0.-bHAKhr-aUjboWKoE0B-WA',
-          attribution: '&copy; <a href="https://www.mapbox.com/about/maps/">Mapbox</a> &copy; <a href="https://www.openstreetmap.org/about/">Open Street Map</a> contributors'
-        },
-        {
-          name: 'Mapbox street',
-          url: 'https://api.mapbox.com/styles/v1/clucien/ckioe0rsh08q417p52hr76t8q/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiY2x1Y2llbiIsImEiOiJjaWlkYWhuMGswMHRxdmxtMWNyeWpjZGk0In0.-bHAKhr-aUjboWKoE0B-WA',
-          attribution: '&copy; <a href="https://www.mapbox.com/about/maps/">Mapbox</a> &copy; <a href="https://www.openstreetmap.org/about/">Open Street Map</a> contributors'
-        },
-        {
-          name: 'Mapbox satelite',
-          url: 'https://api.mapbox.com/styles/v1/clucien/ckjulgum0007217plefa1328h/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiY2x1Y2llbiIsImEiOiJjaWlkYWhuMGswMHRxdmxtMWNyeWpjZGk0In0.-bHAKhr-aUjboWKoE0B-WA',
-          attribution: '&copy; <a href="https://www.mapbox.com/about/maps/">Mapbox</a> &copy; <a href="https://www.openstreetmap.org/about/">Open Street Map</a> contributors'
         }
       ],
       geoJsonOptions: {
