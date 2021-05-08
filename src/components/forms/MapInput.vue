@@ -122,7 +122,7 @@ export default {
         }
       ],
       icon: icon({
-        iconUrl: require('@/assets/markers/new-marker.png'),
+        iconUrl: '/img/markers/new-marker.png',
         iconSize: [23, 30],
         iconAnchor: [11.5, 30],
         popupAnchor: [0, 0]

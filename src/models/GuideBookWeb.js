@@ -11,6 +11,6 @@ export default class GuideBookWeb extends ActiveData {
   }
 
   coverUrl () {
-    return require('@/assets/svgs/web-guide-book-default.svg')
+    return '/img/svg/web-guide-book-default.svg'
   }
 }

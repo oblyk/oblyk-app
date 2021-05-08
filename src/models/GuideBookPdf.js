@@ -15,6 +15,6 @@ export default class GuideBookPdf extends ActiveData {
   }
 
   coverUrl () {
-    return require('@/assets/svgs/pdf-guide-book-default.svg')
+    return '/img/svg/pdf-guide-book-default.svg'
   }
 }

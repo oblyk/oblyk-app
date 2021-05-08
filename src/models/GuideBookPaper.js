@@ -14,7 +14,7 @@ export default class GuideBookPaper extends ActiveData {
     if (this.cover) {
       return `${process.env.VUE_APP_OBLYK_API_URL}${this.cover}`
     } else {
-      return require('@/assets/svgs/paper-guide-book-default.svg')
+      return '/img/svg/paper-guide-book-default.svg'
     }
   }
 
@@ -22,7 +22,7 @@ export default class GuideBookPaper extends ActiveData {
     if (this.thumbnail_url) {
       return `${process.env.VUE_APP_OBLYK_API_URL}${this.thumbnail_url}`
     } else {
-      return require('@/assets/svgs/paper-guide-book-default.svg')
+      return '/img/svg/paper-guide-book-default.svg'
     }
   }
 

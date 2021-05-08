@@ -7,7 +7,7 @@
         width="170"
         tile
       >
-        <v-img contain :src="require('@/assets/svgs/enable-partner-search.svg')"></v-img>
+        <v-img contain src="/img/svg/enable-partner-search.svg" />
       </v-avatar>
       <div class="flex-grow-1">
         <v-card-title>

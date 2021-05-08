@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-parallax
-      :src="require('@/assets/oblyk-home-baume-rousse.jpg')"
+      src="/img/images/oblyk-home-baume-rousse.jpg"
       class="text-center home-parallax"
       id="home-parallax"
       :height="parallaxHeight"

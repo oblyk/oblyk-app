@@ -20,7 +20,7 @@ export default class GymSpace extends ActiveData {
     if (this.plan) {
       return `${process.env.VUE_APP_OBLYK_API_URL}${this.plan}`
     } else {
-      return require('@/assets/gym-default-banner.jpg')
+      return '/img/images/gym-default-banner.jpg'
     }
   }
 

@@ -6,7 +6,7 @@
       </h1>
       <v-row>
         <v-col class="col-md-6">
-          <v-img contain :src="require('@/assets/svgs/support-us.svg')" />
+          <v-img contain src="/img/svg/support-us.svg" />
         </v-col>
         <v-col class="col-md-6">
           <p class="mt-2" v-html="$t('common.pages.supportUs.noLimite')" />

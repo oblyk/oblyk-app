@@ -27,7 +27,7 @@ export default class User extends ActiveData {
     if (this.avatar) {
       return `${process.env.VUE_APP_OBLYK_API_URL}${this.avatar}`
     } else {
-      return require('@/assets/svgs/user-default-avatar.svg')
+      return '/img/svg/user-default-avatar.svg'
     }
   }
 
@@ -35,7 +35,7 @@ export default class User extends ActiveData {
     if (this.banner) {
       return `${process.env.VUE_APP_OBLYK_API_URL}${this.banner}`
     } else {
-      return require('@/assets/user-default-banner.jpg')
+      return '/img/images/user-default-banner.jpg'
     }
   }
 
@@ -43,7 +43,7 @@ export default class User extends ActiveData {
     if (this.banner_thumbnail_url) {
       return `${process.env.VUE_APP_OBLYK_API_URL}${this.banner_thumbnail_url}`
     } else {
-      return require('@/assets/user-default-banner.jpg')
+      return '/img/images/user-default-banner.jpg'
     }
   }
 
@@ -51,7 +51,7 @@ export default class User extends ActiveData {
     if (this.avatar_thumbnail_url) {
       return `${process.env.VUE_APP_OBLYK_API_URL}${this.avatar_thumbnail_url}`
     } else {
-      return require('@/assets/markers/user-marker-avatar.svg')
+      return '/img/markers/user-marker-avatar.svg'
     }
   }
 

@@ -26,7 +26,7 @@ export default class CragSector extends ActiveData {
     } else if (this.crag.photo.url) {
       return `${process.env.VUE_APP_OBLYK_API_URL}${this.crag.photo.url}`
     } else {
-      return require('@/assets/default-crag-banner.jpg')
+      return '/img/images/default-crag-banner.jpg'
     }
   }
 
@@ -46,7 +46,7 @@ export default class CragSector extends ActiveData {
     } else if (this.crag.photo.thumbnail_url) {
       return `${process.env.VUE_APP_OBLYK_API_URL}${this.crag.photo.thumbnail_url}`
     } else {
-      return require('@/assets/default-crag-banner.jpg')
+      return '/img/images/default-crag-banner.jpg'
     }
   }
 
@@ -56,7 +56,7 @@ export default class CragSector extends ActiveData {
     } else if (this.crag.map_thumbnail_url) {
       return `${process.env.VUE_APP_OBLYK_API_URL}${this.crag.map_thumbnail_url}`
     } else {
-      return require('@/assets/default-crag-banner.jpg')
+      return '/img/images/default-crag-banner.jpg'
     }
   }
 

@@ -41,7 +41,7 @@
           </p>
         </v-col>
         <v-col class="col-12 col-md-6">
-          <v-img :src="require('@/assets/svgs/partner-configuration.svg')" />
+          <v-img src="/img/svg/partner-configuration.svg" />
         </v-col>
       </v-row>
 
@@ -58,7 +58,7 @@
           </p>
         </v-col>
         <v-col class="col-12 col-md-6">
-          <v-img :src="require('@/assets/svgs/partner-location.svg')" />
+          <v-img src="/img/svg/partner-location.svg" />
         </v-col>
       </v-row>
 
@@ -75,7 +75,7 @@
           </p>
         </v-col>
         <v-col class="col-12 col-md-6">
-          <v-img :src="require('@/assets/svgs/partner-climber-map.svg')" />
+          <v-img src="/img/svg/partner-climber-map.svg" />
         </v-col>
       </v-row>
 
@@ -92,7 +92,7 @@
           </p>
         </v-col>
         <v-col class="col-12 col-md-6">
-          <v-img :src="require('@/assets/svgs/partner-contact.svg')" />
+          <v-img src="/img/svg/partner-contact.svg" />
         </v-col>
       </v-row>
     </v-container>

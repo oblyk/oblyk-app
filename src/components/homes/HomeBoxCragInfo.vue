@@ -12,7 +12,7 @@
       </p>
     </v-col>
     <v-col align-self="center" cols="md-6">
-      <v-img :src="require('@/assets/svgs/homes/crags-info.svg')" />
+      <v-img src="/img/svg/homes/crags-info.svg" />
     </v-col>
   </v-row>
 </template>

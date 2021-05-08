@@ -8,7 +8,7 @@
       <p v-html="$t('home.oblykAndGuide.body2')" />
     </v-col>
     <v-col align-self="center" cols="md-6">
-      <v-img :src="require('@/assets/svgs/homes/guide-book.svg')" />
+      <v-img src="/img/svg/homes/guide-book.svg" />
     </v-col>
   </v-row>
 </template>

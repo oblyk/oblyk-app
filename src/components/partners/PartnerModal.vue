@@ -17,7 +17,7 @@
             <v-img
               contain
               height="100"
-              :src="require('@/assets/svgs/partner-contact.svg')"
+              src="/img/svg/partner-contact.svg"
             />
           </p>
           <partner-figures

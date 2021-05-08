@@ -18,7 +18,7 @@ export default class Article extends ActiveData {
     if (this.cover_url) {
       return `${process.env.VUE_APP_OBLYK_API_URL}${this.cover_url}`
     } else {
-      return require('@/assets/default-crag-banner.jpg')
+      return '/img/images/default-crag-banner.jpg'
     }
   }
 
@@ -26,7 +26,7 @@ export default class Article extends ActiveData {
     if (this.thumbnail_url) {
       return `${process.env.VUE_APP_OBLYK_API_URL}${this.thumbnail_url}`
     } else {
-      return require('@/assets/default-crag-banner.jpg')
+      return '/img/images/default-crag-banner.jpg'
     }
   }
 

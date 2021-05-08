@@ -15,7 +15,7 @@
           <div>
             <v-img
               width="130px"
-              :src="require('@/assets/svgs/footer-climber.svg')"
+              src="/img/svg/footer-climber.svg"
             />
           </div>
         </v-col>

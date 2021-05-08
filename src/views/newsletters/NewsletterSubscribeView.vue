@@ -11,7 +11,7 @@
           <newsletter-subscribe-form />
         </v-col>
         <v-col class="col-md-6">
-          <v-img contain :src="require('@/assets/svgs/contact.svg')" />
+          <v-img contain src="/img/svg/contact.svg" />
         </v-col>
       </v-row>
     </v-container>

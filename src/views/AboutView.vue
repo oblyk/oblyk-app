@@ -52,7 +52,7 @@
                 height="150"
                 contain
                 @click="oblykNetHomeImg = true"
-                :src="require('@/assets/oblyk-net.jpg')"
+                src="/img/images/oblyk-net.jpg"
               />
               <small class="text--disabled">Page d'accueil oblyk.net</small>
             </v-col>
@@ -64,30 +64,21 @@
           <strong>2017 :</strong>
           Oblyk.net devient Oblyk.org. Derrière ce changement de nom de domaine se cache une refonte complète du code, du design et de l'orientation "éthique" du site. oblyk devient open source, une première ébauche d'accès à la base de donnée des falaises <cite>(via api)</cite> et faite. De nouvelles fonctionnalités sont développées : comme la recherche de partenaire d'escalade.
           <v-row>
-            <v-col class="col-4 text-center">
-              <v-img
-                height="150"
-                @click="oblykOrgOldHomeImg = true"
-                contain
-                :src="require('@/assets/oblyk-org-old home.png')"
-              />
-              <small class="text--disabled">Page d'accueil oblyk.org</small>
-            </v-col>
-            <v-col class="col-4 text-center">
+            <v-col class="col-6 text-center">
               <v-img
                 @click="oblykOrgOldDashboardImg = true"
-                height="150"
+                height="200"
                 contain
-                :src="require('@/assets/oblyk-org-old dashboard.png')"
+                src="/img/images/oblyk-org-old-dashboard.jpg"
               />
               <small class="text--disabled">Tableau de bord d'un grimpeur</small>
             </v-col>
-            <v-col class="col-4 text-center">
+            <v-col class="col-6 text-center">
               <v-img
-                height="150"
+                height="200"
                 @click="oblykOrgOldOutdoorImg = true"
                 contain
-                :src="require('@/assets/oblyk-org-old outdoor.png')"
+                src="/img/images/oblyk-org-old-outdoor.jpg"
               />
               <small class="text--disabled">Une page falaise</small>
             </v-col>
@@ -174,19 +165,15 @@
 
       <!-- Images dialogue -->
       <v-dialog v-model="oblykNetHomeImg" width="1000">
-        <v-img contain alt="capture de oblyk.net" :src="require('@/assets/oblyk-net.jpg')"/>
+        <v-img contain alt="capture de oblyk.net" src="/img/images/oblyk-net.jpg"/>
       </v-dialog>
 
       <v-dialog v-model="oblykOrgOldDashboardImg" width="1000">
-        <v-img contain alt="dashboard de oblyk.org" :src="require('@/assets/oblyk-org-old dashboard.png')"/>
-      </v-dialog>
-
-      <v-dialog v-model="oblykOrgOldHomeImg" width="1000">
-        <v-img contain alt="la page d'accueil de oblyk.org" :src="require('@/assets/oblyk-org-old home.png')"/>
+        <v-img contain alt="dashboard de oblyk.org" src="/img/images/oblyk-org-old-dashboard.jpg"/>
       </v-dialog>
 
       <v-dialog v-model="oblykOrgOldOutdoorImg" width="1000">
-        <v-img contain alt="une page falaise de oblyk.org" :src="require('@/assets/oblyk-org-old outdoor.png')"/>
+        <v-img contain alt="une page falaise de oblyk.org" src="/img/images/oblyk-org-old-outdoor.jpg"/>
       </v-dialog>
     </v-container>
     <app-footer />

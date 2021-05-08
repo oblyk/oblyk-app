@@ -3,8 +3,8 @@
     <v-list color="pb-O">
       <v-list-item class="oblyk-title" to="/">
         <v-list-item-avatar>
-          <img :src="require('@/assets/svgs/logo-black.svg')" alt="" v-if="!dark">
-          <img :src="require('@/assets/svgs/logo-white.svg')" alt="" v-if="dark">
+          <img src="/img/svg/logo-black.svg" alt="" v-if="!dark" >
+          <img src="/img/svg/logo-white.svg" alt="" v-if="dark" >
         </v-list-item-avatar>
 
         <v-list-item-content>

@@ -14,7 +14,7 @@
       </p>
     </v-col>
     <v-col align-self="center" cols="md-6">
-      <v-img :src="require('@/assets/svgs/homes/help.svg')" />
+      <v-img src="/img/svg/homes/help.svg" />
     </v-col>
   </v-row>
 </template>
