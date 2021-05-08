@@ -230,7 +230,12 @@ export const MapPopupHelpers = {
         }
       }
 
-      const level = `${this.gradeValueToText(user.grade_min)} ~ ${this.gradeValueToText(user.grade_max)}`
+      const level = `
+      ${this.$t('common.from')}
+      ${this.gradeValueToText(user.grade_min) || '1a'}
+      ${this.$t('common.to').toLowerCase()}
+      ${this.gradeValueToText(user.grade_max) || '∞'}
+      `
       const lastActivity = this.$t('date.lastActivity', { date: this.dateFromNow(user.last_activity_at) })
 
       const popup = document.createElement('div')

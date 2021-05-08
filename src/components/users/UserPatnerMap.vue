@@ -17,9 +17,9 @@
         {{ $t(`models.climbs.${climb}`) }}
       </v-chip>
       {{ $t('common.between') }}
-      <strong>{{ gradeValueToText(user.grade_min) }}</strong>
+      <strong>{{ gradeValueToText(user.grade_min) || '2a' }}</strong>
       {{ $t('common.and') }}
-      <strong>{{ gradeValueToText(user.grade_max) }}</strong>.
+      <strong>{{ gradeValueToText(user.grade_max) || '∞' }}</strong>.
 
       <leaflet-map
         class="user-partner-map"
