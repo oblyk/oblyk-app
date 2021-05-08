@@ -8,6 +8,7 @@ const ReportProblemView = () => import(/* webpackChunkName: "general-routes" */ 
 const OblykView = () => import(/* webpackChunkName: "general-routes" */ '@/views/OblykView')
 const GradeView = () => import(/* webpackChunkName: "general-routes" */ '@/views/GradeView')
 const AboutPartnerView = () => import(/* webpackChunkName: "general-routes" */ '@/views/AboutPartnerView')
+const GoFlyAKiteView = () => import(/* webpackChunkName: "general-routes" */ '@/views/GoFlyAKiteView')
 
 export default [
   {
@@ -89,6 +90,14 @@ export default [
     component: GradeView,
     meta: {
       title: 'grade',
+      showTitle: false
+    }
+  },
+  {
+    path: '/go-fly-a-kite',
+    component: GoFlyAKiteView,
+    meta: {
+      title: 'beHumain',
       showTitle: false
     }
   }

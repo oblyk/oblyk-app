@@ -1,5 +1,15 @@
 <template>
   <v-form @submit.prevent="login">
+    <v-text-field
+      outlined
+      v-model="full_name"
+      required
+      hide-details
+      tabindex="-1"
+      autocomplete="off"
+      :label="$t('models.full_name')"
+      class="mb-2 full-name-field-form"
+    />
 
     <v-text-field
       outlined
@@ -57,6 +67,7 @@ export default {
   data () {
     return {
       overlay: false,
+      full_name: null,
       email: null,
       password: null,
       showPassword: false,
@@ -66,16 +77,15 @@ export default {
 
   methods: {
     login: function () {
-      const email = this.email
-      const password = this.password
-      const rememberMe = this.rememberMe
       this.overlay = true
+      const data = {
+        email: this.email,
+        password: this.password,
+        full_name: this.full_name
+      }
+
       this.$store
-        .dispatch('auth/login', {
-          email,
-          password,
-          rememberMe
-        })
+        .dispatch('auth/login', data)
         .then(() => {
           this.$router.push(this.redirectTo || '/')
         })

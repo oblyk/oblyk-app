@@ -2,6 +2,17 @@
   <v-form @submit.prevent="submit()">
     <v-text-field
       outlined
+      v-model="full_name"
+      required
+      hide-details
+      tabindex="-1"
+      autocomplete="off"
+      :label="$t('models.full_name')"
+      class="mb-2 full-name-field-form"
+    />
+
+    <v-text-field
+      outlined
       v-model="data.email"
       required
       hide-details
@@ -33,6 +44,7 @@ export default {
   data () {
     return {
       redirectTo: null,
+      full_name: null,
       data: {
         email: this.email
       }
@@ -42,9 +54,13 @@ export default {
   methods: {
     submit: function () {
       this.submitOverlay = true
+      const data = {
+        full_name: this.full_name,
+        subscribe: this.data
+      }
 
       NewsletterApi
-        .unsubscribe(this.data)
+        .unsubscribe(data)
         .then(() => {
           this.$router.push('/newsletters/successful-unsubscribe')
         })

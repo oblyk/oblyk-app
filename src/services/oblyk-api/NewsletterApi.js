@@ -87,9 +87,7 @@ class NewsletterApi extends BaseApi {
       method: 'POST',
       url: `${this.baseUrl}/subscribes.json`,
       headers: { HttpApiAccessToken: this.apiAccessToken },
-      data: {
-        subscribe: data
-      }
+      data: data
     })
   }
 
@@ -98,9 +96,7 @@ class NewsletterApi extends BaseApi {
       method: 'DELETE',
       url: `${this.baseUrl}/subscribes.json`,
       headers: { HttpApiAccessToken: this.apiAccessToken },
-      data: {
-        subscribe: data
-      }
+      data: data
     })
   }
 }

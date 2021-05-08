@@ -81,13 +81,8 @@ const actions = {
   login ({ commit }, data) {
     return new Promise((resolve, reject) => {
       commit('request')
-      const user = {
-        email: data.email,
-        password: data.password,
-        remember_me: data.rememberMe
-      }
       SessionApi
-        .login(user)
+        .login(data)
         .then(resp => {
           const data = resp.data
           commit('success', {

@@ -52,6 +52,8 @@ export default {
 
   methods: {
     fromApiError: function (err, object) {
+      if (err.data !== undefined && err.data.go_fly_a_kite) return
+
       const data = err.response.data
       const status = err.response.status
       this.clear()

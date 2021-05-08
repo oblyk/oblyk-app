@@ -18,7 +18,7 @@
         {{ $t('components.user.bioIsEmpty', { name: user.first_name} ) }}
       </p>
     </v-card-text>
-    <v-card-actions>
+    <v-card-actions v-if="isLoggedIn">
       <v-spacer />
       <start-conversation-btn :user="user" />
     </v-card-actions>
@@ -29,11 +29,12 @@
 import { DateHelpers } from '@/mixins/DateHelpers'
 import MarkdownText from '@/components/ui/MarkdownText'
 import StartConversationBtn from '@/components/messengers/forms/StartConversationBtn'
+import { SessionConcern } from '@/concerns/SessionConcern'
 
 export default {
   name: 'UserBio',
   components: { StartConversationBtn, MarkdownText },
-  mixins: [DateHelpers],
+  mixins: [DateHelpers, SessionConcern],
   props: {
     user: Object
   }

@@ -137,6 +137,9 @@
     },
     "notifications": {
       "title": "Notifications"
+    },
+    "beHumain": {
+      "title": "Be humain"
     }
   }
 }

@@ -20,7 +20,14 @@ axios.interceptors.request.use(async function (config) {
 })
 
 axios.interceptors.response.use(
-  response => response,
+  async function (response) {
+    if (response.data.go_fly_a_kite) {
+      await router.push('/go-fly-a-kite')
+      return Promise.reject(response)
+    } else {
+      return Promise.resolve(response)
+    }
+  },
   async function (error) {
     // redirect to sign-in page if user not authorized
     if (error.response.status === 401) {

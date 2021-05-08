@@ -127,6 +127,11 @@
         "paragraphe": "Pour vous désinscrire de la newsletter, renseignez votre adresse email ici :",
         "successTitle": "Vous être désormais désinscrit",
         "successParagraphe": "Merci de nous avoir suivie jusqu'à présent :)"
+      },
+      "goFlyAKite": {
+        "title": "Vous êtes un robot?",
+        "strangeBehavior": "Si vous voyez cette page c'est que nous considérons que vous avez un comportement étrange...",
+        "actHuman": "Revenez dans 30 minutes et ayez un comportement humain."
       }
     }
   }

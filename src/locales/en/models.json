@@ -17,6 +17,7 @@
     }
   },
   "models": {
+    "full_name": "Full name",
     "user": {
       "date_of_birth": "Date of birth",
       "name": "Name",

@@ -129,6 +129,7 @@
       </v-list-group>
 
       <v-list-group
+        v-if="isLoggedIn"
         prepend-icon="mdi-book-plus-multiple"
         no-action
       >

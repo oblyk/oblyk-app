@@ -4,6 +4,17 @@
   >
     <v-text-field
       outlined
+      v-model="full_name"
+      required
+      hide-details
+      tabindex="-1"
+      autocomplete="off"
+      :label="$t('models.full_name')"
+      class="mb-2 full-name-field-form"
+    />
+
+    <v-text-field
+      outlined
       v-model="password"
       :label="$t('models.user.password')"
       :type="showPassword ? 'text' : 'password'"
@@ -42,6 +53,7 @@ export default {
       overlay: false,
       rememberMe: true,
       password: null,
+      full_name: null,
       passwordConfirmation: null,
       showPassword: false,
       showPasswordConfirmation: false,
@@ -62,7 +74,8 @@ export default {
           token: this.token,
           password: this.password,
           remember_me: this.rememberMe,
-          password_confirmation: this.passwordConfirmation
+          password_confirmation: this.passwordConfirmation,
+          full_name: this.full_name
         })
         .then(() => {
           this.$router.push('/')

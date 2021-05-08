@@ -12,6 +12,18 @@
       <p>
         {{ $t('components.session.forgottenPasswordExplain') }}
       </p>
+
+      <v-text-field
+        outlined
+        v-model="full_name"
+        required
+        hide-details
+        tabindex="-1"
+        autocomplete="off"
+        :label="$t('models.full_name')"
+        class="mb-2 full-name-field-form"
+      />
+
       <v-text-field
         outlined
         v-model="email"
@@ -40,6 +52,7 @@ export default {
     return {
       overlay: false,
       mailSent: false,
+      full_name: null,
       email: null
     }
   },
@@ -48,7 +61,10 @@ export default {
     resetPassword: function () {
       this.overlay = true
       SessionApi
-        .resetPassword({ email: this.email })
+        .resetPassword({
+          email: this.email,
+          full_name: this.full_name
+        })
         .then(() => {
           this.mailSent = true
         }).catch(() => {

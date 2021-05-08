@@ -1,5 +1,16 @@
 <template>
   <v-form @submit.prevent="signUp">
+    <v-text-field
+      outlined
+      v-model="full_name"
+      required
+      hide-details
+      tabindex="-1"
+      autocomplete="off"
+      :label="$t('models.full_name')"
+      class="mb-2 full-name-field-form"
+    />
+
     <!-- Language -->
     <v-select
       v-model="language"
@@ -140,6 +151,7 @@ export default {
       genre: null,
       rememberMe: true,
       language: this.$vuetify.lang.current,
+      full_name: null,
       locales: [
         { text: 'Français', value: 'fr' },
         { text: 'English', value: 'en' }
@@ -171,7 +183,8 @@ export default {
         date_of_birth: this.dateOfBirth,
         remember_me: this.rememberMe,
         language: this.language,
-        newsletter_subscribe: this.newsletterSubscribe
+        newsletter_subscribe: this.newsletterSubscribe,
+        full_name: this.full_name
       }
       this.$store
         .dispatch('auth/signUp', data)

@@ -127,6 +127,11 @@
         "paragraphe": "To unsubscribe from the newsletter, enter your email address here :",
         "successTitle": "You are now unsubscribed",
         "successParagraphe": "Thanks for following us so far :)"
+      },
+      "goFlyAKite": {
+        "title": "Are you a robot?",
+        "strangeBehavior": "If you see this page it is because we consider that you have a strange behavior...",
+        "actHuman": "Come back in 30 minutes and act human."
       }
     }
   }
