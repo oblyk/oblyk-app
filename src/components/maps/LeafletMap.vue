@@ -207,6 +207,53 @@ export default {
 <style lang="scss">
 @import "~leaflet.markercluster/dist/MarkerCluster.css";
 @import "~leaflet.markercluster/dist/MarkerCluster.Default.css";
+.map-popup-cover {
+  background-color: rgb(240, 240, 240);
+  border-radius: 4px 4px 0 0;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 300px;
+  height: 150px;
+}
+.map-popup-information-table {
+  width: 300px;
+  color: black;
+  th {
+    width: 10px;
+    text-align: right;
+    white-space: nowrap;
+    padding-right: 5px;
+    padding-left: 5px;
+  }
+  .gym-map-title {
+    font-weight: bold;
+    padding: 10px;
+    font-size: 1.2em;
+  }
+  .loved-by-king {
+    padding: 10px;
+    font-size: 2em;
+  }
+  cite {
+    color: #808080;
+  }
+}
+.map-popup-link-area {
+  text-align: right;
+  margin-top: 5px;
+  padding: 7px 10px 7px 7px;
+  border-top-style: solid;
+  border-top-color: rgb(230,230,230);
+  border-width: 1px;
+  button {
+    color: #1e88e5;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+}
+
 .leaflet-popup-content-wrapper {
   border-radius: 4px;
   padding: 0;
