@@ -30,6 +30,9 @@
       <v-btn
         icon
         dark
+        @click.stop=""
+        :to="`/reports/Photo/${photo.id}/new?redirect_to=${$route.fullPath}`"
+        :title="$t('actions.reportProblem')"
       >
         <v-icon small>
           mdi-flag

@@ -10,7 +10,7 @@
     <close-form />
     <submit-form
       :overlay="submitOverlay"
-      :submit-local-key="submitText()"
+      submit-local-key="actions.send"
     />
   </v-form>
 </template>
