@@ -1,4 +1,4 @@
-import GuideBookWebEditView from '@/views/guideBookWebs/actions/GuideBookWebEditView'
+const GuideBookWebEditView = () => import(/* webpackChunkName: "guide-book-web-routes" */ '@/views/guideBookWebs/actions/GuideBookWebEditView')
 
 export default [
   {

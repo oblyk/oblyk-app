@@ -1,5 +1,5 @@
-import PlaceOfSaleNewView from '@/views/placeOfSales/actions/PlaceOfSaleNewView'
-import PlaceOfSaleEditView from '@/views/placeOfSales/actions/PlaceOfSaleEditView'
+const PlaceOfSaleNewView = () => import(/* webpackChunkName: "place-of-sale-routes" */ '@/views/placeOfSales/actions/PlaceOfSaleNewView')
+const PlaceOfSaleEditView = () => import(/* webpackChunkName: "place-of-sale-routes" */ '@/views/placeOfSales/actions/PlaceOfSaleEditView')
 
 export default [
   {

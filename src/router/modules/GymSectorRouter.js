@@ -1,5 +1,5 @@
-import GymSectorNewView from '@/views/gymSectors/actions/GymSectorNewView'
-import GymSectorEditView from '@/views/gymSectors/actions/GymSectorEditView'
+const GymSectorNewView = () => import(/* webpackChunkName: "gym-sector-routes" */ '@/views/gymSectors/actions/GymSectorNewView')
+const GymSectorEditView = () => import(/* webpackChunkName: "gym-sector-routes" */ '@/views/gymSectors/actions/GymSectorEditView')
 
 export default [
   {

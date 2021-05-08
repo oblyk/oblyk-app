@@ -1,11 +1,11 @@
-import ArticleView from '@/views/articles/ArticleView'
-import ArticleEditView from '@/views/articles/actions/ArticleEditView'
-import ArticleCoverView from '@/views/articles/actions/ArticleCoverView'
-import ArticleListView from '@/views/articles/ArticleListView'
-import ArticleNewView from '@/views/articles/actions/ArticleNewView'
-import ArticlePhotoListView from '@/views/articles/ArticlePhotoListView'
-import AddCragInArticleView from '@/views/articles/actions/AddCragInArticleView'
-import AddGuideBookInArticleView from '@/views/articles/actions/AddGuideBookInArticleView'
+const ArticleView = () => import(/* webpackChunkName: "article-routes" */ '@/views/articles/ArticleView')
+const ArticleEditView = () => import(/* webpackChunkName: "article-routes" */ '@/views/articles/actions/ArticleEditView')
+const ArticleCoverView = () => import(/* webpackChunkName: "article-routes" */ '@/views/articles/actions/ArticleCoverView')
+const ArticleListView = () => import(/* webpackChunkName: "article-routes" */ '@/views/articles/ArticleListView')
+const ArticleNewView = () => import(/* webpackChunkName: "article-routes" */ '@/views/articles/actions/ArticleNewView')
+const ArticlePhotoListView = () => import(/* webpackChunkName: "article-routes" */ '@/views/articles/ArticlePhotoListView')
+const AddCragInArticleView = () => import(/* webpackChunkName: "article-routes" */ '@/views/articles/actions/AddCragInArticleView')
+const AddGuideBookInArticleView = () => import(/* webpackChunkName: "article-routes" */ '@/views/articles/actions/AddGuideBookInArticleView')
 
 export default [
   {

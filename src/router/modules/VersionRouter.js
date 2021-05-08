@@ -1,4 +1,4 @@
-import VersionsView from '@/views/versions/VersionsView'
+const VersionsView = () => import(/* webpackChunkName: "version-routes" */ '@/views/versions/VersionsView')
 
 export default [
   {

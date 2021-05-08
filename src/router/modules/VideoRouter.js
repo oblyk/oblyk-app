@@ -1,5 +1,5 @@
-import VideoNewView from '@/views/videos/actions/VideoNewView'
-import VideoEditView from '@/views/videos/actions/VideoEditView'
+const VideoNewView = () => import(/* webpackChunkName: "video-routes" */ '@/views/videos/actions/VideoNewView')
+const VideoEditView = () => import(/* webpackChunkName: "video-routes" */ '@/views/videos/actions/VideoEditView')
 
 export default [
   {

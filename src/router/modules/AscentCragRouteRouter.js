@@ -1,5 +1,5 @@
-import AscentCragRouteNewView from '@/views/ascentCragRoutes/actions/AscentCragRouteNewView'
-import AscentCragRouteEditView from '@/views/ascentCragRoutes/actions/AscentCragRouteEditView'
+const AscentCragRouteNewView = () => import(/* webpackChunkName: "ascent-crag-route-routes" */ '@/views/ascentCragRoutes/actions/AscentCragRouteNewView')
+const AscentCragRouteEditView = () => import(/* webpackChunkName: "ascent-crag-route-routes" */ '@/views/ascentCragRoutes/actions/AscentCragRouteEditView')
 
 export default [
   {

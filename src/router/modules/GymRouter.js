@@ -1,16 +1,16 @@
-import GymMapView from '@/views/maps/GymMapView'
-import GymView from '@/views/GymView'
-import GymInfoView from '@/views/gyms/GymInfoView'
-import GymEditView from '@/views/gyms/actions/GymEditView'
-import GymNewView from '@/views/gyms/actions/GymNewView'
-import GymLogoView from '@/views/gyms/actions/GymLogoView'
-import GymBannerView from '@/views/gyms/actions/GymBannerView'
-import GymGradeListView from '@/views/gymGrades/GymGradeListView'
-import GymFirstSpaceView from '@/views/gyms/GymFirstSpaceView'
-import GymAdministratorRequiredView from '@/views/gyms/GymAdministratorRequiredView'
-import GymAdministrationRequestView from '@/views/gyms/GymAdministrationRequestView'
-import GymFirstDifficultySystemView from '@/views/gymGrades/GymFirstDifficultySystemView'
-import GymAdminView from '@/views/gyms/GymAdminView'
+const GymMapView = () => import(/* webpackChunkName: "gym-routes" */ '@/views/maps/GymMapView')
+const GymView = () => import(/* webpackChunkName: "gym-routes" */ '@/views/GymView')
+const GymInfoView = () => import(/* webpackChunkName: "gym-routes" */ '@/views/gyms/GymInfoView')
+const GymEditView = () => import(/* webpackChunkName: "gym-routes" */ '@/views/gyms/actions/GymEditView')
+const GymNewView = () => import(/* webpackChunkName: "gym-routes" */ '@/views/gyms/actions/GymNewView')
+const GymLogoView = () => import(/* webpackChunkName: "gym-routes" */ '@/views/gyms/actions/GymLogoView')
+const GymBannerView = () => import(/* webpackChunkName: "gym-routes" */ '@/views/gyms/actions/GymBannerView')
+const GymGradeListView = () => import(/* webpackChunkName: "gym-routes" */ '@/views/gymGrades/GymGradeListView')
+const GymFirstSpaceView = () => import(/* webpackChunkName: "gym-routes" */ '@/views/gyms/GymFirstSpaceView')
+const GymAdministratorRequiredView = () => import(/* webpackChunkName: "gym-routes" */ '@/views/gyms/GymAdministratorRequiredView')
+const GymAdministrationRequestView = () => import(/* webpackChunkName: "gym-routes" */ '@/views/gyms/GymAdministrationRequestView')
+const GymFirstDifficultySystemView = () => import(/* webpackChunkName: "gym-routes" */ '@/views/gymGrades/GymFirstDifficultySystemView')
+const GymAdminView = () => import(/* webpackChunkName: "gym-routes" */ '@/views/gyms/GymAdminView')
 
 export default [
   {

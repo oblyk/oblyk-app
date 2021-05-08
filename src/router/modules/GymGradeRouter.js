@@ -1,8 +1,8 @@
-import GymGradeNewView from '@/views/gymGrades/actions/GymGradeNewView'
-import GymGradeView from '@/views/gymGrades/GymGradeView'
-import GymGradeEditView from '@/views/gymGrades/actions/GymGradeEditView'
-import GymGradeLineNewView from '@/views/gymGrades/actions/GymGradeLineNewView'
-import GymGradeLineEditView from '@/views/gymGrades/actions/GymGradeLineEditView'
+const GymGradeNewView = () => import(/* webpackChunkName: "gym-grade-routes" */ '@/views/gymGrades/actions/GymGradeNewView')
+const GymGradeView = () => import(/* webpackChunkName: "gym-grade-routes" */ '@/views/gymGrades/GymGradeView')
+const GymGradeEditView = () => import(/* webpackChunkName: "gym-grade-routes" */ '@/views/gymGrades/actions/GymGradeEditView')
+const GymGradeLineNewView = () => import(/* webpackChunkName: "gym-grade-routes" */ '@/views/gymGrades/actions/GymGradeLineNewView')
+const GymGradeLineEditView = () => import(/* webpackChunkName: "gym-grade-routes" */ '@/views/gymGrades/actions/GymGradeLineEditView')
 
 export default [
   {

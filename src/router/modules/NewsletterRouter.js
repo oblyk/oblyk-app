@@ -1,12 +1,12 @@
-import NewsletterListView from '@/views/newsletters/NewsletterListView'
-import NewsletterNewView from '@/views/newsletters/actions/NewsletterNewView'
-import NewsletterEditView from '@/views/newsletters/actions/NewsletterEditView'
-import NewsletterView from '@/views/newsletters/NewsletterView'
-import NewsletterPhotoListView from '@/views/newsletters/NewsletterPhotoListView'
-import NewsletterSubscribeView from '@/views/newsletters/NewsletterSubscribeView'
-import NewsletterSuccessSubscribeView from '@/views/newsletters/NewsletterSuccessSubscribeView'
-import NewsletterUnsubscribeView from '@/views/newsletters/NewsletterUnsubscribeView'
-import NewsletterSuccessUnsubscribeView from '@/views/newsletters/NewsletterSuccessUnsubscribeView'
+const NewsletterListView = () => import(/* webpackChunkName: "newsletter-routes" */ '@/views/newsletters/NewsletterListView')
+const NewsletterNewView = () => import(/* webpackChunkName: "newsletter-routes" */ '@/views/newsletters/actions/NewsletterNewView')
+const NewsletterEditView = () => import(/* webpackChunkName: "newsletter-routes" */ '@/views/newsletters/actions/NewsletterEditView')
+const NewsletterView = () => import(/* webpackChunkName: "newsletter-routes" */ '@/views/newsletters/NewsletterView')
+const NewsletterPhotoListView = () => import(/* webpackChunkName: "newsletter-routes" */ '@/views/newsletters/NewsletterPhotoListView')
+const NewsletterSubscribeView = () => import(/* webpackChunkName: "newsletter-routes" */ '@/views/newsletters/NewsletterSubscribeView')
+const NewsletterSuccessSubscribeView = () => import(/* webpackChunkName: "newsletter-routes" */ '@/views/newsletters/NewsletterSuccessSubscribeView')
+const NewsletterUnsubscribeView = () => import(/* webpackChunkName: "newsletter-routes" */ '@/views/newsletters/NewsletterUnsubscribeView')
+const NewsletterSuccessUnsubscribeView = () => import(/* webpackChunkName: "newsletter-routes" */ '@/views/newsletters/NewsletterSuccessUnsubscribeView')
 
 export default [
   {

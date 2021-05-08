@@ -1,7 +1,7 @@
-import GymRouteNewView from '@/views/gymRoutes/actions/GymRouteNewView'
-import GymRouteEditView from '@/views/gymRoutes/actions/GymRouteEditView'
-import GymRoutePictureView from '@/views/gymRoutes/actions/GymRoutePictureView'
-import GymRouteThumbnailView from '@/views/gymRoutes/actions/GymRouteThumbnailView'
+const GymRouteNewView = () => import(/* webpackChunkName: "gym-route-routes" */ '@/views/gymRoutes/actions/GymRouteNewView')
+const GymRouteEditView = () => import(/* webpackChunkName: "gym-route-routes" */ '@/views/gymRoutes/actions/GymRouteEditView')
+const GymRoutePictureView = () => import(/* webpackChunkName: "gym-route-routes" */ '@/views/gymRoutes/actions/GymRoutePictureView')
+const GymRouteThumbnailView = () => import(/* webpackChunkName: "gym-route-routes" */ '@/views/gymRoutes/actions/GymRouteThumbnailView')
 
 export default [
   {

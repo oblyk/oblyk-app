@@ -1,8 +1,8 @@
-import SignInView from '@/views/sessions/SignInView'
-import SignUpView from '@/views/sessions/SignUpView'
-import ResetPasswordView from '@/views/sessions/ResetPasswordView'
-import NewPasswordView from '@/views/sessions/NewPasswordView'
-import PrivacyStepView from '@/views/sessions/PrivacyStepView'
+const SignInView = () => import(/* webpackChunkName: "session-routes" */ '@/views/sessions/SignInView')
+const SignUpView = () => import(/* webpackChunkName: "session-routes" */ '@/views/sessions/SignUpView')
+const ResetPasswordView = () => import(/* webpackChunkName: "session-routes" */ '@/views/sessions/ResetPasswordView')
+const NewPasswordView = () => import(/* webpackChunkName: "session-routes" */ '@/views/sessions/NewPasswordView')
+const PrivacyStepView = () => import(/* webpackChunkName: "session-routes" */ '@/views/sessions/PrivacyStepView')
 
 export default [
   {

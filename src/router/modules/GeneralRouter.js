@@ -1,13 +1,13 @@
-import HomeView from '@/views/HomeView'
-import TermsOfUseView from '@/views/TermsOfUseView'
-import AboutView from '@/views/AboutView'
-import HelpsView from '@/views/HelpsView'
-import SupportUsView from '@/views/SupportUsView'
-import ContactView from '@/views/ContactView'
-import ReportProblemView from '@/views/ReportProblemView'
-import OblykView from '@/views/OblykView'
-import GradeView from '@/views/GradeView'
-import AboutPartnerView from '@/views/AboutPartnerView'
+const HomeView = () => import(/* webpackChunkName: "general-routes" */ '@/views/HomeView')
+const TermsOfUseView = () => import(/* webpackChunkName: "general-routes" */ '@/views/TermsOfUseView')
+const AboutView = () => import(/* webpackChunkName: "general-routes" */ '@/views/AboutView')
+const HelpsView = () => import(/* webpackChunkName: "general-routes" */ '@/views/HelpsView')
+const SupportUsView = () => import(/* webpackChunkName: "general-routes" */ '@/views/SupportUsView')
+const ContactView = () => import(/* webpackChunkName: "general-routes" */ '@/views/ContactView')
+const ReportProblemView = () => import(/* webpackChunkName: "general-routes" */ '@/views/ReportProblemView')
+const OblykView = () => import(/* webpackChunkName: "general-routes" */ '@/views/OblykView')
+const GradeView = () => import(/* webpackChunkName: "general-routes" */ '@/views/GradeView')
+const AboutPartnerView = () => import(/* webpackChunkName: "general-routes" */ '@/views/AboutPartnerView')
 
 export default [
   {

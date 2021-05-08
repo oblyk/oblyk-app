@@ -1,10 +1,10 @@
-import AreaNewView from '@/views/areas/actions/AreaNewView'
-import AreaEditView from '@/views/areas/actions/AreaEditView'
-import AreaView from '@/views/AreaView'
-import AreaInfoView from '@/views/areas/AreaInfoView'
-import AreaCragsView from '@/views/areas/AreaCragsView'
-import AddCragInAreaView from '@/views/areas/actions/AddCragInAreaView'
-import AreaPhotosView from '@/views/areas/AreaPhotosView'
+const AreaNewView = () => import(/* webpackChunkName: "area-routes" */ '@/views/areas/actions/AreaNewView')
+const AreaEditView = () => import(/* webpackChunkName: "area-routes" */ '@/views/areas/actions/AreaEditView')
+const AreaView = () => import(/* webpackChunkName: "area-routes" */ '@/views/AreaView')
+const AreaInfoView = () => import(/* webpackChunkName: "area-routes" */ '@/views/areas/AreaInfoView')
+const AreaCragsView = () => import(/* webpackChunkName: "area-routes" */ '@/views/areas/AreaCragsView')
+const AddCragInAreaView = () => import(/* webpackChunkName: "area-routes" */ '@/views/areas/actions/AddCragInAreaView')
+const AreaPhotosView = () => import(/* webpackChunkName: "area-routes" */ '@/views/areas/AreaPhotosView')
 
 export default [
   {

@@ -1,17 +1,17 @@
-import CragMapView from '@/views/maps/CragMapView'
-import CragView from '@/views/CragView'
-import CragInfoView from '@/views/crags/CragInfoView'
-import CragRouteView from '@/views/crags/CragRouteView'
-import CragPhotosView from '@/views/crags/CragPhotosView'
-import CragGuideBooksView from '@/views/crags/CragGuideBooksView'
-import CragMapDetailsView from '@/views/crags/CragMapDetailsView'
-import CragNewView from '@/views/crags/actions/CragNewView'
-import CragEditView from '@/views/crags/actions/CragEditView'
-import AddGuideBookOnCragView from '@/views/crags/actions/AddGuideBookOnCragView'
-import GuideBookWebNewView from '@/views/guideBookWebs/actions/GuideBookWebNewView'
-import GuideBookPdfNewView from '@/views/guideBookPdfs/actions/GuideBookPdfNewView'
-import CragLinkView from '@/views/crags/CragLinkView'
-import AddAreaOnCragView from '@/views/crags/actions/AddAreaOnCragView'
+const CragMapView = () => import(/* webpackChunkName: "crag-routes" */ '@/views/maps/CragMapView')
+const CragView = () => import(/* webpackChunkName: "crag-routes" */ '@/views/CragView')
+const CragInfoView = () => import(/* webpackChunkName: "crag-routes" */ '@/views/crags/CragInfoView')
+const CragRouteView = () => import(/* webpackChunkName: "crag-routes" */ '@/views/crags/CragRouteView')
+const CragPhotosView = () => import(/* webpackChunkName: "crag-routes" */ '@/views/crags/CragPhotosView')
+const CragGuideBooksView = () => import(/* webpackChunkName: "crag-routes" */ '@/views/crags/CragGuideBooksView')
+const CragMapDetailsView = () => import(/* webpackChunkName: "crag-routes" */ '@/views/crags/CragMapDetailsView')
+const CragNewView = () => import(/* webpackChunkName: "crag-routes" */ '@/views/crags/actions/CragNewView')
+const CragEditView = () => import(/* webpackChunkName: "crag-routes" */ '@/views/crags/actions/CragEditView')
+const AddGuideBookOnCragView = () => import(/* webpackChunkName: "crag-routes" */ '@/views/crags/actions/AddGuideBookOnCragView')
+const GuideBookWebNewView = () => import(/* webpackChunkName: "crag-routes" */ '@/views/guideBookWebs/actions/GuideBookWebNewView')
+const GuideBookPdfNewView = () => import(/* webpackChunkName: "crag-routes" */ '@/views/guideBookPdfs/actions/GuideBookPdfNewView')
+const CragLinkView = () => import(/* webpackChunkName: "crag-routes" */ '@/views/crags/CragLinkView')
+const AddAreaOnCragView = () => import(/* webpackChunkName: "crag-routes" */ '@/views/crags/actions/AddAreaOnCragView')
 
 export default [
   {

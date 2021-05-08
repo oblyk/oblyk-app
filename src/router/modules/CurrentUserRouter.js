@@ -1,23 +1,23 @@
-import CurrentUserAvatarView from '@/views/currentUsers/actions/CurrentUserAvatarView'
-import CurrentUserBannerView from '@/views/currentUsers/actions/CurrentUserBannerView'
-import CurrentUserAscentsView from '@/views/currentUsers/CurrentUserAscentsView'
-import CurrentUserSubscribesView from '@/views/currentUsers/CurrentUserSubscribesView'
-import CurrentUserGuideBooksView from '@/views/currentUsers/CurrentUserGuideBooksView'
-import CurrentUserFavoritesView from '@/views/currentUsers/CurrentUserFavoritesView'
-import CurrentUserPartnerSettingsView from '@/views/currentUsers/actions/CurrentUserPartnerSettingsView'
-import CurrentUserSettingsView from '@/views/currentUsers/CurrentUserSettingsView'
-import CurrentUserEditView from '@/views/currentUsers/actions/CurrentUserEditView'
-import CurrentUserSendListView from '@/views/currentUsers/CurrentUserSendListView'
-import CurrentUserTickListView from '@/views/currentUsers/CurrentUserTickListView'
-import CurrentUserAnalytiksView from '@/views/currentUsers/CurrentUserAnalytiksView'
-import CurrentUserProjectView from '@/views/currentUsers/CurrentUserProjectView'
-import CurrentUserMapView from '@/views/currentUsers/CurrentUserMapView'
-import CurrentUserPrivacyView from '@/views/currentUsers/actions/CurrentUserPrivacyView'
-import CurrentUserCommunityView from '@/views/currentUsers/CurrentUserCommunityView'
-import CurrentUserFollowersView from '@/views/currentUsers/CurrentUserFollowersView'
-import CurrentUserFavoriteCragsView from '@/views/currentUsers/CurrentUserFavoriteCragsView'
-import CurrentUserFavoriteGymsView from '@/views/currentUsers/CurrentUserFavoriteGymsView'
-import CurrentUserNotificationSettingsView from '@/views/currentUsers/actions/CurrentUserNotificationSettingsView'
+const CurrentUserAvatarView = () => import(/* webpackChunkName: "current-user-routes" */ '@/views/currentUsers/actions/CurrentUserAvatarView')
+const CurrentUserBannerView = () => import(/* webpackChunkName: "current-user-routes" */ '@/views/currentUsers/actions/CurrentUserBannerView')
+const CurrentUserAscentsView = () => import(/* webpackChunkName: "current-user-routes" */ '@/views/currentUsers/CurrentUserAscentsView')
+const CurrentUserSubscribesView = () => import(/* webpackChunkName: "current-user-routes" */ '@/views/currentUsers/CurrentUserSubscribesView')
+const CurrentUserGuideBooksView = () => import(/* webpackChunkName: "current-user-routes" */ '@/views/currentUsers/CurrentUserGuideBooksView')
+const CurrentUserFavoritesView = () => import(/* webpackChunkName: "current-user-routes" */ '@/views/currentUsers/CurrentUserFavoritesView')
+const CurrentUserPartnerSettingsView = () => import(/* webpackChunkName: "current-user-routes" */ '@/views/currentUsers/actions/CurrentUserPartnerSettingsView')
+const CurrentUserSettingsView = () => import(/* webpackChunkName: "current-user-routes" */ '@/views/currentUsers/CurrentUserSettingsView')
+const CurrentUserEditView = () => import(/* webpackChunkName: "current-user-routes" */ '@/views/currentUsers/actions/CurrentUserEditView')
+const CurrentUserSendListView = () => import(/* webpackChunkName: "current-user-routes" */ '@/views/currentUsers/CurrentUserSendListView')
+const CurrentUserTickListView = () => import(/* webpackChunkName: "current-user-routes" */ '@/views/currentUsers/CurrentUserTickListView')
+const CurrentUserAnalytiksView = () => import(/* webpackChunkName: "current-user-routes" */ '@/views/currentUsers/CurrentUserAnalytiksView')
+const CurrentUserProjectView = () => import(/* webpackChunkName: "current-user-routes" */ '@/views/currentUsers/CurrentUserProjectView')
+const CurrentUserMapView = () => import(/* webpackChunkName: "current-user-routes" */ '@/views/currentUsers/CurrentUserMapView')
+const CurrentUserPrivacyView = () => import(/* webpackChunkName: "current-user-routes" */ '@/views/currentUsers/actions/CurrentUserPrivacyView')
+const CurrentUserCommunityView = () => import(/* webpackChunkName: "current-user-routes" */ '@/views/currentUsers/CurrentUserCommunityView')
+const CurrentUserFollowersView = () => import(/* webpackChunkName: "current-user-routes" */ '@/views/currentUsers/CurrentUserFollowersView')
+const CurrentUserFavoriteCragsView = () => import(/* webpackChunkName: "current-user-routes" */ '@/views/currentUsers/CurrentUserFavoriteCragsView')
+const CurrentUserFavoriteGymsView = () => import(/* webpackChunkName: "current-user-routes" */ '@/views/currentUsers/CurrentUserFavoriteGymsView')
+const CurrentUserNotificationSettingsView = () => import(/* webpackChunkName: "current-user-routes" */ '@/views/currentUsers/actions/CurrentUserNotificationSettingsView')
 
 export default [
   {

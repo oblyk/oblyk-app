@@ -1,7 +1,7 @@
-import GlossaryView from '@/views/GlossaryView'
-import WordNewView from '@/views/words/actions/WordNewView'
-import WordEditView from '@/views/words/actions/WordEditView'
-import WordView from '@/views/words/WordView'
+const GlossaryView = () => import(/* webpackChunkName: "word-routes" */ '@/views/GlossaryView')
+const WordNewView = () => import(/* webpackChunkName: "word-routes" */ '@/views/words/actions/WordNewView')
+const WordEditView = () => import(/* webpackChunkName: "word-routes" */ '@/views/words/actions/WordEditView')
+const WordView = () => import(/* webpackChunkName: "word-routes" */ '@/views/words/WordView')
 
 export default [
   {

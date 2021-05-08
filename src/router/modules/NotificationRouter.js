@@ -1,4 +1,4 @@
-import NotificationsView from '@/views/notifications/NotificationsView'
+const NotificationsView = () => import(/* webpackChunkName: "notification-routes" */ '@/views/notifications/NotificationsView')
 
 export default [
   {

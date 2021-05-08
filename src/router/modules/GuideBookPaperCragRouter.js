@@ -1,4 +1,4 @@
-import AddCragInGuideBookView from '@/views/guideBookPaperCrags/actions/AddCragInGuideBookView'
+const AddCragInGuideBookView = () => import(/* webpackChunkName: "guide-book-paper-crag-routes" */ '@/views/guideBookPaperCrags/actions/AddCragInGuideBookView')
 
 export default [
   {

@@ -1,5 +1,5 @@
-import PhotoNewView from '@/views/photos/actions/PhotoNewView'
-import PhotoEditView from '@/views/photos/actions/PhotoEditView'
+const PhotoNewView = () => import(/* webpackChunkName: "photo-routes" */ '@/views/photos/actions/PhotoNewView')
+const PhotoEditView = () => import(/* webpackChunkName: "photo-routes" */ '@/views/photos/actions/PhotoEditView')
 
 export default [
   {

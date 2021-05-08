@@ -1,12 +1,12 @@
-import GuideBookPaperView from '@/views/GuideBookPaperView'
-import GuideBookPaperInfoView from '@/views/guideBookPapers/GuideBookPaperInfoView'
-import GuideBookPaperCragsView from '@/views/guideBookPapers/GuideBookPaperCragsView'
-import GuideBookPaperCoverView from '@/views/guideBookPapers/actions/GuideBookPaperCoverView'
-import GuideBookPaperPhotosView from '@/views/guideBookPapers/GuideBookPaperPhotosView'
-import GuideBookPaperLinkView from '@/views/guideBookPapers/GuideBookPaperLinkView'
-import GuideBookPaperMapView from '@/views/guideBookPapers/GuideBookPaperMapView'
-import GuideBookPaperEditView from '@/views/guideBookPapers/actions/GuideBookPaperEditView'
-import GuideBookPaperNewView from '@/views/guideBookPapers/actions/GuideBookPaperNewView'
+const GuideBookPaperView = () => import(/* webpackChunkName: "guide-book-paper-routes" */ '@/views/GuideBookPaperView')
+const GuideBookPaperInfoView = () => import(/* webpackChunkName: "guide-book-paper-routes" */ '@/views/guideBookPapers/GuideBookPaperInfoView')
+const GuideBookPaperCragsView = () => import(/* webpackChunkName: "guide-book-paper-routes" */ '@/views/guideBookPapers/GuideBookPaperCragsView')
+const GuideBookPaperCoverView = () => import(/* webpackChunkName: "guide-book-paper-routes" */ '@/views/guideBookPapers/actions/GuideBookPaperCoverView')
+const GuideBookPaperPhotosView = () => import(/* webpackChunkName: "guide-book-paper-routes" */ '@/views/guideBookPapers/GuideBookPaperPhotosView')
+const GuideBookPaperLinkView = () => import(/* webpackChunkName: "guide-book-paper-routes" */ '@/views/guideBookPapers/GuideBookPaperLinkView')
+const GuideBookPaperMapView = () => import(/* webpackChunkName: "guide-book-paper-routes" */ '@/views/guideBookPapers/GuideBookPaperMapView')
+const GuideBookPaperEditView = () => import(/* webpackChunkName: "guide-book-paper-routes" */ '@/views/guideBookPapers/actions/GuideBookPaperEditView')
+const GuideBookPaperNewView = () => import(/* webpackChunkName: "guide-book-paper-routes" */ '@/views/guideBookPapers/actions/GuideBookPaperNewView')
 
 export default [
   {
