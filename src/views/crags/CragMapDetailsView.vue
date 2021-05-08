@@ -1,21 +1,12 @@
 <template>
   <div class="full-height">
-    <leaflet-map
-      class="crag-map"
-      :track-location="false"
-      :geo-jsons="geoJsons"
-      :zoom-force="16"
-      :latitude-force="parseFloat(crag.latitude)"
-      :longitude-force="parseFloat(crag.longitude)"
-      :scroll-wheel-zoom="false"
-      map-style="outdoor"
-    />
     <div
       v-if="isLoggedIn"
+      class="mt-2 mb-2"
     >
       <v-btn
-        class="mb-5 mt-5"
         text
+        small
         color="primary"
         :to="crag.path('parks/new')"
       >
@@ -25,8 +16,8 @@
         {{ $t('actions.addPark') }}
       </v-btn>
       <v-btn
-        class="mb-5 mt-5"
         text
+        small
         color="primary"
         :to="crag.path('approaches/new')"
       >
@@ -36,6 +27,16 @@
         {{ $t('actions.addApproach') }}
       </v-btn>
     </div>
+    <leaflet-map
+      class="crag-map"
+      :track-location="false"
+      :geo-jsons="geoJsons"
+      :zoom-force="16"
+      :latitude-force="parseFloat(crag.latitude)"
+      :longitude-force="parseFloat(crag.longitude)"
+      :scroll-wheel-zoom="true"
+      map-style="outdoor"
+    />
   </div>
 </template>
 
