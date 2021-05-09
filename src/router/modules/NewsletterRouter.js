@@ -14,9 +14,7 @@ export default [
     component: NewsletterListView,
     meta: {
       requiresAuth: true,
-      requiresSuperAdmin: true,
-      title: 'newsletters',
-      showTitle: true
+      requiresSuperAdmin: true
     }
   },
 
@@ -25,9 +23,7 @@ export default [
     component: NewsletterNewView,
     meta: {
       requiresAuth: true,
-      requiresSuperAdmin: true,
-      title: 'newsletters',
-      showTitle: true
+      requiresSuperAdmin: true
     }
   },
   {
@@ -35,18 +31,14 @@ export default [
     component: NewsletterEditView,
     meta: {
       requiresAuth: true,
-      requiresSuperAdmin: true,
-      title: 'editNewsletter',
-      showTitle: true
+      requiresSuperAdmin: true
     }
   },
   {
     path: '/newsletters/:newsletterId/:newsletterSlug',
     component: NewsletterView,
     meta: {
-      objectName: 'newsletter',
-      noPaddingTop: false,
-      showTitle: true
+      noPaddingTop: false
     }
   },
   {
@@ -54,41 +46,23 @@ export default [
     component: NewsletterPhotoListView,
     meta: {
       requiresAuth: true,
-      requiresSuperAdmin: true,
-      title: 'newsletterPhotos',
-      showTitle: true
+      requiresSuperAdmin: true
     }
   },
   {
     path: '/newsletters/subscribe',
-    component: NewsletterSubscribeView,
-    meta: {
-      title: 'newsletterSubscribe',
-      showTitle: true
-    }
+    component: NewsletterSubscribeView
   },
   {
     path: '/newsletters/successful-subscribe',
-    component: NewsletterSuccessSubscribeView,
-    meta: {
-      title: 'newsletterSubscribe',
-      showTitle: true
-    }
+    component: NewsletterSuccessSubscribeView
   },
   {
     path: '/newsletters/unsubscribe',
-    component: NewsletterUnsubscribeView,
-    meta: {
-      title: 'newsletterUnsubscribe',
-      showTitle: true
-    }
+    component: NewsletterUnsubscribeView
   },
   {
     path: '/newsletters/successful-unsubscribe',
-    component: NewsletterSuccessUnsubscribeView,
-    meta: {
-      title: 'newsletterUnsubscribe',
-      showTitle: true
-    }
+    component: NewsletterSuccessUnsubscribeView
   }
 ]

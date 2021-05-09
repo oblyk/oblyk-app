@@ -3,10 +3,6 @@ const GuideBookPdfEditView = () => import(/* webpackChunkName: "guide-book-pdf-r
 export default [
   {
     path: '/guide-book-pdfs/:guideBookPdfId/edit',
-    component: GuideBookPdfEditView,
-    meta: {
-      title: 'guideBookPdf',
-      showTitle: false
-    }
+    component: GuideBookPdfEditView
   }
 ]

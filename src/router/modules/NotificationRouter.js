@@ -5,8 +5,7 @@ export default [
     path: '/notifications',
     component: NotificationsView,
     meta: {
-      title: 'notifications',
-      showTitle: true
+      requiresAuth: true
     }
   }
 ]

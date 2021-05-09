@@ -5,9 +5,7 @@ export default [
     path: '/guide-book-papers/:guideBookPaperId/:guideBookPaperSlug/add-crag',
     component: AddCragInGuideBookView,
     meta: {
-      requiresAuth: true,
-      objectName: 'guideBookPaper',
-      showAvatar: true
+      requiresAuth: true
     }
   }
 ]

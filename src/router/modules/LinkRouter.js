@@ -6,17 +6,14 @@ export default [
     path: '/links/:linkableType/:linkableId/new',
     component: LinkNewView,
     meta: {
-      requiresAuth: true,
-      title: 'newLink',
-      showTitle: false
+      requiresAuth: true
     }
   },
   {
     path: '/links/:linkId/edit',
     component: LinkEditView,
     meta: {
-      requiresAuth: true,
-      objectName: 'link'
+      requiresAuth: true
     }
   }
 ]

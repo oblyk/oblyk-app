@@ -5,28 +5,20 @@ const CragRouteEditView = () => import(/* webpackChunkName: "crag-route-routes" 
 export default [
   {
     path: '/crags/:cragId/:cragSlug/routes/:cragRouteId/:cragRouteSlug/infos',
-    component: CragRouteView,
-    meta: {
-      objectName: 'crag',
-      showAvatar: false
-    }
+    component: CragRouteView
   },
   {
     path: '/crags/:cragId/:cragSlug/routes/new',
     component: CragRouteNewView,
     meta: {
-      requiresAuth: true,
-      objectName: 'crag',
-      showAvatar: false
+      requiresAuth: true
     }
   },
   {
     path: '/crags/:cragId/:cragSlug/routes/:cragRouteId/:cragRouteSlug/edit',
     component: CragRouteEditView,
     meta: {
-      requiresAuth: true,
-      objectName: 'cragRoute',
-      showAvatar: false
+      requiresAuth: true
     }
   }
 ]

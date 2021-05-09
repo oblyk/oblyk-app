@@ -15,11 +15,7 @@ const GymAdminView = () => import(/* webpackChunkName: "gym-routes" */ '@/views/
 export default [
   {
     path: '/maps/gyms',
-    component: GymMapView,
-    meta: {
-      title: 'gymMap',
-      showTitle: true
-    }
+    component: GymMapView
   },
   {
     path: '/gyms/:gymId/:gymSlug',
@@ -33,24 +29,21 @@ export default [
         path: 'infos',
         component: GymInfoView,
         meta: {
-          noPaddingTop: true,
-          objectName: 'gym'
+          noPaddingTop: true
         }
       },
       {
         path: 'first-space',
         component: GymFirstSpaceView,
         meta: {
-          noPaddingTop: true,
-          objectName: 'gym'
+          noPaddingTop: true
         }
       },
       {
         path: 'administrator-required',
         component: GymAdministratorRequiredView,
         meta: {
-          noPaddingTop: true,
-          objectName: 'gym'
+          noPaddingTop: true
         }
       }
     ]
@@ -60,9 +53,7 @@ export default [
     component: GymEditView,
     props: true,
     meta: {
-      requiresAuth: true,
-      objectName: 'gym',
-      showAvatar: true
+      requiresAuth: true
     }
   },
   {
@@ -70,9 +61,7 @@ export default [
     component: GymFirstDifficultySystemView,
     meta: {
       requiresAuth: true,
-      requiresGymAdministrator: true,
-      objectName: 'gym',
-      showAvatar: true
+      requiresGymAdministrator: true
     }
   },
   {
@@ -80,27 +69,19 @@ export default [
     component: GymGradeListView,
     meta: {
       requiresAuth: true,
-      requiresGymAdministrator: true,
-      objectName: 'gym',
-      showAvatar: true
+      requiresGymAdministrator: true
     }
   },
   {
     path: '/gyms/:gymId/:gymSlug/administration-request',
-    component: GymAdministrationRequestView,
-    meta: {
-      objectName: 'gym',
-      showAvatar: true
-    }
+    component: GymAdministrationRequestView
   },
   {
     path: '/gyms/:gymId/:gymSlug/logo',
     component: GymLogoView,
     props: true,
     meta: {
-      requiresAuth: true,
-      objectName: 'gym',
-      showAvatar: true
+      requiresAuth: true
     }
   },
   {
@@ -108,9 +89,7 @@ export default [
     component: GymBannerView,
     props: true,
     meta: {
-      requiresAuth: true,
-      objectName: 'gym',
-      showAvatar: true
+      requiresAuth: true
     }
   },
   {
@@ -119,18 +98,14 @@ export default [
     props: true,
     meta: {
       requiresAuth: true,
-      requiresGymAdministrator: true,
-      objectName: 'gym',
-      showAvatar: true
+      requiresGymAdministrator: true
     }
   },
   {
     path: '/gyms/new',
     component: GymNewView,
     meta: {
-      requiresAuth: true,
-      title: 'newGym',
-      showTitle: false
+      requiresAuth: true
     }
   }
 ]

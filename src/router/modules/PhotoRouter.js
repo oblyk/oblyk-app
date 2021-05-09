@@ -4,18 +4,10 @@ const PhotoEditView = () => import(/* webpackChunkName: "photo-routes" */ '@/vie
 export default [
   {
     path: '/photos/:illustrableType/:illustrableId/new',
-    component: PhotoNewView,
-    meta: {
-      title: 'newPhoto',
-      showTitle: false
-    }
+    component: PhotoNewView
   },
   {
     path: '/photos/:illustrableType/:illustrableId/:photoId/edit',
-    component: PhotoEditView,
-    meta: {
-      title: 'editPhoto',
-      showTitle: false
-    }
+    component: PhotoEditView
   }
 ]

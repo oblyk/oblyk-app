@@ -3,10 +3,6 @@ const PartnerMapView = () => import(/* webpackChunkName: "partner-routes" */ '@/
 export default [
   {
     path: '/maps/climbers',
-    component: PartnerMapView,
-    meta: {
-      title: 'partnerMap',
-      showTitle: true
-    }
+    component: PartnerMapView
   }
 ]

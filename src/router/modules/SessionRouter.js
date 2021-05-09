@@ -7,43 +7,25 @@ const PrivacyStepView = () => import(/* webpackChunkName: "session-routes" */ '@
 export default [
   {
     path: '/sign-in',
-    component: SignInView,
-    meta: {
-      title: 'signIn',
-      showTitle: false
-    }
+    component: SignInView
   },
   {
     path: '/sign-up',
-    component: SignUpView,
-    meta: {
-      title: 'signUp',
-      showTitle: false
-    }
+    component: SignUpView
   },
   {
     path: '/privacy',
     component: PrivacyStepView,
     meta: {
-      requiresAuth: true,
-      title: 'privacy',
-      showTitle: false
+      requiresAuth: true
     }
   },
   {
     path: '/reset-password',
-    component: ResetPasswordView,
-    meta: {
-      title: 'resetPassword',
-      showTitle: false
-    }
+    component: ResetPasswordView
   },
   {
     path: '/new-password',
-    component: NewPasswordView,
-    meta: {
-      title: 'newPassword',
-      showTitle: false
-    }
+    component: NewPasswordView
   }
 ]

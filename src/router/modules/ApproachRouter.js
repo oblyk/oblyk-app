@@ -6,18 +6,14 @@ export default [
     path: '/crags/:cragId/:cragSlug/approaches/new',
     component: ApproachNewView,
     meta: {
-      requiresAuth: true,
-      objectName: 'crag',
-      showAvatar: true
+      requiresAuth: true
     }
   },
   {
     path: '/crags/:cragId/:cragSlug/approaches/:approachId/edit',
     component: ApproachEditView,
     meta: {
-      requiresAuth: true,
-      objectName: 'crag',
-      showAvatar: true
+      requiresAuth: true
     }
   }
 ]

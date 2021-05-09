@@ -24,72 +24,56 @@ export default [
     path: '/maps/my-map',
     component: CurrentUserMapView,
     meta: {
-      requiresAuth: true,
-      title: 'myMap',
-      showTitle: true
+      requiresAuth: true
     }
   },
   {
     path: '/me/:userSlug/avatar',
     component: CurrentUserAvatarView,
     meta: {
-      requiresAuth: true,
-      title: 'myAvatar',
-      showTitle: true
+      requiresAuth: true
     }
   },
   {
     path: '/me/:userSlug/banner',
     component: CurrentUserBannerView,
     meta: {
-      requiresAuth: true,
-      title: 'myBanner',
-      showTitle: true
+      requiresAuth: true
     }
   },
   {
     path: '/me/:userSlug/settings',
     component: CurrentUserSettingsView,
     meta: {
-      requiresAuth: true,
-      title: 'mySettings',
-      showTitle: true
+      requiresAuth: true
     },
     children: [
       {
         path: 'general',
         component: CurrentUserEditView,
         meta: {
-          requiresAuth: true,
-          title: 'mySettings',
-          showTitle: true
+          requiresAuth: true
         }
       },
       {
         path: 'privacy',
         component: CurrentUserPrivacyView,
         meta: {
-          requiresAuth: true,
-          title: 'mySettings',
-          showTitle: true
+          requiresAuth: true
         }
       },
       {
         path: 'partner',
         component: CurrentUserPartnerSettingsView,
         meta: {
-          requiresAuth: true,
-          title: 'mySettings',
-          showTitle: true
+          requiresAuth: true
         }
       },
       {
         path: 'notifications',
         component: CurrentUserNotificationSettingsView,
         meta: {
-          requiresAuth: true,
-          title: 'mySettings',
-          showTitle: true
+          requiresAuth: true
         }
       }
     ]
@@ -98,45 +82,35 @@ export default [
     path: '/me/:userSlug/ascents',
     component: CurrentUserAscentsView,
     meta: {
-      requiresAuth: true,
-      title: 'myAscents',
-      showTitle: true
+      requiresAuth: true
     },
     children: [
       {
         path: 'send-list',
         component: CurrentUserSendListView,
         meta: {
-          requiresAuth: true,
-          title: 'myAscents',
-          showTitle: true
+          requiresAuth: true
         }
       },
       {
         path: 'tick-list',
         component: CurrentUserTickListView,
         meta: {
-          requiresAuth: true,
-          title: 'myAscents',
-          showTitle: true
+          requiresAuth: true
         }
       },
       {
         path: 'projects',
         component: CurrentUserProjectView,
         meta: {
-          requiresAuth: true,
-          title: 'myAscents',
-          showTitle: true
+          requiresAuth: true
         }
       },
       {
         path: 'analytiks',
         component: CurrentUserAnalytiksView,
         meta: {
-          requiresAuth: true,
-          title: 'myAscents',
-          showTitle: true
+          requiresAuth: true
         }
       }
     ]
@@ -145,27 +119,21 @@ export default [
     path: '/me/:userSlug/community',
     component: CurrentUserCommunityView,
     meta: {
-      requiresAuth: true,
-      title: 'mySubscribers',
-      showTitle: true
+      requiresAuth: true
     },
     children: [
       {
         path: 'followers',
         component: CurrentUserFollowersView,
         meta: {
-          requiresAuth: true,
-          title: 'mySubscribers',
-          showTitle: true
+          requiresAuth: true
         }
       },
       {
         path: 'subscribes',
         component: CurrentUserSubscribesView,
         meta: {
-          requiresAuth: true,
-          title: 'mySubscribers',
-          showTitle: true
+          requiresAuth: true
         }
       }
     ]
@@ -174,18 +142,14 @@ export default [
     path: '/me/:userSlug/guide-books',
     component: CurrentUserGuideBooksView,
     meta: {
-      requiresAuth: true,
-      title: 'myGuideBooks',
-      showTitle: true
+      requiresAuth: true
     }
   },
   {
     path: '/me/:userSlug/favorites',
     component: CurrentUserFavoritesView,
     meta: {
-      requiresAuth: true,
-      title: 'myFavorites',
-      showTitle: true
+      requiresAuth: true
     },
 
     children: [
@@ -193,18 +157,14 @@ export default [
         path: 'crags',
         component: CurrentUserFavoriteCragsView,
         meta: {
-          requiresAuth: true,
-          title: 'myFavorites',
-          showTitle: true
+          requiresAuth: true
         }
       },
       {
         path: 'gyms',
         component: CurrentUserFavoriteGymsView,
         meta: {
-          requiresAuth: true,
-          title: 'myFavorites',
-          showTitle: true
+          requiresAuth: true
         }
       }
     ]

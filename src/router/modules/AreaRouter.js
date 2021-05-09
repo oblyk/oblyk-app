@@ -25,40 +25,32 @@ export default [
     path: '/areas/:areaId/:areaSlug/add-crag',
     component: AddCragInAreaView,
     meta: {
-      requiresAuth: true,
-      objectName: 'area',
-      showAvatar: true
+      requiresAuth: true
     }
   },
   {
     path: '/areas/:areaId/:areaSlug',
     component: AreaView,
-    meta: {
-      objectName: 'area'
-    },
     children: [
       {
         path: 'infos',
         component: AreaInfoView,
         meta: {
-          noPaddingTop: true,
-          objectName: 'area'
+          noPaddingTop: true
         }
       },
       {
         path: 'crags',
         component: AreaCragsView,
         meta: {
-          noPaddingTop: true,
-          objectName: 'area'
+          noPaddingTop: true
         }
       },
       {
         path: 'photos',
         component: AreaPhotosView,
         meta: {
-          noPaddingTop: true,
-          objectName: 'area'
+          noPaddingTop: true
         }
       }
     ]

@@ -4,18 +4,10 @@ const VideoEditView = () => import(/* webpackChunkName: "video-routes" */ '@/vie
 export default [
   {
     path: '/videos/:viewableType/:viewableId/new',
-    component: VideoNewView,
-    meta: {
-      title: 'newVideo',
-      showTitle: false
-    }
+    component: VideoNewView
   },
   {
     path: '/videos/:viewableType/:viewableId/:videoId/edit',
-    component: VideoEditView,
-    meta: {
-      title: 'editVideo',
-      showTitle: false
-    }
+    component: VideoEditView
   }
 ]

@@ -11,27 +11,21 @@ export default [
     path: '/crags/:cragId/:cragSlug/sectors/new',
     component: CragSectorNewView,
     meta: {
-      requiresAuth: true,
-      objectName: 'cragSector',
-      showAvatar: false
+      requiresAuth: true
     }
   },
   {
     path: '/crags/:cragId/:cragSlug/sectors/:cragSectorId/:cragSectorSlug/edit',
     component: CragSectorEditView,
     meta: {
-      requiresAuth: true,
-      objectName: 'cragSector',
-      showAvatar: false
+      requiresAuth: true
     }
   },
   {
     path: '/crags/:cragId/:cragSlug/sectors/:cragSectorId/:cragSectorSlug/routes/new',
     component: CragRouteNewView,
     meta: {
-      requiresAuth: true,
-      objectName: 'crag',
-      showAvatar: false
+      requiresAuth: true
     }
   },
   {
@@ -40,27 +34,15 @@ export default [
     children: [
       {
         path: 'infos',
-        component: CragSectorInfoView,
-        meta: {
-          objectName: 'cragSector',
-          showAvatar: false
-        }
+        component: CragSectorInfoView
       },
       {
         path: 'photos',
-        component: CragSectorPhotosView,
-        meta: {
-          objectName: 'crag',
-          showAvatar: false
-        }
+        component: CragSectorPhotosView
       },
       {
         path: 'maps',
-        component: CragSectorMapView,
-        meta: {
-          objectName: 'crag',
-          showAvatar: false
-        }
+        component: CragSectorMapView
       }
     ]
   }

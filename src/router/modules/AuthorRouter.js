@@ -4,18 +4,10 @@ const AuthorCoverView = () => import(/* webpackChunkName: "author-routes" */ '@/
 export default [
   {
     path: '/authors/:authorId/edit',
-    component: AuthorEditView,
-    meta: {
-      title: 'editAuthor',
-      showTitle: false
-    }
+    component: AuthorEditView
   },
   {
     path: '/authors/:authorId/cover',
-    component: AuthorCoverView,
-    meta: {
-      title: 'editAuthor',
-      showTitle: false
-    }
+    component: AuthorCoverView
   }
 ]

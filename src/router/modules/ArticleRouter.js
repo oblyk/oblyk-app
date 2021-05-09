@@ -10,29 +10,21 @@ const AddGuideBookInArticleView = () => import(/* webpackChunkName: "article-rou
 export default [
   {
     path: '/articles',
-    component: ArticleListView,
-    meta: {
-      title: 'articles',
-      showTitle: true
-    }
+    component: ArticleListView
   },
   {
     path: '/articles/new',
     component: ArticleNewView,
     meta: {
       requiresAuth: true,
-      requiresSuperAdmin: true,
-      title: 'articles',
-      showTitle: true
+      requiresSuperAdmin: true
     }
   },
   {
     path: '/articles/:articleId/:articleSlug',
     component: ArticleView,
     meta: {
-      objectName: 'article',
-      noPaddingTop: true,
-      showAvatar: true
+      noPaddingTop: true
     }
   },
   {
@@ -40,9 +32,7 @@ export default [
     component: ArticleEditView,
     meta: {
       requiresAuth: true,
-      requiresSuperAdmin: true,
-      title: 'editArticle',
-      showTitle: true
+      requiresSuperAdmin: true
     }
   },
   {
@@ -50,9 +40,7 @@ export default [
     component: AddCragInArticleView,
     meta: {
       requiresAuth: true,
-      requiresSuperAdmin: true,
-      title: 'editArticle',
-      showTitle: true
+      requiresSuperAdmin: true
     }
   },
   {
@@ -60,9 +48,7 @@ export default [
     component: AddGuideBookInArticleView,
     meta: {
       requiresAuth: true,
-      requiresSuperAdmin: true,
-      title: 'editArticle',
-      showTitle: true
+      requiresSuperAdmin: true
     }
   },
   {
@@ -70,9 +56,7 @@ export default [
     component: ArticleCoverView,
     meta: {
       requiresAuth: true,
-      requiresSuperAdmin: true,
-      title: 'editArticle',
-      showTitle: true
+      requiresSuperAdmin: true
     }
   },
   {
@@ -80,9 +64,7 @@ export default [
     component: ArticlePhotoListView,
     meta: {
       requiresAuth: true,
-      requiresSuperAdmin: true,
-      title: 'articlePhotos',
-      showTitle: true
+      requiresSuperAdmin: true
     }
   }
 ]

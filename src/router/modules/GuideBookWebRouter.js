@@ -3,10 +3,6 @@ const GuideBookWebEditView = () => import(/* webpackChunkName: "guide-book-web-r
 export default [
   {
     path: '/guide-book-webs/:guideBookWebId/edit',
-    component: GuideBookWebEditView,
-    meta: {
-      title: 'guideBookWeb',
-      showTitle: false
-    }
+    component: GuideBookWebEditView
   }
 ]

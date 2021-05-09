@@ -6,17 +6,14 @@ export default [
     path: '/comments/:commentableType/:commentableId/new',
     component: CommentNewView,
     meta: {
-      requiresAuth: true,
-      title: 'newComment',
-      showTitle: false
+      requiresAuth: true
     }
   },
   {
     path: '/comments/:commentId/edit',
     component: CommentEditView,
     meta: {
-      requiresAuth: true,
-      objectName: 'comment'
+      requiresAuth: true
     }
   }
 ]

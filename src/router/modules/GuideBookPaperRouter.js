@@ -13,27 +13,21 @@ export default [
     path: '/guide-book-papers/new',
     component: GuideBookPaperNewView,
     meta: {
-      requiresAuth: true,
-      title: 'newCrag',
-      showTitle: false
+      requiresAuth: true
     }
   },
   {
     path: '/guide-book-papers/:guideBookPaperId/:guideBookPaperSlug/edit',
     component: GuideBookPaperEditView,
     meta: {
-      requiresAuth: true,
-      objectName: 'guideBookPaper',
-      showAvatar: true
+      requiresAuth: true
     }
   },
   {
     path: '/guide-book-papers/:guideBookPaperId/:guideBookPaperSlug/cover',
     component: GuideBookPaperCoverView,
     meta: {
-      requiresAuth: true,
-      objectName: 'guideBookPaper',
-      showAvatar: true
+      requiresAuth: true
     }
   },
   {
@@ -41,60 +35,42 @@ export default [
     component: GuideBookPaperView,
     props: true,
     meta: {
-      noPaddingTop: false,
-      objectName: 'guideBookPaper',
-      showTitle: true,
-      showAvatar: false
+      noPaddingTop: false
     },
     children: [
       {
         path: 'infos',
         component: GuideBookPaperInfoView,
         meta: {
-          noPaddingTop: false,
-          objectName: 'guideBookPaper',
-          showTitle: true,
-          showAvatar: false
+          noPaddingTop: false
         }
       },
       {
         path: 'crags',
         component: GuideBookPaperCragsView,
         meta: {
-          noPaddingTop: false,
-          objectName: 'guideBookPaper',
-          showTitle: true,
-          showAvatar: false
+          noPaddingTop: false
         }
       },
       {
         path: 'photos',
         component: GuideBookPaperPhotosView,
         meta: {
-          noPaddingTop: false,
-          objectName: 'guideBookPaper',
-          showTitle: true,
-          showAvatar: false
+          noPaddingTop: false
         }
       },
       {
         path: 'links',
         component: GuideBookPaperLinkView,
         meta: {
-          noPaddingTop: false,
-          objectName: 'guideBookPaper',
-          showTitle: true,
-          showAvatar: false
+          noPaddingTop: false
         }
       },
       {
         path: 'map',
         component: GuideBookPaperMapView,
         meta: {
-          noPaddingTop: false,
-          objectName: 'guideBookPaper',
-          showTitle: true,
-          showAvatar: false
+          noPaddingTop: false
         }
       }
     ]

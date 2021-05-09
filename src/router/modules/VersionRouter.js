@@ -4,9 +4,6 @@ export default [
   {
     path: '/versions/:versionType/:versionId/changes',
     component: VersionsView,
-    props: true,
-    meta: {
-      title: 'version'
-    }
+    props: true
   }
 ]
