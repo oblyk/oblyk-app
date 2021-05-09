@@ -23,6 +23,12 @@ import CommentForm from '@/components/comments/forms/CommentForm'
 export default {
   name: 'CommentEditView',
   components: { CommentForm, Spinner },
-  mixins: [CommentConcern]
+  mixins: [CommentConcern],
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.comment.edit')
+    }
+  }
 }
 </script>

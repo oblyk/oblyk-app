@@ -22,7 +22,13 @@ import ApproachFrom from '@/components/approaches/forms/ApproachForm'
 export default {
   name: 'ApproachEditView',
   components: { ApproachFrom },
-  mixins: [CragConcern, ApproachConcern]
+  mixins: [CragConcern, ApproachConcern],
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.approach.edit')
+    }
+  }
 }
 </script>
 

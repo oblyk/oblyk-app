@@ -19,6 +19,12 @@ export default {
   components: { UserPrivacyForm },
   props: {
     user: Object
+  },
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.currentUser.privacySetting')
+    }
   }
 }
 </script>

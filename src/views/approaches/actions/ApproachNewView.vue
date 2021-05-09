@@ -20,7 +20,13 @@ import ApproachFrom from '@/components/approaches/forms/ApproachForm'
 export default {
   name: 'ApproachNewView',
   components: { ApproachFrom },
-  mixins: [CragConcern]
+  mixins: [CragConcern],
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.approach.new')
+    }
+  }
 }
 </script>
 

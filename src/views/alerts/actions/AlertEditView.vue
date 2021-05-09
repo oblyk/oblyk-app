@@ -25,6 +25,12 @@ import AlertForm from '@/components/alerts/forms/AlertForm'
 export default {
   name: 'AlertEditView',
   mixins: [AlertConcern],
-  components: { AlertForm, Spinner }
+  components: { AlertForm, Spinner },
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.alert.edit')
+    }
+  }
 }
 </script>

@@ -24,7 +24,19 @@ import { SessionConcern } from '@/concerns/SessionConcern'
 export default {
   name: 'ArticleListView',
   mixins: [SessionConcern],
-  components: { AppFooter, Feed }
+  components: { AppFooter, Feed },
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.article.newsTitle'),
+      meta: [
+        { vmid: 'description', name: 'description', content: this.$t('meta.article.newsDescription') },
+        { vmid: 'og-title', property: 'og:title', content: this.$t('meta.article.newsTitle') },
+        { vmid: 'og-description', property: 'og:description', content: this.$t('meta.article.newsDescription') },
+        { vmid: 'og-image', property: 'og:image', content: `${process.env.VUE_APP_OBLYK_APP_URL}/img/images/oblyk-og-image.jpg` }
+      ]
+    }
+  }
 }
 </script>
 

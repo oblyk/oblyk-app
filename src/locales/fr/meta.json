@@ -53,8 +53,18 @@
     "gymMap": {
       "title": "Carte des salles"
     },
-    "newGym": {
-      "title": "Nouvelle salle"
+    "gym": {
+      "newAdministrator": "Ajouter un administrateur",
+      "administrators": "Les administrateurs",
+      "title": "Nouvelle salle",
+      "grade": {
+        "edit": "Modifier le system de cotation",
+        "new": "Nouveau system de cotation",
+        "editLine": "Modifier le niveau",
+        "newLine": "Nouveau niveau",
+        "firstDifficulty": "Premier système de difficulté",
+        "grades": "Les systèmes de difficultés"
+      }
     },
     "search": {
       "title": "Chercher"
@@ -80,32 +90,19 @@
       "title": "Oblyk - Escalade, Carnet de croix & Carte des grimpeurs",
       "description": "Oblyk est un site communautaire d'escalade outdoor et indoor, on peut : voir les informations des falaises, noter ses croix, trouver un partenaire d'escalade, etc."
     },
-    "myAvatar": {
-      "title": "Photo de profil"
+    "ascentCragRoute": {
+      "new": "Ajouter à mon carnet",
+      "edit": "Modifier ma croix"
     },
-    "myBanner": {
-      "title": "Bandeau"
+    "author": {
+      "cover": "Ajouter une couverture à l'auteur"
     },
-    "mySettings": {
-      "title": "Mes paramètres"
-    },
-    "myPartnerSettings": {
-      "title": "Paramètre de la recherche de partenaire"
-    },
-    "myAscents": {
-      "title": "Mes croix"
+    "comment": {
+      "new": "Ajouter un commentaire",
+      "edit": "Modifier le commentaire"
     },
     "myMap": {
       "title": "Ma Carte"
-    },
-    "mySubscribers": {
-      "title": "Abonnés"
-    },
-    "myGuideBooks": {
-      "title": "Topothèque"
-    },
-    "myFavorites": {
-      "title": "Mes favoris"
     },
     "messenger": {
       "title": "Messagerie"
@@ -126,29 +123,46 @@
       "addGuideBook": "Ajouter un topo à %{name}",
       "addArea": "Ajouter %{name} à une zone"
     },
+    "cragRoute": {
+      "new": "Ajouter une ligne"
+    },
+    "cragSector": {
+      "title": "%{name}, secteur d'escalade de %{crag}",
+      "description": "%{name}, secteur d'escalade %{crag} situé à %{city} en %{region}. Détail des voies, localisation, photos, etc.",
+      "new": "Ajouter un secteur"
+    },
     "area": {
       "title": "%{name}, Groupe de sites d'escalade",
       "description": "Voir le résumé du groupe de sites d'escalade de %{name}, quels spots de grimpe il présente ou encore quelle variété de cotations on y trouve",
       "new": "Créer un groupe de site",
       "addCrag": "Ajouter un site à %{name}"
     },
-    "newPhoto": {
-      "title": "Ajouter une photo"
-    },
-    "editPhoto": {
-      "title": "Modifier une photo"
-    },
     "partnerMap": {
       "title": "Carte des grimpeurs"
     },
-    "editArticle": {
-      "title": "Modifier l'article"
+    "article": {
+      "newsTitle": "Les actualités d'Oblyk",
+      "newsDescription": "Voir toutes les actualités d'Oblyk, la communauté de grimpeur",
+      "photoList": "Photos de l'article",
+      "addCrag": "Ajouter une falaise à l'article",
+      "addGuideBook": "Ajouter un topo à l'article",
+      "addCover": "Ajouter une couverture d'article",
+      "new": "Nouvel article"
     },
-    "articles": {
-      "title": "Les articles"
+    "guideBookPaper": {
+      "addCrag": "Ajouter un site à %{name}",
+      "cover": "Changer la couverture de %{name}",
+      "title": "%{name}, topo d'escalade",
+      "description": "Voir les informations de %{name}. Détail des site, localisation, photos, carte, etc.",
+      "new": "Ajouter un topo"
     },
-    "articlePhotos": {
-      "title": "Photos de l'article"
+    "guideBookPdf": {
+      "edit": "Modifier le topo PDF",
+      "new": "Ajouter un topo PDF"
+    },
+    "guideBookWeb": {
+      "edit": "Modifier le topo web",
+      "new": "Ajouter un topo web"
     },
     "editNewsletter": {
       "title": "Modifier la newsletter"
@@ -170,6 +184,40 @@
     },
     "beHumain": {
       "title": "Soit humain"
+    },
+    "alert" : {
+      "new": "Créer une alerte",
+      "edit": "Modifier l'alerte"
+    },
+    "approach": {
+      "new": "Créer un approche",
+      "edit": "Modifier l'approche"
+    },
+    "currentUser": {
+      "avatar": "Changer mon avatar",
+      "banner": "Changer mon bandeau",
+      "edit": "Modifier mon profil",
+      "notificationSetting": "Paramètre des notifications",
+      "partnerSetting": "Paramètre de la recherche de partenaire",
+      "privacySetting": "Paramètre de confidentialité",
+      "analytiks": "Analytiks",
+      "ascents": "Mes croix",
+      "community": "Ma communauté",
+      "favoriteCrag": "Mes falaises",
+      "favoriteGym": "Mes salles",
+      "favorites": "Mes favorites",
+      "followers": "Mes abonnées",
+      "guideBook": "Topothèque",
+      "map": "Ma carte",
+      "project": "Mes projets",
+      "sendList": "Mes croix",
+      "settings": "Paramètres",
+      "subscribes": "Mes abonnements",
+      "tickList": "Ma tick-list"
+    },
+    "error": {
+      "notFoundTitle": "Page introuvable",
+      "notFoundDescription": "La page que vous demandez est introuvable"
     }
   }
 }

@@ -21,6 +21,12 @@ export default {
   components: { EnableLocalization, PartnerForm },
   props: {
     user: Object
+  },
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.currentUser.partnerSetting')
+    }
   }
 }
 </script>

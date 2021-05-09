@@ -37,6 +37,12 @@ export default {
   name: 'GymGradListView',
   components: { GymGradeCard, Spinner },
 
+  metaInfo () {
+    return {
+      title: this.$t('meta.gym.grade.grades')
+    }
+  },
+
   data () {
     return {
       loadingGymGrades: true,

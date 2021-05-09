@@ -25,6 +25,12 @@ import UserImageForm from '@/components/users/forms/UserImageForm'
 export default {
   name: 'CurrentUserBannerView',
   components: { UserImageForm, Spinner },
-  mixins: [CurrentUserConcern]
+  mixins: [CurrentUserConcern],
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.currentUser.banner')
+    }
+  }
 }
 </script>

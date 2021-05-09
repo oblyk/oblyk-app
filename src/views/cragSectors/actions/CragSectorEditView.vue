@@ -23,6 +23,12 @@ import { CragSectorConcern } from '@/concerns/CragSectorConcern'
 export default {
   name: 'CragSectorEditView',
   components: { CragSectorForm },
-  mixins: [CragConcern, CragSectorConcern]
+  mixins: [CragConcern, CragSectorConcern],
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.generics.edit', { name: (this.cragSector || {}).name })
+    }
+  }
 }
 </script>

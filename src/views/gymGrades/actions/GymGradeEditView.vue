@@ -28,6 +28,12 @@ import Spinner from '@/components/layouts/Spiner'
 export default {
   name: 'GymGradeEditView',
   mixins: [GymGradeConcern],
-  components: { Spinner, GymGradeForm }
+  components: { Spinner, GymGradeForm },
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.gym.grade.edit')
+    }
+  }
 }
 </script>

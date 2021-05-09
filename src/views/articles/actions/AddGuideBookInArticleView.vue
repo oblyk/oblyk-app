@@ -20,6 +20,12 @@ import AddGuideBookInArticleForm from '@/components/articles/forms/AddGuideBookI
 export default {
   name: 'AddGuideBookInArticleView',
   components: { AddGuideBookInArticleForm },
-  mixins: [ArticleConcern]
+  mixins: [ArticleConcern],
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.article.addGuideBook')
+    }
+  }
 }
 </script>

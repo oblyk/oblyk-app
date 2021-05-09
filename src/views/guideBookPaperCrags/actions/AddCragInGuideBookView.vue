@@ -22,6 +22,12 @@ import AddCragInGuideBookForm from '@/components/guideBookPaperCrags/forms/AddCr
 export default {
   name: 'AddCragInGuideBookView',
   components: { AddCragInGuideBookForm },
-  mixins: [GuideBookPaperConcern]
+  mixins: [GuideBookPaperConcern],
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.guideBookPaper.addCrag', { name: (this.guideBookPaper || {}).name })
+    }
+  }
 }
 </script>

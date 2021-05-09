@@ -34,6 +34,12 @@ import { GymConcern } from '@/concerns/GymConcern'
 
 export default {
   name: 'GymFirstSpaceView',
-  mixins: [GymConcern]
+  mixins: [GymConcern],
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.gym.grade.firstDifficulty')
+    }
+  }
 }
 </script>

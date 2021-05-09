@@ -58,6 +58,12 @@ export default {
     }
   },
 
+  metaInfo () {
+    return {
+      title: this.$t('meta.article.photoList')
+    }
+  },
+
   mounted () {
     this.getArticlePhotos()
   },

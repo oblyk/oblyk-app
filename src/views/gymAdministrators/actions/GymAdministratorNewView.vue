@@ -22,6 +22,12 @@ import GymAdministratorForm from '@/components/gymAdministrators/forms/gymAdmini
 export default {
   name: 'GymAdministratorNewView',
   components: { GymAdministratorForm },
-  mixins: [GymConcern]
+  mixins: [GymConcern],
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.gym.administrators')
+    }
+  }
 }
 </script>

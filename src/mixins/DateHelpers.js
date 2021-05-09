@@ -35,6 +35,10 @@ export const DateHelpers = {
 
     isSameDay: function (firstDate, secondDate) {
       return moment(firstDate).format('YYYY-MM-DD') === moment(secondDate).format('YYYY-MM-DD')
+    },
+
+    isoDate: function (date) {
+      return moment(date).format('YYYY-MM-DD')
     }
   }
 }

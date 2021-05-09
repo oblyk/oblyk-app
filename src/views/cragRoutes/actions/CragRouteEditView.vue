@@ -24,7 +24,13 @@ import CragRouteForm from '@/components/cragRoutes/forms/CragRouteForm'
 export default {
   name: 'CragRouteEditView',
   mixins: [CragRouteConcern, CragConcern],
-  components: { CragRouteForm }
+  components: { CragRouteForm },
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.generics.edit', { name: (this.cragRoute || {}).name })
+    }
+  }
 }
 </script>
 

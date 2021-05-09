@@ -30,6 +30,12 @@ export default {
     user: Object
   },
 
+  metaInfo () {
+    return {
+      title: this.$t('meta.currentUser.tickList')
+    }
+  },
+
   computed: {
     computedTickList: function () {
       return store.getters['auth/getTickList']

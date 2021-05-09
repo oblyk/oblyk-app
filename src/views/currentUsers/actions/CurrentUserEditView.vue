@@ -19,6 +19,12 @@ export default {
   components: { UserForm },
   props: {
     user: Object
+  },
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.currentUser.edit')
+    }
   }
 }
 </script>

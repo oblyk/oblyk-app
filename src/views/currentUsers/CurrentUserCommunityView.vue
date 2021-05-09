@@ -20,6 +20,12 @@ import UserCommunityTabs from '@/components/users/layouts/UserCommunityTabs'
 export default {
   name: 'CurrentUserCommunityView',
   components: { UserCommunityTabs, UserTabs, Spinner },
-  mixins: [CurrentUserConcern]
+  mixins: [CurrentUserConcern],
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.currentUser.community')
+    }
+  }
 }
 </script>

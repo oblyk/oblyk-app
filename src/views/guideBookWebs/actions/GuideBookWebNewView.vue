@@ -21,6 +21,12 @@ export default {
   components: { GuideBookWebForm },
   props: {
     cragId: [Number, String]
+  },
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.guideBookWeb.new')
+    }
   }
 }
 </script>

@@ -73,6 +73,12 @@ export default {
     user: Object
   },
 
+  metaInfo () {
+    return {
+      title: this.$t('meta.currentUser.sendList')
+    }
+  },
+
   data () {
     return {
       loadingFigures: true,

@@ -21,6 +21,12 @@ export default {
   components: { GuideBookPdfForm },
   props: {
     cragId: [Number, String]
+  },
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.guideBookPdf.new')
+    }
   }
 }
 </script>

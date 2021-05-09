@@ -22,6 +22,12 @@ import AddCragInArticleForm from '@/components/articles/forms/AddCragInArticleFo
 export default {
   name: 'AddCragInArticleView',
   components: { AddCragInArticleForm },
-  mixins: [ArticleConcern]
+  mixins: [ArticleConcern],
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.article.addCrag')
+    }
+  }
 }
 </script>

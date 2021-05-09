@@ -23,6 +23,12 @@ import GymGradeForm from '@/components/gymGrades/forms/GymGradeForm'
 
 export default {
   name: 'GymGradeNewView',
-  components: { GymGradeForm }
+  components: { GymGradeForm },
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.gym.grade.new')
+    }
+  }
 }
 </script>

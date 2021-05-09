@@ -30,6 +30,12 @@ export default {
     Spinner
   },
 
+  metaInfo () {
+    return {
+      title: this.$t('meta.currentUser.favorites')
+    }
+  },
+
   data () {
     return {
       loadingGyms: true,

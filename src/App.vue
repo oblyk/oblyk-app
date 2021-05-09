@@ -25,7 +25,9 @@ export default {
     },
     meta: [
       { property: 'og:site_name', content: 'Oblyk' },
-      { property: 'og:type', content: 'website' }
+      { vmid: 'og-type', property: 'og:type', content: 'website' },
+      { vmid: 'og-image', property: 'og:image', content: `${process.env.VUE_APP_OBLYK_APP_URL}/img/images/oblyk-og-image.jpg` },
+      { vmid: 'og-url', property: 'og:url', content: process.env.VUE_APP_OBLYK_APP_URL }
     ]
   },
 

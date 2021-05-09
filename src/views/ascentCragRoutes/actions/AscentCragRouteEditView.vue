@@ -25,6 +25,12 @@ import { AscentCragRouteConcern } from '@/concerns/AscentCragRouteConcern'
 export default {
   name: 'AscentCragRouteEditView',
   components: { AscentCragRouteForm },
-  mixins: [CragRouteConcern, AscentCragRouteConcern]
+  mixins: [CragRouteConcern, AscentCragRouteConcern],
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.ascentCragRoute.edit')
+    }
+  }
 }
 </script>

@@ -19,6 +19,12 @@ import AuthorCoverForm from '@/components/authors/forms/AuthorCoverForm'
 export default {
   name: 'AuthorCoverView',
   components: { AuthorCoverForm },
-  mixins: [AuthorConcern, SessionConcern]
+  mixins: [AuthorConcern, SessionConcern],
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.author.cover')
+    }
+  }
 }
 </script>

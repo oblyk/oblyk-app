@@ -17,6 +17,12 @@ import CommentForm from '@/components/comments/forms/CommentForm'
 
 export default {
   name: 'CommentNewView',
-  components: { CommentForm }
+  components: { CommentForm },
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.comment.new')
+    }
+  }
 }
 </script>

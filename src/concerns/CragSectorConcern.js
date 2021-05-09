@@ -8,6 +8,72 @@ export const CragSectorConcern = {
     }
   },
 
+  computed: {
+    cragSectorMetaTitle: function () {
+      if (this.cragSector) {
+        return this.$t('meta.cragSector.title', {
+          name: this.cragSector.name,
+          crag: this.cragSector.Crag.name
+        })
+      }
+    },
+    cragSectorMetaDescription: function () {
+      if (this.cragSector) {
+        return this.$t('meta.cragSector.description', {
+          name: this.cragSector.name,
+          crag: this.cragSector.Crag.name,
+          region: this.cragSector.Crag.region,
+          city: this.cragSector.Crag.city
+        })
+      }
+    },
+    cragSectorMetaImage: function () {
+      if (this.cragSector) {
+        return this.cragSector.coverUrl()
+      } else {
+        return `${process.env.VUE_APP_OBLYK_APP_URL}/img/images/oblyk-og-image.jpg`
+      }
+    },
+    cragSectorMetaUrl: function () {
+      if (this.cragSector) {
+        return `${process.env.VUE_APP_OBLYK_APP_URL}${this.cragSector.path()}`
+      }
+    }
+  },
+
+  metaInfo () {
+    return {
+      title: this.cragSectorMetaTitle,
+      meta: [
+        {
+          vmid: 'description',
+          name: 'description',
+          content: this.cragSectorMetaDescription
+        },
+        {
+          vmid: 'og-title',
+          property: 'og:title',
+          content: this.cragSectorMetaTitle
+        },
+        {
+          vmid: 'og-description',
+          property: 'og:description',
+          content: this.cragSectorMetaDescription
+        },
+        {
+          vmid: 'og-image',
+          property: 'og:image',
+          content: this.cragSectorMetaImage
+        },
+        {
+          vmid: 'og-url',
+          property: 'og:url',
+          content: this.cragSectorMetaUrl
+        }
+      ]
+    }
+  },
+
   beforeRouteEnter (to, from, next) {
     if (!to.params.cragId || !to.params.cragSectorId) {
       next()

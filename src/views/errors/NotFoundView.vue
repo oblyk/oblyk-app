@@ -14,6 +14,17 @@ import AppFooter from '@/components/layouts/AppFooter'
 
 export default {
   name: 'NotFoundView',
-  components: { AppFooter }
+  components: { AppFooter },
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.error.notFoundTitle'),
+      meta: [
+        { vmid: 'description', name: 'description', content: this.$t('meta.error.notFoundDescription') },
+        { vmid: 'og-title', property: 'og:title', content: this.$t('meta.error.notFoundTitle') },
+        { vmid: 'og-description', property: 'og:description', content: this.$t('meta.error.notFoundDescription') }
+      ]
+    }
+  }
 }
 </script>

@@ -15,6 +15,13 @@ import LeafletMap from '@/components/maps/LeafletMap'
 export default {
   name: 'CurrentUserMapView',
   components: { LeafletMap },
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.currentUser.map')
+    }
+  },
+
   data () {
     return {
       geoJsons: null

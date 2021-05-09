@@ -22,6 +22,12 @@ import GuideBookPaperForm from '@/components/guideBookPapers/forms/GuideBookPape
 export default {
   name: 'GuideBookPaperNewView',
   mixins: [GuideBookPaperConcern],
-  components: { GuideBookPaperForm }
+  components: { GuideBookPaperForm },
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.generics.edit', { name: (this.guideBookPaper || {}).name })
+    }
+  }
 }
 </script>

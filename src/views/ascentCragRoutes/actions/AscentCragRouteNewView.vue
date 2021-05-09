@@ -23,6 +23,12 @@ import AscentCragRouteForm from '@/components/ascentCragRoutes/forms/AscentCragR
 export default {
   name: 'AscentCragRouteNewView',
   components: { AscentCragRouteForm },
-  mixins: [CragRouteConcern]
+  mixins: [CragRouteConcern],
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.ascentCragRoute.new')
+    }
+  }
 }
 </script>

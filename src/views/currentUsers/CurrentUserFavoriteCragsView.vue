@@ -42,6 +42,12 @@ export default {
     Spinner
   },
 
+  metaInfo () {
+    return {
+      title: this.$t('meta.currentUser.favoriteCrag')
+    }
+  },
+
   data () {
     return {
       loadingCrags: true,

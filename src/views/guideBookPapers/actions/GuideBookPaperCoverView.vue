@@ -19,6 +19,12 @@ import GuideBookPaperCoverForm from '@/components/guideBookPapers/forms/GuideBoo
 export default {
   name: 'GuideBookPaperCoverView',
   components: { GuideBookPaperCoverForm },
-  mixins: [GuideBookPaperConcern, SessionConcern]
+  mixins: [GuideBookPaperConcern, SessionConcern],
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.guideBookPaper.cover', { name: (this.guideBookPaper || {}).name })
+    }
+  }
 }
 </script>

@@ -19,6 +19,12 @@ import ArticleCoverForm from '@/components/articles/forms/ArticleCoverForm'
 export default {
   name: 'ArticleCoverView',
   components: { ArticleCoverForm },
-  mixins: [ArticleConcern, SessionConcern]
+  mixins: [ArticleConcern, SessionConcern],
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.article.addCover')
+    }
+  }
 }
 </script>

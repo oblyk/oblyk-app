@@ -22,7 +22,13 @@ import { CragSectorConcern } from '@/concerns/CragSectorConcern'
 export default {
   name: 'CragRouteNewView',
   mixins: [CragConcern, CragSectorConcern],
-  components: { CragRouteForm }
+  components: { CragRouteForm },
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.cragRoute.new')
+    }
+  }
 }
 </script>
 

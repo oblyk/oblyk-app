@@ -22,6 +22,12 @@ import GuideBookPdfForm from '@/components/guideBookPdfs/forms/GuideBookPdfForm'
 export default {
   name: 'GuideBookPdfEditView',
   mixins: [GuideBookPdfConcern],
-  components: { GuideBookPdfForm }
+  components: { GuideBookPdfForm },
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.guideBookPdf.edit')
+    }
+  }
 }
 </script>

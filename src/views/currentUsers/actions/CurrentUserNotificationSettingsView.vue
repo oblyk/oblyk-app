@@ -25,6 +25,12 @@ export default {
   components: { EmailNotificationForm, NewsletterSubscribeSwitchForm },
   props: {
     user: Object
+  },
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.currentUser.notificationSetting')
+    }
   }
 }
 </script>

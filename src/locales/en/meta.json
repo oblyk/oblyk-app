@@ -53,8 +53,18 @@
     "gymMap": {
       "title": "Gyms map"
     },
-    "newGym": {
-      "title": "New climbing gym"
+    "gym": {
+      "newAdministrator": "Add administrator",
+      "administrators": "Administrators",
+      "title": "New climbing gym",
+      "grade": {
+        "edit": "Edit grade system",
+        "new": "New grade system",
+        "editLine": "Edit level",
+        "newLine": "New level",
+        "firstDifficulty": "First difficulty system",
+        "grades": "Difficulty systems"
+      }
     },
     "search": {
       "title": "Search"
@@ -67,8 +77,7 @@
     },
     "glossary": {
       "title": "Glossary of climbing terms",
-      "description": "The community lexicon of climbing terms to decode the climber's language",
-      "new": "Create new crag"
+      "description": "The community lexicon of climbing terms to decode the climber's language"
     },
     "word": {
       "new": "New definition"
@@ -81,32 +90,19 @@
       "title": "Oblyk - Climbing community, Log book & Partner search",
       "description": "Oblyk is an outdoor and indoor climbing community site, you can: see crag information, keep a logbook, find a climbing partner, etc."
     },
-    "myAvatar": {
-      "title": "Profile avatar"
+    "ascentCragRoute": {
+      "new": "Add to my logbook",
+      "edit": "Edit my ascent"
     },
-    "myBanner": {
-      "title": "Banner"
+    "author": {
+      "cover": "Add author cover"
     },
-    "mySettings": {
-      "title": "My Settings"
-    },
-    "myPartnerSettings": {
-      "title": "Partner search settings"
-    },
-    "myAscents": {
-      "title": "My ascents"
+    "comment": {
+      "new": "Add comment",
+      "edit": "Edit comment"
     },
     "myMap": {
       "title": "My Map"
-    },
-    "mySubscribers": {
-      "title": "Subscribers"
-    },
-    "myGuideBooks": {
-      "title": "Guide books library"
-    },
-    "myFavorites": {
-      "title": "My favorites"
     },
     "messenger": {
       "title": "Messenger"
@@ -127,29 +123,46 @@
       "addGuideBook": "Add paper guide at %{name}",
       "addArea": "Add %{name} in area"
     },
+    "cragRoute": {
+      "new": "Add crag route"
+    },
+    "cragSector": {
+      "title": "%{name}, climbing sector of %{crag}",
+      "description": "%{name}, climbing sector of %{crag} located at %{city} in %{region}. Details of the routes, location, photos, etc.",
+      "new": "Add sector"
+    },
     "area": {
       "title": "%{name}, climbing crags group",
       "description": "See the summary of the group of climbing sites of %{name}, what kind of climbing spots it offers or what variety of grades can be found there",
       "new": "Create crags group",
       "addCrag": "Add crag in %{name}"
     },
-    "newPhoto": {
-      "title": "Add picture"
-    },
-    "editPhoto": {
-      "title": "Edit picture"
-    },
     "partnerMap": {
       "title": "Climbers Map"
     },
-    "editArticle": {
-      "title": "Edit article"
+    "article": {
+      "news": "Oblyk news",
+      "newsDescription": "View all Oblyk news, the climbing community",
+      "photoList": "Article pictures",
+      "addCrag": "Add crag in article",
+      "addGuideBook": "Add guide book in article",
+      "addCover": "Add article cover",
+      "new": "New article"
     },
-    "articles": {
-      "title": "Articles"
+    "guideBookPaper": {
+      "addCrag": "Add crag in %{name}",
+      "cover": "Change cover of %{name}",
+      "title": "%{name}, climbing guide book",
+      "description": "See the information of %{name}. Crag details, location, photos, map, etc.",
+      "new": "Add guide book"
     },
-    "articlePhotos": {
-      "title": "Article photos"
+    "guideBookPdf": {
+      "edit": "Edit PDF guide",
+      "new": "Add PDF guide"
+    },
+    "guideBookWeb": {
+      "edit": "Edit web guide",
+      "new": "Add web guide"
     },
     "editNewsletter": {
       "title": "Edit newsletter"
@@ -171,6 +184,40 @@
     },
     "beHumain": {
       "title": "Be humain"
+    },
+    "alert" : {
+      "new": "Create alert",
+      "edit": "Edit alert"
+    },
+    "approach": {
+      "new": "Create approach",
+      "edit": "Edit approach"
+    },
+    "currentUser": {
+      "avatar": "Change my avatar",
+      "banner": "Change my banner",
+      "edit": "Edit my profile",
+      "notificationSetting": "Notifications settings",
+      "partnerSetting": "Partner search settings",
+      "privacySetting": "Privacy settings",
+      "analytiks": "Analytiks",
+      "ascents": "My ascents",
+      "community": "My community",
+      "favoriteCrag": "My crags",
+      "favoriteGym": "My gyms",
+      "favorites": "My favorites",
+      "followers": "My followers",
+      "guideBook": "Library",
+      "map": "My map",
+      "project": "My projects",
+      "sendList": "My ascents",
+      "settings": "Settings",
+      "subscribes": "My subscribes",
+      "tickList": "My tick list"
+    },
+    "error": {
+      "notFoundTitle": "Page not found",
+      "notFoundDescription": "The page you requested cannot be found"
     }
   }
 }

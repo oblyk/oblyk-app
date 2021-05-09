@@ -78,6 +78,12 @@ export default {
     }
   },
 
+  metaInfo () {
+    return {
+      title: this.$t('meta.gym.newAdministrator')
+    }
+  },
+
   created () {
     this.getGymAdministrators()
   },

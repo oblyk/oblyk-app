@@ -34,6 +34,12 @@ export default {
   components: { GuideBookPaperSmallCard, UserTabs, Spinner },
   mixins: [CurrentUserConcern],
 
+  metaInfo () {
+    return {
+      title: this.$t('meta.currentUser.guideBook')
+    }
+  },
+
   data () {
     return {
       loadingSubscribes: true,

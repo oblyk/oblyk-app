@@ -92,6 +92,12 @@ export default {
     user: Object
   },
 
+  metaInfo () {
+    return {
+      title: this.$t('meta.currentUser.analytiks')
+    }
+  },
+
   data () {
     return {
       loadingClimbingTypeChart: true,

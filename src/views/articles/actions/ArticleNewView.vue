@@ -16,6 +16,12 @@ import ArticleForm from '@/components/articles/forms/ArticleForm'
 
 export default {
   name: 'ArticleNewView',
-  components: { ArticleForm }
+  components: { ArticleForm },
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.article.new')
+    }
+  }
 }
 </script>

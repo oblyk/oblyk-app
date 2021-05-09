@@ -18,6 +18,12 @@ import AlertForm from '@/components/alerts/forms/AlertForm'
 
 export default {
   name: 'AlertNewView',
-  components: { AlertForm }
+  components: { AlertForm },
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.alert.new')
+    }
+  }
 }
 </script>

@@ -19,6 +19,12 @@ import UserAccentsTabs from '@/components/users/layouts/UserAscentsTabs'
 export default {
   name: 'CurrentUserAscentsView',
   components: { UserAccentsTabs, UserTabs, Spinner },
-  mixins: [CurrentUserConcern]
+  mixins: [CurrentUserConcern],
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.currentUser.ascents')
+    }
+  }
 }
 </script>

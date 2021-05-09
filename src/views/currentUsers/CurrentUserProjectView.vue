@@ -30,6 +30,12 @@ export default {
     user: Object
   },
 
+  metaInfo () {
+    return {
+      title: this.$t('meta.currentUser.project')
+    }
+  },
+
   computed: {
     computedAscentCragRoutes: function () {
       return store.getters['auth/getAscentCragRoutes']

@@ -22,6 +22,12 @@ import GuideBookWebForm from '@/components/guideBookWebs/forms/GuideBookWebForm'
 export default {
   name: 'GuideBookWebEditView',
   mixins: [GuideBookWebConcern],
-  components: { GuideBookWebForm }
+  components: { GuideBookWebForm },
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.guideBookWeb.edit')
+    }
+  }
 }
 </script>

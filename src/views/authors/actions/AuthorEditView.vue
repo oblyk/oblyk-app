@@ -25,6 +25,12 @@ import AuthorForm from '@/components/authors/forms/AuthorForm'
 export default {
   name: 'AuthorEditView',
   mixins: [AuthorConcern],
-  components: { AuthorForm, Spinner }
+  components: { AuthorForm, Spinner },
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.generics.edit', { name: (this.author || {}).name })
+    }
+  }
 }
 </script>

@@ -21,6 +21,12 @@ import ArticleForm from '@/components/articles/forms/ArticleForm'
 export default {
   name: 'ArticleEditView',
   mixins: [ArticleConcern],
-  components: { ArticleForm }
+  components: { ArticleForm },
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.generics.edit', { name: (this.article || {}).name })
+    }
+  }
 }
 </script>

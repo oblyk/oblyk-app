@@ -23,6 +23,12 @@ import GymGradeCard from '@/components/gymGrades/GymGradeCard'
 export default {
   name: 'GymGradeView',
   components: { GymGradeCard, Spinner },
-  mixins: [GymGradeConcern]
+  mixins: [GymGradeConcern],
+
+  metaInfo () {
+    return {
+      title: (this.gymGrade || {}).name
+    }
+  }
 }
 </script>

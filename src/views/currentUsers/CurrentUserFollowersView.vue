@@ -32,6 +32,12 @@ export default {
     user: Object
   },
 
+  metaInfo () {
+    return {
+      title: this.$t('meta.currentUser.followers')
+    }
+  },
+
   data () {
     return {
       loadingFollowers: true,

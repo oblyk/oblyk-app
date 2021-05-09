@@ -27,6 +27,12 @@ import { GymGradeConcern } from '@/concerns/GymGradeConcern'
 export default {
   name: 'GymGradeNewView',
   mixins: [GymGradeConcern],
-  components: { Spinner, GymGradeLineForm }
+  components: { Spinner, GymGradeLineForm },
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.gym.grade.newLine')
+    }
+  }
 }
 </script>

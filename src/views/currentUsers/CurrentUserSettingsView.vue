@@ -18,6 +18,12 @@ import UserSettingsTabs from '@/components/users/layouts/UserSettingsTabs'
 export default {
   name: 'CurrentUserSettingsView',
   components: { UserSettingsTabs, UserTabs, Spinner },
-  mixins: [CurrentUserConcern]
+  mixins: [CurrentUserConcern],
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.currentUser.settings')
+    }
+  }
 }
 </script>

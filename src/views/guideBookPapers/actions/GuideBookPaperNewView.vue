@@ -17,6 +17,12 @@ import GuideBookPaperForm from '@/components/guideBookPapers/forms/GuideBookPape
 
 export default {
   name: 'GuideBookPaperNewView',
-  components: { GuideBookPaperForm }
+  components: { GuideBookPaperForm },
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.guideBookPaper.new')
+    }
+  }
 }
 </script>

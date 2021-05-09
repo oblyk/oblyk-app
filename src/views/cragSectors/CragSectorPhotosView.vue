@@ -72,6 +72,69 @@ export default {
     }
   },
 
+  computed: {
+    cragSectorMetaTitle: function () {
+      if (this.cragSector) {
+        return `
+        ${this.$t('meta.generics.pictures')}
+        ${this.$t('meta.cragSector.title', {
+          name: this.cragSector.name,
+          crag: this.cragSector.Crag.name
+        })}
+        `
+      }
+      return ''
+    },
+    cragSectorMetaDescription: function () {
+      if (this.cragSector) {
+        return `
+        ${this.$t('meta.generics.pictures')}
+        ${this.$t('meta.cragSector.description', {
+          name: this.cragSector.name,
+          crag: this.cragSector.Crag.name,
+          region: this.cragSector.Crag.region,
+          city: this.cragSector.Crag.city
+        })}
+        `
+      }
+      return ''
+    },
+    cragSectorMetaUrl: function () {
+      if (this.cragSector) {
+        return `${process.env.VUE_APP_OBLYK_APP_URL}${this.cragSector.path('photos')}`
+      }
+      return ''
+    }
+  },
+
+  metaInfo () {
+    return {
+      title: this.cragSectorMetaTitle,
+      meta: [
+        {
+          vmid: 'description',
+          name: 'description',
+          content: this.cragSectorMetaDescription
+        },
+        {
+          vmid: 'og-title',
+          property: 'og:title',
+          content: this.cragSectorMetaTitle
+        },
+        {
+          vmid: 'og-description',
+          property: 'og:description',
+          content: this.cragSectorMetaDescription
+        },
+        {
+          vmid: 'og-url',
+          property: 'og:url',
+          content: this.cragSectorMetaUrl
+        }
+      ]
+    }
+  },
+
   mounted () {
     this.getPhotos()
     this.getVideos()

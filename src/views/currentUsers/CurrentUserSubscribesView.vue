@@ -32,6 +32,12 @@ export default {
     user: Object
   },
 
+  metaInfo () {
+    return {
+      title: this.$t('meta.currentUser.subscribes')
+    }
+  },
+
   data () {
     return {
       loadingSubscribes: true,
