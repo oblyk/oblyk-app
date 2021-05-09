@@ -43,11 +43,15 @@ export default {
     this.$root.$on('nothingMoreToLoad', () => {
       this.noMoreData = true
     })
+    this.$root.$on('setLoadMorePageNumber', (number) => {
+      this.page = number
+    })
   },
 
   beforeDestroy () {
     this.$root.$off('moreIsLoaded')
     this.$root.$off('nothingMoreToLoad')
+    this.$root.$off('setLoadMorePageNumber')
   },
 
   methods: {

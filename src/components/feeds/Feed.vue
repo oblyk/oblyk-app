@@ -44,7 +44,17 @@ export default {
   },
 
   mounted () {
+    this.$root.$on('reloadFeed', () => {
+      this.feeds = []
+      this.loadingFeeds = true
+      this.$root.$emit('setLoadMorePageNumber', 1)
+      this.getFeeds()
+    })
     this.getFeeds()
+  },
+
+  beforeDestroy () {
+    this.$root.$off('reloadFeed')
   },
 
   methods: {

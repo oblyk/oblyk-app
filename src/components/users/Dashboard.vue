@@ -30,6 +30,9 @@
         <!-- Crag, Gym and climbers around -->
         <around-card :user="currentUser" />
 
+        <!-- Configure my feed -->
+        <setting-feed :user="currentUser" />
+
         <!-- Feed -->
         <feed feed-api="CurrentUserApi" />
 
@@ -52,11 +55,13 @@ import CurrentUserTabs from '@/components/users/layouts/CurrentUserTabs'
 import AroundCard from '@/components/users/AroundCard'
 import Feed from '@/components/feeds/Feed'
 import CragRouteDrawer from '@/components/cragRoutes/CragRouteDrawer'
+import SettingFeed from '@/components/users/SettingFeed'
 
 export default {
   name: 'Dashboard',
   mixins: [CurrentUserConcern],
   components: {
+    SettingFeed,
     CragRouteDrawer,
     Feed,
     AroundCard,
