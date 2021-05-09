@@ -490,8 +490,12 @@
       "myFavoriteGymsEmpty": "You are not following a gym for the moment",
       "searchUser": "Search for a climber",
       "userAround": "%{count} climber around | %{count} climbers around",
+      "aroundSettings": "Choose my zone",
+      "saveMyPreference": "save my preference",
+      "chooseNewsArea": "Choose my news area",
+      "distanceSetting": "%{distance} Km around me",
       "userCount": "%{count} climber | %{count} climbers",
-      "distanceAround": "%{distance}km around",
+      "distanceAround": "%{distance}km around me :",
       "receiveNewsletter": "Receive the newsletter (one per quarter approximately)",
       "recoveryNewsletterSettings": "recovery of the newsletter settings ...",
       "youAreSubscribedToTheNewsletter": "you are registered to the newsletter",
@@ -561,7 +565,8 @@
       "newArticle": "New article! %{name}",
       "newPhotos": "One new photo on : | %{count} new photos on : ",
       "newCragRoutes": "One new route on : | %{count} new routes on : ",
-      "newAscentCragRoutes": "One new ascent by : | %{count} new ascents by : "
+      "newAscentCragRoutes": "One new ascent by : | %{count} new ascents by : ",
+      "displayNMore": "Display %{count} more"
     },
     "messenger": {
       "messageEmpty": "There is no message in this conversation at the moment."

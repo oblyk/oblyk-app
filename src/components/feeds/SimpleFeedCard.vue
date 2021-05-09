@@ -1,7 +1,7 @@
 <template>
   <v-card
     elevation="0"
-    class="feed-card mb-5"
+    class="feed-card"
     :to="!haveParent(feed.feedable_type) ? recordToObject(feed.feedable_type, feed.feed_object).path() : ''"
   >
 
@@ -56,6 +56,9 @@
         v-if="feed.feedable_type === 'Video'"
       />
     </v-card-text>
+    <v-card-subtitle>
+      <feed-date-title :feed="feed" />
+    </v-card-subtitle>
   </v-card>
 </template>
 
@@ -73,11 +76,13 @@ import Crag from '@/models/Crag'
 import CragRoute from '@/models/CragRoute'
 import CragSector from '@/models/CragSector'
 import ArticleFeedCard from '@/components/articles/ArticleFeedCard'
+import FeedDateTitle from '@/components/feeds/FeedDateTitle'
 
 export default {
   name: 'SimpleFeedCard',
   mixins: [RecordToObjectHelpers],
   components: {
+    FeedDateTitle,
     ArticleFeedCard,
     VideoFeedCard,
     GuideBookWebFeedCard,

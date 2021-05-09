@@ -24,6 +24,18 @@ export const DateHelpers = {
       return moment(date).fromNow()
     },
 
+    feedDateFromNow: function (date) {
+      const breakingDate = moment().subtract(15, 'day').format('YYYY-MM-DD')
+      if (this.dateIsAfterDate(
+        date,
+        breakingDate
+      )) {
+        return `${this.$t('common.at')} ${this.humanizeDate(date)}`
+      } else {
+        return this.dateFromNow(date)
+      }
+    },
+
     dateIsAfterDate: function (firstDate, secondDate) {
       return moment(secondDate).isAfter(moment(firstDate))
     },

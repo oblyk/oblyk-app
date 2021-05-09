@@ -4,22 +4,11 @@
       v-for="(feed, index) in feeds"
       :key="`feed-card-${index}`"
     >
-      <!-- Date form now -->
-      <div
-        class="mt-2 mb-2"
-        v-if="index === 0 || !isSameDay(feed.posted_at, feeds[index - 1].posted_at)"
-      >
-        <small
-          class="text--disabled"
-          :title="humanizeDate(feed.posted_at)"
-        >
-          {{ dateFromNow(feed.posted_at) }}
-        </small>
-      </div>
-
       <!-- Feed card -->
-      <group-feed-card :feed="feed" v-if="isGroup(feed.group_type)" />
-      <simple-feed-card :feed="feed" v-else />
+      <div class="mt-5">
+        <group-feed-card :feed="feed" v-if="isGroup(feed.group_type)" />
+        <simple-feed-card :feed="feed" v-else />
+      </div>
     </div>
 
     <!-- Load more feed -->
@@ -108,6 +97,13 @@ export default {
         groupedFeed.push(groupedByKeys[group])
       }
 
+      // Sort feed by posted_at
+      groupedFeed.sort(function (a, b) {
+        const x = b.posted_at
+        const y = a.posted_at
+        return x < y ? -1 : x > y ? 1 : 0
+      })
+
       // retour feed
       return groupedFeed
     },
@@ -129,6 +125,10 @@ export default {
     padding-top: 2px;
     padding-bottom: 2px;
     font-size: 0.9em;
+  }
+  .v-card__subtitle {
+    padding-bottom: 5px;
+    padding-top: 0;
   }
 }
 </style>

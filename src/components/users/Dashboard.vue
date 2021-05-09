@@ -28,9 +28,7 @@
         />
 
         <!-- Crag, Gym and climbers around -->
-        <around-card
-          :user="currentUser"
-        />
+        <around-card :user="currentUser" />
 
         <!-- Feed -->
         <feed feed-api="CurrentUserApi" />

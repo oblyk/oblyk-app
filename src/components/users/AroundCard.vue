@@ -5,8 +5,10 @@
   >
     <v-row>
       <v-col
-        class="text-truncate"
-        v-bind:class="user.partner_search ? 'col-12 col-md-6' : 'col-12 col-md-6'"
+        @click="aroundSettingsDialog = true"
+        class="text-truncate hover-col"
+        v-bind:class="user.partner_search ? 'col-12 col-md-6' : 'col-12 col-md-4'"
+        :title="user.localization"
       >
         <v-icon
           left
@@ -15,14 +17,13 @@
           mdi-map-marker-radius
         </v-icon>
         {{ $t('components.user.distanceAround', { distance: distance }) }}
-        {{ user.localization }}
       </v-col>
 
       <!-- Crags -->
       <v-col
         @click="cragsDialog = true"
-        class="text-truncate hover-col"
-        v-bind:class="user.partner_search ? 'col-4 col-md-2' : 'col-3'"
+        class="text-truncate text-center hover-col"
+        v-bind:class="user.partner_search ? 'col-4 col-md-2' : 'col-6 col-md-4'"
       >
         <v-icon small left>mdi-terrain</v-icon>
         {{ $tc('components.crag.cragCount', crags.length, { count: crags.length }) }}
@@ -30,9 +31,9 @@
 
       <!-- Gyms -->
       <v-col
-        class="text-truncate hover-col"
+        class="text-truncate text-center hover-col"
         @click="gymsDialog = true"
-        v-bind:class="user.partner_search ? 'col-4 col-md-2' : 'col-3'"
+        v-bind:class="user.partner_search ? 'col-4 col-md-2' : 'col-6 col-md-4'"
       >
         <v-icon small left>mdi-home-roof</v-icon>
         {{ $tc('components.gym.gymCount', gyms.length, { count: gyms.length }) }}
@@ -42,7 +43,7 @@
       <v-col
         v-if="user.partner_search"
         @click="climbersDialog = true"
-        class="col-4 col-md-2 text-truncate hover-col"
+        class="col-4 col-md-2 text-center text-truncate hover-col"
       >
         <v-icon small left>mdi-human</v-icon>
         {{ $tc('components.user.userCount', climbers.length, { count: climbers.length }) }}
@@ -120,6 +121,7 @@
           <user-small-card
             v-for="(user, index) in climbers"
             :key="`users-${index}`"
+            :small="true"
             :user="user"
           />
         </v-card-text>
@@ -131,6 +133,45 @@
             @click="climbersDialog = false"
           >
             {{ $t('common.close') }}
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+
+    <!-- Around Settings modal -->
+    <v-dialog
+      v-model="aroundSettingsDialog"
+      max-width="700"
+    >
+      <v-card>
+        <v-card-title class="headline">
+          {{ $tc('components.user.aroundSettings') }}
+        </v-card-title>
+        <v-card-text>
+          <p>{{ $t('components.user.chooseNewsArea') }}</p>
+          <v-slider
+            v-model="settingDistance"
+            color="primary"
+            :label="$t('components.user.distanceSetting', { distance: settingDistance })"
+            min="1"
+            max="100"
+            thumb-label
+          />
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer />
+          <v-btn
+            color="primary"
+            text
+            @click="aroundSettingsDialog = false"
+          >
+            {{ $t('common.close') }}
+          </v-btn>
+          <v-btn
+            color="primary"
+            @click="setFeedSetting()"
+          >
+            {{ $t('components.user.saveMyPreference') }}
           </v-btn>
         </v-card-actions>
       </v-card>
@@ -159,9 +200,11 @@ export default {
   data () {
     return {
       distance: localStorage.getItem('distanceAroundLocation') || 20,
+      settingDistance: null,
       cragsDialog: false,
       gymsDialog: false,
       climbersDialog: false,
+      aroundSettingsDialog: false,
       crags: [],
       gyms: [],
       climbers: []
@@ -175,6 +218,7 @@ export default {
   },
 
   mounted () {
+    this.settingDistance = this.distance
     this.getElementAround()
   },
 
@@ -230,6 +274,12 @@ export default {
             this.climbers.push(new User(user))
           }
         })
+    },
+
+    setFeedSetting: function () {
+      this.distance = this.settingDistance
+      localStorage.setItem('distanceAroundLocation', this.settingDistance)
+      this.aroundSettingsDialog = false
     }
   }
 }

@@ -489,9 +489,13 @@
       "myFavoriteCragsEmpty": "Vous ne suivez pas de site pour l'instant",
       "myFavoriteGymsEmpty": "Vous ne suivez pas de salle pour l'instant",
       "searchUser": "Chercher un grimpeur",
-      "userAround": "%{count} grimpeur around | %{count} grimpeurs around",
+      "userAround": "%{count} grimpeur au alentour | %{count} grimpeurs au alentour",
+      "aroundSettings": "Choisir ma zone",
+      "saveMyPreference": "Sauvegarder ma préférence",
+      "chooseNewsArea": "Choisir mon rayon d'actualité",
+      "distanceSetting": "%{distance} Km autour de moi",
       "userCount": "%{count} grimpeur | %{count} grimpeurs",
-      "distanceAround": "%{distance}km autour de",
+      "distanceAround": "%{distance}km autour de moi :",
       "receiveNewsletter": "recevoir la newsletter (une par trimestre environ)",
       "recoveryNewsletterSettings": "récupération du paramétrage de la newsletter ...",
       "youAreSubscribedToTheNewsletter": "vous êtes inscrit à la newsletter",
@@ -561,7 +565,8 @@
       "newArticle": "Nouvelle article ! %{name}",
       "newPhotos": "Une Nouvelle photo sur : | %{count} nouvelles photos sur : ",
       "newCragRoutes": "Une nouvelle ligne sur : | %{count} nouvelles lignes sur : ",
-      "newAscentCragRoutes": "Une nouvelle croix par : | %{count} nouvelles croix par : "
+      "newAscentCragRoutes": "Une nouvelle croix par : | %{count} nouvelles croix par : ",
+      "displayNMore": "Afficher %{count} de plus"
     },
     "messenger": {
       "messageEmpty": "Il n'y a pas de message dans cette conversation pour l'instant"
