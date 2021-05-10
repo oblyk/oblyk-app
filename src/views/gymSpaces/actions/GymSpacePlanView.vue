@@ -20,6 +20,12 @@ import { GymSpaceConcern } from '@/concerns/GymSpaceConcern'
 export default {
   name: 'GymSpacePlanView',
   components: { GymSpacePlanForm },
-  mixins: [GymSpaceConcern]
+  mixins: [GymSpaceConcern],
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.gym.space.plan')
+    }
+  }
 }
 </script>

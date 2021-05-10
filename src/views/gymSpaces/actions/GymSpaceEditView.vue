@@ -23,6 +23,12 @@ import { GymSpaceConcern } from '@/concerns/GymSpaceConcern'
 export default {
   name: 'GymSpaceEditView',
   mixins: [GymSpaceConcern],
-  components: { GymSpaceForm }
+  components: { GymSpaceForm },
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.generics.edit', { name: (this.gymSpace || {}).name })
+    }
+  }
 }
 </script>

@@ -44,6 +44,18 @@ export default {
   mixins: [SessionConcern],
   components: { AppFooter, SignInForm },
 
+  metaInfo () {
+    return {
+      title: this.$t('meta.session.signInTitle'),
+      meta: [
+        { vmid: 'description', name: 'description', content: this.$t('meta.session.signInDescription') },
+        { vmid: 'og-title', property: 'og:title', content: this.$t('meta.session.signInTitle') },
+        { vmid: 'og-description', property: 'og:description', content: this.$t('meta.session.signInDescription') },
+        { vmid: 'og-url', property: 'og:url', content: `${process.env.VUE_APP_OBLYK_APP_URL}/sign-in` }
+      ]
+    }
+  },
+
   data () {
     return {
       redirectTo: null,
@@ -60,6 +72,7 @@ export default {
   }
 }
 </script>
+
 <style scoped>
 h3 {
   font-family: "Loved by the King", sans-serif;

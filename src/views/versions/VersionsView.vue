@@ -81,6 +81,12 @@ export default {
     versionId: [Number, String]
   },
 
+  metaInfo () {
+    return {
+      title: this.$t('meta.version.title')
+    }
+  },
+
   data () {
     return {
       version: {},

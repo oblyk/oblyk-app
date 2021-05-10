@@ -18,6 +18,12 @@ import PhotoForm from '@/components/photos/forms/PhotoForm'
 export default {
   name: 'PhotoEditView',
   mixins: [PhotoConcern],
-  components: { PhotoForm }
+  components: { PhotoForm },
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.photo.edit')
+    }
+  }
 }
 </script>

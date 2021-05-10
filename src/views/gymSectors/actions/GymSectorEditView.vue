@@ -32,6 +32,12 @@ import { GymSectorConcern } from '@/concerns/GymSectorConcern'
 export default {
   name: 'GymSectorEditView',
   mixins: [GymSpaceConcern, GymSectorConcern],
-  components: { GymSectorForm, Spinner }
+  components: { GymSectorForm, Spinner },
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.generics.edit', { name: (this.gymSector || {}).name })
+    }
+  }
 }
 </script>

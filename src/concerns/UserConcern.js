@@ -8,6 +8,40 @@ export const UserConcern = {
     }
   },
 
+  computed: {
+    userMetaTitle: function () {
+      return this.$t('meta.user.title', { name: (this.user || {}).first_name })
+    },
+    userMetaDescription: function () {
+      return this.$t('meta.user.description', { name: (this.user || {}).first_name })
+    },
+    userMetaImage: function () {
+      if (this.user && this.user.banner) {
+        return this.user.bannerUrl()
+      } else {
+        return `${process.env.VUE_APP_OBLYK_APP_URL}/img/images/oblyk-og-image.jpg`
+      }
+    },
+    userMetaUrl: function () {
+      if (this.user) {
+        return `${process.env.VUE_APP_OBLYK_APP_URL}${this.user.path()}`
+      }
+    }
+  },
+
+  metaInfo () {
+    return {
+      title: this.userMetaTitle,
+      meta: [
+        { vmid: 'description', name: 'description', content: this.userMetaDescription },
+        { vmid: 'og-title', property: 'og:title', content: this.userMetaTitle },
+        { vmid: 'og-description', property: 'og:description', content: this.userMetaDescription },
+        { vmid: 'og-image', property: 'og:image', content: this.userMetaImage },
+        { vmid: 'og-url', property: 'og:url', content: this.userMetaUrl }
+      ]
+    }
+  },
+
   beforeRouteEnter (to, from, next) {
     if (!to.params.userUuid) {
       next()
@@ -43,7 +77,7 @@ export const UserConcern = {
           next()
         })
         .catch(err => {
-          this.$root.$emit('alertFromApiError', err, 'gym')
+          this.$root.$emit('alertFromApiError', err, 'user')
           next()
         })
         .finally(() => {

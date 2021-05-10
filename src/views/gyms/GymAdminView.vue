@@ -57,6 +57,12 @@ export default {
     GymWelcomeCard,
     GymTeamCard,
     DifficultySystemCard
+  },
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.gym.admin', { name: (this.gym || {}).name })
+    }
   }
 }
 </script>

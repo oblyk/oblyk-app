@@ -23,6 +23,12 @@ import PlaceOfSaleForm from '@/components/placeOfSales/forms/PlaceOfSaleForm'
 export default {
   name: 'PlaceOfSaleEditView',
   components: { PlaceOfSaleForm, Spinner },
-  mixins: [PlaceOfSaleConcern]
+  mixins: [PlaceOfSaleConcern],
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.placeOfSale.edit')
+    }
+  }
 }
 </script>

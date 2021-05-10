@@ -85,6 +85,18 @@ export default {
     SessionConcern
   ],
 
+  metaInfo () {
+    return {
+      title: this.name,
+      meta: [
+        { vmid: 'description', name: 'description', content: this.$t('meta.newsletter.unsubscribe.newDescription') },
+        { vmid: 'og-title', property: 'og:title', content: this.name },
+        { vmid: 'og-description', property: 'og:description', content: this.$t('meta.newsletter.unsubscribe.newDescription') },
+        { vmid: 'og-url', property: 'og:url', content: `${process.env.VUE_APP_OBLYK_APP_URL}/newsletters/unsubscribe` }
+      ]
+    }
+  },
+
   data () {
     return {
       deletingNewsletter: false,

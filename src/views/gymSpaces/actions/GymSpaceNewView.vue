@@ -18,6 +18,12 @@
 import GymSpaceForm from '@/components/gymSpaces/forms/GymSpaceForm'
 export default {
   name: 'GymSpaceNewView',
-  components: { GymSpaceForm }
+  components: { GymSpaceForm },
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.gym.space.new')
+    }
+  }
 }
 </script>

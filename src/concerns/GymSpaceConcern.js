@@ -8,6 +8,44 @@ export const GymSpaceConcern = {
     }
   },
 
+  computed: {
+    gymSpaceMetaTitle: function () {
+      if (this.gymSpace) {
+        return this.$t('meta.gym.space.title', { name: this.gymSpace.name, gym: this.gymSpace.gym.name })
+      }
+    },
+    gymSpaceMetaDescription: function () {
+      if (this.gymSpace) {
+        return this.$t('meta.gym.space.description', { gym: this.gymSpace.gym.name })
+      }
+    },
+    gymSpaceMetaImage: function () {
+      if (this.gymSpace && this.gymSpace.gym.banner) {
+        return this.gymSpace.Gym.bannerUrl()
+      } else {
+        return `${process.env.VUE_APP_OBLYK_APP_URL}/img/images/oblyk-og-image.jpg`
+      }
+    },
+    gymSpaceMetaUrl: function () {
+      if (this.gymSpace) {
+        return `${process.env.VUE_APP_OBLYK_APP_URL}${this.gymSpace.path()}`
+      }
+    }
+  },
+
+  metaInfo () {
+    return {
+      title: this.gymSpaceMetaTitle,
+      meta: [
+        { vmid: 'description', name: 'description', content: this.gymSpaceMetaDescription },
+        { vmid: 'og-title', property: 'og:title', content: this.gymSpaceMetaTitle },
+        { vmid: 'og-description', property: 'og:description', content: this.gymSpaceMetaDescription },
+        { vmid: 'og-image', property: 'og:image', content: this.gymSpaceMetaImage },
+        { vmid: 'og-url', property: 'og:url', content: this.gymSpaceMetaUrl }
+      ]
+    }
+  },
+
   beforeRouteEnter (to, from, next) {
     if (!to.params.gymId || !to.params.gymSpaceId) {
       next()

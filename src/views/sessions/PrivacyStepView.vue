@@ -37,6 +37,12 @@ export default {
   mixins: [SessionConcern, CurrentUserConcern],
   components: { AppFooter, UserPrivacyForm },
 
+  metaInfo () {
+    return {
+      title: this.$t('meta.session.privacyStep')
+    }
+  },
+
   data () {
     return {
       redirectTo: null

@@ -22,6 +22,12 @@ import ParkForm from '@/components/parks/forms/ParkForm'
 export default {
   name: 'ParkEditView',
   components: { ParkForm },
-  mixins: [CragConcern, ParkConcern]
+  mixins: [CragConcern, ParkConcern],
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.park.edit')
+    }
+  }
 }
 </script>

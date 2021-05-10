@@ -85,6 +85,21 @@ export default {
     user: Object
   },
 
+  computed: {
+    conversationTitle: function () {
+      if (this.conversation) {
+        return this.$t('meta.messenger.conversation', { name: this.conversation.title(this.loggedInUser.uuid) })
+      }
+      return ''
+    }
+  },
+
+  metaInfo () {
+    return {
+      title: this.conversationTitle
+    }
+  },
+
   data () {
     return {
       initialLoad: true,

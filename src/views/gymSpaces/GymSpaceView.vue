@@ -52,9 +52,6 @@ export default {
   name: 'GymSpaceView',
   components: { GymSpacePlanMissing, GymSpacePlan, GymSpaceRoute },
   mixins: [GymSpaceConcern],
-  // watch: {
-  //   '$route.params.gymSpaceId': 'getGymSpace'
-  // },
 
   data () {
     return {

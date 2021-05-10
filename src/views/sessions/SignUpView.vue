@@ -37,6 +37,18 @@ export default {
   mixins: [SessionConcern],
   components: { AppFooter, SignUpForm },
 
+  metaInfo () {
+    return {
+      title: this.$t('meta.session.signUpTitle'),
+      meta: [
+        { vmid: 'description', name: 'description', content: this.$t('meta.session.signUpDescription') },
+        { vmid: 'og-title', property: 'og:title', content: this.$t('meta.session.signUpTitle') },
+        { vmid: 'og-description', property: 'og:description', content: this.$t('meta.session.signUpDescription') },
+        { vmid: 'og-url', property: 'og:url', content: `${process.env.VUE_APP_OBLYK_APP_URL}/sign-in` }
+      ]
+    }
+  },
+
   data () {
     return {
       redirectTo: null

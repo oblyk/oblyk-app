@@ -15,6 +15,12 @@ import PlaceOfSaleForm from '@/components/placeOfSales/forms/PlaceOfSaleForm'
 
 export default {
   name: 'PlaceOfSaleView',
-  components: { PlaceOfSaleForm }
+  components: { PlaceOfSaleForm },
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.placeOfSale.new')
+    }
+  }
 }
 </script>

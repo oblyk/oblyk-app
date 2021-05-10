@@ -26,6 +26,17 @@ import ReportForm from '@/components/reports/forms/ReportForm'
 
 export default {
   name: 'ReportNewView',
-  components: { ReportForm }
+  components: { ReportForm },
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.reportProblem.title'),
+      meta: [
+        { vmid: 'description', name: 'description', content: this.$t('meta.reportProblem.description') },
+        { vmid: 'og-title', property: 'og:title', content: this.$t('meta.reportProblem.title') },
+        { vmid: 'og-description', property: 'og:description', content: this.$t('meta.reportProblem.description') }
+      ]
+    }
+  }
 }
 </script>

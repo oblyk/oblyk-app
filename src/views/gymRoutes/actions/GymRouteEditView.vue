@@ -26,6 +26,12 @@ import GymRouteForm from '@/components/gymRoutes/forms/GymRouteForm'
 export default {
   name: 'GymRouteEditView',
   mixins: [GymRouteConcern],
-  components: { GymRouteForm, Spinner }
+  components: { GymRouteForm, Spinner },
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.gym.route.edit')
+    }
+  }
 }
 </script>

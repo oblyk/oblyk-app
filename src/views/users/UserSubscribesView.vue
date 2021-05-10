@@ -35,6 +35,33 @@ export default {
     user: Object
   },
 
+  computed: {
+    userMetaTitle: function () {
+      return this.$t('meta.user.subscribe.title', { name: (this.user || {}).first_name })
+    },
+    userMetaDescription: function () {
+      return this.$t('meta.user.subscribe.description', { name: (this.user || {}).first_name })
+    },
+    userMetaUrl: function () {
+      if (this.user) {
+        return `${process.env.VUE_APP_OBLYK_APP_URL}${this.user.path('subscribes')}`
+      }
+      return ''
+    }
+  },
+
+  metaInfo () {
+    return {
+      title: this.userMetaTitle,
+      meta: [
+        { vmid: 'description', name: 'description', content: this.userMetaDescription },
+        { vmid: 'og-title', property: 'og:title', content: this.userMetaTitle },
+        { vmid: 'og-description', property: 'og:description', content: this.userMetaDescription },
+        { vmid: 'og-url', property: 'og:url', content: this.userMetaUrl }
+      ]
+    }
+  },
+
   data () {
     return {
       loadingSubscribes: true,

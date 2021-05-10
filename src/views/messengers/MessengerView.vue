@@ -40,6 +40,12 @@ export default {
   components: { ConversationList, Spinner },
   mixins: [CurrentUserConcern],
 
+  metaInfo () {
+    return {
+      title: this.$t('meta.messenger.list')
+    }
+  },
+
   data () {
     return {
       loadingConversations: true,

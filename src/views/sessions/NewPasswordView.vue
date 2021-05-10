@@ -21,6 +21,12 @@ import AppFooter from '@/components/layouts/AppFooter'
 
 export default {
   name: 'NewPasswordView',
-  components: { AppFooter, NewPasswordForm }
+  components: { AppFooter, NewPasswordForm },
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.session.newPassword')
+    }
+  }
 }
 </script>

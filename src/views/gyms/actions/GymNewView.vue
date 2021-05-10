@@ -15,6 +15,12 @@ import GymForm from '@/components/gyms/forms/GymForm'
 
 export default {
   name: 'GymNewView',
-  components: { GymForm }
+  components: { GymForm },
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.gym.new')
+    }
+  }
 }
 </script>

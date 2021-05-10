@@ -67,6 +67,35 @@ import GymAdministratorRequestForm from '@/components/gyms/forms/GymAdministrato
 export default {
   name: 'GymAdministrationRequestView',
   components: { GymAdministratorRequestForm },
-  mixins: [SessionConcern, GymConcern]
+  mixins: [SessionConcern, GymConcern],
+
+  computed: {
+    adminRequestMetaTitle: function () {
+      return this.$t('meta.gym.administratorRequestTitle', { name: (this.gym || {}).name })
+    },
+
+    adminRequestMetaDescription: function () {
+      return this.$t('meta.gym.administratorRequestDescription', { name: (this.gym || {}).name })
+    },
+
+    adminRequestMetaUrl: function () {
+      if (this.gym) {
+        return `${process.env.VUE_APP_OBLYK_APP_URL}${this.gym.path('administration-request')}`
+      }
+      return ''
+    }
+  },
+
+  metaInfo () {
+    return {
+      title: this.adminRequestMetaTitle,
+      meta: [
+        { vmid: 'description', name: 'description', content: this.adminRequestMetaDescription },
+        { vmid: 'og-title', property: 'og:title', content: this.adminRequestMetaTitle },
+        { vmid: 'og-description', property: 'og:description', content: this.adminRequestMetaDescription },
+        { vmid: 'og-url', property: 'og:url', content: this.adminRequestMetaUrl }
+      ]
+    }
+  },
 }
 </script>

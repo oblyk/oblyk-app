@@ -20,6 +20,12 @@ import ParkForm from '@/components/parks/forms/ParkForm'
 export default {
   name: 'ParkNewView',
   components: { ParkForm },
-  mixins: [CragConcern]
+  mixins: [CragConcern],
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.park.new')
+    }
+  }
 }
 </script>

@@ -46,6 +46,12 @@ export default {
   components: { Spinner },
   mixins: [DateHelpers],
 
+  metaInfo () {
+    return {
+      title: this.$t('meta.newsletter.list')
+    }
+  },
+
   data () {
     return {
       newsletters: [],

@@ -38,6 +38,13 @@ import LoadingMore from '@/components/layouts/LoadingMore'
 export default {
   name: 'NotificationsView',
   components: { LoadingMore, NotificationItemList, Spinner },
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.notifications.title')
+    }
+  },
+
   data () {
     return {
       loadingNotification: true,

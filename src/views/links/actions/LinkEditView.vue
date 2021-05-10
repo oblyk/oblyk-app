@@ -23,6 +23,12 @@ import Spinner from '@/components/layouts/Spiner'
 export default {
   name: 'LinkEditView',
   components: { Spinner, LinkForm },
-  mixins: [LinkConcern]
+  mixins: [LinkConcern],
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.generics.edit', { name: (this.link || {}).name })
+    }
+  }
 }
 </script>

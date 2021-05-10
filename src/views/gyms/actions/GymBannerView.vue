@@ -20,6 +20,12 @@ import GymImageForm from '@/components/gyms/forms/GymImageForm'
 export default {
   name: 'GymBannerView',
   components: { GymImageForm },
-  mixins: [GymConcern, SessionConcern, ProtectedGymConcern]
+  mixins: [GymConcern, SessionConcern, ProtectedGymConcern],
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.gym.banner')
+    }
+  }
 }
 </script>

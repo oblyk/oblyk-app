@@ -28,6 +28,18 @@ export default {
   name: 'NewsletterUnsubscribeView',
   components: { AppFooter, NewsletterUnsubscribeForm },
 
+  metaInfo () {
+    return {
+      title: this.$t('meta.newsletters.unsubscribe.newTitle'),
+      meta: [
+        { vmid: 'description', name: 'description', content: this.$t('meta.newsletter.unsubscribe.newDescription') },
+        { vmid: 'og-title', property: 'og:title', content: this.$t('meta.newsletters.unsubscribe.newTitle') },
+        { vmid: 'og-description', property: 'og:description', content: this.$t('meta.newsletter.unsubscribe.newDescription') },
+        { vmid: 'og-url', property: 'og:url', content: `${process.env.VUE_APP_OBLYK_APP_URL}/newsletters/unsubscribe` }
+      ]
+    }
+  },
+
   data () {
     return {
       email: null

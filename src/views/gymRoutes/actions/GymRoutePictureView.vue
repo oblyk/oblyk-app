@@ -24,6 +24,12 @@ import GymRoutePictureForm from '@/components/gymRoutes/forms/GymRoutePictureFor
 export default {
   name: 'GymRoutePictureView',
   mixins: [GymRouteConcern],
-  components: { GymRoutePictureForm, Spinner }
+  components: { GymRoutePictureForm, Spinner },
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.gym.route.picture')
+    }
+  }
 }
 </script>

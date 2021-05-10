@@ -17,6 +17,12 @@ import VideoForm from '@/components/videos/forms/VideoForm'
 
 export default {
   name: 'PhotoNewView',
-  components: { VideoForm }
+  components: { VideoForm },
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.video.new')
+    }
+  }
 }
 </script>

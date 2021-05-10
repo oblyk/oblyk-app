@@ -20,6 +20,17 @@ import AppFooter from '@/components/layouts/AppFooter'
 
 export default {
   name: 'ResetPasswordView',
-  components: { AppFooter, ResetPasswordForm }
+  components: { AppFooter, ResetPasswordForm },
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.session.resetPasswordTitle'),
+      meta: [
+        { vmid: 'description', name: 'description', content: this.$t('meta.session.resetPasswordDescription') },
+        { vmid: 'og-title', property: 'og:title', content: this.$t('meta.session.resetPasswordTitle') },
+        { vmid: 'og-description', property: 'og:description', content: this.$t('meta.session.resetPasswordDescription') }
+      ]
+    }
+  }
 }
 </script>

@@ -18,6 +18,18 @@ export default {
   name: 'PartnerMapView',
   components: { PartnerModal, LeafletMap },
 
+  metaInfo () {
+    return {
+      title: this.$t('meta.partnerMap.title'),
+      meta: [
+        { vmid: 'description', name: 'description', content: this.$t('meta.partnerMap.description') },
+        { vmid: 'og-title', property: 'og:title', content: this.$t('meta.partnerMap.title') },
+        { vmid: 'og-description', property: 'og:description', content: this.$t('meta.partnerMap.description') },
+        { vmid: 'og-url', property: 'og:url', content: `${process.env.VUE_APP_OBLYK_APP_URL}/maps/climbers` }
+      ]
+    }
+  },
+
   data () {
     return {
       geoJsons: null

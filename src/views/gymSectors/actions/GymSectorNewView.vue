@@ -25,6 +25,12 @@ import GymSectorForm from '@/components/gymSectors/forms/GymSectorForm'
 export default {
   name: 'GymSectorNewView',
   mixins: [GymSpaceConcern],
-  components: { GymSectorForm }
+  components: { GymSectorForm },
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.gym.sector.new')
+    }
+  }
 }
 </script>

@@ -35,6 +35,18 @@
 import AppFooter from '@/components/layouts/AppFooter'
 export default {
   name: 'NewsletterSuccessSubscribeView',
-  components: { AppFooter }
+  components: { AppFooter },
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.newsletters.subscribe.successTitle'),
+      meta: [
+        { vmid: 'description', name: 'description', content: this.$t('meta.newsletter.subscribe.successDescription') },
+        { vmid: 'og-title', property: 'og:title', content: this.$t('meta.newsletters.subscribe.successTitle') },
+        { vmid: 'og-description', property: 'og:description', content: this.$t('meta.newsletter.subscribe.successDescription') },
+        { vmid: 'og-url', property: 'og:url', content: `${process.env.VUE_APP_OBLYK_APP_URL}/newsletters/successful-subscribe` }
+      ]
+    }
+  }
 }
 </script>

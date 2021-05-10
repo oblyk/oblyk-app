@@ -23,6 +23,12 @@ import { VideoConcern } from '@/concerns/VideoConcern'
 export default {
   name: 'PhotoEditView',
   mixins: [VideoConcern],
-  components: { VideoForm, Spinner }
+  components: { VideoForm, Spinner },
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.video.edit')
+    }
+  }
 }
 </script>

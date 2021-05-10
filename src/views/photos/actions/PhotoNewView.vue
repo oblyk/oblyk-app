@@ -17,6 +17,12 @@ import PhotoForm from '@/components/photos/forms/PhotoForm'
 
 export default {
   name: 'PhotoNewView',
-  components: { PhotoForm }
+  components: { PhotoForm },
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.photo.new')
+    }
+  }
 }
 </script>

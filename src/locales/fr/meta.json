@@ -48,15 +48,28 @@
       "description": "Oblyk permet plusieurs notations pour la cotations et un code couleur est associé à une difficulté, voici comment ça marche"
     },
     "cragMap": {
-      "title": "Carte des falaises"
+      "title": "Carte des sites d'escalade en France et ailleurs",
+      "description": "Voir la carte interactive des sites naturels de grimpe sur Oblyk, que ce soit en France, ou dans le Monde, et voir leurs informations détaillées"
     },
     "gymMap": {
-      "title": "Carte des salles"
+      "title": "Carte des salle d'escalade en France et ailleurs",
+      "description": "Voir la carte interactive des salle de grimpe sur Oblyk, que ce soit en France, ou dans le Monde, et voir leurs informations détaillées"
+    },
+    "partnerMap": {
+      "title": "La carte des grimpeurs d'oblyk",
+      "description": "La carte des grimpeurs te permet de trouver un partenaire d'escalade près de chez toi. localise toi, trouve un grimpeur, contact le et allez grimper ensemble !"
     },
     "gym": {
+      "title": "%{name}, salle d'escalade à %{city}",
+      "description": "%{name} est une salle d'escalade à %{city} en %{region} (proche de %{big_city}). consultez la localisation, les photos, le topo, etc.",
       "newAdministrator": "Ajouter un administrateur",
       "administrators": "Les administrateurs",
-      "title": "Nouvelle salle",
+      "requiredAdministrator": "Administrateur requis",
+      "administratorRequestDescription": "Administrez la salle d'escalade de %{name} pour créer votre topo indoor et animer votre communauté",
+      "admin": "%{name} - Dashboard",
+      "banner": "Change banner",
+      "logo": "Change logo",
+      "new": "Add a new climbing gym",
       "grade": {
         "edit": "Modifier le system de cotation",
         "new": "Nouveau system de cotation",
@@ -64,16 +77,25 @@
         "newLine": "Nouveau niveau",
         "firstDifficulty": "Premier système de difficulté",
         "grades": "Les systèmes de difficultés"
+      },
+      "route": {
+        "chooseSector": "Choisissez un secteur",
+        "edit": "Modifier la ligne",
+        "new": "Ajouter une ligne",
+        "picture": "Définir une photo",
+        "thumbnail": "Définir une miniature"
+      },
+      "space": {
+        "title": "%{name} topo indoor de la salle d'escalade %{gym}",
+        "description": "Consulter le détail des voies d'escalade de %{gym}, ajoutez vos croix pour suivre votre progression",
+        "firstTilte": "Créer le premier espace de %{name}",
+        "firstDescription": "commencez à créer votre topo d'escalade indoor en créant le première espace de %{name}",
+        "new": "Créer un nouvel espace",
+        "plan": "Modifier le plan de fond"
+      },
+      "sector": {
+        "new": "Ajouter un secteur"
       }
-    },
-    "search": {
-      "title": "Chercher"
-    },
-    "signIn": {
-      "title": "Connexion"
-    },
-    "signUp": {
-      "title": "Créer un compte"
     },
     "glossary": {
       "title": "Lexique des terms d'escalade",
@@ -105,16 +127,11 @@
       "title": "Ma Carte"
     },
     "messenger": {
-      "title": "Messagerie"
+      "list": "Ma messagerie",
+      "conversation": "%{name} - Messagerie"
     },
     "newConversation": {
       "title": "Nouvelle conversation"
-    },
-    "resetPassword": {
-      "title": "Mot de passe oublié"
-    },
-    "newPassword": {
-      "title": "Nouveau mot de passe"
     },
     "crag": {
       "title": "%{name}, escalade en %{region}",
@@ -136,9 +153,6 @@
       "description": "Voir le résumé du groupe de sites d'escalade de %{name}, quels spots de grimpe il présente ou encore quelle variété de cotations on y trouve",
       "new": "Créer un groupe de site",
       "addCrag": "Ajouter un site à %{name}"
-    },
-    "partnerMap": {
-      "title": "Carte des grimpeurs"
     },
     "article": {
       "newsTitle": "Les actualités d'Oblyk",
@@ -164,23 +178,25 @@
       "edit": "Modifier le topo web",
       "new": "Ajouter un topo web"
     },
-    "editNewsletter": {
-      "title": "Modifier la newsletter"
-    },
     "newsletters": {
-      "title": "Newsletters"
-    },
-    "newsletterPhotos": {
-      "title": "Photos de la Newsletter"
-    },
-    "newsletterSubscribe": {
-      "title": "M'inscrire à la newsletter"
-    },
-    "newsletterUnsubscribe": {
-      "title": "Me désinscrire de la newsletter"
+      "list": "Newsletters",
+      "photos": "Photo de la newsletter",
+      "description": "Consulté ici la newsletter que vous avez reçu dans votre boîte email",
+      "subscribe": {
+        "newTitle": "Recevoir la newsletter d'oblyk",
+        "newDescription": "Abonnez vous à la newsletter d'oblyk pour recevoir de temps en temps des nouvelles de la communauté grimpante",
+        "successTitle": "Vous êtes abonnées à la newsletter",
+        "successDescription": "Vous êtes désormais inscrit à notre newsletter, à bientôt dans votre boîte mail"
+      },
+      "unsubscribe": {
+        "newTitle": "Se désinscrire de la newsletter",
+        "newDescription": "Vous ne voulez plus recevoir notre newsletter, c'est ici que ça se passe",
+        "successTitle": "Vous n'êtes plus inscrit à la newsletter",
+        "successDescription": "Vous être desinscrit de la newsletter, à bientôt"
+      }
     },
     "notifications": {
-      "title": "Notifications"
+      "title": "Mes notifications"
     },
     "beHumain": {
       "title": "Soit humain"
@@ -215,9 +231,69 @@
       "subscribes": "Mes abonnements",
       "tickList": "Ma tick-list"
     },
+    "user": {
+      "title": "%{name} son profil de grimpeur",
+      "description": "consulter le profil de %{name}, grimpeur de la communauté oblyk",
+      "ascent": {
+        "title": "Les croix de %{name}",
+        "description": "Consulter les croix faites par %{name} tout au long de sa vie de grimpeur"
+      },
+      "follower": {
+        "title": "Les abonnés de %{name}",
+        "description": "Voir les grimpeurs abonnées à %{name}, grimpeur de la communauté oblyk"
+      },
+      "media": {
+        "title": "Photos et vidéos de %{name}",
+        "description": "Voir les photos et vidéos d'escalade prise par %{name} sur les différentes falaises qu'iel a parcourut"
+      },
+      "photo": {
+        "title": "Photos de %{name}",
+        "description": "Voir les photos d'escalade prise par %{name} sur les différentes falaises qu'iel a parcourut"
+      },
+      "video": {
+        "title": "Videos de %{name}",
+        "description": "Voir les vidéos d'escalade prise par %{name} sur les différentes falaises qu'iel a parcourut"
+      },
+      "subscribe": {
+        "title": "Abonnement de %{name}",
+        "description": "Voir les abonnements aux falaises, salles, et autre grimpeurs de %{name}"
+      }
+    },
     "error": {
       "notFoundTitle": "Page introuvable",
       "notFoundDescription": "La page que vous demandez est introuvable"
+    },
+    "link": {
+      "new": "Ajouter un nouveau lien"
+    },
+    "park": {
+      "new": "Ajouter un parking",
+      "edit": "Modifier le parking"
+    },
+    "photo": {
+      "new": "Ajouter une photo",
+      "edit": "Modifier la photo"
+    },
+    "video": {
+      "new": "Ajouter une video",
+      "edit": "Modifier la video"
+    },
+    "placeOfSale": {
+      "new": "Ajouter un pont de vente",
+      "edit": "Modifier le point de vente"
+    },
+    "session": {
+      "newPassword": "Changer mon mot de passe",
+      "resetPasswordTitle": "Mot de passe oublié ?",
+      "resetPasswordDescription": "Vous avez oublié votre mot de passe ? renseignez votre adresse mail pour le réinitialiser",
+      "privacyStep": "Ma confidentialité",
+      "signInTitle": "Me connecter",
+      "signInDescription": "Me connecter à mon compte oblyk et retrouver toutes les infos de la grimpes autour de chez moi",
+      "signUpTitle": "Me créer un compte",
+      "signUpDescription": "Me créer un mon compte pour suivre ma progression, trouver des partenaire d'escalade et avoir des infos local de la communauté de la grimpe"
+    },
+    "version": {
+      "title": "Versions"
     }
   }
 }

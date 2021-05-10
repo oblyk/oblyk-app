@@ -32,6 +32,12 @@ import { GymSpaceConcern } from '@/concerns/GymSpaceConcern'
 
 export default {
   name: 'SelectGymSectorView',
-  mixins: [GymSpaceConcern]
+  mixins: [GymSpaceConcern],
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.gym.route.chooseSector')
+    }
+  }
 }
 </script>

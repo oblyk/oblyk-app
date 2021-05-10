@@ -16,11 +16,18 @@
     </v-container>
   </div>
 </template>
+
 <script>
 export default {
   name: 'GymAdministratorRequiredView',
   props: {
     gym: Object
+  },
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.gym.requiredAdministrator')
+    }
   }
 }
 </script>

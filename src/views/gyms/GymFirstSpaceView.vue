@@ -57,6 +57,35 @@ export default {
     gym: Object
   },
 
+  computed: {
+    firstSpaceMetaTitle: function () {
+      return this.$t('meta.gym.space.firstTilte', { name: (this.gym || {}).name })
+    },
+
+    firstSpaceMetaDescription: function () {
+      return this.$t('meta.gym.space.firstDescription', { name: (this.gym || {}).name })
+    },
+
+    firstSpaceMetaUrl: function () {
+      if (this.gym) {
+        return `${process.env.VUE_APP_OBLYK_APP_URL}${this.gym.path('first-space')}`
+      }
+      return ''
+    }
+  },
+
+  metaInfo () {
+    return {
+      title: this.firstSpaceMetaTitle,
+      meta: [
+        { vmid: 'description', name: 'description', content: this.firstSpaceMetaDescription },
+        { vmid: 'og-title', property: 'og:title', content: this.firstSpaceMetaTitle },
+        { vmid: 'og-description', property: 'og:description', content: this.firstSpaceMetaDescription },
+        { vmid: 'og-url', property: 'og:url', content: this.firstSpaceMetaUrl }
+      ]
+    }
+  },
+
   methods: {
     userCanTouch: function () {
       return this.isLoggedIn && (!this.gym.administered || this.currentUserIsGymAdmin())

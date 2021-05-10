@@ -22,6 +22,12 @@ import GymRouteThumbnailForm from '@/components/gymRoutes/forms/GymRouteThumbnai
 export default {
   name: 'GymRouteThumbnailView',
   mixins: [GymRouteConcern],
-  components: { GymRouteThumbnailForm, Spinner }
+  components: { GymRouteThumbnailForm, Spinner },
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.gym.route.thumbnail')
+    }
+  }
 }
 </script>

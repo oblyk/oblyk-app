@@ -17,6 +17,12 @@ import LinkForm from '@/components/links/forms/LinkForm'
 
 export default {
   name: 'LinkNewView',
-  components: { LinkForm }
+  components: { LinkForm },
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.link.new')
+    }
+  }
 }
 </script>

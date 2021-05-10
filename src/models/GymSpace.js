@@ -2,6 +2,7 @@ import ActiveData from '@/models/ActiveData'
 import GymSpaceApi from '@/services/oblyk-api/GymSpaceApi'
 import GymSector from '@/models/GymSector'
 import GymRoute from '@/models/GymRoute'
+import Gym from '@/models/Gym'
 
 export default class GymSpace extends ActiveData {
   find (gymId, spaceId) {
@@ -22,6 +23,10 @@ export default class GymSpace extends ActiveData {
     } else {
       return '/img/images/gym-default-banner.jpg'
     }
+  }
+
+  get Gym () {
+    return new Gym(this.gym)
   }
 
   get GymSectors () {

@@ -48,15 +48,29 @@
       "description": "Oblyk allows several notations for scoring and a color code is associated with a difficulty, here is how it works"
     },
     "cragMap": {
-      "title": "Crags map"
+      "title": "Map of climbing sites in France and elsewhere",
+      "description": "See the interactive map of natural climbing sites on Oblyk, either in France, or in the World, and see their detailed information"
     },
     "gymMap": {
-      "title": "Gyms map"
+      "title": "Map of climbing gyms in France and elsewhere",
+      "description": "See the interactive map of climbing gyms on Oblyk, either in France, or in the World, and see their detailed information"
+    },
+    "partnerMap": {
+      "title": "Map of oblyk climbers",
+      "description": "The climber map allows you to find a climbing partner near you. Locate yourself, find a climber, contact him and go climbing together!"
     },
     "gym": {
+      "title": "%{name}, climbing gym in  %{city}",
+      "description": "%{name} is a climbing gym in  %{city} in %{region} (near to %{big_city}). consult the location, photos, indoor guide, etc.",
       "newAdministrator": "Add administrator",
       "administrators": "Administrators",
-      "title": "New climbing gym",
+      "administratorRequestTitle": "Request for administration of %{name}",
+      "administratorRequestDescription": "Manage the %{name} climbing gym to create your indoor topo and animate your community",
+      "requiredAdministrator": "Required administrator",
+      "admin": "%{name} - Dashboard",
+      "banner": "Changer le bandeau",
+      "logo": "Changer le logo",
+      "new": "Ajouter une nouvelle salle d'escalade",
       "grade": {
         "edit": "Edit grade system",
         "new": "New grade system",
@@ -64,16 +78,25 @@
         "newLine": "New level",
         "firstDifficulty": "First difficulty system",
         "grades": "Difficulty systems"
+      },
+      "route": {
+        "chooseSector": "Choose a sector",
+        "edit": "Edit route",
+        "new": "Add a new route",
+        "picture": "Define the picture",
+        "thumbnail": "Define thumbnail"
+      },
+      "space": {
+        "title": "%{name} indoor guide book of climbing gym %{gym}",
+        "description": "Consult the details of the climbing routes of %{gym}, add your ascents to track your progress",
+        "firstTilte": "Create the first space for %{name}",
+        "firstDescription": "Start creating your indoor climbing map by creating the first %{name} space",
+        "new": "Create a new space",
+        "plan": "Modify the background schema"
+      },
+      "sector": {
+        "new": "Add a sector"
       }
-    },
-    "search": {
-      "title": "Search"
-    },
-    "signIn": {
-      "title": "Connect"
-    },
-    "signUp": {
-      "title": "Sign up"
     },
     "glossary": {
       "title": "Glossary of climbing terms",
@@ -105,16 +128,11 @@
       "title": "My Map"
     },
     "messenger": {
-      "title": "Messenger"
+      "list": "My messenger",
+      "conversation": "%{name} - Messenger"
     },
     "newConversation": {
       "title": "New conversation"
-    },
-    "resetPassword": {
-      "title": "Forgotten password"
-    },
-    "newPassword": {
-      "title": "New password"
     },
     "crag": {
       "title": "%{name}, climb in %{region}",
@@ -136,9 +154,6 @@
       "description": "See the summary of the group of climbing sites of %{name}, what kind of climbing spots it offers or what variety of grades can be found there",
       "new": "Create crags group",
       "addCrag": "Add crag in %{name}"
-    },
-    "partnerMap": {
-      "title": "Climbers Map"
     },
     "article": {
       "news": "Oblyk news",
@@ -164,23 +179,25 @@
       "edit": "Edit web guide",
       "new": "Add web guide"
     },
-    "editNewsletter": {
-      "title": "Edit newsletter"
-    },
-    "newsletters": {
-      "title": "Newsletters"
-    },
-    "newsletterPhotos": {
-      "title": "Newsletter photos"
-    },
-    "newsletterSubscribe": {
-      "title": "Subscribe to the newsletter"
-    },
-    "newsletterUnsubscribe": {
-      "title": "Unsubscribe from the newsletter"
+    "newsletter": {
+      "list": "Newsletters",
+      "photos": "Newsletter pictures",
+      "description": "Consulted here the newsletter you received in your email box",
+      "subscribe": {
+        "newTitle": "Receive the oblyk newsletter",
+        "newDescription": "Subscribe to the oblyk newsletter to receive occasional news from the climbing community",
+        "successTitle": "You are subscribed to the newsletter",
+        "successDescription": "You are now subscribed to our newsletter, see you soon in your mailbox"
+      },
+      "unsubscribe": {
+        "newTitle": "Unsubscribe from the newsletter",
+        "newDescription": "You don't want to receive our newsletter anymore, this is where it happens",
+        "successTitle": "You are no longer subscribed to the newsletter",
+        "successDescription": "You are unsubscribed from the newsletter, see you soon"
+      }
     },
     "notifications": {
-      "title": "Notifications"
+      "title": "My notifications"
     },
     "beHumain": {
       "title": "Be humain"
@@ -215,9 +232,69 @@
       "subscribes": "My subscribes",
       "tickList": "My tick list"
     },
+    "user": {
+      "title": "%{name} his climbing profile",
+      "description": "View the profile of  %{name}, climber of the community oblyk",
+      "ascent": {
+        "title": "The ascents of %{name}",
+        "description": "Consult the ascents made by %{name} throughout his climbing life"
+      },
+      "follower": {
+        "title": "The subscribers of %{name}",
+        "description": "See the climbers subscribed to %{name}, climber of the community oblyk"
+      },
+      "media": {
+        "title": "Photos and videos of %{name}",
+        "description": "See the photos and videos taken by %{name} on the different cliffs he climbed"
+      },
+      "photo": {
+        "title": "Photos of %{name}",
+        "description": "See the climbing pictures taken by %{name} on the different cliffs he climbed"
+      },
+      "video": {
+        "title": "Videos of %{name}",
+        "description": "See the climbing videos taken by %{name} on the different cliffs he climbed"
+      },
+      "subscribe": {
+        "title": "Subscribe of %{name}",
+        "description": "View memberships to cliffs, gyms, and other climbers in %{name}"
+      }
+    },
     "error": {
       "notFoundTitle": "Page not found",
       "notFoundDescription": "The page you requested cannot be found"
+    },
+    "link": {
+      "new": "Add a new link"
+    },
+    "park": {
+      "new": "Add a park",
+      "edit": "Edit park"
+    },
+    "photo": {
+      "new": "Add a photo",
+      "edit": "Edit photo"
+    },
+    "video": {
+      "new": "Add a video",
+      "edit": "Edit video"
+    },
+    "placeOfSale": {
+      "new": "Add a place of sale",
+      "edit": "Edit place of sale"
+    },
+    "session": {
+      "newPassword": "Change my password",
+      "resetPasswordTitle": "Forgot your password?",
+      "resetPasswordDescription": "Forgot your password? Enter your email address to reset it",
+      "privacyStep": "My privacy",
+      "signInTitle": "Connect me",
+      "signInDescription": "Connect me to my oblyk account and find all informations about the climbing around me",
+      "signUpTitle": "Create an account",
+      "signUpDescription": "Create an account to track my progress, find climbing partners and get local info from the climbing community"
+    },
+    "version": {
+      "title": "Versions"
     }
   }
 }

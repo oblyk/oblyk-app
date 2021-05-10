@@ -50,6 +50,13 @@ import CopyBtn from '@/components/ui/CopyBtn'
 export default {
   name: 'NewsletterPhotoListView',
   components: { CopyBtn, Spinner },
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.newsletter.photos')
+    }
+  },
+
   data () {
     return {
       photos: [],

@@ -17,6 +17,12 @@ import GymForm from '@/components/gyms/forms/GymForm'
 export default {
   name: 'GymEditView',
   components: { GymForm },
-  mixins: [GymConcern, SessionConcern, ProtectedGymConcern]
+  mixins: [GymConcern, SessionConcern, ProtectedGymConcern],
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.generics.edit', { name: (this.gym || {}).name })
+    }
+  }
 }
 </script>
