@@ -17,6 +17,23 @@
       </span>
     </v-tab>
 
+    <!-- Ascents -->
+    <v-tab
+      :to="user.userPath('ascents')"
+      v-if="user.public_outdoor_ascents"
+    >
+      <v-icon
+        :small="!isMobile"
+        left
+        color="blue"
+      >
+        mdi-check-all
+      </v-icon>
+      <span class="hidden-sm-only hidden-xs-only">
+        {{ $t('components.user.tabs.ascents') }}
+      </span>
+    </v-tab>
+
     <!-- Media -->
     <v-tab :to="user.userPath('media/photos')">
       <v-icon
@@ -65,23 +82,6 @@
       </span>
       <span class="hidden-sm-only hidden-xs-only">
         {{ $t('components.user.tabs.followers') }}
-      </span>
-    </v-tab>
-
-    <!-- Ascents -->
-    <v-tab
-      :to="user.userPath('ascents')"
-      v-if="user.public_outdoor_ascents"
-    >
-      <v-icon
-        :small="!isMobile"
-        left
-        color="blue"
-      >
-        mdi-check-all
-      </v-icon>
-      <span class="hidden-sm-only hidden-xs-only">
-        {{ $t('components.user.tabs.ascents') }}
       </span>
     </v-tab>
   </v-tabs>

@@ -40,15 +40,6 @@
       class="mt-3"
     >
       <v-card-text>
-        <v-select
-          :items="sortItems"
-          item-text="text"
-          item-value="value"
-          v-model="order"
-          :label="$t('components.logBook.sortByLabel')"
-          outlined
-        />
-
         <spinner v-if="loadingAscendedCragRoutes" :full-height="false" />
         <log-book-list
           :break="order"
