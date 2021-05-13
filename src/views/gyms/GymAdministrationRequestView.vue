@@ -96,6 +96,6 @@ export default {
         { vmid: 'og-url', property: 'og:url', content: this.adminRequestMetaUrl }
       ]
     }
-  },
+  }
 }
 </script>
