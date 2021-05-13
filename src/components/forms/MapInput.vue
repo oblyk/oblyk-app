@@ -54,6 +54,7 @@
 </template>
 <script>
 import L, { latLng, icon } from 'leaflet'
+import 'leaflet/dist/leaflet.css'
 import { LMap, LTileLayer, LMarker, LControl, LControlZoom, LGeoJson } from 'vue2-leaflet'
 import OsmNominatim from '@/services/osm-nominatim'
 import LeafletLayerSelector from '@/components/maps/leafletControls/LeafletLayerSelector'
