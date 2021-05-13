@@ -5,6 +5,30 @@
       <router-view/>
     </v-main>
     <app-alert/>
+
+    <!-- About cookies -->
+    <v-snackbar
+      v-model="cookiesMessage"
+      timeout="-1"
+    >
+      <v-icon
+        left
+        color="#b77121"
+      >
+        mdi-cookie
+      </v-icon>
+      {{ $t('common.pages.cookies') }}
+      <template v-slot:action="{ attrs }">
+        <v-btn
+          color="primary"
+          text
+          v-bind="attrs"
+          @click="acceptedCookies()"
+        >
+          {{ $t('actions.ok') }}
+        </v-btn>
+      </template>
+    </v-snackbar>
   </v-app>
 </template>
 
@@ -34,7 +58,8 @@ export default {
   data () {
     return {
       appModal: true,
-      hasPaddingTop: true
+      hasPaddingTop: true,
+      cookiesMessage: (localStorage.getItem('oblykCookiesAccepted') || 'false') === 'false'
     }
   },
 
@@ -65,6 +90,11 @@ export default {
   methods: {
     hasPaddingTopInApp: function () {
       this.hasPaddingTop = !this.$route.meta.noPaddingTop
+    },
+
+    acceptedCookies: function () {
+      localStorage.setItem('oblykCookiesAccepted', 'true')
+      this.cookiesMessage = false
     }
   }
 }
