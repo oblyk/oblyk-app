@@ -39,15 +39,25 @@ export default {
   data () {
     return {
       feeds: [],
-      loadingFeeds: true
+      loadingFeeds: true,
+      feedOptions: {
+        guideBooks: (localStorage.getItem('showGuideBookFeed') !== 'false'),
+        articles: (localStorage.getItem('showNewsFeed') !== 'false'),
+        subscribes: (localStorage.getItem('showSubscribeFeed') !== 'false'),
+        localNews: (localStorage.getItem('showAroundFeed') !== 'false')
+      }
     }
   },
 
   mounted () {
-    this.$root.$on('reloadFeed', () => {
+    this.$root.$on('reloadFeed', (data) => {
       this.feeds = []
       this.loadingFeeds = true
       this.$root.$emit('setLoadMorePageNumber', 1)
+      this.feedOptions.guideBooks = data.guideBooks
+      this.feedOptions.articles = data.articles
+      this.feedOptions.subscribes = data.subscribe
+      this.feedOptions.localNews = data.localNews
       this.getFeeds()
     })
     this.getFeeds()
@@ -68,7 +78,7 @@ export default {
 
     getFeeds: function (page) {
       this.feedClass()
-        .feed(page)
+        .feed(page, this.feedOptions)
         .then(resp => {
           this.feeds = this.feeds.concat(this.groupFeed(resp.data))
           if (resp.data.length === 0) this.$root.$emit('nothingMoreToLoad')

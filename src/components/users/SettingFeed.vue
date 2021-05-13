@@ -7,9 +7,9 @@
         :color="guideBookFeed ? 'primary' : 'light'"
       >
         <v-icon small left>
-          mdi-newspaper-variant-outline
+          mdi-book-open-variant
         </v-icon>
-        Article
+        {{ $t('components.feed.settings.guideBooks') }}
       </v-chip>
 
       <v-chip
@@ -18,9 +18,9 @@
         :color="newsFeed ? 'primary' : 'light'"
       >
         <v-icon small left>
-          mdi-book-open-variant
+          mdi-newspaper-variant-outline
         </v-icon>
-        Topo
+        {{ $t('components.feed.settings.articles') }}
       </v-chip>
 
       <v-chip
@@ -31,7 +31,7 @@
         <v-icon small left>
           mdi-star
         </v-icon>
-        Abonnements
+        {{ $t('components.feed.settings.subscribes') }}
       </v-chip>
 
       <v-chip
@@ -42,7 +42,7 @@
         <v-icon small left>
           mdi-map-marker-radius
         </v-icon>
-        Info local
+        {{ $t('components.feed.settings.localInfos') }}
       </v-chip>
     </div>
     <!-- Feed filter dialog -->
@@ -57,14 +57,14 @@
         <v-card-text>
           <div>
             <v-switch
-              v-model="guideBookFeed"
-              :label="$t('components.user.newGuideBookLabel')"
+              v-model="newsFeed"
+              :label="$t('components.user.newsFeedLabel')"
             />
           </div>
           <div>
             <v-switch
-              v-model="newsFeed"
-              :label="$t('components.user.newsFeedLabel')"
+              v-model="guideBookFeed"
+              :label="$t('components.user.newGuideBookLabel')"
             />
           </div>
           <div>
@@ -125,7 +125,13 @@ export default {
       localStorage.setItem('showNewsFeed', this.newsFeed)
       localStorage.setItem('showSubscribeFeed', this.subscribeFeed)
       localStorage.setItem('showAroundFeed', this.aroundFeed)
-      this.$root.$emit('reloadFeed')
+      const data = {
+        guideBooks: this.guideBookFeed,
+        articles: this.newsFeed,
+        subscribes: this.subscribeFeed,
+        localNews: this.aroundFeed
+      }
+      this.$root.$emit('reloadFeed', data)
       this.feedFilterDialog = false
     }
   }

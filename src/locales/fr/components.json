@@ -571,7 +571,13 @@
       "newPhotos": "Une Nouvelle photo sur : | %{count} nouvelles photos sur : ",
       "newCragRoutes": "Une nouvelle ligne sur : | %{count} nouvelles lignes sur : ",
       "newAscentCragRoutes": "Une nouvelle croix par : | %{count} nouvelles croix par : ",
-      "displayNMore": "Afficher %{count} de plus"
+      "displayNMore": "Afficher %{count} de plus",
+      "settings": {
+        "guideBooks": "Topos",
+        "articles": "Articles",
+        "subscribes": "Abonnements",
+        "localInfos": "Infos local"
+      }
     },
     "messenger": {
       "messageEmpty": "Il n'y a pas de message dans cette conversation pour l'instant"

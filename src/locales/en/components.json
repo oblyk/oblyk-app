@@ -571,7 +571,13 @@
       "newPhotos": "One new photo on : | %{count} new photos on : ",
       "newCragRoutes": "One new route on : | %{count} new routes on : ",
       "newAscentCragRoutes": "One new ascent by : | %{count} new ascents by : ",
-      "displayNMore": "Display %{count} more"
+      "displayNMore": "Display %{count} more",
+      "settings": {
+        "guideBooks": "Guide books",
+        "articles": "Articles",
+        "subscribes": "Subscribes",
+        "localInfos": "Local infos"
+      }
     },
     "messenger": {
       "messageEmpty": "There is no message in this conversation at the moment."

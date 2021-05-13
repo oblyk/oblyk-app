@@ -13,13 +13,19 @@ class CurrentUserApi extends BaseApi {
     })
   }
 
-  feed (page = 1) {
+  feed (page = 1, data = {}) {
     return axios({
       method: 'GET',
       url: `${this.baseUrl}/current_users/feed.json?page=${page}`,
       headers: {
         Authorization: this.authToken(),
         HttpApiAccessToken: this.apiAccessToken
+      },
+      params: {
+        articles: data.articles,
+        guide_books: data.guideBooks,
+        subscribes: data.subscribes,
+        local_news: data.localNews
       }
     })
   }
