@@ -180,6 +180,7 @@ export default {
         })
         .catch(err => {
           this.$root.$emit('alertFromApiError', err, 'cragRoute')
+          this.$root.$emit('nothingMoreToLoad')
         })
         .finally(() => {
           this.loadingRoutes = false

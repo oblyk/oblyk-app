@@ -83,6 +83,9 @@ export default {
           this.feeds = this.feeds.concat(this.groupFeed(resp.data))
           if (resp.data.length === 0) this.$root.$emit('nothingMoreToLoad')
         })
+        .catch(() => {
+          this.$root.$emit('nothingMoreToLoad')
+        })
         .finally(() => {
           this.loadingFeeds = false
           this.$root.$emit('moreIsLoaded')

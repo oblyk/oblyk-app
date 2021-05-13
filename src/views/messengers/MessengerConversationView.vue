@@ -141,6 +141,9 @@ export default {
           if (resp.data.length < 25) this.$root.$emit('nothingMoreToLoad')
           this.conversationMessages.unshift(...resp.data)
         })
+        .catch(() => {
+          this.$root.$emit('nothingMoreToLoad')
+        })
         .finally(() => {
           this.loadingConversationMessages = false
           this.initialLoad = false
