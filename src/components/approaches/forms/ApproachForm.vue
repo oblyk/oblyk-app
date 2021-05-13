@@ -83,6 +83,7 @@ import LeafletLayerSelector from '@/components/maps/leafletControls/LeafletLayer
 import { LControl, LControlZoom, LGeoJson, LTileLayer } from 'vue2-leaflet'
 import { EditableMap, EditablePolyline } from 'vue2-leaflet-editable'
 import L from 'leaflet'
+import 'leaflet/dist/leaflet.css'
 import { MapMarkerHelpers } from '@/mixins/MapMarkerHelpers'
 import { MapPopupHelpers } from '@/mixins/MapPopupHelpers'
 import ApproachTypeInput from '@/components/forms/ApproachTypeInput'
