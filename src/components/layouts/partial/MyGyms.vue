@@ -73,7 +73,7 @@ export default {
 
     gyms: function () {
       const gymList = []
-      for (const gym of this.user.gyms) {
+      for (const gym of this.user.administered_gyms) {
         gymList.push(new Gym(gym))
       }
       return gymList
