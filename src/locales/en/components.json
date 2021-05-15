@@ -405,12 +405,16 @@
       "evolution": "Evolution",
       "myOutdoorAscents": "My outdoor ascents",
       "sortByLabel": "Sort ascents by",
+      "filterByClimbingType": "Filter by climbing type",
       "emptyProject": "Your project list is empty",
       "emptyTickList": "You don't have any route in your tick list for the moment",
       "sortItem": {
         "difficulty": "Difficulty",
         "crag": "Crag",
         "released_at": "Date"
+      },
+      "climbingItems": {
+        "all": "All types of climbing"
       },
       "figures": {
         "countries": "%{count} country | %{count} countries",

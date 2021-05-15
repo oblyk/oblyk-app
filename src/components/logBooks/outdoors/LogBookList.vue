@@ -2,14 +2,28 @@
   <div>
 
     <!-- Sort filed -->
-    <v-select
-      :items="sortItems"
-      item-text="text"
-      item-value="value"
-      v-model="order"
-      :label="$t('components.logBook.sortByLabel')"
-      outlined
-    />
+    <v-row>
+      <v-col>
+        <v-select
+          :items="sortItems"
+          item-text="text"
+          item-value="value"
+          v-model="order"
+          :label="$t('components.logBook.sortByLabel')"
+          outlined
+        />
+      </v-col>
+      <v-col>
+        <v-select
+          :items="climbingItems"
+          item-text="text"
+          item-value="value"
+          v-model="climbingType"
+          :label="$t('components.logBook.filterByClimbingType')"
+          outlined
+        />
+      </v-col>
+    </v-row>
 
     <!-- Send list -->
     <div v-if="!loadingAscendedCragRoutes">
@@ -48,19 +62,34 @@ export default {
       cragRoutes: [],
 
       order: 'difficulty',
-
       sortItems: [
         { text: this.$t('components.logBook.sortItem.difficulty'), value: 'difficulty' },
         { text: this.$t('components.logBook.sortItem.crags'), value: 'crags' },
         { text: this.$t('components.logBook.sortItem.released_at'), value: 'released_at' }
+      ],
+
+      climbingType: 'all',
+      climbingItems: [
+        { text: this.$t('components.logBook.climbingItems.all'), value: 'all' },
+        { text: this.$t('models.climbs.sport_climbing'), value: 'sport_climbing' },
+        { text: this.$t('models.climbs.bouldering'), value: 'bouldering' },
+        { text: this.$t('models.climbs.multi_pitch'), value: 'multi_pitch' },
+        { text: this.$t('models.climbs.trad_climbing'), value: 'trad_climbing' },
+        { text: this.$t('models.climbs.aid_climbing'), value: 'aid_climbing' },
+        { text: this.$t('models.climbs.deep_water'), value: 'deep_water' },
+        { text: this.$t('models.climbs.via_ferrata'), value: 'via_ferrata' }
       ]
     }
   },
 
   watch: {
     order: function () {
-      this.$root.$emit('setLoadMorePageNumber', 1)
-      this.cragRoutes = []
+      this.resetAscents()
+      this.ascendedCragRoutes()
+    },
+
+    climbingType: function () {
+      this.resetAscents()
       this.ascendedCragRoutes()
     }
   },
@@ -70,17 +99,24 @@ export default {
   },
 
   methods: {
+    resetAscents: function () {
+      this.$root.$emit('setLoadMorePageNumber', 1)
+      this.cragRoutes = []
+    },
+
     ascendedCragRoutes: function (page) {
       let promise
       if (this.user) {
         promise = UserApi.ascendedCragRoutes(
           this.user.uuid,
           this.order,
+          this.climbingType,
           page
         )
       } else {
         promise = LogBookOutdoorApi.ascendedCragRoutes(
           this.order,
+          this.climbingType,
           page
         )
       }
