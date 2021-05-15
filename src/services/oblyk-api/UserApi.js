@@ -116,7 +116,7 @@ class UserApi extends BaseApi {
     })
   }
 
-  ascendedCragRoutes (userUuid, order = 'difficulty') {
+  ascendedCragRoutes (userUuid, order = 'difficulty', page = 1) {
     return axios({
       method: 'GET',
       url: `${this.baseUrl}/users/${userUuid}/ascended_crag_routes.json`,
@@ -125,7 +125,8 @@ class UserApi extends BaseApi {
         HttpApiAccessToken: this.apiAccessToken
       },
       params: {
-        order: order
+        order: order,
+        page: page
       }
     })
   }

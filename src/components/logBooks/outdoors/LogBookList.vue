@@ -14,8 +14,8 @@
     <!-- Send list -->
     <div v-if="!loadingAscendedCragRoutes">
       <crag-route-small-line
-        v-for="cragRoute in cragRoutes"
-        :key="cragRoute.id"
+        v-for="(cragRoute, index) in cragRoutes"
+        :key="`crag-route-ascent-${index}`"
         :route="cragRoute"
       />
 
@@ -33,9 +33,14 @@ import LogBookOutdoorApi from '@/services/oblyk-api/LogBookOutdoorApi'
 import CragRoute from '@/models/CragRoute'
 import Spinner from '@/components/layouts/Spiner'
 import LoadingMore from '@/components/layouts/LoadingMore'
+import UserApi from '@/services/oblyk-api/UserApi'
 export default {
   name: 'LogBookList',
   components: { LoadingMore, Spinner, CragRouteSmallLine },
+
+  props: {
+    user: Object
+  },
 
   data () {
     return {
@@ -54,6 +59,7 @@ export default {
 
   watch: {
     order: function () {
+      this.$root.$emit('setLoadMorePageNumber', 1)
       this.cragRoutes = []
       this.ascendedCragRoutes()
     }
@@ -65,16 +71,26 @@ export default {
 
   methods: {
     ascendedCragRoutes: function (page) {
-      LogBookOutdoorApi
-        .ascendedCragRoutes(
+      let promise
+      if (this.user) {
+        promise = UserApi.ascendedCragRoutes(
+          this.user.uuid,
           this.order,
           page
         )
+      } else {
+        promise = LogBookOutdoorApi.ascendedCragRoutes(
+          this.order,
+          page
+        )
+      }
+
+      promise
         .then(resp => {
           for (const route of resp.data) {
             this.cragRoutes.push(new CragRoute(route))
           }
-          if (resp.data.length === 0) this.$root.$emit('nothingMoreToLoad')
+          if (resp.data.length < 25) this.$root.$emit('nothingMoreToLoad')
         })
         .catch(() => {
           this.$root.$emit('nothingMoreToLoad')

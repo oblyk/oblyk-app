@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container fluid>
     <v-card>
       <v-card-text>
         <v-row>
@@ -36,16 +36,9 @@
         </v-row>
       </v-card-text>
     </v-card>
-    <v-card
-      class="mt-3"
-    >
+    <v-card class="mt-3">
       <v-card-text>
-        <spinner v-if="loadingAscendedCragRoutes" :full-height="false" />
-        <log-book-list
-          :break="order"
-          v-if="!loadingAscendedCragRoutes"
-          :crag-routes="cragRoutes"
-        />
+        <log-book-list :user="user" />
       </v-card-text>
     </v-card>
     <crag-route-drawer />
@@ -58,7 +51,6 @@ import UserApi from '@/services/oblyk-api/UserApi'
 import Spinner from '@/components/layouts/Spiner'
 import LogBookClimbingTypeChart from '@/components/logBooks/outdoors/LogBookClimbingTypeChart'
 import LogBookGradeChart from '@/components/logBooks/outdoors/LogBookGradeChart'
-import CragRoute from '@/models/CragRoute'
 import LogBookList from '@/components/logBooks/outdoors/LogBookList'
 import CragRouteDrawer from '@/components/cragRoutes/CragRouteDrawer'
 import ClimbingTypeLegend from '@/components/ui/ClimbingTypeLegend'
@@ -114,24 +106,7 @@ export default {
       climbingTypeData: {},
 
       loadingGradeChart: true,
-      gradeData: {},
-
-      loadingAscendedCragRoutes: true,
-      cragRoutes: [],
-
-      order: 'difficulty',
-
-      sortItems: [
-        { text: this.$t('components.logBook.sortItem.difficulty'), value: 'difficulty' },
-        { text: this.$t('components.logBook.sortItem.crags'), value: 'crags' },
-        { text: this.$t('components.logBook.sortItem.released_at'), value: 'released_at' }
-      ]
-    }
-  },
-
-  watch: {
-    order: function () {
-      this.ascendedCragRoutes()
+      gradeData: {}
     }
   },
 
@@ -139,7 +114,6 @@ export default {
     this.getFigures()
     this.getClimbingTypeChart()
     this.getGradeChart()
-    this.ascendedCragRoutes()
   },
 
   methods: {
@@ -176,21 +150,6 @@ export default {
         })
         .finally(() => {
           this.loadingGradeChart = false
-        })
-    },
-
-    ascendedCragRoutes: function () {
-      this.loadingAscendedCragRoutes = true
-      UserApi
-        .ascendedCragRoutes(this.user.uuid, this.order)
-        .then(resp => {
-          this.cragRoutes = []
-          for (const route of resp.data) {
-            this.cragRoutes.push(new CragRoute(route))
-          }
-        })
-        .finally(() => {
-          this.loadingAscendedCragRoutes = false
         })
     }
   }
