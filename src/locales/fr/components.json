@@ -468,6 +468,7 @@
       "privacyParameters": "Paramètres de confidentialité",
       "partnerSearch": "Recherche de partenaire",
       "notificationSetting": "Paramètre des notifications",
+      "otherSetting": "Autres paramètres",
       "successfulEditMessage": "Votre profile à été mis à jour",
       "whatClimbingType": "Quel type d'escalade pratiquez-vous ?",
       "whichLevel": "Dans quel niveau aimez-vous grimper ?",
@@ -507,6 +508,11 @@
       "youAreUnsubscribedToTheNewsletter": "vous êtes désinscrit de la newsletter",
       "emailNotification": "Notification par email",
       "recoveryEmailNotificationSettings": "récupération du paramétrage des notifications par email ...",
+      "deleteMyAccount": "Supprimer mon compte",
+      "actionOnMyAccount": "Actions sur mon compte",
+      "areYouSureToDeleteYourAccount": "Êtes-vous sûr de supprimer votre compte ?",
+      "IUnderstoodTheScopeOfMyAction": "J'ai compris la porté de mon action",
+      "deleteExplain": "Supprimer son compte est une action <strong>irréversible</strong> et <strong>immédiate</strong>.Nous allons supprimer <strong>l'intégralité des données</strong> qui vous concerne et nous seront dans <strong>l'incapacité de retrouver vos données</strong> si vous changer d'avis par la suite.",
       "tabs": {
         "feed": "Fil",
         "profile": "Profil",
@@ -529,7 +535,8 @@
         "general": "Généraux",
         "privacy": "Confidentialité",
         "partner": "Carte des grimpeurs",
-        "notifications": "Notifications"
+        "notifications": "Notifications",
+        "others": "Autres"
       },
       "ascentTabs": {
         "sendList": "Carnet",

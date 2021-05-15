@@ -159,5 +159,16 @@ class CurrentUserApi extends BaseApi {
       }
     })
   }
+
+  delete () {
+    return axios({
+      method: 'DELETE',
+      url: `${this.baseUrl}/current_users.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
+    })
+  }
 }
 export default new CurrentUserApi()

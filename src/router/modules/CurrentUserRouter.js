@@ -18,6 +18,7 @@ const CurrentUserFollowersView = () => import(/* webpackChunkName: "current-user
 const CurrentUserFavoriteCragsView = () => import(/* webpackChunkName: "current-user-routes" */ '@/views/currentUsers/CurrentUserFavoriteCragsView')
 const CurrentUserFavoriteGymsView = () => import(/* webpackChunkName: "current-user-routes" */ '@/views/currentUsers/CurrentUserFavoriteGymsView')
 const CurrentUserNotificationSettingsView = () => import(/* webpackChunkName: "current-user-routes" */ '@/views/currentUsers/actions/CurrentUserNotificationSettingsView')
+const CurrentUserOtherSettingsView = () => import(/* webpackChunkName: "current-user-routes" */ '@/views/currentUsers/actions/CurrentUserOtherSettingsView')
 
 export default [
   {
@@ -72,6 +73,13 @@ export default [
       {
         path: 'notifications',
         component: CurrentUserNotificationSettingsView,
+        meta: {
+          requiresAuth: true
+        }
+      },
+      {
+        path: 'others',
+        component: CurrentUserOtherSettingsView,
         meta: {
           requiresAuth: true
         }

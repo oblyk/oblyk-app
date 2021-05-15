@@ -19,6 +19,10 @@
       <v-icon left small>mdi-bell</v-icon>
       {{ $t('components.user.settingTabs.notifications') }}
     </v-tab>
+    <v-tab :to="user.currentUserPath('settings/others')">
+      <v-icon left small>mdi-settings</v-icon>
+      {{ $t('components.user.settingTabs.others') }}
+    </v-tab>
   </v-tabs>
 </template>
 

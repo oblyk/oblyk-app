@@ -467,6 +467,7 @@
       "globalInformation": "General Information",
       "privacyParameters": "Privacy parameters",
       "partnerSearch": "Partner search",
+      "otherSetting": "Others settings",
       "notificationSetting": "Notifications parameters",
       "successfulEditMessage": "Your profile has been updated",
       "whatClimbingType": "What type of climbing do you practice ?",
@@ -507,6 +508,11 @@
       "youAreUnsubscribedToTheNewsletter": "you are unsubscribed to the newsletter",
       "emailNotification": "Email notification",
       "recoveryEmailNotificationSettings": "recovery of email notification settings ...",
+      "deleteMyAccount": "Delete my account",
+      "actionOnMyAccount": "Actions on my account",
+      "areYouSureToDeleteYourAccount": "Are you sure to delete your account ?",
+      "IUnderstoodTheScopeOfMyAction": "I understood the scope of my action",
+      "deleteExplain": "Deleting your account is an <strong>irreversible</strong> and <strong>immediate</strong> action, we will delete <strong>all your data</strong> and we will be <strong>unable to retrieve your data</strong> if you change your mind afterwards.",
       "tabs": {
         "feed": "Feed",
         "profile": "Profile",
@@ -529,7 +535,8 @@
         "general": "General",
         "privacy": "Privacy",
         "partner": "Climbers Map",
-        "notifications": "Notifications"
+        "notifications": "Notifications",
+        "others": "Others"
       },
       "ascentTabs": {
         "sendList": "Send list",
