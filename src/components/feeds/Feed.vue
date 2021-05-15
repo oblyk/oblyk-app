@@ -104,6 +104,7 @@ export default {
             name: feed.parent_object.name,
             id: feed.parent_object.id,
             slug_name: feed.parent_object.slug_name,
+            uuid: feed.parent_object.uuid,
             feedable_type: feed.parent_type,
             group_type: `${feed.feedable_type}s`,
             posted_at: feed.posted_at,
