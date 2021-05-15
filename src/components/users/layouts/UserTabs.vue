@@ -18,10 +18,7 @@
     </v-tab>
 
     <!-- Ascents -->
-    <v-tab
-      :to="user.userPath('ascents')"
-      v-if="user.public_outdoor_ascents"
-    >
+    <v-tab :to="user.userPath('ascents')">
       <v-icon
         :small="!isMobile"
         left

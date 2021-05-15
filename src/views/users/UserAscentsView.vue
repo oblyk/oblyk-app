@@ -1,47 +1,59 @@
 <template>
   <v-container fluid>
-    <v-card>
-      <v-card-text>
-        <v-row>
+    <div
+      class="text-center mt-10 mb-10"
+      v-if="!currentUserCanSeeAscents()"
+    >
+      <p><v-icon large>mdi-lock</v-icon></p>
+      <p>
+        {{ $t('components.user.privateLogBook', { name: user.first_name }) }}<br>
+        {{ $t('components.user.subscribeToSee') }}
+      </p>
+    </div>
+    <div v-else>
+      <v-card>
+        <v-card-text>
+          <v-row>
 
-          <!-- Climbing type chart -->
-          <v-col class="col-12 col-md-6 col-lg-3">
-            <spinner v-if="loadingClimbingTypeChart" :full-height="false" />
-            <log-book-climbing-type-chart
-              v-if="!loadingClimbingTypeChart"
-              :data="climbingTypeData"
-              :legend="false"
-            />
-            <!-- Climbing type legend -->
-            <climbing-type-legend class="mt-3" />
-          </v-col>
+            <!-- Climbing type chart -->
+            <v-col class="col-12 col-md-6 col-lg-3">
+              <spinner v-if="loadingClimbingTypeChart" :full-height="false" />
+              <log-book-climbing-type-chart
+                v-if="!loadingClimbingTypeChart"
+                :data="climbingTypeData"
+                :legend="false"
+              />
+              <!-- Climbing type legend -->
+              <climbing-type-legend class="mt-3" />
+            </v-col>
 
-          <!-- Climbing grade chart -->
-          <v-col class="col-12 col-md-6 col-lg-4">
-            <spinner v-if="loadingGradeChart" :full-height="false" />
-            <log-book-grade-chart
-              v-if="!loadingGradeChart"
-              :data="gradeData"
-            />
-          </v-col>
+            <!-- Climbing grade chart -->
+            <v-col class="col-12 col-md-6 col-lg-4">
+              <spinner v-if="loadingGradeChart" :full-height="false" />
+              <log-book-grade-chart
+                v-if="!loadingGradeChart"
+                :data="gradeData"
+              />
+            </v-col>
 
-          <!-- Global figures -->
-          <v-col class="col-12 col-md-12 col-lg-5">
-            <spinner v-if="loadingFigures" :full-height="false" />
-            <log-book-figures
-              v-if="!loadingFigures"
-              :figures="figures"
-            />
-          </v-col>
-        </v-row>
-      </v-card-text>
-    </v-card>
-    <v-card class="mt-3">
-      <v-card-text>
-        <log-book-list :user="user" />
-      </v-card-text>
-    </v-card>
-    <crag-route-drawer />
+            <!-- Global figures -->
+            <v-col class="col-12 col-md-12 col-lg-5">
+              <spinner v-if="loadingFigures" :full-height="false" />
+              <log-book-figures
+                v-if="!loadingFigures"
+                :figures="figures"
+              />
+            </v-col>
+          </v-row>
+        </v-card-text>
+      </v-card>
+      <v-card class="mt-3">
+        <v-card-text>
+          <log-book-list :user="user" />
+        </v-card-text>
+      </v-card>
+      <crag-route-drawer />
+    </div>
   </v-container>
 </template>
 
@@ -54,9 +66,11 @@ import LogBookGradeChart from '@/components/logBooks/outdoors/LogBookGradeChart'
 import LogBookList from '@/components/logBooks/outdoors/LogBookList'
 import CragRouteDrawer from '@/components/cragRoutes/CragRouteDrawer'
 import ClimbingTypeLegend from '@/components/ui/ClimbingTypeLegend'
+import { SessionConcern } from '@/concerns/SessionConcern'
 
 export default {
   name: 'UserAscentView',
+  mixins: [SessionConcern],
   components: {
     ClimbingTypeLegend,
     CragRouteDrawer,
@@ -111,12 +125,25 @@ export default {
   },
 
   mounted () {
-    this.getFigures()
-    this.getClimbingTypeChart()
-    this.getGradeChart()
+    if (this.currentUserCanSeeAscents()) {
+      this.getFigures()
+      this.getClimbingTypeChart()
+      this.getGradeChart()
+    }
   },
 
   methods: {
+    currentUserCanSeeAscents: function () {
+      // If user have public profil
+      if (this.user.public_profile && this.user.public_outdoor_ascents) return true
+
+      // If user have public outdoor logbook
+      if (this.isLoggedIn && this.user.public_outdoor_ascents) return true
+
+      // If current user is subscribe to user
+      return (this.isLoggedIn && this.iAmSubscribedToThis('User', this.user.id) === 'subscribe')
+    },
+
     getFigures: function () {
       this.loadingFigures = true
       UserApi

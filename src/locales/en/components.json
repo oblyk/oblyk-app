@@ -513,6 +513,9 @@
       "areYouSureToDeleteYourAccount": "Are you sure to delete your account ?",
       "IUnderstoodTheScopeOfMyAction": "I understood the scope of my action",
       "deleteExplain": "Deleting your account is an <strong>irreversible</strong> and <strong>immediate</strong> action, we will delete <strong>all your data</strong> and we will be <strong>unable to retrieve your data</strong> if you change your mind afterwards.",
+      "privateLogBook": "The log book of %{name} is private.",
+      "privateMedia": "Photos & videos of %{name} is private.",
+      "subscribeToSee": "Subscribe to see it!",
       "tabs": {
         "feed": "Feed",
         "profile": "Profile",

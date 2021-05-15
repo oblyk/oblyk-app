@@ -513,6 +513,9 @@
       "areYouSureToDeleteYourAccount": "Êtes-vous sûr de supprimer votre compte ?",
       "IUnderstoodTheScopeOfMyAction": "J'ai compris la porté de mon action",
       "deleteExplain": "Supprimer son compte est une action <strong>irréversible</strong> et <strong>immédiate</strong>.Nous allons supprimer <strong>l'intégralité des données</strong> qui vous concerne et nous seront dans <strong>l'incapacité de retrouver vos données</strong> si vous changer d'avis par la suite.",
+      "privateLogBook": "Le carnet de croix de %{name} est privé.",
+      "privateMedia": "les photos & videos de %{name} sont privées.",
+      "subscribeToSee": "Abonnez-vous pour pouvoir le voir !",
       "tabs": {
         "feed": "Fil",
         "profile": "Profil",
