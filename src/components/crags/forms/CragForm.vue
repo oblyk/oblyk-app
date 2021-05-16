@@ -21,6 +21,25 @@
       class="mb-3"
     />
 
+    <div v-if="cragsAround.length > 0">
+      <p class="mb-2">
+        <u>
+          <v-icon color="warning" left>mdi-alert</v-icon>
+          {{ $tc('components.crag.cragAroundInCreate', cragsAround.length, { count: cragsAround.length }) }}
+        </u>
+      </p>
+      <crag-small-card
+        v-for="(crag, index) in cragsAround"
+        :key="`crag-around-${index}`"
+        :crag="crag"
+        :small="true"
+        class="mb-2"
+      />
+      <p class="mb-8 grey--text">
+        {{ $t('components.crag.doNotCreateADuplicate') }}
+      </p>
+    </div>
+
     <v-row>
       <v-col>
         <v-text-field
@@ -65,10 +84,11 @@ import RainInput from '@/components/forms/RainInput'
 import SunInput from '@/components/forms/SunInput'
 import SeasonInput from '@/components/forms/SeasonInput'
 import OrientationInput from '@/components/forms/OrientationInput'
+import CragSmallCard from '@/components/crags/CragSmallCard'
 
 export default {
   name: 'CragForm',
-  components: { OrientationInput, SeasonInput, SunInput, RainInput, RockInput, MapInput, ClimbingTypeInput, CloseForm, SubmitForm },
+  components: { CragSmallCard, OrientationInput, SeasonInput, SunInput, RainInput, RockInput, MapInput, ClimbingTypeInput, CloseForm, SubmitForm },
   mixins: [FormHelpers],
   props: {
     crag: {
@@ -79,6 +99,7 @@ export default {
 
   data () {
     return {
+      cragsAround: [],
       localization: {
         latitude: (this.crag || {}).latitude,
         longitude: (this.crag || {}).longitude,
@@ -134,6 +155,7 @@ export default {
         this.data.country = this.localization.country
         this.data.city = this.localization.city
         this.data.region = this.localization.region
+        this.getCragAround()
       },
       deep: true
     },
@@ -174,6 +196,21 @@ export default {
   },
 
   methods: {
+    getCragAround: function () {
+      if (this.isEditingForm()) return
+
+      CragApi.cragsAround(
+        this.data.latitude,
+        this.data.longitude,
+        '1km'
+      ).then(resp => {
+        this.cragsAround = []
+        for (const crag of resp.data) {
+          this.cragsAround.push(new Crag(crag))
+        }
+      })
+    },
+
     submit: function () {
       this.submitOverlay = true
       const promise = (this.isEditingForm()) ? CragApi.update(this.data) : CragApi.create(this.data)

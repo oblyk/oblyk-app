@@ -5,7 +5,7 @@
         <h2 class="mb-4">
           {{ $t('components.gym.addNew') }}
         </h2>
-        <gym-form method="post" />
+        <gym-form submit-methode="post" />
       </v-col>
     </v-row>
   </v-container>

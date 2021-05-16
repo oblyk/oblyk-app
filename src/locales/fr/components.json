@@ -187,6 +187,8 @@
       "addThisCragInGuideBook": "Ajouter ce site à un topo",
       "cragAround": "%{count} site dans les environs | %{count} sites dans les environs",
       "cragCount": "%{count} site | %{count} sites",
+      "cragAroundInCreate": "Il y a un site à moins de 1 km : | Il y a %{count} sites à moins de 1km :",
+      "doNotCreateADuplicate": "Ne créer pas un doublon si un autre grimpeur a déjà référencé ce site !",
       "tabs": {
         "info": "Info",
         "media": "Photos & Videos",
@@ -319,7 +321,9 @@
       "seePhoneNumber": "Voir le numéro de téléphone",
       "seeEmail": "Voir l'email",
       "gymAround": "%{count} salle dans les environs | %{count} salles dans les environs",
-      "gymCount": "%{count} salle | %{count} salles"
+      "gymCount": "%{count} salle | %{count} salles",
+      "gymAroundInCreate": "Il y a une salle à moins de 1 km : | Il y a %{count} salles à moins de 1km :",
+      "doNotCreateADuplicate": "Ne créer pas un doublon si un autre grimpeur a déjà référencé cette salle !"
     },
     "gymAdmin": {
       "welcome": "Bienvenue sur la page d'administration de %{name}",

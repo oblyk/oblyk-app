@@ -187,6 +187,8 @@
       "addThisCragInGuideBook": "Add this crag in guide book",
       "cragAround": "%{count} crag around | %{count} crags around",
       "cragCount": "%{count} crag | %{count} crags",
+      "cragAroundInCreate": "There are one crag within 1km: | There are %{count} crags within 1km:",
+      "doNotCreateADuplicate": "Do not create a duplicate if another climber has already referenced this crag!",
       "tabs": {
         "info": "Info",
         "media": "Photos & Videos",
@@ -319,7 +321,9 @@
       "seePhoneNumber": "See phone number",
       "seeEmail": "See email",
       "gymAround": "%{count} gym around | %{count} gyms around",
-      "gymCount": "%{count} gym | %{count} gyms"
+      "gymCount": "%{count} gym | %{count} gyms",
+      "cragAroundInCreate": "There are one gym within 1km: | There are %{count} gyms within 1km:",
+      "doNotCreateADuplicate": "Do not create a duplicate if another climber has already referenced this gym!"
     },
     "gymAdmin": {
       "welcome": "Welcome to the administration page of %{name}",

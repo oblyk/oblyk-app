@@ -21,10 +21,29 @@
       v-model="localization"
       :default-latitude="data.latitude"
       :default-longitude="data.longitude"
-      :default-zoom="isEditing() ? 10 : 4"
+      :default-zoom="isEditingForm() ? 10 : 4"
       style-map="street"
       class="mb-3"
     />
+
+    <div v-if="gymsAround.length > 0">
+      <p class="mb-2">
+        <u>
+          <v-icon color="warning" left>mdi-alert</v-icon>
+          {{ $tc('components.gym.gymAroundInCreate', gymsAround.length, { count: gymsAround.length }) }}
+        </u>
+      </p>
+      <gym-small-card
+        v-for="(gym, index) in gymsAround"
+        :key="`gym-around-${index}`"
+        :gym="gym"
+        :small="true"
+        class="mb-2"
+      />
+      <p class="mb-8 grey--text">
+        {{ $t('components.gym.doNotCreateADuplicate') }}
+      </p>
+    </div>
 
     <v-text-field
       outlined
@@ -79,10 +98,15 @@
     />
 
     <close-form />
-    <submit-form :overlay="overlay" />
+    <submit-form
+      :overlay="submitOverlay"
+      :submit-local-key="submitText()"
+    />
   </v-form>
 </template>
+
 <script>
+import { FormHelpers } from '@/mixins/FormHelpers'
 import GymApi from '@/services/oblyk-api/GymApi'
 import Gym from '@/models/Gym'
 import MapInput from '@/components/forms/MapInput'
@@ -90,21 +114,19 @@ import SubmitForm from '@/components/forms/SubmitForm'
 import ClimbingTypeInput from '@/components/forms/ClimbingTypeInput'
 import CloseForm from '@/components/forms/CloseForm'
 import MarkdownInput from '@/components/forms/MarkdownInput'
+import GymSmallCard from '@/components/gyms/GymSmallCard'
 
 export default {
   name: 'GymForm',
-  components: { MarkdownInput, CloseForm, ClimbingTypeInput, SubmitForm, MapInput },
+  components: { GymSmallCard, MarkdownInput, CloseForm, ClimbingTypeInput, SubmitForm, MapInput },
+  mixins: [FormHelpers],
   props: {
-    gym: {
-      type: Object,
-      required: false
-    },
-    method: String
+    gym: Object
   },
 
   data () {
     return {
-      overlay: false,
+      gymsAround: [],
       localization: {
         latitude: (this.gym || {}).latitude,
         longitude: (this.gym || {}).longitude,
@@ -149,6 +171,7 @@ export default {
         this.data.city = this.localization.city
         this.data.address = this.localization.address
         this.data.big_city = this.localization.big_city
+        this.getGymAround()
       },
       deep: true
     },
@@ -165,13 +188,24 @@ export default {
   },
 
   methods: {
-    isEditing: function () {
-      return this.method === 'put'
+    getGymAround: function () {
+      if (this.isEditingForm()) return
+
+      GymApi.gymsAround(
+        this.data.latitude,
+        this.data.longitude,
+        '1km'
+      ).then(resp => {
+        this.gymsAround = []
+        for (const gym of resp.data) {
+          this.gymsAround.push(new Gym(gym))
+        }
+      })
     },
 
     submit: function () {
-      this.overlay = true
-      const promise = (this.isEditing()) ? GymApi.update(this.data) : GymApi.create(this.data)
+      this.submitOverlay = true
+      const promise = (this.isEditingForm()) ? GymApi.update(this.data) : GymApi.create(this.data)
 
       promise
         .then((resp) => {
@@ -181,7 +215,7 @@ export default {
         .catch((err) => {
           this.$root.$emit('alertFromApiError', err, 'gym')
         }).then(() => {
-          this.overlay = false
+          this.submitOverlay = false
         })
     }
   }

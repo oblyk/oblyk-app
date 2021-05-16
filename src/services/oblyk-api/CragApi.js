@@ -55,9 +55,13 @@ class CragApi extends BaseApi {
   }
 
   cragsAround (latitude, longitude, distance = '20km') {
+    const CancelToken = axios.CancelToken
+    this.tokenSearchSource = CancelToken.source()
+
     return axios({
       method: 'GET',
       url: `${this.baseUrl}/public/crags/crags_around.json`,
+      cancelToken: this.tokenSearchSource.token,
       headers: { HttpApiAccessToken: this.apiAccessToken },
       params: {
         latitude: latitude,
