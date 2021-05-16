@@ -193,7 +193,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .conversation-title {
   height: 53px;
 }
@@ -215,6 +215,20 @@ export default {
     min-height: 125px;
     flex: 0;
     padding: 0 8px 0 8px;
+  }
+}
+
+.theme--dark {
+  .conversation-message {
+    &.my-message { background-color: #121212; }
+    &.other-message { background-color: #1565c0; }
+  }
+}
+
+.theme--light {
+  .conversation-message {
+    &.my-message {background-color: #f5f5f5; }
+    &.other-message {background-color: #1e88e5; }
   }
 }
 </style>

@@ -1,9 +1,8 @@
 <template>
   <v-sheet
     :dark="!itsMyMessage()"
-    class="pa-2 rounded-lg mb-2"
-    :color="itsMyMessage() ? 'myMessage' : 'primary'"
-    v-bind:class="itsMyMessage() ? 'ml-10' : 'mr-10'"
+    class="pa-2 rounded-lg mb-2 conversation-message"
+    v-bind:class="itsMyMessage() ? 'ml-10 my-message' : 'mr-10 other-message'"
   >
     <p
       v-if="displayHead()"
