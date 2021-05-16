@@ -32,10 +32,23 @@
           class="message-list"
           ref="conversationMessageList"
         >
-          <loading-more
-            v-if="!initialLoad"
-            :get-function="getMessages"
-          />
+
+          <!-- Loading old message -->
+          <div
+            class="text-center"
+            v-if="!noMoreOlderMessage && !initialLoad"
+          >
+            <v-btn
+              v-if="!loadingMoreMessage"
+              v-intersect="onConversationTop"
+              text
+            >
+              {{ $t('components.loadMore.loadMore') }}
+            </v-btn>
+            <spinner v-if="loadingMoreMessage" :full-height="false" />
+          </div>
+
+          <!-- List of message -->
           <conversation-message-list
             v-if="!initialLoad"
             :conversation-messages="conversationMessages"
@@ -65,14 +78,12 @@ import ConversationMessageForm from '@/components/messengers/forms/ConversationM
 import ConversationMessageApi from '@/services/oblyk-api/ConversationMessageApi'
 import ConversationApi from '@/services/oblyk-api/ConversationApi'
 import ConversationMessageList from '@/components/messengers/ConversationMessageList'
-import LoadingMore from '@/components/layouts/LoadingMore'
 import { DateHelpers } from '@/mixins/DateHelpers'
 import { ConversationChannel } from '@/channels/ConversationChannel'
 
 export default {
   name: 'MessengerConversationView',
   components: {
-    LoadingMore,
     ConversationMessageList,
     ConversationMessageForm,
     Spinner
@@ -104,11 +115,23 @@ export default {
 
   data () {
     return {
+      noMoreOlderMessage: false,
+      loadingMoreMessage: false,
+      oldestMessageDate: null,
       initialLoad: true,
       conversationMessages: [],
       loadingConversationMessages: true,
       isMobile: false,
       previousScrollHeightMinusScrollTop: 0
+    }
+  },
+
+  watch: {
+    conversationMessages: function () {
+      const messageCount = this.conversationMessages.length
+      if (messageCount > 0) {
+        this.oldestMessageDate = this.conversationMessages[0].posted_at
+      }
     }
   },
 
@@ -142,26 +165,26 @@ export default {
       this.$cable.unsubscribe('ConversationChannel')
     },
 
-    getMessages: function (page = 1) {
+    getMessages: function () {
       if (!this.initialLoad) this.recordScrollPosition()
       this.loadingConversationMessages = true
       ConversationMessageApi
         .all(
           this.$route.params.conversationId,
-          page
+          this.oldestMessageDate
         )
         .then(resp => {
-          if (resp.data.length < 25) this.$root.$emit('nothingMoreToLoad')
+          if (resp.data.length < 25) this.noMoreOlderMessage = true
           this.conversationMessages.unshift(...resp.data)
         })
         .catch(() => {
-          this.$root.$emit('nothingMoreToLoad')
+          this.noMoreOlderMessage = true
         })
         .finally(() => {
           this.loadingConversationMessages = false
           this.initialLoad = false
           if (!this.initialLoad) this.restoreScrollPosition()
-          this.$root.$emit('moreIsLoaded')
+          this.loadingMoreMessage = false
         })
     },
 
@@ -188,6 +211,21 @@ export default {
       const list = this.$refs.conversationMessageList
       if (typeof list === 'undefined') return
       list.scrollTop = list.scrollHeight - this.previousScrollHeightMinusScrollTop - 60
+    },
+
+    onConversationTop (entries, observer) {
+      if (
+        entries[0].isIntersecting &&
+        !this.noMoreOlderMessage &&
+        !this.loadingMoreMessage
+      ) {
+        this.loadMoreOlderMessage()
+      }
+    },
+
+    loadMoreOlderMessage: function () {
+      this.loadingMoreMessage = true
+      this.getMessages()
     }
   }
 }

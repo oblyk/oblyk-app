@@ -2,7 +2,7 @@ import axios from 'axios'
 import BaseApi from '@/services/oblyk-api/BaseApi'
 
 class ConversationMessageApi extends BaseApi {
-  all (conversationId, page = 1) {
+  all (conversationId, olderThan = null) {
     return axios({
       method: 'GET',
       url: `${this.baseUrl}/conversations/${conversationId}/conversation_messages.json`,
@@ -11,7 +11,7 @@ class ConversationMessageApi extends BaseApi {
         HttpApiAccessToken: this.apiAccessToken
       },
       params: {
-        page: page
+        older_than: olderThan
       }
     })
   }
