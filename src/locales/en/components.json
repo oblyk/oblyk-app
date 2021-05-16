@@ -167,6 +167,12 @@
         "bad": "Bad (red)"
       }
     },
+    "navigation": {
+      "goTo": "Go to : %{name}",
+      "cragBottom": "Go to bottom of the crag",
+      "goToPark": "Go to park %{number}",
+      "navigateWith": "Navigate with %{name}"
+    },
     "crag": {
       "coverFrom": "Crag picture",
       "searchCrag": "Crag search",

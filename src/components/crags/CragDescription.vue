@@ -92,6 +92,7 @@
                 {{ latLng }}
                 <qr-code-btn :value="latLng" />
                 <copy-btn :message="latLng" />
+                <go-to-crag-modal :crag="crag" />
               </td>
             </tr>
 
@@ -159,10 +160,11 @@ import ContributionsLabel from '@/components/globals/ContributionsLable'
 import QrCodeBtn from '@/components/forms/QrCodeBtn'
 import CopyBtn from '@/components/ui/CopyBtn'
 import AlertList from '@/components/alerts/AlertList'
+import GoToCragModal from '@/components/crags/GoToCragModal'
 
 export default {
   name: 'CragInfo',
-  components: { AlertList, CopyBtn, QrCodeBtn, ContributionsLabel },
+  components: { GoToCragModal, AlertList, CopyBtn, QrCodeBtn, ContributionsLabel },
   mixins: [SessionConcern],
   props: {
     crag: Object

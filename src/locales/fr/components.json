@@ -167,6 +167,12 @@
         "bad": "Mauvais (rouge)"
       }
     },
+    "navigation": {
+      "goTo": "Aller à : %{name}",
+      "cragBottom": "Se rendre au pied de la falaise",
+      "goToPark": "Se rendre au parking %{number}",
+      "navigateWith": "Naviguer avec %{name}"
+    },
     "crag": {
       "coverFrom": "Photo du site",
       "searchCrag": "Chercher une falaise",
