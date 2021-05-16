@@ -79,7 +79,9 @@ export default {
     },
 
     submit: function () {
-      if (this.data.body === null || this.data.body === '') return
+      if (this.data.body === null || this.data.body === '') {
+        return false
+      }
 
       this.messageSending = true
       const promise = (this.isEditingForm()) ? ConversationMessageApi.update(this.data) : ConversationMessageApi.create(this.data)
