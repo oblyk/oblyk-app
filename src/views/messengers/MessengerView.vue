@@ -9,7 +9,7 @@
       <!-- Conversation list -->
       <v-col
         v-show="conversationList"
-        class="col-12 col-md-4 col-lg-3 pr-6 pr-md-0 conversations-col"
+        class="col-12 col-md-4 col-lg-3 pr-0 pr-md-3 conversations-col"
       >
         <spinner v-if="loadingConversations" />
         <conversation-list
@@ -21,7 +21,7 @@
       <!-- Message list -->
       <v-col
         v-show="messageList"
-        class="col-12 col-md-8 col-lg-9 pr-6 pl-6 pl-md-3 full-height"
+        class="col-12 col-md-8 col-lg-9 pr-0 pr-md-6 pl-6 pl-md-3 full-height"
       >
         <router-view :key="$route.fullPath" :user="currentUser" />
       </v-col>
@@ -130,6 +130,7 @@ export default {
   height: 100%;
 }
 .messenger-layout {
+  max-width: 100vw;
   height: calc(100vh - 64px);
 }
 @media only screen and (max-width: 600px) {

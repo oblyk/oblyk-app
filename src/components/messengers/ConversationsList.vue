@@ -62,6 +62,7 @@ export default {
     overflow-y: auto;
   }
   .conversation-add-btn {
+    padding-top: 1.5em;
     text-align: right;
     width: 100%;
     position: sticky;
