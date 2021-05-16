@@ -131,6 +131,11 @@
         "title": "Vous êtes un robot?",
         "strangeBehavior": "Si vous voyez cette page c'est que nous considérons que vous avez un comportement étrange...",
         "actHuman": "Revenez dans 30 minutes et ayez un comportement humain."
+      },
+      "successAccountDeleting": {
+        "title": "Votre compte à été supprimé",
+        "description": "Votre compte et les données qui y sont associées ont été supprimées.",
+        "goodContinuation": "On vous souhaites une bonne continuation !"
       }
     }
   }

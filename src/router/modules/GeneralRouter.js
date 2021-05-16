@@ -9,6 +9,7 @@ const OblykView = () => import(/* webpackChunkName: "general-routes" */ '@/views
 const GradeView = () => import(/* webpackChunkName: "general-routes" */ '@/views/GradeView')
 const AboutPartnerView = () => import(/* webpackChunkName: "general-routes" */ '@/views/AboutPartnerView')
 const GoFlyAKiteView = () => import(/* webpackChunkName: "general-routes" */ '@/views/GoFlyAKiteView')
+const SuccessAccountDeletingView = () => import(/* webpackChunkName: "general-routes" */ '@/views/SuccessAccountDeletingView')
 
 export default [
   {
@@ -60,5 +61,9 @@ export default [
   {
     path: '/go-fly-a-kite',
     component: GoFlyAKiteView
+  },
+  {
+    path: '/success-account-deleting',
+    component: SuccessAccountDeletingView
   }
 ]

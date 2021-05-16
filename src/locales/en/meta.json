@@ -296,6 +296,9 @@
     },
     "version": {
       "title": "Versions"
+    },
+    "successAccountDeleting": {
+      "title": "Account deleted"
     }
   }
 }
