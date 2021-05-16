@@ -57,7 +57,7 @@ export default {
 
   mounted () {
     if (!this.isEditingForm()) {
-      this.data.body = localStorage.getItem(this.draftStorageKey)
+      this.data.body = localStorage.getItem(this.draftStorageKey) || ''
     }
   },
 
@@ -87,7 +87,6 @@ export default {
       promise
         .then(resp => {
           this.data.body = null
-          this.$root.$emit('receivedConversationMessage', resp.data)
           localStorage.removeItem(this.draftStorageKey)
         })
         .catch(err => {

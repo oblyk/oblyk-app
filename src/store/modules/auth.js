@@ -6,6 +6,7 @@ const state = {
   token: '',
   expired_at: '',
   refresh_token: '',
+  ws_token: '',
   name: '',
   slug_name: '',
   super_admin: false,
@@ -45,6 +46,10 @@ const getters = {
 
   getRefreshToken: state => {
     return state.refresh_token
+  },
+
+  getWsToken: state => {
+    return state.ws_token
   },
 
   getUserUuid: state => {
@@ -88,6 +93,7 @@ const actions = {
           commit('success', {
             token: data.token,
             refresh_token: data.refresh_token,
+            ws_token: data.ws_token,
             expired_at: data.expired_at,
             name: [data.user.first_name, data.user.last_name].join(' '),
             slug_name: data.user.slug_name,
@@ -140,6 +146,7 @@ const actions = {
             token: data.token,
             expired_at: data.expired_at,
             refresh_token: data.refresh_token,
+            ws_token: data.ws_token,
             name: [data.user.first_name, data.user.last_name].join(' '),
             slug_name: data.user.slug_name,
             super_admin: data.user.super_admin || false,
@@ -170,6 +177,7 @@ const actions = {
             token: data.token,
             expired_at: data.expired_at,
             refresh_token: data.refresh_token,
+            ws_token: data.ws_token,
             name: [data.user.first_name, data.user.last_name].join(' '),
             slug_name: data.user.slug_name,
             super_admin: data.user.super_admin || false,
@@ -231,6 +239,7 @@ const mutations = {
     state.status = 'success'
     state.token = payload.token
     state.refresh_token = payload.refresh_token
+    state.ws_token = payload.ws_token
     state.expired_at = payload.expired_at
     state.uuid = payload.uuid
     state.id = payload.id
@@ -275,6 +284,7 @@ const mutations = {
     state.token = ''
     state.expired_at = ''
     state.refresh_token = ''
+    state.ws_token = ''
     state.name = ''
     state.slug_name = ''
     state.super_admin = false

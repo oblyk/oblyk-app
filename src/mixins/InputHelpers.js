@@ -8,8 +8,6 @@ export const InputHelpers = {
   },
 
   methods: {
-    onMenuFocus: function () {
-      console.log(this.$refs)
-    }
+    onMenuFocus: function () {}
   }
 }

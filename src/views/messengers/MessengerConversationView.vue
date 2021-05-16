@@ -67,6 +67,7 @@ import ConversationApi from '@/services/oblyk-api/ConversationApi'
 import ConversationMessageList from '@/components/messengers/ConversationMessageList'
 import LoadingMore from '@/components/layouts/LoadingMore'
 import { DateHelpers } from '@/mixins/DateHelpers'
+import { ConversationChannel } from '@/channels/ConversationChannel'
 
 export default {
   name: 'MessengerConversationView',
@@ -78,6 +79,7 @@ export default {
   },
   mixins: [
     ConversationConcern,
+    ConversationChannel,
     SessionConcern,
     DateHelpers
   ],
@@ -106,9 +108,7 @@ export default {
       conversationMessages: [],
       loadingConversationMessages: true,
       isMobile: false,
-      previousScrollHeightMinusScrollTop: 0,
-      lastPingAt: this.utcDate(),
-      timeInterval: null
+      previousScrollHeightMinusScrollTop: 0
     }
   },
 
@@ -118,17 +118,30 @@ export default {
     })
     this.getMessages()
     this.onResize()
-    this.startPingMessages()
+    this.cableConversationSubscribe()
     window.addEventListener('resize', this.onResize, { passive: true })
   },
 
   beforeDestroy () {
-    clearInterval(this.timeInterval)
+    this.cableConversationUnsubscribe()
     ConversationApi.read(this.conversation.id)
     this.$root.$off('scrollToBottomConversation')
   },
 
   methods: {
+    cableConversationSubscribe: function () {
+      this.$cable.subscribe(
+        {
+          channel: 'ConversationChannel',
+          conversation_id: this.$route.params.conversationId
+        }
+      )
+    },
+
+    cableConversationUnsubscribe: function () {
+      this.$cable.unsubscribe('ConversationChannel')
+    },
+
     getMessages: function (page = 1) {
       if (!this.initialLoad) this.recordScrollPosition()
       this.loadingConversationMessages = true
@@ -175,27 +188,6 @@ export default {
       const list = this.$refs.conversationMessageList
       if (typeof list === 'undefined') return
       list.scrollTop = list.scrollHeight - this.previousScrollHeightMinusScrollTop - 60
-    },
-
-    startPingMessages: function () {
-      this.timeInterval = setInterval(() => {
-        this.pingLastMessage()
-      }, 10000)
-    },
-
-    pingLastMessage: function () {
-      ConversationMessageApi
-        .lastMessages(
-          this.$route.params.conversationId,
-          this.lastPingAt
-        )
-        .then(resp => {
-          if (resp.data.length > 0) {
-            this.conversationMessages.unshift(...resp.data)
-            this.lastPingAt = this.utcDate()
-            this.scrollToBottom()
-          }
-        })
     }
   }
 }

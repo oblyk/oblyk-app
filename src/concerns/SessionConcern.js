@@ -33,6 +33,10 @@ export const SessionConcern = {
       return store.getters['auth/getToken']
     },
 
+    getWsToken: function () {
+      return store.getters['auth/getWsToken']
+    },
+
     getRefreshToken: function () {
       return store.getters['auth/getRefreshToken']
     }

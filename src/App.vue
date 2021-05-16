@@ -35,9 +35,11 @@
 <script>
 import AppBar from '@/components/layouts/AppBar'
 import AppAlert from '@/components/layouts/AppAlert'
+import { Cable } from '@/channels/Cable'
 
 export default {
   name: 'App',
+  mixins: [Cable],
   components: {
     AppAlert,
     AppBar
@@ -84,7 +86,11 @@ export default {
     this.$vuetify.lang.current = storedLang
     this.$i18n.locale = storedLang
 
+    // Set Layout padding top
     this.hasPaddingTopInApp()
+
+    // Connect cable
+    this.connectCable()
   },
 
   methods: {

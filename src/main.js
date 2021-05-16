@@ -10,6 +10,7 @@ import './services/nprogress'
 import VueQrcode from '@chenfengyuan/vue-qrcode'
 import VueClipboard from 'vue-clipboard2'
 import VueMeta from 'vue-meta'
+import ActionCableVue from 'actioncable-vue'
 
 Vue.config.productionTip = false
 
@@ -44,6 +45,12 @@ const i18n = new VueI18n({
     fr: loadLocaleMessages('fr'),
     en: loadLocaleMessages('en')
   }
+})
+
+Vue.use(ActionCableVue, {
+  debug: true,
+  debugLevel: 'error',
+  connectImmediately: false
 })
 
 new Vue({
