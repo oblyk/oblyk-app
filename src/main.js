@@ -30,7 +30,8 @@ function loadLocaleMessages (lang) {
     ...require(`./locales/${lang}/models.json`),
     ...require(`./locales/${lang}/termsOfUse.json`),
     ...require(`./locales/${lang}/meta.json`),
-    ...require(`./locales/${lang}/home.json`)
+    ...require(`./locales/${lang}/home.json`),
+    ...require(`./locales/${lang}/helps.json`)
   }
 }
 

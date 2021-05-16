@@ -1,0 +1,17 @@
+{
+  "helps": {
+    "title": "Aides",
+    "manageMyAccount": {
+      "title": "Gérer mon compte",
+      "deleteMyAccount": {
+        "title": "Supprimer mon compte",
+        "explain": "Oblyk ne vous intéresse plus ou pas ? Vous pouvez supprimer votre compte. C'est votre droit et on ne vous retiendra pas.",
+        "list": "Pour supprimer votre compte il faut :",
+        "beConnected": "Êtres connecté à votre compte ;",
+        "mySettings": "Mes paramètres",
+        "goToSettings": "Aller dans vos paramètres",
+        "deployActions": "Déployer <cite class='font-weight-bold'>Actions sur mon compte</cite>."
+      }
+    }
+  }
+}

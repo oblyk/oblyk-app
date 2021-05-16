@@ -1,0 +1,17 @@
+{
+  "helps": {
+    "title": "Helps",
+    "manageMyAccount": {
+      "title": "Manage my account",
+      "deleteMyAccount": {
+        "title": "Delete my account",
+        "explain": "Not interested in Oblyk anymore? You can delete your account. That's your right, and we won't hold you back.",
+        "list": "To delete your account you must :",
+        "beConnected": "Be connected to your account ;",
+        "mySettings": "My settings",
+        "goToSettings": "Go to your settings",
+        "deployActions": "Deploy <cite class='font-weight-bold'>Actions on my account</cite>."
+      }
+    }
+  }
+}
