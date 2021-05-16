@@ -84,9 +84,11 @@ import Notification from '@/models/Notification'
 import NotificationApi from '@/services/oblyk-api/NotificationApi'
 import Spinner from '@/components/layouts/Spiner'
 import NotificationItemList from '@/components/notifications/NotificationItemList'
+import { NotificationChannel } from '@/channels/NotificationChannel'
 
 export default {
   name: 'NotificationAppBar',
+  mixins: [NotificationChannel],
   components: { NotificationItemList, Spinner },
 
   data () {
@@ -107,10 +109,31 @@ export default {
   },
 
   mounted () {
+    this.$root.$on('HaveNewUnreadNotification', (haveNew) => {
+      this.haveNewUnreadNotification(haveNew)
+    })
+    this.cableNotificationSubscribe()
     this.getUnreadNotificationCount()
   },
 
+  beforeDestroy () {
+    this.cableNotificationUnsubscribe()
+    this.$root.$off('HaveNewUnreadNotification')
+  },
+
   methods: {
+    cableNotificationSubscribe: function () {
+      this.$cable.subscribe(
+        {
+          channel: 'NotificationChannel'
+        }
+      )
+    },
+
+    cableNotificationUnsubscribe: function () {
+      this.$cable.unsubscribe('NotificationChannel')
+    },
+
     getNotifications: function () {
       this.notifications = []
       this.loadingNotification = true
@@ -135,6 +158,10 @@ export default {
         .then(resp => {
           if (resp.data > 0) this.haveUnreadNotification = true
         })
+    },
+
+    haveNewUnreadNotification: function (haveNew) {
+      this.haveUnreadNotification = haveNew
     },
 
     markedAllAsRead: function () {
