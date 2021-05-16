@@ -4,6 +4,18 @@
       <h1 class="loved-by-king mt-5">
         {{ $t('common.pages.reportProblem.title') }}
       </h1>
+      <p class="mt-10">
+        {{ $t('components.report.aProblem') }}
+      </p>
+      <p>
+        {{ $t('components.report.describeProblem') }}
+      </p>
+      <p>
+        {{ $t('components.report.thanks') }}
+      </p>
+      <report-form
+        submit-methode="post"
+      />
     </v-container>
     <app-footer />
   </div>
@@ -11,9 +23,10 @@
 
 <script>
 import AppFooter from '@/components/layouts/AppFooter'
+import ReportForm from '@/components/reports/forms/ReportForm'
 export default {
   name: 'ReportProblemView',
-  components: { AppFooter },
+  components: { ReportForm, AppFooter },
 
   metaInfo () {
     return {

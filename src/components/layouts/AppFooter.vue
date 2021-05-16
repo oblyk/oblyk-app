@@ -37,7 +37,10 @@
             </v-icon>
             {{ $t('components.layout.footer.donation') }}
           </router-link>
-          <router-link class="d-block" to="/report-problem">
+          <router-link
+            class="d-block"
+            :to="`/report-problem?redirect_to=${$route.fullPath}`"
+          >
             <v-icon small left>
               mdi-flag
             </v-icon>
