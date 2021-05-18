@@ -1,26 +1,22 @@
 <template>
   <v-container>
-    <spinner v-if="loadingPhotos" :full-height="false"/>
-    <div v-if="!loadingPhotos">
-      <photo-gallery
-        environnement-type="area"
-        :environnement-object="area"
-        :photos="photos"
-      />
-    </div>
+    <photo-gallery
+      v-if="area"
+      environnement-type="area"
+      :environnement-object="area"
+      gallery-type="Area"
+      :gallery-id="area.id"
+    />
   </v-container>
 </template>
 
 <script>
 import { SessionConcern } from '@/concerns/SessionConcern'
-import AreaApi from '@/services/oblyk-api/AreaApi'
-import Spinner from '@/components/layouts/Spiner'
 import PhotoGallery from '@/components/photos/PhotoGallery'
-import Photo from '@/models/Photo'
 
 export default {
   name: 'AreaPhotosView',
-  components: { PhotoGallery, Spinner },
+  components: { PhotoGallery },
   mixins: [SessionConcern],
   props: {
     area: Object
@@ -28,8 +24,6 @@ export default {
 
   data () {
     return {
-      loadingPhotos: true,
-      photos: [],
       areaPhotosMetaTitle: `${this.$t('meta.generics.pictures')} ${this.$t('meta.crag.title', {
         name: (this.area || {}).name,
         region: (this.area || {}).region
@@ -67,30 +61,6 @@ export default {
           content: `${process.env.VUE_APP_OBLYK_APP_URL}${this.area.path('guide-books')}`
         }
       ]
-    }
-  },
-
-  mounted () {
-    this.getPhotos()
-  },
-
-  methods: {
-    getPhotos: function () {
-      this.loadingPhotos = true
-      this.photos = []
-      AreaApi
-        .photos(this.area.id)
-        .then(resp => {
-          for (const photo of resp.data) {
-            this.photos.push(new Photo(photo))
-          }
-        })
-        .catch(err => {
-          this.$root.$emit('alertFromApiError', err, 'area')
-        })
-        .finally(() => {
-          this.loadingPhotos = false
-        })
     }
   }
 }

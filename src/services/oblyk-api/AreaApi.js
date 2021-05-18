@@ -46,11 +46,14 @@ class AreaApi extends BaseApi {
     })
   }
 
-  photos (areaId) {
+  photos (areaId, page = 1) {
     return axios({
       method: 'GET',
       url: `${this.baseUrl}/public/areas/${areaId}/photos.json`,
-      headers: { HttpApiAccessToken: this.apiAccessToken }
+      headers: { HttpApiAccessToken: this.apiAccessToken },
+      params: {
+        page: page
+      }
     })
   }
 

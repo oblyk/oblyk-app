@@ -39,13 +39,16 @@ class UserApi extends BaseApi {
     })
   }
 
-  photos (userUuid) {
+  photos (userUuid, page = 1) {
     return axios({
       method: 'GET',
       url: `${this.baseUrl}/users/${userUuid}/photos.json`,
       headers: {
         Authorization: this.authToken(),
         HttpApiAccessToken: this.apiAccessToken
+      },
+      params: {
+        page: page
       }
     })
   }

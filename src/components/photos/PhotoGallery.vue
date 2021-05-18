@@ -1,6 +1,8 @@
 <template>
   <div>
+    <spinner v-if="loadingGallery" />
     <v-row
+      v-if="!loadingGallery"
       no-gutters
     >
       <v-col
@@ -27,6 +29,11 @@
       </v-col>
     </v-row>
 
+    <loading-more
+      :get-function="getPhotos"
+      v-if="!loadingGallery"
+    />
+
     <!-- Full screen dialog for lightbox -->
     <v-dialog
       dark
@@ -49,23 +56,36 @@
 <script>
 import PhotoThumbnail from '@/components/photos/PhotoThumbnail'
 import LightBox from '@/components/photos/LightBox'
+import UserApi from '@/services/oblyk-api/UserApi'
+import Spinner from '@/components/layouts/Spiner'
+import Photo from '@/models/Photo'
+import LoadingMore from '@/components/layouts/LoadingMore'
+import AreaApi from '@/services/oblyk-api/AreaApi'
 
 export default {
   name: 'PhotoGallery',
-  components: { LightBox, PhotoThumbnail },
+  components: {
+    LoadingMore,
+    Spinner,
+    LightBox,
+    PhotoThumbnail
+  },
   props: {
-    photos: Array,
     lgCol: {
       type: String,
       required: false,
       default: 'col-lg-2'
     },
     environnementType: String,
-    environnementObject: Object
+    environnementObject: Object,
+    galleryType: String,
+    galleryId: [Number, String]
   },
 
   data () {
     return {
+      photos: [],
+      loadingGallery: true,
       lightBoxDialog: false,
       selectedPhoto: null,
       selectedIndex: null
@@ -73,6 +93,7 @@ export default {
   },
 
   mounted () {
+    this.getPhotos()
     this.$root.$on('LightBoxChangeSelectedIndex', (photoIndex) => {
       this.changeSelectedIndex(photoIndex)
     })
@@ -83,6 +104,32 @@ export default {
   },
 
   methods: {
+    getPhotos: function (page = 1) {
+      let promise
+
+      if (this.galleryType === 'User') {
+        promise = UserApi
+      } else if (this.galleryType === 'Area') {
+        promise = AreaApi
+      }
+
+      promise
+        .photos(this.galleryId, page)
+        .then(resp => {
+          for (const photo of resp.data) {
+            this.photos.push(new Photo(photo))
+          }
+          if (resp.data.length < 25) this.$root.$emit('nothingMoreToLoad')
+        })
+        .catch(() => {
+          this.$root.$emit('nothingMoreToLoad')
+        })
+        .finally(() => {
+          this.loadingGallery = false
+          this.$root.$emit('moreIsLoaded')
+        })
+    },
+
     openLightBoxDialog: function (photoIndex) {
       this.lightBoxDialog = true
       setTimeout(() => {
