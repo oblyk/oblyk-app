@@ -53,6 +53,13 @@ export default {
     }
   },
 
+  watch: {
+    cragRoute: function () {
+      this.ascents = []
+      this.getAscents()
+    }
+  },
+
   mounted () {
     this.$root.$on('reloadAscentCragRoute', () => {
       this.getAscents()

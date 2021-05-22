@@ -89,6 +89,12 @@ export default {
     }
   },
 
+  watch: {
+    cragRoute: function () {
+      this.getComments()
+    }
+  },
+
   mounted () {
     this.getComments()
   },

@@ -63,6 +63,12 @@ export default {
     }
   },
 
+  watch: {
+    cragRoute: function () {
+      this.getVideos()
+    }
+  },
+
   mounted () {
     this.getVideos()
   },

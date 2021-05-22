@@ -57,9 +57,9 @@ export default {
     cragRoute: Object
   },
 
-  data () {
-    return {
-      src: this.cragRoute.coverUrl()
+  computed: {
+    src: function () {
+      return this.cragRoute.coverUrl()
     }
   },
 

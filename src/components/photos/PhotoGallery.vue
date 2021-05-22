@@ -96,6 +96,13 @@ export default {
     }
   },
 
+  watch: {
+    galleryId: function () {
+      this.photos = []
+      this.getPhotos()
+    }
+  },
+
   mounted () {
     this.getPhotos()
     this.$root.$on('LightBoxChangeSelectedIndex', (photoIndex) => {
