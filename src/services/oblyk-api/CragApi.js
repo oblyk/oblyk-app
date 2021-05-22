@@ -103,11 +103,14 @@ class CragApi extends BaseApi {
     })
   }
 
-  photos (cragId) {
+  photos (cragId, page = 1) {
     return axios({
       method: 'GET',
       url: `${this.baseUrl}/public/crags/${cragId}/photos.json`,
-      headers: { HttpApiAccessToken: this.apiAccessToken }
+      headers: { HttpApiAccessToken: this.apiAccessToken },
+      params: {
+        page: page
+      }
     })
   }
 

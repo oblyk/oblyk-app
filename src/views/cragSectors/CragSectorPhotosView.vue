@@ -1,8 +1,6 @@
 <template>
   <v-container>
-    <spinner v-if="loadingPhotos" :full-height="false"/>
-
-    <div v-if="!loadingPhotos">
+    <div>
       <v-btn
         :to="`/photos/CragSector/${cragSector.id}/new?redirect_to=${this.$route.fullPath}`"
         text
@@ -17,7 +15,8 @@
       <photo-gallery
         environnement-type="cragSector"
         :environnement-object="cragSector"
-        :photos="photos"
+        gallery-type="CragSector"
+        :gallery-id="cragSector.id"
         lg-col="col-lg-3"
       />
     </div>
@@ -47,13 +46,12 @@
 </template>
 
 <script>
+import { SessionConcern } from '@/concerns/SessionConcern'
 import CragSectorApi from '@/services/oblyk-api/CragSectorApi'
 import Video from '@/models/Video'
 import Spinner from '@/components/layouts/Spiner'
 import PhotoGallery from '@/components/photos/PhotoGallery'
 import VideoCard from '@/components/videos/VideoCard'
-import { SessionConcern } from '@/concerns/SessionConcern'
-import Photo from '@/models/Photo'
 
 export default {
   name: 'CragSectorPhotosView',
@@ -65,9 +63,7 @@ export default {
 
   data () {
     return {
-      loadingPhotos: true,
       loadingVideos: true,
-      photos: [],
       videos: []
     }
   },
@@ -136,29 +132,10 @@ export default {
   },
 
   mounted () {
-    this.getPhotos()
     this.getVideos()
   },
 
   methods: {
-    getPhotos: function () {
-      this.loadingPhotos = true
-      this.photos = []
-      CragSectorApi
-        .photos(this.cragSector.id)
-        .then(resp => {
-          for (const photo of resp.data) {
-            this.photos.push(new Photo(photo))
-          }
-        })
-        .catch(err => {
-          this.$root.$emit('alertFromApiError', err, 'photo')
-        })
-        .finally(() => {
-          this.loadingPhotos = false
-        })
-    },
-
     getVideos: function () {
       this.loadingVideos = true
       CragSectorApi

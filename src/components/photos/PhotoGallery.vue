@@ -61,6 +61,10 @@ import Spinner from '@/components/layouts/Spiner'
 import Photo from '@/models/Photo'
 import LoadingMore from '@/components/layouts/LoadingMore'
 import AreaApi from '@/services/oblyk-api/AreaApi'
+import CragSectorApi from '@/services/oblyk-api/CragSectorApi'
+import CragRouteApi from '@/services/oblyk-api/CragRouteApi'
+import CragApi from '@/services/oblyk-api/CragApi'
+import GuideBookPaperApi from '@/services/oblyk-api/GuideBookPaperApi'
 
 export default {
   name: 'PhotoGallery',
@@ -111,6 +115,14 @@ export default {
         promise = UserApi
       } else if (this.galleryType === 'Area') {
         promise = AreaApi
+      } else if (this.galleryType === 'CragSector') {
+        promise = CragSectorApi
+      } else if (this.galleryType === 'CragRoute') {
+        promise = CragRouteApi
+      } else if (this.galleryType === 'Crag') {
+        promise = CragApi
+      } else if (this.galleryType === 'GuideBookPaper') {
+        promise = GuideBookPaperApi
       }
 
       promise

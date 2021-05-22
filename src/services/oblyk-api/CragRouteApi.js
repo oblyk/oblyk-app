@@ -48,11 +48,14 @@ class CragRouteApi extends BaseApi {
     })
   }
 
-  photos (cragRouteId) {
+  photos (cragRouteId, page = 1) {
     return axios({
       method: 'GET',
       url: `${this.baseUrl}/public/crag_routes/${cragRouteId}/photos.json`,
-      headers: { HttpApiAccessToken: this.apiAccessToken }
+      headers: { HttpApiAccessToken: this.apiAccessToken },
+      params: {
+        page: page
+      }
     })
   }
 

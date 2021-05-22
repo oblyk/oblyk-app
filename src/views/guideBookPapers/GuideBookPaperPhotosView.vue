@@ -1,33 +1,30 @@
 <template>
   <div>
-    <spinner v-if="loadingPhotos" />
-
-    <v-container v-if="!loadingPhotos">
+    <v-container>
       <v-row>
         <v-col>
-          <photo-gallery :photos="photos" />
+          <photo-gallery
+            gallery-type="GuideBookPaper"
+            :gallery-id="guideBookPaper.id"
+          />
         </v-col>
       </v-row>
     </v-container>
   </div>
 </template>
+
 <script>
-import Spinner from '@/components/layouts/Spiner'
-import GuideBookPaperApi from '@/services/oblyk-api/GuideBookPaperApi'
 import PhotoGallery from '@/components/photos/PhotoGallery'
-import Photo from '@/models/Photo'
 
 export default {
   name: 'GuideBookPaperPhotosView',
-  components: { PhotoGallery, Spinner },
+  components: { PhotoGallery },
   props: {
     guideBookPaper: Object
   },
 
   data () {
     return {
-      photos: [],
-      loadingPhotos: true,
       guideBookPaperMetaTitle: `
       ${this.$t('meta.generics.pictures')}
       ${this.$t('meta.guideBookPaper.title', {
@@ -66,29 +63,6 @@ export default {
           content: `${process.env.VUE_APP_OBLYK_APP_URL}${this.guideBookPaper.path('photos')}`
         }
       ]
-    }
-  },
-
-  mounted () {
-    this.getPhotos()
-  },
-
-  methods: {
-    getPhotos: function () {
-      this.photos = []
-      GuideBookPaperApi
-        .photos(this.guideBookPaper.id)
-        .then(resp => {
-          for (const photo of resp.data) {
-            this.photos.push(new Photo(photo))
-          }
-        })
-        .catch(err => {
-          this.$root.$emit('alertFromApiError', err, 'photo')
-        })
-        .then(() => {
-          this.loadingPhotos = false
-        })
     }
   }
 }

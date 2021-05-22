@@ -50,11 +50,14 @@ class GuideBookPaperApi extends BaseApi {
     })
   }
 
-  photos (id) {
+  photos (id, page = 1) {
     return axios({
       method: 'GET',
       url: `${this.baseUrl}/public/guide_book_papers/${id}/photos.json`,
-      headers: { HttpApiAccessToken: this.apiAccessToken }
+      headers: { HttpApiAccessToken: this.apiAccessToken },
+      params: {
+        page: page
+      }
     })
   }
 

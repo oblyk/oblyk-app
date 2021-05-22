@@ -1,25 +1,23 @@
 <template>
   <v-container>
 
-    <spinner v-if="loadingPhotos" :full-height="false"/>
-    <div v-if="!loadingPhotos">
-      <v-btn
-        :to="`/photos/Crag/${crag.id}/new?redirect_to=${this.$route.fullPath}`"
-        text
-        color="primary"
-        v-if="isLoggedIn"
-      >
-        <v-icon left>
-          mdi-image-plus
-        </v-icon>
-        {{ $t('actions.addPicture') }}
-      </v-btn>
-      <photo-gallery
-        environnement-type="crag"
-        :environnement-object="crag"
-        :photos="photos"
-      />
-    </div>
+    <v-btn
+      :to="`/photos/Crag/${crag.id}/new?redirect_to=${this.$route.fullPath}`"
+      text
+      color="primary"
+      v-if="isLoggedIn"
+    >
+      <v-icon left>
+        mdi-image-plus
+      </v-icon>
+      {{ $t('actions.addPicture') }}
+    </v-btn>
+    <photo-gallery
+      environnement-type="crag"
+      :environnement-object="crag"
+      gallery-type="Crag"
+      :gallery-id="crag.id"
+    />
 
     <spinner v-if="loadingVideos" :full-height="false"/>
     <div v-if="!loadingVideos">
@@ -63,7 +61,6 @@ import PhotoGallery from '@/components/photos/PhotoGallery'
 import { SessionConcern } from '@/concerns/SessionConcern'
 import VideoCard from '@/components/videos/VideoCard'
 import Video from '@/models/Video'
-import Photo from '@/models/Photo'
 
 export default {
   name: 'CragPhotosView',
@@ -79,9 +76,7 @@ export default {
 
   data () {
     return {
-      loadingPhotos: true,
       loadingVideos: true,
-      photos: [],
       videos: [],
       cragPhotoMetaTitle: `${this.$t('meta.generics.pictures')} ${this.$t('meta.crag.title', {
         name: (this.crag || {}).name,
@@ -124,29 +119,10 @@ export default {
   },
 
   mounted () {
-    this.getPhotos()
     this.getVideos()
   },
 
   methods: {
-    getPhotos: function () {
-      this.photos = []
-      this.loadingPhotos = true
-      CragApi
-        .photos(this.crag.id)
-        .then(resp => {
-          for (const photo of resp.data) {
-            this.photos.push(new Photo(photo))
-          }
-        })
-        .catch(err => {
-          this.$root.$emit('alertFromApiError', err, 'crag')
-        })
-        .finally(() => {
-          this.loadingPhotos = false
-        })
-    },
-
     getVideos: function () {
       this.loadingVideos = true
       CragApi
