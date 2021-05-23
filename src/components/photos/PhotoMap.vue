@@ -28,6 +28,7 @@
 import { LMap, LTileLayer, LControlZoom, LGeoJson } from 'vue2-leaflet'
 import { MapMarkerHelpers } from '@/mixins/MapMarkerHelpers'
 import L from 'leaflet'
+import 'leaflet/dist/leaflet.css'
 
 export default {
   name: 'PhotoMap',
