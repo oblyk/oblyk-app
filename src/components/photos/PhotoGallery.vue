@@ -16,7 +16,7 @@
           :environnement-object="environnementObject"
           :photo-index="index"
           :photo="photo"
-          :photos-gallery="photosGallery()"
+          :photos-gallery="photosGallery"
           :open-light-box-dialog="openLightBoxDialog"
         />
       </v-col>
@@ -44,7 +44,7 @@
     >
       <v-card class="rounded-0">
         <light-box
-          v-if="selectedPhoto !== null"
+          v-if="selectedPhoto"
           :photo="selectedPhoto"
           :photos-gallery="photos"
           :close-light-box-dialogue="closeLightBoxDialogue"
@@ -99,6 +99,12 @@ export default {
       lightBoxDialog: false,
       selectedPhoto: null,
       selectedIndex: null
+    }
+  },
+
+  computed: {
+    photosGallery: function () {
+      return this.photos.map(photo => { return photo.id })
     }
   },
 
@@ -175,10 +181,6 @@ export default {
 
     closeLightBoxDialogue: function () {
       this.lightBoxDialog = false
-    },
-
-    photosGallery: function () {
-      return this.photos.map(photo => { return photo.id })
     },
 
     changeSelectedIndex: function (photoIndex) {

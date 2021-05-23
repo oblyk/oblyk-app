@@ -1,11 +1,11 @@
 <template>
   <v-btn
     large
-    v-if="(direction === 'next' && !isLastPhoto()) || (direction === 'previous' && !isFirstPhoto())"
+    v-if="(direction === 'next' && !isLastPhoto) || (direction === 'previous' && !isFirstPhoto)"
     icon
     @click="changePhotoIndex()"
   >
-    <v-icon>{{ arrowIcon() }}</v-icon>
+    <v-icon>{{ arrowIcon }}</v-icon>
   </v-btn>
 </template>
 <script>
@@ -17,12 +17,7 @@ export default {
     photosGallery: Array
   },
 
-  methods: {
-    changePhotoIndex: function () {
-      if (this.direction === 'next') this.$root.$emit('LightBoxChangeSelectedIndex', this.selectedIndex + 1)
-      if (this.direction === 'previous') this.$root.$emit('LightBoxChangeSelectedIndex', this.selectedIndex - 1)
-    },
-
+  computed: {
     isLastPhoto: function () {
       return this.selectedIndex === this.photosGallery.length - 1
     },
@@ -33,6 +28,13 @@ export default {
 
     arrowIcon: function () {
       return this.direction === 'next' ? 'mdi-arrow-right' : 'mdi-arrow-left'
+    }
+  },
+
+  methods: {
+    changePhotoIndex: function () {
+      if (this.direction === 'next') this.$root.$emit('LightBoxChangeSelectedIndex', this.selectedIndex + 1)
+      if (this.direction === 'previous') this.$root.$emit('LightBoxChangeSelectedIndex', this.selectedIndex - 1)
     }
   }
 }
