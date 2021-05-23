@@ -68,6 +68,7 @@ import CragSectorApi from '@/services/oblyk-api/CragSectorApi'
 import CragRouteApi from '@/services/oblyk-api/CragRouteApi'
 import CragApi from '@/services/oblyk-api/CragApi'
 import GuideBookPaperApi from '@/services/oblyk-api/GuideBookPaperApi'
+import CurrentUserApi from '@/services/oblyk-api/CurrentUserApi'
 
 export default {
   name: 'PhotoGallery',
@@ -134,6 +135,8 @@ export default {
         promise = CragApi
       } else if (this.galleryType === 'GuideBookPaper') {
         promise = GuideBookPaperApi
+      } else if (this.galleryType === 'CurrentUser') {
+        promise = CurrentUserApi
       }
 
       this.moreIsBeingLoaded()

@@ -231,7 +231,9 @@
       "sendList": "My ascents",
       "settings": "Settings",
       "subscribes": "My subscribes",
-      "tickList": "My tick list"
+      "tickList": "My tick list",
+      "photos": "My pictures",
+      "videos": "My videos"
     },
     "user": {
       "title": "%{name} his climbing profile",

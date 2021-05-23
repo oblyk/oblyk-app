@@ -19,6 +19,9 @@ const CurrentUserFavoriteCragsView = () => import(/* webpackChunkName: "current-
 const CurrentUserFavoriteGymsView = () => import(/* webpackChunkName: "current-user-routes" */ '@/views/currentUsers/CurrentUserFavoriteGymsView')
 const CurrentUserNotificationSettingsView = () => import(/* webpackChunkName: "current-user-routes" */ '@/views/currentUsers/actions/CurrentUserNotificationSettingsView')
 const CurrentUserOtherSettingsView = () => import(/* webpackChunkName: "current-user-routes" */ '@/views/currentUsers/actions/CurrentUserOtherSettingsView')
+const CurrentUserMediaView = () => import(/* webpackChunkName: "current-user-routes" */ '@/views/currentUsers/CurrentUserMediaView')
+const CurrentUserPhotoView = () => import(/* webpackChunkName: "current-user-routes" */ '@/views/currentUsers/CurrentUserPhotoView')
+const CurrentUserVideoView = () => import(/* webpackChunkName: "current-user-routes" */ '@/views/currentUsers/CurrentUserVideoView')
 
 export default [
   {
@@ -140,6 +143,29 @@ export default [
       {
         path: 'subscribes',
         component: CurrentUserSubscribesView,
+        meta: {
+          requiresAuth: true
+        }
+      }
+    ]
+  },
+  {
+    path: '/me/:userSlug/media',
+    component: CurrentUserMediaView,
+    meta: {
+      requiresAuth: true
+    },
+    children: [
+      {
+        path: 'photos',
+        component: CurrentUserPhotoView,
+        meta: {
+          requiresAuth: true
+        }
+      },
+      {
+        path: 'videos',
+        component: CurrentUserVideoView,
         meta: {
           requiresAuth: true
         }

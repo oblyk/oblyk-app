@@ -53,13 +53,16 @@ class UserApi extends BaseApi {
     })
   }
 
-  videos (userUuid) {
+  videos (userUuid, page = 1) {
     return axios({
       method: 'GET',
       url: `${this.baseUrl}/users/${userUuid}/videos.json`,
       headers: {
         Authorization: this.authToken(),
         HttpApiAccessToken: this.apiAccessToken
+      },
+      params: {
+        page: page
       }
     })
   }

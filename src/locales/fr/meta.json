@@ -230,7 +230,9 @@
       "sendList": "Mes croix",
       "settings": "Paramètres",
       "subscribes": "Mes abonnements",
-      "tickList": "Ma tick-list"
+      "tickList": "Ma tick-list",
+      "photos": "Mes photos",
+      "videos": "Mes vidéos"
     },
     "user": {
       "title": "%{name} son profil de grimpeur",

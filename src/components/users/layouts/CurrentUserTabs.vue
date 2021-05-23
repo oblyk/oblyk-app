@@ -1,5 +1,7 @@
 <template>
   <v-tabs show-arrows >
+
+    <!-- Feed -->
     <v-tab to="/">
       <v-icon
         :small="!isMobile"
@@ -13,6 +15,7 @@
       </span>
     </v-tab>
 
+    <!-- Messenger -->
     <v-tab :to="user.currentUserPath('messenger')">
       <v-icon
         :small="!isMobile"
@@ -26,6 +29,7 @@
       </span>
     </v-tab>
 
+    <!-- Follower -->
     <v-tab :to="user.currentUserPath('community/followers')">
       <v-icon
         :small="!isMobile"
@@ -39,6 +43,7 @@
       </span>
     </v-tab>
 
+    <!-- Send list -->
     <v-tab :to="user.currentUserPath('ascents/send-list')">
       <v-icon
         :small="!isMobile"
@@ -52,6 +57,7 @@
       </span>
     </v-tab>
 
+    <!-- Favorites / Crags -->
     <v-tab :to="user.currentUserPath('favorites/crags')">
       <v-icon
         :small="!isMobile"
@@ -65,6 +71,7 @@
       </span>
     </v-tab>
 
+    <!-- Guide book -->
     <v-tab :to="user.currentUserPath('guide-books')">
       <v-icon
         :small="!isMobile"
@@ -77,6 +84,22 @@
         {{ $t('components.user.tabs.guideBooks') }}
       </span>
     </v-tab>
+
+    <!-- Media / Photo -->
+    <v-tab :to="user.currentUserPath('media/photos')">
+      <v-icon
+        :small="!isMobile"
+        left
+        color="blue"
+      >
+        mdi-camera
+      </v-icon>
+      <span class="hidden-sm-only hidden-xs-only">
+        {{ $t('components.user.tabs.media') }}
+      </span>
+    </v-tab>
+
+    <!-- Settings / General -->
     <v-tab :to="user.currentUserPath('settings/general')">
       <v-icon
         :small="!isMobile"

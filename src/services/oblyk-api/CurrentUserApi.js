@@ -135,6 +135,34 @@ class CurrentUserApi extends BaseApi {
     })
   }
 
+  photos (id = null, page = 1) {
+    return axios({
+      method: 'GET',
+      url: `${this.baseUrl}/current_users/photos.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
+      params: {
+        page: page
+      }
+    })
+  }
+
+  videos (page = 1) {
+    return axios({
+      method: 'GET',
+      url: `${this.baseUrl}/current_users/videos.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
+      params: {
+        page: page
+      }
+    })
+  }
+
   subscribeToNewsletter () {
     return axios({
       method: 'GET',
