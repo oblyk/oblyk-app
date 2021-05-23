@@ -41,6 +41,7 @@
     />
   </div>
 </template>
+
 <script>
 import LightBoxArrow from '@/components/photos/LightBoxArrow'
 import PhotoCardInfo from '@/components/photos/PhotoCardInfo'

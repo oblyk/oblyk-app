@@ -18,7 +18,11 @@
     <v-card-text class="pb-1">
 
       <!-- Gallery photo -->
-      <photo-gallery :photos="photos()" v-if="feed.group_type === 'Photos'" />
+      <photo-gallery
+        v-if="feed.group_type === 'Photos'"
+        galleryType="Feed"
+        :preload-photos="photos()"
+      />
 
       <!-- New ascents -->
       <v-list

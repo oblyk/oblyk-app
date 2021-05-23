@@ -85,6 +85,7 @@ export default {
       required: false,
       default: 'col-lg-2'
     },
+    preloadPhotos: Array,
     environnementType: String,
     environnementObject: Object,
     galleryType: String,
@@ -137,6 +138,13 @@ export default {
         promise = GuideBookPaperApi
       } else if (this.galleryType === 'CurrentUser') {
         promise = CurrentUserApi
+      } else if (this.galleryType === 'Feed') {
+        for (const photo of this.preloadPhotos) {
+          this.photos.push(new Photo(photo))
+        }
+        this.loadingGallery = false
+        this.noMoreDataToLoad = true
+        return
       }
 
       this.moreIsBeingLoaded()
