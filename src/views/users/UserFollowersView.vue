@@ -3,14 +3,24 @@
     <spinner v-if="loadingFollowers" />
 
     <div v-if="!loadingFollowers">
-      <div
-        v-for="(follower, index) in followers"
-        :key="`follower-${index}`"
-      >
-        <user-small-card class="mb-2" :user="recordObject(follower)" />
-      </div>
+      <v-row>
+        <v-col
+          class="col-12 col-md-6 col-lg-4"
+          v-for="(follower, index) in followers"
+          :key="`follower-${index}`"
+        >
+          <user-small-card class="mb-2" :user="recordObject(follower)" />
+        </v-col>
+      </v-row>
+
+      <loading-more
+        :get-function="getSubscribes"
+        :no-more-data="noMoreDataToLoad"
+        :loading-more="loadingMoreData"
+      />
+
       <p
-        v-if="followers.length === 0"
+        v-if="followers.length === 0 && !loadingFollowers"
         class="text-center text--disabled mt-5 mb-5"
       >
         {{ $t('components.user.followersEmpty', { name: user.first_name }) }}
@@ -24,10 +34,13 @@ import UserApi from '@/services/oblyk-api/UserApi'
 import User from '@/models/User'
 import UserSmallCard from '@/components/users/UserSmallCard'
 import Spinner from '@/components/layouts/Spiner'
+import LoadingMore from '@/components/layouts/LoadingMore'
+import { LoadingMoreHelpers } from '@/mixins/LoadingMoreHelpers'
 
 export default {
   name: 'UserFollowersView',
-  components: { Spinner, UserSmallCard },
+  mixins: [LoadingMoreHelpers],
+  components: { LoadingMore, Spinner, UserSmallCard },
   props: {
     user: Object
   },
@@ -72,17 +85,22 @@ export default {
 
   methods: {
     getSubscribes: function () {
-      this.loadingFollowers = true
+      this.moreIsBeingLoaded()
       UserApi
-        .followers(this.user.uuid)
+        .followers(this.user.uuid, this.page)
         .then(resp => {
-          this.followers = resp.data
+          for (const follower of resp.data) {
+            this.followers.push(follower)
+          }
+          this.successLoadingMore(resp)
         })
         .catch(err => {
           this.$root.$emit('alertFromApiError', err, 'user')
+          this.failureToLoadingMore()
         })
         .finally(() => {
           this.loadingFollowers = false
+          this.finallyMoreIsLoaded()
         })
     },
 

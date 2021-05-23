@@ -3,15 +3,24 @@
     <spinner v-if="loadingSubscribes" />
 
     <div v-if="!loadingSubscribes">
-      <div
-        v-for="(subscribe, index) in subscribes"
-        :key="`subscribe-${index}`"
-      >
-        <gym-small-card class="mb-2" v-if="subscribe.followable_type === 'Gym'" :gym="recordObject('Gym', subscribe.followable_object)" />
-        <crag-small-card class="mb-2" v-if="subscribe.followable_type === 'Crag'" :crag="recordObject('Crag', subscribe.followable_object)" />
-        <guide-book-paper-small-card class="mb-2" v-if="subscribe.followable_type === 'GuideBookPaper'" :guide-book-paper="recordObject('GuideBookPaper', subscribe.followable_object)" />
-        <user-small-card class="mb-2" v-if="subscribe.followable_type === 'User'" :user="recordObject('User', subscribe.followable_object)" />
-      </div>
+      <v-row>
+        <v-col
+          class="col-12 col-md-6 col-lg-4"
+          v-for="(subscribe, index) in subscribes"
+          :key="`subscribe-${index}`"
+        >
+            <gym-small-card v-if="subscribe.followable_type === 'Gym'" :gym="recordObject('Gym', subscribe.followable_object)" />
+            <crag-small-card v-if="subscribe.followable_type === 'Crag'" :crag="recordObject('Crag', subscribe.followable_object)" />
+            <guide-book-paper-small-card v-if="subscribe.followable_type === 'GuideBookPaper'" :guide-book-paper="recordObject('GuideBookPaper', subscribe.followable_object)" />
+            <user-small-card v-if="subscribe.followable_type === 'User'" :user="recordObject('User', subscribe.followable_object)" />
+        </v-col>
+      </v-row>
+
+      <loading-more
+        :get-function="getSubscribes"
+        :no-more-data="noMoreDataToLoad"
+        :loading-more="loadingMoreData"
+      />
     </div>
   </v-container>
 </template>
@@ -27,10 +36,20 @@ import GuideBookPaper from '@/models/GuideBookPaper'
 import GuideBookPaperSmallCard from '@/components/guideBookPapers/GuideBookPaperSmallCard'
 import User from '@/models/User'
 import UserSmallCard from '@/components/users/UserSmallCard'
+import LoadingMore from '@/components/layouts/LoadingMore'
+import { LoadingMoreHelpers } from '@/mixins/LoadingMoreHelpers'
 
 export default {
   name: 'UserSubscribesView',
-  components: { UserSmallCard, GuideBookPaperSmallCard, Spinner, CragSmallCard, GymSmallCard },
+  mixins: [LoadingMoreHelpers],
+  components: {
+    LoadingMore,
+    UserSmallCard,
+    GuideBookPaperSmallCard,
+    Spinner,
+    CragSmallCard,
+    GymSmallCard
+  },
   props: {
     user: Object
   },
@@ -75,17 +94,22 @@ export default {
 
   methods: {
     getSubscribes: function () {
-      this.loadingSubscribes = true
+      this.moreIsBeingLoaded()
       UserApi
-        .subscribes(this.user.uuid)
+        .subscribes(this.user.uuid, this.page)
         .then(resp => {
-          this.subscribes = resp.data
+          for (const subscribe of resp.data) {
+            this.subscribes.push(subscribe)
+          }
+          this.successLoadingMore(resp)
         })
         .catch(err => {
           this.$root.$emit('alertFromApiError', err, 'user')
+          this.failureToLoadingMore()
         })
         .finally(() => {
           this.loadingSubscribes = false
+          this.finallyMoreIsLoaded()
         })
     },
 
