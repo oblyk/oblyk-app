@@ -13,7 +13,11 @@
         </div>
       </div>
 
-      <loading-more :get-function="getFavoriteCrags" />
+      <loading-more
+        :loading-more="loadingMoreData"
+        :no-more-data="noMoreDataToLoad"
+        :get-function="getFavoriteCrags"
+      />
 
       <p
         v-if="crags.length === 0"
@@ -27,6 +31,7 @@
 
 <script>
 import { CurrentUserConcern } from '@/concerns/CurrentUserConcern'
+import { LoadingMoreHelpers } from '@/mixins/LoadingMoreHelpers'
 import Spinner from '@/components/layouts/Spiner'
 import CurrentUserApi from '@/services/oblyk-api/CurrentUserApi'
 import Crag from '@/models/Crag'
@@ -35,7 +40,10 @@ import LoadingMore from '@/components/layouts/LoadingMore'
 
 export default {
   name: 'CurrentUserFavoriteCragsView',
-  mixins: [CurrentUserConcern],
+  mixins: [
+    CurrentUserConcern,
+    LoadingMoreHelpers
+  ],
   components: {
     LoadingMore,
     CragSmallCard,
@@ -60,22 +68,23 @@ export default {
   },
 
   methods: {
-    getFavoriteCrags: function (page) {
+    getFavoriteCrags: function () {
+      this.moreIsBeingLoaded()
       CurrentUserApi
-        .favoriteCrags(page)
+        .favoriteCrags(this.page)
         .then(resp => {
           for (const follow of resp.data) {
             this.crags.push(new Crag(follow.followable_object))
           }
-          if (resp.data.length < 25) this.$root.$emit('nothingMoreToLoad')
+          this.successLoadingMore(resp)
         })
         .catch(err => {
           this.$root.$emit('alertFromApiError', err, 'user')
-          this.$root.$emit('nothingMoreToLoad')
+          this.failureToLoadingMore()
         })
         .finally(() => {
           this.loadingCrags = false
-          this.$root.$emit('moreIsLoaded')
+          this.finallyMoreIsLoaded()
         })
     }
   }

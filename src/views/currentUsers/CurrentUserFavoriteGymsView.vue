@@ -13,7 +13,11 @@
         </div>
       </div>
 
-      <loading-more :get-function="getFavoriteGyms" />
+      <loading-more
+        :loading-more="loadingMoreData"
+        :no-more-data="noMoreDataToLoad"
+        :get-function="getFavoriteGyms"
+      />
 
       <p
         v-if="gyms.length === 0"
@@ -27,6 +31,7 @@
 
 <script>
 import { CurrentUserConcern } from '@/concerns/CurrentUserConcern'
+import { LoadingMoreHelpers } from '@/mixins/LoadingMoreHelpers'
 import Spinner from '@/components/layouts/Spiner'
 import CurrentUserApi from '@/services/oblyk-api/CurrentUserApi'
 import Gym from '@/models/Gym'
@@ -35,7 +40,10 @@ import LoadingMore from '@/components/layouts/LoadingMore'
 
 export default {
   name: 'CurrentUserFavoriteGymsView',
-  mixins: [CurrentUserConcern],
+  mixins: [
+    CurrentUserConcern,
+    LoadingMoreHelpers
+  ],
   components: {
     LoadingMore,
     GymSmallCard,
@@ -60,22 +68,23 @@ export default {
   },
 
   methods: {
-    getFavoriteGyms: function (page) {
+    getFavoriteGyms: function () {
+      this.moreIsBeingLoaded()
       CurrentUserApi
-        .favoriteGyms(page)
+        .favoriteGyms(this.page)
         .then(resp => {
           for (const follow of resp.data) {
             this.gyms.push(new Gym(follow.followable_object))
           }
-          if (resp.data.length < 25) this.$root.$emit('nothingMoreToLoad')
+          this.successLoadingMore(resp)
         })
         .catch(err => {
           this.$root.$emit('alertFromApiError', err, 'user')
-          this.$root.$emit('nothingMoreToLoad')
+          this.failureToLoadingMore()
         })
         .finally(() => {
           this.loadingGyms = false
-          this.$root.$emit('moreIsLoaded')
+          this.finallyMoreIsLoaded()
         })
     }
   }

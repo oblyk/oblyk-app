@@ -21,37 +21,20 @@ export default {
   name: 'LoadingMore',
   components: { Spinner },
   props: {
-    initialPage: {
-      type: Number,
-      default: 1
+    getFunction: {
+      type: Function,
+      required: true
     },
-    getFunction: Function
-  },
-
-  data () {
-    return {
-      noMoreData: false,
-      page: this.initialPage,
-      loadingMore: false
+    noMoreData: {
+      type: Boolean,
+      default: false,
+      required: true
+    },
+    loadingMore: {
+      type: Boolean,
+      default: true,
+      required: true
     }
-  },
-
-  mounted () {
-    this.$root.$on('moreIsLoaded', () => {
-      this.loadingMore = false
-    })
-    this.$root.$on('nothingMoreToLoad', () => {
-      this.noMoreData = true
-    })
-    this.$root.$on('setLoadMorePageNumber', (number) => {
-      this.page = number
-    })
-  },
-
-  beforeDestroy () {
-    this.$root.$off('moreIsLoaded')
-    this.$root.$off('nothingMoreToLoad')
-    this.$root.$off('setLoadMorePageNumber')
   },
 
   methods: {
@@ -66,9 +49,7 @@ export default {
     },
 
     loadMore: function () {
-      this.loadingMore = true
-      this.page++
-      this.getFunction(this.page)
+      this.getFunction()
     }
   }
 }

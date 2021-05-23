@@ -12,12 +12,17 @@
     </div>
 
     <!-- Load more feed -->
-    <loading-more :get-function="getFeeds" />
+    <loading-more
+      :loading-more="loadingMoreData"
+      :no-more-data="noMoreDataToLoad"
+      :get-function="getFeeds"
+    />
   </div>
 </template>
 <script>
 import { DateHelpers } from '@/mixins/DateHelpers'
 import { RecordToObjectHelpers } from '@/mixins/RecordToObjectHelpers'
+import { LoadingMoreHelpers } from '@/mixins/LoadingMoreHelpers'
 import LoadingMore from '@/components/layouts/LoadingMore'
 import CurrentUserApi from '@/services/oblyk-api/CurrentUserApi'
 import SimpleFeedCard from '@/components/feeds/SimpleFeedCard'
@@ -26,7 +31,11 @@ import ArticleApi from '@/services/oblyk-api/ArticleApi'
 
 export default {
   name: 'Feed',
-  mixins: [DateHelpers, RecordToObjectHelpers],
+  mixins: [
+    DateHelpers,
+    RecordToObjectHelpers,
+    LoadingMoreHelpers
+  ],
   components: {
     GroupFeedCard,
     SimpleFeedCard,
@@ -53,7 +62,7 @@ export default {
     this.$root.$on('reloadFeed', (data) => {
       this.feeds = []
       this.loadingFeeds = true
-      this.$root.$emit('setLoadMorePageNumber', 1)
+      this.page = 1
       this.feedOptions.guideBooks = data.guideBooks
       this.feedOptions.articles = data.articles
       this.feedOptions.subscribes = data.subscribe
@@ -76,19 +85,20 @@ export default {
       }
     },
 
-    getFeeds: function (page) {
+    getFeeds: function () {
+      this.moreIsBeingLoaded()
       this.feedClass()
-        .feed(page, this.feedOptions)
+        .feed(this.page, this.feedOptions)
         .then(resp => {
           this.feeds = this.feeds.concat(this.groupFeed(resp.data))
-          if (resp.data.length === 0) this.$root.$emit('nothingMoreToLoad')
+          this.successLoadingMore(resp)
         })
         .catch(() => {
-          this.$root.$emit('nothingMoreToLoad')
+          this.failureToLoadingMore()
         })
         .finally(() => {
           this.loadingFeeds = false
-          this.$root.$emit('moreIsLoaded')
+          this.finallyMoreIsLoaded()
         })
     },
 

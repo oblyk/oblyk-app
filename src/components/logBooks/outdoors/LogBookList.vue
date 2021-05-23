@@ -33,7 +33,11 @@
         :route="cragRoute"
       />
 
-      <loading-more :get-function="ascendedCragRoutes" />
+      <loading-more
+        :loading-more="loadingMoreData"
+        :no-more-data="noMoreDataToLoad"
+        :get-function="ascendedCragRoutes"
+      />
     </div>
 
     <!-- Loading ascended crag -->
@@ -42,14 +46,17 @@
 </template>
 
 <script>
+import { LoadingMoreHelpers } from '@/mixins/LoadingMoreHelpers'
 import CragRouteSmallLine from '@/components/cragRoutes/CragRouteSmallLine'
 import LogBookOutdoorApi from '@/services/oblyk-api/LogBookOutdoorApi'
 import CragRoute from '@/models/CragRoute'
 import Spinner from '@/components/layouts/Spiner'
 import LoadingMore from '@/components/layouts/LoadingMore'
 import UserApi from '@/services/oblyk-api/UserApi'
+
 export default {
   name: 'LogBookList',
+  mixins: [LoadingMoreHelpers],
   components: { LoadingMore, Spinner, CragRouteSmallLine },
 
   props: {
@@ -100,40 +107,41 @@ export default {
 
   methods: {
     resetAscents: function () {
-      this.$root.$emit('setLoadMorePageNumber', 1)
+      this.resetLoadMorePageNumber()
       this.cragRoutes = []
     },
 
-    ascendedCragRoutes: function (page) {
+    ascendedCragRoutes: function () {
       let promise
       if (this.user) {
         promise = UserApi.ascendedCragRoutes(
           this.user.uuid,
           this.order,
           this.climbingType,
-          page
+          this.page
         )
       } else {
         promise = LogBookOutdoorApi.ascendedCragRoutes(
           this.order,
           this.climbingType,
-          page
+          this.page
         )
       }
 
+      this.moreIsBeingLoaded()
       promise
         .then(resp => {
           for (const route of resp.data) {
             this.cragRoutes.push(new CragRoute(route))
           }
-          if (resp.data.length < 25) this.$root.$emit('nothingMoreToLoad')
+          this.successLoadingMore(resp)
         })
         .catch(() => {
-          this.$root.$emit('nothingMoreToLoad')
+          this.failureToLoadingMore()
         })
         .finally(() => {
           this.loadingAscendedCragRoutes = false
-          this.$root.$emit('moreIsLoaded')
+          this.finallyMoreIsLoaded()
         })
     }
   }

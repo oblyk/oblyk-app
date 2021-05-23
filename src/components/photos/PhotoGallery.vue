@@ -31,6 +31,8 @@
 
     <loading-more
       :get-function="getPhotos"
+      :loading-more="loadingMoreData"
+      :no-more-data="noMoreDataToLoad"
       v-if="!loadingGallery"
     />
 
@@ -54,6 +56,7 @@
 </template>
 
 <script>
+import { LoadingMoreHelpers } from '@/mixins/LoadingMoreHelpers'
 import PhotoThumbnail from '@/components/photos/PhotoThumbnail'
 import LightBox from '@/components/photos/LightBox'
 import UserApi from '@/services/oblyk-api/UserApi'
@@ -68,6 +71,7 @@ import GuideBookPaperApi from '@/services/oblyk-api/GuideBookPaperApi'
 
 export default {
   name: 'PhotoGallery',
+  mixins: [LoadingMoreHelpers],
   components: {
     LoadingMore,
     Spinner,
@@ -115,7 +119,7 @@ export default {
   },
 
   methods: {
-    getPhotos: function (page = 1) {
+    getPhotos: function () {
       let promise
 
       if (this.galleryType === 'User') {
@@ -132,20 +136,21 @@ export default {
         promise = GuideBookPaperApi
       }
 
+      this.moreIsBeingLoaded()
       promise
-        .photos(this.galleryId, page)
+        .photos(this.galleryId, this.page)
         .then(resp => {
           for (const photo of resp.data) {
             this.photos.push(new Photo(photo))
           }
-          if (resp.data.length < 25) this.$root.$emit('nothingMoreToLoad')
+          this.successLoadingMore(resp)
         })
         .catch(() => {
-          this.$root.$emit('nothingMoreToLoad')
+          this.failureToLoadingMore()
         })
         .finally(() => {
           this.loadingGallery = false
-          this.$root.$emit('moreIsLoaded')
+          this.finallyMoreIsLoaded()
         })
     },
 

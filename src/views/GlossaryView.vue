@@ -55,7 +55,11 @@
               />
             </div>
 
-            <loading-more :get-function="getGlossary" />
+            <loading-more
+              :get-function="getGlossary"
+              :loading-more="loadingMoreData"
+              :no-more-data="noMoreDataToLoad"
+            />
           </div>
 
           <!-- Search results list -->
@@ -79,10 +83,11 @@ import Word from '@/models/Word'
 import WordCard from '@/components/words/WordCard'
 import { SessionConcern } from '@/concerns/SessionConcern'
 import LoadingMore from '@/components/layouts/LoadingMore'
+import { LoadingMoreHelpers } from '@/mixins/LoadingMoreHelpers'
 
 export default {
   name: 'GlossaryView',
-  mixins: [SessionConcern],
+  mixins: [SessionConcern, LoadingMoreHelpers],
   components: { LoadingMore, WordCard, Spinner },
 
   metaInfo () {
@@ -112,26 +117,27 @@ export default {
   },
 
   created () {
-    this.getGlossary(1)
+    this.getGlossary()
   },
 
   methods: {
-    getGlossary: function (page) {
+    getGlossary: function () {
+      this.moreIsBeingLoaded()
       WordApi
-        .all(page)
+        .all(this.page)
         .then(resp => {
           for (const word of resp.data) {
             this.glossary.push(new Word(word))
           }
-          if (resp.data.length === 0) this.$root.$emit('nothingMoreToLoad')
+          this.successLoadingMore(resp)
         })
         .catch(err => {
           this.$root.$emit('alertFromApiError', err, 'word')
-          this.$root.$emit('nothingMoreToLoad')
+          this.failureToLoadingMore()
         })
         .finally(() => {
           this.loadingGlossary = false
-          this.$root.$emit('moreIsLoaded')
+          this.finallyMoreIsLoaded()
         })
     },
 

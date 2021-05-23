@@ -64,7 +64,11 @@
             <crag-route-list-item :route="route" />
           </div>
 
-          <loading-more :get-function="getRoutes" />
+          <loading-more
+            :get-function="getRoutes"
+            :loading-more="loadingMoreData"
+            :no-more-data="noMoreDataToLoad"
+          />
         </v-list>
 
         <!-- If no routes -->
@@ -77,6 +81,8 @@
 </template>
 
 <script>
+import { SessionConcern } from '@/concerns/SessionConcern'
+import { LoadingMoreHelpers } from '@/mixins/LoadingMoreHelpers'
 import CragRouteApi from '@/services/oblyk-api/CragRouteApi'
 import CragRoute from '@/models/CragRoute'
 import Spinner from '@/components/layouts/Spiner'
@@ -86,7 +92,6 @@ import AddSectorOrRouteBtn from '@/components/cragRoutes/partial/AddSectorOrRout
 import CragSectorSelector from '@/components/cragRoutes/partial/CragSectorSelector'
 import CragRouteSort from '@/components/cragRoutes/partial/CragRouteSort'
 import CragRouteSearch from '@/components/cragRoutes/partial/CragRouteSearch'
-import { SessionConcern } from '@/concerns/SessionConcern'
 import CragRouteFigures from '@/components/cragRoutes/CragRouteFigures'
 
 export default {
@@ -101,7 +106,7 @@ export default {
     CragRouteListItem,
     Spinner
   },
-  mixins: [SessionConcern],
+  mixins: [SessionConcern, LoadingMoreHelpers],
   props: {
     crag: {
       type: Object
@@ -159,32 +164,34 @@ export default {
 
     reloadRoutes: function () {
       this.loadingRoutes = true
+      this.resetLoadMorePageNumber()
       this.routes = []
-      this.getRoutes(1)
+      this.getRoutes()
     },
 
-    getRoutes: function (page) {
+    getRoutes: function () {
       let promise
       if (this.crag) {
-        promise = CragRouteApi.allInCrag(this.crag.id, page, this.routeSort)
+        promise = CragRouteApi.allInCrag(this.crag.id, this.page, this.routeSort)
       } else if (this.cragSector) {
-        promise = CragRouteApi.allInCragSector(this.cragSector.id, page, this.routeSort)
+        promise = CragRouteApi.allInCragSector(this.cragSector.id, this.page, this.routeSort)
       }
 
+      this.moreIsBeingLoaded()
       promise
         .then(resp => {
           for (const route of resp.data) {
             this.routes.push(new CragRoute(route))
           }
-          if (resp.data.length === 0) this.$root.$emit('nothingMoreToLoad')
+          this.successLoadingMore(resp)
         })
         .catch(err => {
           this.$root.$emit('alertFromApiError', err, 'cragRoute')
-          this.$root.$emit('nothingMoreToLoad')
+          this.failureToLoadingMore()
         })
         .finally(() => {
           this.loadingRoutes = false
-          this.$root.$emit('moreIsLoaded')
+          this.finallyMoreIsLoaded()
         })
     }
   }
