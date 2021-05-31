@@ -5,9 +5,11 @@ set :application, "oblyk-app"
 set :repo_url, "git@github.com:lucien-chastan/oblyk-app.git"
 set :linked_files, fetch(:linked_files, []).push('.env', '.env.local')
 set :npm_method, 'ci'
+set :keep_releases, 5
 
 after 'deploy:updated', 'app:build'
 after 'deploy:publishing', 'pm2:restart'
+
 
 namespace :pm2 do
   desc 'Start or restart pm2'
