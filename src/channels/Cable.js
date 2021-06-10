@@ -16,7 +16,7 @@ export const Cable = {
   methods: {
     connectCable: function () {
       if (this.isLoggedIn) {
-        this.$cable.connection.connect(`ws://localhost:3000/cable?token=${this.getWsToken}`)
+        this.$cable.connection.connect(`${process.env.VUE_APP_OBLYK_API_CABLE_URL}?token=${this.getWsToken}`)
       }
     },
 
