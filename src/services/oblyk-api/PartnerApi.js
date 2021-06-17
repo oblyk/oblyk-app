@@ -18,7 +18,7 @@ class PartnerApi extends BaseApi {
     })
   }
 
-  partnersAround (latitude, longitude, distance = '20km') {
+  partnersAround (latitude, longitude, distance = 20) {
     return axios({
       method: 'GET',
       url: `${this.baseUrl}/partners/partners_around.json`,

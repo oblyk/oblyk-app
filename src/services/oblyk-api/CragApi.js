@@ -54,7 +54,7 @@ class CragApi extends BaseApi {
     })
   }
 
-  cragsAround (latitude, longitude, distance = '20km') {
+  cragsAround (latitude, longitude, distance = 20) {
     const CancelToken = axios.CancelToken
     this.tokenSearchSource = CancelToken.source()
 

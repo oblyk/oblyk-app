@@ -236,7 +236,7 @@ export default {
         .cragsAround(
           this.user.latitude,
           this.user.longitude,
-          `${this.distance}km`
+          this.distance
         )
         .then(resp => {
           this.crags = []
@@ -251,7 +251,7 @@ export default {
         .gymsAround(
           this.user.latitude,
           this.user.longitude,
-          `${this.distance}km`
+          this.distance
         )
         .then(resp => {
           this.gyms = []
@@ -266,7 +266,7 @@ export default {
         .partnersAround(
           this.user.latitude,
           this.user.longitude,
-          `${this.distance}km`
+          this.distance
         )
         .then(resp => {
           this.climbers = []

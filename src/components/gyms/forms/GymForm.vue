@@ -194,7 +194,7 @@ export default {
       GymApi.gymsAround(
         this.data.latitude,
         this.data.longitude,
-        '1km'
+        1
       ).then(resp => {
         this.gymsAround = []
         for (const gym of resp.data) {

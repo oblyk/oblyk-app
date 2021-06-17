@@ -202,7 +202,7 @@ export default {
       CragApi.cragsAround(
         this.data.latitude,
         this.data.longitude,
-        '1km'
+        1
       ).then(resp => {
         this.cragsAround = []
         for (const crag of resp.data) {
