@@ -1,4 +1,12 @@
 {
+  "name": "Oblyk - Climbing Community",
+  "short_name": "Oblyk",
+  "theme_color": "#eb482c",
+  "background_color": "#eb482c",
+  "ms_tile_color": "#000000",
+  "display": "standalone",
+  "apple_mobile_web_app_capable": "yes",
+  "apple_mobile_web_app_status_bar_style": "black",
   "icons": [
     {
       "src": "./img/icons/android-chrome-192x192.png",
