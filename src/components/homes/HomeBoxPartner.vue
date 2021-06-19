@@ -1,6 +1,6 @@
 <template>
   <v-row>
-    <v-col align-self="center" cols="md-6">
+    <v-col align-self="center" sm="12" md="6">
       <h3 class="loved-by-king">
         {{ $t('home.partner.title') }}
       </h3>
@@ -11,7 +11,7 @@
         </v-btn>
       </p>
     </v-col>
-    <v-col align-self="center" cols="md-6">
+    <v-col align-self="center" sm="12" md="6">
       <v-img src="/img/svg/homes/partner.svg" />
     </v-col>
   </v-row>

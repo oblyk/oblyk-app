@@ -1,6 +1,6 @@
 <template>
   <v-row>
-    <v-col align-self="center" cols="md-6" order-md="last">
+    <v-col align-self="center" sm="12" md="6" order-md="last">
       <h3 class="loved-by-king">
         {{ $t('home.supportUs.title') }}
       </h3>
@@ -13,7 +13,7 @@
         </v-btn>
       </p>
     </v-col>
-    <v-col align-self="center" cols="md-6">
+    <v-col align-self="center" sm="12" md="6">
       <v-img src="/img/svg/homes/help.svg" />
     </v-col>
   </v-row>
