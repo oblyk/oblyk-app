@@ -1,19 +1,61 @@
 <template>
   <div class="oblyk-app-drawer">
-    <v-list color="pb-O">
-      <v-list-item class="oblyk-title" to="/">
-        <v-list-item-avatar>
-          <img src="/img/svg/logo-black.svg" alt="" v-if="!dark" >
-          <img src="/img/svg/logo-white.svg" alt="" v-if="dark" >
-        </v-list-item-avatar>
+    <v-row>
+      <v-col sm="4">
+        <v-btn
+          to="/"
+          icon
+          x-large
+          class="ml-2"
+        >
+          <img height="28" src="/img/svg/logo-black.svg" alt="" v-if="!dark" >
+          <img height="28" src="/img/svg/logo-white.svg" alt="" v-if="dark" >
+        </v-btn>
+      </v-col>
+      <v-col sm="8" class="v-card__actions">
+        <v-spacer />
+        <v-menu
+          bottom
+          left
+        >
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn
+              class="mr-0"
+              icon
+              aria-label="select language"
+              v-bind="attrs"
+              v-on="on"
+            >
+              {{ lang }}
+            </v-btn>
+          </template>
+          <v-list>
+            <v-list-item
+              v-for="language in languages"
+              :key="language.value"
+              @click="changeLocale(language.value)"
+            >
+              <v-list-item-content>
+                {{ language.text }}
+              </v-list-item-content>
+            </v-list-item>
+          </v-list>
+        </v-menu>
 
-        <v-list-item-content>
-          <v-list-item-title>
-            Oblyk
-          </v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
-    </v-list>
+        <v-btn
+          class="mr-4"
+          @click="dark = !dark"
+          icon
+        >
+          <v-icon v-if="dark">
+            mdi-weather-sunny
+          </v-icon>
+          <v-icon v-if="!dark">
+            mdi-weather-night
+          </v-icon>
+        </v-btn>
+      </v-col>
+    </v-row>
 
     <!-- If user is connected -->
     <v-list
@@ -244,9 +286,40 @@ export default {
   mixins: [SessionConcern],
   components: { MyGyms, AppDrawerItem },
 
-  computed: {
+  data () {
+    return {
+      dark: false,
+      lang: this.$vuetify.lang.current,
+      languages: [
+        {
+          value: 'fr',
+          text: 'Français'
+        },
+        {
+          value: 'en',
+          text: 'English'
+        }
+      ]
+    }
+  },
+
+  watch: {
     dark: function () {
-      return this.$vuetify.theme.dark
+      this.$vuetify.theme.dark = this.dark
+      localStorage.setItem('darkThem', this.dark)
+    }
+  },
+
+  created () {
+    this.dark = (localStorage.getItem('darkThem') === 'true')
+  },
+
+  methods: {
+    changeLocale (lang) {
+      this.lang = lang
+      this.$vuetify.lang.current = this.lang
+      this.$i18n.locale = this.lang
+      localStorage.setItem('lang', this.lang)
     }
   }
 }
