@@ -118,7 +118,7 @@ export default {
     changeValue: function (change, key) {
       if (change === false) {
         return this.$t('actions.no')
-      } else if (change === true) {
+      } else if (change === true || change === null) {
         return this.$t('actions.yes')
       } else if (typeof change === 'object') {
         return change.map((value) => { return this.$t(`models.${key}.${value}`) }).join(', ')
