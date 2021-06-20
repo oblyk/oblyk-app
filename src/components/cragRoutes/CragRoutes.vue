@@ -65,6 +65,7 @@
           </div>
 
           <loading-more
+            v-if="query === null"
             :get-function="getRoutes"
             :loading-more="loadingMoreData"
             :no-more-data="noMoreDataToLoad"

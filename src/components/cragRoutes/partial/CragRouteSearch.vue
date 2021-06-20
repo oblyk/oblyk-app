@@ -87,7 +87,7 @@ export default {
     search: function () {
       this.$emit('input', this.query)
 
-      if (this.previousQuery === this.query) {
+      if (this.previousQuery === this.query || this.query === '' || this.query === null) {
         this.searching = false
         return
       }
