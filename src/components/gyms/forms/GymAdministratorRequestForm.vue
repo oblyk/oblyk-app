@@ -61,6 +61,7 @@
 <script>
 import { FormHelpers } from '@/mixins/FormHelpers'
 import { SessionConcern } from '@/concerns/SessionConcern'
+import { CurrentUserConcern } from '@/concerns/CurrentUserConcern'
 import GymAdministratorRequestApi from '@/services/oblyk-api/GymAdministratorRequestApi'
 import SubmitForm from '@/components/forms/SubmitForm'
 import CloseForm from '@/components/forms/CloseForm'
@@ -68,7 +69,7 @@ import Spinner from '@/components/layouts/Spiner'
 
 export default {
   name: 'GymAdministratorRequestForm',
-  mixins: [FormHelpers, SessionConcern],
+  mixins: [FormHelpers, SessionConcern, CurrentUserConcern],
   components: { Spinner, CloseForm, SubmitForm },
   props: {
     gym: Object,
@@ -76,12 +77,17 @@ export default {
   },
 
   created () {
-    this.getCurrentUser().then((user) => {
-      this.data.last_name = user.last_name
-      this.data.first_name = user.first_name
-      this.data.email = user.email
-      this.loadingCurrentUser = false
-    })
+    this.getCurrentUser()
+  },
+
+  watch: {
+    currentUser: function () {
+      if (this.currentUser) {
+        this.data.first_name = this.currentUser.first_name
+        this.data.last_name = this.currentUser.last_name
+        this.data.email = this.currentUser.email
+      }
+    }
   },
 
   data () {

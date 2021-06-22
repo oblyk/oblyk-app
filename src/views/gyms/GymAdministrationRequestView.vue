@@ -45,7 +45,7 @@
         <div v-if="isLoggedIn">
           <p>
             <strong>
-              {{ $t('components.gymAdministrationRequest.helloName', { name: currentUser.name }) }}
+              {{ $t('components.gymAdministrationRequest.helloName', { name: loggedInUser.name }) }}
             </strong>
           </p>
           <p>
