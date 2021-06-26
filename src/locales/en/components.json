@@ -168,7 +168,7 @@
       }
     },
     "navigation": {
-      "goTo": "Go to : %{name}",
+      "goTo": "Go to crag",
       "cragBottom": "Go to bottom of the crag",
       "goToPark": "Go to park %{number}",
       "navigateWith": "Navigate with %{name}"

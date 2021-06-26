@@ -168,7 +168,7 @@
       }
     },
     "navigation": {
-      "goTo": "Aller à : %{name}",
+      "goTo": "Se rendre au site",
       "cragBottom": "Se rendre au pied de la falaise",
       "goToPark": "Se rendre au parking %{number}",
       "navigateWith": "Naviguer avec %{name}"

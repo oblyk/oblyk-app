@@ -5,19 +5,20 @@
   >
     <template v-slot:activator="{ on, attrs }">
       <v-btn
-        class="mb-3"
+        class="mb-3 expand"
+        block
         v-bind="attrs"
         v-on="on"
         small
         outlined
       >
-        {{ $t('components.navigation.goTo', { name: crag.name }) }}
+        {{ $t('components.navigation.goTo') }}
       </v-btn>
     </template>
 
     <v-card>
       <v-card-title class="headline">
-        {{ $t('components.navigation.goTo', { name: crag.name }) }}
+        {{ $t('components.navigation.goTo') }}
       </v-card-title>
 
       <v-card-text>
