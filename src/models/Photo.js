@@ -3,6 +3,10 @@ import PhotoApi from '@/services/oblyk-api/PhotoApi'
 import User from '@/models/User'
 
 export default class Photo extends ActiveData {
+  get className () {
+    return 'Photo'
+  }
+
   find (id) {
     return this.apiFind(PhotoApi, id)
   }

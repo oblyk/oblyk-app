@@ -2,6 +2,10 @@ import ActiveData from '@/models/ActiveData'
 import AreaApi from '@/services/oblyk-api/AreaApi'
 
 export default class Area extends ActiveData {
+  get className () {
+    return 'Area'
+  }
+
   find (id) {
     return this.apiFind(AreaApi, id)
   }

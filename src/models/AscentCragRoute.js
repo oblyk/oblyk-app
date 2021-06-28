@@ -4,6 +4,10 @@ import Crag from '@/models/Crag'
 import CragRoute from '@/models/CragRoute'
 
 export default class AscentCragRoute extends ActiveData {
+  get className () {
+    return 'AscentCragRoute'
+  }
+
   find (id) {
     return this.apiFind(AscentCragRouteApi, id)
   }

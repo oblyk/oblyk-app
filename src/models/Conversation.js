@@ -2,6 +2,10 @@ import ActiveData from '@/models/ActiveData'
 import ConversationApi from '@/services/oblyk-api/ConversationApi'
 
 export default class Conversation extends ActiveData {
+  get className () {
+    return 'Conversation'
+  }
+
   find (id) {
     return this.apiFind(ConversationApi, id)
   }

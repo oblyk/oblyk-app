@@ -3,6 +3,10 @@ import CragSectorApi from '@/services/oblyk-api/CragSectorApi'
 import Crag from '@/models/Crag'
 
 export default class CragSector extends ActiveData {
+  get className () {
+    return 'CragSector'
+  }
+
   find (cragId, cragSectorId) {
     return this.apiFind(CragSectorApi, cragId, cragSectorId)
   }

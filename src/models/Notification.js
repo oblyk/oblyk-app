@@ -4,6 +4,10 @@ import Article from '@/models/Article'
 import ConversationMessage from '@/models/ConversationMessage'
 
 export default class Notification extends ActiveData {
+  get className () {
+    return 'Notification'
+  }
+
   get Notifiable () {
     if (this.notifiable_type === 'User') return new User(this.notifiable_object)
     if (this.notifiable_type === 'ConversationMessage') return new ConversationMessage(this.notifiable_object)

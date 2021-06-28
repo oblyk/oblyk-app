@@ -2,6 +2,10 @@ import ActiveData from '@/models/ActiveData'
 import GymApi from '@/services/oblyk-api/GymApi'
 
 export default class Gym extends ActiveData {
+  get className () {
+    return 'Gym'
+  }
+
   find (id) {
     return this.apiFind(GymApi, id)
   }

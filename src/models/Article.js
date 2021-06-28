@@ -5,6 +5,10 @@ import Author from '@/models/Author'
 import ArticleApi from '@/services/oblyk-api/ArticleApi'
 
 export default class Article extends ActiveData {
+  get className () {
+    return 'Article'
+  }
+
   find (id) {
     return this.apiFind(ArticleApi, id)
   }

@@ -1,4 +1,8 @@
 export default class Note {
+  get className () {
+    return 'Note'
+  }
+
   constructor () {
     this.noteText = [
       'terrible',

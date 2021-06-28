@@ -2,6 +2,10 @@ import ActiveData from '@/models/ActiveData'
 import GuideBookPdfApi from '@/services/oblyk-api/GuideBookPdfApi'
 
 export default class GuideBookPdf extends ActiveData {
+  get className () {
+    return 'GuideBookPdf'
+  }
+
   find (id) {
     return this.apiFind(GuideBookPdfApi, id)
   }

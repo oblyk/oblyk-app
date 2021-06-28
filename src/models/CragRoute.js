@@ -4,6 +4,10 @@ import Crag from '@/models/Crag'
 import CragRouteApi from '@/services/oblyk-api/CragRouteApi'
 
 export default class CragRoute extends ActiveData {
+  get className () {
+    return 'CragRoute'
+  }
+
   find (CragId, id) {
     return this.apiFind(CragRouteApi, CragId, id)
   }

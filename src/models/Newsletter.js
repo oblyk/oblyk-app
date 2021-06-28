@@ -2,6 +2,10 @@ import ActiveData from '@/models/ActiveData'
 import NewsletterApi from '@/services/oblyk-api/NewsletterApi'
 
 export default class Newsletter extends ActiveData {
+  get className () {
+    return 'Newsletter'
+  }
+
   find (id) {
     return this.apiFind(NewsletterApi, id)
   }

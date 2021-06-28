@@ -3,6 +3,10 @@ import ParkApi from '@/services/oblyk-api/ParkApi'
 import Crag from '@/models/Crag'
 
 export default class Park extends ActiveData {
+  get className () {
+    return 'Park'
+  }
+
   find (cragId, parkId) {
     return this.apiFind(ParkApi, cragId, parkId)
   }

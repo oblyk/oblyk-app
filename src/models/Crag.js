@@ -3,6 +3,10 @@ import CragApi from '@/services/oblyk-api/CragApi'
 import Area from '@/models/Area'
 
 export default class Crag extends ActiveData {
+  get className () {
+    return 'Crag'
+  }
+
   get (id, callback) {
     this.apiFind(CragApi, id).then(resp => { callback(resp) })
   }

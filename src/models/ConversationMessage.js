@@ -3,6 +3,10 @@ import ConversationApi from '@/services/oblyk-api/ConversationApi'
 import User from '@/models/User'
 
 export default class ConversationMessage extends ActiveData {
+  get className () {
+    return 'ConversationMessage'
+  }
+
   find (conversationId, id) {
     return this.apiFind(ConversationApi, conversationId, id)
   }

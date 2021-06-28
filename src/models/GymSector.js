@@ -2,6 +2,10 @@ import ActiveData from '@/models/ActiveData'
 import GymSectorApi from '@/services/oblyk-api/GymSectorApi'
 
 export default class GymSector extends ActiveData {
+  get className () {
+    return 'GymSector'
+  }
+
   find (gymId, spaceId, sectorId) {
     return this.apiFind(GymSectorApi, gymId, spaceId, sectorId)
   }

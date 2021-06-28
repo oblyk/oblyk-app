@@ -3,6 +3,10 @@ import CurrentUserApi from '@/services/oblyk-api/CurrentUserApi'
 import UserApi from '@/services/oblyk-api/UserApi'
 
 export default class User extends ActiveData {
+  get className () {
+    return 'User'
+  }
+
   find (id) {
     return this.apiFind(UserApi, id)
   }

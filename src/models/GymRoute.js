@@ -4,6 +4,10 @@ import GymSector from '@/models/GymSector'
 import GymSpace from '@/models/GymSpace'
 
 export default class GymRoute extends ActiveData {
+  get className () {
+    return 'GymRoute'
+  }
+
   find (gymId, spaceId, routeId) {
     return this.apiFind(GymRouteApi, gymId, spaceId, routeId)
   }
