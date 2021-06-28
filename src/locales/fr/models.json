@@ -233,6 +233,7 @@
       "sections": "Sections",
       "gym_sector_id": "Secteur",
       "gym_grade_line_id": "Difficulté",
+      "gym_grade_line": "Difficulté",
       "grade_value_appreciation": "Cotation par les grimpeurs",
       "note": "Note",
       "note_count": "Nombre de note",

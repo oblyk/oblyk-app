@@ -7,6 +7,7 @@
       @submit.prevent="submit()"
     >
       <v-select
+        v-if="gymGrade.need_grade_line"
         v-model="data.gym_grade_line_id"
         :items="gymGradeLines"
         item-text="text"

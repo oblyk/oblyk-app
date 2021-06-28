@@ -69,6 +69,7 @@
           color="primary"
           class="ml-2"
           outlined
+          v-if="gymGrade.need_grade_line"
           :to="gymGrade.path('grade-lines/new')"
         >
           <v-icon left>
