@@ -22,35 +22,12 @@
       </v-card-title>
 
       <v-card-text>
-        <p class="mt-2 mb-0">
-          <v-icon left>mdi-terrain</v-icon>
-          {{ $t('components.navigation.cragBottom') }}
-        </p>
-        <v-row>
-          <v-col class="pt-0">
-            <a :href="mapLink(crag.latitude, crag.longitude, 'google')">
-              <v-btn text>
-                <v-icon left color="#39a556">mdi-google-maps</v-icon>
-                Google Maps
-              </v-btn>
-            </a>
-          </v-col>
-          <v-col class="pt-0">
-            <a :href="mapLink(crag.latitude, crag.longitude, 'waze')">
-              <v-btn text>
-                <v-icon left color="#31c7f8">mdi-waze</v-icon>
-                Waze
-              </v-btn>
-            </a>
-          </v-col>
-        </v-row>
-
         <!-- Park -->
         <div
           v-for="(park, index) in parks"
           :key="`park-${index}`"
         >
-          <p class="mt-7 mb-0">
+          <p class="mt-2 mb-0">
             <v-icon left>mdi-alpha-p-box</v-icon>
             {{ $t('components.navigation.goToPark', { number: index + 1 }) }}
           </p>
@@ -80,6 +57,30 @@
             </v-col>
           </v-row>
         </div>
+
+        <!-- Crags -->
+        <p class="mt-7 mb-0">
+          <v-icon left>mdi-terrain</v-icon>
+          {{ $t('components.navigation.cragBottom') }}
+        </p>
+        <v-row>
+          <v-col class="pt-0">
+            <a :href="mapLink(crag.latitude, crag.longitude, 'google')">
+              <v-btn text>
+                <v-icon left color="#39a556">mdi-google-maps</v-icon>
+                Google Maps
+              </v-btn>
+            </a>
+          </v-col>
+          <v-col class="pt-0">
+            <a :href="mapLink(crag.latitude, crag.longitude, 'waze')">
+              <v-btn text>
+                <v-icon left color="#31c7f8">mdi-waze</v-icon>
+                Waze
+              </v-btn>
+            </a>
+          </v-col>
+        </v-row>
 
       </v-card-text>
 
