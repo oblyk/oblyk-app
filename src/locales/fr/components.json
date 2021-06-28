@@ -467,6 +467,7 @@
       }
     },
     "photo" : {
+      "imageOptimization": "Optimisation de l'image ...",
       "photos": "Photos",
       "countInfos": "Une photo postée | %{count} photos postées",
       "noPhoto": "Il n'y a pas de photo ici pour l'instant"

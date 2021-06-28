@@ -14,10 +14,16 @@
     <v-progress-circular
       :value="progressValue"
       size="64"
-      v-if="progressable"
+      v-if="progressable && progressValue < 100"
     >
       {{ progressValue }}%
     </v-progress-circular>
+    <p
+      class="text-center"
+      v-if="progressable && progressValue === 100"
+    >
+      {{ $t('components.photo.imageOptimization') }}
+    </p>
   </v-overlay>
 </template>
 <script>
