@@ -73,35 +73,40 @@ export default [
         path: 'infos',
         component: CragInfoView,
         meta: {
-          noPaddingTop: true
+          noPaddingTop: true,
+          nestedPages: 'Crag'
         }
       },
       {
         path: 'photos',
         component: CragPhotosView,
         meta: {
-          noPaddingTop: true
+          noPaddingTop: true,
+          nestedPages: 'Crag'
         }
       },
       {
         path: 'links',
         component: CragLinkView,
         meta: {
-          noPaddingTop: true
+          noPaddingTop: true,
+          nestedPages: 'Crag'
         }
       },
       {
         path: 'guide-books',
         component: CragGuideBooksView,
         meta: {
-          noPaddingTop: true
+          noPaddingTop: true,
+          nestedPages: 'Crag'
         }
       },
       {
         path: 'maps',
         component: CragMapDetailsView,
         meta: {
-          noPaddingTop: true
+          noPaddingTop: true,
+          nestedPages: 'Crag'
         }
       }
     ]

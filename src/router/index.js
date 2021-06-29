@@ -85,7 +85,16 @@ const router = new VueRouter({
       path: '*',
       component: NotFoundView
     }
-  ]
+  ],
+  scrollBehavior (to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition
+    } else {
+      if (to.meta.nestedPages === undefined || to.meta.nestedPages !== from.meta.nestedPages) {
+        return { x: 0, y: 0 }
+      }
+    }
+  }
 })
 
 // check if the user is logged in
