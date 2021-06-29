@@ -89,6 +89,9 @@ export default {
     },
 
     onResize: function () {
+      // do not resize if is already a phone
+      if ((window.innerWidth < 960) === this.isMobile) return false
+
       if (window.innerWidth < 960) {
         this.isMobile = true
         this.conversationList = true
