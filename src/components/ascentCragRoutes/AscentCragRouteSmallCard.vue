@@ -219,7 +219,8 @@ export default {
         .addUser(
           this.ascentCragRoute.id,
           user.id
-        ).then(() => {
+        )
+        .then(() => {
           this.$root.$emit('reloadAscentCragRoute')
           this.ascentUserDialog = false
         })
