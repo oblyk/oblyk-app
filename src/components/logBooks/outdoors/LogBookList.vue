@@ -27,11 +27,30 @@
 
     <!-- Send list -->
     <div v-if="!loadingAscendedCragRoutes">
-      <crag-route-small-line
+      <div
         v-for="(cragRoute, index) in cragRoutes"
         :key="`crag-route-ascent-${index}`"
-        :route="cragRoute"
-      />
+      >
+        <!-- Crags separator -->
+        <p
+          class="mb-0 font-weight-bold"
+          v-bind:class="index !== 0 ? 'mt-7' : ''"
+          v-if="order === 'crags' && (index === 0 || cragRoutes[index].crag.id !== cragRoutes[index - 1].crag.id)"
+        >
+          {{ cragRoute.crag.name }}
+        </p>
+
+        <!-- Difficulty separator -->
+        <p
+          class="mb-0 font-weight-bold"
+          v-bind:class="index !== 0 ? 'mt-7' : ''"
+          v-if="order === 'difficulty' && (index === 0 || cragRoutes[index].grade_gap.max_grade_value !== cragRoutes[index - 1].grade_gap.max_grade_value)"
+        >
+          {{ gradeValueToText(cragRoute.grade_gap.max_grade_value) }}
+        </p>
+
+        <crag-route-small-line :route="cragRoute" />
+      </div>
 
       <loading-more
         :loading-more="loadingMoreData"
@@ -53,10 +72,11 @@ import CragRoute from '@/models/CragRoute'
 import Spinner from '@/components/layouts/Spiner'
 import LoadingMore from '@/components/layouts/LoadingMore'
 import UserApi from '@/services/oblyk-api/UserApi'
+import { GradeMixin } from '@/mixins/GradeMixin'
 
 export default {
   name: 'LogBookList',
-  mixins: [LoadingMoreHelpers],
+  mixins: [LoadingMoreHelpers, GradeMixin],
   components: { LoadingMore, Spinner, CragRouteSmallLine },
 
   props: {
