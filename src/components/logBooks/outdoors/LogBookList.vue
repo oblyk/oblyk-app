@@ -68,7 +68,7 @@ export default {
       loadingAscendedCragRoutes: true,
       cragRoutes: [],
 
-      order: 'difficulty',
+      order: localStorage.getItem('ascentListOrder') || 'difficulty',
       sortItems: [
         { text: this.$t('components.logBook.sortItem.difficulty'), value: 'difficulty' },
         { text: this.$t('components.logBook.sortItem.crags'), value: 'crags' },
@@ -91,6 +91,7 @@ export default {
 
   watch: {
     order: function () {
+      localStorage.setItem('ascentListOrder', this.order)
       this.resetAscents()
       this.ascendedCragRoutes()
     },
