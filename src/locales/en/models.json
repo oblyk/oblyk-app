@@ -129,6 +129,16 @@
       "released_at": "Released at",
       "hardness_status": "Difficulty appreciation"
     },
+    "ascentGymRoute": {
+      "type": "Type",
+      "ascent_status": "Ascent status",
+      "gym_route_id": "Gym route",
+      "gym_route": "Gym route",
+      "sections": "Sections",
+      "height": "Height",
+      "climbing_type": "Climbing type",
+      "released_at": "Released at"
+    },
     "area": {
       "name": "Name"
     },

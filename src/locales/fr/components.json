@@ -237,7 +237,7 @@
     },
     "ascentCragRoute": {
       "new": "Ajouter %{name} à mon carnet",
-      "edit": "Modifier ma sur %{name}",
+      "edit": "Modifier ma croix sur %{name}",
       "myOpinion": "Mon avis sur %{name}",
       "pitchMade": "Longueurs faites",
       "ascentMadeOn": "Croix faite le %{date}",
@@ -248,6 +248,14 @@
       "publicComment": "commentaire public",
       "iMadeCountPitch": "J'ai fait les %{count} longueurs",
       "iWasWith": "J'étais avec"
+    },
+    "ascentGymRoute": {
+      "new": "Ajouter à mon carnet",
+      "edit": "Modifier ma croix",
+      "pitchMade": "Longueurs faites",
+      "ascentMadeOn": "Croix faite le %{date}",
+      "madeOn": "fait le %{date}",
+      "iMadeCountPitch": "J'ai fait les %{count} longueurs"
     },
     "area": {
       "description": "<strong>%{name}</strong> est un groupement de %{crags} site d'escalades.<br>Ces sites contiennent au total %{routes}, allant de <strong>%{min}</strong> à <strong>%{max}</strong>",

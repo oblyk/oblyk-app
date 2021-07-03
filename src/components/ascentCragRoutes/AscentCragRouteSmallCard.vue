@@ -13,7 +13,7 @@
         >
           <v-icon small>mdi-delete</v-icon>
         </v-btn>
-        <edit-ascent-btn
+        <edit-crag-ascent-btn
           :crag-route="cragRoute"
           :ascent-crag-route="ascentCragRoute"
         />
@@ -156,7 +156,7 @@ import Note from '@/components/notes/Note'
 import NoteClass from '@/models/Note'
 import AscentCragRouteApi from '@/services/oblyk-api/AscentCragRouteApi'
 import store from '@/store'
-import EditAscentBtn from '@/components/ascentCragRoutes/EditAscentBtn'
+import EditCragAscentBtn from '@/components/ascentCragRoutes/EditCragAscentBtn'
 import MarkdownText from '@/components/ui/MarkdownText'
 import CurrentUserApi from '@/services/oblyk-api/CurrentUserApi'
 import UserSmallCard from '@/components/users/UserSmallCard'
@@ -166,7 +166,7 @@ import Spinner from '@/components/layouts/Spiner'
 export default {
   name: 'AscentCragRouteSmallCard',
   mixins: [DateHelpers, RecordToObjectHelpers],
-  components: { Spinner, UserSmallCard, MarkdownText, EditAscentBtn, Note, AscentCragRouteStatusIcon },
+  components: { Spinner, UserSmallCard, MarkdownText, EditCragAscentBtn, Note, AscentCragRouteStatusIcon },
   props: {
     ascentCragRoute: Object,
     cragRoute: Object

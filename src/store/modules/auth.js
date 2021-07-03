@@ -15,6 +15,7 @@ const state = {
   administered_gyms: [],
   subscribes: [],
   ascent_crag_routes: [],
+  ascent_gym_routes: [],
   tick_list: []
 }
 
@@ -76,6 +77,10 @@ const getters = {
     return state.ascent_crag_routes
   },
 
+  getAscentGymRoutes: state => {
+    return state.ascent_gym_routes
+  },
+
   getTickList: state => {
     return state.tick_list
   }
@@ -103,6 +108,7 @@ const actions = {
             administered_gyms: data.administered_gyms,
             subscribes: data.subscribes,
             ascent_crag_routes: data.ascent_crag_routes,
+            ascent_gym_routes: data.ascent_gym_routes,
             tick_list: data.tick_list
           })
           resolve(resp)
@@ -155,6 +161,7 @@ const actions = {
             administered_gyms: data.administered_gyms,
             subscribes: data.subscribes,
             ascent_crag_routes: data.ascent_crag_routes,
+            ascent_gym_routes: data.ascent_gym_routes,
             tick_list: data.tick_list
           })
           resolve(resp)
@@ -186,6 +193,7 @@ const actions = {
             administered_gyms: data.administered_gyms,
             subscribes: data.subscribes,
             ascent_crag_routes: data.ascent_crag_routes,
+            ascent_gym_routes: data.ascent_gym_routes,
             tick_list: data.tick_list
           })
           resolve(resp)
@@ -212,6 +220,12 @@ const actions = {
   updateAscentCragRoutes ({ commit }, data) {
     commit('updatedAscentCragRoutes', {
       ascent_crag_routes: data.ascent_crag_routes
+    })
+  },
+
+  updateAscentGymRoutes ({ commit }, data) {
+    commit('updatedAscentGymRoutes', {
+      ascent_gym_routes: data.ascent_gym_routes
     })
   },
 
@@ -249,6 +263,7 @@ const mutations = {
     state.administered_gyms = payload.administered_gyms
     state.subscribes = payload.subscribes
     state.ascent_crag_routes = payload.ascent_crag_routes
+    state.ascent_gym_routes = payload.ascent_gym_routes
     state.tick_list = payload.tick_list
   },
 
@@ -269,6 +284,10 @@ const mutations = {
 
   updatedAscentCragRoutes (state, payload) {
     state.ascent_crag_routes = payload.ascent_crag_routes
+  },
+
+  updatedAscentGymRoutes (state, payload) {
+    state.ascent_gym_routes = payload.ascent_gym_routes
   },
 
   updatedTickList (state, payload) {
@@ -293,6 +312,7 @@ const mutations = {
     state.administered_gyms = []
     state.subscribes = []
     state.ascent_crag_routes = []
+    state.ascent_gym_routes = []
     state.tick_list = []
   }
 }

@@ -5,24 +5,32 @@
   >
     <template v-slot:activator="{ on, attrs }">
       <v-btn
+        text
+        color="primary"
         small
-        icon
         v-bind="attrs"
         v-on="on"
       >
-        <v-icon small>mdi-pencil</v-icon>
+        <v-icon left>
+          mdi-check
+        </v-icon>
+        <span v-if="isRepetition">
+          {{ $t('actions.addRepetition') }}
+        </span>
+        <span v-else>
+          {{ $t('actions.addInMyLogbook') }}
+        </span>
       </v-btn>
     </template>
 
     <v-card>
       <v-card-title>
-        {{ $t('components.ascentCragRoute.edit', { name: cragRoute.name }) }}
+        {{ $t('components.ascentCragRoute.new', { name: cragRoute.name }) }}
       </v-card-title>
       <v-card-text>
         <ascent-crag-route-form
           :crag-route="cragRoute"
-          :ascent-crag-route="ascentCragRoute"
-          submit-methode="put"
+          submit-methode="post"
           :callback="successCallback"
         />
       </v-card-text>
@@ -34,11 +42,14 @@
 import AscentCragRouteForm from '@/components/ascentCragRoutes/forms/AscentCragRouteForm'
 
 export default {
-  name: 'EditAscentBtn',
+  name: 'AddCragAscentBtn',
   components: { AscentCragRouteForm },
   props: {
     cragRoute: Object,
-    ascentCragRoute: Object
+    isRepetition: {
+      type: Boolean,
+      default: false
+    }
   },
 
   data () {

@@ -4,7 +4,7 @@
 
     <v-card color="mt-5 mb-5" v-if="!loadingRoute">
       <v-img
-        height="550"
+        :height="gymRoute.hasPicture ? 550 : 60"
         :src="gymRoute.pictureUrl()"
         gradient="to bottom, rgba(0, 0, 0, 0.5) 0%, transparent 100px"
       >
@@ -73,20 +73,8 @@
         </v-col>
       </v-row>
 
-      <!-- Action -->
-      <v-card-actions v-if="isLoggedIn">
-        <v-spacer />
-        <v-btn
-          right
-          color="primary"
-          text
-        >
-          <v-icon left>
-            mdi-check
-          </v-icon>
-          Ajouter à mon carnet
-        </v-btn>
-      </v-card-actions>
+      <!-- Cross list and add in logbook btn -->
+      <gym-route-ascent :gym-route="gymRoute" />
     </v-card>
   </div>
 </template>
@@ -99,10 +87,11 @@ import GymRoute from '@/models/GymRoute'
 import { SessionConcern } from '@/concerns/SessionConcern'
 import { DateHelpers } from '@/mixins/DateHelpers'
 import GymRouteTags from '@/components/gymRoutes/partial/GymRouteTags'
+import GymRouteAscent from '@/components/gymRoutes/GymRouteAscent'
 
 export default {
   name: 'GymRouteCardLarge',
-  components: { GymRouteTags, Spinner, GymRouteActionMenu, GymRouteGradeAndPoint, GymRouteTagAndHold },
+  components: { GymRouteAscent, GymRouteTags, Spinner, GymRouteActionMenu, GymRouteGradeAndPoint, GymRouteTagAndHold },
   mixins: [SessionConcern, DateHelpers],
   props: {
     gymRouteProp: Object,

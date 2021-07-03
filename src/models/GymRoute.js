@@ -2,6 +2,7 @@ import ActiveData from '@/models/ActiveData'
 import GymRouteApi from '@/services/oblyk-api/GymRouteApi'
 import GymSector from '@/models/GymSector'
 import GymSpace from '@/models/GymSpace'
+import Gym from '@/models/Gym'
 
 export default class GymRoute extends ActiveData {
   get className () {
@@ -27,6 +28,8 @@ export default class GymRoute extends ActiveData {
   pictureUrl () {
     if (this.hasPicture) {
       return `${process.env.VUE_APP_OBLYK_API_URL}${this.picture}`
+    } else if (this.Gym.banner_thumbnail_url) {
+      return `${process.env.VUE_APP_OBLYK_API_URL}${this.Gym.banner_thumbnail_url}`
     } else {
       return '/img/svg/missing-picture.svg'
     }
@@ -50,5 +53,9 @@ export default class GymRoute extends ActiveData {
 
   get GymSpace () {
     return new GymSpace(this.gym_space)
+  }
+
+  get Gym () {
+    return new Gym(this.gym)
   }
 }

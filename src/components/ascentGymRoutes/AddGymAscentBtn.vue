@@ -1,7 +1,7 @@
 <template>
   <v-dialog
     v-model="ascentModal"
-    width="1000"
+    width="500"
   >
     <template v-slot:activator="{ on, attrs }">
       <v-btn
@@ -25,13 +25,14 @@
 
     <v-card>
       <v-card-title>
-        {{ $t('components.ascentCragRoute.new', { name: cragRoute.name }) }}
+        {{ $t('components.ascentGymRoute.new', { name: gymRoute.name }) }}
       </v-card-title>
       <v-card-text>
-        <ascent-crag-route-form
-          :crag-route="cragRoute"
+        <ascent-gym-route-form
+          :gym-route="gymRoute"
           submit-methode="post"
           :callback="successCallback"
+          :default-ascent-status="isRepetition ? 'repetition' : 'sent'"
         />
       </v-card-text>
     </v-card>
@@ -39,12 +40,13 @@
 </template>
 
 <script>
-import AscentCragRouteForm from '@/components/ascentCragRoutes/forms/AscentCragRouteForm'
+import AscentGymRouteForm from '@/components/ascentGymRoutes/forms/AscentGymRouteForm'
+
 export default {
-  name: 'AddAscentBtn',
-  components: { AscentCragRouteForm },
+  name: 'AddGymAscentBtn',
+  components: { AscentGymRouteForm },
   props: {
-    cragRoute: Object,
+    gymRoute: Object,
     isRepetition: {
       type: Boolean,
       default: false
@@ -59,7 +61,7 @@ export default {
 
   methods: {
     successCallback: function () {
-      this.$root.$emit('reloadAscentCragRoute')
+      this.$root.$emit('reloadAscentGymRoute')
       this.ascentModal = false
     }
   }

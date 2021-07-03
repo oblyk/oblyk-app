@@ -129,6 +129,16 @@
       "released_at": "Réalisé le",
       "hardness_status": "Appréciation de la difficulté"
     },
+    "ascentGymRoute": {
+      "type": "Type",
+      "ascent_status": "Status de l'ascension",
+      "gym_route_id": "Ligne",
+      "gym_route": "Ligne",
+      "sections": "Sections",
+      "height": "Hauteur",
+      "climbing_type": "Type d'escalade",
+      "released_at": "Réalisé le"
+    },
     "area": {
       "name": "Nom"
     },

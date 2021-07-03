@@ -10,11 +10,11 @@
       >
         <v-avatar
           class="gym-route-image"
-          color="grey"
+          color="light"
           size="70"
           tile
         >
-          <v-img :src="gymRoute.thumbnailUrl()"></v-img>
+          <v-img :src="gymRoute.thumbnailUrl()" />
         </v-avatar>
       </v-col>
       <v-col class="pl-5 pt-0 pb-0">
@@ -33,8 +33,8 @@
           </v-col>
         </v-row>
       </v-col>
-      <v-col class="pt-1 pb-0 pl-0 gym-grade-col">
-        <gym-route-grade-and-point :gym-route="gymRoute" />
+      <v-col class="pt-1 pb-0 pl-0 gym-grade-col text-center">
+        <gym-route-grade-and-point :gym-route="gymRoute"/>
         <span class="text--disabled">
           <v-icon
             small
@@ -42,18 +42,22 @@
           >
             mdi-check-all
           </v-icon>
-          0
+          {{ gymRoute.ascents_count || 0 }}
+          <ascent-gym-route-status-icon :gym-route="gymRoute" />
         </span>
       </v-col>
     </v-row>
   </v-card>
 </template>
+
 <script>
 import GymRouteTagAndHold from '@/components/gymRoutes/partial/GymRouteTagAndHold'
 import GymRouteGradeAndPoint from '@/components/gymRoutes/partial/GymRouteGradeAndPoint'
+import AscentGymRouteStatusIcon from '@/components/ascentGymRoutes/AscentGymRouteStatusIcon'
+
 export default {
   name: 'GymRouteCardSmall',
-  components: { GymRouteGradeAndPoint, GymRouteTagAndHold },
+  components: { AscentGymRouteStatusIcon, GymRouteGradeAndPoint, GymRouteTagAndHold },
   props: {
     gymRoute: Object,
     placement: {
