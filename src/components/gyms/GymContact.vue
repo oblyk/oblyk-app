@@ -7,7 +7,7 @@
       <v-list dense>
 
         <!-- Address -->
-        <v-list-item to="/maps/gyms">
+        <v-list-item :to="`/maps/gyms?lat=${gym.latitude}&lng=${gym.longitude}`">
           <v-list-item-icon>
             <v-icon>mdi-map</v-icon>
           </v-list-item-icon>

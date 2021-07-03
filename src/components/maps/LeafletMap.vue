@@ -80,11 +80,11 @@ export default {
       required: false
     },
     latitudeForce: {
-      type: Number,
+      type: [Number, String],
       required: false
     },
     longitudeForce: {
-      type: Number,
+      type: [Number, String],
       required: false
     },
     scrollWheelZoom: {
