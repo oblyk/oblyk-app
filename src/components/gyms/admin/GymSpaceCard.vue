@@ -14,6 +14,17 @@
         {{ gym.gym_spaces.length }}
       </strong>
     </v-card-text>
+    <v-card-actions>
+      <v-spacer />
+      <v-btn
+        :to="gym.path('spaces/new')"
+        small
+        text
+        color="primary"
+      >
+        {{ $t('components.gymSpace.create') }}
+      </v-btn>
+    </v-card-actions>
   </v-card>
 </template>
 <script>
