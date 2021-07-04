@@ -8,35 +8,35 @@
 
     <!-- Guide book settings -->
     <v-row>
-      <v-col class="mt-10">
+      <div class="col-sm-12 mt-10">
         <p class="subtitle-1 mb-0">
           <v-icon left>mdi-map-legend</v-icon>
           {{ $t('components.gymAdmin.GuideBookSettings') }}
         </p>
-      </v-col>
+      </div>
     </v-row>
     <v-row>
-      <v-col class="col-sm-12 col-md-6 col-lg-3 pa-2">
+      <div class="col-sm-12 col-md-6 col-lg-4 pa-2">
         <gym-space-card :gym="gym" />
-      </v-col>
-      <v-col class="col-sm-12 col-md-6 col-lg-3 pa-2">
+      </div>
+      <div class="col-sm-12 col-md-6 col-lg-4 pa-2">
         <difficulty-system-card :gym="gym" />
-      </v-col>
+      </div>
     </v-row>
 
     <!-- Gestion settings -->
     <v-row>
-      <v-col class="mt-10">
+      <div class="col-sm-12 mt-10">
         <p class="subtitle-1 mb-0">
           <v-icon left>mdi-tune</v-icon>
           {{ $t('components.gymAdmin.gestionSettings') }}
         </p>
-      </v-col>
+      </div>
     </v-row>
     <v-row>
-      <v-col class="col-sm-12 col-md-6 col-lg-3 pa-2">
+      <div class="col-sm-12 col-md-6 col-lg-4 pa-2">
         <gym-team-card :gym="gym" />
-      </v-col>
+      </div>
     </v-row>
   </v-container>
 </template>
