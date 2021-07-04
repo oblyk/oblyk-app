@@ -93,6 +93,12 @@ export default {
     }
   },
 
+  watch: {
+    bounds: function () {
+      this.setMapView()
+    }
+  },
+
   mounted () {
     this.$root.$on('startEditSectorPolygon', (gymSectorId) => {
       this.startEditSectorPolygon(gymSectorId)
@@ -132,7 +138,7 @@ export default {
     },
 
     setMapView: function () {
-      this.map.setView([this.gymSpace.scheme_height / 12, this.gymSpace.scheme_width / 12], 1)
+      this.map.fitBounds(this.bounds)
     },
 
     startEditSectorPolygon: function (gymSectorId) {
@@ -269,6 +275,8 @@ export default {
 @media only screen and (max-width: 700px) {
   .gym-space-map {
     top: 48px;
+    left: 0;
+    width: 100vw !important;
     height: calc(100vh - 88px);
   }
 }

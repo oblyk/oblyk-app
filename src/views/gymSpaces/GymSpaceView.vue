@@ -5,13 +5,14 @@
       <v-col
         class="gym-space-routes-col"
         v-show="!mobilInterface || linePanel"
-        v-bind:class="mobilInterface ? 'mobil-interface' : 'desktop-interface'">
+        v-bind:class="mobilInterface ? 'mobil-interface' : 'desktop-interface'"
+      >
         <gym-space-route :gym-space="gymSpace" />
       </v-col>
 
       <v-col
         ref="gym-space-ma-area"
-        v-show="!mobilInterface || planPanel"
+        v-if="!mobilInterface || planPanel"
         class="col gym-space-plan-col pt-0 pb-0 pl-0 pr-0"
         v-bind:class="mobilInterface ? 'mobil-interface' : 'desktop-interface'"
       >
