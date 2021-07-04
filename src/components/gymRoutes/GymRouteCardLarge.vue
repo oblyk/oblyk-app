@@ -74,7 +74,10 @@
       </v-row>
 
       <!-- Cross list and add in logbook btn -->
-      <gym-route-ascent :gym-route="gymRoute" />
+      <gym-route-ascent
+        v-if="isLoggedIn"
+        :gym-route="gymRoute"
+      />
     </v-card>
   </div>
 </template>
