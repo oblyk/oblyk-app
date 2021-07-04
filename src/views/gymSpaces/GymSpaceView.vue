@@ -5,7 +5,7 @@
       <v-col
         class="gym-space-routes-col"
         v-show="!mobilInterface || linePanel"
-        v-bind:class="mobilInterface ? 'mobil-interface mr-3' : 'desktop-interface'">
+        v-bind:class="mobilInterface ? 'mobil-interface' : 'desktop-interface'">
         <gym-space-route :gym-space="gymSpace" />
       </v-col>
 
@@ -88,6 +88,7 @@ export default {
 <style lang="scss">
 .gym-spaces-routes-and-plan {
   .gym-spaces-routes-and-plan-row {
+    max-width: 100vw;
     margin-left: 0;
     .gym-space-routes-col {
       &.desktop-interface {
