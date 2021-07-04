@@ -60,6 +60,34 @@ class GymRouteApi extends BaseApi {
     })
   }
 
+  dismountCollection (gymId, gymRouteIds) {
+    return axios({
+      method: 'PUT',
+      url: `${this.baseUrl}/gyms/${gymId}/gym_routes/dismount_collection.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
+      params: {
+        route_ids: gymRouteIds
+      }
+    })
+  }
+
+  mountCollection (gymId, gymRouteIds) {
+    return axios({
+      method: 'PUT',
+      url: `${this.baseUrl}/gyms/${gymId}/gym_routes/mount_collection.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
+      params: {
+        route_ids: gymRouteIds
+      }
+    })
+  }
+
   create (data) {
     return axios({
       method: 'POST',

@@ -320,7 +320,9 @@
       "tabs": {
         "info": "Info",
         "guideBook": "Topo",
-        "admin": "Admin"
+        "admin": "Admin",
+        "tables": "Tables",
+        "statistics": "Statistiques"
       },
       "firstSpaceExplain": "Les espaces vous permets de renseigner vos voies et bloc pour que vos grimpeurs puissent les consulter et tenir un carnet de croix !",
       "createFirstSpace": "Créer mon premier Espace",
@@ -346,7 +348,12 @@
       "gestionSettings": "Gestion",
       "team": "Équipe",
       "difficultySystem": "Système de difficulté",
-      "spaces": "Espaces"
+      "spaces": "Espaces",
+      "routes": "Lignes",
+      "dismountedRoutes": "Liste des lignes démontées",
+      "mountedRoutes": "Liste des lignes montées",
+      "dismountRoutes": "Démonter la ligne | Démonter les %{count} lignes",
+      "mountRoutes": "Monter la ligne | Monter les %{count} lignes"
     },
     "gymAdministrationRequest": {
       "helloName": "Bonjour %{name}",

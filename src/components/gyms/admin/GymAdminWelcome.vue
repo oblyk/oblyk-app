@@ -28,9 +28,10 @@
     </v-card-actions>
   </v-card>
 </template>
+
 <script>
 export default {
-  name: 'GymWelcomeCard',
+  name: 'GymAdminWelcome',
   props: {
     gym: Object
   }

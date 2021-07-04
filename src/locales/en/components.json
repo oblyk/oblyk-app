@@ -320,7 +320,9 @@
       "tabs": {
         "info": "Info",
         "guideBook": "Guide book",
-        "admin": "Admin"
+        "admin": "Admin",
+        "tables": "Tables",
+        "statistics": "Statistics"
       },
       "firstSpaceExplain": "The spaces allow you to fill in your routes and boulders so that your climbers can consult them and keep a notebook of ascents!",
       "createFirstSpace": "Create my first Space",
@@ -346,7 +348,12 @@
       "gestionSettings": "Gestion",
       "team": "Team",
       "difficultySystem": "Difficulty system",
-      "spaces": "Spaces"
+      "spaces": "Spaces",
+      "routes": "Routes",
+      "dismountedRoutes": "List of dismounted routes",
+      "mountedRoutes": "List of mounted routes",
+      "dismountRoutes": "Dismount %{count} line | Dismount %{count} lines",
+      "mountRoutes": "Mount %{count} line | Mount %{count} lines"
     },
     "gymAdministrationRequest": {
       "helloName": "Hello %{name}",

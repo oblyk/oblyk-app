@@ -11,6 +11,9 @@ const GymAdministratorRequiredView = () => import(/* webpackChunkName: "gym-rout
 const GymAdministrationRequestView = () => import(/* webpackChunkName: "gym-routes" */ '@/views/gyms/GymAdministrationRequestView')
 const GymFirstDifficultySystemView = () => import(/* webpackChunkName: "gym-routes" */ '@/views/gymGrades/GymFirstDifficultySystemView')
 const GymAdminView = () => import(/* webpackChunkName: "gym-routes" */ '@/views/gyms/GymAdminView')
+const GymAdminRoutesView = () => import(/* webpackChunkName: "gym-routes" */ '@/views/gyms/GymAdminRoutesView')
+const GymAdminRoutesStatisticsView = () => import(/* webpackChunkName: "gym-routes" */ '@/views/gyms/GymAdminRoutesStatisticsView')
+const GymAdminRoutesTablesView = () => import(/* webpackChunkName: "gym-routes" */ '@/views/gyms/GymAdminRoutesTablesView')
 
 export default [
   {
@@ -100,6 +103,33 @@ export default [
       requiresAuth: true,
       requiresGymAdministrator: true
     }
+  },
+  {
+    path: '/gyms/:gymId/:gymSlug/admin/routes',
+    component: GymAdminRoutesView,
+    props: true,
+    meta: {
+      requiresAuth: true,
+      requiresGymAdministrator: true
+    },
+    children: [
+      {
+        path: 'tables',
+        component: GymAdminRoutesTablesView,
+        meta: {
+          requiresAuth: true,
+          requiresGymAdministrator: true
+        }
+      },
+      {
+        path: 'statistics',
+        component: GymAdminRoutesStatisticsView,
+        meta: {
+          requiresAuth: true,
+          requiresGymAdministrator: true
+        }
+      }
+    ]
   },
   {
     path: '/gyms/new',

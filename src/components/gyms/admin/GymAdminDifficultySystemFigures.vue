@@ -16,9 +16,10 @@
     </v-card-text>
   </v-card>
 </template>
+
 <script>
 export default {
-  name: 'DifficultySystemCard',
+  name: 'GymAdminDifficultySystemFigures',
   props: {
     gym: Object
   }

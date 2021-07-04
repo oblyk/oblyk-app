@@ -20,11 +20,13 @@
     </v-card-text>
   </v-card>
 </template>
+
 <script>
 import Spinner from '@/components/layouts/Spiner'
 import GymAdministratorApi from '@/services/oblyk-api/GymAdministratorApi'
+
 export default {
-  name: 'GymTeamCard',
+  name: 'GymAdminTeamFigures',
   components: { Spinner },
   props: {
     gym: Object

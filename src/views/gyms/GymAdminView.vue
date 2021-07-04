@@ -2,7 +2,7 @@
   <v-container fluid v-if="gym">
     <v-row>
       <v-col class="col-md-12 pa-2">
-        <gym-welcome-card :gym="gym" />
+        <gym-admin-welcome :gym="gym" />
       </v-col>
     </v-row>
 
@@ -17,10 +17,13 @@
     </v-row>
     <v-row>
       <div class="col-sm-12 col-md-6 col-lg-4 pa-2">
-        <gym-space-card :gym="gym" />
+        <gym-admin-route-figures :gym="gym" />
       </div>
       <div class="col-sm-12 col-md-6 col-lg-4 pa-2">
-        <difficulty-system-card :gym="gym" />
+        <gym-admin-space-figures :gym="gym" />
+      </div>
+      <div class="col-sm-12 col-md-6 col-lg-4 pa-2">
+        <gym-admin-difficulty-system-figures :gym="gym" />
       </div>
     </v-row>
 
@@ -35,28 +38,30 @@
     </v-row>
     <v-row>
       <div class="col-sm-12 col-md-6 col-lg-4 pa-2">
-        <gym-team-card :gym="gym" />
+        <gym-admin-team-figures :gym="gym" />
       </div>
     </v-row>
   </v-container>
 </template>
 
 <script>
-import DifficultySystemCard from '@/components/gyms/admin/DifficultySystemCard'
-import GymTeamCard from '@/components/gyms/admin/GymTeamCard'
-import GymWelcomeCard from '@/components/gyms/admin/GymWelcomeCard'
-import GymSpaceCard from '@/components/gyms/admin/GymSpaceCard'
 import { GymConcern } from '@/concerns/GymConcern'
+import GymAdminDifficultySystemFigures from '@/components/gyms/admin/GymAdminDifficultySystemFigures'
+import GymAdminTeamFigures from '@/components/gyms/admin/GymAdminTeamFigures'
+import GymAdminWelcome from '@/components/gyms/admin/GymAdminWelcome'
+import GymAdminSpaceFigures from '@/components/gyms/admin/GymAdminSpaceFigures'
+import GymAdminRouteFigures from '@/components/gyms/admin/GymAdminRouteFigures'
 
 export default {
   name: 'GymAdminView',
   mixins: [GymConcern],
 
   components: {
-    GymSpaceCard,
-    GymWelcomeCard,
-    GymTeamCard,
-    DifficultySystemCard
+    GymAdminRouteFigures,
+    GymAdminSpaceFigures,
+    GymAdminWelcome,
+    GymAdminTeamFigures,
+    GymAdminDifficultySystemFigures
   },
 
   metaInfo () {

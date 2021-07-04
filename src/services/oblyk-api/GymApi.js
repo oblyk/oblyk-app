@@ -18,6 +18,31 @@ class GymApi extends BaseApi {
     })
   }
 
+  routesCount (gymId) {
+    return axios({
+      method: 'GET',
+      url: `${this.baseUrl}/gyms/${gymId}/routes_count.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
+    })
+  }
+
+  routes (gymId, dismounted = false) {
+    return axios({
+      method: 'GET',
+      url: `${this.baseUrl}/gyms/${gymId}/routes.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
+      params: {
+        dismounted: dismounted
+      }
+    })
+  }
+
   search (query) {
     const CancelToken = axios.CancelToken
     this.tokenSearchSource = CancelToken.source()

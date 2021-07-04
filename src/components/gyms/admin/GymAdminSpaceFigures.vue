@@ -27,9 +27,10 @@
     </v-card-actions>
   </v-card>
 </template>
+
 <script>
 export default {
-  name: 'GymSpaceCard',
+  name: 'GymAdminSpaceFigures',
   props: {
     gym: Object
   }

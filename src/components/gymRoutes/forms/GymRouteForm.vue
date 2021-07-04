@@ -231,6 +231,7 @@ export default {
 
   data () {
     return {
+      redirectTo: null,
       nextAction: 'goToSpace',
       multiPitch: false,
       showAutomaticParameters: true,
@@ -266,6 +267,8 @@ export default {
   created () {
     this.getGymGrade()
     this.multiPitch = this.data.sections.length > 1
+    const urlParams = new URLSearchParams(window.location.search)
+    this.redirectTo = urlParams.get('redirect_to')
   },
 
   methods: {
@@ -281,7 +284,9 @@ export default {
       promise
         .then(resp => {
           const gymRoute = new GymRoute(resp.data)
-          if (this.nextAction === 'picture') {
+          if (this.redirectTo) {
+            this.$router.push(this.redirectTo)
+          } else if (this.nextAction === 'picture') {
             this.$router.push(gymRoute.path('picture'))
           } else {
             this.$router.push(gymRoute.gymSpacePath())
