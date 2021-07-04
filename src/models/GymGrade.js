@@ -28,7 +28,7 @@ export default class GymGrade extends ActiveData {
   }
 
   get needHoldColor () {
-    return (this.difficulty_system === 'tag_color' || this.difficulty_system === 'hold_color')
+    return (this.difficulty_system === 'tag_color' || this.difficulty_system === 'hold_color' || this.difficulty_system === 'grade')
   }
 
   get colorFor () {
