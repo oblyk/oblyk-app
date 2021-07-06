@@ -38,7 +38,7 @@
             >
               {{ $t('components.gym.type') }}
             </v-alert>
-            {{ gym.country }}, {{ gym.city }}
+            {{ gym.country }}, {{ gym.city }} <cite v-if="haveLocalization()"> - {{ $t('common.is') }} {{ getDistance() }} km</cite>
           </v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
@@ -48,15 +48,26 @@
 
 <script>
 import SubscribeBtn from '@/components/forms/SubscribeBtn'
+import { LocalizationHelpers } from '@/mixins/LocalizationHelpers'
 
 export default {
   name: 'GymSmallCard',
   components: { SubscribeBtn },
+  mixins: [LocalizationHelpers],
   props: {
     gym: Object,
     small: {
       type: Boolean,
       default: false
+    }
+  },
+
+  methods: {
+    getDistance: function () {
+      const currentLatitude = localStorage.getItem('currentLatitude')
+      const currentLongitude = localStorage.getItem('currentLongitude')
+
+      return this.geoDistance(currentLatitude, currentLongitude, this.gym.latitude, this.gym.longitude)
     }
   }
 }

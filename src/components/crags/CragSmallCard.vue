@@ -36,7 +36,7 @@
             >
               {{ $t('components.crag.type') }}
             </v-alert>
-            {{ crag.country }}, {{ crag.city }}
+            {{ crag.country }}, {{ crag.city }} <cite v-if="haveLocalization()"> - {{ $t('common.is') }} {{ getDistance() }} km</cite>
           </v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
@@ -46,10 +46,12 @@
 
 <script>
 import SubscribeBtn from '@/components/forms/SubscribeBtn'
+import { LocalizationHelpers } from '@/mixins/LocalizationHelpers'
 
 export default {
   name: 'CragSmallCard',
   components: { SubscribeBtn },
+  mixins: [LocalizationHelpers],
   props: {
     crag: Object,
     linkable: {
@@ -60,6 +62,19 @@ export default {
     small: {
       type: Boolean,
       default: false
+    }
+  },
+
+  created () {
+    this.getDistance()
+  },
+
+  methods: {
+    getDistance: function () {
+      const currentLatitude = localStorage.getItem('currentLatitude')
+      const currentLongitude = localStorage.getItem('currentLongitude')
+
+      return this.geoDistance(currentLatitude, currentLongitude, this.crag.latitude, this.crag.longitude)
     }
   }
 }
