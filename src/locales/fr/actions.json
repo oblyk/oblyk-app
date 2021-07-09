@@ -91,6 +91,8 @@
     "writeNewsletter": "Écrire une newsletter",
     "send": "Envoyer",
     "subscribeMe": "M'inscrire",
-    "unsubscribeMe": "Me désinscrire"
+    "unsubscribeMe": "Me désinscrire",
+    "accept": "Accepter",
+    "reject": "Refuser"
   }
 }

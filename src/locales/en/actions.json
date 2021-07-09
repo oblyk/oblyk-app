@@ -91,6 +91,8 @@
     "writeNewsletter": "Write newsletter",
     "send": "Send",
     "subscribeMe": "Subscribe me",
-    "unsubscribeMe": "Unsubscribe me"
+    "unsubscribeMe": "Unsubscribe me",
+    "accept": "Accept",
+    "reject": "Reject"
   }
 }

@@ -517,6 +517,7 @@
       "emptyContribution": "%{name} n'a pas encore contribué à Oblyk",
       "climbersMap": "Sur la carte des grimpeurs",
       "followersEmpty": "%{name} n'a pas encore d'abonné.",
+      "subscribesEmpty": "%{name} n'a pas encore d'abonnement",
       "myFavoriteCragsEmpty": "Vous ne suivez pas de site pour l'instant",
       "myFavoriteGymsEmpty": "Vous ne suivez pas de salle pour l'instant",
       "searchUser": "Chercher un grimpeur",
@@ -546,6 +547,7 @@
       "privateLogBook": "Le carnet de croix de %{name} est privé.",
       "privateMedia": "les photos & videos de %{name} sont privées.",
       "subscribeToSee": "Abonnez-vous pour pouvoir le voir !",
+      "waitingFollowers": "Un·e abonné·e attend votre confirmation | %{count} abonné·es attendent votre confirmation",
       "tabs": {
         "feed": "Fil",
         "profile": "Profil",

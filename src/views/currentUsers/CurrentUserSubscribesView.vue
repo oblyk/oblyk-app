@@ -3,16 +3,32 @@
     <spinner v-if="loadingSubscribes" />
 
     <div v-if="!loadingSubscribes">
-      <div
-        v-for="(subscribe, index) in subscribes"
-        :key="`subscribe-${index}`"
+      <v-row>
+        <v-col
+          class="col-sm-12 col-md-6 col-lg-3"
+          v-for="(subscribe, index) in subscribes"
+          :key="`subscribe-${index}`"
+        >
+          <user-small-card
+            :user="recordObject(subscribe.followable_object)"
+            :small="true"
+          />
+        </v-col>
+      </v-row>
+
+      <loading-more
+        :get-function="getSubscribes"
+        :no-more-data="noMoreDataToLoad"
+        :loading-more="loadingMoreData"
+      />
+
+      <!-- No subscribes -->
+      <p
+        v-if="subscribes.length === 0"
+        class="text-center text--disabled mt-5 mb-5"
       >
-        <user-small-card
-          class="mb-2"
-          :user="recordObject(subscribe.followable_object)"
-          :small="true"
-        />
-      </div>
+        {{ $t('components.user.subscribesEmpty', { name: user.first_name }) }}
+      </p>
     </div>
   </div>
 </template>
@@ -23,11 +39,13 @@ import CurrentUserApi from '@/services/oblyk-api/CurrentUserApi'
 import User from '@/models/User'
 import UserSmallCard from '@/components/users/UserSmallCard'
 import Spinner from '@/components/layouts/Spiner'
+import { LoadingMoreHelpers } from '@/mixins/LoadingMoreHelpers'
+import LoadingMore from '@/components/layouts/LoadingMore'
 
 export default {
   name: 'CurrentUserSubscribesViewView',
-  components: { Spinner, UserSmallCard },
-  mixins: [CurrentUserConcern],
+  components: { LoadingMore, Spinner, UserSmallCard },
+  mixins: [CurrentUserConcern, LoadingMoreHelpers],
   props: {
     user: Object
   },
@@ -51,17 +69,22 @@ export default {
 
   methods: {
     getSubscribes: function () {
-      this.loadingSubscribes = true
+      this.moreIsBeingLoaded()
       CurrentUserApi
-        .subscribes()
+        .subscribes(this.page)
         .then(resp => {
-          this.subscribes = resp.data
+          for (const subscribe of resp.data) {
+            this.subscribes.push(subscribe)
+          }
+          this.successLoadingMore(resp)
         })
         .catch(err => {
           this.$root.$emit('alertFromApiError', err, 'user')
+          this.failureToLoadingMore()
         })
         .finally(() => {
           this.loadingSubscribes = false
+          this.finallyMoreIsLoaded()
         })
     },
 

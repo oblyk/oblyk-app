@@ -58,21 +58,34 @@ class CurrentUserApi extends BaseApi {
     })
   }
 
-  subscribes () {
+  subscribes (page = 1) {
     return axios({
       method: 'GET',
       url: `${this.baseUrl}/current_users/subscribes.json`,
       headers: {
         Authorization: this.authToken(),
         HttpApiAccessToken: this.apiAccessToken
-      }
+      },
+      params: { page: page }
     })
   }
 
-  followers () {
+  followers (page = 1) {
     return axios({
       method: 'GET',
       url: `${this.baseUrl}/current_users/followers.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
+      params: { page: page }
+    })
+  }
+
+  waitingFollowers () {
+    return axios({
+      method: 'GET',
+      url: `${this.baseUrl}/current_users/waiting_followers.json`,
       headers: {
         Authorization: this.authToken(),
         HttpApiAccessToken: this.apiAccessToken
@@ -195,6 +208,34 @@ class CurrentUserApi extends BaseApi {
       headers: {
         Authorization: this.authToken(),
         HttpApiAccessToken: this.apiAccessToken
+      }
+    })
+  }
+
+  acceptSubscribes (userId) {
+    return axios({
+      method: 'POST',
+      url: `${this.baseUrl}/current_users/accept_followers.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
+      data: {
+        user_id: userId
+      }
+    })
+  }
+
+  rejectSubscribes (userId) {
+    return axios({
+      method: 'DELETE',
+      url: `${this.baseUrl}/current_users/reject_followers.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
+      data: {
+        user_id: userId
       }
     })
   }
