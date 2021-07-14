@@ -4,12 +4,13 @@
   >
     <v-text-field
       outlined
-      v-model="full_name"
+      v-model="oblyk_full_name"
       required
       hide-details
       tabindex="-1"
       autocomplete="off"
-      :label="$t('models.full_name')"
+      value=""
+      :label="$t('models.oblyk_full_name')"
       class="mb-2 full-name-field-form"
     />
 
@@ -25,7 +26,6 @@
 
     <v-text-field
       outlined
-      hide-details
       v-model="passwordConfirmation"
       :label="$t('models.user.confirm_password')"
       :type="showPasswordConfirmation ? 'text' : 'password'"
@@ -53,7 +53,7 @@ export default {
       overlay: false,
       rememberMe: true,
       password: null,
-      full_name: null,
+      oblyk_full_name: null,
       passwordConfirmation: null,
       showPassword: false,
       showPasswordConfirmation: false,
@@ -73,9 +73,8 @@ export default {
         .dispatch('auth/newPassword', {
           token: this.token,
           password: this.password,
-          remember_me: this.rememberMe,
           password_confirmation: this.passwordConfirmation,
-          full_name: this.full_name
+          oblyk_full_name: this.oblyk_full_name
         })
         .then(() => {
           this.$router.push('/')

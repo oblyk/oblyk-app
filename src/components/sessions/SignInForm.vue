@@ -2,12 +2,12 @@
   <v-form @submit.prevent="login">
     <v-text-field
       outlined
-      v-model="full_name"
+      v-model="oblyk_full_name"
       required
       hide-details
       tabindex="-1"
       autocomplete="off"
-      :label="$t('models.full_name')"
+      :label="$t('models.oblyk_full_name')"
       class="mb-2 full-name-field-form"
     />
 
@@ -35,14 +35,15 @@
     >
       <v-btn
         text
+        small
         to="/sign-up"
         color="primary"
-        class="float-right"
+        class="mt-1 float-right"
       >
         {{ $t('actions.signUp') }}
       </v-btn>
     </submit-form>
-    <p class="text-right mt-2">
+    <p class="text-right mt-5">
       <router-link to="/reset-password">
         {{ $t('components.session.forgottenPassword') }}
       </router-link>
@@ -67,7 +68,7 @@ export default {
   data () {
     return {
       overlay: false,
-      full_name: null,
+      oblyk_full_name: null,
       email: null,
       password: null,
       showPassword: false,
@@ -81,7 +82,7 @@ export default {
       const data = {
         email: this.email,
         password: this.password,
-        full_name: this.full_name
+        oblyk_full_name: this.oblyk_full_name
       }
 
       this.$store

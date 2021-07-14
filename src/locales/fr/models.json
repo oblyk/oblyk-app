@@ -17,7 +17,7 @@
     }
   },
   "models": {
-    "full_name": "Nom complet",
+    "oblyk_full_name": "Nom complet",
     "user": {
       "date_of_birth": "Date de naissance",
       "name": "Nom",

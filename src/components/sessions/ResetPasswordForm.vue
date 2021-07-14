@@ -15,12 +15,12 @@
 
       <v-text-field
         outlined
-        v-model="full_name"
+        v-model="oblyk_full_name"
         required
         hide-details
         tabindex="-1"
         autocomplete="off"
-        :label="$t('models.full_name')"
+        :label="$t('models.oblyk_full_name')"
         class="mb-2 full-name-field-form"
       />
 
@@ -52,7 +52,7 @@ export default {
     return {
       overlay: false,
       mailSent: false,
-      full_name: null,
+      oblyk_full_name: null,
       email: null
     }
   },
@@ -63,7 +63,7 @@ export default {
       SessionApi
         .resetPassword({
           email: this.email,
-          full_name: this.full_name
+          oblyk_full_name: this.oblyk_full_name
         })
         .then(() => {
           this.mailSent = true

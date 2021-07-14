@@ -2,12 +2,12 @@
   <v-form @submit.prevent="submit()">
     <v-text-field
       outlined
-      v-model="full_name"
+      v-model="oblyk_full_name"
       required
       hide-details
       tabindex="-1"
       autocomplete="off"
-      :label="$t('models.full_name')"
+      :label="$t('models.oblyk_full_name')"
       class="mb-2 full-name-field-form"
     />
 
@@ -41,7 +41,7 @@ export default {
   data () {
     return {
       redirectTo: null,
-      full_name: null,
+      oblyk_full_name: null,
       data: {
         email: null
       }
@@ -52,7 +52,7 @@ export default {
     submit: function () {
       this.submitOverlay = true
       const data = {
-        full_name: this.full_name,
+        oblyk_full_name: this.oblyk_full_name,
         subscribe: this.data
       }
 

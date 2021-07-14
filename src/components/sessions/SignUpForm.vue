@@ -2,12 +2,12 @@
   <v-form @submit.prevent="signUp">
     <v-text-field
       outlined
-      v-model="full_name"
+      v-model="oblyk_full_name"
       required
       hide-details
       tabindex="-1"
       autocomplete="off"
-      :label="$t('models.full_name')"
+      :label="$t('models.oblyk_full_name')"
       class="mb-2 full-name-field-form"
     />
 
@@ -109,9 +109,10 @@
     >
      <v-btn
       text
+      small
       to="/sign-in"
       color="primary"
-      class="float-right"
+      class="float-right mt-1"
      >
        {{ $t('actions.signIn') }}
      </v-btn>
@@ -151,7 +152,7 @@ export default {
       genre: null,
       rememberMe: true,
       language: this.$vuetify.lang.current,
-      full_name: null,
+      oblyk_full_name: null,
       locales: [
         { text: 'Français', value: 'fr' },
         { text: 'English', value: 'en' }
@@ -184,7 +185,7 @@ export default {
         remember_me: this.rememberMe,
         language: this.language,
         newsletter_subscribe: this.newsletterSubscribe,
-        full_name: this.full_name
+        oblyk_full_name: this.oblyk_full_name
       }
       this.$store
         .dispatch('auth/signUp', data)
