@@ -2,7 +2,7 @@
 lock "~> 3.14.1"
 
 set :application, "oblyk-app"
-set :repo_url, "git@github.com:lucien-chastan/oblyk-app.git"
+set :repo_url, "git@github.com:oblyk/oblyk-app.git"
 set :linked_files, fetch(:linked_files, []).push('.env', '.env.local')
 set :linked_dirs, fetch(:linked_dirs, []).push('node_modules')
 set :npm_method, 'ci'
