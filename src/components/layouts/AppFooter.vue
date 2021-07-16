@@ -61,7 +61,7 @@
             </v-icon>
             {{ $t('components.layout.footer.facebook') }}
           </a>
-          <a class="d-block" href="https://github.com/lucien-chastan/oblyk">
+          <a class="d-block" href="https://github.com/oblyk">
             <v-icon small left>
               mdi-github
             </v-icon>
