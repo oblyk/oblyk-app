@@ -2,10 +2,10 @@
   <v-tabs
     show-arrows
   >
-    <v-tab to="infos">
+    <v-tab :to="area.path()">
       {{ $t('components.area.tabs.info') }}
     </v-tab>
-    <v-tab to="crags">
+    <v-tab :to="area.path('crags')">
       <v-badge
         color="primary"
         inline
@@ -15,7 +15,7 @@
         {{ $t('components.area.tabs.crags') }}
       </v-badge>
     </v-tab>
-    <v-tab to="photos">
+    <v-tab :to="area.path('photos')">
       {{ $t('components.area.tabs.photos') }}
     </v-tab>
   </v-tabs>

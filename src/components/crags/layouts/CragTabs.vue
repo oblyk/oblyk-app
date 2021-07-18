@@ -2,10 +2,10 @@
   <v-tabs
     show-arrows
   >
-    <v-tab to="infos">
+    <v-tab :to="crag.path()">
       {{ $t('components.crag.tabs.info') }}
     </v-tab>
-    <v-tab to="photos">
+    <v-tab :to="crag.path('photos')">
       <v-badge
         color="primary"
         inline
@@ -15,7 +15,7 @@
         {{ $t('components.crag.tabs.media') }}
       </v-badge>
     </v-tab>
-    <v-tab to="links">
+    <v-tab :to="crag.path('links')">
       <v-badge
         :value="crag.link_count > 0"
         color="primary"
@@ -25,7 +25,7 @@
         {{ $t('components.crag.tabs.links') }}
       </v-badge>
     </v-tab>
-    <v-tab to="guide-books">
+    <v-tab :to="crag.path('guide-books')">
       <v-badge
         color="primary"
         inline
@@ -35,7 +35,7 @@
         {{ $t('components.crag.tabs.guideBooks') }}
       </v-badge>
     </v-tab>
-    <v-tab to="maps">
+    <v-tab :to="crag.path('maps')">
       {{ $t('components.crag.tabs.map') }}
     </v-tab>
   </v-tabs>

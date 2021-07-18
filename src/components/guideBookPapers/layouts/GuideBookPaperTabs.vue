@@ -2,14 +2,13 @@
   <v-tabs
     show-arrows
   >
-
     <!-- Info tabs -->
-    <v-tab to="infos">
+    <v-tab :to="guideBookPaper.path('')">
       {{ $t('components.guideBookPaper.tabs.info') }}
     </v-tab>
 
     <!-- Crags list tabs -->
-    <v-tab to="crags">
+    <v-tab :to="guideBookPaper.path('crags')">
       <v-badge
         color="primary"
         inline
@@ -21,7 +20,7 @@
     </v-tab>
 
     <!-- Photos tabs -->
-    <v-tab to="photos">
+    <v-tab :to="guideBookPaper.path('photos')">
       <v-badge
         color="primary"
         inline
@@ -33,7 +32,7 @@
     </v-tab>
 
     <!-- Links tabs -->
-    <v-tab to="links">
+    <v-tab :to="guideBookPaper.path('links')">
       <v-badge
         color="primary"
         inline
@@ -45,7 +44,7 @@
     </v-tab>
 
     <!-- Map tabs -->
-    <v-tab to="map">
+    <v-tab :to="guideBookPaper.path('map')">
       {{ $t('components.guideBookPaper.tabs.map') }}
     </v-tab>
   </v-tabs>

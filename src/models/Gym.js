@@ -10,8 +10,9 @@ export default class Gym extends ActiveData {
     return this.apiFind(GymApi, id)
   }
 
-  path (tabs = 'infos') {
-    return `/gyms/${this.id}/${this.slug_name}/${tabs}`
+  path (page = '') {
+    const subPath = page !== '' ? `/${page}` : ''
+    return `/gyms/${this.id}/${this.slug_name}${subPath}`
   }
 
   bannerUrl () {

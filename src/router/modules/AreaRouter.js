@@ -33,7 +33,7 @@ export default [
     component: AreaView,
     children: [
       {
-        path: 'infos',
+        path: '',
         component: AreaInfoView,
         meta: {
           noPaddingTop: true

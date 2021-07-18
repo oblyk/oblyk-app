@@ -70,7 +70,7 @@ export default [
     },
     children: [
       {
-        path: 'infos',
+        path: '',
         component: CragInfoView,
         meta: {
           noPaddingTop: true,

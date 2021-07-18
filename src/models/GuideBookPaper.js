@@ -10,8 +10,9 @@ export default class GuideBookPaper extends ActiveData {
     return this.apiFind(GuideBookPaperApi, id)
   }
 
-  path (page = 'infos') {
-    return `/guide-book-papers/${this.id}/${this.slug_name}/${page}`
+  path (page = '') {
+    const subPath = page !== '' ? `/${page}` : ''
+    return `/guide-book-papers/${this.id}/${this.slug_name}${subPath}`
   }
 
   coverUrl () {

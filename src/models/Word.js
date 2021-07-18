@@ -10,8 +10,9 @@ export default class Word extends ActiveData {
     return this.apiFind(WordApi, id)
   }
 
-  path (page = 'infos') {
-    return `/words/${this.id}/${this.slug_name}/${page}`
+  path (page = '') {
+    const subPath = page !== '' ? `/${page}` : ''
+    return `/words/${this.id}/${this.slug_name}${subPath}`
   }
 
   glossaryPath () {

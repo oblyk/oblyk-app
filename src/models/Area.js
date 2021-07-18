@@ -26,7 +26,8 @@ export default class Area extends ActiveData {
     }
   }
 
-  path (page = 'infos') {
-    return `/areas/${this.id}/${this.slug_name}/${page}`
+  path (page = '') {
+    const subPath = page !== '' ? `/${page}` : ''
+    return `/areas/${this.id}/${this.slug_name}${subPath}`
   }
 }

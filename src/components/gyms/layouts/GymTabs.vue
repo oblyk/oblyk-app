@@ -1,12 +1,12 @@
 <template>
   <v-tabs show-arrows >
-    <v-tab to="infos">
+    <v-tab :to="gym.path()">
       {{ $t('components.gym.tabs.info') }}
     </v-tab>
 
     <v-tab
       v-if="gym.gym_spaces.length === 0"
-      to="first-space"
+      :to="gym.path('first-space')"
     >
       {{ $t('components.gym.tabs.guideBook') }}
     </v-tab>
@@ -25,7 +25,10 @@
       </v-badge>
     </v-tab>
 
-    <v-tab v-if="currentUserIsGymAdmin()" to="admin">
+    <v-tab
+      v-if="currentUserIsGymAdmin()"
+      :to="gym.path('admin')"
+    >
       {{ $t('components.gym.tabs.admin') }}
     </v-tab>
   </v-tabs>

@@ -29,7 +29,7 @@ export default [
     },
     children: [
       {
-        path: 'infos',
+        path: '',
         component: GymInfoView,
         meta: {
           noPaddingTop: true

@@ -9,7 +9,7 @@ export default [
     component: GlossaryView
   },
   {
-    path: '/words/:wordId/:wordSlug/infos',
+    path: '/words/:wordId/:wordSlug',
     component: WordView
   },
   {

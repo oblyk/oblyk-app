@@ -15,8 +15,9 @@ export default class Crag extends ActiveData {
     return this.apiFind(CragApi, id)
   }
 
-  path (page = 'infos') {
-    return `/crags/${this.id}/${this.slug_name}/${page}`
+  path (page = '') {
+    const subPath = page !== '' ? `/${page}` : ''
+    return `/crags/${this.id}/${this.slug_name}${subPath}`
   }
 
   coverUrl () {

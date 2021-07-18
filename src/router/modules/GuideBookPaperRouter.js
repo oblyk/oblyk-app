@@ -39,7 +39,7 @@ export default [
     },
     children: [
       {
-        path: 'infos',
+        path: '',
         component: GuideBookPaperInfoView,
         meta: {
           noPaddingTop: false

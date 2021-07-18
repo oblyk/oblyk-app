@@ -18,7 +18,7 @@
     >
       <v-btn
         outlined
-        to="administration-request"
+        :to="gym.path('administration-request')"
         color="primary"
       >
         {{ $t('components.gym.IAmManager') }}
