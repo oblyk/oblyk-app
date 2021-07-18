@@ -74,6 +74,7 @@
         </v-col>
       </v-row>
     </v-container>
+    <app-footer v-if="noMoreDataToLoad" />
   </div>
 </template>
 <script>
@@ -84,11 +85,12 @@ import WordCard from '@/components/words/WordCard'
 import { SessionConcern } from '@/concerns/SessionConcern'
 import LoadingMore from '@/components/layouts/LoadingMore'
 import { LoadingMoreHelpers } from '@/mixins/LoadingMoreHelpers'
+import AppFooter from '@/components/layouts/AppFooter'
 
 export default {
   name: 'GlossaryView',
   mixins: [SessionConcern, LoadingMoreHelpers],
-  components: { LoadingMore, WordCard, Spinner },
+  components: { AppFooter, LoadingMore, WordCard, Spinner },
 
   metaInfo () {
     return {

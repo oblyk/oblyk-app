@@ -5,15 +5,17 @@
       :key="$route.params.guideBookPaperId"
       :guide-book-paper="guideBookPaper"
     />
+    <app-footer />
   </div>
 </template>
 <script>
 import { GuideBookPaperConcern } from '@/concerns/GuideBookPaperConcern'
 import GuideBookPaperTabs from '@/components/guideBookPapers/layouts/GuideBookPaperTabs'
+import AppFooter from '@/components/layouts/AppFooter'
 
 export default {
   name: 'GuideBookPaperView',
-  components: { GuideBookPaperTabs },
+  components: { AppFooter, GuideBookPaperTabs },
   mixins: [GuideBookPaperConcern]
 }
 </script>
