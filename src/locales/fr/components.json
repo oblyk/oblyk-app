@@ -390,6 +390,8 @@
       "multiPitchRoute": "Ligne de plusieur longeur",
       "noRoute": "Aucune ligne trouvée",
       "noRouteInSector": "Aucune ligne dans ce secteur",
+      "findRandomName": "Trouver un nom aléatoire",
+      "refTo": "En référence à",
       "sorts": {
         "opened_at": "Trier par date d'ouverture",
         "sector": "Trier par secteur",

@@ -20,9 +20,40 @@
 
       <v-text-field
         outlined
+        hide-details
+        v-bind:class="cragRoute.name ? 'mb-0' : 'mb-8'"
         v-model="data.name"
         :label="$t('models.gymRoute.name')"
-      />
+      >
+        <template v-slot:append-outer>
+          <v-tooltip
+            bottom
+          >
+            <template v-slot:activator="{ on }">
+              <v-btn
+                class="mt-n2"
+                icon
+                @click="findRandomRoute"
+                :loading="findingRandomName"
+              >
+                <v-icon v-on="on">
+                  mdi-shuffle-variant
+                </v-icon>
+              </v-btn>
+            </template>
+            {{ $t('components.gymRoute.findRandomName') }}
+          </v-tooltip>
+        </template>
+      </v-text-field>
+      <p
+        v-if="cragRoute.name"
+        class="mb-4 mt-1"
+      >
+        {{ $t('components.gymRoute.refTo') }} :
+        <u>{{ cragRoute.name }} {{ cragRoute.grade_to_s }}</u>,
+        <router-link class="mr-1" :to="cragRoute.Crag.path()" target= '_blank'>{{ cragRoute.Crag.name }}</router-link>
+        <cite>({{ cragRoute.Crag.city }})</cite>
+      </p>
 
       <v-text-field
         outlined
@@ -216,6 +247,8 @@ import GymRoute from '@/models/GymRoute'
 import DatePickerInput from '@/components/forms/DatePickerInput'
 import { DateHelpers } from '@/mixins/DateHelpers'
 import TagsInput from '@/components/forms/TagsInput'
+import CragRouteApi from '@/services/oblyk-api/CragRouteApi'
+import CragRoute from '@/models/CragRoute'
 
 export default {
   name: 'GymRouteForm',
@@ -231,6 +264,8 @@ export default {
 
   data () {
     return {
+      findingRandomName: false,
+      cragRoute: {},
       redirectTo: null,
       nextAction: 'goToSpace',
       multiPitch: false,
@@ -296,6 +331,19 @@ export default {
           this.$root.$emit('alertFromApiError', err, 'gymRoute')
         }).then(() => {
           this.submitOverlay = false
+        })
+    },
+
+    findRandomRoute: function () {
+      this.findingRandomName = true
+      CragRouteApi
+        .random()
+        .then(resp => {
+          this.cragRoute = new CragRoute(resp.data)
+          this.data.name = this.cragRoute.name
+        })
+        .finally(() => {
+          this.findingRandomName = false
         })
     },
 
