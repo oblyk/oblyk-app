@@ -41,6 +41,7 @@
           <gym-route-grade-and-point :gym-route="gymRoute"/>
         </v-col>
       </v-row>
+
       <v-row>
         <v-col class="pt-0">
           <div class="gym-route-more-information-row">
@@ -48,6 +49,13 @@
 
               <!-- Tags -->
               <gym-route-tags :gym-route="gymRoute" />
+
+              <!-- Route description -->
+              <markdown-text
+                class="mt-3"
+                v-if="gymRoute.description"
+                :text="gymRoute.description"
+              />
 
               <!-- Other information -->
               <table class="gym-route-information mt-2">
@@ -91,10 +99,11 @@ import { SessionConcern } from '@/concerns/SessionConcern'
 import { DateHelpers } from '@/mixins/DateHelpers'
 import GymRouteTags from '@/components/gymRoutes/partial/GymRouteTags'
 import GymRouteAscent from '@/components/gymRoutes/GymRouteAscent'
+import MarkdownText from '@/components/ui/MarkdownText'
 
 export default {
   name: 'GymRouteCardLarge',
-  components: { GymRouteAscent, GymRouteTags, Spinner, GymRouteActionMenu, GymRouteGradeAndPoint, GymRouteTagAndHold },
+  components: { MarkdownText, GymRouteAscent, GymRouteTags, Spinner, GymRouteActionMenu, GymRouteGradeAndPoint, GymRouteTagAndHold },
   mixins: [SessionConcern, DateHelpers],
   props: {
     gymRouteProp: Object,

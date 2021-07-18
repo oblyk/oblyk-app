@@ -237,6 +237,7 @@
       "climbing_type": "Climbing type",
       "favorite": "Favorite",
       "openers": "Openers",
+      "description": "Additional information",
       "opened_at": "Open date",
       "polyline": "Polyline",
       "colors": "Colors",

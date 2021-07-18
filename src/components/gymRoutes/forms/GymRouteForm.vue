@@ -16,7 +16,7 @@
         @change="onChangeDifficulty()"
         outlined
         required
-      ></v-select>
+      />
 
       <v-text-field
         outlined
@@ -59,6 +59,11 @@
         outlined
         v-model="data.openers"
         :label="$t('models.gymRoute.openers')"
+      />
+
+      <markdown-input
+        v-model="data.description"
+        :label="$t('models.gymRoute.description')"
       />
 
       <p class="subtitle-2">
@@ -249,10 +254,19 @@ import { DateHelpers } from '@/mixins/DateHelpers'
 import TagsInput from '@/components/forms/TagsInput'
 import CragRouteApi from '@/services/oblyk-api/CragRouteApi'
 import CragRoute from '@/models/CragRoute'
+import MarkdownInput from '@/components/forms/MarkdownInput'
 
 export default {
   name: 'GymRouteForm',
-  components: { TagsInput, DatePickerInput, ColorInput, Spinner, SubmitForm, CloseForm },
+  components: {
+    MarkdownInput,
+    TagsInput,
+    DatePickerInput,
+    ColorInput,
+    Spinner,
+    SubmitForm,
+    CloseForm
+  },
   mixins: [FormHelpers, HoldColorsHelpers, DateHelpers],
   props: {
     gymSector: Object,
@@ -276,6 +290,7 @@ export default {
         id: (this.gymRoute || {}).id,
         name: (this.gymRoute || {}).name,
         openers: (this.gymRoute || {}).openers,
+        description: (this.gymRoute || {}).description,
         height: (this.gymRoute || {}).height || this.gymSector.height,
         points: (this.gymRoute || {}).points,
         grade: (this.gymRoute || {}).grade,
