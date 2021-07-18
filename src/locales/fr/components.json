@@ -492,6 +492,9 @@
       "title": "Vidéos",
       "noVideo": "Il n'y a pas de vidéo ici pour l'instant"
     },
+    "partner": {
+      "xAround": "Un grimpeur est dans le coin | %{count} grimpeurs sont dans le coin"
+    },
     "user": {
       "type": "Grimpeur",
       "globalInformation": "Information général",

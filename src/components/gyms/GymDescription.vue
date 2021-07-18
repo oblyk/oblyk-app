@@ -24,14 +24,18 @@
         {{ $t('components.gym.IAmManager') }}
       </v-btn>
     </v-card-text>
+
+    <!-- Around climbers -->
+    <climbers-around :latitude="gym.latitude" :longitude="gym.longitude" />
   </v-card>
 </template>
 
 <script>
 import MarkdownText from '@/components/ui/MarkdownText'
+import ClimbersAround from '@/components/partners/ClimbersAround'
 export default {
   name: 'GymDescription',
-  components: { MarkdownText },
+  components: { ClimbersAround, MarkdownText },
   props: {
     gym: Object
   }

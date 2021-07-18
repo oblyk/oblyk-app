@@ -50,7 +50,11 @@ export default {
     const urlParams = new URLSearchParams(window.location.search)
     this.latitude = urlParams.get('lat')
     this.longitude = urlParams.get('lng')
-    this.zoom = this.latitude !== null ? 15 : null
+    if (urlParams.get('zoom')) {
+      this.zoom = urlParams.get('zoom')
+    } else {
+      this.zoom = this.latitude !== null ? 15 : null
+    }
   },
 
   methods: {

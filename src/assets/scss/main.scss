@@ -76,6 +76,10 @@
   }
 }
 
+.hoverable {
+  cursor: pointer;
+}
+
 .no-hover-table .v-data-table__wrapper {
   table {
     tr {

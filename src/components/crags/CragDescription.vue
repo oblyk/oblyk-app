@@ -151,6 +151,9 @@
         </template>
       </v-simple-table>
     </v-card-text>
+
+    <!-- Around climbers -->
+    <climbers-around :latitude="crag.latitude" :longitude="crag.longitude" />
   </v-card>
 </template>
 
@@ -161,10 +164,11 @@ import QrCodeBtn from '@/components/forms/QrCodeBtn'
 import CopyBtn from '@/components/ui/CopyBtn'
 import AlertList from '@/components/alerts/AlertList'
 import GoToCragModal from '@/components/crags/GoToCragModal'
+import ClimbersAround from '@/components/partners/ClimbersAround'
 
 export default {
   name: 'CragInfo',
-  components: { GoToCragModal, AlertList, CopyBtn, QrCodeBtn, ContributionsLabel },
+  components: { ClimbersAround, GoToCragModal, AlertList, CopyBtn, QrCodeBtn, ContributionsLabel },
   mixins: [SessionConcern],
   props: {
     crag: Object

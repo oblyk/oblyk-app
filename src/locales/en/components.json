@@ -492,6 +492,9 @@
       "countInfos": "One video posted | %{count} videos posted",
       "noVideo": "There is no video here for the moment"
     },
+    "partner": {
+      "xAround": "One climber is around | %{count} climbers is around"
+    },
     "user": {
       "type": "Climber",
       "globalInformation": "General Information",

@@ -59,6 +59,10 @@ export default class User extends ActiveData {
     }
   }
 
+  haveAvatar () {
+    return (this.avatar)
+  }
+
   climbingTypes () {
     const list = []
     if (this.sport_climbing) list.push('sport_climbing')
