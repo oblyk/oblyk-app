@@ -75,6 +75,14 @@ class CragRouteApi extends BaseApi {
     })
   }
 
+  random () {
+    return axios({
+      method: 'GET',
+      url: `${this.baseUrl}/public/crag_routes/random.json`,
+      headers: { HttpApiAccessToken: this.apiAccessToken }
+    })
+  }
+
   create (data) {
     return axios({
       method: 'POST',

@@ -87,6 +87,14 @@ class CragApi extends BaseApi {
     })
   }
 
+  random () {
+    return axios({
+      method: 'GET',
+      url: `${this.baseUrl}/public/crags/random.json`,
+      headers: { HttpApiAccessToken: this.apiAccessToken }
+    })
+  }
+
   guides (cragId) {
     return axios({
       method: 'GET',
