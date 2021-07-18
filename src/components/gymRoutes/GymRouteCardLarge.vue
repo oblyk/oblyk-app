@@ -59,6 +59,13 @@
 
               <!-- Other information -->
               <table class="gym-route-information mt-2">
+                <tr v-if="gymRoute.note">
+                  <th class="smallest-table-column">{{ $t('models.gymRoute.note') }}</th>
+                  <td>
+                    <note :note="gymRoute.note" />
+                    <small class="grey--text ml-1">({{ gymRoute.note_count }})</small>
+                  </td>
+                </tr>
                 <tr>
                   <th class="smallest-table-column">{{ $t('models.gymRoute.ascents') }}</th>
                   <td>{{ gymRoute.ascents_count || 0 }}</td>
@@ -81,6 +88,28 @@
         </v-col>
       </v-row>
 
+      <div
+        class="pr-3 pl-3"
+        v-if="ascents.length > 0"
+      >
+        <p class="mb-0">
+          <v-icon small class="mr-2">mdi-comment</v-icon>
+          <u>
+            {{ $t('components.gymRoute.climbersComments') }}
+          </u>
+        </p>
+        <div
+          class="mt-2 mb-5"
+          v-for="(ascent, index) in ascents"
+          :key="`gym-route-ascent-${index}`"
+        >
+          {{ ascent.comment }}
+          <br v-if="ascent.note">
+          <note :note="ascent.note" />
+          {{ $t('common.by') }} <router-link :to="ascent.User.userPath()">{{ ascent.User.first_name }}</router-link>
+        </div>
+      </div>
+
       <!-- Cross list and add in logbook btn -->
       <gym-route-ascent
         v-if="isLoggedIn"
@@ -100,10 +129,13 @@ import { DateHelpers } from '@/mixins/DateHelpers'
 import GymRouteTags from '@/components/gymRoutes/partial/GymRouteTags'
 import GymRouteAscent from '@/components/gymRoutes/GymRouteAscent'
 import MarkdownText from '@/components/ui/MarkdownText'
+import Note from '@/components/notes/Note'
+import GymRouteApi from '@/services/oblyk-api/GymRouteApi'
+import AscentGymRoute from '@/models/AscentGymRoute'
 
 export default {
   name: 'GymRouteCardLarge',
-  components: { MarkdownText, GymRouteAscent, GymRouteTags, Spinner, GymRouteActionMenu, GymRouteGradeAndPoint, GymRouteTagAndHold },
+  components: { Note, MarkdownText, GymRouteAscent, GymRouteTags, Spinner, GymRouteActionMenu, GymRouteGradeAndPoint, GymRouteTagAndHold },
   mixins: [SessionConcern, DateHelpers],
   props: {
     gymRouteProp: Object,
@@ -113,12 +145,15 @@ export default {
   data () {
     return {
       loadingRoute: true,
-      gymRoute: null
+      loadingAscents: true,
+      gymRoute: null,
+      ascents: []
     }
   },
 
   mounted () {
     this.getRoute()
+    this.getAscents()
   },
 
   methods: {
@@ -137,6 +172,22 @@ export default {
           this.$root.$emit('alertFromApiError', err, 'gymRoute')
         }).finally(() => {
           this.loadingRoute = false
+        })
+    },
+
+    getAscents: function () {
+      this.loadingAscents = true
+      GymRouteApi
+        .routeAscents(this.gymRouteProp.gym.id, this.gymRouteProp.id)
+        .then(resp => {
+          for (const ascent of resp.data) {
+            if (ascent.note || ascent.comment) {
+              this.ascents.push(new AscentGymRoute(ascent))
+            }
+          }
+        })
+        .finally(() => {
+          this.loadingAscents = false
         })
     }
   }

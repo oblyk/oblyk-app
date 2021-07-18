@@ -21,7 +21,10 @@
         <v-row>
           <v-col class="pt-1 pb-1">
             <gym-route-tag-and-hold :gym-route="gymRoute" />
-            <span class="ml-1">{{ gymRoute.name }}</span>
+            <span class="ml-1">
+              {{ gymRoute.name }}
+            </span>
+            <note :note="gymRoute.note" />
           </v-col>
         </v-row>
         <v-row>
@@ -54,10 +57,11 @@
 import GymRouteTagAndHold from '@/components/gymRoutes/partial/GymRouteTagAndHold'
 import GymRouteGradeAndPoint from '@/components/gymRoutes/partial/GymRouteGradeAndPoint'
 import AscentGymRouteStatusIcon from '@/components/ascentGymRoutes/AscentGymRouteStatusIcon'
+import Note from '@/components/notes/Note'
 
 export default {
   name: 'GymRouteCardSmall',
-  components: { AscentGymRouteStatusIcon, GymRouteGradeAndPoint, GymRouteTagAndHold },
+  components: { Note, AscentGymRouteStatusIcon, GymRouteGradeAndPoint, GymRouteTagAndHold },
   props: {
     gymRoute: Object,
     placement: {

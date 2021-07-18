@@ -12,6 +12,16 @@
         :label="$t('models.ascentGymRoute.released_at')"
       />
 
+      <note-input
+        v-model="data.note"
+      />
+
+      <v-textarea
+        outlined
+        v-model="data.comment"
+        :label="$t('models.ascentGymRoute.comment')"
+      />
+
       <!-- Sections choice -->
       <div
         v-if="gymRoute && gymRoute.sections.length > 1"
@@ -51,10 +61,11 @@ import CloseForm from '@/components/forms/CloseForm'
 import AscentStatusInput from '@/components/forms/AscentStatusInput'
 import DatePickerInput from '@/components/forms/DatePickerInput'
 import store from '@/store'
+import NoteInput from '@/components/forms/NoteInput'
 
 export default {
   name: 'AscentGymRouteForm',
-  components: { DatePickerInput, AscentStatusInput, CloseForm, SubmitForm },
+  components: { NoteInput, DatePickerInput, AscentStatusInput, CloseForm, SubmitForm },
   mixins: [
     FormHelpers,
     DateHelpers
@@ -79,7 +90,9 @@ export default {
         ascent_status: (this.ascentGymRoute || {}).ascent_status || this.defaultAscentStatus,
         released_at: (this.ascentGymRoute || {}).released_at || this.today().format('YYYY-MM-DD'),
         selected_sections: (this.ascentGymRoute || {}).sections_done || this.gymRoute.sections.map((section, index) => index),
-        gym_route_id: (this.ascentGymRoute || {}).gym_route_id || this.gymRoute.id
+        gym_route_id: (this.ascentGymRoute || {}).gym_route_id || this.gymRoute.id,
+        note: (this.ascentGymRoute || {}).note,
+        comment: (this.ascentGymRoute || {}).comment
       }
     }
   },

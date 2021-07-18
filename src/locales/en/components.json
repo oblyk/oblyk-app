@@ -392,6 +392,8 @@
       "noRouteInSector": "No route in this sector",
       "findRandomName": "Find a random name",
       "refTo": "In reference to",
+      "climbersComments": "Climbers' comments",
+      "inMyLogBook": "In my log book",
       "sorts": {
         "opened_at": "Sort by opening date",
         "sector": "Sort by sector",

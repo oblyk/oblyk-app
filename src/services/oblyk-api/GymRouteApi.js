@@ -35,6 +35,14 @@ class GymRouteApi extends BaseApi {
     })
   }
 
+  routeAscents (gymId, routeId) {
+    return axios({
+      method: 'GET',
+      url: `${this.baseUrl}/gyms/${gymId}/gym_routes/${routeId}/ascents.json`,
+      headers: { HttpApiAccessToken: this.apiAccessToken }
+    })
+  }
+
   update (data) {
     return axios({
       method: 'PUT',

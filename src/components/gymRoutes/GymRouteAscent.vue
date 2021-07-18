@@ -1,6 +1,15 @@
 <template>
   <v-row>
     <v-col>
+      <p
+        class="pl-3 mb-0"
+        v-if="ascents.length > 0"
+      >
+        <v-icon small class="mr-2">mdi-check-bold</v-icon>
+        <u>
+          {{ $t('components.gymRoute.inMyLogBook') }}
+        </u>
+      </p>
       <div
         v-for="ascent in ascents"
         :key="`ascent-${ascent.id}`"

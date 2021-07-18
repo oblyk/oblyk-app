@@ -23,9 +23,20 @@
       />
       {{ $t(`models.ascentStatus.${ascentGymRoute.ascent_status}`) }}
 
+      <p class="mb-0">
+        <cite v-if="ascentGymRoute.comment">
+          {{ ascentGymRoute.comment }}
+        </cite>
+        <br v-if="ascentGymRoute.comment">
+        <note
+          v-if="ascentGymRoute.note"
+          :note="ascentGymRoute.note"
+        />
+      </p>
+
       <div v-if="ascentGymRoute.GymRoute.sections_count > 1">
         <p
-          class="text-decoration-underline"
+          class="text-decoration-underline mb-0"
           v-if="ascentGymRoute.GymRoute.sections_count === ascentGymRoute.sections.length"
         >
           {{ $t('components.ascentGymRoute.iMadeCountPitch', { count: ascentGymRoute.GymRoute.sections_count }) }}
@@ -55,11 +66,12 @@ import AscentGymRouteApi from '@/services/oblyk-api/AscentGymRouteApi'
 import store from '@/store'
 import AscentGymRouteStatusIcon from '@/components/ascentGymRoutes/AscentGymRouteStatusIcon'
 import EditGymAscentBtn from '@/components/ascentGymRoutes/EditGymAscentBtn'
+import Note from '@/components/notes/Note'
 
 export default {
   name: 'AscentGymRouteSmallCard',
   mixins: [DateHelpers, RecordToObjectHelpers],
-  components: { EditGymAscentBtn, AscentGymRouteStatusIcon },
+  components: { Note, EditGymAscentBtn, AscentGymRouteStatusIcon },
   props: {
     ascentGymRoute: Object,
     gymRoute: Object
