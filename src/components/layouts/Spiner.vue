@@ -29,7 +29,7 @@ export default {
 <style lang="scss">
 .spinner-area {
   &.full-height {
-    height: calc(100vh - 64px);
+    height: 10em;
   }
   &.small-height {
     height: 5em
