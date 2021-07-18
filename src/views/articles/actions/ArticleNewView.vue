@@ -3,7 +3,7 @@
     <v-row justify="center">
       <v-col>
         <h2 class="mb-4">
-          {{ $t('actions.writeAnArticle') }}}}
+          {{ $t('actions.writeAnArticle') }}
         </h2>
         <article-form submit-methode="post" />
       </v-col>
