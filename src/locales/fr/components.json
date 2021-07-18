@@ -516,6 +516,7 @@
       "partnerMapTitle": "Choisissez l'endroit où vous souhaitez apparaître sur la carte",
       "emptyContribution": "%{name} n'a pas encore contribué à Oblyk",
       "climbersMap": "Sur la carte des grimpeurs",
+      "openClimbersMap": "Ouvrir la carte des grimpeurs",
       "followersEmpty": "%{name} n'a pas encore d'abonné.",
       "subscribesEmpty": "%{name} n'a pas encore d'abonnement",
       "myFavoriteCragsEmpty": "Vous ne suivez pas de site pour l'instant",

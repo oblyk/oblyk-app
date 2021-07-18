@@ -28,6 +28,15 @@
         :clustered="false"
         :geo-jsons="geoJsons"
       />
+      <div class="text-right mt-2">
+        <v-btn
+          text
+          small
+          :to="`/maps/climbers?lat=${user.partner_latitude}&lng=${user.partner_longitude}`"
+        >
+          {{ $t('components.user.openClimbersMap') }}
+        </v-btn>
+      </div>
     </v-card-text>
   </v-card>
 </template>

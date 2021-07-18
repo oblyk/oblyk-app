@@ -516,6 +516,7 @@
       "partnerMapTitle": "Choose where you want to appear on the map",
       "emptyContribution": "%{name} has not yet contributed to Oblyk",
       "climbersMap": "In climbers map",
+      "openClimbersMap": "Open the climbers' map",
       "followersEmpty": "%{name} doesn't have a followers yet.",
       "subscribesEmpty": "%{name} doesn't have a subscribes yet.",
       "myFavoriteCragsEmpty": "You are not following a crag for the moment",

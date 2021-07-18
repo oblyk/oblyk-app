@@ -3,6 +3,9 @@
     <leaflet-map
       map-style="outdoor"
       :geo-jsons="geoJsons"
+      :latitude-force="latitude"
+      :longitude-force="longitude"
+      :zoom-force="zoom"
     />
     <partner-modal />
   </div>
@@ -32,12 +35,22 @@ export default {
 
   data () {
     return {
-      geoJsons: null
+      geoJsons: null,
+      latitude: null,
+      longitude: null,
+      zoom: null
     }
   },
 
   mounted () {
     this.getGeoJson()
+  },
+
+  created () {
+    const urlParams = new URLSearchParams(window.location.search)
+    this.latitude = urlParams.get('lat')
+    this.longitude = urlParams.get('lng')
+    this.zoom = this.latitude !== null ? 15 : null
   },
 
   methods: {
