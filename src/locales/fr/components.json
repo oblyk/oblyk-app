@@ -258,7 +258,7 @@
       "iMadeCountPitch": "J'ai fait les %{count} longueurs"
     },
     "area": {
-      "description": "<strong>%{name}</strong> est un groupement de %{crags} site d'escalades.<br>Ces sites contiennent au total %{routes}, allant de <strong>%{min}</strong> à <strong>%{max}</strong>",
+      "description": "<strong>%{name}</strong> est un groupement de %{crags} site d'escalades.<br>Ces sites contiennent au total %{routes} lignes, allant de <strong>%{min}</strong> à <strong>%{max}</strong>",
       "groupTitle": "Groupe de %{count} sites",
       "type": "Groupe de sites",
       "new": "Nouvelle zone de falaise",

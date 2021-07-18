@@ -258,7 +258,7 @@
       "iMadeCountPitch": "I made the %{count} pitch"
     },
     "area": {
-      "description": "<strong>%{name}</strong> is a grouping of %{crags} climbing crags.<br>These crags contain in total %{routes}, ranging from <strong>%{min}</strong> to <strong>%{max}</strong>",
+      "description": "<strong>%{name}</strong> is a grouping of %{crags} climbing crags.<br>These crags contain in total %{routes} routes, ranging from <strong>%{min}</strong> to <strong>%{max}</strong>",
       "groupTitle": "%{count} Crags regroupement",
       "type": "Crags group",
       "new": "New crag area",
