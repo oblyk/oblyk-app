@@ -108,8 +108,8 @@ export default {
   },
 
   mounted () {
-    this.$root.$on('filtreBySector', (gymSectorId) => {
-      this.filtreBySector(gymSectorId)
+    this.$root.$on('filterBySector', (gymSectorId) => {
+      this.filterBySector(gymSectorId)
     })
 
     this.$root.$on('dismountGymRoutesInSector', (gymId, spaceId, sectorId) => {
@@ -120,7 +120,7 @@ export default {
   },
 
   beforeDestroy () {
-    this.$root.$off('filtreBySector')
+    this.$root.$off('filterBySector')
     this.$root.$off('dismountGymRoutesInSector')
   },
 
@@ -215,10 +215,11 @@ export default {
       }
     },
 
-    filtreBySector: function (sectorId) {
+    filterBySector: function (sectorId) {
       this.filter.text = `secteur ${sectorId}`
       this.filter.icon = 'mdi-texture-box'
       this.getRoutes(sectorId)
+      this.$root.$emit('showGymSpaceLine')
     },
 
     clearFilter: function () {

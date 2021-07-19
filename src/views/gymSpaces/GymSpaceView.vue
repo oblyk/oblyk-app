@@ -31,13 +31,13 @@
       <v-btn
         @click="showLine()"
       >
-        <span>Ouvertures</span>
+        <span>{{ $t('components.gymSpace.routes') }}</span>
         <v-icon>mdi-arrow-decision</v-icon>
       </v-btn>
       <v-btn
         @click="showPlan()"
       >
-        <span>Plan</span>
+        <span>{{ $t('components.gymSpace.plan') }}</span>
         <v-icon>mdi-map-legend</v-icon>
       </v-btn>
     </v-bottom-navigation>
@@ -63,9 +63,17 @@ export default {
   },
 
   mounted () {
+    this.$root.$on('showGymSpaceLine', () => {
+      this.showLine()
+    })
+
     this.onResize()
 
     window.addEventListener('resize', this.onResize, { passive: true })
+  },
+
+  beforeDestroy () {
+    this.$root.$off('showGymSpaceLine')
   },
 
   methods: {

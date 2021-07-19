@@ -229,7 +229,7 @@ export default {
     },
 
     filterBySector: function (sectorId) {
-      this.$root.$emit('filtreBySector', sectorId)
+      this.$root.$emit('filterBySector', sectorId)
       this.activeSector(sectorId)
     }
   }
