@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="submit-form-area">
     <overlay-form
       :overlay="overlay"
       :progressable="progressable"
@@ -55,3 +55,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.submit-form-area {
+  min-height: 2.5em;
+}
+</style>

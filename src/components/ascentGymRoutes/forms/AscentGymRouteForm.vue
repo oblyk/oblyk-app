@@ -46,6 +46,7 @@
       <close-form />
       <submit-form
         :overlay="submitOverlay"
+        :goBackBtn="false"
         :submit-local-key="submitText()"
       />
     </v-form>
