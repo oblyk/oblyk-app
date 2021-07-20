@@ -29,6 +29,7 @@
           </p>
           <router-link class="d-block" to="/articles">{{ $t('components.layout.footer.news') }}</router-link>
           <router-link class="d-block" to="/contact">{{ $t('components.layout.footer.contact') }}</router-link>
+          <router-link class="d-block" to="/about/partner-search">{{ $t('components.layout.footer.partnerSearch') }}</router-link>
           <router-link class="d-block" to="/about">{{ $t('components.layout.footer.about') }}</router-link>
           <router-link class="d-block" to="/helps">{{ $t('components.layout.footer.helps') }}</router-link>
           <router-link class="d-block" to="/support-us">
