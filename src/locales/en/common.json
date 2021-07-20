@@ -94,12 +94,12 @@
         "steps": {
           "configuration": {
             "title": "Step 1 : My profile",
-            "body": "If you want other people to contact you, you need to add a few information about you, which style (bouldering, artif, routes, bigwall..) wich grade you like to climb,...",
+            "body": "If you want other people to contact you, you need to add a few information about you, which style (bouldering, artif, routes, bigwall..) wich grade you like to climb, have a profile picture, etc.",
             "action": "How I am ?"
           },
           "location": {
             "title": "Step 2 : Climbing area",
-            "body": "To show you climbers around you, we need to know first where you are climbing !<br>You can make a list of your climbing spots, Oblyk will show you climbers around you.",
+            "body": "To show you climbers around you, we need to know first where you are climbing !<br>Mark the place where you are looking for climbers, and Oblyk will introduce you to the climbers around you.",
             "action": "Where do I climb?"
           },
           "climberMap": {

@@ -94,17 +94,17 @@
         "steps": {
           "configuration": {
             "title": "Étape 1 : Mon profil",
-            "body": "Pour donner envie aux autres de te contacter il faut qu'ils aient un minimum d'informations sur toi, quel style d'escalade tu pratiques (bloc, voie, trad, ...), dans quelle cotation tu aimes grimper, etc.",
+            "body": "Pour donner envie aux autres de te contacter il faut qu'ils aient un minimum d'informations sur toi, quel style d'escalade tu pratiques (bloc, voie, trad, ...), dans quelle cotation tu aimes grimper, avoir une photo de profil, etc.",
             "action": "Qui je suis ?"
           },
           "location": {
             "title": "Étape 2 : Ma zone de grimpe",
-            "body": "Pour que nous puissions te présenter une liste des grimpeurs près de chez toi, faut-il déjà que nous sachions où tu grimpes !<br>Tu peux établir une liste des lieux où tu grimpes, et Oblyk te présentera les grimpeurs qui partagent les mêmes zones que toi.",
+            "body": "Pour que nous puissions te présenter une liste des grimpeurs près de chez toi, faut-il déjà que nous sachions où tu grimpes !<br>Marque l'endroit où tu cherche des grimpeurs, et Oblyk te présentera les grimpeurs qui sont autour de toi.",
             "action": "Où je grimpe ?"
           },
           "climberMap": {
             "title": "Étape 3 : La carte des grimpeurs",
-            "body": "Maintenant que tu as renseigné tes lieux d'escalade et dis qui tu étais, tu peux utiliser la carte des grimpeurs pour trouver quelqu'un avec qui tu aimerais grimper.",
+            "body": "Maintenant que tu as renseigné ton lieu d'escalade et dis qui tu étais, tu peux utiliser la carte des grimpeurs pour trouver quelqu'un avec qui tu aimerais grimper.",
             "action": "La carte des grimpeurs"
           },
           "contact": {
