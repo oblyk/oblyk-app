@@ -222,11 +222,11 @@ export const MapPopupHelpers = {
         genreAndAge = this.$t(`models.genres.${user.genre}`)
       }
 
-      if (user.date_of_birth) {
+      if (user.age) {
         if (genreAndAge !== null) {
-          genreAndAge += `, ${this.yearsOld(user.date_of_birth)}`
+          genreAndAge += `, ${user.age} ans`
         } else {
-          genreAndAge = this.yearsOld(user.date_of_birth)
+          genreAndAge = `${user.age} ans`
         }
       }
 
