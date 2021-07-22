@@ -33,8 +33,8 @@
           <span v-if="user.genre">
             {{ $t(`models.genres.${user.genre}`)}},
           </span>
-          <span v-if="user.date_of_birth">
-            {{ yearsOld(user.date_of_birth) }}
+          <span v-if="user.age">
+            {{ user.age }} ans
           </span>
 
           <small
