@@ -19,7 +19,7 @@
           <v-btn
             outlined
             color="primary"
-            to="sign-up"
+            to="/sign-up"
           >
             {{ $t('actions.signUp') }}
           </v-btn>
