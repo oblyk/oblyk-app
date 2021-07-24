@@ -74,7 +74,7 @@
         "crag": "1 site | {count} sites",
         "cragRoute": "1 ligne | {count} lignes",
         "gym": "1 salle | {count} salles",
-        "user": "1 grimpeur | {count} grimpeurs",
+        "user": "1 grimpeur·euse | {count} grimpeur·euse·s",
         "guideBookPaper": "1 topo | {count} topos",
         "word": "1 mot | {count} mots"
       },
@@ -82,7 +82,7 @@
         "crag": "Site",
         "cragRoute": "Ligne",
         "gym": "Salle",
-        "user": "Grimpeur",
+        "user": "Grimpeur·euse",
         "guideBookPaper": "Topo",
         "word": "Mot"
       }
@@ -195,7 +195,7 @@
       "cragAround": "%{count} site dans les environs | %{count} sites dans les environs",
       "cragCount": "%{count} site | %{count} sites",
       "cragAroundInCreate": "Il y a un site à moins de 1 km : | Il y a %{count} sites à moins de 1km :",
-      "doNotCreateADuplicate": "Ne créer pas un doublon si un autre grimpeur a déjà référencé ce site !",
+      "doNotCreateADuplicate": "Ne créer pas un doublon si un·e autre grimpeur·euse a déjà référencé ce site !",
       "tabs": {
         "info": "Info",
         "media": "Photos & Videos",
@@ -217,7 +217,7 @@
       "routes": "Les lignes",
       "searchRoute": "Chercher une voie",
       "sortRouteLabel": "Trier les voies",
-      "climberOpinion": "L'avis des grimpeurs",
+      "climberOpinion": "L'avis des grimpeur·euse·s",
       "inMyLogbook": "Dans mon carnet",
       "new": "Ajouter une nouvelle ligne",
       "gradeExample": "exemple: 7a, 6c+, 5.10, B15, etc.",
@@ -325,7 +325,7 @@
         "tables": "Tables",
         "statistics": "Statistiques"
       },
-      "firstSpaceExplain": "Les espaces vous permets de renseigner vos voies et bloc pour que vos grimpeurs puissent les consulter et tenir un carnet de croix !",
+      "firstSpaceExplain": "Les espaces vous permets de renseigner vos voies et bloc pour que vos grimpeur·euse·s puissent les consulter et tenir un carnet de croix !",
       "createFirstSpace": "Créer mon premier Espace",
       "createDifficultyFirst": "Mais avant de créer vos espaces, il faut que vous renseignez vos système de difficulté",
       "firstDifficultySystemExplain": "Les systèmes de difficulté vous permettes de définir comment fonctionne vos cotations dans votre salle.",
@@ -340,7 +340,7 @@
       "gymAround": "%{count} salle dans les environs | %{count} salles dans les environs",
       "gymCount": "%{count} salle | %{count} salles",
       "gymAroundInCreate": "Il y a une salle à moins de 1 km : | Il y a %{count} salles à moins de 1km :",
-      "doNotCreateADuplicate": "Ne créer pas un doublon si un autre grimpeur a déjà référencé cette salle !"
+      "doNotCreateADuplicate": "Ne créer pas un doublon si un·e autre grimpeur·euse a déjà référencé cette salle !"
     },
     "gymAdmin": {
       "welcome": "Bienvenue sur la page d'administration de %{name}",
@@ -395,7 +395,7 @@
       "noRouteInSector": "Aucune ligne dans ce secteur",
       "findRandomName": "Trouver un nom aléatoire",
       "refTo": "En référence à",
-      "climbersComments": "Commentaires des grimpeurs",
+      "climbersComments": "Commentaires des grimpeur·euse·s",
       "inMyLogBook": "Dans mon carnet",
       "sorts": {
         "opened_at": "Trier par date d'ouverture",
@@ -471,7 +471,7 @@
       "comments": "Commentaires",
       "countInfos": "Un commentaire posté | %{count} commentaires postés",
       "noComment": "Il n'y a pas de commentaire ici pour l'instant",
-      "climbersComments": "Commentaires des grimpeurs"
+      "climbersComments": "Commentaires des grimpeur·euse·s"
     },
     "report": {
       "aProblem": "Ah un problème ...",
@@ -500,10 +500,10 @@
       "noVideo": "Il n'y a pas de vidéo ici pour l'instant"
     },
     "partner": {
-      "xAround": "Un grimpeur est dans le coin | %{count} grimpeurs sont dans le coin"
+      "xAround": "Un grimpeur·euse est dans le coin | %{count} grimpeur·euse·s sont dans le coin"
     },
     "user": {
-      "type": "Grimpeur",
+      "type": "Grimpeur·euse",
       "globalInformation": "Information général",
       "privacyParameters": "Paramètres de confidentialité",
       "partnerSearch": "Recherche de partenaire",
@@ -512,11 +512,11 @@
       "successfulEditMessage": "Votre profile à été mis à jour",
       "whatClimbingType": "Quel type d'escalade pratiquez-vous ?",
       "whichLevel": "Dans quel niveau aimez-vous grimper ?",
-      "bePartPartner": "Voulez vous faire partie de la carte des grimpeurs ?",
-      "bePartPartnerExplain": "Faire partie de la carte des grimpeurs vous permet de trouver des gens avec qui grimper !",
+      "bePartPartner": "Voulez vous faire partie de la carte des grimpeur·euse·s ?",
+      "bePartPartnerExplain": "Faire partie de la carte des grimpeur·euse·s vous permet de trouver des gens avec qui grimper !",
       "localizationDeactivated": "Localisation désactivée",
       "activateLocalization": "Activer la localisation",
-      "activateLocalizationExplain": "La localisation permet d'avoir des informations sur ce qu'il se passe autour de moi (et est pratique pour la carte des grimpeurs)",
+      "activateLocalizationExplain": "La localisation permet d'avoir des informations sur ce qu'il se passe autour de moi (et est pratique pour la carte des grimpeur·euse·s)",
       "uploadBanner": "<strong>TIPS !</strong> Upload un bandeau pour personnaliser l'entête de cette page.",
       "uploadAvatar": "<strong>TIPS !</strong> Ajout une photo de profil à ton compte.",
       "bioIsEmpty": "%{name} n'a pas encore rédigé sa bio",
@@ -525,14 +525,14 @@
       "oblykContribution": "Contribution à Oblyk",
       "partnerMapTitle": "Choisissez l'endroit où vous souhaitez apparaître sur la carte",
       "emptyContribution": "%{name} n'a pas encore contribué à Oblyk",
-      "climbersMap": "Sur la carte des grimpeurs",
-      "openClimbersMap": "Ouvrir la carte des grimpeurs",
+      "climbersMap": "Sur la carte des grimpeur·euse·s",
+      "openClimbersMap": "Ouvrir la carte des grimpeur·euse·s",
       "followersEmpty": "%{name} n'a pas encore d'abonné.",
       "subscribesEmpty": "%{name} n'a pas encore d'abonnement",
       "myFavoriteCragsEmpty": "Vous ne suivez pas de site pour l'instant",
       "myFavoriteGymsEmpty": "Vous ne suivez pas de salle pour l'instant",
-      "searchUser": "Chercher un grimpeur",
-      "userAround": "%{count} grimpeur au alentour | %{count} grimpeurs au alentour",
+      "searchUser": "Chercher un·e grimpeur·euse",
+      "userAround": "%{count} grimpeur·euse au alentour | %{count} grimpeur·euse·s au alentour",
       "aroundSettings": "Choisir ma zone",
       "saveMyPreference": "Sauvegarder ma préférence",
       "chooseNewsArea": "Choisir mon rayon d'actualité",
@@ -542,7 +542,7 @@
       "newsFeedLabel": "Les actualités d'oblyk",
       "subscribeFeedLabel": "Les news de me abonnements",
       "aroundFeedLabel": "Les informations local (Nouvelle falaise, voie et photos)",
-      "userCount": "%{count} grimpeur | %{count} grimpeurs",
+      "userCount": "%{count} grimpeur·euse | %{count} grimpeur·euse·s",
       "distanceAround": "%{distance}km autour de moi :",
       "receiveNewsletter": "recevoir la newsletter (une par trimestre environ)",
       "recoveryNewsletterSettings": "récupération du paramétrage de la newsletter ...",
@@ -580,7 +580,7 @@
       "settingTabs": {
         "general": "Généraux",
         "privacy": "Confidentialité",
-        "partner": "Carte des grimpeurs",
+        "partner": "Carte des grimpeur·euse·s",
         "notifications": "Notifications",
         "others": "Autres"
       },
@@ -677,7 +677,7 @@
         "mapCrags": "Carte des falaises",
         "mapGyms": "Carte des salles",
         "myMap": "Ma Carte",
-        "mapClimber": "Carte des grimpeurs",
+        "mapClimber": "Carte des grimpeur·euse·s",
         "tools": "Outils",
         "helps": "Aides",
         "about": "À propos",

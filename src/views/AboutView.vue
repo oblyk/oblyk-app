@@ -8,7 +8,7 @@
       </h1>
       <h2 class="loved-by-king mb-2">En Bref</h2>
       <p>
-        <strong>Oblyk</strong> est une platform communautaire <strong>dédiée à l'escalade</strong>, elle a pour but de créer une grande <strong>base de donnée des falaises et voies</strong> de France et du monde, aider les grimpeurs à <strong>trouver des partenaires</strong>, suivre sa progression en escalade en tenant un <strong>carnet de croix</strong>, permettre au salle de tenir un <strong>topo indoor</strong>, et plus généralement : Oblyk est un <strong>réseau social de la grimpe</strong>.
+        <strong>Oblyk</strong> est une platform communautaire <strong>dédiée à l'escalade</strong>, elle a pour but de créer une grande <strong>base de donnée des falaises et voies</strong> de France et du monde, aider les grimpeur·euse·s à <strong>trouver des partenaires</strong>, suivre sa progression en escalade en tenant un <strong>carnet de croix</strong>, permettre au salle de tenir un <strong>topo indoor</strong>, et plus généralement : Oblyk est un <strong>réseau social de la grimpe</strong>.
       </p>
 
       <!-- Why? -->
@@ -20,7 +20,7 @@
         Ici on ne parle pas de ski, de rando, ou autre sport lié à la montagne. c'est escalade, escalade, escalade 😆
       </p>
       <p>
-        Nous ne somme pas journaliste non plus, l'actualité des compétitions et des croix des gros grimpeurs ce n'est pas notre créneaux. par-contre que vous sachiez qu'un nouveau 6a à été ouvert à côté de chez vous, ça on veux que vous le sachiez !
+        Nous ne somme pas journaliste non plus, l'actualité des compétitions et des croix des gros·se·s grimpeur·euse·s ce n'est pas notre créneaux. par-contre que vous sachiez qu'un nouveau 6a à été ouvert à côté de chez vous, ça on veux que vous le sachiez !
       </p>
       <p>
         On espères qu'en se focalisant sur l'escalade et en ne s'éparpillant pas <cite>(trop)</cite> nous réussissons à vous proposer un outil pertinent et complet.
@@ -38,7 +38,7 @@
         <!-- 2014 -->
         <li class="pb-5">
           <strong>2014 :</strong>
-          Les premiers pas du projet avec "carnet-de-croix.net", un site né d'une volonté : permettre aux grimpeurs de noter leurs croix, et garder une trace de leurs réalisations pendant toutes leurs années de grimpe.
+          Les premiers pas du projet avec "carnet-de-croix.net", un site né d'une volonté : permettre aux grimpeur·euse·s de noter leurs croix, et garder une trace de leurs réalisations pendant toutes leurs années de grimpe.
         </li>
 
         <!-- 2015 -->
@@ -71,7 +71,7 @@
                 contain
                 src="/img/images/oblyk-org-old-dashboard.jpg"
               />
-              <small class="text--disabled">Tableau de bord d'un grimpeur</small>
+              <small class="text--disabled">Tableau de bord d'un·e grimpeur·euse</small>
             </v-col>
             <v-col class="col-6 text-center">
               <v-img
@@ -116,7 +116,7 @@
       <p
         v-if="figures.all"
       >
-        Un merci à ceux qui ont, où qui contribuent activement au projet : Fabio Carmouche, <a href="https://github.com/Cdriss">Cdriss</a> et les {{ figures.all.users_count }} grimpeurs d'oblyk 🙂
+        Un merci à celles et ceux qui ont, où qui contribuent activement au projet : Fabio Carmouche, <a href="https://github.com/Cdriss">Cdriss</a> et les {{ figures.all.users_count }} grimpeur·euse·s d'oblyk 🙂
       </p>
 
       <!-- Contribute -->
@@ -136,7 +136,7 @@
         <li class="pb-3">
           <strong>Parler d'oblyk, faire connaître la platform</strong>.<br>
           Que vous teniez un blog, ou que vous en parliez autour de vous : ça nous aide!<br>
-          Plus oblyk est connu, plus il y aura de contributeur, et plus la platform sera riche et utile aux grimpeurs.
+          Plus oblyk est connu, plus il y aura de contributeur, et plus la platform sera riche et utile aux grimpeur·euse·s.
         </li>
         <li class="pb-3">
           <strong>Participer à la base de connaissance.</strong><br>

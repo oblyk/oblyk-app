@@ -18,14 +18,14 @@
     },
     "aboutPartner": {
       "title": "Recherche de partenaire d'escalade, comment ça marche ?",
-      "description": "La recherche de partenaire d'escalade te permet de trouver des grimpeurs autours de toi qui cherche aussi des gens pour grimper. Comment ça fonctionne ?"
+      "description": "La recherche de partenaire d'escalade te permet de trouver des grimpeur·euse·s autours de toi qui cherche aussi des gens pour grimper. Comment ça fonctionne ?"
     },
     "news": {
       "title": "Actualités d'Oblyk"
     },
     "helps": {
       "title": "Aide, comment utiliser Oblyk",
-      "description": "Avec ce court tutoriel, apprend à te servir d'Oblyk en quelques clics, et profite des outils du site communautaire des grimpeurs"
+      "description": "Avec ce court tutoriel, apprend à te servir d'Oblyk en quelques clics, et profite des outils du site communautaire des grimpeur·euse·s"
     },
     "supportUs": {
       "title": "Supporter Oblyk, faire un don",
@@ -56,8 +56,8 @@
       "description": "Voir la carte interactive des salle de grimpe sur Oblyk, que ce soit en France, ou dans le Monde, et voir leurs informations détaillées"
     },
     "partnerMap": {
-      "title": "La carte des grimpeurs d'oblyk",
-      "description": "La carte des grimpeurs te permet de trouver un partenaire d'escalade près de chez toi. localise toi, trouve un grimpeur, contact le et allez grimper ensemble !"
+      "title": "La carte des grimpeur·euse·s d'oblyk",
+      "description": "La carte des grimpeur·euse·s te permet de trouver un·e partenaire d'escalade près de chez toi. localise toi, trouve un·e grimpeur·euse, contact le·la et allez grimper ensemble !"
     },
     "gym": {
       "title": "%{name}, salle d'escalade à %{city}",
@@ -99,17 +99,17 @@
     },
     "glossary": {
       "title": "Lexique des terms d'escalade",
-      "description": "Le lexique communautaire des termes de l'escalade pour décoder le parler grimpeur"
+      "description": "Le lexique communautaire des termes de l'escalade pour décoder le parler grimpeur·euse"
     },
     "word": {
       "new": "Nouvelle définition"
     },
     "home": {
-      "title": "Oblyk - Escalade, Carnet de croix & Carte des grimpeurs",
+      "title": "Oblyk - Escalade, Carnet de croix & Carte des grimpeur·euse·s",
       "description": "Oblyk est un site communautaire d'escalade outdoor et indoor, on peut : voir les informations des falaises, noter ses croix, trouver un partenaire d'escalade, etc."
     },
     "oblyk": {
-      "title": "Oblyk - Escalade, Carnet de croix & Carte des grimpeurs",
+      "title": "Oblyk - Escalade, Carnet de croix & Carte des grimpeur·euse·s",
       "description": "Oblyk est un site communautaire d'escalade outdoor et indoor, on peut : voir les informations des falaises, noter ses croix, trouver un partenaire d'escalade, etc."
     },
     "ascentCragRoute": {
@@ -235,15 +235,15 @@
       "videos": "Mes vidéos"
     },
     "user": {
-      "title": "%{name} son profil de grimpeur",
-      "description": "consulter le profil de %{name}, grimpeur de la communauté oblyk",
+      "title": "%{name} son profil de grimpeur·euse",
+      "description": "consulter le profil de %{name}, grimpeur·euse de la communauté oblyk",
       "ascent": {
         "title": "Les croix de %{name}",
-        "description": "Consulter les croix faites par %{name} tout au long de sa vie de grimpeur"
+        "description": "Consulter les croix faites par %{name} tout au long de sa vie de grimpeur·euse"
       },
       "follower": {
         "title": "Les abonnés de %{name}",
-        "description": "Voir les grimpeurs abonnées à %{name}, grimpeur de la communauté oblyk"
+        "description": "Voir les grimpeur·euse·s abonnées à %{name}, grimpeur·euse de la communauté oblyk"
       },
       "media": {
         "title": "Photos et vidéos de %{name}",
@@ -259,7 +259,7 @@
       },
       "subscribe": {
         "title": "Abonnement de %{name}",
-        "description": "Voir les abonnements aux falaises, salles, et autre grimpeurs de %{name}"
+        "description": "Voir les abonnements aux falaises, salles, et autre grimpeur·euse de %{name}"
       }
     },
     "error": {
