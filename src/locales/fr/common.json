@@ -60,7 +60,7 @@
         "intro": "Oblyk permet d'utiliser plusieurs formats pour les cotations (Française, Anglaise, Américaine, etc.). Pour chacune des cotations il est donné un code couleur pour se rendre compte rapidement du niveau de difficulté même si on est pas habitué au système de cotation affiché.",
         "equivalence": "Le tableau d'équivalence suivant est contestable, il a pour vocation de donner un ordre d'idée de la difficulté d'une cotation et non pas de donner exactement l'équivalence d'un système vers un autre.",
         "weighting": "Sur oblyk, chaque cotation peut prendre les pondérations suivante :",
-        "developerBonus": "Petit bonus pour les développeurs :",
+        "developerBonus": "Petit bonus pour les développeur·euse·s :",
         "regexpExplain": "Si vous avez besoin de valider qu'une chaîne de texte est conforme à l'un de ces systèmes de cotation, voici l'expression régulière que vous pouvez utiliser :",
         "list": {
           "strongGrade": "cotation forte",
@@ -84,12 +84,12 @@
         }
       },
       "partner": {
-        "welcomeOnMap": "Bienvenue sur la carte des grimpeurs de Oblyk!",
+        "welcomeOnMap": "Bienvenue sur la carte des grimpeur·euse·s de Oblyk!",
         "title": "La recherche de partenaire",
         "howIsWork": "Comment ça marche ?",
         "explain": "Tu arrives dans une nouvelle région, tu cherches quelqu'un pour t'accompagner lors de tes sorties falaises ou pour aller grimper à la salle du coin ? Tu trouveras peut-être ton bonheur ici !",
-        "connect": "Pour voir les grimpeurs inscrits sur la recherche de partenaire, il faut déjà que tu aies un compte !",
-        "figuresGlobal": "Déjà <strong>%{global} grimpeurs</strong> sont inscrit à la carte",
+        "connect": "Pour voir les grimpeurs et grimpeuses inscrit·e·s sur la recherche de partenaire, il faut déjà que tu aies un compte !",
+        "figuresGlobal": "Déjà <strong>%{global} grimpeur·euse·s</strong> sont inscrit·e·s à la carte",
         "figuresWeekly": ", dont <strong>%{weekly} nouveaux</strong> cette semaine !",
         "steps": {
           "configuration": {
@@ -99,13 +99,13 @@
           },
           "location": {
             "title": "Étape 2 : Ma zone de grimpe",
-            "body": "Pour que nous puissions te présenter une liste des grimpeurs près de chez toi, faut-il déjà que nous sachions où tu grimpes !<br>Marque l'endroit où tu cherche des grimpeurs, et Oblyk te présentera les grimpeurs qui sont autour de toi.",
+            "body": "Pour que nous puissions te présenter une liste des grimpeur·euse·s près de chez toi, faut-il déjà que nous sachions où tu grimpes !<br>Marque l'endroit où tu cherche des grimpeur·euse·s, et Oblyk te présentera celles et ceux qui sont autour de toi.",
             "action": "Où je grimpe ?"
           },
           "climberMap": {
-            "title": "Étape 3 : La carte des grimpeurs",
-            "body": "Maintenant que tu as renseigné ton lieu d'escalade et dis qui tu étais, tu peux utiliser la carte des grimpeurs pour trouver quelqu'un avec qui tu aimerais grimper.",
-            "action": "La carte des grimpeurs"
+            "title": "Étape 3 : La carte des grimpeur·euse·s",
+            "body": "Maintenant que tu as renseigné ton lieu d'escalade et dis qui tu étais, tu peux utiliser la carte des grimpeur·euse·s pour trouver quelqu'un avec qui tu aimerais grimper.",
+            "action": "La carte des grimpeur·euse·s"
           },
           "contact": {
             "title": "Étape 4 : Contact",

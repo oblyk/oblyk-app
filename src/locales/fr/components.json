@@ -591,12 +591,12 @@
         "myMap": "Ma carte"
       },
       "public_explain": {
-        "profile": "Votre profil est <strong>ouvert</strong> à la consultation par les autres grimpeurs, qu'ils soient <strong>connecté ou non à Oblyk</strong>.<br>Les grimpeurs peuvent <strong>vous suivre sans attendre votre validation.</strong>",
-        "outdoor_ascents": "Votre <strong>carnet de croix outdoor</strong> est consultable par les <strong>grimpeurs connectés</strong> à Oblyk.",
-        "indoor_ascents": "Votre <strong>carnet de croix indoor</strong> est consultable par les <strong>grimpeurs connectés</strong> à Oblyk."
+        "profile": "Votre profil est <strong>ouvert</strong> à la consultation par les autres grimpeur·euse·s, qu'ils ou elles soient <strong>connecté ou non à Oblyk</strong>.<br>Les grimpeur·euse·s peuvent <strong>vous suivre sans attendre votre validation.</strong>",
+        "outdoor_ascents": "Votre <strong>carnet de croix outdoor</strong> est consultable par les <strong>grimpeur·euse·s connecté·e·s</strong> à Oblyk.",
+        "indoor_ascents": "Votre <strong>carnet de croix indoor</strong> est consultable par les <strong>grimpeur·euse·s connecté·e·s</strong> à Oblyk."
       },
       "private_explain": {
-        "profile": "Votre profil est consultable <strong>uniquement par les grimpeurs connectés</strong> à oblyk.<br>Vous devez <strong>accepter manuellement</strong> les grimpeurs qui veulent vous suivre.",
+        "profile": "Votre profil est consultable <strong>uniquement par les grimpeur·euse·s connecté·e·s</strong> à oblyk.<br>Vous devez <strong>accepter manuellement</strong> les grimpeur·euse·s qui veulent vous suivre.",
         "outdoor_ascents": "Votre carnet de croix outdoor est <strong>consultable uniquement pas vos abonnées.</strong>",
         "indoor_ascents": "Votre carnet de croix indoor est <strong>consultable uniquement pas vos abonnées.</strong>"
       },

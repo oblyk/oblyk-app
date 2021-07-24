@@ -11,7 +11,10 @@
         {{ $t('common.pages.partner.explain') }}
       </p>
 
-      <div v-if="!isLoggedIn">
+      <div
+        v-if="!isLoggedIn"
+        class="mb-10"
+      >
         <p class="text-center font-weight-bold">
           {{ $t('common.pages.partner.connect') }}
         </p>

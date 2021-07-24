@@ -25,7 +25,7 @@
           <p class="figures">
             {{ figures.all.users_count }}
             <small
-              :title="$tc('home.figures.in24Hours.users', figures.latest.users_count, { count: figures.latest.users_count } )"
+              :title="$tc('home.figures.in24Hours.climbers', figures.latest.users_count, { count: figures.latest.users_count } )"
               v-if="figures.latest.users_count > 0"
             >
               +{{ figures.latest.users_count }}

@@ -10,9 +10,9 @@
       "body": "Bon pour la mémoire, la progression et la motivation, tenir un <strong>carnet de croix</strong> à beaucoup d'avantages.<br> Oblyk te permet de le faire facilement, tu pourras ensuite <strong>visualiser ta progression</strong> grâce à de nombreuses façons d'analyser et d'afficher ton carnet de croix."
     },
     "partner": {
-      "title": "Trouve un partenaire de grimpe",
-      "body": "Tu arrives dans une nouvelle région, tu aimerais trouver quelqu'un avec qui <strong>grimper en falaise ou en salle</strong> ?<br>Regarde du côté de notre <strong>carte des grimpeurs</strong>, peut-être que tu trouveras quelqu'un avec qui grimper.",
-      "action": "En savoir plus"
+      "title": "Trouve un·e partenaire de grimpe",
+      "body": "Tu arrives dans une nouvelle région, tu aimerais trouver quelqu'un avec qui <strong>grimper en falaise ou en salle</strong> ?<br>Regarde du côté de notre <strong>carte des grimpeuses et grimpeurs</strong>, peut-être que tu trouveras quelqu'un avec qui grimper.",
+      "action": "La carte des grimpeur·euse·s"
     },
     "supportUs": {
       "title": "Nous soutenir",
@@ -29,7 +29,7 @@
     "figures": {
       "title": "Oblyk en quelques chiffres",
       "crags": "Falaises",
-      "climbers": "Grimpeurs",
+      "climbers": "Grimpeur·euse·s",
       "gyms": "Salles",
       "routes": "Lignes",
       "ascents": "Croix",
@@ -39,7 +39,7 @@
       "videos": "Vidéos",
       "in24Hours": {
         "crags": "Une falaise a été ajoutée aujourd'hui | %{count} falaises ont été ajoutées aujourd'hui",
-        "climbers": "Un grimpeur est arrivé aujourd'hui | %{count} grimpeurs sont arrivés aujourd'hui",
+        "climbers": "Un·e grimpeur·euse est arrivé·e aujourd'hui | %{count} grimpeur·euse·s sont arrivé·e·s aujourd'hui",
         "gyms": "Une salle a été ajoutée aujourd'hui | %{count} salles ont été ajoutées aujourd'hui",
         "routes": "Une ligne a été ajoutée aujourd'hui | %{count} lignes ont été ajoutées aujourd'hui",
         "ascents": "Une croix a été faite aujourd'hui | %{count} croix ont été faites aujourd'hui",
