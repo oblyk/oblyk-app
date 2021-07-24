@@ -33,13 +33,13 @@
           :key="ascentCragRoute.id"
         >
           <crag-route-feed-list-item
-            v-if="seeMore || index < limite"
+            v-if="seeMore || index < limit"
             :ascent="ascentCragRoute"
           />
         </div>
         <p
           class="text-center mb-0 mt-3"
-          v-if="!seeMore && ascentCragRoutes().length > limite"
+          v-if="!seeMore && ascentCragRoutes().length > limit"
         >
           <v-btn
             @click="seeMore = !seeMore"
@@ -47,7 +47,7 @@
             text
             color="primary"
           >
-            {{ $t('components.feed.displayNMore', { count: ascentCragRoutes().length - limite }) }}
+            {{ $t('components.feed.displayNMore', { count: ascentCragRoutes().length - limit }) }}
           </v-btn>
         </p>
       </v-list>
@@ -59,13 +59,13 @@
           :key="cragRoute.id"
         >
           <crag-route-list-item
-            v-if="seeMore || index < limite"
+            v-if="seeMore || index < limit"
             :route="cragRoute"
           />
         </div>
         <p
           class="text-center mb-0 mt-3"
-          v-if="!seeMore && cragRoutes().length > limite"
+          v-if="!seeMore && cragRoutes().length > limit"
         >
           <v-btn
             @click="seeMore = !seeMore"
@@ -73,7 +73,7 @@
             text
             color="primary"
           >
-            {{ $t('components.feed.displayNMore', { count: cragRoutes().length - limite }) }}
+            {{ $t('components.feed.displayNMore', { count: cragRoutes().length - limit }) }}
           </v-btn>
         </p>
       </v-list>
@@ -110,7 +110,7 @@ export default {
 
   data () {
     return {
-      limite: 5,
+      limit: 5,
       seeMore: false,
       headers: {
         Photos: { icon: 'mdi-image-multiple', title: 'components.feed.newPhotos' },
