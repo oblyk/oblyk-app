@@ -10,7 +10,10 @@
         v-for="(article, index) in articles"
         :key="`article-card-${index}`"
       >
-        <simple-feed-card :feed="article" />
+        <simple-feed-card
+          class="mb-4"
+          :feed="article"
+        />
       </div>
     </div>
   </div>

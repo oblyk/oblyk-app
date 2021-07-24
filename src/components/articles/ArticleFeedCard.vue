@@ -2,12 +2,15 @@
   <v-row>
     <v-col class="col-12 col-md-3">
       <v-img
+        height="140"
         :src="article.thumbnailCoverUrl()"
         :alt="article.name"
       />
     </v-col>
     <v-col class="col-12 col-md-9">
-      <h4>{{ article.name }}</h4>
+      <h4 class="article-feed-title">
+        {{ article.name }}
+      </h4>
       <div v-html="article.description" />
       <article-footer
         v-if="showFooter"
@@ -49,3 +52,12 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.article-feed-title {
+  font-family: "Loved by the King", sans-serif;
+  font-size: 1.7rem;
+  margin-top: 0.3em;
+  margin-bottom: 0.5em;
+}
+</style>
