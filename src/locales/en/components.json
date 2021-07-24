@@ -139,6 +139,7 @@
       "checkYourMailBox": "Check your mailbox!",
       "resetPasswordError": "Invalid e-mail address or without associated account",
       "newPasswordError": "The link has expired, or the two passwords are not identical",
+      "createAccountForWatch": "Create an account to view %{name}'s profile !",
       "privacyStep": {
         "title": "One last little thing!",
         "explain": "Take 30 seconds to choose what you want the rest of the community to see of your activity."

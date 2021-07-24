@@ -139,6 +139,7 @@
       "checkYourMailBox": "Consultez votre boîte mail !",
       "resetPasswordError": "Adresse mail invalide ou sans compte associé",
       "newPasswordError": "Le lien a expiré, ou les deux mots de passe ne sont pas identique",
+      "createAccountForWatch": "Créez-vous un compte pour voir le profil de %{name} !",
       "privacyStep": {
         "title": "Une dernière petite chose!",
         "explain": "Prenez 30 secondes pour choisir ce que vous acceptez que le reste de la communauté voie de votre activité."

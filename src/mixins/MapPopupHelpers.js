@@ -1,3 +1,7 @@
+import { MarkdownHelpers } from '@/mixins/MarkdownHelpers'
+import { DateHelpers } from '@/mixins/DateHelpers'
+import { GradeMixin } from '@/mixins/GradeMixin'
+import { SessionConcern } from '@/concerns/SessionConcern'
 import Crag from '@/models/Crag'
 import Gym from '@/models/Gym'
 import PlaceOfSale from '@/models/PlaceOfSale'
@@ -5,12 +9,9 @@ import CragSector from '@/models/CragSector'
 import Park from '@/models/Park'
 import Approach from '@/models/Approach'
 import User from '@/models/User'
-import { MarkdownHelpers } from '@/mixins/MarkdownHelpers'
-import { DateHelpers } from '@/mixins/DateHelpers'
-import { GradeMixin } from '@/mixins/GradeMixin'
 
 export const MapPopupHelpers = {
-  mixins: [MarkdownHelpers, DateHelpers, GradeMixin],
+  mixins: [MarkdownHelpers, DateHelpers, GradeMixin, SessionConcern],
   methods: {
     getHtmlPopup: function (feature) {
       if (feature.properties.type === 'Crag') {
@@ -269,7 +270,12 @@ export const MapPopupHelpers = {
           <button>${this.$t('actions.see')}</button>
         </div>
       `
-      popup.querySelector('button').addEventListener('click', () => { this.$router.push(user.userPath()) })
+
+      if (this.isLoggedIn) {
+        popup.querySelector('button').addEventListener('click', () => { this.$router.push(user.userPath()) })
+      } else {
+        popup.querySelector('button').addEventListener('click', () => { this.$router.push(`/sign-up?redirect_to=${user.userPath()}&partner_request=true&partner_name=${user.full_name}`) })
+      }
 
       return popup
     }

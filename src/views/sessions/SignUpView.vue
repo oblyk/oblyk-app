@@ -3,6 +3,15 @@
     <v-container>
       <v-row justify="center">
         <v-col class="global-form-width" align-self="center">
+
+          <v-alert
+            color="info"
+            class="mb-10"
+            v-if="climbersMap"
+          >
+            {{ $t('components.session.createAccountForWatch', { name: partnerName }) }}
+          </v-alert>
+
           <h2 class="mb-4">
             {{ $t('actions.signUp') }}
           </h2>
@@ -51,13 +60,16 @@ export default {
 
   data () {
     return {
-      redirectTo: null
+      redirectTo: null,
+      climbersMap: false
     }
   },
 
   created () {
     const urlParams = new URLSearchParams(window.location.search)
     this.redirectTo = urlParams.get('redirect_to')
+    this.climbersMap = urlParams.get('partner_request') === 'true'
+    this.partnerName = urlParams.get('partner_name')
   }
 }
 </script>
