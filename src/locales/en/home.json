@@ -37,6 +37,7 @@
       "guides": "Guides",
       "comments": "Comments",
       "videos": "Videos",
+      "addedSince24Hours": "* one element added in the last 24 hours | * %{count} elements added in the last 24 hours",
       "in24Hours": {
         "crags": "One crag was added today | %{count} crags were added today",
         "climbers": "One climber arrived today | %{count} climbers arrived today",

@@ -37,6 +37,7 @@
       "guides": "Topos",
       "comments": "Commentaires",
       "videos": "Vidéos",
+      "addedSince24Hours": "* un élément ajouté depuis 24 heures | * %{count} éléments ajoutés depuis 24 heures",
       "in24Hours": {
         "crags": "Une falaise a été ajoutée aujourd'hui | %{count} falaises ont été ajoutées aujourd'hui",
         "climbers": "Un·e grimpeur·euse est arrivé·e aujourd'hui | %{count} grimpeur·euse·s sont arrivé·e·s aujourd'hui",
