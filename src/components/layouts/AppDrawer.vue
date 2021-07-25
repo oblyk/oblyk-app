@@ -4,6 +4,7 @@
       <v-col sm="4">
         <v-btn
           to="/"
+          aria-label="go to home page"
           icon
           x-large
           class="ml-2"
@@ -45,6 +46,7 @@
         <v-btn
           class="mr-4"
           @click="dark = !dark"
+          aria-label="select light or dark theme"
           icon
         >
           <v-icon v-if="dark">
