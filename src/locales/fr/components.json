@@ -642,6 +642,7 @@
       "writtenBy": "Rédigé par %{name}",
       "readXTimes" : "Lu %{count} fois | Lu %{count} fois",
       "aboutAuthor": "À propos de l'auteur",
+      "seeAllArticles": "Toutes les actualités",
       "helpers": {
         "title": "Helpers",
         "textCenter": "texte centrer",

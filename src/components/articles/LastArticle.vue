@@ -5,15 +5,22 @@
       <h3 class="loved-by-king text-center mb-5">
         {{ $t('components.article.whatsNew') }}
       </h3>
-      <div
-        class="last-article-container"
-        v-for="(article, index) in articles"
-        :key="`article-card-${index}`"
-      >
+      <div class="last-article-container">
         <simple-feed-card
+          v-for="(article, index) in articles"
+          :key="`article-card-${index}`"
           class="mb-4"
           :feed="article"
         />
+        <div class="text-right">
+          <v-btn
+            color="primary"
+            outlined
+            to="/articles"
+          >
+            {{ $t('components.article.seeAllArticles') }}
+          </v-btn>
+        </div>
       </div>
     </div>
   </div>

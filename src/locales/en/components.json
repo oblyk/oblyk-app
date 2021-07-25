@@ -642,6 +642,7 @@
       "writtenBy": "Written by %{name}",
       "readXTimes" : "Read %{count} time | Read %{count} times",
       "aboutAuthor": "About the author",
+      "seeAllArticles": "See all actualities",
       "helpers": {
         "title": "Helpers",
         "textCenter": "text center",
