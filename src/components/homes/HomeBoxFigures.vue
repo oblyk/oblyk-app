@@ -169,7 +169,6 @@ export default {
   computed: {
     addInLast24Hours: function () {
       const last = this.figures.latest
-      console.log(last)
       if (last) {
         return last.comments_count + last.crags_count + last.users_count + last.gyms_count + last.routes_count + last.ascents_count + last.photos_count + last.guides_count + last.videos_count
       } else {
