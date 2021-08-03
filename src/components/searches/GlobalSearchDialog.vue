@@ -98,6 +98,26 @@
         id="global-search-results-area"
       >
 
+        <!-- Previous research -->
+        <div
+          v-if="!haveResult && previousSearch().length > 0"
+          class="pl-5"
+        >
+          <p
+            v-for="(previousQuery, index) in previousSearch()"
+            :key="`previous-query-${index}`"
+            class="mb-1"
+          >
+            <span
+              class="hoverable"
+              @click="research(previousQuery)"
+            >
+              <v-icon left>mdi-history</v-icon>
+              {{ previousQuery }}
+            </span>
+          </p>
+        </div>
+
         <!-- Area result -->
         <div v-if="areaResults.length > 0">
           <p
@@ -113,7 +133,7 @@
             <div
               v-for="(area, index) in areaResults"
               :key="`area-result-${index}`"
-              @click="globalSearchDialog = false"
+              @click="closeAndSaveSearch()"
             >
               <area-small-card :area="area" />
             </div>
@@ -136,7 +156,7 @@
               class="mt-1"
               v-for="(crag, index) in cragResults"
               :key="`crag-result-${index}`"
-              @click="globalSearchDialog = false"
+              @click="closeAndSaveSearch()"
             >
               <crag-small-card :small="true" :crag="crag" />
             </div>
@@ -159,7 +179,7 @@
               class="mt-1"
               v-for="(gym, index) in gymResults"
               :key="`gym-result-${index}`"
-              @click="globalSearchDialog = false"
+              @click="closeAndSaveSearch()"
             >
               <gym-small-card
                 :gym="gym"
@@ -184,7 +204,7 @@
             <div
               v-for="(guideBookPaper, index) in guideBookPaperResults"
               :key="`guide-book-paper-result-${index}`"
-              @click="globalSearchDialog = false"
+              @click="closeAndSaveSearch()"
             >
               <guide-book-paper-small-card :guide-book-paper="guideBookPaper"/>
             </div>
@@ -206,7 +226,7 @@
             <div
               v-for="(user, index) in userResults"
               :key="`climber-result-${index}`"
-              @click="globalSearchDialog = false"
+              @click="closeAndSaveSearch()"
             >
               <user-small-card
                 :user="user"
@@ -231,7 +251,7 @@
             <div
               v-for="(cragRoute, index) in cragRouteResults"
               :key="`crag-route-result-${index}`"
-              @click="globalSearchDialog = false"
+              @click="closeAndSaveSearch()"
             >
               <crag-route-small-card
                 :crag-route="cragRoute"
@@ -256,7 +276,7 @@
             <div
               v-for="(word, index) in wordResults"
               :key="`word-result-${index}`"
-              @click="globalSearchDialog = false"
+              @click="closeAndSaveSearch()"
             >
               <word-card
                 :flat="true"
@@ -340,6 +360,12 @@ export default {
     }
   },
 
+  computed: {
+    haveResult: function () {
+      return (this.areaResults.length + this.cragResults.length + this.cragRouteResults.length + this.gymResults.length + this.guideBookPaperResults.length + this.userResults.length + this.wordResults.length > 0)
+    }
+  },
+
   mounted: function () {
     window.addEventListener('keydown', (event) => {
       if ((event.metaKey || event.ctrlKey) && event.code === 'KeyK') {
@@ -350,6 +376,32 @@ export default {
   },
 
   methods: {
+    previousSearch: function () {
+      if (localStorage.getItem('previous-search')) {
+        return (localStorage.getItem('previous-search') || '').split('||')
+      } else {
+        return []
+      }
+    },
+
+    research: function (query) {
+      this.query = query
+      this.search()
+    },
+
+    closeAndSaveSearch: function () {
+      const savedSearch = this.previousSearch()
+      const newSavedSearch = []
+      for (const query of savedSearch) {
+        if (query.toLowerCase() !== this.query.toLowerCase()) {
+          newSavedSearch.push(query)
+        }
+      }
+      newSavedSearch.unshift(this.query)
+      localStorage.setItem('previous-search', newSavedSearch.join('||'))
+      this.globalSearchDialog = false
+    },
+
     search () {
       if (this.previousQuery === this.query) {
         this.searching = false
