@@ -130,6 +130,9 @@ export default {
   watch: {
     routeSort: function () {
       this.reloadRoutes()
+    },
+    cragSector: function () {
+      this.reloadRoutes()
     }
   },
 
