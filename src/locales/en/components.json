@@ -515,6 +515,7 @@
       "bePartPartner": "Be part of the climbers' map?",
       "bePartPartnerExplain": "Being part of the climbing map allows you to find people to climb with!",
       "localizationDeactivated": "localization disabled",
+      "localizationActivated": "localization enabled",
       "activateLocalization": "Activate localization",
       "activateLocalizationExplain": "Localization allows me to have information about what's going on around me (and is practice for the map climbers).",
       "uploadBanner": "<strong>TIPS !</strong> Upload a banner to customize the header of this page.",
