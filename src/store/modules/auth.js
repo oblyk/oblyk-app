@@ -100,7 +100,7 @@ const actions = {
             refresh_token: data.refresh_token,
             ws_token: data.ws_token,
             expired_at: data.expired_at,
-            name: [data.user.first_name, data.user.last_name].join(' '),
+            name: [data.user.first_name, data.user.last_name].filter(e => e !== null).join(' '),
             slug_name: data.user.slug_name,
             super_admin: data.user.super_admin || false,
             uuid: data.user.uuid,
@@ -153,7 +153,7 @@ const actions = {
             expired_at: data.expired_at,
             refresh_token: data.refresh_token,
             ws_token: data.ws_token,
-            name: [data.user.first_name, data.user.last_name].join(' '),
+            name: [data.user.first_name, data.user.last_name].filter(e => e !== null).join(' '),
             slug_name: data.user.slug_name,
             super_admin: data.user.super_admin || false,
             uuid: data.user.uuid,
@@ -185,7 +185,7 @@ const actions = {
             expired_at: data.expired_at,
             refresh_token: data.refresh_token,
             ws_token: data.ws_token,
-            name: [data.user.first_name, data.user.last_name].join(' '),
+            name: [data.user.first_name, data.user.last_name].filter(e => e !== null).join(' '),
             slug_name: data.user.slug_name,
             super_admin: data.user.super_admin || false,
             uuid: data.user.uuid,
@@ -207,7 +207,7 @@ const actions = {
 
   updateUserName ({ commit }, data) {
     commit('updated', {
-      name: `${data.first_name} ${data.last_name}`
+      name: [data.first_name, data.last_name].filter(e => e !== null).join(' ')
     })
   },
 
