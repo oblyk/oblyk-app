@@ -115,7 +115,7 @@ export default {
           }
         })
         .catch(err => {
-          this.$root.$emit('alertFromApiError', err, 'gymSector')
+          this.$root.$emit('alertFromApiError', err, 'ascentGymRoute')
         })
         .then(() => {
           this.submitOverlay = false

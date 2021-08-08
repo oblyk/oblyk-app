@@ -149,7 +149,7 @@ export default {
           }
         })
         .catch(err => {
-          this.$root.$emit('alertFromApiError', err, 'cragSector')
+          this.$root.$emit('alertFromApiError', err, 'ascentCragRoute')
         })
         .then(() => {
           this.submitOverlay = false
