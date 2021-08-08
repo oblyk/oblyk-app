@@ -2,7 +2,7 @@
   <div v-if="user">
     <user-head :user="user" />
     <user-tabs :user="user" />
-    <router-view :user="user" />
+    <router-view :key="$route.params.userUuid" :user="user" />
   </div>
 </template>
 
