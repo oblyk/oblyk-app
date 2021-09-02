@@ -1,9 +1,9 @@
 <template>
   <div v-if="article">
     <article-head :article="article" />
-    <v-container class="common-page-container article-container">
+    <v-container class="article-container">
       <section
-        class="article-description mb-3"
+        class="article-description mb-8 mt-3"
         v-html="article.description"
       />
       <section
@@ -56,10 +56,14 @@ export default {
 
 <style lang="scss">
 .article-container {
+  max-width: 900px;
+  min-height: calc(100vh - 420px);
   .article-description {
+    font-size: 1.20em;
     font-weight: bold;
   }
   .article-body {
+    font-size: 1.20em;
     p {
       hyphens: auto;
       text-align: justify;
@@ -68,7 +72,9 @@ export default {
       max-width: 100%;
     }
     h2 {
-      margin-top: 25px;
+      font-size: 1.6em;
+      margin-top: 50px;
+      margin-bottom: 5px;
       font-family: "Loved by the King", sans-serif;
     }
   }
