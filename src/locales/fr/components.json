@@ -515,6 +515,7 @@
       "bePartPartner": "Voulez vous faire partie de la carte des grimpeur·euse·s ?",
       "bePartPartnerExplain": "Faire partie de la carte des grimpeur·euse·s vous permet de trouver des gens avec qui grimper !",
       "localizationDeactivated": "Localisation désactivée",
+      "localizationActivated": "Localisation activée",
       "activateLocalization": "Activer la localisation",
       "activateLocalizationExplain": "La localisation permet d'avoir des informations sur ce qu'il se passe autour de moi (et est pratique pour la carte des grimpeur·euse·s)",
       "uploadBanner": "<strong>TIPS !</strong> Upload un bandeau pour personnaliser l'entête de cette page.",

@@ -1,8 +1,16 @@
 <template>
   <div class="enable-localization-card">
     <!-- If localisation is accepted -->
-    <p class="caption" v-if="this.localisationStatus === 'accepted' && showLocalization">
-      <v-icon x-small left>mdi-map-marker</v-icon> {{ user.localization }}
+    <p class="caption" v-if="this.localisationStatus === 'accepted'">
+      <v-icon x-small left>mdi-map-marker</v-icon> {{ $t('components.user.localizationActivated') }} <span v-if="showLocalization">{{ user.localization }}</span>
+      <v-btn
+        text
+        x-small
+        color="primary"
+        @click="no()"
+      >
+        {{ $t('actions.disable') }}
+      </v-btn>
     </p>
 
     <!-- If localisation is refused -->
