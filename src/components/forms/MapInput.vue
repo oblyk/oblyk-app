@@ -9,7 +9,7 @@
     <div class="map-selector">
       <l-map
         :zoom="defaultZoom"
-        :center="[defaultLatitude, defaultLongitude]"
+        :center="[defaultLatitude || 47, defaultLongitude || 3.1]"
         :options="{
           zoomControl: false,
           worldCopyJump: true
@@ -107,8 +107,8 @@ export default {
     return {
       layerIndex: 0,
       newMarker: latLng(
-        this.defaultLatitude,
-        this.defaultLongitude
+        this.defaultLatitude || 47,
+        this.defaultLongitude || 3.1
       ),
       layers: [
         {

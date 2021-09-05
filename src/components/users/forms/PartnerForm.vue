@@ -56,8 +56,8 @@
         <!-- Partner map -->
         <map-input
           v-model="partnerLocalization"
-          :default-latitude="data.partner_latitude || 47"
-          :default-longitude="data.partner_longitude || 3.1"
+          :default-latitude="data.partner_latitude"
+          :default-longitude="data.partner_longitude"
           :default-zoom="data.partner_latitude ? 10 : 4"
           title-key="components.user.partnerMapTitle"
           style-map="outdoor"
