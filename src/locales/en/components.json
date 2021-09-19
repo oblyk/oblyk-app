@@ -101,6 +101,7 @@
       }
     },
     "map": {
+      "title": "Map",
       "site": "Site",
       "place": "Place",
       "type": "Type",
@@ -114,7 +115,8 @@
       "layers": {
         "relief": "Relief",
         "street": "Map",
-        "satellite": "Satellite"
+        "satellite": "Satellite",
+        "detailedRelief": "Detailed relief"
       },
       "legend": {
         "boulder": "Boulder",
@@ -184,6 +186,7 @@
       "orientations": "Orientations",
       "group": "Crags group",
       "lines": "Lines",
+      "elevation": "Elevation",
       "rangingFrom": "Ranging from <strong>%{min}</strong> to <strong>%{max}</strong>",
       "noGuide": "No guide filled in",
       "noRoutes": "There are no routes registered on this site yet.",
@@ -210,7 +213,8 @@
       "newSector": "New sector",
       "sectorOf": "Sector of",
       "sectors": "Sectors",
-      "allSectors": "All sectors"
+      "allSectors": "All sectors",
+      "elevation": "Elevation"
     },
     "cragRoute": {
       "coverFrom": "Route picture",
@@ -276,8 +280,11 @@
       }
     },
     "approach": {
+      "cardTitle": "Approach walk",
       "newPolylineExplain": "Click at each point where the approach step passes from the parking lot.",
       "editPolylineExplain": "Move the white squares to change the path of the approach step",
+      "elevation_chart": "Elevation chart",
+      "elevation_description": "Start at an altitude of %{start} meters, arrive at %{end} meters.",
       "walking_time": {
         "steep_descent": "(at 6km/h)",
         "soft_descent": "(at 6km/h)",

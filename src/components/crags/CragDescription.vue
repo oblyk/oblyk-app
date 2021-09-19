@@ -106,6 +106,16 @@
               </td>
             </tr>
 
+            <!-- Elevation -->
+            <tr v-if="crag.elevation">
+              <th class="smallest-table-column text-right">
+                {{ $t('components.crag.elevation') }}
+              </th>
+              <td>
+                {{ parseInt(crag.elevation) }} {{ $t('common.meters') }}
+              </td>
+            </tr>
+
             <!-- Areas -->
             <tr>
               <th class="smallest-table-column text-right">

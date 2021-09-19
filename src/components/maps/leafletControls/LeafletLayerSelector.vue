@@ -18,6 +18,10 @@
           :label="$t('components.map.layers.satellite')"
           :value="1"
         />
+        <v-radio
+          :label="$t('components.map.layers.detailedRelief')"
+          :value="2"
+        />
       </v-radio-group>
     </div>
   </div>

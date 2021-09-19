@@ -182,7 +182,7 @@ export const MapPopupHelpers = {
       if (approach.approach_type) {
         approachTypePart = `
           <tr>
-            <th>Type :</th>
+            <th>${this.$t('models.approach.approach_type')} :</th>
             <td class="">${this.$t(`models.approachType.${approach.approach_type}`)}</td>
           </tr>
         `

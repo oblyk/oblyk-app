@@ -150,8 +150,11 @@
     },
     "approach": {
       "description": "Description",
+      "no_description": "no description filled in",
+      "elevation_drop": "Elevation drop",
       "approach_type": "Approach type",
       "length": "Distance",
+      "elevation": "Elevation",
       "time": "Time",
       "type": "Type",
       "crag": "Crag"

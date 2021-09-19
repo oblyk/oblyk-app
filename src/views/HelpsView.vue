@@ -5,6 +5,7 @@
         {{ $t('helps.title') }}
       </h1>
 
+      <crag-helps />
       <account-helps />
 
     </v-container>
@@ -15,10 +16,11 @@
 <script>
 import AppFooter from '@/components/layouts/AppFooter'
 import AccountHelps from '@/components/helps/AccountHelps'
+import CragHelps from '@/components/helps/CragHelps'
 
 export default {
   name: 'HelpsView',
-  components: { AccountHelps, AppFooter },
+  components: { CragHelps, AccountHelps, AppFooter },
 
   metaInfo () {
     return {

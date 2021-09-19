@@ -12,6 +12,19 @@
         "goToSettings": "Go to your settings",
         "deployActions": "Deploy <cite class='font-weight-bold'>Actions on my account</cite>."
       }
+    },
+    "crag": {
+      "title": "Crags",
+      "addApproach": {
+        "title": "Add approach",
+        "explain": "To add an approach step on a crag you must :",
+        "findCrag": "Find your crag with the search or the crags map",
+        "mapTab": "Go to the 'Map' tab",
+        "addApproachBtn": "Click on the 'Add a step' button",
+        "descriptionAndType": "Give a description and type of walk",
+        "drawApproach": "Click on the map to add the points along the approach walk (from the car park to the crag)",
+        "tips": "<strong>Tips :</strong> Feel free to change the type of map to find the map that helps you trace the walk the most"
+      }
     }
   }
 }

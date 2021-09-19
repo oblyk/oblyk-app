@@ -101,6 +101,7 @@
       }
     },
     "map": {
+      "title": "Carte",
       "site": "Site",
       "place": "Lieux",
       "type": "Type",
@@ -114,7 +115,8 @@
       "layers": {
         "relief": "Relief",
         "street": "Carte",
-        "satellite": "Satellite"
+        "satellite": "Satellite",
+        "detailedRelief": "Relief détailé"
       },
       "legend": {
         "boulder": "Bloc",
@@ -184,6 +186,7 @@
       "orientations": "Orientations",
       "group": "Groupe de site",
       "lines": "Lignes",
+      "elevation": "Altitude",
       "rangingFrom": "Allant de <strong>%{min}</strong> à <strong>%{max}</strong>",
       "noGuide": "Pas de topo renseigné",
       "noRoutes": "Il n'y a pas encore de ligne enregistrées sur ce site",
@@ -210,7 +213,8 @@
       "newSector": "Nouveau secteur",
       "sectorOf": "Secteur de",
       "sectors": "Les secteurs",
-      "allSectors": "Tout les secteurs"
+      "allSectors": "Tout les secteurs",
+      "elevation": "Altitude"
     },
     "cragRoute": {
       "coverFrom": "Photo de la ligne",
@@ -276,8 +280,11 @@
       }
     },
     "approach": {
+      "cardTitle": "Marche d'approches",
       "newPolylineExplain": "Cliquer à chaque endroit où passe la marche d’approche en partant du parkings",
       "editPolylineExplain": "Déplacer les carrés blanc pour modifier le tracé de la marche d'approche",
+      "elevation_chart": "Courbe altimétrique",
+      "elevation_description": "Départ à %{start} mètres d'altitude, arrivé à  %{end} mètres.",
       "walking_time": {
         "steep_descent": "(à 6km/h)",
         "soft_descent": "(à 6km/h)",

@@ -12,6 +12,19 @@
         "goToSettings": "Aller dans vos paramètres",
         "deployActions": "Déployer <cite class='font-weight-bold'>Actions sur mon compte</cite>."
       }
+    },
+    "crag": {
+      "title": "Falaises",
+      "addApproach": {
+        "title": "Ajouter une marche d'approche",
+        "explain": "Pour ajouter une marche d'approche sur une falaise vous devez :",
+        "findCrag": "Trouver votre falaise grace à la recheche ou à la carte des falaises",
+        "mapTab": "Aller dans l'onglet 'Carte'",
+        "addApproachBtn": "Cliquez sur le boton 'Ajouter une marche d'approche'",
+        "descriptionAndType": "Donner une description et un type de marche",
+        "drawApproach": "Cliquez sur la carte pour ajouter les points tout du long de la marche d'approche (en partant du parking vers le site)",
+        "tips": "<strong>Asctuce :</strong> N'hésitez pas a changer le type de plan pour trouver la carte qui vous aide le plus à tracer la marche"
+      }
     }
   }
 }

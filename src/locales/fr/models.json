@@ -150,8 +150,11 @@
     },
     "approach": {
       "description": "Description",
+      "no_description": "pas de description renseignée",
+      "elevation_drop": "Dénivelé",
       "approach_type": "Type de marche",
       "length": "Distance",
+      "elevation": "Altitude",
       "time": "Temps",
       "type": "Type",
       "crag": "Falaise"
