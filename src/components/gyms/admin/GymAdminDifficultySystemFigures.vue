@@ -1,6 +1,6 @@
 <template>
   <v-card
-    :to="gym.gym_grades_count > 0 ? gym.path('grades-list') : gym.url('first-difficulty-system')"
+    :to="gym.gym_grades_count > 0 ? gym.path('grades-list') : gym.path('first-difficulty-system')"
     class="full-height"
   >
     <v-card-title>
