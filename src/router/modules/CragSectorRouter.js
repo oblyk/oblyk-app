@@ -1,10 +1,10 @@
-const CragSectorNewView = () => import(/* webpackChunkName: "crag-sector-routes" */ '@/views/cragSectors/actions/CragSectorNewView')
-const CragSectorEditView = () => import(/* webpackChunkName: "crag-sector-routes" */ '@/views/cragSectors/actions/CragSectorEditView')
-const CragSectorInfoView = () => import(/* webpackChunkName: "crag-sector-routes" */ '@/views/cragSectors/CragSectorInfoView')
-const CragSectorView = () => import(/* webpackChunkName: "crag-sector-routes" */ '@/views/CragSectorView')
-const CragSectorPhotosView = () => import(/* webpackChunkName: "crag-sector-routes" */ '@/views/cragSectors/CragSectorPhotosView')
-const CragSectorMapView = () => import(/* webpackChunkName: "crag-sector-routes" */ '@/views/cragSectors/CragSectorMapView')
-const CragRouteNewView = () => import(/* webpackChunkName: "crag-sector-routes" */ '@/views/cragRoutes/actions/CragRouteNewView')
+const CragSectorNewView = () => import(/* webpackChunkName: "CragSectorRouter-CragSectorNewView" */ '@/views/cragSectors/actions/CragSectorNewView')
+const CragSectorEditView = () => import(/* webpackChunkName: "CragSectorRouter-CragSectorEditView" */ '@/views/cragSectors/actions/CragSectorEditView')
+const CragSectorInfoView = () => import(/* webpackChunkName: "CragSectorRouter-CragSectorInfoView" */ '@/views/cragSectors/CragSectorInfoView')
+const CragSectorView = () => import(/* webpackChunkName: "CragSectorRouter-CragSectorView" */ '@/views/CragSectorView')
+const CragSectorPhotosView = () => import(/* webpackChunkName: "CragSectorRouter-CragSectorPhotosView" */ '@/views/cragSectors/CragSectorPhotosView')
+const CragSectorMapView = () => import(/* webpackChunkName: "CragSectorRouter-CragSectorMapView" */ '@/views/cragSectors/CragSectorMapView')
+const CragRouteNewView = () => import(/* webpackChunkName: "CragSectorRouter-CragRouteNewView" */ '@/views/cragRoutes/actions/CragRouteNewView')
 
 export default [
   {

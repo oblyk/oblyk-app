@@ -1,6 +1,6 @@
-const CragRouteView = () => import(/* webpackChunkName: "crag-route-routes" */ '@/views/CragRouteView')
-const CragRouteNewView = () => import(/* webpackChunkName: "crag-route-routes" */ '@/views/cragRoutes/actions/CragRouteNewView')
-const CragRouteEditView = () => import(/* webpackChunkName: "crag-route-routes" */ '@/views/cragRoutes/actions/CragRouteEditView')
+const CragRouteView = () => import(/* webpackChunkName: "CragRouteRouter-CragRouteView" */ '@/views/CragRouteView')
+const CragRouteNewView = () => import(/* webpackChunkName: "CragRouteRouter-CragRouteNewView" */ '@/views/cragRoutes/actions/CragRouteNewView')
+const CragRouteEditView = () => import(/* webpackChunkName: "CragRouteRouter-CragRouteEditView" */ '@/views/cragRoutes/actions/CragRouteEditView')
 
 export default [
   {

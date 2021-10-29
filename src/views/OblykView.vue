@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Home from '@/components/homes/Home'
+const Home = () => import('@/components/homes/Home')
 
 export default {
   name: 'OblykView',

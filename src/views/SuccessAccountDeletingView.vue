@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import AppFooter from '@/components/layouts/AppFooter'
+const AppFooter = () => import('@/components/layouts/AppFooter')
 
 export default {
   name: 'SuccessAccountDeletingView',

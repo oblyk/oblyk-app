@@ -22,7 +22,7 @@
 
 <script>
 import NewsletterUnsubscribeForm from '@/components/newsletters/forms/NewsletterUnsubscribeForm'
-import AppFooter from '@/components/layouts/AppFooter'
+const AppFooter = () => import('@/components/layouts/AppFooter')
 
 export default {
   name: 'NewsletterUnsubscribeView',

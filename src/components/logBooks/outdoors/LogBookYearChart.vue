@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import BarChart from '@/components/charts/BarChart'
+const BarChart = () => import('@/components/charts/BarChart')
 
 export default {
   name: 'LogBookYearChart',

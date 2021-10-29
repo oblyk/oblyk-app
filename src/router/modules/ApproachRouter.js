@@ -1,5 +1,5 @@
-const ApproachNewView = () => import(/* webpackChunkName: "approach-routes" */ '@/views/approaches/actions/ApproachNewView')
-const ApproachEditView = () => import(/* webpackChunkName: "approach-routes" */ '@/views/approaches/actions/ApproachEditView')
+const ApproachNewView = () => import(/* webpackChunkName: "ApproachRouter-ApproachNewView" */ '@/views/approaches/actions/ApproachNewView')
+const ApproachEditView = () => import(/* webpackChunkName: "ApproachRouter-ApproachEditView" */ '@/views/approaches/actions/ApproachEditView')
 
 export default [
   {

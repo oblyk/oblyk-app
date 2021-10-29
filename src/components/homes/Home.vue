@@ -29,14 +29,14 @@
 </template>
 
 <script>
-import AppFooter from '@/components/layouts/AppFooter'
-import HomeBoxCragInfo from '@/components/homes/HomeBoxCragInfo'
-import HomeBoxAscentsLog from '@/components/homes/HomeBoxAscentsLog'
-import HomeBoxPartner from '@/components/homes/HomeBoxPartner'
-import HomeBoxHelp from '@/components/homes/HomeBoxHelp'
-import HomeBoxGuideBook from '@/components/homes/HomeBoxGuideBook'
-import HomeBoxFigures from '@/components/homes/HomeBoxFigures'
-import LastArticle from '@/components/articles/LastArticle'
+const AppFooter = () => import('@/components/layouts/AppFooter')
+const HomeBoxCragInfo = () => import('@/components/homes/HomeBoxCragInfo')
+const HomeBoxAscentsLog = () => import('@/components/homes/HomeBoxAscentsLog')
+const HomeBoxPartner = () => import('@/components/homes/HomeBoxPartner')
+const HomeBoxHelp = () => import('@/components/homes/HomeBoxHelp')
+const HomeBoxGuideBook = () => import('@/components/homes/HomeBoxGuideBook')
+const HomeBoxFigures = () => import('@/components/homes/HomeBoxFigures')
+const LastArticle = () => import('@/components/articles/LastArticle')
 
 export default {
   name: 'Home',

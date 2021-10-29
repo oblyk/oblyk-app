@@ -1,8 +1,8 @@
-const GymSpaceView = () => import(/* webpackChunkName: "gym-space-routes" */ '@/views/gymSpaces/GymSpaceView')
-const GymSpaceNewView = () => import(/* webpackChunkName: "gym-space-routes" */ '@/views/gymSpaces/actions/GymSpaceNewView')
-const GymSpaceEditView = () => import(/* webpackChunkName: "gym-space-routes" */ '@/views/gymSpaces/actions/GymSpaceEditView')
-const GymSpacePlanView = () => import(/* webpackChunkName: "gym-space-routes" */ '@/views/gymSpaces/actions/GymSpacePlanView')
-const SelectGymSectorView = () => import(/* webpackChunkName: "gym-space-routes" */ '@/views/gymRoutes/SelectGymSectorView')
+const GymSpaceView = () => import(/* webpackChunkName: "GymSpaceRouter-GymSpaceView" */ '@/views/gymSpaces/GymSpaceView')
+const GymSpaceNewView = () => import(/* webpackChunkName: "GymSpaceRouter-GymSpaceNewView" */ '@/views/gymSpaces/actions/GymSpaceNewView')
+const GymSpaceEditView = () => import(/* webpackChunkName: "GymSpaceRouter-GymSpaceEditView" */ '@/views/gymSpaces/actions/GymSpaceEditView')
+const GymSpacePlanView = () => import(/* webpackChunkName: "GymSpaceRouter-GymSpacePlanView" */ '@/views/gymSpaces/actions/GymSpacePlanView')
+const SelectGymSectorView = () => import(/* webpackChunkName: "GymSpaceRouter-SelectGymSectorView" */ '@/views/gymRoutes/SelectGymSectorView')
 
 export default [
   {

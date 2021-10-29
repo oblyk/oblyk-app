@@ -21,7 +21,7 @@
 
 <script>
 import NewsletterSubscribeForm from '@/components/newsletters/forms/NewsletterSubscribeForm'
-import AppFooter from '@/components/layouts/AppFooter'
+const AppFooter = () => import('@/components/layouts/AppFooter')
 
 export default {
   name: 'NewsletterSubscribeView',

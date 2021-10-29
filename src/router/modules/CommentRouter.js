@@ -1,5 +1,5 @@
-const CommentNewView = () => import(/* webpackChunkName: "comment-routes" */ '@/views/comments/actions/CommentNewView')
-const CommentEditView = () => import(/* webpackChunkName: "comment-routes" */ '@/views/comments/actions/CommentEditView')
+const CommentNewView = () => import(/* webpackChunkName: "CommentRouter-CommentNewView" */ '@/views/comments/actions/CommentNewView')
+const CommentEditView = () => import(/* webpackChunkName: "CommentRouter-CommentEditView" */ '@/views/comments/actions/CommentEditView')
 
 export default [
   {

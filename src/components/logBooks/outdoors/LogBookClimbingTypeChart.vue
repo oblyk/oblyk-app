@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import DoughnutChart from '@/components/charts/DoughnutChart'
+const DoughnutChart = () => import('@/components/charts/DoughnutChart')
 
 export default {
   name: 'LogBookClimbingTypeChart',

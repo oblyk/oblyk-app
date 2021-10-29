@@ -10,7 +10,7 @@
 import { GymConcern } from '@/concerns/GymConcern'
 import GymHead from '@/components/gyms/layouts/GymHead'
 import GymTabs from '@/components/gyms/layouts/GymTabs'
-import AppFooter from '@/components/layouts/AppFooter'
+const AppFooter = () => import('@/components/layouts/AppFooter')
 
 export default {
   name: 'GymView',

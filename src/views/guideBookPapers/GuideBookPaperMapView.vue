@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import LeafletMap from '@/components/maps/LeafletMap'
 import GuideBookPaperApi from '@/services/oblyk-api/GuideBookPaperApi'
+const LeafletMap = () => import('@/components/maps/LeafletMap')
 
 export default {
   name: 'GuideBookPaperMapView',

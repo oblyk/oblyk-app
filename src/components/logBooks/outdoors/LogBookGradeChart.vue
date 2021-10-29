@@ -27,8 +27,8 @@
 </template>
 
 <script>
-import BarChart from '@/components/charts/BarChart'
 import { GradeMixin } from '@/mixins/GradeMixin'
+const BarChart = () => import('@/components/charts/BarChart')
 
 export default {
   name: 'LogBookGradeChart',

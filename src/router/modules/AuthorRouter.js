@@ -1,5 +1,5 @@
-const AuthorEditView = () => import(/* webpackChunkName: "author-routes" */ '@/views/authors/actions/AuthorEditView')
-const AuthorCoverView = () => import(/* webpackChunkName: "author-routes" */ '@/views/authors/actions/AuthorCoverView')
+const AuthorEditView = () => import(/* webpackChunkName: "AuthorRouter-AuthorEditView" */ '@/views/authors/actions/AuthorEditView')
+const AuthorCoverView = () => import(/* webpackChunkName: "AuthorRouter-AuthorCoverView" */ '@/views/authors/actions/AuthorCoverView')
 
 export default [
   {

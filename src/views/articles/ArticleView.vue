@@ -32,7 +32,6 @@
 
 <script>
 import { ArticleConcern } from '@/concerns/ArticleConcern'
-import AppFooter from '@/components/layouts/AppFooter'
 import ArticleHead from '@/components/articles/layouts/ArticleHead'
 import ArticleFooter from '@/components/articles/layouts/ArticleFooter'
 import CommentList from '@/components/comments/CommentList'
@@ -40,6 +39,7 @@ import ArticleApi from '@/services/oblyk-api/ArticleApi'
 import AboutAuthorCard from '@/components/authors/AboutAuthorCard'
 import ArticleCrags from '@/components/articles/ArticleCrags'
 import ArticleGuideBookPapers from '@/components/articles/ArticleGuideBookPapers'
+const AppFooter = () => import('@/components/layouts/AppFooter')
 
 export default {
   name: 'ArticleView',

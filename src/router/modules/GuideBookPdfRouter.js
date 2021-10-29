@@ -1,4 +1,4 @@
-const GuideBookPdfEditView = () => import(/* webpackChunkName: "guide-book-pdf-routes" */ '@/views/guideBookPdfs/actions/GuideBookPdfEditView')
+const GuideBookPdfEditView = () => import(/* webpackChunkName: "GuideBookPdfRouter-GuideBookPdfEditView" */ '@/views/guideBookPdfs/actions/GuideBookPdfEditView')
 
 export default [
   {

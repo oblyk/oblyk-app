@@ -181,8 +181,8 @@
 </template>
 
 <script>
-import AppFooter from '@/components/layouts/AppFooter'
 import CommonApi from '@/services/oblyk-api/CommonApi'
+const AppFooter = () => import('@/components/layouts/AppFooter')
 
 export default {
   name: 'AboutView',

@@ -30,7 +30,7 @@
 import { SessionConcern } from '@/concerns/SessionConcern'
 import UserPrivacyForm from '@/components/users/forms/PrivacyForm'
 import { CurrentUserConcern } from '@/concerns/CurrentUserConcern'
-import AppFooter from '@/components/layouts/AppFooter'
+const AppFooter = () => import('@/components/layouts/AppFooter')
 
 export default {
   name: 'PrivacyStepView',

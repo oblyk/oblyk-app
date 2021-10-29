@@ -17,9 +17,9 @@
 </template>
 
 <script>
-import Feed from '@/components/feeds/Feed'
-import AppFooter from '@/components/layouts/AppFooter'
 import { SessionConcern } from '@/concerns/SessionConcern'
+import Feed from '@/components/feeds/Feed'
+const AppFooter = () => import('@/components/layouts/AppFooter')
 
 export default {
   name: 'ArticleListView',

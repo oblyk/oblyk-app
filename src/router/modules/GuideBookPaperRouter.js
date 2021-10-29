@@ -1,12 +1,12 @@
-const GuideBookPaperView = () => import(/* webpackChunkName: "guide-book-paper-routes" */ '@/views/GuideBookPaperView')
-const GuideBookPaperInfoView = () => import(/* webpackChunkName: "guide-book-paper-routes" */ '@/views/guideBookPapers/GuideBookPaperInfoView')
-const GuideBookPaperCragsView = () => import(/* webpackChunkName: "guide-book-paper-routes" */ '@/views/guideBookPapers/GuideBookPaperCragsView')
-const GuideBookPaperCoverView = () => import(/* webpackChunkName: "guide-book-paper-routes" */ '@/views/guideBookPapers/actions/GuideBookPaperCoverView')
-const GuideBookPaperPhotosView = () => import(/* webpackChunkName: "guide-book-paper-routes" */ '@/views/guideBookPapers/GuideBookPaperPhotosView')
-const GuideBookPaperLinkView = () => import(/* webpackChunkName: "guide-book-paper-routes" */ '@/views/guideBookPapers/GuideBookPaperLinkView')
-const GuideBookPaperMapView = () => import(/* webpackChunkName: "guide-book-paper-routes" */ '@/views/guideBookPapers/GuideBookPaperMapView')
-const GuideBookPaperEditView = () => import(/* webpackChunkName: "guide-book-paper-routes" */ '@/views/guideBookPapers/actions/GuideBookPaperEditView')
-const GuideBookPaperNewView = () => import(/* webpackChunkName: "guide-book-paper-routes" */ '@/views/guideBookPapers/actions/GuideBookPaperNewView')
+const GuideBookPaperView = () => import(/* webpackChunkName: "GuideBookPaperRouter-GuideBookPaperView" */ '@/views/GuideBookPaperView')
+const GuideBookPaperInfoView = () => import(/* webpackChunkName: "GuideBookPaperRouter-GuideBookPaperInfoView" */ '@/views/guideBookPapers/GuideBookPaperInfoView')
+const GuideBookPaperCragsView = () => import(/* webpackChunkName: "GuideBookPaperRouter-GuideBookPaperCragsView" */ '@/views/guideBookPapers/GuideBookPaperCragsView')
+const GuideBookPaperCoverView = () => import(/* webpackChunkName: "GuideBookPaperRouter-GuideBookPaperCoverView" */ '@/views/guideBookPapers/actions/GuideBookPaperCoverView')
+const GuideBookPaperPhotosView = () => import(/* webpackChunkName: "GuideBookPaperRouter-GuideBookPaperPhotosView" */ '@/views/guideBookPapers/GuideBookPaperPhotosView')
+const GuideBookPaperLinkView = () => import(/* webpackChunkName: "GuideBookPaperRouter-GuideBookPaperLinkView" */ '@/views/guideBookPapers/GuideBookPaperLinkView')
+const GuideBookPaperMapView = () => import(/* webpackChunkName: "GuideBookPaperRouter-GuideBookPaperMapView" */ '@/views/guideBookPapers/GuideBookPaperMapView')
+const GuideBookPaperEditView = () => import(/* webpackChunkName: "GuideBookPaperRouter-GuideBookPaperEditView" */ '@/views/guideBookPapers/actions/GuideBookPaperEditView')
+const GuideBookPaperNewView = () => import(/* webpackChunkName: "GuideBookPaperRouter-GuideBookPaperNewView" */ '@/views/guideBookPapers/actions/GuideBookPaperNewView')
 
 export default [
   {

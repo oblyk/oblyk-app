@@ -14,9 +14,9 @@
 </template>
 
 <script>
-import AppFooter from '@/components/layouts/AppFooter'
 import AccountHelps from '@/components/helps/AccountHelps'
 import CragHelps from '@/components/helps/CragHelps'
+const AppFooter = () => import('@/components/layouts/AppFooter')
 
 export default {
   name: 'HelpsView',

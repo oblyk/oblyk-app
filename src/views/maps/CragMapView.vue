@@ -9,9 +9,9 @@
 </template>
 
 <script>
-import LeafletMap from '@/components/maps/LeafletMap'
 import CragApi from '@/services/oblyk-api/CragApi'
 import store from '@/store'
+const LeafletMap = () => import('@/components/maps/LeafletMap')
 
 export default {
   name: 'CragMapView',

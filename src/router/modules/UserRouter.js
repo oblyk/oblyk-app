@@ -1,11 +1,11 @@
-const UserView = () => import(/* webpackChunkName: "user-routes" */ '@/views/UserView')
-const UserAscentsView = () => import(/* webpackChunkName: "user-routes" */ '@/views/users/UserAscentsView')
-const UserProfileView = () => import(/* webpackChunkName: "user-routes" */ '@/views/users/UserProfileView')
-const UserSubscribesView = () => import(/* webpackChunkName: "user-routes" */ '@/views/users/UserSubscribesView')
-const UserFollowersView = () => import(/* webpackChunkName: "user-routes" */ '@/views/users/UserFollowersView')
-const UserMediaView = () => import(/* webpackChunkName: "user-routes" */ '@/views/users/UserMediaView')
-const UserPhotoView = () => import(/* webpackChunkName: "user-routes" */ '@/views/users/UserPhotoView')
-const UserVideoView = () => import(/* webpackChunkName: "user-routes" */ '@/views/users/UserVideoView')
+const UserView = () => import(/* webpackChunkName: "UserRoute-UserView" */ '@/views/UserView')
+const UserAscentsView = () => import(/* webpackChunkName: "UserRoute-UserAscentsView" */ '@/views/users/UserAscentsView')
+const UserProfileView = () => import(/* webpackChunkName: "UserRoute-UserProfileView" */ '@/views/users/UserProfileView')
+const UserSubscribesView = () => import(/* webpackChunkName: "UserRoute-UserSubscribesView" */ '@/views/users/UserSubscribesView')
+const UserFollowersView = () => import(/* webpackChunkName: "UserRoute-UserFollowersView" */ '@/views/users/UserFollowersView')
+const UserMediaView = () => import(/* webpackChunkName: "UserRoute-UserMediaView" */ '@/views/users/UserMediaView')
+const UserPhotoView = () => import(/* webpackChunkName: "UserRoute-UserPhotoView" */ '@/views/users/UserPhotoView')
+const UserVideoView = () => import(/* webpackChunkName: "UserRoute-UserVideoView" */ '@/views/users/UserVideoView')
 
 export default [
   {

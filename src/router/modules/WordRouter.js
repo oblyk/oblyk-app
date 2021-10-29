@@ -1,7 +1,7 @@
-const GlossaryView = () => import(/* webpackChunkName: "word-routes" */ '@/views/GlossaryView')
-const WordNewView = () => import(/* webpackChunkName: "word-routes" */ '@/views/words/actions/WordNewView')
-const WordEditView = () => import(/* webpackChunkName: "word-routes" */ '@/views/words/actions/WordEditView')
-const WordView = () => import(/* webpackChunkName: "word-routes" */ '@/views/words/WordView')
+const GlossaryView = () => import(/* webpackChunkName: "WordRouter-GlossaryView" */ '@/views/GlossaryView')
+const WordNewView = () => import(/* webpackChunkName: "WordRouter-WordNewView" */ '@/views/words/actions/WordNewView')
+const WordEditView = () => import(/* webpackChunkName: "WordRouter-WordEditView" */ '@/views/words/actions/WordEditView')
+const WordView = () => import(/* webpackChunkName: "WordRouter-WordView" */ '@/views/words/WordView')
 
 export default [
   {

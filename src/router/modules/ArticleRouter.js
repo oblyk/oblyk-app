@@ -1,11 +1,11 @@
-const ArticleView = () => import(/* webpackChunkName: "article-routes" */ '@/views/articles/ArticleView')
-const ArticleEditView = () => import(/* webpackChunkName: "article-routes" */ '@/views/articles/actions/ArticleEditView')
-const ArticleCoverView = () => import(/* webpackChunkName: "article-routes" */ '@/views/articles/actions/ArticleCoverView')
-const ArticleListView = () => import(/* webpackChunkName: "article-routes" */ '@/views/articles/ArticleListView')
-const ArticleNewView = () => import(/* webpackChunkName: "article-routes" */ '@/views/articles/actions/ArticleNewView')
-const ArticlePhotoListView = () => import(/* webpackChunkName: "article-routes" */ '@/views/articles/ArticlePhotoListView')
-const AddCragInArticleView = () => import(/* webpackChunkName: "article-routes" */ '@/views/articles/actions/AddCragInArticleView')
-const AddGuideBookInArticleView = () => import(/* webpackChunkName: "article-routes" */ '@/views/articles/actions/AddGuideBookInArticleView')
+const ArticleView = () => import(/* webpackChunkName: "ArticleRouter-ArticleView" */ '@/views/articles/ArticleView')
+const ArticleEditView = () => import(/* webpackChunkName: "ArticleRouter-ArticleEditView" */ '@/views/articles/actions/ArticleEditView')
+const ArticleCoverView = () => import(/* webpackChunkName: "ArticleRouter-ArticleCoverView" */ '@/views/articles/actions/ArticleCoverView')
+const ArticleListView = () => import(/* webpackChunkName: "ArticleRouter-ArticleListView" */ '@/views/articles/ArticleListView')
+const ArticleNewView = () => import(/* webpackChunkName: "ArticleRouter-ArticleNewView" */ '@/views/articles/actions/ArticleNewView')
+const ArticlePhotoListView = () => import(/* webpackChunkName: "ArticleRouter-ArticlePhotoListView" */ '@/views/articles/ArticlePhotoListView')
+const AddCragInArticleView = () => import(/* webpackChunkName: "ArticleRouter-AddCragInArticleView" */ '@/views/articles/actions/AddCragInArticleView')
+const AddGuideBookInArticleView = () => import(/* webpackChunkName: "ArticleRouter-AddGuideBookInArticleView" */ '@/views/articles/actions/AddGuideBookInArticleView')
 
 export default [
   {

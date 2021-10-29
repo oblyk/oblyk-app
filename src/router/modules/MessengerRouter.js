@@ -1,6 +1,6 @@
-const MessengerView = () => import(/* webpackChunkName: "messenger-routes" */ '@/views/messengers/MessengerView')
-const MessengerConversationView = () => import(/* webpackChunkName: "messenger-routes" */ '@/views/messengers/MessengerConversationView')
-const MessengerConversationNewView = () => import(/* webpackChunkName: "messenger-routes" */ '@/views/messengers/actions/MessengerConversationNewView')
+const MessengerView = () => import(/* webpackChunkName: "MessengerRouter-MessengerView" */ '@/views/messengers/MessengerView')
+const MessengerConversationView = () => import(/* webpackChunkName: "MessengerRouter-MessengerConversationView" */ '@/views/messengers/MessengerConversationView')
+const MessengerConversationNewView = () => import(/* webpackChunkName: "MessengerRouter-MessengerConversationNewView" */ '@/views/messengers/actions/MessengerConversationNewView')
 
 export default [
   {

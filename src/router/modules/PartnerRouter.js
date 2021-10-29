@@ -1,4 +1,4 @@
-const PartnerMapView = () => import(/* webpackChunkName: "partner-routes" */ '@/views/maps/PartnerMapView')
+const PartnerMapView = () => import(/* webpackChunkName: "PartnerRouter-PartnerMapView" */ '@/views/maps/PartnerMapView')
 
 export default [
   {

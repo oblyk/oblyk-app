@@ -11,7 +11,7 @@
 <script>
 import { GuideBookPaperConcern } from '@/concerns/GuideBookPaperConcern'
 import GuideBookPaperTabs from '@/components/guideBookPapers/layouts/GuideBookPaperTabs'
-import AppFooter from '@/components/layouts/AppFooter'
+const AppFooter = () => import('@/components/layouts/AppFooter')
 
 export default {
   name: 'GuideBookPaperView',

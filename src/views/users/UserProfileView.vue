@@ -45,7 +45,7 @@ import UserContribution from '@/components/users/UserContribution'
 import UserPartnerMap from '@/components/users/UserPatnerMap'
 import UserApi from '@/services/oblyk-api/UserApi'
 import Spinner from '@/components/layouts/Spiner'
-import AppFooter from '@/components/layouts/AppFooter'
+const AppFooter = () => import('@/components/layouts/AppFooter')
 
 export default {
   name: 'UserProfileView',

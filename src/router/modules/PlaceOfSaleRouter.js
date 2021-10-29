@@ -1,5 +1,5 @@
-const PlaceOfSaleNewView = () => import(/* webpackChunkName: "place-of-sale-routes" */ '@/views/placeOfSales/actions/PlaceOfSaleNewView')
-const PlaceOfSaleEditView = () => import(/* webpackChunkName: "place-of-sale-routes" */ '@/views/placeOfSales/actions/PlaceOfSaleEditView')
+const PlaceOfSaleNewView = () => import(/* webpackChunkName: "PlaceOfSaleRouter-PlaceOfSaleNewView" */ '@/views/placeOfSales/actions/PlaceOfSaleNewView')
+const PlaceOfSaleEditView = () => import(/* webpackChunkName: "PlaceOfSaleRouter-PlaceOfSaleEditView" */ '@/views/placeOfSales/actions/PlaceOfSaleEditView')
 
 export default [
   {

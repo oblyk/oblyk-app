@@ -43,8 +43,8 @@
 
 <script>
 import { GradeMixin } from '@/mixins/GradeMixin'
-import LeafletMap from '@/components/maps/LeafletMap'
 import UserApi from '@/services/oblyk-api/UserApi'
+const LeafletMap = () => import('@/components/maps/LeafletMap')
 
 export default {
   name: 'UserPartnerMap',

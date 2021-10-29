@@ -104,9 +104,9 @@
 </template>
 
 <script>
-import AppFooter from '@/components/layouts/AppFooter'
 import { SessionConcern } from '@/concerns/SessionConcern'
 import PartnerFigures from '@/components/partners/PartnerFigures'
+const AppFooter = () => import('@/components/layouts/AppFooter')
 
 export default {
   name: 'AboutPartnerView',

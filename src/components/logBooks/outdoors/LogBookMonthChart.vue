@@ -27,8 +27,8 @@
 </template>
 
 <script>
-import BarChart from '@/components/charts/BarChart'
 import { DateHelpers } from '@/mixins/DateHelpers'
+const BarChart = () => import('@/components/charts/BarChart')
 
 export default {
   name: 'LogBookMonthChart',

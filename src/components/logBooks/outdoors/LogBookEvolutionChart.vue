@@ -62,7 +62,7 @@
 </template>
 
 <script>
-import LineChart from '@/components/charts/LineChart'
+const LineChart = () => import('@/components/charts/LineChart')
 
 export default {
   name: 'LogBookEvolutionChart',

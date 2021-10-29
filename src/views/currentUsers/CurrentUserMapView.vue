@@ -10,7 +10,7 @@
 <script>
 import store from '@/store'
 import CurrentUserApi from '@/services/oblyk-api/CurrentUserApi'
-import LeafletMap from '@/components/maps/LeafletMap'
+const LeafletMap = () => import('@/components/maps/LeafletMap')
 
 export default {
   name: 'CurrentUserMapView',

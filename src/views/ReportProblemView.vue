@@ -22,8 +22,9 @@
 </template>
 
 <script>
-import AppFooter from '@/components/layouts/AppFooter'
 import ReportForm from '@/components/reports/forms/ReportForm'
+const AppFooter = () => import('@/components/layouts/AppFooter')
+
 export default {
   name: 'ReportProblemView',
   components: { ReportForm, AppFooter },

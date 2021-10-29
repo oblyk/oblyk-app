@@ -1,7 +1,7 @@
-const GymRouteNewView = () => import(/* webpackChunkName: "gym-route-routes" */ '@/views/gymRoutes/actions/GymRouteNewView')
-const GymRouteEditView = () => import(/* webpackChunkName: "gym-route-routes" */ '@/views/gymRoutes/actions/GymRouteEditView')
-const GymRoutePictureView = () => import(/* webpackChunkName: "gym-route-routes" */ '@/views/gymRoutes/actions/GymRoutePictureView')
-const GymRouteThumbnailView = () => import(/* webpackChunkName: "gym-route-routes" */ '@/views/gymRoutes/actions/GymRouteThumbnailView')
+const GymRouteNewView = () => import(/* webpackChunkName: "GymRouteRouter-GymRouteNewView" */ '@/views/gymRoutes/actions/GymRouteNewView')
+const GymRouteEditView = () => import(/* webpackChunkName: "GymRouteRouter-GymRouteEditView" */ '@/views/gymRoutes/actions/GymRouteEditView')
+const GymRoutePictureView = () => import(/* webpackChunkName: "GymRouteRouter-GymRoutePictureView" */ '@/views/gymRoutes/actions/GymRoutePictureView')
+const GymRouteThumbnailView = () => import(/* webpackChunkName: "GymRouteRouter-GymRouteThumbnailView" */ '@/views/gymRoutes/actions/GymRouteThumbnailView')
 
 export default [
   {

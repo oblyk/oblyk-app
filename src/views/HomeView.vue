@@ -7,8 +7,8 @@
 
 <script>
 import { SessionConcern } from '@/concerns/SessionConcern'
-import Home from '@/components/homes/Home'
-import Dashboard from '@/components/users/Dashboard'
+const Home = () => import('@/components/homes/Home')
+const Dashboard = () => import('@/components/users/Dashboard')
 
 export default {
   name: 'HomeView',

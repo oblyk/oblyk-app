@@ -12,7 +12,7 @@
 import { CragConcern } from '@/concerns/CragConcern'
 import CragHead from '@/components/crags/layouts/CragHead'
 import CragTabs from '@/components/crags/layouts/CragTabs'
-import AppFooter from '@/components/layouts/AppFooter'
+const AppFooter = () => import('@/components/layouts/AppFooter')
 
 export default {
   name: 'CragView',

@@ -1,5 +1,5 @@
-const ParkNewView = () => import(/* webpackChunkName: "park-routes" */ '@/views/parks/actions/ParkNewView')
-const ParkEditView = () => import(/* webpackChunkName: "park-routes" */ '@/views/parks/actions/ParkEditView')
+const ParkNewView = () => import(/* webpackChunkName: "ParkRouter-ParkNewView" */ '@/views/parks/actions/ParkNewView')
+const ParkEditView = () => import(/* webpackChunkName: "ParkRouter-ParkEditView" */ '@/views/parks/actions/ParkEditView')
 
 export default [
   {

@@ -1,5 +1,5 @@
-const GymAdministratorsView = () => import(/* webpackChunkName: "gym-administrator-routes" */ '@/views/gymAdministrators/GymAdministratorsView')
-const GymAdministratorNewView = () => import(/* webpackChunkName: "gym-administrator-routes" */ '@/views/gymAdministrators/actions/GymAdministratorNewView')
+const GymAdministratorsView = () => import(/* webpackChunkName: "GymAdministratorRouter-GymAdministratorsView" */ '@/views/gymAdministrators/GymAdministratorsView')
+const GymAdministratorNewView = () => import(/* webpackChunkName: "GymAdministratorRouter-GymAdministratorNewView" */ '@/views/gymAdministrators/actions/GymAdministratorNewView')
 
 export default [
   {

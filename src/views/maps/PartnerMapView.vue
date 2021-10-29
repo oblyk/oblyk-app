@@ -12,10 +12,10 @@
 </template>
 
 <script>
-import LeafletMap from '@/components/maps/LeafletMap'
 import PartnerApi from '@/services/oblyk-api/PartnerApi'
 import store from '@/store'
 import PartnerModal from '@/components/partners/PartnerModal'
+const LeafletMap = () => import('@/components/maps/LeafletMap')
 
 export default {
   name: 'PartnerMapView',

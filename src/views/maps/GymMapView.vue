@@ -9,9 +9,9 @@
 </template>
 
 <script>
-import LeafletMap from '@/components/maps/LeafletMap'
 import GymApi from '@/services/oblyk-api/GymApi'
 import store from '@/store'
+const LeafletMap = () => import('@/components/maps/LeafletMap')
 
 export default {
   name: 'GymMapView',

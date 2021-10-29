@@ -74,7 +74,7 @@ import { DateHelpers } from '@/mixins/DateHelpers'
 import { NewsletterConcern } from '@/concerns/NewsletterConcern'
 import { SessionConcern } from '@/concerns/SessionConcern'
 import NewsletterApi from '@/services/oblyk-api/NewsletterApi'
-import AppFooter from '@/components/layouts/AppFooter'
+const AppFooter = () => import('@/components/layouts/AppFooter')
 
 export default {
   name: 'NewsletterView',

@@ -20,9 +20,9 @@
 </template>
 
 <script>
-import LeafletMap from '@/components/maps/LeafletMap'
 import AreaApi from '@/services/oblyk-api/AreaApi'
 import { SessionConcern } from '@/concerns/SessionConcern'
+const LeafletMap = () => import('@/components/maps/LeafletMap')
 
 export default {
   name: 'AreaMapDetailsView',

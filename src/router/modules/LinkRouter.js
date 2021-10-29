@@ -1,5 +1,5 @@
-const LinkNewView = () => import(/* webpackChunkName: "link-routes" */ '@/views/links/actions/LinkNewView')
-const LinkEditView = () => import(/* webpackChunkName: "link-routes" */ '@/views/links/actions/LinkEditView')
+const LinkNewView = () => import(/* webpackChunkName: "LinkRouter-LinkNewView" */ '@/views/links/actions/LinkNewView')
+const LinkEditView = () => import(/* webpackChunkName: "LinkRouter-LinkEditView" */ '@/views/links/actions/LinkEditView')
 
 export default [
   {

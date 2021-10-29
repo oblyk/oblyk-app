@@ -66,12 +66,12 @@
 </template>
 
 <script>
-import LeafletMap from '@/components/maps/LeafletMap'
 import CragApi from '@/services/oblyk-api/CragApi'
 import { SessionConcern } from '@/concerns/SessionConcern'
 import ApproachApi from '@/services/oblyk-api/ApproachApi'
 import Approach from '@/models/Approach'
 import ApproachCard from '@/components/approaches/ApproachCard'
+const LeafletMap = () => import('@/components/maps/LeafletMap')
 
 export default {
   name: 'CragMapDetailsView',

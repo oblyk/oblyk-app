@@ -1,4 +1,4 @@
-const ReportNewView = () => import(/* webpackChunkName: "report-routes" */ '@/views/reports/actions/ReportNewView')
+const ReportNewView = () => import(/* webpackChunkName: "ReportRouter-ReportNewView" */ '@/views/reports/actions/ReportNewView')
 
 export default [
   {

@@ -31,7 +31,7 @@
 <script>
 import { WordConcern } from '@/concerns/WordConcern'
 import WordCard from '@/components/words/WordCard'
-import AppFooter from '@/components/layouts/AppFooter'
+const AppFooter = () => import('@/components/layouts/AppFooter')
 
 export default {
   name: 'GlossaryView',

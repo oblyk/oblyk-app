@@ -1,5 +1,5 @@
-const AlertEditView = () => import(/* webpackChunkName: "alert-routes" */ '@/views/alerts/actions/AlertEditView')
-const AlertNewView = () => import(/* webpackChunkName: "alert-routes" */ '@/views/alerts/actions/AlertNewView')
+const AlertEditView = () => import(/* webpackChunkName: "AlertRouter-AlertEditView" */ '@/views/alerts/actions/AlertEditView')
+const AlertNewView = () => import(/* webpackChunkName: "AlertRouter-AlertNewView" */ '@/views/alerts/actions/AlertNewView')
 
 export default [
   {

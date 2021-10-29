@@ -37,7 +37,7 @@
 <script>
 import { SessionConcern } from '@/concerns/SessionConcern'
 import SignInForm from '@/components/sessions/SignInForm'
-import AppFooter from '@/components/layouts/AppFooter'
+const AppFooter = () => import('@/components/layouts/AppFooter')
 
 export default {
   name: 'SignInView',
