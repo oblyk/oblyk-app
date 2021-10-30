@@ -23,12 +23,6 @@
     "chart.js": "^2.9.4",
     "core-js": "^3.6.5",
     "dompurify": "^2.2.6",
-    "eslint": "^6.7.2",
-    "eslint-plugin-import": "^2.20.2",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.0",
-    "eslint-plugin-vue": "^6.2.2",
     "leaflet": "^1.7.1",
     "marked": "^2.0.0",
     "moment": "^2.29.1",
@@ -74,6 +68,12 @@
     "not dead"
   ],
   "devDependencies": {
+    "eslint": "^6.7.2",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "eslint-plugin-vue": "^6.2.2",
     "webpack-bundle-analyzer": "^3.9.0"
   }
 }
