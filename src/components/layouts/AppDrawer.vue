@@ -9,8 +9,8 @@
           x-large
           class="ml-2"
         >
-          <img height="28" src="/img/svg/logo-black.svg" alt="" v-if="!dark" >
-          <img height="28" src="/img/svg/logo-white.svg" alt="" v-if="dark" >
+          <img height="28" width="38" src="/img/svg/logo-black.svg" alt="" v-if="!dark" >
+          <img height="28" width="38" src="/img/svg/logo-white.svg" alt="" v-if="dark" >
         </v-btn>
       </v-col>
       <v-col sm="8" class="v-card__actions">
