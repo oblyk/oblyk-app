@@ -1,4 +1,5 @@
-import moment from 'moment'
+import moment from '@/services/momentjs'
+
 export const DateHelpers = {
   methods: {
     today: function () {

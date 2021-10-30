@@ -64,7 +64,7 @@
 
 <script>
 import { SessionConcern } from '@/concerns/SessionConcern'
-import moment from 'moment'
+import moment from '@/services/momentjs'
 import CommentApi from '@/services/oblyk-api/CommentApi'
 import Comment from '@/models/Comment'
 import CommentCard from '@/components/comments/CommentCard'
