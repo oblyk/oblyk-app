@@ -23,7 +23,7 @@
       </v-card-title>
 
       <v-card-text>
-        <qrcode class="qr-code-canvas" :value="value" :options="{ width: 200 }" />
+        <vue-qrcode class="qr-code-canvas" :value="value" :options="{ width: 200 }" />
       </v-card-text>
 
       <v-divider></v-divider>
@@ -43,10 +43,16 @@
 </template>
 
 <script>
+const VueQrcode = () => import('@chenfengyuan/vue-qrcode')
+
 export default {
   name: 'QrCodeBtn',
   props: {
     value: String
+  },
+
+  components: {
+    VueQrcode
   },
 
   data () {

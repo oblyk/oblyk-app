@@ -7,14 +7,12 @@ import vuetify from './plugins/vuetify'
 import VueI18n from 'vue-i18n'
 import './services/axios'
 import './services/nprogress'
-import VueQrcode from '@chenfengyuan/vue-qrcode'
 import VueClipboard from 'vue-clipboard2'
 import VueMeta from 'vue-meta'
 import ActionCableVue from 'actioncable-vue'
 
 Vue.config.productionTip = false
 
-Vue.component(VueQrcode.name, VueQrcode)
 Vue.use(VueClipboard)
 
 Vue.use(VueMeta, {
