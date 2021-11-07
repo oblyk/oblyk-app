@@ -31,6 +31,7 @@
     "between": "between",
     "me": "Me",
     "posted": "Posted",
+    "requiredFields": "* Required fields",
     "pages": {
       "cookies": "Oblyk uses cookies only for operational purposes.",
       "about": {
@@ -137,6 +138,17 @@
         "title": "Your account has been deleted",
         "description": "Your account and associated data have been deleted.",
         "goodContinuation": "We wish you a good continuation!"
+      },
+      "apiAndDevelopers": {
+        "title": "Api & Developers",
+        "paragraphe": "The Oblyk crags and climbing routes database is open in API, you can freely consult it for open-source, personal or student projects.",
+        "stepFor": "Here are the steps to follow to use the Api :",
+        "connectOrRegister": "You must have a normal Oblyk user account that will allow you to administer your organisation.",
+        "createYourOrganization": "Create your organisation to get your API key.",
+        "createMyOrganisation": "Create my organisation",
+        "readDoc": "Consult the Api documentation.",
+        "oblykApiDocumentation": "Oblyk Api Documentation",
+        "gitHub": "Feel free to follow the project <a href='https://github.com/oblyk' target='_blank'>GitHub of Oblyk</a> to know the evolutions or participate in improving the Api!"
       }
     }
   }

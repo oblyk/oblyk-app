@@ -137,6 +137,17 @@ class CurrentUserApi extends BaseApi {
     })
   }
 
+  organizations () {
+    return axios({
+      method: 'GET',
+      url: `${this.baseUrl}/current_users/organizations.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
+    })
+  }
+
   library () {
     return axios({
       method: 'GET',

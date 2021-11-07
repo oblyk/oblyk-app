@@ -106,7 +106,11 @@
       />
     </v-list>
 
+    <!-- Administered gym list -->
     <my-gyms />
+
+    <!-- Organizations -->
+    <my-organizations />
 
     <!-- If no user connected -->
     <v-list
@@ -269,6 +273,12 @@
       />
 
       <app-drawer-item
+        url="/api-and-developers"
+        icon="mdi-code-braces"
+        :title="$t('common.pages.apiAndDevelopers.title')"
+      />
+
+      <app-drawer-item
         url="/support-us"
         icon="mdi-cards-heart"
         icon-color="red"
@@ -282,11 +292,12 @@
 import AppDrawerItem from '@/components/layouts/partial/AppDrawerItem'
 import { SessionConcern } from '@/concerns/SessionConcern'
 import MyGyms from '@/components/layouts/partial/MyGyms'
+import MyOrganizations from '@/components/layouts/partial/MyOrganizations'
 
 export default {
   name: 'AppDrawer',
   mixins: [SessionConcern],
-  components: { MyGyms, AppDrawerItem },
+  components: { MyOrganizations, MyGyms, AppDrawerItem },
 
   data () {
     return {

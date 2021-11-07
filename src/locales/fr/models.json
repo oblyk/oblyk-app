@@ -144,6 +144,24 @@
     "area": {
       "name": "Nom"
     },
+    "organization": {
+      "name": "Nom",
+      "api_access_key": "Clé d'accès à l'Api",
+      "api_usage_type": "Type d'usage",
+      "phone": "Téléphone",
+      "email": "Email",
+      "address": "Adresse",
+      "city": "Ville",
+      "zipcode": "Code postal",
+      "website": "Site internet",
+      "company_registration_number": "SIRET"
+    },
+    "usageTypes": {
+      "study": "Projet étudiant",
+      "personal": "Projet personnel",
+      "commercial": "Utilisation commercial",
+      "institutional": "Institution public / Projet open source"
+    },
     "park": {
       "description": "Description",
       "crag": "Falaise"

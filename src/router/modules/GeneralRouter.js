@@ -10,6 +10,7 @@ const GradeView = () => import(/* webpackChunkName: "GeneralRouter-GradeView" */
 const AboutPartnerView = () => import(/* webpackChunkName: "GeneralRouter-AboutPartnerView" */ '@/views/AboutPartnerView')
 const GoFlyAKiteView = () => import(/* webpackChunkName: "GeneralRouter-GoFlyAKiteView" */ '@/views/GoFlyAKiteView')
 const SuccessAccountDeletingView = () => import(/* webpackChunkName: "GeneralRouter-SuccessAccountDeletingView" */ '@/views/SuccessAccountDeletingView')
+const ApiAndDevelopersView = () => import(/* webpackChunkName: "GeneralRouter-ApiAndDevelopersView" */ '@/views/ApiAndDevelopersView')
 
 export default [
   {
@@ -65,5 +66,9 @@ export default [
   {
     path: '/success-account-deleting',
     component: SuccessAccountDeletingView
+  },
+  {
+    path: '/api-and-developers',
+    component: ApiAndDevelopersView
   }
 ]

@@ -31,6 +31,7 @@
     "example": "exemple",
     "me": "Moi",
     "posted": "Posté",
+    "requiredFields": "* Champs obligatoire",
     "pages": {
       "cookies": "Oblyk utilise des cookies uniquement à des fins de fonctionnement.",
       "about": {
@@ -137,6 +138,17 @@
         "title": "Votre compte à été supprimé",
         "description": "Votre compte et les données qui y sont associées ont été supprimées.",
         "goodContinuation": "On vous souhaites une bonne continuation !"
+      },
+      "apiAndDevelopers": {
+        "title": "Api & Développeurs",
+        "paragraphe": "La base de donnée des falaises et voies d'escalades d'Oblyk est ouverte en API, vous pouvez la consulter librement pour des projets open-sources, personnels ou étudiants.",
+        "stepFor": "Voici les étapes à suivre pour utiliser l'Api :",
+        "connectOrRegister": "Vous devez avoir un compte utilisateur Oblyk normal qui vous permettra d'administrer votre organisation.",
+        "createYourOrganization": "Créer votre organisation pour obtenir votre clé d'API.",
+        "createMyOrganisation": "Créer mon organisation",
+        "readDoc": "Consulter la documentation de l'Api.",
+        "oblykApiDocumentation": "Oblyk Api Documentation",
+        "gitHub": "N'hésitez pas à suivre le projet <a href='https://github.com/oblyk' target='_blank'>GitHub d'Oblyk</a> pour connaitre les évolutions ou participer à l'amélioration l'Api !"
       }
     }
   }

@@ -300,6 +300,13 @@
     },
     "successAccountDeleting": {
       "title": "Compte supprimé"
+    },
+    "apiAndDevelopers": {
+      "title": "Api des falaises et voies d'escalades",
+      "description": "Les API d'Oblyk vous permettes de consulter une grande base de donnée des falaises et voies d'escalade en France et dans le monde"
+    },
+    "organization": {
+      "new": "Enregistrer mon organisation"
     }
   }
 }

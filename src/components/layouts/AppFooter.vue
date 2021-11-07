@@ -32,6 +32,7 @@
           <router-link class="d-block" to="/about/partner-search">{{ $t('components.layout.footer.partnerSearch') }}</router-link>
           <router-link class="d-block" to="/about">{{ $t('components.layout.footer.about') }}</router-link>
           <router-link class="d-block" to="/helps">{{ $t('components.layout.footer.helps') }}</router-link>
+          <router-link class="d-block" to="/api-and-developers">{{ $t('components.layout.footer.apiAndDevelopers') }}</router-link>
           <router-link class="d-block" to="/support-us">
             <v-icon small color="red" left>
               mdi-heart

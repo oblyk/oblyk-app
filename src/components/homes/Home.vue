@@ -20,6 +20,7 @@
       <home-box-partner class="home-boxes" />
       <home-box-help class="home-boxes" />
       <home-box-guide-book class="home-boxes" />
+      <home-box-developer class="home-boxes" />
       <last-article />
       <home-box-figures />
     </v-container>
@@ -29,6 +30,7 @@
 </template>
 
 <script>
+const HomeBoxDeveloper = () => import('@/components/homes/HomeBoxDeveloper')
 const AppFooter = () => import('@/components/layouts/AppFooter')
 const HomeBoxCragInfo = () => import('@/components/homes/HomeBoxCragInfo')
 const HomeBoxAscentsLog = () => import('@/components/homes/HomeBoxAscentsLog')
@@ -41,6 +43,7 @@ const LastArticle = () => import('@/components/articles/LastArticle')
 export default {
   name: 'Home',
   components: {
+    HomeBoxDeveloper,
     LastArticle,
     HomeBoxFigures,
     HomeBoxGuideBook,

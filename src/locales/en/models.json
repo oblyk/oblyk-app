@@ -144,6 +144,24 @@
     "area": {
       "name": "Name"
     },
+    "organization": {
+      "name": "Name",
+      "api_access_key": "Api access key",
+      "api_usage_type": "Usage type",
+      "phone": "Phone",
+      "email": "Email",
+      "address": "Address",
+      "city": "City",
+      "zipcode": "Postal code",
+      "website": "Website",
+      "company_registration_number": "Company register number"
+    },
+    "usageTypes": {
+      "study": "Student project",
+      "personal": "Personal project",
+      "commercial": "Commercial use",
+      "institutional": "Public institution / Open source project"
+    },
     "park": {
       "description": "Description",
       "crag": "Crag"

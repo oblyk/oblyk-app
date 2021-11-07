@@ -301,6 +301,13 @@
     },
     "successAccountDeleting": {
       "title": "Account deleted"
+    },
+    "apiAndDevelopers": {
+      "title": "Climbing crags and routes Api",
+      "description": "Oblyk's APIs allow you to consult a large database of crags and climbing routes in France and in the world"
+    },
+    "organization": {
+      "new": "Register my organization"
     }
   }
 }

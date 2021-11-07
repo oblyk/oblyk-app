@@ -21,6 +21,13 @@
       "body3": "Malheureusement non, comme tout site internet, Oblyk doit être hébergé dans un datacenter et louer un nom de domaine pour pouvoir éxister sur la toile.<br>Et ça par contre, ce n'est pas gratuit ... ",
       "action": "Nous soutenir"
     },
+    "developer": {
+      "title": "Une base de donnée ouverte en Api !",
+      "body1": "Avec Oblyk, nous désirons construire une base de connaissance ouverte et réutilisable pour les humains et les machines.",
+      "body2": "Via nos Api nous rendons accessible notre base de donnée des falaises et voies à d'autres projets open-sources, publique, personnel ou étudiant.",
+      "body3": "Contribuer à oblyk, c'est permettre à d'autres projets autour de la grimper de voir le jour ou de s'améliorer.",
+      "action": "En savoir plus"
+    },
     "oblykAndGuide": {
       "title": "Oblyk et les topos",
       "body1": "Vous pourriez vous demander si Oblyk peut remplacer les topos papier et par extension nuire au développement des <strong>sites d'escalade</strong> ?<br> Sachez que nous nous sommes beaucoup posé cette question aussi. Et la réponse est non, Oblyk ne peut pas remplacer un topo !<br>Les topos contiennent des informations indispensables que nous ne permettons pas d'ajouter sur oblyk",

@@ -29,7 +29,8 @@
       "note": "Note",
       "dateOfBirth": "Date de naissance",
       "genre": "Genre",
-      "emailNotifications": "Recevoir une notification e-mail quand :"
+      "emailNotifications": "Recevoir une notification e-mail quand :",
+      "usageType": "Type d'usage"
     },
     "markdown": {
       "tips": "<strong>Tips :</strong> Utilise la <a>notation markdown</a> pour plus de style!",
@@ -320,6 +321,15 @@
     },
     "placeOfSale": {
       "noPlace": "il n'y a pas de lieu de vente renseigné pour l'instant."
+    },
+    "organization": {
+      "addNew": "Enregistrer mon organisation",
+      "apiDocumentation": "Documentation de l'Api",
+      "ressources": "Ressources",
+      "manage": "Gérer",
+      "refreshApiKey": "Régénérer la clé d'API",
+      "surToRefresh": "Êtes vous sur de vouloir régénérer la clé d'api ? cette action est irréversible.",
+      "surToDelete": "Êtes vous sur de vouloir supprimer votre organisation ? cette action est irréversible."
     },
     "gym": {
       "type": "Salle",
@@ -698,6 +708,7 @@
           "me": "Moi",
           "account": "Compte",
           "myGyms": "Mes salles",
+          "myOrganizations": "Mes organisations",
           "mapsAndTools": "Cartes & Outils",
           "project": "Le projet",
           "admin": "Admin"
@@ -727,7 +738,8 @@
         "termsOfUse": "Mentions légales",
         "facebook": "Facebook",
         "github": "github",
-        "newsletter": "Newsletter"
+        "newsletter": "Newsletter",
+        "apiAndDevelopers": "Api & Développeurs"
       },
       "errors": {
         "404": {
