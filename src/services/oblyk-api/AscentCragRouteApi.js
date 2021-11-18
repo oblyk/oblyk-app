@@ -97,5 +97,20 @@ class AscentCragRouteApi extends BaseApi {
       }
     })
   }
+
+  export (type = 'ascents') {
+    return axios({
+      method: 'GET',
+      url: `${this.baseUrl}/ascent_crag_routes/export.csv`,
+      responseType: 'blob',
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
+      params: {
+        type: type
+      }
+    })
+  }
 }
 export default new AscentCragRouteApi()

@@ -11,6 +11,11 @@
         "mySettings": "Mes paramètres",
         "goToSettings": "Aller dans vos paramètres",
         "deployActions": "Déployer <cite class='font-weight-bold'>Actions sur mon compte</cite>."
+      },
+      "ascentsExport": {
+        "title": "Exporter mes croix ou mes projets",
+        "explain": "Rendez-vous dans vos paramètres, allez dans l'onglet 'autres' puis le menu 'exporter mes croix ou projets'.",
+        "link": "Mon profils / Mes paramètres / autres"
       }
     },
     "crag": {

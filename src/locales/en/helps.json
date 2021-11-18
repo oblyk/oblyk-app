@@ -11,6 +11,11 @@
         "mySettings": "My settings",
         "goToSettings": "Go to your settings",
         "deployActions": "Deploy <cite class='font-weight-bold'>Actions on my account</cite>."
+      },
+      "ascentsExport": {
+        "title": "Exporting my crosses or projects",
+        "explain": "Go to your settings, go to the 'others' tab and then to the 'export my crosses or projects' menu.",
+        "link": "My profiles / My settings / others"
       }
     },
     "crag": {

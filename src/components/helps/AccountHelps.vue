@@ -4,6 +4,18 @@
       {{ $t('helps.manageMyAccount.title') }}
     </h3>
     <v-expansion-panels focusable>
+      <!-- Export ascents or projects -->
+      <v-expansion-panel>
+        <v-expansion-panel-header v-html="$t('helps.manageMyAccount.ascentsExport.title')" />
+        <v-expansion-panel-content class="pt-4">
+          <p v-html="$t('helps.manageMyAccount.ascentsExport.explain')" />
+          <p v-if="currentUser">
+            <router-link :to="currentUser.currentUserPath('settings/others')">
+              {{ $t('helps.manageMyAccount.ascentsExport.link') }}
+            </router-link>
+          </p>
+        </v-expansion-panel-content>
+      </v-expansion-panel>
 
       <!-- Delete my account -->
       <v-expansion-panel>

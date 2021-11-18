@@ -7,6 +7,17 @@
         </h2>
 
         <v-expansion-panels>
+          <!-- Export ascents and projects -->
+          <v-expansion-panel>
+            <v-expansion-panel-header>
+              {{ $t('components.user.exportAscentsOrProject') }}
+            </v-expansion-panel-header>
+            <v-expansion-panel-content>
+              <export-ascents-or-projects-form />
+            </v-expansion-panel-content>
+          </v-expansion-panel>
+
+          <!-- Delete account -->
           <v-expansion-panel>
             <v-expansion-panel-header>
               {{ $t('components.user.actionOnMyAccount') }}
@@ -23,9 +34,11 @@
 
 <script>
 import DeleteUserForm from '@/components/users/forms/DeleteUserForm'
+import ExportAscentsOrProjectsForm from '@/components/users/forms/ExportAscentsOrProjectsForm'
+
 export default {
   name: 'CurrentUserOtherSettingsView',
-  components: { DeleteUserForm },
+  components: { ExportAscentsOrProjectsForm, DeleteUserForm },
   props: {
     user: Object
   },
