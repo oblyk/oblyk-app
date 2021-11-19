@@ -70,7 +70,6 @@ export default {
       CurrentUserApi
         .current()
         .then(resp => {
-          console.log(resp.data)
           this.user = new User(resp.data)
           for (const organization of this.user.organizations) {
             this.organizations.push(new Organization(organization))
