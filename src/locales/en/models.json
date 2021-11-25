@@ -182,11 +182,13 @@
       "author":  "Author",
       "editor": "Editor",
       "publication_year":  "Publication year",
+      "year":  "Year",
       "price": "Price",
       "price_cents": "Cents",
       "price_euro": "Price in (€)",
       "ean":  "Ean",
       "number_of_page":  "Number of page",
+      "pages":  "Pages",
       "weight": "Weight",
       "weight_in_gram": "Weight in gram",
       "crag": "Crag"

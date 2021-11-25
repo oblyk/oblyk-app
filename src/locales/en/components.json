@@ -311,6 +311,24 @@
       "searchGuideBookPaper": "Search a paper guide book",
       "explainNewTopo": "If you didn't find what you were looking for in the search engine, or in the guide books nearby, you can add a new guide books :",
       "noGuideAround": "No guide book found 50km away",
+      "showMissingInformation": "Showing missing information",
+      "addGuideBook": "Add guide book",
+      "addGuideBookInMyLibrary": "Add guide book in my library",
+      "findGuideBook": "Find a guide book",
+      "titleFilter": "Filter on titles",
+      "addInLibraryPart1": "Click on the icon ",
+      "addInLibraryPart2": "to add or remove the topo from your library.",
+      "figures": {
+        "numberOfGuides": "Number of guides",
+        "guides": "guides",
+        "pages": "pages",
+        "value": "Values",
+        "weight": "Weight",
+        "cragsCount": "Number of crags",
+        "cragsCovered": "crags covered",
+        "routesCount": "Number of routes",
+        "routes": "routes"
+      },
       "tabs": {
         "info": "Info",
         "photos": "Photos",
@@ -724,7 +742,7 @@
           "messenger": "Messenger",
           "ascents": "Ascents",
           "subscribers": "Subscribers",
-          "guideBooks": "Guide books",
+          "guideBooks": "My guide book store",
           "favorites": "Favorites",
           "settings": "Settings"
         }

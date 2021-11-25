@@ -19,19 +19,25 @@
         </v-list-item-avatar>
         <v-list-item-content>
           <v-list-item-title class="font-weight-bold">
-            <span class="vertical-align-middle">
-              {{ guideBookPaper.name }}
-            </span>
-            <subscribe-btn
-              subscribe-type="GuideBookPaper"
-              :subscribe-id="guideBookPaper.id"
-              :large="false"
-              followed-color="deep-purple"
-              followed-icon="mdi-bookshelf"
-              unfollowed-icon="mdi-bookshelf"
-              subscribe-label="actions.addToLibrary"
-              unsubscribe-label="actions.removeFromLibrary"
-            />
+            <v-row>
+              <v-col cols="10" class="text-truncate pr-0">
+                <span class="vertical-align-middle">
+                  {{ guideBookPaper.name }}
+                </span>
+              </v-col>
+              <v-col cols="2" class="text-right pt-1">
+                <subscribe-btn
+                  subscribe-type="GuideBookPaper"
+                  :subscribe-id="guideBookPaper.id"
+                  :large="false"
+                  followed-color="deep-purple"
+                  followed-icon="mdi-bookshelf"
+                  unfollowed-icon="mdi-bookshelf"
+                  subscribe-label="actions.addToLibrary"
+                  unsubscribe-label="actions.removeFromLibrary"
+                />
+              </v-col>
+            </v-row>
           </v-list-item-title>
           <v-list-item-subtitle class="mt-n3 mb-4 text-truncate">
             <v-alert

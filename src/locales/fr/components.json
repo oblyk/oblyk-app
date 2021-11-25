@@ -311,6 +311,24 @@
       "searchGuideBookPaper": "Chercher un topo papier",
       "explainNewTopo": "Si vous n'avez pas trouvé en cherchant, ou dans les topos à proximité, vous pouvez ajouter un nouveau topo :",
       "noGuideAround": "Pas de topo trouvé à 50km au alentour",
+      "showMissingInformation": "Montrer les informations manquantes",
+      "addGuideBook": "Ajouter un topo",
+      "addGuideBookInMyLibrary": "Ajouter un topo à ma topothèque",
+      "findGuideBook": "Trouver un topo",
+      "titleFilter": "Filtrer sur les titres",
+      "addInLibraryPart1": "Cliquez sur l'icon ",
+      "addInLibraryPart2": "pour ajouter ou enlever le topo de votre topothèque.",
+      "figures": {
+        "numberOfGuides": "Nombre de topos",
+        "guides": "topos",
+        "pages": "pages",
+        "value": "Valeur",
+        "weight": "Poids",
+        "cragsCount": "Nombre de sites",
+        "cragsCovered": "sites couverts",
+        "routesCount": "Nombre de lignes",
+        "routes": "lignes"
+      },
       "tabs": {
         "info": "Infos",
         "photos": "Photos",
@@ -724,7 +742,7 @@
           "messenger": "Messagerie",
           "ascents": "Croix",
           "subscribers": "Abonnés",
-          "guideBooks": "Topothèque",
+          "guideBooks": "Ma topothèque",
           "favorites": "Favoris",
           "settings": "Paramètres"
         }

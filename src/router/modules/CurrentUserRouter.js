@@ -3,6 +3,7 @@ const CurrentUserBannerView = () => import(/* webpackChunkName: "CurrentUserRout
 const CurrentUserAscentsView = () => import(/* webpackChunkName: "CurrentUserRouter-CurrentUserAscentsView" */ '@/views/currentUsers/CurrentUserAscentsView')
 const CurrentUserSubscribesView = () => import(/* webpackChunkName: "CurrentUserRouter-CurrentUserSubscribesView" */ '@/views/currentUsers/CurrentUserSubscribesView')
 const CurrentUserGuideBooksView = () => import(/* webpackChunkName: "CurrentUserRouter-CurrentUserGuideBooksView" */ '@/views/currentUsers/CurrentUserGuideBooksView')
+const AddGuideBookOnLibraryView = () => import(/* webpackChunkName: "CurrentUserRouter-CurrentUserGuideBooksView" */ '@/views/currentUsers/actions/AddGuideBookOnLibraryView')
 const CurrentUserFavoritesView = () => import(/* webpackChunkName: "CurrentUserRouter-CurrentUserFavoritesView" */ '@/views/currentUsers/CurrentUserFavoritesView')
 const CurrentUserPartnerSettingsView = () => import(/* webpackChunkName: "CurrentUserRouter-CurrentUserPartnerSettingsView" */ '@/views/currentUsers/actions/CurrentUserPartnerSettingsView')
 const CurrentUserSettingsView = () => import(/* webpackChunkName: "CurrentUserRouter-CurrentUserSettingsView" */ '@/views/currentUsers/CurrentUserSettingsView')
@@ -175,6 +176,13 @@ export default [
   {
     path: '/me/:userSlug/guide-books',
     component: CurrentUserGuideBooksView,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/me/:userSlug/guide-books/add',
+    component: AddGuideBookOnLibraryView,
     meta: {
       requiresAuth: true
     }

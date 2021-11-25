@@ -159,6 +159,17 @@ class CurrentUserApi extends BaseApi {
     })
   }
 
+  libraryFigures () {
+    return axios({
+      method: 'GET',
+      url: `${this.baseUrl}/current_users/library_figures.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
+    })
+  }
+
   photos (id = null, page = 1) {
     return axios({
       method: 'GET',

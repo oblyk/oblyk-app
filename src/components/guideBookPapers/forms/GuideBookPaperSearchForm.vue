@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-text-field
-      :label="$t('components.guideBookPaper.searchGuideBookPaper')"
+      :label="$t(labelKey)"
       outlined
       :loading="searching"
       clearable
@@ -44,6 +44,11 @@ export default {
     callback: {
       type: Function,
       required: false
+    },
+
+    labelKey: {
+      type: String,
+      default: 'components.guideBookPaper.searchGuideBookPaper'
     }
   },
 
