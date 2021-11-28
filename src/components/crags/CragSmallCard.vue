@@ -28,7 +28,7 @@
             </span>
             <subscribe-btn subscribe-type="Crag" :subscribe-id="crag.id" :large="false" />
           </v-list-item-title>
-          <v-list-item-subtitle v-bind:class="small ? 'mt-n1 mb-3' : 'mt-n3 mb-4'">
+          <v-list-item-subtitle v-bind:class="small ? 'mb-2' : 'mt-n3 mb-4'">
             <v-alert
               dense
               text

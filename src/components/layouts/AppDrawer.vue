@@ -217,6 +217,12 @@
         </template>
 
         <app-drawer-item
+          url="/guide-book-papers/find"
+          icon="mdi-map-marker-radius-outline"
+          :title="$t('components.guideBookPaper.findGuideBook')"
+        />
+
+        <app-drawer-item
           url="/glossary"
           icon="mdi-book-open-variant"
           :title="$t('components.word.title')"

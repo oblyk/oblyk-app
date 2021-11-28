@@ -15,5 +15,18 @@ class OsmNominatim {
       method: 'GET'
     })
   }
+
+  search (query) {
+    return axios({
+      url: 'https://nominatim.openstreetmap.org/search',
+      params: {
+        q: query,
+        format: 'json',
+        addressdetails: 1,
+        email: 'ekip@oblky.org'
+      },
+      method: 'GET'
+    })
+  }
 }
 export default new OsmNominatim()

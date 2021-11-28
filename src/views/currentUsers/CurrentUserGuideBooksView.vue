@@ -6,7 +6,10 @@
       <spinner v-if="loadingSubscribes" />
 
       <v-container v-if="!loadingSubscribes">
-        <guide-book-store-header :figures="figures" />
+        <guide-book-store-header
+          :figures="figures"
+          :current-user="currentUser"
+        />
         <v-row class="mt-3">
           <v-col cols="12" md="6">
             <v-text-field

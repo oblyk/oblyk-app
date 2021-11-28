@@ -26,6 +26,14 @@ class GuideBookPaperApi extends BaseApi {
     })
   }
 
+  around (lat, lng, dist) {
+    return axios({
+      method: 'GET',
+      url: `${this.baseUrl}/public/guide_book_papers/around.json?lat=${lat}&lng=${lng}&dist=${dist}`,
+      headers: { HttpApiAccessToken: this.apiAccessToken }
+    })
+  }
+
   crags (id) {
     return axios({
       method: 'GET',

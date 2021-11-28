@@ -32,6 +32,9 @@
       "emailNotifications": "Recevoir une notification e-mail quand :",
       "usageType": "Type d'usage"
     },
+    "searchPlace": {
+      "placeholder": "Chercher une ville, un lieu, etc."
+    },
     "markdown": {
       "tips": "<strong>Tips :</strong> Utilise la <a>notation markdown</a> pour plus de style!",
       "modalTitle": "La notation markdown",
@@ -336,6 +339,18 @@
         "links": "Liens",
         "map": "Carte"
       }
+    },
+    "guideBookPaperFind": {
+      "title": "Dis-nous où tu vas, nous te dirons quels topos prendre !",
+      "ray": "Rayon",
+      "findGuideInRay": "<strong>Un topo trouvé</strong> à %{dist}km autour de %{city} | <strong>%{count} topos trouvés</strong> à %{dist}km autour de %{city}",
+      "noGuideFound": "Aucun topo trouvé à %{dist}km autour de %{city}",
+      "searchAnotherCity": "Cherchez une autre ville ou augmentez le rayon",
+      "cragsInGuide": "Ce topo contient un site à %{dist}km de %{city} | Ce topo contient %{count} sites à %{dist}km de %{city}",
+      "cragsMap": "Carte des sites présent dans ce topo",
+      "seeMore": "Voir un site de plus | Voir %{count} sites de plus",
+      "withMoreCrag": "+ un site à plus de %{dist}km. | + %{count} sites à plus de %{dist}km.",
+      "crags": "<strong>1</strong> site | <strong>%{count}</strong> sites"
     },
     "placeOfSale": {
       "noPlace": "il n'y a pas de lieu de vente renseigné pour l'instant."

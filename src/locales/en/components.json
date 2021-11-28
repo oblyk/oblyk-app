@@ -32,6 +32,9 @@
       "emailNotifications": "Receive e-mail notification when :",
       "usageType": "Usage Type"
     },
+    "searchPlace": {
+      "placeholder": "Search for a city, a place, etc."
+    },
     "markdown": {
       "tips": "<strong>Tips :</strong> Use the <a>markdown notation</a> for more style!",
       "modalTitle": "The markdown rating",
@@ -336,6 +339,18 @@
         "links": "Links",
         "map": "Map"
       }
+    },
+    "guideBookPaperFind": {
+      "title": "Tell us where you're going, we'll tell you which topos to take!",
+      "ray": "Ray",
+      "findGuideInRay": "<strong>One guide book found</strong> within %{dist}km of %{city} | <strong>%{count} guides books found</strong> within %{dist}km of %{city}",
+      "noGuideFound": "No guide book found within %{dist}km of %{city}",
+      "searchAnotherCity": "Search for another city or increase the ray",
+      "cragsInGuide": "This guide contains one crag at %{dist}km from %{city} | This guide contains %{count} crags at %{dist}km from %{city}",
+      "cragsMap": "Map of the crags in this guide",
+      "seeMore": "See one more crag | See %{count} more crags",
+      "withMoreCrag": "+ one site more than %{dist}km away. | + %{count} sites more than %{dist}km away.",
+      "crags": "<strong>1</strong> crag | <strong>%{count}</strong> crags"
     },
     "placeOfSale": {
       "noPlace": "There is no point of sale filled in for the moment."

@@ -67,8 +67,8 @@
       <v-spacer />
       <v-btn
         text
-        class="d-none"
         color="primary"
+        to="/guide-book-papers/find"
       >
         <v-icon left>mdi-map-marker-radius-outline</v-icon>
         {{ $t('components.guideBookPaper.findGuideBook') }}
@@ -76,7 +76,7 @@
       <v-btn
         text
         color="primary"
-        to="/me/lucien/guide-books/add"
+        :to="`/me/${currentUser.slug_name}/guide-books/add`"
       >
         <v-icon left>mdi-book-plus</v-icon>
         {{ $t('components.guideBookPaper.addGuideBook') }}
@@ -84,13 +84,13 @@
     </v-card-actions>
   </v-card>
 </template>
+
 <script>
 export default {
   name: 'GuideBookStoreHeader',
   props: {
-    figures: {
-      type: Object
-    }
+    figures: Object,
+    currentUser: Object
   }
 }
 </script>

@@ -50,13 +50,25 @@
       :geojson="geoJsons"
       :options="geoJsonOptions"
     />
+
+    <l-circle
+      v-if="circleProperties"
+      :lat-lng="circleProperties.center"
+      :radius="circleProperties.radius"
+      :color="circleProperties.color || 'blue'"
+      :dash-array="circleProperties.dashArray || null"
+      :fill="circleProperties.fill || false"
+      :fill-color="circleProperties.fillColor || 'blue'"
+      :fill-opacity="circleProperties.fillOpacity || 0.2"
+      :weight="circleProperties.weight || 3"
+    />
   </l-map>
 </template>
 
 <script>
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
-import { LMap, LTileLayer, LControlZoom, LGeoJson, LControl } from 'vue2-leaflet'
+import { LMap, LTileLayer, LControlZoom, LGeoJson, LControl, LCircle } from 'vue2-leaflet'
 import { MapPopupHelpers } from '@/mixins/MapPopupHelpers'
 import { MapMarkerHelpers } from '@/mixins/MapMarkerHelpers'
 import Vue2LeafletMarkerCluster from 'vue2-leaflet-markercluster'
@@ -96,6 +108,10 @@ export default {
       type: Boolean,
       required: false,
       default: true
+    },
+    circleProperties: {
+      type: Object,
+      required: false
     }
   },
 
@@ -103,6 +119,7 @@ export default {
     LeafletLegend,
     LeafletLayerSelector,
     LMap,
+    LCircle,
     LGeoJson,
     LControl,
     LControlZoom,

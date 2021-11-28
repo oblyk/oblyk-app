@@ -7,8 +7,13 @@ const GuideBookPaperLinkView = () => import(/* webpackChunkName: "GuideBookPaper
 const GuideBookPaperMapView = () => import(/* webpackChunkName: "GuideBookPaperRouter-GuideBookPaperMapView" */ '@/views/guideBookPapers/GuideBookPaperMapView')
 const GuideBookPaperEditView = () => import(/* webpackChunkName: "GuideBookPaperRouter-GuideBookPaperEditView" */ '@/views/guideBookPapers/actions/GuideBookPaperEditView')
 const GuideBookPaperNewView = () => import(/* webpackChunkName: "GuideBookPaperRouter-GuideBookPaperNewView" */ '@/views/guideBookPapers/actions/GuideBookPaperNewView')
+const GuideBookPaperFindView = () => import(/* webpackChunkName: "GuideBookPaperRouter-GuideBookPaperNewView" */ '@/views/GuideBookPaperFindView')
 
 export default [
+  {
+    path: '/guide-book-papers/find',
+    component: GuideBookPaperFindView
+  },
   {
     path: '/guide-book-papers/new',
     component: GuideBookPaperNewView,
