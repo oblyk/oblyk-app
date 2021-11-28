@@ -171,6 +171,10 @@
       "description": "See the information of %{name}. Crag details, location, photos, map, etc.",
       "new": "Add guide book"
     },
+    "guideBookPaperFind": {
+      "title": "Find a climbing guide",
+      "description": "Find the climbing topos that are around a city or a place in France and in the world"
+    },
     "guideBookPdf": {
       "edit": "Edit PDF guide",
       "new": "Add PDF guide"

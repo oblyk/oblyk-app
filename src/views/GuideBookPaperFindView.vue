@@ -109,6 +109,19 @@ export default {
           this.loadGuidesAround = false
         })
     }
+  },
+
+  metaInfo () {
+    return {
+      title: this.$t('meta.guideBookPaperFind.title'),
+      description: this.$t('meta.guideBookPaperFind.description'),
+      meta: [
+        { vmid: 'description', name: 'description', content: this.description },
+        { vmid: 'og-title', property: 'og:title', content: this.title },
+        { vmid: 'og-description', property: 'og:description', content: this.description },
+        { vmid: 'og-image', property: 'og:image', content: `${process.env.VUE_APP_OBLYK_APP_URL}/img/images/oblyk-og-image.jpg` }
+      ]
+    }
   }
 }
 </script>

@@ -170,6 +170,10 @@
       "description": "Voir les informations de %{name}. Détail des site, localisation, photos, carte, etc.",
       "new": "Ajouter un topo"
     },
+    "guideBookPaperFind": {
+      "title": "Trouver un topo d'escalade",
+      "description": "Trouves les topos d'escalades qu'il y a autour d'une ville ou d'un lieu en France et dans le monde"
+    },
     "guideBookPdf": {
       "edit": "Modifier le topo PDF",
       "new": "Ajouter un topo PDF"
