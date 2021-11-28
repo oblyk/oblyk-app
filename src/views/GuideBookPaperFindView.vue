@@ -9,6 +9,7 @@
       </h1>
       <search-place-localisation v-model="place" />
       <v-slider
+        class="body-2"
         v-if="place"
         v-model="dist"
         step="20"
