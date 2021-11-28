@@ -17,8 +17,12 @@ class OsmNominatim {
   }
 
   search (query) {
+    const CancelToken = axios.CancelToken
+    this.tokenSearchSource = CancelToken.source()
+
     return axios({
       url: 'https://nominatim.openstreetmap.org/search',
+      cancelToken: this.tokenSearchSource.token,
       params: {
         q: query,
         format: 'json',
