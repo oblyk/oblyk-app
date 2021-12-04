@@ -1,5 +1,5 @@
 <template>
-  <v-card class="full-height">
+  <div>
     <v-card-title>
       <v-icon left>
         mdi-store
@@ -42,7 +42,7 @@
         </div>
       </div>
     </v-card-text>
-  </v-card>
+  </div>
 </template>
 
 <script>

@@ -437,6 +437,11 @@
       "staple_u_bolts": "Anneau",
       "no_bolts": "Pas de point"
     },
+    "fundingStatusType": {
+      "contributes_to_financing": "Contribue au financement",
+      "not_contributes_to_financing": "Ne contribue pas au financement",
+      "undefined": "Non renseigné"
+    },
     "inclineType" : {
       "slab": "Dalle positive",
       "vertical": "Mur vertical",

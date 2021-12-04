@@ -26,6 +26,8 @@
       :label="$t('models.guideBookPaper.publication_year')"
     />
 
+    <funding-status-input v-model="data.funding_status" />
+
     <v-text-field
       outlined
       v-model="price"
@@ -68,10 +70,11 @@ import SubmitForm from '@/components/forms/SubmitForm'
 import GuideBookPaperApi from '@/services/oblyk-api/GuideBookPaperApi'
 import CloseForm from '@/components/forms/CloseForm'
 import GuideBookPaper from '@/models/GuideBookPaper'
+import FundingStatusInput from '@/components/forms/FundingStatusInput'
 
 export default {
   name: 'GuideBookPaperForm',
-  components: { CloseForm, SubmitForm },
+  components: { FundingStatusInput, CloseForm, SubmitForm },
   mixins: [FormHelpers],
   props: {
     guideBookPaper: {
@@ -88,6 +91,7 @@ export default {
         author: (this.guideBookPaper || {}).author,
         editor: (this.guideBookPaper || {}).editor,
         publication_year: (this.guideBookPaper || {}).publication_year,
+        funding_status: (this.guideBookPaper || {}).funding_status,
         price_cents: (this.guideBookPaper || {}).price_cents,
         ean: (this.guideBookPaper || {}).ean,
         number_of_page: (this.guideBookPaper || {}).number_of_page,

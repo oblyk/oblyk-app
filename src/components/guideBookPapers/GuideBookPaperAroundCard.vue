@@ -22,6 +22,20 @@
             <v-row>
               <v-col cols="10" class="text-truncate pr-0">
                 <span class="vertical-align-middle">
+                  <v-chip
+                    outlined
+                    class="pr-1 pl-1 mr-1 mb-1"
+                    small
+                    :color="guideBookPaper.fundingAttributes.color"
+                    v-if="guideBookPaper.fundingAttributes.displayed"
+                  >
+                    <v-icon
+                      small
+                      :title="$t(guideBookPaper.fundingAttributes.labelKey)"
+                    >
+                      {{ guideBookPaper.fundingAttributes.icon }}
+                    </v-icon>
+                  </v-chip>
                   {{ guideBookPaper.name }} - {{ guideBookPaper.publication_year }}
                 </span>
               </v-col>

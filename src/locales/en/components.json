@@ -30,7 +30,8 @@
       "dateOfBirth": "Date of birth",
       "genre": "Genre",
       "emailNotifications": "Receive e-mail notification when :",
-      "usageType": "Usage Type"
+      "usageType": "Usage Type",
+      "foundingStatus": "Contributes to the funding of the sites ?"
     },
     "searchPlace": {
       "placeholder": "Search for a city, a place, etc."
@@ -321,6 +322,12 @@
       "titleFilter": "Filter on titles",
       "addInLibraryPart1": "Click on the icon ",
       "addInLibraryPart2": "to add or remove the topo from your library.",
+      "nextVersionTitle": "There is a newer version!",
+      "fundingStatusExplain": {
+        "contributes_to_financing": "Contributes to the funding of the crags",
+        "not_contributes_to_financing": "Does not contribute to the funding of the crags",
+        "undefined": "No information on crags funding"
+      },
       "figures": {
         "numberOfGuides": "Number of guides",
         "guides": "guides",

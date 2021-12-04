@@ -437,6 +437,11 @@
       "staple_u_bolts": "Staple u bolts",
       "no_bolts": "No bolts"
     },
+    "fundingStatusType": {
+      "contributes_to_financing": "Contributes to funding",
+      "not_contributes_to_financing": "Does not contribute to funding",
+      "undefined": "Not filled in"
+    },
     "inclineType" : {
       "slab": "Slab",
       "vertical": "Vertical wall",

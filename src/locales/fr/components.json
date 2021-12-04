@@ -30,7 +30,8 @@
       "dateOfBirth": "Date de naissance",
       "genre": "Genre",
       "emailNotifications": "Recevoir une notification e-mail quand :",
-      "usageType": "Type d'usage"
+      "usageType": "Type d'usage",
+      "foundingStatus": "Contribue au financement des sites ?"
     },
     "searchPlace": {
       "placeholder": "Chercher une ville, un lieu, etc."
@@ -321,6 +322,12 @@
       "titleFilter": "Filtrer sur les titres",
       "addInLibraryPart1": "Cliquez sur l'icon ",
       "addInLibraryPart2": "pour ajouter ou enlever le topo de votre topothèque.",
+      "nextVersionTitle": "Il y a une version plus récente !",
+      "fundingStatusExplain": {
+        "contributes_to_financing": "Contribue au financement des sites",
+        "not_contributes_to_financing": "Ne contribue pas au financement des sites",
+        "undefined": "Pas d'information sur le financement des sites"
+      },
       "figures": {
         "numberOfGuides": "Nombre de topos",
         "guides": "topos",

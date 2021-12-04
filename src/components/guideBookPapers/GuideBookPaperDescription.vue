@@ -7,110 +7,85 @@
       {{ $t('common.informations') }}
     </v-card-title>
     <v-card-text>
+      <v-alert
+        text
+        :icon="guideBookPaper.fundingAttributes.icon"
+        :color="guideBookPaper.fundingAttributes.color"
+      >
+        {{ $t(guideBookPaper.fundingAttributes.labelKey) }}
+      </v-alert>
+
+      <v-row>
+        <!-- Author -->
+        <v-col cols="6">
+          <description-line
+            icon="mdi-fountain-pen-tip"
+            :item-title="$t('models.guideBookPaper.author')"
+            :item-value="guideBookPaper.author"
+          />
+        </v-col>
+
+        <!-- Editor -->
+        <v-col cols="6">
+          <description-line
+            icon="mdi-library"
+            :item-title="$t('models.guideBookPaper.editor')"
+            :item-value="guideBookPaper.editor"
+          />
+        </v-col>
+
+        <!-- Publication year -->
+        <v-col cols="6">
+          <description-line
+            icon="mdi-calendar"
+            :item-title="$t('models.guideBookPaper.year')"
+            :item-value="guideBookPaper.publication_year"
+          />
+        </v-col>
+
+        <!-- Price -->
+        <v-col cols="6">
+          <description-line
+            icon="mdi-cash-multiple"
+            :item-title="$t('models.guideBookPaper.price')"
+            :item-value="guideBookPaper.price"
+            item-suffix="€"
+          />
+        </v-col>
+
+        <!-- EAN -->
+        <v-col cols="6">
+          <description-line
+            icon="mdi-barcode"
+            :item-title="$t('models.guideBookPaper.ean')"
+            :item-value="guideBookPaper.ean"
+          />
+        </v-col>
+
+        <!-- Number of page -->
+        <v-col cols="6">
+          <description-line
+            icon="mdi-book-open-page-variant"
+            :item-title="$t('models.guideBookPaper.number_of_page')"
+            :item-value="guideBookPaper.number_of_page"
+            item-suffix="pages"
+          />
+        </v-col>
+
+        <!-- Weight -->
+        <v-col cols="6">
+          <description-line
+            icon="mdi-weight"
+            :item-title="$t('models.guideBookPaper.weight')"
+            :item-value="guideBookPaper.weight"
+            item-suffix="grammes"
+          />
+        </v-col>
+      </v-row>
+
       <v-simple-table class="no-hover-table">
         <template v-slot:default>
           <tbody>
-            <tr>
-              <th class="smallest-table-column text-right">
-                {{ $t('common.type') }}
-              </th>
-              <td>
-                <v-chip>
-                  {{ $t('components.guideBookPaper.type') }}
-                </v-chip>
-              </td>
-            </tr>
-            <tr>
-              <th class="smallest-table-column text-right">
-                {{ $t('models.guideBookPaper.author') }}
-              </th>
-              <td>
-                <span v-if="guideBookPaper.author">
-                  {{ guideBookPaper.author }}
-                </span>
-                <span v-else class="text--disabled">
-                  {{ $t('common.noInformation') }}
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <th class="smallest-table-column text-right">
-                {{ $t('models.guideBookPaper.editor') }}
-              </th>
-              <td>
-                <span v-if="guideBookPaper.editor">
-                  {{ guideBookPaper.editor }}
-                </span>
-                <span v-else class="text--disabled">
-                  {{ $t('common.noInformation') }}
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <th class="smallest-table-column text-right">
-                {{ $t('models.guideBookPaper.publication_year') }}
-              </th>
-              <td>
-                <span v-if="guideBookPaper.publication_year">
-                  {{ guideBookPaper.publication_year }}
-                </span>
-                <span v-else class="text--disabled">
-                  {{ $t('common.noInformation') }}
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <th class="smallest-table-column text-right">
-                {{ $t('models.guideBookPaper.price') }}
-              </th>
-              <td>
-                <span v-if="guideBookPaper.price">
-                  {{ guideBookPaper.price }} €
-                </span>
-                <span v-else class="text--disabled">
-                  {{ $t('common.noInformation') }}
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <th class="smallest-table-column text-right">
-                {{ $t('models.guideBookPaper.ean') }}
-              </th>
-              <td>
-                <span v-if="guideBookPaper.ean">
-                  {{ guideBookPaper.ean }}
-                </span>
-                <span v-else class="text--disabled">
-                  {{ $t('common.noInformation') }}
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <th class="smallest-table-column text-right">
-                {{ $t('models.guideBookPaper.number_of_page') }}
-              </th>
-              <td>
-                <span v-if="guideBookPaper.number_of_page">
-                  {{ guideBookPaper.number_of_page }}
-                </span>
-                <span v-else class="text--disabled">
-                  {{ $t('common.noInformation') }}
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <th class="smallest-table-column text-right">
-                {{ $t('models.guideBookPaper.weight') }}
-              </th>
-              <td>
-                <span v-if="guideBookPaper.weight">
-                  {{ guideBookPaper.weight }}g
-                </span>
-                <span v-else class="text--disabled">
-                  {{ $t('common.noInformation') }}
-                </span>
-              </td>
-            </tr>
             <tr>
               <td colspan="2" class="text-right">
                 <contributions-label
@@ -191,10 +166,11 @@ import { SessionConcern } from '@/concerns/SessionConcern'
 import CommentList from '@/components/comments/CommentList'
 import SubscribeBtn from '@/components/forms/SubscribeBtn'
 import ContributionsLabel from '@/components/globals/ContributionsLable'
+import DescriptionLine from '@/components/ui/DescriptionLine'
 
 export default {
   name: 'GuideBookPaperDescription',
-  components: { ContributionsLabel, SubscribeBtn, CommentList },
+  components: { DescriptionLine, ContributionsLabel, SubscribeBtn, CommentList },
   mixins: [SessionConcern],
   props: {
     guideBookPaper: Object
