@@ -163,6 +163,10 @@
       "addCover": "Ajouter une couverture d'article",
       "new": "Nouvel article"
     },
+    "recommendedGuides": {
+      "title": "Topos intéressants",
+      "description": "Nous trouvons les topos qui pourrais t'intéresser par rapport à ton carnet de croix"
+    },
     "guideBookPaper": {
       "addCrag": "Ajouter un site à %{name}",
       "cover": "Changer la couverture de %{name}",

@@ -337,7 +337,17 @@
         "cragsCount": "Number of crags",
         "cragsCovered": "crags covered",
         "routesCount": "Number of routes",
-        "routes": "routes"
+        "routes": "routes",
+        "missingBook": "One guide might interest you :) | %{count} guides might interest you :)",
+        "seeGuides": "See guides"
+      },
+      "recommended": {
+        "title": "The topos that might interest you",
+        "guidesFound": "We have found one guidebook that might interest you | We have found %{count} guidebook that might interest you",
+        "relationToAscents": "(in relation to your ascents)",
+        "completYouAscent": "Complete your log book so that we can suggest more books",
+        "thisPageFind": "This page finds guide books that might interest you",
+        "connectYou": "Connect you!"
       },
       "tabs": {
         "info": "Info",

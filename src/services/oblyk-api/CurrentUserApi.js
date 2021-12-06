@@ -170,6 +170,17 @@ class CurrentUserApi extends BaseApi {
     })
   }
 
+  ascentsWithoutGuides () {
+    return axios({
+      method: 'GET',
+      url: `${this.baseUrl}/current_users/ascents_without_guides.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
+    })
+  }
+
   photos (id = null, page = 1) {
     return axios({
       method: 'GET',

@@ -8,57 +8,69 @@
     <v-card-text>
       <v-row>
         <div class="col-6 col-md-4 col-lg-3">
-          <p class="mb-1 font-weight-bold">
-            <v-icon small left>mdi-book-multiple</v-icon>
-            {{ $t('components.guideBookPaper.figures.numberOfGuides') }}
-          </p>
-          <div class="pl-7">
-            {{ figures.guide_book_count || '...' }} {{ $t('components.guideBookPaper.figures.guides') }}
-          </div>
+          <description-line
+            icon="mdi-book-multiple"
+            :item-title="$t('components.guideBookPaper.figures.numberOfGuides')"
+            :item-value="figures.guide_book_count || '...'"
+            :item-suffix="$t('components.guideBookPaper.figures.guides')"
+          />
         </div>
         <div class="col-6 col-md-4 col-lg-3">
-          <p class="mb-1 font-weight-bold">
-            <v-icon small left>mdi-book-open-page-variant-outline</v-icon>
-            {{ $t('components.guideBookPaper.figures.pages') }}
-          </p>
-          <div class="pl-7">
-            {{ figures.pages_count || '...' }} {{ $t('components.guideBookPaper.figures.pages') }}
-          </div>
+          <description-line
+            icon="mdi-book-open-page-variant-outline"
+            :item-title="$t('components.guideBookPaper.figures.pages')"
+            :item-value="figures.pages_count || '...'"
+            :item-suffix="$t('components.guideBookPaper.figures.pages')"
+          />
         </div>
         <div class="col-6 col-md-4 col-lg-3">
-          <p class="mb-1 font-weight-bold">
-            <v-icon small left>mdi-currency-usd</v-icon>
-            {{ $t('components.guideBookPaper.figures.value') }}
-          </p>
-          <div class="pl-7">
-            {{ figures.sum_price || '...' }} €
-          </div>
+          <description-line
+            icon="mdi-currency-usd"
+            :item-title="$t('components.guideBookPaper.figures.value')"
+            :item-value="figures.sum_price || '...'"
+            item-suffix="€"
+          />
         </div>
         <div class="col-6 col-md-4 col-lg-3">
-          <p class="mb-1 font-weight-bold">
-            <v-icon small left>mdi-weight</v-icon>
-            {{ $t('components.guideBookPaper.figures.weight') }}
-          </p>
-          <div class="pl-7">
-            {{ figures.sum_weight || '...' }} kg
-          </div>
+          <description-line
+            icon="mdi-weight"
+            :item-title="$t('components.guideBookPaper.figures.weight')"
+            :item-value="figures.sum_weight || '...'"
+            item-suffix="kg"
+          />
         </div>
         <div class="col-6 col-md-4 col-lg-3">
-          <p class="mb-1 font-weight-bold">
-            <v-icon small left>mdi-terrain</v-icon>
-            {{ $t('components.guideBookPaper.figures.cragsCount') }}
-          </p>
-          <div class="pl-7">
-            {{ figures.crags_count || '...' }} {{ $t('components.guideBookPaper.figures.cragsCovered') }}
-          </div>
+          <description-line
+            icon="mdi-terrain"
+            :item-title="$t('components.guideBookPaper.figures.cragsCount')"
+            :item-value="figures.crags_count || '...'"
+            :item-suffix="$t('components.guideBookPaper.figures.cragsCovered')"
+          />
         </div>
         <div class="col-6 col-md-4 col-lg-3">
+          <description-line
+            icon="mdi-source-branch"
+            :item-title="$t('components.guideBookPaper.figures.routesCount')"
+            :item-value="figures.routes_count || '...'"
+            :item-suffix="$t('components.guideBookPaper.figures.routes')"
+          />
+        </div>
+        <div
+          class="col-6 col-md-4 col-lg-3"
+          v-if="guides.length > 0"
+        >
           <p class="mb-1 font-weight-bold">
-            <v-icon small left>mdi-source-branch</v-icon>
-            {{ $t('components.guideBookPaper.figures.routesCount') }}
+            <v-icon small left>mdi-bookshelf</v-icon>
+            {{ $tc('components.guideBookPaper.figures.missingBook', guides.length, { count: guides.length }) }}
           </p>
           <div class="pl-7">
-            {{ figures.routes_count || '...' }} {{ $t('components.guideBookPaper.figures.routes') }}
+            <v-btn
+              small
+              outlined
+              to="/guide-book-papers/recommended"
+            >
+              {{ $t('components.guideBookPaper.figures.seeGuides') }}
+            </v-btn>
           </div>
         </div>
       </v-row>
@@ -86,11 +98,38 @@
 </template>
 
 <script>
+import CurrentUserApi from '@/services/oblyk-api/CurrentUserApi'
+import GuideBookPaper from '@/models/GuideBookPaper'
+import DescriptionLine from '@/components/ui/DescriptionLine'
+
 export default {
   name: 'GuideBookStoreHeader',
+  components: { DescriptionLine },
   props: {
     figures: Object,
     currentUser: Object
+  },
+
+  data () {
+    return {
+      guides: []
+    }
+  },
+
+  created () {
+    this.getRecommendedGuides()
+  },
+
+  methods: {
+    getRecommendedGuides: function () {
+      CurrentUserApi
+        .ascentsWithoutGuides()
+        .then(resp => {
+          for (const guide of resp.data) {
+            this.guides.push(new GuideBookPaper(guide))
+          }
+        })
+    }
   }
 }
 </script>

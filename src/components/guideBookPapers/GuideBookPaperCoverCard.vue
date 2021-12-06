@@ -10,6 +10,17 @@
       </div>
     </router-link>
     <p class="text-center text-truncate mb-0">
+      <subscribe-btn
+        v-if="subscribeBtn"
+        subscribe-type="GuideBookPaper"
+        :subscribe-id="guideBookPaper.id"
+        :large="false"
+        followed-color="deep-purple"
+        followed-icon="mdi-bookshelf"
+        unfollowed-icon="mdi-bookshelf"
+        subscribe-label="actions.addToLibrary"
+        unsubscribe-label="actions.removeFromLibrary"
+      />
       {{ guideBookPaper.name }}
     </p>
     <p class="text-center text--disabled mb-0">
@@ -83,13 +94,16 @@
 
 <script>
 
+import SubscribeBtn from '@/components/forms/SubscribeBtn'
 export default {
   name: 'GuideBookPaperCoverCard',
+  components: { SubscribeBtn },
   props: {
     guideBookPaper: Object,
     showMissingInformation: {
       type: Boolean
-    }
+    },
+    subscribeBtn: Boolean
   }
 }
 </script>

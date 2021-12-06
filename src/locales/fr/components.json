@@ -337,7 +337,17 @@
         "cragsCount": "Nombre de sites",
         "cragsCovered": "sites couverts",
         "routesCount": "Nombre de lignes",
-        "routes": "lignes"
+        "routes": "lignes",
+        "missingBook": "Un topo pourrais t'intéresser :) | %{count} topos pourrais t'intéresser :)",
+        "seeGuides": "Voir les topos"
+      },
+      "recommended": {
+        "title": "Les topos qui pourrais t'intéresser",
+        "guidesFound": "Nous avons trouvé un topo qui pourrais t'intéresser | Nous avons trouvé {count} topos qui pourrais t'intéresser",
+        "relationToAscents": "(par rapport à ton carnet de croix)",
+        "completYouAscent": "Complète ton carnet de croix pour que nous puissions te suggérer plus de topo",
+        "thisPageFind": "Cette page trouve les topos qui pourrais t'intéresser",
+        "connectYou": "Connecte toi !"
       },
       "tabs": {
         "info": "Infos",
