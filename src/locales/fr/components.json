@@ -338,15 +338,15 @@
         "cragsCovered": "sites couverts",
         "routesCount": "Nombre de lignes",
         "routes": "lignes",
-        "missingBook": "Un topo pourrais t'intéresser :) | %{count} topos pourrais t'intéresser :)",
+        "missingBook": "Un topo pourrait t'intéresser :) | %{count} topos pourraient t'intéresser :)",
         "seeGuides": "Voir les topos"
       },
       "recommended": {
-        "title": "Les topos qui pourrais t'intéresser",
-        "guidesFound": "Nous avons trouvé un topo qui pourrais t'intéresser | Nous avons trouvé {count} topos qui pourrais t'intéresser",
+        "title": "Les topos qui pourraient t'intéresser",
+        "guidesFound": "Nous avons trouvé un topo qui pourrait t'intéresser | Nous avons trouvé {count} topos qui pourraient t'intéresser",
         "relationToAscents": "(par rapport à ton carnet de croix)",
         "completYouAscent": "Complète ton carnet de croix pour que nous puissions te suggérer plus de topo",
-        "thisPageFind": "Cette page trouve les topos qui pourrais t'intéresser",
+        "thisPageFind": "Cette page trouve les topos qui pourraient t'intéresser",
         "connectYou": "Connecte toi !"
       },
       "tabs": {
