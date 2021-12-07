@@ -9,6 +9,14 @@
         />
       </div>
     </router-link>
+    <p
+      class="text-center text--disabled mb-0"
+      v-if="showYear"
+    >
+      <small>
+        {{ guideBookPaper.publication_year }}
+      </small>
+    </p>
     <p class="text-center text-truncate mb-0">
       <subscribe-btn
         v-if="subscribeBtn"
@@ -23,7 +31,10 @@
       />
       {{ guideBookPaper.name }}
     </p>
-    <p class="text-center text--disabled mb-0">
+    <p
+      class="text-center text--disabled mb-0"
+      v-if="showAuthor"
+    >
       <small>
         {{ guideBookPaper.author }}
       </small>
@@ -102,6 +113,14 @@ export default {
     guideBookPaper: Object,
     showMissingInformation: {
       type: Boolean
+    },
+    showAuthor: {
+      type: Boolean,
+      default: true
+    },
+    showYear: {
+      type: Boolean,
+      default: false
     },
     subscribeBtn: Boolean
   }

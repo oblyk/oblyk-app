@@ -339,7 +339,9 @@
         "routesCount": "Nombre de lignes",
         "routes": "lignes",
         "missingBook": "Un topo pourrait t'intéresser :) | %{count} topos pourraient t'intéresser :)",
-        "seeGuides": "Voir les topos"
+        "seeGuides": "Voir les topos",
+        "newGuides": "Il y a des nouvelles versions !",
+        "seeNewGuides": "Une nouvelle version | %{count} nouvelles versions"
       },
       "recommended": {
         "title": "Les topos qui pourraient t'intéresser",
@@ -348,6 +350,10 @@
         "completYouAscent": "Complète ton carnet de croix pour que nous puissions te suggérer plus de topo",
         "thisPageFind": "Cette page trouve les topos qui pourraient t'intéresser",
         "connectYou": "Connecte toi !"
+      },
+      "newVersion": {
+        "title": "Des nouvelles versions sont disponibles",
+        "new_version_explain": "Une nouvelle version de <strong><u>%{old_name}</u></strong> est sortie en <strong><u>%{year}</u></strong>"
       },
       "tabs": {
         "info": "Infos",

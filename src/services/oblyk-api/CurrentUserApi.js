@@ -181,6 +181,17 @@ class CurrentUserApi extends BaseApi {
     })
   }
 
+  newGuideBooksVersion () {
+    return axios({
+      method: 'GET',
+      url: `${this.baseUrl}/current_users/new_guide_books_version.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
+    })
+  }
+
   photos (id = null, page = 1) {
     return axios({
       method: 'GET',

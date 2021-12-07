@@ -339,7 +339,9 @@
         "routesCount": "Number of routes",
         "routes": "routes",
         "missingBook": "One guide might interest you :) | %{count} guides might interest you :)",
-        "seeGuides": "See guides"
+        "seeGuides": "See guides",
+        "newGuides": "There are new versions!",
+        "seeNewGuides": "One new version | %{count} new versions"
       },
       "recommended": {
         "title": "The topos that might interest you",
@@ -348,6 +350,10 @@
         "completYouAscent": "Complete your log book so that we can suggest more books",
         "thisPageFind": "This page finds guide books that might interest you",
         "connectYou": "Connect you!"
+      },
+      "newVersion": {
+        "title": "New versions are available",
+        "new_version_explain": "A new version of <strong><u>%{old_name}</u></strong> was released in <strong><u>%{year}</u></strong>"
       },
       "tabs": {
         "info": "Info",

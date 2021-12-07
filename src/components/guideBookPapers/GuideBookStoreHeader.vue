@@ -57,11 +57,11 @@
         </div>
         <div
           class="col-6 col-md-4 col-lg-3"
-          v-if="guides.length > 0"
+          v-if="suggestGuides.length > 0"
         >
           <p class="mb-1 font-weight-bold">
             <v-icon small left>mdi-bookshelf</v-icon>
-            {{ $tc('components.guideBookPaper.figures.missingBook', guides.length, { count: guides.length }) }}
+            {{ $tc('components.guideBookPaper.figures.missingBook', suggestGuides.length, { count: suggestGuides.length }) }}
           </p>
           <div class="pl-7">
             <v-btn
@@ -70,6 +70,24 @@
               to="/guide-book-papers/recommended"
             >
               {{ $t('components.guideBookPaper.figures.seeGuides') }}
+            </v-btn>
+          </div>
+        </div>
+        <div
+          class="col-6 col-md-4 col-lg-3"
+          v-if="newGuides.length > 0"
+        >
+          <p class="mb-1 font-weight-bold">
+            <v-icon small left>mdi-bookshelf</v-icon>
+            {{ $t('components.guideBookPaper.figures.newGuides') }}
+          </p>
+          <div class="pl-7">
+            <v-btn
+              small
+              outlined
+              to="/guide-book-papers/new-versions"
+            >
+              {{ $tc('components.guideBookPaper.figures.seeNewGuides', newGuides.length, { count: newGuides.length }) }}
             </v-btn>
           </div>
         </div>
@@ -99,7 +117,6 @@
 
 <script>
 import CurrentUserApi from '@/services/oblyk-api/CurrentUserApi'
-import GuideBookPaper from '@/models/GuideBookPaper'
 import DescriptionLine from '@/components/ui/DescriptionLine'
 
 export default {
@@ -112,12 +129,14 @@ export default {
 
   data () {
     return {
-      guides: []
+      suggestGuides: [],
+      newGuides: []
     }
   },
 
   created () {
     this.getRecommendedGuides()
+    this.newGuidesVersion()
   },
 
   methods: {
@@ -125,9 +144,15 @@ export default {
       CurrentUserApi
         .ascentsWithoutGuides()
         .then(resp => {
-          for (const guide of resp.data) {
-            this.guides.push(new GuideBookPaper(guide))
-          }
+          this.suggestGuides = resp.data
+        })
+    },
+
+    newGuidesVersion: function () {
+      CurrentUserApi
+        .newGuideBooksVersion()
+        .then(resp => {
+          this.newGuides = resp.data
         })
     }
   }
