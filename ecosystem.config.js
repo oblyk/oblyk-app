@@ -1,9 +1,9 @@
 module.exports = {
   apps: [
     {
-      name: 'OblykNuxtApp',
+      name: 'OblykApp',
       exec_mode: 'cluster',
-      cwd: '/var/www/oblyk/nuxt-app/current',
+      cwd: '/var/www/oblyk/app/current',
       error_file: './log/app.err.log',
       out_file: './log/app.out.log',
       instances: 'max', // Or a number of instances
