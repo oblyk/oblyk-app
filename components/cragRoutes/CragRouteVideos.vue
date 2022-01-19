@@ -1,0 +1,104 @@
+<template>
+  <div>
+    <p>
+      <v-icon left>
+        mdi-video
+      </v-icon>
+      {{ $t('components.video.title') }}
+    </p>
+
+    <spinner v-if="loadingVideos" :full-height="false" />
+    <div v-if="!loadingVideos">
+      <v-row>
+        <v-col
+          v-for="video in videos"
+          :key="`video-${video.id}`"
+          class="col-12 col-md-6"
+          :class="lgCol"
+        >
+          <video-card
+            :video="video"
+            :get-videos="getVideos"
+          />
+        </v-col>
+      </v-row>
+      <client-only>
+        <p class="text-right">
+          <v-btn
+            v-if="isLoggedIn"
+            :to="`/a/videos/CragRoute/${cragRoute.id}/new?redirect_to=${$route.fullPath}`"
+            text
+            small
+            color="primary"
+          >
+            <v-icon small left>
+              mdi-video-plus
+            </v-icon>
+            {{ $t('actions.addVideo') }}
+          </v-btn>
+        </p>
+      </client-only>
+    </div>
+  </div>
+</template>
+
+<script>
+import Spinner from '@/components/layouts/Spiner'
+import { SessionConcern } from '@/concerns/SessionConcern'
+import CragRouteApi from '~/services/oblyk-api/CragRouteApi'
+import VideoCard from '@/components/videos/VideoCard'
+import Video from '@/models/Video'
+
+export default {
+  name: 'CragRouteVideos',
+  components: { VideoCard, Spinner },
+  mixins: [SessionConcern],
+  props: {
+    cragRoute: {
+      type: Object,
+      required: true
+    },
+    lgCol: {
+      type: String,
+      default: null
+    }
+  },
+
+  data () {
+    return {
+      loadingVideos: true,
+      videos: []
+    }
+  },
+
+  watch: {
+    cragRoute () {
+      this.getVideos()
+    }
+  },
+
+  mounted () {
+    this.getVideos()
+  },
+
+  methods: {
+    getVideos () {
+      this.loadingVideos = true
+      new CragRouteApi(this.$axios, this.$auth)
+        .videos(this.cragRoute.id)
+        .then((resp) => {
+          this.videos = []
+          for (const video of resp.data) {
+            this.videos.push(new Video({ attributes: video }))
+          }
+        })
+        .catch((err) => {
+          this.$root.$emit('alertFromApiError', err, 'cragRoute')
+        })
+        .finally(() => {
+          this.loadingVideos = false
+        })
+    }
+  }
+}
+</script>

@@ -1,0 +1,82 @@
+import BaseApi from '~/services/oblyk-api/BaseApi'
+
+class ConversationMessageApi extends BaseApi {
+  all (conversationId, olderThan = null) {
+    return this.axios.request({
+      method: 'GET',
+      url: `${this.baseUrl}/conversations/${conversationId}/conversation_messages.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
+      params: {
+        older_than: olderThan
+      }
+    })
+  }
+
+  lastMessages (conversationId, date) {
+    return this.axios.request({
+      url: `${this.baseUrl}/conversations/${conversationId}/conversation_messages/last_messages.json`,
+      method: 'GET',
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
+      params: {
+        posted_after_at: date
+      }
+    })
+  }
+
+  find (conversationId, messageId) {
+    return this.axios.request({
+      method: 'GET',
+      url: `${this.baseUrl}/conversations/${conversationId}/conversation_messages/${messageId}.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
+    })
+  }
+
+  create (data) {
+    return this.axios.request({
+      method: 'POST',
+      url: `${this.baseUrl}/conversations/${data.conversation_id}/conversation_messages.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
+      data: {
+        conversation_message: data
+      }
+    })
+  }
+
+  update (data) {
+    return this.axios.request({
+      method: 'PUT',
+      url: `${this.baseUrl}/conversations/${data.conversation_id}/conversation_messages/${data.id}.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
+      data: {
+        conversation_message: data
+      }
+    })
+  }
+
+  delete (conversationId, conversationMessageId) {
+    return this.axios.request({
+      method: 'DELETE',
+      url: `${this.baseUrl}/conversations/${conversationId}/conversation_messages/${conversationMessageId}.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
+    })
+  }
+}
+export default ConversationMessageApi
