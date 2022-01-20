@@ -3,7 +3,7 @@ module.exports = {
     {
       name: 'OblykApp',
       exec_mode: 'cluster',
-      cwd: '/var/www/oblyk/app/current',
+      cwd: '/absolut/path/to/project/root',
       error_file: './log/app.err.log',
       out_file: './log/app.out.log',
       instances: 'max', // Or a number of instances
