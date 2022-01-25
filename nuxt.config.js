@@ -21,7 +21,8 @@ export default {
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     '@/assets/variables.scss',
-    '@/assets/main.scss'
+    '@/assets/main.scss',
+    '@mdi/font/css/materialdesignicons.min.css'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -143,7 +144,9 @@ export default {
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
-    optionsPath: './vuetify.options.js'
+    optionsPath: './vuetify.options.js',
+    defaultAssets: false,
+    treeShake: true
   },
 
   // i18n module configuration: https://i18n.nuxtjs.org/
