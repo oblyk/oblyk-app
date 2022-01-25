@@ -15,7 +15,7 @@ export const CommentConcern = {
   methods: {
     getComment () {
       this.loadingComment = true
-      new Comment({ axios: this.$axios, store: this.$store })
+      new Comment({ axios: this.$axios, auth: this.$auth })
         ._find(this.$route.params.commentId)
         .then((resp) => {
           this.comment = resp

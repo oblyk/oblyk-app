@@ -77,7 +77,7 @@ export const CragSectorConcern = {
     if (this.$route.params.cragSectorId) {
       this.cragSector = await new CragSector({
         axios: this.$axios,
-        store: this.$store
+        auth: this.$auth
       })._find(
         this.$route.params.cragSectorId
       )

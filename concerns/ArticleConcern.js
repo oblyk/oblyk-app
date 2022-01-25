@@ -96,7 +96,7 @@ export const ArticleConcern = {
   async fetch () {
     this.article = await new Article({
       axios: this.$axios,
-      store: this.$store
+      auth: this.$auth
     })._find(
       this.$route.params.articleId
     )

@@ -15,7 +15,7 @@ export const LinkConcern = {
   methods: {
     getLink () {
       this.loadingLink = true
-      new Link({ axios: this.$axios, store: this.$store })
+      new Link({ axios: this.$axios, auth: this.$auth })
         ._find(this.$route.params.linkId)
         .then((resp) => {
           this.link = resp

@@ -10,7 +10,7 @@ export const GuideBookPdfConcern = {
   async fetch () {
     this.guideBookPdf = await new GuideBookPdf({
       axios: this.$axios,
-      store: this.$store
+      auth: this.$auth
     })._find(
       this.$route.params.guideBookPdfId
     )

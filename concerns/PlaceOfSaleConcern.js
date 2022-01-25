@@ -15,7 +15,7 @@ export const PlaceOfSaleConcern = {
   methods: {
     getPlaceOfSale () {
       this.loadingPlaceOfSale = true
-      new PlaceOfSale({ axios: this.$axios, store: this.$store })
+      new PlaceOfSale({ axios: this.$axios, auth: this.$auth })
         ._find(
           this.$route.params.guideBookPaperId,
           this.$route.params.placeOfSaleId

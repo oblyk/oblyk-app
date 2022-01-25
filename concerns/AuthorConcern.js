@@ -15,7 +15,7 @@ export const AuthorConcern = {
   methods: {
     getAuthor () {
       this.loadingAuthor = true
-      new Author({ axios: this.$axios, store: this.$store })
+      new Author({ axios: this.$axios, auth: this.$auth })
         ._find(this.$route.params.authorId)
         .then((resp) => {
           this.author = resp

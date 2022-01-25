@@ -15,7 +15,7 @@ export const VideoConcern = {
   methods: {
     getVideo () {
       this.loadingVideo = true
-      new Video({ axios: this.$axios, store: this.$store })
+      new Video({ axios: this.$axios, auth: this.$auth })
         ._find(this.$route.params.videoId)
         .then((resp) => {
           this.video = resp

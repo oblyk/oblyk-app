@@ -214,7 +214,7 @@ export default {
 
     reloadGymSpaceData () {
       this.reloadingData = true
-      new GymSpace({ axios: this.$axios, store: this.$store })
+      new GymSpace({ axios: this.$axios, auth: this.$auth })
         .find(
           this.gymSpaceData.gym.id,
           this.gymSpaceData.id

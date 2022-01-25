@@ -15,7 +15,7 @@ export const AlertConcern = {
   methods: {
     getAlert () {
       this.loadingAlert = true
-      new Alert({ axios: this.$axios, store: this.$store })
+      new Alert({ axios: this.$axios, auth: this.$auth })
         ._find(this.$route.params.alertId)
         .then((resp) => {
           this.alert = resp

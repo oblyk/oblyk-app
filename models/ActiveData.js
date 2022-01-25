@@ -1,7 +1,7 @@
 export default class ActiveData {
-  constructor ({ axios, store, attributes = {} }) {
+  constructor ({ axios, auth, attributes = {} }) {
     this.axios = axios
-    this.store = store
+    this.auth = auth
     if (attributes) {
       this._buildData(attributes)
     }
@@ -29,7 +29,7 @@ export default class ActiveData {
 
   _apiFind (Api, id = null, secondId = null, thirdId = null) {
     return new Promise((resolve, reject) => {
-      new Api(this.axios, this.store)
+      new Api(this.axios, this.auth)
         .find(id, secondId, thirdId)
         .then((resp) => {
           this._buildData(resp.data)

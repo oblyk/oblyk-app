@@ -10,7 +10,7 @@ export const GuideBookWebConcern = {
   async fetch () {
     this.guideBookWeb = await new GuideBookWeb({
       axios: this.$axios,
-      store: this.$store
+      auth: this.$auth
     })._find(
       this.$route.params.guideBookWebId
     )

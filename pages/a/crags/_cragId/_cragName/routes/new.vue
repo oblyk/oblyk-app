@@ -34,7 +34,7 @@ export default {
   async fetch () {
     this.crag = await new Crag({
       axios: this.$axios,
-      store: this.$store
+      auth: this.$auth
     })._find(
       this.$route.params.cragId
     )
@@ -42,7 +42,7 @@ export default {
     if (this.$route.params.cragSectorId) {
       this.cragSector = await new CragSector({
         axios: this.$axios,
-        store: this.$store
+        auth: this.$auth
       })._find(
         this.$route.params.cragSectorId
       )

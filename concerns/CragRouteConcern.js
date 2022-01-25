@@ -10,7 +10,7 @@ export const CragRouteConcern = {
   async fetch () {
     this.cragRoute = await new CragRoute({
       axios: this.$axios,
-      store: this.$store
+      auth: this.$auth
     })._find(
       this.$route.params.cragId,
       this.$route.params.cragRouteId

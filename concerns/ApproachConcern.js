@@ -10,7 +10,7 @@ export const ApproachConcern = {
   async fetch () {
     this.approach = await new Approach({
       axios: this.$axios,
-      store: this.$store
+      auth: this.$auth
     })._find(
       this.$route.params.cragId,
       this.$route.params.approachId

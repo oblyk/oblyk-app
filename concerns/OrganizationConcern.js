@@ -31,7 +31,7 @@ export const OrganizationConcern = {
   async fetch () {
     this.organization = await new Organization({
       axios: this.$axios,
-      store: this.$store
+      auth: this.$auth
     })._find(
       this.$route.params.organizationId
     )

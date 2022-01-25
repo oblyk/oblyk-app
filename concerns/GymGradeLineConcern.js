@@ -21,7 +21,7 @@ export const GymGradeLineConcern = {
   methods: {
     getGymGradeLine () {
       this.loadingGymGradeLine = true
-      new GymGradeLine({ axios: this.$axios, store: this.$store })
+      new GymGradeLine({ axios: this.$axios, auth: this.$auth })
         ._find(
           this.$route.params.gymId,
           this.$route.params.gymGradeId,

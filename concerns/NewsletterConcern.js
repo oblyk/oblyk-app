@@ -10,7 +10,7 @@ export const NewsletterConcern = {
   async fetch () {
     this.newsletter = await new Newsletter({
       axios: this.$axios,
-      store: this.$store
+      auth: this.$auth
     })._find(
       this.$route.params.newsletterId
     )

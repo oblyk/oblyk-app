@@ -10,7 +10,7 @@ export const ParkConcern = {
   async fetch () {
     this.park = await new Park({
       axios: this.$axios,
-      store: this.$store
+      auth: this.$auth
     })._find(
       this.$route.params.cragId,
       this.$route.params.parkId

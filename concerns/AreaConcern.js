@@ -68,7 +68,7 @@ export const AreaConcern = {
   async fetch () {
     this.area = await new Area({
       axios: this.$axios,
-      store: this.$store
+      auth: this.$auth
     })._find(
       this.$route.params.areaId
     )

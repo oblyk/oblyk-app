@@ -10,7 +10,7 @@ export const PhotoConcern = {
   async fetch () {
     this.photo = await new Photo({
       axios: this.$axios,
-      store: this.$store
+      auth: this.$auth
     })._find(
       this.$route.params.photoId
     )

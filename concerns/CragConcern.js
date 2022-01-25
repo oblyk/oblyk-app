@@ -45,7 +45,7 @@ export const CragConcern = {
   async fetch () {
     this.crag = await new Crag({
       axios: this.$axios,
-      store: this.$store
+      auth: this.$auth
     })._find(
       this.$route.params.cragId
     )

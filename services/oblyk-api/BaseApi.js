@@ -15,14 +15,9 @@ export default class BaseApi {
     return this.auth.user.uuid
   }
 
-  authRefreshToken () {
-    // TODO : delete this
-    return false
-  }
-
   authToken () {
     if (this.auth.loggedIn) {
-      return this.auth.$storage.getUniversal('token')
+      return this.auth.$storage.getUniversal('_token.local')
     } else {
       return null
     }

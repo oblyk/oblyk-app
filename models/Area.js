@@ -19,7 +19,7 @@ export default class Area extends ActiveData {
   }
 
   get coverUrl () {
-    if (this.photo.url) {
+    if ((this.photo || {}).url) {
       return `${process.env.VUE_APP_OBLYK_API_URL}${this.photo.url}`
     } else {
       return '/images/default-crag-banner.jpg'
@@ -27,7 +27,7 @@ export default class Area extends ActiveData {
   }
 
   get thumbnailCoverUrl () {
-    if (this.photo.thumbnail_url) {
+    if ((this.photo || {}).thumbnail_url) {
       return `${process.env.VUE_APP_OBLYK_API_URL}${this.photo.thumbnail_url}`
     } else {
       return '/images/default-crag-banner.jpg'

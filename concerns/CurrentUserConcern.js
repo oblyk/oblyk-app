@@ -20,15 +20,6 @@ export const CurrentUserConcern = {
       this.loadingCurrentUser = true
       this.currentUser = new User({ attributes: this.$auth.user })
       this.loadingCurrentUser = false
-      // this.getLoggedInUser()
-      //   .then((user) => {
-      //     this.currentUser = user
-      //   })
-      //   .catch((err) => {
-      //     this.$root.$emit('alertFromApiError', err, 'user')
-      //   }).finally(() => {
-      //     this.loadingCurrentUser = false
-      //   })
     }
   }
 }

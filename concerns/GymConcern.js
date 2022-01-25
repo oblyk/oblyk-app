@@ -52,7 +52,7 @@ export const GymConcern = {
   async fetch () {
     this.gym = await new Gym({
       axios: this.$axios,
-      store: this.$store
+      auth: this.$auth
     })._find(
       this.$route.params.gymId
     )

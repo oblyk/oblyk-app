@@ -10,7 +10,7 @@ export const AscentCragRouteConcern = {
   async fetch () {
     this.ascentCragRoute = await new AscentCragRoute({
       axios: this.$axios,
-      store: this.$store
+      auth: this.$auth
     })._find(
       this.$route.params.ascentCragRouteId
     )

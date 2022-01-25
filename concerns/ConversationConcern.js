@@ -15,7 +15,7 @@ export const ConversationConcern = {
   methods: {
     getConversation () {
       this.loadingConversation = true
-      new Conversation({ axios: this.$axios, store: this.$store })
+      new Conversation({ axios: this.$axios, auth: this.$auth })
         ._find(this.$route.params.conversationId)
         .then((resp) => {
           this.conversation = resp

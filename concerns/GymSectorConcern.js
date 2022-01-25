@@ -25,7 +25,7 @@ export const GymSectorConcern = {
   methods: {
     getGymSector (gymId, gymSpaceId, gymSectorId) {
       this.loadingGymSector = true
-      new GymSector({ axios: this.$axios, store: this.$store })
+      new GymSector({ axios: this.$axios, auth: this.$auth })
         ._find(
           gymId,
           gymSpaceId,

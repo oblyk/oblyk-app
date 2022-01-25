@@ -173,7 +173,7 @@ export default {
   methods: {
     getRoute () {
       this.loadingRoute = true
-      new GymRoute({ axios: this.$axios, store: this.$store })
+      new GymRoute({ axios: this.$axios, auth: this.$auth })
         ._find(
           this.gymRouteProp.gym.id,
           this.gymRouteProp.gym_space.id,

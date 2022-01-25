@@ -44,7 +44,7 @@ export const UserConcern = {
   async fetch () {
     this.user = await new User({
       axios: this.$axios,
-      store: this.$store
+      auth: this.$auth
     })._find(
       this.$route.params.userUuid
     )

@@ -22,7 +22,7 @@ export const WordConcern = {
   async fetch () {
     this.word = await new Word({
       axios: this.$axios,
-      store: this.$store
+      auth: this.$auth
     })._find(
       this.$route.params.wordId
     )
