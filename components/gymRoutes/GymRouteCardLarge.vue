@@ -142,10 +142,10 @@ import { SessionConcern } from '@/concerns/SessionConcern'
 import { DateHelpers } from '@/mixins/DateHelpers'
 import GymRouteTags from '@/components/gymRoutes/partial/GymRouteTags'
 import GymRouteAscent from '@/components/gymRoutes/GymRouteAscent'
-import MarkdownText from '@/components/ui/MarkdownText'
 import Note from '@/components/notes/Note'
 import GymRouteApi from '~/services/oblyk-api/GymRouteApi'
 import AscentGymRoute from '@/models/AscentGymRoute'
+const MarkdownText = () => import('@/components/ui/MarkdownText')
 
 export default {
   name: 'GymRouteCardLarge',

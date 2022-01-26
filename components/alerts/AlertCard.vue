@@ -30,9 +30,9 @@
 </template>
 
 <script>
-import MarkdownText from '@/components/ui/MarkdownText'
 import { SessionConcern } from '@/concerns/SessionConcern'
 import AlertApi from '~/services/oblyk-api/AlertApi'
+const MarkdownText = () => import('@/components/ui/MarkdownText')
 
 export default {
   name: 'AlertCard',

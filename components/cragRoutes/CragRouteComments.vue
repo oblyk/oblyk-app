@@ -81,7 +81,7 @@ import Comment from '@/models/Comment'
 import CommentCard from '@/components/comments/CommentCard'
 import Note from '@/components/notes/Note'
 import { DateHelpers } from '@/mixins/DateHelpers'
-import MarkdownText from '@/components/ui/MarkdownText'
+const MarkdownText = () => import('@/components/ui/MarkdownText')
 
 export default {
   name: 'CragRouteComments',

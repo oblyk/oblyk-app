@@ -1,8 +1,10 @@
 <template>
-  <div class="oblyk-markdown-text-area" v-html="markedText" />
+  <div class="oblyk-markdown-text-area" v-html="markedText()" />
 </template>
 
 <script>
+import { marked } from 'marked'
+
 export default {
   name: 'MarkdownText',
   props: {
@@ -12,9 +14,9 @@ export default {
     }
   },
 
-  computed: {
+  methods: {
     markedText () {
-      return this.$md.render(this.text)
+      return marked.parse(this.text, { breaks: true })
     }
   }
 }

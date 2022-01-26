@@ -36,9 +36,9 @@
 </template>
 
 <script>
-import MarkdownText from '@/components/ui/MarkdownText'
 import { SessionConcern } from '@/concerns/SessionConcern'
 import { DateHelpers } from '@/mixins/DateHelpers'
+const MarkdownText = () => import('@/components/ui/MarkdownText')
 
 export default {
   name: 'ConversationMessageItemList',

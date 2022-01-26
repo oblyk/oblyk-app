@@ -35,8 +35,8 @@
 </template>
 
 <script>
-import MarkdownText from '@/components/ui/MarkdownText'
 import ClimbersAround from '@/components/partners/ClimbersAround'
+const MarkdownText = () => import('@/components/ui/MarkdownText')
 
 export default {
   name: 'GymDescription',

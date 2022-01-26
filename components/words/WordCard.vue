@@ -42,7 +42,7 @@
 <script>
 import { SessionConcern } from '@/concerns/SessionConcern'
 import ContributionsLabel from '@/components/globals/ContributionsLable'
-import MarkdownText from '@/components/ui/MarkdownText'
+const MarkdownText = () => import('@/components/ui/MarkdownText')
 
 export default {
   name: 'WordCard',

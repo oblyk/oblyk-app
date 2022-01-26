@@ -161,12 +161,12 @@ import Note from '@/components/notes/Note'
 import NoteClass from '@/models/Note'
 import AscentCragRouteApi from '~/services/oblyk-api/AscentCragRouteApi'
 import EditCragAscentBtn from '@/components/ascentCragRoutes/EditCragAscentBtn'
-import MarkdownText from '@/components/ui/MarkdownText'
 import CurrentUserApi from '~/services/oblyk-api/CurrentUserApi'
 import UserSmallCard from '@/components/users/UserSmallCard'
 import User from '@/models/User'
 import Spinner from '@/components/layouts/Spiner'
 import { CragRouteHelpers } from '~/mixins/CragRouteHelpers'
+const MarkdownText = () => import('@/components/ui/MarkdownText')
 
 export default {
   name: 'AscentCragRouteSmallCard',

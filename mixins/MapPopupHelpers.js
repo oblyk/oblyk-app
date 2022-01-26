@@ -251,7 +251,7 @@ export const MapPopupHelpers = {
         </div>
         <table class="map-popup-information-table">
           <tr>
-            <td colspan="2" class="map-popup-information-bio">${this.$md.render(user.description || '')}</td>
+            <td colspan="2" class="map-popup-information-bio">${user.description}</td>
           </tr>
           <tr>
             <th>${this.$t('common.practice')}</th>

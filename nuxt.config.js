@@ -59,9 +59,7 @@ export default {
     // https://auth.nuxtjs.org/
     '@nuxtjs/auth-next',
     // https://go.nuxtjs.dev/pwa
-    '@nuxtjs/pwa',
-    // https://github.com/nuxt-community/markdownit-module
-    '@nuxtjs/markdownit'
+    '@nuxtjs/pwa'
   ],
 
   // https://auth.nuxtjs.org/

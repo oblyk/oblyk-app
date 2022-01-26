@@ -50,8 +50,9 @@
 </template>
 
 <script>
-import MarkdownText from '@/components/ui/MarkdownText'
 import { SessionConcern } from '@/concerns/SessionConcern'
+const MarkdownText = () => import('@/components/ui/MarkdownText')
+
 export default {
   name: 'AboutAuthorCard',
   components: { MarkdownText },

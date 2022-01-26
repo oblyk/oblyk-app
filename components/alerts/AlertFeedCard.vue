@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import MarkdownText from '@/components/ui/MarkdownText'
+const MarkdownText = () => import('@/components/ui/MarkdownText')
 
 export default {
   name: 'AlertFeedCard',

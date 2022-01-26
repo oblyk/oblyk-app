@@ -44,7 +44,7 @@ import GymSpaceActionMenu from '@/components/gymSpaces/GymSpaceActionMenu'
 import GymSpaceRouteList from '@/components/gymRoutes/GymSpaceRouteList'
 import GymSectorEditingPlan from '@/components/gymSectors/GymSectorEditingPlan'
 import { SessionConcern } from '@/concerns/SessionConcern'
-import MarkdownText from '@/components/ui/MarkdownText'
+const MarkdownText = () => import('@/components/ui/MarkdownText')
 
 export default {
   name: 'GymSpaceRoute',

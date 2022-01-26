@@ -91,7 +91,7 @@
 
 <script>
 import { SessionConcern } from '@/concerns/SessionConcern'
-import MarkdownText from '@/components/ui/MarkdownText'
+const MarkdownText = () => import('@/components/ui/MarkdownText')
 const ApproachElevationChart = () => import('@/components/approaches/ApproachElevationChart')
 
 export default {

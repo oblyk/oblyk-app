@@ -30,9 +30,9 @@
 
 <script>
 import { DateHelpers } from '@/mixins/DateHelpers'
-import MarkdownText from '@/components/ui/MarkdownText'
 import StartConversationBtn from '@/components/messengers/forms/StartConversationBtn'
 import { SessionConcern } from '@/concerns/SessionConcern'
+const MarkdownText = () => import('@/components/ui/MarkdownText')
 
 export default {
   name: 'UserBio',
