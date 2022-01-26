@@ -128,7 +128,7 @@ export default {
     },
     cragSectorMetaUrl () {
       if (this.cragSector) {
-        return `${process.env.VUE_APP_OBLYK_APP_URL}${this.cragSector.path('photos')}`
+        return `${process.env.VUE_APP_OBLYK_APP_URL}${this.cragSector.path}/photos`
       }
       return ''
     }

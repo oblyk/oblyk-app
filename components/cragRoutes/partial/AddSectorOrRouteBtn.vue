@@ -9,13 +9,14 @@
           :to="`/a${crag.path}/sectors/new`"
           v-bind="attrs"
           color="primary"
-          fab
+          text
           small
           v-on="on"
         >
-          <v-icon small>
+          <v-icon small class="mr-1">
             mdi-shape-square-plus
           </v-icon>
+          {{ $t('actions.newSector') }}
         </v-btn>
       </template>
       <span>
@@ -28,14 +29,17 @@
           :to="newRoutePath()"
           v-bind="attrs"
           color="primary"
-          fab
           small
+          text
           class="ml-3"
           v-on="on"
         >
-          <v-icon small>
+          <v-icon small class="mr-1">
             mdi-source-branch-plus
           </v-icon>
+          <span>
+            {{ $t('actions.newRoute') }}
+          </span>
         </v-btn>
       </template>
       <span>
@@ -62,7 +66,7 @@ export default {
   methods: {
     newRoutePath () {
       if (this.cragSector) {
-        return `/a${this.cragSector.path}/routes/new`
+        return `/a${this.cragSector.Crag.path}/routes/new`
       } else {
         return `/a${this.crag.path}/routes/new`
       }

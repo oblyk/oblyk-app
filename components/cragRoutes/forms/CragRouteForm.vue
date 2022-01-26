@@ -1,6 +1,8 @@
 <template>
   <v-form @submit.prevent="submit()">
-    <small @click="data.name = ''" v-html="$t('components.cragRoute.tips')" />
+    <div class="mb-2">
+      <small @click="data.name = ''" v-html="$t('components.cragRoute.tips')" />
+    </div>
     <v-row>
       <v-col class="pb-0">
         <v-select

@@ -208,7 +208,6 @@ export default {
 
 <style lang="scss" scoped>
 .add-sector-or-route {
-  max-width: 120px;
   text-align: right;
 }
 </style>

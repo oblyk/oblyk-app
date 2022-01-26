@@ -1,13 +1,13 @@
 <template>
   <client-only>
     <leaflet-map
-      v-if="crag"
+      v-if="cragSector"
       class="crag-sector-map"
       :track-location="false"
       :geo-jsons="geoJsons"
       :zoom-force="16"
-      :latitude-force="parseFloat(cragSector.latitude || crag.latitude)"
-      :longitude-force="parseFloat(cragSector.longitude || crag.longitude)"
+      :latitude-force="parseFloat(cragSector.latitude || cragSector.Crag.latitude)"
+      :longitude-force="parseFloat(cragSector.longitude || cragSector.Crag.longitude)"
       :scroll-wheel-zoom="false"
       map-style="outdoor"
     />
@@ -15,14 +15,12 @@
 </template>
 
 <script>
-import { CragConcern } from '~/concerns/CragConcern'
 import CragApi from '~/services/oblyk-api/CragApi'
 const LeafletMap = () => import('@/components/maps/LeafletMap')
 
 export default {
   name: 'CragSectorMapView',
   components: { LeafletMap },
-  mixins: [CragConcern],
   props: {
     cragSector: {
       type: Object,
@@ -107,7 +105,7 @@ export default {
   methods: {
     getGeoJson () {
       new CragApi(this.$axios, this.$auth)
-        .geoJsonAround(this.crag.id)
+        .geoJsonAround(this.cragSector.Crag.id)
         .then((resp) => {
           this.geoJsons = { features: resp.data.features }
         })
