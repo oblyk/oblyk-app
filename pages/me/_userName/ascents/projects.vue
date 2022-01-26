@@ -75,7 +75,7 @@ export default {
         .then((resp) => {
           const routes = []
           for (const route of resp.data) {
-            routes.push(new CragRoute(route))
+            routes.push(new CragRoute({ attributes: route }))
           }
           this.projects = routes
         })
