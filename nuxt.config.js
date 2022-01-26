@@ -36,7 +36,7 @@ export default {
   components: false,
 
   // https://nuxtjs.org/docs/configuration-glossary/configuration-modern/
-  modern: true,
+  modern: process.env.VUE_APP_BUILD_MODERN === 'true',
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
