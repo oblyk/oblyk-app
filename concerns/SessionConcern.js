@@ -45,7 +45,7 @@ export const SessionConcern = {
 
     getToken () {
       if (this.$auth.loggedIn) {
-        return this.$auth.user.token
+        return this.$auth.$storage.getUniversal('_token.local')
       } else {
         return []
       }
