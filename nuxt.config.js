@@ -72,12 +72,12 @@ export default {
         token: {
           property: 'token',
           global: false,
-          maxAge: 60 * 60 * 24 * 30
+          maxAge: 1800
         },
         refreshToken: {
           property: 'refresh_token',
           data: 'refresh_token',
-          maxAge: 60 * 60 * 24 * 30
+          maxAge: 24 * 3600
         },
         user: {
           property: false
