@@ -1,5 +1,5 @@
 <template>
-  <div v-if="isLoggedIn && !load && organizations.length > 0">
+  <div v-if="isLoggedIn && organizations.length > 0">
     <v-subheader>
       {{ $t('components.layout.appDrawer.subHeaders.myOrganizations') }}
     </v-subheader>
@@ -27,55 +27,19 @@
 
 <script>
 import { SessionConcern } from '@/concerns/SessionConcern'
-import CurrentUserApi from '~/services/oblyk-api/CurrentUserApi'
-import User from '@/models/User'
 import Organization from '@/models/Organization'
 
 export default {
   name: 'MyOrganizations',
   mixins: [SessionConcern],
 
-  data () {
-    return {
-      user: null,
-      load: true,
-      organizations: []
-    }
-  },
-
-  watch: {
-    isLoggedIn () {
-      if (this.isLoggedIn) { this.getOrganizations() }
-    }
-  },
-
-  created () {
-    if (this.isLoggedIn) { this.getOrganizations() }
-  },
-
-  mounted () {
-    this.$root.$on('reloadMyOrganizations', () => {
-      this.getOrganizations()
-    })
-  },
-
-  beforeDestroy () {
-    this.$root.$off('reloadMyOrganizations')
-  },
-
-  methods: {
-    getOrganizations () {
-      this.organizations = []
-      new CurrentUserApi(this.$axios, this.$auth)
-        .current()
-        .then((resp) => {
-          this.user = new User({ attributes: resp.data })
-          for (const organization of this.user.organizations) {
-            this.organizations.push(new Organization({ attributes: organization }))
-          }
-        }).then(() => {
-          this.load = false
-        })
+  computed: {
+    organizations () {
+      const organizations = []
+      for (const organization of this.myOrganizations) {
+        organizations.push(new Organization({ attributes: organization }))
+      }
+      return organizations
     }
   }
 }

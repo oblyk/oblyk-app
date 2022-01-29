@@ -121,7 +121,7 @@ export default {
         .then((resp) => {
           const organization = new Organization({ attributes: resp.data })
           this.$router.push(organization.path)
-          this.$root.$emit('reloadMyOrganizations')
+          this.$auth.fetchUser()
         })
         .catch((err) => {
           this.$root.$emit('alertFromApiError', err, 'organization')

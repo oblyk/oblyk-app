@@ -35,6 +35,14 @@ export const SessionConcern = {
       }
     },
 
+    myOrganizations () {
+      if (this.$auth.loggedIn) {
+        return this.$auth.user.organizations
+      } else {
+        return []
+      }
+    },
+
     mySubscribes () {
       if (this.$auth.loggedIn) {
         return this.$auth.user.subscribes

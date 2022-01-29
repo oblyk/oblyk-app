@@ -219,7 +219,7 @@ export default {
         new OrganizationApi(this.$axios, this.$auth)
           .delete(this.organization.id)
           .then(() => {
-            this.$root.$emit('reloadMyOrganizations')
+            this.$auth.fetchUser()
             this.$router.push('/')
           })
       }

@@ -1,5 +1,5 @@
 <template>
-  <div v-if="isLoggedIn && !load && gyms().length > 0">
+  <div v-if="isLoggedIn && gyms.length > 0">
     <v-subheader>
       {{ $t('components.layout.appDrawer.subHeaders.myGyms') }}
     </v-subheader>
@@ -9,7 +9,7 @@
       dense
     >
       <v-list-item
-        v-for="gym in gyms()"
+        v-for="gym in gyms"
         :key="gym.id"
         :to="gym.adminPath"
         link
@@ -34,45 +34,16 @@
 
 <script>
 import { SessionConcern } from '@/concerns/SessionConcern'
-import CurrentUserApi from '~/services/oblyk-api/CurrentUserApi'
-import User from '@/models/User'
 import Gym from '@/models/Gym'
 
 export default {
   name: 'MyGyms',
   mixins: [SessionConcern],
 
-  data () {
-    return {
-      user: null,
-      load: true
-    }
-  },
-
-  watch: {
-    isLoggedIn () {
-      if (this.isLoggedIn) { this.getCurrentUser() }
-    }
-  },
-
-  created () {
-    if (this.isLoggedIn) { this.getCurrentUser() }
-  },
-
-  methods: {
-    getCurrentUser () {
-      new CurrentUserApi(this.$axios, this.$auth)
-        .current()
-        .then((resp) => {
-          this.user = new User({ attributes: resp.data })
-        }).then(() => {
-          this.load = false
-        })
-    },
-
+  computed: {
     gyms () {
       const gymList = []
-      for (const gym of this.user.administered_gyms) {
+      for (const gym of this.administeredGyms) {
         gymList.push(new Gym({ attributes: gym }))
       }
       return gymList
