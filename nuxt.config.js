@@ -28,7 +28,6 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    { src: '@/plugins/axios' },
     { src: '@/plugins/actioncable-vue', ssr: false },
     { src: '~/plugins/persisted-state.client.js', srr: false }
   ],
@@ -71,12 +70,12 @@ export default {
         token: {
           property: 'token',
           global: false,
-          maxAge: 1800
+          maxAge: 24 * 3600 // one day
         },
         refreshToken: {
           property: 'refresh_token',
           data: 'refresh_token',
-          maxAge: 24 * 3600
+          maxAge: 24 * 3600 * 90 // 3 months
         },
         user: {
           property: false
@@ -110,7 +109,8 @@ export default {
       logout: '/',
       callback: '/sign-in',
       home: false
-    }
+    },
+    plugins: [{ src: '~/plugins/axios', ssr: true }]
   },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
