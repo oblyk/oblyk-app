@@ -1,18 +1,7 @@
 <template>
   <div>
     <v-container class="common-page-container">
-      <p
-        v-if="!showForm"
-        class="mt-16 text-center"
-      >
-        <v-img src="/svg/logo-black.svg" class="mb-2" />
-        chargement...
-      </p>
-
-      <v-row
-        v-else
-        justify="center"
-      >
+      <v-row justify="center">
         <v-col class="global-form-width" align-self="center">
           <div v-if="!isLoggedIn">
             <h2 class="mb-4">
@@ -54,6 +43,13 @@ export default {
   components: { AppFooter, SignInForm },
   mixins: [SessionConcern],
 
+  data () {
+    return {
+      redirectTo: null,
+      alert: true
+    }
+  },
+
   head () {
     return {
       title: this.$t('meta.session.signInTitle'),
@@ -63,14 +59,6 @@ export default {
         { hid: 'og:description', property: 'og:description', content: this.$t('meta.session.signInDescription') },
         { hid: 'og:url', property: 'og:url', content: `${process.env.VUE_APP_OBLYK_APP_URL}/sign-in` }
       ]
-    }
-  },
-
-  data () {
-    return {
-      showForm: false,
-      redirectTo: null,
-      alert: true
     }
   },
 
@@ -85,8 +73,6 @@ export default {
 
     if (this.$auth.loggedIn && this.redirectTo !== '') {
       this.$router.push(this.redirectTo)
-    } else {
-      this.showForm = true
     }
   }
 }
