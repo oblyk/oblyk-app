@@ -12,7 +12,7 @@
         v-if="!itsMyMessage()"
         class="font-weight-bold"
       >
-        {{ conversationMessage.user.first_name }}
+        {{ conversationMessage.creator.first_name }}
       </small>
       <small
         v-if="itsMyMessage()"
@@ -58,11 +58,11 @@ export default {
   methods: {
     displayHead () {
       if (this.previousMessage === null) { return true }
-      return this.previousMessage.user.uuid !== this.conversationMessage.user.uuid
+      return this.previousMessage.creator.uuid !== this.conversationMessage.creator.uuid
     },
 
     itsMyMessage () {
-      return this.loggedInUser.uuid === this.conversationMessage.user.uuid
+      return this.$auth.user.uuid === this.conversationMessage.creator.uuid
     }
   }
 }
