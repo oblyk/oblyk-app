@@ -23,7 +23,10 @@ export default {
   name: 'StartConversationBtn',
   mixins: [SessionConcern],
   props: {
-    user: Object
+    user: {
+      type: Object,
+      required: true
+    }
   },
 
   data () {
@@ -51,7 +54,7 @@ export default {
         .create(data)
         .then((resp) => {
           this.$router.push(
-            `${this.loggedInUserUserPath}/messenger/${resp.data.id}`
+            `/me/${this.$auth.user.slug_name}/messenger/${resp.data.id}`
           )
         })
         .catch((err) => {
