@@ -54,7 +54,7 @@
             class="d-block"
             :to="`/report-problem?redirect_to=${$route.fullPath}`"
           >
-            <v-icon small left>
+            <v-icon small left dark>
               mdi-flag
             </v-icon>
             {{ $t('components.layout.footer.reportProblem') }}
@@ -69,19 +69,19 @@
             {{ $t('components.layout.footer.followUs') }}
           </p>
           <a class="d-block" href="https://www.facebook.com/pageoblyk/">
-            <v-icon small left>
+            <v-icon small left dark>
               mdi-facebook
             </v-icon>
             {{ $t('components.layout.footer.facebook') }}
           </a>
           <a class="d-block" href="https://github.com/oblyk">
-            <v-icon small left>
+            <v-icon small left dark>
               mdi-github
             </v-icon>
             {{ $t('components.layout.footer.github') }}
           </a>
           <nuxt-link to="/newsletters/subscribe">
-            <v-icon small left>
+            <v-icon small left dark>
               mdi-email
             </v-icon>
             {{ $t('components.layout.footer.newsletter') }}
@@ -92,7 +92,7 @@
       <v-row class="font-weight-light">
         <v-col>
           <nuxt-link to="/">
-            <v-icon small left>
+            <v-icon small left dark>
               mdi-copyright
             </v-icon>
             {{ new Date().getFullYear() }} — Oblyk
