@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-container>
-      <v-row>
+      <v-row class="mt-2">
         <v-col
           class="col-12 d-flex flex-column"
           :class="user.partner_search ? 'col-md-6' : ''"
