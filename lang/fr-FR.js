@@ -1003,6 +1003,7 @@ export default {
       articleUpdate: "L'article à été mis à jour",
       writtenBy: 'Rédigé par %{name}',
       readXTimes: 'Lu %{count} fois | Lu %{count} fois',
+      comments: 'Un commentaire | %{count} commentaires',
       aboutAuthor: "À propos de l'auteur",
       seeAllArticles: 'Toutes les actualités',
       helpers: {

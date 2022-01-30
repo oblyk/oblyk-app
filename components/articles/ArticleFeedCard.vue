@@ -1,5 +1,5 @@
 <template>
-  <v-row>
+  <v-row class="pt-2">
     <v-col class="col-12 col-md-3">
       <v-img
         height="140"
@@ -36,11 +36,15 @@
 
 <script>
 import ArticleFooter from '@/components/articles/layouts/ArticleFooter'
+
 export default {
   name: 'ArticleFeedCard',
   components: { ArticleFooter },
   props: {
-    article: Object,
+    article: {
+      type: Object,
+      required: true
+    },
     showFooter: {
       type: Boolean,
       default: true

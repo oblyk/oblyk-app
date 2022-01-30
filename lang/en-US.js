@@ -1003,6 +1003,7 @@ export default {
       articleUpdate: 'Article is updated',
       writtenBy: 'Written by %{name}',
       readXTimes: 'Read %{count} time | Read %{count} times',
+      comments: 'One comment | %{count} comments',
       aboutAuthor: 'About the author',
       seeAllArticles: 'See all actualities',
       helpers: {
