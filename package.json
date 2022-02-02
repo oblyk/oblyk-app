@@ -26,6 +26,7 @@
     "marked": "^4.0.10",
     "npm2": "^2.0.0",
     "nuxt": "^2.15.7",
+    "nuxt-matomo": "^1.2.4",
     "vue-chartjs": "^3.5.1",
     "vue-cropper": "^0.5.8",
     "vue2-leaflet": "^2.7.1",

@@ -59,7 +59,12 @@ export default {
     // https://auth.nuxtjs.org/
     '@nuxtjs/auth-next',
     // https://go.nuxtjs.dev/pwa
-    '@nuxtjs/pwa'
+    '@nuxtjs/pwa',
+    // https://github.com/pimlie/nuxt-matomo
+    ['nuxt-matomo', {
+      matomoUrl: process.env.VUE_APP_MATOMO_URL,
+      siteId: process.env.VUE_APP_MATOMO_SITE_ID
+    }]
   ],
 
   // https://auth.nuxtjs.org/
