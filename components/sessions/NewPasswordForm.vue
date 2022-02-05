@@ -21,6 +21,7 @@
       :type="showPassword ? 'text' : 'password'"
       required
       :append-icon="showPassword ? 'mdi-eye-off' : 'mdi-eye'"
+      class="required-field"
       @click:append="showPassword = !showPassword"
     />
 
@@ -31,8 +32,11 @@
       :type="showPasswordConfirmation ? 'text' : 'password'"
       required
       :append-icon="showPasswordConfirmation ? 'mdi-eye-off' : 'mdi-eye'"
+      class="required-field"
       @click:append="showPasswordConfirmation = !showPasswordConfirmation"
     />
+
+    <required-explained class="mt-4" />
 
     <submit-form
       submit-local-key="actions.changeMyPassword"
@@ -44,10 +48,11 @@
 <script>
 import SubmitForm from '@/components/forms/SubmitForm'
 import SessionApi from '~/services/oblyk-api/SessionApi'
+import RequiredExplained from '~/components/forms/RequiredExplained'
 
 export default {
   name: 'NewPasswordForm',
-  components: { SubmitForm },
+  components: { RequiredExplained, SubmitForm },
 
   data () {
     return {

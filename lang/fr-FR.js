@@ -134,6 +134,7 @@ export default {
     sentAt: 'envoyé le %{date}'
   },
   common: {
+    requiredFields: 'champs obligatoires',
     noInformation: 'Non renseigné',
     informations: 'Informations',
     moreInformation: "Plus d'information",
@@ -160,7 +161,6 @@ export default {
     example: 'exemple',
     me: 'Moi',
     posted: 'Posté',
-    requiredFields: '* Champs obligatoire',
     pages: {
       cookies: 'Oblyk utilise des cookies uniquement à des fins de fonctionnement.',
       about: {

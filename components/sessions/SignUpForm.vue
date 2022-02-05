@@ -29,6 +29,7 @@
       :label="$t('models.user.email')"
       type="email"
       required
+      class="required-field"
     />
 
     <!-- Password -->
@@ -38,6 +39,7 @@
       :label="$t('models.user.password')"
       :type="showPassword ? 'text' : 'password'"
       required
+      class="required-field"
       :append-icon="showPassword ? 'mdi-eye-off' : 'mdi-eye'"
       @click:append="showPassword = !showPassword"
     />
@@ -49,6 +51,7 @@
       :label="$t('models.user.confirm_password')"
       :type="showPasswordConfirmation ? 'text' : 'password'"
       required
+      class="required-field"
       :append-icon="showPasswordConfirmation ? 'mdi-eye-off' : 'mdi-eye'"
       @click:append="showPasswordConfirmation = !showPasswordConfirmation"
     />
@@ -60,6 +63,7 @@
           v-model="firstName"
           outlined
           :label="$t('models.user.first_name')"
+          class="required-field"
           required
         />
       </v-col>
@@ -93,7 +97,7 @@
     <!-- Term of use -->
     <v-checkbox
       v-model="termsOfUse"
-      class="mt-3"
+      class="mt-3 required-field"
       hide-details
       :label="$t('components.session.termsOfUse')"
     />
@@ -101,6 +105,8 @@
     <nuxt-link to="/terms-of-use" class="ml-8">
       {{ $t('termsOfUse.title') }}
     </nuxt-link>
+
+    <required-explained class="mt-4" />
 
     <submit-form
       class="mt-7"
@@ -126,10 +132,11 @@ import { FormHelpers } from '@/mixins/FormHelpers'
 import DateOfBirthInput from '@/components/forms/DateOfBirthInput'
 import GenreInput from '@/components/forms/GenreInput'
 import SessionApi from '~/services/oblyk-api/SessionApi'
+import RequiredExplained from '~/components/forms/RequiredExplained'
 
 export default {
   name: 'SignUpForm',
-  components: { GenreInput, DateOfBirthInput, SubmitForm },
+  components: { RequiredExplained, GenreInput, DateOfBirthInput, SubmitForm },
   mixins: [FormHelpers],
   props: {
     redirectTo: {

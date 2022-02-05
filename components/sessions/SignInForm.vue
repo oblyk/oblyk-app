@@ -17,6 +17,7 @@
       :label="$t('models.user.email')"
       type="email"
       required
+      class="required-field"
     />
 
     <v-text-field
@@ -25,9 +26,13 @@
       :label="$t('models.user.password')"
       :type="showPassword ? 'text' : 'password'"
       required
+      class="required-field"
+      hide-details
       :append-icon="showPassword ? 'mdi-eye-off' : 'mdi-eye'"
       @click:append="showPassword = !showPassword"
     />
+
+    <required-explained class="mt-4" />
 
     <submit-form
       submit-local-key="actions.signIn"
@@ -53,10 +58,11 @@
 
 <script>
 import SubmitForm from '@/components/forms/SubmitForm'
+import RequiredExplained from '~/components/forms/RequiredExplained'
 
 export default {
   name: 'SignInForm',
-  components: { SubmitForm },
+  components: { RequiredExplained, SubmitForm },
   props: {
     redirectTo: {
       type: String,

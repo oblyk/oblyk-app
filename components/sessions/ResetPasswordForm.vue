@@ -29,8 +29,12 @@
         outlined
         :label="$t('models.user.email')"
         type="email"
+        hide-details
         required
+        class="required-field"
       />
+
+      <required-explained class="mt-4" />
 
       <submit-form
         submit-local-key="actions.newPassword"
@@ -43,10 +47,11 @@
 <script>
 import SubmitForm from '@/components/forms/SubmitForm'
 import SessionApi from '~/services/oblyk-api/SessionApi'
+import RequiredExplained from '~/components/forms/RequiredExplained'
 
 export default {
   name: 'ResetPasswordForm',
-  components: { SubmitForm },
+  components: { RequiredExplained, SubmitForm },
 
   data () {
     return {

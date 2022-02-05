@@ -173,3 +173,8 @@
     margin-top: -0.5rem;
   }
 }
+
+.required-field .v-label::after {
+  content: " *";
+  color: #f44336;
+}

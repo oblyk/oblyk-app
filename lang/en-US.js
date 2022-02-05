@@ -134,6 +134,7 @@ export default {
     sentAt: 'sent at %{date}'
   },
   common: {
+    requiredFields: 'Required fields',
     noInformation: 'No information',
     informations: 'Informations',
     moreInformation: 'More information',
@@ -160,7 +161,6 @@ export default {
     between: 'between',
     me: 'Me',
     posted: 'Posted',
-    requiredFields: '* Required fields',
     pages: {
       cookies: 'Oblyk uses cookies only for operational purposes.',
       about: {
