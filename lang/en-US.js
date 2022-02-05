@@ -581,6 +581,19 @@ export default {
         various: '(at 2.5km/h)'
       }
     },
+    library: {
+      title: 'Climbing guides',
+      intro: `We maintain the most exhaustive database possible of paper climbing guides in France and around the world.
+              You will find here the list of all our topos by year of publication or by alphabetical order.
+              You may also be interested in our <a href="/guide-book-papers/find">"Find a guides"</a>
+              that allows you to find the topos that are around a place.`,
+      orderBy: 'Order by',
+      guides: '%{count} guide | %{count} guides',
+      groupItems: {
+        year: 'Publication year',
+        alphabetic: 'Alphabetic order'
+      }
+    },
     guideBookWeb: {
       fullName: 'Web guide book'
     },
@@ -1049,6 +1062,7 @@ export default {
         news: 'News',
         contribute: 'Contribute',
         oblyk: 'Oblyk',
+        guideBook: 'Guide books',
         subHeaders: {
           me: 'Me',
           account: 'Account',
@@ -1356,6 +1370,10 @@ export default {
     recommendedGuides: {
       title: 'Interesting guide books',
       description: 'We find the guide books that might interest you in relation to your log book'
+    },
+    library: {
+      title: 'Climbing guides',
+      description: 'Guides of France and the world: information, cliffs, map of sites'
     },
     guideBookPaper: {
       addCrag: 'Add crag in %{name}',

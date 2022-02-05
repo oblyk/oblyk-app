@@ -9,6 +9,15 @@ class GuideBookPaperApi extends BaseApi {
     })
   }
 
+  grouped (group = 'publication_year', direction = 'desc') {
+    return this.axios.request({
+      method: 'GET',
+      url: `${this.baseUrl}/public/guide_book_papers/grouped.json`,
+      params: { group, direction },
+      headers: { HttpApiAccessToken: this.apiAccessToken }
+    })
+  }
+
   versions (guideBookPaperId) {
     return this.axios.request({
       method: 'GET',

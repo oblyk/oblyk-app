@@ -180,6 +180,31 @@
         </client-only>
       </v-list-group>
 
+      <v-list-group
+        prepend-icon="mdi-book-open-variant"
+        no-action
+      >
+        <template #activator>
+          <v-list-item-content>
+            <v-list-item-title>
+              {{ $t('components.layout.appDrawer.guideBook') }}
+            </v-list-item-title>
+          </v-list-item-content>
+        </template>
+
+        <app-drawer-item
+          url="/guide-book-papers/find"
+          icon="mdi-map-marker-radius-outline"
+          :title="$t('components.guideBookPaper.findGuideBook')"
+        />
+
+        <app-drawer-item
+          url="/library"
+          icon="mdi-bookshelf"
+          :title="$t('components.layout.appDrawer.guideBook')"
+        />
+      </v-list-group>
+
       <client-only>
         <v-list-group
           v-if="isLoggedIn"
@@ -221,12 +246,6 @@
             </v-list-item-title>
           </v-list-item-content>
         </template>
-
-        <app-drawer-item
-          url="/guide-book-papers/find"
-          icon="mdi-map-marker-radius-outline"
-          :title="$t('components.guideBookPaper.findGuideBook')"
-        />
 
         <app-drawer-item
           url="/glossary"

@@ -581,6 +581,19 @@ export default {
         various: '(à 2.5km/h)'
       }
     },
+    library: {
+      title: "Topos d'escalades",
+      intro: `Nous tenons à jour une base de donnée la plus exhaustive possible des topos d'escalades papiers de france et du monde.
+              Vous trouverez ici la liste de tout nos topos par année de parution ou pas ordre alphabétique.
+              Vous serez sûrement aussi intéressé par notre page <a href="/guide-book-papers/find">"Trouver un topo"</a>
+              qui vous permet de trouver les topos qui sont autour d'un lieu.`,
+      orderBy: 'Trier par',
+      guides: '%{count} topo | %{count} topos',
+      groupItems: {
+        year: 'Année de parution',
+        alphabetic: 'Ordre alphabétique'
+      }
+    },
     guideBookWeb: {
       fullName: 'Topo Web'
     },
@@ -1049,6 +1062,7 @@ export default {
         news: 'Actualités',
         contribute: 'Contribuer',
         oblyk: 'Oblyk',
+        guideBook: 'Les topos',
         subHeaders: {
           me: 'Moi',
           account: 'Compte',
@@ -1356,6 +1370,10 @@ export default {
     recommendedGuides: {
       title: 'Topos intéressants',
       description: "Nous trouvons les topos qui pourrais t'intéresser par rapport à ton carnet de croix"
+    },
+    library: {
+      title: "Topos d'escalade",
+      description: 'Les topos de France et du monde : infos, falaises, carte des sites'
     },
     guideBookPaper: {
       addCrag: 'Ajouter un site à %{name}',
