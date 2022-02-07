@@ -5,7 +5,7 @@
         <v-img
           :src="guideBookPaper.thumbnailCoverUrl"
           contain
-          height="240px"
+          :height="coverHeight"
         />
       </div>
     </nuxt-link>
@@ -134,6 +134,10 @@ export default {
     showYear: {
       type: Boolean,
       default: false
+    },
+    coverHeight: {
+      type: String,
+      default: '240px'
     },
     subscribeBtn: Boolean
   }

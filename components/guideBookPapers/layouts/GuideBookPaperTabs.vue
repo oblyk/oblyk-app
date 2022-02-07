@@ -47,6 +47,11 @@
     <v-tab :to="`${guideBookPaper.path}/map`">
       {{ $t('components.guideBookPaper.tabs.map') }}
     </v-tab>
+
+    <!-- Alternatives -->
+    <v-tab :to="`${guideBookPaper.path}/alternatives`">
+      {{ $t('components.guideBookPaper.tabs.alternatives') }}
+    </v-tab>
   </v-tabs>
 </template>
 
@@ -54,7 +59,10 @@
 export default {
   name: 'GuideBookPaperTabs',
   props: {
-    guideBookPaper: Object
+    guideBookPaper: {
+      type: Object,
+      required: true
+    }
   }
 }
 </script>

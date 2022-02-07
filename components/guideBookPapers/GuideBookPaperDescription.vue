@@ -13,6 +13,12 @@
         :color="guideBookPaper.fundingAttributes.color"
       >
         {{ $t(guideBookPaper.fundingAttributes.labelKey) }}
+        <div v-if="guideBookPaper.proposeAlternatives">
+          {{ $t('components.guideBookPaper.showAlternativeListe') }}
+          <nuxt-link :to="`${guideBookPaper.path}/alternatives`">
+            {{ $t('components.guideBookPaper.alternativeGuides') }}
+          </nuxt-link>
+        </div>
       </v-alert>
 
       <v-row>
@@ -173,7 +179,7 @@ export default {
   components: { DescriptionLine, ContributionsLabel, SubscribeBtn, CommentList },
   mixins: [SessionConcern],
   props: {
-    guideBookPaper: Object
+    guideBookPaper: { type: Object, required: true }
   }
 }
 </script>

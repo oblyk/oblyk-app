@@ -62,4 +62,8 @@ export default class GuideBookPaper extends ActiveData {
       }
     }
   }
+
+  get proposeAlternatives () {
+    return (this.funding_status === 'not_contributes_to_financing')
+  }
 }

@@ -618,6 +618,12 @@ export default {
       addInLibraryPart1: 'Click on the icon ',
       addInLibraryPart2: 'to add or remove the topo from your library.',
       nextVersionTitle: 'There is a newer version!',
+      alternativeGuides: 'Alternative guides',
+      showAlternativeListe: 'Consider the list of',
+      alternative: {
+        title: 'List of other guides that deal with the same crags as',
+        notFound: 'No other guide found for'
+      },
       fundingStatusExplain: {
         contributes_to_financing: 'Contributes to the funding of the crags',
         not_contributes_to_financing: 'Does not contribute to the funding of the crags',
@@ -655,7 +661,8 @@ export default {
         photos: 'Photos',
         crags: 'Crags',
         links: 'Links',
-        map: 'Map'
+        map: 'Map',
+        alternatives: 'Alternatives'
       }
     },
     guideBookPaperFind: {
@@ -1380,7 +1387,11 @@ export default {
       cover: 'Change cover of %{name}',
       title: '%{name}, climbing guide book',
       description: 'See the information of %{name}. Crag details, location, photos, map, etc.',
-      new: 'Add guide book'
+      new: 'Add guide book',
+      alternative: {
+        title: 'Alternative guides to %{name}',
+        description: 'List of other climbing guidebooks that deal with the same crags as the guidebook %{name}'
+      }
     },
     guideBookPaperFind: {
       title: 'Find a climbing guide',

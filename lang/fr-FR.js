@@ -618,6 +618,12 @@ export default {
       addInLibraryPart1: "Cliquez sur l'icon ",
       addInLibraryPart2: 'pour ajouter ou enlever le topo de votre topothèque.',
       nextVersionTitle: 'Il y a une version plus récente !',
+      alternativeGuides: 'Topos alternatifs',
+      showAlternativeListe: 'Considérez la liste des',
+      alternative: {
+        title: 'Liste des autres topos qui traitent des mêmes sites que',
+        notFound: 'Aucun autre topo trouvé pour'
+      },
       fundingStatusExplain: {
         contributes_to_financing: 'Contribue au financement des sites',
         not_contributes_to_financing: 'Ne contribue pas au financement des sites',
@@ -655,7 +661,8 @@ export default {
         photos: 'Photos',
         crags: 'Sites',
         links: 'Liens',
-        map: 'Carte'
+        map: 'Carte',
+        alternatives: 'Alternatives'
       }
     },
     guideBookPaperFind: {
@@ -1380,7 +1387,11 @@ export default {
       cover: 'Changer la couverture de %{name}',
       title: "%{name}, topo d'escalade",
       description: 'Voir les informations de %{name}. Détail des site, localisation, photos, carte, etc.',
-      new: 'Ajouter un topo'
+      new: 'Ajouter un topo',
+      alternative: {
+        title: 'Topos alternatifs à %{name}',
+        description: "Liste des autres topos d'escalades qui traitent des mêmes sites que le topo %{name}"
+      }
     },
     guideBookPaperFind: {
       title: "Trouver un topo d'escalade",

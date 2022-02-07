@@ -97,6 +97,14 @@ class GuideBookPaperApi extends BaseApi {
     })
   }
 
+  alternatives (id) {
+    return this.axios.request({
+      method: 'GET',
+      url: `${this.baseUrl}/public/guide_book_papers/${id}/alternatives.json`,
+      headers: { HttpApiAccessToken: this.apiAccessToken }
+    })
+  }
+
   find (id) {
     return this.axios.request({
       method: 'GET',
