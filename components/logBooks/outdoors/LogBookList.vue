@@ -79,7 +79,10 @@ export default {
   mixins: [LoadingMoreHelpers, GradeMixin],
 
   props: {
-    user: Object
+    user: {
+      type: Object,
+      required: true
+    }
   },
 
   data () {
@@ -87,7 +90,7 @@ export default {
       loadingAscendedCragRoutes: true,
       cragRoutes: [],
 
-      order: localStorage.getItem('ascentListOrder') || 'difficulty',
+      order: 'difficulty',
       sortItems: [
         { text: this.$t('components.logBook.sortItem.difficulty'), value: 'difficulty' },
         { text: this.$t('components.logBook.sortItem.crags'), value: 'crags' },
@@ -122,6 +125,7 @@ export default {
   },
 
   mounted () {
+    this.order = localStorage.getItem('ascentListOrder') || 'difficulty'
     this.ascendedCragRoutes()
   },
 
