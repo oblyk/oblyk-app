@@ -1,10 +1,20 @@
 <template>
   <div class="mb-16">
-    <spinner v-if="loadingLastArticles" :full-height="false" />
+    <h3 class="loved-by-king text-center mb-5">
+      {{ $t('components.article.whatsNew') }}
+    </h3>
+    <div
+      v-if="loadingLastArticles"
+      class="last-article-container"
+    >
+      <div
+        v-for="index in 3"
+        :key="`skeleton-last-article-${index}`"
+      >
+        <v-skeleton-loader class="mb-6" type="list-item-avatar-three-line" />
+      </div>
+    </div>
     <div v-else>
-      <h3 class="loved-by-king text-center mb-5">
-        {{ $t('components.article.whatsNew') }}
-      </h3>
       <div class="last-article-container">
         <simple-feed-card
           v-for="(article, index) in articles"
@@ -29,11 +39,10 @@
 <script>
 import SimpleFeedCard from '@/components/feeds/SimpleFeedCard'
 import ArticleApi from '~/services/oblyk-api/ArticleApi'
-import Spinner from '@/components/layouts/Spiner'
 
 export default {
   name: 'LastArticle',
-  components: { Spinner, SimpleFeedCard },
+  components: { SimpleFeedCard },
 
   data () {
     return {

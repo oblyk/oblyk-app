@@ -1,12 +1,7 @@
 <template>
   <div>
     <div v-if="$fetchState.pending">
-      <v-container>
-        <v-skeleton-loader
-          class="mx-auto"
-          type="image, table-heading, divider, list-item-three-line, actions"
-        />
-      </v-container>
+      <skeleton-loader-head />
     </div>
     <div v-else>
       <crag-head :crag="crag" />
@@ -24,9 +19,11 @@ import { CragConcern } from '~/concerns/CragConcern'
 import CragHead from '~/components/crags/layouts/CragHead'
 import CragTabs from '~/components/crags/layouts/CragTabs'
 import AppFooter from '~/components/layouts/AppFooter'
+import SkeletonLoaderHead from '~/components/layouts/SkeletonLoaderHead'
 
 export default {
   components: {
+    SkeletonLoaderHead,
     AppFooter,
     CragTabs,
     CragHead

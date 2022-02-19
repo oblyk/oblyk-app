@@ -5,7 +5,26 @@
         {{ $t('home.figures.title') }}
       </h4>
 
-      <spinner v-if="loadingFigures" :full-height="false" />
+      <div v-if="loadingFigures">
+        <v-row
+          v-for="index in 3"
+          :key="`skeleton-${index}`"
+          class="mb-10"
+        >
+          <v-col class="col-4">
+            <v-skeleton-loader class="mx-auto" type="chip" width="100" />
+            <v-skeleton-loader class="mx-auto mt-3" type="text" width="140" />
+          </v-col>
+          <v-col class="col-4">
+            <v-skeleton-loader class="mx-auto" type="chip" width="100" />
+            <v-skeleton-loader class="mx-auto mt-3" type="text" width="140" />
+          </v-col>
+          <v-col class="col-4">
+            <v-skeleton-loader class="mx-auto" type="chip" width="100" />
+            <v-skeleton-loader class="mx-auto mt-3" type="text" width="140" />
+          </v-col>
+        </v-row>
+      </div>
       <div
         v-if="!loadingFigures"
         class="oblyk-figures"
@@ -153,11 +172,9 @@
 
 <script>
 import CommonApi from '~/services/oblyk-api/CommonApi'
-import Spinner from '@/components/layouts/Spiner'
 
 export default {
   name: 'HomeBoxFigures',
-  components: { Spinner },
 
   data () {
     return {
