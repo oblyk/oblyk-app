@@ -69,12 +69,14 @@ export default {
 
   methods: {
     onKeyDown (event) {
-      if (event.key === 'Enter' && !event.ctrlKey && !event.shiftKey) {
-        this.submit()
-        return false
-      }
-      if (event.key === 'Enter' && event.ctrlKey) {
-        this.data.body += '\n'
+      if (window.innerWidth > 960) {
+        if (event.key === 'Enter' && !event.ctrlKey && !event.shiftKey) {
+          this.submit()
+          return false
+        }
+        if (event.key === 'Enter' && event.ctrlKey) {
+          this.data.body += '\n'
+        }
       }
     },
 

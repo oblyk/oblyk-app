@@ -111,18 +111,18 @@ export default {
     }
   },
 
+  head () {
+    return {
+      title: this.conversationTitle
+    }
+  },
+
   computed: {
     conversationTitle () {
       if (this.conversation) {
         return this.$t('meta.messenger.conversation', { name: this.conversation.title(this.loggedInUser.uuid) })
       }
       return ''
-    }
-  },
-
-  head () {
-    return {
-      title: this.conversationTitle
     }
   },
 
@@ -175,6 +175,7 @@ export default {
           this.oldestMessageDate
         )
         .then((resp) => {
+          this.$root.$emit('showMessengerMessageList')
           if (resp.data.length < 25) { this.noMoreOlderMessage = true }
           this.conversationMessages.unshift(...resp.data)
         })
