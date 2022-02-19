@@ -23,7 +23,7 @@ export default {
   css: [
     '@/assets/variables.scss',
     '@/assets/main.scss',
-    '@mdi/font/css/materialdesignicons.min.css'
+    '@/assets/materialdesignicons.scss'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
