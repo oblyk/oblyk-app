@@ -174,7 +174,7 @@ export default {
       meta: [
         { hid: 'description', name: 'description', content: this.$t('meta.guideBookFeature.description') },
         { hid: 'og:title', property: 'og:title', content: this.$t('meta.guideBookFeature.title') },
-        { hid: 'og:description', property: 'og:description', content: this.$t('default.meta.guideBookFeature.description') },
+        { hid: 'og:description', property: 'og:description', content: this.$t('meta.guideBookFeature.description') },
         { hid: 'og:image', property: 'og:image', content: `${process.env.VUE_APP_OBLYK_APP_URL}/images/oblyk-og-image.jpg` }
       ]
     }
