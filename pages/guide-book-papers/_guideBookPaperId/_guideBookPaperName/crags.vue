@@ -1,6 +1,14 @@
 <template>
   <v-container>
-    <v-row>
+    <div
+      v-if="$fetchState.pending"
+      class="mt-2"
+    >
+      <div v-for="index in 3" :key="`crag-skeleton-${index}`">
+        <v-skeleton-loader class="mb-3" type="list-item-avatar-two-line" />
+      </div>
+    </div>
+    <v-row v-else>
       <v-col>
         <guide-book-paper-crags
           :guide-book-paper="guideBookPaper"
