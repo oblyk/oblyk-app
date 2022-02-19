@@ -83,7 +83,7 @@
             </v-icon>
             {{ $t('components.layout.footer.github') }}
           </a>
-          <nuxt-link to="/newsletters/subscribe">
+          <nuxt-link class="d-block" to="/newsletters/subscribe">
             <v-icon small left dark>
               mdi-email
             </v-icon>
@@ -151,7 +151,7 @@ export default {
   a {
     color: white !important;
     border-radius: 6px;
-    padding: 4px 9px;
+    padding: 12px 12px;
     &:hover {
       background-color: #303030;
     }
