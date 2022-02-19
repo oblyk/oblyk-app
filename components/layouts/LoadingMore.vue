@@ -1,20 +1,34 @@
 <template>
   <div
     v-if="!noMoreData"
-    class="text-center"
+    :class="skeletonType !== 'photos' ? 'text-center' : 'text-left'"
   >
     <v-btn
       v-if="!loadingMore"
       v-intersect="onBottomPage"
       text
     >
-      {{ $t('components.loadMore.loadMore') }}
+      <span v-if="skeletonType !== 'photos'">
+        {{ $t('components.loadMore.loadMore') }}
+      </span>
     </v-btn>
-    <v-skeleton-loader
-      v-if="loadingMore"
-      class="mx-auto"
-      :type="skeletonType"
-    />
+    <div v-if="skeletonType === 'photos'" class="mt-3">
+      <v-skeleton-loader
+        v-for="index in 3"
+        :key="`photo-list-${index}`"
+        type="image"
+        class="d-inline-block mr-4"
+        height="180"
+        width="180"
+      />
+    </div>
+    <div v-else>
+      <v-skeleton-loader
+        v-if="loadingMore"
+        class="mx-auto"
+        :type="skeletonType"
+      />
+    </div>
   </div>
 </template>
 

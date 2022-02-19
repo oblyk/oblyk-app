@@ -1,6 +1,15 @@
 <template>
   <div>
-    <spinner v-if="loadingGallery" />
+    <div v-if="loadingGallery">
+      <v-skeleton-loader
+        v-for="index in 3"
+        :key="`photo-list-${index}`"
+        type="image"
+        class="d-inline-block mr-4"
+        height="180"
+        width="180"
+      />
+    </div>
     <v-row
       v-if="!loadingGallery"
       no-gutters
@@ -34,6 +43,7 @@
       :get-function="getPhotos"
       :loading-more="loadingMoreData"
       :no-more-data="noMoreDataToLoad"
+      skeleton-type="photos"
     />
 
     <!-- Full screen dialog for lightbox -->
@@ -62,7 +72,6 @@ import { LoadingMoreHelpers } from '@/mixins/LoadingMoreHelpers'
 import PhotoThumbnail from '@/components/photos/PhotoThumbnail'
 import LightBox from '@/components/photos/LightBox'
 import UserApi from '~/services/oblyk-api/UserApi'
-import Spinner from '@/components/layouts/Spiner'
 import Photo from '@/models/Photo'
 import LoadingMore from '@/components/layouts/LoadingMore'
 import AreaApi from '~/services/oblyk-api/AreaApi'
@@ -76,7 +85,6 @@ export default {
   name: 'PhotoGallery',
   components: {
     LoadingMore,
-    Spinner,
     LightBox,
     PhotoThumbnail
   },
