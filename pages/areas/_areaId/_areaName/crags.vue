@@ -1,6 +1,10 @@
 <template>
   <v-container>
-    <spinner v-if="loadingCrags" />
+    <div v-if="loadingCrags">
+      <div v-for="index in 3" :key="`crag-skeleton-${index}`">
+        <v-skeleton-loader class="mb-3" type="list-item-avatar-two-line" />
+      </div>
+    </div>
     <area-crags
       v-if="!loadingCrags"
       :crags="crags"
@@ -12,11 +16,10 @@
 <script>
 import AreaApi from '@/services/oblyk-api/AreaApi'
 import Crag from '@/models/Crag'
-import Spinner from '@/components/layouts/Spiner'
 import AreaCrags from '@/components/areas/AreaCrags'
 
 export default {
-  components: { AreaCrags, Spinner },
+  components: { AreaCrags },
   props: {
     area: { type: Object, required: true }
   },
