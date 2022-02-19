@@ -1447,7 +1447,7 @@ export default {
       addCrag: 'Ajouter un site à %{name}',
       cover: 'Changer la couverture de %{name}',
       title: "%{name}, topo d'escalade",
-      description: 'Voir les informations de %{name}. Détail des site, localisation, photos, carte, etc.',
+      description: "Voir les informations du topo d'escalade %{name}. Détail des sites, localisations, photos, carte, etc.",
       new: 'Ajouter un topo',
       alternative: {
         title: 'Topos alternatifs à %{name}',
