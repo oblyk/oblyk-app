@@ -1,11 +1,5 @@
 <template>
   <v-card class="full-height">
-    <v-card-title>
-      <v-icon left>
-        mdi-information
-      </v-icon>
-      {{ $t('common.informations') }}
-    </v-card-title>
     <v-card-text>
       <v-alert
         text

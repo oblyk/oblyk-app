@@ -1,12 +1,17 @@
 <template>
   <v-container fluid>
     <v-row>
-      <v-col class="pa-2 col-12 col-md-6 col-lg-4" order-md="first">
-        <guide-book-paper-description :guide-book-paper="guideBookPaper" />
-      </v-col>
-      <v-col class="pa-2 col-12 col-md-6 col-lg-4" order="first" order-sm="first" order-lg="last">
+      <!-- Cover -->
+      <v-col class="pa-2 col-12 col-md-6 col-lg-4">
         <guide-book-paper-cover :guide-book-paper="guideBookPaper" />
       </v-col>
+
+      <!-- Information -->
+      <v-col class="pa-2 col-12 col-md-6 col-lg-4">
+        <guide-book-paper-description :guide-book-paper="guideBookPaper" />
+      </v-col>
+
+      <!-- Next version and place of sale -->
       <v-col class="pa-2 col-12 col-md-12 col-lg-4 d-flex flex-column">
         <div class="flex-grow-1">
           <v-card class="full-height">
