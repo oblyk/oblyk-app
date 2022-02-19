@@ -2,7 +2,6 @@
   <div>
     <v-app-bar
       app
-      :dense="isMobile"
       class="custom-app-bar"
       elevate-on-scroll
     >
@@ -102,8 +101,7 @@ export default {
 
   data () {
     return {
-      drawer: true,
-      isMobile: false,
+      drawer: false,
       user: null
     }
   },
@@ -121,22 +119,12 @@ export default {
   },
 
   mounted () {
-    this.onResize()
-
-    window.addEventListener('resize', this.onResize, { passive: true })
-
     if (this.isLoggedIn) {
       this
         .getLoggedInUser()
         .then((user) => {
           this.user = user
         })
-    }
-  },
-
-  methods: {
-    onResize () {
-      this.isMobile = window.innerWidth < 600
     }
   }
 }
