@@ -244,6 +244,50 @@ export default {
           }
         }
       },
+      guideBookFeature: {
+        title: 'Nos outils pour les topos',
+        intro: `
+        Nous sommes persuadés que <strong>l'avenir de l'escalade en falaise</strong> passe par <strong>les topos papiers</strong>, que ça soit pour les <strong>informations sur les sites de grimpes</strong>,
+        <strong>contribuer à leur maintenance</strong> ou <strong>faire connaître l'escalade en extérieur</strong>. <strong>Les topos font parties de l'histoire de notre sport</strong> et de son avenir.<br>
+        Nous mettons toutes notre imagination pour concevoir des outils qui permettent à la communauté grimpante de trouver et acheter les topos des sites dans lesquels elle grimpe.
+        `,
+        features: {
+          information: {
+            title: "Tout ce qu'il y a savoir sur les topos !",
+            body: 'Quels sont les sites de grimpe présents dans les topos ? Où les acheter ? Qui en sont les auteurs ?<br>Vous trouverez toutes les informations intéressantes.',
+            action: 'Tous nos topos'
+          },
+          find: {
+            title: 'Vous allez quelque part et vous cherchez les topos du coin ?',
+            body: `
+            Vous voyagez dans une région et vous n'avez aucune idée de quels topos mettre dans votre sac ?<br>
+            Notre <strong>outil de recherche de topo</strong> — unique en son genre — vous permet de trouver tous les topos dans un rayon autour de votre destination.`,
+            action: 'Trouver un topo'
+          },
+          alternative: {
+            title: "Acheter un topo c'est bien, acheter les bons c'est mieux !",
+            body1: "Certains topos ne participent pas à l'équipement des sites d'escalades. Même s'ils peuvent présenter une compilation intéressante d'une région, il est préférable d'avoir les originaux pour soutenir le travail des équipeurs et équipeuses.",
+            body2: 'Pour vous aider à trouver le bon topo nous avons mis en place <strong>deux outils</strong>.',
+            body3: "Une indication claire pour savoir si un topo participe à l'équipement des sites",
+            body4: "Et s'il ne participe pas, nous vous invitons à regarder les autres topos qui présentent ces sites."
+          },
+          myLibrary: {
+            title: 'Votre topothèque numérique',
+            body1: `
+            Vous avez des dizaines de topos et on vous en félicite ! Vous vous êtes sûrement déjà demandé·e·s quelle est la <strong>valeur de votre topothèque</strong>,
+            <strong>combien de sites de grimpe</strong> vous avez dans votre étagère ?<br>
+            Ou, vous vous êtes déjà retrouvé·e·s dans les rayons d'une librairie, ne vous souvenant plus si vous avez déjà cet énième topo de Fontainebleau ?`,
+            body2: "Nous avons l'outil pour vous ! <strong>Cherchez vos topos</strong> sur Oblyk et en un clic constituez le clone numérique de votre <strong>topothèque papier</strong>."
+          },
+          new: {
+            title: 'Continuez de soutenir les équipeurs et équipeuses',
+            body1: "Acheter la nouvelle version d'un topo que vous avez déjà, c'est continuer de contribuer à l'entretien des sites d'escalade dans lesquels vous grimpez.",
+            body2: `
+            Nous voulons vous aidez à les soutenir !<br>
+            Nous nous basons sur <strong>votre carnet de croix</strong> et <strong>votre topothèque</strong> pour vous suggérer les nouvelles versions des topos que vous possédez.`
+          }
+        }
+      },
       newsletterSubscribe: {
         title: "S'inscrire à la newsletter",
         paragraphe: "Environ une fois par trimestre nous envoyons un mail relatant des acutalités d'oblyk, de l'expansion de la communauté, des développements du mois et des projets à venire.",
@@ -1041,6 +1085,13 @@ export default {
       newsletterUpdate: 'La newsletter à été mise à jour',
       newsletterSent: 'Newsletter envoyé'
     },
+    otherFeatures: {
+      title: 'Continuez de découvrir Oblyk !',
+      links: {
+        guide: 'Topothèque & recherche de topo',
+        partner: 'La recherche de partenaire'
+      }
+    },
     layout: {
       appBar: {
         login: 'Me connecter',
@@ -1069,7 +1120,6 @@ export default {
         news: 'Actualités',
         contribute: 'Contribuer',
         oblyk: 'Oblyk',
-        guideBook: 'Les topos',
         subHeaders: {
           me: 'Moi',
           account: 'Compte',
@@ -1087,6 +1137,11 @@ export default {
           guideBooks: 'Ma topothèque',
           favorites: 'Favoris',
           settings: 'Paramètres'
+        },
+        guideBook: {
+          title: 'Les topos',
+          features: 'Top fonctionnalités !',
+          news: 'Les nouveautés'
         }
       },
       footer: {
@@ -1105,7 +1160,8 @@ export default {
         facebook: 'Facebook',
         github: 'github',
         newsletter: 'Newsletter',
-        apiAndDevelopers: 'Api & Développeurs'
+        apiAndDevelopers: 'Api & Développeurs',
+        guidesAndFeatures: 'Topos & Fonctionnalités'
       },
       errors: {
         404: {
@@ -1182,7 +1238,8 @@ export default {
     oblykAndGuide: {
       title: 'Oblyk et les topos',
       body1: "Vous pourriez vous demander si Oblyk peut remplacer les topos papier et par extension nuire au développement des <strong>sites d'escalade</strong> ?<br> Sachez que nous nous sommes beaucoup posé cette question aussi. Et la réponse est non, Oblyk ne peut pas remplacer un topo !<br>Les topos contiennent des informations indispensables que nous ne permettons pas d'ajouter sur oblyk",
-      body2: "<strong>Acheter un topo</strong>, c'est soutenir des passionnés qui donnent énormément pour maintenir, développer, nettoyer les <strong>sites d'escalade</strong> sur lesquels vous allez grimper gratuitement."
+      body2: "<strong>Acheter un topo</strong>, c'est soutenir des passionnés qui donnent énormément pour maintenir, développer, nettoyer les <strong>sites d'escalade</strong> sur lesquels vous allez grimper gratuitement.",
+      action: 'Nos outils pour les topos'
     },
     figures: {
       title: 'Oblyk en quelques chiffres',
@@ -1381,6 +1438,10 @@ export default {
     library: {
       title: "Topos d'escalade",
       description: 'Les topos de France et du monde : infos, falaises, carte des sites'
+    },
+    guideBookFeature: {
+      title: "Topos d'escalades et fonctionnalités",
+      description: "Oblyk propose de nombreux outils permettant de trouver les topos, connaître les sites d'escalade qu'ils présentent, avoir une topothèque numérique, etc."
     },
     guideBookPaper: {
       addCrag: 'Ajouter un site à %{name}',

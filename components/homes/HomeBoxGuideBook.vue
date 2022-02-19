@@ -7,8 +7,8 @@
       <p v-html="$t('home.oblykAndGuide.body1')" />
       <p v-html="$t('home.oblykAndGuide.body2')" />
       <p class="text-right">
-        <v-btn outlined color="primary" to="/guide-book-papers/find">
-          {{ $t('components.guideBookPaper.findGuideBook') }}
+        <v-btn outlined color="primary" to="/guide-books/features">
+          {{ $t('home.oblykAndGuide.action') }}
         </v-btn>
       </p>
     </v-col>

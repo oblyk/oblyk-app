@@ -187,7 +187,7 @@
         <template #activator>
           <v-list-item-content>
             <v-list-item-title>
-              {{ $t('components.layout.appDrawer.guideBook') }}
+              {{ $t('components.layout.appDrawer.guideBook.title') }}
             </v-list-item-title>
           </v-list-item-content>
         </template>
@@ -200,8 +200,14 @@
 
         <app-drawer-item
           url="/library"
-          icon="mdi-bookshelf"
-          :title="$t('components.layout.appDrawer.guideBook')"
+          icon="mdi-alert-decagram"
+          :title="$t('components.layout.appDrawer.guideBook.news')"
+        />
+
+        <app-drawer-item
+          url="/guide-books/features"
+          icon="mdi-star-circle-outline"
+          :title="$t('components.layout.appDrawer.guideBook.features')"
         />
       </v-list-group>
 

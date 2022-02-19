@@ -244,6 +244,50 @@ export default {
           }
         }
       },
+      guideBookFeature: {
+        title: 'Our tools for climbing guidebooks',
+        intro: `
+        We are convinced that <strong>the future of rock climbing</strong> depends on <strong>climbing guidebook</strong>, whether it be for <strong>information on climbing crags</strong>,
+        <strong>contributing to their maintenance</strong> or <strong>promoting outdoor climbing</strong>. <strong>CLimbing guidebooks are part of the history of our sport</strong> and its future.<br>
+        We put all our imagination into designing tools that allow the climbing community to find and buy topos of the crags where they climb.
+        `,
+        features: {
+          information: {
+            title: 'All you need to know about climbing guidebooks !',
+            body: 'What climbing crags are included in the climbing guidebooks? Where can I buy them? Who are the authors?<br>You will find all the information you need.',
+            action: 'All our climbing guidebooks'
+          },
+          find: {
+            title: 'Are you going somewhere and looking for the local guidebooks?',
+            body: `
+            Are you travelling to a region and have no idea which guidebooks to put in your bag?<br>
+            Our <strong>unique guidebook search tool</strong> allows you to find all guidebooks within a radius of your destination.`,
+            action: 'Find a guidebook'
+          },
+          alternative: {
+            title: 'Buying a guidebook is good, buying the right ones is better!',
+            body1: 'Some guidebooks do not participate in the equipment of climbing crags. Even if they can present an interesting compilation of a region, it is preferable to have the originals to support the work of the bolters.',
+            body2: 'To help you find the right guidebook we have developed <strong>two tools</strong>.',
+            body3: 'A clear indication of whether a guidebook contributes to the equipment of crags',
+            body4: 'And if it does not participate, we invite you to look at the other guidebooks that present these crags'
+          },
+          myLibrary: {
+            title: 'Your digital library',
+            body1: `
+            You have dozens of guidebooks and we congratulate you! You have probably already asked yourself what your <strong>library is worth</strong>,
+            <strong>how many climbing crags</strong> you have on your bookshelf?<br>
+            Or, you have already found yourself in the shelves of a bookshop, not remembering if you already have this umpteenth guidebook of Fontainebleau?`,
+            body2: 'We have the tool for you! <strong>Look for your guidebooks</strong> on Oblyk and in one click create a digital clone of your <strong>paper guidebooks library</strong>.'
+          },
+          new: {
+            title: 'Continue to support the bolters',
+            body1: 'Buying a new version of a guidebook that you already have means that you are continuing to contribute to the maintenance of the climbing crags in which you climb.',
+            body2: `
+            We want to help you support them!<br>
+            We base our suggestions for new versions of the guidebooks you own on <strong>your ascents logbook</strong> and <strong>your guidebooks library</strong>.`
+          }
+        }
+      },
       newsletterSubscribe: {
         title: 'Subscribe to the newsletter',
         paragraphe: 'About once a quarter we send an email about oblyk acutalities, community expansion, developments of the month and projects to come. ',
@@ -1041,6 +1085,13 @@ export default {
       newsletterUpdate: 'Newsletter is updated',
       newsletterSent: 'Newsletter sent'
     },
+    otherFeatures: {
+      title: 'Continue to discover Oblyk !',
+      links: {
+        guide: 'Guide library & search',
+        partner: 'The search for a partner'
+      }
+    },
     layout: {
       appBar: {
         login: 'Login',
@@ -1069,7 +1120,7 @@ export default {
         news: 'News',
         contribute: 'Contribute',
         oblyk: 'Oblyk',
-        guideBook: 'Guide books',
+        features: 'Features',
         subHeaders: {
           me: 'Me',
           account: 'Account',
@@ -1087,6 +1138,11 @@ export default {
           guideBooks: 'My guide book store',
           favorites: 'Favorites',
           settings: 'Settings'
+        },
+        guideBook: {
+          title: 'Guide books',
+          features: 'Features !',
+          news: 'New guide books'
         }
       },
       footer: {
@@ -1105,7 +1161,8 @@ export default {
         facebook: 'Facebook',
         github: 'github',
         newsletter: 'Newsletter',
-        apiAndDevelopers: 'Api & Developers'
+        apiAndDevelopers: 'Api & Developers',
+        guidesAndFeatures: 'Guides & Features'
       },
       errors: {
         404: {
@@ -1182,7 +1239,8 @@ export default {
     oblykAndGuide: {
       title: 'Oblyk and the climbing guidebook',
       body1: "You could ask yourself if Oblyk may replace paper guidebook and in the meantime harm climbing spots development ?<br>Be sure to know that we asked yourself this question a lot. Answer is no, Oblyk can't replace a guidebook!<br>Guidebooks have essential information that we won't add in Oblyk",
-      body2: '<strong>Buying a guidebook</strong>, it is helping passionate climbers who give a lot to maintain, develop, clean climbing spots where you will climb for free.'
+      body2: '<strong>Buying a guidebook</strong>, it is helping passionate climbers who give a lot to maintain, develop, clean climbing spots where you will climb for free.',
+      action: 'Our tools for guide books'
     },
     figures: {
       title: 'Oblyk in a few figures',
@@ -1381,6 +1439,10 @@ export default {
     library: {
       title: 'Climbing guides',
       description: 'Guides of France and the world: information, cliffs, map of sites'
+    },
+    guideBookFeature: {
+      title: 'Climbing guides and features',
+      description: 'Oblyk offers many tools for finding guides, knowing the climbing crags they present, having a digital topo library, etc.'
     },
     guideBookPaper: {
       addCrag: 'Add crag in %{name}',

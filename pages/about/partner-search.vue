@@ -114,6 +114,8 @@
           <v-img src="/svg/partner-contact.svg" />
         </v-col>
       </v-row>
+
+      <other-features no-this-feature="/about/partner-search" />
     </v-container>
     <app-footer />
   </div>
@@ -123,9 +125,10 @@
 import { SessionConcern } from '@/concerns/SessionConcern'
 import PartnerFigures from '@/components/partners/PartnerFigures'
 import AppFooter from '@/components/layouts/AppFooter'
+import OtherFeatures from '~/components/globals/OtherFeatures'
 
 export default {
-  components: { PartnerFigures, AppFooter },
+  components: { OtherFeatures, PartnerFigures, AppFooter },
   mixins: [SessionConcern],
 
   head () {

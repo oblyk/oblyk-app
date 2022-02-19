@@ -35,6 +35,9 @@
           <nuxt-link class="d-block" to="/about/partner-search">
             {{ $t('components.layout.footer.partnerSearch') }}
           </nuxt-link>
+          <nuxt-link class="d-block" to="/guide-books/features">
+            {{ $t('components.layout.footer.guidesAndFeatures') }}
+          </nuxt-link>
           <nuxt-link class="d-block" to="/about">
             {{ $t('components.layout.footer.about') }}
           </nuxt-link>
