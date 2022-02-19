@@ -1,5 +1,18 @@
 <template>
-  <div v-if="article">
+  <div v-if="$fetchState.pending">
+    <v-skeleton-loader type="image, image" boilerplate />
+    <v-container class="article-container">
+      <v-skeleton-loader type="heading" class="mt-4 mb-10" />
+      <v-skeleton-loader type="paragraph" />
+      <v-skeleton-loader type="paragraph" class="mt-4" />
+      <div class="text-right mt-10">
+        <v-skeleton-loader type="text" width="80" class="d-inline-block" /><br>
+        <v-skeleton-loader type="text" width="70" class="d-inline-block" /><br>
+        <v-skeleton-loader type="text" width="100" class="d-inline-block" />
+      </div>
+    </v-container>
+  </div>
+  <div v-else>
     <article-head :article="article" />
     <v-container class="article-container">
       <section
