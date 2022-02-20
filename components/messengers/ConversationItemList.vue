@@ -127,6 +127,6 @@ export default {
 }
 .new-message {
   font-weight: bold;
-  color: #1e88e5;
+  color: #01579b;
 }
 </style>

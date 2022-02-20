@@ -10,7 +10,7 @@ export default {
   theme: {
     themes: {
       light: {
-        primary: '#1e88e5',
+        primary: '#01579b',
         secondary: '#fff',
         third: '#bdbdbd',
         accent: '#2979ff',

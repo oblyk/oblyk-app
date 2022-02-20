@@ -261,14 +261,14 @@ export default {
 .theme--dark {
   .conversation-message {
     &.my-message { background-color: #121212; }
-    &.other-message { background-color: #1565c0; }
+    &.other-message { background-color: #01579b; }
   }
 }
 
 .theme--light {
   .conversation-message {
     &.my-message {background-color: #f5f5f5; }
-    &.other-message {background-color: #1e88e5; }
+    &.other-message {background-color: #01579b; }
   }
 }
 </style>
