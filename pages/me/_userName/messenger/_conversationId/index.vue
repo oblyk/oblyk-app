@@ -1,8 +1,18 @@
 <template>
   <div class="full-height">
-    <spinner v-if="loadingConversation" />
+    <div v-if="loadingConversation">
+      <v-sheet class="mr-10 mt-4 pa-3">
+        <v-skeleton-loader type="paragraph" />
+      </v-sheet>
+      <v-sheet class="ml-10 mt-4 pa-3">
+        <v-skeleton-loader type="paragraph" />
+      </v-sheet>
+      <v-sheet class="mr-10 mt-4 pa-3">
+        <v-skeleton-loader type="paragraph" />
+      </v-sheet>
+    </div>
     <v-sheet
-      v-if="!loadingConversation"
+      v-else
       class="full-height rounded"
     >
       <!-- Title -->

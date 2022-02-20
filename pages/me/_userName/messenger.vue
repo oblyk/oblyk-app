@@ -1,18 +1,21 @@
 <template>
   <div>
-    <spinner v-if="loadingCurrentUser" />
-    <v-row
-      v-if="!loadingCurrentUser"
-      class="messenger-layout"
-    >
+    <v-row class="messenger-layout">
       <!-- Conversation list -->
       <v-col
         v-show="conversationList"
         class="col-12 col-md-4 col-lg-3 pr-0 pr-md-3 conversations-col"
       >
-        <spinner v-if="loadingConversations" />
+        <div v-if="loadingConversations" class="pl-4">
+          <v-skeleton-loader
+            v-for="index in 3"
+            :key="`conversation-${index}`"
+            class="mt-3"
+            type="list-item-avatar-two-line"
+          />
+        </div>
         <conversation-list
-          v-if="!loadingConversations"
+          v-else
           :user="currentUser"
           :conversations="conversations"
         />
@@ -31,12 +34,11 @@
 
 <script>
 import { CurrentUserConcern } from '@/concerns/CurrentUserConcern'
-import Spinner from '@/components/layouts/Spiner'
 import ConversationList from '@/components/messengers/ConversationsList'
 import ConversationApi from '@/services/oblyk-api/ConversationApi'
 
 export default {
-  components: { ConversationList, Spinner },
+  components: { ConversationList },
   mixins: [CurrentUserConcern],
 
   data () {
