@@ -14,6 +14,7 @@
           <div>
             <v-img
               width="130px"
+              height="206px"
               src="/svg/footer-climber.svg"
             />
           </div>

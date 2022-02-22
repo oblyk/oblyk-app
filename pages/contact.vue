@@ -26,7 +26,12 @@
           </p>
         </v-col>
         <v-col class="col-md-6">
-          <v-img contain src="/svg/contact.svg" />
+          <v-img
+            width="526"
+            height="223"
+            contain
+            src="/svg/contact.svg"
+          />
         </v-col>
       </v-row>
     </v-container>
