@@ -2,7 +2,8 @@
   <div>
     <v-parallax
       id="home-parallax"
-      src="/images/oblyk-home-baume-rousse.jpg"
+      src="/images/oblyk-home-baume-rousse-small.webp"
+      srcset="/images/oblyk-home-baume-rousse-small.webp 800w, /images/oblyk-home-baume-rousse.webp 1640w, /images/oblyk-home-baume-rousse.webp 1980w"
       class="text-center home-parallax"
       :height="parallaxHeight"
     >
@@ -68,14 +69,17 @@ export default {
 
 <style lang="scss">
 .oblyk-title {
+  height: 168px;
   font-size: 7rem;
 }
 .oblyk-subtitle {
+  height: 48px;
   font-size: 2em;
 }
 .home-container {
   max-width: 1200px;
   h3, h4 {
+    height: 48px;
     font-size: 2em;
   }
 }

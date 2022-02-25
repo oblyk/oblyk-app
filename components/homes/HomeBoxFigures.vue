@@ -226,6 +226,7 @@ export default {
     }
   }
   .loved-by-king {
+    height: 36px;
     font-size: 1.5em;
     margin-top: 0;
   }

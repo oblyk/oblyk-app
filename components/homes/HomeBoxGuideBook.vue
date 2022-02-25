@@ -13,7 +13,11 @@
       </p>
     </v-col>
     <v-col align-self="center" cols="12" md="6">
-      <v-img src="/svg/homes/guide-book.svg" />
+      <v-img
+        width="576"
+        height="244"
+        src="/svg/homes/guide-book.svg"
+      />
     </v-col>
   </v-row>
 </template>

@@ -7,7 +7,11 @@
       <p v-html="$t('home.ascents.body')" />
     </v-col>
     <v-col align-self="center" cols="12" md="6">
-      <v-img src="/svg/homes/ascents-log.svg" />
+      <v-img
+        width="576"
+        height="290"
+        src="/svg/homes/ascents-log.svg"
+      />
     </v-col>
   </v-row>
 </template>

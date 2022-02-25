@@ -12,7 +12,11 @@
       </p>
     </v-col>
     <v-col align-self="center" cols="12" md="6">
-      <v-img src="/svg/homes/crags-info.svg" />
+      <v-img
+        width="576"
+        height="285"
+        src="/svg/homes/crags-info.svg"
+      />
     </v-col>
   </v-row>
 </template>
