@@ -21,8 +21,8 @@
 import CurrentUserApi from '@/services/oblyk-api/CurrentUserApi'
 import Spinner from '@/components/layouts/Spiner'
 import CragRoute from '@/models/CragRoute'
-import CragRouteDrawer from '@/components/cragRoutes/CragRouteDrawer'
 import CragRouteByCragList from '@/components/cragRoutes/CragRouteByCragList'
+const CragRouteDrawer = () => import('@/components/cragRoutes/CragRouteDrawer')
 
 export default {
   components: { CragRouteByCragList, CragRouteDrawer, Spinner },

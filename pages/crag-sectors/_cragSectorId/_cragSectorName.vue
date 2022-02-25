@@ -32,7 +32,7 @@ import { CragSectorConcern } from '~/concerns/CragSectorConcern'
 import CragSectorHead from '~/components/cragSectors/layout/CragSectorHead'
 import CragSectorTabs from '~/components/cragSectors/layout/CragSectorTabs'
 import CragRoutes from '~/components/cragRoutes/CragRoutes'
-import CragRouteDrawer from '~/components/cragRoutes/CragRouteDrawer'
+const CragRouteDrawer = () => import('@/components/cragRoutes/CragRouteDrawer')
 
 export default {
   components: {

@@ -57,8 +57,8 @@ import AvatarMissing from '@/components/users/notificationCard/AvatarMissing'
 import CurrentUserTabs from '@/components/users/layouts/CurrentUserTabs'
 import AroundCard from '@/components/users/AroundCard'
 import Feed from '@/components/feeds/Feed'
-import CragRouteDrawer from '@/components/cragRoutes/CragRouteDrawer'
 import SettingFeed from '@/components/users/SettingFeed'
+const CragRouteDrawer = () => import('@/components/cragRoutes/CragRouteDrawer')
 
 export default {
   name: 'Dashboard',

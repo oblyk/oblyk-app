@@ -69,9 +69,9 @@ import Spinner from '@/components/layouts/Spiner'
 import LogBookClimbingTypeChart from '@/components/logBooks/outdoors/LogBookClimbingTypeChart'
 import LogBookGradeChart from '@/components/logBooks/outdoors/LogBookGradeChart'
 import LogBookList from '@/components/logBooks/outdoors/LogBookList'
-import CragRouteDrawer from '@/components/cragRoutes/CragRouteDrawer'
 import ClimbingTypeLegend from '@/components/ui/ClimbingTypeLegend'
 import { SessionConcern } from '@/concerns/SessionConcern'
+const CragRouteDrawer = () => import('@/components/cragRoutes/CragRouteDrawer')
 
 export default {
   name: 'UserAscentView',

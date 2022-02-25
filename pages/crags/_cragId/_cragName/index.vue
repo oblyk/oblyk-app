@@ -37,8 +37,8 @@ import CragInfo from '@/components/crags/CragDescription'
 import CragRoutes from '@/components/cragRoutes/CragRoutes'
 import CragGuidesCard from '@/components/crags/CragGuidesCard'
 import CragComment from '@/components/crags/CragComment'
-import CragRouteDrawer from '@/components/cragRoutes/CragRouteDrawer'
 import CragArticles from '@/components/crags/CragArticles'
+const CragRouteDrawer = () => import('@/components/cragRoutes/CragRouteDrawer')
 
 export default {
   name: 'CragInfoView',
