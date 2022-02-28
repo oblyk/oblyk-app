@@ -87,7 +87,7 @@ export default {
           this.$auth
             .loginWith('local', {
               data: {
-                email: resp.data.user.email,
+                email: resp.data.email,
                 password: this.password
               }
             }).then(() => {
