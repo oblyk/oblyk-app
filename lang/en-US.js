@@ -177,6 +177,12 @@ export default {
         extraEuro: "If you have a few money to spent, you like the work done and want to encourage Oblyk development, you can make a donation ; )<br>It is for us a priceless help! You will help us continue the development and ensure it's future ; )",
         thanks: 'Thank you in advance for your generosity!'
       },
+      thanks: {
+        title: 'Thanks !',
+        body: 'A huge thank you for your donation! Thanks to you, Oblyk can continue to develop and look forward to a brighter future 😊',
+        end: 'Thanks again and good climbing to you !',
+        action: 'Back to the homepage'
+      },
       contact: {
         title: 'Contact',
         paragraphe: 'For any questions: whether it is a request for help, a suggestion for improvement, a bug found, a request for information, etc.<br>Send us an email',
@@ -1298,6 +1304,10 @@ export default {
     supportUs: {
       title: 'Support Oblyk, make a donation',
       description: 'Support the development of Oblyk so that it can continue to evolve'
+    },
+    thanks: {
+      title: 'Thanks !',
+      body: 'A huge thank you for your donation! Thanks to you, Oblyk can continue to develop and look forward to a brighter future.'
     },
     contact: {
       title: 'Contact the Oblyk team',
