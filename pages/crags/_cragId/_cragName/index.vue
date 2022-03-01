@@ -20,9 +20,12 @@
           <crag-guides-card :crag="crag" />
         </v-col>
       </v-row>
-      <v-row>
+      <v-row v-intersect="loadRouteList">
         <v-col>
-          <crag-routes :crag="crag" />
+          <crag-routes
+            v-if="routeListe"
+            :crag="crag"
+          />
         </v-col>
       </v-row>
     </v-container>
@@ -34,10 +37,10 @@
 
 <script>
 import CragInfo from '@/components/crags/CragDescription'
-import CragRoutes from '@/components/cragRoutes/CragRoutes'
 import CragGuidesCard from '@/components/crags/CragGuidesCard'
 import CragComment from '@/components/crags/CragComment'
 import CragArticles from '@/components/crags/CragArticles'
+const CragRoutes = () => import('@/components/cragRoutes/CragRoutes')
 const CragRouteDrawer = () => import('@/components/cragRoutes/CragRouteDrawer')
 
 export default {
@@ -59,12 +62,20 @@ export default {
 
   data () {
     return {
-      drawer: false
+      routeListe: false
     }
   },
 
   mounted () {
     this.$store.commit('layout/LAYOUT_PADDING', false)
+  },
+
+  methods: {
+    loadRouteList (entries, observer) {
+      if (entries[0].isIntersecting) {
+        this.routeListe = true
+      }
+    }
   }
 }
 </script>

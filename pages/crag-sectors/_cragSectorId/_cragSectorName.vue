@@ -27,6 +27,7 @@
     </div>
   </div>
 </template>
+
 <script>
 import { CragSectorConcern } from '~/concerns/CragSectorConcern'
 import CragSectorHead from '~/components/cragSectors/layout/CragSectorHead'
