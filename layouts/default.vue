@@ -20,7 +20,7 @@
       {{ $t('common.pages.cookies') }}
       <template #action="{ attrs }">
         <v-btn
-          color="primary"
+          color="white"
           text
           v-bind="attrs"
           @click="acceptedCookies()"
