@@ -1,5 +1,5 @@
 <template>
-  <v-container v-if="crag && cragSector">
+  <v-container v-if="!$fetchState.pending">
     <v-row justify="center">
       <v-col class="global-form-width">
         <h2 class="mb-4">

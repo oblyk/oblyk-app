@@ -32,7 +32,7 @@
         {{ cragSector.crag.country }}, {{ cragSector.crag.region }}, {{ cragSector.crag.city }}
         <v-btn
           v-if="isLoggedIn"
-          :to="`/a${cragSector.path}/edit`"
+          :to="`/a${cragSector.Crag.path}/sectors/${cragSector.id}/${cragSector.slug_name}/edit`"
           small
           icon
           :title="$t('actions.edit')"
@@ -46,6 +46,7 @@
     </div>
   </v-img>
 </template>
+
 <script>
 import { SessionConcern } from '@/concerns/SessionConcern'
 
@@ -53,7 +54,10 @@ export default {
   name: 'CragSectorHead',
   mixins: [SessionConcern],
   props: {
-    cragSector: Object
+    cragSector: {
+      type: Object,
+      required: true
+    }
   },
 
   data () {
