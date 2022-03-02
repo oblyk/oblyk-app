@@ -6,6 +6,7 @@
     <template #activator="{ on, attrs }">
       <v-btn
         icon
+        aria-label="display a qrcode to scan gps coordinates"
         v-bind="attrs"
         v-on="on"
       >
