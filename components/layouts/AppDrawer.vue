@@ -108,10 +108,14 @@
       </v-list>
 
       <!-- Administered gym list -->
-      <my-gyms />
+      <client-only>
+        <my-gyms v-if="isLoggedIn" />
+      </client-only>
 
       <!-- Organizations -->
-      <my-organizations />
+      <client-only>
+        <my-organizations v-if="isLoggedIn" />
+      </client-only>
 
       <!-- If no user connected -->
       <v-list
@@ -330,14 +334,18 @@
 </template>
 
 <script>
-import AppDrawerItem from '@/components/layouts/partial/AppDrawerItem'
 import { SessionConcern } from '@/concerns/SessionConcern'
-import MyGyms from '@/components/layouts/partial/MyGyms'
-import MyOrganizations from '@/components/layouts/partial/MyOrganizations'
+import AppDrawerItem from '@/components/layouts/partial/AppDrawerItem'
+const MyGyms = () => import('@/components/layouts/partial/MyGyms')
+const MyOrganizations = () => import('@/components/layouts/partial/MyOrganizations')
 
 export default {
   name: 'AppDrawer',
-  components: { MyOrganizations, MyGyms, AppDrawerItem },
+  components: {
+    MyOrganizations,
+    MyGyms,
+    AppDrawerItem
+  },
   mixins: [SessionConcern],
 
   data () {

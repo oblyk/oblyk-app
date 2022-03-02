@@ -85,7 +85,7 @@ import LoginLogoutBtn from '@/components/layouts/partial/LoginLogoutBtn'
 import AppDrawerItem from '@/components/layouts/partial/AppDrawerItem'
 import AppBarTitle from '@/components/layouts/partial/AppBarTitle'
 import GlobalSearchDialog from '@/components/searches/GlobalSearchDialog'
-import NotificationAppBar from '@/components/layouts/partial/NotificationAppBar'
+const NotificationAppBar = () => import('@/components/layouts/partial/NotificationAppBar')
 
 export default {
   name: 'AppBar',
