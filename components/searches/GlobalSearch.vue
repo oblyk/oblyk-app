@@ -379,7 +379,6 @@ export default {
     giveFocus () {
       this.$refs.globalSearchInput.focus()
       this.query = null
-      console.log('ok')
     },
 
     research (query) {
