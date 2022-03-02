@@ -5,6 +5,7 @@
       class="user-header-banner"
       gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
       :src="user.bannerUrl"
+      :lazy-src="user.thumbnailBannerUrl"
     >
       <div class="user-header-title">
         <v-avatar

@@ -3,6 +3,7 @@
     dark
     height="400px"
     gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+    :lazy-src="lazySrc"
     :src="src"
   >
     <p
@@ -68,6 +69,9 @@ export default {
   computed: {
     src () {
       return this.cragRoute.coverUrl
+    },
+    lazySrc () {
+      return this.cragRoute.thumbnailCoverUrl
     }
   },
 

@@ -3,11 +3,12 @@
     <h1 class="loved-by-king text-truncate">
       {{ guideBookPaper.name }}
     </h1>
-    <img
+    <v-img
       :src="guideBookPaper.coverUrl"
+      :lazy-src="guideBookPaper.thumbnailCoverUrl"
       :alt="guideBookPaper.name"
       class="elevation-4 mt-3"
-    >
+    />
     <p>
       <v-btn
         v-if="isLoggedIn"
@@ -34,7 +35,10 @@ export default {
   name: 'GuideBookPaperCover',
   mixins: [SessionConcern],
   props: {
-    guideBookPaper: Object
+    guideBookPaper: {
+      type: Object,
+      required: true
+    }
   }
 }
 </script>

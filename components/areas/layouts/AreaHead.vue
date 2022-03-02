@@ -4,6 +4,7 @@
       dark
       height="500px"
       gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+      :lazy-src="lazySrc"
       :src="src"
     >
       <div
@@ -52,7 +53,8 @@ export default {
 
   data () {
     return {
-      src: this.area.coverUrl
+      src: this.area.coverUrl,
+      lazySrc: this.area.thumbnailCoverUrl
     }
   },
 

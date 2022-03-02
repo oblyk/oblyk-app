@@ -4,6 +4,7 @@
       dark
       height="500px"
       gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+      :lazy-src="lazySrc"
       :src="src"
     >
       <div class="crag-header-title">
@@ -63,13 +64,15 @@ export default {
 
   data () {
     return {
-      src: this.crag.coverUrl
+      src: this.crag.coverUrl,
+      lazySrc: this.crag.thumbnailCoverUrl
     }
   },
 
   watch: {
     crag () {
       this.src = this.crag.coverUrl
+      this.lazySrc = this.crag.thumbnailCoverUrl
     }
   },
 

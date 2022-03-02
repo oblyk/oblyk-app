@@ -3,6 +3,7 @@
     dark
     height="400px"
     gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+    :lazy-src="lazySrc"
     :src="src"
   >
     <p
@@ -62,7 +63,8 @@ export default {
 
   data () {
     return {
-      src: this.cragSector.coverUrl
+      src: this.cragSector.coverUrl,
+      lazySrc: this.cragSector.thumbnailCoverUrl
     }
   },
 
