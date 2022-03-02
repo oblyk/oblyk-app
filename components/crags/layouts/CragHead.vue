@@ -46,9 +46,9 @@
 </template>
 
 <script>
-import SubscribeBtn from '@/components/forms/SubscribeBtn'
 import { SessionConcern } from '@/concerns/SessionConcern'
-import CragSuperAdminAction from '@/components/crags/forms/CragSuperAdminAction'
+const SubscribeBtn = () => import('@/components/forms/SubscribeBtn')
+const CragSuperAdminAction = () => import('@/components/crags/forms/CragSuperAdminAction')
 
 export default {
   name: 'CragHead',
