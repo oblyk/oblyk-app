@@ -3,7 +3,7 @@
     ref="crag-route-area"
     :v-resize="areaResize()"
   >
-    <v-card>
+    <v-card :elevation="cardElevation">
       <v-card-title>
         <v-row>
           <v-col>
@@ -118,6 +118,10 @@ export default {
     cragSector: {
       type: Object,
       default: null
+    },
+    cardElevation: {
+      type: Number,
+      default: 3
     }
   },
 

@@ -8,22 +8,15 @@
         />
       </v-container>
     </div>
-    <div
-      v-else
-      class="crag-sector-card"
-    >
-      <v-card>
-        <crag-sector-head :crag-sector="cragSector" />
-        <crag-sector-tabs :crag-sector="cragSector" />
-        <nuxt-child :crag-sector="cragSector" />
-      </v-card>
-      <crag-routes
-        class="mt-4 mb-10"
-        :crag-sector="cragSector"
-      />
-      <client-only>
-        <crag-route-drawer />
-      </client-only>
+    <div v-else>
+      <div class="crag-sector-card mt-0 mt-md-7">
+        <v-card>
+          <crag-sector-head :crag-sector="cragSector" />
+          <crag-sector-tabs :crag-sector="cragSector" />
+          <nuxt-child :crag-sector="cragSector" />
+        </v-card>
+      </div>
+      <app-footer />
     </div>
   </div>
 </template>
@@ -32,13 +25,11 @@
 import { CragSectorConcern } from '~/concerns/CragSectorConcern'
 import CragSectorHead from '~/components/cragSectors/layout/CragSectorHead'
 import CragSectorTabs from '~/components/cragSectors/layout/CragSectorTabs'
-import CragRoutes from '~/components/cragRoutes/CragRoutes'
-const CragRouteDrawer = () => import('@/components/cragRoutes/CragRouteDrawer')
+import AppFooter from '~/components/layouts/AppFooter'
 
 export default {
   components: {
-    CragRouteDrawer,
-    CragRoutes,
+    AppFooter,
     CragSectorTabs,
     CragSectorHead
   },
@@ -55,6 +46,5 @@ export default {
   margin-left: auto;
   margin-right: auto;
   max-width: 1000px;
-  margin-top: 30px;
 }
 </style>
