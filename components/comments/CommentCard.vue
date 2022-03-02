@@ -27,8 +27,14 @@ export default {
   components: { MarkdownText, OwnerLabel },
   mixins: [SessionConcern],
   props: {
-    comment: Object,
-    getComments: Function
+    comment: {
+      type: Object,
+      required: true
+    },
+    getComments: {
+      type: Function,
+      default: null
+    }
   },
 
   data () {

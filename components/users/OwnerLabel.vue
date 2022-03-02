@@ -1,7 +1,7 @@
 <template>
   <div class="caption">
     {{ $t('common.by') }}
-    <nuxt-link class="owner-label-link" :to="user.userPath" v-text="owner.name" />
+    <nuxt-link class="owner-label-link" :to="user.userPath" v-text="owner.full_name" />
     {{ $t('common.at') }} {{ humanizeDate(history.created_at) }}
 
     <client-only>

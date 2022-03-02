@@ -79,7 +79,7 @@ import CommentApi from '~/services/oblyk-api/CommentApi'
 import Comment from '@/models/Comment'
 import CommentCard from '@/components/comments/CommentCard'
 import { SessionConcern } from '@/concerns/SessionConcern'
-import CommentForm from '@/components/comments/forms/CommentForm'
+const CommentForm = () => import('@/components/comments/forms/CommentForm')
 
 export default {
   name: 'CommentList',

@@ -4,10 +4,10 @@
       v-model="data.body"
       :label="$t('models.comment.body')"
     />
-    <close-form />
     <submit-form
       :overlay="submitOverlay"
       :submit-local-key="submitText()"
+      :go-back-btn="false"
     />
   </v-form>
 </template>
@@ -16,12 +16,11 @@
 import { FormHelpers } from '@/mixins/FormHelpers'
 import SubmitForm from '@/components/forms/SubmitForm'
 import CommentApi from '~/services/oblyk-api/CommentApi'
-import CloseForm from '@/components/forms/CloseForm'
 import MarkdownInput from '@/components/forms/MarkdownInput'
 
 export default {
   name: 'CommentForm',
-  components: { MarkdownInput, CloseForm, SubmitForm },
+  components: { MarkdownInput, SubmitForm },
   mixins: [FormHelpers],
   props: {
     comment: {
