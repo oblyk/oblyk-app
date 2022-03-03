@@ -5,6 +5,7 @@
       class="gym-header-banner"
       gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
       :src="gym.bannerUrl"
+      :lazy-src="gym.thumbnailBannerUrl"
     >
       <div class="gym-header-title">
         <v-avatar

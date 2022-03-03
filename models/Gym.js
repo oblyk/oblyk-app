@@ -39,6 +39,14 @@ export default class Gym extends ActiveData {
     }
   }
 
+  get thumbnailBannerUrl () {
+    if (this.banner_thumbnail_url) {
+      return `${process.env.VUE_APP_OBLYK_API_URL}${this.banner_thumbnail_url}`
+    } else {
+      return '/images/gym-default-banner.jpg'
+    }
+  }
+
   get logoUrl () {
     if (this.logo) {
       return `${process.env.VUE_APP_OBLYK_API_URL}${this.logo}`
