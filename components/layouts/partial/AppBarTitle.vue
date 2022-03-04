@@ -41,6 +41,7 @@ export default {
   beforeDestroy () {
     this.$root.$off('setTitleAppBar')
     this.$root.$off('setAvatarAppBar')
+    window.removeEventListener('resize', this.onResize)
   },
 
   methods: {

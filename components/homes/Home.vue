@@ -5,7 +5,7 @@
       src="/images/oblyk-home-baume-rousse-small.webp"
       srcset="/images/oblyk-home-baume-rousse-small.webp 800w, /images/oblyk-home-baume-rousse.webp 1640w, /images/oblyk-home-baume-rousse.webp 1980w"
       class="text-center home-parallax"
-      :height="parallaxHeight"
+      height="550"
     >
       <h1 class="font-weight-medium loved-by-king oblyk-title">
         Oblyk
@@ -16,34 +16,51 @@
     </v-parallax>
 
     <v-container class="home-container">
-      <home-box-crag-info class="home-boxes" />
-      <home-box-ascents-log class="home-boxes" />
-      <home-box-partner class="home-boxes" />
-      <home-box-help class="home-boxes" />
-      <home-box-guide-book class="home-boxes" />
-      <home-box-developer class="home-boxes" />
-      <last-article />
-      <home-box-figures />
+      <lazy-hydrate when-visible>
+        <home-box-crag-info class="home-boxes" />
+      </lazy-hydrate>
+      <lazy-hydrate when-visible>
+        <home-box-ascents-log class="home-boxes" />
+      </lazy-hydrate>
+      <lazy-hydrate when-visible>
+        <home-box-partner class="home-boxes" />
+      </lazy-hydrate>
+      <lazy-hydrate when-visible>
+        <home-box-help class="home-boxes" />
+      </lazy-hydrate>
+      <lazy-hydrate when-visible>
+        <home-box-guide-book class="home-boxes" />
+      </lazy-hydrate>
+      <lazy-hydrate when-visible>
+        <home-box-developer class="home-boxes" />
+      </lazy-hydrate>
+      <lazy-hydrate when-visible>
+        <last-article />
+      </lazy-hydrate>
+      <lazy-hydrate when-visible>
+        <home-box-figures />
+      </lazy-hydrate>
     </v-container>
-
     <app-footer />
   </div>
 </template>
 
 <script>
-import HomeBoxCragInfo from '@/components/homes/HomeBoxCragInfo'
-import HomeBoxAscentsLog from '@/components/homes/HomeBoxAscentsLog'
-import HomeBoxDeveloper from '@/components/homes/HomeBoxDeveloper'
-import AppFooter from '@/components/layouts/AppFooter'
-import HomeBoxPartner from '@/components/homes/HomeBoxPartner'
-import HomeBoxHelp from '@/components/homes/HomeBoxHelp'
-import HomeBoxGuideBook from '@/components/homes/HomeBoxGuideBook'
-import HomeBoxFigures from '@/components/homes/HomeBoxFigures'
-import LastArticle from '@/components/articles/LastArticle'
+import LazyHydrate from 'vue-lazy-hydration'
+const HomeBoxCragInfo = () => import('@/components/homes/HomeBoxCragInfo')
+const HomeBoxAscentsLog = () => import('@/components/homes/HomeBoxAscentsLog')
+const HomeBoxDeveloper = () => import('@/components/homes/HomeBoxDeveloper')
+const AppFooter = () => import('@/components/layouts/AppFooter')
+const HomeBoxPartner = () => import('@/components/homes/HomeBoxPartner')
+const HomeBoxHelp = () => import('@/components/homes/HomeBoxHelp')
+const HomeBoxGuideBook = () => import('@/components/homes/HomeBoxGuideBook')
+const HomeBoxFigures = () => import('@/components/homes/HomeBoxFigures')
+const LastArticle = () => import('@/components/articles/LastArticle')
 
 export default {
   name: 'Home',
   components: {
+    LazyHydrate,
     HomeBoxDeveloper,
     LastArticle,
     HomeBoxFigures,
@@ -53,12 +70,6 @@ export default {
     HomeBoxAscentsLog,
     HomeBoxCragInfo,
     AppFooter
-  },
-
-  data () {
-    return {
-      parallaxHeight: 550
-    }
   },
 
   mounted () {

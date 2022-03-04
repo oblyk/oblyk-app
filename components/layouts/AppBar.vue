@@ -21,7 +21,7 @@
 
       <!-- Notification -->
       <client-only>
-        <notification-app-bar v-if="isLoggedIn" />
+        <notification-app-bar v-if="$auth.loggedIn" />
       </client-only>
 
       <!-- User Avatar -->
@@ -44,24 +44,9 @@
         </template>
 
         <v-list>
-          <client-only>
-            <div v-if="isLoggedIn && user">
-              <v-list-item>
-                <v-list-item-avatar v-if="!loadingCurrentUser">
-                  <img :src="user.avatarUrl" :alt="`avatar ${user.name}`">
-                </v-list-item-avatar>
-                <v-list-item-title class="font-weight-bold">
-                  {{ loggedInUser.name }}
-                </v-list-item-title>
-              </v-list-item>
-              <v-divider />
-              <app-drawer-item :title="$t('components.layout.appBar.user.messenger')" icon="mdi-forum" :url="`${user.currentUserPath}/messenger`" />
-              <app-drawer-item :title="$t('components.layout.appBar.user.avatar')" icon="mdi-account-circle" :url="`${user.currentUserPath}/settings/avatar`" />
-              <app-drawer-item :title="$t('components.layout.appBar.user.banner')" icon="mdi-panorama" :url="`${user.currentUserPath}/settings/banner`" />
-              <app-drawer-item :title="$t('components.layout.appBar.user.settings')" icon="mdi-cog" :url="`${user.currentUserPath}/settings/general`" />
-              <v-divider />
-            </div>
-          </client-only>
+          <lazy-hydrate on-interaction>
+            <app-bar-profil />
+          </lazy-hydrate>
           <login-logout-btn />
         </v-list>
       </v-menu>
@@ -72,59 +57,37 @@
       app
       width="300"
     >
-      <app-drawer />
+      <lazy-hydrate never :trigger-hydration="drawer">
+        <app-drawer />
+      </lazy-hydrate>
     </v-navigation-drawer>
   </div>
 </template>
 
 <script>
-import { SessionConcern } from '@/concerns/SessionConcern'
-import { CurrentUserConcern } from '@/concerns/CurrentUserConcern'
-import AppDrawer from '@/components/layouts/AppDrawer'
+import LazyHydrate from 'vue-lazy-hydration'
 import LoginLogoutBtn from '@/components/layouts/partial/LoginLogoutBtn'
-import AppDrawerItem from '@/components/layouts/partial/AppDrawerItem'
 import AppBarTitle from '@/components/layouts/partial/AppBarTitle'
 import GlobalSearchDialog from '@/components/searches/GlobalSearchDialog'
+const AppBarProfil = () => import('~/components/layouts/partial/AppBarProfile')
+const AppDrawer = () => import('@/components/layouts/AppDrawer')
 const NotificationAppBar = () => import('@/components/layouts/partial/NotificationAppBar')
 
 export default {
   name: 'AppBar',
   components: {
+    AppBarProfil,
     NotificationAppBar,
     GlobalSearchDialog,
     AppBarTitle,
-    AppDrawerItem,
     LoginLogoutBtn,
-    AppDrawer
+    AppDrawer,
+    LazyHydrate
   },
-  mixins: [SessionConcern, CurrentUserConcern],
 
   data () {
     return {
-      drawer: false,
-      user: null
-    }
-  },
-
-  watch: {
-    isLoggedIn () {
-      if (this.isLoggedIn) {
-        this
-          .getLoggedInUser()
-          .then((user) => {
-            this.user = user
-          })
-      }
-    }
-  },
-
-  mounted () {
-    if (this.isLoggedIn) {
-      this
-        .getLoggedInUser()
-        .then((user) => {
-          this.user = user
-        })
+      drawer: false
     }
   }
 }

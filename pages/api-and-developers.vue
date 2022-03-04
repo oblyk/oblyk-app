@@ -74,12 +74,6 @@ import AppFooter from '@/components/layouts/AppFooter'
 export default {
   components: { AppFooter },
 
-  data () {
-    return {
-      emailVisible: false
-    }
-  },
-
   head () {
     return {
       title: this.$t('meta.apiAndDevelopers.title'),
