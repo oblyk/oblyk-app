@@ -38,7 +38,10 @@ export default {
 
   head () {
     return {
-      title: this.$t('meta.session.privacyStep')
+      title: this.$t('meta.session.privacyStep'),
+      meta: [
+        { hid: 'robots', name: 'robots', content: 'noindex' }
+      ]
     }
   },
 

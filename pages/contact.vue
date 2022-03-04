@@ -55,6 +55,7 @@ export default {
     return {
       title: this.$t('meta.contact.title'),
       meta: [
+        { hid: 'robots', name: 'robots', content: 'noindex' },
         { hid: 'description', name: 'description', content: this.$t('meta.contact.description') },
         { hid: 'og:title', property: 'og:title', content: this.$t('meta.contact.title') },
         { hid: 'og:description', property: 'og:description', content: this.$t('meta.contact.description') },

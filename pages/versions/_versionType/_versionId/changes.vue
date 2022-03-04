@@ -96,7 +96,10 @@ export default {
 
   head () {
     return {
-      title: this.$t('meta.version.title')
+      title: this.$t('meta.version.title'),
+      meta: [
+        { hid: 'robots', name: 'robots', content: 'noindex' }
+      ]
     }
   },
 

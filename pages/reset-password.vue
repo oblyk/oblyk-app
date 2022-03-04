@@ -25,6 +25,7 @@ export default {
     return {
       title: this.$t('meta.session.resetPasswordTitle'),
       meta: [
+        { hid: 'robots', name: 'robots', content: 'noindex' },
         { hid: 'description', name: 'description', content: this.$t('meta.session.resetPasswordDescription') },
         { hid: 'og:title', property: 'og:title', content: this.$t('meta.session.resetPasswordTitle') },
         { hid: 'og:description', property: 'og:description', content: this.$t('meta.session.resetPasswordDescription') }

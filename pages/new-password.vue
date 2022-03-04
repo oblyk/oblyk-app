@@ -24,7 +24,10 @@ export default {
 
   head () {
     return {
-      title: this.$t('meta.session.newPassword')
+      title: this.$t('meta.session.newPassword'),
+      meta: [
+        { hid: 'robots', name: 'robots', content: 'noindex' }
+      ]
     }
   },
 

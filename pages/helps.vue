@@ -30,6 +30,7 @@ export default {
     return {
       title: this.$t('meta.helps.title'),
       meta: [
+        { hid: 'robots', name: 'robots', content: 'noindex' },
         { hid: 'description', name: 'description', content: this.$t('meta.helps.description') },
         { hid: 'og:title', property: 'og:title', content: this.$t('meta.helps.title') },
         { hid: 'og:description', property: 'og:description', content: this.$t('meta.helps.description') },

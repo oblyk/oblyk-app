@@ -24,7 +24,10 @@ export default {
 
   head () {
     return {
-      title: this.$t('meta.successAccountDeleting.title')
+      title: this.$t('meta.successAccountDeleting.title'),
+      meta: [
+        { hid: 'robots', name: 'robots', content: 'noindex' }
+      ]
     }
   },
 
