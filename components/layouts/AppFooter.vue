@@ -30,7 +30,7 @@
           <nuxt-link class="d-block" to="/articles">
             {{ $t('components.layout.footer.news') }}
           </nuxt-link>
-          <nuxt-link class="d-block" to="/contact">
+          <nuxt-link class="d-block" to="/contact" rel="nofollow">
             {{ $t('components.layout.footer.contact') }}
           </nuxt-link>
           <nuxt-link class="d-block" to="/about/partner-search">
@@ -42,7 +42,7 @@
           <nuxt-link class="d-block" to="/about">
             {{ $t('components.layout.footer.about') }}
           </nuxt-link>
-          <nuxt-link class="d-block" to="/helps">
+          <nuxt-link class="d-block" to="/helps" rel="nofollow">
             {{ $t('components.layout.footer.helps') }}
           </nuxt-link>
           <nuxt-link class="d-block" to="/api-and-developers">
@@ -57,6 +57,7 @@
           <nuxt-link
             class="d-block"
             :to="`/report-problem?redirect_to=${$route.fullPath}`"
+            rel="nofollow"
           >
             <v-icon small left dark>
               mdi-flag
@@ -103,7 +104,7 @@
           </nuxt-link>
         </v-col>
         <v-col class="text-right">
-          <nuxt-link to="/terms-of-use">
+          <nuxt-link to="/terms-of-use" rel="nofollow">
             {{ $t('components.layout.footer.termsOfUse') }}
           </nuxt-link>
         </v-col>
