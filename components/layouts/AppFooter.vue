@@ -104,7 +104,7 @@
           </nuxt-link>
         </v-col>
         <v-col class="text-right">
-          <nuxt-link to="/terms-of-use" rel="nofollow">
+          <nuxt-link to="/fr/conditions-d-utilisation" rel="nofollow">
             {{ $t('components.layout.footer.termsOfUse') }}
           </nuxt-link>
         </v-col>
