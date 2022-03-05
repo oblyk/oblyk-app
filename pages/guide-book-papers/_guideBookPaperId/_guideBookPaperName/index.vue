@@ -1,5 +1,8 @@
 <template>
   <v-container fluid>
+    <h1 class="loved-by-king mb-5 mt-3">
+      {{ guideBookPaper.name }}
+    </h1>
     <v-row>
       <!-- Cover -->
       <v-col class="pa-2 col-12 col-md-6 col-lg-4">

@@ -1,13 +1,10 @@
 <template>
   <div class="text-center guide-book-paper-cover">
-    <h1 class="loved-by-king text-truncate">
-      {{ guideBookPaper.name }}
-    </h1>
     <v-img
       :src="guideBookPaper.coverUrl"
       :lazy-src="guideBookPaper.thumbnailCoverUrl"
       :alt="guideBookPaper.name"
-      class="elevation-4 mt-3"
+      class="elevation-4"
     />
     <p>
       <v-btn
