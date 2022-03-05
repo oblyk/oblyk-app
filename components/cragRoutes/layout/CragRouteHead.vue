@@ -3,8 +3,9 @@
     dark
     height="400px"
     gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-    :lazy-src="lazySrc"
-    :src="src"
+    :lazy-src="cragRoute.thumbnailCoverUrl"
+    :src="croppedSrc"
+    :srcset="`${croppedSrc} 500w, ${largeSrc} 600w`"
   >
     <p
       v-if="cragRoute.coverFrom"
@@ -66,12 +67,10 @@ export default {
     }
   },
 
-  computed: {
-    src () {
-      return this.cragRoute.coverUrl
-    },
-    lazySrc () {
-      return this.cragRoute.thumbnailCoverUrl
+  data () {
+    return {
+      croppedSrc: this.cragRoute.croppedCoverUrl,
+      largeSrc: this.cragRoute.coverUrl
     }
   },
 
@@ -81,9 +80,14 @@ export default {
     })
   },
 
+  beforeDestroy () {
+    this.$root.$off('updateCragRouteBannerSrc')
+  },
+
   methods: {
     updateCragRouteBannerSrc (src) {
-      this.src = src
+      this.croppedSrc = src
+      this.largeSrc = src
     }
   }
 }

@@ -4,7 +4,8 @@
       dark
       class="user-header-banner"
       gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-      :src="user.bannerUrl"
+      :src="user.croppedBannerUrl"
+      :srcset="`${user.croppedBannerUrl} 500w, ${user.bannerUrl} 600w`"
       :lazy-src="user.thumbnailBannerUrl"
     >
       <div class="user-header-title">
@@ -120,7 +121,10 @@ export default {
   components: { SubscribeBtn },
   mixins: [SessionConcern, DateHelpers],
   props: {
-    user: Object
+    user: {
+      type: Object,
+      required: true
+    }
   },
 
   data () {

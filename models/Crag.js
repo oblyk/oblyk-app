@@ -27,6 +27,14 @@ export default class Crag extends ActiveData {
     }
   }
 
+  get croppedCoverUrl () {
+    if (this.photo.cropped_url) {
+      return `${process.env.VUE_APP_OBLYK_API_URL}${this.photo.cropped_url}`
+    } else {
+      return '/images/default-crag-banner.jpg'
+    }
+  }
+
   get thumbnailCoverUrl () {
     if (this.photo.thumbnail_url) {
       return `${process.env.VUE_APP_OBLYK_API_URL}${this.photo.thumbnail_url}`

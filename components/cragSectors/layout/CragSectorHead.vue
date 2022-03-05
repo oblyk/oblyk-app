@@ -3,8 +3,9 @@
     dark
     height="400px"
     gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-    :lazy-src="lazySrc"
-    :src="src"
+    :lazy-src="cragSector.thumbnailCoverUrl"
+    :src="croppedSrc"
+    :srcset="`${croppedSrc} 500w, ${largeSrc} 600w`"
   >
     <p
       v-if="cragSector.coverFrom"
@@ -63,8 +64,8 @@ export default {
 
   data () {
     return {
-      src: this.cragSector.coverUrl,
-      lazySrc: this.cragSector.thumbnailCoverUrl
+      croppedSrc: this.cragSector.croppedCoverUrl,
+      largeSrc: this.cragSector.coverUrl
     }
   },
 
@@ -80,7 +81,8 @@ export default {
 
   methods: {
     updateCragSectorBannerSrc (src) {
-      this.src = src
+      this.croppedSrc = src
+      this.largeSrc = src
     }
   }
 }

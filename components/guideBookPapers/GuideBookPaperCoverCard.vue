@@ -1,14 +1,14 @@
 <template>
   <div>
-    <nuxt-link :to="guideBookPaper.path">
-      <div class="text-center mb-1">
+    <div class="text-center mb-1">
+      <nuxt-link :to="guideBookPaper.path">
         <v-img
           :src="guideBookPaper.thumbnailCoverUrl"
           contain
           :height="coverHeight"
         />
-      </div>
-    </nuxt-link>
+      </nuxt-link>
+    </div>
     <p
       v-if="showYear"
       class="text-center text--disabled mb-0"

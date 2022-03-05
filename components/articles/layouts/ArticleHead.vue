@@ -4,7 +4,9 @@
       dark
       height="500px"
       gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.7)"
+      :lazy-src="article.thumbnailCoverUrl"
       :src="article.coverUrl"
+      :srcset="`${article.croppedCoverUrl} 500w, ${article.coverUrl} 600w`"
     >
       <div class="article-header-title">
         <h1 class="font-weight-medium loved-by-king">
@@ -41,7 +43,10 @@ export default {
   components: { ArticleActionMenu },
   mixins: [DateHelpers, SessionConcern],
   props: {
-    article: Object
+    article: {
+      type: Object,
+      required: true
+    }
   }
 }
 </script>

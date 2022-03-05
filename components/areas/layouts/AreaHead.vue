@@ -4,8 +4,9 @@
       dark
       height="500px"
       gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-      :lazy-src="lazySrc"
-      :src="src"
+      :lazy-src="area.thumbnailCoverUrl"
+      :src="croppedSrc"
+      :srcset="`${croppedSrc} 500w, ${largeSrc} 600w`"
     >
       <div
         v-if="area.photo.illustrable_name"
@@ -53,8 +54,8 @@ export default {
 
   data () {
     return {
-      src: this.area.coverUrl,
-      lazySrc: this.area.thumbnailCoverUrl
+      croppedSrc: this.area.croppedCoverUrl,
+      largeSrc: this.area.coverUrl
     }
   },
 
@@ -70,7 +71,8 @@ export default {
 
   methods: {
     updateAreaBannerSrc (src) {
-      this.src = src
+      this.croppedSrc = src
+      this.largeSrc = src
     }
   }
 }

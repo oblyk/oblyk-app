@@ -4,8 +4,9 @@
       dark
       class="gym-header-banner"
       gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-      :src="gym.bannerUrl"
       :lazy-src="gym.thumbnailBannerUrl"
+      :src="gym.croppedBannerUrl"
+      :srcset="`${gym.croppedBannerUrl} 500w, ${gym.bannerUrl} 600w`"
     >
       <div class="gym-header-title">
         <v-avatar
@@ -20,7 +21,7 @@
         <h1 class="font-weight-medium">
           {{ gym.name }}
           <client-only>
-            <subscribe-btn subscribe-type="Gym" :subscribe-id="gym.id" :incrementable="true"/>
+            <subscribe-btn subscribe-type="Gym" :subscribe-id="gym.id" :incrementable="true" />
           </client-only>
         </h1>
         <span>

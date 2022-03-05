@@ -4,8 +4,9 @@
       dark
       height="500px"
       gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-      :lazy-src="lazySrc"
-      :src="src"
+      :lazy-src="crag.thumbnailCoverUrl"
+      :src="croppedSrc"
+      :srcset="`${croppedSrc} 500w, ${largeSrc} 600w`"
     >
       <div class="crag-header-title">
         <h1 class="font-weight-medium loved-by-king">
@@ -64,15 +65,8 @@ export default {
 
   data () {
     return {
-      src: this.crag.coverUrl,
-      lazySrc: this.crag.thumbnailCoverUrl
-    }
-  },
-
-  watch: {
-    crag () {
-      this.src = this.crag.coverUrl
-      this.lazySrc = this.crag.thumbnailCoverUrl
+      croppedSrc: this.crag.croppedCoverUrl,
+      largeSrc: this.crag.coverUrl
     }
   },
 
@@ -88,7 +82,8 @@ export default {
 
   methods: {
     updateCragBannerSrc (src) {
-      this.src = src
+      this.croppedSrc = src
+      this.largeSrc = src
     }
   }
 }

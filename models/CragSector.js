@@ -42,6 +42,16 @@ export default class CragSector extends ActiveData {
     }
   }
 
+  get croppedCoverUrl () {
+    if (this.photo.cropped_url) {
+      return `${process.env.VUE_APP_OBLYK_API_URL}${this.photo.cropped_url}`
+    } else if (this.crag.photo.cropped_url) {
+      return `${process.env.VUE_APP_OBLYK_API_URL}${this.crag.photo.cropped_url}`
+    } else {
+      return '/images/default-crag-banner.jpg'
+    }
+  }
+
   get coverFrom () {
     if (this.photo.url) {
       return 'cragSector'
