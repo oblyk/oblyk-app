@@ -9,7 +9,10 @@
         class="climbs-pastille"
         :class="route.climbing_type"
       >
-        <ascent-crag-route-status-icon :crag-route="route" />
+        <ascent-crag-route-status-icon
+          v-if="$auth.loggedIn"
+          :crag-route="route"
+        />
         {{ route.name }}
         <grade-route-note :route="route" />
         <v-icon

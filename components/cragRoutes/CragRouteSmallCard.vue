@@ -27,7 +27,10 @@
               :class="cragRoute.climbing_type"
               class="climbs-pastille vertical-align-middle"
             >
-              <ascent-crag-route-status-icon :crag-route="cragRoute" />
+              <ascent-crag-route-status-icon
+                v-if="$auth.loggedIn"
+                :crag-route="cragRoute"
+              />
               {{ cragRoute.grade_to_s }} -
               {{ cragRoute.name }}
             </span>

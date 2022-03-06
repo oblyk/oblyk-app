@@ -23,6 +23,7 @@
 
       <!-- Ascent status, Roping status & difficulty appreciation -->
       <ascent-crag-route-status-icon
+        v-if="$auth.loggedIn"
         :crag-route="cragRoute"
         :ascent-status="ascentCragRoute.ascent_status"
       />

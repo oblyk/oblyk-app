@@ -65,6 +65,7 @@
       </v-list-item-subtitle>
       <v-list-item-subtitle>
         <ascent-crag-route-status-icon
+          v-if="$auth.loggedIn"
           :crag-route="route"
           :ascent-status="ascent.ascent_status"
         />
