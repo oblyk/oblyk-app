@@ -7,7 +7,7 @@
       large
       @click="closeLightBoxDialogue()"
     >
-      <v-icon>mdi-close</v-icon>
+      <v-icon>{{ mdiClose }}</v-icon>
     </v-btn>
 
     <!-- Previous picture -->
@@ -43,6 +43,7 @@
 </template>
 
 <script>
+import { mdiClose } from '@mdi/js'
 import LightBoxArrow from '@/components/photos/LightBoxArrow'
 import PhotoCardInfo from '@/components/photos/PhotoCardInfo'
 import PhotoCollection from '@/components/photos/PhotoCollection'
@@ -73,6 +74,12 @@ export default {
     selectedIndex: {
       type: Number,
       default: null
+    }
+  },
+
+  data () {
+    return {
+      mdiClose
     }
   }
 }

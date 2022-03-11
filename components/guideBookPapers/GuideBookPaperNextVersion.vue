@@ -4,7 +4,7 @@
       class="pb-1"
     >
       <v-icon left>
-        mdi-arrow-up-bold-box-outline
+        {{ mdiArrowUpBoldBoxOutline }}
       </v-icon>
       {{ $t('components.guideBookPaper.nextVersionTitle') }}
     </v-card-title>
@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import { mdiArrowUpBoldBoxOutline } from '@mdi/js'
 import GuideBookPaperSmallCard from '@/components/guideBookPapers/GuideBookPaperSmallCard'
 import { RecordToObjectHelpers } from '@/mixins/RecordToObjectHelpers'
 
@@ -24,7 +25,16 @@ export default {
   components: { GuideBookPaperSmallCard },
   mixins: [RecordToObjectHelpers],
   props: {
-    guideBookPaper: Object
+    guideBookPaper: {
+      type: Object,
+      required: true
+    }
+  },
+
+  data () {
+    return {
+      mdiArrowUpBoldBoxOutline
+    }
   }
 }
 </script>

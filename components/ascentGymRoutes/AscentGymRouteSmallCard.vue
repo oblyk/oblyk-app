@@ -9,7 +9,7 @@
           @click="deleteAscent"
         >
           <v-icon small>
-            mdi-delete
+            {{ mdiDelete }}
           </v-icon>
         </v-btn>
         <edit-gym-ascent-btn
@@ -62,6 +62,7 @@
 </template>
 
 <script>
+import { mdiDelete } from '@mdi/js'
 import { DateHelpers } from '@/mixins/DateHelpers'
 import { RecordToObjectHelpers } from '@/mixins/RecordToObjectHelpers'
 import AscentGymRouteApi from '~/services/oblyk-api/AscentGymRouteApi'
@@ -80,6 +81,7 @@ export default {
 
   data () {
     return {
+      mdiDelete,
       ascentUserDialog: false,
       subscribes: [],
       loadingSubscribes: true

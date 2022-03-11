@@ -5,7 +5,7 @@
   >
     <v-card-title>
       <v-icon left>
-        mdi-sort-bool-ascending
+        {{ mdiSortBoolAscending }}
       </v-icon>
       {{ $t('components.gymAdmin.difficultySystem') }}
     </v-card-title>
@@ -18,10 +18,17 @@
 </template>
 
 <script>
+import { mdiSortBoolAscending } from '@mdi/js'
 export default {
   name: 'GymAdminDifficultySystemFigures',
   props: {
     gym: Object
+  },
+
+  data () {
+    return {
+      mdiSortBoolAscending
+    }
   }
 }
 </script>

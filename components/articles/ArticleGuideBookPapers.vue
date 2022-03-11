@@ -2,7 +2,7 @@
   <div v-if="guideBookPapers.length > 0">
     <h2 class="loved-by-king mb-2 mt-8">
       <v-icon left>
-        mdi-book-open-variant
+        {{ mdiBookOpenVariant }}
       </v-icon>
       {{ $t('components.article.guideBookPaperList') }}
     </h2>
@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import { mdiBookOpenVariant } from '@mdi/js'
 import ArticleApi from '~/services/oblyk-api/ArticleApi'
 import GuideBookPaperSmallCard from '@/components/guideBookPapers/GuideBookPaperSmallCard'
 import GuideBookPaper from '@/models/GuideBookPaper'
@@ -24,11 +25,15 @@ export default {
   name: 'ArticleGuideBookPapers',
   components: { GuideBookPaperSmallCard },
   props: {
-    article: Object
+    article: {
+      type: Object,
+      required: true
+    }
   },
 
   data () {
     return {
+      mdiBookOpenVariant,
       guideBookPapers: []
     }
   },

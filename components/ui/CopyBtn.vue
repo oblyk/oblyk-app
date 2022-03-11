@@ -7,11 +7,14 @@
     :small="small"
   >
     <v-icon small>
-      mdi-content-copy
+      {{ mdiContentCopy }}
     </v-icon>
   </v-btn>
 </template>
+
 <script>
+import { mdiContentCopy } from '@mdi/js'
+
 export default {
   name: 'CopyBtn',
   props: {
@@ -19,6 +22,12 @@ export default {
     small: {
       type: Boolean,
       default: true
+    }
+  },
+
+  data () {
+    return {
+      mdiContentCopy
     }
   },
 

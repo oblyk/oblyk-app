@@ -4,7 +4,7 @@
     :items="sortItems"
     item-text="text"
     item-value="value"
-    prepend-inner-icon="mdi-sort-ascending"
+    :prepend-inner-icon="mdiSortAscending"
     outlined
     hide-details
     :label="$t('components.cragRoute.sortRouteLabel')"
@@ -13,6 +13,7 @@
 </template>
 
 <script>
+import { mdiSortAscending } from '@mdi/js'
 export default {
   name: 'CragRouteSort',
   props: {
@@ -21,6 +22,7 @@ export default {
 
   data () {
     return {
+      mdiSortAscending,
       routeSort: this.value || 'difficulty_desc',
       sortItems: [
         { text: this.$t('components.cragRoute.sort.difficulty_desc'), value: 'difficulty_desc' },

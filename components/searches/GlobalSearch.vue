@@ -7,7 +7,7 @@
           <v-text-field
             ref="globalSearchInput"
             v-model="query"
-            prepend-inner-icon="mdi-magnify"
+            :prepend-inner-icon="mdiMagnify"
             :label="$t('components.search.searchLabel')"
             filled
             rounded
@@ -23,7 +23,7 @@
             large
             @click="closeDialogue()"
           >
-            <v-icon>mdi-close</v-icon>
+            <v-icon>{{ mdiClose }}</v-icon>
           </v-btn>
         </div>
       </div>
@@ -31,43 +31,43 @@
       <!-- Chips count result -->
       <div class="global-search-chips">
         <global-search-chip
-          icon="mdi-select-group"
+          :icon="mdiSelectGroup"
           :array-results="areaResults"
           title-key="area"
           :callback="scrollTo"
         />
         <global-search-chip
-          icon="mdi-terrain"
+          :icon="mdiTerrain"
           :array-results="cragResults"
           title-key="crag"
           :callback="scrollTo"
         />
         <global-search-chip
-          icon="mdi-home-variant-outline"
+          :icon="mdiHomeVariantOutline"
           :array-results="gymResults"
           title-key="gym"
           :callback="scrollTo"
         />
         <global-search-chip
-          icon="mdi-book-open-blank-variant"
+          :icon="mdiBookOpenPageVariant"
           :array-results="guideBookPaperResults"
           title-key="guideBookPaper"
           :callback="scrollTo"
         />
         <global-search-chip
-          icon="mdi-account-circle-outline"
+          :icon="mdiAccountCircleOutline"
           :array-results="userResults"
           title-key="user"
           :callback="scrollTo"
         />
         <global-search-chip
-          icon="mdi-source-branch"
+          :icon="mdiSourceBranch"
           :array-results="cragRouteResults"
           title-key="cragRoute"
           :callback="scrollTo"
         />
         <global-search-chip
-          icon="mdi-format-letter-case"
+          :icon="mdiFormatLetterCase"
           :array-results="wordResults"
           title-key="word"
           :callback="scrollTo"
@@ -94,7 +94,7 @@
             class="hoverable"
             @click="research(previousQuery)"
           >
-            <v-icon left>mdi-history</v-icon>
+            <v-icon left>{{ mdiHistory }}</v-icon>
             {{ previousQuery }}
           </span>
         </p>
@@ -109,7 +109,7 @@
           @click="showAreaResults = !showAreaResults"
         >
           <v-icon left>
-            mdi-chevron-down
+            {{ mdiChevronDown }}
           </v-icon>
           {{ $tc('components.search.count.area', areaResults.length, { count: areaResults.length } ) }}
         </p>
@@ -133,7 +133,7 @@
           @click="showCragResults = !showCragResults"
         >
           <v-icon left>
-            mdi-chevron-down
+            {{ mdiChevronDown }}
           </v-icon>
           {{ $tc('components.search.count.crag', cragResults.length, { count: cragResults.length } ) }}
         </p>
@@ -158,7 +158,7 @@
           @click="showGymResults = !showGymResults"
         >
           <v-icon left>
-            mdi-chevron-down
+            {{ mdiChevronDown }}
           </v-icon>
           {{ $tc('components.search.count.gym', gymResults.length, { count: gymResults.length } ) }}
         </p>
@@ -186,7 +186,7 @@
           @click="showGuideBookPaperResults = !showGuideBookPaperResults"
         >
           <v-icon left>
-            mdi-chevron-down
+            {{ mdiChevronDown }}
           </v-icon>
           {{ $tc('components.search.count.guideBookPaper', guideBookPaperResults.length, { count: guideBookPaperResults.length } ) }}
         </p>
@@ -210,7 +210,7 @@
           @click="showUserResults = !showUserResults"
         >
           <v-icon left>
-            mdi-chevron-down
+            {{ mdiChevronDown }}
           </v-icon>
           {{ $tc('components.search.count.user', userResults.length, { count: userResults.length } ) }}
         </p>
@@ -237,7 +237,7 @@
           @click="showCragRouteResults = !showCragRouteResults"
         >
           <v-icon left>
-            mdi-chevron-down
+            {{ mdiChevronDown }}
           </v-icon>
           {{ $tc('components.search.count.cragRoute', cragRouteResults.length, { count: cragRouteResults.length } ) }}
         </p>
@@ -264,7 +264,7 @@
           @click="showWordResults = !showWordResults"
         >
           <v-icon left>
-            mdi-chevron-down
+            {{ mdiChevronDown }}
           </v-icon>
           {{ $tc('components.search.count.word', wordResults.length, { count: wordResults.length } ) }}
         </p>
@@ -287,6 +287,19 @@
 </template>
 
 <script>
+import {
+  mdiChevronDown,
+  mdiClose,
+  mdiMagnify,
+  mdiSelectGroup,
+  mdiTerrain,
+  mdiHomeVariantOutline,
+  mdiBookOpenPageVariant,
+  mdiAccountCircleOutline,
+  mdiSourceBranch,
+  mdiFormatLetterCase,
+  mdiHistory
+} from '@mdi/js'
 import Crag from '@/models/Crag'
 import Area from '@/models/Area'
 import Gym from '@/models/Gym'
@@ -327,6 +340,17 @@ export default {
 
   data () {
     return {
+      mdiChevronDown,
+      mdiClose,
+      mdiMagnify,
+      mdiSelectGroup,
+      mdiTerrain,
+      mdiHomeVariantOutline,
+      mdiBookOpenPageVariant,
+      mdiAccountCircleOutline,
+      mdiSourceBranch,
+      mdiFormatLetterCase,
+      mdiHistory,
       tab: null,
       query: null,
       searching: false,

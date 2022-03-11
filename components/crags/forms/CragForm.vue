@@ -26,7 +26,7 @@
     <div v-if="cragsAround.length > 0">
       <p class="mb-2">
         <u>
-          <v-icon color="warning" left>mdi-alert</v-icon>
+          <v-icon color="warning" left>{{ mdiAlert }}</v-icon>
           {{ $tc('components.crag.cragAroundInCreate', cragsAround.length, { count: cragsAround.length }) }}
         </u>
       </p>
@@ -74,6 +74,7 @@
 </template>
 
 <script>
+import { mdiAlert } from '@mdi/js'
 import { FormHelpers } from '@/mixins/FormHelpers'
 import SubmitForm from '@/components/forms/SubmitForm'
 import CragApi from '~/services/oblyk-api/CragApi'
@@ -112,6 +113,7 @@ export default {
 
   data () {
     return {
+      mdiAlert,
       cragsAround: [],
       localization: {
         latitude: (this.crag || {}).latitude,

@@ -21,7 +21,7 @@
           small
           class="ml-3"
         >
-          mdi-camera
+          {{ mdiCamera }}
         </v-icon>
         <v-icon
           v-if="route.videos_count > 0"
@@ -29,7 +29,7 @@
           small
           class="ml-3"
         >
-          mdi-filmstrip
+          {{ mdiFilmstrip }}
         </v-icon>
         <v-icon
           v-if="route.comments_count > 0"
@@ -37,12 +37,12 @@
           small
           class="ml-3"
         >
-          mdi-comment
+          {{ mdiComment }}
         </v-icon>
       </v-list-item-title>
       <v-list-item-subtitle>
         <v-icon x-small>
-          mdi-terrain
+          {{ mdiTerrain }}
         </v-icon>
         <span @click.stop="">
           <nuxt-link
@@ -70,6 +70,7 @@
 </template>
 
 <script>
+import { mdiCamera, mdiFilmstrip, mdiComment, mdiTerrain } from '@mdi/js'
 import GradeRouteNote from '@/components/cragRoutes/partial/CragRouteNote'
 import CragRouteAvatar from '@/components/cragRoutes/partial/CragRouteAvatar'
 import AscentCragRouteStatusIcon from '@/components/ascentCragRoutes/AscentCragRouteStatusIcon'
@@ -81,10 +82,20 @@ export default {
     CragRouteAvatar,
     GradeRouteNote
   },
+
   props: {
     route: {
       type: Object,
       required: true
+    }
+  },
+
+  data () {
+    return {
+      mdiCamera,
+      mdiFilmstrip,
+      mdiComment,
+      mdiTerrain
     }
   }
 }

@@ -18,7 +18,7 @@
               to="/newsletters/unsubscribe"
             >
               <v-icon left>
-                mdi-email-off
+                {{ mdiEmailOff }}
               </v-icon>
               {{ $t('actions.unsubscribeMe') }}
             </v-btn>
@@ -34,10 +34,17 @@
 </template>
 
 <script>
+import { mdiEmailOff } from '@mdi/js'
 import AppFooter from '@/components/layouts/AppFooter'
 
 export default {
   components: { AppFooter },
+
+  data () {
+    return {
+      mdiEmailOff
+    }
+  },
 
   head () {
     return {

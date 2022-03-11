@@ -33,7 +33,7 @@
       <!-- Comments -->
       <h2 class="loved-by-king">
         <v-icon left>
-          mdi-forum
+          {{ mdiForum }}
         </v-icon>
         {{ $t('components.comment.comments') }}
       </h2>
@@ -44,6 +44,7 @@
 </template>
 
 <script>
+import { mdiForum } from '@mdi/js'
 import { ArticleConcern } from '@/concerns/ArticleConcern'
 import ArticleHead from '@/components/articles/layouts/ArticleHead'
 import ArticleFooter from '@/components/articles/layouts/ArticleFooter'
@@ -66,6 +67,12 @@ export default {
     AppFooter
   },
   mixins: [ArticleConcern],
+
+  data () {
+    return {
+      mdiForum
+    }
+  },
 
   mounted () {
     this.$store.commit('layout/LAYOUT_PADDING', false)

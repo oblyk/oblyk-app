@@ -7,7 +7,7 @@
         :color="guideBookFeed ? 'primary' : 'light'"
       >
         <v-icon small left>
-          mdi-book-open-variant
+          {{ mdiBookOpenVariant }}
         </v-icon>
         {{ $t('components.feed.settings.guideBooks') }}
       </v-chip>
@@ -18,7 +18,7 @@
         :color="newsFeed ? 'primary' : 'light'"
       >
         <v-icon small left>
-          mdi-newspaper-variant-outline
+          {{ mdiNewspaperVariantOutline }}
         </v-icon>
         {{ $t('components.feed.settings.articles') }}
       </v-chip>
@@ -29,7 +29,7 @@
         :color="subscribeFeed ? 'primary' : 'light'"
       >
         <v-icon small left>
-          mdi-star
+          {{ mdiStar }}
         </v-icon>
         {{ $t('components.feed.settings.subscribes') }}
       </v-chip>
@@ -40,7 +40,7 @@
         :color="aroundFeed ? 'primary' : 'light'"
       >
         <v-icon small left>
-          mdi-map-marker-radius
+          {{ mdiMapMarkerRadius }}
         </v-icon>
         {{ $t('components.feed.settings.localInfos') }}
       </v-chip>
@@ -102,6 +102,8 @@
 </template>
 
 <script>
+import { mdiBookOpenVariant, mdiNewspaperVariantOutline, mdiStar, mdiMapMarkerRadius } from '@mdi/js'
+
 export default {
   name: 'SettingFeed',
   props: {
@@ -113,6 +115,10 @@ export default {
 
   data () {
     return {
+      mdiBookOpenVariant,
+      mdiNewspaperVariantOutline,
+      mdiStar,
+      mdiMapMarkerRadius,
       guideBookFeed: (localStorage.getItem('showGuideBookFeed') !== 'false'),
       newsFeed: (localStorage.getItem('showNewsFeed') !== 'false'),
       subscribeFeed: (localStorage.getItem('showSubscribeFeed') !== 'false'),

@@ -3,7 +3,7 @@
     <!-- If localisation is accepted -->
     <p v-if="localisationStatus === 'accepted'" class="caption">
       <v-icon x-small left>
-        mdi-map-marker
+        {{ mdiMapMarker }}
       </v-icon> {{ $t('components.user.localizationActivated') }} <span v-if="showLocalization">{{ userForLocalisation.localization }}</span>
       <v-btn
         text
@@ -18,7 +18,7 @@
     <!-- If localisation is refused -->
     <p v-if="localisationStatus === 'refused'" class="caption">
       <v-icon x-small left>
-        mdi-map-marker-off
+        {{ mdiMapMarkerOff }}
       </v-icon> {{ $t('components.user.localizationDeactivated') }}
       <v-btn
         text
@@ -34,7 +34,7 @@
     <v-card v-if="localisationStatus === 'undefined'">
       <v-card-title>
         <v-icon left color="green darken-3">
-          mdi-map-marker
+          {{ mdiMapMarker }}
         </v-icon>
         {{ $t('components.user.activateLocalization') }}
       </v-card-title>
@@ -65,6 +65,7 @@
 </template>
 
 <script>
+import { mdiMapMarker, mdiMapMarkerOff } from '@mdi/js'
 import CurrentUserApi from '~/services/oblyk-api/CurrentUserApi'
 import { LocalizationHelpers } from '@/mixins/LocalizationHelpers'
 
@@ -84,6 +85,8 @@ export default {
 
   data () {
     return {
+      mdiMapMarker,
+      mdiMapMarkerOff,
       userForLocalisation: this.user,
       localisationStatus: null
     }

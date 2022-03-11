@@ -2,7 +2,7 @@
   <div v-if="!loadingClimber">
     <v-card-title>
       <v-icon left>
-        mdi-account-group
+        {{ mdiAccountGroup }}
       </v-icon>
       {{ $tc('components.partner.xAround', climbers.length, { count: climbers.length }) }}
     </v-card-title>
@@ -64,7 +64,7 @@
             :to="`/maps/climbers?lat=${latitude}&lng=${longitude}&zoom=12`"
           >
             <v-icon class="mr-2">
-              mdi-map
+              {{ mdiMap }}
             </v-icon>
             {{ $t('components.user.openClimbersMap') }}
           </v-btn>
@@ -75,6 +75,7 @@
 </template>
 
 <script>
+import { mdiAccountGroup, mdiMap } from '@mdi/js'
 import PartnerApi from '~/services/oblyk-api/PartnerApi'
 import User from '@/models/User'
 import UserSmallCard from '@/components/users/UserSmallCard'
@@ -89,6 +90,8 @@ export default {
 
   data () {
     return {
+      mdiAccountGroup,
+      mdiMap,
       climbersDialog: false,
       limit: 8,
       loadingClimber: true,

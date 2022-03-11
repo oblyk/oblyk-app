@@ -155,8 +155,9 @@
         </li>
       </ul>
       <p>
-        Peut import la contribution que vous apporterez à Oblyk, on vous en remercie ! <v-icon color="red">
-          mdi-heart
+        Peut import la contribution que vous apporterez à Oblyk, on vous en remercie !
+        <v-icon color="red">
+          {{ mdiHeart }}
         </v-icon>
       </p>
 
@@ -183,6 +184,7 @@
 </template>
 
 <script>
+import { mdiHeart } from '@mdi/js'
 import CommonApi from '@/services/oblyk-api/CommonApi'
 import AppFooter from '@/components/layouts/AppFooter'
 
@@ -191,6 +193,7 @@ export default {
 
   data () {
     return {
+      mdiHeart,
       oblykNetHomeImg: false,
 
       oblykOrgOldHomeImg: false,

@@ -33,7 +33,7 @@
                       small
                       :title="$t(guideBookPaper.fundingAttributes.labelKey)"
                     >
-                      {{ guideBookPaper.fundingAttributes.icon }}
+                      {{ fundingIcon }}
                     </v-icon>
                   </v-chip>
                   {{ guideBookPaper.name }} - {{ guideBookPaper.publication_year }}
@@ -45,8 +45,8 @@
                   :subscribe-id="guideBookPaper.id"
                   :large="false"
                   followed-color="deep-purple"
-                  followed-icon="mdi-bookshelf"
-                  unfollowed-icon="mdi-bookshelf"
+                  :followed-icon="mdiBookshelf"
+                  :unfollowed-icon="mdiBookshelf"
                   subscribe-label="actions.addToLibrary"
                   unsubscribe-label="actions.removeFromLibrary"
                 />
@@ -141,6 +141,7 @@
 </template>
 
 <script>
+import { mdiBookshelf, mdiCurrencyUsdOff, mdiHandCoin, mdiHelpCircleOutline } from '@mdi/js'
 import { RecordToObjectHelpers } from '@/mixins/RecordToObjectHelpers'
 import SubscribeBtn from '@/components/forms/SubscribeBtn'
 import CragSmallCard from '@/components/crags/CragSmallCard'
@@ -179,6 +180,10 @@ export default {
 
   data () {
     return {
+      mdiBookshelf,
+      mdiCurrencyUsdOff,
+      mdiHandCoin,
+      mdiHelpCircleOutline,
       openCard: false,
       cragListLimite: 5
     }
@@ -205,6 +210,18 @@ export default {
         setTimeout(() => {
           this.$root.$emit('fitMapOnGeoJsonBounds')
         }, 1000)
+      }
+    }
+  },
+
+  methods: {
+    fundingIcon () {
+      if (this.guideBookPaper.funding_status === 'contributes_to_financing') {
+        return mdiHandCoin
+      } else if (this.funding_status === 'not_contributes_to_financing') {
+        return mdiCurrencyUsdOff
+      } else {
+        return mdiHelpCircleOutline
       }
     }
   }

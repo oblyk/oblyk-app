@@ -85,6 +85,7 @@
 </template>
 
 <script>
+import { mdiImageMultiple, mdiSourceBranch, mdiCheckboxMultipleOutline } from '@mdi/js'
 import { RecordToObjectHelpers } from '@/mixins/RecordToObjectHelpers'
 import PhotoGallery from '@/components/photos/PhotoGallery'
 import CragRoute from '@/models/CragRoute'
@@ -112,12 +113,15 @@ export default {
 
   data () {
     return {
+      mdiImageMultiple,
+      mdiSourceBranch,
+      mdiCheckboxMultipleOutline,
       limit: 5,
       seeMore: false,
       headers: {
-        Photos: { icon: 'mdi-image-multiple', title: 'components.feed.newPhotos' },
-        CragRoutes: { icon: 'mdi-source-branch', title: 'components.feed.newCragRoutes' },
-        AscentCragRoutes: { icon: 'mdi-check-box-multiple-outline', title: 'components.feed.newAscentCragRoutes' }
+        Photos: { icon: mdiImageMultiple, title: 'components.feed.newPhotos' },
+        CragRoutes: { icon: mdiSourceBranch, title: 'components.feed.newCragRoutes' },
+        AscentCragRoutes: { icon: mdiCheckboxMultipleOutline, title: 'components.feed.newAscentCragRoutes' }
       }
     }
   },

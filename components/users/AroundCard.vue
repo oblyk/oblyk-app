@@ -14,7 +14,7 @@
           left
           small
         >
-          mdi-map-marker-radius
+          {{ mdiMapMarkerRadius }}
         </v-icon>
         {{ $t('components.user.distanceAround', { distance: distance }) }}
       </v-col>
@@ -26,7 +26,7 @@
         @click="cragsDialog = true"
       >
         <v-icon small left>
-          mdi-terrain
+          {{ mdiTerrain }}
         </v-icon>
         {{ $tc('components.crag.cragCount', crags.length, { count: crags.length }) }}
       </v-col>
@@ -38,7 +38,7 @@
         @click="gymsDialog = true"
       >
         <v-icon small left>
-          mdi-home-roof
+          {{ mdiHomeRoof }}
         </v-icon>
         {{ $tc('components.gym.gymCount', gyms.length, { count: gyms.length }) }}
       </v-col>
@@ -50,7 +50,7 @@
         @click="climbersDialog = true"
       >
         <v-icon small left>
-          mdi-human
+          {{ mdiHuman }}
         </v-icon>
         {{ $tc('components.user.userCount', climbers.length, { count: climbers.length }) }}
       </v-col>
@@ -186,6 +186,7 @@
 </template>
 
 <script>
+import { mdiMapMarkerRadius, mdiTerrain, mdiHomeRoof, mdiHuman } from '@mdi/js'
 import CragApi from '~/services/oblyk-api/CragApi'
 import GymApi from '~/services/oblyk-api/GymApi'
 import PartnerApi from '~/services/oblyk-api/PartnerApi'
@@ -208,6 +209,10 @@ export default {
 
   data () {
     return {
+      mdiMapMarkerRadius,
+      mdiTerrain,
+      mdiHomeRoof,
+      mdiHuman,
       distance: 20,
       settingDistance: null,
       cragsDialog: false,

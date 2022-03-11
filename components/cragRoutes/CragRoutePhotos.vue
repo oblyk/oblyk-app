@@ -2,7 +2,7 @@
   <div>
     <p>
       <v-icon left>
-        mdi-image
+        {{ mdiImage }}
       </v-icon>
       {{ $t('components.gallery.title') }}
     </p>
@@ -25,7 +25,7 @@
             color="primary"
           >
             <v-icon small left>
-              mdi-image-plus
+              {{ mdiImagePlus }}
             </v-icon>
             {{ $t('actions.addPicture') }}
           </v-btn>
@@ -36,6 +36,7 @@
 </template>
 
 <script>
+import { mdiImage, mdiImagePlus } from '@mdi/js'
 import PhotoGallery from '@/components/photos/PhotoGallery'
 import { SessionConcern } from '@/concerns/SessionConcern'
 
@@ -51,6 +52,13 @@ export default {
     lgCol: {
       type: String,
       default: null
+    }
+  },
+
+  data () {
+    return {
+      mdiImage,
+      mdiImagePlus
     }
   }
 }

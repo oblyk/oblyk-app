@@ -48,7 +48,7 @@
               v-on="on"
             >
               <v-icon left small>
-                mdi-comment-plus
+                {{ mdiCommentPlus }}
               </v-icon>
               {{ $t('actions.addComment') }}
             </v-btn>
@@ -75,6 +75,7 @@
   </div>
 </template>
 <script>
+import { mdiCommentPlus } from '@mdi/js'
 import CommentApi from '~/services/oblyk-api/CommentApi'
 import Comment from '@/models/Comment'
 import CommentCard from '@/components/comments/CommentCard'
@@ -102,6 +103,7 @@ export default {
 
   data () {
     return {
+      mdiCommentPlus,
       comments: [],
       loadingComments: true,
       redirectTo: this.$route.fullPath,

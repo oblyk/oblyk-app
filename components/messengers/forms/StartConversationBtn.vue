@@ -10,12 +10,14 @@
       small
       left
     >
-      mdi-message-reply-text
+      {{ mdiMessageReplyText }}
     </v-icon>
     {{ $t('actions.writeMessage') }}
   </v-btn>
 </template>
+
 <script>
+import { mdiMessageReplyText } from '@mdi/js'
 import { SessionConcern } from '@/concerns/SessionConcern'
 import ConversationApi from '~/services/oblyk-api/ConversationApi'
 
@@ -31,6 +33,7 @@ export default {
 
   data () {
     return {
+      mdiMessageReplyText,
       loadingStartConversation: false
     }
   },

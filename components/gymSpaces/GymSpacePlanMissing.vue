@@ -2,7 +2,7 @@
   <div class="explain-plan-missing">
     <p class="text-center">
       <v-icon large>
-        mdi-map
+        {{ mdiMap }}
       </v-icon>
     </p>
     <p
@@ -19,11 +19,19 @@
     </p>
   </div>
 </template>
+
 <script>
+import { mdiMap } from '@mdi/js'
 export default {
   name: 'GymSpacePlanMissing',
   props: {
     gymSpace: Object
+  },
+
+  data () {
+    return {
+      mdiMap
+    }
   }
 }
 </script>

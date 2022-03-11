@@ -16,7 +16,7 @@
           @click="removeCrag(crag)"
         >
           <v-icon>
-            mdi-delete
+            {{ mdiDelete }}
           </v-icon>
         </v-btn>
       </div>
@@ -30,7 +30,7 @@
         <v-icon
           left
         >
-          mdi-terrain
+          {{ mdiTerrain }}
         </v-icon>
         {{ $t('components.guideBookPaper.addCragInGuide') }}
       </v-btn>
@@ -39,6 +39,7 @@
 </template>
 
 <script>
+import { mdiDelete, mdiTerrain } from '@mdi/js'
 import { SessionConcern } from '@/concerns/SessionConcern'
 import CragSmallCard from '@/components/crags/CragSmallCard'
 import GuideBookPaperApi from '~/services/oblyk-api/GuideBookPaperApi'
@@ -55,6 +56,13 @@ export default {
     guideBookPaper: {
       type: Object,
       required: true
+    }
+  },
+
+  data () {
+    return {
+      mdiDelete,
+      mdiTerrain
     }
   },
 

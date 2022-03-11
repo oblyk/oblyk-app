@@ -26,7 +26,7 @@
             icon
             @click="showConversationList()"
           >
-            <v-icon>mdi-arrow-left</v-icon>
+            <v-icon>{{ mdiArrowLeft }}</v-icon>
           </v-btn>
           {{ conversation.title(loggedInUser.uuid) }}
         </h4>
@@ -79,6 +79,7 @@
 </template>
 
 <script>
+import { mdiArrowLeft } from '@mdi/js'
 import { ConversationConcern } from '@/concerns/ConversationConcern'
 import { SessionConcern } from '@/concerns/SessionConcern'
 import Spinner from '@/components/layouts/Spiner'
@@ -110,6 +111,7 @@ export default {
 
   data () {
     return {
+      mdiArrowLeft,
       noMoreOlderMessage: false,
       loadingMoreMessage: false,
       oldestMessageDate: null,

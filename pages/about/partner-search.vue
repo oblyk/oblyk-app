@@ -41,7 +41,7 @@
           <p v-if="isLoggedIn" class="text-right">
             <v-btn outlined color="primary" :to="`/me/${loggedInUser.slugName}/settings/partner`">
               <v-icon left>
-                mdi-human
+                {{ mdiHuman }}
               </v-icon>
               {{ $t('common.pages.partner.steps.configuration.action') }}
             </v-btn>
@@ -62,7 +62,7 @@
           <p v-if="isLoggedIn" class="text-right">
             <v-btn outlined color="primary" :to="`/me/${loggedInUser.slugName}/settings/partner`">
               <v-icon left>
-                mdi-map-marker-radius
+                {{ mdiMapMarkerRadius }}
               </v-icon>
               {{ $t('common.pages.partner.steps.location.action') }}
             </v-btn>
@@ -83,7 +83,7 @@
           <p class="text-right">
             <v-btn outlined color="primary" to="/maps/climbers">
               <v-icon left>
-                mdi-map
+                {{ mdiMap }}
               </v-icon>
               {{ $t('common.pages.partner.steps.climberMap.action') }}
             </v-btn>
@@ -104,7 +104,7 @@
           <p v-if="isLoggedIn" class="text-right">
             <v-btn outlined color="primary" :to="`/me/${loggedInUser.slugName}/messenger`">
               <v-icon left>
-                mdi-forum
+                {{ mdiForum }}
               </v-icon>
               {{ $t('common.pages.partner.steps.contact.action') }}
             </v-btn>
@@ -122,6 +122,7 @@
 </template>
 
 <script>
+import { mdiHuman, mdiMapMarkerRadius, mdiMap, mdiForum } from '@mdi/js'
 import { SessionConcern } from '@/concerns/SessionConcern'
 import PartnerFigures from '@/components/partners/PartnerFigures'
 import AppFooter from '@/components/layouts/AppFooter'
@@ -130,6 +131,15 @@ import OtherFeatures from '~/components/globals/OtherFeatures'
 export default {
   components: { OtherFeatures, PartnerFigures, AppFooter },
   mixins: [SessionConcern],
+
+  data () {
+    return {
+      mdiHuman,
+      mdiMapMarkerRadius,
+      mdiMap,
+      mdiForum
+    }
+  },
 
   head () {
     return {

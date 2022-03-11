@@ -40,7 +40,7 @@
       :type="showPassword ? 'text' : 'password'"
       required
       class="required-field"
-      :append-icon="showPassword ? 'mdi-eye-off' : 'mdi-eye'"
+      :append-icon="showPassword ? mdiEyeOff : mdiEye"
       @click:append="showPassword = !showPassword"
     />
 
@@ -52,7 +52,7 @@
       :type="showPasswordConfirmation ? 'text' : 'password'"
       required
       class="required-field"
-      :append-icon="showPasswordConfirmation ? 'mdi-eye-off' : 'mdi-eye'"
+      :append-icon="showPasswordConfirmation ? mdiEyeOff : mdiEye"
       @click:append="showPasswordConfirmation = !showPasswordConfirmation"
     />
 
@@ -127,6 +127,7 @@
 </template>
 
 <script>
+import { mdiEyeOff, mdiEye } from '@mdi/js'
 import SubmitForm from '@/components/forms/SubmitForm'
 import { FormHelpers } from '@/mixins/FormHelpers'
 import DateOfBirthInput from '@/components/forms/DateOfBirthInput'
@@ -148,6 +149,8 @@ export default {
 
   data () {
     return {
+      mdiEyeOff,
+      mdiEye,
       termsOfUse: false,
       newsletterSubscribe: false,
       email: null,

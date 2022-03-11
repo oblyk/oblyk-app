@@ -2,7 +2,7 @@
   <v-row class="mb-0">
     <v-col class="pb-0">
       <v-icon left small>
-        mdi-texture-box
+        {{ mdiTextureBox }}
       </v-icon>
       {{ gymSector.name }}
     </v-col>
@@ -18,7 +18,7 @@
             v-on="on"
           >
             <v-icon>
-              mdi-dots-vertical
+              {{ mdiDotsVertical }}
             </v-icon>
           </v-btn>
         </template>
@@ -29,7 +29,7 @@
             :to="`/a${gymSector.path}/edit`"
           >
             <v-list-item-icon>
-              <v-icon>mdi-pencil</v-icon>
+              <v-icon>{{ mdiPencil }}</v-icon>
             </v-list-item-icon>
             <v-list-item-title>
               {{ $t('actions.editSector') }}
@@ -42,7 +42,7 @@
             @click="dismountRoutes()"
           >
             <v-list-item-icon>
-              <v-icon>mdi-collapse-all-outline</v-icon>
+              <v-icon>{{ mdiCollapseAllOutline }}</v-icon>
             </v-list-item-icon>
             <v-list-item-title>
               {{ $t('actions.dismountAllRoutes') }}
@@ -55,7 +55,7 @@
             @click="startEditSectorPolygon()"
           >
             <v-list-item-icon>
-              <v-icon>mdi-vector-polygon</v-icon>
+              <v-icon>{{ mdiVectorPolygon }}</v-icon>
             </v-list-item-icon>
             <v-list-item-title>
               {{ $t('components.gymSector.editSectorPolygon') }}
@@ -66,7 +66,9 @@
     </v-col>
   </v-row>
 </template>
+
 <script>
+import { mdiTextureBox, mdiDotsVertical, mdiPencil, mdiCollapseAllOutline, mdiVectorPolygon } from '@mdi/js'
 import { SessionConcern } from '@/concerns/SessionConcern'
 
 export default {
@@ -74,6 +76,16 @@ export default {
   mixins: [SessionConcern],
   props: {
     gymSector: Object
+  },
+
+  data () {
+    return {
+      mdiTextureBox,
+      mdiDotsVertical,
+      mdiPencil,
+      mdiCollapseAllOutline,
+      mdiVectorPolygon
+    }
   },
 
   methods: {

@@ -13,7 +13,7 @@
         @click="deleteAlert()"
       >
         <v-icon small>
-          mdi-delete
+          {{ mdiDelete }}
         </v-icon>
       </v-btn>
 
@@ -22,7 +22,7 @@
         :to="`/a${alert.path}/edit?redirect_to=${$route.fullPath}`"
       >
         <v-icon small>
-          mdi-pencil
+          {{ mdiPencil }}
         </v-icon>
       </v-btn>
     </div>
@@ -30,6 +30,7 @@
 </template>
 
 <script>
+import { mdiDelete, mdiPencil } from '@mdi/js'
 import { SessionConcern } from '@/concerns/SessionConcern'
 import AlertApi from '~/services/oblyk-api/AlertApi'
 const MarkdownText = () => import('@/components/ui/MarkdownText')
@@ -46,6 +47,13 @@ export default {
     getAlerts: {
       type: Function,
       default: null
+    }
+  },
+
+  data () {
+    return {
+      mdiDelete,
+      mdiPencil
     }
   },
 

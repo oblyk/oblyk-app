@@ -17,7 +17,7 @@
         <v-icon
           left
         >
-          mdi-image-album
+          {{ mdiImageAlbum }}
         </v-icon>
         {{ $t('actions.changeCover') }}
       </v-btn>
@@ -26,6 +26,7 @@
 </template>
 
 <script>
+import { mdiImageAlbum } from '@mdi/js'
 import { SessionConcern } from '@/concerns/SessionConcern'
 
 export default {
@@ -35,6 +36,12 @@ export default {
     guideBookPaper: {
       type: Object,
       required: true
+    }
+  },
+
+  data () {
+    return {
+      mdiImageAlbum
     }
   }
 }

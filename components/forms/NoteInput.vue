@@ -6,7 +6,7 @@
     :items="notes"
     item-text="text"
     item-value="value"
-    prepend-inner-icon="mdi-star"
+    :prepend-inner-icon="mdiStar"
     :label="$t('components.input.note')"
     outlined
     clearable
@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import { mdiStar } from '@mdi/js'
 import { InputHelpers } from '@/mixins/InputHelpers'
 
 export default {
@@ -27,6 +28,7 @@ export default {
 
   data () {
     return {
+      mdiStar,
       notes: [
         { text: this.$t('models.note.terrible'), value: 0 },
         { text: this.$t('models.note.ugly'), value: 1 },

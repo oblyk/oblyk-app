@@ -75,14 +75,14 @@
           <div>
             <v-alert
               text
-              icon="mdi-hand-coin"
+              :icon="mdiHandCoin"
               color="green"
             >
               {{ $t('components.guideBookPaper.fundingStatusExplain.contributes_to_financing') }}
             </v-alert>
             <v-alert
               text
-              icon="mdi-currency-usd-off"
+              :icon="mdiCurrencyUsdOff"
               color="red"
             >
               {{ $t('components.guideBookPaper.fundingStatusExplain.not_contributes_to_financing') }}
@@ -157,12 +157,16 @@
 </template>
 
 <script>
+import { mdiHandCoin, mdiCurrencyUsdOff } from '@mdi/js'
 import AppFooter from '~/components/layouts/AppFooter'
 import OtherFeatures from '~/components/globals/OtherFeatures'
+
 export default {
   components: { OtherFeatures, AppFooter },
   data () {
     return {
+      mdiHandCoin,
+      mdiCurrencyUsdOff,
       imageModal: false,
       imageSrc: ''
     }

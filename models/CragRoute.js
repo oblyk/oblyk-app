@@ -96,18 +96,4 @@ export default class CragRoute extends ActiveData {
       return 'soft'
     }
   }
-
-  get difficultyAppreciationIcon () {
-    if (this.difficultyAppreciationStatus === 'hard') {
-      return 'mdi-arrow-up'
-    } else if (this.difficultyAppreciationStatus === 'pretty_hard') {
-      return 'mdi-arrow-top-right'
-    } else if (this.difficultyAppreciationStatus === 'just') {
-      return 'mdi-arrow-right'
-    } else if (this.difficultyAppreciationStatus === 'pretty_soft') {
-      return 'mdi-arrow-bottom-right'
-    } else if (this.difficultyAppreciationStatus === 'soft') {
-      return 'mdi-arrow-down'
-    }
-  }
 }

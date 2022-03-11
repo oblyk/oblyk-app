@@ -7,7 +7,7 @@
     item-text="text"
     item-value="value"
     :hide-details="hideDetails"
-    prepend-inner-icon="mdi-nut"
+    :prepend-inner-icon="mdiNut"
     :label="$t('components.input.boltType')"
     outlined
     :tabindex="tabindex"
@@ -19,6 +19,7 @@
 </template>
 
 <script>
+import { mdiNut } from '@mdi/js'
 import { InputHelpers } from '@/mixins/InputHelpers'
 
 export default {
@@ -39,6 +40,7 @@ export default {
 
   data () {
     return {
+      mdiNut,
       bolts: [
         { text: this.$t('models.boltType.forged_eye_bolts'), value: 'forged_eye_bolts' },
         { text: this.$t('models.boltType.bolt_hangers'), value: 'bolt_hangers' },

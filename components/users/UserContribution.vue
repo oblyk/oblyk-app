@@ -2,7 +2,7 @@
   <v-card class="user-contribution full-height">
     <v-card-title>
       <v-icon left>
-        mdi-book-plus-multiple
+        {{ mdiBookPlusMultiple }}
       </v-icon>
       {{ $t('components.user.oblykContribution') }}
     </v-card-title>
@@ -96,11 +96,19 @@
 </template>
 
 <script>
+import { mdiBookPlusMultiple } from '@mdi/js'
+
 export default {
   name: 'UserContribution',
   props: {
     user: Object,
     contribution: Object
+  },
+
+  data () {
+    return {
+      mdiBookPlusMultiple
+    }
   },
 
   methods: {

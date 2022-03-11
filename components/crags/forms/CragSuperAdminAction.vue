@@ -8,7 +8,7 @@
         v-on="on"
       >
         <v-icon small>
-          mdi-plus
+          {{ mdiPlus }}
         </v-icon>
       </v-btn>
     </template>
@@ -17,7 +17,7 @@
         :to="`/a/alerts/Crag/${crag.id}/new?redirect_to=${$route.fullPath}`"
       >
         <v-list-item-icon>
-          <v-icon>mdi-bell-plus</v-icon>
+          <v-icon>{{ mdiBellPlus }}</v-icon>
         </v-list-item-icon>
         <v-list-item-title>{{ $t('actions.addAlert') }}</v-list-item-title>
       </v-list-item>
@@ -26,10 +26,22 @@
 </template>
 
 <script>
+import { mdiPlus, mdiBellPlus } from '@mdi/js'
+
 export default {
   name: 'CragSuperAdminAction',
   props: {
-    crag: Object
+    crag: {
+      type: Object,
+      required: true
+    }
+  },
+
+  data () {
+    return {
+      mdiPlus,
+      mdiBellPlus
+    }
   }
 }
 </script>

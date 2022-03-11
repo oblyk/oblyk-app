@@ -43,21 +43,18 @@ export default class GuideBookPaper extends ActiveData {
       return {
         displayed: true,
         color: 'green',
-        icon: 'mdi-hand-coin',
         labelKey: 'components.guideBookPaper.fundingStatusExplain.contributes_to_financing'
       }
     } else if (this.funding_status === 'not_contributes_to_financing') {
       return {
         displayed: true,
         color: 'red',
-        icon: 'mdi-currency-usd-off',
         labelKey: 'components.guideBookPaper.fundingStatusExplain.not_contributes_to_financing'
       }
     } else {
       return {
         displayed: false,
         color: 'gray',
-        icon: 'mdi-help-circle-outline',
         labelKey: 'components.guideBookPaper.fundingStatusExplain.undefined'
       }
     }

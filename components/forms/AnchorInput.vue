@@ -8,7 +8,7 @@
     :hide-details="hideDetails"
     :dense="dense"
     item-value="value"
-    prepend-inner-icon="mdi-source-fork"
+    :prepend-inner-icon="mdiSourceFork"
     :label="$t('components.input.anchorType')"
     outlined
     :tabindex="tabindex"
@@ -19,6 +19,7 @@
 </template>
 
 <script>
+import { mdiSourceFork } from '@mdi/js'
 import { InputHelpers } from '@/mixins/InputHelpers'
 
 export default {
@@ -42,6 +43,7 @@ export default {
 
   data () {
     return {
+      mdiSourceFork,
       anchors: [
         { text: this.$t('models.anchorType.bolted_anchor_chains'), value: 'bolted_anchor_chains' },
         { text: this.$t('models.anchorType.bolted_anchor_no_chains'), value: 'bolted_anchor_no_chains' },

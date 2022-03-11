@@ -7,7 +7,7 @@
         icon
         @click="collection = true"
       >
-        <v-icon>mdi-image-multiple</v-icon>
+        <v-icon>{{ mdiImageMultiple }}</v-icon>
       </v-btn>
     </div>
     <v-card v-show="collection" class="photo-collection-card">
@@ -31,6 +31,7 @@
 </template>
 
 <script>
+import { mdiImageMultiple } from '@mdi/js'
 
 export default {
   name: 'PhotoCollection',
@@ -40,6 +41,7 @@ export default {
 
   data () {
     return {
+      mdiImageMultiple,
       collection: false,
       loadingPhotos: true
     }

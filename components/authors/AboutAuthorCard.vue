@@ -2,7 +2,7 @@
   <div>
     <h2 class="loved-by-king">
       <v-icon left>
-        mdi-fountain-pen-tip
+        {{ mdiFountainPenTip }}
       </v-icon>
       {{ $t('components.article.aboutAuthor') }}
       <span v-if="isLoggedIn && loggedInUser.id === article.author.user_id">
@@ -11,7 +11,7 @@
           icon
         >
           <v-icon small>
-            mdi-pencil
+            {{ mdiPencil }}
           </v-icon>
         </v-btn>
         <v-btn
@@ -19,7 +19,7 @@
           icon
         >
           <v-icon small>
-            mdi-image-edit
+            {{ mdiImageEdit }}
           </v-icon>
         </v-btn>
       </span>
@@ -50,6 +50,7 @@
 </template>
 
 <script>
+import { mdiPencil, mdiImageEdit, mdiFountainPenTip } from '@mdi/js'
 import { SessionConcern } from '@/concerns/SessionConcern'
 const MarkdownText = () => import('@/components/ui/MarkdownText')
 
@@ -61,6 +62,14 @@ export default {
     article: {
       type: Object,
       required: true
+    }
+  },
+
+  data () {
+    return {
+      mdiPencil,
+      mdiImageEdit,
+      mdiFountainPenTip
     }
   }
 }

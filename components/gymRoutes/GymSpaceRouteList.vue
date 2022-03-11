@@ -65,6 +65,7 @@
 </template>
 
 <script>
+import { mdiTextureBox } from '@mdi/js'
 import { SessionConcern } from '@/concerns/SessionConcern'
 import GymSpaceRouteSort from '@/components/gymRoutes/partial/GymSpaceRouteSort'
 import Spinner from '@/components/layouts/Spiner'
@@ -92,6 +93,7 @@ export default {
 
   data () {
     return {
+      mdiTextureBox,
       sort: 'opened_at',
       routes: [],
       sectors: [],
@@ -218,7 +220,7 @@ export default {
 
     filterBySector (sectorId) {
       this.filter.text = `secteur ${sectorId}`
-      this.filter.icon = 'mdi-texture-box'
+      this.filter.icon = mdiTextureBox
       this.getRoutes(sectorId)
       this.$root.$emit('showGymSpaceLine')
     },

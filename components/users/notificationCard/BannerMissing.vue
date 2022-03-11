@@ -2,7 +2,7 @@
   <v-card v-if="offerToUpload">
     <v-card-text>
       <v-icon left color="primary">
-        mdi-panorama
+        {{ mdiPanorama }}
       </v-icon>
       <span v-html="$t('components.user.uploadBanner')" />
     </v-card-text>
@@ -29,6 +29,8 @@
 </template>
 
 <script>
+import { mdiPanorama } from '@mdi/js'
+
 export default {
   name: 'BannerMissing',
   props: {
@@ -40,6 +42,7 @@ export default {
 
   data () {
     return {
+      mdiPanorama,
       offerToUpload: null
     }
   },

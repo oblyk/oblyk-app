@@ -13,7 +13,6 @@
   },
   "dependencies": {
     "@chenfengyuan/vue-qrcode": "^1.0.2",
-    "@mdi/font": "^6.5.95",
     "@nuxtjs/auth-next": "5.0.0-1643278128.1c7fef7",
     "@nuxtjs/axios": "^5.13.6",
     "@nuxtjs/dotenv": "^1.4.1",
@@ -38,6 +37,7 @@
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.14.7",
+    "@mdi/js": "^6.5.95",
     "@nuxt/types": "~2.15.0",
     "@nuxtjs/eslint-config": "^6.0.1",
     "@nuxtjs/eslint-module": "^3.0.2",

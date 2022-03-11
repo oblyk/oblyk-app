@@ -7,7 +7,7 @@
         color="orange"
         left
       >
-        mdi-arrow-decision-outline
+        {{ mdiArrowDecisionOutline }}
       </v-icon>
       <span class="hidden-sm-only hidden-xs-only">
         {{ $t('components.user.tabs.feed') }}
@@ -21,7 +21,7 @@
         left
         color="teal"
       >
-        mdi-forum
+        {{ mdiForum }}
       </v-icon>
       <span class="hidden-sm-only hidden-xs-only">
         {{ $t('components.user.tabs.messenger') }}
@@ -35,7 +35,7 @@
         left
         color="green"
       >
-        mdi-account-group
+        {{ mdiAccountGroup }}
       </v-icon>
       <span class="hidden-sm-only hidden-xs-only">
         {{ $t('components.user.tabs.community') }}
@@ -49,7 +49,7 @@
         left
         color="blue"
       >
-        mdi-check-all
+        {{ mdiCheckAll }}
       </v-icon>
       <span class="hidden-sm-only hidden-xs-only">
         {{ $t('components.user.tabs.ascents') }}
@@ -63,7 +63,7 @@
         left
         color="amber"
       >
-        mdi-star
+        {{ mdiStar }}
       </v-icon>
       <span class="hidden-sm-only hidden-xs-only">
         {{ $t('components.user.tabs.favorites') }}
@@ -77,7 +77,7 @@
         left
         color="deep-purple"
       >
-        mdi-bookshelf
+        {{ mdiBookshelf }}
       </v-icon>
       <span class="hidden-sm-only hidden-xs-only">
         {{ $t('components.user.tabs.guideBooks') }}
@@ -91,7 +91,7 @@
         left
         color="blue"
       >
-        mdi-camera
+        {{ mdiCamera }}
       </v-icon>
       <span class="hidden-sm-only hidden-xs-only">
         {{ $t('components.user.tabs.media') }}
@@ -104,7 +104,7 @@
         :small="!isMobile"
         left
       >
-        mdi-cog
+        {{ mdiCog }}
       </v-icon>
       <span class="hidden-sm-only hidden-xs-only">
         {{ $t('components.user.tabs.settings') }}
@@ -114,6 +114,8 @@
 </template>
 
 <script>
+import { mdiArrowDecisionOutline, mdiForum, mdiAccountGroup, mdiCheckAll, mdiStar, mdiBookshelf, mdiCamera, mdiCog } from '@mdi/js'
+
 export default {
   name: 'CurrentUserTabs',
   props: {
@@ -125,6 +127,14 @@ export default {
 
   data () {
     return {
+      mdiArrowDecisionOutline,
+      mdiForum,
+      mdiAccountGroup,
+      mdiCheckAll,
+      mdiStar,
+      mdiBookshelf,
+      mdiCamera,
+      mdiCog,
       isMobile: false
     }
   },

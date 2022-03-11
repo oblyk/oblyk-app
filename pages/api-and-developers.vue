@@ -17,7 +17,7 @@
               {{ $t('common.pages.apiAndDevelopers.connectOrRegister') }}
               <p class="mt-3">
                 <v-icon class="mr-2">
-                  mdi-arrow-right
+                  {{ mdiArrowRight }}
                 </v-icon>
                 <nuxt-link to="sign-in">
                   {{ $t('actions.signIn') }}
@@ -31,7 +31,7 @@
               {{ $t('common.pages.apiAndDevelopers.createYourOrganization') }}
               <p class="mt-3">
                 <v-icon class="mr-2">
-                  mdi-arrow-right
+                  {{ mdiArrowRight }}
                 </v-icon>
                 <nuxt-link to="/a/organizations/new">
                   {{ $t('common.pages.apiAndDevelopers.createMyOrganisation') }}
@@ -42,7 +42,7 @@
               {{ $t('common.pages.apiAndDevelopers.readDoc') }}
               <p class="mt-3">
                 <v-icon class="mr-2">
-                  mdi-arrow-right
+                  {{ mdiArrowRight }}
                 </v-icon>
                 <a href="https://api.oblyk.org/documentation" target="_blank">
                   {{ $t('common.pages.apiAndDevelopers.oblykApiDocumentation') }}
@@ -69,10 +69,17 @@
 </template>
 
 <script>
+import { mdiArrowRight } from '@mdi/js'
 import AppFooter from '@/components/layouts/AppFooter'
 
 export default {
   components: { AppFooter },
+
+  data () {
+    return {
+      mdiArrowRight
+    }
+  },
 
   head () {
     return {

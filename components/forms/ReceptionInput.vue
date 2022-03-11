@@ -6,7 +6,7 @@
     :items="receptions"
     item-text="text"
     item-value="value"
-    prepend-inner-icon="mdi-selection-ellipse-arrow-inside"
+    :prepend-inner-icon="mdiSelectionEllipseArrowInside"
     :label="$t('components.input.receptionType')"
     outlined
     :tabindex="tabindex"
@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import { mdiSelectionEllipseArrowInside } from '@mdi/js'
 import { InputHelpers } from '@/mixins/InputHelpers'
 
 export default {
@@ -29,6 +30,7 @@ export default {
 
   data () {
     return {
+      mdiSelectionEllipseArrowInside,
       receptions: [
         { text: this.$t('models.receptionType.good'), value: 'good' },
         { text: this.$t('models.receptionType.correct'), value: 'correct' },

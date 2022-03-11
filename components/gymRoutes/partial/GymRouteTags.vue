@@ -17,18 +17,27 @@
           class="mr-1"
           small
         >
-          mdi-pound
+          {{ mdiPound }}
         </v-icon>
         {{ $t(`models.tags.${tag}`) }}
       </v-chip>
     </span>
   </div>
 </template>
+
 <script>
+import { mdiPound } from '@mdi/js'
+
 export default {
   name: 'GymRouteTags',
   props: {
     gymRoute: Object
+  },
+
+  data () {
+    return {
+      mdiPound
+    }
   }
 }
 </script>

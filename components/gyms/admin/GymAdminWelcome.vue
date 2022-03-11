@@ -21,7 +21,7 @@
         color="primary"
       >
         <v-icon left>
-          mdi-earth
+          {{ mdiEarth }}
         </v-icon>
         {{ $t('components.gymAdmin.publicPage') }}
       </v-btn>
@@ -30,10 +30,18 @@
 </template>
 
 <script>
+import { mdiEarth } from '@mdi/js'
+
 export default {
   name: 'GymAdminWelcome',
   props: {
     gym: Object
+  },
+
+  data () {
+    return {
+      mdiEarth
+    }
   }
 }
 </script>

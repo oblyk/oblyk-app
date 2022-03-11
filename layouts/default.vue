@@ -15,7 +15,7 @@
         left
         color="#b77121"
       >
-        mdi-cookie
+        {{ mdiCookie }}
       </v-icon>
       {{ $t('common.pages.cookies') }}
       <template #action="{ attrs }">
@@ -33,6 +33,7 @@
 </template>
 
 <script>
+import { mdiCookie } from '@mdi/js'
 import AppBar from '~/components/layouts/AppBar'
 import AppAlert from '~/components/layouts/AppAlert'
 import { Cable } from '~/channels/Cable'
@@ -43,6 +44,7 @@ export default {
 
   data () {
     return {
+      mdiCookie,
       cookiesMessage: false
     }
   },

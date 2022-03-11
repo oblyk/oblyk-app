@@ -24,8 +24,8 @@
         :subscribe-id="guideBookPaper.id"
         :large="false"
         followed-color="deep-purple"
-        followed-icon="mdi-bookshelf"
-        unfollowed-icon="mdi-bookshelf"
+        :followed-icon="mdiBookshelf"
+        :unfollowed-icon="mdiBookshelf"
         subscribe-label="actions.addToLibrary"
         unsubscribe-label="actions.removeFromLibrary"
       />
@@ -53,7 +53,7 @@
         outlined
       >
         <v-icon left small>
-          mdi-currency-usd
+          {{ mdiCurrencyEur }}
         </v-icon>
         {{ $t('models.guideBookPaper.price') }}
       </v-chip>
@@ -66,7 +66,7 @@
         outlined
       >
         <v-icon left small>
-          mdi-weight
+          {{ mdiWeight }}
         </v-icon>
         {{ $t('models.guideBookPaper.weight') }}
       </v-chip>
@@ -79,7 +79,7 @@
         outlined
       >
         <v-icon left small>
-          mdi-fountain-pen-tip
+          {{ mdiFountainPenTip }}
         </v-icon>
         {{ $t('models.guideBookPaper.author') }}
       </v-chip>
@@ -92,7 +92,7 @@
         outlined
       >
         <v-icon left small>
-          mdi-book-open-page-variant
+          {{ mdiBookOpenPageVariant }}
         </v-icon>
         {{ $t('models.guideBookPaper.pages') }}
       </v-chip>
@@ -105,7 +105,7 @@
         outlined
       >
         <v-icon left small>
-          mdi-calendar-outline
+          {{ mdiCalendarOutline }}
         </v-icon>
         {{ $t('models.guideBookPaper.year') }}
       </v-chip>
@@ -114,8 +114,9 @@
 </template>
 
 <script>
-
+import { mdiCurrencyEur, mdiWeight, mdiFountainPenTip, mdiBookOpenPageVariant, mdiCalendarOutline, mdiBookshelf } from '@mdi/js'
 import SubscribeBtn from '@/components/forms/SubscribeBtn'
+
 export default {
   name: 'GuideBookPaperCoverCard',
   components: { SubscribeBtn },
@@ -140,6 +141,17 @@ export default {
       default: '240px'
     },
     subscribeBtn: Boolean
+  },
+
+  data () {
+    return {
+      mdiCurrencyEur,
+      mdiWeight,
+      mdiFountainPenTip,
+      mdiBookOpenPageVariant,
+      mdiCalendarOutline,
+      mdiBookshelf
+    }
   }
 }
 </script>

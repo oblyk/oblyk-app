@@ -33,19 +33,20 @@
         @click="showLine()"
       >
         <span>{{ $t('components.gymSpace.routes') }}</span>
-        <v-icon>mdi-arrow-decision</v-icon>
+        <v-icon>{{ mdiArrowDecision }}</v-icon>
       </v-btn>
       <v-btn
         @click="showPlan()"
       >
         <span>{{ $t('components.gymSpace.plan') }}</span>
-        <v-icon>mdi-map-legend</v-icon>
+        <v-icon>{{ mdiMapLegend }}</v-icon>
       </v-btn>
     </v-bottom-navigation>
   </div>
 </template>
 
 <script>
+import { mdiArrowDecision, mdiMapLegend } from '@mdi/js'
 import { GymSpaceConcern } from '@/concerns/GymSpaceConcern'
 import GymSpaceRoute from '@/components/gymSpaces/GymSpaceRoute'
 import GymSpacePlanMissing from '@/components/gymSpaces/GymSpacePlanMissing'
@@ -61,6 +62,8 @@ export default {
 
   data () {
     return {
+      mdiArrowDecision,
+      mdiMapLegend,
       mobilInterface: true,
       linePanel: true,
       planPanel: false

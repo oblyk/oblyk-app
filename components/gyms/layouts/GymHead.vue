@@ -37,7 +37,7 @@
               class="ml-1"
             >
               <v-icon small>
-                mdi-pencil
+                {{ mdiPencil }}
               </v-icon>
             </v-btn>
 
@@ -52,7 +52,7 @@
               <v-icon
                 small
               >
-                mdi-alpha-l-circle
+                {{ mdiAlphaLCircle }}
               </v-icon>
             </v-btn>
 
@@ -67,7 +67,7 @@
               <v-icon
                 small
               >
-                mdi-panorama
+                {{ mdiPanorama }}
               </v-icon>
             </v-btn>
           </client-only>
@@ -78,6 +78,7 @@
 </template>
 
 <script>
+import { mdiPencil, mdiAlphaLCircle, mdiPanorama } from '@mdi/js'
 import { SessionConcern } from '@/concerns/SessionConcern'
 import SubscribeBtn from '@/components/forms/SubscribeBtn'
 
@@ -89,6 +90,14 @@ export default {
     gym: {
       type: Object,
       required: true
+    }
+  },
+
+  data () {
+    return {
+      mdiPencil,
+      mdiAlphaLCircle,
+      mdiPanorama
     }
   },
 

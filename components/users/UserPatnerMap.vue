@@ -2,7 +2,7 @@
   <v-card class="full-height">
     <v-card-title>
       <v-icon left>
-        mdi-map
+        {{ mdiMap }}
       </v-icon>
       {{ $t('components.user.climbersMap') }}
     </v-card-title>
@@ -44,6 +44,7 @@
 </template>
 
 <script>
+import { mdiMap } from '@mdi/js'
 import { GradeMixin } from '@/mixins/GradeMixin'
 import UserApi from '~/services/oblyk-api/UserApi'
 const LeafletMap = () => import('@/components/maps/LeafletMap')
@@ -61,6 +62,7 @@ export default {
 
   data () {
     return {
+      mdiMap,
       geoJsons: null
     }
   },

@@ -5,11 +5,10 @@
     </v-card-title>
     <v-card-text>
       <v-list dense>
-
         <!-- Address -->
         <v-list-item :to="`/maps/gyms?lat=${gym.latitude}&lng=${gym.longitude}`">
           <v-list-item-icon>
-            <v-icon>mdi-map</v-icon>
+            <v-icon>{{ mdiMap }}</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
             <v-list-item-title>
@@ -24,7 +23,7 @@
         <!-- Web site -->
         <v-list-item>
           <v-list-item-icon>
-            <v-icon>mdi-web</v-icon>
+            <v-icon>{{ mdiWeb }}</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
             <v-list-item-title
@@ -43,7 +42,7 @@
         <!-- Phone number -->
         <v-list-item>
           <v-list-item-icon>
-            <v-icon>mdi-phone</v-icon>
+            <v-icon>{{ mdiPhone }}</v-icon>
           </v-list-item-icon>
           <v-list-item-content @click="showPhoneNumber = true">
             <v-list-item-title v-if="gym.phone_number">
@@ -63,7 +62,7 @@
         <!-- Email -->
         <v-list-item>
           <v-list-item-icon>
-            <v-icon>mdi-email</v-icon>
+            <v-icon>{{ mdiEmail }}</v-icon>
           </v-list-item-icon>
           <v-list-item-content @click="showEmail = true">
             <v-list-item-title v-if="gym.email">
@@ -83,7 +82,7 @@
         <!-- Contribution -->
         <v-list-item>
           <v-list-item-icon>
-            <v-icon>mdi-history</v-icon>
+            <v-icon>{{ mdiHistory }}</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
             <v-list-item-title>
@@ -101,6 +100,7 @@
 </template>
 
 <script>
+import { mdiMap, mdiWeb, mdiPhone, mdiEmail, mdiHistory } from '@mdi/js'
 import ContributionsLabel from '@/components/globals/ContributionsLable'
 
 export default {
@@ -115,6 +115,11 @@ export default {
 
   data () {
     return {
+      mdiMap,
+      mdiWeb,
+      mdiPhone,
+      mdiEmail,
+      mdiHistory,
       showPhoneNumber: false,
       showEmail: false
     }

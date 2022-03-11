@@ -6,7 +6,7 @@
     :items="starts"
     item-text="text"
     item-value="value"
-    prepend-inner-icon="mdi-arrow-expand-up"
+    :prepend-inner-icon="mdiArrowExpandUp"
     :label="$t('components.input.startType')"
     outlined
     :tabindex="tabindex"
@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import { mdiArrowExpandUp } from '@mdi/js'
 import { InputHelpers } from '@/mixins/InputHelpers'
 
 export default {
@@ -29,6 +30,7 @@ export default {
 
   data () {
     return {
+      mdiArrowExpandUp,
       starts: [
         { text: this.$t('models.startType.sit'), value: 'sit' },
         { text: this.$t('models.startType.down'), value: 'down' },

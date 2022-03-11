@@ -7,7 +7,7 @@
         v-on="on"
       >
         <v-icon small>
-          mdi-cog
+          {{ mdiCog }}
         </v-icon>
       </v-btn>
     </template>
@@ -17,7 +17,7 @@
         :to="`/a${article.path}/edit`"
       >
         <v-list-item-icon>
-          <v-icon>mdi-pencil</v-icon>
+          <v-icon>{{ mdiPencil }}</v-icon>
         </v-list-item-icon>
         <v-list-item-title>
           {{ $t('components.article.edit') }}
@@ -29,7 +29,7 @@
         :to="`/a${article.path}/add-crags`"
       >
         <v-list-item-icon>
-          <v-icon>mdi-terrain</v-icon>
+          <v-icon>{{ mdiTerrain }}</v-icon>
         </v-list-item-icon>
         <v-list-item-title>
           {{ $t('actions.addCrag') }}
@@ -41,7 +41,7 @@
         :to="`/a${article.path}/add-guide-books`"
       >
         <v-list-item-icon>
-          <v-icon>mdi-book-open-variant</v-icon>
+          <v-icon>{{ mdiBookOpenVariant }}</v-icon>
         </v-list-item-icon>
         <v-list-item-title>
           {{ $t('actions.addGuideBook') }}
@@ -53,7 +53,7 @@
         :to="`${article.path}/photos`"
       >
         <v-list-item-icon>
-          <v-icon>mdi-image-multiple</v-icon>
+          <v-icon>{{ mdiImageMultiple }}</v-icon>
         </v-list-item-icon>
         <v-list-item-title>
           {{ $t('components.photo.photos') }}
@@ -65,7 +65,7 @@
         :to="`/a${article.path}/cover`"
       >
         <v-list-item-icon>
-          <v-icon>mdi-panorama</v-icon>
+          <v-icon>{{ mdiPanorama }}</v-icon>
         </v-list-item-icon>
         <v-list-item-title>
           {{ $t('actions.changeCover') }}
@@ -78,7 +78,7 @@
         @click="publishArticle()"
       >
         <v-list-item-icon>
-          <v-icon>mdi-eye</v-icon>
+          <v-icon>{{ mdiEye }}</v-icon>
         </v-list-item-icon>
         <v-list-item-title>
           {{ $t('actions.publish') }}
@@ -91,7 +91,7 @@
         @click="unPublishArticle()"
       >
         <v-list-item-icon>
-          <v-icon>mdi-eye-off</v-icon>
+          <v-icon>{{ mdiEyeOff }}</v-icon>
         </v-list-item-icon>
         <v-list-item-title>
           {{ $t('actions.unPublish') }}
@@ -102,12 +102,29 @@
 </template>
 
 <script>
+import { mdiCog, mdiPencil, mdiTerrain, mdiBookOpenVariant, mdiImageMultiple, mdiPanorama, mdiEye, mdiEyeOff } from '@mdi/js'
 import ArticleApi from '~/services/oblyk-api/ArticleApi'
 
 export default {
   name: 'ArticleActionMenu',
   props: {
-    article: Object
+    article: {
+      type: Object,
+      required: true
+    }
+  },
+
+  data () {
+    return {
+      mdiCog,
+      mdiPencil,
+      mdiTerrain,
+      mdiBookOpenVariant,
+      mdiImageMultiple,
+      mdiPanorama,
+      mdiEye,
+      mdiEyeOff
+    }
   },
 
   methods: {

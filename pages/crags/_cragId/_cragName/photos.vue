@@ -8,7 +8,7 @@
         color="primary"
       >
         <v-icon left>
-          mdi-image-plus
+          {{ mdiImagePlus }}
         </v-icon>
         {{ $t('actions.addPicture') }}
       </v-btn>
@@ -33,7 +33,7 @@
           color="primary"
         >
           <v-icon left>
-            mdi-video-plus
+            {{ mdiVideoPlus }}
           </v-icon>
           {{ $t('actions.addVideo') }}
         </v-btn>
@@ -61,6 +61,7 @@
 </template>
 
 <script>
+import { mdiImagePlus, mdiVideoPlus } from '@mdi/js'
 import { SessionConcern } from '@/concerns/SessionConcern'
 import CragApi from '@/services/oblyk-api/CragApi'
 import Spinner from '@/components/layouts/Spiner'
@@ -85,6 +86,8 @@ export default {
 
   data () {
     return {
+      mdiImagePlus,
+      mdiVideoPlus,
       loadingVideos: true,
       videos: [],
       cragPhotoMetaTitle: `${this.$t('meta.generics.pictures')} ${this.$t('meta.crag.title', {

@@ -49,7 +49,7 @@
         </nuxt-link>
         <nuxt-link class="d-block" to="/support-us">
           <v-icon small color="red" left>
-            mdi-heart
+            {{ mdiHeart }}
           </v-icon>
           {{ $t('components.layout.footer.donation') }}
         </nuxt-link>
@@ -59,7 +59,7 @@
           rel="nofollow"
         >
           <v-icon small left dark>
-            mdi-flag
+            {{ mdiFlag }}
           </v-icon>
           {{ $t('components.layout.footer.reportProblem') }}
         </nuxt-link>
@@ -74,19 +74,19 @@
         </p>
         <a class="d-block" href="https://www.facebook.com/pageoblyk/">
           <v-icon small left dark>
-            mdi-facebook
+            {{ mdiFacebook }}
           </v-icon>
           {{ $t('components.layout.footer.facebook') }}
         </a>
         <a class="d-block" href="https://github.com/oblyk">
           <v-icon small left dark>
-            mdi-github
+            {{ mdiGithub }}
           </v-icon>
           {{ $t('components.layout.footer.github') }}
         </a>
         <nuxt-link class="d-block" to="/newsletters/subscribe">
           <v-icon small left dark>
-            mdi-email
+            {{ mdiEmail }}
           </v-icon>
           {{ $t('components.layout.footer.newsletter') }}
         </nuxt-link>
@@ -97,7 +97,7 @@
       <v-col>
         <nuxt-link to="/">
           <v-icon small left dark>
-            mdi-copyright
+            {{ mdiCopyright }}
           </v-icon>
           2022 — Oblyk
         </nuxt-link>
@@ -112,8 +112,21 @@
 </template>
 
 <script>
+import { mdiCopyright, mdiHeart, mdiFlag, mdiFacebook, mdiGithub, mdiEmail } from '@mdi/js'
+
 export default {
   name: 'FooterLazy',
+
+  data () {
+    return {
+      mdiCopyright,
+      mdiHeart,
+      mdiFlag,
+      mdiFacebook,
+      mdiGithub,
+      mdiEmail
+    }
+  },
 
   methods: {
     backToTheTop () {

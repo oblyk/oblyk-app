@@ -9,7 +9,7 @@
         color="teal"
         left
       >
-        mdi-account-box
+        {{ mdiAccountBox }}
       </v-icon>
       <span class="hidden-sm-only hidden-xs-only">
         {{ $t('components.user.tabs.profile') }}
@@ -23,7 +23,7 @@
         left
         color="blue"
       >
-        mdi-check-all
+        {{ mdiCheckAll }}
       </v-icon>
       <span class="hidden-sm-only hidden-xs-only">
         {{ $t('components.user.tabs.ascents') }}
@@ -37,7 +37,7 @@
         left
         color="blue"
       >
-        mdi-camera
+        {{ mdiCamera }}
       </v-icon>
       <span class="mr-1">
         {{ user.photos_count + user.videos_count }}
@@ -54,7 +54,7 @@
         left
         color="amber"
       >
-        mdi-star
+        {{ mdiStar }}
       </v-icon>
       <span class="mr-1">
         {{ user.subscribes_count }}
@@ -71,7 +71,7 @@
         left
         color="green"
       >
-        mdi-tooltip-account
+        {{ mdiTooltipAccount }}
       </v-icon>
       <span class="mr-1">
         {{ user.followers_count }}
@@ -84,14 +84,24 @@
 </template>
 
 <script>
+import { mdiAccountBox, mdiCheckAll, mdiCamera, mdiStar, mdiTooltipAccount } from '@mdi/js'
+
 export default {
   name: 'UserTabs',
   props: {
-    user: Object
+    user: {
+      type: Object,
+      required: true
+    }
   },
 
   data () {
     return {
+      mdiAccountBox,
+      mdiCheckAll,
+      mdiCamera,
+      mdiStar,
+      mdiTooltipAccount,
       isMobile: false
     }
   },

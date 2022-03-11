@@ -31,7 +31,7 @@
               @click="dismountCollection()"
             >
               <v-list-item-icon>
-                <v-icon>mdi-backburger</v-icon>
+                <v-icon>{{ mdiBackburger }}</v-icon>
               </v-list-item-icon>
               <v-list-item-title>
                 {{ $tc('components.gymAdmin.dismountRoutes', routeSelected.length, { count: routeSelected.length }) }}
@@ -42,7 +42,7 @@
               @click="mountCollection()"
             >
               <v-list-item-icon>
-                <v-icon>mdi-forwardburger</v-icon>
+                <v-icon>{{ mdiForwardburger }}</v-icon>
               </v-list-item-icon>
               <v-list-item-title>
                 {{ $tc('components.gymAdmin.mountRoutes', routeSelected.length, { count: routeSelected.length }) }}
@@ -83,7 +83,7 @@
                 :to="`/a${item.space.Gym.path}/spaces/${item.edit.gym_space.id}/${item.edit.gym_space.slug_name}/routes/${item.edit.id}/edit?redirect_to=${$route.fullPath}`"
               >
                 <v-icon small>
-                  mdi-pencil
+                  {{ mdiPencil }}
                 </v-icon>
               </nuxt-link>
             </template>
@@ -95,6 +95,7 @@
 </template>
 
 <script>
+import { mdiBackburger, mdiForwardburger, mdiPencil } from '@mdi/js'
 import { DateHelpers } from '@/mixins/DateHelpers'
 import GymApi from '~/services/oblyk-api/GymApi'
 import GymRoute from '@/models/GymRoute'
@@ -114,6 +115,9 @@ export default {
 
   data () {
     return {
+      mdiBackburger,
+      mdiForwardburger,
+      mdiPencil,
       routes: [],
       mountedRoute: true,
       loadingRoutes: true,

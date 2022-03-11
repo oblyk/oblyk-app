@@ -23,7 +23,7 @@
             @click="changeCardSize()"
           >
             <v-icon large>
-              mdi-close
+              {{ mdiClose }}
             </v-icon>
           </v-btn>
         </p>
@@ -103,7 +103,7 @@
       >
         <p class="mb-0">
           <v-icon small class="mr-2">
-            mdi-comment
+            {{ mdiComment }}
           </v-icon>
           <u>
             {{ $t('components.gymRoute.climbersComments') }}
@@ -133,6 +133,7 @@
   </div>
 </template>
 <script>
+import { mdiClose, mdiComment } from '@mdi/js'
 import GymRouteTagAndHold from '@/components/gymRoutes/partial/GymRouteTagAndHold'
 import GymRouteGradeAndPoint from '@/components/gymRoutes/partial/GymRouteGradeAndPoint'
 import GymRouteActionMenu from '@/components/gymRoutes/partial/GymRouteActionMenu'
@@ -156,8 +157,11 @@ export default {
     changeCardSize: Function,
     getSpaceRoutes: Function
   },
+
   data () {
     return {
+      mdiClose,
+      mdiComment,
       loadingRoute: true,
       loadingAscents: true,
       gymRoute: null,

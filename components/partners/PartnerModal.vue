@@ -41,7 +41,7 @@
           to="/about/partner-search"
         >
           <v-icon left>
-            mdi-map
+            {{ mdiMap }}
           </v-icon>
           {{ $t('common.pages.partner.howIsWork') }}
         </v-btn>
@@ -51,6 +51,7 @@
 </template>
 
 <script>
+import { mdiMap } from '@mdi/js'
 import { SessionConcern } from '@/concerns/SessionConcern'
 import PartnerFigures from '@/components/partners/PartnerFigures'
 
@@ -61,6 +62,7 @@ export default {
 
   data () {
     return {
+      mdiMap,
       dialog: false,
       userNotSearch: false
     }

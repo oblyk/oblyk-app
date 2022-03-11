@@ -6,12 +6,14 @@
       :large="!isMobile"
       @click="backTo"
     >
-      <v-icon>mdi-close</v-icon>
+      <v-icon>{{ mdiClose }}</v-icon>
     </v-btn>
   </div>
 </template>
 
 <script>
+import { mdiClose } from '@mdi/js'
+
 export default {
   name: 'CloseForm',
   props: {
@@ -23,6 +25,7 @@ export default {
 
   data () {
     return {
+      mdiClose,
       isMobile: false
     }
   },

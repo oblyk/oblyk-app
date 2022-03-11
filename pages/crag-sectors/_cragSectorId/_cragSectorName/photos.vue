@@ -8,7 +8,7 @@
         color="primary"
       >
         <v-icon left>
-          mdi-image-plus
+          {{ mdiImagePlus }}
         </v-icon>
         {{ $t('actions.addPicture') }}
       </v-btn>
@@ -46,6 +46,7 @@
 </template>
 
 <script>
+import { mdiImagePlus } from '@mdi/js'
 import { SessionConcern } from '~/concerns/SessionConcern'
 import CragSectorApi from '~/services/oblyk-api/CragSectorApi'
 import Video from '~/models/Video'
@@ -66,6 +67,7 @@ export default {
 
   data () {
     return {
+      mdiImagePlus,
       loadingVideos: true,
       videos: []
     }

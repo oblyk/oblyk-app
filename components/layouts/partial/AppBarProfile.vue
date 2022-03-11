@@ -6,19 +6,71 @@
       </v-list-item-title>
     </v-list-item>
     <v-divider />
-    <app-drawer-item :title="$t('components.layout.appBar.user.messenger')" icon="mdi-forum" :url="`/me/${$auth.user.slug_name}/messenger`" />
-    <app-drawer-item :title="$t('components.layout.appBar.user.avatar')" icon="mdi-account-circle" :url="`/me/${$auth.user.slug_name}/settings/avatar`" />
-    <app-drawer-item :title="$t('components.layout.appBar.user.banner')" icon="mdi-panorama" :url="`/me/${$auth.user.slug_name}/settings/banner`" />
-    <app-drawer-item :title="$t('components.layout.appBar.user.settings')" icon="mdi-cog" :url="`/me/${$auth.user.slug_name}/settings/general`" />
+
+    <!-- Messenger -->
+    <v-list-item :to="`/me/${$auth.user.slug_name}/messenger`">
+      <v-list-item-icon>
+        <v-icon>
+          {{ mdiForum }}
+        </v-icon>
+      </v-list-item-icon>
+      <v-list-item-title>
+        {{ $t('components.layout.appBar.user.messenger') }}
+      </v-list-item-title>
+    </v-list-item>
+
+    <!-- Avatar -->
+    <v-list-item :to="`/me/${$auth.user.slug_name}/settings/avatar`">
+      <v-list-item-icon>
+        <v-icon>
+          {{ mdiAccountCircle }}
+        </v-icon>
+      </v-list-item-icon>
+      <v-list-item-title>
+        {{ $t('components.layout.appBar.user.avatar') }}
+      </v-list-item-title>
+    </v-list-item>
+
+    <!-- Avatar -->
+    <v-list-item :to="`/me/${$auth.user.slug_name}/settings/banner`">
+      <v-list-item-icon>
+        <v-icon>
+          {{ mdiPanorama }}
+        </v-icon>
+      </v-list-item-icon>
+      <v-list-item-title>
+        {{ $t('components.layout.appBar.user.banner') }}
+      </v-list-item-title>
+    </v-list-item>
+
+    <!-- Settings -->
+    <v-list-item :to="`/me/${$auth.user.slug_name}/settings/general`">
+      <v-list-item-icon>
+        <v-icon>
+          {{ mdiCog }}
+        </v-icon>
+      </v-list-item-icon>
+      <v-list-item-title>
+        {{ $t('components.layout.appBar.user.settings') }}
+      </v-list-item-title>
+    </v-list-item>
     <v-divider />
   </div>
 </template>
 
 <script>
-import AppDrawerItem from '~/components/layouts/partial/AppDrawerItem'
+import { mdiForum, mdiAccountCircle, mdiPanorama, mdiCog } from '@mdi/js'
 
 export default {
   name: 'AppBarProfil',
-  components: { AppDrawerItem }
+
+  data () {
+    return {
+      mdiForum,
+      mdiAccountCircle,
+      mdiPanorama,
+      mdiCog
+    }
+  }
 }
 </script>

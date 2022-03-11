@@ -20,7 +20,7 @@
           @click="exportToCsv('ascents')"
         >
           <v-icon left>
-            mdi-check-all
+            {{ mdiCheckAll }}
           </v-icon>
           {{ $t('components.user.exportAscents') }}
         </v-btn>
@@ -35,7 +35,7 @@
           @click="exportToCsv('projects')"
         >
           <v-icon left>
-            mdi-code-brackets
+            {{ mdiCodeBrackets }}
           </v-icon>
           {{ $t('components.user.exportProjects') }}
         </v-btn>
@@ -45,6 +45,7 @@
 </template>
 
 <script>
+import { mdiCheckAll, mdiCodeBrackets } from '@mdi/js'
 import AscentCragRouteApi from '~/services/oblyk-api/AscentCragRouteApi'
 
 export default {
@@ -52,6 +53,8 @@ export default {
 
   data () {
     return {
+      mdiCheckAll,
+      mdiCodeBrackets,
       exportingAscents: false,
       exportingProjects: false
     }

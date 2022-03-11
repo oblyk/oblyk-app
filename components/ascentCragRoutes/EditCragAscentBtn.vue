@@ -11,7 +11,7 @@
         v-on="on"
       >
         <v-icon small>
-          mdi-pencil
+          {{ mdiPencil }}
         </v-icon>
       </v-btn>
     </template>
@@ -33,18 +33,26 @@
 </template>
 
 <script>
+import { mdiPencil } from '@mdi/js'
 import AscentCragRouteForm from '@/components/ascentCragRoutes/forms/AscentCragRouteForm'
 
 export default {
   name: 'EditCragAscentBtn',
   components: { AscentCragRouteForm },
   props: {
-    cragRoute: Object,
-    ascentCragRoute: Object
+    cragRoute: {
+      type: Object,
+      required: true
+    },
+    ascentCragRoute: {
+      type: Object,
+      required: true
+    }
   },
 
   data () {
     return {
+      mdiPencil,
       ascentModal: false
     }
   },

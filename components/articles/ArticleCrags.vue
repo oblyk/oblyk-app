@@ -2,7 +2,7 @@
   <div v-if="crags.length > 0">
     <h2 class="loved-by-king mb-2">
       <v-icon left>
-        mdi-terrain
+        {{ mdiTerrain }}
       </v-icon>
       {{ $t('components.article.cragList') }}
     </h2>
@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import { mdiTerrain } from '@mdi/js'
 import CragSmallCard from '@/components/crags/CragSmallCard'
 import ArticleApi from '~/services/oblyk-api/ArticleApi'
 import Crag from '@/models/Crag'
@@ -24,11 +25,15 @@ export default {
   name: 'ArticleCrags',
   components: { CragSmallCard },
   props: {
-    article: Object
+    article: {
+      type: Object,
+      required: true
+    }
   },
 
   data () {
     return {
+      mdiTerrain,
       crags: []
     }
   },

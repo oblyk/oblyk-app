@@ -3,7 +3,7 @@
     <v-card-text>
       <v-alert
         text
-        :icon="guideBookPaper.fundingAttributes.icon"
+        :icon="fundingIcon"
         :color="guideBookPaper.fundingAttributes.color"
       >
         {{ $t(guideBookPaper.fundingAttributes.labelKey) }}
@@ -19,7 +19,7 @@
         <!-- Author -->
         <v-col cols="6">
           <description-line
-            icon="mdi-fountain-pen-tip"
+            :icon="mdiFountainPenTip"
             :item-title="$t('models.guideBookPaper.author')"
             :item-value="guideBookPaper.author"
           />
@@ -28,7 +28,7 @@
         <!-- Editor -->
         <v-col cols="6">
           <description-line
-            icon="mdi-library"
+            :icon="mdiLibrary"
             :item-title="$t('models.guideBookPaper.editor')"
             :item-value="guideBookPaper.editor"
           />
@@ -37,7 +37,7 @@
         <!-- Publication year -->
         <v-col cols="6">
           <description-line
-            icon="mdi-calendar"
+            :icon="mdiCalendar"
             :item-title="$t('models.guideBookPaper.year')"
             :item-value="guideBookPaper.publication_year"
           />
@@ -46,7 +46,7 @@
         <!-- Price -->
         <v-col cols="6">
           <description-line
-            icon="mdi-cash-multiple"
+            :icon="mdiCashMultiple"
             :item-title="$t('models.guideBookPaper.price')"
             :item-value="guideBookPaper.price"
             item-suffix="€"
@@ -56,7 +56,7 @@
         <!-- EAN -->
         <v-col cols="6">
           <description-line
-            icon="mdi-barcode"
+            :icon="mdiBarcode"
             :item-title="$t('models.guideBookPaper.ean')"
             :item-value="guideBookPaper.ean"
           />
@@ -65,7 +65,7 @@
         <!-- Number of page -->
         <v-col cols="6">
           <description-line
-            icon="mdi-book-open-page-variant"
+            :icon="mdiBookOpenPageVariant"
             :item-title="$t('models.guideBookPaper.number_of_page')"
             :item-value="guideBookPaper.number_of_page"
             item-suffix="pages"
@@ -75,7 +75,7 @@
         <!-- Weight -->
         <v-col cols="6">
           <description-line
-            icon="mdi-weight"
+            :icon="mdiWeight"
             :item-title="$t('models.guideBookPaper.weight')"
             :item-value="guideBookPaper.weight"
             item-suffix="grammes"
@@ -108,7 +108,7 @@
                   <v-icon
                     small
                   >
-                    mdi-flag
+                    {{ mdiFlag }}
                   </v-icon>
                 </v-btn>
                 <v-btn
@@ -122,7 +122,7 @@
                     small
                     left
                   >
-                    mdi-pencil
+                    {{ mdiPencil }}
                   </v-icon>
                   {{ $t('actions.edit') }}
                 </v-btn>
@@ -139,8 +139,8 @@
           :subscribe-id="guideBookPaper.id"
           :large="true"
           followed-color="deep-purple"
-          followed-icon="mdi-bookshelf"
-          unfollowed-icon="mdi-bookshelf"
+          :followed-icon="mdiBookshelf"
+          :unfollowed-icon="mdiBookshelf"
           subscribe-label="actions.addToLibrary"
           unsubscribe-label="actions.removeFromLibrary"
         />
@@ -148,7 +148,7 @@
     </v-card-text>
     <v-card-title class="pb-0 text-h6 font-weight-regular">
       <v-icon left small>
-        mdi-comment
+        {{ mdiComment }}
       </v-icon>
       {{ $t('components.comment.climbersComments') }}
     </v-card-title>
@@ -162,6 +162,22 @@
 </template>
 
 <script>
+import {
+  mdiFountainPenTip,
+  mdiLibrary,
+  mdiCalendar,
+  mdiCashMultiple,
+  mdiBarcode,
+  mdiBookOpenPageVariant,
+  mdiWeight,
+  mdiFlag,
+  mdiPencil,
+  mdiComment,
+  mdiBookshelf,
+  mdiHandCoin,
+  mdiCurrencyUsdOff,
+  mdiHelpCircleOutline
+} from '@mdi/js'
 import { SessionConcern } from '@/concerns/SessionConcern'
 import CommentList from '@/components/comments/CommentList'
 import SubscribeBtn from '@/components/forms/SubscribeBtn'
@@ -174,6 +190,36 @@ export default {
   mixins: [SessionConcern],
   props: {
     guideBookPaper: { type: Object, required: true }
+  },
+
+  data () {
+    return {
+      mdiFountainPenTip,
+      mdiLibrary,
+      mdiCalendar,
+      mdiCashMultiple,
+      mdiBarcode,
+      mdiBookOpenPageVariant,
+      mdiWeight,
+      mdiFlag,
+      mdiPencil,
+      mdiComment,
+      mdiBookshelf,
+      mdiHandCoin,
+      mdiHelpCircleOutline
+    }
+  },
+
+  methods: {
+    fundingIcon () {
+      if (this.guideBookPaper.funding_status === 'contributes_to_financing') {
+        return mdiHandCoin
+      } else if (this.funding_status === 'not_contributes_to_financing') {
+        return mdiCurrencyUsdOff
+      } else {
+        return mdiHelpCircleOutline
+      }
+    }
   }
 }
 </script>

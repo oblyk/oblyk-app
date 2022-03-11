@@ -11,7 +11,7 @@
         v-on="on"
       >
         <v-icon>
-          mdi-magnify
+          {{ mdiMagnify }}
         </v-icon>
       </v-btn>
     </template>
@@ -24,6 +24,7 @@
 </template>
 
 <script>
+import { mdiMagnify } from '@mdi/js'
 const GlobalSearch = () => import('~/components/searches/GlobalSearch')
 
 export default {
@@ -34,6 +35,7 @@ export default {
 
   data () {
     return {
+      mdiMagnify,
       globalSearchDialog: false
     }
   },

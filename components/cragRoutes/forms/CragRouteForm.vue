@@ -14,7 +14,7 @@
           tabindex="1"
           outlined
           clearable
-          prepend-inner-icon="mdi-texture-box"
+          :prepend-inner-icon="mdiTextureBox"
           item-value="id"
           item-text="name"
         />
@@ -27,7 +27,7 @@
           :items="climbingCragList"
           tabindex="2"
           outlined
-          prepend-inner-icon="mdi-source-branch"
+          :prepend-inner-icon="mdiSourceBranch"
           item-value="value"
           item-text="text"
         />
@@ -37,7 +37,7 @@
     <crag-route-search
       v-if="!isEditingForm()"
       v-model="data.name"
-      icon="mdi-format-letter-case"
+      :icon="mdiFormatLetterCase"
       :crag="crag"
       :tabindex="3"
       label-key="models.cragRoute.name"
@@ -50,14 +50,14 @@
       v-model="data.name"
       outlined
       tabindex="3"
-      prepend-inner-icon="mdi-format-letter-case"
+      :prepend-inner-icon="mdiFormatLetterCase"
       :label="$t('models.cragRoute.name')"
     />
 
     <div v-if="similarRoutes.length > 0" class="mb-10 mt-n5">
       <p class="mb-0">
         <v-icon left small color="red">
-          mdi-alert
+          {{ mdiAlert }}
         </v-icon>
         {{ $tc('components.cragRoute.similarRoute', similarRoutes.length, { count: similarRoutes.length }) }} :
       </p>
@@ -91,7 +91,7 @@
         v-model="data.height"
         outlined
         tabindex="4"
-        prepend-inner-icon="mdi-arrow-expand-vertical"
+        :prepend-inner-icon="mdiArrowExpandVertical"
         type="number"
         :hint="$t('components.cragRoute.inMeters')"
         :label="$t('models.cragRoute.total_height')"
@@ -113,7 +113,7 @@
                 v-model="data.sections[index].grade"
                 outlined
                 :tabindex="5 + index * 7"
-                prepend-inner-icon="mdi-numeric-7-box-multiple-outline"
+                :prepend-inner-icon="mdiNumeric0BoxMultipleOutline"
                 hide-details
                 :label="$t('models.cragRoute.grade')"
               />
@@ -124,7 +124,7 @@
                 outlined
                 hide-details
                 :tabindex="6 + index * 7"
-                prepend-inner-icon="mdi-arrow-expand-vertical"
+                :prepend-inner-icon="mdiArrowExpandVertical"
                 type="number"
                 :hint="$t('components.cragRoute.inMeters')"
                 :label="$t('models.cragRoute.height')"
@@ -152,7 +152,7 @@
                 v-model="data.sections[index].bolt_count"
                 outlined
                 :tabindex="9 + index * 7"
-                prepend-inner-icon="mdi-dots-vertical"
+                :prepend-inner-icon="mdiDotsVertical"
                 type="number"
                 hide-details
                 :label="$t('models.cragRoute.bolt_count')"
@@ -183,14 +183,14 @@
           :title="$t('components.cragRoute.removePitch')"
           @click="removePitch"
         >
-          <v-icon>mdi-minus</v-icon>
+          <v-icon>{{ mdiMinus }}</v-icon>
         </v-btn>
         <v-btn
           icon
           :title="$t('components.cragRoute.addPitch')"
           @click="addPitch"
         >
-          <v-icon>mdi-plus</v-icon>
+          <v-icon>{{ mdiPlus }}</v-icon>
         </v-btn>
       </div>
     </div>
@@ -202,7 +202,7 @@
         v-model="data.sections[0].grade"
         outlined
         tabindex="4"
-        prepend-inner-icon="mdi-numeric-7-box-multiple-outline"
+        :prepend-inner-icon="mdiNumeric0BoxMultipleOutline"
         :hint="$t('components.cragRoute.gradeExample')"
         :label="$t('models.cragRoute.grade')"
       />
@@ -211,7 +211,7 @@
         v-model="data.height"
         outlined
         tabindex="5"
-        prepend-inner-icon="mdi-arrow-expand-vertical"
+        :prepend-inner-icon="mdiArrowExpandVertical"
         type="number"
         :hint="$t('components.cragRoute.inMeters')"
         :label="$t('models.cragRoute.height')"
@@ -258,7 +258,7 @@
             v-model="data.sections[0].bolt_count"
             tabindex="11"
             outlined
-            prepend-inner-icon="mdi-dots-vertical"
+            :prepend-inner-icon="mdiDotsVertical"
             type="number"
             :label="$t('models.cragRoute.bolt_count')"
           />
@@ -278,7 +278,7 @@
           v-model="data.opener"
           outlined
           :tabindex="12 + 7 * data.sections.length"
-          prepend-inner-icon="mdi-bolt"
+          :prepend-inner-icon="mdiBolt"
           :label="$t('models.cragRoute.opener')"
         />
       </v-col>
@@ -287,7 +287,7 @@
           v-model="data.open_year"
           outlined
           :tabindex="13 + 7 * data.sections.length"
-          prepend-inner-icon="mdi-calendar"
+          :prepend-inner-icon="mdiCalendar"
           type="number"
           :label="$t('models.cragRoute.open_year')"
         />
@@ -314,6 +314,19 @@
 </template>
 
 <script>
+import {
+  mdiTextureBox,
+  mdiSourceBranch,
+  mdiFormatLetterCase,
+  mdiAlert,
+  mdiArrowExpandVertical,
+  mdiNumeric0BoxMultipleOutline,
+  mdiDotsVertical,
+  mdiMinus,
+  mdiPlus,
+  mdiBolt,
+  mdiCalendar
+} from '@mdi/js'
 import { FormHelpers } from '@/mixins/FormHelpers'
 import { InputHelpers } from '@/mixins/InputHelpers'
 import { CragRouteHelpers } from '~/mixins/CragRouteHelpers'
@@ -364,6 +377,17 @@ export default {
 
   data () {
     return {
+      mdiTextureBox,
+      mdiSourceBranch,
+      mdiFormatLetterCase,
+      mdiAlert,
+      mdiArrowExpandVertical,
+      mdiNumeric0BoxMultipleOutline,
+      mdiDotsVertical,
+      mdiMinus,
+      mdiPlus,
+      mdiBolt,
+      mdiCalendar,
       similarRoutes: [],
       climbingCragList: [
         { text: this.$t('models.climbs.sport_climbing'), value: 'sport_climbing' },

@@ -37,7 +37,7 @@
                 @click="findRandomRoute"
               >
                 <v-icon v-on="on">
-                  mdi-shuffle-variant
+                  {{ mdiShuffleVariant }}
                 </v-icon>
               </v-btn>
             </template>
@@ -71,7 +71,7 @@
       <p class="subtitle-2">
         <span @click="showAutomaticParameters = !showAutomaticParameters">
           <v-icon left>
-            {{ showAutomaticParameters ? 'mdi-chevron-down' : 'mdi-chevron-right' }}
+            {{ showAutomaticParameters ? mdiChevronDown : mdiChevronRight }}
           </v-icon>
           {{ $t('components.gymRoute.automaticParameters') }}
         </span>
@@ -152,7 +152,7 @@
             @click="removePitch()"
           >
             <v-icon>
-              mdi-minus
+              {{ mdiMinus }}
             </v-icon>
           </v-btn>
 
@@ -163,7 +163,7 @@
             @click="addPitch()"
           >
             <v-icon>
-              mdi-plus
+              {{ mdiPlus }}
             </v-icon>
           </v-btn>
         </div>
@@ -173,7 +173,7 @@
           v-show="(gymGrade.needTagColor)"
           v-model="data.tag_colors"
           label="Couleurs des etiquettes"
-          icon="mdi-bookmark-multiple-outline"
+          :icon="mdiBookmarkMultipleOutline"
         />
 
         <!-- Hold colors -->
@@ -181,7 +181,7 @@
           v-show="(gymGrade.needHoldColor)"
           v-model="data.hold_colors"
           label="Couleurs des prises"
-          icon="mdi-chart-bubble"
+          :icon="mdiChartBubble"
         />
 
         <!-- Open at -->
@@ -194,7 +194,7 @@
       <p class="subtitle-2">
         <span @click="showResultingParameters = !showResultingParameters">
           <v-icon left>
-            {{ showResultingParameters ? 'mdi-chevron-down' : 'mdi-chevron-right' }}
+            {{ showResultingParameters ? mdiChevronDown : mdiChevronRight }}
           </v-icon>
           {{ $t('components.gymRoute.resultingParametersOf', { name: gymSector.name }) }}
         </span>
@@ -239,7 +239,17 @@
     </v-form>
   </div>
 </template>
+
 <script>
+import {
+  mdiShuffleVariant,
+  mdiChevronDown,
+  mdiChevronRight,
+  mdiPlus,
+  mdiMinus,
+  mdiBookmarkMultipleOutline,
+  mdiChartBubble
+} from '@mdi/js'
 import { FormHelpers } from '@/mixins/FormHelpers'
 import { HoldColorsHelpers } from '@/mixins/HoldColorsHelpers'
 import CloseForm from '@/components/forms/CloseForm'
@@ -282,6 +292,13 @@ export default {
 
   data () {
     return {
+      mdiShuffleVariant,
+      mdiChevronDown,
+      mdiChevronRight,
+      mdiPlus,
+      mdiMinus,
+      mdiBookmarkMultipleOutline,
+      mdiChartBubble,
       findingRandomName: false,
       cragRoute: {},
       redirectTo: null,

@@ -7,7 +7,7 @@
           color="primary"
         >
           <v-icon left>
-            mdi-fountain-pen-tip
+            {{ mdiFountainPenTip }}
           </v-icon>
           {{ $t('actions.writeAnArticle') }}
         </v-btn>
@@ -19,6 +19,7 @@
 </template>
 
 <script>
+import { mdiFountainPenTip } from '@mdi/js'
 import { SessionConcern } from '@/concerns/SessionConcern'
 import Feed from '@/components/feeds/Feed'
 import AppFooter from '@/components/layouts/AppFooter'
@@ -26,6 +27,12 @@ import AppFooter from '@/components/layouts/AppFooter'
 export default {
   components: { AppFooter, Feed },
   mixins: [SessionConcern],
+
+  data () {
+    return {
+      mdiFountainPenTip
+    }
+  },
 
   head () {
     return {

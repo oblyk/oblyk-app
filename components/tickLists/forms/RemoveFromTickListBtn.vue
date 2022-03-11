@@ -7,13 +7,14 @@
     @click="removeFromTickList()"
   >
     <v-icon left>
-      mdi-delete
+      {{ mdiDelete }}
     </v-icon>
     {{ $t('actions.removeFromMyTickList') }}
   </v-btn>
 </template>
 
 <script>
+import { mdiDelete } from '@mdi/js'
 import TickListApi from '~/services/oblyk-api/TickListApi'
 
 export default {
@@ -24,6 +25,7 @@ export default {
 
   data () {
     return {
+      mdiDelete,
       loadingDelete: false
     }
   },

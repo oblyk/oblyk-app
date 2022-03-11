@@ -6,7 +6,7 @@
         class="pl-3 mb-0"
       >
         <v-icon small class="mr-2">
-          mdi-check-bold
+          {{ mdiCheckBold }}
         </v-icon>
         <u>
           {{ $t('components.gymRoute.inMyLogBook') }}
@@ -32,6 +32,7 @@
 </template>
 
 <script>
+import { mdiCheckBold } from '@mdi/js'
 import { DateHelpers } from '@/mixins/DateHelpers'
 import AscentGymRouteApi from '~/services/oblyk-api/AscentGymRouteApi'
 import AscentGymRoute from '@/models/AscentGymRoute'
@@ -48,6 +49,7 @@ export default {
 
   data () {
     return {
+      mdiCheckBold,
       loadingAscents: true,
       ascents: []
     }

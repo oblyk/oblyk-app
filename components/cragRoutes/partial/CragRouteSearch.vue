@@ -15,6 +15,7 @@
 </template>
 
 <script>
+import { mdiMagnify } from '@mdi/js'
 import CragRoute from '@/models/CragRoute'
 import CragRouteApi from '~/services/oblyk-api/CragRouteApi'
 
@@ -30,7 +31,7 @@ export default {
     },
     icon: {
       type: String,
-      default: 'mdi-magnify'
+      default: mdiMagnify
     },
     hideDetail: {
       type: Boolean,
@@ -45,6 +46,7 @@ export default {
 
   data () {
     return {
+      mdiMagnify,
       query: this.value,
       searching: false,
       onSearch: false,

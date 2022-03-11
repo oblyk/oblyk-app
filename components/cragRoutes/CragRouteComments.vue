@@ -2,7 +2,7 @@
   <div>
     <p>
       <v-icon left>
-        mdi-comment-account
+        {{ mdiCommentAccount }}
       </v-icon>
       {{ $t('components.cragRoute.climberOpinion') }}
     </p>
@@ -65,7 +65,7 @@
           color="primary"
         >
           <v-icon left small>
-            mdi-comment-plus
+            {{ mdiCommentPlus }}
           </v-icon>
           {{ $t('actions.addComment') }}
         </v-btn>
@@ -75,6 +75,7 @@
 </template>
 
 <script>
+import { mdiCommentAccount, mdiCommentPlus } from '@mdi/js'
 import { SessionConcern } from '@/concerns/SessionConcern'
 import CommentApi from '~/services/oblyk-api/CommentApi'
 import Comment from '@/models/Comment'
@@ -96,6 +97,8 @@ export default {
 
   data () {
     return {
+      mdiCommentAccount,
+      mdiCommentPlus,
       comments: [],
       loadingComments: true,
       redirectTo: this.$route.fullPath

@@ -11,7 +11,7 @@
         v-on="on"
       >
         <v-icon small>
-          mdi-pencil
+          {{ mdiPencil }}
         </v-icon>
       </v-btn>
     </template>
@@ -33,6 +33,7 @@
 </template>
 
 <script>
+import { mdiPencil } from '@mdi/js'
 import AscentGymRouteForm from '@/components/ascentGymRoutes/forms/AscentGymRouteForm'
 
 export default {
@@ -45,6 +46,7 @@ export default {
 
   data () {
     return {
+      mdiPencil,
       ascentModal: false
     }
   },

@@ -32,7 +32,7 @@
                 class="ml-1"
               >
                 <v-icon small>
-                  mdi-pencil
+                  {{ mdiPencil }}
                 </v-icon>
               </v-btn>
               <crag-super-admin-action
@@ -48,6 +48,7 @@
 </template>
 
 <script>
+import { mdiPencil } from '@mdi/js'
 import { SessionConcern } from '@/concerns/SessionConcern'
 const SubscribeBtn = () => import('@/components/forms/SubscribeBtn')
 const CragSuperAdminAction = () => import('@/components/crags/forms/CragSuperAdminAction')
@@ -65,6 +66,7 @@ export default {
 
   data () {
     return {
+      mdiPencil,
       croppedSrc: this.crag.croppedCoverUrl,
       largeSrc: this.crag.coverUrl
     }

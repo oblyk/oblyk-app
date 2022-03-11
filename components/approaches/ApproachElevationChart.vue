@@ -2,7 +2,7 @@
   <div>
     <p class="font-weight-bold">
       <v-icon small left>
-        mdi-chart-timeline-variant
+        {{ mdiChartTimelineVariant }}
       </v-icon>
       {{ $t('components.approach.elevation_chart') }}
     </p>
@@ -31,6 +31,7 @@
 </template>
 
 <script>
+import { mdiChartTimelineVariant } from '@mdi/js'
 import LineChart from '~/components/charts/LineChart'
 
 export default {
@@ -44,6 +45,12 @@ export default {
     heightClass: {
       type: String,
       default: 'height-200'
+    }
+  },
+
+  data () {
+    return {
+      mdiChartTimelineVariant
     }
   },
 

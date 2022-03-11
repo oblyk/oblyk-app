@@ -10,6 +10,7 @@
 </template>
 
 <script>
+import { mdiCropSquare, mdiCheckboxMarkedCircle, mdiRecordCircle, mdiFlash, mdiEye, mdiAutorenew, mdiCropFree } from '@mdi/js'
 import { DateHelpers } from '@/mixins/DateHelpers'
 
 export default {
@@ -28,6 +29,13 @@ export default {
 
   data () {
     return {
+      mdiCropSquare,
+      mdiCheckboxMarkedCircle,
+      mdiRecordCircle,
+      mdiFlash,
+      mdiEye,
+      mdiAutorenew,
+      mdiCropFree,
       ascentInLogBook: null
     }
   },
@@ -71,19 +79,19 @@ export default {
 
     icon () {
       if (this.status() === 'project') {
-        return 'mdi-crop-square'
+        return mdiCropSquare
       } else if (this.status() === 'sent') {
-        return 'mdi-checkbox-marked-circle'
+        return mdiCheckboxMarkedCircle
       } else if (this.status() === 'red_point') {
-        return 'mdi-record-circle-outline'
+        return mdiRecordCircle
       } else if (this.status() === 'flash') {
-        return 'mdi-flash'
+        return mdiFlash
       } else if (this.status() === 'onsight') {
-        return 'mdi-eye'
+        return mdiEye
       } else if (this.status() === 'repetition') {
-        return 'mdi-autorenew'
+        return mdiAutorenew
       } else if (this.status() === 'tick_list') {
-        return 'mdi-crop-free'
+        return mdiCropFree
       }
     },
 

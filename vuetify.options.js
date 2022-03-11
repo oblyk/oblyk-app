@@ -28,5 +28,8 @@ export default {
         myMessage: '#121212'
       }
     }
+  },
+  icons: {
+    iconfont: 'mdiSvg'
   }
 }

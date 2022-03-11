@@ -46,7 +46,7 @@
           <v-icon
             left
           >
-            mdi-plus
+            {{ mdiPlus }}
           </v-icon>
           {{ $t('actions.addGuideBook') }}
         </v-btn>
@@ -58,6 +58,7 @@
 </template>
 
 <script>
+import { mdiPlus } from '@mdi/js'
 import { FormHelpers } from '@/mixins/FormHelpers'
 import CragApi from '~/services/oblyk-api/CragApi'
 import GuideBookPaper from '@/models/GuideBookPaper'
@@ -81,6 +82,7 @@ export default {
 
   data () {
     return {
+      mdiPlus,
       loadingAroundGuideBooks: true,
       aroundGuideBooks: []
     }

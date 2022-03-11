@@ -11,7 +11,7 @@
                   :title="$t('models.cragRoute.name')"
                   class="smallest-table-column text-right"
                 >
-                  <v-icon>mdi-format-letter-case</v-icon>
+                  <v-icon>{{ mdiFormatLetterCase }}</v-icon>
                 </th>
                 <td>
                   <crag-route-avatar :crag-route="cragRoute" />
@@ -30,7 +30,7 @@
                   :title="$t('models.cragRoute.crag')"
                   class="smallest-table-column text-right"
                 >
-                  <v-icon>mdi-terrain</v-icon>
+                  <v-icon>{{ mdiTerrain }}</v-icon>
                 </th>
                 <td>
                   <nuxt-link
@@ -47,7 +47,7 @@
                   :title="$t('models.cragRoute.difficulty_appreciation')"
                   class="smallest-table-column text-right"
                 >
-                  <v-icon>mdi-gauge</v-icon>
+                  <v-icon>{{ mdiGauge }}</v-icon>
                 </th>
                 <td>
                   <crag-route-difficulty-modal
@@ -69,7 +69,7 @@
                   :title="$t('models.cragRoute.open_year')"
                   class="smallest-table-column text-right"
                 >
-                  <v-icon>mdi-calendar</v-icon>
+                  <v-icon>{{ mdiCalendar }}</v-icon>
                 </th>
                 <td>
                   <span v-if="cragRoute.open_year">
@@ -90,7 +90,7 @@
                   :title="$t('models.cragRoute.incline_type')"
                   class="smallest-table-column text-right"
                 >
-                  <v-icon>mdi-angle-acute</v-icon>
+                  <v-icon>{{ mdiAngleAcute }}</v-icon>
                 </th>
                 <td>
                   <span v-if="cragRoute.sections[0].incline_type">
@@ -111,7 +111,7 @@
                   :title="$t('models.cragRoute.anchor_type')"
                   class="smallest-table-column text-right"
                 >
-                  <v-icon>mdi-source-fork</v-icon>
+                  <v-icon>{{ mdiSourceFork }}</v-icon>
                 </th>
                 <td>
                   <span v-if="cragRoute.sections[0].anchor_type">
@@ -132,7 +132,7 @@
                   :title="$t('models.cragRoute.reception_type')"
                   class="smallest-table-column text-right"
                 >
-                  <v-icon>mdi-crop-square</v-icon>
+                  <v-icon>{{ mdiCropSquare }}</v-icon>
                 </th>
                 <td>
                   <span v-if="cragRoute.sections[0].reception_type">
@@ -160,7 +160,7 @@
                   :title="$t('models.cragRoute.note')"
                   class="smallest-table-column text-right"
                 >
-                  <v-icon>mdi-star-half-full</v-icon>
+                  <v-icon>{{ mdiStarHalfFull }}</v-icon>
                 </th>
                 <td>
                   <crag-route-note-modal
@@ -182,7 +182,7 @@
                   :title="$t('models.cragRoute.crag_sector')"
                   class="smallest-table-column text-right"
                 >
-                  <v-icon>mdi-texture-box</v-icon>
+                  <v-icon>{{ mdiTextureBox }}</v-icon>
                 </th>
                 <td>
                   <nuxt-link
@@ -206,7 +206,7 @@
                   :title="$t('models.cragRoute.climbing_type')"
                   class="smallest-table-column text-right"
                 >
-                  <v-icon>mdi-source-branch</v-icon>
+                  <v-icon>{{ mdiSourceBranch }}</v-icon>
                 </th>
                 <td
                   class="climbs-pastille"
@@ -222,7 +222,7 @@
                   :title="$t('models.cragRoute.height')"
                   class="smallest-table-column text-right"
                 >
-                  <v-icon>mdi-arrow-expand-vertical</v-icon>
+                  <v-icon>{{ mdiArrowExpandVertical }}</v-icon>
                 </th>
                 <td>
                   <span v-if="cragRoute.height">
@@ -243,7 +243,7 @@
                   :title="$t('models.cragRoute.bolt_type')"
                   class="smallest-table-column text-right"
                 >
-                  <v-icon>mdi-nut</v-icon>
+                  <v-icon>{{ mdiNut }}</v-icon>
                 </th>
                 <td>
                   <span v-if="cragRoute.sections[0].bolt_type">
@@ -264,7 +264,7 @@
                   :title="$t('models.cragRoute.start_type')"
                   class="smallest-table-column text-right"
                 >
-                  <v-icon>mdi-arrow-expand-up</v-icon>
+                  <v-icon>{{ mdiArrowExpandUp }}</v-icon>
                 </th>
                 <td>
                   <span v-if="cragRoute.sections[0].start_type">
@@ -305,7 +305,7 @@
                   class="smallest-table-column text-right"
                 >
                   <v-icon>
-                    mdi-bolt
+                    {{ mdiBolt }}
                   </v-icon>
                 </th>
                 <td>
@@ -330,7 +330,7 @@
       <v-divider class="mt-3 mb-5" />
       <p>
         <v-icon left>
-          mdi-source-branch
+          {{ mdiSourceBranch }}
         </v-icon>
         {{ $t('components.cragRoute.pitches') }}
       </p>
@@ -340,6 +340,22 @@
 </template>
 
 <script>
+import {
+  mdiFormatLetterCase,
+  mdiTerrain,
+  mdiGauge,
+  mdiCalendar,
+  mdiAngleAcute,
+  mdiSourceFork,
+  mdiCropSquare,
+  mdiStarHalfFull,
+  mdiTextureBox,
+  mdiSourceBranch,
+  mdiArrowExpandVertical,
+  mdiNut,
+  mdiArrowExpandUp,
+  mdiBolt
+} from '@mdi/js'
 import CragRouteAvatar from '@/components/cragRoutes/partial/CragRouteAvatar'
 import CragRouteSectionList from '@/components/cragRoutes/CragRouteSectionList'
 import ContributionsLabel from '@/components/globals/ContributionsLable'
@@ -363,6 +379,25 @@ export default {
     cragRoute: {
       type: Object,
       required: true
+    }
+  },
+
+  data () {
+    return {
+      mdiFormatLetterCase,
+      mdiTerrain,
+      mdiGauge,
+      mdiCalendar,
+      mdiAngleAcute,
+      mdiSourceFork,
+      mdiCropSquare,
+      mdiStarHalfFull,
+      mdiTextureBox,
+      mdiSourceBranch,
+      mdiArrowExpandVertical,
+      mdiNut,
+      mdiArrowExpandUp,
+      mdiBolt
     }
   }
 }

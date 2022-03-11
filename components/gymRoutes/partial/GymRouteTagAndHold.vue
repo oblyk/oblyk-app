@@ -9,7 +9,7 @@
         medium
         v-bind:style="`color: ${color}`"
       >
-        mdi-bookmark
+        {{ mdiBookmark }}
       </v-icon>
     </span>
     <span
@@ -21,16 +21,26 @@
         medium
         v-bind:style="`color: ${color}`"
       >
-        mdi-chart-bubble
+        {{ mdiChartBubble }}
       </v-icon>
     </span>
   </span>
 </template>
+
 <script>
+import { mdiBookmark, mdiChartBubble } from '@mdi/js'
+
 export default {
   name: 'GymRouteTagAndHold',
   props: {
     gymRoute: Object
+  },
+
+  data () {
+    return {
+      mdiBookmark,
+      mdiChartBubble
+    }
   }
 }
 </script>

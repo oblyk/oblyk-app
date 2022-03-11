@@ -2,7 +2,7 @@
   <div>
     <v-card-title>
       <v-icon left>
-        mdi-store
+        {{ mdiStore }}
       </v-icon>
       {{ $t('components.guideBookPaper.pointOfSale') }}
     </v-card-title>
@@ -35,7 +35,7 @@
             color="primary"
           >
             <v-icon left small>
-              mdi-store-plus
+              {{ mdiStorePlus }}
             </v-icon>
             {{ $t('actions.addPlaceOfSale') }}
           </v-btn>
@@ -46,6 +46,7 @@
 </template>
 
 <script>
+import { mdiStore, mdiStorePlus } from '@mdi/js'
 import { SessionConcern } from '@/concerns/SessionConcern'
 import GuideBookPaperApi from '~/services/oblyk-api/GuideBookPaperApi'
 import PlaceOfSale from '@/models/PlaceOfSale'
@@ -65,6 +66,8 @@ export default {
 
   data () {
     return {
+      mdiStore,
+      mdiStorePlus,
       loadingPlaceOfSales: true,
       placeOfSales: []
     }

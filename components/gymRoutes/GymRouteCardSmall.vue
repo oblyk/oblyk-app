@@ -30,20 +30,20 @@
         <v-row>
           <v-col class="gym-route-sector-col pt-0 pb-0 text--disabled">
             <v-icon small class="text--disabled">
-              mdi-vector-difference-ba
+              {{ mdiVectorDifferenceBa }}
             </v-icon>
             {{ gymRoute.gym_sector_name }}
           </v-col>
         </v-row>
       </v-col>
       <v-col class="pt-1 pb-0 pl-0 gym-grade-col text-center">
-        <gym-route-grade-and-point :gym-route="gymRoute"/>
+        <gym-route-grade-and-point :gym-route="gymRoute" />
         <span class="text--disabled">
           <v-icon
             small
             class="ml-2 text--disabled"
           >
-            mdi-check-all
+            {{ mdiCheckAll }}
           </v-icon>
           {{ gymRoute.ascents_count || 0 }}
           <ascent-gym-route-status-icon :gym-route="gymRoute" />
@@ -54,6 +54,7 @@
 </template>
 
 <script>
+import { mdiVectorDifferenceBa, mdiCheckAll } from '@mdi/js'
 import GymRouteTagAndHold from '@/components/gymRoutes/partial/GymRouteTagAndHold'
 import GymRouteGradeAndPoint from '@/components/gymRoutes/partial/GymRouteGradeAndPoint'
 import AscentGymRouteStatusIcon from '@/components/ascentGymRoutes/AscentGymRouteStatusIcon'
@@ -67,6 +68,13 @@ export default {
     placement: {
       type: String,
       required: false
+    }
+  },
+
+  data () {
+    return {
+      mdiVectorDifferenceBa,
+      mdiCheckAll
     }
   }
 }

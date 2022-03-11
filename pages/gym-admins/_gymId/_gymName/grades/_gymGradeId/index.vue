@@ -9,7 +9,7 @@
           :to="gymGrade.listPath()"
           icon
         >
-          <v-icon>mdi-arrow-left</v-icon>
+          <v-icon>{{ mdiArrowLeft }}</v-icon>
         </v-btn>
       </div>
     </v-container>
@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import { mdiArrowLeft } from '@mdi/js'
 import { GymGradeConcern } from '@/concerns/GymGradeConcern'
 import Spinner from '@/components/layouts/Spiner'
 import GymGradeCard from '@/components/gymGrades/GymGradeCard'
@@ -24,6 +25,12 @@ import GymGradeCard from '@/components/gymGrades/GymGradeCard'
 export default {
   components: { GymGradeCard, Spinner },
   mixins: [GymGradeConcern],
+
+  data () {
+    return {
+      mdiArrowLeft
+    }
+  },
 
   head () {
     return {

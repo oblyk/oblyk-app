@@ -2,7 +2,7 @@
   <div>
     <p class="text-center mt-10 mb-5">
       <v-icon x-large>
-        mdi-vector-polygon
+        {{ mdiVectorPolygon }}
       </v-icon>
     </p>
     <p class="text-center">
@@ -21,9 +21,19 @@
     </p>
   </div>
 </template>
+
 <script>
+import { mdiVectorPolygon } from '@mdi/js'
+
 export default {
   name: 'GymSectorEditingPlan',
+
+  data () {
+    return {
+      mdiVectorPolygon
+    }
+  },
+
   methods: {
     stopEditingSectorPolygon () {
       this.$root.$emit('showEditingExplain', false)

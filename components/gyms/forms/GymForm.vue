@@ -31,7 +31,7 @@
     <div v-if="gymsAround.length > 0">
       <p class="mb-2">
         <u>
-          <v-icon color="warning" left>mdi-alert</v-icon>
+          <v-icon color="warning" left>{{ mdiAlert }}</v-icon>
           {{ $tc('components.gym.gymAroundInCreate', gymsAround.length, { count: gymsAround.length }) }}
         </u>
       </p>
@@ -108,6 +108,7 @@
 </template>
 
 <script>
+import { mdiAlert } from '@mdi/js'
 import { FormHelpers } from '@/mixins/FormHelpers'
 import GymApi from '~/services/oblyk-api/GymApi'
 import Gym from '@/models/Gym'
@@ -138,6 +139,7 @@ export default {
 
   data () {
     return {
+      mdiAlert,
       gymsAround: [],
       localization: {
         latitude: (this.gym || {}).latitude,

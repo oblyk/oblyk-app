@@ -5,7 +5,7 @@
         <v-col class="col-12 col-md-6">
           <p class="mb-1 font-weight-bold">
             <v-icon small left>
-              mdi-text
+              {{ mdiText }}
             </v-icon>
             {{ $t('models.approach.description') }}
           </p>
@@ -20,7 +20,7 @@
           </div>
           <p class="mb-1 font-weight-bold">
             <v-icon small left>
-              mdi-chart-line-variant
+              {{ mdiChartLineVariant }}
             </v-icon>
             {{ $t('models.approach.elevation_drop') }}
           </p>
@@ -33,7 +33,7 @@
               <dl>
                 <dt class="font-weight-bold">
                   <v-icon small left>
-                    mdi-walk
+                    {{ mdiWalk }}
                   </v-icon>
                   {{ $t('models.approach.approach_type') }}
                 </dt>
@@ -46,7 +46,7 @@
               <dl>
                 <dt class="font-weight-bold">
                   <v-icon small left>
-                    mdi-arrow-expand
+                    {{ mdiArrowExpand }}
                   </v-icon>
                   {{ $t('models.approach.length') }}
                 </dt>
@@ -59,7 +59,7 @@
               <dl>
                 <dt class="font-weight-bold">
                   <v-icon small left>
-                    mdi-timer-outline
+                    {{ mdiTimerOutline }}
                   </v-icon>
                   {{ $t('models.approach.time') }}
                 </dt>
@@ -90,6 +90,7 @@
 </template>
 
 <script>
+import { mdiText, mdiChartLineVariant, mdiWalk, mdiArrowExpand, mdiTimerOutline } from '@mdi/js'
 import { SessionConcern } from '@/concerns/SessionConcern'
 const MarkdownText = () => import('@/components/ui/MarkdownText')
 const ApproachElevationChart = () => import('@/components/approaches/ApproachElevationChart')
@@ -102,6 +103,16 @@ export default {
     approach: {
       type: Object,
       required: true
+    }
+  },
+
+  data () {
+    return {
+      mdiText,
+      mdiChartLineVariant,
+      mdiWalk,
+      mdiArrowExpand,
+      mdiTimerOutline
     }
   }
 }
