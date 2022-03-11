@@ -9,19 +9,20 @@
         <v-row
           v-for="index in 3"
           :key="`skeleton-${index}`"
+          no-gutters
           class="mb-10"
         >
           <v-col class="col-4">
             <v-skeleton-loader class="mx-auto" type="chip" width="100" />
-            <v-skeleton-loader class="mx-auto mt-3" type="text" width="140" />
+            <v-skeleton-loader class="mx-auto mt-3" type="text" width="100" />
           </v-col>
           <v-col class="col-4">
             <v-skeleton-loader class="mx-auto" type="chip" width="100" />
-            <v-skeleton-loader class="mx-auto mt-3" type="text" width="140" />
+            <v-skeleton-loader class="mx-auto mt-3" type="text" width="100" />
           </v-col>
           <v-col class="col-4">
             <v-skeleton-loader class="mx-auto" type="chip" width="100" />
-            <v-skeleton-loader class="mx-auto mt-3" type="text" width="140" />
+            <v-skeleton-loader class="mx-auto mt-3" type="text" width="100" />
           </v-col>
         </v-row>
       </div>
