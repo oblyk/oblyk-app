@@ -29,11 +29,36 @@
         </v-btn>
       </template>
     </v-snackbar>
+
+    <!-- Update Pwa-->
+    <v-snackbar
+      v-model="readyToUpdatePwa"
+      timeout="-1"
+    >
+      <v-icon
+        class="mb-1"
+        left
+        color="#ec407a"
+      >
+        {{ mdiGift }}
+      </v-icon>
+      {{ $t('common.pages.newVersion') }}
+      <template #action="{ attrs }">
+        <v-btn
+          color="white"
+          text
+          v-bind="attrs"
+          @click="reloadApp()"
+        >
+          {{ $t('actions.update') }}
+        </v-btn>
+      </template>
+    </v-snackbar>
   </v-app>
 </template>
 
 <script>
-import { mdiCookie } from '@mdi/js'
+import { mdiCookie, mdiGift } from '@mdi/js'
 import AppBar from '~/components/layouts/AppBar'
 import AppAlert from '~/components/layouts/AppAlert'
 import { Cable } from '~/channels/Cable'
@@ -45,7 +70,9 @@ export default {
   data () {
     return {
       mdiCookie,
-      cookiesMessage: false
+      mdiGift,
+      cookiesMessage: false,
+      readyToUpdatePwa: false
     }
   },
 
@@ -75,11 +102,27 @@ export default {
   mounted () {
     this.$vuetify.theme.dark = this.$store.getters['theme/getTheme'] === 'dark'
     this.cookiesMessage = this.$store.getters['cookie/showCookiePopup']
+    this.updateWorkbox()
   },
 
   methods: {
     acceptedCookies () {
       this.$store.dispatch('cookie/acceptCookies')
+    },
+
+    async updateWorkbox () {
+      const workbox = await window.$workbox
+      if (workbox) {
+        workbox.addEventListener('installed', (event) => {
+          if (event.isUpdate) {
+            this.readyToUpdatePwa = true
+          }
+        })
+      }
+    },
+
+    reloadApp () {
+      window.location.reload()
     }
   }
 }

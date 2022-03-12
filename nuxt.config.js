@@ -30,8 +30,8 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     { src: '@/plugins/actioncable-vue', mode: 'client' },
-    { src: '~/plugins/persisted-state.client.js', mode: 'client' },
-    { src: '~/plugins/pwa-update.js', mode: 'client' }
+    { src: '~/plugins/persisted-state.client.js', mode: 'client' }
+    // { src: '~/plugins/pwa-update.js', mode: 'client' }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
