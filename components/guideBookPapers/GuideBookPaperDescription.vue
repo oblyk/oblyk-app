@@ -3,7 +3,7 @@
     <v-card-text>
       <v-alert
         text
-        :icon="fundingIcon"
+        :icon="fundingIcon()"
         :color="guideBookPaper.fundingAttributes.color"
       >
         {{ $t(guideBookPaper.fundingAttributes.labelKey) }}

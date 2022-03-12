@@ -33,7 +33,7 @@
                       small
                       :title="$t(guideBookPaper.fundingAttributes.labelKey)"
                     >
-                      {{ fundingIcon }}
+                      {{ fundingIcon() }}
                     </v-icon>
                   </v-chip>
                   {{ guideBookPaper.name }}
