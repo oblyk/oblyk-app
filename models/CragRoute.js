@@ -27,7 +27,7 @@ export default class CragRoute extends ActiveData {
   get coverUrl () {
     if (this.photo.url) {
       return `${process.env.VUE_APP_OBLYK_API_URL}${this.photo.url}`
-    } else if (this.crag_sector.photo.url) {
+    } else if (this.crag_sector && this.crag_sector.photo.url) {
       return `${process.env.VUE_APP_OBLYK_API_URL}${this.crag_sector.photo.url}`
     } else if (this.crag.photo.url) {
       return `${process.env.VUE_APP_OBLYK_API_URL}${this.crag.photo.url}`
@@ -39,7 +39,7 @@ export default class CragRoute extends ActiveData {
   get croppedCoverUrl () {
     if (this.photo.cropped_url) {
       return `${process.env.VUE_APP_OBLYK_API_URL}${this.photo.cropped_url}`
-    } else if (this.crag_sector.photo.cropped_url) {
+    } else if (this.crag_sector && this.crag_sector.photo.cropped_url) {
       return `${process.env.VUE_APP_OBLYK_API_URL}${this.crag_sector.photo.cropped_url}`
     } else if (this.crag.photo.cropped_url) {
       return `${process.env.VUE_APP_OBLYK_API_URL}${this.crag.photo.cropped_url}`
@@ -51,7 +51,7 @@ export default class CragRoute extends ActiveData {
   get coverFrom () {
     if (this.photo.url) {
       return 'cragRoute'
-    } else if (this.crag_sector.photo.url) {
+    } else if (this.crag_sector && this.crag_sector.photo.url) {
       return 'cragSector'
     } else if (this.crag.photo.url) {
       return 'crag'
@@ -63,7 +63,7 @@ export default class CragRoute extends ActiveData {
   get thumbnailCoverUrl () {
     if (this.photo.thumbnail_url) {
       return `${process.env.VUE_APP_OBLYK_API_URL}${this.photo.thumbnail_url}`
-    } else if (this.crag_sector.photo.thumbnail_url) {
+    } else if (this.crag_sector && this.crag_sector.photo.thumbnail_url) {
       return `${process.env.VUE_APP_OBLYK_API_URL}${this.crag_sector.photo.thumbnail_url}`
     } else if (this.crag.photo.thumbnail_url) {
       return `${process.env.VUE_APP_OBLYK_API_URL}${this.crag.photo.thumbnail_url}`
@@ -73,6 +73,7 @@ export default class CragRoute extends ActiveData {
   }
 
   get CragSector () {
+    if (this.crag_sector === null) { return null }
     const cragSector = new CragSector({ attributes: this.crag_sector })
     cragSector.crag = this.crag
     return cragSector
