@@ -43,7 +43,7 @@
                   :key="index"
                   :style="`color: ${color}`"
                 >
-                  mdi-circle
+                  {{ mdiCircle }}
                 </v-icon>
               </td>
               <td>
@@ -73,7 +73,7 @@
           :to="`/a${gymGrade.path}/grade-lines/new`"
         >
           <v-icon left>
-            mdi-plus
+            {{ mdiPlus }}
           </v-icon>
           {{ $t('actions.addLevel') }}
         </v-btn>
@@ -92,6 +92,7 @@
 </template>
 
 <script>
+import { mdiCircle, mdiPlus } from '@mdi/js'
 import GymGradeApi from '~/services/oblyk-api/GymGradeApi'
 
 export default {
@@ -110,6 +111,8 @@ export default {
 
   data () {
     return {
+      mdiCircle,
+      mdiPlus,
       loadingDelete: false
     }
   },

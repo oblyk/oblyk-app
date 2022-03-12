@@ -4,11 +4,14 @@
     :items="items"
     item-text="text"
     item-value="value"
-    prepend-icon="mdi-sort-ascending"
+    :prepend-icon="mdiSortAscending"
     @input="change"
   />
 </template>
+
 <script>
+import { mdiSortAscending } from '@mdi/js'
+
 export default {
   name: 'GymSpaceRouteSort',
   props: {
@@ -17,6 +20,7 @@ export default {
 
   data () {
     return {
+      mdiSortAscending,
       sort: 'opened_at',
       items: [
         { text: this.$t('components.gymRoute.sorts.opened_at'), value: 'opened_at' },

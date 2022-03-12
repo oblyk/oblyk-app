@@ -50,10 +50,10 @@
           @click="dark = !dark"
         >
           <v-icon v-if="dark">
-            mdi-weather-sunny
+            {{ mdiWeatherSunny }}
           </v-icon>
           <v-icon v-if="!dark">
-            mdi-weather-night
+            {{ mdiWeatherNight }}
           </v-icon>
         </v-btn>
       </v-col>
@@ -61,82 +61,16 @@
 
     <!-- If user is connected -->
     <client-only>
-      <v-list
-        v-if="isLoggedIn"
-        nav
-        dense
-      >
-        <v-subheader class="mt-0">
-          {{ $t('components.layout.appDrawer.subHeaders.me') }}
-        </v-subheader>
-        <app-drawer-item
-          url="/"
-          icon="mdi-arrow-decision-outline"
-          icon-color="orange"
-          :title="$t('components.layout.appDrawer.user.feed')"
-        />
-        <app-drawer-item
-          :url="`/me/${loggedInUser.slugName}/messenger`"
-          icon="mdi-forum"
-          icon-color="teal"
-          :title="$t('components.layout.appDrawer.user.messenger')"
-        />
-        <app-drawer-item
-          :url="`/me/${loggedInUser.slugName}/ascents/send-list`"
-          icon="mdi-check-all"
-          icon-color="blue"
-          :title="$t('components.layout.appDrawer.user.ascents')"
-        />
-        <app-drawer-item
-          :url="`/me/${loggedInUser.slugName}/community/followers`"
-          icon="mdi-account-star-outline"
-          icon-color="green"
-          :title="$t('components.layout.appDrawer.user.subscribers')"
-        />
-        <app-drawer-item
-          :url="`/me/${loggedInUser.slugName}/favorites/crags`"
-          icon="mdi-star"
-          icon-color="amber"
-          :title="$t('components.layout.appDrawer.user.favorites')"
-        />
-        <app-drawer-item
-          :url="`/me/${loggedInUser.slugName}/guide-books`"
-          icon="mdi-bookshelf"
-          icon-color="deep-purple"
-          :title="$t('components.layout.appDrawer.user.guideBooks')"
-        />
-      </v-list>
+      <app-drawer-user />
 
       <!-- Administered gym list -->
-      <client-only>
-        <my-gyms v-if="isLoggedIn" />
-      </client-only>
+      <my-gyms v-if="isLoggedIn" />
 
       <!-- Organizations -->
-      <client-only>
-        <my-organizations v-if="isLoggedIn" />
-      </client-only>
+      <my-organizations v-if="isLoggedIn" />
 
       <!-- If no user connected -->
-      <v-list
-        v-if="!isLoggedIn"
-        nav
-        dense
-      >
-        <v-subheader>
-          {{ $t('components.layout.appDrawer.subHeaders.account') }}
-        </v-subheader>
-        <app-drawer-item
-          url="/sign-in"
-          icon="mdi-login"
-          :title="$t('components.layout.appDrawer.login')"
-        />
-        <app-drawer-item
-          url="/sign-up"
-          icon="mdi-account-plus"
-          :title="$t('components.layout.appDrawer.signUp')"
-        />
-      </v-list>
+      <app-drawer-account />
     </client-only>
 
     <v-subheader>
@@ -147,209 +81,138 @@
       nav
       dense
     >
-      <v-list-group
-        prepend-icon="mdi-map"
-        no-action
-      >
-        <template #activator>
-          <v-list-item-content>
-            <v-list-item-title>
-              {{ $t('components.layout.appDrawer.maps') }}
-            </v-list-item-title>
-          </v-list-item-content>
-        </template>
-        <app-drawer-item
-          url="/maps/crags"
-          icon="mdi-terrain"
-          :title="$t('components.layout.appDrawer.mapCrags')"
-        />
-        <app-drawer-item
-          url="/maps/gyms"
-          icon="mdi-office-building-marker-outline"
-          :title="$t('components.layout.appDrawer.mapGyms')"
-        />
-        <app-drawer-item
-          url="/maps/climbers"
-          icon="mdi-account-group"
-          :title="$t('components.layout.appDrawer.mapClimber')"
-        />
-        <client-only>
-          <v-divider v-if="isLoggedIn" inset />
-          <app-drawer-item
-            v-if="isLoggedIn"
-            url="/maps/my-map"
-            icon="mdi-map-check"
-            :title="$t('components.layout.appDrawer.myMap')"
-          />
-        </client-only>
-      </v-list-group>
-
-      <v-list-group
-        prepend-icon="mdi-book-open-variant"
-        no-action
-      >
-        <template #activator>
-          <v-list-item-content>
-            <v-list-item-title>
-              {{ $t('components.layout.appDrawer.guideBook.title') }}
-            </v-list-item-title>
-          </v-list-item-content>
-        </template>
-
-        <app-drawer-item
-          url="/guide-book-papers/find"
-          icon="mdi-map-marker-radius-outline"
-          :title="$t('components.guideBookPaper.findGuideBook')"
-        />
-
-        <app-drawer-item
-          url="/library"
-          icon="mdi-alert-decagram"
-          :title="$t('components.layout.appDrawer.guideBook.news')"
-        />
-
-        <app-drawer-item
-          url="/guide-books/features"
-          icon="mdi-star-circle-outline"
-          :title="$t('components.layout.appDrawer.guideBook.features')"
-        />
-      </v-list-group>
+      <app-drawer-map />
+      <app-drawer-guide-book />
 
       <client-only>
-        <v-list-group
-          v-if="isLoggedIn"
-          prepend-icon="mdi-book-plus-multiple"
-          no-action
-        >
-          <template #activator>
-            <v-list-item-content>
-              <v-list-item-title>
-                {{ $t('components.layout.appDrawer.contribute') }}
-              </v-list-item-title>
-            </v-list-item-content>
-          </template>
-
-          <!-- New crag -->
-          <app-drawer-item
-            url="/a/crags/new"
-            icon="mdi-terrain"
-            :title="$t('components.crag.newCrag')"
-          />
-
-          <!-- New gym -->
-          <app-drawer-item
-            url="/a/gyms/new"
-            icon="mdi-office-building"
-            :title="$t('components.gym.newGym')"
-          />
-        </v-list-group>
+        <app-drawer-contribute />
       </client-only>
 
-      <v-list-group
-        prepend-icon="mdi-tools"
-        no-action
-      >
-        <template #activator>
-          <v-list-item-content>
-            <v-list-item-title>
-              {{ $t('components.layout.appDrawer.tools') }}
-            </v-list-item-title>
-          </v-list-item-content>
-        </template>
-
-        <app-drawer-item
-          url="/glossary"
-          icon="mdi-book-open-variant"
-          :title="$t('components.word.title')"
-        />
-
-        <app-drawer-item
-          url="/grades"
-          icon="mdi-numeric-7-box-multiple"
-          :title="$t('common.pages.grade.title')"
-        />
-
-        <!-- Admin tool -->
-        <client-only>
-          <v-subheader
-            v-if="isLoggedIn && isSuperAdmin"
-            inset
-          >
-            {{ $t('components.layout.appDrawer.subHeaders.admin') }}
-          </v-subheader>
-          <app-drawer-item
-            v-if="isLoggedIn && isSuperAdmin"
-            url="/newsletters"
-            icon="mdi-email-multiple"
-            :title="$t('components.newsletter.title')"
-          />
-        </client-only>
-      </v-list-group>
+      <app-drawer-tool />
 
       <v-subheader>
         {{ $t('components.layout.appDrawer.subHeaders.project') }}
       </v-subheader>
 
       <client-only>
-        <app-drawer-item
-          v-if="isLoggedIn"
-          url="/oblyk"
-          icon="mdi-terrain"
-          :title="$t('components.layout.appDrawer.oblyk')"
-        />
+        <v-list-item
+          v-if="$auth.loggedIn"
+          to="/oblyk"
+        >
+          <v-list-item-icon>
+            <v-icon>
+              {{ mdiTerrain }}
+            </v-icon>
+          </v-list-item-icon>
+          <v-list-item-title>
+            {{ $t('components.layout.appDrawer.oblyk') }}
+          </v-list-item-title>
+        </v-list-item>
       </client-only>
 
-      <app-drawer-item
-        url="/articles"
-        icon="mdi-newspaper-variant-multiple"
-        :title="$t('components.layout.appDrawer.news')"
-      />
+      <v-list-item to="/articles">
+        <v-list-item-icon>
+          <v-icon>
+            {{ mdiNewspaperVariantMultiple }}
+          </v-icon>
+        </v-list-item-icon>
+        <v-list-item-title>
+          {{ $t('components.layout.appDrawer.news') }}
+        </v-list-item-title>
+      </v-list-item>
 
-      <app-drawer-item
-        url="/about"
-        icon="mdi-information-outline"
-        :title="$t('components.layout.appDrawer.about')"
-      />
+      <v-list-item to="/about">
+        <v-list-item-icon>
+          <v-icon>
+            {{ mdiInformationOutline }}
+          </v-icon>
+        </v-list-item-icon>
+        <v-list-item-title>
+          {{ $t('components.layout.appDrawer.about') }}
+        </v-list-item-title>
+      </v-list-item>
 
-      <app-drawer-item
-        url="/helps"
-        icon="mdi-school"
-        :title="$t('components.layout.appDrawer.helps')"
-      />
+      <v-list-item to="/helps">
+        <v-list-item-icon>
+          <v-icon>
+            {{ mdiSchool }}
+          </v-icon>
+        </v-list-item-icon>
+        <v-list-item-title>
+          {{ $t('components.layout.appDrawer.helps') }}
+        </v-list-item-title>
+      </v-list-item>
 
-      <app-drawer-item
-        url="/api-and-developers"
-        icon="mdi-code-braces"
-        :title="$t('common.pages.apiAndDevelopers.title')"
-      />
+      <v-list-item to="/api-and-developers">
+        <v-list-item-icon>
+          <v-icon>
+            {{ mdiCodeBrackets }}
+          </v-icon>
+        </v-list-item-icon>
+        <v-list-item-title>
+          {{ $t('common.pages.apiAndDevelopers.title') }}
+        </v-list-item-title>
+      </v-list-item>
 
-      <app-drawer-item
-        url="/support-us"
-        icon="mdi-cards-heart"
-        icon-color="red"
-        :title="$t('components.layout.appDrawer.donation')"
-      />
+      <v-list-item to="/support-us">
+        <v-list-item-icon>
+          <v-icon color="red">
+            {{ mdiCardsHeart }}
+          </v-icon>
+        </v-list-item-icon>
+        <v-list-item-title>
+          {{ $t('components.layout.appDrawer.donation') }}
+        </v-list-item-title>
+      </v-list-item>
     </v-list>
   </div>
 </template>
 
 <script>
+import {
+  mdiWeatherSunny,
+  mdiWeatherNight,
+  mdiTerrain,
+  mdiNewspaperVariantMultiple,
+  mdiInformationOutline,
+  mdiSchool,
+  mdiCodeBrackets,
+  mdiCardsHeart
+} from '@mdi/js'
 import { SessionConcern } from '@/concerns/SessionConcern'
-import AppDrawerItem from '@/components/layouts/partial/AppDrawerItem'
+import AppDrawerMap from '~/components/layouts/AppDrawerPartial/AppDrawerMap'
+import AppDrawerUser from '~/components/layouts/AppDrawerPartial/AppDrawerUser'
+import AppDrawerAccount from '~/components/layouts/AppDrawerPartial/AppDrawerAccount'
+import AppDrawerGuideBook from '~/components/layouts/AppDrawerPartial/AppDrawerGuideBook'
+import AppDrawerContribute from '~/components/layouts/AppDrawerPartial/AppDrawerContribute'
+import AppDrawerTool from '~/components/layouts/AppDrawerPartial/AppDrawerTool'
 const MyGyms = () => import('@/components/layouts/partial/MyGyms')
 const MyOrganizations = () => import('@/components/layouts/partial/MyOrganizations')
 
 export default {
   name: 'AppDrawer',
   components: {
+    AppDrawerTool,
+    AppDrawerContribute,
+    AppDrawerGuideBook,
+    AppDrawerAccount,
+    AppDrawerUser,
+    AppDrawerMap,
     MyOrganizations,
-    MyGyms,
-    AppDrawerItem
+    MyGyms
   },
   mixins: [SessionConcern],
 
   data () {
     return {
+      mdiWeatherSunny,
+      mdiWeatherNight,
+      mdiTerrain,
+      mdiNewspaperVariantMultiple,
+      mdiInformationOutline,
+      mdiSchool,
+      mdiCodeBrackets,
+      mdiCardsHeart,
       dark: false,
       lang: null,
       languages: [

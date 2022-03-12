@@ -6,7 +6,7 @@
     >
       <p>
         <v-icon large>
-          mdi-lock
+          {{ mdiLock }}
         </v-icon>
       </p>
       <p>
@@ -63,6 +63,7 @@
 </template>
 
 <script>
+import { mdiLock } from '@mdi/js'
 import LogBookFigures from '@/components/logBooks/outdoors/LogBookFigures'
 import UserApi from '@/services/oblyk-api/UserApi'
 import Spinner from '@/components/layouts/Spiner'
@@ -94,6 +95,7 @@ export default {
 
   data () {
     return {
+      mdiLock,
       loadingFigures: true,
       figures: {},
 

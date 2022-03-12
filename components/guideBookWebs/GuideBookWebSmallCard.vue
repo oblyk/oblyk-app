@@ -25,7 +25,7 @@
                   icon
                   :to="`/a${guideBookWeb.path}/edit?redirect_to=${$route.fullPath}`"
                 >
-                  <v-icon small>mdi-pencil</v-icon>
+                  <v-icon small>{{ mdiPencil }}</v-icon>
                 </v-btn>
               </client-only>
             </span>
@@ -42,6 +42,7 @@
 </template>
 
 <script>
+import { mdiPencil } from '@mdi/js'
 import { SessionConcern } from '@/concerns/SessionConcern'
 
 export default {
@@ -51,6 +52,12 @@ export default {
     guideBookWeb: {
       type: Object,
       required: true
+    }
+  },
+
+  data () {
+    return {
+      mdiPencil
     }
   }
 }

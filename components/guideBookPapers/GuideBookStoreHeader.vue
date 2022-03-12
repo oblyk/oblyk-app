@@ -9,7 +9,7 @@
       <v-row>
         <div class="col-6 col-md-4 col-lg-3">
           <description-line
-            icon="mdi-book-multiple"
+            :icon="mdiBookMultiple"
             :item-title="$t('components.guideBookPaper.figures.numberOfGuides')"
             :item-value="figures.guide_book_count || '...'"
             :item-suffix="$t('components.guideBookPaper.figures.guides')"
@@ -17,7 +17,7 @@
         </div>
         <div class="col-6 col-md-4 col-lg-3">
           <description-line
-            icon="mdi-book-open-page-variant-outline"
+            :icon="mdiBookOpenPageVariantOutline"
             :item-title="$t('components.guideBookPaper.figures.pages')"
             :item-value="figures.pages_count || '...'"
             :item-suffix="$t('components.guideBookPaper.figures.pages')"
@@ -25,7 +25,7 @@
         </div>
         <div class="col-6 col-md-4 col-lg-3">
           <description-line
-            icon="mdi-currency-usd"
+            :icon="mdiCurrencyEur"
             :item-title="$t('components.guideBookPaper.figures.value')"
             :item-value="figures.sum_price || '...'"
             item-suffix="€"
@@ -33,7 +33,7 @@
         </div>
         <div class="col-6 col-md-4 col-lg-3">
           <description-line
-            icon="mdi-weight"
+            :icon="mdiWeight"
             :item-title="$t('components.guideBookPaper.figures.weight')"
             :item-value="figures.sum_weight || '...'"
             item-suffix="kg"
@@ -41,7 +41,7 @@
         </div>
         <div class="col-6 col-md-4 col-lg-3">
           <description-line
-            icon="mdi-terrain"
+            :icon="mdiTerrain"
             :item-title="$t('components.guideBookPaper.figures.cragsCount')"
             :item-value="figures.crags_count || '...'"
             :item-suffix="$t('components.guideBookPaper.figures.cragsCovered')"
@@ -49,7 +49,7 @@
         </div>
         <div class="col-6 col-md-4 col-lg-3">
           <description-line
-            icon="mdi-source-branch"
+            :icon="mdiSourceBranch"
             :item-title="$t('components.guideBookPaper.figures.routesCount')"
             :item-value="figures.routes_count || '...'"
             :item-suffix="$t('components.guideBookPaper.figures.routes')"
@@ -61,7 +61,7 @@
         >
           <p class="mb-1 font-weight-bold">
             <v-icon small left>
-              mdi-bookshelf
+              {{ mdiBookshelf }}
             </v-icon>
             {{ $tc('components.guideBookPaper.figures.missingBook', suggestGuides.length, { count: suggestGuides.length }) }}
           </p>
@@ -81,7 +81,7 @@
         >
           <p class="mb-1 font-weight-bold">
             <v-icon small left>
-              mdi-bookshelf
+              {{ mdiBookshelf }}
             </v-icon>
             {{ $t('components.guideBookPaper.figures.newGuides') }}
           </p>
@@ -105,7 +105,7 @@
         to="/guide-book-papers/find"
       >
         <v-icon left>
-          mdi-map-marker-radius-outline
+          {{ mdiMapMarkerRadiusOutline }}
         </v-icon>
         {{ $t('components.guideBookPaper.findGuideBook') }}
       </v-btn>
@@ -115,7 +115,7 @@
         :to="`/me/${currentUser.slug_name}/guide-books/add`"
       >
         <v-icon left>
-          mdi-book-plus
+          {{ mdiBookPlus }}
         </v-icon>
         {{ $t('components.guideBookPaper.addGuideBook') }}
       </v-btn>
@@ -124,6 +124,17 @@
 </template>
 
 <script>
+import {
+  mdiBookMultiple,
+  mdiBookOpenPageVariantOutline,
+  mdiCurrencyEur,
+  mdiWeight,
+  mdiTerrain,
+  mdiSourceBranch,
+  mdiBookshelf,
+  mdiMapMarkerRadiusOutline,
+  mdiBookPlus
+} from '@mdi/js'
 import CurrentUserApi from '~/services/oblyk-api/CurrentUserApi'
 import DescriptionLine from '@/components/ui/DescriptionLine'
 
@@ -143,6 +154,15 @@ export default {
 
   data () {
     return {
+      mdiBookMultiple,
+      mdiBookOpenPageVariantOutline,
+      mdiCurrencyEur,
+      mdiWeight,
+      mdiTerrain,
+      mdiSourceBranch,
+      mdiBookshelf,
+      mdiMapMarkerRadiusOutline,
+      mdiBookPlus,
       suggestGuides: [],
       newGuides: []
     }

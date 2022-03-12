@@ -1,7 +1,7 @@
 <template>
   <div class="leaflet-bar">
     <a v-if="!showLayersSelector" @click.prevent="showLayersSelector = true">
-      <v-icon light small>mdi-layers</v-icon>
+      <v-icon light small>{{ mdiLayers }}</v-icon>
     </a>
     <div v-if="showLayersSelector" class="leaflet-customer-control">
       <v-radio-group
@@ -28,6 +28,7 @@
 </template>
 
 <script>
+import { mdiLayers } from '@mdi/js'
 export default {
   name: 'LeafletLayerSelector',
 
@@ -44,6 +45,7 @@ export default {
 
   data () {
     return {
+      mdiLayers,
       layerIndex: this.value,
       showLayersSelector: false
     }

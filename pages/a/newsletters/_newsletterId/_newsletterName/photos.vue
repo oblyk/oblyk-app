@@ -8,7 +8,7 @@
         color="primary"
       >
         <v-icon left>
-          mdi-image-plus
+          {{ mdiImagePlus }}
         </v-icon>
         {{ $t('actions.addPicture') }}
       </v-btn>
@@ -29,7 +29,7 @@
               icon
             >
               <v-icon small>
-                mdi-pencil
+                {{ mdiPencil }}
               </v-icon>
             </v-btn>
             <copy-btn
@@ -44,6 +44,7 @@
 </template>
 
 <script>
+import { mdiImagePlus, mdiPencil } from '@mdi/js'
 import NewsletterApi from '~/services/oblyk-api/NewsletterApi'
 import Photo from '~/models/Photo'
 import Spinner from '~/components/layouts/Spiner'
@@ -55,6 +56,8 @@ export default {
 
   data () {
     return {
+      mdiImagePlus,
+      mdiPencil,
       photos: [],
       loadingNewsletterPhotos: true,
       newsletterId: this.$route.params.newsletterId

@@ -40,7 +40,7 @@
           color="primary"
         >
           <v-icon left>
-            mdi-link-variant-plus
+            {{ mdiLinkVariantPlus }}
           </v-icon>
           {{ $t('actions.addLink') }}
         </v-btn>
@@ -50,6 +50,7 @@
 </template>
 
 <script>
+import { mdiLinkVariantPlus } from '@mdi/js'
 import LinkCard from '@/components/links/LinkCard'
 import LinkApi from '~/services/oblyk-api/LinkApi'
 import Link from '@/models/Link'
@@ -72,6 +73,7 @@ export default {
 
   data () {
     return {
+      mdiLinkVariantPlus,
       links: [],
       loadingLinks: true,
       redirectTo: this.$route.fullPath

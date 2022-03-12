@@ -23,7 +23,7 @@
                   icon
                   :to="`/a${guideBookPdf.path}/edit?redirect_to=${$route.fullPath}`"
                 >
-                  <v-icon small>mdi-pencil</v-icon>
+                  <v-icon small>{{ mdiPencil }}</v-icon>
                 </v-btn>
               </client-only>
             </span>
@@ -34,7 +34,7 @@
               :href="guideBookPdf.url"
             >
               <v-icon left small class="mb-1" color="red darken-1">
-                mdi-file-pdf-box
+                {{ mdiFilePdfBox }}
               </v-icon>
               {{ $t('models.guideBookPdf.pdf_file') }}
             </a> |
@@ -54,6 +54,7 @@
 </template>
 
 <script>
+import { mdiPencil, mdiFilePdfBox } from '@mdi/js'
 import { SessionConcern } from '@/concerns/SessionConcern'
 
 export default {
@@ -63,6 +64,13 @@ export default {
     guideBookPdf: {
       type: Object,
       required: true
+    }
+  },
+
+  data () {
+    return {
+      mdiPencil,
+      mdiFilePdfBox
     }
   }
 }

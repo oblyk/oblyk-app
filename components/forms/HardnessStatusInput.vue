@@ -8,7 +8,7 @@
     item-value="value"
     :label="$t('components.input.hardnessStatus')"
     outlined
-    prepend-inner-icon="mdi-numeric-7-box-multiple-outline"
+    :prepend-inner-icon="mdiNumeric7BoxMultipleOutline"
     clearable
     @change="onChange"
     @focus="onFocus"
@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import { mdiNumeric7BoxMultipleOutline } from '@mdi/js'
 import { InputHelpers } from '@/mixins/InputHelpers'
 
 export default {
@@ -27,6 +28,7 @@ export default {
 
   data () {
     return {
+      mdiNumeric7BoxMultipleOutline,
       hardnessStatuses: [
         { text: this.$t('models.hardnessStatus.easy_for_the_grade'), value: 'easy_for_the_grade' },
         { text: this.$t('models.hardnessStatus.this_grade_is_accurate'), value: 'this_grade_is_accurate' },

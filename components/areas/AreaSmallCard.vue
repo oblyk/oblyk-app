@@ -42,7 +42,10 @@
 export default {
   name: 'AreaSmallCard',
   props: {
-    area: Object,
+    area: {
+      type: Object,
+      required: true
+    },
     linkable: {
       type: Boolean,
       required: false,

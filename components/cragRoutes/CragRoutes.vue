@@ -8,7 +8,7 @@
         <v-row>
           <v-col>
             <v-icon left>
-              mdi-source-branch
+              {{ mdiSourceBranch }}
             </v-icon>
             {{ $t('components.cragRoute.routes') }}
           </v-col>
@@ -86,6 +86,7 @@
 </template>
 
 <script>
+import { mdiSourceBranch } from '@mdi/js'
 import { SessionConcern } from '@/concerns/SessionConcern'
 import { LoadingMoreHelpers } from '@/mixins/LoadingMoreHelpers'
 import CragRouteApi from '~/services/oblyk-api/CragRouteApi'
@@ -127,6 +128,7 @@ export default {
 
   data () {
     return {
+      mdiSourceBranch,
       query: null,
       routeSort: 'difficulty_desc',
       loadingRoutes: true,

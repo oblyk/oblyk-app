@@ -28,7 +28,7 @@
       required
       class="required-field"
       hide-details
-      :append-icon="showPassword ? 'mdi-eye-off' : 'mdi-eye'"
+      :append-icon="showPassword ? mdiEyeOff : mdiEye"
       @click:append="showPassword = !showPassword"
     />
 
@@ -57,6 +57,7 @@
 </template>
 
 <script>
+import { mdiEyeOff, mdiEye } from '@mdi/js'
 import SubmitForm from '@/components/forms/SubmitForm'
 import RequiredExplained from '~/components/forms/RequiredExplained'
 
@@ -73,6 +74,8 @@ export default {
 
   data () {
     return {
+      mdiEyeOff,
+      mdiEye,
       overlay: false,
       oblyk_full_name: null,
       email: null,

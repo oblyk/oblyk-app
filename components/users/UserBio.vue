@@ -2,7 +2,7 @@
   <v-card class="full-height">
     <v-card-title>
       <v-icon left>
-        mdi-text-account
+        {{ mdiTextAccount }}
       </v-icon>
       {{ $t('components.user.bio') }}
     </v-card-title>
@@ -29,6 +29,7 @@
 </template>
 
 <script>
+import { mdiTextAccount } from '@mdi/js'
 import { DateHelpers } from '@/mixins/DateHelpers'
 import StartConversationBtn from '@/components/messengers/forms/StartConversationBtn'
 import { SessionConcern } from '@/concerns/SessionConcern'
@@ -42,6 +43,12 @@ export default {
     user: {
       type: Object,
       required: true
+    }
+  },
+
+  data () {
+    return {
+      mdiTextAccount
     }
   }
 }

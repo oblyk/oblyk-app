@@ -2,7 +2,7 @@
   <v-card class="full-height">
     <v-card-title>
       <v-icon left>
-        mdi-comment
+        {{ mdiComment }}
       </v-icon>
       {{ $t('common.comments') }}
     </v-card-title>
@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import { mdiComment } from '@mdi/js'
 import CommentList from '@/components/comments/CommentList'
 
 export default {
@@ -26,6 +27,12 @@ export default {
     crag: {
       type: Object,
       required: true
+    }
+  },
+
+  data () {
+    return {
+      mdiComment
     }
   }
 }

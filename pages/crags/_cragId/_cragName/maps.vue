@@ -12,7 +12,7 @@
           :to="`/a${crag.path}/parks/new`"
         >
           <v-icon left>
-            mdi-parking
+            {{ mdiParking }}
           </v-icon>
           {{ $t('actions.addPark') }}
         </v-btn>
@@ -23,7 +23,7 @@
           :to="`/a${crag.path}/approaches/new`"
         >
           <v-icon left>
-            mdi-walk
+            {{ mdiWalk }}
           </v-icon>
           {{ $t('actions.addApproach') }}
         </v-btn>
@@ -32,7 +32,7 @@
       <div v-if="approaches.length > 0" class="mb-7">
         <p class="mt-5">
           <v-icon small class="mr-1">
-            mdi-walk
+            {{ mdiWalk }}
           </v-icon>
           {{ $t('components.approach.cardTitle') }}
         </p>
@@ -49,7 +49,7 @@
     <v-container>
       <p class="mb-2">
         <v-icon small class="mr-1">
-          mdi-map
+          {{ mdiMap }}
         </v-icon>
         {{ $t('components.map.title') }}
       </p>
@@ -72,6 +72,7 @@
 </template>
 
 <script>
+import { mdiParking, mdiWalk, mdiMap } from '@mdi/js'
 import { SessionConcern } from '@/concerns/SessionConcern'
 import CragApi from '@/services/oblyk-api/CragApi'
 import ApproachApi from '@/services/oblyk-api/ApproachApi'
@@ -92,6 +93,9 @@ export default {
 
   data () {
     return {
+      mdiParking,
+      mdiWalk,
+      mdiMap,
       geoJsons: null,
       approaches: [],
       cragMapMetaTitle: `${this.$t('meta.generics.map')} ${this.$t('meta.crag.title', {

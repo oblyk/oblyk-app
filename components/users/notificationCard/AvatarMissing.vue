@@ -2,7 +2,7 @@
   <v-card v-if="offerToUpload">
     <v-card-text>
       <v-icon left color="primary">
-        mdi-account-circle
+        {{ mdiAccountCircle }}
       </v-icon>
       <span v-html="$t('components.user.uploadAvatar')" />
     </v-card-text>
@@ -29,6 +29,8 @@
 </template>
 
 <script>
+import { mdiAccountCircle } from '@mdi/js'
+
 export default {
   name: 'AvatarMissing',
   props: {
@@ -40,6 +42,7 @@ export default {
 
   data () {
     return {
+      mdiAccountCircle,
       offerToUpload: null
     }
   },

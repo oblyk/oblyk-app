@@ -8,7 +8,7 @@
         icon
         @click="info = true"
       >
-        <v-icon>mdi-information</v-icon>
+        <v-icon>{{ mdiInformation }}</v-icon>
       </v-btn>
     </div>
     <v-card v-show="info" dark>
@@ -18,12 +18,12 @@
       >
         <v-tab>
           <v-icon small>
-            mdi-information
+            {{ mdiInformation }}
           </v-icon>
         </v-tab>
         <v-tab>
           <v-icon small>
-            mdi-map
+            {{ mdiMap }}
           </v-icon>
         </v-tab>
       </v-tabs>
@@ -46,6 +46,7 @@
 </template>
 
 <script>
+import { mdiInformation, mdiMap } from '@mdi/js'
 import PhotoDescription from '@/components/photos/PhotoDescription'
 import Crag from '@/models/Crag'
 import CragSector from '@/models/CragSector'
@@ -65,6 +66,8 @@ export default {
 
   data () {
     return {
+      mdiInformation,
+      mdiMap,
       info: false,
       tab: null
     }

@@ -16,7 +16,7 @@
           @click="removeCrag(crag)"
         >
           <v-icon>
-            mdi-delete
+            {{ mdiDelete }}
           </v-icon>
         </v-btn>
       </div>
@@ -30,7 +30,7 @@
         <v-icon
           left
         >
-          mdi-terrain
+          {{ mdiTerrain }}
         </v-icon>
         {{ $t('components.area.addCragInArea') }}
       </v-btn>
@@ -39,6 +39,7 @@
 </template>
 
 <script>
+import { mdiDelete, mdiTerrain } from '@mdi/js'
 import { SessionConcern } from '@/concerns/SessionConcern'
 import CragSmallCard from '@/components/crags/CragSmallCard'
 import AreaApi from '~/services/oblyk-api/AreaApi'
@@ -50,6 +51,13 @@ export default {
   props: {
     crags: Array,
     area: Object
+  },
+
+  data () {
+    return {
+      mdiDelete,
+      mdiTerrain
+    }
   },
 
   methods: {

@@ -20,7 +20,7 @@
       :label="$t('models.user.password')"
       :type="showPassword ? 'text' : 'password'"
       required
-      :append-icon="showPassword ? 'mdi-eye-off' : 'mdi-eye'"
+      :append-icon="showPassword ? mdiEyeOff : mdiEye"
       class="required-field"
       @click:append="showPassword = !showPassword"
     />
@@ -31,7 +31,7 @@
       :label="$t('models.user.confirm_password')"
       :type="showPasswordConfirmation ? 'text' : 'password'"
       required
-      :append-icon="showPasswordConfirmation ? 'mdi-eye-off' : 'mdi-eye'"
+      :append-icon="showPasswordConfirmation ? mdiEyeOff : mdiEye"
       class="required-field"
       @click:append="showPasswordConfirmation = !showPasswordConfirmation"
     />
@@ -46,6 +46,7 @@
 </template>
 
 <script>
+import { mdiEyeOff, mdiEye } from '@mdi/js'
 import SubmitForm from '@/components/forms/SubmitForm'
 import SessionApi from '~/services/oblyk-api/SessionApi'
 import RequiredExplained from '~/components/forms/RequiredExplained'
@@ -56,6 +57,8 @@ export default {
 
   data () {
     return {
+      mdiEyeOff,
+      mdiEye,
       overlay: false,
       rememberMe: true,
       password: null,

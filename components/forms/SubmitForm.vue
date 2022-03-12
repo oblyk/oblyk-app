@@ -11,7 +11,7 @@
       icon
       @click="$router.go(-1)"
     >
-      <v-icon>mdi-arrow-left</v-icon>
+      <v-icon>{{ mdiArrowLeft }}</v-icon>
     </v-btn>
     <v-btn
       color="primary"
@@ -24,7 +24,9 @@
     <slot />
   </div>
 </template>
+
 <script>
+import { mdiArrowLeft } from '@mdi/js'
 import OverlayForm from '@/components/forms/OverlayForm'
 
 export default {
@@ -57,6 +59,12 @@ export default {
     progressValue: {
       type: Number,
       default: null
+    }
+  },
+
+  data () {
+    return {
+      mdiArrowLeft
     }
   }
 }

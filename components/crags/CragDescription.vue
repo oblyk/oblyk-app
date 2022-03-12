@@ -2,7 +2,7 @@
   <v-card class="full-height">
     <v-card-title>
       <v-icon left>
-        mdi-information
+        {{ mdiInformation }}
       </v-icon>
       {{ $t('common.informations') }}
     </v-card-title>
@@ -142,7 +142,7 @@
                     :to="`/a${crag.path}/add-on-area`"
                   >
                     <v-icon>
-                      mdi-plus
+                      {{ mdiPlus }}
                     </v-icon>
                   </v-btn>
                 </client-only>
@@ -170,6 +170,7 @@
 </template>
 
 <script>
+import { mdiInformation, mdiPlus } from '@mdi/js'
 import { SessionConcern } from '@/concerns/SessionConcern'
 import ContributionsLabel from '@/components/globals/ContributionsLable'
 import QrCodeBtn from '@/components/forms/QrCodeBtn'
@@ -198,6 +199,8 @@ export default {
 
   data () {
     return {
+      mdiInformation,
+      mdiPlus,
       latLng: `${this.crag.latitude}, ${this.crag.longitude}`
     }
   }

@@ -11,7 +11,7 @@
         <v-icon
           large
         >
-          mdi-dots-vertical
+          {{ mdiDotsVertical }}
         </v-icon>
       </v-btn>
     </template>
@@ -22,7 +22,7 @@
         :to="`/a${gymRoute.path}/edit`"
       >
         <v-list-item-icon>
-          <v-icon>mdi-pencil</v-icon>
+          <v-icon>{{ mdiPencil }}</v-icon>
         </v-list-item-icon>
         <v-list-item-content>
           <v-list-item-title>
@@ -37,7 +37,7 @@
         :to="`${gymRoute.path}/picture`"
       >
         <v-list-item-icon>
-          <v-icon>mdi-camera</v-icon>
+          <v-icon>{{ mdiCamera }}</v-icon>
         </v-list-item-icon>
         <v-list-item-content>
           <v-list-item-title>
@@ -53,7 +53,7 @@
         :to="`${gymRoute.path}/thumbnail`"
       >
         <v-list-item-icon>
-          <v-icon>mdi-crop</v-icon>
+          <v-icon>{{ mdiCrop }}</v-icon>
         </v-list-item-icon>
         <v-list-item-content>
           <v-list-item-title>
@@ -69,7 +69,7 @@
         @click="dismount()"
       >
         <v-list-item-icon>
-          <v-icon>mdi-backburger</v-icon>
+          <v-icon>{{ mdiBackburger }}</v-icon>
         </v-list-item-icon>
         <v-list-item-content>
           <v-list-item-title>
@@ -81,6 +81,7 @@
   </v-menu>
 </template>
 <script>
+import { mdiDotsVertical, mdiPencil, mdiCamera, mdiCrop, mdiBackburger } from '@mdi/js'
 import GymRouteApi from '~/services/oblyk-api/GymRouteApi'
 
 export default {
@@ -88,6 +89,16 @@ export default {
   props: {
     gymRoute: Object,
     getSpaceRoutes: Function
+  },
+
+  data () {
+    return {
+      mdiDotsVertical,
+      mdiPencil,
+      mdiCamera,
+      mdiCrop,
+      mdiBackburger
+    }
   },
 
   methods: {

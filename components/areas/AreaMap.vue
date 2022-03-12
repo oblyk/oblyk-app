@@ -2,7 +2,7 @@
   <v-card class="full-height">
     <v-card-title>
       <v-icon left>
-        mdi-map
+        {{ mdiMap }}
       </v-icon>
       {{ $t('components.area.cragsMap') }}
     </v-card-title>
@@ -22,6 +22,7 @@
 </template>
 
 <script>
+import { mdiMap } from '@mdi/js'
 import { SessionConcern } from '@/concerns/SessionConcern'
 import AreaApi from '@/services/oblyk-api/AreaApi'
 const LeafletMap = () => import('@/components/maps/LeafletMap')
@@ -39,6 +40,7 @@ export default {
 
   data () {
     return {
+      mdiMap,
       geoJsons: null
     }
   },

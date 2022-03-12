@@ -21,18 +21,27 @@ export default {
   props: {
     url: {
       type: String,
-      required: false
+      required: false,
+      default: null
     },
     icon: {
-      type: String,
-      required: false
+      type: Object,
+      required: false,
+      default: null
     },
     iconColor: {
       type: String,
       required: false,
       default: 'current'
     },
-    title: String
+    title: {
+      type: String,
+      required: true
+    }
+  },
+
+  mounted () {
+    console.log(this.icon)
   }
 }
 </script>

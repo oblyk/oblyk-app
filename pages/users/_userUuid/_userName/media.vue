@@ -8,7 +8,7 @@
       >
         <p>
           <v-icon large>
-            mdi-lock
+            {{ mdiLock }}
           </v-icon>
         </p>
         <p>
@@ -24,6 +24,7 @@
 </template>
 
 <script>
+import { mdiLock } from '@mdi/js'
 import { SessionConcern } from '@/concerns/SessionConcern'
 import UserMediaTabs from '@/components/users/layouts/UserMediaTabs'
 
@@ -34,6 +35,12 @@ export default {
     user: {
       type: Object,
       required: true
+    }
+  },
+
+  data () {
+    return {
+      mdiLock
     }
   },
 

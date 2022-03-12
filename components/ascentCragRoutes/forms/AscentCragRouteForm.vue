@@ -13,7 +13,7 @@
       <!-- Released at -->
       <date-picker-input
         v-model="data.released_at"
-        icon="mdi-calendar"
+        :icon="mdiCalendar"
         :label="$t('models.ascentCragRoute.released_at')"
       />
 
@@ -21,7 +21,7 @@
       <v-text-field
         v-model="data.attempt"
         outlined
-        prepend-inner-icon="mdi-redo-variant"
+        :prepend-inner-icon="mdiRedoVariant"
         type="number"
         :label="$t('models.ascentCragRoute.attempt')"
       />
@@ -83,6 +83,7 @@
 </template>
 
 <script>
+import { mdiCalendar, mdiRedoVariant } from '@mdi/js'
 import { DateHelpers } from '@/mixins/DateHelpers'
 import { FormHelpers } from '@/mixins/FormHelpers'
 import SubmitForm from '@/components/forms/SubmitForm'
@@ -130,6 +131,8 @@ export default {
 
   data () {
     return {
+      mdiCalendar,
+      mdiRedoVariant,
       data: {
         id: (this.ascentCragRoute || {}).id,
         ascent_status: (this.ascentCragRoute || {}).ascent_status,

@@ -8,7 +8,7 @@
           </h2>
           <p>
             {{ $t('components.guideBookPaper.addInLibraryPart1') }}
-            <v-icon>mdi-bookshelf</v-icon>
+            <v-icon>{{ mdiBookshelf }}</v-icon>
             {{ $t('components.guideBookPaper.addInLibraryPart2') }}
           </p>
           <add-guide-book-on-library-form />
@@ -19,10 +19,17 @@
 </template>
 
 <script>
+import { mdiBookshelf } from '@mdi/js'
 import AddGuideBookOnLibraryForm from '@/components/guideBookPaperCrags/forms/AddGuideBookOnLibraryForm'
 
 export default {
   components: { AddGuideBookOnLibraryForm },
+
+  data () {
+    return {
+      mdiBookshelf
+    }
+  },
 
   head () {
     return {

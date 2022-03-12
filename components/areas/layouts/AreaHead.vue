@@ -26,7 +26,7 @@
               class="ml-1"
             >
               <v-icon>
-                mdi-pencil
+                {{ mdiPencil }}
               </v-icon>
             </v-btn>
           </client-only>
@@ -40,6 +40,7 @@
 </template>
 
 <script>
+import { mdiPencil } from '@mdi/js'
 import { SessionConcern } from '@/concerns/SessionConcern'
 
 export default {
@@ -54,6 +55,7 @@ export default {
 
   data () {
     return {
+      mdiPencil,
       croppedSrc: this.area.croppedCoverUrl,
       largeSrc: this.area.coverUrl
     }

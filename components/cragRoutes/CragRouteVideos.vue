@@ -2,7 +2,7 @@
   <div>
     <p>
       <v-icon left>
-        mdi-video
+        {{ mdiVideo }}
       </v-icon>
       {{ $t('components.video.title') }}
     </p>
@@ -32,7 +32,7 @@
             color="primary"
           >
             <v-icon small left>
-              mdi-video-plus
+              {{ mdiVideoPlus }}
             </v-icon>
             {{ $t('actions.addVideo') }}
           </v-btn>
@@ -43,6 +43,7 @@
 </template>
 
 <script>
+import { mdiVideo, mdiVideoPlus } from '@mdi/js'
 import Spinner from '@/components/layouts/Spiner'
 import { SessionConcern } from '@/concerns/SessionConcern'
 import CragRouteApi from '~/services/oblyk-api/CragRouteApi'
@@ -66,6 +67,8 @@ export default {
 
   data () {
     return {
+      mdiVideo,
+      mdiVideoPlus,
       loadingVideos: true,
       videos: []
     }

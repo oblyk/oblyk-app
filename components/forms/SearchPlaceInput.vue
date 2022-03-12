@@ -2,7 +2,7 @@
   <div>
     <v-text-field
       v-model="query"
-      prepend-inner-icon="mdi-map-search"
+      :prepend-inner-icon="mdiMapSearch"
       :label="$t('components.searchPlace.placeholder')"
       :loading="searching"
       filled
@@ -38,6 +38,7 @@
 </template>
 
 <script>
+import { mdiMapSearch } from '@mdi/js'
 import OsmNominatim from '~/services/osm-nominatim'
 
 export default {
@@ -52,6 +53,7 @@ export default {
 
   data () {
     return {
+      mdiMapSearch,
       query: null,
       searching: false,
       onSearch: false,

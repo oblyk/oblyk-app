@@ -14,7 +14,7 @@
             v-bind="attrs"
             v-on="on"
           >
-            <v-icon>mdi-dots-vertical</v-icon>
+            <v-icon>{{ mdiDotsVertical }}</v-icon>
           </v-btn>
         </template>
         <v-list dense>
@@ -23,7 +23,7 @@
           </v-subheader>
           <v-list-item href="https://api.oblyk.org/documentation" target="_blank">
             <v-list-item-icon>
-              <v-icon>mdi-code-braces</v-icon>
+              <v-icon>{{ mdiCodeBraces }}</v-icon>
             </v-list-item-icon>
             <v-list-item-title>{{ $t('components.organization.apiDocumentation') }}</v-list-item-title>
           </v-list-item>
@@ -33,7 +33,7 @@
           </v-subheader>
           <v-list-item :to="`/a${organization.path}/edit`">
             <v-list-item-icon>
-              <v-icon>mdi-pencil</v-icon>
+              <v-icon>{{ mdiPencil }}</v-icon>
             </v-list-item-icon>
             <v-list-item-title>{{ $t('actions.edit') }}</v-list-item-title>
           </v-list-item>
@@ -42,7 +42,7 @@
           <v-list-item @click="refreshApiKey">
             <v-list-item-icon>
               <v-icon class="red--text text--lighten-1">
-                mdi-refresh
+                {{ mdiRefresh }}
               </v-icon>
             </v-list-item-icon>
             <v-list-item-title class="red--text text--lighten-1">
@@ -54,7 +54,7 @@
           <v-list-item @click="deleteOrganization">
             <v-list-item-icon>
               <v-icon class="red--text text--lighten-1">
-                mdi-delete
+                {{ mdiDelete }}
               </v-icon>
             </v-list-item-icon>
             <v-list-item-title class="red--text text--lighten-1">
@@ -70,7 +70,7 @@
         <v-col sm="12" md="6" lg="4">
           <p class="font-weight-bold mb-1">
             <v-icon small left>
-              mdi-format-list-bulleted-type
+              {{ mdiFormatListBulletedType }}
             </v-icon>
             {{ $t('models.organization.api_usage_type') }}
           </p>
@@ -81,7 +81,7 @@
         <v-col sm="12" md="6" lg="4">
           <p class="font-weight-bold mb-1">
             <v-icon small left>
-              mdi-at
+              {{ mdiAt }}
             </v-icon>
             {{ $t('models.organization.email') }}
           </p>
@@ -92,7 +92,7 @@
         <v-col sm="12" md="6" lg="4">
           <p class="font-weight-bold mb-1">
             <v-icon small left>
-              mdi-code-braces
+              {{ mdiCodeBrackets }}
             </v-icon>
             {{ $t('models.organization.api_access_key') }}
           </p>
@@ -107,7 +107,7 @@
         <v-col sm="12" md="6" lg="4">
           <p class="font-weight-bold mb-1">
             <v-icon small left>
-              mdi-web
+              {{ mdiWeb }}
             </v-icon>
             {{ $t('models.organization.website') }}
           </p>
@@ -127,7 +127,7 @@
         <v-col sm="12" md="6" lg="4">
           <p class="font-weight-bold mb-1">
             <v-icon small left>
-              mdi-phone
+              {{ mdiPhone }}
             </v-icon>
             {{ $t('models.organization.phone') }}
           </p>
@@ -141,7 +141,7 @@
         <v-col sm="12" md="6" lg="4">
           <p class="font-weight-bold mb-1">
             <v-icon small left>
-              mdi-domain
+              {{ mdiDomain }}
             </v-icon>
             {{ $t('models.organization.company_registration_number') }}
           </p>
@@ -159,7 +159,7 @@
         <v-col>
           <p class="font-weight-bold mb-1">
             <v-icon small left>
-              mdi-map-marker
+              {{ mdiMapMarker }}
             </v-icon>
             {{ $t('models.organization.address') }}
           </p>
@@ -174,6 +174,20 @@
 </template>
 
 <script>
+import {
+  mdiDotsVertical,
+  mdiCodeBraces,
+  mdiPencil,
+  mdiRefresh,
+  mdiDelete,
+  mdiFormatListBulletedType,
+  mdiAt,
+  mdiCodeBrackets,
+  mdiWeb,
+  mdiPhone,
+  mdiDomain,
+  mdiMapMarker
+} from '@mdi/js'
 import OrganizationApi from '~/services/oblyk-api/OrganizationApi'
 
 export default {
@@ -187,6 +201,18 @@ export default {
 
   data () {
     return {
+      mdiDotsVertical,
+      mdiCodeBraces,
+      mdiPencil,
+      mdiRefresh,
+      mdiDelete,
+      mdiFormatListBulletedType,
+      mdiAt,
+      mdiCodeBrackets,
+      mdiWeb,
+      mdiPhone,
+      mdiDomain,
+      mdiMapMarker,
       keyIsVisible: false,
       apiAccessKey: 'Clic to see key'
     }

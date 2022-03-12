@@ -36,7 +36,7 @@
           @click.stop=""
         >
           <v-icon small>
-            mdi-flag
+            {{ mdiFlag }}
           </v-icon>
         </v-btn>
 
@@ -50,7 +50,7 @@
           @click.stop="defineAsBanner()"
         >
           <v-icon small>
-            mdi-panorama
+            {{ mdiPanorama }}
           </v-icon>
         </v-btn>
 
@@ -63,7 +63,7 @@
           @click.stop="deletePhoto()"
         >
           <v-icon small>
-            mdi-delete
+            {{ mdiDelete }}
           </v-icon>
         </v-btn>
 
@@ -76,7 +76,7 @@
           @click.stop=""
         >
           <v-icon small>
-            mdi-pencil
+            {{ mdiPencil }}
           </v-icon>
         </v-btn>
       </div>
@@ -85,6 +85,7 @@
 </template>
 
 <script>
+import { mdiFlag, mdiPanorama, mdiDelete, mdiPencil } from '@mdi/js'
 import { SessionConcern } from '@/concerns/SessionConcern'
 import CragApi from '~/services/oblyk-api/CragApi'
 import Crag from '@/models/Crag'
@@ -128,6 +129,10 @@ export default {
 
   data () {
     return {
+      mdiFlag,
+      mdiPanorama,
+      mdiDelete,
+      mdiPencil,
       deleted: false,
       photoOver: false,
       updatingBanner: false,

@@ -5,19 +5,19 @@
     </p>
     <p v-if="placeOfSale.url" class="mb-0">
       <v-icon left small>
-        mdi-link
+        {{ mdiLink }}
       </v-icon>
       <a :href="placeOfSale.url">{{ placeOfSale.url }}</a>
     </p>
     <p v-if="placeOfSale.description" class="mb-0">
       <v-icon left small>
-        mdi-format-align-justify
+        {{ mdiFormatAlignJustify }}
       </v-icon>
       {{ placeOfSale.description }}
     </p>
     <p v-if="placeOfSale.city || placeOfSale.address || placeOfSale.postal_code">
       <v-icon left small>
-        mdi-map-marker
+        {{ mdiMapMarker }}
       </v-icon>
       {{ placeOfSale.address }}, {{ placeOfSale.postal_code }} {{ placeOfSale.city }}, {{ placeOfSale.country }}
     </p>
@@ -32,6 +32,7 @@
 </template>
 
 <script>
+import { mdiLink, mdiFormatAlignJustify, mdiMapMarker } from '@mdi/js'
 import OwnerLabel from '@/components/users/OwnerLabel'
 import PlaceOfSaleApi from '~/services/oblyk-api/PlaceOfSaleApi'
 
@@ -41,6 +42,14 @@ export default {
   props: {
     placeOfSale: Object,
     getPlaceOfSales: Function
+  },
+
+  data () {
+    return {
+      mdiLink,
+      mdiFormatAlignJustify,
+      mdiMapMarker
+    }
   },
 
   methods: {

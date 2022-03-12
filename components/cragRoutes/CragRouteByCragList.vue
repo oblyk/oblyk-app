@@ -9,7 +9,7 @@
         class="mt-4"
       >
         <v-icon left>
-          mdi-terrain
+          {{ mdiTerrain }}
         </v-icon>
         {{ cragRoute.Crag.name }}
       </div>
@@ -21,6 +21,7 @@
 </template>
 
 <script>
+import { mdiTerrain } from '@mdi/js'
 import CragRouteSmallLine from '@/components/cragRoutes/CragRouteSmallLine'
 
 export default {
@@ -30,6 +31,12 @@ export default {
     cragRoutes: {
       type: Array,
       required: true
+    }
+  },
+
+  data () {
+    return {
+      mdiTerrain
     }
   }
 }

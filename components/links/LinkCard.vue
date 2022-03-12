@@ -7,13 +7,13 @@
     <v-card-text>
       <p class="mb-1">
         <v-icon small left>
-          mdi-link
+          {{ mdiLink }}
         </v-icon>
         <a :href="link.url">{{ link.url }}</a>
       </p>
       <p v-if="link.description">
         <v-icon small left>
-          mdi-format-align-justify
+          {{ mdiFormatAlignJustify }}
         </v-icon>
         {{ link.description }}
       </p>
@@ -29,6 +29,7 @@
 </template>
 
 <script>
+import { mdiLink, mdiFormatAlignJustify } from '@mdi/js'
 import OwnerLabel from '@/components/users/OwnerLabel'
 import LinkApi from '~/services/oblyk-api/LinkApi'
 
@@ -48,6 +49,8 @@ export default {
 
   data () {
     return {
+      mdiLink,
+      mdiFormatAlignJustify,
       redirectTo: this.$route.fullPath
     }
   },

@@ -47,7 +47,7 @@
                 <th class="text-right pr-2">
                   <span v-if="change[0] !== null">{{ $t('common.to') }} :</span>
                   <v-icon v-if="change[0] === null" small>
-                    mdi-arrow-right
+                    {{ mdiArrowRight }}
                   </v-icon>
                 </th>
                 <td>
@@ -70,6 +70,7 @@
 </template>
 
 <script>
+import { mdiArrowRight } from '@mdi/js'
 import { DateHelpers } from '@/mixins/DateHelpers'
 import Spinner from '@/components/layouts/Spiner'
 import CloseForm from '@/components/forms/CloseForm'
@@ -87,6 +88,7 @@ export default {
 
   data () {
     return {
+      mdiArrowRight,
       version: {},
       loadingVersions: true,
       versionType: this.$route.params.versionType,

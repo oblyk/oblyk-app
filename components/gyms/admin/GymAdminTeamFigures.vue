@@ -5,7 +5,7 @@
   >
     <v-card-title>
       <v-icon left>
-        mdi-account-group
+        {{ mdiAccountGroup }}
       </v-icon>
       {{ $t('components.gymAdmin.team') }}
     </v-card-title>
@@ -22,6 +22,7 @@
 </template>
 
 <script>
+import { mdiAccountGroup } from '@mdi/js'
 import Spinner from '@/components/layouts/Spiner'
 import GymAdministratorApi from '~/services/oblyk-api/GymAdministratorApi'
 
@@ -34,6 +35,7 @@ export default {
 
   data () {
     return {
+      mdiAccountGroup,
       loadingGymAdministrators: true,
       gymAdministrators: []
     }

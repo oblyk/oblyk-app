@@ -31,8 +31,8 @@
               v-if="subscribable"
               subscribe-type="User"
               :subscribe-id="user.id"
-              unfollowed-icon="mdi-account-outline"
-              followed-icon="mdi-account"
+              :unfollowed-icon="mdiAccountOutline"
+              :followed-icon="mdiAccount"
               followed-color="green"
               :large="false"
             />
@@ -56,6 +56,7 @@
 </template>
 
 <script>
+import { mdiAccountOutline, mdiAccount } from '@mdi/js'
 import SubscribeBtn from '@/components/forms/SubscribeBtn'
 
 export default {
@@ -82,6 +83,13 @@ export default {
     callback: {
       type: Function,
       default: null
+    }
+  },
+
+  data () {
+    return {
+      mdiAccountOutline,
+      mdiAccount
     }
   }
 }

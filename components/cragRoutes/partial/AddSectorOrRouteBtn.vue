@@ -14,7 +14,7 @@
           v-on="on"
         >
           <v-icon small class="mr-1">
-            mdi-shape-square-plus
+            {{ mdiShapeSquarePlus }}
           </v-icon>
           {{ $t('actions.newSector') }}
         </v-btn>
@@ -35,7 +35,7 @@
           v-on="on"
         >
           <v-icon small class="mr-1">
-            mdi-source-branch-plus
+            {{ mdiSourceBranchPlus }}
           </v-icon>
           <span>
             {{ $t('actions.newRoute') }}
@@ -50,6 +50,7 @@
 </template>
 
 <script>
+import { mdiShapeSquarePlus, mdiSourceBranchPlus } from '@mdi/js'
 export default {
   name: 'AddSectorOrRouteBtn',
   props: {
@@ -60,6 +61,13 @@ export default {
     cragSector: {
       type: Object,
       default: null
+    }
+  },
+
+  data () {
+    return {
+      mdiShapeSquarePlus,
+      mdiSourceBranchPlus
     }
   },
 

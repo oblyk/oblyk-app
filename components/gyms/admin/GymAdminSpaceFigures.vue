@@ -5,7 +5,7 @@
   >
     <v-card-title>
       <v-icon left>
-        mdi-map
+        {{ mdiMap }}
       </v-icon>
       {{ $t('components.gymAdmin.spaces') }}
     </v-card-title>
@@ -29,10 +29,17 @@
 </template>
 
 <script>
+import { mdiMap } from '@mdi/js'
 export default {
   name: 'GymAdminSpaceFigures',
   props: {
     gym: Object
+  },
+
+  data () {
+    return {
+      mdiMap
+    }
   }
 }
 </script>

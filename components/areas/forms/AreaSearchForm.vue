@@ -43,7 +43,8 @@ export default {
 
     callback: {
       type: Function,
-      required: false
+      required: false,
+      default: null
     }
   },
 

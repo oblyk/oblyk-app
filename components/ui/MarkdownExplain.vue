@@ -16,12 +16,12 @@
       text
     >
       <v-icon x-small left>
-        mdi-console-line
+        {{ mdiConsoleLine }}
       </v-icon>
       {{ $t('components.markdown.explain.neverTooMuch') }} <strong class="red--text">_</strong>(cf : {{ $t('components.markdown.explain.aBrute') }} )<strong class="red--text">_</strong><br>
       <v-divider class="mt-2 mb-2" />
       <v-icon x-small left>
-        mdi-arrow-right
+        {{ mdiArrowRight }}
       </v-icon>
       {{ $t('components.markdown.explain.neverTooMuch') }} <cite>(cf: {{ $t('components.markdown.explain.aBrute') }})</cite>
     </v-alert>
@@ -35,12 +35,12 @@
       text
     >
       <v-icon x-small left>
-        mdi-console-line
+        {{ mdiConsoleLine }}
       </v-icon>
       {{ $t('components.markdown.explain.thisIs') }} <strong class="red--text">**</strong>{{ $t('components.markdown.explain.bold') }}<strong class="red--text">**</strong>, {{ $t('components.markdown.explain.butIsGood') }}<br>
       <v-divider class="mt-2 mb-2" />
       <v-icon x-small left>
-        mdi-arrow-right
+        {{ mdiArrowRight }}
       </v-icon>
       {{ $t('components.markdown.explain.thisIs') }} <strong>{{ $t('components.markdown.explain.bold') }}</strong>, {{ $t('components.markdown.explain.butIsGood') }}
     </v-alert>
@@ -54,12 +54,12 @@
       text
     >
       <v-icon x-small left>
-        mdi-console-line
+        {{ mdiConsoleLine }}
       </v-icon>
       {{ $t('components.markdown.explain.thisIs') }} <strong class="red--text">~</strong>impossible<strong class="red--text">~</strong> {{ $t('components.markdown.explain.tooHard') }}<br>
       <v-divider class="mt-2 mb-2" />
       <v-icon x-small left>
-        mdi-arrow-right
+        {{ mdiArrowRight }}
       </v-icon>
       {{ $t('components.markdown.explain.thisIs') }} <del>impossible</del> {{ $t('components.markdown.explain.tooHard') }}
     </v-alert>
@@ -73,12 +73,12 @@
       text
     >
       <v-icon x-small left>
-        mdi-console-line
+        {{ mdiConsoleLine }}
       </v-icon>
       <strong class="red--text">[</strong>Oblyk<strong class="red--text">]</strong><strong class="red--text">(</strong>https://oblyk.org<strong class="red--text">)</strong> {{ $t('components.markdown.explain.teachesMarkdown') }} !
       <v-divider class="mt-2 mb-2" />
       <v-icon x-small left>
-        mdi-arrow-right
+        {{ mdiArrowRight }}
       </v-icon>
       <a href="https://oblyk.org">Oblyk</a> {{ $t('components.markdown.explain.teachesMarkdown') }} !
     </v-alert>
@@ -148,8 +148,17 @@
 </template>
 
 <script>
+import { mdiConsoleLine, mdiArrowRight } from '@mdi/js'
+
 export default {
-  name: 'MarkdownExplain'
+  name: 'MarkdownExplain',
+
+  data () {
+    return {
+      mdiConsoleLine,
+      mdiArrowRight
+    }
+  }
 }
 </script>
 

@@ -7,13 +7,14 @@
     @click="addInTickList()"
   >
     <v-icon left>
-      mdi-crop-free
+      {{ mdiCropFree }}
     </v-icon>
     {{ $t('actions.addInMyTickList') }}
   </v-btn>
 </template>
 
 <script>
+import { mdiCropFree } from '@mdi/js'
 import TickListApi from '~/services/oblyk-api/TickListApi'
 
 export default {
@@ -27,6 +28,7 @@ export default {
 
   data () {
     return {
+      mdiCropFree,
       loadingAdd: false
     }
   },

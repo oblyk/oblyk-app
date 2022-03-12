@@ -13,7 +13,7 @@
         class="discrete-link text-truncate"
       >
         <v-icon left small>
-          mdi-terrain
+          {{ mdiTerrain }}
         </v-icon>
         {{ illustrableObject.name }}
       </nuxt-link>
@@ -25,7 +25,7 @@
       class="caption text-truncate pb-0 pt-2"
     >
       <v-icon left small>
-        mdi-link
+        {{ mdiLink }}
       </v-icon>
       {{ photo.source }}
     </v-card-title>
@@ -33,7 +33,7 @@
     <!-- Copyright -->
     <v-card-title class="caption pb-0 pt-2">
       <v-icon left small>
-        mdi-copyright
+        {{ mdiCopyright }}
       </v-icon>
       {{ photo.copy }}
     </v-card-title>
@@ -44,7 +44,7 @@
       class="caption pb-0 pt-2"
     >
       <v-icon left small>
-        mdi-camera
+        {{ mdiCamera }}
       </v-icon>
       {{ photo.exif_model }} {{ photo.exif_make }}
     </v-card-title>
@@ -55,7 +55,7 @@
       class="caption pb-0 pt-2"
     >
       <v-icon left small>
-        mdi-account
+        {{ mdiAccount }}
       </v-icon>
       <nuxt-link
         :to="photo.Creator.path"
@@ -67,6 +67,7 @@
 </template>
 
 <script>
+import { mdiTerrain, mdiLink, mdiCopyright, mdiCamera, mdiAccount } from '@mdi/js'
 const MarkdownText = () => import('@/components/ui/MarkdownText')
 
 export default {
@@ -75,6 +76,16 @@ export default {
   props: {
     photo: Object,
     illustrableObject: Object
+  },
+
+  data () {
+    return {
+      mdiTerrain,
+      mdiLink,
+      mdiCopyright,
+      mdiCamera,
+      mdiAccount
+    }
   }
 }
 </script>

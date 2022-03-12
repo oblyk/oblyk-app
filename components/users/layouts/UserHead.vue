@@ -25,8 +25,8 @@
             v-if="!itsMe()"
             subscribe-type="User"
             :subscribe-id="user.id"
-            unfollowed-icon="mdi-account-outline"
-            followed-icon="mdi-account"
+            :unfollowed-icon="mdiAccountOutline"
+            :followed-icon="mdiAccount"
             followed-color="green"
             :large="true"
           />
@@ -57,7 +57,7 @@
             <v-icon
               small
             >
-              mdi-pencil
+              {{ mdiPencil }}
             </v-icon>
           </v-btn>
 
@@ -72,7 +72,7 @@
             <v-icon
               small
             >
-              mdi-account-circle
+              {{ mdiAccountCircle }}
             </v-icon>
           </v-btn>
           <v-btn
@@ -86,7 +86,7 @@
             <v-icon
               small
             >
-              mdi-panorama
+              {{ mdiPanorama }}
             </v-icon>
           </v-btn>
         </span>
@@ -111,7 +111,9 @@
     </v-dialog>
   </div>
 </template>
+
 <script>
+import { mdiAccountOutline, mdiAccount, mdiPencil, mdiAccountCircle, mdiPanorama } from '@mdi/js'
 import { SessionConcern } from '@/concerns/SessionConcern'
 import { DateHelpers } from '@/mixins/DateHelpers'
 import SubscribeBtn from '@/components/forms/SubscribeBtn'
@@ -129,6 +131,11 @@ export default {
 
   data () {
     return {
+      mdiAccountOutline,
+      mdiAccount,
+      mdiPencil,
+      mdiAccountCircle,
+      mdiPanorama,
       avatarPictureDialog: false
     }
   },

@@ -5,7 +5,7 @@
   >
     <v-card-title>
       <v-icon left>
-        mdi-source-branch
+        {{ mdiSourceBranch }}
       </v-icon>
       {{ $t('components.gymAdmin.routes') }}
     </v-card-title>
@@ -18,6 +18,7 @@
 </template>
 
 <script>
+import { mdiSourceBranch } from '@mdi/js'
 import GymApi from '~/services/oblyk-api/GymApi'
 
 export default {
@@ -28,6 +29,7 @@ export default {
 
   data () {
     return {
+      mdiSourceBranch,
       routesCount: 0
     }
   },

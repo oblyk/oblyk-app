@@ -6,7 +6,7 @@
     :items="inclines"
     item-text="text"
     item-value="value"
-    prepend-inner-icon="mdi-angle-acute"
+    :prepend-inner-icon="mdiAngleAcute"
     :label="$t('components.input.inclineType')"
     outlined
     :tabindex="tabindex"
@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import { mdiAngleAcute } from '@mdi/js'
 import { InputHelpers } from '@/mixins/InputHelpers'
 
 export default {
@@ -29,6 +30,7 @@ export default {
 
   data () {
     return {
+      mdiAngleAcute,
       inclines: [
         { text: this.$t('models.inclineType.slab'), value: 'slab' },
         { text: this.$t('models.inclineType.vertical'), value: 'vertical' },

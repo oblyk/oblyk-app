@@ -13,7 +13,7 @@
         <v-icon
           small
         >
-          mdi-qrcode-scan
+          {{ mdiQrcodeScan }}
         </v-icon>
       </v-btn>
     </template>
@@ -44,6 +44,7 @@
 </template>
 
 <script>
+import { mdiQrcodeScan } from '@mdi/js'
 const VueQrcode = () => import('@chenfengyuan/vue-qrcode')
 
 export default {
@@ -61,6 +62,7 @@ export default {
 
   data () {
     return {
+      mdiQrcodeScan,
       dialog: false
     }
   }

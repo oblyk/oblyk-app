@@ -28,7 +28,7 @@
             text
           >
             <v-icon left>
-              mdi-email-edit
+              {{ mdiEmailEdit }}
             </v-icon>
             {{ $t('actions.edit') }}
           </v-btn>
@@ -39,7 +39,7 @@
             text
           >
             <v-icon left>
-              mdi-image-multiple
+              {{ mdiImageMultiple }}
             </v-icon>
             {{ $t('components.photo.photos') }}
           </v-btn>
@@ -51,7 +51,7 @@
             @click="deleteNewsletter()"
           >
             <v-icon left>
-              mdi-delete
+              {{ mdiDelete }}
             </v-icon>
             {{ $t('actions.delete') }}
           </v-btn>
@@ -65,7 +65,7 @@
             @click="sendNewsletter()"
           >
             <v-icon left>
-              mdi-send
+              {{ mdiSend }}
             </v-icon>
             {{ $t('actions.send') }}
           </v-btn>
@@ -77,6 +77,7 @@
 </template>
 
 <script>
+import { mdiEmailEdit, mdiImageMultiple, mdiDelete, mdiSend } from '@mdi/js'
 import { DateHelpers } from '@/mixins/DateHelpers'
 import { NewsletterConcern } from '@/concerns/NewsletterConcern'
 import { SessionConcern } from '@/concerns/SessionConcern'
@@ -93,6 +94,10 @@ export default {
 
   data () {
     return {
+      mdiEmailEdit,
+      mdiImageMultiple,
+      mdiDelete,
+      mdiSend,
       deletingNewsletter: false,
       sendingNewsletter: false
     }

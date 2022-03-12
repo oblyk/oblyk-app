@@ -27,6 +27,14 @@
 </template>
 
 <script>
+import {
+  mdiMessageText,
+  mdiStarPlus,
+  mdiStarCheck,
+  mdiStarPlusOutline,
+  mdiNewspaperVariantMultipleOutline,
+  mdiBell
+} from '@mdi/js'
 import { DateHelpers } from '@/mixins/DateHelpers'
 import { SessionConcern } from '@/concerns/SessionConcern'
 import NotificationApi from '~/services/oblyk-api/NotificationApi'
@@ -35,7 +43,21 @@ export default {
   name: 'NotificationItemList',
   mixins: [DateHelpers, SessionConcern],
   props: {
-    notification: Object
+    notification: {
+      type: Object,
+      required: true
+    }
+  },
+
+  data () {
+    return {
+      mdiMessageText,
+      mdiStarPlus,
+      mdiStarCheck,
+      mdiStarPlusOutline,
+      mdiNewspaperVariantMultipleOutline,
+      mdiBell
+    }
   },
 
   methods: {
@@ -57,17 +79,17 @@ export default {
 
     notificationIcon () {
       if (this.notification.notification_type === 'new_message') {
-        return 'mdi-message-text'
+        return mdiMessageText
       } else if (this.notification.notification_type === 'new_follower') {
-        return 'mdi-star-plus'
+        return mdiStarPlus
       } else if (this.notification.notification_type === 'subscribe_accepted') {
-        return 'mdi-star-check'
+        return mdiStarCheck
       } else if (this.notification.notification_type === 'request_for_follow_up') {
-        return 'mdi-star-plus-outline'
+        return mdiStarPlusOutline
       } else if (this.notification.notification_type === 'new_article') {
-        return 'mdi-newspaper-variant-multiple-outline'
+        return mdiNewspaperVariantMultipleOutline
       } else {
-        return 'mdi-bell'
+        return mdiBell
       }
     },
 

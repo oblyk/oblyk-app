@@ -7,7 +7,7 @@
       <v-col v-if="currentUserIsGymAdmin()">
         <p class="text-center mb-7">
           <v-icon x-large>
-            mdi-map-legend
+            {{ mdiMapLegend }}
           </v-icon>
         </p>
         <p class="text-center">
@@ -49,11 +49,18 @@
 </template>
 
 <script>
+import { mdiMapLegend } from '@mdi/js'
 import { SessionConcern } from '@/concerns/SessionConcern'
 import { GymConcern } from '@/concerns/GymConcern'
 
 export default {
   mixins: [SessionConcern, GymConcern],
+
+  data () {
+    return {
+      mdiMapLegend
+    }
+  },
 
   head () {
     return {

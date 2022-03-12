@@ -7,7 +7,7 @@
       <!-- Released at -->
       <date-picker-input
         v-model="data.released_at"
-        icon="mdi-calendar"
+        :icon="mdiCalendar"
         :label="$t('models.ascentGymRoute.released_at')"
       />
 
@@ -53,6 +53,7 @@
 </template>
 
 <script>
+import { mdiCalendar } from '@mdi/js'
 import { FormHelpers } from '@/mixins/FormHelpers'
 import { DateHelpers } from '@/mixins/DateHelpers'
 import SubmitForm from '@/components/forms/SubmitForm'
@@ -84,6 +85,7 @@ export default {
 
   data () {
     return {
+      mdiCalendar,
       data: {
         id: (this.ascentGymRoute || {}).id,
         ascent_status: (this.ascentGymRoute || {}).ascent_status || this.defaultAscentStatus,

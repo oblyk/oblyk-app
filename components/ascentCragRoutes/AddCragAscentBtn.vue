@@ -12,7 +12,7 @@
         v-on="on"
       >
         <v-icon left>
-          mdi-check
+          {{ mdiCheck }}
         </v-icon>
         <span v-if="isRepetition">
           {{ $t('actions.addRepetition') }}
@@ -39,6 +39,7 @@
 </template>
 
 <script>
+import { mdiCheck } from '@mdi/js'
 import AscentCragRouteForm from '@/components/ascentCragRoutes/forms/AscentCragRouteForm'
 
 export default {
@@ -57,6 +58,7 @@ export default {
 
   data () {
     return {
+      mdiCheck,
       ascentModal: false
     }
   },

@@ -38,7 +38,7 @@
             v-on="on"
           >
             <v-icon>
-              mdi-account-circle
+              {{ mdiAccountCircle }}
             </v-icon>
           </v-btn>
         </template>
@@ -65,6 +65,7 @@
 </template>
 
 <script>
+import { mdiAccountCircle } from '@mdi/js'
 import LazyHydrate from 'vue-lazy-hydration'
 import LoginLogoutBtn from '@/components/layouts/partial/LoginLogoutBtn'
 import AppBarTitle from '@/components/layouts/partial/AppBarTitle'
@@ -87,6 +88,7 @@ export default {
 
   data () {
     return {
+      mdiAccountCircle,
       drawer: false
     }
   }

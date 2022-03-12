@@ -22,8 +22,8 @@
             :subscribe-id="guideBookPaper.id"
             :large="false"
             followed-color="deep-purple"
-            followed-icon="mdi-bookshelf"
-            unfollowed-icon="mdi-bookshelf"
+            :followed-icon="mdiBookshelf"
+            :unfollowed-icon="mdiBookshelf"
             subscribe-label="actions.addToLibrary"
             unsubscribe-label="actions.removeFromLibrary"
           />
@@ -44,13 +44,23 @@
 </template>
 
 <script>
+import { mdiBookshelf } from '@mdi/js'
 import SubscribeBtn from '@/components/forms/SubscribeBtn'
 
 export default {
   name: 'GuideBookPaperFeedCard',
   components: { SubscribeBtn },
   props: {
-    guideBookPaper: Object
+    guideBookPaper: {
+      type: Object,
+      required: true
+    }
+  },
+
+  data () {
+    return {
+      mdiBookshelf
+    }
   }
 }
 </script>

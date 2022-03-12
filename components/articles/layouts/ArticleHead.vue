@@ -20,7 +20,7 @@
             class="ml-2"
           >
             <v-icon small>
-              mdi-comment
+              {{ mdiComment }}
             </v-icon>
             {{ article.comments_count }}
           </span>
@@ -34,6 +34,7 @@
 </template>
 
 <script>
+import { mdiComment } from '@mdi/js'
 import { DateHelpers } from '@/mixins/DateHelpers'
 import { SessionConcern } from '@/concerns/SessionConcern'
 import ArticleActionMenu from '@/components/articles/forms/ArticleActionMenu'
@@ -46,6 +47,12 @@ export default {
     article: {
       type: Object,
       required: true
+    }
+  },
+
+  data () {
+    return {
+      mdiComment
     }
   }
 }

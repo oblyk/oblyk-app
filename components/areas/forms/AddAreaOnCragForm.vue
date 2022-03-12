@@ -46,7 +46,7 @@
           <v-icon
             left
           >
-            mdi-plus
+            {{ mdiPlus }}
           </v-icon>
           {{ $t('actions.addArea') }}
         </v-btn>
@@ -58,6 +58,7 @@
 </template>
 
 <script>
+import { mdiPlus } from '@mdi/js'
 import { FormHelpers } from '@/mixins/FormHelpers'
 import CragApi from '~/services/oblyk-api/CragApi'
 import Spinner from '@/components/layouts/Spiner'
@@ -81,6 +82,7 @@ export default {
 
   data () {
     return {
+      mdiPlus,
       loadingAroundAreas: true,
       aroundAreas: []
     }

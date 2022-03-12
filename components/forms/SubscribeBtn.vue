@@ -21,6 +21,7 @@
 </template>
 
 <script>
+import { mdiStar, mdiStarOutline } from '@mdi/js'
 import { SessionConcern } from '@/concerns/SessionConcern'
 import FollowApi from '~/services/oblyk-api/FollowApi'
 
@@ -46,7 +47,7 @@ export default {
     },
     followedIcon: {
       type: String,
-      default: 'mdi-star'
+      default: mdiStar
     },
     followedColor: {
       type: String,
@@ -58,7 +59,7 @@ export default {
     },
     unfollowedIcon: {
       type: String,
-      default: 'mdi-star-outline'
+      default: mdiStarOutline
     },
     subscribeLabel: {
       type: String,
@@ -76,6 +77,8 @@ export default {
 
   data () {
     return {
+      mdiStar,
+      mdiStarOutline,
       requesting: false
     }
   },

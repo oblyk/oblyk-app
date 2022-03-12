@@ -23,7 +23,7 @@
           icon
           v-on="on"
         >
-          <v-icon>mdi-bell</v-icon>
+          <v-icon>{{ mdiBell }}</v-icon>
         </v-btn>
       </v-badge>
     </template>
@@ -63,7 +63,7 @@
           @click="markedAllAsRead()"
         >
           <v-icon small left>
-            mdi-bell-check
+            {{ mdiBellCheck }}
           </v-icon>
           {{ $t('components.notification.markedAllAsRead') }}
         </v-btn>
@@ -74,7 +74,7 @@
           to="/notifications"
         >
           <v-icon small left>
-            mdi-open-in-new
+            {{ mdiOpenInNew }}
           </v-icon>
           {{ $t('components.notification.title') }}
         </v-btn>
@@ -84,6 +84,7 @@
 </template>
 
 <script>
+import { mdiBell, mdiBellCheck, mdiOpenInNew } from '@mdi/js'
 import Notification from '@/models/Notification'
 import NotificationApi from '~/services/oblyk-api/NotificationApi'
 import Spinner from '@/components/layouts/Spiner'
@@ -97,6 +98,9 @@ export default {
 
   data () {
     return {
+      mdiBell,
+      mdiBellCheck,
+      mdiOpenInNew,
       haveUnreadNotification: false,
       showNotification: false,
       loadingNotification: true,

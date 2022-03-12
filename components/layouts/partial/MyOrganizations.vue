@@ -15,7 +15,9 @@
         link
       >
         <v-list-item-icon>
-          <v-icon>mdi-code-brackets</v-icon>
+          <v-icon>
+            {{ mdiCodeBrackets }}
+          </v-icon>
         </v-list-item-icon>
         <v-list-item-title>
           {{ organization.name }}
@@ -26,12 +28,19 @@
 </template>
 
 <script>
+import { mdiCodeBrackets } from '@mdi/js'
 import { SessionConcern } from '@/concerns/SessionConcern'
 import Organization from '@/models/Organization'
 
 export default {
   name: 'MyOrganizations',
   mixins: [SessionConcern],
+
+  data () {
+    return {
+      mdiCodeBrackets
+    }
+  },
 
   computed: {
     organizations () {

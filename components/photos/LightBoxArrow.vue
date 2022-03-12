@@ -9,12 +9,21 @@
   </v-btn>
 </template>
 <script>
+import { mdiArrowRight, mdiArrowLeft } from '@mdi/js'
+
 export default {
   name: 'LightBoxArrow',
   props: {
     direction: String,
     selectedIndex: Number,
     photosGallery: Array
+  },
+
+  data () {
+    return {
+      mdiArrowRight,
+      mdiArrowLeft
+    }
   },
 
   computed: {
@@ -27,7 +36,7 @@ export default {
     },
 
     arrowIcon () {
-      return this.direction === 'next' ? 'mdi-arrow-right' : 'mdi-arrow-left'
+      return this.direction === 'next' ? mdiArrowRight : mdiArrowLeft
     }
   },
 

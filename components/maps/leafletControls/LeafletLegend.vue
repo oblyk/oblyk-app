@@ -1,7 +1,9 @@
 <template>
   <div class="leaflet-bar">
     <a v-if="!showLegend" @click.prevent="showLegend = true">
-      <v-icon light small>mdi-map-legend</v-icon>
+      <v-icon light small>
+        {{ mdiMapLegend }}
+      </v-icon>
     </a>
     <div v-if="showLegend" class="leaflet-customer-control">
       <ul>
@@ -29,11 +31,14 @@
 </template>
 
 <script>
+import { mdiMapLegend } from '@mdi/js'
+
 export default {
   name: 'LeafletLegend',
 
   data () {
     return {
+      mdiMapLegend,
       showLegend: false
     }
   },

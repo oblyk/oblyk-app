@@ -8,7 +8,7 @@
     chips
     :dense="dense"
     :hide-details="hideDetails"
-    prepend-inner-icon="mdi-pound"
+    :prepend-inner-icon="mdiPound"
     :label="label ? label : $t('components.input.tags')"
     multiple
     deletable-chips
@@ -17,7 +17,10 @@
     @change="onChange"
   />
 </template>
+
 <script>
+import { mdiPound } from '@mdi/js'
+
 export default {
   name: 'TagsInput',
   props: {
@@ -40,6 +43,7 @@ export default {
 
   data () {
     return {
+      mdiPound,
       tagsList: [
         { text: this.$t('models.tags.crimps'), value: 'crimps' },
         { text: this.$t('models.tags.slopers'), value: 'slopers' },

@@ -6,7 +6,7 @@
         color="primary"
       >
         <v-icon left>
-          mdi-email-plus
+          {{ mdiEmailPlus }}
         </v-icon>
         {{ $t('actions.writeNewsletter') }}
       </v-btn>
@@ -38,6 +38,7 @@
 </template>
 
 <script>
+import { mdiEmailPlus } from '@mdi/js'
 import { DateHelpers } from '@/mixins/DateHelpers'
 import NewsletterApi from '@/services/oblyk-api/NewsletterApi'
 import Newsletter from '@/models/Newsletter'
@@ -49,6 +50,7 @@ export default {
 
   data () {
     return {
+      mdiEmailPlus,
       newsletters: [],
       loadingNewsletter: true
     }

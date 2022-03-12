@@ -2,7 +2,7 @@
   <v-card class="full-height">
     <v-card-title>
       <v-icon left>
-        mdi-newspaper-variant-multiple
+        {{ mdiNewspaperVariantMultiple }}
       </v-icon>
       {{ $t('components.crag.relatedArticles') }}
     </v-card-title>
@@ -23,6 +23,7 @@
 </template>
 
 <script>
+import { mdiNewspaperVariantMultiple } from '@mdi/js'
 import { SessionConcern } from '@/concerns/SessionConcern'
 import Spinner from '@/components/layouts/Spiner'
 import CragApi from '~/services/oblyk-api/CragApi'
@@ -34,11 +35,15 @@ export default {
   components: { ArticleFeedCard, Spinner },
   mixins: [SessionConcern],
   props: {
-    crag: Object
+    crag: {
+      type: Object,
+      required: true
+    }
   },
 
   data () {
     return {
+      mdiNewspaperVariantMultiple,
       loadingArticles: true,
       articles: []
     }

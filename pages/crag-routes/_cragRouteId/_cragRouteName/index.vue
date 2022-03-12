@@ -28,7 +28,7 @@
         <v-container>
           <p class="mb-0">
             <v-icon left>
-              mdi-check-all
+              {{ mdiCheckAll }}
             </v-icon>
             {{ $t('components.cragRoute.inMyLogbook') }}
           </p>
@@ -61,6 +61,7 @@
 </template>
 
 <script>
+import { mdiCheckAll } from '@mdi/js'
 import { CragRouteConcern } from '~/concerns/CragRouteConcern'
 import { SessionConcern } from '~/concerns/SessionConcern'
 import CragRouteHead from '~/components/cragRoutes/layout/CragRouteHead'
@@ -80,6 +81,12 @@ export default {
     CragRouteHead
   },
   mixins: [CragRouteConcern, SessionConcern],
+
+  data () {
+    return {
+      mdiCheckAll
+    }
+  },
 
   mounted () {
     this.$store.commit('layout/LAYOUT_PADDING', true)

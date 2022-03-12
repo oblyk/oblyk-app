@@ -23,7 +23,7 @@
           :href="guideBookPdf.url"
         >
           <v-icon left small class="mb-1" color="red darken-1">
-            mdi-file-pdf
+            {{ mdiFilePdfBox }}
           </v-icon>
           {{ $t('models.guideBookPdf.pdf_file') }}
         </a> |
@@ -41,10 +41,21 @@
 </template>
 
 <script>
+import { mdiFilePdfBox } from '@mdi/js'
+
 export default {
   name: 'GuideBookPdfFeedCard',
   props: {
-    guideBookPdf: Object
+    guideBookPdf: {
+      type: Object,
+      required: true
+    }
+  },
+
+  data () {
+    return {
+      mdiFilePdfBox
+    }
   }
 }
 </script>

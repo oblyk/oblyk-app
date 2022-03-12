@@ -7,7 +7,7 @@
         v-on="on"
       >
         <v-icon>
-          mdi-dots-vertical
+          {{ mdiDotsVertical }}
         </v-icon>
       </v-btn>
     </template>
@@ -18,7 +18,7 @@
         :to="`/a${gymSpace.path}/edit`"
       >
         <v-list-item-icon>
-          <v-icon>mdi-pencil</v-icon>
+          <v-icon>{{ mdiPencil }}</v-icon>
         </v-list-item-icon>
         <v-list-item-content>
           <v-list-item-title>
@@ -33,7 +33,7 @@
         :to="`${gymSpace.path}/upload-plan`"
       >
         <v-list-item-icon>
-          <v-icon>mdi-map</v-icon>
+          <v-icon>{{ mdiMap }}</v-icon>
         </v-list-item-icon>
         <v-list-item-content>
           <v-list-item-title>
@@ -42,7 +42,7 @@
         </v-list-item-content>
       </v-list-item>
 
-      <v-divider/>
+      <v-divider />
 
       <!-- New line -->
       <v-list-item
@@ -50,7 +50,7 @@
         :to="`${gymSpace.path}/select-sector`"
       >
         <v-list-item-icon>
-          <v-icon>mdi-source-branch-plus</v-icon>
+          <v-icon>{{ mdiSourceBranchPlus }}</v-icon>
         </v-list-item-icon>
         <v-list-item-content>
           <v-list-item-title>
@@ -65,7 +65,7 @@
         :to="`/a${gymSpace.path}/sectors/new`"
       >
         <v-list-item-icon>
-          <v-icon>mdi-shape-square-plus</v-icon>
+          <v-icon>{{ mdiShapeSquarePlus }}</v-icon>
         </v-list-item-icon>
         <v-list-item-content>
           <v-list-item-title>
@@ -80,7 +80,7 @@
         :to="`/a${gymSpace.gymPath}/spaces/new`"
       >
         <v-list-item-icon>
-          <v-icon>mdi-map-plus</v-icon>
+          <v-icon>{{ mdiMapPlus }}</v-icon>
         </v-list-item-icon>
         <v-list-item-content>
           <v-list-item-title>
@@ -91,11 +91,25 @@
     </v-list>
   </v-menu>
 </template>
+
 <script>
+import { mdiDotsVertical, mdiPencil, mdiMap, mdiSourceBranchPlus, mdiShapeSquarePlus, mdiMapPlus } from '@mdi/js'
+
 export default {
   name: 'GymSpaceActionMenu',
   props: {
     gymSpace: Object
+  },
+
+  data () {
+    return {
+      mdiDotsVertical,
+      mdiPencil,
+      mdiMap,
+      mdiSourceBranchPlus,
+      mdiShapeSquarePlus,
+      mdiMapPlus
+    }
   }
 }
 </script>

@@ -21,7 +21,7 @@
               color="primary"
             >
               <v-icon left>
-                mdi-arrow-left
+                {{ mdiArrowLeft }}
               </v-icon>
               {{ $t('components.word.backToGlossary') }}
             </v-btn>
@@ -34,6 +34,7 @@
 </template>
 
 <script>
+import { mdiArrowLeft } from '@mdi/js'
 import { WordConcern } from '~/concerns/WordConcern'
 import WordCard from '~/components/words/WordCard'
 import AppFooter from '~/components/layouts/AppFooter'
@@ -41,6 +42,12 @@ import AppFooter from '~/components/layouts/AppFooter'
 export default {
   components: { AppFooter, WordCard },
   mixins: [WordConcern],
+
+  data () {
+    return {
+      mdiArrowLeft
+    }
+  },
 
   mounted () {
     this.$store.commit('layout/LAYOUT_PADDING', true)

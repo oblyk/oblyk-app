@@ -32,7 +32,7 @@
       v-model="price"
       outlined
       type="number"
-      append-icon="mdi-currency-eur"
+      :append-icon="mdiCurrencyEur"
       :label="$t('models.guideBookPaper.price_euro')"
     />
 
@@ -46,7 +46,7 @@
       v-model="data.number_of_page"
       outlined
       type="number"
-      append-icon="mdi-book-open-page-variant"
+      :append-icon="mdiBookOpenPageVariant"
       :label="$t('models.guideBookPaper.number_of_page')"
     />
 
@@ -66,6 +66,7 @@
 </template>
 
 <script>
+import { mdiCurrencyEur, mdiBookOpenPageVariant } from '@mdi/js'
 import { FormHelpers } from '@/mixins/FormHelpers'
 import SubmitForm from '@/components/forms/SubmitForm'
 import GuideBookPaperApi from '~/services/oblyk-api/GuideBookPaperApi'
@@ -86,6 +87,8 @@ export default {
 
   data () {
     return {
+      mdiCurrencyEur,
+      mdiBookOpenPageVariant,
       data: {
         id: (this.guideBookPaper || {}).id,
         name: (this.guideBookPaper || {}).name,

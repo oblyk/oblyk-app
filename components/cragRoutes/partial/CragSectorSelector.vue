@@ -12,7 +12,7 @@
       hide-details
       item-value="id"
       item-text="nameAndGap"
-      prepend-inner-icon="mdi-texture-box"
+      :prepend-inner-icon="mdiTextureBox"
       :label="$t('components.cragSector.sectors')"
       outlined
       @change="onChange()"
@@ -21,6 +21,7 @@
 </template>
 
 <script>
+import { mdiTextureBox } from '@mdi/js'
 import CragSectorApi from '~/services/oblyk-api/CragSectorApi'
 import CragSector from '@/models/CragSector'
 
@@ -39,6 +40,7 @@ export default {
 
   data () {
     return {
+      mdiTextureBox,
       cragSectorId: (this.cragSector || {}).id || 0,
       loadingCragSectors: true,
       cragSectors: []

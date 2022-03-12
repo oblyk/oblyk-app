@@ -23,7 +23,7 @@
           @click="submit()"
         >
           <v-icon>
-            mdi-send
+            {{ mdiSend }}
           </v-icon>
         </v-btn>
       </v-col>
@@ -32,6 +32,7 @@
 </template>
 
 <script>
+import { mdiSend } from '@mdi/js'
 import { FormHelpers } from '@/mixins/FormHelpers'
 import ConversationMessageApi from '~/services/oblyk-api/ConversationMessageApi'
 
@@ -51,6 +52,7 @@ export default {
 
   data () {
     return {
+      mdiSend,
       messageSending: false,
       draftStorageKey: `draftConversationMessage:${this.conversation.id}`,
       data: {

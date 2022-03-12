@@ -62,6 +62,7 @@
 </template>
 
 <script>
+import { mdiBookOpenVariant, mdiTerrain, mdiBookOpenPageVariant, mdiFilePdfBox, mdiEarth, mdiHomeRoof, mdiFilm, mdiAlertBoxOutline, mdiNewspaperVariantOutline } from '@mdi/js'
 import { RecordToObjectHelpers } from '@/mixins/RecordToObjectHelpers'
 import WordFeedCard from '@/components/words/WordFeedCard'
 import CragFeedCard from '@/components/crags/CragFeedCard'
@@ -101,16 +102,25 @@ export default {
 
   data () {
     return {
+      mdiBookOpenVariant,
+      mdiTerrain,
+      mdiBookOpenPageVariant,
+      mdiFilePdfBox,
+      mdiEarth,
+      mdiHomeRoof,
+      mdiFilm,
+      mdiAlertBoxOutline,
+      mdiNewspaperVariantOutline,
       headers: {
-        Word: { icon: 'mdi-book-open-variant', title: 'components.feed.newWord' },
-        Crag: { icon: 'mdi-terrain', title: 'components.feed.newCrag' },
-        GuideBookPaper: { icon: 'mdi-book-open-page-variant', title: 'components.feed.newGuideBookPaper' },
-        GuideBookPdf: { icon: 'mdi-file-pdf-outline', title: 'components.feed.newGuideBookPdf' },
-        GuideBookWeb: { icon: 'mdi-earth', title: 'components.feed.newGuideBookWeb' },
-        Gym: { icon: 'mdi-home-roof', title: 'components.feed.newGym' },
-        Video: { icon: 'mdi-film', title: 'components.feed.newVideo' },
-        Alert: { icon: 'mdi-alert-box-outline', title: 'components.feed.newAlert' },
-        Article: { icon: 'mdi-newspaper-variant-outline', title: 'components.feed.newArticle' }
+        Word: { icon: mdiBookOpenVariant, title: 'components.feed.newWord' },
+        Crag: { icon: mdiTerrain, title: 'components.feed.newCrag' },
+        GuideBookPaper: { icon: mdiBookOpenPageVariant, title: 'components.feed.newGuideBookPaper' },
+        GuideBookPdf: { icon: mdiFilePdfBox, title: 'components.feed.newGuideBookPdf' },
+        GuideBookWeb: { icon: mdiEarth, title: 'components.feed.newGuideBookWeb' },
+        Gym: { icon: mdiHomeRoof, title: 'components.feed.newGym' },
+        Video: { icon: mdiFilm, title: 'components.feed.newVideo' },
+        Alert: { icon: mdiAlertBoxOutline, title: 'components.feed.newAlert' },
+        Article: { icon: mdiNewspaperVariantOutline, title: 'components.feed.newArticle' }
       }
     }
   },

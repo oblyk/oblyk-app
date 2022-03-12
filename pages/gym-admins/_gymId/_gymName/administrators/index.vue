@@ -30,7 +30,7 @@
                   :title="$t('actions.delete')"
                   @click="deleteAdministrator(gymAdministrator.id)"
                 >
-                  <v-icon>mdi-delete</v-icon>
+                  <v-icon>{{ mdiDelete }}</v-icon>
                 </v-btn>
               </td>
             </tr>
@@ -45,7 +45,7 @@
           :to="`/gym-admins/${gymId}/${gymName}`"
         >
           <v-icon>
-            mdi-arrow-left
+            {{ mdiArrowLeft }}
           </v-icon>
         </v-btn>
 
@@ -61,7 +61,9 @@
     </v-container>
   </div>
 </template>
+
 <script>
+import { mdiDelete, mdiArrowLeft } from '@mdi/js'
 import Spinner from '@/components/layouts/Spiner'
 import GymAdministratorApi from '@/services/oblyk-api/GymAdministratorApi'
 
@@ -70,6 +72,8 @@ export default {
 
   data () {
     return {
+      mdiDelete,
+      mdiArrowLeft,
       loadingGymAdministrators: true,
       gymAdministrators: [],
       gymId: this.$route.params.gymId,

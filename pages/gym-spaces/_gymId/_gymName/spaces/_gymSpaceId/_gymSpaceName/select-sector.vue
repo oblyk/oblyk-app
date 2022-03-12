@@ -14,7 +14,7 @@
         >
           <v-card-title>
             <v-icon left>
-              mdi-texture-box
+              {{ mdiTextureBox }}
             </v-icon>
             {{ sector.name }}
           </v-card-title>
@@ -28,10 +28,17 @@
 </template>
 
 <script>
+import { mdiTextureBox } from '@mdi/js'
 import { GymSpaceConcern } from '@/concerns/GymSpaceConcern'
 
 export default {
   mixins: [GymSpaceConcern],
+
+  data () {
+    return {
+      mdiTextureBox
+    }
+  },
 
   head () {
     return {

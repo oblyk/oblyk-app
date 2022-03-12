@@ -7,17 +7,26 @@
       :to="`/a${gymSector.path}/routes/new`"
     >
       <v-icon left>
-        mdi-source-branch-plus
+        {{ mdiSourceBranchPlus }}
       </v-icon>
       {{ $t('actions.addLine') }}
     </v-btn>
   </div>
 </template>
+
 <script>
+import { mdiSourceBranchPlus } from '@mdi/js'
+
 export default {
   name: 'GymRouteAddInSortBySector',
   props: {
     gymSector: Object
+  },
+
+  data () {
+    return {
+      mdiSourceBranchPlus
+    }
   }
 }
 </script>

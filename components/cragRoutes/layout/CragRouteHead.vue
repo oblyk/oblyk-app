@@ -26,7 +26,7 @@
           :to="cragRoute.Crag.path"
         >
           <v-icon small>
-            mdi-terrain
+            {{ mdiTerrain }}
           </v-icon>
           {{ cragRoute.crag.name }}
         </nuxt-link>
@@ -43,7 +43,7 @@
             class="ml-1"
           >
             <v-icon small>
-              mdi-pencil
+              {{ mdiPencil }}
             </v-icon>
           </v-btn>
         </client-only>
@@ -53,6 +53,7 @@
 </template>
 
 <script>
+import { mdiTerrain, mdiPencil } from '@mdi/js'
 import { SessionConcern } from '@/concerns/SessionConcern'
 import CragRouteAvatar from '@/components/cragRoutes/partial/CragRouteAvatar'
 
@@ -69,6 +70,8 @@ export default {
 
   data () {
     return {
+      mdiTerrain,
+      mdiPencil,
       croppedSrc: this.cragRoute.croppedCoverUrl,
       largeSrc: this.cragRoute.coverUrl
     }

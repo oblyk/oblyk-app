@@ -12,7 +12,7 @@
           @click="deleteAscent"
         >
           <v-icon small>
-            mdi-delete
+            {{ mdiDelete }}
           </v-icon>
         </v-btn>
         <edit-crag-ascent-btn
@@ -65,7 +65,7 @@
               @click="getSubscribeUsers()"
             >
               <v-icon small>
-                mdi-plus
+                {{ mdiPlus }}
               </v-icon>
             </v-btn>
           </template>
@@ -135,7 +135,7 @@
         <!-- Public or private comment -->
         <div v-if="ascentCragRoute.private_comment" class="text--disabled">
           <v-icon x-small>
-            mdi-lock
+            {{ mdiLock }}
           </v-icon>
           <small>
             {{ $t('components.ascentCragRoute.privateComment') }}
@@ -143,7 +143,7 @@
         </div>
         <div v-if="!ascentCragRoute.private_comment" class="text--disabled">
           <v-icon x-small>
-            mdi-lock-open
+            {{ mdiLockOpen }}
           </v-icon>
           <small>
             {{ $t('components.ascentCragRoute.publicComment') }}
@@ -155,6 +155,7 @@
 </template>
 
 <script>
+import { mdiDelete, mdiPlus, mdiLock, mdiLockOpen } from '@mdi/js'
 import { DateHelpers } from '@/mixins/DateHelpers'
 import { RecordToObjectHelpers } from '@/mixins/RecordToObjectHelpers'
 import AscentCragRouteStatusIcon from '@/components/ascentCragRoutes/AscentCragRouteStatusIcon'
@@ -197,6 +198,10 @@ export default {
 
   data () {
     return {
+      mdiDelete,
+      mdiPlus,
+      mdiLock,
+      mdiLockOpen,
       ascentUserDialog: false,
       subscribes: [],
       loadingSubscribes: true

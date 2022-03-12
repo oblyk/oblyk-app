@@ -25,7 +25,7 @@
           :to="cragSector.Crag.path"
         >
           <v-icon small>
-            mdi-terrain
+            {{ mdiTerrain }}
           </v-icon>
           {{ cragSector.crag.name }}
         </nuxt-link>
@@ -41,7 +41,7 @@
           class="ml-1"
         >
           <v-icon small>
-            mdi-pencil
+            {{ mdiPencil }}
           </v-icon>
         </v-btn>
       </div>
@@ -50,6 +50,7 @@
 </template>
 
 <script>
+import { mdiTerrain, mdiPencil } from '@mdi/js'
 import { SessionConcern } from '@/concerns/SessionConcern'
 
 export default {
@@ -64,6 +65,8 @@ export default {
 
   data () {
     return {
+      mdiTerrain,
+      mdiPencil,
       croppedSrc: this.cragSector.croppedCoverUrl,
       largeSrc: this.cragSector.coverUrl
     }

@@ -29,7 +29,7 @@
         >
           <p class="mt-2 mb-0">
             <v-icon left>
-              mdi-alpha-p-box
+              {{ mdiAlphaPBox }}
             </v-icon>
             {{ $t('components.navigation.goToPark', { number: index + 1 }) }}
           </p>
@@ -44,7 +44,7 @@
             <v-col class="pt-0">
               <a :href="mapLink(park.latitude, park.longitude, 'google')">
                 <v-btn text>
-                  <v-icon left color="#39a556">mdi-google-maps</v-icon>
+                  <v-icon left color="#39a556">{{ mdiGoogleMaps }}</v-icon>
                   Google Maps
                 </v-btn>
               </a>
@@ -52,7 +52,7 @@
             <v-col class="pt-0">
               <a :href="mapLink(park.latitude, park.longitude, 'waze')">
                 <v-btn text>
-                  <v-icon left color="#31c7f8">mdi-waze</v-icon>
+                  <v-icon left color="#31c7f8">{{ mdiWaze }}</v-icon>
                   Waze
                 </v-btn>
               </a>
@@ -63,7 +63,7 @@
         <!-- Crags -->
         <p class="mt-7 mb-0">
           <v-icon left>
-            mdi-terrain
+            {{ mdiTerrain }}
           </v-icon>
           {{ $t('components.navigation.cragBottom') }}
         </p>
@@ -71,7 +71,7 @@
           <v-col class="pt-0">
             <a :href="mapLink(crag.latitude, crag.longitude, 'google')">
               <v-btn text>
-                <v-icon left color="#39a556">mdi-google-maps</v-icon>
+                <v-icon left color="#39a556">{{ mdiGoogleMaps }}</v-icon>
                 Google Maps
               </v-btn>
             </a>
@@ -79,7 +79,7 @@
           <v-col class="pt-0">
             <a :href="mapLink(crag.latitude, crag.longitude, 'waze')">
               <v-btn text>
-                <v-icon left color="#31c7f8">mdi-waze</v-icon>
+                <v-icon left color="#31c7f8">{{ mdiWaze }}</v-icon>
                 Waze
               </v-btn>
             </a>
@@ -104,17 +104,25 @@
 </template>
 
 <script>
+import { mdiAlphaPBox, mdiGoogleMaps, mdiWaze, mdiTerrain } from '@mdi/js'
 import ParkApi from '~/services/oblyk-api/ParkApi'
 import Park from '@/models/Park'
 
 export default {
   name: 'GoToCragModal',
   props: {
-    crag: Object
+    crag: {
+      type: Object,
+      required: true
+    }
   },
 
   data () {
     return {
+      mdiAlphaPBox,
+      mdiGoogleMaps,
+      mdiWaze,
+      mdiTerrain,
       loadingPark: true,
       parks: [],
       goToCragModal: false

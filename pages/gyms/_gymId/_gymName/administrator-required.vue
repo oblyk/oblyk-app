@@ -5,7 +5,7 @@
         <v-col>
           <p class="text-center mb-7">
             <v-icon x-large>
-              mdi-lock
+              {{ mdiLock }}
             </v-icon>
           </p>
           <p class="text-center">
@@ -18,11 +18,19 @@
 </template>
 
 <script>
+import { mdiLock } from '@mdi/js'
+
 export default {
   props: {
     gym: {
       type: Object,
       required: true
+    }
+  },
+
+  data () {
+    return {
+      mdiLock
     }
   },
 

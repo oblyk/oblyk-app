@@ -7,7 +7,7 @@
       <v-col>
         <p class="text-center mb-7">
           <v-icon x-large>
-            mdi-tag-multiple
+            {{ mdiTagMultiple }}
           </v-icon>
         </p>
         <p class="heading text-center">
@@ -30,10 +30,17 @@
 </template>
 
 <script>
+import { mdiTagMultiple } from '@mdi/js'
 import { GymConcern } from '@/concerns/GymConcern'
 
 export default {
   mixins: [GymConcern],
+
+  data () {
+    return {
+      mdiTagMultiple
+    }
+  },
 
   head () {
     return {

@@ -14,7 +14,7 @@
         small
       >
         <v-icon x-small>
-          mdi-pencil
+          {{ mdiPencil }}
         </v-icon>
       </v-btn>
 
@@ -27,7 +27,7 @@
         @click="deleteFunction()"
       >
         <v-icon x-small>
-          mdi-delete
+          {{ mdiDelete }}
         </v-icon>
       </v-btn>
 
@@ -40,7 +40,7 @@
         small
       >
         <v-icon x-small>
-          mdi-flag
+          {{ mdiFlag }}
         </v-icon>
       </v-btn>
     </client-only>
@@ -48,6 +48,7 @@
 </template>
 
 <script>
+import { mdiPencil, mdiDelete, mdiFlag } from '@mdi/js'
 import { DateHelpers } from '@/mixins/DateHelpers'
 import { SessionConcern } from '@/concerns/SessionConcern'
 import User from '@/models/User'
@@ -84,6 +85,9 @@ export default {
 
   data () {
     return {
+      mdiPencil,
+      mdiDelete,
+      mdiFlag,
       user: new User({ attributes: this.owner })
     }
   }

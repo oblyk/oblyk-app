@@ -8,7 +8,7 @@
         v-on="on"
       >
         <v-icon left>
-          mdi-plus
+          {{ mdiPlus }}
         </v-icon>
         {{ $t('actions.addGuideBook') }}
       </v-btn>
@@ -20,7 +20,7 @@
         :to="`/a${crag.path}/add-on-guide-book`"
       >
         <v-list-item-icon>
-          <v-icon>mdi-book-open-variant</v-icon>
+          <v-icon>{{ mdiBookOpenVariant }}</v-icon>
         </v-list-item-icon>
         <v-list-item-title>
           {{ $t('components.guideBookPaper.fullName') }}
@@ -33,7 +33,7 @@
         :to="`/a${crag.path}/new-pdf-guide-book?redirect_to=${$route.fullPath}`"
       >
         <v-list-item-icon>
-          <v-icon>mdi-file-pdf-box</v-icon>
+          <v-icon>{{ mdiFilePdfBox }}</v-icon>
         </v-list-item-icon>
         <v-list-item-title>
           {{ $t('components.guideBookPdf.fullName') }}
@@ -46,7 +46,7 @@
         :to="`/a${crag.path}/new-web-guide-book?redirect_to=${$route.fullPath}`"
       >
         <v-list-item-icon>
-          <v-icon>mdi-web</v-icon>
+          <v-icon>{{ mdiWeb }}</v-icon>
         </v-list-item-icon>
         <v-list-item-title>
           {{ $t('components.guideBookWeb.fullName') }}
@@ -57,12 +57,23 @@
 </template>
 
 <script>
+import { mdiPlus, mdiBookOpenVariant, mdiFilePdfBox, mdiWeb } from '@mdi/js'
+
 export default {
   name: 'AddGuideBookBtn',
   props: {
     crag: {
       type: Object,
       required: true
+    }
+  },
+
+  data () {
+    return {
+      mdiPlus,
+      mdiBookOpenVariant,
+      mdiFilePdfBox,
+      mdiWeb
     }
   }
 }

@@ -2,31 +2,31 @@
   <v-tabs show-arrows >
     <v-tab :to="`${user.currentUserPath}/settings/general`">
       <v-icon left small>
-        mdi-information
+        {{ mdiInformation }}
       </v-icon>
       {{ $t('components.user.settingTabs.general') }}
     </v-tab>
     <v-tab :to="`${user.currentUserPath}/settings/partner`">
       <v-icon left small>
-        mdi-map-marker-radius
+        {{ mdiMapMarkerRadius }}
       </v-icon>
       {{ $t('components.user.settingTabs.partner') }}
     </v-tab>
     <v-tab :to="`${user.currentUserPath}/settings/privacy`">
       <v-icon left small>
-        mdi-lock
+        {{ mdiLock }}
       </v-icon>
       {{ $t('components.user.settingTabs.privacy') }}
     </v-tab>
     <v-tab :to="`${user.currentUserPath}/settings/notifications`">
       <v-icon left small>
-        mdi-bell
+        {{ mdiBell }}
       </v-icon>
       {{ $t('components.user.settingTabs.notifications') }}
     </v-tab>
     <v-tab :to="`${user.currentUserPath}/settings/others`">
       <v-icon left small>
-        mdi-settings
+        {{ mdiCog }}
       </v-icon>
       {{ $t('components.user.settingTabs.others') }}
     </v-tab>
@@ -34,12 +34,24 @@
 </template>
 
 <script>
+import { mdiInformation, mdiMapMarkerRadius, mdiLock, mdiBell, mdiCog } from '@mdi/js'
+
 export default {
   name: 'UserSettingsTabs',
   props: {
     user: {
       type: Object,
       required: true
+    }
+  },
+
+  data () {
+    return {
+      mdiInformation,
+      mdiMapMarkerRadius,
+      mdiLock,
+      mdiBell,
+      mdiCog
     }
   }
 }

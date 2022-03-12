@@ -11,20 +11,22 @@
     clearable
     @input="change"
   >
-    <template #selection="{ attrs, item, select, selected }">
+    <template #selection="{ attrs, item, selected }">
       <v-chip
         v-bind="attrs"
         :input-value="selected"
       >
         <v-icon left :style="`color: ${item.value}`">
-          mdi-circle
+          {{ mdiCircle }}
         </v-icon>
         {{ item.text }}
       </v-chip>
     </template>
   </v-select>
 </template>
+
 <script>
+import { mdiCircle } from '@mdi/js'
 import { HoldColorsHelpers } from '@/mixins/HoldColorsHelpers'
 
 export default {
@@ -45,6 +47,7 @@ export default {
 
   data () {
     return {
+      mdiCircle,
       selectedColors: this.value
     }
   },

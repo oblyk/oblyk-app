@@ -24,7 +24,7 @@
         color="primary"
       >
         <v-icon>
-          mdi-comment-plus
+          {{ mdiCommentPlus }}
         </v-icon>
       </v-btn>
     </div>
@@ -32,6 +32,7 @@
 </template>
 
 <script>
+import { mdiCommentPlus } from '@mdi/js'
 import ConversationItemList from '@/components/messengers/ConversationItemList'
 import Conversation from '@/models/Conversation'
 
@@ -46,6 +47,12 @@ export default {
     conversations: {
       type: Array,
       default: null
+    }
+  },
+
+  data () {
+    return {
+      mdiCommentPlus
     }
   },
 

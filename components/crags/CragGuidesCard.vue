@@ -2,7 +2,7 @@
   <v-card class="full-height">
     <v-card-title>
       <v-icon left>
-        mdi-bookshelf
+        {{ mdiBookshelf }}
       </v-icon>
       {{ $t('components.crag.tabs.guideBooks') }}
     </v-card-title>
@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import { mdiBookshelf } from '@mdi/js'
 import GuideList from '@/components/crags/GuideList'
 
 export default {
@@ -26,6 +27,12 @@ export default {
     crag: {
       type: Object,
       required: true
+    }
+  },
+
+  data () {
+    return {
+      mdiBookshelf
     }
   }
 }

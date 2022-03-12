@@ -11,7 +11,7 @@
       <div class="col-sm-12 mt-10">
         <p class="subtitle-1 mb-0">
           <v-icon left>
-            mdi-map-legend
+            {{ mdiMapLegend }}
           </v-icon>
           {{ $t('components.gymAdmin.GuideBookSettings') }}
         </p>
@@ -34,7 +34,7 @@
       <div class="col-sm-12 mt-10">
         <p class="subtitle-1 mb-0">
           <v-icon left>
-            mdi-tune
+            {{ mdiTune }}
           </v-icon>
           {{ $t('components.gymAdmin.gestionSettings') }}
         </p>
@@ -49,6 +49,7 @@
 </template>
 
 <script>
+import { mdiMapLegend, mdiTune } from '@mdi/js'
 import { GymConcern } from '~/concerns/GymConcern'
 import GymAdminDifficultySystemFigures from '~/components/gyms/admin/GymAdminDifficultySystemFigures'
 import GymAdminTeamFigures from '~/components/gyms/admin/GymAdminTeamFigures'
@@ -66,6 +67,13 @@ export default {
   },
 
   mixins: [GymConcern],
+
+  data () {
+    return {
+      mdiMapLegend,
+      mdiTune
+    }
+  },
 
   head () {
     return {
