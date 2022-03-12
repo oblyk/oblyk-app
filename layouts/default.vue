@@ -34,19 +34,24 @@
     <v-snackbar
       v-model="readyToUpdatePwa"
       timeout="-1"
+      vertical
     >
-      <v-icon
-        class="mb-1"
-        left
-        color="#ec407a"
-      >
-        {{ mdiGift }}
-      </v-icon>
-      {{ $t('common.pages.newVersion') }}
+      <p class="font-weight-bold mb-2">
+        <v-icon
+          left
+          class="mt-n1"
+          color="#ec407a"
+        >
+          {{ mdiGift }}
+        </v-icon>
+        {{ $t('common.pages.newVersion') }}
+      </p>
+      <p class="mb-n1" v-html="$t('common.pages.clicToUpdate')" />
       <template #action="{ attrs }">
         <v-btn
           color="white"
           text
+          outlined
           v-bind="attrs"
           @click="reloadApp()"
         >

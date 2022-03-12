@@ -164,7 +164,8 @@ export default {
     posted: 'Posted',
     pages: {
       cookies: 'Oblyk uses cookies only for operational purposes.',
-      newVersion: 'A new version is here!',
+      newVersion: 'A new Oblyk version is here!',
+      clicToUpdate: 'Click <strong>UPDATE</strong> to take advantage of the latest changes.',
       about: {
         title: 'About Oblyk'
       },

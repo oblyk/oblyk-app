@@ -31,7 +31,6 @@ export default {
   plugins: [
     { src: '@/plugins/actioncable-vue', mode: 'client' },
     { src: '~/plugins/persisted-state.client.js', mode: 'client' }
-    // { src: '~/plugins/pwa-update.js', mode: 'client' }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
