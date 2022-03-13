@@ -42,7 +42,7 @@
       </v-list-item-title>
       <v-list-item-subtitle>
         <span
-          v-if="route.crag_sector.id"
+          v-if="route.crag_sector"
           @click.stop=""
         >
           <v-icon x-small>

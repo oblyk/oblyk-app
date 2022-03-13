@@ -177,7 +177,7 @@
               </tr>
 
               <!-- Sector -->
-              <tr>
+              <tr v-if="cragRoute.crag_sector">
                 <th
                   :title="$t('models.cragRoute.crag_sector')"
                   class="smallest-table-column text-right"
