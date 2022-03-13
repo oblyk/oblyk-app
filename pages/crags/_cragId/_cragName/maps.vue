@@ -63,6 +63,7 @@
             :latitude-force="parseFloat(crag.latitude)"
             :longitude-force="parseFloat(crag.longitude)"
             :scroll-wheel-zoom="true"
+            :clustered="false"
             map-style="outdoor"
           />
         </client-only>

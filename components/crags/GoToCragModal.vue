@@ -1,7 +1,7 @@
 <template>
   <v-dialog
     v-model="goToCragModal"
-    width="500"
+    width="400"
   >
     <template #activator="{ on, attrs }">
       <v-btn
@@ -26,63 +26,96 @@
         <div
           v-for="(park, index) in parks"
           :key="`park-${index}`"
+          :class="parks.length > 0 ? 'mb-7' : ''"
         >
-          <p class="mt-2 mb-0">
-            <v-icon left>
-              {{ mdiAlphaPBox }}
-            </v-icon>
-            {{ $t('components.navigation.goToPark', { number: index + 1 }) }}
-          </p>
-          <p
-            v-if="park.description"
-            class="grey--text mb-0 pl-9"
-          >
-            {{ park.description }}
-          </p>
+          <v-row class="mt-2">
+            <v-col cols="12" class="pb-0">
+              <p class="mb-1">
+                <v-icon left>
+                  {{ mdiAlphaPBox }}
+                </v-icon>
+                {{ $t('components.navigation.goToPark', { number: index + 1 }) }}
+              </p>
+              <p
+                v-if="park.description"
+                class="grey--text mb-1"
+              >
+                {{ park.description }}
+              </p>
+            </v-col>
+          </v-row>
 
           <v-row>
-            <v-col class="pt-0">
-              <a :href="mapLink(park.latitude, park.longitude, 'google')">
-                <v-btn text>
-                  <v-icon left color="#39a556">{{ mdiGoogleMaps }}</v-icon>
-                  Google Maps
-                </v-btn>
-              </a>
+            <v-col cols="6" class="pt-0">
+              <v-btn
+                :href="mapLink(park.latitude, park.longitude, 'google')"
+                block
+                outlined
+                small
+                text
+              >
+                <v-icon left color="#39a556">
+                  {{ mdiGoogleMaps }}
+                </v-icon>
+                Google Maps
+              </v-btn>
             </v-col>
             <v-col class="pt-0">
-              <a :href="mapLink(park.latitude, park.longitude, 'waze')">
-                <v-btn text>
-                  <v-icon left color="#31c7f8">{{ mdiWaze }}</v-icon>
-                  Waze
-                </v-btn>
-              </a>
+              <v-btn
+                :href="mapLink(park.latitude, park.longitude, 'waze')"
+                block
+                outlined
+                small
+                text
+              >
+                <v-icon left color="#31c7f8">
+                  {{ mdiWaze }}
+                </v-icon>
+                Waze
+              </v-btn>
             </v-col>
           </v-row>
         </div>
 
         <!-- Crags -->
-        <p class="mt-7 mb-0">
-          <v-icon left>
-            {{ mdiTerrain }}
-          </v-icon>
-          {{ $t('components.navigation.cragBottom') }}
-        </p>
         <v-row>
-          <v-col class="pt-0">
-            <a :href="mapLink(crag.latitude, crag.longitude, 'google')">
-              <v-btn text>
-                <v-icon left color="#39a556">{{ mdiGoogleMaps }}</v-icon>
-                Google Maps
-              </v-btn>
-            </a>
+          <v-col cols="12" class="pb-0">
+            <p class="mb-2">
+              <v-icon left>
+                {{ mdiTerrain }}
+              </v-icon>
+              {{ $t('components.navigation.cragBottom') }}
+            </p>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="6" class="pt-0">
+            <v-btn
+              :href="mapLink(crag.latitude, crag.longitude, 'google')"
+              block
+              outlined
+              small
+              text
+            >
+              <v-icon left color="#39a556">
+                {{ mdiGoogleMaps }}
+              </v-icon>
+              Google Maps
+            </v-btn>
           </v-col>
           <v-col class="pt-0">
-            <a :href="mapLink(crag.latitude, crag.longitude, 'waze')">
-              <v-btn text>
-                <v-icon left color="#31c7f8">{{ mdiWaze }}</v-icon>
-                Waze
-              </v-btn>
-            </a>
+            <v-btn
+              :href="mapLink(crag.latitude, crag.longitude, 'waze')"
+              block
+              outlined
+              small
+              text
+            >
+              <v-icon left color="#31c7f8">
+                {{ mdiWaze }}
+              </v-icon>
+              Waze
+            </v-btn>
           </v-col>
         </v-row>
       </v-card-text>
