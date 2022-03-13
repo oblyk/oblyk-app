@@ -56,7 +56,6 @@ import ArticleGuideBookPapers from '@/components/articles/ArticleGuideBookPapers
 import AppFooter from '@/components/layouts/AppFooter'
 
 export default {
-  name: 'ArticleView',
   components: {
     ArticleGuideBookPapers,
     ArticleCrags,
