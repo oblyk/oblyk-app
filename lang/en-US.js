@@ -97,7 +97,8 @@ export default {
     subscribeMe: 'Subscribe me',
     unsubscribeMe: 'Unsubscribe me',
     accept: 'Accept',
-    reject: 'Reject'
+    reject: 'Reject',
+    update: 'Update'
   },
   colors: {
     noColor: 'No color',
@@ -163,6 +164,8 @@ export default {
     posted: 'Posted',
     pages: {
       cookies: 'Oblyk uses cookies only for operational purposes.',
+      newVersion: 'A new Oblyk version is here!',
+      clicToUpdate: 'Click <strong>UPDATE</strong> to take advantage of the latest changes.',
       about: {
         title: 'About Oblyk'
       },
