@@ -26,7 +26,7 @@ export default {
     signIn: 'Sign in',
     signUp: 'Sign up',
     addLevel: 'Add level',
-    areYouSur: 'Are you sur ?',
+    areYouSur: 'Are you sure ?',
     addSystem: 'Add system',
     uploadMap: 'Upload map',
     browse: 'Browse ...',
@@ -74,7 +74,7 @@ export default {
     seeNumberMore: 'See %{number} more',
     addPark: 'Add a parking',
     addApproach: 'Add approach',
-    createAndQuite: 'Create & quite',
+    createAndQuite: 'Create & quit',
     continueToAdd: 'Continue to add',
     addArea: 'Add new crags group',
     addRepetition: 'Add a repetition',
@@ -176,7 +176,7 @@ export default {
         title: 'Support us',
         noLimite: 'In Oblyk there are no limits, no premium account, no adds, no sponsored link, everything free! ; )',
         freeBut: "If it is free and Oblyk doesn't get any money, does it mean it is a zero cost project?",
-        unfortunately: 'Unfortunately no, as every website, oblyk need to be hosted in a data center and rent a domain name to exist.<br>And that is not free...',
+        unfortunately: 'Unfortunately no, as every website, oblyk needs to be hosted in a data center and rent a domain name to exist.<br>And that is not free...',
         extraEuro: "If you have a few money to spent, you like the work done and want to encourage Oblyk development, you can make a donation ; )<br>It is for us a priceless help! You will help us continue the development and ensure it's future ; )",
         thanks: 'Thank you in advance for your generosity!'
       },
@@ -196,7 +196,7 @@ export default {
       },
       grade: {
         title: 'Grades',
-        intro: 'Oblyk allows the use of many climbing grades system (French, English, American,...).For each one, a color code is given to quickly show routes difficulties even if not familiar with the grade system.',
+        intro: 'Oblyk allows the use of many climbing grades system (French, English, American,...). For each one, a color code is given to quickly show routes difficulties even if not familiar with the grade system.',
         equivalence: 'The following equivalence table is questionable, its purpose is to give an order of idea of the difficulty of a grade and not to give exactly the equivalence of one system to another.',
         weighting: 'In Oblyk, each grades can have following weights :',
         developerBonus: 'Developers Bonus:',
@@ -257,7 +257,7 @@ export default {
         title: 'Our tools for climbing guidebooks',
         intro: `
         We are convinced that <strong>the future of rock climbing</strong> depends on <strong>climbing guidebook</strong>, whether it be for <strong>information on climbing crags</strong>,
-        <strong>contributing to their maintenance</strong> or <strong>promoting outdoor climbing</strong>. <strong>CLimbing guidebooks are part of the history of our sport</strong> and its future.<br>
+        <strong>contributing to their maintenance</strong> or <strong>promoting outdoor climbing</strong>. <strong>Climbing guidebooks are part of the history of our sport</strong> and its future.<br>
         We put all our imagination into designing tools that allow the climbing community to find and buy topos of the crags where they climb.
         `,
         features: {
@@ -274,7 +274,7 @@ export default {
             action: 'Find a guidebook'
           },
           alternative: {
-            title: 'Buying a guidebook is good, buying the right ones is better!',
+            title: 'Buying a guidebook is good, buying the right one is better!',
             body1: 'Some guidebooks do not participate in the equipment of climbing crags. Even if they can present an interesting compilation of a region, it is preferable to have the originals to support the work of the bolters.',
             body2: 'To help you find the right guidebook we have developed <strong>two tools</strong>.',
             body3: 'A clear indication of whether a guidebook contributes to the equipment of crags',
@@ -1235,7 +1235,7 @@ export default {
       title: 'Support Us',
       body1: 'In Oblyk there are no limits, no premium account, no adds, no sponsored link, everything free ! ; )',
       body2: "If it is free and Oblyk doesn't get any money, does it mean it is a zero cost project ?",
-      body3: 'Unfortunately no, as every website, oblyk need to be hosted in a data center and rent a domain name to exist.<br>And that is not free... ',
+      body3: 'Unfortunately no, as every website, oblyk needs to be hosted in a data center and rent a domain name to exist.<br>And that is not free... ',
       action: 'Support Us'
     },
     developer: {
