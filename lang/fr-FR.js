@@ -322,15 +322,15 @@ export default {
         goodContinuation: 'On vous souhaites une bonne continuation !'
       },
       apiAndDevelopers: {
-        title: 'Api & Développeurs',
+        title: 'API & Développeurs',
         paragraphe: "La base de donnée des falaises et voies d'escalades d'Oblyk est ouverte en API, vous pouvez la consulter librement pour des projets open-sources, personnels ou étudiants.",
-        stepFor: "Voici les étapes à suivre pour utiliser l'Api :",
+        stepFor: "Voici les étapes à suivre pour utiliser l'API :",
         connectOrRegister: "Vous devez avoir un compte utilisateur Oblyk normal qui vous permettra d'administrer votre organisation.",
         createYourOrganization: "Créer votre organisation pour obtenir votre clé d'API.",
         createMyOrganisation: 'Créer mon organisation',
-        readDoc: "Consulter la documentation de l'Api.",
-        oblykApiDocumentation: 'Oblyk Api Documentation',
-        gitHub: "N'hésitez pas à suivre le projet <a href='https://github.com/oblyk' target='_blank'>GitHub d'Oblyk</a> pour connaitre les évolutions ou participer à l'amélioration l'Api !"
+        readDoc: "Consulter la documentation de l'API.",
+        oblykApiDocumentation: 'Oblyk API Documentation',
+        gitHub: "N'hésitez pas à suivre le projet <a href='https://github.com/oblyk' target='_blank'>GitHub d'Oblyk</a> pour connaitre les évolutions ou participer à l'amélioration l'API !"
       }
     }
   },
@@ -735,7 +735,7 @@ export default {
     },
     organization: {
       addNew: 'Enregistrer mon organisation',
-      apiDocumentation: "Documentation de l'Api",
+      apiDocumentation: "Documentation de l'API",
       ressources: 'Ressources',
       manage: 'Gérer',
       refreshApiKey: "Régénérer la clé d'API",
@@ -1169,7 +1169,7 @@ export default {
         facebook: 'Facebook',
         github: 'github',
         newsletter: 'Newsletter',
-        apiAndDevelopers: 'Api & Développeurs',
+        apiAndDevelopers: 'API & Développeurs',
         guidesAndFeatures: 'Topos & Fonctionnalités'
       },
       errors: {
@@ -1238,9 +1238,9 @@ export default {
       action: 'Nous soutenir'
     },
     developer: {
-      title: 'Une base de donnée ouverte en Api !',
+      title: 'Une base de donnée ouverte en API !',
       body1: 'Avec Oblyk, nous désirons construire une base de connaissance ouverte et réutilisable pour les humains et les machines.',
-      body2: "Via nos Api nous rendons accessible notre base de donnée des falaises et voies à d'autres projets open-sources, publique, personnel ou étudiant.",
+      body2: "Via nos API nous rendons accessible notre base de donnée des falaises et voies à d'autres projets open-sources, publique, personnel ou étudiant.",
       body3: "Contribuer à oblyk, c'est permettre à d'autres projets autour de la grimper de voir le jour ou de s'améliorer.",
       action: 'En savoir plus'
     },
@@ -1604,7 +1604,7 @@ export default {
       title: 'Compte supprimé'
     },
     apiAndDevelopers: {
-      title: "Api des falaises et voies d'escalades",
+      title: "API des falaises et voies d'escalades",
       description: "Les API d'Oblyk vous permettes de consulter une grande base de donnée des falaises et voies d'escalade en France et dans le monde"
     },
     organization: {
@@ -1758,7 +1758,7 @@ export default {
     },
     organization: {
       name: 'Nom',
-      api_access_key: "Clé d'accès à l'Api",
+      api_access_key: "Clé d'accès à l'API",
       api_usage_type: "Type d'usage",
       phone: 'Téléphone',
       email: 'Email',

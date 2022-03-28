@@ -322,15 +322,15 @@ export default {
         goodContinuation: 'We wish you a good continuation!'
       },
       apiAndDevelopers: {
-        title: 'Api & Developers',
+        title: 'API & Developers',
         paragraphe: 'The Oblyk crags and climbing routes database is open in API, you can freely consult it for open-source, personal or student projects.',
-        stepFor: 'Here are the steps to follow to use the Api :',
+        stepFor: 'Here are the steps to follow to use the API :',
         connectOrRegister: 'You must have a normal Oblyk user account that will allow you to administer your organisation.',
         createYourOrganization: 'Create your organisation to get your API key.',
         createMyOrganisation: 'Create my organisation',
-        readDoc: 'Consult the Api documentation.',
-        oblykApiDocumentation: 'Oblyk Api Documentation',
-        gitHub: "Feel free to follow the project <a href='https://github.com/oblyk' target='_blank'>GitHub of Oblyk</a> to know the evolutions or participate in improving the Api!"
+        readDoc: 'Consult the API documentation.',
+        oblykApiDocumentation: 'Oblyk API Documentation',
+        gitHub: "Feel free to follow the project <a href='https://github.com/oblyk' target='_blank'>GitHub of Oblyk</a> to know the evolutions or participate in improving the API!"
       }
     }
   },
@@ -735,7 +735,7 @@ export default {
     },
     organization: {
       addNew: 'Register my organization',
-      apiDocumentation: 'Api documentation',
+      apiDocumentation: 'API documentation',
       ressources: 'Ressources',
       manage: 'Manage',
       refreshApiKey: 'Regenerate the API key',
@@ -1170,7 +1170,7 @@ export default {
         facebook: 'Facebook',
         github: 'github',
         newsletter: 'Newsletter',
-        apiAndDevelopers: 'Api & Developers',
+        apiAndDevelopers: 'API & Developers',
         guidesAndFeatures: 'Guides & Features'
       },
       errors: {
@@ -1239,9 +1239,9 @@ export default {
       action: 'Support Us'
     },
     developer: {
-      title: 'An open database in Api!',
+      title: 'An open database in API!',
       body1: 'With Oblyk, we want to build an open and reusable knowledge base for humans and machines.',
-      body2: 'Via our Api we make our crag and route database available to other open-source projects, public, personal or student.',
+      body2: 'Via our API we make our crag and route database available to other open-source projects, public, personal or student.',
       body3: 'Contributing to oblyk means allowing other climbing projects to be created or improved.',
       action: 'Read more'
     },
@@ -1605,7 +1605,7 @@ export default {
       title: 'Account deleted'
     },
     apiAndDevelopers: {
-      title: 'Climbing crags and routes Api',
+      title: 'Climbing crags and routes API',
       description: "Oblyk's APIs allow you to consult a large database of crags and climbing routes in France and in the world"
     },
     organization: {
@@ -1759,7 +1759,7 @@ export default {
     },
     organization: {
       name: 'Name',
-      api_access_key: 'Api access key',
+      api_access_key: 'API access key',
       api_usage_type: 'Usage type',
       phone: 'Phone',
       email: 'Email',
