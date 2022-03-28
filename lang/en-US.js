@@ -176,7 +176,7 @@ export default {
         title: 'Support us',
         noLimite: 'In Oblyk there are no limits, no premium account, no adds, no sponsored link, everything free! ; )',
         freeBut: "If it is free and Oblyk doesn't get any money, does it mean it is a zero cost project?",
-        unfortunately: 'Unfortunately no, as every website, oblyk needs to be hosted in a data center and rent a domain name to exist.<br>And that is not free...',
+        unfortunately: 'Unfortunately no, as every website, Oblyk needs to be hosted in a data center and rent a domain name to exist.<br>And that is not free...',
         extraEuro: "If you have a few money to spent, you like the work done and want to encourage Oblyk development, you can make a donation ; )<br>It is for us a priceless help! You will help us continue the development and ensure it's future ; )",
         thanks: 'Thank you in advance for your generosity!'
       },
@@ -299,7 +299,7 @@ export default {
       },
       newsletterSubscribe: {
         title: 'Subscribe to the newsletter',
-        paragraphe: 'About once a quarter we send an email about oblyk acutalities, community expansion, developments of the month and projects to come. ',
+        paragraphe: 'About once a quarter we send an email about Oblyk acutalities, community expansion, developments of the month and projects to come. ',
         stayInformed: 'You want to be kept in the loop? enter your e-mail address here!',
         successTitle: 'You are now registered to our newsletter!',
         successParagraphe: 'We hope you enjoy hearing from us : )',
@@ -472,7 +472,7 @@ export default {
       alreadyConnected: 'You are logged in',
       stayConnected: 'Stay connected',
       termsOfUse: 'I have read and accept the terms and conditions of use of Oblyk',
-      youMustBeAgree: 'You must agree to the oblyk terms of use',
+      youMustBeAgree: 'You must agree to the Oblyk terms of use',
       newsletterSubscribe: 'Receive the newsletter (one per quarter approximately)',
       forgottenPassword: 'Forgotten password ?',
       forgottenPasswordExplain: 'Enter your email address so that we can send you a link to cancel your password.',
@@ -787,7 +787,7 @@ export default {
     gymAdministrationRequest: {
       helloName: 'Hello %{name}',
       isAlreadyAdministered: 'This gym is already managed by its manager.',
-      needAccount: 'To take over the management of a climbing gym, you need an oblyk account in your name.',
+      needAccount: 'To take over the management of a climbing gym, you need an Oblyk account in your name.',
       explainJustification: 'Please fill out the form below and give us some information that will allow us to verify that you are entitled to manage this climbing gym.',
       requestIsSent: 'We have registered your request !<br> We will process it as soon as possible.'
     },
@@ -1157,7 +1157,7 @@ export default {
       footer: {
         clickToTop: 'Click to return to the top of the page',
         itIsTimeToGoBackUp: "It's time to go back up !",
-        moreAboutOblyk: 'More about oblyk',
+        moreAboutOblyk: 'More about Oblyk',
         followUs: 'Follow us',
         news: 'News',
         contact: 'Contact',
@@ -1235,14 +1235,14 @@ export default {
       title: 'Support Us',
       body1: 'In Oblyk there are no limits, no premium account, no adds, no sponsored link, everything free ! ; )',
       body2: "If it is free and Oblyk doesn't get any money, does it mean it is a zero cost project ?",
-      body3: 'Unfortunately no, as every website, oblyk needs to be hosted in a data center and rent a domain name to exist.<br>And that is not free... ',
+      body3: 'Unfortunately no, as every website, Oblyk needs to be hosted in a data center and rent a domain name to exist.<br>And that is not free... ',
       action: 'Support Us'
     },
     developer: {
       title: 'An open database in API!',
       body1: 'With Oblyk, we want to build an open and reusable knowledge base for humans and machines.',
       body2: 'Via our API we make our crag and route database available to other open-source projects, public, personal or student.',
-      body3: 'Contributing to oblyk means allowing other climbing projects to be created or improved.',
+      body3: 'Contributing to Oblyk means allowing other climbing projects to be created or improved.',
       action: 'Read more'
     },
     oblykAndGuide: {
@@ -1337,7 +1337,7 @@ export default {
       description: 'See the interactive map of climbing gyms on Oblyk, either in France, or in the World, and see their detailed information'
     },
     partnerMap: {
-      title: 'Map of oblyk climbers',
+      title: 'Map of Oblyk climbers',
       description: 'The climber map allows you to find a climbing partner near you. Locate yourself, find a climber, contact him and go climbing together!'
     },
     gym: {
@@ -1485,8 +1485,8 @@ export default {
       photos: 'Newsletter pictures',
       description: 'Consulted here the newsletter you received in your email box',
       subscribe: {
-        newTitle: 'Receive the oblyk newsletter',
-        newDescription: 'Subscribe to the oblyk newsletter to receive occasional news from the climbing community',
+        newTitle: 'Receive the Oblyk newsletter',
+        newDescription: 'Subscribe to the Oblyk newsletter to receive occasional news from the climbing community',
         successTitle: 'You are subscribed to the newsletter',
         successDescription: 'You are now subscribed to our newsletter, see you soon in your mailbox'
       },
@@ -1539,14 +1539,14 @@ export default {
     },
     user: {
       title: '%{name} his climbing profile',
-      description: 'View the profile of  %{name}, climber of the community oblyk',
+      description: 'View the profile of  %{name}, climber of the community Oblyk',
       ascent: {
         title: 'The ascents of %{name}',
         description: 'Consult the ascents made by %{name} throughout his climbing life'
       },
       follower: {
         title: 'The subscribers of %{name}',
-        description: 'See the climbers subscribed to %{name}, climber of the community oblyk'
+        description: 'See the climbers subscribed to %{name}, climber of the community Oblyk'
       },
       media: {
         title: 'Photos and videos of %{name}',
@@ -1594,7 +1594,7 @@ export default {
       resetPasswordDescription: 'Forgot your password? Enter your email address to reset it',
       privacyStep: 'My privacy',
       signInTitle: 'Connect me',
-      signInDescription: 'Connect me to my oblyk account and find all informations about the climbing around me',
+      signInDescription: 'Connect me to my Oblyk account and find all informations about the climbing around me',
       signUpTitle: 'Create an account',
       signUpDescription: 'Create an account to track my progress, find climbing partners and get local info from the climbing community'
     },

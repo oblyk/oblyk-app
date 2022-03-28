@@ -198,7 +198,7 @@ export default {
         title: 'Les cotations',
         intro: "Oblyk permet d'utiliser plusieurs formats pour les cotations (Française, Anglaise, Américaine, etc.). Pour chacune des cotations il est donné un code couleur pour se rendre compte rapidement du niveau de difficulté même si on est pas habitué au système de cotation affiché.",
         equivalence: "Le tableau d'équivalence suivant est contestable, il a pour vocation de donner un ordre d'idée de la difficulté d'une cotation et non pas de donner exactement l'équivalence d'un système vers un autre.",
-        weighting: 'Sur oblyk, chaque cotation peut prendre les pondérations suivante :',
+        weighting: 'Sur Oblyk, chaque cotation peut prendre les pondérations suivante :',
         developerBonus: 'Petit bonus pour les développeur·euse·s :',
         regexpExplain: "Si vous avez besoin de valider qu'une chaîne de texte est conforme à l'un de ces systèmes de cotation, voici l'expression régulière que vous pouvez utiliser :",
         list: {
@@ -299,7 +299,7 @@ export default {
       },
       newsletterSubscribe: {
         title: "S'inscrire à la newsletter",
-        paragraphe: "Environ une fois par trimestre nous envoyons un mail relatant des acutalités d'oblyk, de l'expansion de la communauté, des développements du mois et des projets à venire.",
+        paragraphe: "Environ une fois par trimestre nous envoyons un mail relatant des acutalités d'Oblyk, de l'expansion de la communauté, des développements du mois et des projets à venire.",
         stayInformed: 'Tu veux être tenu au courant ? renseigne ton adresse mail ici !',
         successTitle: 'Vous être désormais inscrit à notre newsletter!',
         successParagraphe: 'Nous espérons que vous apprécierez recevoir de nos nouvelles : )',
@@ -787,7 +787,7 @@ export default {
     gymAdministrationRequest: {
       helloName: 'Bonjour %{name}',
       isAlreadyAdministered: 'Cette salle est déjà administrée par son gérant.',
-      needAccount: "Pour prendre la gestion d'une salles d'escalade, il vous faut une compte oblyk à votre nom.",
+      needAccount: "Pour prendre la gestion d'une salles d'escalade, il vous faut une compte Oblyk à votre nom.",
       explainJustification: 'Merci de remplir le formulaire ci-dessous en nous donnant des éléments qui nous permettrai de vérifier que vous êtes bien en droit de gérer cette salle.',
       requestIsSent: 'Nous avons bien enregistré votre demande !<br> Nous la traiteront le plus rapidement possible.'
     },
@@ -968,7 +968,7 @@ export default {
       distanceSetting: '%{distance} Km autour de moi',
       seeInYourFeed: 'Que veux-tu voir dans ton feed ?',
       newGuideBookLabel: 'Les nouveaux topos',
-      newsFeedLabel: "Les actualités d'oblyk",
+      newsFeedLabel: "Les actualités d'Oblyk",
       subscribeFeedLabel: 'Les news de me abonnements',
       aroundFeedLabel: 'Les informations local (Nouvelle falaise, voie et photos)',
       userCount: '%{count} grimpeur·euse | %{count} grimpeur·euse·s',
@@ -1032,7 +1032,7 @@ export default {
         indoor_ascents: 'Votre <strong>carnet de croix indoor</strong> est consultable par les <strong>grimpeur·euse·s connecté·e·s</strong> à Oblyk.'
       },
       private_explain: {
-        profile: 'Votre profil est consultable <strong>uniquement par les grimpeur·euse·s connecté·e·s</strong> à oblyk.<br>Vous devez <strong>accepter manuellement</strong> les grimpeur·euse·s qui veulent vous suivre.',
+        profile: 'Votre profil est consultable <strong>uniquement par les grimpeur·euse·s connecté·e·s</strong> à Oblyk.<br>Vous devez <strong>accepter manuellement</strong> les grimpeur·euse·s qui veulent vous suivre.',
         outdoor_ascents: 'Votre carnet de croix outdoor est <strong>consultable uniquement pas vos abonnées.</strong>',
         indoor_ascents: 'Votre carnet de croix indoor est <strong>consultable uniquement pas vos abonnées.</strong>'
       },
@@ -1156,7 +1156,7 @@ export default {
       footer: {
         clickToTop: 'Cliquez pour retourner en au de la page',
         itIsTimeToGoBackUp: 'Il est temps de remonter !',
-        moreAboutOblyk: 'Plus sur oblyk',
+        moreAboutOblyk: 'Plus sur Oblyk',
         followUs: 'Nous suivre',
         news: 'Actualités',
         contact: 'Contact',
@@ -1241,12 +1241,12 @@ export default {
       title: 'Une base de donnée ouverte en API !',
       body1: 'Avec Oblyk, nous désirons construire une base de connaissance ouverte et réutilisable pour les humains et les machines.',
       body2: "Via nos API nous rendons accessible notre base de donnée des falaises et voies à d'autres projets open-sources, publique, personnel ou étudiant.",
-      body3: "Contribuer à oblyk, c'est permettre à d'autres projets autour de la grimper de voir le jour ou de s'améliorer.",
+      body3: "Contribuer à Oblyk, c'est permettre à d'autres projets autour de la grimper de voir le jour ou de s'améliorer.",
       action: 'En savoir plus'
     },
     oblykAndGuide: {
       title: 'Oblyk et les topos',
-      body1: "Vous pourriez vous demander si Oblyk peut remplacer les topos papier et par extension nuire au développement des <strong>sites d'escalade</strong> ?<br> Sachez que nous nous sommes beaucoup posé cette question aussi. Et la réponse est non, Oblyk ne peut pas remplacer un topo !<br>Les topos contiennent des informations indispensables que nous ne permettons pas d'ajouter sur oblyk",
+      body1: "Vous pourriez vous demander si Oblyk peut remplacer les topos papier et par extension nuire au développement des <strong>sites d'escalade</strong> ?<br> Sachez que nous nous sommes beaucoup posé cette question aussi. Et la réponse est non, Oblyk ne peut pas remplacer un topo !<br>Les topos contiennent des informations indispensables que nous ne permettons pas d'ajouter sur Oblyk",
       body2: "<strong>Acheter un topo</strong>, c'est soutenir des passionnés qui donnent énormément pour maintenir, développer, nettoyer les <strong>sites d'escalade</strong> sur lesquels vous allez grimper gratuitement.",
       action: 'Nos outils pour les topos'
     },
@@ -1336,7 +1336,7 @@ export default {
       description: 'Voir la carte interactive des salle de grimpe sur Oblyk, que ce soit en France, ou dans le Monde, et voir leurs informations détaillées'
     },
     partnerMap: {
-      title: "La carte des grimpeur·euse·s d'oblyk",
+      title: "La carte des grimpeur·euse·s d'Oblyk",
       description: "La carte des grimpeur·euse·s te permet de trouver un·e partenaire d'escalade près de chez toi. localise toi, trouve un·e grimpeur·euse, contact le·la et allez grimper ensemble !"
     },
     gym: {
@@ -1484,8 +1484,8 @@ export default {
       photos: 'Photo de la newsletter',
       description: 'Consulté ici la newsletter que vous avez reçu dans votre boîte email',
       subscribe: {
-        newTitle: "Recevoir la newsletter d'oblyk",
-        newDescription: "Abonnez vous à la newsletter d'oblyk pour recevoir de temps en temps des nouvelles de la communauté grimpante",
+        newTitle: "Recevoir la newsletter d'Oblyk",
+        newDescription: "Abonnez vous à la newsletter d'Oblyk pour recevoir de temps en temps des nouvelles de la communauté grimpante",
         successTitle: 'Vous êtes abonnées à la newsletter',
         successDescription: 'Vous êtes désormais inscrit à notre newsletter, à bientôt dans votre boîte mail'
       },
@@ -1538,14 +1538,14 @@ export default {
     },
     user: {
       title: '%{name} son profil de grimpeur·euse',
-      description: 'consulter le profil de %{name}, grimpeur·euse de la communauté oblyk',
+      description: 'consulter le profil de %{name}, grimpeur·euse de la communauté Oblyk',
       ascent: {
         title: 'Les croix de %{name}',
         description: 'Consulter les croix faites par %{name} tout au long de sa vie de grimpeur·euse'
       },
       follower: {
         title: 'Les abonnés de %{name}',
-        description: 'Voir les grimpeur·euse·s abonnées à %{name}, grimpeur·euse de la communauté oblyk'
+        description: 'Voir les grimpeur·euse·s abonnées à %{name}, grimpeur·euse de la communauté Oblyk'
       },
       media: {
         title: 'Photos et vidéos de %{name}',
@@ -1593,7 +1593,7 @@ export default {
       resetPasswordDescription: 'Vous avez oublié votre mot de passe ? renseignez votre adresse mail pour le réinitialiser',
       privacyStep: 'Ma confidentialité',
       signInTitle: 'Me connecter',
-      signInDescription: 'Me connecter à mon compte oblyk et retrouver toutes les infos de la grimpes autour de chez moi',
+      signInDescription: 'Me connecter à mon compte Oblyk et retrouver toutes les infos de la grimpes autour de chez moi',
       signUpTitle: 'Me créer un compte',
       signUpDescription: "Me créer un mon compte pour suivre ma progression, trouver des partenaire d'escalade et avoir des infos local de la communauté de la grimpe"
     },
@@ -1846,7 +1846,7 @@ export default {
       last_name: 'Nom'
     },
     gymAdministrator: {
-      user: 'Un compte oblyk associé à ce mail'
+      user: 'Un compte Oblyk associé à ce mail'
     },
     gymSpace: {
       name: "Nom de l'espace",
