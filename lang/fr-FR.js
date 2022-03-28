@@ -1348,9 +1348,9 @@ export default {
       requiredAdministrator: 'Administrateur requis',
       administratorRequestDescription: "Administrez la salle d'escalade de %{name} pour créer votre topo indoor et animer votre communauté",
       admin: '%{name} - Dashboard',
-      banner: 'Change banner',
-      logo: 'Change logo',
-      new: 'Add a new climbing gym',
+      banner: 'Changer le bandeau',
+      logo: 'Changer le logo',
+      new: "Ajouter une nouvelle salle d'escalade",
       grade: {
         edit: 'Modifier le system de cotation',
         new: 'Nouveau system de cotation',
