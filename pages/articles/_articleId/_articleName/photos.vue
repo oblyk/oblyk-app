@@ -2,16 +2,18 @@
   <div>
     <spinner v-if="loadingArticlePhotos" />
     <v-container v-else>
-      <v-btn
-        :to="`/a/photos/Article/${articleId}/new?redirect_to=${$route.fullPath}`"
-        text
-        color="primary"
-      >
-        <v-icon left>
-          {{ mdiImagePlus }}
-        </v-icon>
-        {{ $t('actions.addPicture') }}
-      </v-btn>
+      <div class="mb-5">
+        <v-btn
+          :to="`/a/photos/Article/${articleId}/new?redirect_to=${$route.fullPath}`"
+          text
+          color="primary"
+        >
+          <v-icon left>
+            {{ mdiImagePlus }}
+          </v-icon>
+          {{ $t('actions.addPicture') }}
+        </v-btn>
+      </div>
       <v-row
         v-for="(photo, index) in photos"
         :key="`article-photo-${index}`"
@@ -21,21 +23,22 @@
         </v-col>
         <v-col class="col-9">
           <div class="text-truncate">
-            {{ photo.pictureUrl }}
+            {{ photo.description }}
           </div>
-          <div>
+          <div class="mt-2">
+            <v-text-field
+              outlined
+              hide-details
+              :value="imgBalise(photo)"
+            />
+          </div>
+          <div class="text-right mt-2">
             <v-btn
               :to="`/a${photo.path}/edit?redirect_to=${$route.fullPath}`"
-              icon
+              depressed
             >
-              <v-icon small>
-                {{ mdiPencil }}
-              </v-icon>
+              {{ $t('actions.edit') }}
             </v-btn>
-            <copy-btn
-              :small="false"
-              :message="imgBalise(photo)"
-            />
           </div>
         </v-col>
       </v-row>
@@ -48,10 +51,9 @@ import { mdiImagePlus, mdiPencil } from '@mdi/js'
 import ArticleApi from '@/services/oblyk-api/ArticleApi'
 import Photo from '@/models/Photo'
 import Spinner from '@/components/layouts/Spiner'
-import CopyBtn from '@/components/ui/CopyBtn'
 
 export default {
-  components: { CopyBtn, Spinner },
+  components: { Spinner },
 
   data () {
     return {
