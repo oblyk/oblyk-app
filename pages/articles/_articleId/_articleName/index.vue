@@ -16,11 +16,7 @@
     <article-head :article="article" />
     <v-container class="article-container">
       <section
-        class="article-description mb-8 mt-3"
-        v-html="article.description"
-      />
-      <section
-        class="article-body mb-10"
+        class="article-body mb-10 mt-4"
         v-html="article.body"
       />
 
@@ -87,12 +83,8 @@ export default {
 .article-container {
   max-width: 900px;
   min-height: calc(100vh - 420px);
-  .article-description {
-    font-size: 1.20em;
-    font-weight: bold;
-  }
   .article-body {
-    font-size: 1.20em;
+    font-size: 1.10em;
     p {
       hyphens: auto;
       text-align: justify;
