@@ -138,6 +138,17 @@ export default {
       type: Object,
       required: false,
       default: null
+    },
+    options: {
+      type: Object,
+      required: false,
+      default: () => {
+        return {
+          department: {
+            clickable: true
+          }
+        }
+      }
     }
   },
 
@@ -208,7 +219,21 @@ export default {
 
     onEachFeatureFunction () {
       return (feature, layer) => {
-        layer.bindPopup(this.getHtmlPopup(feature))
+        if (feature.properties.type === 'Department') {
+          layer.options.color = 'rgb(234, 141, 125)'
+          layer.options.weight = 2
+          if (this.options.department.clickable) {
+            layer.options.fillColor = 'rgb(255, 255, 255)'
+            layer.on('click', () => {
+              this.$router.push(`/escalade-en/${feature.properties.country_slug_name}/${feature.properties.department_number}/${feature.properties.slug_name}`)
+            })
+          } else {
+            layer.options.fill = false
+            layer.options.interactive = false
+          }
+        } else {
+          layer.bindPopup(this.getHtmlPopup(feature))
+        }
       }
     },
 

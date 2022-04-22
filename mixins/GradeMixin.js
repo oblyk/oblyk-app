@@ -26,13 +26,28 @@ export const GradeMixin = {
     }
   },
 
+  computed: {
+    gradeWithoutWeightings () {
+      const grades = []
+      for (const index in this.gradeByValue) {
+        if (index % 2 !== 0) { continue }
+        grades.push({ text: this.gradeByValue[index], value: parseInt(index) + 1 })
+      }
+      return grades
+    }
+  },
+
   methods: {
     gradeToHtml (gradeValue, gradeText) {
       return `<span class="color-grade-span" style="border-bottom-color: ${this.gradeValueToColor(gradeValue)};">${gradeText}</span>`
     },
 
-    gradeValueToColor (value) {
-      return this.gradeColorByValue[value - 1]
+    gradeValueToColor (value, alpha = 1) {
+      if (alpha === 1) {
+        return this.gradeColorByValue[value - 1]
+      } else {
+        return this.gradeColorByValue[value - 1].replace('rgb', 'rgba').replace(')', `,${alpha})`)
+      }
     },
 
     gradeValueToText (value) {

@@ -59,6 +59,7 @@ export default {
     removeFromLibrary: 'Retirer de ma topothèque',
     valueCopied: '%{value} copié !',
     errorHasOccurred: "Une erreur s'est produite",
+    localisationError: "Une erreur s'est produite lors de la récupération de la localisation",
     changeCover: 'Changer la couverture',
     addLink: 'Ajouter un lien',
     addComment: 'Ajouter un commentaire',
@@ -98,7 +99,8 @@ export default {
     unsubscribeMe: 'Me désinscrire',
     accept: 'Accepter',
     reject: 'Refuser',
-    update: 'Mettre à jour'
+    update: 'Mettre à jour',
+    aroundMe: 'Autour de moi'
   },
   colors: {
     noColor: 'Pas de couleur',
@@ -440,6 +442,56 @@ export default {
         new_article: 'Nouvel article ! %{name}'
       }
     },
+    country: {
+      search: 'Chercher une ville',
+      mapExplain: "Cliquez sur un département pour connaître les <strong>sites d'escalades</strong>, les <strong>salles</strong> et les <strong>topos</strong> du département.",
+      france: {
+        title: 'Escalade en France',
+        searchPlaceHolder: 'Marseilles, Paris, Grenoble, etc.',
+        departmentMap: 'La carte des départements de France',
+        departmentList: 'Liste des départements de France'
+      }
+    },
+    department: {
+      climbing: 'Escalade',
+      gradeOf: 'en cotations',
+      inFigures: 'en quelques chiffres',
+      mapTitle: "Cartes des sites et salles d'escalades",
+      bookCovering: 'Un topo couvre | %{count} topos couvrent',
+      selfGeneratedDescription: 'Description générée à partir des données disponibles sur Oblyk.',
+      towns: 'Les villes',
+      namePrefixType: {
+        apostrophe: "L'",
+        plural: 'Les ',
+        masculine: 'Le ',
+        feminine: 'La ',
+        nothing: ''
+      },
+      inSentencePrefixType: {
+        in_apostrophe: "dans l'",
+        on: 'en ',
+        in_plural: 'dans les ',
+        in_masculine: 'dans le ',
+        in_feminine: 'dans la ',
+        at: 'à '
+      }
+    },
+    town: {
+      title: 'Escalade autour de %{name}',
+      searchAnotherCity: 'Chercher une autre ville',
+      cragsAround: "Un site d'escalade aux alentour de %{name} | %{count} sites d'escalade aux alentour de %{name}",
+      nearestCrag: 'La falaise la plus proche de %{name}',
+      gymsAround: 'Une salle pour grimper en indoor à %{name} et aux alentours | %{count} salles pour grimper en indoor à %{name} et aux alentours',
+      nearestGym: 'La salle la plus proche de %{name}',
+      guideBooks: "Les topos d'escalade autour de %{name}",
+      map: "La carte d'escalade de %{name}",
+      density: {
+        low: 'une faible densité',
+        medium: 'une densité moyenne',
+        large: 'une grande densité'
+      },
+      pluralStyle: '1 site | %{count} sites '
+    },
     map: {
       title: 'Carte',
       site: 'Site',
@@ -579,6 +631,11 @@ export default {
         name: 'Par nom',
         note: 'Par note'
       }
+    },
+    cragsTable: {
+      crags: 'Sites',
+      lines: 'Lignes',
+      orientations: 'Orientations'
     },
     ascentCragRoute: {
       new: 'Ajouter %{name} à mon carnet',
@@ -1170,7 +1227,9 @@ export default {
         github: 'github',
         newsletter: 'Newsletter',
         apiAndDevelopers: 'Api & Développeurs',
-        guidesAndFeatures: 'Topos & Fonctionnalités'
+        guidesAndFeatures: 'Topos & Fonctionnalités',
+        data: 'Données',
+        climbInFrance: 'Escalade en France'
       },
       errors: {
         404: {
@@ -1413,6 +1472,20 @@ export default {
     },
     newConversation: {
       title: 'Nouvelle conversation'
+    },
+    climbingAround: {
+      france: {
+        title: "Escalade en France: falaises, topos et salles d'escalade",
+        description: "Retrouve les informations sur les sites d'escalade en France (voir, grande voie, bloc, via ferrata ...), les topos et les salles d'escalade sur Oblyk"
+      },
+      department: {
+        title: "Escalade %{name} : falaises, topos et salles d'escalade",
+        description: "Retrouve les informations sur les sites d'escalade %{name} (voir, grande voie, bloc, via ferrata ...), les topos et les salles d'escalade sur Oblyk"
+      },
+      town: {
+        title: "Escalade %{name} : falaises, topos et salles d'escalade",
+        description: "Retrouve les informations sur les sites d'escalade autour de %{name} (%{department_number}) : voir, grande voie, bloc, via ferrata ..., les topos et les salles d'escalade sur Oblyk"
+      }
     },
     crag: {
       title: '%{name}, escalade en %{region}',

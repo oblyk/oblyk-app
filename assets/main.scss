@@ -70,6 +70,10 @@
   vertical-align: middle;
 }
 
+.vertical-align-baseline {
+  vertical-align: baseline;
+}
+
 .full-name-field-form {
   display: none !important;
 }
@@ -119,6 +123,15 @@
   }
 }
 
+.a-comma {
+  a:after {
+    content: ', ';
+  }
+  a:last-child:after {
+    content: '';
+  }
+}
+
 .hoverable {
   cursor: pointer;
 }
@@ -151,6 +164,11 @@
     vertical-align: inherit;
     margin-right: 0.5em;
     border-radius: 50%;
+  }
+  &.pastille-x-small:before {
+    height: 9px;
+    width: 9px;
+    margin-right: 1px;
   }
   &.sport_climbing:before { background-color: #3a71c7; }
   &.bouldering:before { background-color: #ffcb00; }

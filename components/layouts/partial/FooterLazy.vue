@@ -90,6 +90,18 @@
           </v-icon>
           {{ $t('components.layout.footer.newsletter') }}
         </nuxt-link>
+        <p class="font-weight-bold mt-6">
+          {{ $t('components.layout.footer.data') }}
+        </p>
+        <nuxt-link
+          class="d-block"
+          :to="`/escalade-en/france`"
+        >
+          <v-icon small left dark>
+            {{ mdiDatabase }}
+          </v-icon>
+          {{ $t('components.layout.footer.climbInFrance') }}
+        </nuxt-link>
       </v-col>
     </v-row>
     <v-divider class="mt-2 mb-2" />
@@ -117,7 +129,7 @@
 </template>
 
 <script>
-import { mdiCopyright, mdiHeart, mdiFlag, mdiFacebook, mdiGithub, mdiEmail } from '@mdi/js'
+import { mdiCopyright, mdiHeart, mdiFlag, mdiFacebook, mdiGithub, mdiEmail, mdiDatabase } from '@mdi/js'
 
 export default {
   name: 'FooterLazy',
@@ -129,7 +141,8 @@ export default {
       mdiFlag,
       mdiFacebook,
       mdiGithub,
-      mdiEmail
+      mdiEmail,
+      mdiDatabase
     }
   },
 
