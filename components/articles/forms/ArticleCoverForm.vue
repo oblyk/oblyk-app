@@ -23,7 +23,6 @@ import { AppConcern } from '@/concerns/AppConcern'
 import { SessionConcern } from '@/concerns/SessionConcern'
 import SubmitForm from '@/components/forms/SubmitForm'
 import CloseForm from '@/components/forms/CloseForm'
-import Article from '@/models/Article'
 
 export default {
   name: 'ArticleCoverForm',
@@ -65,9 +64,8 @@ export default {
         },
         data: formData
       })
-        .then((resp) => {
-          const article = new Article({attributes: resp.data })
-          this.$router.push(article.path)
+        .then(() => {
+          this.$router.push(this.article.path)
         })
         .catch((err) => {
           this.$root.$emit('alertFromApiError', err, 'article')
