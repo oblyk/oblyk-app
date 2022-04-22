@@ -30,12 +30,12 @@
           <v-list-item-title class="headline mb-1">
             {{ article.author.name }}
           </v-list-item-title>
-          <v-list-item-content>
+          <div class="author-description">
             <markdown-text
               v-if="article.author.description"
               :text="article.author.description"
             />
-          </v-list-item-content>
+          </div>
         </v-list-item-content>
         <v-list-item-avatar
           tile
@@ -74,3 +74,8 @@ export default {
   }
 }
 </script>
+<style lang="css" scoped>
+.author-description {
+  line-height: 1.4;
+}
+</style>
