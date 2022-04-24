@@ -2082,7 +2082,7 @@ export default {
     },
     seasons: {
       summer: 'Été',
-      autumn: 'Autonome',
+      autumn: 'Automne',
       winter: 'Hivers',
       spring: 'Printemps'
     },
