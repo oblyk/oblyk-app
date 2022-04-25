@@ -110,6 +110,10 @@
   font-size: 4em;
 }
 
+.clear-both {
+  clear: both;
+}
+
 .span-comma {
   span:after {
     content: ', ';

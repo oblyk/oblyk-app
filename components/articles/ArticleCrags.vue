@@ -1,6 +1,6 @@
 <template>
   <div v-if="crags.length > 0">
-    <h2 class="loved-by-king mb-2">
+    <h2 class="mb-2">
       <v-icon left>
         {{ mdiTerrain }}
       </v-icon>

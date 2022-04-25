@@ -27,7 +27,7 @@
       <about-author-card :article="article" class="mt-5 mb-5" />
 
       <!-- Comments -->
-      <h2 class="loved-by-king">
+      <h2>
         <v-icon left>
           {{ mdiForum }}
         </v-icon>
@@ -83,21 +83,63 @@ export default {
 .article-container {
   max-width: 900px;
   min-height: calc(100vh - 420px);
+  background: #fff;
+  padding: 16px 45px;
+  margin-top: -17px;
+  position: relative;
+  border-radius: 6px;
+  box-shadow: 0 8px 15px -8px rgba(0, 0, 0, 0.15);
   .article-body {
-    font-size: 1.10em;
+    font-size: 1em;
+    border-bottom: 2px dashed #f1f1f1;
+    padding-bottom: 10px;
+    margin-bottom: 30px !important;
     p {
       hyphens: auto;
       text-align: justify;
     }
     img {
       max-width: 100%;
+      border-radius: 10px;
+      -webkit-filter: drop-shadow(0 5px 11px rgba(0,0,0,0.02));
+      filter: drop-shadow(0 5px 11px rgba(0,0,0,0.02));
+    }
+    p + img {
+      margin-top: 15px;
     }
     h2 {
-      font-size: 1.6em;
+      font-size: 1.25em;
       margin-top: 50px;
       margin-bottom: 5px;
-      font-family: "Loved by the King", sans-serif;
     }
+    h4 {
+      margin-top: 25px;
+      margin-bottom: 10px;
+    }
+    h6 {
+      line-height: 1.3;
+    }
+  }
+}
+@media screen and (max-width: 569px) {
+  .article-header-title h1 {
+    font-size: 2.3rem !important;
+  }
+  .article-container {
+    border-radius: 0;
+    box-shadow: none;
+    padding: 8px 24px;
+    .article-body {
+      font-size: 0.95em;
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .article-header-title h1 {
+    font-size: 2.5rem;
+    line-height: 1.1;
+    margin-bottom: 11px;
   }
 }
 </style>

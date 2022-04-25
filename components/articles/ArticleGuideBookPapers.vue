@@ -1,6 +1,6 @@
 <template>
   <div v-if="guideBookPapers.length > 0">
-    <h2 class="loved-by-king mb-2 mt-8">
+    <h2 class="mb-2 mt-8">
       <v-icon left>
         {{ mdiBookOpenVariant }}
       </v-icon>

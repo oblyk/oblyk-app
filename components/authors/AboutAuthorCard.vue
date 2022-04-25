@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2 class="loved-by-king">
+    <h2 class="mb-3">
       <v-icon left>
         {{ mdiFountainPenTip }}
       </v-icon>
@@ -24,27 +24,22 @@
         </v-btn>
       </span>
     </h2>
+
+    <!-- About card -->
     <v-card flat>
-      <v-list-item two-line>
-        <v-list-item-content>
-          <v-list-item-title class="headline mb-1">
-            {{ article.author.name }}
-          </v-list-item-title>
-          <div class="author-description">
-            <markdown-text
-              v-if="article.author.description"
-              :text="article.author.description"
-            />
-          </div>
-        </v-list-item-content>
-        <v-list-item-avatar
-          tile
-          size="150"
-          color="grey"
-        >
-          <v-img :alt="article.author.name" :src="article.Author.coverUrl" />
-        </v-list-item-avatar>
-      </v-list-item>
+      <v-avatar
+        class="float-right ml-5"
+        rounded
+        size="115"
+        color="grey"
+      >
+        <v-img :alt="article.author.name" :src="article.Author.coverUrl" />
+      </v-avatar>
+      <markdown-text
+        v-if="article.author.description"
+        :text="article.author.description"
+      />
+      <div class="clear-both" />
     </v-card>
   </div>
 </template>
@@ -74,8 +69,3 @@ export default {
   }
 }
 </script>
-<style lang="css" scoped>
-.author-description {
-  line-height: 1.4;
-}
-</style>
