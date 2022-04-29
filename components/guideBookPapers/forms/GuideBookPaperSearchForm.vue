@@ -1,0 +1,110 @@
+<template>
+  <div>
+    <v-text-field
+      v-model="query"
+      :label="$t(labelKey)"
+      outlined
+      :loading="searching"
+      clearable
+      hide-details
+      @keyup="search()"
+      @click:clear="onSearch = false"
+    />
+
+    <div
+      v-for="guideBookPaper in searchResults"
+      :key="guideBookPaper.id"
+    >
+      <div @click="callback ? callback(guideBookPaper) : null">
+        <guide-book-paper-small-card
+          :guide-book-paper="guideBookPaper"
+          :linkable="linkableResult"
+          class="mt-3"
+        />
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import GuideBookPaperApi from '~/services/oblyk-api/GuideBookPaperApi'
+import GuideBookPaper from '@/models/GuideBookPaper'
+import GuideBookPaperSmallCard from '@/components/guideBookPapers/GuideBookPaperSmallCard'
+
+export default {
+  name: 'GuideBookPaperSearchForm',
+  components: { GuideBookPaperSmallCard },
+  props: {
+    linkableResult: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
+
+    callback: {
+      type: Function,
+      default: null
+    },
+
+    labelKey: {
+      type: String,
+      default: 'components.guideBookPaper.searchGuideBookPaper'
+    }
+  },
+
+  data () {
+    return {
+      query: null,
+      searching: false,
+      onSearch: false,
+      searchResults: [],
+      previousQuery: null,
+      guideBookApi: null
+    }
+  },
+
+  methods: {
+    search () {
+      if (this.previousQuery === this.query) {
+        this.searching = false
+        return
+      }
+
+      this.onSearch = true
+      this.searching = true
+
+      if (this.searchTimeOut) {
+        clearTimeout(this.searchTimeOut)
+        this.searchTimeOut = null
+      }
+      this.searchTimeOut = setTimeout(() => {
+        this.apiSearch()
+      }, 500)
+    },
+
+    apiSearch () {
+      this.guideBookApi = new GuideBookPaperApi(this.$axios, this.$auth) || this.guideBookApi
+
+      this.guideBookApi.cancelSearch()
+
+      this.guideBookApi
+        .search(this.query)
+        .then((resp) => {
+          this.searchResults = []
+          for (const guideBookPaper of resp.data) {
+            this.searchResults.push(new GuideBookPaper({ attributes: guideBookPaper }))
+          }
+          this.previousQuery = this.query
+        })
+        .catch((err) => {
+          if (err.response !== undefined) {
+            this.$root.$emit('alertFromApiError', err, 'guideBookPaper')
+          }
+        })
+        .finally(() => {
+          this.searching = false
+        })
+    }
+  }
+}
+</script>

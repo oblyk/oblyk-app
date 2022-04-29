@@ -1,0 +1,44 @@
+import GymSector from '@/models/GymSector'
+
+export const GymSectorConcern = {
+  data () {
+    return {
+      gymSector: null,
+      loadingGymSector: true
+    }
+  },
+
+  created () {
+    if (
+      this.$route.params.gymId &&
+      this.$route.params.gymSpaceId &&
+      this.$route.params.gymSectorId
+    ) {
+      this.getGymSector(
+        this.$route.params.gymId,
+        this.$route.params.gymSpaceId,
+        this.$route.params.gymSectorId
+      )
+    }
+  },
+
+  methods: {
+    getGymSector (gymId, gymSpaceId, gymSectorId) {
+      this.loadingGymSector = true
+      new GymSector({ axios: this.$axios, auth: this.$auth })
+        ._find(
+          gymId,
+          gymSpaceId,
+          gymSectorId
+        )
+        .then((resp) => {
+          this.gymSector = resp
+        })
+        .catch((err) => {
+          this.$root.$emit('alertFromApiError', err, 'gymSector')
+        }).finally(() => {
+          this.loadingGymSector = false
+        })
+    }
+  }
+}

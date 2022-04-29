@@ -11,13 +11,13 @@ For front api, go here : [oblyk-app](https://github.com/oblyk/oblyk-api)
 ## Installation
 ```shell
 npm install
-cp .env.local.example .env.local
+cp .env.example .env.local
 ```
 Set `VUE_APP_OBLYK_API_ACCESS_TOKEN` params in `.env.local` with your Api token (see: [oblyk-api organization token part](https://github.com/oblyk/oblyk-api))
 
 ## Launch vue
 ```shell
-npm run serve
+npm run dev
 ```
-go to [localhost:8080](http://localhost:8080/)  
+go to [localhost:4500](http://localhost:4500/)  
 enjoy !

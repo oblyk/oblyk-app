@@ -1,0 +1,184 @@
+@font-face {
+  font-family: 'Loved by the King';
+  font-weight: 400;
+  font-display: swap;
+  src: url('~assets/fonts/loved-by-the-king-regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('~assets/fonts/Roboto-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('~assets/fonts/Roboto-Medium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: italic;
+  font-weight: 500;
+  font-display: swap;
+  src: url('~assets/fonts/Roboto-Italic.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: italic;
+  font-weight: 500;
+  font-display: swap;
+  src: url('~assets/fonts/Roboto-MediumItalic.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: italic;
+  font-weight: 500;
+  font-display: swap;
+  src: url('~assets/fonts/Roboto-MediumItalic.ttf') format('truetype');
+}
+
+.loved-by-king {
+  font-style: normal;
+  font-family: "Loved by the King", sans-serif;
+}
+
+.color-grade-span {
+  border-bottom: 0.15em solid;
+  display: inline-block;
+  line-height: 0.75;
+}
+
+.global-form-width, .col.global-form-width {
+  max-width: 600px;
+  margin-top: 2rem;
+}
+
+.common-page-container {
+  max-width: 1100px;
+  min-height: calc(100vh - 420px);
+}
+
+.vertical-align-middle {
+  vertical-align: middle;
+}
+
+.full-name-field-form {
+  display: none !important;
+}
+
+.theme--light {
+  .v-main__wrap {
+    background-color: #f5f5f5;
+  }
+}
+
+.v-application--is-ltr .v-text-field .v-input__prepend-inner {
+  padding-right: 10px;
+}
+
+.v-application--is-ltr .v-text-field .v-input__append-inner {
+  padding-left: 10px;
+}
+
+.v-select.v-select--chips:not(.v-text-field--single-line).v-text-field--box .v-select__selections, .v-select.v-select--chips:not(.v-text-field--single-line).v-text-field--enclosed .v-select__selections {
+  min-height: 42px;
+  padding-bottom: 3px;
+}
+
+.v-text-field--full-width .v-input__prepend-outer, .v-text-field--full-width .v-input__prepend-inner, .v-text-field--full-width .v-input__append-inner, .v-text-field--full-width .v-input__append-outer, .v-text-field--enclosed .v-input__prepend-outer, .v-text-field--enclosed .v-input__prepend-inner, .v-text-field--enclosed .v-input__append-inner, .v-text-field--enclosed .v-input__append-outer {
+  margin-top: 19px;
+}
+
+.smallest-table-column {
+  width: 10px;
+  white-space: nowrap;
+}
+
+.full-height {
+  height: 100%;
+}
+
+.big-font-size {
+  font-size: 4em;
+}
+
+.clear-both {
+  clear: both;
+}
+
+.span-comma {
+  span:after {
+    content: ', ';
+  }
+  span:last-child:after {
+    content: '';
+  }
+}
+
+.hoverable {
+  cursor: pointer;
+}
+
+.no-hover-table .v-data-table__wrapper {
+  table {
+    tr {
+      &:hover {
+        background: none !important;
+      }
+    }
+  }
+}
+
+.discrete-link {
+  color: inherit !important;
+  text-decoration: none;
+}
+
+.list-style-none {
+  list-style: none;
+}
+
+.climbs-pastille {
+  &:before {
+    content: '';
+    display: inline-block;
+    height: 12px;
+    width: 12px;
+    vertical-align: inherit;
+    margin-right: 0.5em;
+    border-radius: 50%;
+  }
+  &.sport_climbing:before { background-color: #3a71c7; }
+  &.bouldering:before { background-color: #ffcb00; }
+  &.multi_pitch:before { background-color: #ff5656; }
+  &.trad_climbing:before { background-color: #e92b2b; }
+  &.aid_climbing:before { background-color: #d40000; }
+  &.deep_water:before { background-color: #86ccdd; }
+  &.via_ferrata:before { background-color: #3cc770; }
+  &.fun_climbing:before { background-color: #ff80b2; }
+}
+
+.leaflet-pane {
+  z-index: 5 !important;
+}
+.leaflet-top {
+  z-index: 6 !important;
+}
+@media only screen and (max-width: 600px) {
+  .global-form-width {
+    margin-top: -0.5rem;
+  }
+}
+
+.required-field .v-label::after {
+  content: " *";
+  color: #f44336;
+}
