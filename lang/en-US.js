@@ -870,7 +870,7 @@ export default {
       emptyTickList: "You don't have any route in your tick list for the moment",
       sortItem: {
         difficulty: 'Difficulty',
-        crag: 'Crag',
+        crags: 'Crag',
         released_at: 'Date'
       },
       climbingItems: {
