@@ -1409,7 +1409,7 @@ export default {
       admin: '%{name} - Dashboard',
       banner: 'Edit banner',
       logo: 'Edit logo',
-      new: "Add a new climbing gym",
+      new: 'Add a new climbing gym',
       grade: {
         edit: 'Edit grade system',
         new: 'New grade system',
