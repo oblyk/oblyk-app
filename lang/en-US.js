@@ -59,6 +59,7 @@ export default {
     removeFromLibrary: 'Remove from my library',
     valueCopied: '%{value} copied !',
     errorHasOccurred: 'An error has occurred',
+    localisationError: 'An error occurred while retrieving the location',
     changeCover: 'Change cover',
     addLink: 'Add link',
     addComment: 'Add comment',
@@ -440,6 +441,56 @@ export default {
         new_article: 'New article! %{name}'
       }
     },
+    country: {
+      search: 'Search town',
+      mapExplain: 'Click on a department to find out about <strong>climbing sites</strong>, <strong>climbing gym</strong> and <strong>topos</strong> in that department.',
+      france: {
+        title: 'Climb in France',
+        searchPlaceHolder: 'Marseilles, Paris, Grenoble, etc.',
+        departmentMap: 'Map of the departments of France',
+        departmentList: 'List of departments in France'
+      }
+    },
+    department: {
+      climbing: 'Climbing',
+      gradeOf: 'in grades',
+      inFigures: 'in figures',
+      mapTitle: 'Maps of crags and climbing gyms',
+      bookCovering: 'One climbing book covering | %{count} climbing books covering',
+      selfGeneratedDescription: 'Description generated from the data available on Oblyk.',
+      towns: 'Towns',
+      namePrefixType: {
+        apostrophe: '',
+        plural: '',
+        masculine: '',
+        feminine: '',
+        nothing: ''
+      },
+      inSentencePrefixType: {
+        in_apostrophe: 'in ',
+        on: 'in ',
+        in_plural: 'in ',
+        in_masculine: 'in ',
+        in_feminine: 'in ',
+        at: 'in '
+      }
+    },
+    town: {
+      title: 'Climbing around %{name}',
+      searchAnotherCity: 'Look for another city',
+      cragsAround: 'One crag around %{name} | %{count} crags around %{name}',
+      nearestCrag: 'The crag nearest to %{name}',
+      gymsAround: 'One indoor climbing gym in and around %{name} | %{count} indoor climbing gyms in and around %{name}',
+      nearestGym: 'The climbing gym nearest to %{name}',
+      guideBooks: 'Climbing guide books around %{name}',
+      map: 'Climbing map of %{name}',
+      density: {
+        low: 'a low density',
+        medium: 'a medium density',
+        large: 'a high density'
+      },
+      pluralStyle: '1 site | %{count} sites '
+    },
     map: {
       title: 'Map',
       site: 'Site',
@@ -579,6 +630,11 @@ export default {
         name: 'By name',
         note: 'By note'
       }
+    },
+    cragsTable: {
+      crags: 'Crags',
+      lines: 'Lines',
+      orientations: 'Orientations'
     },
     ascentCragRoute: {
       new: 'Add %{name} in my logbook',
@@ -1171,7 +1227,9 @@ export default {
         github: 'github',
         newsletter: 'Newsletter',
         apiAndDevelopers: 'API & Developers',
-        guidesAndFeatures: 'Guides & Features'
+        guidesAndFeatures: 'Guides & Features',
+        data: 'Data',
+        climbInFrance: 'Climb in France'
       },
       errors: {
         404: {
@@ -1414,6 +1472,20 @@ export default {
     },
     newConversation: {
       title: 'New conversation'
+    },
+    climbingAround: {
+      france: {
+        title: 'Climbing in France: crags, guide books and climbing gyms',
+        description: 'Find information on climbing sites in France (routes, multi pitches, boulder, via ferrata ...), guide books and climbing gyms on Oblyk'
+      },
+      department: {
+        title: 'Climbing %{name} : crags, guide book and climbing gyms',
+        description: 'Find information on climbing sites %{name} (routes, multi pitches, boulder, via ferrata ...), guide books and climbing gyms on Oblyk'
+      },
+      town: {
+        title: 'Climbing %{name} : crags, guide book and climbing gyms',
+        description: 'Find information on climbing sites around %{name} (%{department_number}) : routes, multi pitches, boulder, via ferrata ..., guide books and climbing gyms on Oblyk'
+      }
     },
     crag: {
       title: '%{name}, climb in %{region}',

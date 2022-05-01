@@ -166,11 +166,13 @@ export default {
       handler () {
         this.data.latitude = this.localization.latitude
         this.data.longitude = this.localization.longitude
-        this.data.country_code = this.localization.country_code
-        this.data.country = this.localization.country
-        this.data.city = this.localization.city
-        this.data.region = this.localization.region
-        this.getCragAround()
+        if (!this.isEditingForm()) {
+          this.data.country_code = this.localization.country_code
+          this.data.country = this.localization.country
+          this.data.city = this.localization.city
+          this.data.region = this.localization.region
+          this.getCragAround()
+        }
       },
       deep: true
     },
