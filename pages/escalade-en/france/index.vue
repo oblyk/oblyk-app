@@ -25,24 +25,7 @@
 
         <p class="mt-5" v-html="$t('components.country.mapExplain')" />
 
-        <div
-          style="height: 70vh;"
-          class="mb-10"
-        >
-          <client-only>
-            <spinner v-if="loadingGeoJson" />
-            <leaflet-map
-              v-else
-              :clustered="false"
-              :geo-jsons="geoJsons"
-              :track-location="false"
-              map-style="outdoor"
-              :zoom-force="6"
-              :latitude-force="46.7"
-              :longitude-force="3.1"
-            />
-          </client-only>
-        </div>
+        <frane-svg />
 
         <h2 class="mt-10">
           <v-icon left class="vertical-align-baseline mb-1">
@@ -109,13 +92,11 @@ import { LocalizationHelpers } from '~/mixins/LocalizationHelpers'
 import { TextHelpers } from '~/mixins/TextHelpers'
 import DepartmentApi from '~/services/oblyk-api/DepartmentApi'
 import AppFooter from '~/components/layouts/AppFooter'
-import Spinner from '~/components/layouts/Spiner'
-import CountryApi from '~/services/oblyk-api/CountryApi'
 import TownSearchForm from '~/components/towns/forms/TownSearchForm'
-const LeafletMap = () => import('~/components/maps/LeafletMap')
+import FraneSvg from '~/components/Countries/FranceSvg'
 
 export default {
-  components: { TownSearchForm, LeafletMap, Spinner, AppFooter },
+  components: { FraneSvg, TownSearchForm, AppFooter },
   mixins: [LocalizationHelpers, TextHelpers],
 
   data () {
@@ -123,9 +104,6 @@ export default {
       towns: [],
       departments: [],
       departmentFiltre: '',
-
-      loadingGeoJson: true,
-      geoJsons: null,
 
       mdiMagnify,
       mdiHomeSearchOutline,
@@ -170,23 +148,6 @@ export default {
 
   mounted () {
     this.$store.commit('layout/LAYOUT_PADDING', true)
-    this.getGeoJson()
-  },
-
-  methods: {
-    getGeoJson () {
-      new CountryApi(
-        this.$axios,
-        this.$store
-      )
-        .geoJson('fr')
-        .then((resp) => {
-          this.geoJsons = { features: resp.data.features }
-        })
-        .finally(() => {
-          this.loadingGeoJson = false
-        })
-    }
   }
 }
 </script>

@@ -448,7 +448,7 @@ export default {
       france: {
         title: 'Escalade en France',
         searchPlaceHolder: 'Marseilles, Paris, Grenoble, etc.',
-        departmentMap: 'La carte des départements de France',
+        departmentMap: 'La carte des départements français',
         departmentList: 'Liste des départements de France'
       }
     },
