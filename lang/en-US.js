@@ -99,7 +99,8 @@ export default {
     unsubscribeMe: 'Unsubscribe me',
     accept: 'Accept',
     reject: 'Reject',
-    update: 'Update'
+    update: 'Update',
+    aroundMe: 'Around me'
   },
   colors: {
     noColor: 'No color',
@@ -1185,7 +1186,6 @@ export default {
         news: 'News',
         contribute: 'Contribute',
         oblyk: 'Oblyk',
-        features: 'Features',
         subHeaders: {
           me: 'Me',
           account: 'Account',
