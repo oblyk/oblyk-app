@@ -1476,15 +1476,15 @@ export default {
     climbingAround: {
       france: {
         title: "Escalade en France: falaises, topos et salles d'escalade",
-        description: "Retrouve les informations sur les sites d'escalade en France (voir, grande voie, bloc, via ferrata ...), les topos et les salles d'escalade sur Oblyk"
+        description: "Retrouve les informations sur les sites d'escalade en France (voie, grande voie, bloc, via ferrata ...), les topos et les salles d'escalade sur Oblyk"
       },
       department: {
         title: "Escalade %{name} : falaises, topos et salles d'escalade",
-        description: "Retrouve les informations sur les sites d'escalade %{name} (voir, grande voie, bloc, via ferrata ...), les topos et les salles d'escalade sur Oblyk"
+        description: "Retrouve les informations sur les sites d'escalade %{name} (voie, grande voie, bloc, via ferrata ...), les topos et les salles d'escalade sur Oblyk"
       },
       town: {
         title: "Escalade %{name} : falaises, topos et salles d'escalade",
-        description: "Retrouve les informations sur les sites d'escalade autour de %{name} (%{department_number}) : voir, grande voie, bloc, via ferrata ..., les topos et les salles d'escalade sur Oblyk"
+        description: "Retrouve les informations sur les sites d'escalade autour de %{name} (%{department_number}) : voie, grande voie, bloc, via ferrata ..., les topos et les salles d'escalade sur Oblyk"
       }
     },
     crag: {
