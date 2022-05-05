@@ -456,7 +456,7 @@ export default {
       climbing: 'Escalade',
       gradeOf: 'en cotations',
       inFigures: 'en quelques chiffres',
-      mapTitle: "Cartes des sites et salles d'escalades",
+      mapTitle: "Carte des sites et salles d'escalade",
       bookCovering: 'Un topo couvre | %{count} topos couvrent',
       selfGeneratedDescription: 'Description générée à partir des données disponibles sur Oblyk.',
       towns: 'Les villes',

@@ -126,7 +126,7 @@
             v-model="showMapCrag"
             hide-details
             :disabled="loadingGeoJson"
-            label="Falaise"
+            label="Falaises"
           />
 
           <div class="ml-4" />
@@ -281,7 +281,7 @@ export default {
 
       climbingStyles: [
         {
-          text: 'Tout les styles',
+          text: 'Tous les styles',
           value: 'all'
         },
         {
