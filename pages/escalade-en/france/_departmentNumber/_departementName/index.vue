@@ -80,21 +80,21 @@
                 <v-col cols="6">
                   <description-line
                     :icon="mdiSourceBranch"
-                    item-title="Nombre de ligne"
+                    item-title="Nombre de lignes"
                     :item-value="`${department.figures.crag_routes.count.all} ligne(s)`"
                   />
                 </v-col>
                 <v-col cols="6">
                   <description-line
                     :icon="mdiTerrain"
-                    item-title="Site naturel"
+                    item-title="Site naturels"
                     :item-value="`${department.figures.crags.count.all} site(s)`"
                   />
                 </v-col>
                 <v-col cols="6">
                   <description-line
                     :icon="mdiOfficeBuildingMarkerOutline"
-                    item-title="Salle"
+                    item-title="Salles"
                     :item-value="`${department.figures.gyms.count.all} salle(s)`"
                   />
                 </v-col>
