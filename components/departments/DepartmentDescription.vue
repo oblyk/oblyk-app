@@ -7,7 +7,7 @@
         v-if="department.figures.crags.count.all > 0"
         class="span-comma"
       >
-        on trouve notamment
+        On trouve notamment
         <span v-if="department.figures.crags.count.types.sport_climbing > 0">
           {{ $tc('components.town.pluralStyle', department.figures.crags.count.types.sport_climbing, { count: department.figures.crags.count.types.sport_climbing }) }} de voie
         </span>
@@ -51,12 +51,12 @@
         (à <nuxt-link :to="cragToObject(department.figures.crag_routes.hardest_bouldering.crag).path">{{ department.figures.crag_routes.hardest_bouldering.crag.name }}</nuxt-link>).
       </span>
       <span v-if="department.guide_book_papers.length > 0">
-        {{ department.guide_book_papers.length }} topos d'escalades couvrent ces sites de grimpe.
+        {{ department.guide_book_papers.length }} topos d'escalade couvrent ces sites de grimpe.
       </span>
     </p>
 
     <p v-if="department.figures.gyms.count.all > 0">
-      {{ $t(`components.department.namePrefixType.${department.name_prefix_type}`) }} {{ department.name }} compte {{ department.figures.gyms.count.all }} salles d'escalade pour grimper en intérieur.
+      {{ $t(`components.department.namePrefixType.${department.name_prefix_type}`) }} {{ department.name }} regroupe {{ department.figures.gyms.count.all }} salles d'escalade.
     </p>
 
     <p class="text-right text--disabled mb-0">
