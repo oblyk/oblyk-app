@@ -1,15 +1,18 @@
 <template>
   <div>
     <p class="mb-0">
-      <strong>{{ town.name }}</strong> ({{ town.zipcode }}) ville située dans le département de
+      <strong>{{ town.name }}</strong> ({{ town.zipcode }}) est une ville située dans le département de
       <nuxt-link :to="toDepartmentObject(town.department).path">
         {{ $t(`components.department.namePrefixType.${town.department.name_prefix_type}`).toLocaleLowerCase() }}{{ town.department.name }}
       </nuxt-link>,
       <span v-if="town.crags.around.length > 0">
         {{ town.name }} présente {{ $t(densityLabelKey) }} de sites d’escalade : {{ town.crags.around.length }} sites dans un rayon de {{ town.dist }}km.
       </span>
-      <span class="span-comma">
-        on trouve notamment
+      <span
+        v-if="town.crags.around.length > 0"
+        class="span-comma"
+      >
+        On trouve notamment
         <span v-if="climbingTypes.sport_climbing > 0">
           {{ $tc('components.town.pluralStyle', climbingTypes.sport_climbing, { count: climbingTypes.sport_climbing }) }} de voie
         </span>
@@ -56,7 +59,7 @@
       <nuxt-link :to="toCragObject(town.crags.nearest).path">
         {{ town.crags.nearest.name }}
       </nuxt-link>
-      (site de {{ nearestCragsType }}), situé {{ town.crags.nearest.city }}, à {{ town.crags.nearest_dist }}km de distance.
+      (site de {{ nearestCragsType }}), situé à {{ town.crags.nearest.city }}, à {{ town.crags.nearest_dist }}km de distance.
     </p>
 
     <!-- Guide books -->
@@ -86,7 +89,7 @@
 
     <!-- Indoor around -->
     <p v-else>
-      Côté indoor, on trouve à {{ town.name }} et au alentour {{ town.gyms.around.length }} salles d'escalade en intérieur :
+      Côté indoor, on trouve à {{ town.name }} et aux alentours {{ town.gyms.around.length }} salles d'escalade :
       <span class="a-comma">
         <nuxt-link
           v-for="(gym, index) in town.gyms.around"
