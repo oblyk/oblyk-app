@@ -479,7 +479,7 @@ export default {
     town: {
       title: 'Escalade autour de %{name}',
       searchAnotherCity: 'Chercher une autre ville',
-      cragsAround: "Un site d'escalade aux alentour de %{name} | %{count} sites d'escalade aux alentour de %{name}",
+      cragsAround: "Un site d'escalade aux alentours de %{name} | %{count} sites d'escalade aux alentours de %{name}",
       nearestCrag: 'La falaise la plus proche de %{name}',
       gymsAround: 'Une salle pour grimper en indoor à %{name} et aux alentours | %{count} salles pour grimper en indoor à %{name} et aux alentours',
       nearestGym: 'La salle la plus proche de %{name}',

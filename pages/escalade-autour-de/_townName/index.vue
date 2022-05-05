@@ -83,7 +83,7 @@
             {{ $t('components.town.nearestCrag', { name: town.name }) }}
           </h2>
           <p>
-            Il n'y pas de site de grimpe naturel à moins de <strong>{{ town.dist }} km</strong> de {{ town.name }}.
+            Il n'y a pas de site de grimpe naturel à moins de <strong>{{ town.dist }} km</strong> de {{ town.name }}.
             Le site le plus proche est <strong>{{ toCragObject(town.crags.nearest).name }}</strong> à {{ town.crags.nearest_dist }} km.
           </p>
 
@@ -127,7 +127,7 @@
             {{ $t('components.town.nearestGym', { name: town.name }) }}
           </h2>
           <p>
-            Il n'y pas de salle à moins de <strong>{{ town.dist }} km</strong> de {{ town.name }},
+            Il n'y a pas de salle à moins de <strong>{{ town.dist }} km</strong> de {{ town.name }},
             il faudra s'éloigner de {{ town.gyms.nearest_dist }} km pour trouver la salle <strong>{{ toGymObject(town.gyms.nearest).name }}</strong> à <strong>{{ town.gyms.nearest.city }}</strong>.
           </p>
           <gym-small-card
