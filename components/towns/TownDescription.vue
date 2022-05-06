@@ -9,7 +9,7 @@
         {{ town.name }} présente {{ $t(densityLabelKey) }} de sites d’escalade : {{ town.crags.around.length }} sites dans un rayon de {{ town.dist }}km.
       </span>
       <span
-        v-if="town.crags.around.length > 0"
+        v-if="town.crags.around.length > 0 && havingClimbingTypes > 0"
         class="span-comma"
       >
         On trouve notamment
@@ -42,15 +42,22 @@
 
     <!-- If crags around -->
     <p v-if="town.crags.around.length > 0">
-      Ces {{ town.crags.around.length }} sites d’escalade proposent au total {{ town.crags.route_figures.route_count }} voies :
-      la ligne la plus dure est
-      <nuxt-link :to="toCragRouteObject(town.crags.route_figures.grade.max.crag_route).path">
-        {{ town.crags.route_figures.grade.max.crag_route.name }}, {{ town.crags.route_figures.grade.max.text }}
-      </nuxt-link>
-      à
-      <nuxt-link :to="toCragObject(town.crags.route_figures.grade.max.crag_route.crag).path">
-        {{ town.crags.route_figures.grade.max.crag_route.crag.name }}
-      </nuxt-link>.
+      <span v-if="town.crags.around.length === 1">
+        Ce site d’escalade présente au total {{ town.crags.route_figures.route_count }} voie{{ town.crags.route_figures.route_count > 1 ? 's' : '' }}{{ town.crags.route_figures.grade.max.crag_route ? ' :' : '.' }}
+      </span>
+      <span v-if="town.crags.around.length > 1">
+        Ces {{ town.crags.around.length }} sites d’escalade proposent au total {{ town.crags.route_figures.route_count }} voies{{ town.crags.route_figures.grade.max.crag_route ? ' :' : '.' }}
+      </span>
+      <span v-if="town.crags.route_figures.grade.max.crag_route !== null">
+        la ligne la plus dure est
+        <nuxt-link :to="toCragRouteObject(town.crags.route_figures.grade.max.crag_route).path">
+          {{ town.crags.route_figures.grade.max.crag_route.name }}, {{ town.crags.route_figures.grade.max.text }}
+        </nuxt-link>
+        à
+        <nuxt-link :to="toCragObject(town.crags.route_figures.grade.max.crag_route.crag).path">
+          {{ town.crags.route_figures.grade.max.crag_route.crag.name }}
+        </nuxt-link>.
+      </span>
     </p>
 
     <!-- No crag around -->
@@ -159,6 +166,20 @@ export default {
         if (crag.via_ferrata) { types.via_ferrata += 1 }
       }
       return types
+    },
+
+    havingClimbingTypes () {
+      let sum = 0
+      for (const crag of this.town.crags.around) {
+        if (crag.sport_climbing) { sum += 1 }
+        if (crag.bouldering) { sum += 1 }
+        if (crag.multi_pitch) { sum += 1 }
+        if (crag.trad_climbing) { sum += 1 }
+        if (crag.aid_climbing) { sum += 1 }
+        if (crag.deep_water) { sum += 1 }
+        if (crag.via_ferrata) { sum += 1 }
+      }
+      return sum
     },
 
     nearestCragsType () {
