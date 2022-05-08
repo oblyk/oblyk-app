@@ -168,7 +168,8 @@ export default {
 
 <style lang="scss">
 .my-location-map {
-  height: 45vh;
+  height: calc(100vh - 425px);
+  max-height: 400px;
   .vue2leaflet-map {
     &.leaflet-container {
       border-radius: 8px;
