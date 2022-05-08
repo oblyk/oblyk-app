@@ -519,6 +519,13 @@ export default {
         funClimbing: 'Fun Climbing'
       }
     },
+    localization: {
+      title: 'Ma localisation',
+      explain: "Activer la localisation te permet d'avoir des informations locals dans ton flux, de rechercher des falaises, des salles ou des grimpeurs et grimpeuses autour de toi.",
+      activated: 'Localisation activée',
+      deactivated: 'Activer ma localisation',
+      private: "Ta localisation n'est pas enregistrée par Oblyk."
+    },
     session: {
       connectAlert: 'Vous devez être connecté·e pour accéder à cette page',
       alreadyConnected: 'Vous êtes connecté·e',

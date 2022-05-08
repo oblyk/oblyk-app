@@ -74,10 +74,13 @@ export default {
 
   data () {
     return {
-      mdiCookie,
-      mdiGift,
       cookiesMessage: false,
-      readyToUpdatePwa: false
+      readyToUpdatePwa: false,
+
+      watchLocationId: null,
+
+      mdiCookie,
+      mdiGift
     }
   },
 
@@ -94,6 +97,14 @@ export default {
 
     '$store.state.theme.theme' () {
       this.$vuetify.theme.dark = this.$store.getters['theme/getTheme'] === 'dark'
+    },
+
+    '$store.state.geolocation.status' () {
+      if (this.$store.state.geolocation.status === 'activate') {
+        this.activateWatchGeolocation()
+      } else if (this.watchLocationId !== null) {
+        this.deactivateWatchGeolocation()
+      }
     }
   },
 
@@ -108,6 +119,9 @@ export default {
     this.$vuetify.theme.dark = this.$store.getters['theme/getTheme'] === 'dark'
     this.cookiesMessage = this.$store.getters['cookie/showCookiePopup']
     this.updateWorkbox()
+    if (this.$store.state.geolocation.status === 'activate') {
+      this.activateWatchGeolocation()
+    }
   },
 
   methods: {
@@ -128,6 +142,36 @@ export default {
 
     reloadApp () {
       window.location.reload()
+    },
+
+    activateWatchGeolocation () {
+      if (navigator.geolocation) {
+        this.watchLocationId = navigator.geolocation.watchPosition(
+          (position) => {
+            this.$store.dispatch('geolocation/setLocation', {
+              latitude: position.coords.latitude,
+              longitude: position.coords.longitude
+            })
+          },
+          () => {
+            this.$store.dispatch('geolocation/deactivateLocation')
+          },
+          {
+            enableHighAccuracy: false,
+            timeout: 10000,
+            maximumAge: 0
+          }
+        )
+      }
+    },
+
+    deactivateWatchGeolocation () {
+      if (navigator.geolocation) {
+        if (this.watchLocationId) {
+          navigator.geolocation.clearWatch(this.watchLocationId)
+          this.$store.dispatch('geolocation/deactivateLocation')
+        }
+      }
     }
   }
 }
