@@ -31,6 +31,7 @@
           <v-icon
             v-if="localizationActivated"
             class="mr-2"
+            color="primary"
           >
             {{ mdiMapMarker }}
           </v-icon>
@@ -59,6 +60,7 @@
                   class="my-location-map"
                   :latitude-force="latitude"
                   :longitude-force="longitude"
+                  :zoom-force="16"
                   :clustered="false"
                   :track-location="false"
                   map-style="outdoor"
@@ -78,6 +80,16 @@
             {{ $t('components.localization.private') }}
           </v-alert>
         </v-card-text>
+        <v-card-actions>
+          <v-spacer />
+          <v-btn
+            text
+            color="primary"
+            @click="localizationPopup = false"
+          >
+            {{ $t('actions.close') }}
+          </v-btn>
+        </v-card-actions>
       </v-card>
     </v-dialog>
   </div>
@@ -156,7 +168,7 @@ export default {
 
 <style lang="scss">
 .my-location-map {
-  height: 400px;
+  height: 45vh;
   .vue2leaflet-map {
     &.leaflet-container {
       border-radius: 8px;
