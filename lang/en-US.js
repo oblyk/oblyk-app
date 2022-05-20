@@ -524,7 +524,8 @@ export default {
       explain: 'Enabling location allows you to have local information in your feed, to search for crags, climbing gyms or climbers around you.',
       activated: 'Location activated',
       deactivated: 'Activate my location',
-      private: 'Your location is not recorded by Oblyk.'
+      private: 'Your location is not recorded by Oblyk.',
+      IAmHere: 'I am here'
     },
     session: {
       connectAlert: 'You must be logged in to access this page',

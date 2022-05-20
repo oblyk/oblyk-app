@@ -69,7 +69,11 @@
           v-if="showLocalization && IAmGeolocated"
           :lat-lng="myLatLng"
           :icon="myLocationIcon"
-        />
+        >
+          <l-tooltip>
+            {{ $t('components.localization.IAmHere') }}
+          </l-tooltip>
+        </l-marker>
       </l-map>
     </div>
   </client-only>
@@ -78,7 +82,7 @@
 <script>
 import L, { icon } from 'leaflet'
 import 'leaflet/dist/leaflet.css'
-import { LMap, LTileLayer, LControlZoom, LGeoJson, LControl, LCircle, LMarker } from 'vue2-leaflet'
+import { LMap, LTileLayer, LControlZoom, LGeoJson, LControl, LCircle, LMarker, LTooltip } from 'vue2-leaflet'
 import Vue2LeafletMarkerCluster from 'vue2-leaflet-markercluster'
 import { MapPopupHelpers } from '@/mixins/MapPopupHelpers'
 import { MapMarkerHelpers } from '@/mixins/MapMarkerHelpers'
@@ -98,6 +102,7 @@ export default {
     LControlZoom,
     LTileLayer,
     LMarker,
+    LTooltip,
     'v-marker-cluster': Vue2LeafletMarkerCluster
   },
   mixins: [MapPopupHelpers, MapMarkerHelpers],
@@ -296,6 +301,12 @@ export default {
   height: 100%;
   width: 100%;
 }
+.leaflet-marker-icon[src="/markers/i-am-here.png"] {
+  animation: i-am-here-pulse-animation 2s infinite;
+  border-radius: 10px;
+  box-shadow: 0 0 1px 1px rgba(42, 127, 255, 1);
+  z-index: 500 !important;
+}
 .leaflet-popup {
   .map-popup-cover {
     background-color: rgb(240, 240, 240);
@@ -419,6 +430,14 @@ export default {
   .v-input {
     margin-top: 0;
     padding-top: 0;
+  }
+}
+@keyframes i-am-here-pulse-animation {
+  0% {
+    box-shadow: 0 0 0 0 rgba(42, 127, 255, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 0 20px rgba(42, 127, 255, 0);
   }
 }
 </style>
