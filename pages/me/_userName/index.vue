@@ -8,11 +8,7 @@
       <v-container class-name="dashboard-container">
         <!-- Get localization -->
         <client-only>
-          <!--          <enable-localization-->
-          <!--            :user="currentUser"-->
-          <!--            class="mb-3"-->
-          <!--            :show-localization="false"-->
-          <!--          />-->
+          <enable-localization class="mb-3" />
 
           <!-- Avatar missing -->
           <avatar-missing :user="currentUser" class="mb-3" />
@@ -49,7 +45,7 @@ import { CurrentUserConcern } from '@/concerns/CurrentUserConcern'
 import Spinner from '@/components/layouts/Spiner'
 import UserHead from '@/components/users/layouts/UserHead'
 import EnablePartnerSearch from '@/components/users/notificationCard/EnablePartnerSearch'
-// import EnableLocalization from '@/components/users/notificationCard/EnableLocalization'
+import EnableLocalization from '@/components/users/notificationCard/EnableLocalization'
 import BannerMissing from '@/components/users/notificationCard/BannerMissing'
 import AvatarMissing from '@/components/users/notificationCard/AvatarMissing'
 import CurrentUserTabs from '@/components/users/layouts/CurrentUserTabs'
@@ -67,7 +63,7 @@ export default {
     CurrentUserTabs,
     AvatarMissing,
     BannerMissing,
-    // EnableLocalization,
+    EnableLocalization,
     EnablePartnerSearch,
     UserHead,
     Spinner

@@ -49,6 +49,7 @@ export default {
     editMyProfile: 'Edit my profile',
     no: 'No',
     yes: 'Yes',
+    IUnderstand: 'I understand',
     activate: 'Activate',
     disable: 'Disable',
     newPassword: 'New password',
@@ -137,6 +138,7 @@ export default {
     sentAt: 'sent at %{date}'
   },
   common: {
+    tip: 'Tip',
     requiredFields: 'Required fields',
     noInformation: 'No information',
     informations: 'Informations',
@@ -525,7 +527,8 @@ export default {
       activated: 'Location activated',
       deactivated: 'Activate my location',
       private: 'Your location is not recorded by Oblyk.',
-      IAmHere: 'I am here'
+      IAmHere: 'I am here',
+      activateLocation: 'Activate my location'
     },
     session: {
       connectAlert: 'You must be logged in to access this page',
@@ -1010,7 +1013,9 @@ export default {
       localizationDeactivated: 'localization disabled',
       localizationActivated: 'localization enabled',
       activateLocalization: 'Activate localization',
-      activateLocalizationExplain: "Localization allows me to have information about what's going on around me (and is practice for the map climbers).",
+      activateLocalizationExplain: 'Enabling location allows you to have a whole range of practical features (nearby crags, local news in your feed, centering maps, partner search, etc.).',
+      youControlYourLocation: 'You can activate or deactivate the location at any time via icon',
+      youControlYourLocationInAppDrawer: 'in the Oblyk menu',
       uploadBanner: '<strong>TIPS !</strong> Upload a banner to customize the header of this page.',
       uploadAvatar: '<strong>TIPS !</strong> Add a profile picture to your account.',
       bioIsEmpty: '%{name} has not yet written his bio',

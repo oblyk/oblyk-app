@@ -49,6 +49,7 @@ export default {
     editMyProfile: 'Modifier mon profil',
     no: 'Non',
     yes: 'Oui',
+    IUnderstand: "J'ai compris",
     activate: 'Activer',
     disable: 'Désactiver',
     newPassword: 'Nouveau mot de passe',
@@ -137,6 +138,7 @@ export default {
     sentAt: 'envoyé le %{date}'
   },
   common: {
+    tip: 'Astuce',
     requiredFields: 'champs obligatoires',
     noInformation: 'Non renseigné',
     informations: 'Informations',
@@ -525,7 +527,8 @@ export default {
       activated: 'Localisation activée',
       deactivated: 'Activer ma localisation',
       private: "Ta localisation n'est pas enregistrée par Oblyk.",
-      IAmHere: 'Je suis là'
+      IAmHere: 'Je suis là',
+      activateLocation: 'Activer ma localisation'
     },
     session: {
       connectAlert: 'Vous devez être connecté·e pour accéder à cette page',
@@ -1010,7 +1013,9 @@ export default {
       localizationDeactivated: 'Localisation désactivée',
       localizationActivated: 'Localisation activée',
       activateLocalization: 'Activer la localisation',
-      activateLocalizationExplain: "La localisation permet d'avoir des informations sur ce qu'il se passe autour de moi (et est pratique pour la carte des grimpeur·euse·s)",
+      activateLocalizationExplain: "Activer la localisation te permet d'avoir tout un panel de fonctionnalités pratique (falaises aux alentours, infos local dans ton flux, centrer les cartes, recherche de partenaire, etc.)",
+      youControlYourLocation: "Tu peux activer ou désactiver la localisation à tout moment via l'icône",
+      youControlYourLocationInAppDrawer: "dans le menu d'Oblyk",
       uploadBanner: "<strong>TIPS !</strong> Upload un bandeau pour personnaliser l'entête de cette page.",
       uploadAvatar: '<strong>TIPS !</strong> Ajout une photo de profil à ton compte.',
       bioIsEmpty: "%{name} n'a pas encore rédigé sa bio",

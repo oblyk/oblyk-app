@@ -152,6 +152,11 @@ export default {
 
   mounted () {
     this.activatedLocalization = this.$store.state.geolocation.status === 'activate'
+    this.$root.$on('ShowLocalizationPopup', (show) => { this.localizationPopup = show })
+  },
+
+  beforeDestroy () {
+    this.$root.$off('ShowLocalizationPopup')
   },
 
   methods: {
