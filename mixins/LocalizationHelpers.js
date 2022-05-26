@@ -16,23 +16,11 @@ export const LocalizationHelpers = {
       return (navigator.geolocation)
     },
 
-    acceptLocalization () {
-      return (localStorage.getItem('answerForLocalization') !== 'no')
-    },
-
     getCurrentLocation () {
       if (!this.navigatorSupportLocation()) { this.currentLocalizationError = true }
 
       this.localizationRequesting = true
       navigator.geolocation.getCurrentPosition(this.geolocationSuccess, this.geolocationError)
-    },
-
-    haveLocalization () {
-      if (process.client) {
-        return localStorage.getItem('currentLatitude') !== null && localStorage.getItem('currentLongitude') && localStorage.getItem('answerForLocalization') !== 'no'
-      } else {
-        return false
-      }
     },
 
     geolocationSuccess (position) {
