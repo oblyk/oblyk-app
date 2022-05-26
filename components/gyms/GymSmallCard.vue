@@ -40,7 +40,7 @@
             </v-alert>
             {{ gym.country }}, {{ gym.city }}
             <client-only>
-              <cite v-if="haveLocalization()"> - {{ $t('common.is') }} {{ getDistance() }} km</cite>
+              <cite v-if="IAmGeolocated"> - {{ $t('common.is') }} {{ distance }} km</cite>
             </client-only>
           </v-list-item-subtitle>
         </v-list-item-content>
@@ -68,12 +68,20 @@ export default {
     }
   },
 
-  methods: {
-    getDistance () {
-      const currentLatitude = localStorage.getItem('currentLatitude')
-      const currentLongitude = localStorage.getItem('currentLongitude')
+  computed: {
+    IAmGeolocated () {
+      return this.$store.getters['geolocation/IAmGeolocated']
+    },
 
-      return this.geoDistance(currentLatitude, currentLongitude, this.gym.latitude, this.gym.longitude)
+    distance () {
+      if (!this.IAmGeolocated) { return false }
+
+      return this.geoDistance(
+        this.$store.state.geolocation.latitude,
+        this.$store.state.geolocation.longitude,
+        this.gym.latitude,
+        this.gym.longitude
+      )
     }
   }
 }
