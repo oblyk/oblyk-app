@@ -38,7 +38,7 @@
             </v-alert>
             {{ crag.country }}, {{ crag.city }}
             <client-only>
-              <cite v-if="haveLocalization()"> - {{ $t('common.is') }} {{ getDistance() }} km</cite>
+              <cite v-if="IAmGeolocated"> - {{ $t('common.is') }} {{ distance }} km</cite>
             </client-only>
           </v-list-item-subtitle>
         </v-list-item-content>
@@ -71,16 +71,20 @@ export default {
     }
   },
 
-  mounted () {
-    this.getDistance()
-  },
+  computed: {
+    IAmGeolocated () {
+      return this.$store.getters['geolocation/IAmGeolocated']
+    },
 
-  methods: {
-    getDistance () {
-      const currentLatitude = localStorage.getItem('currentLatitude')
-      const currentLongitude = localStorage.getItem('currentLongitude')
+    distance () {
+      if (!this.IAmGeolocated) { return false }
 
-      return this.geoDistance(currentLatitude, currentLongitude, this.crag.latitude, this.crag.longitude)
+      return this.geoDistance(
+        this.$store.state.geolocation.latitude,
+        this.$store.state.geolocation.longitude,
+        this.crag.latitude,
+        this.crag.longitude
+      )
     }
   }
 }
