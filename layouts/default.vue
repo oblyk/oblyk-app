@@ -4,7 +4,14 @@
     <v-main :class="hasPaddingTop ? '' : 'pt-0'">
       <Nuxt />
     </v-main>
+
+    <!-- Display alert -->
     <app-alert />
+
+    <!-- Control my geolocation -->
+    <client-only>
+      <localization-popup />
+    </client-only>
 
     <!-- About cookies -->
     <v-snackbar
@@ -67,9 +74,14 @@ import { mdiCookie, mdiGift } from '@mdi/js'
 import AppBar from '~/components/layouts/AppBar'
 import AppAlert from '~/components/layouts/AppAlert'
 import { Cable } from '~/channels/Cable'
+const LocalizationPopup = () => import('~/components/maps/LocalizationPopup')
 
 export default {
-  components: { AppAlert, AppBar },
+  components: {
+    LocalizationPopup,
+    AppAlert,
+    AppBar
+  },
   mixins: [Cable],
 
   data () {
