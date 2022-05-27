@@ -20,6 +20,9 @@
         <!-- Layer Selector -->
         <l-control position="topright">
           <leaflet-layer-selector v-model="layerIndex" :map-style="mapStyle" />
+          <leaflet-localization-center
+            :set-map-view="setView"
+          />
         </l-control>
 
         <!-- Legend -->
@@ -88,11 +91,13 @@ import { MapPopupHelpers } from '@/mixins/MapPopupHelpers'
 import { MapMarkerHelpers } from '@/mixins/MapMarkerHelpers'
 import LeafletLayerSelector from '@/components/maps/leafletControls/LeafletLayerSelector'
 import LeafletLegend from '@/components/maps/leafletControls/LeafletLegend'
+import LeafletLocalizationCenter from '~/components/maps/leafletControls/LeafletLocalizationCenter'
 
 export default {
   name: 'LeafletMap',
 
   components: {
+    LeafletLocalizationCenter,
     LeafletLegend,
     LeafletLayerSelector,
     LMap,
@@ -290,6 +295,10 @@ export default {
     fitGeoJsonBounds () {
       const bounds = L.geoJson(this.geoJsons).getBounds()
       this.$refs.leafletMap.mapObject.fitBounds(bounds)
+    },
+
+    setView (options) {
+      this.$refs.leafletMap.mapObject.setView([options.latitude, options.longitude], options.zoom)
     }
   }
 }
