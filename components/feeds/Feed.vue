@@ -56,7 +56,9 @@ export default {
         guideBooks: true,
         articles: true,
         subscribes: true,
-        localNews: true
+        localNews: true,
+        latitude: '',
+        longitude: ''
       }
     }
   },
@@ -90,6 +92,12 @@ export default {
 
     getFeeds () {
       this.moreIsBeingLoaded()
+
+      if (this.feedApi === 'CurrentUserApi' && this.$store.getters['geolocation/IAmGeolocated']) {
+        this.feedOptions.latitude = this.$store.state.geolocation.latitude
+        this.feedOptions.longitude = this.$store.state.geolocation.longitude
+      }
+
       this.feedClass()
         .feed(this.page, this.feedOptions)
         .then((resp) => {
