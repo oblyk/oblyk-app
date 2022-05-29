@@ -8,7 +8,7 @@
       <v-container class-name="dashboard-container">
         <!-- Get localization -->
         <client-only>
-          <enable-localization class="mb-3" />
+          <enable-localization class="mb-7" />
 
           <!-- Avatar missing -->
           <avatar-missing :user="currentUser" class="mb-3" />

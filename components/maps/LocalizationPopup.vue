@@ -89,7 +89,7 @@ export default {
     return {
       showModal: false,
       showMap: false,
-      activatedLocalization: null,
+      activatedLocalization: false,
 
       mdiMapMarkerOff,
       mdiMapMarker,
