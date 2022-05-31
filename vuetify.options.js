@@ -10,7 +10,7 @@ export default {
   theme: {
     themes: {
       light: {
-        primary: '#01579b',
+        primary: '#31994e',
         secondary: '#fff',
         third: '#bdbdbd',
         accent: '#2979ff',
@@ -19,7 +19,7 @@ export default {
         myMessage: '#f5f5f5'
       },
       dark: {
-        primary: '#1565c0',
+        primary: '#31994e',
         secondary: '#121212',
         third: '#424242',
         accent: '#448aff',
