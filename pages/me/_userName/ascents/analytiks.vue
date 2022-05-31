@@ -126,7 +126,6 @@ export default {
     this.getYearChart()
     this.getMonthChart()
     this.getEvolutionChart()
-    this.$store.commit('layout/LAYOUT_PADDING', true)
   },
 
   methods: {

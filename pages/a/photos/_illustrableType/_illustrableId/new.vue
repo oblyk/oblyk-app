@@ -26,10 +26,6 @@ export default {
     return {
       title: this.$t('meta.photo.new')
     }
-  },
-
-  mounted () {
-    this.$store.commit('layout/LAYOUT_PADDING', true)
   }
 }
 </script>

@@ -94,10 +94,6 @@ export default {
       }
       return ''
     }
-  },
-
-  mounted () {
-    this.$store.commit('layout/LAYOUT_PADDING', true)
   }
 }
 </script>

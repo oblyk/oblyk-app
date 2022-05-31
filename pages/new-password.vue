@@ -29,10 +29,6 @@ export default {
         { hid: 'robots', name: 'robots', content: 'noindex' }
       ]
     }
-  },
-
-  mounted () {
-    this.$store.commit('layout/LAYOUT_PADDING', true)
   }
 }
 </script>

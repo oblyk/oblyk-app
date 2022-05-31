@@ -55,10 +55,6 @@ export default {
     return {
       title: this.$t('meta.cragRoute.new')
     }
-  },
-
-  mounted () {
-    this.$store.commit('layout/LAYOUT_PADDING', true)
   }
 }
 </script>

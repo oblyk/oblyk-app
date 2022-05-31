@@ -21,10 +21,6 @@ import SkeletonLoaderHead from '~/components/layouts/SkeletonLoaderHead'
 
 export default {
   components: { SkeletonLoaderHead, AppFooter, GymTabs, GymHead },
-  mixins: [GymConcern],
-
-  mounted () {
-    this.$store.commit('layout/LAYOUT_PADDING', false)
-  }
+  mixins: [GymConcern]
 }
 </script>

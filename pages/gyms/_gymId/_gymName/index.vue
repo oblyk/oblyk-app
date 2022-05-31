@@ -22,10 +22,6 @@ export default {
       type: Object,
       required: true
     }
-  },
-
-  mounted () {
-    this.$store.commit('layout/LAYOUT_PADDING', false)
   }
 }
 </script>

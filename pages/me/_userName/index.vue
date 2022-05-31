@@ -72,11 +72,7 @@ export default {
     UserHead,
     Spinner
   },
-  mixins: [CurrentUserConcern],
-
-  mounted () {
-    this.$store.commit('layout/LAYOUT_PADDING', false)
-  }
+  mixins: [CurrentUserConcern]
 }
 </script>
 

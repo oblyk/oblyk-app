@@ -27,10 +27,6 @@ export default {
     return {
       title: this.$t('meta.guideBookPaper.cover', { name: (this.guideBookPaper || {}).name })
     }
-  },
-
-  mounted () {
-    this.$store.commit('layout/LAYOUT_PADDING', true)
   }
 }
 </script>

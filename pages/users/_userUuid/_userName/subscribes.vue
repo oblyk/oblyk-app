@@ -103,7 +103,6 @@ export default {
   },
 
   mounted () {
-    this.$store.commit('layout/LAYOUT_PADDING', false)
     this.getSubscribes()
   },
 

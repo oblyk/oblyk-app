@@ -17,10 +17,6 @@ import SkeletonLoaderHead from '~/components/layouts/SkeletonLoaderHead'
 
 export default {
   components: { SkeletonLoaderHead, UserTabs, UserHead },
-  mixins: [UserConcern],
-
-  mounted () {
-    this.$store.commit('layout/LAYOUT_PADDING', false)
-  }
+  mixins: [UserConcern]
 }
 </script>

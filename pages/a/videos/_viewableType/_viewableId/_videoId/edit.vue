@@ -32,10 +32,6 @@ export default {
     return {
       title: this.$t('meta.video.edit')
     }
-  },
-
-  mounted () {
-    this.$store.commit('layout/LAYOUT_PADDING', true)
   }
 }
 </script>

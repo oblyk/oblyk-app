@@ -16,10 +16,6 @@ import NewsletterForm from '~/components/newsletters/forms/NewsletterForm'
 
 export default {
   components: { NewsletterForm },
-  middleware: ['auth'],
-
-  mounted () {
-    this.$store.commit('layout/LAYOUT_PADDING', true)
-  }
+  middleware: ['auth']
 }
 </script>

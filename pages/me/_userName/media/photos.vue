@@ -19,10 +19,6 @@ export default {
     return {
       title: this.$t('meta.currentUser.photos')
     }
-  },
-
-  mounted () {
-    this.$store.commit('layout/LAYOUT_PADDING', true)
   }
 }
 </script>

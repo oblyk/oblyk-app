@@ -31,10 +31,6 @@ export default {
         { hid: 'og:description', property: 'og:description', content: this.$t('meta.session.resetPasswordDescription') }
       ]
     }
-  },
-
-  mounted () {
-    this.$store.commit('layout/LAYOUT_PADDING', true)
   }
 }
 </script>

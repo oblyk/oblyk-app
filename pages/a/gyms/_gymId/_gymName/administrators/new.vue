@@ -28,10 +28,6 @@ export default {
     return {
       title: this.$t('meta.gym.administrators')
     }
-  },
-
-  mounted () {
-    this.$store.commit('layout/LAYOUT_PADDING', true)
   }
 }
 </script>

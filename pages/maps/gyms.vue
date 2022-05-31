@@ -45,7 +45,6 @@ export default {
     this.longitude = urlParams.get('lng')
     this.zoom = this.latitude !== null ? 15 : null
     this.getGeoJson()
-    this.$store.commit('layout/LAYOUT_PADDING', true)
   },
 
   methods: {

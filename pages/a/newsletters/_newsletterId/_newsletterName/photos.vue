@@ -72,7 +72,6 @@ export default {
 
   mounted () {
     this.getNewsletterPhotos()
-    this.$store.commit('layout/LAYOUT_PADDING', true)
   },
 
   methods: {

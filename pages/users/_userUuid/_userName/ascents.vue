@@ -135,7 +135,6 @@ export default {
   },
 
   mounted () {
-    this.$store.commit('layout/LAYOUT_PADDING', false)
     if (this.currentUserCanSeeAscents()) {
       this.getFigures()
       this.getClimbingTypeChart()

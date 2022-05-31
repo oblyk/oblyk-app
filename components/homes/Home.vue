@@ -70,10 +70,6 @@ export default {
     HomeBoxAscentsLog,
     HomeBoxCragInfo,
     AppFooter
-  },
-
-  mounted () {
-    this.$store.commit('layout/LAYOUT_PADDING', false)
   }
 }
 </script>

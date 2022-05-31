@@ -70,7 +70,6 @@ export default {
 
   mounted () {
     this.getCrags()
-    this.$store.commit('layout/LAYOUT_PADDING', false)
   },
 
   methods: {

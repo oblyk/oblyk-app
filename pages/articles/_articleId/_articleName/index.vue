@@ -70,8 +70,6 @@ export default {
   },
 
   mounted () {
-    this.$store.commit('layout/LAYOUT_PADDING', false)
-
     setTimeout(() => {
       new ArticleApi(this.$axios, this.$auth).view(this.article.id)
     }, 5000)

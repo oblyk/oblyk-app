@@ -67,8 +67,6 @@ export default {
     const urlParams = new URLSearchParams(window.location.search)
     this.redirectTo = urlParams.get('redirect_to')
     this.climbersMap = urlParams.get('partner_request') === 'true'
-    this.partnerName = urlParams.get('partner_name')
-    this.$store.commit('layout/LAYOUT_PADDING', true)
   }
 }
 </script>

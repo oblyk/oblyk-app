@@ -38,10 +38,6 @@ export default {
         { hid: 'og:description', property: 'og:description', content: this.$t('meta.reportProblem.description') }
       ]
     }
-  },
-
-  mounted () {
-    this.$store.commit('layout/LAYOUT_PADDING', true)
   }
 }
 </script>

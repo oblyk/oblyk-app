@@ -52,7 +52,6 @@ export default {
   },
 
   mounted () {
-    this.$store.commit('layout/LAYOUT_PADDING', true)
     const urlParams = new URLSearchParams(window.location.search)
     this.redirectTo = urlParams.get('redirect_to') || '/'
   },

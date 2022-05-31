@@ -56,7 +56,6 @@ export default {
       this.zoom = this.latitude !== null ? 15 : null
     }
     this.getGeoJson()
-    this.$store.commit('layout/LAYOUT_PADDING', true)
   },
 
   methods: {

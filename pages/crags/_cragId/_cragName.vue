@@ -28,11 +28,7 @@ export default {
     CragTabs,
     CragHead
   },
-  mixins: [CragConcern],
-
-  mounted () {
-    this.$store.commit('layout/LAYOUT_PADDING', false)
-  }
+  mixins: [CragConcern]
 }
 </script>
 

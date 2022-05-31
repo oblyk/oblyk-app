@@ -127,10 +127,6 @@ export default {
     this.getGlossary()
   },
 
-  mounted () {
-    this.$store.commit('layout/LAYOUT_PADDING', true)
-  },
-
   methods: {
     getGlossary () {
       this.moreIsBeingLoaded()

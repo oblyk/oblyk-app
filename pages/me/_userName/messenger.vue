@@ -62,8 +62,6 @@ export default {
     this.onResize()
     window.addEventListener('resize', this.onResize, { passive: true })
 
-    this.$store.commit('layout/LAYOUT_PADDING', true)
-
     this.$root.$on('showMessengerConversationList', () => {
       this.showConversationList()
     })

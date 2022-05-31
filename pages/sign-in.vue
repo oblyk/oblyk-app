@@ -69,8 +69,6 @@ export default {
     const alertParams = urlParams.get('alert')
     this.alert = !(alertParams === 'false')
 
-    this.$store.commit('layout/LAYOUT_PADDING', true)
-
     if (this.$auth.loggedIn && this.redirectTo !== '') {
       this.$router.push(this.redirectTo)
     }

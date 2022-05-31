@@ -31,10 +31,6 @@ export default {
     return {
       title: this.$t('meta.ascentCragRoute.edit')
     }
-  },
-
-  mounted () {
-    this.$store.commit('layout/LAYOUT_PADDING', true)
   }
 }
 </script>

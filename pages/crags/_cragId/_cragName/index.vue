@@ -66,10 +66,6 @@ export default {
     }
   },
 
-  mounted () {
-    this.$store.commit('layout/LAYOUT_PADDING', false)
-  },
-
   methods: {
     loadRouteList (entries, observer) {
       if (entries[0].isIntersecting) {

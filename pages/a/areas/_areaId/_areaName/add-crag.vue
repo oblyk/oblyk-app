@@ -25,10 +25,6 @@ export default {
     return {
       title: this.$t('meta.area.addCrag', { name: (this.area || {}).name })
     }
-  },
-
-  mounted () {
-    this.$store.commit('layout/LAYOUT_PADDING', true)
   }
 }
 </script>

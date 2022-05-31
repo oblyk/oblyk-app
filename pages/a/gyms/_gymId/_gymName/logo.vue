@@ -29,10 +29,6 @@ export default {
     return {
       title: this.$t('meta.gym.logo')
     }
-  },
-
-  mounted () {
-    this.$store.commit('layout/LAYOUT_PADDING', true)
   }
 }
 </script>

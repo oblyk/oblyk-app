@@ -36,10 +36,6 @@ export default {
     return {
       title: this.$t('meta.gym.grade.editLine')
     }
-  },
-
-  mounted () {
-    this.$store.commit('layout/LAYOUT_PADDING', true)
   }
 }
 </script>

@@ -26,10 +26,6 @@ export default {
     return {
       title: this.$t('meta.article.addCover')
     }
-  },
-
-  mounted () {
-    this.$store.commit('layout/LAYOUT_PADDING', true)
   }
 }
 </script>

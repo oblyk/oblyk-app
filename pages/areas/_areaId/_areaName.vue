@@ -19,10 +19,6 @@ import SkeletonLoaderHead from '~/components/layouts/SkeletonLoaderHead'
 
 export default {
   components: { SkeletonLoaderHead, AreaTabs, AreaHead },
-  mixins: [AreaConcern],
-
-  mounted () {
-    this.$store.commit('layout/LAYOUT_PADDING', false)
-  }
+  mixins: [AreaConcern]
 }
 </script>

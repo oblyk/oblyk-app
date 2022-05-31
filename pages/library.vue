@@ -135,10 +135,6 @@ export default {
     }
   },
 
-  mounted () {
-    this.$store.commit('layout/LAYOUT_PADDING', true)
-  },
-
   methods: {
     toGuideObject (guide) {
       return new GuideBookPaper({ attributes: guide })

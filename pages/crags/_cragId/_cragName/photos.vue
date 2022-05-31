@@ -132,7 +132,6 @@ export default {
 
   mounted () {
     this.getVideos()
-    this.$store.commit('layout/LAYOUT_PADDING', false)
   },
 
   methods: {

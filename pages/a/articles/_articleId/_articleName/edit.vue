@@ -26,10 +26,6 @@ export default {
     return {
       title: this.$t('meta.generics.edit', { name: (this.article || {}).name })
     }
-  },
-
-  mounted () {
-    this.$store.commit('layout/LAYOUT_PADDING', true)
   }
 }
 </script>

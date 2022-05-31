@@ -97,7 +97,6 @@ export default {
   },
 
   mounted () {
-    this.$store.commit('layout/LAYOUT_PADDING', true)
     this.getFigures()
     this.getClimbingTypeChart()
     this.getGradeChart()

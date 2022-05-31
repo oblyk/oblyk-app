@@ -25,10 +25,6 @@ export default {
     return {
       title: this.$t('meta.guideBookPdf.new')
     }
-  },
-
-  mounted () {
-    this.$store.commit('layout/LAYOUT_PADDING', true)
   }
 }
 </script>
