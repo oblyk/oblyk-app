@@ -1164,6 +1164,8 @@ export default {
         login: 'Login',
         logOut: 'Logout',
         darkTheme: 'Dark theme',
+        addCross: 'Add cross',
+        searchPlaceHolder: 'Search for a climbing site, a gym, someone, etc.',
         user: {
           avatar: 'Account avatar',
           banner: 'Banner picture',

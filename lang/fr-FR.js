@@ -1164,6 +1164,8 @@ export default {
         login: 'Me connecter',
         logOut: 'Me déconnecter',
         darkTheme: 'Thème sombre',
+        addCross: 'Ajouter une croix',
+        searchPlaceHolder: "Chercher un site, une salle, quelqu'un, etc.",
         user: {
           avatar: 'Photo de profil',
           banner: 'Photo du bandeau',
