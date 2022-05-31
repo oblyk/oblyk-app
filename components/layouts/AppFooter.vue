@@ -22,7 +22,11 @@ export default {
 <style lang="scss">
 .app-footer {
   margin-top: 3em;
-  background-color: #232323 !important;
+  background-color: rgb(18, 18, 18) !important;
+  border-top-style: solid;
+  border-color: rgb(50, 50, 50) !important;
+  border-width: 1px;
+  padding-top: 15px !important;
   color: white !important;
   a {
     color: white !important;

@@ -54,7 +54,9 @@
 
     <v-navigation-drawer
       v-model="drawer"
+      class="oblyk-navigation-drawer"
       app
+      dark
       width="300"
     >
       <lazy-hydrate never :trigger-hydration="drawer">
@@ -133,5 +135,11 @@ export default {
 
 .oblyk-app-title {
   font-size: 1.2rem !important;
+}
+
+.oblyk-navigation-drawer {
+  .v-navigation-drawer__content {
+    background-color: #121212;
+  }
 }
 </style>

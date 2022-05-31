@@ -7,6 +7,7 @@
       <v-btn
         icon
         aria-label="open oblyk search"
+        :title="$t('components.layout.appDrawer.toolBar.search')"
         v-bind="attrs"
         v-on="on"
       >

@@ -6,6 +6,7 @@
     :min-width="400"
     max-width="100vw"
     bottom
+    dark
     right
   >
     <template #activator="{ on, attrs }">
@@ -23,7 +24,7 @@
           icon
           v-on="on"
         >
-          <v-icon>{{ mdiBell }}</v-icon>
+          <v-icon>{{ mdiBellOutline }}</v-icon>
         </v-btn>
       </v-badge>
     </template>
@@ -84,7 +85,7 @@
 </template>
 
 <script>
-import { mdiBell, mdiBellCheck, mdiOpenInNew } from '@mdi/js'
+import { mdiBellOutline, mdiBellCheck, mdiOpenInNew } from '@mdi/js'
 import Notification from '@/models/Notification'
 import NotificationApi from '~/services/oblyk-api/NotificationApi'
 import Spinner from '@/components/layouts/Spiner'
@@ -98,7 +99,7 @@ export default {
 
   data () {
     return {
-      mdiBell,
+      mdiBellOutline,
       mdiBellCheck,
       mdiOpenInNew,
       haveUnreadNotification: false,

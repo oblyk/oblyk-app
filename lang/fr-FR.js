@@ -92,6 +92,7 @@ export default {
     unPublish: 'Ne plus publier',
     writeAnArticle: 'Écrire un article',
     addCrag: 'Ajouter une falaise',
+    addGym: 'Ajouter une salle',
     readMore: 'Lire plus',
     writeNewsletter: 'Écrire une newsletter',
     send: 'Envoyer',
@@ -1179,35 +1180,63 @@ export default {
         mapGyms: 'Carte des salles',
         myMap: 'Ma Carte',
         mapClimber: 'Carte des grimpeur·euse·s',
-        tools: 'Outils',
+        tools: 'Boîte à outils',
         helps: 'Aides',
         about: 'À propos',
         donation: 'Nous soutenir',
         news: 'Actualités',
         contribute: 'Contribuer',
         oblyk: 'Oblyk',
+        contact: 'Nous contacter',
+        toolBar: {
+          account: 'Gérer mon profil',
+          notification: 'Mes notifications',
+          theme: 'Changer le thème',
+          localisation: 'Contrôler ma localisation',
+          search: 'Chercher sur Oblyk'
+        },
         subHeaders: {
           me: 'Moi',
-          account: 'Compte',
+          mySpace: 'Mon espace',
+          account: 'Rejoindre Oblyk',
           myGyms: 'Mes salles',
           myOrganizations: 'Mes organisations',
           mapsAndTools: 'Cartes & Outils',
           project: 'Le projet',
-          admin: 'Admin'
+          find: 'Trouver',
+          admin: 'Admin',
+          enrich: 'Enrichir Oblyk',
+          about: "À propos d'Oblyk"
         },
         user: {
+          home: 'Home',
           feed: 'Fil',
           messenger: 'Messagerie',
-          ascents: 'Croix',
+          ascents: 'Mon carnet de grimpe',
           subscribers: 'Abonnés',
           guideBooks: 'Ma topothèque',
           favorites: 'Favoris',
-          settings: 'Paramètres'
+          settings: 'Paramètres',
+          myMap: 'Ma carte'
         },
         guideBook: {
           title: 'Les topos',
           features: 'Top fonctionnalités !',
           news: 'Les nouveautés'
+        },
+        find: {
+          crag: 'Un site naturel',
+          gym: 'Une salle',
+          guideBook: {
+            title: 'Un topo',
+            around: "Autour d'une ville",
+            new: 'Les nouveautés'
+          },
+          climbers: {
+            title: 'Un·e grimpeur·euse',
+            map: 'Carte des grimpeurs·euses',
+            how: 'Comment ça marche ?'
+          }
         }
       },
       footer: {

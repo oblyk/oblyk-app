@@ -1,6 +1,10 @@
 <template>
   <div>
-    <v-list-item v-if="isLoggedIn" link @click="logout()">
+    <v-list-item
+      v-if="isLoggedIn"
+      link
+      @click="logout()"
+    >
       <v-list-item-icon>
         <v-icon>{{ mdiLogout }}</v-icon>
       </v-list-item-icon>
