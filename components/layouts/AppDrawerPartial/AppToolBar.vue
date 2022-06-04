@@ -51,15 +51,7 @@
       </div>
 
       <div>
-        <v-btn
-          aria-label="control my location"
-          icon
-          :title="$t('components.layout.appDrawer.toolBar.localisation')"
-        >
-          <v-icon>
-            {{ mdiMapMarker }}
-          </v-icon>
-        </v-btn>
+        <localization-btn />
       </div>
 
       <div>
@@ -73,7 +65,6 @@
 import {
   mdiWeatherSunny,
   mdiWeatherNight,
-  mdiMapMarker,
   mdiAccountCircleOutline
 } from '@mdi/js'
 import LazyHydrate from 'vue-lazy-hydration'
@@ -81,16 +72,16 @@ import NotificationAppBar from '~/components/layouts/partial/NotificationAppBar'
 import AppBarProfil from '~/components/layouts/partial/AppBarProfile'
 import LoginLogoutBtn from '~/components/layouts/partial/LoginLogoutBtn'
 import GlobalSearchDialog from '~/components/searches/GlobalSearchDialog'
+import LocalizationBtn from '~/components/layouts/partial/LocalizationBtn'
 
 export default {
   name: 'AppToolBar',
-  components: { GlobalSearchDialog, LoginLogoutBtn, AppBarProfil, NotificationAppBar, LazyHydrate },
+  components: { LocalizationBtn, GlobalSearchDialog, LoginLogoutBtn, AppBarProfil, NotificationAppBar, LazyHydrate },
   data () {
     return {
       dark: false,
       mdiWeatherSunny,
       mdiWeatherNight,
-      mdiMapMarker,
       mdiAccountCircleOutline
     }
   },
