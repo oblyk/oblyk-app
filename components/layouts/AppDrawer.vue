@@ -43,6 +43,10 @@
           </v-list>
         </v-menu>
 
+        <client-only>
+          <localization-btn />
+        </client-only>
+
         <v-btn
           class="mr-4"
           aria-label="select light or dark theme"
@@ -186,12 +190,14 @@ import AppDrawerAccount from '~/components/layouts/AppDrawerPartial/AppDrawerAcc
 import AppDrawerGuideBook from '~/components/layouts/AppDrawerPartial/AppDrawerGuideBook'
 import AppDrawerContribute from '~/components/layouts/AppDrawerPartial/AppDrawerContribute'
 import AppDrawerTool from '~/components/layouts/AppDrawerPartial/AppDrawerTool'
+const LocalizationBtn = () => import('~/components/layouts/partial/LocalizationBtn')
 const MyGyms = () => import('@/components/layouts/partial/MyGyms')
 const MyOrganizations = () => import('@/components/layouts/partial/MyOrganizations')
 
 export default {
   name: 'AppDrawer',
   components: {
+    LocalizationBtn,
     AppDrawerTool,
     AppDrawerContribute,
     AppDrawerGuideBook,

@@ -20,6 +20,9 @@
         <!-- Layer Selector -->
         <l-control position="topright">
           <leaflet-layer-selector v-model="layerIndex" :map-style="mapStyle" />
+          <leaflet-localization-center
+            :set-map-view="setView"
+          />
         </l-control>
 
         <!-- Legend -->
@@ -64,25 +67,37 @@
           :fill-opacity="circleProperties.fillOpacity || 0.2"
           :weight="circleProperties.weight || 3"
         />
+
+        <l-marker
+          v-if="showLocalization && IAmGeolocated"
+          :lat-lng="myLatLng"
+          :icon="myLocationIcon"
+        >
+          <l-tooltip>
+            {{ $t('components.localization.IAmHere') }}
+          </l-tooltip>
+        </l-marker>
       </l-map>
     </div>
   </client-only>
 </template>
 
 <script>
-import L from 'leaflet'
+import L, { icon } from 'leaflet'
 import 'leaflet/dist/leaflet.css'
-import { LMap, LTileLayer, LControlZoom, LGeoJson, LControl, LCircle } from 'vue2-leaflet'
+import { LMap, LTileLayer, LControlZoom, LGeoJson, LControl, LCircle, LMarker, LTooltip } from 'vue2-leaflet'
 import Vue2LeafletMarkerCluster from 'vue2-leaflet-markercluster'
 import { MapPopupHelpers } from '@/mixins/MapPopupHelpers'
 import { MapMarkerHelpers } from '@/mixins/MapMarkerHelpers'
 import LeafletLayerSelector from '@/components/maps/leafletControls/LeafletLayerSelector'
 import LeafletLegend from '@/components/maps/leafletControls/LeafletLegend'
+import LeafletLocalizationCenter from '~/components/maps/leafletControls/LeafletLocalizationCenter'
 
 export default {
   name: 'LeafletMap',
 
   components: {
+    LeafletLocalizationCenter,
     LeafletLegend,
     LeafletLayerSelector,
     LMap,
@@ -91,6 +106,8 @@ export default {
     LControl,
     LControlZoom,
     LTileLayer,
+    LMarker,
+    LTooltip,
     'v-marker-cluster': Vue2LeafletMarkerCluster
   },
   mixins: [MapPopupHelpers, MapMarkerHelpers],
@@ -139,6 +156,11 @@ export default {
       required: false,
       default: null
     },
+    showLocalization: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
     options: {
       type: Object,
       required: false,
@@ -182,13 +204,26 @@ export default {
       geoJsonOptions: {
         onEachFeature: this.onEachFeatureFunction(),
         pointToLayer: this.pointToLayerFunction()
-      }
+      },
+      myLocationIcon: icon(
+        {
+          iconUrl: '/markers/i-am-here.png', iconSize: [14, 14], iconAnchor: [7, 7], popupAnchor: [0, -7]
+        }
+      )
     }
   },
 
   computed: {
     layer () {
       return this.layers[this.layerIndex]
+    },
+
+    IAmGeolocated () {
+      return this.$store.getters['geolocation/IAmGeolocated']
+    },
+
+    myLatLng () {
+      return [this.$store.state.geolocation.latitude, this.$store.state.geolocation.longitude]
     }
   },
 
@@ -260,6 +295,10 @@ export default {
     fitGeoJsonBounds () {
       const bounds = L.geoJson(this.geoJsons).getBounds()
       this.$refs.leafletMap.mapObject.fitBounds(bounds)
+    },
+
+    setView (options) {
+      this.$refs.leafletMap.mapObject.setView([options.latitude, options.longitude], options.zoom)
     }
   }
 }
@@ -270,6 +309,12 @@ export default {
 .leaflet-map {
   height: 100%;
   width: 100%;
+}
+.leaflet-marker-icon[src="/markers/i-am-here.png"] {
+  animation: i-am-here-pulse-animation 2s infinite;
+  border-radius: 10px;
+  box-shadow: 0 0 1px 1px rgba(42, 127, 255, 1);
+  z-index: 500 !important;
 }
 .leaflet-popup {
   .map-popup-cover {
@@ -394,6 +439,14 @@ export default {
   .v-input {
     margin-top: 0;
     padding-top: 0;
+  }
+}
+@keyframes i-am-here-pulse-animation {
+  0% {
+    box-shadow: 0 0 0 0 rgba(42, 127, 255, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 0 20px rgba(42, 127, 255, 0);
   }
 }
 </style>

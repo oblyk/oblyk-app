@@ -7,6 +7,7 @@
         :latitude-force="latitude"
         :longitude-force="longitude"
         :zoom-force="zoom"
+        :show-localization="true"
       />
       <partner-modal />
     </client-only>

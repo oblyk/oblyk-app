@@ -24,7 +24,9 @@ class CurrentUserApi extends BaseApi {
         articles: data.articles,
         guide_books: data.guideBooks,
         subscribes: data.subscribes,
-        local_news: data.localNews
+        local_news: data.localNews,
+        latitude: data.latitude,
+        longitude: data.longitude
       }
     })
   }

@@ -1,13 +1,12 @@
 <template>
   <v-sheet
-    v-if="user.latitude && user.longitude"
-    class="rounded pl-3 pr-3 around-card"
+    v-if="IAmGeolocated"
+    class="rounded pl-3 pr-3 around-card mt-2 mb-6"
   >
     <v-row>
       <v-col
         class="text-truncate hover-col"
         :class="user.partner_search ? 'col-12 col-md-6' : 'col-12 col-md-4'"
-        :title="user.localization"
         @click="aroundSettingsDialog = true"
       >
         <v-icon
@@ -70,6 +69,8 @@
             v-for="(crag, index) in crags"
             :key="`crags-${index}`"
             :crag="crag"
+            :small="true"
+            class="mb-1"
           />
         </v-card-text>
         <v-card-actions>
@@ -99,6 +100,8 @@
             v-for="(gym, index) in gyms"
             :key="`gyms-${index}`"
             :gym="gym"
+            :small="true"
+            class="mb-1"
           />
         </v-card-text>
         <v-card-actions>
@@ -225,6 +228,20 @@ export default {
     }
   },
 
+  computed: {
+    IAmGeolocated () {
+      return this.$store.getters['geolocation/IAmGeolocated']
+    },
+
+    latitude () {
+      return this.$store.state.geolocation.latitude
+    },
+
+    longitude () {
+      return this.$store.state.geolocation.longitude
+    }
+  },
+
   watch: {
     distance () {
       this.getElementAround()
@@ -239,7 +256,7 @@ export default {
 
   methods: {
     getElementAround () {
-      if (this.user.latitude) {
+      if (this.IAmGeolocated) {
         this.getCragsAround()
         this.getGymsAround()
         if (this.user.partner_search) { this.getPartnersAround() }
@@ -249,8 +266,8 @@ export default {
     getCragsAround () {
       new CragApi(this.$axios, this.$auth)
         .cragsAround(
-          this.user.latitude,
-          this.user.longitude,
+          this.latitude,
+          this.longitude,
           this.distance
         )
         .then((resp) => {
@@ -264,8 +281,8 @@ export default {
     getGymsAround () {
       new GymApi(this.$axios, this.$auth)
         .gymsAround(
-          this.user.latitude,
-          this.user.longitude,
+          this.latitude,
+          this.longitude,
           this.distance
         )
         .then((resp) => {
@@ -279,8 +296,8 @@ export default {
     getPartnersAround () {
       new PartnerApi(this.$axios, this.$auth)
         .partnersAround(
-          this.user.latitude,
-          this.user.longitude,
+          this.latitude,
+          this.longitude,
           this.distance
         )
         .then((resp) => {
