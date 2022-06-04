@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-container class="common-page-container">
-      <h1 class="loved-by-king text-center mt-5">
+      <h1 class="text-center mt-5">
         {{ $t('common.pages.partner.title') }}
       </h1>
       <h4 class="subtitle-1 text-center">

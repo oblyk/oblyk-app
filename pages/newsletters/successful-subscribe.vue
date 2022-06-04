@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-container class="common-page-container">
-      <h1 class="loved-by-king mt-5 mb-10 text-center">
+      <h1 class="mt-5 mb-10 text-center">
         {{ $t('common.pages.newsletterSubscribe.successTitle') }}
       </h1>
       <v-row>

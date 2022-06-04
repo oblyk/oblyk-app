@@ -19,7 +19,7 @@
             :alt="`logo ${user.full_name}`"
           />
         </v-avatar>
-        <h1 class="font-weight-medium loved-by-king">
+        <h1 class="font-weight-medium">
           {{ user.full_name }}
           <subscribe-btn
             v-if="!itsMe()"

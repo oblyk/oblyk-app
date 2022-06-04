@@ -1,7 +1,7 @@
 <template>
   <v-row>
     <v-col align-self="center" cols="12" md="6" order-md="last">
-      <h3 class="loved-by-king">
+      <h3>
         {{ $t('home.ascents.title') }}
       </h3>
       <p v-html="$t('home.ascents.body')" />

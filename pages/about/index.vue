@@ -2,10 +2,10 @@
   <div>
     <v-container class="common-page-container">
       <!-- In few words -->
-      <h1 class="loved-by-king text-center mt-5 mb-10">
+      <h1 class="text-center mt-5 mb-10">
         {{ $t('common.pages.about.title') }}
       </h1>
-      <h2 class="loved-by-king mb-2">
+      <h2 class="mb-2">
         En Bref
       </h2>
       <p>
@@ -13,7 +13,7 @@
       </p>
 
       <!-- Why? -->
-      <h2 class="loved-by-king mt-10 mb-2">
+      <h2 class="mt-10 mb-2">
         Oblyk, pourquoi ? pour aller où ?
       </h2>
       <p>
@@ -28,7 +28,7 @@
       </p>
 
       <!-- Project history -->
-      <h2 class="loved-by-king mt-10 mb-2">
+      <h2 class="mt-10 mb-2">
         L'histoire du projet
       </h2>
       <p>
@@ -107,7 +107,7 @@
       </ul>
 
       <!-- Who? -->
-      <h2 class="loved-by-king mt-10 mb-2">
+      <h2 class="mt-10 mb-2">
         Qui est derrière Oblyk ?
       </h2>
       <p>
@@ -120,7 +120,7 @@
       </p>
 
       <!-- Contribute -->
-      <h2 class="loved-by-king mt-10 mb-2">
+      <h2 class="mt-10 mb-2">
         Contribuer au projet
       </h2>
       <p>

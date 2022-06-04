@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-container class="common-page-container">
-      <h1 class="loved-by-king mt-5 text-center">
+      <h1 class="mt-5 text-center">
         {{ $t('helps.title') }}
       </h1>
 

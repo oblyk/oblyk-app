@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-container class="common-page-container">
-      <h1 class="loved-by-king mt-5">
+      <h1 class="mt-5">
         {{ $t('common.pages.grade.title') }}
       </h1>
       <p>

@@ -3,7 +3,7 @@
     <v-container class="common-page-container">
       <h1
         v-if="place === null"
-        class="loved-by-king mb-10 mt-5 text-center"
+        class="mb-10 mt-5 text-center"
       >
         {{ $t('components.guideBookPaperFind.title') }}
       </h1>

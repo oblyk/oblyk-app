@@ -296,10 +296,6 @@ export default {
       padding: 10px;
       font-size: 1.2em;
     }
-    .loved-by-king {
-      padding: 10px;
-      font-size: 2em;
-    }
     cite {
       color: #808080;
     }

@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <h2 class="mb-8 mt-3 loved-by-king text-center">
+    <h2 class="mb-8 mt-3 text-center">
       {{ $t('components.guideBookPaper.alternative.title') }} : {{ guideBookPaper.name }}
     </h2>
 

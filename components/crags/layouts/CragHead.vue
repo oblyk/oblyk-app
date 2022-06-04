@@ -9,7 +9,7 @@
       :srcset="`${croppedSrc} 500w, ${largeSrc} 600w`"
     >
       <div class="crag-header-title">
-        <h1 class="font-weight-medium loved-by-king">
+        <h1 class="font-weight-medium">
           {{ crag.name }}
           <client-only>
             <subscribe-btn

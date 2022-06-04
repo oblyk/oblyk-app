@@ -1,6 +1,6 @@
 <template>
   <v-card>
-    <v-card-title class="loved-by-king">
+    <v-card-title>
       <h2>
         {{ $t('components.layout.appDrawer.user.guideBooks') }}
       </h2>

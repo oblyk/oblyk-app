@@ -52,7 +52,7 @@ export const MapPopupHelpers = {
         <div class="map-popup-cover" style="background-image: url(${crag.mapThumbnailCoverUrl})"></div>
         <table class="map-popup-information-table">
           <tr>
-            <td colspan="2" class="loved-by-king">${crag.name}</td>
+            <td colspan="2">${crag.name}</td>
           </tr>
           <tr>
             <th>${this.$t('components.map.place')}</th>
@@ -81,7 +81,7 @@ export const MapPopupHelpers = {
         <div class="map-popup-cover" style="background-image: url(${cragSector.mapThumbnailCoverUrl})"></div>
         <table class="map-popup-information-table">
           <tr>
-            <td colspan="2" class="loved-by-king">${cragSector.name}</td>
+            <td colspan="2">${cragSector.name}</td>
           </tr>
         </table>
         <div class="map-popup-link-area">

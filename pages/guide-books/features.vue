@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-container>
-      <h1 class="loved-by-king guide-features-h1 text-center">
+      <h1 class="guide-features-h1 text-center">
         {{ $t('common.pages.guideBookFeature.title') }}
       </h1>
 
@@ -9,7 +9,7 @@
 
       <v-row class="guide-presentation-row">
         <v-col align-self="center" cols="12" md="6" class="pa-10">
-          <h2 class="loved-by-king mb-4">
+          <h2 class="mb-4">
             {{ $t('common.pages.guideBookFeature.features.information.title') }}
           </h2>
           <p v-html="$t('common.pages.guideBookFeature.features.information.body')" />
@@ -36,7 +36,7 @@
 
       <v-row class="guide-presentation-row">
         <v-col align-self="center" cols="12" md="6" order-md="last" class="pa-10">
-          <h2 class="loved-by-king mb-4">
+          <h2 class="mb-4">
             {{ $t('common.pages.guideBookFeature.features.find.title') }}
           </h2>
           <p v-html="$t('common.pages.guideBookFeature.features.find.body')" />
@@ -63,7 +63,7 @@
 
       <v-row class="guide-presentation-row">
         <v-col align-self="center" cols="12" md="6" class="pa-10">
-          <h2 class="loved-by-king mb-4">
+          <h2 class="mb-4">
             {{ $t('common.pages.guideBookFeature.features.alternative.title') }}
           </h2>
           <p class="mb-2" v-html="$t('common.pages.guideBookFeature.features.alternative.body1')" />
@@ -107,7 +107,7 @@
 
       <v-row class="guide-presentation-row">
         <v-col align-self="center" cols="12" md="6" order-md="last" class="pa-10">
-          <h2 class="loved-by-king mb-4">
+          <h2 class="mb-4">
             {{ $t('common.pages.guideBookFeature.features.myLibrary.title') }}
           </h2>
           <p v-html="$t('common.pages.guideBookFeature.features.myLibrary.body1')" />
@@ -127,7 +127,7 @@
 
       <v-row class="guide-presentation-row">
         <v-col align-self="center" cols="12" md="6" class="pa-10">
-          <h2 class="loved-by-king mb-4">
+          <h2 class="mb-4">
             {{ $t('common.pages.guideBookFeature.features.new.title') }}
           </h2>
           <p v-html="$t('common.pages.guideBookFeature.features.new.body1')" />
@@ -205,8 +205,5 @@ export default {
 .guide-presentation-row {
   margin-top: 5em;
   margin-bottom: 8em !important;
-  .loved-by-king {
-    font-size: 1.7em;
-  }
 }
 </style>

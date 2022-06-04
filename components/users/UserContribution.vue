@@ -20,7 +20,7 @@
           class="col-4 col-lg-3 figures"
         >
           {{ contribution.crags_count }} <br>
-          <span class="loved-by-king">
+          <span>
             {{ $t('components.user.contribution.crags') }}
           </span>
         </v-col>
@@ -31,7 +31,7 @@
           class="col-4 col-lg-3 figures"
         >
           {{ contribution.gyms_count }} <br>
-          <span class="loved-by-king">
+          <span>
             {{ $t('components.user.contribution.gyms') }}
           </span>
         </v-col>
@@ -42,7 +42,7 @@
           class="col-4 col-lg-3 figures"
         >
           {{ contribution.routes_count }} <br>
-          <span class="loved-by-king">
+          <span>
             {{ $t('components.user.contribution.routes') }}
           </span>
         </v-col>
@@ -53,7 +53,7 @@
           class="col-4 col-lg-3 figures"
         >
           {{ contribution.photos_count }} <br>
-          <span class="loved-by-king">
+          <span>
             {{ $t('components.user.contribution.photos') }}
           </span>
         </v-col>
@@ -64,7 +64,7 @@
           class="col-4 col-lg-3 figures"
         >
           {{ contribution.videos_count }} <br>
-          <span class="loved-by-king">
+          <span>
             {{ $t('components.user.contribution.videos') }}
           </span>
         </v-col>
@@ -75,7 +75,7 @@
           class="col-4 col-lg-3 figures"
         >
           {{ contribution.guides_count }} <br>
-          <span class="loved-by-king">
+          <span>
             {{ $t('components.user.contribution.guides') }}
           </span>
         </v-col>
@@ -86,7 +86,7 @@
           class="col-4 col-lg-3 figures"
         >
           {{ contribution.comments_count }} <br>
-          <span class="loved-by-king">
+          <span>
             {{ $t('components.user.contribution.comments') }}
           </span>
         </v-col>

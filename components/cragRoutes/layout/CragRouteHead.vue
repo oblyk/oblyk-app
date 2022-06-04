@@ -16,7 +16,7 @@
     <div
       class="crag-route-header-title"
     >
-      <h1 class="loved-by-king font-weight-medium ">
+      <h1 class="font-weight-medium ">
         <crag-route-avatar :crag-route="cragRoute" />
         {{ cragRoute.name }}
       </h1>

@@ -15,7 +15,7 @@
         <small>{{ area.photo.illustrable_name }}</small>
       </div>
       <div class="area-header-title">
-        <h1 class="font-weight-medium loved-by-king">
+        <h1 class="font-weight-medium">
           {{ area.name }}
           <client-only>
             <v-btn

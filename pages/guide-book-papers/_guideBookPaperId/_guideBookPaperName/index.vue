@@ -1,6 +1,6 @@
 <template>
   <v-container fluid>
-    <h1 class="loved-by-king mb-5 mt-3">
+    <h1 class="mb-5 mt-3">
       {{ guideBookPaper.name }}
     </h1>
     <v-row>

@@ -1,7 +1,7 @@
 <template>
   <v-row>
     <v-col>
-      <h4 class="loved-by-king text-center mb-10">
+      <h4 class="text-center mb-10">
         {{ $t('home.figures.title') }}
       </h4>
 
@@ -41,7 +41,7 @@
                 +{{ figures.latest.crags_count }}
               </small>
             </p>
-            <p class="loved-by-king">
+            <p>
               {{ $t('home.figures.crags') }}
             </p>
           </v-col>
@@ -55,7 +55,7 @@
                 +{{ figures.latest.users_count }}
               </small>
             </p>
-            <p class="loved-by-king">
+            <p>
               {{ $t('home.figures.climbers') }}
             </p>
           </v-col>
@@ -69,7 +69,7 @@
                 +{{ figures.latest.gyms_count }}
               </small>
             </p>
-            <p class="loved-by-king">
+            <p>
               {{ $t('home.figures.gyms') }}
             </p>
           </v-col>
@@ -83,7 +83,7 @@
                 +{{ figures.latest.routes_count }}
               </small>
             </p>
-            <p class="loved-by-king">
+            <p>
               {{ $t('home.figures.routes') }}
             </p>
           </v-col>
@@ -97,7 +97,7 @@
                 +{{ figures.latest.ascents_count }}
               </small>
             </p>
-            <p class="loved-by-king">
+            <p>
               {{ $t('home.figures.ascents') }}
             </p>
           </v-col>
@@ -111,7 +111,7 @@
                 +{{ figures.latest.photos_count }}
               </small>
             </p>
-            <p class="loved-by-king">
+            <p>
               {{ $t('home.figures.photos') }}
             </p>
           </v-col>
@@ -125,7 +125,7 @@
                 +{{ figures.latest.guides_count }}
               </small>
             </p>
-            <p class="loved-by-king">
+            <p>
               {{ $t('home.figures.guides') }}
             </p>
           </v-col>
@@ -139,7 +139,7 @@
                 +{{ figures.latest.comments_count }}
               </small>
             </p>
-            <p class="loved-by-king">
+            <p>
               {{ $t('home.figures.comments') }}
             </p>
           </v-col>
@@ -153,7 +153,7 @@
                 +{{ figures.latest.videos_count }}
               </small>
             </p>
-            <p class="loved-by-king">
+            <p>
               {{ $t('home.figures.videos') }}
             </p>
           </v-col>
@@ -225,11 +225,6 @@ export default {
       color: #388e3c;
       vertical-align: top;
     }
-  }
-  .loved-by-king {
-    height: 36px;
-    font-size: 1.5em;
-    margin-top: 0;
   }
 }
 </style>

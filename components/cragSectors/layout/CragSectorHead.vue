@@ -16,7 +16,7 @@
     <div
       class="crag-sector-header-title"
     >
-      <h1 class="loved-by-king font-weight-medium ">
+      <h1 class="font-weight-medium ">
         {{ cragSector.name }}
       </h1>
       <div>

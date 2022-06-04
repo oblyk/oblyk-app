@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-container class="common-page-container">
-      <h1 class="text-center loved-by-king mb-5">
+      <h1 class="text-center mb-5">
         {{ $t('components.guideBookPaper.recommended.title') }}
       </h1>
       <div v-if="isLoggedIn">

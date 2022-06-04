@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-container class="common-page-container">
-      <h1 class="loved-by-king mb-10 mt-5 text-center">
+      <h1 class="mb-10 mt-5 text-center">
         {{ $t('components.library.title') }}
       </h1>
 
