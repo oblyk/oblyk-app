@@ -182,6 +182,9 @@ export default {
       if (isClient) {
         config.devtool = 'source-map'
       }
+    },
+    extractCSS: {
+      ignoreOrder: true
     }
   }
 }
