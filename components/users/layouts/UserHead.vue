@@ -3,15 +3,34 @@
     <v-img
       dark
       class="user-header-banner"
-      gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+      gradient="to bottom, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.8) 100%"
       :src="user.croppedBannerUrl"
       :srcset="`${user.croppedBannerUrl} 500w, ${user.bannerUrl} 600w`"
       :lazy-src="user.thumbnailBannerUrl"
     >
-      <div class="user-header-title">
+      <div
+        v-if="itsMe()"
+        class="user-header-banner-action"
+      >
+        <v-btn
+          small
+          icon
+          dark
+          class="black-btn-icon --with-border"
+          :to="`${user.currentUserPath}/settings/banner`"
+          :title="$t('actions.changeBanner')"
+        >
+          <v-icon small>
+            {{ mdiPanorama }}
+          </v-icon>
+        </v-btn>
+      </div>
+    </v-img>
+    <div class="user-header-title">
+      <div class="float-left user-header-avatar-area">
         <v-avatar
-          size="80"
-          class="float-left mr-3"
+          size="100"
+          class="user-header-avatar"
           @click="avatarPictureDialog = true"
         >
           <v-img
@@ -19,79 +38,50 @@
             :alt="`logo ${user.full_name}`"
           />
         </v-avatar>
-        <h1 class="font-weight-medium">
-          {{ user.full_name }}
-          <subscribe-btn
-            v-if="!itsMe()"
-            subscribe-type="User"
-            :subscribe-id="user.id"
-            :unfollowed-icon="mdiAccountOutline"
-            :followed-icon="mdiAccount"
-            followed-color="green"
-            :large="true"
-          />
-        </h1>
-        <span>
-          <span v-if="user.genre">
-            {{ $t(`models.genres.${user.genre}`) }},
-          </span>
-          <span v-if="user.age">
-            {{ user.age }} ans
-          </span>
-
-          <small
-            v-if="!itsMe()"
-            class="ml-2"
-          >
-            {{ $t('date.lastActivity', { date: dateFromNow(user.last_activity_at) }) }}
-          </small>
-
+        <div
+          v-if="itsMe()"
+          class="user-header-avatar-action"
+        >
           <v-btn
-            v-if="itsMe()"
-            small
             icon
-            class="ml-2"
-            :title="$t('actions.editMyProfile')"
-            :to="`${user.currentUserPath}/settings/general`"
-          >
-            <v-icon
-              small
-            >
-              {{ mdiPencil }}
-            </v-icon>
-          </v-btn>
-
-          <v-btn
-            v-if="itsMe()"
+            dark
             small
-            icon
-            class="ml-2"
+            class="black-btn-icon --with-border"
             :title="$t('actions.changeAvatar')"
             :to="`${user.currentUserPath}/settings/avatar`"
           >
-            <v-icon
-              small
-            >
+            <v-icon small>
               {{ mdiAccountCircle }}
             </v-icon>
           </v-btn>
-          <v-btn
-            v-if="itsMe()"
-            small
-            icon
-            class="ml-2"
-            :to="`${user.currentUserPath}/settings/banner`"
-            :title="$t('actions.changeBanner')"
-          >
-            <v-icon
-              small
-            >
-              {{ mdiPanorama }}
-            </v-icon>
-          </v-btn>
-        </span>
+        </div>
       </div>
-    </v-img>
+      <h1>
+        {{ user.full_name }}
+        <v-btn
+          v-if="itsMe()"
+          dark
+          icon
+          small
+          class="ml-2 mb-2 black-btn-icon --with-border"
+          :title="$t('actions.editMyProfile')"
+          :to="`${user.currentUserPath}/settings/general`"
+        >
+          <v-icon
+            small
+          >
+            {{ mdiPencil }}
+          </v-icon>
+        </v-btn>
+        <v-btn
+          text
+          class="mb-2"
+          :to="`${user.currentUserPath}/community/followers`"
+        >
+          {xx} abonné·es
+        </v-btn>
+      </h1>
+    </div>
 
     <v-dialog
       v-model="avatarPictureDialog"
@@ -116,11 +106,9 @@
 import { mdiAccountOutline, mdiAccount, mdiPencil, mdiAccountCircle, mdiPanorama } from '@mdi/js'
 import { SessionConcern } from '@/concerns/SessionConcern'
 import { DateHelpers } from '@/mixins/DateHelpers'
-import SubscribeBtn from '@/components/forms/SubscribeBtn'
 
 export default {
   name: 'UserHead',
-  components: { SubscribeBtn },
   mixins: [SessionConcern, DateHelpers],
   props: {
     user: {
@@ -149,26 +137,54 @@ export default {
 </script>
 <style lang="scss" scoped>
 .user-header-banner {
-  height: 500px;
+  height: 300px;
+  border-radius: 10px;
   max-height: 100%;
   .change-user-banner {
     float: right;
     margin-right: 5px;
     margin-top: 5px;
   }
+  .user-header-banner-action {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+  }
 }
 .user-header-title {
-  position: absolute;
-  width: 100%;
-  padding: 0.5em 0.5em 1em 1em;
+  padding: 0 0.5em 1em 1em;
   bottom: 0;
+  .user-header-avatar-area {
+    margin-right: 10px;
+    margin-top: -50px;
+    position: relative;
+    .user-header-avatar {
+      border-width: 6px;
+      border-style: solid;
+    }
+    .user-header-avatar-action {
+      position: absolute;
+      bottom: 5px;
+      right: 5px;
+    }
+  }
   h1 {
-    margin-bottom: -5px;
     .v-avatar {
       vertical-align: middle;
     }
   }
 }
+.theme--light {
+  .user-header-title .user-header-avatar-area .user-header-avatar {
+    border-color: rgb(245, 245, 245);
+  }
+}
+.theme--dark {
+  .user-header-title .user-header-avatar-area .user-header-avatar {
+    border-color: rgb(18, 18, 18);
+  }
+}
+
 @media only screen and (max-width: 600px) {
   .user-header-banner {
     height: 150px;

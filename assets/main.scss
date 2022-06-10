@@ -184,3 +184,13 @@ strong {
   content: " *";
   color: #f44336;
 }
+
+.black-btn-icon {
+  color: white !important;
+  background-color: black;
+  &.--with-border {
+    border-width: 2px;
+    border-color: white;
+    border-style: solid;
+  }
+}

@@ -82,5 +82,16 @@ class LogBookOutdoorApi extends BaseApi {
       }
     })
   }
+
+  dailyAscents () {
+    return this.axios.request({
+      method: 'GET',
+      url: `${this.baseUrl}/current_users/log_books/outdoors/daily_ascents.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
+    })
+  }
 }
 export default LogBookOutdoorApi

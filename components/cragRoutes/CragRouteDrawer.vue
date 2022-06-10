@@ -107,6 +107,9 @@ export default {
   max-width: calc(100vw - 50px);
   position: fixed;
   height: 100vh !important;
+  &.v-navigation-drawer {
+    z-index: 300;
+  }
 }
 
 .theme--light {

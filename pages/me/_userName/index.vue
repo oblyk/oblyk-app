@@ -3,9 +3,9 @@
     <spinner v-if="loadingCurrentUser" />
 
     <div v-else>
-      <user-head :user="currentUser" />
-      <current-user-tabs :user="currentUser" />
       <v-container class-name="dashboard-container">
+        <user-head :user="currentUser" />
+
         <!-- Get localization -->
         <client-only>
           <enable-localization class="mb-7" />
@@ -23,14 +23,59 @@
             class="mb-3"
           />
 
-          <!-- Crag, Gym and climbers around -->
-          <around-card :user="currentUser" />
+          <v-row class="mt-3">
+            <v-col cols="12" md="6">
+              <h3 class="mb-2">
+                <v-icon
+                  class="mr-2 mb-2"
+                >
+                  {{ mdiBookCheck }}
+                </v-icon>
+                Mon carnet
+              </h3>
+              <daily-ascents />
+            </v-col>
 
-          <!-- Configure my feed -->
-          <setting-feed :user="currentUser" />
+            <!-- Crag, Gym and climbers around -->
+            <v-col cols="12" md="6">
+              <h3 class="mb-2">
+                <v-icon
+                  class="mr-2 mb-2"
+                >
+                  {{ mdiMapMarkerRadiusOutline }}
+                </v-icon>
+                Autour de moi
+              </h3>
+              <around-card :user="currentUser" />
+            </v-col>
+          </v-row>
 
-          <!-- Feed -->
-          <feed feed-api="CurrentUserApi" />
+          <v-row class="mt-7">
+            <!-- Friends crosses -->
+            <v-col cols="12" md="6" order-md="last">
+              <h3>
+                <v-icon
+                  class="mr-2 mb-2"
+                >
+                  {{ mdiAccountMultipleCheckOutline }}
+                </v-icon>
+                Les croix des copain·es
+              </h3>
+            </v-col>
+
+            <v-col cols="12" md="6">
+              <h3>
+                <v-icon
+                  class="mr-2 mb-2"
+                >
+                  {{ mdiBullhornOutline }}
+                </v-icon>
+                Quoi de neuf ?
+              </h3>
+              <!-- Feed -->
+              <feed feed-api="CurrentUserApi" />
+            </v-col>
+          </v-row>
 
           <!-- Right Side Drawer for crag routes -->
           <crag-route-drawer />
@@ -41,6 +86,7 @@
 </template>
 
 <script>
+import { mdiMapMarkerRadiusOutline, mdiBullhornOutline, mdiAccountMultipleCheckOutline, mdiBookCheck } from '@mdi/js'
 import { CurrentUserConcern } from '@/concerns/CurrentUserConcern'
 import Spinner from '@/components/layouts/Spiner'
 import UserHead from '@/components/users/layouts/UserHead'
@@ -48,19 +94,17 @@ import EnablePartnerSearch from '@/components/users/notificationCard/EnablePartn
 import EnableLocalization from '@/components/users/notificationCard/EnableLocalization'
 import BannerMissing from '@/components/users/notificationCard/BannerMissing'
 import AvatarMissing from '@/components/users/notificationCard/AvatarMissing'
-import CurrentUserTabs from '@/components/users/layouts/CurrentUserTabs'
 import AroundCard from '@/components/users/AroundCard'
 import Feed from '@/components/feeds/Feed'
-import SettingFeed from '@/components/users/SettingFeed'
+import DailyAscents from '~/components/logBooks/outdoors/DailyAscents'
 const CragRouteDrawer = () => import('@/components/cragRoutes/CragRouteDrawer')
 
 export default {
   components: {
-    SettingFeed,
+    DailyAscents,
     CragRouteDrawer,
     Feed,
     AroundCard,
-    CurrentUserTabs,
     AvatarMissing,
     BannerMissing,
     EnableLocalization,
@@ -68,7 +112,16 @@ export default {
     UserHead,
     Spinner
   },
-  mixins: [CurrentUserConcern]
+  mixins: [CurrentUserConcern],
+
+  data () {
+    return {
+      mdiMapMarkerRadiusOutline,
+      mdiBullhornOutline,
+      mdiAccountMultipleCheckOutline,
+      mdiBookCheck
+    }
+  }
 }
 </script>
 

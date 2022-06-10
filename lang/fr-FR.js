@@ -167,6 +167,7 @@ export default {
     example: 'exemple',
     me: 'Moi',
     posted: 'Posté',
+    crosses: 'croix',
     pages: {
       cookies: 'Oblyk utilise des cookies uniquement à des fins de fonctionnement.',
       newVersion: "Une nouvelle version d'Oblyk est là !",
@@ -1140,6 +1141,13 @@ export default {
     },
     messenger: {
       messageEmpty: "Il n'y a pas de message dans cette conversation pour l'instant"
+    },
+    dailyCrosses: {
+      title: 'Souvenir de mes croix',
+      iMade: "J'ai fait %{count} croix %{ago} <cite>(le %{date)</cite>",
+      addCrosses: 'Compléter mon carnet',
+      myLogbook: 'Mon carnet de grimpe',
+      myMap: 'Ma carte'
     },
     article: {
       whatsNew: 'Quoi de neuf?',

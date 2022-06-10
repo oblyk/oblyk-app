@@ -1,57 +1,73 @@
 <template>
-  <v-sheet
+  <div
     v-if="IAmGeolocated"
-    class="rounded pl-3 pr-3 around-card mt-2 mb-6"
+    class="around-card"
   >
     <v-row>
-      <v-col
-        class="text-truncate hover-col"
-        :class="user.partner_search ? 'col-12 col-md-6' : 'col-12 col-md-4'"
-        @click="aroundSettingsDialog = true"
-      >
-        <v-icon
-          left
-          small
-        >
-          {{ mdiMapMarkerRadius }}
-        </v-icon>
-        {{ $t('components.user.distanceAround', { distance: distance }) }}
-      </v-col>
-
       <!-- Crags -->
       <v-col
         class="text-truncate text-center hover-col"
-        :class="user.partner_search ? 'col-4 col-md-2' : 'col-6 col-md-4'"
+        :class="user.partner_search ? 'col-4 col-md-4' : 'col-6 col-md-6'"
         @click="cragsDialog = true"
       >
-        <v-icon small left>
-          {{ mdiTerrain }}
-        </v-icon>
-        {{ $tc('components.crag.cragCount', crags.length, { count: crags.length }) }}
+        <v-sheet
+          rounded
+          class="pa-3"
+        >
+          <v-icon
+            large
+            color="primary"
+          >
+            {{ mdiTerrain }}
+          </v-icon>
+          <p class="mt-2 mb-0">
+            {{ $tc('components.crag.cragCount', crags.length, { count: crags.length }) }}
+          </p>
+        </v-sheet>
       </v-col>
 
       <!-- Gyms -->
       <v-col
         class="text-truncate text-center hover-col"
-        :class="user.partner_search ? 'col-4 col-md-2' : 'col-6 col-md-4'"
+        :class="user.partner_search ? 'col-4 col-md-4' : 'col-6 col-md-6'"
         @click="gymsDialog = true"
       >
-        <v-icon small left>
-          {{ mdiHomeRoof }}
-        </v-icon>
-        {{ $tc('components.gym.gymCount', gyms.length, { count: gyms.length }) }}
+        <v-sheet
+          rounded
+          class="pa-3"
+        >
+          <v-icon
+            large
+            color="primary"
+          >
+            {{ mdiHomeRoof }}
+          </v-icon>
+          <p class="mt-2 mb-0">
+            {{ $tc('components.gym.gymCount', gyms.length, { count: gyms.length }) }}
+          </p>
+        </v-sheet>
       </v-col>
 
       <!-- Climbers -->
       <v-col
         v-if="user.partner_search"
-        class="col-4 col-md-2 text-center text-truncate hover-col"
+        class="col-4 col-md-4 text-center text-truncate hover-col"
         @click="climbersDialog = true"
       >
-        <v-icon small left>
-          {{ mdiHuman }}
-        </v-icon>
-        {{ $tc('components.user.userCount', climbers.length, { count: climbers.length }) }}
+        <v-sheet
+          rounded
+          class="pa-3"
+        >
+          <v-icon
+            large
+            color="primary"
+          >
+            {{ mdiHuman }}
+          </v-icon>
+          <p class="mt-2 mb-0">
+            {{ $tc('components.user.userCount', climbers.length, { count: climbers.length }) }}
+          </p>
+        </v-sheet>
       </v-col>
     </v-row>
 
@@ -185,7 +201,7 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-  </v-sheet>
+  </div>
 </template>
 
 <script>

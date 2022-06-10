@@ -17,7 +17,10 @@ export default {
   name: 'CragRouteAvatar',
   mixins: [GradeMixin],
   props: {
-    cragRoute: Object
+    cragRoute: {
+      type: Object,
+      required: true
+    }
   }
 }
 </script>

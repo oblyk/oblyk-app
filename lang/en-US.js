@@ -167,6 +167,7 @@ export default {
     between: 'between',
     me: 'Me',
     posted: 'Posted',
+    crosses: 'crosses',
     pages: {
       cookies: 'Oblyk uses cookies only for operational purposes.',
       newVersion: 'A new Oblyk version is here!',
@@ -1140,6 +1141,13 @@ export default {
     },
     messenger: {
       messageEmpty: 'There is no message in this conversation at the moment.'
+    },
+    dailyCrosses: {
+      title: 'Memories of my climbs',
+      iMade: 'I made %{count} crosses %{ago} <cite>(on %{date)</cite>',
+      addCrosses: 'Complete my logbook',
+      myLogbook: 'My logbook',
+      myMap: 'My map'
     },
     article: {
       whatsNew: 'Whats new?',
