@@ -27,7 +27,8 @@ export default {
         warning: '#fb8c00',
         myMessage: '#121212'
       }
-    }
+    },
+    options: { variations: false }
   },
   icons: {
     iconfont: 'mdiSvg'
