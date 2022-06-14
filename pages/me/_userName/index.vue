@@ -23,7 +23,7 @@
             class="mb-3"
           />
 
-          <v-row class="mt-3">
+          <v-row class="mt-1 mt-md-3">
             <v-col cols="12" md="6">
               <h3 class="mb-2">
                 <v-icon
@@ -38,7 +38,7 @@
 
             <!-- Crag, Gym and climbers around -->
             <v-col cols="12" md="6">
-              <h3 class="mb-2">
+              <h3 class="mb-2 mt-4 mt-md-0">
                 <v-icon
                   class="mr-2 mb-2"
                 >
@@ -61,10 +61,13 @@
                 </v-icon>
                 Les croix des copain·es
               </h3>
+              <p class="text-center font-italic mt-3 mb-0">
+                todo
+              </p>
             </v-col>
 
             <v-col cols="12" md="6">
-              <h3>
+              <h3 class="mt-4 mt-md-0">
                 <v-icon
                   class="mr-2 mb-2"
                 >

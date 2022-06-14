@@ -75,7 +75,7 @@
         </v-btn>
         <v-btn
           text
-          class="mb-2"
+          class="mb-2 d-none d-md-inline-flex"
           :to="`${user.currentUserPath}/community/followers`"
         >
           <span v-if="user.followers_count > 0">
@@ -86,6 +86,14 @@
           </span>
         </v-btn>
       </h1>
+      <p
+        v-if="user.followers_count > 0"
+        class="subtitle-1 d-md-none mt-n2 mb-0"
+      >
+        <nuxt-link :to="`${user.currentUserPath}/community/followers`" class="discrete-link">
+          {{ user.followers_count }} abonné·es
+        </nuxt-link>
+      </p>
     </div>
 
     <v-dialog
