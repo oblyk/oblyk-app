@@ -53,10 +53,10 @@
       </v-row>
     </v-list-item>
 
-    <app-tool-bar />
-
     <!-- If user is connected -->
     <client-only>
+      <app-tool-bar />
+
       <app-drawer-user />
 
       <!-- Administered gym list -->

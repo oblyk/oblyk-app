@@ -12,7 +12,9 @@
       <v-spacer />
 
       <!-- Search on Oblyk -->
-      <global-search-dialog activator="text-field" />
+      <client-only>
+        <global-search-dialog activator="text-field" />
+      </client-only>
 
       <v-spacer />
 

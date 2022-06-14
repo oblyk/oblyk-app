@@ -30,9 +30,7 @@
         </v-menu>
       </div>
 
-      <client-only>
-        <notification-app-bar v-if="$auth.loggedIn" />
-      </client-only>
+      <notification-app-bar v-if="$auth.loggedIn" />
 
       <div>
         <v-btn
