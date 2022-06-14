@@ -78,7 +78,12 @@
           class="mb-2"
           :to="`${user.currentUserPath}/community/followers`"
         >
-          {xx} abonné·es
+          <span v-if="user.followers_count > 0">
+            {{ user.followers_count }} abonné·es
+          </span>
+          <span v-else>
+            Abonné·es
+          </span>
         </v-btn>
       </h1>
     </div>
