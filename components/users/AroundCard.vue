@@ -1,206 +1,252 @@
 <template>
-  <div
-    v-if="IAmGeolocated"
-    class="around-card"
-  >
-    <v-row>
-      <!-- Crags -->
-      <v-col
-        class="text-truncate text-center hover-col"
-        :class="user.partner_search ? 'col-4 col-md-4' : 'col-6 col-md-6'"
-        @click="cragsDialog = true"
-      >
-        <v-sheet
-          rounded
-          class="pa-3"
+  <div>
+    <div
+      v-if="IAmGeolocated"
+      class="around-card"
+    >
+      <v-row>
+        <!-- Crags -->
+        <v-col
+          class="text-center hover-col"
+          :class="user.partner_search ? 'col-4 col-md-4' : 'col-6 col-md-6'"
+          @click="cragsDialog = true"
         >
-          <v-icon
-            large
-            color="primary"
+          <v-sheet
+            rounded
+            class="pa-3 around-card-bnt"
           >
-            {{ mdiTerrain }}
-          </v-icon>
-          <p class="mt-2 mb-0">
-            {{ $tc('components.crag.cragCount', crags.length, { count: crags.length }) }}
-          </p>
-        </v-sheet>
-      </v-col>
+            <v-icon
+              large
+              color="primary"
+            >
+              {{ mdiTerrain }}
+            </v-icon>
+            <p
+              v-if="!loadingCrags"
+              class="mt-2 mb-0 text-truncate"
+              v-html="$tc('components.crag.cragCount', crags.length, { count: crags.length })"
+            />
+            <p
+              v-else
+              class="mt-2 mb-0"
+            >
+              ...
+            </p>
+          </v-sheet>
+        </v-col>
 
-      <!-- Gyms -->
-      <v-col
-        class="text-truncate text-center hover-col"
-        :class="user.partner_search ? 'col-4 col-md-4' : 'col-6 col-md-6'"
-        @click="gymsDialog = true"
-      >
-        <v-sheet
-          rounded
-          class="pa-3"
+        <!-- Gyms -->
+        <v-col
+          class="text-center hover-col"
+          :class="user.partner_search ? 'col-4 col-md-4' : 'col-6 col-md-6'"
+          @click="gymsDialog = true"
         >
-          <v-icon
-            large
-            color="primary"
+          <v-sheet
+            rounded
+            class="pa-3 around-card-bnt"
           >
-            {{ mdiHomeRoof }}
-          </v-icon>
-          <p class="mt-2 mb-0">
-            {{ $tc('components.gym.gymCount', gyms.length, { count: gyms.length }) }}
-          </p>
-        </v-sheet>
-      </v-col>
+            <v-icon
+              large
+              color="primary"
+            >
+              {{ mdiHomeRoof }}
+            </v-icon>
+            <p
+              v-if="!loadingGyms"
+              class="mt-2 mb-0 text-truncate"
+              v-html="$tc('components.gym.gymCount', gyms.length, { count: gyms.length })"
+            />
+            <p
+              v-else
+              class="mt-2 mb-0"
+            >
+              ...
+            </p>
+          </v-sheet>
+        </v-col>
 
-      <!-- Climbers -->
-      <v-col
-        v-if="user.partner_search"
-        class="col-4 col-md-4 text-center text-truncate hover-col"
-        @click="climbersDialog = true"
-      >
-        <v-sheet
-          rounded
-          class="pa-3"
+        <!-- Climbers -->
+        <v-col
+          v-if="user.partner_search"
+          class="col-4 text-center hover-col"
+          @click="climbersDialog = true"
         >
-          <v-icon
-            large
-            color="primary"
+          <v-sheet
+            rounded
+            class="pa-3 around-card-bnt"
           >
-            {{ mdiHuman }}
-          </v-icon>
-          <p class="mt-2 mb-0">
-            {{ $tc('components.user.userCount', climbers.length, { count: climbers.length }) }}
-          </p>
-        </v-sheet>
-      </v-col>
-    </v-row>
+            <v-icon
+              large
+              color="primary"
+            >
+              {{ mdiHuman }}
+            </v-icon>
+            <p
+              v-if="!loadingClimbers"
+              class="mt-2 mb-0 text-truncate"
+              v-html="$tc('components.user.userCount', climbers.length, { count: climbers.length })"
+            />
+            <p
+              v-else
+              class="mt-2 mb-0"
+            >
+              ...
+            </p>
+          </v-sheet>
+        </v-col>
+      </v-row>
 
-    <!-- Crags dialog -->
-    <v-dialog
-      v-model="cragsDialog"
-      max-width="700"
-    >
-      <v-card>
-        <v-card-title class="headline">
-          {{ $tc('components.crag.cragAround', crags.length, { count: crags.length }) }}
-        </v-card-title>
-        <v-card-text>
-          <crag-small-card
-            v-for="(crag, index) in crags"
-            :key="`crags-${index}`"
-            :crag="crag"
-            :small="true"
-            class="mb-1"
-          />
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer />
-          <v-btn
-            color="primary"
-            text
-            @click="cragsDialog = false"
-          >
-            {{ $t('common.close') }}
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
+      <!-- Crags dialog -->
+      <v-dialog
+        v-model="cragsDialog"
+        max-width="700"
+      >
+        <v-card>
+          <v-card-title class="headline">
+            {{ $tc('components.crag.cragAround', crags.length, { count: crags.length }) }}
+          </v-card-title>
+          <v-card-text>
+            <crag-small-card
+              v-for="(crag, index) in crags"
+              :key="`crags-${index}`"
+              :crag="crag"
+              :small="true"
+              class="mb-1"
+            />
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer />
+            <v-btn
+              color="primary"
+              text
+              @click="cragsDialog = false"
+            >
+              {{ $t('common.close') }}
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
 
-    <!-- Gyms modal -->
-    <v-dialog
-      v-model="gymsDialog"
-      max-width="700"
-    >
-      <v-card>
-        <v-card-title class="headline">
-          {{ $tc('components.gym.gymAround', gyms.length, { count: gyms.length }) }}
-        </v-card-title>
-        <v-card-text>
-          <gym-small-card
-            v-for="(gym, index) in gyms"
-            :key="`gyms-${index}`"
-            :gym="gym"
-            :small="true"
-            class="mb-1"
-          />
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer />
-          <v-btn
-            color="primary"
-            text
-            @click="gymsDialog = false"
-          >
-            {{ $t('common.close') }}
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
+      <!-- Gyms modal -->
+      <v-dialog
+        v-model="gymsDialog"
+        max-width="700"
+      >
+        <v-card>
+          <v-card-title class="headline">
+            {{ $tc('components.gym.gymAround', gyms.length, { count: gyms.length }) }}
+          </v-card-title>
+          <v-card-text>
+            <gym-small-card
+              v-for="(gym, index) in gyms"
+              :key="`gyms-${index}`"
+              :gym="gym"
+              :small="true"
+              class="mb-1"
+            />
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer />
+            <v-btn
+              color="primary"
+              text
+              @click="gymsDialog = false"
+            >
+              {{ $t('common.close') }}
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
 
-    <!-- climbers modal -->
-    <v-dialog
-      v-model="climbersDialog"
-      max-width="700"
-    >
-      <v-card>
-        <v-card-title class="headline">
-          {{ $tc('components.user.userAround', climbers.length, { count: climbers.length }) }}
-        </v-card-title>
-        <v-card-text>
-          <user-small-card
-            v-for="(user, index) in climbers"
-            :key="`users-${index}`"
-            :small="true"
-            :user="user"
-          />
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer />
-          <v-btn
-            color="primary"
-            text
-            @click="climbersDialog = false"
-          >
-            {{ $t('common.close') }}
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
+      <!-- climbers modal -->
+      <v-dialog
+        v-model="climbersDialog"
+        max-width="700"
+      >
+        <v-card>
+          <v-card-title class="headline">
+            {{ $tc('components.user.userAround', climbers.length, { count: climbers.length }) }}
+          </v-card-title>
+          <v-card-text>
+            <user-small-card
+              v-for="(user, index) in climbers"
+              :key="`users-${index}`"
+              :small="true"
+              :user="user"
+            />
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer />
+            <v-btn
+              color="primary"
+              text
+              @click="climbersDialog = false"
+            >
+              {{ $t('common.close') }}
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
 
-    <!-- Around Settings modal -->
-    <v-dialog
-      v-model="aroundSettingsDialog"
-      max-width="700"
+      <!-- Around Settings modal -->
+      <v-dialog
+        v-model="aroundSettingsDialog"
+        max-width="700"
+      >
+        <v-card>
+          <v-card-title class="headline">
+            {{ $tc('components.user.aroundSettings') }}
+          </v-card-title>
+          <v-card-text>
+            <p>{{ $t('components.user.chooseNewsArea') }}</p>
+            <v-slider
+              v-model="settingDistance"
+              color="primary"
+              :label="$t('components.user.distanceSetting', { distance: settingDistance })"
+              min="1"
+              max="100"
+              thumb-label
+            />
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer />
+            <v-btn
+              color="primary"
+              text
+              @click="aroundSettingsDialog = false"
+            >
+              {{ $t('common.close') }}
+            </v-btn>
+            <v-btn
+              color="primary"
+              @click="setFeedSetting()"
+            >
+              {{ $t('components.user.saveMyPreference') }}
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+    </div>
+    <div
+      v-else
+      class="around-card"
     >
-      <v-card>
-        <v-card-title class="headline">
-          {{ $tc('components.user.aroundSettings') }}
-        </v-card-title>
-        <v-card-text>
-          <p>{{ $t('components.user.chooseNewsArea') }}</p>
-          <v-slider
-            v-model="settingDistance"
-            color="primary"
-            :label="$t('components.user.distanceSetting', { distance: settingDistance })"
-            min="1"
-            max="100"
-            thumb-label
-          />
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer />
-          <v-btn
-            color="primary"
-            text
-            @click="aroundSettingsDialog = false"
-          >
-            {{ $t('common.close') }}
-          </v-btn>
-          <v-btn
-            color="primary"
-            @click="setFeedSetting()"
-          >
-            {{ $t('components.user.saveMyPreference') }}
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
+      <v-sheet
+        rounded
+        class="pa-3 around-card-bnt text-center"
+      >
+        <p class="font-italic mb-1 mb-md-2">
+          {{ $t('components.user.explainLocalization') }}
+        </p>
+        <v-btn
+          text
+          color="primary"
+          @click="openLocalizationPopup"
+        >
+          {{ $t('actions.activate') }}
+        </v-btn>
+      </v-sheet>
+    </div>
   </div>
 </template>
 
@@ -240,7 +286,10 @@ export default {
       aroundSettingsDialog: false,
       crags: [],
       gyms: [],
-      climbers: []
+      climbers: [],
+      loadingCrags: true,
+      loadingGyms: true,
+      loadingClimbers: true
     }
   },
 
@@ -259,8 +308,10 @@ export default {
   },
 
   watch: {
-    distance () {
-      this.getElementAround()
+    IAmGeolocated () {
+      if (this.IAmGeolocated) {
+        this.getElementAround()
+      }
     }
   },
 
@@ -280,6 +331,7 @@ export default {
     },
 
     getCragsAround () {
+      this.loadingCrags = true
       new CragApi(this.$axios, this.$auth)
         .cragsAround(
           this.latitude,
@@ -292,9 +344,13 @@ export default {
             this.crags.push(new Crag({ attributes: crag }))
           }
         })
+        .finally(() => {
+          this.loadingCrags = false
+        })
     },
 
     getGymsAround () {
+      this.loadingGyms = true
       new GymApi(this.$axios, this.$auth)
         .gymsAround(
           this.latitude,
@@ -307,9 +363,13 @@ export default {
             this.gyms.push(new Gym({ attributes: gym }))
           }
         })
+        .finally(() => {
+          this.loadingGyms = false
+        })
     },
 
     getPartnersAround () {
+      this.loadingClimbers = true
       new PartnerApi(this.$axios, this.$auth)
         .partnersAround(
           this.latitude,
@@ -322,12 +382,19 @@ export default {
             this.climbers.push(new User({ attributes: user }))
           }
         })
+        .finally(() => {
+          this.loadingClimbers = false
+        })
     },
 
     setFeedSetting () {
       this.distance = this.settingDistance
       localStorage.setItem('distanceAroundLocation', this.settingDistance)
       this.aroundSettingsDialog = false
+    },
+
+    openLocalizationPopup () {
+      this.$root.$emit('ShowLocalizationPopup', true)
     }
   }
 }
@@ -336,6 +403,10 @@ export default {
 <style lang="scss" scoped>
 .around-card {
   font-size: 0.8em;
+  .around-card-bnt {
+    height: 160px;
+    padding-top: 37px !important;
+  }
   .hover-col {
     cursor: pointer;
     &:hover {
@@ -343,6 +414,32 @@ export default {
       .v-icon {
         color: #1e88e5;
       }
+    }
+  }
+}
+.theme--dark {
+  .around-card {
+    .around-card-bnt {
+      border-color: rgb(50, 50, 50);
+      border-style: solid;
+      border-width: 3px;
+    }
+  }
+}
+.theme--light {
+  .around-card {
+    .around-card-bnt {
+      border-color: rgb(255, 255, 255);
+      border-style: solid;
+      border-width: 3px;
+    }
+  }
+}
+@media only screen and (max-width: 600px) {
+  .around-card {
+    .around-card-bnt {
+      height: 100px;
+      padding-top: 12px !important;
     }
   }
 }

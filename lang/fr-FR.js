@@ -601,7 +601,7 @@ export default {
       addThisCragInArea: 'Ajouter ce site à un groupe',
       addThisCragInGuideBook: 'Ajouter ce site à un topo',
       cragAround: '%{count} site dans les environs | %{count} sites dans les environs',
-      cragCount: '%{count} site | %{count} sites',
+      cragCount: '<strong>%{count}</strong> site | <strong>%{count}</strong> sites',
       cragAroundInCreate: 'Il y a un site à moins de 1 km : | Il y a %{count} sites à moins de 1km :',
       doNotCreateADuplicate: 'Ne créer pas un doublon si un·e autre grimpeur·euse a déjà référencé ce site !',
       tabs: {
@@ -836,7 +836,7 @@ export default {
       seePhoneNumber: 'Voir le numéro de téléphone',
       seeEmail: "Voir l'email",
       gymAround: '%{count} salle dans les environs | %{count} salles dans les environs',
-      gymCount: '%{count} salle | %{count} salles',
+      gymCount: '<strong>%{count}</strong> salle | <strong>%{count}</strong> salles',
       gymAroundInCreate: 'Il y a une salle à moins de 1 km : | Il y a %{count} salles à moins de 1km :',
       doNotCreateADuplicate: 'Ne créer pas un doublon si un·e autre grimpeur·euse a déjà référencé cette salle !'
     },
@@ -1043,7 +1043,7 @@ export default {
       newsFeedLabel: "Les actualités d'Oblyk",
       subscribeFeedLabel: 'Les news de me abonnements',
       aroundFeedLabel: 'Les informations local (Nouvelle falaise, voie et photos)',
-      userCount: '%{count} grimpeur·euse | %{count} grimpeur·euse·s',
+      userCount: '<strong>%{count}</strong> grimpeur·euse | <strong>%{count}</strong> grimpeur·euse·s',
       distanceAround: '%{distance}km autour de moi :',
       receiveNewsletter: 'recevoir la newsletter (une par trimestre environ)',
       recoveryNewsletterSettings: 'récupération du paramétrage de la newsletter ...',
@@ -1066,6 +1066,7 @@ export default {
       privateMedia: 'les photos & videos de %{name} sont privées.',
       subscribeToSee: 'Abonnez-vous pour pouvoir le voir !',
       waitingFollowers: 'Un·e abonné·e attend votre confirmation | %{count} abonné·es attendent votre confirmation',
+      explainLocalization: 'Active la localisation pour accéder rapidement aux sites, salles et grimpeur autour de toi.',
       tabs: {
         feed: 'Fil',
         profile: 'Profil',

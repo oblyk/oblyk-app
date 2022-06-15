@@ -35,9 +35,8 @@
             <v-card
               height="160"
               dark
-              class="text-center pa-4"
+              class="text-center pa-4 quick-logbook-access"
               rounded
-              color="rgb(30, 30, 30)"
             >
               <p class="font-weight-bold mb-7">
                 {{ $t('components.dailyCrosses.addCrosses') }}
@@ -55,9 +54,8 @@
             <v-card
               height="160"
               dark
-              class="text-center pa-4"
+              class="text-center pa-4 quick-logbook-access"
               rounded
-              color="rgb(30, 30, 30)"
               :to="`/me/${$auth.user.slug_name}/ascents/send-list`"
             >
               <p class="font-weight-bold mb-7">
@@ -76,9 +74,8 @@
             <v-card
               height="160"
               dark
-              class="text-center pa-4"
+              class="text-center pa-4 quick-logbook-access"
               rounded
-              color="rgb(30, 30, 30)"
               to="/maps/my-map"
             >
               <p class="font-weight-bold mb-7">
@@ -166,6 +163,9 @@ export default {
         display: inline-block;
         width: 250px;
         margin-right: 10px;
+        .quick-logbook-access {
+          background-color: rgb(30, 30, 30);
+        }
       }
     }
   }
@@ -173,6 +173,24 @@ export default {
     position: absolute;
     right: -15px;
     top: 64px
+  }
+}
+.theme--dark {
+  .daily-ascents-part {
+    .quick-logbook-access {
+      border-color: rgb(50, 50, 50);
+      border-style: solid;
+      border-width: 3px;
+    }
+  }
+}
+.theme--light {
+  .daily-ascents-part {
+    .quick-logbook-access {
+      border-color: rgb(255, 255, 255);
+      border-style: solid;
+      border-width: 3px;
+    }
   }
 }
 </style>

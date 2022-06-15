@@ -601,7 +601,7 @@ export default {
       addThisCragInArea: 'Add this crag in group',
       addThisCragInGuideBook: 'Add this crag in guide book',
       cragAround: '%{count} crag around | %{count} crags around',
-      cragCount: '%{count} crag | %{count} crags',
+      cragCount: '<strong>%{count}</strong> crag | <strong>%{count}</strong> crags',
       cragAroundInCreate: 'There are one crag within 1km: | There are %{count} crags within 1km:',
       doNotCreateADuplicate: 'Do not create a duplicate if another climber has already referenced this crag!',
       tabs: {
@@ -836,7 +836,7 @@ export default {
       seePhoneNumber: 'See phone number',
       seeEmail: 'See email',
       gymAround: '%{count} gym around | %{count} gyms around',
-      gymCount: '%{count} gym | %{count} gyms',
+      gymCount: '<strong>%{count}</strong> gym | <strong>%{count}</strong> gyms',
       cragAroundInCreate: 'There are one gym within 1km: | There are %{count} gyms within 1km:',
       doNotCreateADuplicate: 'Do not create a duplicate if another climber has already referenced this gym!'
     },
@@ -1043,7 +1043,7 @@ export default {
       newsFeedLabel: 'Oblyk actuality',
       subscribeFeedLabel: 'My subscribes news',
       aroundFeedLabel: 'Local informations (crag, route and photo added)',
-      userCount: '%{count} climber | %{count} climbers',
+      userCount: '<strong>%{count}</strong> climber | <strong>%{count}</strong> climbers',
       distanceAround: '%{distance}km around me :',
       receiveNewsletter: 'Receive the newsletter (one per quarter approximately)',
       recoveryNewsletterSettings: 'recovery of the newsletter settings ...',
@@ -1066,6 +1066,7 @@ export default {
       privateMedia: 'Photos & videos of %{name} is private.',
       subscribeToSee: 'Subscribe to see it!',
       waitingFollowers: 'One subscriber is waiting for your confirmation | %{count} subscribers are waiting for your confirmation',
+      explainLocalization: 'Activate the location to quickly access the crags, gyms and climbers around you.',
       tabs: {
         feed: 'Feed',
         profile: 'Profile',
