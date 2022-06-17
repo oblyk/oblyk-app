@@ -40,20 +40,15 @@
           {{ mdiComment }}
         </v-icon>
       </v-list-item-title>
-      <v-list-item-subtitle>
-        <v-icon x-small>
-          {{ mdiTerrain }}
-        </v-icon>
-        <span @click.stop="">
-          <nuxt-link
-            class="text-decoration-none"
-            :to="route.Crag.path"
-          >
-            {{ route.Crag.name }}
-          </nuxt-link>,
+      <v-list-item-subtitle class="span-comma">
+        <span>
+          <v-icon x-small>
+            {{ mdiTerrain }}
+          </v-icon>
+          {{ route.Crag.name }}
         </span>
         <span v-if="route.height">
-          {{ route.height }} {{ $t('common.meters') }},
+          {{ route.height }} {{ $t('common.meters') }}
         </span>
         <span v-if="route.opener || route.open_year">
           {{ $t('common.open') }}
