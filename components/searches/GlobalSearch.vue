@@ -335,6 +335,11 @@ export default {
     closeDialogue: {
       type: Function,
       required: true
+    },
+    externalQuery: {
+      type: String,
+      required: false,
+      default: null
     }
   },
 
@@ -384,6 +389,9 @@ export default {
   },
 
   mounted () {
+    this.query = this.externalQuery
+    if (this.query !== null) { this.search() }
+
     setTimeout(() => {
       this.giveFocus()
     }, 500)
@@ -402,7 +410,7 @@ export default {
 
     giveFocus () {
       this.$refs.globalSearchInput.focus()
-      this.query = null
+      this.query = this.externalQuery
     },
 
     research (query) {

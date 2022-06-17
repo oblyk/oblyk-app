@@ -21,6 +21,7 @@
       <!-- Text field activator -->
       <v-text-field
         v-if="activator === 'text-field'"
+        v-model="query"
         class="search-on-oblyk-field"
         filled
         rounded
@@ -28,14 +29,14 @@
         dense
         :placeholder="$t('components.layout.appBar.searchPlaceHolder')"
         :append-icon="mdiMagnify"
-        v-bind="attrs"
-        v-on="on"
+        @keydown="openByEnter"
       />
     </template>
     <global-search
       v-if="globalSearchDialog === true"
       :global-search-dialog="globalSearchDialog"
       :close-dialogue="closeDialogue"
+      :external-query="query"
     />
   </v-dialog>
 </template>
@@ -59,14 +60,22 @@ export default {
 
   data () {
     return {
-      mdiMagnify,
-      globalSearchDialog: false
+      globalSearchDialog: false,
+      query: null,
+      mdiMagnify
     }
   },
 
   methods: {
     closeDialogue () {
       this.globalSearchDialog = false
+    },
+
+    openByEnter (event) {
+      if (event.key === 'Enter') {
+        this.globalSearchDialog = true
+        event.target.blur()
+      }
     }
   }
 }
