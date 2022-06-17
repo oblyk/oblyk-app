@@ -1,7 +1,7 @@
 <template>
   <div>
     <user-media-tabs :user="user" />
-    <v-container>
+    <div>
       <div
         v-if="!currentUserCanSeeMedias()"
         class="text-center mt-10 mb-10"
@@ -19,7 +19,7 @@
       <div v-else>
         <nuxt-child :user="user" />
       </div>
-    </v-container>
+    </div>
   </div>
 </template>
 

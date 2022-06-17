@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid>
+  <div>
     <div
       v-if="!currentUserCanSeeAscents()"
       class="text-center mt-10 mb-10"
@@ -59,7 +59,7 @@
         <crag-route-drawer />
       </client-only>
     </div>
-  </v-container>
+  </div>
 </template>
 
 <script>

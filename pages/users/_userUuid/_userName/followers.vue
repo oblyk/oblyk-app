@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <div class="mt-5">
     <spinner v-if="loadingFollowers" />
 
     <div v-if="!loadingFollowers">
@@ -26,7 +26,7 @@
         {{ $t('components.user.followersEmpty', { name: user.first_name }) }}
       </p>
     </div>
-  </v-container>
+  </div>
 </template>
 
 <script>

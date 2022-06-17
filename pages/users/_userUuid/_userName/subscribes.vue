@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <div class="mt-5">
     <spinner v-if="loadingSubscribes" />
 
     <div v-if="!loadingSubscribes">
@@ -37,7 +37,7 @@
         :loading-more="loadingMoreData"
       />
     </div>
-  </v-container>
+  </div>
 </template>
 
 <script>
