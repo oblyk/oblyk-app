@@ -37,6 +37,7 @@
               height="160"
               class="text-center pa-4 --bordered-card"
               rounded
+              to="/a/ascents/new"
             >
               <p class="font-weight-bold mb-7">
                 {{ $t('components.dailyCrosses.addCrosses') }}

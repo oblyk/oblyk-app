@@ -26,6 +26,7 @@
           aria-label="Add cross"
           class="add-cross-btn"
           :title="$t('components.layout.appBar.addCross')"
+          to="/a/ascents/new"
         >
           <v-icon>
             {{ mdiPlusBoxOutline }}
