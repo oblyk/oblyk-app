@@ -53,7 +53,7 @@
           <v-row class="mt-7">
             <!-- Friends crosses -->
             <v-col cols="12" md="6" order-md="last">
-              <h3>
+              <h3 class="mb-2">
                 <v-icon
                   class="mr-2 mb-2"
                 >
@@ -61,9 +61,16 @@
                 </v-icon>
                 Les croix des copain·es
               </h3>
-              <p class="text-center font-italic mt-3 mb-0">
-                todo
-              </p>
+              <div>
+                <subscribes-ascents-card
+                  v-if="currentUser.user_subscribes_count > 0"
+                  :user="currentUser"
+                />
+                <add-subscribes-card
+                  v-else
+                  :user="currentUser"
+                />
+              </div>
             </v-col>
 
             <v-col cols="12" md="6">
@@ -100,10 +107,14 @@ import AvatarMissing from '@/components/users/notificationCard/AvatarMissing'
 import AroundCard from '@/components/users/AroundCard'
 import Feed from '@/components/feeds/Feed'
 import DailyAscents from '~/components/logBooks/outdoors/DailyAscents'
+import SubscribesAscentsCard from '~/components/users/SubscribesAscentsCard'
+import AddSubscribesCard from '~/components/users/AddSubscribesCard'
 const CragRouteDrawer = () => import('@/components/cragRoutes/CragRouteDrawer')
 
 export default {
   components: {
+    AddSubscribesCard,
+    SubscribesAscentsCard,
     DailyAscents,
     CragRouteDrawer,
     Feed,

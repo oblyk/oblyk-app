@@ -1119,6 +1119,12 @@ export default {
         comments: 'Comments'
       }
     },
+    subscribesAscents: {
+      nextAscents: 'next ascents',
+      noAscents: 'Your friends have not yet completed their log book',
+      followYourFriends: 'Follow your friends to see their latest achievements.',
+      addSubscribesBtn: 'My Subscriptions'
+    },
     feed: {
       newWord: 'New definition of %{name}',
       newCrag: 'New crag : %{name}',

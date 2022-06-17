@@ -1119,6 +1119,12 @@ export default {
         comments: 'Commentaires'
       }
     },
+    subscribesAscents: {
+      nextAscents: 'croix suivantes',
+      noAscents: "Tes ami·e·s n'ont pas encore complété leur carnet de croix.",
+      followYourFriends: 'Suis tes ami·es pour voir leur dernières réalisations.',
+      addSubscribesBtn: 'Mes Abonnements'
+    },
     feed: {
       newWord: 'Nouvelle définition de %{name}',
       newCrag: 'Nouvelle falaise : %{name}',
