@@ -59,8 +59,7 @@ export default {
 
 <style lang="scss" scoped>
 .article-feed-title {
-  font-family: "Loved by the King", sans-serif;
-  font-size: 1.7rem;
+  font-size: 1.4rem;
   margin-top: 0.3em;
   margin-bottom: 0.5em;
 }

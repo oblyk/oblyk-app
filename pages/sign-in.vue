@@ -4,9 +4,9 @@
       <v-row justify="center">
         <v-col class="global-form-width" align-self="center">
           <div v-if="!isLoggedIn">
-            <h2 class="mb-4">
+            <h1 class="mb-4 text-h5 font-weight-bold">
               {{ $t('actions.signIn') }}
-            </h2>
+            </h1>
 
             <v-alert
               v-if="redirectTo !== null && alert"
@@ -75,10 +75,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-h3 {
-  font-family: "Loved by the King", sans-serif;
-  font-size: 2em;
-}
-</style>

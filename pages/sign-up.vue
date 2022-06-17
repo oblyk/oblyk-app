@@ -11,9 +11,9 @@
             {{ $t('components.session.createAccountForWatch', { name: partnerName }) }}
           </v-alert>
 
-          <h2 class="mb-4">
+          <h1 class="mb-4 text-h5 font-weight-bold">
             {{ $t('actions.signUp') }}
-          </h2>
+          </h1>
 
           <sign-up-form
             v-if="!isLoggedIn"
