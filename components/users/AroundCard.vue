@@ -13,7 +13,7 @@
         >
           <v-sheet
             rounded
-            class="pa-3 around-card-bnt"
+            class="pa-3 around-card-bnt --bordered-card"
           >
             <v-icon
               large
@@ -43,7 +43,7 @@
         >
           <v-sheet
             rounded
-            class="pa-3 around-card-bnt"
+            class="pa-3 around-card-bnt --bordered-card"
           >
             <v-icon
               large
@@ -73,7 +73,7 @@
         >
           <v-sheet
             rounded
-            class="pa-3 around-card-bnt"
+            class="pa-3 around-card-bnt --bordered-card"
           >
             <v-icon
               large
@@ -233,7 +233,7 @@
     >
       <v-sheet
         rounded
-        class="pa-3 around-card-bnt text-center"
+        class="pa-3 around-card-bnt --bordered-card text-center"
       >
         <p class="font-italic mb-1 mb-md-2">
           {{ $t('components.user.explainLocalization') }}
@@ -414,24 +414,6 @@ export default {
       .v-icon {
         color: #1e88e5;
       }
-    }
-  }
-}
-.theme--dark {
-  .around-card {
-    .around-card-bnt {
-      border-color: rgb(50, 50, 50);
-      border-style: solid;
-      border-width: 3px;
-    }
-  }
-}
-.theme--light {
-  .around-card {
-    .around-card-bnt {
-      border-color: rgb(230, 230, 230);
-      border-style: solid;
-      border-width: 3px;
     }
   }
 }

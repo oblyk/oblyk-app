@@ -194,3 +194,18 @@ strong {
     border-style: solid;
   }
 }
+
+.theme--dark {
+  .--bordered-card {
+    border-color: rgb(50, 50, 50);
+    border-style: solid;
+    border-width: 3px;
+  }
+}
+.theme--light {
+  .--bordered-card {
+    border-color: rgb(230, 230, 230);
+    border-style: solid;
+    border-width: 3px;
+  }
+}

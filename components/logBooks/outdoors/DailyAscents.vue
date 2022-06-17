@@ -35,7 +35,7 @@
             <v-card
               elevation="0"
               height="160"
-              class="text-center pa-4 quick-logbook-access"
+              class="text-center pa-4 --bordered-card"
               rounded
             >
               <p class="font-weight-bold mb-7">
@@ -54,7 +54,7 @@
             <v-card
               elevation="0"
               height="160"
-              class="text-center pa-4 quick-logbook-access"
+              class="text-center pa-4 --bordered-card"
               rounded
               :to="`/me/${$auth.user.slug_name}/ascents/send-list`"
             >
@@ -74,7 +74,7 @@
             <v-card
               elevation="0"
               height="160"
-              class="text-center pa-4 quick-logbook-access"
+              class="text-center pa-4 --bordered-card"
               rounded
               to="/maps/my-map"
             >
@@ -170,24 +170,6 @@ export default {
     position: absolute;
     right: -15px;
     top: 64px
-  }
-}
-.theme--dark {
-  .daily-ascents-part {
-    .quick-logbook-access {
-      border-color: rgb(50, 50, 50);
-      border-style: solid;
-      border-width: 3px;
-    }
-  }
-}
-.theme--light {
-  .daily-ascents-part {
-    .quick-logbook-access {
-      border-color: rgb(230, 230, 230);
-      border-style: solid;
-      border-width: 3px;
-    }
   }
 }
 </style>
