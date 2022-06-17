@@ -31,7 +31,7 @@
                 >
                   {{ mdiBookCheck }}
                 </v-icon>
-                Mon carnet
+                {{ $t('components.user.cardsTitle.myLogbook') }}
               </h3>
               <daily-ascents />
             </v-col>
@@ -44,7 +44,7 @@
                 >
                   {{ mdiMapMarkerRadiusOutline }}
                 </v-icon>
-                Autour de moi
+                {{ $t('components.user.cardsTitle.aroundMe') }}
               </h3>
               <around-card :user="currentUser" />
             </v-col>
@@ -59,7 +59,7 @@
                 >
                   {{ mdiAccountMultipleCheckOutline }}
                 </v-icon>
-                Les croix des copain·es
+                {{ $t('components.user.cardsTitle.subscribesAscents') }}
               </h3>
               <div>
                 <subscribes-ascents-card
@@ -80,7 +80,7 @@
                 >
                   {{ mdiBullhornOutline }}
                 </v-icon>
-                Quoi de neuf ?
+                {{ $t('components.user.cardsTitle.whatsNew') }}
               </h3>
               <!-- Feed -->
               <feed feed-api="CurrentUserApi" />

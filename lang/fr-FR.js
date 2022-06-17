@@ -1067,6 +1067,12 @@ export default {
       subscribeToSee: 'Abonnez-vous pour pouvoir le voir !',
       waitingFollowers: 'Un·e abonné·e attend votre confirmation | %{count} abonné·es attendent votre confirmation',
       explainLocalization: 'Active la localisation pour accéder rapidement aux sites, salles et grimpeur autour de toi.',
+      cardsTitle: {
+        myLogbook: 'Mon carnet',
+        aroundMe: 'Autour de moi',
+        subscribesAscents: 'Les croix des copain·es',
+        whatsNew: 'Quoi de neuf ?'
+      },
       tabs: {
         feed: 'Fil',
         profile: 'Profil',
