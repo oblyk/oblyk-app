@@ -33,8 +33,8 @@
         <div class="daily-ascents-day">
           <div class="daily-ascents-part">
             <v-card
+              elevation="0"
               height="160"
-              dark
               class="text-center pa-4 quick-logbook-access"
               rounded
             >
@@ -52,8 +52,8 @@
         <div class="daily-ascents-day">
           <div class="daily-ascents-part">
             <v-card
+              elevation="0"
               height="160"
-              dark
               class="text-center pa-4 quick-logbook-access"
               rounded
               :to="`/me/${$auth.user.slug_name}/ascents/send-list`"
@@ -72,8 +72,8 @@
         <div class="daily-ascents-day">
           <div class="daily-ascents-part">
             <v-card
+              elevation="0"
               height="160"
-              dark
               class="text-center pa-4 quick-logbook-access"
               rounded
               to="/maps/my-map"
@@ -159,13 +159,10 @@ export default {
     .daily-ascents-day {
       display: inline-block;
       .daily-ascents-part {
-        vertical-align: text-top;
+        vertical-align: top;
         display: inline-block;
         width: 250px;
         margin-right: 10px;
-        .quick-logbook-access {
-          background-color: rgb(30, 30, 30);
-        }
       }
     }
   }
@@ -187,7 +184,7 @@ export default {
 .theme--light {
   .daily-ascents-part {
     .quick-logbook-access {
-      border-color: rgb(255, 255, 255);
+      border-color: rgb(230, 230, 230);
       border-style: solid;
       border-width: 3px;
     }

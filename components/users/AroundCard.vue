@@ -429,7 +429,7 @@ export default {
 .theme--light {
   .around-card {
     .around-card-bnt {
-      border-color: rgb(255, 255, 255);
+      border-color: rgb(230, 230, 230);
       border-style: solid;
       border-width: 3px;
     }
