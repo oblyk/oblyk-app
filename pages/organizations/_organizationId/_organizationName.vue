@@ -11,10 +11,6 @@ import AppFooter from '@/components/layouts/AppFooter'
 
 export default {
   components: { AppFooter },
-  mixins: [OrganizationConcern],
-
-  mounted () {
-    this.$store.commit('layout/LAYOUT_PADDING', true)
-  }
+  mixins: [OrganizationConcern]
 }
 </script>

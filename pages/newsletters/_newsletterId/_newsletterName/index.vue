@@ -115,10 +115,6 @@ export default {
     }
   },
 
-  mounted () {
-    this.$store.commit('layout/LAYOUT_PADDING', true)
-  },
-
   methods: {
     deleteNewsletter () {
       const IamSur = confirm(this.$t('actions.areYouSur'))

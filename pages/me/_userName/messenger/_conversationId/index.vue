@@ -155,7 +155,6 @@ export default {
     this.onResize()
     this.cableConversationSubscribe()
     window.addEventListener('resize', this.onResize, { passive: true })
-    this.$store.commit('layout/LAYOUT_PADDING', true)
   },
 
   beforeDestroy () {

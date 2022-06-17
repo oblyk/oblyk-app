@@ -40,10 +40,6 @@ import AppFooter from '@/components/layouts/AppFooter'
 
 export default {
   components: { AppFooter, GuideBookPaperTabs },
-  mixins: [GuideBookPaperConcern],
-
-  mounted () {
-    this.$store.commit('layout/LAYOUT_PADDING', true)
-  }
+  mixins: [GuideBookPaperConcern]
 }
 </script>

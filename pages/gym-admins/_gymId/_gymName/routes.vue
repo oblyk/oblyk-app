@@ -11,10 +11,6 @@ import { GymConcern } from '@/concerns/GymConcern'
 
 export default {
   components: { GymAdminRoutesTabs },
-  mixins: [GymConcern],
-
-  mounted () {
-    this.$store.commit('layout/LAYOUT_PADDING', true)
-  }
+  mixins: [GymConcern]
 }
 </script>

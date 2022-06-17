@@ -79,10 +79,6 @@ export default {
     return {
       title: this.$t('meta.gym.admin', { name: (this.gym || {}).name })
     }
-  },
-
-  mounted () {
-    this.$store.commit('layout/LAYOUT_PADDING', true)
   }
 }
 </script>

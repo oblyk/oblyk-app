@@ -14,10 +14,6 @@
 import ConversationForm from '~/components/messengers/forms/ConversationForm'
 
 export default {
-  components: { ConversationForm },
-
-  mounted () {
-    this.$store.commit('layout/LAYOUT_PADDING', true)
-  }
+  components: { ConversationForm }
 }
 </script>

@@ -46,10 +46,6 @@ export default {
     return {
       title: this.$t('meta.gym.grade.firstDifficulty')
     }
-  },
-
-  mounted () {
-    this.$store.commit('layout/LAYOUT_PADDING', true)
   }
 }
 </script>

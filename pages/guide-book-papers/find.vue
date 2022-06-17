@@ -99,10 +99,6 @@ export default {
     }
   },
 
-  mounted () {
-    this.$store.commit('layout/LAYOUT_PADDING', true)
-  },
-
   watch: {
     place () {
       this.getGuideBookAround()

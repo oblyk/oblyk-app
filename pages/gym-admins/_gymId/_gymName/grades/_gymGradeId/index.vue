@@ -36,10 +36,6 @@ export default {
     return {
       title: (this.gymGrade || {}).name
     }
-  },
-
-  mounted () {
-    this.$store.commit('layout/LAYOUT_PADDING', true)
   }
 }
 </script>

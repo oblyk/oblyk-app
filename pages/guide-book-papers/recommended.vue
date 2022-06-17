@@ -87,10 +87,6 @@ export default {
     this.getGuides()
   },
 
-  mounted () {
-    this.$store.commit('layout/LAYOUT_PADDING', true)
-  },
-
   methods: {
     getGuides () {
       if (!this.isLoggedIn) { return false }

@@ -91,10 +91,6 @@ export default {
     this.getGymAdministrators()
   },
 
-  mounted () {
-    this.$store.commit('layout/LAYOUT_PADDING', true)
-  },
-
   methods: {
     getGymAdministrators () {
       new GymAdministratorApi(this.$axios, this.$auth)

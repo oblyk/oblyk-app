@@ -56,10 +56,6 @@ export default {
     this.getGymGrades()
   },
 
-  mounted () {
-    this.$store.commit('layout/LAYOUT_PADDING', true)
-  },
-
   methods: {
     getGymGrades () {
       new GymGradeApi(this.$axios, this.$auth)

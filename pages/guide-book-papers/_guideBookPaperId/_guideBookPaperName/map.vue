@@ -71,7 +71,6 @@ export default {
 
   mounted () {
     this.getGeoJson()
-    this.$store.commit('layout/LAYOUT_PADDING', true)
   },
 
   methods: {

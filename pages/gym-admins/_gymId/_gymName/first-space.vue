@@ -91,10 +91,6 @@ export default {
     }
   },
 
-  mounted () {
-    this.$store.commit('layout/LAYOUT_PADDING', true)
-  },
-
   methods: {
     userCanTouch () {
       return this.isLoggedIn && (!this.gym.administered || this.currentUserIsGymAdmin())

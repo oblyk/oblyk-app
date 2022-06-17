@@ -35,10 +35,6 @@ export default {
     return {
       title: this.$t('meta.currentUser.addGuideBook')
     }
-  },
-
-  mounted () {
-    this.$store.commit('layout/LAYOUT_PADDING', true)
   }
 }
 </script>

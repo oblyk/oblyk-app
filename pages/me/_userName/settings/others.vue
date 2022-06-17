@@ -49,10 +49,6 @@ export default {
     return {
       title: this.$t('meta.currentUser.otherSetting')
     }
-  },
-
-  mounted () {
-    this.$store.commit('layout/LAYOUT_PADDING', true)
   }
 }
 </script>

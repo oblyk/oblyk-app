@@ -107,7 +107,6 @@ export default {
 
   mounted () {
     this.getVersion()
-    this.$store.commit('layout/LAYOUT_PADDING', true)
   },
 
   methods: {

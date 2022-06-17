@@ -46,7 +46,6 @@ export default {
   },
 
   mounted () {
-    this.$store.commit('layout/LAYOUT_PADDING', true)
     const urlParams = new URLSearchParams(window.location.search)
     this.email = urlParams.get('email')
   }

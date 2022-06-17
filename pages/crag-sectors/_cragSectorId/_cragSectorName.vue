@@ -33,11 +33,7 @@ export default {
     CragSectorTabs,
     CragSectorHead
   },
-  mixins: [CragSectorConcern],
-
-  mounted () {
-    this.$store.commit('layout/LAYOUT_PADDING', true)
-  }
+  mixins: [CragSectorConcern]
 }
 </script>
 

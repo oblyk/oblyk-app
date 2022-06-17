@@ -28,10 +28,6 @@ export default {
     return {
       title: this.$t('meta.currentUser.edit')
     }
-  },
-
-  mounted () {
-    this.$store.commit('layout/LAYOUT_PADDING', true)
   }
 }
 </script>

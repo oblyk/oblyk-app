@@ -47,10 +47,6 @@ export default {
     return {
       mdiArrowLeft
     }
-  },
-
-  mounted () {
-    this.$store.commit('layout/LAYOUT_PADDING', true)
   }
 }
 </script>
