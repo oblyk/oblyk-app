@@ -47,7 +47,7 @@
         <v-icon
           left
           class="mt-n1"
-          color="#ec407a"
+          color="primary"
         >
           {{ mdiGift }}
         </v-icon>
