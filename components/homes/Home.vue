@@ -85,10 +85,6 @@ export default {
 }
 .home-container {
   max-width: 1200px;
-  h3, h4 {
-    height: 48px;
-    font-size: 2em;
-  }
 }
 .home-boxes {
   margin-top: 3rem;

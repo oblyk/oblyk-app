@@ -1,7 +1,7 @@
 <template>
   <v-row>
     <v-col>
-      <h4 class="text-center mb-10">
+      <h4 class="text-center mb-10 text-h5 font-weight-bold">
         {{ $t('home.figures.title') }}
       </h4>
 

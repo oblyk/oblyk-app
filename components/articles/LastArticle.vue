@@ -1,6 +1,6 @@
 <template>
   <div class="mb-16">
-    <h3 class="text-center mb-5">
+    <h3 class="text-h5 text-md-h4 font-weight-bold text-center mb-5">
       {{ $t('components.article.whatsNew') }}
     </h3>
     <div
