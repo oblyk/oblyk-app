@@ -13,7 +13,7 @@
             rounded
             dense
             hide-details
-            @keyup="search()"
+            @keyup="search"
             @click:clear="onSearch = false"
           />
         </div>
@@ -80,22 +80,24 @@
       id="global-search-results-area"
       class="global-search-results-area pl-2 pr-2"
     >
+      <spinner v-if="loadingExternalSearch" />
+
       <!-- Previous research -->
       <div
-        v-if="!haveResult && previousSearch().length > 0"
+        v-if="!loadingExternalSearch && !haveResult && previousSearch().length > 0"
         class="pl-5"
       >
         <p
-          v-for="(previousQuery, index) in previousSearch()"
+          v-for="(storedQuery, index) in previousSearch()"
           :key="`previous-query-${index}`"
           class="mb-1"
         >
           <span
             class="hoverable"
-            @click="research(previousQuery)"
+            @click="research(storedQuery)"
           >
             <v-icon left>{{ mdiHistory }}</v-icon>
-            {{ previousQuery }}
+            {{ storedQuery }}
           </span>
         </p>
       </div>
@@ -316,10 +318,12 @@ import WordCard from '@/components/words/WordCard'
 import GlobalSearchChip from '@/components/searches/GlobalSearchChip'
 import CragRouteSmallCard from '@/components/cragRoutes/CragRouteSmallCard'
 import AreaSmallCard from '@/components/areas/AreaSmallCard'
+import Spinner from '~/components/layouts/Spiner'
 
 export default {
   name: 'GlobalSearch',
   components: {
+    Spinner,
     AreaSmallCard,
     CragRouteSmallCard,
     GlobalSearchChip,
@@ -345,22 +349,12 @@ export default {
 
   data () {
     return {
-      mdiChevronDown,
-      mdiClose,
-      mdiMagnify,
-      mdiSelectGroup,
-      mdiTerrain,
-      mdiHomeVariantOutline,
-      mdiBookOpenPageVariant,
-      mdiAccountCircleOutline,
-      mdiSourceBranch,
-      mdiFormatLetterCase,
-      mdiHistory,
       tab: null,
       query: null,
       searching: false,
       onSearch: false,
       previousQuery: null,
+      loadingExternalSearch: false,
 
       areaResults: [],
       cragResults: [],
@@ -378,7 +372,19 @@ export default {
       showUserResults: true,
       showWordResults: true,
 
-      searchApi: null
+      searchApi: null,
+
+      mdiChevronDown,
+      mdiClose,
+      mdiMagnify,
+      mdiSelectGroup,
+      mdiTerrain,
+      mdiHomeVariantOutline,
+      mdiBookOpenPageVariant,
+      mdiAccountCircleOutline,
+      mdiSourceBranch,
+      mdiFormatLetterCase,
+      mdiHistory
     }
   },
 
@@ -390,7 +396,10 @@ export default {
 
   mounted () {
     this.query = this.externalQuery
-    if (this.query !== null) { this.search() }
+    if (this.query !== null) {
+      this.loadingExternalSearch = true
+      this.search()
+    }
 
     setTimeout(() => {
       this.giveFocus()
@@ -476,6 +485,7 @@ export default {
         })
         .finally(() => {
           this.searching = false
+          this.loadingExternalSearch = false
         })
     },
 

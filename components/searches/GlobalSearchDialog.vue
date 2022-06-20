@@ -29,7 +29,8 @@
         dense
         :placeholder="$t('components.layout.appBar.searchPlaceHolder')"
         :append-icon="mdiMagnify"
-        @keydown="openByEnter"
+        @keydown="searchingByEnter"
+        @click:append="globalSearchDialog = true"
       />
     </template>
     <global-search
@@ -71,7 +72,7 @@ export default {
       this.globalSearchDialog = false
     },
 
-    openByEnter (event) {
+    searchingByEnter (event) {
       if (event.key === 'Enter') {
         this.globalSearchDialog = true
         event.target.blur()
