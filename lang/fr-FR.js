@@ -1157,7 +1157,7 @@ export default {
     },
     dailyCrosses: {
       title: 'Souvenir de mes croix',
-      iMade: "J'ai fait %{count} croix %{ago} <cite>(le %{date)</cite>",
+      iMade: "J'ai fait %{count} croix %{ago} <cite>(le %{date})</cite>",
       addCrosses: 'Compléter mon carnet',
       myLogbook: 'Mon carnet de grimpe',
       myMap: 'Ma carte'

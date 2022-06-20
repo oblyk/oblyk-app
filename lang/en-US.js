@@ -1157,7 +1157,7 @@ export default {
     },
     dailyCrosses: {
       title: 'Memories of my climbs',
-      iMade: 'I made %{count} crosses %{ago} <cite>(on %{date)</cite>',
+      iMade: 'I made %{count} crosses %{ago} <cite>(on %{date})</cite>',
       addCrosses: 'Complete my logbook',
       myLogbook: 'My logbook',
       myMap: 'My map'
