@@ -65,8 +65,17 @@ export default {
     ['nuxt-matomo', {
       matomoUrl: process.env.VUE_APP_MATOMO_URL,
       siteId: process.env.VUE_APP_MATOMO_SITE_ID
-    }]
+    }],
+    // https://github.com/nuxt-community/robots-module
+    '@nuxtjs/robots'
   ],
+
+  robots: () => {
+    return {
+      UserAgent: '*',
+      Disallow: process.env.VUE_APP_OBLYK_APP_STAGING === 'true' ? '/' : ''
+    }
+  },
 
   // https://auth.nuxtjs.org/
   auth: {
