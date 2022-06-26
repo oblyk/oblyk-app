@@ -1,193 +1,288 @@
 <template>
-  <v-card class="full-height">
-    <v-card-title>
-      <v-icon left>
-        {{ mdiInformation }}
-      </v-icon>
-      {{ $t('common.informations') }}
-    </v-card-title>
-    <v-card-text>
-      <!-- Alerts list-->
-      <alert-list :object-id="crag.id" object-type="Crag" />
+  <v-sheet
+    class="pa-4 rounded-lg"
+    elevation="1"
+  >
+    <v-row>
+      <!-- Information -->
+      <v-col class="col-12 col-md-6">
+        <h2 class="h2-title-in-card-title mb-5">
+          <v-icon left>
+            {{ mdiInformation }}
+          </v-icon>
+          {{ $t('components.crag.information') }}
+        </h2>
 
-      <v-simple-table class="no-hover-table">
-        <template #default>
-          <tbody>
-            <!-- Climbing type -->
-            <tr>
-              <th class="smallest-table-column text-right">
-                {{ $t('models.crag.climbing_types') }}
-              </th>
-              <td>
-                <span v-if="crag.climbingTypes.length > 0">
-                  {{ crag.climbingTypes.map((climb) => { return $t(`models.crag.${climb}`) }).join(', ') }}
-                </span>
-                <span v-else class="text--disabled">
-                  {{ $t('common.noInformation') }}
-                </span>
-              </td>
-            </tr>
+        <!-- Alerts list-->
+        <alert-list
+          :object-id="crag.id"
+          object-type="Crag"
+        />
 
-            <!-- Rocks -->
-            <tr>
-              <th class="smallest-table-column text-right">
-                {{ $t('models.crag.rocks') }}
-              </th>
-              <td>
-                <span v-if="crag.rocks.length > 0">
-                  {{ crag.rocks.map((rock) => { return $t(`models.rocks.${rock}`) }).join(', ') }}
-                </span>
-                <span v-else class="text--disabled">
-                  {{ $t('common.noInformation') }}
-                </span>
-              </td>
-            </tr>
+        <v-row>
+          <!-- Climbing type -->
+          <v-col cols="6">
+            <description-line
+              :icon="mdiTerrain"
+              :item-title="$t('models.crag.climbing_types')"
+              :item-value="crag.climbingTypes.map((climb) => { return $t(`models.crag.${climb}`) }).join(', ')"
+            />
+          </v-col>
 
-            <!-- Seasons -->
-            <tr>
-              <th class="smallest-table-column text-right">
-                {{ $t('models.crag.seasons') }}
-              </th>
-              <td>
-                <span v-if="crag.seasons.length > 0">
-                  {{ crag.seasons.map((season) => { return $t(`models.crag.${season}`) }).join(', ') }}
-                </span>
-                <span v-else class="text--disabled">
-                  {{ $t('common.noInformation') }}
-                </span>
-              </td>
-            </tr>
-
-            <!-- Lines -->
-            <tr>
-              <th class="smallest-table-column text-right">
-                {{ $t('components.crag.lines') }}
-              </th>
-              <td>
-                {{ crag.routes_figures.route_count }} {{ $t('components.crag.lines') }}.
-                <span
-                  v-if="crag.routes_figures.route_count > 0"
-                  v-html="$t('components.crag.rangingFrom', {
-                    min: crag.routes_figures.grade.min_text,
-                    max: crag.routes_figures.grade.max_text
-                  })"
-                />
-              </td>
-            </tr>
-
-            <!-- Localization -->
-            <tr>
-              <th class="smallest-table-column text-right">
-                {{ $t('components.crag.localization') }}
-              </th>
-              <td>
-                {{ crag.city }}, {{ crag.region }}, {{ crag.country }}
-              </td>
-            </tr>
-            <tr>
-              <th class="smallest-table-column text-right" />
-              <td>
-                {{ latLng }}
-                <qr-code-btn :value="latLng" />
-                <!--<copy-btn :message="latLng" />-->
-                <go-to-crag-modal :crag="crag" />
-              </td>
-            </tr>
-
-            <!-- Orientations -->
-            <tr>
-              <th class="smallest-table-column text-right">
-                {{ $t('components.crag.orientations') }}
-              </th>
-              <td>
-                {{ crag.orientations.map((climb) => { return $t(`models.crag.${climb}`) }).join(', ') }}
-              </td>
-            </tr>
-
-            <!-- Elevation -->
-            <tr v-if="crag.elevation">
-              <th class="smallest-table-column text-right">
-                {{ $t('components.crag.elevation') }}
-              </th>
-              <td>
-                {{ parseInt(crag.elevation) }} {{ $t('common.meters') }}
-              </td>
-            </tr>
-
-            <!-- Areas -->
-            <tr>
-              <th class="smallest-table-column text-right">
-                {{ $t('components.crag.group') }}
-              </th>
-              <td>
-                <nuxt-link
-                  v-for="area in crag.Areas"
-                  :key="`area-${area.id}`"
-                  :to="area.path"
+          <!-- Lines -->
+          <v-col cols="6">
+            <description-line
+              :icon="mdiSourceBranch"
+              :item-title="$t('components.crag.lines')"
+            >
+              <template #content>
+                <div v-if="crag.routes_figures.route_count > 0">
+                  <nuxt-link
+                    :to="`${crag.path}/routes`"
+                    class="text-decoration-none font-weight-bold"
+                  >
+                    {{ crag.routes_figures.route_count }} {{ $t('components.crag.lines') }}.
+                  </nuxt-link>
+                  <span
+                    v-if="crag.routes_figures.route_count > 0"
+                    v-html="$t('components.crag.rangingFrom', {
+                      min: crag.routes_figures.grade.min_text,
+                      max: crag.routes_figures.grade.max_text
+                    })"
+                  />
+                </div>
+                <p
+                  v-else
+                  class="mb-0 text--disabled"
                 >
-                  <v-chip
-                    small
-                    class="mr-1"
-                  >
-                    {{ area.name }}
-                  </v-chip>
-                </nuxt-link>
-                <client-only>
-                  <v-btn
-                    v-if="isLoggedIn"
-                    :title="$t('components.crag.addOnArea')"
-                    icon
-                    small
-                    fab
-                    :to="`/a${crag.path}/add-on-area`"
-                  >
-                    <v-icon>
-                      {{ mdiPlus }}
-                    </v-icon>
-                  </v-btn>
-                </client-only>
-              </td>
-            </tr>
+                  {{ $t('common.noInformation') }}
+                </p>
+              </template>
+            </description-line>
+          </v-col>
 
-            <!-- Contribution -->
-            <tr>
-              <td colspan="2" class="text-right">
-                <contributions-label
-                  version-type="crag"
-                  :version-id="crag.id"
-                  :versions-count="crag.versions_count"
+          <!-- Orientations -->
+          <v-col cols="6">
+            <description-line
+              :icon="mdiCompass"
+              :item-title="$t('components.crag.orientations')"
+              :item-value="crag.orientations.map((orientation) => { return $t(`models.crag.${orientation}`) }).join(', ')"
+            >
+              <template #content>
+                <compass
+                  size="1.4em"
+                  :orientations="crag.orientations"
+                  class="mr-2 vertical-align-sub"
                 />
-              </td>
-            </tr>
-          </tbody>
-        </template>
-      </v-simple-table>
-    </v-card-text>
+                <span
+                  v-if="crag.orientations.length === 0"
+                  class="text--disabled"
+                >
+                  {{ $t('common.noInformation') }}
+                </span>
+                <strong v-if="crag.orientations.length > 0 && crag.orientations.length < 8">
+                  {{ crag.orientations.map((orientation) => { return $t(`models.crag.${orientation}`) }).join(', ') }}
+                </strong>
+                <strong v-if="crag.orientations.length === 8">
+                  {{ $t('models.orientations.all') }}
+                </strong>
+              </template>
+            </description-line>
+          </v-col>
 
-    <!-- Around climbers -->
-    <climbers-around :latitude="crag.latitude" :longitude="crag.longitude" />
-  </v-card>
+          <!-- Elevation -->
+          <v-col
+            v-if="crag.elevation"
+            cols="6"
+          >
+            <description-line
+              :icon="mdiArrowExpandUp"
+              :item-title="$t('components.crag.elevation')"
+              :item-value="`${parseInt(crag.elevation)} ${$t('common.meters')}`"
+            />
+          </v-col>
+
+          <!-- Rocks -->
+          <v-col cols="6">
+            <description-line
+              :icon="mdiDiamond"
+              :item-title="$t('models.crag.rocks')"
+              :item-value="crag.rocks.map((rock) => { return $t(`models.rocks.${rock}`) }).join(', ')"
+            />
+          </v-col>
+
+          <!-- Seasons -->
+          <v-col cols="6">
+            <description-line
+              :icon="mdiLeafMaple"
+              :item-title="$t('models.crag.seasons')"
+              :item-value="crag.seasons.map((season) => { return $t(`models.crag.${season}`) }).join(', ')"
+            >
+              <template #content>
+                <seasons :seasons="crag.seasons" />
+              </template>
+            </description-line>
+          </v-col>
+
+          <!-- Areas -->
+          <v-col
+            v-if="crag.Areas.length > 0"
+            cols="6"
+          >
+            <description-line
+              :icon="mdiUngroup"
+              :item-title="$t('components.crag.group')"
+            >
+              <template #content>
+                <div>
+                  <nuxt-link
+                    v-for="area in crag.Areas"
+                    :key="`area-${area.id}`"
+                    :to="area.path"
+                  >
+                    <v-chip
+                      small
+                      class="mr-1"
+                    >
+                      {{ area.name }}
+                    </v-chip>
+                  </nuxt-link>
+                  <client-only>
+                    <v-btn
+                      v-if="$auth.loggedIn"
+                      :title="$t('components.crag.addOnArea')"
+                      icon
+                      x-small
+                      fab
+                      :to="`/a${crag.path}/add-on-area`"
+                    >
+                      <v-icon>
+                        {{ mdiPlus }}
+                      </v-icon>
+                    </v-btn>
+                  </client-only>
+                </div>
+              </template>
+            </description-line>
+          </v-col>
+
+          <!-- Approach time -->
+          <v-col cols="12">
+            <description-line
+              :icon="mdiWalk"
+              item-title="Temps d'approche"
+            >
+              <template #content>
+                <strong v-if="crag.approaches.min_time !== crag.approaches.max_time">
+                  de {{ crag.approaches.min_time }} à {{ crag.approaches.max_time }} mintues.
+                </strong>
+                <strong v-if="crag.approaches.min_time !== null && crag.approaches.min_time === crag.approaches.max_time">
+                  {{ crag.approaches.min_time }} mintues.
+                </strong>
+                <span
+                  v-if="crag.approaches.min_time === null"
+                  class="text--disabled"
+                >
+                  {{ $t('common.noInformation') }}
+                </span>
+                <nuxt-link
+                  v-if="crag.approaches.min_time !== null"
+                  :to="`${crag.path}/maps`"
+                  class="text-decoration-none"
+                >
+                  {{ $t('common.moreInformation') }}
+                </nuxt-link>
+              </template>
+            </description-line>
+          </v-col>
+
+          <!-- Localization -->
+          <v-col cols="12">
+            <description-line
+              :icon="mdiMapMarkerOutline"
+              :item-title="$t('components.crag.localization')"
+            >
+              <template #content>
+                <div>
+                  <strong>
+                    {{ crag.city }}, {{ crag.region }} ({{ crag.country }})
+                  </strong>
+                </div>
+                <div class="mb-3">
+                  {{ latLng }}
+                  <qr-code-btn :value="latLng" />
+                </div>
+                <go-to-crag-modal :crag="crag" />
+              </template>
+            </description-line>
+          </v-col>
+        </v-row>
+      </v-col>
+
+      <!-- Map -->
+      <v-col class="col-12 col-md-6">
+        <h2 class="h2-title-in-card-title mb-2">
+          <v-icon left>
+            {{ mdiMap }}
+          </v-icon>
+          {{ $t('components.crag.locationAndAccess') }}
+        </h2>
+
+        <div style="height: calc(100% - 50px); min-height: 400px">
+          <client-only>
+            <leaflet-map
+              :track-location="false"
+              :geo-jsons="geoJsons"
+              :zoom-force="16"
+              :latitude-force="parseFloat(crag.latitude)"
+              :longitude-force="parseFloat(crag.longitude)"
+              :scroll-wheel-zoom="true"
+              :clustered="false"
+              :options="{ rounded: true }"
+              map-style="outdoor"
+            />
+          </client-only>
+        </div>
+      </v-col>
+    </v-row>
+  </v-sheet>
 </template>
 
 <script>
-import { mdiInformation, mdiPlus } from '@mdi/js'
+import {
+  mdiInformation,
+  mdiPlus,
+  mdiTerrain,
+  mdiDiamond,
+  mdiLeafMaple,
+  mdiSourceBranch,
+  mdiCompass,
+  mdiArrowExpandUp,
+  mdiUngroup,
+  mdiMapMarkerOutline,
+  mdiMap,
+  mdiWalk
+} from '@mdi/js'
 import { SessionConcern } from '@/concerns/SessionConcern'
-import ContributionsLabel from '@/components/globals/ContributionsLable'
 import QrCodeBtn from '@/components/forms/QrCodeBtn'
-// import CopyBtn from '@/components/ui/CopyBtn'
 import AlertList from '@/components/alerts/AlertList'
 import GoToCragModal from '@/components/crags/GoToCragModal'
-import ClimbersAround from '@/components/partners/ClimbersAround'
+import CragApi from '~/services/oblyk-api/CragApi'
+import DescriptionLine from '~/components/ui/DescriptionLine'
+import Compass from '~/components/ui/Compass'
+import Seasons from '~/components/ui/Seasons'
+const LeafletMap = () => import('@/components/maps/LeafletMap')
 
 export default {
   name: 'CragInfo',
   components: {
-    ClimbersAround,
+    Seasons,
+    Compass,
+    DescriptionLine,
+    LeafletMap,
     GoToCragModal,
     AlertList,
-    // CopyBtn,
-    QrCodeBtn,
-    ContributionsLabel
+    QrCodeBtn
   },
   mixins: [SessionConcern],
   props: {
@@ -199,9 +294,35 @@ export default {
 
   data () {
     return {
+      latLng: `${this.crag.latitude}, ${this.crag.longitude}`,
+      geoJsons: null,
+
       mdiInformation,
       mdiPlus,
-      latLng: `${this.crag.latitude}, ${this.crag.longitude}`
+      mdiTerrain,
+      mdiDiamond,
+      mdiLeafMaple,
+      mdiSourceBranch,
+      mdiCompass,
+      mdiArrowExpandUp,
+      mdiUngroup,
+      mdiMapMarkerOutline,
+      mdiMap,
+      mdiWalk
+    }
+  },
+
+  mounted () {
+    this.getGeoJson()
+  },
+
+  methods: {
+    getGeoJson () {
+      new CragApi(this.$axios, this.$auth)
+        .geoJsonAround(this.crag.id)
+        .then((resp) => {
+          this.geoJsons = { features: resp.data.features }
+        })
     }
   }
 }

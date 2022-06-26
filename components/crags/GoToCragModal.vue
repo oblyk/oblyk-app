@@ -6,10 +6,10 @@
     <template #activator="{ on, attrs }">
       <v-btn
         class="mb-3 expand"
-        block
-        v-bind="attrs"
-        small
         outlined
+        block
+        color="primary"
+        v-bind="attrs"
         v-on="on"
       >
         {{ $t('components.navigation.goTo') }}

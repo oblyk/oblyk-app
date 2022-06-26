@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-container>
+    <div>
       <div
         v-if="isLoggedIn"
         class="mt-2 mb-2"
@@ -43,10 +43,10 @@
           <approach-card :approach="approach" />
         </div>
       </div>
-    </v-container>
+    </div>
 
     <!-- Map -->
-    <v-container>
+    <div>
       <p class="mb-2">
         <v-icon small class="mr-1">
           {{ mdiMap }}
@@ -68,7 +68,7 @@
           />
         </client-only>
       </div>
-    </v-container>
+    </div>
   </div>
 </template>
 

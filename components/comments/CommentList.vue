@@ -50,13 +50,13 @@
               <v-icon left small>
                 {{ mdiCommentPlus }}
               </v-icon>
-              {{ $t('actions.addComment') }}
+              {{ $t(addCommentTranslateKey) }}
             </v-btn>
           </template>
 
           <v-card>
             <v-card-title>
-              {{ $t('actions.addComment') }}
+              {{ $t(addCommentTranslateKey) }}
             </v-card-title>
 
             <v-card-text>
@@ -98,6 +98,10 @@ export default {
     mTopNoComment: {
       type: String,
       default: 'mt-10'
+    },
+    addCommentTranslateKey: {
+      type: String,
+      default: 'actions.addComment'
     }
   },
 

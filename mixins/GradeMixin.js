@@ -22,7 +22,18 @@ export const GradeMixin = {
         '7a', '7a+', '7b', '7b+', '7c', '7c+',
         '8a', '8a+', '8b', '8b+', '8c', '8c+',
         '9a', '9a+', '9b', '9b+', '9c', '9c+'
-      ]
+      ],
+      degrees: {
+        1: { color: { background: 'rgb(255,85,220)', text: 'rgb(0,0,0)' } },
+        2: { color: { background: 'rgb(55,170,200)', text: 'rgb(0,0,0)' } },
+        3: { color: { background: 'rgb(240,189,0)', text: 'rgb(0,0,0)' } },
+        4: { color: { background: 'rgb(238,110,25)', text: 'rgb(255,255,255)' } },
+        5: { color: { background: 'rgb(143, 178, 0)', text: 'rgb(0,0,0)' } },
+        6: { color: { background: 'rgb(0,75,186)', text: 'rgb(255,255,255)' } },
+        7: { color: { background: 'rgb(130,42,152)', text: 'rgb(255,255,255)' } },
+        8: { color: { background: 'rgb(255,42,42)', text: 'rgb(255,255,255)' } },
+        9: { color: { background: 'rgb(25,25,25)', text: 'rgb(255,255,255)' } }
+      }
     }
   },
 
@@ -34,6 +45,13 @@ export const GradeMixin = {
         grades.push({ text: this.gradeByValue[index], value: parseInt(index) + 1 })
       }
       return grades
+    },
+    degreeLevels () {
+      const levels = []
+      for (let i = 1; i <= 9; i++) {
+        levels.push(i.toString())
+      }
+      return levels
     }
   },
 

@@ -1,10 +1,12 @@
 <template>
   <v-card class="full-height">
     <v-card-title>
-      <v-icon left>
-        {{ mdiNewspaperVariantMultiple }}
-      </v-icon>
-      {{ $t('components.crag.relatedArticles') }}
+      <h2 class="h2-title-in-card-title">
+        <v-icon left>
+          {{ mdiNewspaperVariantMultiple }}
+        </v-icon>
+        {{ $t('components.crag.relatedArticles') }}
+      </h2>
     </v-card-title>
     <v-card-text>
       <spinner v-if="loadingArticles" :full-height="false" />

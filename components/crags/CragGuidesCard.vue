@@ -1,16 +1,18 @@
 <template>
-  <v-card class="full-height">
+  <v-card class="rounded-lg full-height">
     <v-card-title>
-      <v-icon left>
-        {{ mdiBookshelf }}
-      </v-icon>
-      {{ $t('components.crag.tabs.guideBooks') }}
+      <h2 class="h2-title-in-card-title">
+        <v-icon left>
+          {{ mdiBookshelf }}
+        </v-icon>
+        {{ $t('components.crag.guideBookTitle') }}
+      </h2>
     </v-card-title>
     <v-card-text>
       <guide-list
         :crag="crag"
         :limite="3"
-        link-to-more="guide-books"
+        :link-to-more="`${crag.slug_name}/guide-books`"
       />
     </v-card-text>
   </v-card>

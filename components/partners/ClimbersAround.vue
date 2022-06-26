@@ -1,102 +1,131 @@
 <template>
-  <div v-if="!loadingClimber">
+  <v-card class="rounded-lg full-height">
     <v-card-title>
-      <v-icon left>
-        {{ mdiAccountGroup }}
-      </v-icon>
-      {{ $tc('components.partner.xAround', climbers.length, { count: climbers.length }) }}
+      <h2 class="h2-title-in-card-title">
+        <v-icon left>
+          {{ mdiAccountGroup }}
+        </v-icon>
+        {{ $t('components.partner.around') }}
+      </h2>
     </v-card-title>
-    <v-card-text
-      class="hoverable"
-      @click="climbersDialog = true"
-    >
-      <div
-        v-for="(climber, index) in climbers"
-        :key="`around-climber-${index}`"
-        class="d-inline"
-      >
-        <v-avatar
-          v-if="index < limit"
-          class="mr-2 mb-1"
-          size="40"
-        >
-          <v-img :src="climber.thumbnailAvatarUrl" />
-        </v-avatar>
+    <v-card-text>
+      <!-- Loading climbers -->
+      <div v-if="loadingClimber">
+        <v-skeleton-loader
+          class="d-inline-block mr-2"
+          type="avatar, text"
+          width="50"
+        />
+        <v-skeleton-loader
+          class="d-inline-block mr-2"
+          type="avatar, text"
+          width="50"
+        />
+        <v-skeleton-loader
+          class="d-inline-block"
+          type="avatar, text"
+          width="50"
+        />
       </div>
-      <v-avatar
-        v-if="(climbers.length - limit) > 0"
-        size="40"
-      >
-        <span class="font-weight-bold">
-          +{{ (climbers.length - limit) }}
-        </span>
-      </v-avatar>
-    </v-card-text>
 
-    <v-dialog
-      v-model="climbersDialog"
-      max-width="700"
-    >
-      <v-card>
-        <v-card-title class="headline">
-          {{ $tc('components.partner.xAround', climbers.length, { count: climbers.length }) }}
-        </v-card-title>
-        <v-card-text>
-          <user-small-card
-            v-for="(user, index) in climbers"
-            :key="`users-${index}`"
-            :small="true"
-            :user="user"
-          />
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer />
-          <v-btn
-            text
-            small
-            @click="climbersDialog = false"
+      <!-- Climbers list -->
+      <div v-else>
+        <div v-if="climbers.length > 0">
+          <v-card
+            v-for="(climber, index) in limitedClimbers"
+            :key="`around-climber-${index}`"
+            class="d-inline-block text-center mb-2 pa-1 pt-2 text-center light-primary-hoverable"
+            style="width: 80px"
+            :to="climber.path"
+            elevation="0"
           >
-            {{ $t('common.close') }}
-          </v-btn>
+            <v-avatar size="40">
+              <v-img :src="climber.thumbnailAvatarUrl" />
+            </v-avatar>
+            <p class="text-truncate mb-0">
+              {{ climber.first_name }}
+            </p>
+          </v-card>
+          <v-card
+            v-if="(climbers.length - limit) > 0"
+            class="d-inline-block text-center mb-2 pa-1 pt-2 text-center light-primary-hoverable"
+            style="width: 75px"
+            elevation="0"
+            @click="limit = climbers.length"
+          >
+            <v-avatar size="40">
+              <span class="font-weight-bold">
+                +{{ (climbers.length - limit) }}
+              </span>
+            </v-avatar>
+            <p class="text-truncate mb-0 text--disabled">
+              {{ $t('common.seeMore') }}
+            </p>
+          </v-card>
+        </div>
+        <div
+          v-else
+          class="text-center"
+        >
+          <p
+            class="text--disabled"
+            v-html="$t('components.partner.noClimbers')"
+          />
           <v-btn
             text
             color="primary"
-            :to="`/maps/climbers?lat=${latitude}&lng=${longitude}&zoom=12`"
+            small
+            to="/about/partner-search"
           >
-            <v-icon class="mr-2">
-              {{ mdiMap }}
-            </v-icon>
-            {{ $t('components.user.openClimbersMap') }}
+            {{ $t('common.pages.partner.title') }}
           </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
-  </div>
+        </div>
+      </div>
+    </v-card-text>
+  </v-card>
 </template>
 
 <script>
 import { mdiAccountGroup, mdiMap } from '@mdi/js'
 import PartnerApi from '~/services/oblyk-api/PartnerApi'
 import User from '@/models/User'
-import UserSmallCard from '@/components/users/UserSmallCard'
 
 export default {
   name: 'ClimbersAround',
-  components: { UserSmallCard },
   props: {
-    latitude: [Number, String],
-    longitude: [Number, String]
+    latitude: {
+      type: [Number, String],
+      required: true
+    },
+    longitude: {
+      type: [Number, String],
+      required: true
+    }
   },
 
   data () {
     return {
-      mdiAccountGroup,
-      mdiMap,
       climbersDialog: false,
-      limit: 8,
+      limit: 9,
       loadingClimber: true,
       distance: 15,
-      climbers: []
+      climbers: [],
+
+      mdiAccountGroup,
+      mdiMap
+    }
+  },
+
+  computed: {
+    limitedClimbers () {
+      const climbers = []
+      let loop = 0
+      for (const climber of this.climbers) {
+        loop++
+        if (loop > this.limit) { continue }
+        climbers.push(climber)
+      }
+      return climbers
     }
   },
 

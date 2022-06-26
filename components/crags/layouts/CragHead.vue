@@ -1,40 +1,43 @@
 <template>
-  <div>
+  <div class="crag-header">
     <v-img
       dark
-      height="500px"
-      gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+      height="400px"
       :lazy-src="crag.thumbnailCoverUrl"
       :src="croppedSrc"
       :srcset="`${croppedSrc} 500w, ${largeSrc} 600w`"
+      class="crag-header-banner"
     >
       <div class="crag-header-title">
-        <h1 class="font-weight-medium">
+        <h1 class="font-weight-medium mb-n1">
           {{ crag.name }}
           <client-only>
-            <subscribe-btn
-              :subscribe-id="crag.id"
-              :incrementable="true"
-              subscribe-type="Crag"
-            />
+            <v-btn
+              v-if="isLoggedIn"
+              :to="`/a${crag.path}/edit`"
+              small
+              icon
+              :title="$t('actions.edit')"
+              class="ml-1"
+            >
+              <v-icon small>
+                {{ mdiPencil }}
+              </v-icon>
+            </v-btn>
           </client-only>
         </h1>
-        <div>
+
+        <!-- Localisation part -->
+        <div class="mb-2">
+          <v-icon
+            small
+            class="mr-1 mb-1"
+          >
+            {{ mdiMapMarkerRadiusOutline }}
+          </v-icon>
           <span>
-            {{ crag.country }}, {{ crag.region }}, {{ crag.city }}
+            {{ crag.city }}, {{ crag.region }} ({{ crag.country }})
             <client-only>
-              <v-btn
-                v-if="isLoggedIn"
-                :to="`/a${crag.path}/edit`"
-                small
-                icon
-                :title="$t('actions.edit')"
-                class="ml-1"
-              >
-                <v-icon small>
-                  {{ mdiPencil }}
-                </v-icon>
-              </v-btn>
               <crag-super-admin-action
                 v-if="isSuperAdmin"
                 :crag="crag"
@@ -42,20 +45,33 @@
             </client-only>
           </span>
         </div>
+        <div>
+          <client-only>
+            <climbing-style-crag-chips
+              :crag="crag"
+            />
+            <subscribe-btn
+              :subscribe-id="crag.id"
+              :incrementable="true"
+              subscribe-type="Crag"
+            />
+          </client-only>
+        </div>
       </div>
     </v-img>
   </div>
 </template>
 
 <script>
-import { mdiPencil } from '@mdi/js'
+import { mdiPencil, mdiMapMarkerRadiusOutline } from '@mdi/js'
 import { SessionConcern } from '@/concerns/SessionConcern'
+import ClimbingStyleCragChips from '~/components/crags/ClimbingStyleCragChips'
 const SubscribeBtn = () => import('@/components/forms/SubscribeBtn')
 const CragSuperAdminAction = () => import('@/components/crags/forms/CragSuperAdminAction')
 
 export default {
   name: 'CragHead',
-  components: { CragSuperAdminAction, SubscribeBtn },
+  components: { ClimbingStyleCragChips, CragSuperAdminAction, SubscribeBtn },
   mixins: [SessionConcern],
   props: {
     crag: {
@@ -66,9 +82,11 @@ export default {
 
   data () {
     return {
-      mdiPencil,
       croppedSrc: this.crag.croppedCoverUrl,
-      largeSrc: this.crag.coverUrl
+      largeSrc: this.crag.coverUrl,
+
+      mdiPencil,
+      mdiMapMarkerRadiusOutline
     }
   },
 
@@ -91,14 +109,21 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.crag-header-title {
-  position: absolute;
-  width: 100%;
-  padding: 0.5em 0.5em 1em 1em;
-  bottom: 0;
-  h1 {
-    font-size: 3rem;
-    margin-bottom: -15px;
+.crag-header {
+  .crag-header-banner {
+    border-radius: 10px 10px 0 0;
+  }
+  .crag-header-title {
+    position: absolute;
+    padding: 1em;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 7px;
+    bottom: 20px;
+    left: 20px;
+    h1 {
+      font-size: 1.7em;
+      margin: 0;
+    }
   }
 }
 </style>

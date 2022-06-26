@@ -34,6 +34,17 @@ strong {
   font-weight: 500;
 }
 
+.h2-title-in-card-title {
+  font-weight: 500;
+  font-size: 1.25rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  .v-icon {
+    vertical-align: sub;
+  }
+}
+
 .color-grade-span {
   border-bottom: 0.15em solid;
   display: inline-block;
@@ -58,8 +69,22 @@ strong {
   vertical-align: baseline;
 }
 
+.vertical-align-sub {
+  vertical-align: sub !important;
+}
+
+.vertical-align-top {
+  vertical-align: top !important;
+}
+
 .full-name-field-form {
   display: none !important;
+}
+
+.light-primary-hoverable {
+  &:hover {
+    background-color: rgba(49, 153, 78, 0.1) !important;
+  }
 }
 
 .theme--light {

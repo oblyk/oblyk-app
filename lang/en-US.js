@@ -64,6 +64,7 @@ export default {
     changeCover: 'Change cover',
     addLink: 'Add link',
     addComment: 'Add comment',
+    addOpinion: 'Ajouter my opinion',
     editComment: 'Edit comment',
     reportProblem: 'Report a problem',
     addVideo: 'Add video',
@@ -144,7 +145,9 @@ export default {
     noInformation: 'No information',
     informations: 'Informations',
     moreInformation: 'More information',
+    moreInformationShort: 'more info',
     comments: 'Comments',
+    loading: 'Loading ...',
     meters: 'meters',
     votes: 'Votes',
     minutes: 'minutes',
@@ -168,6 +171,8 @@ export default {
     me: 'Me',
     posted: 'Posted',
     crosses: 'crosses',
+    linesCount: 'one line | %{count} lines',
+    seeMore: 'see more',
     pages: {
       cookies: 'Oblyk uses cookies only for operational purposes.',
       newVersion: 'A new Oblyk version is here!',
@@ -592,7 +597,7 @@ export default {
       group: 'Crags group',
       lines: 'Lines',
       elevation: 'Elevation',
-      rangingFrom: 'Ranging from <strong>%{min}</strong> to <strong>%{max}</strong>',
+      rangingFrom: 'From <strong>%{min}</strong> to <strong>%{max}</strong>',
       noGuide: 'No guide filled in',
       noRoutes: 'There are no routes registered on this site yet.',
       guideAroundThisCrag: 'Guide books at 50km around',
@@ -604,8 +609,14 @@ export default {
       cragCount: '<strong>%{count}</strong> crag | <strong>%{count}</strong> crags',
       cragAroundInCreate: 'There are one crag within 1km: | There are %{count} crags within 1km:',
       doNotCreateADuplicate: 'Do not create a duplicate if another climber has already referenced this crag!',
+      guideBookTitle: 'Climbing guidebooks',
+      opinion: 'The opinion of the climbers',
+      information: 'Detailed information',
+      locationAndAccess: 'Location & Access',
+      gradesAndLevels: 'Grades & Levels',
       tabs: {
         info: 'Info',
+        routes: 'Routes',
         media: 'Photos & Videos',
         links: 'Links',
         guideBooks: 'Guide books',
@@ -980,6 +991,8 @@ export default {
     version: {
       noVersion: 'There is no modification history for this item.',
       contribution: 'contribution | contributions',
+      version: 'version. | versions.',
+      createdUpdated: 'File created on %{created}, last update on %{updated}',
       event: {
         update: 'Update',
         create: 'Create',
@@ -998,7 +1011,9 @@ export default {
       noVideo: 'There is no video here for the moment'
     },
     partner: {
-      xAround: 'One climber is around | %{count} climbers is around'
+      xAround: 'One climber is around | %{count} climbers is around',
+      around: 'Local climbers',
+      noClimbers: 'There are no climbers in the area yet.<br> Sign up here so that others can find you.'
     },
     user: {
       type: 'Climber',
@@ -2232,7 +2247,8 @@ export default {
       south: 'South',
       south_west: 'South West',
       west: 'West',
-      north_west: 'North West'
+      north_west: 'North West',
+      all: 'All'
     },
     ascentStatus: {
       project: 'Project',

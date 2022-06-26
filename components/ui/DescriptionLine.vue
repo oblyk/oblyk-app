@@ -7,12 +7,18 @@
       {{ itemTitle }}
     </p>
     <div class="pl-7">
-      <span v-if="itemValue" class="font-weight-bold">
-        {{ itemValue }} {{ itemSuffix }}
-      </span>
-      <span v-else class="text--disabled">
-        {{ $t('common.noInformation') }}
-      </span>
+      <slot
+        v-if="hasCustomContent"
+        name="content"
+      />
+      <div v-else>
+        <span v-if="itemValue" class="font-weight-bold">
+          {{ itemValue }} {{ itemSuffix }}
+        </span>
+        <span v-else class="text--disabled">
+          {{ $t('common.noInformation') }}
+        </span>
+      </div>
     </div>
   </div>
 </template>
@@ -36,6 +42,12 @@ export default {
     itemSuffix: {
       type: String,
       default: null
+    }
+  },
+
+  computed: {
+    hasCustomContent () {
+      return !!this.$slots.content
     }
   }
 }

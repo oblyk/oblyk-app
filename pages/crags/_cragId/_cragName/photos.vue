@@ -1,5 +1,8 @@
 <template>
-  <v-container>
+  <v-sheet
+    elevation="1"
+    class="pa-4 rounded-lg"
+  >
     <client-only>
       <v-btn
         v-if="isLoggedIn"
@@ -57,7 +60,7 @@
         </p>
       </div>
     </client-only>
-  </v-container>
+  </v-sheet>
 </template>
 
 <script>

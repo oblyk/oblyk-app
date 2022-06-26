@@ -1,7 +1,10 @@
 <template>
-  <nuxt-link class="contributions-link text--disabled" :to="versionPath()">
+  <nuxt-link
+    class="text--disabled text-decoration-underline"
+    :to="versionPath"
+  >
     <strong>{{ versionsCount || 0 }}</strong>
-    {{ $tc('components.version.contribution', versionsCount) }}
+    {{ $tc(translateKey, versionsCount) }}
   </nuxt-link>
 </template>
 
@@ -9,22 +12,28 @@
 export default {
   name: 'ContributionsLabel',
   props: {
-    versionType: { type: String, default: null },
-    versionId: { type: [String, Number], default: null },
-    versionsCount: { type: [String, Number], default: null }
+    versionType: {
+      type: String,
+      default: null
+    },
+    versionId: {
+      type: [String, Number],
+      default: null
+    },
+    versionsCount: {
+      type: [String, Number],
+      default: null
+    },
+    translateKey: {
+      type: String,
+      default: 'components.version.contribution'
+    }
   },
 
-  methods: {
+  computed: {
     versionPath () {
       return `/versions/${this.versionType}/${this.versionId}/changes`
     }
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.contributions-link {
-  color: inherit;
-  text-decoration: none;
-}
-</style>

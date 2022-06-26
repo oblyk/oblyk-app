@@ -2,7 +2,7 @@
   <div>
     <v-skeleton-loader type="image, image" boilerplate />
     <v-skeleton-loader type="table-thead" :types="{ 'table-thead': 'heading@1' }" />
-    <v-row class="pl-5 pr-5 mt-3">
+    <v-row class="mt-3">
       <v-col cols="12" md="4">
         <v-sheet class="pa-2">
           <v-skeleton-loader type="heading" class="mb-8" />

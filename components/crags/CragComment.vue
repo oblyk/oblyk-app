@@ -1,16 +1,19 @@
 <template>
-  <v-card class="full-height">
+  <v-card class="full-height rounded-lg">
     <v-card-title>
-      <v-icon left>
-        {{ mdiComment }}
-      </v-icon>
-      {{ $t('common.comments') }}
+      <h2 class="h2-title-in-card-title">
+        <v-icon left>
+          {{ mdiComment }}
+        </v-icon>
+        {{ $t('components.crag.opinion') }}
+      </h2>
     </v-card-title>
     <v-card-text>
       <comment-list
         :commentable-id="crag.id"
         commentable-type="Crag"
         m-top-no-comment="mt-2"
+        add-comment-translate-key="actions.addOpinion"
       />
     </v-card-text>
   </v-card>

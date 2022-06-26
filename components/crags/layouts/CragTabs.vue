@@ -1,9 +1,20 @@
 <template>
   <v-tabs
+    class="mb-5 rounded-lg rounded-t-0"
     show-arrows
   >
     <v-tab :to="crag.path">
       {{ $t('components.crag.tabs.info') }}
+    </v-tab>
+    <v-tab :to="`${crag.path}/routes`">
+      <v-badge
+        color="primary"
+        inline
+        :value="crag.routes_figures.route_count > 0"
+        :content="crag.routes_figures.route_count"
+      >
+        {{ $t('components.crag.tabs.routes') }}
+      </v-badge>
     </v-tab>
     <v-tab :to="`${crag.path}/photos`">
       <v-badge

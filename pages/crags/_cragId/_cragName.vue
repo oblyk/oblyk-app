@@ -1,16 +1,20 @@
 <template>
   <div>
-    <div v-if="$fetchState.pending">
-      <skeleton-loader-head />
-    </div>
-    <div v-else>
-      <crag-head :crag="crag" />
-      <crag-tabs :crag="crag" />
-      <div class="nested-crag-routes">
-        <nuxt-child :key="$route.params.cragId" :crag="crag" />
-        <app-footer />
+    <v-container class="crag-container">
+      <div v-if="$fetchState.pending">
+        <skeleton-loader-head />
       </div>
-    </div>
+      <div v-else>
+        <div class="rounded-lg elevation-2">
+          <crag-head :crag="crag" />
+          <crag-tabs :crag="crag" />
+        </div>
+        <div class="nested-crag-routes">
+          <nuxt-child :key="$route.params.cragId" :crag="crag" />
+        </div>
+      </div>
+    </v-container>
+    <app-footer />
   </div>
 </template>
 
@@ -35,5 +39,8 @@ export default {
 <style scoped lang="scss">
 .nested-crag-routes {
   min-height: calc(100vh - 420px);
+}
+.crag-container {
+  max-width: 1100px;
 }
 </style>

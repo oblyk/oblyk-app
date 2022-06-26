@@ -1,6 +1,9 @@
 <template>
   <client-only>
-    <div class="leaflet-map">
+    <div
+      class="leaflet-map"
+      :class="options.rounded ? 'rounded-leaflet' : ''"
+    >
       <l-map
         ref="leafletMap"
         :zoom="zoom"
@@ -168,7 +171,8 @@ export default {
         return {
           department: {
             clickable: true
-          }
+          },
+          rounded: false
         }
       }
     }
@@ -309,6 +313,11 @@ export default {
 .leaflet-map {
   height: 100%;
   width: 100%;
+  &.rounded-leaflet {
+    .leaflet-container {
+      border-radius: 7px;
+    }
+  }
 }
 .leaflet-marker-icon[src="/markers/i-am-here.png"] {
   animation: i-am-here-pulse-animation 2s infinite;

@@ -3,7 +3,10 @@
     ref="crag-route-area"
     :v-resize="areaResize()"
   >
-    <v-card :elevation="cardElevation">
+    <v-card
+      :elevation="cardElevation"
+      class="rounded-lg"
+    >
       <v-card-title>
         <v-row>
           <v-col>

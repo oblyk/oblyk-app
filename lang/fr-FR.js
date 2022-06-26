@@ -64,6 +64,7 @@ export default {
     changeCover: 'Changer la couverture',
     addLink: 'Ajouter un lien',
     addComment: 'Ajouter un commentaire',
+    addOpinion: 'Ajouter mon avis',
     editComment: 'Éditer le commentaire',
     reportProblem: 'Signaler un problème',
     addVideo: 'Ajouter une vidéo',
@@ -144,6 +145,7 @@ export default {
     noInformation: 'Non renseigné',
     informations: 'Informations',
     moreInformation: "Plus d'information",
+    loading: 'Chargement ...',
     comments: 'Commentaires',
     meters: 'mètres',
     votes: 'Votes',
@@ -168,6 +170,8 @@ export default {
     me: 'Moi',
     posted: 'Posté',
     crosses: 'croix',
+    linesCount: 'une ligne | %{count} lignes',
+    seeMore: 'voir plus',
     pages: {
       cookies: 'Oblyk utilise des cookies uniquement à des fins de fonctionnement.',
       newVersion: "Une nouvelle version d'Oblyk est là !",
@@ -592,7 +596,7 @@ export default {
       group: 'Groupe de site',
       lines: 'Lignes',
       elevation: 'Altitude',
-      rangingFrom: 'Allant de <strong>%{min}</strong> à <strong>%{max}</strong>',
+      rangingFrom: 'De <strong>%{min}</strong> à <strong>%{max}</strong>',
       noGuide: 'Pas de topo renseigné',
       noRoutes: "Il n'y a pas encore de ligne enregistrées sur ce site",
       guideAroundThisCrag: 'Topos à 50km autour de',
@@ -604,8 +608,14 @@ export default {
       cragCount: '<strong>%{count}</strong> site | <strong>%{count}</strong> sites',
       cragAroundInCreate: 'Il y a un site à moins de 1 km : | Il y a %{count} sites à moins de 1km :',
       doNotCreateADuplicate: 'Ne créer pas un doublon si un·e autre grimpeur·euse a déjà référencé ce site !',
+      guideBookTitle: 'Les topos',
+      opinion: "L'avis des grimpeurs et grimpeuses",
+      information: 'Informations détaillées',
+      locationAndAccess: 'Localisation & Accès',
+      gradesAndLevels: 'Cotations & Niveaux',
       tabs: {
         info: 'Info',
+        routes: 'Voies',
         media: 'Photos & Videos',
         links: 'Liens',
         guideBooks: 'Topos',
@@ -980,6 +990,8 @@ export default {
     version: {
       noVersion: "Il n'y a pas d'historique de modification pour cet item",
       contribution: 'contribution | contributions',
+      version: 'version. | versions.',
+      createdUpdated: 'Fiche créer le %{created}, dernière mise à jour le %{updated}',
       event: {
         update: 'Mise à jour',
         create: 'Création',
@@ -998,7 +1010,9 @@ export default {
       noVideo: "Il n'y a pas de vidéo ici pour l'instant"
     },
     partner: {
-      xAround: 'Un grimpeur·euse est dans le coin | %{count} grimpeur·euse·s sont dans le coin'
+      xAround: 'Un grimpeur·euse est dans le coin | %{count} grimpeur·euse·s sont dans le coin',
+      around: 'Les grimpeurs et grimpeuses du coin',
+      noClimbers: "Il n'y a pas encore de grimpeur ou grimpeuse dans les environs.<br>Inscrit toi ici pour que d'autres puissent te trouver."
     },
     user: {
       type: 'Grimpeur·euse',
@@ -2232,7 +2246,8 @@ export default {
       south: 'Sud',
       south_west: 'Sud Ouest',
       west: 'Ouest',
-      north_west: 'Nord Ouest'
+      north_west: 'Nord Ouest',
+      all: 'Toutes'
     },
     ascentStatus: {
       project: 'Projet',

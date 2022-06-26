@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <div>
     <guide-list :crag="crag" />
     <div
       v-if="isLoggedIn"
@@ -7,7 +7,7 @@
     >
       <add-guide-book-btn :crag="crag" />
     </div>
-  </v-container>
+  </div>
 </template>
 
 <script>

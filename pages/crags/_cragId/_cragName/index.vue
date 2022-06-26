@@ -1,37 +1,48 @@
 <template>
   <div v-if="crag">
-    <v-container fluid>
-      <v-row>
-        <v-col class="pa-2 col-12 col-md-4">
-          <crag-info :crag="crag" />
-        </v-col>
-        <v-col class="pa-2 col-12 col-md-4 d-flex flex-column">
-          <div class="flex-grow-1">
-            <crag-comment :crag="crag" />
-          </div>
-          <div
-            v-if="crag.haveArticles"
-            class="flex-grow-1 pt-4"
-          >
-            <crag-articles :crag="crag" />
-          </div>
-        </v-col>
-        <v-col class="pa-2 col-12 col-md-4">
-          <crag-guides-card :crag="crag" />
-        </v-col>
-      </v-row>
-      <v-row v-intersect="loadRouteList">
-        <v-col>
-          <crag-routes
-            v-if="routeListe"
-            :crag="crag"
-          />
-        </v-col>
-      </v-row>
-    </v-container>
-    <client-only>
-      <crag-route-drawer />
-    </client-only>
+    <v-row>
+      <v-col class="col-12">
+        <crag-info :crag="crag" />
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col class="col-12 col-md-7">
+        <crag-guides-card :crag="crag" />
+      </v-col>
+      <v-col class="col-12 col-md-5">
+        <!-- Around climbers -->
+        <climbers-around
+          :latitude="crag.latitude"
+          :longitude="crag.longitude"
+        />
+      </v-col>
+    </v-row>
+    <v-row v-if="crag.haveArticles">
+      <v-col cols="12">
+        <crag-articles :crag="crag" />
+      </v-col>
+    </v-row>
+    <v-row v-if="crag.routes_figures.route_count > 0">
+      <v-col
+        v-intersect="loadCragFigures"
+        cols="12"
+      >
+        <crag-figures
+          v-if="cragFigures"
+          :crag="crag"
+        />
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col cols="12">
+        <crag-comment :crag="crag" />
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col cols="12">
+        <version-information :object="crag" />
+      </v-col>
+    </v-row>
   </div>
 </template>
 
@@ -40,17 +51,19 @@ import CragInfo from '@/components/crags/CragDescription'
 import CragGuidesCard from '@/components/crags/CragGuidesCard'
 import CragComment from '@/components/crags/CragComment'
 import CragArticles from '@/components/crags/CragArticles'
-const CragRoutes = () => import('@/components/cragRoutes/CragRoutes')
-const CragRouteDrawer = () => import('@/components/cragRoutes/CragRouteDrawer')
+import ClimbersAround from '~/components/partners/ClimbersAround'
+import VersionInformation from '~/components/ui/VersionInformation'
+const CragFigures = () => import('~/components/crags/CragFigures')
 
 export default {
   name: 'CragInfoView',
   components: {
+    VersionInformation,
+    CragFigures,
+    ClimbersAround,
     CragArticles,
-    CragRouteDrawer,
     CragComment,
     CragGuidesCard,
-    CragRoutes,
     CragInfo
   },
   props: {
@@ -62,14 +75,14 @@ export default {
 
   data () {
     return {
-      routeListe: false
+      cragFigures: false
     }
   },
 
   methods: {
-    loadRouteList (entries, observer) {
+    loadCragFigures (entries, observer) {
       if (entries[0].isIntersecting) {
-        this.routeListe = true
+        this.cragFigures = true
       }
     }
   }
