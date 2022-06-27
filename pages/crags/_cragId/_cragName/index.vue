@@ -5,6 +5,11 @@
         <crag-info :crag="crag" />
       </v-col>
     </v-row>
+    <v-row v-if="$auth.loggedIn">
+      <v-col class="col-12">
+        <crag-user-ascents :crag="crag" />
+      </v-col>
+    </v-row>
     <v-row>
       <v-col class="col-12 col-md-7">
         <crag-guides-card :crag="crag" />
@@ -53,11 +58,13 @@ import CragComment from '@/components/crags/CragComment'
 import CragArticles from '@/components/crags/CragArticles'
 import ClimbersAround from '~/components/partners/ClimbersAround'
 import VersionInformation from '~/components/ui/VersionInformation'
+import CragUserAscents from '~/components/crags/CragUserAscents'
 const CragFigures = () => import('~/components/crags/CragFigures')
 
 export default {
   name: 'CragInfoView',
   components: {
+    CragUserAscents,
     VersionInformation,
     CragFigures,
     ClimbersAround,

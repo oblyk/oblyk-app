@@ -949,6 +949,8 @@ export default {
       filterByClimbingType: 'Filter by climbing type',
       emptyProject: 'Your project list is empty',
       emptyTickList: "You don't have any route in your tick list for the moment",
+      IHaveNoAscents: 'I have no ascents here yet',
+      myAscentsHere: 'My ascents here',
       sortItem: {
         difficulty: 'Difficulty',
         crags: 'Crag',

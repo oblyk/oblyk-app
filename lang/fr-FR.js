@@ -948,6 +948,8 @@ export default {
       filterByClimbingType: "Filtrer pas type d'escalade",
       emptyProject: 'Votre liste de projet est vide',
       emptyTickList: "Vous n'avez aucune ligne dans votre tick list pour l'instant",
+      IHaveNoAscents: "Je n'ai pas encore de croix",
+      myAscentsHere: 'Mes croix ici',
       sortItem: {
         difficulty: 'Difficulté',
         crags: 'Site',

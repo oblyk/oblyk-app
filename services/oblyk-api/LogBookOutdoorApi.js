@@ -93,5 +93,19 @@ class LogBookOutdoorApi extends BaseApi {
       }
     })
   }
+
+  ascentsOfCrag (cragId) {
+    return this.axios.request({
+      method: 'GET',
+      url: `${this.baseUrl}/current_users/log_books/outdoors/ascents_of_crag.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
+      params: {
+        crag_id: cragId
+      }
+    })
+  }
 }
 export default LogBookOutdoorApi
