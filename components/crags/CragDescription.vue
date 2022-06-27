@@ -206,23 +206,7 @@
 
           <!-- Localization -->
           <v-col cols="12">
-            <description-line
-              :icon="mdiMapMarkerOutline"
-              :item-title="$t('components.crag.localization')"
-            >
-              <template #content>
-                <div>
-                  <strong>
-                    {{ crag.city }}, {{ crag.region }} ({{ crag.country }})
-                  </strong>
-                </div>
-                <div class="mb-3">
-                  {{ latLng }}
-                  <qr-code-btn :value="latLng" />
-                </div>
-                <go-to-crag-modal :crag="crag" />
-              </template>
-            </description-line>
+            <go-to-crag-modal :crag="crag" />
           </v-col>
         </v-row>
       </v-col>
@@ -235,8 +219,12 @@
           </v-icon>
           {{ $t('components.crag.locationAndAccess') }}
         </h2>
-
-        <div style="height: calc(100% - 50px); min-height: 400px">
+        <div>
+          <strong>GPS :</strong>
+          {{ latLng }}
+          <qr-code-btn :value="latLng" />
+        </div>
+        <div style="height: calc(100% - 75px); min-height: 400px">
           <client-only>
             <leaflet-map
               :track-location="false"
@@ -267,7 +255,6 @@ import {
   mdiCompass,
   mdiArrowExpandUp,
   mdiUngroup,
-  mdiMapMarkerOutline,
   mdiMap,
   mdiWalk,
   mdiWeatherPouring
@@ -315,7 +302,6 @@ export default {
       mdiCompass,
       mdiArrowExpandUp,
       mdiUngroup,
-      mdiMapMarkerOutline,
       mdiMap,
       mdiWalk,
       mdiWeatherPouring
