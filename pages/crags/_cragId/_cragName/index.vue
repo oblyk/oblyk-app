@@ -39,8 +39,14 @@
       </v-col>
     </v-row>
     <v-row>
-      <v-col cols="12">
-        <crag-comment :crag="crag" />
+      <v-col
+        v-intersect="loadComments"
+        cols="12"
+      >
+        <crag-comment
+          v-if="comments"
+          :crag="crag"
+        />
       </v-col>
     </v-row>
     <v-row>
@@ -54,11 +60,11 @@
 <script>
 import CragInfo from '@/components/crags/CragDescription'
 import CragGuidesCard from '@/components/crags/CragGuidesCard'
-import CragComment from '@/components/crags/CragComment'
 import CragArticles from '@/components/crags/CragArticles'
 import ClimbersAround from '~/components/partners/ClimbersAround'
 import VersionInformation from '~/components/ui/VersionInformation'
 import CragUserAscents from '~/components/crags/CragUserAscents'
+const CragComment = () => import('@/components/crags/CragComment')
 const CragFigures = () => import('~/components/crags/CragFigures')
 
 export default {
@@ -82,7 +88,8 @@ export default {
 
   data () {
     return {
-      cragFigures: false
+      cragFigures: false,
+      comments: false
     }
   },
 
@@ -90,6 +97,12 @@ export default {
     loadCragFigures (entries, observer) {
       if (entries[0].isIntersecting) {
         this.cragFigures = true
+      }
+    },
+
+    loadComments (entries, observer) {
+      if (entries[0].isIntersecting) {
+        this.comments = true
       }
     }
   }
