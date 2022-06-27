@@ -116,12 +116,20 @@
             <description-line
               :icon="mdiLeafMaple"
               :item-title="$t('models.crag.seasons')"
-              :item-value="crag.seasons.map((season) => { return $t(`models.crag.${season}`) }).join(', ')"
             >
               <template #content>
                 <seasons :seasons="crag.seasons" />
               </template>
             </description-line>
+          </v-col>
+
+          <!-- Rain -->
+          <v-col cols="6">
+            <description-line
+              :icon="mdiWeatherPouring"
+              :item-title="$t('models.crag.rain')"
+              :item-value="crag.rain ? $t(`models.rains.${crag.rain}`) : null"
+            />
           </v-col>
 
           <!-- Areas -->
@@ -261,7 +269,8 @@ import {
   mdiUngroup,
   mdiMapMarkerOutline,
   mdiMap,
-  mdiWalk
+  mdiWalk,
+  mdiWeatherPouring
 } from '@mdi/js'
 import { SessionConcern } from '@/concerns/SessionConcern'
 import QrCodeBtn from '@/components/forms/QrCodeBtn'
@@ -308,7 +317,8 @@ export default {
       mdiUngroup,
       mdiMapMarkerOutline,
       mdiMap,
-      mdiWalk
+      mdiWalk,
+      mdiWeatherPouring
     }
   },
 
