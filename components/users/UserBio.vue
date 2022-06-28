@@ -20,6 +20,12 @@
       >
         {{ $t('components.user.bioIsEmpty', { name: user.first_name} ) }}
       </p>
+      <p
+        v-if="user.last_activity_at"
+        class="mt-2 text--disabled font-italic"
+      >
+        {{ $t('date.lastActivity', { date: dateFromNow(user.last_activity_at) }) }}
+      </p>
     </v-card-text>
     <v-card-actions v-if="isLoggedIn">
       <v-spacer />
