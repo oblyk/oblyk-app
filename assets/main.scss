@@ -197,7 +197,10 @@ strong {
   z-index: 5 !important;
 }
 .leaflet-top {
-  z-index: 6 !important;
+  z-index: 5 !important;
+}
+.leaflet-bottom {
+  z-index: 5 !important;
 }
 @media only screen and (max-width: 600px) {
   .global-form-width {

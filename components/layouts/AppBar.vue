@@ -104,6 +104,7 @@ export default {
 
 .custom-app-bar {
   box-shadow: none !important;
+  z-index: 6 !important;
 }
 
 .oblyk-app-title {
