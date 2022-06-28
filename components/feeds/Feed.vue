@@ -55,7 +55,7 @@ export default {
       feedOptions: {
         guideBooks: true,
         articles: true,
-        subscribes: true,
+        subscribes: false,
         localNews: true,
         latitude: '',
         longitude: ''
