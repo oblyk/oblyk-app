@@ -996,7 +996,7 @@ export default {
       noVideo: 'There is no video here for the moment'
     },
     partner: {
-      xAround: 'One climber is around | %{count} climbers is around'
+      xAround: 'One climber is around | %{count} climbers are around'
     },
     user: {
       type: 'Climber',
