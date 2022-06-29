@@ -48,11 +48,12 @@ export default {
       new GymAdministratorApi(this.$axios, this.$auth)
         .create(this.data)
         .then(() => {
-          this.$router.push(`${this.gym.path}/administrators`)
+          this.$router.push(`${this.gym.adminPath}/administrators`)
         })
         .catch((err) => {
           this.$root.$emit('alertFromApiError', err, 'gymAdministrator')
-        }).then(() => {
+        })
+        .finally(() => {
           this.submitOverlay = false
         })
     }

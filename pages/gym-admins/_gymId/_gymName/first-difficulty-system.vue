@@ -19,7 +19,7 @@
         <p class="text-center mt-10">
           <v-btn
             color="primary"
-            :to="`/a${gym.path}/grades/new`"
+            :to="`${gym.adminPath}/grades/new`"
           >
             {{ $t('components.gym.createDifficultySystemSpace') }}
           </v-btn>

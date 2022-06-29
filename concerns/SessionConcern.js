@@ -76,13 +76,18 @@ export const SessionConcern = {
     },
 
     currentUserIsGymAdmin () {
-      if (!this.isLoggedIn) { return false }
+      if (!this.$auth.loggedIn) { return false }
 
       const gymId = this.$route.params.gymId
 
       if (gymId === undefined) { return false }
 
-      return (this.administeredGyms.includes(parseInt(gymId)))
+      for (const gym of this.administeredGyms) {
+        if (gym.id === parseInt(gymId)) {
+          return true
+        }
+      }
+      return false
     },
 
     iAmSubscribedToThis (type, id) {

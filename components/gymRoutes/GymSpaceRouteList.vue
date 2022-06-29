@@ -88,7 +88,10 @@ export default {
   },
   mixins: [SessionConcern],
   props: {
-    gymSpace: Object
+    gymSpace: {
+      type: Object,
+      required: true
+    }
   },
 
   data () {
@@ -199,7 +202,9 @@ export default {
           }
         })
         .catch((err) => {
-          this.$root.$emit('alertFromApiError', err, 'gymRoute')
+          if (err.response) {
+            this.$root.$emit('alertFromApiError', err, 'gymRoute')
+          }
         })
         .finally(() => {
           this.loadingRoutes = false
@@ -243,7 +248,11 @@ export default {
           this.getRoutes()
         })
         .catch((err) => {
-          this.$root.$emit('alertFromApiError', err, 'gymRoute')
+          if (err.response) {
+            this.$root.$emit('alertFromApiError', err, 'gymRoute')
+          }
+        })
+        .finally(() => {
           this.loadingRoutes = false
         })
     }

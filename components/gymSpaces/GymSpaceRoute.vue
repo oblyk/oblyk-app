@@ -58,7 +58,10 @@ export default {
   mixins: [SessionConcern],
 
   props: {
-    gymSpace: Object
+    gymSpace: {
+      type: Object,
+      required: true
+    }
   },
 
   data () {

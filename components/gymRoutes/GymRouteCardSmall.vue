@@ -24,7 +24,10 @@
             <span class="ml-1">
               {{ gymRoute.name }}
             </span>
-            <note :note="gymRoute.note" />
+            <note
+              v-if="gymRoute.note"
+              :note="gymRoute.note"
+            />
           </v-col>
         </v-row>
         <v-row>

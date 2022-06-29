@@ -17,7 +17,7 @@
     <v-card-actions>
       <v-spacer />
       <v-btn
-        :to="`/a${gym.path}/spaces/new`"
+        :to="`/a${gym.spacePath}/new`"
         small
         text
         color="primary"

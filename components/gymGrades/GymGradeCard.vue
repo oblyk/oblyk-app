@@ -70,7 +70,7 @@
           color="primary"
           class="ml-2"
           outlined
-          :to="`/a${gymGrade.path}/grade-lines/new`"
+          :to="`${gymGrade.path}/grade-lines/new`"
         >
           <v-icon left>
             {{ mdiPlus }}
@@ -81,7 +81,7 @@
         <v-btn
           color="primary"
           class="ml-2"
-          :to="`/a${gymGrade.path}/edit`"
+          :to="`${gymGrade.path}/edit`"
           outlined
         >
           {{ $t('actions.edit') }}
