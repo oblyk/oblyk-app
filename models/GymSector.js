@@ -15,7 +15,7 @@ export default class GymSector extends ActiveData {
   }
 
   get path () {
-    return `/gyms/${this.gym.id}/${this.gym.slug_name}/spaces/${this.gym_space.id}/${this.gym_space.slug_name}/sectors/${this.id}`
+    return `/gym-spaces/${this.gym.id}/${this.gym.slug_name}/spaces/${this.gym_space.id}/${this.gym_space.slug_name}/sectors/${this.id}`
   }
 
   get jsonPolygon () {
