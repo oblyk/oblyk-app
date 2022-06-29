@@ -131,7 +131,7 @@
           <strong>Proposer des idées et faire remonter les bugs.</strong><br>
           À force d'avoir le nez dans le projet on fini par ne plus avoir de recule dessus. Votre regard neuf nous est très précieux !<br>
           Si vous avec une suggestion ou que vous avez trouvé un bug, vous pouvez soit : nous écrire (<a href="/contact">mail</a>, <a href="https://www.facebook.com/pageoblyk/">Facebook</a>),
-          soit ouvrir une <a href="https://github.com/lucien-chastan/oblyk-app/issues">issue sur github</a>.
+          soit ouvrir une <a href="https://github.com/oblyk/oblyk-app/issues">issue sur github</a>.
         </li>
         <li class="pb-3">
           <strong>Parler d'oblyk, faire connaître la platform</strong>.<br>
@@ -145,7 +145,7 @@
         </li>
         <li class="pb-3">
           <strong>Vous savez coder ?</strong><br>
-          <a href="https://github.com/lucien-chastan/oblyk-api">Le back</a> est en Ruby on Rails, <a href="https://github.com/lucien-chastan/oblyk-app">le front</a> en Vuejs.
+          <a href="https://github.com/lucien-chastan/oblyk-api">Le back</a> est en Ruby on Rails, <a href="https://github.com/oblyk/oblyk-app">le front</a> en Vuejs.
           tout est dans le readme. La stack est toute neuve. on vous attends 😎
         </li>
         <li class="pb-7">

@@ -1013,7 +1013,7 @@ export default {
       noVideo: 'There is no video here for the moment'
     },
     partner: {
-      xAround: 'One climber is around | %{count} climbers is around',
+      xAround: 'One climber is around | %{count} climbers are around',
       around: 'Local climbers',
       noClimbers: 'There are no climbers in the area yet.<br> Sign up here so that others can find you.'
     },
