@@ -96,7 +96,6 @@ export default {
 
   data () {
     return {
-      mdiTextureBox,
       sort: 'opened_at',
       routes: [],
       sectors: [],
@@ -104,17 +103,21 @@ export default {
       grades: [],
       gymRoutes: [],
       loadingRoutes: true,
+      firstLoaded: false,
       filter: {
         text: null,
         icon: null
-      }
+      },
+
+      mdiTextureBox
     }
   },
 
   watch: {
     sort () {
-      this.getRoutes()
-      localStorage.setItem('gym_route_sort', this.sort)
+      if (this.firstLoaded) {
+        this.getRoutes()
+      }
     },
     gymSpace () {
       this.getRoutes()
@@ -130,9 +133,8 @@ export default {
       this.dismountRoutes(gymId, spaceId, sectorId)
     })
 
-    this.getRoutes()
-
     this.sort = localStorage.getItem('gym_route_sort')
+    this.getRoutes()
   },
 
   beforeDestroy () {
@@ -200,14 +202,14 @@ export default {
               })
             }
           }
+          localStorage.setItem('gym_route_sort', this.sort)
         })
         .catch((err) => {
-          if (err.response) {
-            this.$root.$emit('alertFromApiError', err, 'gymRoute')
-          }
+          this.$root.$emit('alertFromApiError', err, 'gymRoute')
         })
         .finally(() => {
           this.loadingRoutes = false
+          this.firstLoaded = true
         })
     },
 
