@@ -59,7 +59,10 @@ export default {
   mixins: [MapDrawingHelpers],
 
   props: {
-    gymSpace: Object
+    gymSpace: {
+      type: Object,
+      required: true
+    }
   },
 
   data () {

@@ -18,11 +18,11 @@ export default class GymRoute extends ActiveData {
   }
 
   get path () {
-    return `/gyms/${this.gym.id}/${this.gym.slug_name}/spaces/${this.gym_space.id}/${this.gym_space.slug_name}/routes/${this.id}`
+    return `/gym-spaces/${this.gym.id}/${this.gym.slug_name}/spaces/${this.gym_space.id}/${this.gym_space.slug_name}/routes/${this.id}`
   }
 
   get gymSpacePath () {
-    return `/gyms/${this.gym.id}/${this.gym.slug_name}/spaces/${this.gym_space.id}/${this.gym_space.slug_name}`
+    return `/gym-spaces/${this.gym.id}/${this.gym.slug_name}/spaces/${this.gym_space.id}/${this.gym_space.slug_name}`
   }
 
   get pictureUrl () {
