@@ -1,6 +1,6 @@
 <template>
   <v-card
-    :to="gym.gym_grades_count > 0 ? `${gym.adminPath}/grades-list` : `${gym.adminPath}/first-difficulty-system`"
+    :to="gym.gym_grades_count > 0 ? `${gym.adminPath}/grades` : `${gym.adminPath}/first-difficulty-system`"
     class="full-height"
   >
     <v-card-title>
@@ -22,7 +22,10 @@ import { mdiSortBoolAscending } from '@mdi/js'
 export default {
   name: 'GymAdminDifficultySystemFigures',
   props: {
-    gym: Object
+    gym: {
+      type: Object,
+      required: true
+    }
   },
 
   data () {

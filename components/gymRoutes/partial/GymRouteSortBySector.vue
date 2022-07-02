@@ -1,14 +1,17 @@
 <template>
-  <v-row class="mb-0">
-    <v-col class="pb-0">
-      <v-icon left small>
-        {{ mdiTextureBox }}
-      </v-icon>
-      {{ gymSector.name }}
+  <v-row>
+    <v-col>
+      <p class="mb-0 mt-1">
+        <v-icon left small class="mb-1">
+          {{ mdiTextureBox }}
+        </v-icon>
+        {{ gymSector.name }}
+      </p>
     </v-col>
     <v-col
       v-if="currentUserIsGymAdmin()"
-      class="gym-sector-actions-menu-col text-right pb-0"
+      col="2"
+      class="gym-sector-actions-menu-col text-right"
     >
       <v-menu offset-y left>
         <template #activator="{ on, attrs }">
@@ -75,7 +78,10 @@ export default {
   name: 'GymRouteSortBySector',
   mixins: [SessionConcern],
   props: {
-    gymSector: Object
+    gymSector: {
+      type: Object,
+      required: true
+    }
   },
 
   data () {

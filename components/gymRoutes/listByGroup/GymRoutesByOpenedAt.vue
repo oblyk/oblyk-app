@@ -5,14 +5,16 @@
       :key="`opened-at-${index}`"
       class="mb-6"
     >
-      <p class="mb-0">{{ humanizeDate(item.openedAt) }}</p>
+      <p class="mb-4">
+        {{ humanizeDate(item.openedAt) }}
+      </p>
       <div
-        v-for="(route, index) in item.routes"
+        v-for="(route, routeIndex) in item.routes"
         :key="`gym-route-card-${route.id}`"
       >
         <!-- Route card -->
         <gym-route-card
-          :placement="placement(index, item.routes.length)"
+          :placement="placement(routeIndex, item.routes.length)"
           :gym-route="route"
           :get-space-routes="getRoutes"
         />
@@ -27,12 +29,21 @@ import { DateHelpers } from '@/mixins/DateHelpers'
 
 export default {
   name: 'GymRoutesByOpenedAt',
-  mixins: [DateHelpers],
   components: { GymRouteCard },
+  mixins: [DateHelpers],
   props: {
-    openedAts: Array,
-    getRoutes: Function,
-    placement: Function
+    openedAts: {
+      type: Array,
+      required: true
+    },
+    getRoutes: {
+      type: Function,
+      required: true
+    },
+    placement: {
+      type: Function,
+      required: true
+    }
   }
 }
 </script>

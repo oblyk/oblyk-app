@@ -22,14 +22,14 @@
 
     <!-- Routes list -->
     <div v-if="!loadingRoutes">
+
       <!-- If sort by sector -->
-      <div v-if="sort === 'sector'">
-        <gym-routes-by-sector
-          :sectors="sectors"
-          :placement="placement"
-          :get-routes="getRoutes"
-        />
-      </div>
+      <gym-routes-by-sector
+        v-if="sort === 'sector'"
+        :sectors="sectors"
+        :placement="placement"
+        :get-routes="getRoutes"
+      />
 
       <!-- If sort by opened_at -->
       <div v-if="sort === 'opened_at'">
@@ -88,12 +88,14 @@ export default {
   },
   mixins: [SessionConcern],
   props: {
-    gymSpace: Object
+    gymSpace: {
+      type: Object,
+      required: true
+    }
   },
 
   data () {
     return {
-      mdiTextureBox,
       sort: 'opened_at',
       routes: [],
       sectors: [],
@@ -101,17 +103,21 @@ export default {
       grades: [],
       gymRoutes: [],
       loadingRoutes: true,
+      firstLoaded: false,
       filter: {
         text: null,
         icon: null
-      }
+      },
+
+      mdiTextureBox
     }
   },
 
   watch: {
     sort () {
-      this.getRoutes()
-      localStorage.setItem('gym_route_sort', this.sort)
+      if (this.firstLoaded) {
+        this.getRoutes()
+      }
     },
     gymSpace () {
       this.getRoutes()
@@ -127,9 +133,8 @@ export default {
       this.dismountRoutes(gymId, spaceId, sectorId)
     })
 
-    this.getRoutes()
-
     this.sort = localStorage.getItem('gym_route_sort')
+    this.getRoutes()
   },
 
   beforeDestroy () {
@@ -197,12 +202,14 @@ export default {
               })
             }
           }
+          localStorage.setItem('gym_route_sort', this.sort)
         })
         .catch((err) => {
           this.$root.$emit('alertFromApiError', err, 'gymRoute')
         })
         .finally(() => {
           this.loadingRoutes = false
+          this.firstLoaded = true
         })
     },
 
@@ -243,7 +250,11 @@ export default {
           this.getRoutes()
         })
         .catch((err) => {
-          this.$root.$emit('alertFromApiError', err, 'gymRoute')
+          if (err.response) {
+            this.$root.$emit('alertFromApiError', err, 'gymRoute')
+          }
+        })
+        .finally(() => {
           this.loadingRoutes = false
         })
     }

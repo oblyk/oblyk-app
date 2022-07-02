@@ -23,8 +23,8 @@
         <l-control-zoom position="topright" />
 
         <editable-polygon
-          v-for="sector in sectorPolygons"
-          :key="sector.id"
+          v-for="(sector, sectorIndex) in sectorPolygons"
+          :key="`polygon-sector-${sectorIndex}`"
           :ref="`polygon-sector-${sector.id}`"
           :fill-opacity="0"
           :weight="2"
@@ -59,7 +59,10 @@ export default {
   mixins: [MapDrawingHelpers],
 
   props: {
-    gymSpace: Object
+    gymSpace: {
+      type: Object,
+      required: true
+    }
   },
 
   data () {

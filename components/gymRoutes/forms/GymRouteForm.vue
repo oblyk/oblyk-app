@@ -360,7 +360,7 @@ export default {
           } else if (this.nextAction === 'picture') {
             this.$router.push(`${gymRoute.path}/picture`)
           } else {
-            this.$router.push(gymRoute.gymSpacePath)
+            this.$router.push(`${gymRoute.gymSpacePath}/plan`)
           }
         })
         .catch((err) => {

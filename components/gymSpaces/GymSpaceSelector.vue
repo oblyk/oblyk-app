@@ -15,6 +15,7 @@
     </h1>
   </div>
 </template>
+
 <script>
 import { SessionConcern } from '@/concerns/SessionConcern'
 import GymSpaceApi from '~/services/oblyk-api/GymSpaceApi'
@@ -23,7 +24,10 @@ export default {
   name: 'GymSpaceSelector',
   mixins: [SessionConcern],
   props: {
-    gymSpace: Object
+    gymSpace: {
+      type: Object,
+      required: true
+    }
   },
 
   data () {
@@ -71,7 +75,7 @@ export default {
             selectedGymSpace = gymSpace
           }
         }
-        this.$router.push(`/gyms/${this.gymSpace.gym.id}/${this.gymSpace.gym.slug_name}/spaces/${this.selectedGymSpaceId}/${selectedGymSpace.slug_name}/plan`)
+        this.$router.push(`/gym-spaces/${this.gymSpace.gym.id}/${this.gymSpace.gym.slug_name}/spaces/${this.selectedGymSpaceId}/${selectedGymSpace.slug_name}/plan`)
       }
     }
   }

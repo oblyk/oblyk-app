@@ -20,7 +20,7 @@ export default class GymGrade extends ActiveData {
   }
 
   get listPath () {
-    return `/gym-admins/${this.gym.id}/${this.gym.slug_name}/grades-list`
+    return `/gym-admins/${this.gym.id}/${this.gym.slug_name}/grades`
   }
 
   get needColor () {
