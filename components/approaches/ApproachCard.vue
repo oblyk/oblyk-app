@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card class="rounded-lg">
     <v-card-text>
       <v-row>
         <v-col class="col-12 col-md-6">

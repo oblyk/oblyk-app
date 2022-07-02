@@ -39,6 +39,7 @@
         <div
           v-for="(approach, index) in approaches"
           :key="`approach-${index}`"
+          class="mt-4"
         >
           <approach-card :approach="approach" />
         </div>
@@ -46,14 +47,16 @@
     </div>
 
     <!-- Map -->
-    <div>
-      <p class="mb-2">
-        <v-icon small class="mr-1">
-          {{ mdiMap }}
-        </v-icon>
-        {{ $t('components.map.title') }}
-      </p>
-      <div class="full-height">
+    <v-card class="rounded-lg">
+      <v-card-title>
+        <h2 class="h2-title-in-card-title">
+          <v-icon left class="mr-1">
+            {{ mdiMap }}
+          </v-icon>
+          {{ $t('components.map.title') }}
+        </h2>
+      </v-card-title>
+      <v-card-text class="full-height">
         <client-only>
           <leaflet-map
             class="crag-map"
@@ -65,10 +68,11 @@
             :scroll-wheel-zoom="true"
             :clustered="false"
             map-style="outdoor"
+            :options="{ rounded: true }"
           />
         </client-only>
-      </div>
-    </div>
+      </v-card-text>
+    </v-card>
   </div>
 </template>
 
