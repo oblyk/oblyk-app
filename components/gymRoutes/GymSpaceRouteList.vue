@@ -22,14 +22,14 @@
 
     <!-- Routes list -->
     <div v-if="!loadingRoutes">
+
       <!-- If sort by sector -->
-      <div v-if="sort === 'sector'">
-        <gym-routes-by-sector
-          :sectors="sectors"
-          :placement="placement"
-          :get-routes="getRoutes"
-        />
-      </div>
+      <gym-routes-by-sector
+        v-if="sort === 'sector'"
+        :sectors="sectors"
+        :placement="placement"
+        :get-routes="getRoutes"
+      />
 
       <!-- If sort by opened_at -->
       <div v-if="sort === 'opened_at'">

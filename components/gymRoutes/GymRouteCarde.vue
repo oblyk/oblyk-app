@@ -1,15 +1,12 @@
 <template>
   <div>
-    <div
+    <gym-route-card-small
+      v-if="!showLargeCard"
+      :placement="placement"
+      :gym-route="gymRoute"
+      :callback="changeCardSize"
       @mouseenter="$root.$emit('activeSector', gymRoute.gym_sector_id)"
-      @click="changeCardSize()"
-    >
-      <gym-route-card-small
-        v-if="!showLargeCard"
-        :placement="placement"
-        :gym-route="gymRoute"
-      />
-    </div>
+    />
 
     <gym-route-card-large
       v-if="showLargeCard"
@@ -28,11 +25,17 @@ export default {
   name: 'GymRouteCard',
   components: { GymRouteCardLarge, GymRouteCardSmall },
   props: {
-    gymRoute: Object,
-    getSpaceRoutes: Function,
+    gymRoute: {
+      type: Object,
+      required: true
+    },
+    getSpaceRoutes: {
+      type: Function,
+      default: null
+    },
     placement: {
       type: String,
-      required: false
+      default: null
     }
   },
 

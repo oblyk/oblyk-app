@@ -3,32 +3,30 @@
     <div
       v-for="(item, index) in sectors"
       :key="`sector-${index}`"
-      @mouseenter="$root.$emit('activeSector', item.sector.id)"
       class="mb-5"
+      @mouseenter="$root.$emit('activeSector', item.sector.id)"
     >
       <!-- Sector head -->
       <gym-route-sort-by-sector :gym-sector="item.sector" />
 
-      <div
+      <!-- Route card -->
+      <gym-route-card
         v-for="(route, index) in item.routes"
         :key="`gym-route-card-${route.id}`"
-      >
-        <!-- Route card -->
-        <gym-route-card
-          :placement="placement(index, item.routes.length)"
-          :gym-route="route"
-          :get-space-routes="getRoutes"
-        />
-      </div>
+        :placement="placement(index, item.routes.length)"
+        :gym-route="route"
+        :get-space-routes="getRoutes"
+      />
 
       <p v-if="item.routes.length === 0" class="text-center text--disabled">
         {{ $t('components.gymRoute.noRouteInSector') }}
       </p>
 
       <!-- Add route in sector -->
-      <div v-if="currentUserIsGymAdmin()">
-        <gym-route-add-in-sort-by-sector :gym-sector="item.sector" />
-      </div>
+      <gym-route-add-in-sort-by-sector
+        v-if="currentUserIsGymAdmin()"
+        :gym-sector="item.sector"
+      />
     </div>
   </div>
 </template>

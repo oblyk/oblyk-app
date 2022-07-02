@@ -1,10 +1,11 @@
 <template>
   <v-card
     link
+    :class="`placement-${placement}`"
     class="gym-route-small-card"
-    v-bind:class="`placement-${placement}`"
+    @click="callback"
   >
-    <v-row>
+    <v-row class="mb-4">
       <v-col
         class="pt-0 pb-0 gym-route-image-col"
       >
@@ -17,9 +18,9 @@
           <v-img :src="gymRoute.thumbnailUrl" />
         </v-avatar>
       </v-col>
-      <v-col class="pl-5 pt-0 pb-0">
+      <v-col class="pb-0 pt-4 pl-5">
         <v-row>
-          <v-col class="pt-1 pb-1">
+          <v-col class="pt-1 pb-1 text-truncate">
             <gym-route-tag-and-hold :gym-route="gymRoute" />
             <span class="ml-1">
               {{ gymRoute.name }}
@@ -39,7 +40,7 @@
           </v-col>
         </v-row>
       </v-col>
-      <v-col class="pt-1 pb-0 pl-0 gym-grade-col text-center">
+      <v-col class="pb-0 pl-0 gym-grade-col text-center">
         <gym-route-grade-and-point :gym-route="gymRoute" />
         <span class="text--disabled">
           <v-icon
@@ -67,10 +68,17 @@ export default {
   name: 'GymRouteCardSmall',
   components: { Note, AscentGymRouteStatusIcon, GymRouteGradeAndPoint, GymRouteTagAndHold },
   props: {
-    gymRoute: Object,
+    gymRoute: {
+      type: Object,
+      required: true
+    },
     placement: {
       type: String,
-      required: false
+      default: null
+    },
+    callback: {
+      type: Function,
+      default: null
     }
   },
 
