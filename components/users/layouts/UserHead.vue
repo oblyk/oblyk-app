@@ -190,11 +190,13 @@ export default {
 .theme--light {
   .user-header-title .user-header-avatar-area .user-header-avatar {
     border-color: rgb(245, 245, 245);
+    background-color: rgb(225, 225, 225);
   }
 }
 .theme--dark {
   .user-header-title .user-header-avatar-area .user-header-avatar {
     border-color: rgb(18, 18, 18);
+    background-color: rgb(30, 30, 30);
   }
 }
 
