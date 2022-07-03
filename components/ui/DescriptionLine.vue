@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p class="mb-0">
+    <p class="mb-0 text-truncate">
       <v-icon small left>
         {{ icon }}
       </v-icon>
