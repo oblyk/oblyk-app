@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-server 'oblyk.org', user: 'lucien', roles: %w[app], port: 1622
+server '185.163.125.60', user: 'root', roles: %w[app]
 
 set :deploy_to, '/var/www/oblyk/app'
 

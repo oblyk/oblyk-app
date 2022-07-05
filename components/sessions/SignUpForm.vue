@@ -102,8 +102,8 @@
       :label="$t('components.session.termsOfUse')"
     />
 
-    <nuxt-link to="/terms-of-use" class="ml-8">
-      {{ $t('termsOfUse.title') }}
+    <nuxt-link to="/fr/conditions-d-utilisation" class="ml-8">
+      {{ $t('components.session.termsOfUseTitle') }}
     </nuxt-link>
 
     <required-explained class="mt-4" />
