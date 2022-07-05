@@ -19,7 +19,7 @@ export default function ({ $axios, redirect, $auth }) {
       await $auth.logout('local')
       window.location.reload()
     } else {
-      return error
+      return Promise.reject(error)
     }
   })
 }
