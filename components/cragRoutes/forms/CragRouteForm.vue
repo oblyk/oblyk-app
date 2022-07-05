@@ -75,7 +75,7 @@
             {{ similarRoute.grade_to_s }} -
             {{ similarRoute.name }}
             <cite
-              v-if="similarRoute.CragSector.name"
+              v-if="similarRoute.CragSector && similarRoute.CragSector.name"
               class="text--disabled"
             >
               ({{ $t('models.cragRoute.crag_sector') }} : {{ similarRoute.CragSector.name }})
