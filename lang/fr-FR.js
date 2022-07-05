@@ -535,6 +535,7 @@ export default {
       alreadyConnected: 'Vous êtes connecté·e',
       stayConnected: 'Rester connecté·e',
       termsOfUse: "J'ai lu et j'accepte les conditions d'utilisation d'Oblyk",
+      termsOfUseTitle: 'Mentions légales',
       youMustBeAgree: "Vous devez accepter les conditions d'utilisation d'Oblyk",
       newsletterSubscribe: 'Recevoir la newsletter (une par trimestre environ)',
       forgottenPassword: 'Mot de passe oublié ?',
