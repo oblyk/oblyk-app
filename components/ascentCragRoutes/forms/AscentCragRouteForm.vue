@@ -76,7 +76,7 @@
       <close-form />
       <submit-form
         :overlay="submitOverlay"
-        :submit-local-key="submitText()"
+        :submit-local-key="isEditingForm() ? 'actions.edit' : 'actions.add'"
       />
     </v-form>
   </div>
@@ -131,8 +131,6 @@ export default {
 
   data () {
     return {
-      mdiCalendar,
-      mdiRedoVariant,
       data: {
         id: (this.ascentCragRoute || {}).id,
         ascent_status: (this.ascentCragRoute || {}).ascent_status,
@@ -145,7 +143,10 @@ export default {
         private_comment: (this.ascentCragRoute || {}).private_comment || false,
         selected_sections: (this.ascentCragRoute || {}).sections_done || this.cragRoute.sections.map((section, index) => index),
         crag_route_id: (this.ascentCragRoute || {}).crag_route_id || this.cragRoute.id
-      }
+      },
+
+      mdiCalendar,
+      mdiRedoVariant
     }
   },
 

@@ -124,7 +124,7 @@
           </v-col>
 
           <!-- Rain -->
-          <v-col cols="6">
+          <v-col cols="12" md="6">
             <description-line
               :icon="mdiWeatherPouring"
               :item-title="$t('models.crag.rain')"

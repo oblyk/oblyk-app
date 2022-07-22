@@ -23,8 +23,14 @@ export default {
   name: 'CragRouteSearch',
   props: {
     value: String,
-    crag: Object,
-    cragSector: Object,
+    crag: {
+      type: Object,
+      default: null
+    },
+    cragSector: {
+      type: Object,
+      default: null
+    },
     labelKey: {
       type: String,
       default: 'components.cragRoute.searchRoute'
@@ -46,12 +52,13 @@ export default {
 
   data () {
     return {
-      mdiMagnify,
       query: this.value,
       searching: false,
       onSearch: false,
       searchResults: [],
-      previousQuery: null
+      previousQuery: null,
+
+      mdiMagnify
     }
   },
 

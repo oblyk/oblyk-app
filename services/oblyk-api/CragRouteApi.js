@@ -4,10 +4,11 @@ class CragRouteApi extends BaseApi {
   allInCrag (cragId, page = 1, orderBy = 'difficulty_desc') {
     return this.axios.request({
       method: 'GET',
-      url: `${this.baseUrl}/public/crags/${cragId}/crag_routes.json?page=${page}`,
+      url: `${this.baseUrl}/public/crags/${cragId}/crag_routes.json`,
       headers: { HttpApiAccessToken: this.apiAccessToken },
       params: {
-        order_by: orderBy
+        order_by: orderBy,
+        page
       }
     })
   }
@@ -15,10 +16,11 @@ class CragRouteApi extends BaseApi {
   allInCragSector (cragSectorId, page = 1, orderBy = 'difficulty_desc') {
     return this.axios.request({
       method: 'GET',
-      url: `${this.baseUrl}/public/crag_sectors/${cragSectorId}/crag_routes.json?page=${page}`,
+      url: `${this.baseUrl}/public/crag_sectors/${cragSectorId}/crag_routes.json`,
       headers: { HttpApiAccessToken: this.apiAccessToken },
       params: {
-        order_by: orderBy
+        order_by: orderBy,
+        page
       }
     })
   }
@@ -26,16 +28,44 @@ class CragRouteApi extends BaseApi {
   searchInCrag (cragId, query) {
     return this.axios.request({
       method: 'GET',
-      url: `${this.baseUrl}/public/crags/${cragId}/crag_routes/search.json?query=${query}`,
-      headers: { HttpApiAccessToken: this.apiAccessToken }
+      url: `${this.baseUrl}/public/crags/${cragId}/crag_routes/search.json`,
+      headers: { HttpApiAccessToken: this.apiAccessToken },
+      params: {
+        query
+      }
+    })
+  }
+
+  searchInCragByGrade (cragId, grade) {
+    return this.axios.request({
+      method: 'GET',
+      url: `${this.baseUrl}/public/crags/${cragId}/crag_routes/search_by_grades.json`,
+      headers: { HttpApiAccessToken: this.apiAccessToken },
+      params: {
+        grade
+      }
+    })
+  }
+
+  searchInCragSectorByGrade (cragId, cragSectorId, grade) {
+    return this.axios.request({
+      method: 'GET',
+      url: `${this.baseUrl}/public/crags/${cragId}/crag_sectors/${cragSectorId}/crag_routes/search_by_grades.json`,
+      headers: { HttpApiAccessToken: this.apiAccessToken },
+      params: {
+        grade
+      }
     })
   }
 
   searchInSector (sectorId, query) {
     return this.axios.request({
       method: 'GET',
-      url: `${this.baseUrl}/public/crag_sectors/${sectorId}/crag_routes/search.json?query=${query}`,
-      headers: { HttpApiAccessToken: this.apiAccessToken }
+      url: `${this.baseUrl}/public/crag_sectors/${sectorId}/crag_routes/search.json`,
+      headers: { HttpApiAccessToken: this.apiAccessToken },
+      params: {
+        query
+      }
     })
   }
 

@@ -13,14 +13,19 @@
             <v-icon left>
               {{ mdiSourceBranch }}
             </v-icon>
-            {{ $t('components.cragRoute.routes') }}
+            {{ $t(titleTranslateKey) }}
           </v-col>
           <v-col
             v-if="isLoggedIn"
             class="add-sector-or-route"
           >
             <client-only>
+              <slot
+                v-if="hasCustomAddedBtn"
+                name="add-btn"
+              />
               <add-sector-or-route-btn
+                v-else
                 :crag="crag"
                 :crag-sector="cragSector"
               />
@@ -37,17 +42,25 @@
               :crag="crag"
             />
           </v-col>
-          <v-col>
+          <v-col v-if="showRouteSort">
             <crag-route-sort v-model="routeSort" />
           </v-col>
           <v-col>
-            <crag-sector-selector :crag="crag" :crag-sector="cragSector" />
+            <crag-sector-selector
+              v-model="cragSectorId"
+              :crag="crag"
+              :crag-sector="cragSector"
+              :is-filter="sectorSelectorIsFilter"
+            />
           </v-col>
         </v-row>
       </v-card-subtitle>
 
       <v-card-text>
-        <crag-route-figures :crag="crag" :crag-sector="cragSector" />
+        <crag-route-figures
+          :crag="crag"
+          :crag-sector="cragSector"
+        />
       </v-card-text>
 
       <v-skeleton-loader
@@ -67,11 +80,14 @@
             v-for="(route, index) in routes"
             :key="`crag-route-${index}`"
           >
-            <crag-route-list-item :route="route" />
+            <crag-route-list-item
+              :route="route"
+              :callback="cragRouteCallback"
+            />
           </div>
 
           <loading-more
-            v-if="query === null"
+            v-if="query === null && !disableLoadingMore"
             :get-function="getRoutes"
             :loading-more="loadingMoreData"
             :no-more-data="noMoreDataToLoad"
@@ -114,6 +130,7 @@ export default {
     CragRouteListItem
   },
   mixins: [SessionConcern, LoadingMoreHelpers],
+
   props: {
     crag: {
       type: Object,
@@ -126,17 +143,42 @@ export default {
     cardElevation: {
       type: Number,
       default: 3
+    },
+    titleTranslateKey: {
+      type: String,
+      default: 'components.cragRoute.routes'
+    },
+    cragRouteCallback: {
+      type: Function,
+      default: null
+    },
+    sectorSelectorIsFilter: {
+      type: Boolean,
+      default: false
+    },
+    showRouteSort: {
+      type: Boolean,
+      default: true
     }
   },
 
   data () {
     return {
-      mdiSourceBranch,
       query: null,
       routeSort: 'difficulty_desc',
       loadingRoutes: true,
       routes: [],
-      areaHeight: 0
+      areaHeight: 0,
+      cragSectorId: null,
+      disableLoadingMore: false,
+
+      mdiSourceBranch
+    }
+  },
+
+  computed: {
+    hasCustomAddedBtn () {
+      return !!this.$slots['add-btn']
     }
   },
 
@@ -144,8 +186,10 @@ export default {
     routeSort () {
       this.reloadRoutes()
     },
-    cragSector () {
-      this.reloadRoutes()
+    cragSectorId () {
+      if (this.sectorSelectorIsFilter) {
+        this.reloadRoutes(this.cragSectorId)
+      }
     }
   },
 
@@ -177,21 +221,24 @@ export default {
 
     haveSearchResults (results) {
       this.routes = results
+      this.disableLoadingMore = true
     },
 
-    reloadRoutes () {
+    reloadRoutes (sectorIdFilter = null) {
       this.loadingRoutes = true
+      this.disableLoadingMore = false
       this.resetLoadMorePageNumber()
       this.routes = []
-      this.getRoutes()
+      this.getRoutes(sectorIdFilter)
     },
 
-    getRoutes () {
+    getRoutes (sectorIdFilter = null) {
       let promise
-      if (this.crag) {
+      if (this.crag && sectorIdFilter === null) {
         promise = new CragRouteApi(this.$axios, this.$auth).allInCrag(this.crag.id, this.page, this.routeSort)
-      } else if (this.cragSector) {
-        promise = new CragRouteApi(this.$axios, this.$auth).allInCragSector(this.cragSector.id, this.page, this.routeSort)
+      } else if (this.cragSector || sectorIdFilter) {
+        const sectorId = this.cragSector ? this.cragSector.id : sectorIdFilter
+        promise = new CragRouteApi(this.$axios, this.$auth).allInCragSector(sectorId, this.page, this.routeSort)
       }
 
       this.moreIsBeingLoaded()

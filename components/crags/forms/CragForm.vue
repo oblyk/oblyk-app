@@ -113,8 +113,8 @@ export default {
 
   data () {
     return {
-      mdiAlert,
       cragsAround: [],
+      redirectTo: null,
       localization: {
         latitude: (this.crag || {}).latitude,
         longitude: (this.crag || {}).longitude,
@@ -157,7 +157,9 @@ export default {
         south_west: (this.crag || {}).south_west,
         west: (this.crag || {}).west,
         north_west: (this.crag || {}).north_west
-      }
+      },
+
+      mdiAlert
     }
   },
 
@@ -212,6 +214,12 @@ export default {
     }
   },
 
+  mounted () {
+    const urlParams = new URLSearchParams(window.location.search)
+    this.redirectTo = urlParams.get('redirect_to')
+    this.data.name = urlParams.get('name')
+  },
+
   methods: {
     getCragAround () {
       if (this.isEditingForm()) { return }
@@ -236,7 +244,11 @@ export default {
       promise
         .then((resp) => {
           const crag = new Crag({ attributes: resp.data })
-          this.$router.push(crag.path)
+          if (this.redirectTo) {
+            this.$router.push(`${this.redirectTo}?crag_id=${crag.id}`)
+          } else {
+            this.$router.push(crag.path)
+          }
         })
         .catch((err) => {
           this.$root.$emit('alertFromApiError', err, 'crag')

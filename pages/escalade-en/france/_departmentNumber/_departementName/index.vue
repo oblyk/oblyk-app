@@ -204,17 +204,14 @@
             :prepend-inner-icon="mdiMagnify"
           />
           <div v-for="(town, index) in filteredTowns" :key="`town-${index}`">
-            <p
+            <v-alert
               v-if="index === 0 || (firstTownLetter(department.towns[index - 1].name) !== firstTownLetter(town.name))"
+              dense
+              text
+              class="d-block mb-0 mt-5 mb-2"
             >
-              <v-alert
-                dense
-                text
-                class="d-block mb-0 mt-5"
-              >
-                {{ firstTownLetter(town.name) }}
-              </v-alert>
-            </p>
+              {{ firstTownLetter(town.name) }}
+            </v-alert>
             <p>
               <nuxt-link :to="`/escalade-autour-de/${town.slug_name}`">
                 {{ town.name }}, {{ town.zipcode }}
