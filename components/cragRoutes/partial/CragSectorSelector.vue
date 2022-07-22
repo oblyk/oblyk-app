@@ -28,6 +28,10 @@ import CragSector from '@/models/CragSector'
 export default {
   name: 'CragSectorSelector',
   props: {
+    value: {
+      type: [String, Number],
+      default: null
+    },
     crag: {
       type: Object,
       default: null
@@ -35,6 +39,10 @@ export default {
     cragSector: {
       type: Object,
       default: null
+    },
+    isFilter: {
+      type: Boolean,
+      default: false
     }
   },
 
@@ -77,6 +85,11 @@ export default {
     },
 
     onChange () {
+      if (this.isFilter) {
+        this.$emit('input', this.cragSectorId)
+        return
+      }
+
       if (this.cragSectorId === 0) {
         if (this.crag) {
           this.router.push(this.crag.path)

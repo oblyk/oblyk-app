@@ -6,6 +6,7 @@ export default {
     submit: 'Submit',
     cancel: 'Cancel',
     edit: 'Edit',
+    add: 'Add',
     editSector: 'Edit sector',
     create: 'Create',
     delete: 'Delete',
@@ -103,7 +104,9 @@ export default {
     accept: 'Accept',
     reject: 'Reject',
     update: 'Update',
-    aroundMe: 'Around me'
+    aroundMe: 'Around me',
+    changeCrag: 'Change crag',
+    changeRoute: 'Change line'
   },
   colors: {
     noColor: 'No color',
@@ -664,6 +667,7 @@ export default {
     },
     ascentCragRoute: {
       new: 'Add %{name} in my logbook',
+      successAdd: '%{name} has been added to my logbook!',
       edit: 'Edit my ascent on %{name}',
       myOpinion: 'my opinion on %{name}',
       pitchMade: 'Pitches made',
@@ -674,7 +678,11 @@ export default {
       privateComment: 'private comment',
       publicComment: 'public comment',
       iMadeCountPitch: 'I made the %{count} pitch',
-      iWasWith: 'I was with'
+      iWasWith: 'I was with',
+      whichRoute: 'Which route did you go?',
+      addedAscentToLogbook: 'Add ascent to my logbook',
+      whichCrag: 'Which crag ?',
+      cragNotFound: "Can't find your crag?"
     },
     ascentGymRoute: {
       new: 'Add in my logbook',

@@ -1,15 +1,39 @@
 <template>
   <div>
-    <v-text-field
-      v-model="query"
-      :label="$t('components.crag.searchCrag')"
-      outlined
-      :loading="searching"
-      clearable
-      hide-details
-      @keyup="search()"
-      @click:clear="onSearch = false"
-    />
+    <v-row>
+      <v-col>
+        <v-text-field
+          v-model="query"
+          :label="$t('components.crag.searchCrag')"
+          outlined
+          :loading="searching"
+          clearable
+          hide-details
+          @keyup="search()"
+          @click:clear="onSearch = false"
+        />
+      </v-col>
+      <v-col
+        v-if="aroundMeBtn"
+        cols="12"
+        md="6"
+        lg="3"
+      >
+        <v-btn
+          :loading="loadingLocalization"
+          block
+          x-large
+          outlined
+          color="primary"
+          @click="aroundMe"
+        >
+          <v-icon left>
+            {{ mdiTarget }}
+          </v-icon>
+          {{ $t('actions.aroundMe') }}
+        </v-btn>
+      </v-col>
+    </v-row>
 
     <div
       v-for="crag in searchResults"
@@ -20,6 +44,7 @@
           :crag="crag"
           :linkable="linkableResult"
           class="mt-3"
+          :small="true"
         />
       </div>
     </div>
@@ -27,6 +52,7 @@
 </template>
 
 <script>
+import { mdiTarget } from '@mdi/js'
 import CragApi from '~/services/oblyk-api/CragApi'
 import Crag from '@/models/Crag'
 import CragSmallCard from '@/components/crags/CragSmallCard'
@@ -37,13 +63,22 @@ export default {
   props: {
     linkableResult: {
       type: Boolean,
-      required: false,
       default: true
     },
 
     callback: {
       type: Function,
-      required: false
+      default: null
+    },
+
+    usedCallback: {
+      type: Function,
+      default: null
+    },
+
+    aroundMeBtn: {
+      type: Boolean,
+      default: false
     }
   },
 
@@ -51,10 +86,13 @@ export default {
     return {
       query: null,
       searching: false,
+      loadingLocalization: false,
       onSearch: false,
       searchResults: [],
       previousQuery: null,
-      cragApi: null
+      cragApi: null,
+
+      mdiTarget
     }
   },
 
@@ -89,6 +127,9 @@ export default {
             this.searchResults.push(new Crag({ attributes: crag }))
           }
           this.previousQuery = this.query
+          if (this.usedCallback !== null) {
+            this.usedCallback(this.query)
+          }
         })
         .catch((err) => {
           if (err.response !== undefined) {
@@ -98,6 +139,36 @@ export default {
         .finally(() => {
           this.searching = false
         })
+    },
+
+    aroundMe () {
+      this.loadingLocalization = true
+      this.searchResults = []
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            new CragApi(this.$axios, this.$auth)
+              .cragsAround(
+                position.coords.latitude,
+                position.coords.longitude
+              )
+              .then((resp) => {
+                this.onSearch = true
+                for (const crag of resp.data) {
+                  this.searchResults.push(new Crag({ attributes: crag }))
+                }
+              })
+              .finally(() => {
+                this.loadingLocalization = false
+              })
+          },
+          () => {
+            this.loadingLocalization = false
+          }
+        )
+      } else {
+        this.loadingLocalization = false
+      }
     }
   }
 }

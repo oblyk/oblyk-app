@@ -6,6 +6,7 @@ export default {
     submit: 'Envoyer',
     cancel: 'Annuler',
     edit: 'Modifier',
+    add: 'Ajouter',
     editSector: 'Modifier le secteur',
     create: 'Créer',
     delete: 'Supprimer',
@@ -103,7 +104,9 @@ export default {
     accept: 'Accepter',
     reject: 'Refuser',
     update: 'Mettre à jour',
-    aroundMe: 'Autour de moi'
+    aroundMe: 'Autour de moi',
+    changeCrag: 'Changer le site',
+    changeRoute: 'Changer la ligne'
   },
   colors: {
     noColor: 'Pas de couleur',
@@ -663,6 +666,7 @@ export default {
     },
     ascentCragRoute: {
       new: 'Ajouter %{name} à mon carnet',
+      successAdd: '%{name} a été ajouté à mon carnet !',
       edit: 'Modifier ma croix sur %{name}',
       myOpinion: 'Mon avis sur %{name}',
       pitchMade: 'Longueurs faites',
@@ -673,7 +677,11 @@ export default {
       privateComment: 'commentaire privé',
       publicComment: 'commentaire public',
       iMadeCountPitch: "J'ai fait les %{count} longueurs",
-      iWasWith: "J'étais avec"
+      iWasWith: "J'étais avec",
+      whichRoute: 'Quelle ligne avez-vous fait ?',
+      addedAscentToLogbook: 'Ajouter une croix à mon carnet',
+      whichCrag: 'Quel site ?',
+      cragNotFound: 'Vous ne trouvez pas votre falaise ?'
     },
     ascentGymRoute: {
       new: 'Ajouter à mon carnet',

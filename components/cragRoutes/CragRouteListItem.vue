@@ -1,7 +1,7 @@
 <template>
   <v-list-item
     link
-    @click="$root.$emit('getCragRouteInDrawer', route.crag.id, route.id); callback ? callback() : null"
+    @click="$root.$emit('getCragRouteInDrawer', route.crag.id, route.id); callback ? callback(route) : null"
   >
     <crag-route-avatar class="grade-route-in-list" :crag-route="route" />
     <v-list-item-content>

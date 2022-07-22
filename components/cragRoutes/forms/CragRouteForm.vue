@@ -301,7 +301,7 @@
       :submit-local-key="submitCragRouteText()"
     >
       <v-btn
-        v-if="!isEditingForm()"
+        v-if="!isEditingForm() && !addedFromAscent"
         :tabindex="15 + 7 * data.sections.length"
         class="float-right mr-2"
         text
@@ -377,18 +377,8 @@ export default {
 
   data () {
     return {
-      mdiTextureBox,
-      mdiSourceBranch,
-      mdiFormatLetterCase,
-      mdiAlert,
-      mdiArrowExpandVertical,
-      mdiNumeric0BoxMultipleOutline,
-      mdiDotsVertical,
-      mdiMinus,
-      mdiPlus,
-      mdiBolt,
-      mdiCalendar,
       similarRoutes: [],
+      addedFromAscent: false,
       climbingCragList: [
         { text: this.$t('models.climbs.sport_climbing'), value: 'sport_climbing' },
         { text: this.$t('models.climbs.bouldering'), value: 'bouldering' },
@@ -408,7 +398,19 @@ export default {
         open_year: (this.cragRoute || {}).open_year,
         crag_id: (this.cragRoute || {}).crag_id || this.crag.id,
         sections: (this.cragRoute || {}).sections || [this.defaultSection()]
-      }
+      },
+
+      mdiTextureBox,
+      mdiSourceBranch,
+      mdiFormatLetterCase,
+      mdiAlert,
+      mdiArrowExpandVertical,
+      mdiNumeric0BoxMultipleOutline,
+      mdiDotsVertical,
+      mdiMinus,
+      mdiPlus,
+      mdiBolt,
+      mdiCalendar
     }
   },
 
@@ -419,6 +421,11 @@ export default {
   },
 
   mounted () {
+    const urlParams = new URLSearchParams(window.location.search)
+    this.addedFromAscent = urlParams.get('added_from_ascent') === 'true'
+    this.redirectTo = urlParams.get('redirect_to')
+    this.data.name = urlParams.get('name')
+    this.data.sections[0].grade = urlParams.get('grade')
     this.$root.$on('showSimilarRoute', (results) => {
       this.showSimilarRoute(results)
     })
@@ -450,7 +457,11 @@ export default {
     },
 
     submitCragRouteText () {
-      return this.isEditingForm() ? 'actions.edit' : 'actions.continueToAdd'
+      if (this.addedFromAscent) {
+        return 'actions.add'
+      } else {
+        return this.isEditingForm() ? 'actions.edit' : 'actions.continueToAdd'
+      }
     },
 
     submit (continueToCreate = true) {
@@ -471,8 +482,12 @@ export default {
               this.data.sections[0].tags = []
               this.data.sections[0].bolt_count = null
             }
-            this.$root.$emit('clearRouteSearchGiveFocus')
-            this.$root.$emit('alertSimpleSuccess', this.$t('components.cragRoute.routeAdded', { name: route.name }))
+            if (this.addedFromAscent) {
+              this.$router.push(`${this.redirectTo}?crag_id=${route.crag.id}&crag_route_id=${route.id}`)
+            } else {
+              this.$root.$emit('clearRouteSearchGiveFocus')
+              this.$root.$emit('alertSimpleSuccess', this.$t('components.cragRoute.routeAdded', { name: route.name }))
+            }
           }
         })
         .catch((err) => {

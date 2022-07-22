@@ -1,7 +1,7 @@
 <template>
   <v-list-item
     link
-    @click="$root.$emit('getCragRouteInDrawer', route.crag.id, route.id)"
+    @click="click"
   >
     <crag-route-avatar class="grade-route-in-list" :crag-route="route" />
     <v-list-item-content class="pt-1 pb-1">
@@ -82,6 +82,11 @@ export default {
     route: {
       type: Object,
       required: true
+    },
+
+    callback: {
+      type: Function,
+      default: null
     }
   },
 
@@ -91,6 +96,16 @@ export default {
       mdiFilmstrip,
       mdiComment,
       mdiTerrain
+    }
+  },
+
+  methods: {
+    click () {
+      if (this.callback) {
+        this.callback(this.route)
+      } else {
+        this.$root.$emit('getCragRouteInDrawer', this.route.crag.id, this.route.id)
+      }
     }
   }
 }

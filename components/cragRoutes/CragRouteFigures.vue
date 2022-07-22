@@ -27,22 +27,58 @@
         :class="`level-${level}`"
         :style="`width: ${count / figures.section_count * 100}%`"
         :title="`${level} : ${count} `"
+        @click="gradeFilter(level)"
       >
         {{ level }}
       </div>
+    </div>
+    <div v-if="level !== null">
+      <div v-if="loadingGrade">
+        {{ $t('common.loading') }}
+      </div>
+      <div v-else>
+        <v-icon left small>
+          {{ mdiFilter }}
+        </v-icon>
+        <v-chip
+          close
+          @click:close="resetFilter()"
+        >
+          {{ level }}
+        </v-chip>
+      </div>
+    </div>
+    <div
+      v-else
+      class="text-right mb-n5 mt-n2"
+    >
+      <small>Cliquez sur une cotation pour filtrer</small>
     </div>
   </div>
 </template>
 
 <script>
+import { mdiFilter } from '@mdi/js'
 import CragApi from '~/services/oblyk-api/CragApi'
 import CragSectorApi from '~/services/oblyk-api/CragSectorApi'
+import CragRouteApi from '~/services/oblyk-api/CragRouteApi'
+import CragRoute from '~/models/CragRoute'
 
 export default {
   name: 'CragRouteFigures',
   props: {
-    crag: Object,
-    cragSector: Object
+    crag: {
+      type: Object,
+      default: null
+    },
+    cragSector: {
+      type: Object,
+      default: null
+    },
+    eventTrigger: {
+      type: String,
+      default: 'searchCragRoutesResults'
+    }
   },
 
   data () {
@@ -50,7 +86,11 @@ export default {
       loadingRouteFigures: true,
       figures: {},
       showClimbingType: true,
-      showLevel: true
+      showLevel: true,
+      level: null,
+      loadingGrade: true,
+
+      mdiFilter
     }
   },
 
@@ -92,6 +132,34 @@ export default {
         .finally(() => {
           this.loadingRouteFigures = false
         })
+    },
+
+    gradeFilter (level) {
+      this.loadingGrade = true
+      this.level = level
+
+      let promise = null
+      if (this.crag) {
+        promise = new CragRouteApi(this.$axios, this.$auth).searchInCragByGrade(this.crag.id, `${level} ${level}+`)
+      } else {
+        promise = new CragRouteApi(this.$axios, this.$auth).searchInCragSectorByGrade(this.cragSector.crag.id, this.cragSector.id, `${level} ${level}+`)
+      }
+      promise
+        .then((resp) => {
+          const cragRoutes = []
+          for (const route of resp.data) {
+            cragRoutes.push(new CragRoute({ attributes: route }))
+          }
+          this.$root.$emit(this.eventTrigger, cragRoutes)
+        })
+        .finally(() => {
+          this.loadingGrade = false
+        })
+    },
+
+    resetFilter () {
+      this.level = null
+      this.$root.$emit('reloadCragRouteList')
     }
   }
 }
@@ -102,16 +170,20 @@ export default {
   div {
     color: white;
     font-size: 0.8em;
-    height: 14px;
-    line-height: 15px;
+    height: 24px;
+    line-height: 25px;
     display: inline-block;
     text-align: center;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     font-weight: bold;
+    cursor: pointer;
     &:first-child { border-radius: 4px 0 0 4px; }
     &:last-child { border-radius: 0 4px 4px 0; }
+    &:hover {
+      opacity: 0.7;
+    }
   }
   .sport_climbing { background-color: #3a71c7; }
   .bouldering { background-color: #ffcb00; }
