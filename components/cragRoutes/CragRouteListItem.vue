@@ -40,7 +40,7 @@
           {{ mdiComment }}
         </v-icon>
       </v-list-item-title>
-      <v-list-item-subtitle>
+      <v-list-item-subtitle class="span-comma">
         <span
           v-if="route.crag_sector"
           @click.stop=""
@@ -48,15 +48,10 @@
           <v-icon x-small>
             {{ mdiTextureBox }}
           </v-icon>
-          <nuxt-link
-            class="text-decoration-none"
-            :to="route.CragSector.path"
-          >
-            {{ route.CragSector.name }}
-          </nuxt-link>
+          {{ route.CragSector.name }}
         </span>
         <span v-if="route.height">
-          {{ route.height }} {{ $t('common.meters') }},
+          {{ route.height }} {{ $t('common.meters') }}
         </span>
         <span v-if="route.opener || route.open_year">
           {{ $t('common.open') }}
