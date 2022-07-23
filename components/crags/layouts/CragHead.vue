@@ -126,4 +126,13 @@ export default {
     }
   }
 }
+@media screen and (max-width: 767px) {
+  .crag-header {
+    .crag-header-title {
+      border-radius: 0;
+      bottom: 0;
+      left: 0;
+    }
+  }
+}
 </style>
