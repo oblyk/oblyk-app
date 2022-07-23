@@ -75,13 +75,16 @@ export const MapPopupHelpers = {
 
     cragSectorPopup (feature) {
       const cragSector = new CragSector({ attributes: feature.properties })
-
       const popup = document.createElement('div')
+      let mapCover = ''
+      if (cragSector.map_thumbnail_url) {
+        mapCover = `<div class="map-popup-cover" style="background-image: url(${cragSector.mapThumbnailCoverUrl})"></div>`
+      }
       popup.innerHTML = `
-        <div class="map-popup-cover" style="background-image: url(${cragSector.mapThumbnailCoverUrl})"></div>
+        ${mapCover}
         <table class="map-popup-information-table">
           <tr>
-            <td colspan="2">${cragSector.name}</td>
+            <td colspan="2" class="pl-2 pt-1"><h3>${cragSector.name}</h3></td>
           </tr>
         </table>
         <div class="map-popup-link-area">

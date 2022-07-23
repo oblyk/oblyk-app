@@ -32,6 +32,10 @@ export default class CragSector extends ActiveData {
     return `${(grade || {}).min_text || '?'} > ${(grade || {}).max_text || '?'}`
   }
 
+  get havingPicture () {
+    return (this.photo.url)
+  }
+
   get coverUrl () {
     if (this.photo.url) {
       return `${process.env.VUE_APP_OBLYK_API_URL}${this.photo.url}`
