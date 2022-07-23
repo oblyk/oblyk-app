@@ -188,6 +188,7 @@
                   :clustered="false"
                   :geo-jsons="geoJsons"
                   map-style="outdoor"
+                  :circle-properties="circleProperties"
                 />
               </div>
             </v-sheet>
@@ -266,6 +267,19 @@ export default {
         { hid: 'og:title', property: 'og:title', content: this.$t('meta.climbingAround.town.title', { name: this.town.name }) },
         { hid: 'og:description', property: 'og:description', content: this.$t('meta.climbingAround.town.description', { name: this.town.name, department_number: (this.town.department || {}).department_number }) }
       ]
+    }
+  },
+
+  computed: {
+    circleProperties () {
+      return {
+        radius: this.town.dist * 1000,
+        center: [this.town.latitude, this.town.longitude],
+        color: '#43a047',
+        weight: 1,
+        fill: false,
+        dashArray: [10, 5]
+      }
     }
   },
 

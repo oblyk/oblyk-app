@@ -69,6 +69,7 @@
             :clustered="false"
             map-style="outdoor"
             :options="{ rounded: true }"
+            :circle-properties="circleProperties"
           />
         </client-only>
       </v-card-text>
@@ -140,6 +141,19 @@ export default {
           content: `${process.env.VUE_APP_OBLYK_APP_URL}${this.crag.path}/maps`
         }
       ]
+    }
+  },
+
+  computed: {
+    circleProperties () {
+      return {
+        radius: 50000,
+        center: [this.crag.latitude, this.crag.longitude],
+        color: '#43a047',
+        weight: 1,
+        fill: false,
+        dashArray: [10, 5]
+      }
     }
   },
 
