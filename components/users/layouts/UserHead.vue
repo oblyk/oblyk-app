@@ -76,7 +76,7 @@
         <v-btn
           text
           class="mb-2 d-none d-md-inline-flex"
-          :to="`${user.currentUserPath}/community/followers`"
+          :to="`${itsMe() ? `${user.currentUserPath}/community` : user.userPath}/followers`"
         >
           <span v-if="user.followers_count > 0">
             {{ user.followers_count }} abonné·es
