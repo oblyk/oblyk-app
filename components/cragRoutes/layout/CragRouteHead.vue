@@ -1,65 +1,41 @@
 <template>
-  <v-img
-    dark
-    height="400px"
-    gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-    :lazy-src="cragRoute.thumbnailCoverUrl"
-    :src="croppedSrc"
-    :srcset="`${croppedSrc} 500w, ${largeSrc} 600w`"
-  >
-    <p
-      v-if="cragRoute.coverFrom"
-      class="text-right pr-5"
+  <div>
+    <v-img
+      v-if="cragRoute.havingPicture"
+      dark
+      height="400px"
+      gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+      :lazy-src="cragRoute.thumbnailCoverUrl"
+      :src="croppedSrc"
+      :srcset="`${croppedSrc} 500w, ${largeSrc} 600w`"
     >
-      <small>{{ $t(`components.${cragRoute.coverFrom}.coverFrom`) }}</small>
-    </p>
+      <p
+        v-if="cragRoute.coverFrom"
+        class="text-right pr-5"
+      >
+        <small>{{ $t(`components.${cragRoute.coverFrom}.coverFrom`) }}</small>
+      </p>
+      <crag-route-title
+        :crag-route="cragRoute"
+        class="crag-route-header-title-in-picture"
+      />
+    </v-img>
     <div
-      class="crag-route-header-title"
+      v-else
+      class="crag-route-header-title-without-picture"
     >
-      <h1 class="font-weight-medium ">
-        <crag-route-avatar :crag-route="cragRoute" />
-        {{ cragRoute.name }}
-      </h1>
-      <div>
-        <nuxt-link
-          class="discrete-link"
-          :to="cragRoute.Crag.path"
-        >
-          <v-icon small>
-            {{ mdiTerrain }}
-          </v-icon>
-          {{ cragRoute.crag.name }}
-        </nuxt-link>
-      </div>
-      <div>
-        {{ cragRoute.crag.country }}, {{ cragRoute.crag.region }}, {{ cragRoute.crag.city }}
-        <client-only>
-          <v-btn
-            v-if="isLoggedIn"
-            :to="`/a${cragRoute.aPath}/edit`"
-            small
-            icon
-            :title="$t('actions.edit')"
-            class="ml-1"
-          >
-            <v-icon small>
-              {{ mdiPencil }}
-            </v-icon>
-          </v-btn>
-        </client-only>
-      </div>
+      <crag-route-title :crag-route="cragRoute" />
     </div>
-  </v-img>
+  </div>
 </template>
 
 <script>
-import { mdiTerrain, mdiPencil } from '@mdi/js'
 import { SessionConcern } from '@/concerns/SessionConcern'
-import CragRouteAvatar from '@/components/cragRoutes/partial/CragRouteAvatar'
+import CragRouteTitle from '~/components/cragRoutes/shared/CragRouteTitle'
 
 export default {
   name: 'CragRouteHead',
-  components: { CragRouteAvatar },
+  components: { CragRouteTitle },
   mixins: [SessionConcern],
   props: {
     cragRoute: {
@@ -70,8 +46,6 @@ export default {
 
   data () {
     return {
-      mdiTerrain,
-      mdiPencil,
       croppedSrc: this.cragRoute.croppedCoverUrl,
       largeSrc: this.cragRoute.coverUrl
     }
@@ -96,15 +70,21 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-.crag-route-header-title {
+<style lang="scss">
+.crag-route-header-title-in-picture {
   position: absolute;
   width: 100%;
   padding: 0.5em 0.5em 1em 1em;
   bottom: 0;
   h1 {
-    font-size: 3rem;
-    margin-bottom: -15px;
+    font-size: 2.5rem;
+    margin-bottom: -5px;
+  }
+}
+.crag-route-header-title-without-picture {
+  padding: 1em;
+  h1 {
+    font-size: 2.5rem;
   }
 }
 </style>

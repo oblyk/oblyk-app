@@ -1,0 +1,59 @@
+<template>
+  <div>
+    <h1 class="font-weight-medium">
+      <crag-route-avatar :crag-route="cragRoute" />
+      {{ cragRoute.name }}
+    </h1>
+    <div>
+      <nuxt-link
+        class="discrete-link"
+        :to="cragRoute.Crag.path"
+      >
+        <v-icon small>
+          {{ mdiTerrain }}
+        </v-icon>
+        {{ cragRoute.crag.name }}
+      </nuxt-link>
+    </div>
+    <div>
+      {{ cragRoute.crag.country }}, {{ cragRoute.crag.region }}, {{ cragRoute.crag.city }}
+      <client-only>
+        <v-btn
+          v-if="$auth.loggedIn"
+          :to="`/a${cragRoute.aPath}/edit`"
+          small
+          icon
+          :title="$t('actions.edit')"
+          class="ml-1"
+        >
+          <v-icon small>
+            {{ mdiPencil }}
+          </v-icon>
+        </v-btn>
+      </client-only>
+    </div>
+  </div>
+</template>
+
+<script>
+import { mdiPencil, mdiTerrain } from '@mdi/js'
+import CragRouteAvatar from '~/components/cragRoutes/partial/CragRouteAvatar'
+
+export default {
+  name: 'CragRouteTitle',
+  components: { CragRouteAvatar },
+  props: {
+    cragRoute: {
+      type: Object,
+      required: true
+    }
+  },
+
+  data () {
+    return {
+      mdiPencil,
+      mdiTerrain
+    }
+  }
+}
+</script>

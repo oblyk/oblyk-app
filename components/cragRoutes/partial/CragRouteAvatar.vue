@@ -28,6 +28,7 @@ export default {
 <style lang="scss">
 .border-color-grade {
   display: inline-block;
+  white-space: nowrap;
   .grade-color-bar {
     vertical-align: middle;
     display: inline-block;

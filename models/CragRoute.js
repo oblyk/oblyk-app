@@ -24,6 +24,10 @@ export default class CragRoute extends ActiveData {
     return `/crags/${this.crag.id}/${this.crag.slug_name}/routes/${this.id}/${this.slug_name}`
   }
 
+  get havingPicture () {
+    return (this.photo.url)
+  }
+
   get coverUrl () {
     if (this.photo.url) {
       return `${process.env.VUE_APP_OBLYK_API_URL}${this.photo.url}`
