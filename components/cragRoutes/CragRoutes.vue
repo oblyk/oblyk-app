@@ -9,7 +9,7 @@
     >
       <v-card-title>
         <v-row>
-          <v-col>
+          <v-col cols="12" md="6">
             <v-icon left>
               {{ mdiSourceBranch }}
             </v-icon>
@@ -17,6 +17,8 @@
           </v-col>
           <v-col
             v-if="isLoggedIn"
+            cols="12"
+            md="6"
             class="add-sector-or-route"
           >
             <client-only>
