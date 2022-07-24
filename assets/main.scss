@@ -167,6 +167,9 @@ strong {
 .list-style-none {
   list-style: none;
 }
+.smooth-elevation {
+  transition: box-shadow 0.2s;
+}
 
 .climbs-pastille {
   &:before {

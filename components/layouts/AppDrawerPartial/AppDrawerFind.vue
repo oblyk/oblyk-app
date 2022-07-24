@@ -4,7 +4,7 @@
     dense
   >
     <!-- Crags Map -->
-    <v-list-item to="/maps/crags">
+    <v-list-item to="/find/crags">
       <v-list-item-icon>
         <v-icon>
           {{ mdiTerrain }}

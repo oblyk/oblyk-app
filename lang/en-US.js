@@ -345,6 +345,24 @@ export default {
         readDoc: 'Consult the API documentation.',
         oblykApiDocumentation: 'Oblyk API Documentation',
         gitHub: "Feel free to follow the project <a href='https://github.com/oblyk' target='_blank'>GitHub of Oblyk</a> to know the evolutions or participate in improving the API!"
+      },
+      find: {
+        crags: {
+          title: 'Find a climbing crag',
+          intro: 'We have all the tools you need to find a crag around your home, your holiday destination<br> or anywhere else in France and the world.',
+          map: {
+            title: 'Map of climbing crags',
+            explain: 'Move freely on the map of all the climbing crags we have.'
+          },
+          aroundCity: {
+            title: 'Around a city',
+            explain: "Give us the name of a city, we'll tell you what climbs around it (French city only)"
+          },
+          advancedSearch: {
+            title: 'Advanced search',
+            explain: "You are looking for a particular crag ? orientation ? quotations ? it's here !"
+          }
+        }
       }
     }
   },
@@ -1488,6 +1506,10 @@ export default {
     partnerMap: {
       title: 'Map of Oblyk climbers',
       description: 'The climber map allows you to find a climbing partner near you. Locate yourself, find a climber, contact him and go climbing together!'
+    },
+    findCrag: {
+      title: 'Find a climbing site',
+      description: "Find the climbing crag you are looking for with the map of the world's crags, or around a city or according to specific criteria with our search tools."
     },
     gym: {
       title: '%{name}, climbing gym in  %{city}',

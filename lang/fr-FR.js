@@ -344,6 +344,24 @@ export default {
         readDoc: "Consulter la documentation de l'API.",
         oblykApiDocumentation: 'Oblyk API Documentation',
         gitHub: "N'hésitez pas à suivre le projet <a href='https://github.com/oblyk' target='_blank'>GitHub d'Oblyk</a> pour connaitre les évolutions ou participer à l'amélioration l'API !"
+      },
+      find: {
+        crags: {
+          title: "Trouver un site d'escalade",
+          intro: "Nous avons tous les outils qu'il vous faut pour trouver une falaise autour de chez vous, de votre lieux de vacance<br> ou n'importe où d'autre en France et dans le monde.",
+          map: {
+            title: "Carte des sites d'escalades",
+            explain: "Déplacer vous librement sur la carte de tous les site d'escalades que nous avons."
+          },
+          aroundCity: {
+            title: "Autour d'une ville",
+            explain: "Donnez nous le nom d'une ville, on vous dit ce qui se grimpe autour. (ville française uniquement)"
+          },
+          advancedSearch: {
+            title: 'Recherche avancée',
+            explain: "Vous chercher une falaise en particulier ? orientation ? cotations ? c'est ici !"
+          }
+        }
       }
     }
   },
@@ -1487,6 +1505,10 @@ export default {
     partnerMap: {
       title: "La carte des grimpeur·euse·s d'Oblyk",
       description: "La carte des grimpeur·euse·s te permet de trouver un·e partenaire d'escalade près de chez toi. localise toi, trouve un·e grimpeur·euse, contact le·la et allez grimper ensemble !"
+    },
+    findCrag: {
+      title: "Trouver un site d'escalade",
+      description: "Trouver le site d'escalade que vous cherchez avec la carte des falaises du monde, ou autour d'une ville ou selon des critères bien particulier grâce à nos outils de recherche."
     },
     gym: {
       title: "%{name}, salle d'escalade à %{city}",
