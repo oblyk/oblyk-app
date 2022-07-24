@@ -346,6 +346,17 @@ export default {
         gitHub: "N'hésitez pas à suivre le projet <a href='https://github.com/oblyk' target='_blank'>GitHub d'Oblyk</a> pour connaitre les évolutions ou participer à l'amélioration l'API !"
       },
       find: {
+        somethingElse: {
+          title: 'Vous cherchez autre chose ?',
+          crag: 'Une falaise',
+          cragSubtitle: 'Carte, recherche avancée, etc.',
+          gym: 'Une salle',
+          gymSubtitle: "Carte, autour d'une ville, etc.",
+          guideBook: 'Un topo',
+          guideBookSubtitle: 'Les nouveautés, autour de vous',
+          climbers: 'Un·e grimpeur·euse',
+          climbersSubtitle: 'Trouver un·e partenaire de grimpe'
+        },
         crags: {
           title: "Trouver un site d'escalade",
           intro: "Nous avons tous les outils qu'il vous faut pour trouver une falaise autour de chez vous, de votre lieux de vacance<br> ou n'importe où d'autre en France et dans le monde.",
@@ -360,6 +371,18 @@ export default {
           advancedSearch: {
             title: 'Recherche avancée',
             explain: "Vous chercher une falaise en particulier ? orientation ? cotations ? c'est ici !"
+          }
+        },
+        gyms: {
+          title: "Trouver une salle d'escalade",
+          intro: "Nous avons tous les outils qu'il vous faut pour trouver une salle autour de chez vous, de votre lieux de vacance<br> ou n'importe où d'autre en France et dans le monde.",
+          map: {
+            title: "Carte des salles d'escalades",
+            explain: "Déplacer vous librement sur la carte de tous les salles d'escalades que nous avons."
+          },
+          aroundCity: {
+            title: "Autour d'une ville",
+            explain: "Donnez nous le nom d'une ville, on vous dit ce qui se grimpe autour. (ville française uniquement)"
           }
         }
       }
@@ -1509,6 +1532,10 @@ export default {
     findCrag: {
       title: "Trouver un site d'escalade",
       description: "Trouver le site d'escalade que vous cherchez avec la carte des falaises du monde, ou autour d'une ville ou selon des critères bien particulier grâce à nos outils de recherche."
+    },
+    findGym: {
+      title: "Trouver une salle d'escalade",
+      description: "Trouver une salle d'escalade autour de votre ville grâce à la carte des salle d'escalade ou en recherchant autour d'un lieux"
     },
     gym: {
       title: "%{name}, salle d'escalade à %{city}",

@@ -16,7 +16,7 @@
     </v-list-item>
 
     <!-- Gyms Map -->
-    <v-list-item to="/maps/gyms">
+    <v-list-item to="/find/gyms">
       <v-list-item-icon>
         <v-icon>
           {{ mdiOfficeBuildingMarkerOutline }}

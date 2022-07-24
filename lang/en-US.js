@@ -347,6 +347,17 @@ export default {
         gitHub: "Feel free to follow the project <a href='https://github.com/oblyk' target='_blank'>GitHub of Oblyk</a> to know the evolutions or participate in improving the API!"
       },
       find: {
+        somethingElse: {
+          title: 'Are you looking for something else',
+          crag: 'A crag',
+          cragSubtitle: 'Map, advanced search, etc.',
+          gym: 'A climbing gym',
+          gymSubtitle: 'Map, around a city, etc.',
+          guideBook: 'Un topo',
+          guideBookSubtitle: 'The new features, around you',
+          climbers: 'A climbers',
+          climbersSubtitle: 'Finding a climbing partner'
+        },
         crags: {
           title: 'Find a climbing crag',
           intro: 'We have all the tools you need to find a crag around your home, your holiday destination<br> or anywhere else in France and the world.',
@@ -361,6 +372,18 @@ export default {
           advancedSearch: {
             title: 'Advanced search',
             explain: "You are looking for a particular crag ? orientation ? quotations ? it's here !"
+          }
+        },
+        gyms: {
+          title: 'Find a climbing gym',
+          intro: 'We have all the tools you need to find a climbing gym around your home, your holiday destination<br> or anywhere else in France and the world.',
+          map: {
+            title: 'Map of climbing gyms',
+            explain: 'Move freely on the map of all the climbing gyms we have.'
+          },
+          aroundCity: {
+            title: 'Around a city',
+            explain: "Give us the name of a city, we'll tell you what climbs around it (French city only)"
           }
         }
       }
@@ -1510,6 +1533,10 @@ export default {
     findCrag: {
       title: 'Find a climbing site',
       description: "Find the climbing crag you are looking for with the map of the world's crags, or around a city or according to specific criteria with our search tools."
+    },
+    findGym: {
+      title: 'Find a climbing gym',
+      description: 'Find a climbing gym around your city with the climbing gym map or by searching around a location'
     },
     gym: {
       title: '%{name}, climbing gym in  %{city}',
