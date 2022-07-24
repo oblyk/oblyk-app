@@ -384,6 +384,18 @@ export default {
             title: "Autour d'une ville",
             explain: "Donnez nous le nom d'une ville, on vous dit ce qui se grimpe autour. (ville française uniquement)"
           }
+        },
+        climbers: {
+          title: 'Trouver un grimpeur ou une grimpeuse',
+          intro: "Tu arrive dans une nouvelle régions ? ou tu te met à l'escalade ?<br>Utilise la carte des grimpeurs pour trouver des gens avec qui aller grimper",
+          map: {
+            title: 'Carte des grimpeur·euses',
+            explain: 'Utiliser la carte pour trouver un ou une grimpeuse avec qui grimper.'
+          },
+          howItWorks: {
+            title: 'Comment ça marche ?',
+            explain: "Avant d'utiliser la recherche, prends le temps de regarder comment ça marche"
+          }
         }
       }
     }
@@ -1536,6 +1548,10 @@ export default {
     findGym: {
       title: "Trouver une salle d'escalade",
       description: "Trouver une salle d'escalade autour de votre ville grâce à la carte des salle d'escalade ou en recherchant autour d'un lieux"
+    },
+    findClimbers: {
+      title: 'Trouver un grimpeur ou une grimpeuse',
+      description: 'Trouver un ou une partenaire de grimpe avec Oblyk'
     },
     gym: {
       title: "%{name}, salle d'escalade à %{city}",

@@ -28,42 +28,16 @@
     </v-list-item>
 
     <!-- Partner search -->
-    <v-list-group
-      :prepend-icon="mdiAccountGroupOutline"
-      no-action
-    >
-      <template #activator>
-        <v-list-item-content>
-          <v-list-item-title>
-            {{ $t('components.layout.appDrawer.find.climbers.title') }}
-          </v-list-item-title>
-        </v-list-item-content>
-      </template>
-
-      <!-- Climbers Map -->
-      <v-list-item to="/maps/climbers">
-        <v-list-item-icon>
-          <v-icon>
-            {{ mdiMap }}
-          </v-icon>
-        </v-list-item-icon>
-        <v-list-item-title>
-          {{ $t('components.layout.appDrawer.find.climbers.map') }}
-        </v-list-item-title>
-      </v-list-item>
-
-      <!-- How the partner search works -->
-      <v-list-item to="/about/partner-search">
-        <v-list-item-icon>
-          <v-icon>
-            {{ mdiHelpCircleOutline }}
-          </v-icon>
-        </v-list-item-icon>
-        <v-list-item-title>
-          {{ $t('components.layout.appDrawer.find.climbers.how') }}
-        </v-list-item-title>
-      </v-list-item>
-    </v-list-group>
+    <v-list-item to="/find/climbers">
+      <v-list-item-icon>
+        <v-icon>
+          {{ mdiAccountGroupOutline }}
+        </v-icon>
+      </v-list-item-icon>
+      <v-list-item-title>
+        {{ $t('components.layout.appDrawer.find.climbers.title') }}
+      </v-list-item-title>
+    </v-list-item>
 
     <!-- Find a guide book -->
     <v-list-group
@@ -111,7 +85,6 @@ import {
   mdiBookshelf,
   mdiAccountGroupOutline,
   mdiMap,
-  mdiHelpCircleOutline,
   mdiMapMarkerRadiusOutline
 } from '@mdi/js'
 
@@ -125,7 +98,6 @@ export default {
       mdiBookshelf,
       mdiAccountGroupOutline,
       mdiMap,
-      mdiHelpCircleOutline,
       mdiMapMarkerRadiusOutline
     }
   }

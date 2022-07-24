@@ -1538,6 +1538,10 @@ export default {
       title: 'Find a climbing gym',
       description: 'Find a climbing gym around your city with the climbing gym map or by searching around a location'
     },
+    findCLimbers: {
+      title: 'Find a climber',
+      description: 'Find a climbing partner with Oblyk'
+    },
     gym: {
       title: '%{name}, climbing gym in  %{city}',
       description: '%{name} is a climbing gym in  %{city} in %{region} (near to %{big_city}). consult the location, photos, indoor guide, etc.',
