@@ -385,6 +385,34 @@ export default {
             title: 'Around a city',
             explain: "Give us the name of a city, we'll tell you what climbs around it (French city only)"
           }
+        },
+        climbers: {
+          title: 'Find a climber',
+          intro: "Are you moving to a new region? Or are you just starting to climb?<br>Use the climbers' map to find people to go climbing with",
+          map: {
+            title: 'Climbers map',
+            explain: 'Use the map to find a climber to climb with.'
+          },
+          howItWorks: {
+            title: 'How does it work?',
+            explain: 'Before using the search, take the time to look at how it works'
+          }
+        },
+        guideBooks: {
+          title: 'Find the guidebook you are looking for',
+          intro: 'We have all the tools imaginable for guidebooks: find a topos around a city, see the latest guidebook released, the new versions, build up your guidebook library, etc.',
+          aroundCity: {
+            title: 'Guidebooks around a city',
+            explain: "Give us the name of a town, we'll give you the guidebooks of the surrounding sites"
+          },
+          new: {
+            title: "What's new",
+            explain: 'The latest releases of the guidebooks of France and the World'
+          },
+          andMore: {
+            title: 'And more tools',
+            explain: 'We have other tools such as: the guidebook library, recommendations, etc.'
+          }
         }
       }
     }
@@ -1541,6 +1569,10 @@ export default {
     findCLimbers: {
       title: 'Find a climber',
       description: 'Find a climbing partner with Oblyk'
+    },
+    findGuideBooks: {
+      title: 'Find the climbing guidebook you are looking for',
+      description: 'Search for a climbing guide book around a city, check the latest news, make your own guidebook library, etc.'
     },
     gym: {
       title: '%{name}, climbing gym in  %{city}',

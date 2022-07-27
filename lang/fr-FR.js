@@ -148,8 +148,9 @@ export default {
     noInformation: 'Non renseigné',
     informations: 'Informations',
     moreInformation: "Plus d'information",
-    loading: 'Chargement ...',
+    moreInformationShort: "Plus d'info",
     comments: 'Commentaires',
+    loading: 'Chargement ...',
     meters: 'mètres',
     votes: 'Votes',
     minutes: 'minutes',
@@ -387,7 +388,7 @@ export default {
         },
         climbers: {
           title: 'Trouver un grimpeur ou une grimpeuse',
-          intro: "Tu arrive dans une nouvelle régions ? ou tu te met à l'escalade ?<br>Utilise la carte des grimpeurs pour trouver des gens avec qui aller grimper",
+          intro: "Tu arrives dans une nouvelle région ? Ou tu te mets à l'escalade ?<br>Utilise la carte des grimpeurs pour trouver des gens avec qui aller grimper",
           map: {
             title: 'Carte des grimpeur·euses',
             explain: 'Utiliser la carte pour trouver un ou une grimpeuse avec qui grimper.'
@@ -395,6 +396,22 @@ export default {
           howItWorks: {
             title: 'Comment ça marche ?',
             explain: "Avant d'utiliser la recherche, prends le temps de regarder comment ça marche"
+          }
+        },
+        guideBooks: {
+          title: 'Trouve le topo que tu cherches',
+          intro: "Nous avons tous les outils imaginables pour les topos : trouver un topos autour d'une ville, voir les derniers topos sorties, les nouvelles versions, constituer sa topothèque, etc.",
+          aroundCity: {
+            title: "Topos autour d'une ville",
+            explain: "Donne nous le nom d'une ville, on te donne les topos des sites aux alentours"
+          },
+          new: {
+            title: 'Les nouveautés',
+            explain: 'Les dernières sorties des topos de France et du Monde'
+          },
+          andMore: {
+            title: "Et plus d'outils",
+            explain: "Nous avons d'autres outils comme : la topothèque, les recomandations, etc."
           }
         }
       }
@@ -1552,6 +1569,10 @@ export default {
     findClimbers: {
       title: 'Trouver un grimpeur ou une grimpeuse',
       description: 'Trouver un ou une partenaire de grimpe avec Oblyk'
+    },
+    findGuideBooks: {
+      title: "Trouver le topo d'escalade que vous cherchez",
+      description: "Chercher un topo d'escalade autour d'une ville, consulté les dernières nouveauté, fait votre topothèque, etc."
     },
     gym: {
       title: "%{name}, salle d'escalade à %{city}",

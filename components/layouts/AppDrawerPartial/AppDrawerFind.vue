@@ -40,41 +40,16 @@
     </v-list-item>
 
     <!-- Find a guide book -->
-    <v-list-group
-      :prepend-icon="mdiBookshelf"
-      no-action
-    >
-      <template #activator>
-        <v-list-item-content>
-          <v-list-item-title>
-            {{ $t('components.layout.appDrawer.find.guideBook.title') }}
-          </v-list-item-title>
-        </v-list-item-content>
-      </template>
-
-      <!-- Around a town -->
-      <v-list-item to="/guide-book-papers/find">
-        <v-list-item-icon>
-          <v-icon>
-            {{ mdiMapMarkerRadiusOutline }}
-          </v-icon>
-        </v-list-item-icon>
-        <v-list-item-title>
-          {{ $t('components.layout.appDrawer.find.guideBook.around') }}
-        </v-list-item-title>
-      </v-list-item>
-
-      <v-list-item to="/library">
-        <v-list-item-icon>
-          <v-icon>
-            {{ mdiBookshelf }}
-          </v-icon>
-        </v-list-item-icon>
-        <v-list-item-title>
-          {{ $t('components.layout.appDrawer.find.guideBook.new') }}
-        </v-list-item-title>
-      </v-list-item>
-    </v-list-group>
+    <v-list-item to="/find/guide-books">
+      <v-list-item-icon>
+        <v-icon>
+          {{ mdiBookshelf }}
+        </v-icon>
+      </v-list-item-icon>
+      <v-list-item-title>
+        {{ $t('components.layout.appDrawer.find.guideBook.title') }}
+      </v-list-item-title>
+    </v-list-item>
   </v-list>
 </template>
 
@@ -84,8 +59,7 @@ import {
   mdiOfficeBuildingMarkerOutline,
   mdiBookshelf,
   mdiAccountGroupOutline,
-  mdiMap,
-  mdiMapMarkerRadiusOutline
+  mdiMap
 } from '@mdi/js'
 
 export default {
@@ -97,8 +71,7 @@ export default {
       mdiOfficeBuildingMarkerOutline,
       mdiBookshelf,
       mdiAccountGroupOutline,
-      mdiMap,
-      mdiMapMarkerRadiusOutline
+      mdiMap
     }
   }
 }
