@@ -86,8 +86,11 @@ export default {
   }
   .area-photo-of {
     position: absolute;
-    bottom: 5px;
-    right: 10px;
+    top: 5px;
+    right: 5px;
+    padding: 0.2em 0.7em;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 7px;
   }
   .area-header-title {
     position: absolute;
