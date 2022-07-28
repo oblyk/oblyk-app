@@ -1,5 +1,6 @@
 <template>
   <v-tabs
+    class="mb-5 rounded-lg rounded-t-0"
     show-arrows
   >
     <v-tab :to="area.path">

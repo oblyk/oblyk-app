@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <div>
     <div v-if="loadingCrags">
       <div v-for="index in 3" :key="`crag-skeleton-${index}`">
         <v-skeleton-loader class="mb-3" type="list-item-avatar-two-line" />
@@ -10,7 +10,7 @@
       :crags="crags"
       :area="area"
     />
-  </v-container>
+  </div>
 </template>
 
 <script>

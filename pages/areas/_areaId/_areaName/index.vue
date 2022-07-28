@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <div>
     <v-row>
       <v-col class="col-12 col-md-6 col-lg-7">
         <area-description :area="area" />
@@ -13,7 +13,7 @@
         <area-map :area="area" />
       </v-col>
     </v-row>
-  </v-container>
+  </div>
 </template>
 
 <script>

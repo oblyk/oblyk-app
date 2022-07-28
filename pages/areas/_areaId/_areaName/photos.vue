@@ -1,13 +1,11 @@
 <template>
-  <v-container>
-    <photo-gallery
-      v-if="area"
-      environnement-type="area"
-      :environnement-object="area"
-      gallery-type="Area"
-      :gallery-id="area.id"
-    />
-  </v-container>
+  <photo-gallery
+    v-if="area"
+    environnement-type="area"
+    :environnement-object="area"
+    gallery-type="Area"
+    :gallery-id="area.id"
+  />
 </template>
 
 <script>

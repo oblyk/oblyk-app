@@ -129,6 +129,7 @@ export default {
 @media screen and (max-width: 767px) {
   .crag-header {
     .crag-header-title {
+      width: 100%;
       border-radius: 0;
       bottom: 0;
       left: 0;

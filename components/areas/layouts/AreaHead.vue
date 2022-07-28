@@ -1,12 +1,12 @@
 <template>
-  <div>
+  <div class="area-header">
     <v-img
       dark
-      height="500px"
-      gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+      height="400px"
       :lazy-src="area.thumbnailCoverUrl"
       :src="croppedSrc"
       :srcset="`${croppedSrc} 500w, ${largeSrc} 600w`"
+      class="area-header-banner"
     >
       <div
         v-if="area.photo.illustrable_name"
@@ -80,19 +80,37 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.area-photo-of {
-  position: absolute;
-  bottom: 5px;
-  right: 10px;
+.area-header {
+  .area-header-banner {
+    border-radius: 10px 10px 0 0;
+  }
+  .area-photo-of {
+    position: absolute;
+    bottom: 5px;
+    right: 10px;
+  }
+  .area-header-title {
+    position: absolute;
+    padding: 1em;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 7px;
+    bottom: 20px;
+    left: 20px;
+    h1 {
+      font-size: 1.7em;
+      margin: 0;
+    }
+  }
 }
-.area-header-title {
-  position: absolute;
-  width: 100%;
-  padding: 0.5em 0.5em 1em 1em;
-  bottom: 0;
-  h1 {
-    font-size: 3rem;
-    margin-bottom: -15px;
+
+@media screen and (max-width: 767px) {
+  .area-header {
+    .area-header-title {
+      width: 100%;
+      border-radius: 0;
+      bottom: 0;
+      left: 0;
+    }
   }
 }
 </style>
