@@ -21,7 +21,7 @@
       />
 
       <!-- Footer, Crags, Guide book & About author -->
-      <article-footer :article="article" />
+      <article-footer :article="article" :show-view-counter="true" />
       <article-crags :article="article" />
       <article-guide-book-papers :article="article" />
       <about-author-card :article="article" class="mt-5 mb-5" />
