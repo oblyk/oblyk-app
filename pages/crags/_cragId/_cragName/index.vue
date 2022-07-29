@@ -51,7 +51,10 @@
     </v-row>
     <v-row>
       <v-col cols="12">
-        <version-information :object="crag" />
+        <version-information
+          :object="crag"
+          object-type="crag"
+        />
       </v-col>
     </v-row>
   </div>

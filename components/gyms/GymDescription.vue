@@ -1,6 +1,11 @@
 <template>
-  <v-card class="full-height">
-    <v-card-title>Description</v-card-title>
+  <v-card class="full-height rounded-lg">
+    <v-card-title>
+      <v-icon left>
+        {{ mdiText }}
+      </v-icon>
+      Description
+    </v-card-title>
     <v-card-text>
       <markdown-text
         v-if="gym.description"
@@ -9,9 +14,9 @@
     </v-card-text>
     <v-card-text>
       <v-chip
-        class="ma-1"
         v-for="climb in gym.climbingTypes"
         :key="climb"
+        class="ma-1"
       >
         {{ $t(`models.climbs.${climb}`) }}
       </v-chip>
@@ -28,23 +33,27 @@
         {{ $t('components.gym.IAmManager') }}
       </v-btn>
     </v-card-text>
-
-    <!-- Around climbers -->
-    <climbers-around :latitude="gym.latitude" :longitude="gym.longitude" />
   </v-card>
 </template>
 
 <script>
-import ClimbersAround from '@/components/partners/ClimbersAround'
+import { mdiText } from '@mdi/js'
+
 const MarkdownText = () => import('@/components/ui/MarkdownText')
 
 export default {
   name: 'GymDescription',
-  components: { ClimbersAround, MarkdownText },
+  components: { MarkdownText },
   props: {
     gym: {
       type: Object,
       required: true
+    }
+  },
+
+  data () {
+    return {
+      mdiText
     }
   }
 }

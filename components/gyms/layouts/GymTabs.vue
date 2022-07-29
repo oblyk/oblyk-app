@@ -1,5 +1,8 @@
 <template>
-  <v-tabs show-arrows >
+  <v-tabs
+    class="mb-5 rounded-lg rounded-t-0"
+    show-arrows
+  >
     <v-tab :to="gym.path">
       {{ $t('components.gym.tabs.info') }}
     </v-tab>

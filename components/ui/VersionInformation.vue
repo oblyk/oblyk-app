@@ -9,7 +9,7 @@
       }}.
       <contributions-label
         v-if="withVersion"
-        version-type="crag"
+        :version-type="objectType"
         :version-id="object.id"
         :versions-count="object.versions_count"
         translate-key="components.version.version"
@@ -34,6 +34,10 @@ export default {
     withVersion: {
       type: Boolean,
       default: true
+    },
+    objectType: {
+      type: String,
+      required: true
     }
   }
 }

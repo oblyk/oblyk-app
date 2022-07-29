@@ -1,6 +1,9 @@
 <template>
-  <v-card class="full-height">
+  <v-card class="full-height rounded-lg">
     <v-card-title>
+      <v-icon left>
+        {{ mdiMapMarkerCircle }}
+      </v-icon>
       {{ $t('components.gym.contactAndLocalization') }}
     </v-card-title>
     <v-card-text>
@@ -78,34 +81,16 @@
             </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-
-        <!-- Contribution -->
-        <v-list-item>
-          <v-list-item-icon>
-            <v-icon>{{ mdiHistory }}</v-icon>
-          </v-list-item-icon>
-          <v-list-item-content>
-            <v-list-item-title>
-              <contributions-label
-                version-type="gym"
-                :versions-count="gym.versions_count"
-                :version-id="gym.id"
-              />
-            </v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
       </v-list>
     </v-card-text>
   </v-card>
 </template>
 
 <script>
-import { mdiMap, mdiWeb, mdiPhone, mdiEmail, mdiHistory } from '@mdi/js'
-import ContributionsLabel from '@/components/globals/ContributionsLable'
+import { mdiMap, mdiWeb, mdiPhone, mdiEmail, mdiMapMarkerCircle } from '@mdi/js'
 
 export default {
   name: 'GymContact',
-  components: { ContributionsLabel },
   props: {
     gym: {
       type: Object,
@@ -115,13 +100,14 @@ export default {
 
   data () {
     return {
+      showPhoneNumber: false,
+      showEmail: false,
+
       mdiMap,
       mdiWeb,
       mdiPhone,
       mdiEmail,
-      mdiHistory,
-      showPhoneNumber: false,
-      showEmail: false
+      mdiMapMarkerCircle
     }
   }
 }

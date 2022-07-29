@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <div class="gym-header">
     <v-img
       dark
       class="gym-header-banner"
-      gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+      height="400px"
       :lazy-src="gym.thumbnailBannerUrl"
       :src="gym.croppedBannerUrl"
       :srcset="`${gym.croppedBannerUrl} 500w, ${gym.bannerUrl} 600w`"
@@ -109,28 +109,35 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.gym-header-banner {
-  height: 500px;
-  max-height: 100%;
-
-  .change-gym-banner {
-    float: right;
-    margin-right: 5px;
-    margin-top: 5px;
+.gym-header {
+  .gym-header-banner {
+    border-radius: 10px 10px 0 0;
+    .change-gym-banner {
+      float: right;
+      margin-right: 5px;
+      margin-top: 5px;
+    }
+  }
+  .gym-header-title {
+    position: absolute;
+    padding: 1em;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 7px;
+    bottom: 20px;
+    left: 20px;
+    h1 {
+      font-size: 1.7em;
+      margin: 0;
+    }
   }
 }
-
-.gym-header-title {
-  position: absolute;
-  width: 100%;
-  padding: 0.5em 0.5em 1em 1em;
-  bottom: 0;
-
-  h1 {
-    margin-bottom: -5px;
-
-    .v-avatar {
-      vertical-align: middle;
+@media screen and (max-width: 767px) {
+  .gym-header {
+    .gym-header-title {
+      width: 100%;
+      border-radius: 0;
+      bottom: 0;
+      left: 0;
     }
   }
 }
