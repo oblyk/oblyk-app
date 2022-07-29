@@ -1,75 +1,59 @@
 <template>
-  <div>
-    <v-app-bar
-      app
-      class="custom-app-bar"
-    >
-      <v-app-bar-nav-icon
-        aria-label="open app drawer"
-        @click.stop="drawer = !drawer"
-      />
+  <v-app-bar
+    app
+    class="custom-app-bar"
+  >
+    <v-app-bar-nav-icon
+      aria-label="open app drawer"
+      @click.stop="inverseDrawer"
+    />
 
-      <v-spacer />
+    <v-spacer />
 
-      <!-- Search on Oblyk -->
-      <client-only>
-        <global-search-dialog activator="text-field" />
-      </client-only>
+    <!-- Search on Oblyk -->
+    <client-only>
+      <global-search-dialog activator="text-field" />
+    </client-only>
 
-      <v-spacer />
+    <v-spacer />
 
-      <!-- Add cross -->
-      <client-only>
-        <v-btn
-          v-if="$auth.loggedIn"
-          icon
-          aria-label="Add cross"
-          class="add-cross-btn"
-          :title="$t('components.layout.appBar.addCross')"
-          to="/a/ascents/new"
-        >
-          <v-icon>
-            {{ mdiPlusBoxOutline }}
-          </v-icon>
-        </v-btn>
-      </client-only>
-    </v-app-bar>
-
-    <v-navigation-drawer
-      v-model="drawer"
-      class="oblyk-navigation-drawer"
-      app
-      dark
-      width="300"
-    >
-      <lazy-hydrate
-        never
-        :trigger-hydration="drawer"
+    <!-- Add cross -->
+    <client-only>
+      <v-btn
+        v-if="$auth.loggedIn"
+        icon
+        aria-label="Add cross"
+        class="add-cross-btn"
+        :title="$t('components.layout.appBar.addCross')"
+        to="/a/ascents/new"
       >
-        <app-drawer />
-      </lazy-hydrate>
-    </v-navigation-drawer>
-  </div>
+        <v-icon>
+          {{ mdiPlusBoxOutline }}
+        </v-icon>
+      </v-btn>
+    </client-only>
+  </v-app-bar>
 </template>
 
 <script>
 import { mdiPlusBoxOutline } from '@mdi/js'
-import LazyHydrate from 'vue-lazy-hydration'
 import GlobalSearchDialog from '~/components/searches/GlobalSearchDialog'
-const AppDrawer = () => import('@/components/layouts/AppDrawer')
 
 export default {
   name: 'AppBar',
   components: {
-    GlobalSearchDialog,
-    AppDrawer,
-    LazyHydrate
+    GlobalSearchDialog
+  },
+
+  props: {
+    inverseDrawer: {
+      type: Function,
+      required: true
+    }
   },
 
   data () {
     return {
-      drawer: false,
-
       mdiPlusBoxOutline
     }
   }
@@ -109,11 +93,5 @@ export default {
 
 .oblyk-app-title {
   font-size: 1.2rem !important;
-}
-
-.oblyk-navigation-drawer {
-  .v-navigation-drawer__content {
-    background-color: #121212;
-  }
 }
 </style>

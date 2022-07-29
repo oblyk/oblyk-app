@@ -13,7 +13,7 @@
         v-bind="attrs"
         v-on="on"
       >
-        <v-icon>
+        <v-icon color="white">
           {{ mdiMagnify }}
         </v-icon>
       </v-btn>

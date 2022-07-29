@@ -1,9 +1,35 @@
 <template>
-  <v-app>
-    <app-bar />
+  <v-app v-resize="onResize">
+    <!-- Top app bar -->
+    <app-bar
+      v-if="!mobile"
+      :inverse-drawer="inverseDrawer"
+    />
+
+    <!-- Left slide app menu -->
+    <v-navigation-drawer
+      v-model="drawer"
+      class="oblyk-navigation-drawer"
+      app
+      dark
+      width="300"
+    >
+      <lazy-hydrate
+        never
+        :trigger-hydration="drawer"
+      >
+        <app-drawer />
+      </lazy-hydrate>
+    </v-navigation-drawer>
+
     <v-main>
       <Nuxt />
     </v-main>
+
+    <app-bottom-navigation
+      v-if="mobile"
+      :inverse-drawer="inverseDrawer"
+    />
 
     <!-- Display alert -->
     <app-alert />
@@ -71,25 +97,33 @@
 
 <script>
 import { mdiCookie, mdiGift } from '@mdi/js'
+import LazyHydrate from 'vue-lazy-hydration'
 import AppBar from '~/components/layouts/AppBar'
 import AppAlert from '~/components/layouts/AppAlert'
 import { Cable } from '~/channels/Cable'
+import AppBottomNavigation from '~/components/layouts/AppBottomNavigation'
+const AppDrawer = () => import('@/components/layouts/AppDrawer')
 const LocalizationPopup = () => import('~/components/maps/LocalizationPopup')
 
 export default {
   components: {
+    AppBottomNavigation,
+    AppDrawer,
     LocalizationPopup,
     AppAlert,
-    AppBar
+    AppBar,
+    LazyHydrate
   },
   mixins: [Cable],
 
   data () {
     return {
+      drawer: false,
       cookiesMessage: false,
       readyToUpdatePwa: false,
 
       watchLocationId: null,
+      mobile: true,
 
       mdiCookie,
       mdiGift
@@ -135,6 +169,10 @@ export default {
       this.$store.dispatch('cookie/acceptCookies')
     },
 
+    inverseDrawer () {
+      this.drawer = !this.drawer
+    },
+
     async updateWorkbox () {
       const workbox = await window.$workbox
       if (workbox) {
@@ -178,7 +216,19 @@ export default {
           this.$store.dispatch('geolocation/deactivateLocation')
         }
       }
+    },
+
+    onResize () {
+      this.mobile = window.innerWidth < 600
     }
   }
 }
 </script>
+
+<style lang="scss">
+.oblyk-navigation-drawer {
+  .v-navigation-drawer__content {
+    background-color: #121212;
+  }
+}
+</style>
