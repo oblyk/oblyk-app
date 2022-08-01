@@ -173,4 +173,11 @@ export default {
     top: 64px
   }
 }
+@media screen and (max-width: 960px) {
+  .daily-ascents {
+    .daily-ascents-scroll-to-right {
+      right: 0;
+    }
+  }
+}
 </style>
