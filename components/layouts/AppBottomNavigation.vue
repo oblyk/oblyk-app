@@ -99,6 +99,7 @@ export default {
   background-color: rgb(0,0,0);
 }
 .oblyk-bottom-navigation {
+  z-index: 5 !important;
   border-top-style: solid;
   border-top-color: rgb(50, 50, 50);
   border-top-width: 1px;
