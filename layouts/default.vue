@@ -26,16 +26,16 @@
       <Nuxt />
     </v-main>
 
-    <app-bottom-navigation
-      v-if="mobile"
-      :inverse-drawer="inverseDrawer"
-    />
-
-    <!-- Display alert -->
-    <app-alert />
-
-    <!-- Control my geolocation -->
     <client-only>
+      <app-bottom-navigation
+        v-if="mobile"
+        :inverse-drawer="inverseDrawer"
+      />
+
+      <!-- Display alert -->
+      <app-alert />
+
+      <!-- Control my geolocation -->
       <localization-popup />
     </client-only>
 
