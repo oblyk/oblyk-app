@@ -139,20 +139,20 @@ export default {
       description: 'Oblyk est un site participatif d\'escalade outdoor et indoor, vous pouvez consulter les informations des falaises, noter ses croix, trouver un partenaire d\'escalade, etc.',
       author: 'Oblyk Community',
       lang: 'fr',
-      theme_color: '#170b28',
-      background_color: '#170b28'
+      theme_color: '#121212',
+      background_color: '#121212'
     },
     meta: {
       name: 'Oblyk - Climbing Community',
       author: 'Oblyk Community',
       description: 'Oblyk est un site participatif d\'escalade outdoor et indoor, vous pouvez consulter les informations des falaises, noter ses croix, trouver un partenaire d\'escalade, etc.',
-      theme_color: '#170b28',
+      theme_color: '#121212',
       lang: 'fr'
     }
   },
 
   loading: {
-    color: '#1e88e5',
+    color: '#31994E',
     height: '3px'
   },
 
