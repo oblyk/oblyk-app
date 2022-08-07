@@ -265,7 +265,8 @@ export default {
       meta: [
         { hid: 'description', name: 'description', content: this.$t('meta.climbingAround.town.description', { name: this.town.name, department_number: (this.town.department || {}).department_number }) },
         { hid: 'og:title', property: 'og:title', content: this.$t('meta.climbingAround.town.title', { name: this.town.name }) },
-        { hid: 'og:description', property: 'og:description', content: this.$t('meta.climbingAround.town.description', { name: this.town.name, department_number: (this.town.department || {}).department_number }) }
+        { hid: 'og:description', property: 'og:description', content: this.$t('meta.climbingAround.town.description', { name: this.town.name, department_number: (this.town.department || {}).department_number }) },
+        { hid: 'og:image', property: 'og:image', content: `${process.env.VUE_APP_OBLYK_APP_URL}/images/meta-image-escalade-en-france.jpg` }
       ]
     }
   },
