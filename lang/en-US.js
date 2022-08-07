@@ -152,6 +152,7 @@ export default {
     comments: 'Comments',
     loading: 'Loading ...',
     meters: 'meters',
+    noResultFor: 'No result for : "%{query}"',
     votes: 'Votes',
     minutes: 'minutes',
     number: 'number',

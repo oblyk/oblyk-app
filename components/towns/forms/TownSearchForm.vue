@@ -1,7 +1,10 @@
 <template>
   <div>
     <v-row>
-      <v-col cols="12" md="9">
+      <v-col
+        cols="12"
+        :md="query === null ? '9' : '12'"
+      >
         <v-text-field
           v-model="query"
           class="mt-2"
@@ -14,7 +17,13 @@
           @click:clear="onSearch = false"
         />
       </v-col>
-      <v-col cols="12" md="3" align-self="center" class="pt-5">
+      <v-col
+        v-if="query === null"
+        cols="12"
+        md="3"
+        align-self="center"
+        class="pt-5"
+      >
         <v-btn
           :loading="loadingLocalization"
           block
@@ -29,6 +38,12 @@
         </v-btn>
       </v-col>
     </v-row>
+    <div
+      v-if="query !== null && searchResults.length === 0 && !searching"
+      class="text-center text--disabled mt-3"
+    >
+      {{ $t('common.noResultFor', { query }) }}
+    </div>
     <div
       v-for="town in searchResults"
       :key="`result-${town.id}`"
@@ -81,6 +96,17 @@ export default {
     search () {
       if (this.previousQuery === this.query) {
         this.searching = false
+        return
+      }
+
+      if (this.query === '' || this.query === null) {
+        this.query = null
+        this.searching = false
+        clearTimeout(this.searchTimeOut)
+        this.searchResults = []
+        if (this.townApi) {
+          this.townApi.cancelSearch()
+        }
         return
       }
 
