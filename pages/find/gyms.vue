@@ -12,9 +12,9 @@
           <v-hover>
             <template #default="{ hover }">
               <v-card
-                class="rounded-xl smooth-elevation"
+                class="rounded-lg smooth-elevation"
                 to="/maps/gyms"
-                :elevation="hover ? 20 : 2"
+                :elevation="hover ? 20 : 0"
               >
                 <v-img
                   src="/images/gym-map.jpg"
@@ -61,9 +61,9 @@
           <v-hover>
             <template #default="{ hover }">
               <v-card
-                class="rounded-xl smooth-elevation"
+                class="rounded-lg smooth-elevation"
                 to="/escalade-en/france"
-                :elevation="hover ? 20 : 2"
+                :elevation="hover ? 20 : 0"
               >
                 <v-img
                   src="/images/around-city.jpg"

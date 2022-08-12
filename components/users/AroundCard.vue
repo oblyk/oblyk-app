@@ -13,7 +13,7 @@
         >
           <v-sheet
             rounded
-            class="pa-3 around-card-bnt --bordered-card"
+            class="pa-3 around-card-bnt"
           >
             <v-icon
               large
@@ -43,7 +43,7 @@
         >
           <v-sheet
             rounded
-            class="pa-3 around-card-bnt --bordered-card"
+            class="pa-3 around-card-bnt"
           >
             <v-icon
               large
@@ -73,7 +73,7 @@
         >
           <v-sheet
             rounded
-            class="pa-3 around-card-bnt --bordered-card"
+            class="pa-3 around-card-bnt"
           >
             <v-icon
               large
@@ -233,7 +233,7 @@
     >
       <v-sheet
         rounded
-        class="pa-3 around-card-bnt --bordered-card text-center"
+        class="pa-3 around-card-bnt text-center"
       >
         <p class="font-italic mb-1 mb-md-2">
           {{ $t('components.user.explainLocalization') }}

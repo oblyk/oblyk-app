@@ -5,7 +5,7 @@
         <skeleton-loader-head />
       </div>
       <div v-else>
-        <div class="rounded-lg elevation-2">
+        <div class="rounded">
           <crag-head :crag="crag" />
           <crag-tabs :crag="crag" />
         </div>

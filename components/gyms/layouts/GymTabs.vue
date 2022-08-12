@@ -1,6 +1,6 @@
 <template>
   <v-tabs
-    class="mb-5 rounded-lg rounded-t-0"
+    class="mb-5 rounded rounded-t-0"
     show-arrows
   >
     <v-tab :to="gym.path">
@@ -45,7 +45,10 @@ export default {
   name: 'GymTabs',
   mixins: [SessionConcern],
   props: {
-    gym: Object
+    gym: {
+      type: Object,
+      required: true
+    }
   }
 }
 </script>

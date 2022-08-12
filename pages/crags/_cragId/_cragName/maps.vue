@@ -47,7 +47,7 @@
     </div>
 
     <!-- Map -->
-    <v-card class="rounded-lg">
+    <v-card>
       <v-card-title>
         <h2 class="h2-title-in-card-title">
           <v-icon left class="mr-1">

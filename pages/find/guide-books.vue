@@ -12,9 +12,9 @@
           <v-hover>
             <template #default="{ hover }">
               <v-card
-                class="rounded-xl smooth-elevation"
+                class="rounded-lg smooth-elevation"
                 to="/guide-book-papers/find"
-                :elevation="hover ? 20 : 2"
+                :elevation="hover ? 20 : 0"
               >
                 <v-img
                   src="/images/around-city.jpg"
@@ -61,9 +61,9 @@
           <v-hover>
             <template #default="{ hover }">
               <v-card
-                class="rounded-xl smooth-elevation"
+                class="rounded-lg smooth-elevation"
                 to="/library"
-                :elevation="hover ? 20 : 2"
+                :elevation="hover ? 20 : 0"
               >
                 <v-img
                   src="/images/new-guide-book.jpg"
@@ -110,9 +110,9 @@
           <v-hover>
             <template #default="{ hover }">
               <v-card
-                class="rounded-xl smooth-elevation"
+                class="rounded-lg smooth-elevation"
                 to="/guide-books/features"
-                :elevation="hover ? 20 : 2"
+                :elevation="hover ? 20 : 0"
               >
                 <v-img
                   src="/images/advanced-search.jpg"

@@ -5,7 +5,7 @@
       :key="`feed-card-${index}`"
     >
       <!-- Feed card -->
-      <div class="mt-5">
+      <div class="mt-2 mb-4">
         <group-feed-card v-if="isGroup(feed.group_type)" :feed="feed" />
         <simple-feed-card v-else :feed="feed" />
       </div>

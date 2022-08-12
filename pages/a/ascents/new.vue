@@ -131,7 +131,10 @@
         </v-alert>
 
         <!-- Ascent form -->
-        <div v-if="!successAdded">
+        <v-sheet
+          v-if="!successAdded"
+          class="rounded pa-4 mt-3"
+        >
           <p>
             <v-icon left>
               {{ mdiCheckAll }}
@@ -144,7 +147,7 @@
             :crag-route="cragRoute"
             :callback="ascentAdded"
           />
-        </div>
+        </v-sheet>
 
         <div v-if="successAdded">
           <v-alert

@@ -6,7 +6,6 @@
     :min-width="400"
     max-width="100vw"
     bottom
-    dark
     right
   >
     <template #activator="{ on, attrs }">

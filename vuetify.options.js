@@ -2,7 +2,6 @@ import fr from 'vuetify/es5/locale/fr'
 import en from 'vuetify/es5/locale/en'
 
 export default {
-  customVariables: ['~/assets/variables.scss'],
   lang: {
     locales: { fr, en },
     current: 'fr'

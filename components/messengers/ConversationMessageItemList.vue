@@ -1,7 +1,7 @@
 <template>
   <v-sheet
     :dark="!itsMyMessage()"
-    class="pa-2 rounded-lg mb-2 conversation-message"
+    class="pa-2 rounded mb-2 conversation-message"
     :class="itsMyMessage() ? 'ml-10 my-message' : 'mr-10 other-message'"
   >
     <p

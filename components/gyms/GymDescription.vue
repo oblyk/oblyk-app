@@ -1,5 +1,5 @@
 <template>
-  <v-card class="full-height rounded-lg">
+  <v-card class="full-height">
     <v-card-title>
       <v-icon left>
         {{ mdiText }}

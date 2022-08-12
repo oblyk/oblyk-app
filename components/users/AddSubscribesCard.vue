@@ -1,6 +1,6 @@
 <template>
   <v-sheet
-    class="pa-4 --bordered-card text-center"
+    class="pa-4 text-center"
     elevation="0"
   >
     <p>

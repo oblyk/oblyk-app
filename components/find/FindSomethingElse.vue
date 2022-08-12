@@ -5,10 +5,7 @@
     </p>
     <v-row>
       <v-col v-if="exclude !== 'crags'">
-        <v-sheet
-          class="rounded-lg"
-          outlined
-        >
+        <v-sheet class="rounded-sm" outlined>
           <v-list-item
             link
             to="/find/crags"
@@ -30,10 +27,7 @@
         </v-sheet>
       </v-col>
       <v-col v-if="exclude !== 'gyms'">
-        <v-sheet
-          class="rounded-lg"
-          outlined
-        >
+        <v-sheet class="rounded-sm" outlined>
           <v-list-item
             link
             to="/find/gyms"
@@ -55,10 +49,7 @@
         </v-sheet>
       </v-col>
       <v-col v-if="exclude !== 'guide-books'">
-        <v-sheet
-          class="rounded-lg"
-          outlined
-        >
+        <v-sheet class="rounded-sm" outlined>
           <v-list-item
             link
             to="/find/guide-books"
@@ -80,10 +71,7 @@
         </v-sheet>
       </v-col>
       <v-col v-if="exclude !== 'climbers'">
-        <v-sheet
-          class="rounded-lg"
-          outlined
-        >
+        <v-sheet class="rounded-sm" outlined>
           <v-list-item
             link
             to="/find/climbers"

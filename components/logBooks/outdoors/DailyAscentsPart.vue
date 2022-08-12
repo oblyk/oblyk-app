@@ -107,7 +107,7 @@ export default {
 .daily-ascent-crag {
   position: relative;
   .v-image {
-    border-radius: 8px;
+    border-radius: 15px;
   }
   .daily-ascent-crag-description {
     position: absolute;

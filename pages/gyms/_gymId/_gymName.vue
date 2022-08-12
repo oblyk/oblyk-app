@@ -5,7 +5,7 @@
         <skeleton-loader-head />
       </div>
       <div v-else>
-        <div class="rounded-lg elevation-2">
+        <div class="rounded">
           <gym-head :gym="gym" />
           <gym-tabs :gym="gym" />
         </div>

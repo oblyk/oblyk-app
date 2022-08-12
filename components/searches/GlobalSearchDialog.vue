@@ -13,7 +13,7 @@
         v-bind="attrs"
         v-on="on"
       >
-        <v-icon color="white">
+        <v-icon color="black">
           {{ mdiMagnify }}
         </v-icon>
       </v-btn>
@@ -84,10 +84,33 @@ export default {
 
 <style lang="scss">
 .search-on-oblyk-field {
+  .v-input__control {
+    border: solid 2px;
+  }
   .v-input__slot {
-    padding-right: 12px;
+    padding-right: 15px !important;
     .v-input__icon--append {
       color: black !important;
+    }
+  }
+}
+.theme--light {
+  .search-on-oblyk-field {
+    .v-input__control {
+      border-color: rgb(215, 215, 225);
+      .v-icon__svg {
+        fill: black;
+      }
+    }
+    .v-input__slot {
+      background-color: rgb(240, 240, 245) !important;
+    }
+  }
+}
+.theme--dark {
+  .search-on-oblyk-field {
+    .v-input__control {
+      border-color: rgb(50, 50, 50);
     }
   }
 }

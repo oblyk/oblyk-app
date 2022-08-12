@@ -315,7 +315,7 @@ export default {
   width: 100%;
   &.rounded-leaflet {
     .leaflet-container {
-      border-radius: 7px;
+      border-radius: 15px;
     }
   }
 }

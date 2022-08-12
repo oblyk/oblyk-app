@@ -82,7 +82,7 @@ export default {
 <style lang="scss" scoped>
 .area-header {
   .area-header-banner {
-    border-radius: 10px 10px 0 0;
+    border-radius: 15px 15px 0 0;
   }
   .area-photo-of {
     position: absolute;
@@ -90,13 +90,13 @@ export default {
     right: 5px;
     padding: 0.2em 0.7em;
     background-color: rgba(0, 0, 0, 0.5);
-    border-radius: 7px;
+    border-radius: 15px;
   }
   .area-header-title {
     position: absolute;
     padding: 1em;
     background-color: rgba(0, 0, 0, 0.6);
-    border-radius: 7px;
+    border-radius: 15px;
     bottom: 20px;
     left: 20px;
     h1 {

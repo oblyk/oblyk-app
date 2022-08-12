@@ -11,7 +11,6 @@
       v-model="drawer"
       class="oblyk-navigation-drawer"
       app
-      dark
       width="300"
     >
       <lazy-hydrate
@@ -226,9 +225,11 @@ export default {
 </script>
 
 <style lang="scss">
-.oblyk-navigation-drawer {
-  .v-navigation-drawer__content {
-    background-color: #121212;
+.theme--dark {
+  .oblyk-navigation-drawer {
+    .v-navigation-drawer__content {
+      background-color: #121212;
+    }
   }
 }
 </style>

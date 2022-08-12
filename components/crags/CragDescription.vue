@@ -1,8 +1,5 @@
 <template>
-  <v-sheet
-    class="pa-4 rounded-lg"
-    elevation="1"
-  >
+  <v-sheet class="pa-4 rounded">
     <v-row>
       <!-- Information -->
       <v-col class="col-12 col-md-6">

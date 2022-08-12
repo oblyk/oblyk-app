@@ -12,9 +12,9 @@
           <v-hover>
             <template #default="{ hover }">
               <v-card
-                class="rounded-xl smooth-elevation"
+                class="rounded-lg smooth-elevation"
                 to="/maps/climbers"
-                :elevation="hover ? 20 : 2"
+                :elevation="hover ? 20 : 0"
               >
                 <v-img
                   src="/images/climbers-map.jpg"
@@ -61,9 +61,9 @@
           <v-hover>
             <template #default="{ hover }">
               <v-card
-                class="rounded-xl smooth-elevation"
+                class="rounded-lg smooth-elevation"
                 to="/about/partner-search"
-                :elevation="hover ? 20 : 2"
+                :elevation="hover ? 20 : 0"
               >
                 <v-img
                   src="/images/climbers-how-it-works.jpg"

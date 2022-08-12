@@ -1,5 +1,8 @@
 <template>
-  <v-tabs show-arrows >
+  <v-tabs
+    show-arrows
+    class="border-bottom"
+  >
     <v-tab :to="`${user.currentUserPath}/ascents/send-list`">
       {{ $t('components.user.ascentTabs.sendList') }}
     </v-tab>

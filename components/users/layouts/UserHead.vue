@@ -151,7 +151,7 @@ export default {
 <style lang="scss" scoped>
 .user-header-banner {
   height: 300px;
-  border-radius: 10px;
+  border-radius: 15px;
   max-height: 100%;
   .change-user-banner {
     float: right;
@@ -189,7 +189,7 @@ export default {
 }
 .theme--light {
   .user-header-title .user-header-avatar-area .user-header-avatar {
-    border-color: rgb(245, 245, 245);
+    border-color: rgb(240, 240, 245);
     background-color: rgb(225, 225, 225);
   }
 }

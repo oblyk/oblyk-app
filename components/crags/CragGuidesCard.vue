@@ -1,5 +1,5 @@
 <template>
-  <v-card class="rounded-lg full-height">
+  <v-card class="rounded full-height">
     <v-card-title>
       <h2 class="h2-title-in-card-title">
         <v-icon left>

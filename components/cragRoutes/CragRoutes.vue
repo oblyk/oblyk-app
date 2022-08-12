@@ -3,10 +3,7 @@
     ref="crag-route-area"
     :v-resize="areaResize()"
   >
-    <v-card
-      :elevation="cardElevation"
-      class="rounded-lg"
-    >
+    <v-card :elevation="cardElevation">
       <v-card-title>
         <v-row>
           <v-col cols="12" md="6">
@@ -144,7 +141,7 @@ export default {
     },
     cardElevation: {
       type: Number,
-      default: 3
+      default: 0
     },
     titleTranslateKey: {
       type: String,

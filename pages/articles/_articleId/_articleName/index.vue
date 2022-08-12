@@ -85,7 +85,7 @@ export default {
   padding: 16px 45px;
   margin-top: -17px;
   position: relative;
-  border-radius: 6px;
+  border-radius: 15px;
   box-shadow: 0 8px 15px -8px rgba(0, 0, 0, 0.15);
   .article-body {
     font-size: 1em;

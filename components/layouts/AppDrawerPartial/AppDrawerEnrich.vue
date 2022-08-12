@@ -19,10 +19,7 @@
       </v-btn>
     </template>
 
-    <v-list
-      dense
-      dark
-    >
+    <v-list dense>
       <!-- Add crag -->
       <v-list-item to="/a/crags/new">
         <v-list-item-icon>

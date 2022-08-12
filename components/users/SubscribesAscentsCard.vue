@@ -1,8 +1,5 @@
 <template>
-  <v-sheet
-    elevation="0"
-    class="pa-4 --bordered-card"
-  >
+  <v-sheet class="pa-4 rounded">
     <div v-if="loadingAscents">
       <v-skeleton-loader type="list-item-avatar" />
     </div>

@@ -19,7 +19,6 @@
         <v-col cols="5" class="v-card__actions">
           <v-spacer />
           <v-menu
-            dark
             bottom
             left
           >
@@ -28,6 +27,7 @@
                 icon
                 fab
                 aria-label="select language"
+                class="select-oblyk-language"
                 v-bind="attrs"
                 v-on="on"
               >
@@ -160,19 +160,11 @@ export default {
     padding-top: 5px;
     padding-bottom: 6px;
     .oblyk-app-drawer-title {
-      color: white;
       font-size: 1.5em;
       vertical-align: middle;
     }
   }
-  .v-list-item__title {
-    color: #ababab;
-  }
-  .v-list-item__icon .v-icon {
-    color: #ababab;
-  }
   .v-subheader {
-    color: white;
     height: 30px;
     margin-top: 1em;
     text-transform: uppercase;
@@ -181,28 +173,65 @@ export default {
   }
   .v-list-item--active {
     &:not(.v-list-group__header) {
-      background-color: black;
       .v-list-item__title {
         color: #31994e;
       }
-      .v-list-item__icon .v-icon {
-        color: #31994e;
-      }
-    }
-    &.v-list-group__header {
-      .v-list-item__icon .v-icon {
-        color: white;
+      .v-list-item__icon .v-icon__svg {
+        fill: #31994e;
       }
     }
   }
   .enrich-oblyk-btn {
     background-color: #262626;
+    color: white !important;
   }
 }
 
 .oblyk-title.v-list-item--active {
   &:before {
     background: none;
+  }
+}
+.theme--light {
+  .select-oblyk-language {
+    color: black !important;
+  }
+  .oblyk-app-drawer {
+    .v-list-item--active {
+      &:not(.v-list-group__header) {
+        background-color: rgb(240, 240, 245);
+        &:before {
+          background-color: rgb(240, 240, 245);
+        }
+      }
+    }
+  }
+  .v-list-item__title {
+    color: black;
+  }
+  .v-list-item__icon .v-icon__svg {
+    color: black;
+  }
+}
+.theme--dark {
+  .oblyk-app-drawer {
+    .v-list-item--active {
+      &:not(.v-list-group__header) {
+        background-color: rgb(37, 37, 37);
+        &:before {
+          background-color: rgb(37, 37, 37);
+        }
+        .v-list-item__icon .v-icon {
+          color: white;
+        }
+      }
+    }
+    .v-list-item__title {
+      color: white;
+    }
+    .v-list-item__icon .v-icon__svg {
+      color: white;
+    }
   }
 }
 </style>

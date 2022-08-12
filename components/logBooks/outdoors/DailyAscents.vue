@@ -35,7 +35,7 @@
             <v-card
               elevation="0"
               height="160"
-              class="text-center pa-4 --bordered-card"
+              class="text-center pa-4"
               rounded
               to="/a/ascents/new"
             >
@@ -55,7 +55,7 @@
             <v-card
               elevation="0"
               height="160"
-              class="text-center pa-4 --bordered-card"
+              class="text-center pa-4"
               rounded
               :to="`/me/${$auth.user.slug_name}/ascents/send-list`"
             >
@@ -75,7 +75,7 @@
             <v-card
               elevation="0"
               height="160"
-              class="text-center pa-4 --bordered-card"
+              class="text-center pa-4"
               rounded
               to="/maps/my-map"
             >

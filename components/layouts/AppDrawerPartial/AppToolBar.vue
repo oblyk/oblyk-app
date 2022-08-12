@@ -21,7 +21,7 @@
             </v-btn>
           </template>
 
-          <v-list dark>
+          <v-list>
             <lazy-hydrate on-interaction>
               <app-bar-profil />
             </lazy-hydrate>
@@ -99,15 +99,27 @@ export default {
 
 <style lang="scss">
 .oblyk-app-drawer-actions {
-  border-top-style: solid;
-  border-bottom-style: solid;
-  border-width: 1px;
-  padding: 5px;
   text-align: center;
-  border-color: rgb(50, 50, 50);
   .oblyk-app-drawer-actions-area {
+    border-radius: 50px;
+    padding: 0.5em;
     width: 100%;
-    padding-right: 5px;
+  }
+}
+.theme--light {
+  .oblyk-app-drawer-actions .oblyk-app-drawer-actions-area{
+    background-color: rgb(240, 240, 245);
+    .v-icon__svg {
+      fill: black;
+    }
+  }
+}
+.theme--dark {
+  .oblyk-app-drawer-actions .oblyk-app-drawer-actions-area {
+    background-color: rgb(37, 37, 37);
+    .v-icon__svg {
+      fill: white;
+    }
   }
 }
 </style>

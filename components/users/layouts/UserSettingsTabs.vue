@@ -1,5 +1,8 @@
 <template>
-  <v-tabs show-arrows >
+  <v-tabs
+    class="border-bottom"
+    show-arrows
+  >
     <v-tab :to="`${user.currentUserPath}/settings/general`">
       <v-icon left small>
         {{ mdiInformation }}
