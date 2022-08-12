@@ -31,7 +31,7 @@
         {{ mdiHome }}
       </v-icon>
     </v-btn>
-    <global-search-dialog />
+    <global-search-dialog icon-color="white" />
     <v-menu
       :position-y="0"
       bottom
@@ -51,7 +51,7 @@
         </v-btn>
       </template>
 
-      <v-list dark>
+      <v-list>
         <lazy-hydrate on-interaction>
           <app-bar-profil />
         </lazy-hydrate>

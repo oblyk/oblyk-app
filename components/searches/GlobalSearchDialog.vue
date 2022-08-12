@@ -13,7 +13,7 @@
         v-bind="attrs"
         v-on="on"
       >
-        <v-icon color="black">
+        <v-icon :color="iconColor">
           {{ mdiMagnify }}
         </v-icon>
       </v-btn>
@@ -56,6 +56,10 @@ export default {
     activator: {
       type: String,
       default: 'icon'
+    },
+    iconColor: {
+      type: String,
+      default: 'black'
     }
   },
 
