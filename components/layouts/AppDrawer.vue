@@ -2,21 +2,35 @@
   <div class="oblyk-app-drawer">
     <v-list-item>
       <v-row class="oblyk-app-drawer-header">
-        <v-col cols="7" class="pl-1">
-          <v-btn
+        <v-col class="pl-1">
+          <nuxt-link
             to="/"
-            aria-label="go to home page"
-            icon
-            x-large
-            class="mr-1"
+            class="discrete-link"
           >
-            <img height="28" width="38" src="/svg/logo-green.svg" alt="">
-          </v-btn>
-          <span class="oblyk-app-drawer-title">
-            Oblyk
-          </span>
+            <svg
+              class="oblyk-svg-logo"
+              :class="loading ? '--animate' : ''"
+              viewBox="0 0 10.054166 10.054166"
+              height="38"
+              width="38"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M 4.4298964,4.2390636 6.4357839,2.2107931 9.2531882,5.0281974 6.4357839,7.8456017 2.6792446,4.0890607 0.80097503,5.9673303 2.6792446,7.8456017 3.7579684,6.7668798"
+                style="fill:none;fill-rule:evenodd;stroke:#31994e;stroke-width:1.13275;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1"
+              />
+            </svg>
+            <div class="d-inline-block oblyk-app-drawer-title">
+              <p>
+                Oblyk
+              </p>
+              <small>
+                Climbing Community
+              </small>
+            </div>
+          </nuxt-link>
         </v-col>
-        <v-col cols="5" class="v-card__actions">
+        <v-col class="oblyk-langage-col v-card__actions">
           <v-spacer />
           <v-menu
             bottom
@@ -125,6 +139,7 @@ export default {
   data () {
     return {
       lang: null,
+      loading: false,
       languages: [
         {
           value: 'fr',
@@ -155,13 +170,42 @@ export default {
 }
 </script>
 <style lang="scss">
+@keyframes draw_oblyk_logo {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: 30px;
+  }
+}
 .oblyk-app-drawer {
   .oblyk-app-drawer-header {
     padding-top: 5px;
     padding-bottom: 6px;
+    .oblyk-svg-logo {
+      margin-top: 5px;
+      margin-right: 8px;
+      margin-left: 3px;
+      &.--animate {
+        path {
+          animation: draw_oblyk_logo 1.5s linear infinite;
+          stroke-dasharray: 25 6;
+        }
+      }
+    }
     .oblyk-app-drawer-title {
       font-size: 1.5em;
-      vertical-align: middle;
+      p {
+        line-height: 1em;
+        margin-bottom: -13px;
+      }
+      small {
+        font-size: 0.5em;
+        opacity: 0.6;
+      }
+    }
+    .oblyk-langage-col {
+      max-width: 80px;
     }
   }
   .v-subheader {
