@@ -1290,8 +1290,14 @@ export default {
     otherFeatures: {
       title: 'Continue to discover Oblyk !',
       links: {
-        guide: 'Guide library & search',
-        partner: 'The search for a partner'
+        guide: {
+          title: 'Guide library & search',
+          subtitle: 'Create your guidebook library, find guidebook around a city, etc.'
+        },
+        partner: {
+          title: 'The search for a partner',
+          subtitle: 'Find climbers around you'
+        }
       }
     },
     layout: {

@@ -1290,8 +1290,14 @@ export default {
     otherFeatures: {
       title: 'Continuez de découvrir Oblyk !',
       links: {
-        guide: 'Topothèque & recherche de topo',
-        partner: 'La recherche de partenaire'
+        guide: {
+          title: 'Topothèque & recherche de topo',
+          subtitle: "Créez votre topothèque, trouver les topos autour d'une ville, etc."
+        },
+        partner: {
+          title: 'La recherche de partenaire',
+          subtitle: 'Trouvez des grimpeurs et grimpeuses autour de vous'
+        }
       }
     },
     layout: {
