@@ -71,7 +71,7 @@ export default {
     height: 100%;
     padding-top: 0;
     margin-left: 10px;
-    border-radius: 5px;
+    border-radius: 15px;
     position: relative;
     overflow-y: auto;
   }

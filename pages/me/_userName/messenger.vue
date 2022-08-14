@@ -134,6 +134,7 @@ export default {
   height: 100%;
 }
 .messenger-layout {
+  margin-top: -3px;
   max-width: 100vw;
   height: calc(100vh - 64px);
 }
