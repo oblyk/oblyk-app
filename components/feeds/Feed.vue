@@ -28,6 +28,7 @@ import CurrentUserApi from '~/services/oblyk-api/CurrentUserApi'
 import SimpleFeedCard from '@/components/feeds/SimpleFeedCard'
 import GroupFeedCard from '@/components/feeds/GroupFeedCard'
 import ArticleApi from '~/services/oblyk-api/ArticleApi'
+import OblykActivityApi from '~/services/oblyk-api/OblykActivityApi'
 
 export default {
   name: 'Feed',
@@ -87,6 +88,8 @@ export default {
         return new CurrentUserApi(this.$axios, this.$auth)
       } else if (this.feedApi === 'Article') {
         return new ArticleApi(this.$axios, this.$auth)
+      } else if (this.feedApi === 'OblykActivityApi') {
+        return new OblykActivityApi(this.$axios, this.$auth)
       }
     },
 

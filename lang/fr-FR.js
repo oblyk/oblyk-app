@@ -187,6 +187,11 @@ export default {
       news: {
         title: "Les nouvelles d'Oblyk"
       },
+      enrichOblyk: {
+        title: 'Enrichir Oblyk',
+        intro: "Oblyk est une grande base de donnée alimentée par la communauté de l'escalade en France et dans le monde.<br><strong>Aide-nous à l'enrichir en partageant tes connaissances !</strong>",
+        lastActivity: 'Les derniers ajout de la communauté'
+      },
       supportUs: {
         title: 'Nous soutenir',
         noLimite: "Sur Oblyk il n'y a aucune limitation, pas de compte premium, ni pub, ni lien ou article sponsorisé, tous est gratuit ! ; )",

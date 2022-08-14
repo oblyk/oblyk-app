@@ -97,7 +97,17 @@
       >
         {{ $t('components.layout.appDrawer.subHeaders.enrich') }}
         <v-spacer />
-        <app-drawer-enrich />
+        <v-btn
+          to="/new"
+          class="enrich-oblyk-btn"
+          icon
+          large
+          right
+        >
+          <v-icon>
+            {{ mdiPlus }}
+          </v-icon>
+        </v-btn>
       </v-subheader>
     </client-only>
 
@@ -111,21 +121,19 @@
 </template>
 
 <script>
-import { mdiMenuDown } from '@mdi/js'
+import { mdiMenuDown, mdiPlus } from '@mdi/js'
 import { SessionConcern } from '@/concerns/SessionConcern'
 import AppDrawerUser from '~/components/layouts/AppDrawerPartial/AppDrawerUser'
 import AppDrawerAccount from '~/components/layouts/AppDrawerPartial/AppDrawerAccount'
 import AppToolBar from '~/components/layouts/AppDrawerPartial/AppToolBar'
 import AppDrawerFind from '~/components/layouts/AppDrawerPartial/AppDrawerFind'
 import AppDrawerAbout from '~/components/layouts/AppDrawerPartial/AppDrawerAbout'
-import AppDrawerEnrich from '~/components/layouts/AppDrawerPartial/AppDrawerEnrich'
 const MyGyms = () => import('@/components/layouts/partial/MyGyms')
 const MyOrganizations = () => import('@/components/layouts/partial/MyOrganizations')
 
 export default {
   name: 'AppDrawer',
   components: {
-    AppDrawerEnrich,
     AppDrawerAbout,
     AppDrawerFind,
     AppToolBar,
@@ -151,7 +159,8 @@ export default {
         }
       ],
 
-      mdiMenuDown
+      mdiMenuDown,
+      mdiPlus
     }
   },
 

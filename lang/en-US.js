@@ -187,6 +187,11 @@ export default {
       news: {
         title: "Oblyk's news"
       },
+      enrichOblyk: {
+        title: 'Enrich Oblyk',
+        intro: 'Oblyk is a large database fed by the climbing community in France and around the world.<br><strong>Help us to enrich it by sharing your knowledge !</strong>',
+        lastActivity: 'Latest community additions'
+      },
       supportUs: {
         title: 'Support us',
         noLimite: 'In Oblyk there are no limits, no premium account, no adds, no sponsored link, everything free! ; )',
