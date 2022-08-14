@@ -1,6 +1,6 @@
 <template>
   <v-list-item
-    :to="`/me/chris/messenger/${conversation.id}`"
+    :to="`/me/${$auth.user.slug_name}/messenger/${conversation.id}`"
     @click="showConversation()"
   >
     <v-list-item-avatar
