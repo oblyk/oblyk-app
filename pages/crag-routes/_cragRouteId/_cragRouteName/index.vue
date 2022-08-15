@@ -56,6 +56,15 @@
           <crag-route-videos lg-col="col-lg-4" :crag-route="cragRoute" />
         </v-container>
       </v-card>
+
+      <v-row>
+        <v-col cols="12">
+          <version-information
+            :object="cragRoute"
+            object-type="cragRoute"
+          />
+        </v-col>
+      </v-row>
     </div>
   </div>
 </template>
@@ -70,9 +79,11 @@ import CragRouteComments from '~/components/cragRoutes/CragRouteComments'
 import CragRoutePhotos from '~/components/cragRoutes/CragRoutePhotos'
 import CragRouteVideos from '~/components/cragRoutes/CragRouteVideos'
 import CragRouteAscent from '~/components/cragRoutes/CragRouteAscent'
+import VersionInformation from '~/components/ui/VersionInformation'
 
 export default {
   components: {
+    VersionInformation,
     CragRouteAscent,
     CragRouteVideos,
     CragRoutePhotos,

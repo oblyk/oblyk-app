@@ -3,7 +3,11 @@
     link
     @click="$root.$emit('getCragRouteInDrawer', route.crag.id, route.id); callback ? callback(route) : null"
   >
-    <crag-route-avatar class="grade-route-in-list" :crag-route="route" />
+    <crag-route-avatar
+      :crag-route="route"
+      base-font-size="1rem"
+      class="mr-2"
+    />
     <v-list-item-content>
       <v-list-item-title
         class="climbs-pastille"
@@ -94,9 +98,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.grade-route-in-list {
-  font-size: 1.2em;
-}
-</style>

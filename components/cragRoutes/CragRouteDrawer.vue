@@ -25,6 +25,14 @@
         <crag-route-photos :crag-route="cragRoute" lg-col="col-lg-6" />
         <v-divider class="mt-5 mb-5" />
         <crag-route-videos :crag-route="cragRoute" lg-col="col-lg-6" />
+        <v-row>
+          <v-col cols="12">
+            <version-information
+              :object="cragRoute"
+              object-type="cragRoute"
+            />
+          </v-col>
+        </v-row>
       </div>
     </div>
   </v-navigation-drawer>
@@ -41,10 +49,12 @@ import CragRoutePhotos from '@/components/cragRoutes/CragRoutePhotos'
 import CragRouteVideos from '@/components/cragRoutes/CragRouteVideos'
 import CragRouteAscent from '@/components/cragRoutes/CragRouteAscent'
 import { SessionConcern } from '@/concerns/SessionConcern'
+import VersionInformation from '~/components/ui/VersionInformation'
 
 export default {
   name: 'CragRouteDrawer',
   components: {
+    VersionInformation,
     CragRouteAscent,
     CragRouteVideos,
     CragRoutePhotos,

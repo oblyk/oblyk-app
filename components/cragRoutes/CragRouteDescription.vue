@@ -5,25 +5,6 @@
         <v-simple-table class="no-hover-table">
           <template #default>
             <tbody>
-              <!-- Name -->
-              <tr>
-                <th
-                  :title="$t('models.cragRoute.name')"
-                  class="smallest-table-column text-right"
-                >
-                  <v-icon>{{ mdiFormatLetterCase }}</v-icon>
-                </th>
-                <td>
-                  <crag-route-avatar :crag-route="cragRoute" />
-                  <nuxt-link
-                    class="discrete-link font-weight-bold"
-                    :to="cragRoute.path"
-                  >
-                    {{ cragRoute.name }}
-                  </nuxt-link>
-                </td>
-              </tr>
-
               <!-- Crag -->
               <tr>
                 <th
@@ -278,17 +259,6 @@
                   </cite>
                 </td>
               </tr>
-
-              <!-- Version -->
-              <tr>
-                <td colspan="2" class="text-right">
-                  <contributions-label
-                    version-type="cragRoute"
-                    :version-id="cragRoute.id"
-                    :versions-count="cragRoute.versions_count"
-                  />
-                </td>
-              </tr>
             </tbody>
           </template>
         </v-simple-table>
@@ -341,7 +311,6 @@
 
 <script>
 import {
-  mdiFormatLetterCase,
   mdiTerrain,
   mdiGauge,
   mdiCalendar,
@@ -356,9 +325,7 @@ import {
   mdiArrowExpandUp,
   mdiBolt
 } from '@mdi/js'
-import CragRouteAvatar from '@/components/cragRoutes/partial/CragRouteAvatar'
 import CragRouteSectionList from '@/components/cragRoutes/CragRouteSectionList'
-import ContributionsLabel from '@/components/globals/ContributionsLable'
 import CragRouteNoteModal from '@/components/cragRoutes/partial/CragRouteNoteModal'
 import CragRouteDifficultyModal from '@/components/cragRoutes/partial/CragRouteDifficultyModal'
 import { CragRouteHelpers } from '~/mixins/CragRouteHelpers'
@@ -368,9 +335,7 @@ export default {
   components: {
     CragRouteDifficultyModal,
     CragRouteNoteModal,
-    ContributionsLabel,
-    CragRouteSectionList,
-    CragRouteAvatar
+    CragRouteSectionList
   },
   mixins: [
     CragRouteHelpers
@@ -384,7 +349,6 @@ export default {
 
   data () {
     return {
-      mdiFormatLetterCase,
       mdiTerrain,
       mdiGauge,
       mdiCalendar,

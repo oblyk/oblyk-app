@@ -3,8 +3,12 @@
     link
     @click="click"
   >
-    <crag-route-avatar class="grade-route-in-list" :crag-route="route" />
-    <v-list-item-content class="pt-1 pb-1">
+    <crag-route-avatar
+      :crag-route="route"
+      base-font-size="1rem"
+      class="mr-2"
+    />
+    <v-list-item-content class="pt-2 pb-2">
       <v-list-item-title
         class="climbs-pastille"
         :class="route.climbing_type"
@@ -110,9 +114,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.grade-route-in-list {
-  font-size: 1.2em;
-}
-</style>
