@@ -2,7 +2,10 @@
   <div class="oblyk-app-drawer">
     <v-list-item>
       <v-row class="oblyk-app-drawer-header">
-        <v-col class="pl-1">
+        <v-col
+          class="pl-1"
+          @click="startAnimation()"
+        >
           <nuxt-link
             to="/"
             class="discrete-link"
@@ -174,6 +177,11 @@ export default {
       this.$vuetify.lang.current = this.lang
       this.$i18n.setLocaleCookie(this.lang)
       this.$i18n.setLocale(this.lang)
+    },
+
+    startAnimation () {
+      this.loading = true
+      setTimeout(() => { this.loading = false }, 1500)
     }
   }
 }
