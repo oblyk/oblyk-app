@@ -15,7 +15,7 @@
 
     <v-list
       v-if="results.length > 0 && resultVisible"
-      class="rounded-xl mt-3"
+      class="mt-3"
       rounded
     >
       <v-list-item-group>

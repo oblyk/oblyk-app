@@ -29,6 +29,15 @@ class CragApi extends BaseApi {
     })
   }
 
+  advancedSearch (data) {
+    return this.axios.request({
+      method: 'POST',
+      url: `${this.baseUrl}/public/crags/advanced_search.json`,
+      headers: { HttpApiAccessToken: this.apiAccessToken },
+      data
+    })
+  }
+
   geoJson () {
     return this.axios.request({
       method: 'GET',

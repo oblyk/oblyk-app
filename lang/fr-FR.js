@@ -12,6 +12,8 @@ export default {
     delete: 'Supprimer',
     close: 'Fermer',
     ok: 'ok',
+    search: 'Chercher',
+    addFilters: 'Ajouter des filtres',
     createMyAccount: 'Créer mon compte',
     changeBanner: 'Changer le bandeau',
     uploadBanner: 'Uploader un bandeau',
@@ -177,6 +179,7 @@ export default {
     crosses: 'croix',
     linesCount: 'une ligne | %{count} lignes',
     seeMore: 'voir plus',
+    maximum: 'maximum',
     pages: {
       cookies: 'Oblyk utilise des cookies uniquement à des fins de fonctionnement.',
       newVersion: "Une nouvelle version d'Oblyk est là !",
@@ -418,6 +421,43 @@ export default {
           andMore: {
             title: "Et plus d'outils",
             explain: "Nous avons d'autres outils comme : la topothèque, les recomandations, etc."
+          }
+        }
+      },
+      cragSearch: {
+        title: "Chercher un site d'escalade",
+        localisation: "Autour de quelle ville cherchez-vous un site d'escalade ?",
+        kmAround: 'km autour de',
+        whichType: "Quel type d'escalade ?",
+        whichLevel: "Quel niveau d'escalade ?",
+        whichOrientation: 'Quelle orientation ?',
+        approachMaxTime: 'Temps maximum de marche ?',
+        minutesToReach: '<strong>minutes</strong> pour rejoindre le site.',
+        whichSeason: 'Saison favorables ?',
+        cragMustContain: 'Le site doit contenir des lignes <strong>entre :</strong>',
+        chooseYourFilters: 'Choisissez vos filtres',
+        noResults: "Nous n'avons pas trouver de site d'escalade à moins de %{distance}km de %{city} avec ces filtres.",
+        expandTo: 'Élargir la recherche à :',
+        filters: {
+          climbingType: {
+            title: "Type d'escalade",
+            subtitle: 'Chercher un site de bloc, de voie, de grand voie, etc.'
+          },
+          grade: {
+            title: 'Cotation',
+            subtitle: 'Chercher une qui contient des lignes entre deux cotations'
+          },
+          orientation: {
+            title: 'Orientation',
+            subtitle: 'Chercher par orientation du site : Nord, Sud, Est, etc.'
+          },
+          approach: {
+            title: "Temps de marche d'approche",
+            subtitle: 'Filtrer sur le temps maximum de marche pour accéder à la falaise'
+          },
+          season: {
+            title: 'Saison favorable',
+            subtitle: "Chercher une falaise d'hiver, d'été, d'intersaison, etc."
           }
         }
       }
@@ -1569,6 +1609,10 @@ export default {
     partnerMap: {
       title: "La carte des grimpeur·euse·s d'Oblyk",
       description: "La carte des grimpeur·euse·s te permet de trouver un·e partenaire d'escalade près de chez toi. localise toi, trouve un·e grimpeur·euse, contact le·la et allez grimper ensemble !"
+    },
+    searchCrag: {
+      title: "Recherche avancée de sites d'escalades : trouver des sites d'escalades en France et dans le monde",
+      description: "Trouver exactement le site d'escalade que vous chercher, filter avec le niveau du site, l'orientation, le temps de marche, etc."
     },
     findCrag: {
       title: "Trouver un site d'escalade",

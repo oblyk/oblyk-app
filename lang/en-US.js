@@ -12,6 +12,8 @@ export default {
     delete: 'Delete',
     close: 'Close',
     ok: 'ok',
+    search: 'Search',
+    addFilters: 'Add filters',
     createMyAccount: 'Creat my account',
     changeBanner: 'Change banner',
     uploadBanner: 'Upload banner',
@@ -177,6 +179,7 @@ export default {
     crosses: 'crosses',
     linesCount: 'one line | %{count} lines',
     seeMore: 'see more',
+    maximum: 'maximum',
     pages: {
       cookies: 'Oblyk uses cookies only for operational purposes.',
       newVersion: 'A new Oblyk version is here!',
@@ -418,6 +421,43 @@ export default {
           andMore: {
             title: 'And more tools',
             explain: 'We have other tools such as: the guidebook library, recommendations, etc.'
+          }
+        }
+      },
+      cragSearch: {
+        title: 'Search for a climbing crag',
+        localisation: 'Around which city are you looking for a climbing crag',
+        kmAround: 'km around to',
+        whichType: 'Which type of climbing?',
+        whichLevel: 'Which level of climbing?',
+        whichOrientation: 'Which direction?',
+        approachMaxTime: 'Maximum walking time?',
+        minutesToReach: '<strong>minutes</strong> to reach the crag.',
+        whichSeason: 'Favourable season ?',
+        cragMustContain: 'The site must contain lines <strong>between :</strong>',
+        chooseYourFilters: 'Choose your filters',
+        noResults: 'We did not find any climbing crags within %{distance}km of %{city} with these filters.',
+        expandTo: 'Expanding research to :',
+        filters: {
+          climbingType: {
+            title: 'Type of climbing',
+            subtitle: 'Search for a bouldering site, a route, a multi pitch, etc.'
+          },
+          grade: {
+            title: 'Grade',
+            subtitle: 'Find one that contains lines between two grades'
+          },
+          orientation: {
+            title: 'Orientation',
+            subtitle: 'Search by crag orientation: North, South, East, etc.'
+          },
+          approach: {
+            title: 'Approach walking time',
+            subtitle: 'Filter on maximum walking time to access the crag'
+          },
+          season: {
+            title: 'Favourable season',
+            subtitle: 'Look for a winter crag, a summer crag, an off-season crag, etc.'
           }
         }
       }
@@ -1569,6 +1609,10 @@ export default {
     partnerMap: {
       title: 'Map of Oblyk climbers',
       description: 'The climber map allows you to find a climbing partner near you. Locate yourself, find a climber, contact him and go climbing together!'
+    },
+    searchCrag: {
+      title: 'Advanced climbing crag search : find climbing crags in France and in the world',
+      description: 'Find exactly the climbing crag you are looking for, filter with the level of the crag, the orientation, the walking time, etc.'
     },
     findCrag: {
       title: 'Find a climbing site',
