@@ -3,6 +3,7 @@
     <v-row>
       <v-col>
         <v-text-field
+          ref="CragSearchForm"
           v-model="query"
           :label="$t('components.crag.searchCrag')"
           outlined
@@ -11,6 +12,7 @@
           hide-details
           @keyup="search()"
           @click:clear="onSearch = false"
+          @focus="scrollToElement"
         />
       </v-col>
       <v-col
@@ -168,6 +170,13 @@ export default {
         )
       } else {
         this.loadingLocalization = false
+      }
+    },
+
+    scrollToElement () {
+      if (window.innerWidth < 600) {
+        const element = this.$refs.CragSearchForm.$el
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' })
       }
     }
   }

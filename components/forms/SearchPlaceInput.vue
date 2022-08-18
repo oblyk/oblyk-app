@@ -114,9 +114,11 @@ export default {
       this.$emit('input', result)
     },
 
-    scrollToElement (test) {
-      const element = this.$refs.searchPlaceInput.$el
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    scrollToElement () {
+      if (window.innerWidth < 600) {
+        const element = this.$refs.searchPlaceInput.$el
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }
     }
   }
 }

@@ -1,6 +1,7 @@
 <template>
   <div>
     <v-text-field
+      ref="UserSearchForm"
       v-model="query"
       :label="$t('components.user.searchUser')"
       outlined
@@ -9,6 +10,7 @@
       hide-details
       @keyup="search()"
       @click:clear="onSearch = false"
+      @focus="scrollToElement"
     />
     <slot />
     <div
@@ -109,6 +111,13 @@ export default {
         .finally(() => {
           this.searching = false
         })
+    },
+
+    scrollToElement () {
+      if (window.innerWidth < 600) {
+        const element = this.$refs.UserSearchForm.$el
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }
     }
   }
 }

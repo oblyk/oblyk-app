@@ -6,6 +6,7 @@
         :md="query === null ? '9' : '12'"
       >
         <v-text-field
+          ref="TownSearchForm"
           v-model="query"
           class="mt-2"
           :label="$t('components.country.france.searchPlaceHolder')"
@@ -15,6 +16,7 @@
           hide-details
           @keyup="search()"
           @click:clear="onSearch = false"
+          @focus="scrollToElement"
         />
       </v-col>
       <v-col
@@ -176,6 +178,13 @@ export default {
         )
       } else {
         this.loadingLocalization = false
+      }
+    },
+
+    scrollToElement () {
+      if (window.innerWidth < 600) {
+        const element = this.$refs.TownSearchForm.$el
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' })
       }
     }
   }

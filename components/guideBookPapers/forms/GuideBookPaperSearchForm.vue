@@ -1,6 +1,7 @@
 <template>
   <div>
     <v-text-field
+      ref="GuideBookPaperSearchForm"
       v-model="query"
       :label="$t(labelKey)"
       outlined
@@ -9,6 +10,7 @@
       hide-details
       @keyup="search()"
       @click:clear="onSearch = false"
+      @focus="scrollToElement"
     />
 
     <div
@@ -104,6 +106,13 @@ export default {
         .finally(() => {
           this.searching = false
         })
+    },
+
+    scrollToElement () {
+      if (window.innerWidth < 600) {
+        const element = this.$refs.GuideBookPaperSearchForm.$el
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }
     }
   }
 }
