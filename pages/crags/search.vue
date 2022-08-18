@@ -89,8 +89,8 @@
       </v-card-title>
       <v-card-text>
         <v-row>
-          <v-col class="pt-5 text-right" v-html="$t('common.pages.cragSearch.cragMustContain')" />
-          <v-col>
+          <v-col cols="8" md="3" class="pt-5 text-right" v-html="$t('common.pages.cragSearch.cragMustContain')" />
+          <v-col cols="4" md="2">
             <v-select
               v-model="minGrade"
               :items="gradeWithoutWeightings"
@@ -100,12 +100,16 @@
             />
           </v-col>
           <v-col
-            cols="1"
+            cols="8"
+            md="1"
             class="pt-5 text-right font-weight-bold"
           >
             {{ $t('common.and') }} :
           </v-col>
-          <v-col>
+          <v-col
+            cols="4"
+            md="2"
+          >
             <v-select
               v-model="maxGrade"
               :items="gradeWithoutWeightings"
@@ -182,10 +186,7 @@
       </v-card-title>
       <v-card-text>
         <v-row>
-          <v-col cols="6" md="1" class="pt-5 text-right">
-            {{ $t('common.maximum') }}
-          </v-col>
-          <v-col cols="6" md="1">
+          <v-col cols="3" md="1" class="pr-0">
             <v-text-field
               v-model="maxApproachTime"
               dense
@@ -193,7 +194,7 @@
               hide-details
             />
           </v-col>
-          <v-col cols="12" md="10" class="pt-5" v-html="$t('common.pages.cragSearch.minutesToReach')" />
+          <v-col cols="9" md="10" class="pt-lg-5" v-html="$t('common.pages.cragSearch.minutesToReach')" />
         </v-row>
       </v-card-text>
     </v-card>

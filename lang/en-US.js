@@ -179,7 +179,6 @@ export default {
     crosses: 'crosses',
     linesCount: 'one line | %{count} lines',
     seeMore: 'see more',
-    maximum: 'maximum',
     pages: {
       cookies: 'Oblyk uses cookies only for operational purposes.',
       newVersion: 'A new Oblyk version is here!',
@@ -432,7 +431,7 @@ export default {
         whichLevel: 'Which level of climbing?',
         whichOrientation: 'Which direction?',
         approachMaxTime: 'Maximum walking time?',
-        minutesToReach: '<strong>minutes</strong> to reach the crag.',
+        minutesToReach: '<strong>minutes</strong> maximum to reach the crag.',
         whichSeason: 'Favourable season ?',
         cragMustContain: 'The site must contain lines <strong>between :</strong>',
         chooseYourFilters: 'Choose your filters',

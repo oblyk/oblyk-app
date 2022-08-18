@@ -179,7 +179,6 @@ export default {
     crosses: 'croix',
     linesCount: 'une ligne | %{count} lignes',
     seeMore: 'voir plus',
-    maximum: 'maximum',
     pages: {
       cookies: 'Oblyk utilise des cookies uniquement à des fins de fonctionnement.',
       newVersion: "Une nouvelle version d'Oblyk est là !",
@@ -432,7 +431,7 @@ export default {
         whichLevel: "Quel niveau d'escalade ?",
         whichOrientation: 'Quelle orientation ?',
         approachMaxTime: 'Temps maximum de marche ?',
-        minutesToReach: '<strong>minutes</strong> pour rejoindre le site.',
+        minutesToReach: '<strong>minutes</strong> maximum pour rejoindre le site.',
         whichSeason: 'Saison favorables ?',
         cragMustContain: 'Le site doit contenir des lignes <strong>entre :</strong>',
         chooseYourFilters: 'Choisissez vos filtres',
