@@ -1,6 +1,7 @@
 <template>
   <div>
     <v-text-field
+      ref="searchPlaceInput"
       v-model="query"
       :prepend-inner-icon="mdiMapSearch"
       :label="$t('components.searchPlace.placeholder')"
@@ -11,6 +12,7 @@
       hide-details
       @keyup="search()"
       @click:clear="onSearch = false"
+      @focus="scrollToElement"
     />
 
     <v-list
@@ -110,6 +112,11 @@ export default {
     emitObject (result) {
       this.resultVisible = false
       this.$emit('input', result)
+    },
+
+    scrollToElement (test) {
+      const element = this.$refs.searchPlaceInput.$el
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
   }
 }
