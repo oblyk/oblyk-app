@@ -9,8 +9,20 @@
           <th class="text-left">
             {{ $t('components.cragsTable.crags') }}
           </th>
-          <th class="text-center">
-            {{ $t('components.cragsTable.orientations') }}
+          <th class="text-center" :title="$t('components.cragsTable.orientations')">
+            <v-icon small>
+              {{ mdiCompass }}
+            </v-icon>
+          </th>
+          <th class="text-center" :title="$t('components.cragsTable.approachTimeTitle')">
+            <v-icon small>
+              {{ mdiWalk }}
+            </v-icon>
+          </th>
+          <th class="text-center" :title="$t('components.cragsTable.approachTimeTitle')">
+            <v-icon small>
+              {{ mdiLeafMaple }}
+            </v-icon>
           </th>
           <th
             v-for="(grade, gradeIndex) in reduceGradeWithoutWeightings"
@@ -48,6 +60,12 @@
           <td class="text-center">
             <compass :orientations="toCragObject(cragData.crag).orientations" />
           </td>
+          <td class="text-center">
+            {{ walkTime(cragData.crag) }}
+          </td>
+          <td class="text-center">
+            <season-icon :seasons="toCragObject(cragData.crag).seasons" />
+          </td>
           <td
             v-for="(grade, gradeIndex) in reduceGradeWithoutWeightings"
             :key="`grade-index-${gradeIndex}`"
@@ -66,13 +84,18 @@
 </template>
 
 <script>
+import { mdiCompass, mdiWalk, mdiLeafMaple } from '@mdi/js'
 import { GradeMixin } from '~/mixins/GradeMixin'
 import Crag from '~/models/Crag'
 import Compass from '~/components/ui/Compass'
+import SeasonIcon from '~/components/ui/SeasonIcon'
 
 export default {
   name: 'CragsTable',
-  components: { Compass },
+  components: {
+    SeasonIcon,
+    Compass
+  },
   mixins: [GradeMixin],
   props: {
     cragsData: {
@@ -82,6 +105,14 @@ export default {
     routeFigures: {
       type: Object,
       required: true
+    }
+  },
+
+  data () {
+    return {
+      mdiCompass,
+      mdiWalk,
+      mdiLeafMaple
     }
   },
 
@@ -115,6 +146,12 @@ export default {
         sum += levels[index].count
       }
       return sum
+    },
+
+    walkTime (crag) {
+      if (!crag.min_approach_time) { return '' }
+      const minAndMax = `${crag.min_approach_time}" / ${crag.max_approach_time}"`
+      return crag.min_approach_time !== crag.max_approach_time ? minAndMax : `${crag.min_approach_time}"`
     }
   }
 }

@@ -777,7 +777,9 @@ export default {
     cragsTable: {
       crags: 'Sites',
       lines: 'Lignes',
-      orientations: 'Orientations'
+      orientations: 'Orientations',
+      approachTimeTitle: "Minutes de marche d'approche",
+      season: 'Saison favorables'
     },
     ascentCragRoute: {
       new: 'Ajouter %{name} à mon carnet',

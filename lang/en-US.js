@@ -777,7 +777,9 @@ export default {
     cragsTable: {
       crags: 'Crags',
       lines: 'Lines',
-      orientations: 'Orientations'
+      orientations: 'Orientations',
+      approachTimeTitle: 'Minutes walking time',
+      season: 'Favorable seasons'
     },
     ascentCragRoute: {
       new: 'Add %{name} in my logbook',
