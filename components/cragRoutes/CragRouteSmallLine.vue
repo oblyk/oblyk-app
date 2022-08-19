@@ -1,6 +1,7 @@
 <template>
   <v-list-item
     link
+    class="pl-1"
     @click="click"
   >
     <crag-route-avatar
