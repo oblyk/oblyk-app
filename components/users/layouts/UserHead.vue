@@ -100,17 +100,11 @@
       v-model="avatarPictureDialog"
       max-width="290"
     >
-      <v-card>
-        <v-card-text
-          class="pa-0"
-        >
-          <v-img
-            class="radius rounded-lg"
-            :src="user.avatarUrl"
-            :alt="`logo ${user.full_name}`"
-          />
-        </v-card-text>
-      </v-card>
+      <v-img
+        class="radius rounded"
+        :src="user.avatarUrl"
+        :alt="`logo ${user.full_name}`"
+      />
     </v-dialog>
   </div>
 </template>
