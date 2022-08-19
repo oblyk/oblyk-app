@@ -23,6 +23,10 @@
         <!-- Layer Selector -->
         <l-control position="topright">
           <leaflet-layer-selector v-model="layerIndex" :map-style="mapStyle" />
+        </l-control>
+
+        <!-- Set center to localization -->
+        <l-control position="topright">
           <leaflet-localization-center
             :set-map-view="setView"
           />
