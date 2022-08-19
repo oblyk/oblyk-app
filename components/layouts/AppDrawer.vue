@@ -77,10 +77,10 @@
       <app-drawer-user />
 
       <!-- Administered gym list -->
-      <my-gyms v-if="isLoggedIn" class="d-none" />
+      <my-gyms v-if="$auth.loggedIn" />
 
       <!-- Organizations -->
-      <my-organizations v-if="isLoggedIn" class="d-none" />
+      <my-organizations v-if="$auth.loggedIn" />
 
       <!-- If no user connected -->
       <app-drawer-account />
