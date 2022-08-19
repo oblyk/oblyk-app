@@ -217,7 +217,10 @@ export default {
   mounted () {
     const urlParams = new URLSearchParams(window.location.search)
     this.redirectTo = urlParams.get('redirect_to')
-    this.data.name = urlParams.get('name')
+    const nameParam = urlParams.get('name')
+    if (nameParam) {
+      this.data.name = nameParam
+    }
   },
 
   methods: {
