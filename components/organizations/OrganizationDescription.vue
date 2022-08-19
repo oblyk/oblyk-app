@@ -1,7 +1,7 @@
 <template>
   <v-card class="full-height">
     <v-app-bar flat>
-      <v-toolbar-title class="text-h6 white--text pl-0">
+      <v-toolbar-title class="text-h6 pl-0">
         {{ organization.name }}
       </v-toolbar-title>
 

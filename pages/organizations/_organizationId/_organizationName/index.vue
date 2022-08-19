@@ -1,5 +1,8 @@
 <template>
-  <v-container v-if="organization" fluid>
+  <v-container
+    v-if="organization"
+    class="mt-lg-4"
+  >
     <v-row>
       <v-col class="pa-2">
         <organization-description :organization="organization" />
