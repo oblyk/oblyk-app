@@ -5,11 +5,11 @@
       <nuxt-link :to="toDepartmentObject(town.department).path">
         {{ $t(`components.department.namePrefixType.${town.department.name_prefix_type}`).toLocaleLowerCase() }}{{ town.department.name }}
       </nuxt-link>,
-      <span v-if="town.crags.around.length > 0">
-        {{ town.name }} présente {{ $t(densityLabelKey) }} de sites d’escalade : {{ town.crags.around.length }} sites dans un rayon de {{ town.dist }}km.
+      <span v-if="town.crags.crag_count_around > 0">
+        {{ town.name }} présente {{ $t(densityLabelKey) }} de sites d’escalade : {{ town.crags.crag_count_around }} sites dans un rayon de {{ town.dist }}km.
       </span>
       <span
-        v-if="town.crags.around.length > 0 && havingClimbingTypes > 0"
+        v-if="town.crags.crag_count_around > 0 && havingClimbingTypes > 0"
         class="span-comma"
       >
         On trouve notamment
@@ -35,18 +35,18 @@
           {{ $tc('components.town.pluralStyle', climbingTypes.via_ferrata, { count: climbingTypes.via_ferrata }) }} de via ferrata
         </span>.
       </span>
-      <span v-if="town.crags.around.length === 0">
+      <span v-if="town.crags.crag_count_around === 0">
         ne possède aucun site d’escalade dans un rayon proche ({{ town.dist }}km).
       </span>
     </p>
 
     <!-- If crags around -->
-    <p v-if="town.crags.around.length > 0">
-      <span v-if="town.crags.around.length === 1">
+    <p v-if="town.crags.crag_count_around > 0">
+      <span v-if="town.crags.crag_count_around === 1">
         Ce site d’escalade présente au total {{ town.crags.route_figures.route_count }} voie{{ town.crags.route_figures.route_count > 1 ? 's' : '' }}{{ town.crags.route_figures.grade.max.crag_route ? ' :' : '.' }}
       </span>
-      <span v-if="town.crags.around.length > 1">
-        Ces {{ town.crags.around.length }} sites d’escalade proposent au total {{ town.crags.route_figures.route_count }} voies{{ town.crags.route_figures.grade.max.crag_route ? ' :' : '.' }}
+      <span v-if="town.crags.crag_count_around > 1">
+        Ces {{ town.crags.crag_count_around }} sites d’escalade proposent au total {{ town.crags.route_figures.route_count }} voies{{ town.crags.route_figures.grade.max.crag_route ? ' :' : '.' }}
       </span>
       <span v-if="town.crags.route_figures.grade.max.crag_route !== null">
         la ligne la plus dure est
@@ -61,7 +61,7 @@
     </p>
 
     <!-- No crag around -->
-    <p v-if="town.crags.around.length === 0">
+    <p v-if="town.crags.crag_count_around === 0">
       Le site d’escalade le plus proche de {{ town.name }} est
       <nuxt-link :to="toCragObject(town.crags.nearest).path">
         {{ town.crags.nearest.name }}
@@ -135,11 +135,11 @@ export default {
 
   computed: {
     densityLabelKey () {
-      if (this.town.crags.around.length === 0) {
+      if (this.town.crags.crag_count_around === 0) {
         return null
-      } else if (this.town.crags.around.length <= 5) {
+      } else if (this.town.crags.crag_count_around <= 5) {
         return 'components.town.density.low'
-      } else if (this.town.crags.around.length <= 10) {
+      } else if (this.town.crags.crag_count_around <= 10) {
         return 'components.town.density.medium'
       } else {
         return 'components.town.density.large'
@@ -147,39 +147,20 @@ export default {
     },
 
     climbingTypes () {
-      const types = {
-        sport_climbing: 0,
-        bouldering: 0,
-        multi_pitch: 0,
-        trad_climbing: 0,
-        aid_climbing: 0,
-        deep_water: 0,
-        via_ferrata: 0
+      const types = this.town.crags.crag_count_by_climbing_types
+      return {
+        sport_climbing: types.sport_climbing,
+        bouldering: types.bouldering,
+        multi_pitch: types.multi_pitch,
+        trad_climbing: types.trad_climbing,
+        aid_climbing: types.aid_climbing,
+        deep_water: types.deep_water,
+        via_ferrata: types.via_ferrata
       }
-      for (const crag of this.town.crags.around) {
-        if (crag.sport_climbing) { types.sport_climbing += 1 }
-        if (crag.bouldering) { types.bouldering += 1 }
-        if (crag.multi_pitch) { types.multi_pitch += 1 }
-        if (crag.trad_climbing) { types.trad_climbing += 1 }
-        if (crag.aid_climbing) { types.aid_climbing += 1 }
-        if (crag.deep_water) { types.deep_water += 1 }
-        if (crag.via_ferrata) { types.via_ferrata += 1 }
-      }
-      return types
     },
 
     havingClimbingTypes () {
-      let sum = 0
-      for (const crag of this.town.crags.around) {
-        if (crag.sport_climbing) { sum += 1 }
-        if (crag.bouldering) { sum += 1 }
-        if (crag.multi_pitch) { sum += 1 }
-        if (crag.trad_climbing) { sum += 1 }
-        if (crag.aid_climbing) { sum += 1 }
-        if (crag.deep_water) { sum += 1 }
-        if (crag.via_ferrata) { sum += 1 }
-      }
-      return sum
+      return Object.values(this.town.crags.crag_count_by_climbing_types).reduce((a, b) => a + b, 0)
     },
 
     nearestCragsType () {
