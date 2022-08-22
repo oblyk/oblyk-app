@@ -56,14 +56,14 @@
 
         <!-- Crags table -->
         <div
-          v-if="town.crags.around.length > 0"
+          v-if="town.crags.crag_count_around > 0"
           class="mt-16"
         >
           <h2 class="mb-3">
             <v-icon left class="vertical-align-baseline mb-1">
               {{ mdiTerrain }}
             </v-icon>
-            {{ $tc('components.town.cragsAround', town.crags.around.length, { count: town.crags.around.length, name: town.name }) }}
+            {{ $tc('components.town.cragsAround', town.crags.crag_count_around, { count: town.crag_count_around, name: town.name }) }}
           </h2>
           <crags-table
             :crags-data="town.crags.crag_with_levels"
