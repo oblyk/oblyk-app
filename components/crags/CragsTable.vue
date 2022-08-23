@@ -14,6 +14,15 @@
               {{ mdiCompass }}
             </v-icon>
           </th>
+          <th
+            v-if="havingCenter"
+            class="text-center"
+            :title="$t('components.cragsTable.distanceTitle')"
+          >
+            <v-icon small>
+              {{ mdiMapMarkerDistance }}
+            </v-icon>
+          </th>
           <th class="text-center" :title="$t('components.cragsTable.approachTimeTitle')">
             <v-icon small>
               {{ mdiWalk }}
@@ -60,7 +69,14 @@
           <td class="text-center">
             <compass :orientations="toCragObject(cragData.crag).orientations" />
           </td>
-          <td class="text-center">
+          <td
+            v-if="havingCenter"
+            class="text-center text-no-wrap"
+          >
+            {{ getDistance(cragData.crag) }}
+            <span class="text--disabled">km</span>
+          </td>
+          <td class="text-center text-no-wrap">
             {{ walkTime(cragData.crag) }}
           </td>
           <td class="text-center">
@@ -84,11 +100,12 @@
 </template>
 
 <script>
-import { mdiCompass, mdiWalk, mdiLeafMaple } from '@mdi/js'
+import { mdiCompass, mdiWalk, mdiLeafMaple, mdiMapMarkerDistance } from '@mdi/js'
 import { GradeMixin } from '~/mixins/GradeMixin'
 import Crag from '~/models/Crag'
 import Compass from '~/components/ui/Compass'
 import SeasonIcon from '~/components/ui/SeasonIcon'
+import { LocalizationHelpers } from '~/mixins/LocalizationHelpers'
 
 export default {
   name: 'CragsTable',
@@ -96,7 +113,7 @@ export default {
     SeasonIcon,
     Compass
   },
-  mixins: [GradeMixin],
+  mixins: [GradeMixin, LocalizationHelpers],
   props: {
     cragsData: {
       type: Object,
@@ -105,6 +122,10 @@ export default {
     routeFigures: {
       type: Object,
       required: true
+    },
+    centreCoordinate: {
+      type: Array,
+      default: null
     }
   },
 
@@ -112,7 +133,8 @@ export default {
     return {
       mdiCompass,
       mdiWalk,
-      mdiLeafMaple
+      mdiLeafMaple,
+      mdiMapMarkerDistance
     }
   },
 
@@ -125,6 +147,10 @@ export default {
         }
       }
       return grades
+    },
+
+    havingCenter () {
+      return this.centreCoordinate && this.centreCoordinate.length > 0
     }
   },
 
@@ -152,6 +178,10 @@ export default {
       if (!crag.min_approach_time) { return '' }
       const minAndMax = `${crag.min_approach_time}" / ${crag.max_approach_time}"`
       return crag.min_approach_time !== crag.max_approach_time ? minAndMax : `${crag.min_approach_time}"`
+    },
+
+    getDistance (crag) {
+      return this.geoDistance(crag.latitude, crag.longitude, this.centreCoordinate[0], this.centreCoordinate[1])
     }
   }
 }

@@ -779,6 +779,7 @@ export default {
       lines: 'Lignes',
       orientations: 'Orientations',
       approachTimeTitle: "Minutes de marche d'approche",
+      distanceTitle: 'Distance du lieux cherché',
       season: 'Saison favorables'
     },
     ascentCragRoute: {

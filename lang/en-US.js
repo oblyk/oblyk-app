@@ -779,6 +779,7 @@ export default {
       lines: 'Lines',
       orientations: 'Orientations',
       approachTimeTitle: 'Minutes walking time',
+      distanceTitle: 'Distance from the location',
       season: 'Favorable seasons'
     },
     ascentCragRoute: {

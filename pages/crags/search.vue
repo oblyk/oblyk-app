@@ -398,6 +398,7 @@
         v-if="Object.keys(crags.crag_with_levels).length > 0"
         :crags-data="crags.crag_with_levels"
         :route-figures="crags.route_figures"
+        :centre-coordinate="[latitude, longitude]"
       />
       <p
         v-else
