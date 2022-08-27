@@ -27,9 +27,17 @@
       :to="$auth.loggedIn ? `/me/${$auth.user.slug_name}` : '/'"
       value="home"
     >
-      <v-icon color="white">
-        {{ mdiHome }}
-      </v-icon>
+      <svg
+        viewBox="0 0 10.054166 10.054166"
+        height="38"
+        width="38"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M 4.4298964,4.2390636 6.4357839,2.2107931 9.2531882,5.0281974 6.4357839,7.8456017 2.6792446,4.0890607 0.80097503,5.9673303 2.6792446,7.8456017 3.7579684,6.7668798"
+          style="fill:none;fill-rule:evenodd;stroke:white;stroke-width:1.13275;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1"
+        />
+      </svg>
     </v-btn>
     <global-search-dialog icon-color="white" />
     <v-menu
@@ -62,7 +70,7 @@
 </template>
 
 <script>
-import { mdiMenu, mdiPlusBoxOutline, mdiHome, mdiAccountCircleOutline } from '@mdi/js'
+import { mdiMenu, mdiPlusBoxOutline, mdiAccountCircleOutline } from '@mdi/js'
 import LazyHydrate from 'vue-lazy-hydration'
 import GlobalSearchDialog from '~/components/searches/GlobalSearchDialog'
 import AppBarProfil from '~/components/layouts/partial/AppBarProfile'
@@ -87,7 +95,6 @@ export default {
     return {
       mdiMenu,
       mdiPlusBoxOutline,
-      mdiHome,
       mdiAccountCircleOutline
     }
   }
