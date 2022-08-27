@@ -26,8 +26,11 @@
     <v-btn
       :to="$auth.loggedIn ? `/me/${$auth.user.slug_name}` : '/'"
       value="home"
+      @click="clicHome"
     >
       <svg
+        class="oblyk-bottom-navigation-logo"
+        :class="oblykLogoClass"
         viewBox="0 0 10.054166 10.054166"
         height="38"
         width="38"
@@ -35,7 +38,7 @@
       >
         <path
           d="M 4.4298964,4.2390636 6.4357839,2.2107931 9.2531882,5.0281974 6.4357839,7.8456017 2.6792446,4.0890607 0.80097503,5.9673303 2.6792446,7.8456017 3.7579684,6.7668798"
-          style="fill:none;fill-rule:evenodd;stroke:white;stroke-width:1.13275;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1"
+          style="fill:none;fill-rule:evenodd;stroke-width:1.13275;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1"
         />
       </svg>
     </v-btn>
@@ -93,9 +96,18 @@ export default {
 
   data () {
     return {
+      oblykLogoClass: 'oblyk-white',
       mdiMenu,
       mdiPlusBoxOutline,
       mdiAccountCircleOutline
+    }
+  },
+
+  methods: {
+    clicHome () {
+      this.oblykLogoClass = 'oblyk-green'
+      setTimeout(() => { this.oblykLogoClass = 'stroke-transition oblyk-white' }, 100)
+      setTimeout(() => { this.oblykLogoClass = 'oblyk-white' }, 2100)
     }
   }
 }
@@ -112,6 +124,20 @@ export default {
   border-top-width: 1px;
   .v-btn {
     min-width: 65px !important;
+  }
+  .oblyk-bottom-navigation-logo {
+    path {
+      will-change: stroke;
+    }
+    &.oblyk-green path {
+      stroke: #31994e
+    }
+    &.oblyk-white path {
+      stroke: white;
+    }
+    &.stroke-transition path {
+      transition: stroke 2s;
+    }
   }
 }
 </style>
