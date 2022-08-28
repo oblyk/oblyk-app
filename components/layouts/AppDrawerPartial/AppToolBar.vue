@@ -74,7 +74,14 @@ import LocalizationBtn from '~/components/layouts/partial/LocalizationBtn'
 
 export default {
   name: 'AppToolBar',
-  components: { LocalizationBtn, GlobalSearchDialog, LoginLogoutBtn, AppBarProfil, NotificationAppBar, LazyHydrate },
+  components: {
+    LocalizationBtn,
+    GlobalSearchDialog,
+    LoginLogoutBtn,
+    AppBarProfil,
+    NotificationAppBar,
+    LazyHydrate
+  },
   data () {
     return {
       dark: false,

@@ -3,7 +3,7 @@ export const NotificationChannel = {
     NotificationChannel: {
       connected () { },
       received (data) {
-        this.$root.$emit('HaveNewUnreadNotification', data)
+        this.$store.dispatch('notification/changeNotificationStatus', data)
       },
       disconnected () { }
     }

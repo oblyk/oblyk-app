@@ -1353,7 +1353,8 @@ export default {
           avatar: 'Photo de profil',
           banner: 'Photo du bandeau',
           settings: 'Paramètres',
-          messenger: 'Messagerie'
+          messenger: 'Messagerie',
+          notification: 'Notification'
         }
       },
       appDrawer: {

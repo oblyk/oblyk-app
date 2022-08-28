@@ -1,21 +1,45 @@
 <template>
-  <div>
+  <v-container>
+    <h1 content="mt-5 mb-5">
+      {{ $t('meta.notifications.title') }}
+    </h1>
+
     <!-- Load notification -->
     <spinner v-if="loadingNotification" />
 
     <!-- Notification list -->
-    <v-list
-      v-if="!loadingNotification && notifications.length > 0"
-      two-line
-    >
-      <div
-        v-for="(notification, index) in notifications"
-        :key="`notification-${index}`"
+    <div v-else>
+      <v-btn
+        color="primary"
+        text
+        small
+        outlined
+        @click="markedAllAsRead()"
       >
-        <notification-item-list :notification="notification" />
-      </div>
-      <loading-more :get-function="getAllNotification" />
-    </v-list>
+        <v-icon small left>
+          {{ mdiBellCheck }}
+        </v-icon>
+        {{ $t('components.notification.markedAllAsRead') }}
+      </v-btn>
+
+      <v-list
+        v-if="notifications.length > 0"
+        class="mt-3 rounded"
+        two-line
+      >
+        <div
+          v-for="(notification, index) in notifications"
+          :key="`notification-${index}`"
+        >
+          <notification-item-list :notification="notification" />
+        </div>
+        <loading-more
+          :get-function="getAllNotification"
+          :loading-more="loadingMoreData"
+          :no-more-data="noMoreDataToLoad"
+        />
+      </v-list>
+    </div>
 
     <!-- if notification is empty -->
     <p
@@ -24,23 +48,28 @@
     >
       {{ $t('components.notification.empty') }}
     </p>
-  </div>
+  </v-container>
 </template>
 
 <script>
+import { mdiBellCheck } from '@mdi/js'
 import Notification from '@/models/Notification'
 import NotificationApi from '@/services/oblyk-api/NotificationApi'
 import Spinner from '@/components/layouts/Spiner'
 import NotificationItemList from '@/components/notifications/NotificationItemList'
 import LoadingMore from '@/components/layouts/LoadingMore'
+import { LoadingMoreHelpers } from '~/mixins/LoadingMoreHelpers'
 
 export default {
   components: { LoadingMore, NotificationItemList, Spinner },
+  mixins: [LoadingMoreHelpers],
 
   data () {
     return {
       loadingNotification: true,
-      notifications: []
+      notifications: [],
+
+      mdiBellCheck
     }
   },
 
@@ -62,15 +91,20 @@ export default {
           for (const notification of resp.data) {
             this.notifications.push(new Notification({ attributes: notification }))
           }
-          if (resp.data.length === 0) { this.$root.$emit('nothingMoreToLoad') }
+          this.successLoadingMore(resp)
         })
         .catch(() => {
-          this.$root.$emit('nothingMoreToLoad')
+          this.failureToLoadingMore()
         })
         .finally(() => {
           this.loadingNotification = false
-          this.$root.$emit('moreIsLoaded')
+          this.finallyMoreIsLoaded()
         })
+    },
+
+    markedAllAsRead () {
+      new NotificationApi(this.$axios, this.$auth)
+        .readAll()
     }
   }
 }

@@ -1353,7 +1353,8 @@ export default {
           avatar: 'Account avatar',
           banner: 'Banner picture',
           settings: 'Settings',
-          messenger: 'Messenger'
+          messenger: 'Messenger',
+          notification: 'Notification'
         }
       },
       appDrawer: {

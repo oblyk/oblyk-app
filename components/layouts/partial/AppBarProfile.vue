@@ -7,6 +7,25 @@
     </v-list-item>
     <v-divider />
 
+    <!-- Notification -->
+    <v-list-item :to="`/notifications`">
+      <v-list-item-icon>
+        <v-badge
+          :value="haveNewNotification"
+          color="red"
+          dot
+          overlap
+        >
+          <v-icon>
+            {{ mdiBell }}
+          </v-icon>
+        </v-badge>
+      </v-list-item-icon>
+      <v-list-item-title>
+        {{ $t('components.layout.appBar.user.notification') }}
+      </v-list-item-title>
+    </v-list-item>
+
     <!-- Messenger -->
     <v-list-item :to="`/me/${$auth.user.slug_name}/messenger`">
       <v-list-item-icon>
@@ -59,7 +78,7 @@
 </template>
 
 <script>
-import { mdiForum, mdiAccountCircle, mdiPanorama, mdiCog } from '@mdi/js'
+import { mdiForum, mdiAccountCircle, mdiPanorama, mdiCog, mdiBell } from '@mdi/js'
 
 export default {
   name: 'AppBarProfil',
@@ -69,7 +88,14 @@ export default {
       mdiForum,
       mdiAccountCircle,
       mdiPanorama,
-      mdiCog
+      mdiCog,
+      mdiBell
+    }
+  },
+
+  computed: {
+    haveNewNotification () {
+      return this.$store.state.notification.newNotification
     }
   }
 }

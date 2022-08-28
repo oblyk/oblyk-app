@@ -52,6 +52,7 @@
         <v-btn
           icon
           aria-label="open user menu"
+          :class="haveNewNotification ? 'new-notification-badge' : ''"
           :title="$t('components.layout.appDrawer.toolBar.account')"
           v-bind="attrs"
           v-on="on"
@@ -97,9 +98,16 @@ export default {
   data () {
     return {
       oblykLogoClass: 'oblyk-white',
+
       mdiMenu,
       mdiPlusBoxOutline,
       mdiAccountCircleOutline
+    }
+  },
+
+  computed: {
+    haveNewNotification () {
+      return this.$store.state.notification.newNotification
     }
   },
 
@@ -137,6 +145,20 @@ export default {
     }
     &.stroke-transition path {
       transition: stroke 2s;
+    }
+  }
+  .new-notification-badge {
+    .v-icon {
+      &:before {
+        content: '';
+        height: 9px;
+        width: 9px;
+        background-color: rgb(244, 67, 54);
+        border-radius: 50%;
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
     }
   }
 }

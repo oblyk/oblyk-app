@@ -10,7 +10,7 @@
   >
     <template #activator="{ on, attrs }">
       <v-badge
-        :value="haveUnreadNotification"
+        :value="haveNewNotification"
         color="red"
         dot
         overlap
@@ -89,22 +89,25 @@ import Notification from '@/models/Notification'
 import NotificationApi from '~/services/oblyk-api/NotificationApi'
 import Spinner from '@/components/layouts/Spiner'
 import NotificationItemList from '@/components/notifications/NotificationItemList'
-import { NotificationChannel } from '@/channels/NotificationChannel'
 
 export default {
   name: 'NotificationAppBar',
   components: { NotificationItemList, Spinner },
-  mixins: [NotificationChannel],
 
   data () {
     return {
       mdiBellOutline,
       mdiBellCheck,
       mdiOpenInNew,
-      haveUnreadNotification: false,
       showNotification: false,
       loadingNotification: true,
       notifications: []
+    }
+  },
+
+  computed: {
+    haveNewNotification () {
+      return this.$store.state.notification.newNotification
     }
   },
 
@@ -116,32 +119,7 @@ export default {
     }
   },
 
-  mounted () {
-    this.$root.$on('HaveNewUnreadNotification', (haveNew) => {
-      this.haveNewUnreadNotification(haveNew)
-    })
-    this.cableNotificationSubscribe()
-    this.getUnreadNotificationCount()
-  },
-
-  beforeDestroy () {
-    this.cableNotificationUnsubscribe()
-    this.$root.$off('HaveNewUnreadNotification')
-  },
-
   methods: {
-    cableNotificationSubscribe () {
-      this.$cable.subscribe(
-        {
-          channel: 'NotificationChannel'
-        }
-      )
-    },
-
-    cableNotificationUnsubscribe () {
-      this.$cable.unsubscribe('NotificationChannel')
-    },
-
     getNotifications () {
       this.notifications = []
       this.loadingNotification = true
@@ -160,24 +138,9 @@ export default {
         })
     },
 
-    getUnreadNotificationCount () {
-      new NotificationApi(this.$axios, this.$auth)
-        .unreadCount()
-        .then((resp) => {
-          if (resp.data > 0) { this.haveUnreadNotification = true }
-        })
-    },
-
-    haveNewUnreadNotification (haveNew) {
-      this.haveUnreadNotification = haveNew
-    },
-
     markedAllAsRead () {
       new NotificationApi(this.$axios, this.$auth)
         .readAll()
-        .then(() => {
-          this.haveUnreadNotification = false
-        })
     }
   }
 }

@@ -97,10 +97,12 @@
 <script>
 import { mdiCookie, mdiGift } from '@mdi/js'
 import LazyHydrate from 'vue-lazy-hydration'
+import { Cable } from '~/channels/Cable'
+import { NotificationChannel } from '~/channels/NotificationChannel'
 import AppBar from '~/components/layouts/AppBar'
 import AppAlert from '~/components/layouts/AppAlert'
-import { Cable } from '~/channels/Cable'
 import AppBottomNavigation from '~/components/layouts/AppBottomNavigation'
+import NotificationApi from '~/services/oblyk-api/NotificationApi'
 const AppDrawer = () => import('@/components/layouts/AppDrawer')
 const LocalizationPopup = () => import('~/components/maps/LocalizationPopup')
 
@@ -113,7 +115,7 @@ export default {
     AppBar,
     LazyHydrate
   },
-  mixins: [Cable],
+  mixins: [Cable, NotificationChannel],
 
   data () {
     return {
@@ -161,6 +163,12 @@ export default {
     if (this.$store.state.geolocation.status === 'activate') {
       this.activateWatchGeolocation()
     }
+    this.connectNotification()
+    this.getUnreadNotification()
+  },
+
+  beforeDestroy () {
+    this.disconnectNotification()
   },
 
   methods: {
@@ -181,6 +189,26 @@ export default {
           }
         })
       }
+    },
+
+    connectNotification () {
+      this.$cable.subscribe(
+        {
+          channel: 'NotificationChannel'
+        }
+      )
+    },
+
+    getUnreadNotification () {
+      new NotificationApi(this.$axios, this.$auth)
+        .unreadCount()
+        .then((resp) => {
+          this.$store.dispatch('notification/changeNotificationStatus', resp.data > 0)
+        })
+    },
+
+    disconnectNotification () {
+      this.$cable.unsubscribe('NotificationChannel')
     },
 
     reloadApp () {
