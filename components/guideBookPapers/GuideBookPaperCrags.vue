@@ -10,7 +10,7 @@
       </div>
       <div class="guide-book-paper-crag-action text-center">
         <v-btn
-          v-if="isLoggedIn"
+          v-if="$auth.loggedIn"
           :title="$t('components.guideBookPaper.removeFromGuideBook')"
           icon
           @click="removeCrag(crag)"
@@ -21,7 +21,7 @@
         </v-btn>
       </div>
     </div>
-    <div v-if="isLoggedIn" class="mt-3">
+    <div v-if="$auth.loggedIn" class="mt-3">
       <v-btn
         text
         :to="`/a${guideBookPaper.path}/add-crag`"
@@ -40,14 +40,12 @@
 
 <script>
 import { mdiDelete, mdiTerrain } from '@mdi/js'
-import { SessionConcern } from '@/concerns/SessionConcern'
 import CragSmallCard from '@/components/crags/CragSmallCard'
 import GuideBookPaperApi from '~/services/oblyk-api/GuideBookPaperApi'
 
 export default {
   name: 'GuideBookPaperCrags',
   components: { CragSmallCard },
-  mixins: [SessionConcern],
   props: {
     crags: {
       type: Array,

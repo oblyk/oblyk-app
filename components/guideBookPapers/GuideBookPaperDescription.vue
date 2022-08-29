@@ -1,5 +1,5 @@
 <template>
-  <v-card class="full-height">
+  <v-card>
     <v-card-text>
       <v-alert
         text
@@ -83,80 +83,57 @@
         </v-col>
       </v-row>
 
-      <v-simple-table class="no-hover-table">
-        <template #default>
-          <tbody>
-            <tr>
-              <td colspan="2" class="text-right">
-                <contributions-label
-                  version-type="guideBookPaper"
-                  :version-id="guideBookPaper.id"
-                  :versions-count="guideBookPaper.versions_count"
-                />
-              </td>
-            </tr>
-            <tr>
-              <td colspan="2" class="text-right">
-                <v-btn
-                  v-if="isLoggedIn"
-                  icon
-                  small
-                  :title="$t('actions.reportProblem')"
-                  color="primary"
-                  :to="`/a/reports/GuideBookPaper/${guideBookPaper.id}/new?redirect_to=${$route.fullPath}`"
-                >
-                  <v-icon
-                    small
-                  >
-                    {{ mdiFlag }}
-                  </v-icon>
-                </v-btn>
-                <v-btn
-                  v-if="isLoggedIn"
-                  text
-                  small
-                  color="primary"
-                  :to="`/a${guideBookPaper.path}/edit`"
-                >
-                  <v-icon
-                    small
-                    left
-                  >
-                    {{ mdiPencil }}
-                  </v-icon>
-                  {{ $t('actions.edit') }}
-                </v-btn>
-              </td>
-            </tr>
-          </tbody>
-        </template>
-      </v-simple-table>
-
       <!-- Add to library btn -->
-      <div v-if="isLoggedIn" class="text-center mt-7">
-        <subscribe-btn
-          subscribe-type="GuideBookPaper"
-          :subscribe-id="guideBookPaper.id"
-          :large="true"
-          followed-color="deep-purple"
-          :followed-icon="mdiBookshelf"
-          :unfollowed-icon="mdiBookshelf"
-          subscribe-label="actions.addToLibrary"
-          unsubscribe-label="actions.removeFromLibrary"
-        />
-      </div>
-    </v-card-text>
-    <v-card-title class="pb-0 text-h6 font-weight-regular">
-      <v-icon left small>
-        {{ mdiComment }}
-      </v-icon>
-      {{ $t('components.comment.climbersComments') }}
-    </v-card-title>
-    <v-card-text>
-      <comment-list
-        :commentable-id="guideBookPaper.id"
-        commentable-type="GuideBookPaper"
-      />
+      <client-only>
+        <div
+          v-if="$auth.loggedIn"
+          class="mt-7 text-right"
+        >
+          <v-btn
+            text
+            outlined
+            small
+            :title="$t('actions.reportProblem')"
+            color="primary"
+            :to="`/a/reports/GuideBookPaper/${guideBookPaper.id}/new?redirect_to=${$route.fullPath}`"
+          >
+            <v-icon
+              small
+            >
+              {{ mdiFlag }}
+            </v-icon>
+          </v-btn>
+          <v-btn
+            text
+            small
+            outlined
+            color="primary"
+            :to="`/a${guideBookPaper.path}/edit`"
+          >
+            <v-icon
+              small
+              left
+            >
+              {{ mdiPencil }}
+            </v-icon>
+            {{ $t('actions.edit') }}
+          </v-btn>
+          <v-btn
+            :to="`/a${guideBookPaper.path}/cover`"
+            text
+            outlined
+            small
+            color="primary"
+          >
+            <v-icon
+              left
+            >
+              {{ mdiImageAlbum }}
+            </v-icon>
+            {{ $t('actions.changeCover') }}
+          </v-btn>
+        </div>
+      </client-only>
     </v-card-text>
   </v-card>
 </template>
@@ -172,24 +149,21 @@ import {
   mdiWeight,
   mdiFlag,
   mdiPencil,
-  mdiComment,
-  mdiBookshelf,
-  mdiHandCoin,
   mdiCurrencyUsdOff,
-  mdiHelpCircleOutline
+  mdiHandCoin,
+  mdiHelpCircleOutline,
+  mdiImageAlbum
 } from '@mdi/js'
-import { SessionConcern } from '@/concerns/SessionConcern'
-import CommentList from '@/components/comments/CommentList'
-import SubscribeBtn from '@/components/forms/SubscribeBtn'
-import ContributionsLabel from '@/components/globals/ContributionsLable'
 import DescriptionLine from '@/components/ui/DescriptionLine'
 
 export default {
   name: 'GuideBookPaperDescription',
-  components: { DescriptionLine, ContributionsLabel, SubscribeBtn, CommentList },
-  mixins: [SessionConcern],
+  components: { DescriptionLine },
   props: {
-    guideBookPaper: { type: Object, required: true }
+    guideBookPaper: {
+      type: Object,
+      required: true
+    }
   },
 
   data () {
@@ -203,10 +177,9 @@ export default {
       mdiWeight,
       mdiFlag,
       mdiPencil,
-      mdiComment,
-      mdiBookshelf,
       mdiHandCoin,
-      mdiHelpCircleOutline
+      mdiHelpCircleOutline,
+      mdiImageAlbum
     }
   },
 

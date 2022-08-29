@@ -1,13 +1,9 @@
 <template>
-  <div>
-    <v-container>
-      <v-row>
-        <v-col>
-          <link-list :linkable-id="guideBookPaper.id" linkable-type="GuideBookPaper" />
-        </v-col>
-      </v-row>
-    </v-container>
-  </div>
+  <v-row>
+    <v-col>
+      <link-list :linkable-id="guideBookPaper.id" linkable-type="GuideBookPaper" />
+    </v-col>
+  </v-row>
 </template>
 
 <script>

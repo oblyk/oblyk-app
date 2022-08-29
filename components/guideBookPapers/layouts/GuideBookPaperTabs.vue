@@ -1,6 +1,7 @@
 <template>
   <v-tabs
     show-arrows
+    class="rounded-sm mt-2 mb-3"
   >
     <!-- Info tabs -->
     <v-tab :to="guideBookPaper.path">

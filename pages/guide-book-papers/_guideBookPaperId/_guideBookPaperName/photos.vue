@@ -1,16 +1,12 @@
 <template>
-  <div>
-    <v-container>
-      <v-row>
-        <v-col>
-          <photo-gallery
-            gallery-type="GuideBookPaper"
-            :gallery-id="guideBookPaper.id"
-          />
-        </v-col>
-      </v-row>
-    </v-container>
-  </div>
+  <v-row>
+    <v-col>
+      <photo-gallery
+        gallery-type="GuideBookPaper"
+        :gallery-id="guideBookPaper.id"
+      />
+    </v-col>
+  </v-row>
 </template>
 
 <script>

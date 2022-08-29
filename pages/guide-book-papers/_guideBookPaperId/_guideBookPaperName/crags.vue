@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <div>
     <div
       v-if="$fetchState.pending"
       class="mt-2"
@@ -16,7 +16,7 @@
         />
       </v-col>
     </v-row>
-  </v-container>
+  </div>
 </template>
 <script>
 import GuideBookPaperApi from '@/services/oblyk-api/GuideBookPaperApi'

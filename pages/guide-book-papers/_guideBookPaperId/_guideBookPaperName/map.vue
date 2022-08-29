@@ -6,6 +6,7 @@
         :geo-jsons="geoJsons"
         :clustered="false"
         :track-location="false"
+        :options="{ rounded: true }"
       />
     </client-only>
   </div>

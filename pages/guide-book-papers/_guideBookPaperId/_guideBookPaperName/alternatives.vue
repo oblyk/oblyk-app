@@ -1,6 +1,6 @@
 <template>
-  <v-container>
-    <h2 class="mb-8 mt-3 text-center">
+  <div>
+    <h2 class="mb-4 mt-7">
       {{ $t('components.guideBookPaper.alternative.title') }} : {{ guideBookPaper.name }}
     </h2>
 
@@ -56,7 +56,7 @@
         </div>
       </div>
     </div>
-  </v-container>
+  </div>
 </template>
 
 <script>

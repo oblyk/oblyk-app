@@ -917,7 +917,7 @@ export default {
         new_version_explain: 'Une nouvelle version de <strong><u>%{old_name}</u></strong> est sortie en <strong><u>%{year}</u></strong>'
       },
       tabs: {
-        info: 'Infos',
+        info: 'Détails',
         photos: 'Photos',
         crags: 'Sites',
         links: 'Liens',

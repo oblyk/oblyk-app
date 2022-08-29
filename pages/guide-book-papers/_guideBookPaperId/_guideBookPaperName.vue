@@ -26,20 +26,22 @@
       </v-col>
     </v-row>
   </div>
-  <div v-else>
+  <v-container v-else>
+    <guide-book-paper-head :guide-book-paper="guideBookPaper" />
     <guide-book-paper-tabs :guide-book-paper="guideBookPaper" />
     <nuxt-child :key="$route.params.guideBookPaperId" :guide-book-paper="guideBookPaper" />
     <app-footer />
-  </div>
+  </v-container>
 </template>
 
 <script>
 import { GuideBookPaperConcern } from '@/concerns/GuideBookPaperConcern'
 import GuideBookPaperTabs from '@/components/guideBookPapers/layouts/GuideBookPaperTabs'
 import AppFooter from '@/components/layouts/AppFooter'
+import GuideBookPaperHead from '~/components/guideBookPapers/layouts/GuideBookPaperHead'
 
 export default {
-  components: { AppFooter, GuideBookPaperTabs },
+  components: { GuideBookPaperHead, AppFooter, GuideBookPaperTabs },
   mixins: [GuideBookPaperConcern]
 }
 </script>
