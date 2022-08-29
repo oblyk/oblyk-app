@@ -32,13 +32,13 @@
         class="oblyk-bottom-navigation-logo"
         :class="oblykLogoClass"
         viewBox="0 0 10.054166 10.054166"
-        height="38"
-        width="38"
+        height="33"
+        width="33"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
           d="M 4.4298964,4.2390636 6.4357839,2.2107931 9.2531882,5.0281974 6.4357839,7.8456017 2.6792446,4.0890607 0.80097503,5.9673303 2.6792446,7.8456017 3.7579684,6.7668798"
-          style="fill:none;fill-rule:evenodd;stroke-width:1.13275;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1"
+          style="fill:none;fill-rule:evenodd;stroke-width:0.8;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1"
         />
       </svg>
     </v-btn>
@@ -134,6 +134,7 @@ export default {
     min-width: 65px !important;
   }
   .oblyk-bottom-navigation-logo {
+    margin-top: -3px;
     path {
       will-change: stroke;
     }
