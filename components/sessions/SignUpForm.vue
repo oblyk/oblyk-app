@@ -134,11 +134,13 @@ import DateOfBirthInput from '@/components/forms/DateOfBirthInput'
 import GenreInput from '@/components/forms/GenreInput'
 import SessionApi from '~/services/oblyk-api/SessionApi'
 import RequiredExplained from '~/components/forms/RequiredExplained'
+import { Cable } from '~/channels/Cable'
+import { NotificationChannel } from '~/channels/NotificationChannel'
 
 export default {
   name: 'SignUpForm',
   components: { RequiredExplained, GenreInput, DateOfBirthInput, SubmitForm },
-  mixins: [FormHelpers],
+  mixins: [FormHelpers, Cable, NotificationChannel],
   props: {
     redirectTo: {
       type: String,
@@ -215,6 +217,13 @@ export default {
               } else {
                 this.$router.push('/privacy')
               }
+
+              // Connect to Notification Channel
+              this.$cable.subscribe(
+                {
+                  channel: 'NotificationChannel'
+                }
+              )
             })
             .finally(() => {
               this.submitOverlay = false

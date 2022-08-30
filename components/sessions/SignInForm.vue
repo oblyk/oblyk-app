@@ -60,10 +60,14 @@
 import { mdiEyeOff, mdiEye } from '@mdi/js'
 import SubmitForm from '@/components/forms/SubmitForm'
 import RequiredExplained from '~/components/forms/RequiredExplained'
+import { NotificationChannel } from '~/channels/NotificationChannel'
+import { Cable } from '~/channels/Cable'
+import NotificationApi from '~/services/oblyk-api/NotificationApi'
 
 export default {
   name: 'SignInForm',
   components: { RequiredExplained, SubmitForm },
+  mixins: [Cable, NotificationChannel],
   props: {
     redirectTo: {
       type: String,
@@ -96,6 +100,21 @@ export default {
             oblyk_full_name: this.oblyk_full_name
           }
         })
+
+        // Connect to notification channel
+        this.$cable.subscribe(
+          {
+            channel: 'NotificationChannel'
+          }
+        )
+
+        // Get unread notification
+        await new NotificationApi(this.$axios, this.$auth)
+          .unreadCount()
+          .then((resp) => {
+            this.$store.dispatch('notification/changeNotificationStatus', resp.data > 0)
+          })
+
         await this.$router.push(`/me/${this.$auth.user.slug_name}`)
       } catch (err) {
         this.$root.$emit('alertFromApiError', err, 'user')

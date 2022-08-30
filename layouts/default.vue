@@ -151,7 +151,6 @@ export default {
 
   created () {
     if (process.client) {
-      // Connect cable
       this.connectCable()
     }
   },
@@ -163,8 +162,10 @@ export default {
     if (this.$store.state.geolocation.status === 'activate') {
       this.activateWatchGeolocation()
     }
-    this.connectNotification()
-    this.getUnreadNotification()
+    if (this.$auth.loggedIn) {
+      this.connectNotification()
+      this.getUnreadNotification()
+    }
   },
 
   beforeDestroy () {
