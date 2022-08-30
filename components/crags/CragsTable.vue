@@ -44,6 +44,7 @@
           <th class="text-center">
             {{ $t('components.cragsTable.lines') }}
           </th>
+          <th v-if="$auth.loggedIn && callbackFunction" />
         </tr>
       </thead>
       <tbody>
@@ -93,6 +94,20 @@
           <td class="text-center">
             {{ routeCount(cragData.levels) }}
           </td>
+          <td
+            v-if="$auth.loggedIn && callbackFunction"
+            class="text-right"
+          >
+            <v-btn
+              icon
+              small
+              @click="callbackFunction(cragData.crag)"
+            >
+              <v-icon small>
+                {{ callbackIcon }}
+              </v-icon>
+            </v-btn>
+          </td>
         </tr>
       </tbody>
     </template>
@@ -125,6 +140,14 @@ export default {
     },
     centreCoordinate: {
       type: Array,
+      default: null
+    },
+    callbackFunction: {
+      type: Function,
+      default: null
+    },
+    callbackIcon: {
+      type: String,
       default: null
     }
   },

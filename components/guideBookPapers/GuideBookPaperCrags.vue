@@ -1,29 +1,19 @@
 <template>
   <div>
+    <crags-table
+      :crags-data="cragsData.crag_with_levels"
+      :route-figures="cragsData.route_figures"
+      :callback-function="removeCrag"
+      :callback-icon="mdiDelete"
+    />
     <div
-      v-for="crag in crags"
-      :key="crag.id"
-      class="guide-book-paper-crags-list"
+      v-if="$auth.loggedIn"
+      class="mt-3 text-right"
     >
-      <div class="guide-book-paper-crag-card">
-        <crag-small-card :crag="crag" class="mb-3" />
-      </div>
-      <div class="guide-book-paper-crag-action text-center">
-        <v-btn
-          v-if="$auth.loggedIn"
-          :title="$t('components.guideBookPaper.removeFromGuideBook')"
-          icon
-          @click="removeCrag(crag)"
-        >
-          <v-icon>
-            {{ mdiDelete }}
-          </v-icon>
-        </v-btn>
-      </div>
-    </div>
-    <div v-if="$auth.loggedIn" class="mt-3">
       <v-btn
+        small
         text
+        outlined
         :to="`/a${guideBookPaper.path}/add-crag`"
         color="primary"
       >
@@ -40,15 +30,15 @@
 
 <script>
 import { mdiDelete, mdiTerrain } from '@mdi/js'
-import CragSmallCard from '@/components/crags/CragSmallCard'
 import GuideBookPaperApi from '~/services/oblyk-api/GuideBookPaperApi'
+import CragsTable from '~/components/crags/CragsTable'
 
 export default {
   name: 'GuideBookPaperCrags',
-  components: { CragSmallCard },
+  components: { CragsTable },
   props: {
-    crags: {
-      type: Array,
+    cragsData: {
+      type: Object,
       required: true
     },
     guideBookPaper: {

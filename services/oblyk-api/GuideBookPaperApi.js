@@ -54,6 +54,14 @@ class GuideBookPaperApi extends BaseApi {
     })
   }
 
+  cragsFigures (id) {
+    return this.axios.request({
+      method: 'GET',
+      url: `${this.baseUrl}/public/guide_book_papers/${id}/crags_figures.json`,
+      headers: { HttpApiAccessToken: this.apiAccessToken }
+    })
+  }
+
   articles (id) {
     return this.axios.request({
       method: 'GET',

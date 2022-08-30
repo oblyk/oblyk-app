@@ -8,26 +8,20 @@
         <v-skeleton-loader class="mb-3" type="list-item-avatar-two-line" />
       </div>
     </div>
-    <v-row v-else>
-      <v-col>
-        <guide-book-paper-crags
-          :guide-book-paper="guideBookPaper"
-          :crags="crags"
-        />
-      </v-col>
-    </v-row>
+    <guide-book-paper-crags
+      v-else
+      :crags-data="crags"
+      :guide-book-paper="guideBookPaper"
+    />
   </div>
 </template>
 <script>
 import GuideBookPaperApi from '@/services/oblyk-api/GuideBookPaperApi'
-import Crag from '@/models/Crag'
-import GuideBookPaperCrags from '@/components/guideBookPapers/GuideBookPaperCrags'
+import GuideBookPaperCrags from '~/components/guideBookPapers/GuideBookPaperCrags'
 
 export default {
   name: 'GuideBookPaperCragsView',
-  components: {
-    GuideBookPaperCrags
-  },
+  components: { GuideBookPaperCrags },
   props: {
     guideBookPaper: {
       type: Object,
@@ -55,12 +49,10 @@ export default {
     await new GuideBookPaperApi(
       this.$axios,
       this.$store
-    ).crags(
+    ).cragsFigures(
       this.$route.params.guideBookPaperId
     ).then((resp) => {
-      for (const crag of resp.data) {
-        this.crags.push(new Crag({ attributes: crag }))
-      }
+      this.crags = resp.data
     })
   },
 
