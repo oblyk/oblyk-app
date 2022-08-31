@@ -1,22 +1,32 @@
 <template>
   <div>
-    <!-- Next version and place of sale -->
-    <v-row>
-      <v-col v-if="guideBookPaper.next_guide_book_paper">
-        <guide-book-paper-next-version
-          class="mb-5"
-          :guide-book-paper="guideBookPaper.next_guide_book_paper"
-        />
-      </v-col>
-      <v-col>
-        <v-card class="full-height">
-          <guide-book-paper-place-of-sale :guide-book-paper="guideBookPaper" />
-        </v-card>
-      </v-col>
-      <v-col v-if="guideBookPaper.haveArticles">
-        <guide-book-paper-articles :guide-book-paper="guideBookPaper" />
-      </v-col>
-    </v-row>
+    <v-sheet
+      rounded
+      color="mb-4"
+    >
+      <h2 class="text-h6 pa-3">
+        <v-icon left>
+          {{ mdiTerrain }}
+        </v-icon>
+        {{ $t('components.guideBookPaper.cragsTitle', { name: guideBookPaper.name }) }}
+      </h2>
+      <v-skeleton-loader
+        v-if="crags === null"
+        type="text, text, text"
+      />
+      <guide-book-paper-crags
+        v-if="crags"
+        :crags-data="crags"
+        :guide-book-paper="guideBookPaper"
+      />
+    </v-sheet>
+
+    <!-- Articles -->
+    <guide-book-paper-articles
+      v-if="guideBookPaper.haveArticles"
+      :guide-book-paper="guideBookPaper"
+      class="mb-4"
+    />
 
     <v-row>
       <v-col>
@@ -46,20 +56,19 @@
 </template>
 
 <script>
-import { mdiComment } from '@mdi/js'
-import GuideBookPaperPlaceOfSale from '@/components/guideBookPapers/GuideBookPaperPlaceOfSales'
+import { mdiComment, mdiTerrain } from '@mdi/js'
 import GuideBookPaperArticles from '@/components/guideBookPapers/GuideBookPaperArticles'
-import GuideBookPaperNextVersion from '@/components/guideBookPapers/GuideBookPaperNextVersion'
 import CommentList from '~/components/comments/CommentList'
 import VersionInformation from '~/components/ui/VersionInformation'
+import GuideBookPaperApi from '~/services/oblyk-api/GuideBookPaperApi'
+import GuideBookPaperCrags from '~/components/guideBookPapers/GuideBookPaperCrags'
 
 export default {
   components: {
+    GuideBookPaperCrags,
     VersionInformation,
     CommentList,
-    GuideBookPaperNextVersion,
-    GuideBookPaperArticles,
-    GuideBookPaperPlaceOfSale
+    GuideBookPaperArticles
   },
   props: {
     guideBookPaper: {
@@ -70,8 +79,22 @@ export default {
 
   data () {
     return {
-      mdiComment
+      crags: null,
+
+      mdiComment,
+      mdiTerrain
     }
+  },
+
+  async fetch () {
+    await new GuideBookPaperApi(
+      this.$axios,
+      this.$store
+    ).cragsFigures(
+      this.$route.params.guideBookPaperId
+    ).then((resp) => {
+      this.crags = resp.data
+    })
   }
 }
 </script>

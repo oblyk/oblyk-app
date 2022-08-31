@@ -1,27 +1,33 @@
 <template>
   <v-row class="mt-2 mb-2">
-    <v-col class="pa-2 col-12 col-md-6 col-lg-7">
-      <h1 class="mb-3 mt-2">
+    <v-col cols="12" class="pb-0">
+      <h1 class="mt-md-2">
         {{ guideBookPaper.name }}
       </h1>
-      <guide-book-paper-description :guide-book-paper="guideBookPaper" />
-      <client-only>
-        <div
-          v-if="$auth.loggedIn"
-          class="text-right mt-4"
-        >
-          <subscribe-btn
-            subscribe-type="GuideBookPaper"
-            :subscribe-id="guideBookPaper.id"
-            :large="true"
-            followed-color="deep-purple"
-            :followed-icon="mdiBookshelf"
-            :unfollowed-icon="mdiBookshelf"
-            subscribe-label="actions.addToLibrary"
-            unsubscribe-label="actions.removeFromLibrary"
-          />
+    </v-col>
+    <v-col class="pa-2 col-12 col-md-6 col-lg-7">
+      <div class="d-flex flex-column justify-space-between full-height">
+        <div class="flex-grow-1">
+          <guide-book-paper-description :guide-book-paper="guideBookPaper" />
         </div>
-      </client-only>
+        <client-only>
+          <div
+            v-if="$auth.loggedIn"
+            class="text-right mt-4 flex-grow-0"
+          >
+            <subscribe-btn
+              subscribe-type="GuideBookPaper"
+              :subscribe-id="guideBookPaper.id"
+              :large="true"
+              followed-color="deep-purple"
+              :followed-icon="mdiBookshelf"
+              :unfollowed-icon="mdiBookshelf"
+              subscribe-label="actions.addToLibrary"
+              unsubscribe-label="actions.removeFromLibrary"
+            />
+          </div>
+        </client-only>
+      </div>
     </v-col>
 
     <!-- Cover -->

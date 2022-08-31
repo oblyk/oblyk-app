@@ -52,7 +52,7 @@
           v-for="(cragData, index) in cragsData"
           :key="`crag-data-index-${index}`"
         >
-          <td class="text-no-wrap span-comma">
+          <td class="text-no-wrap">
             <nuxt-link
               :to="toCragObject(cragData.crag).path"
               class="mr-2"
@@ -62,9 +62,10 @@
             <span
               v-for="(climbingType, typeIndex) in toCragObject(cragData.crag).climbingTypes"
               :key="`climbing-type-${index}-${typeIndex}`"
-              :class="`text--disabled climbs-pastille pastille-x-small ${climbingType}`"
+              :title="$t(`models.climbs.${climbingType}`)"
+              :class="`text--disabled climbs-pastille pastille-x-small mr-1 ${climbingType}`"
             >
-              {{ $t(`models.climbs.${climbingType}`) }}
+              {{ $t(`models.climbsShort.${climbingType}`) }}
             </span>
           </td>
           <td class="text-center">

@@ -1,13 +1,11 @@
 <template>
   <div>
-    <v-card-title
-      class="pb-1"
-    >
-      <v-icon left>
+    <h2 class="text-h6">
+      <v-icon class="vertical-align-sub mr-1">
         {{ mdiArrowUpBoldBoxOutline }}
       </v-icon>
       {{ $t('components.guideBookPaper.nextVersionTitle') }}
-    </v-card-title>
+    </h2>
     <guide-book-paper-small-card
       v-if="guideBookPaper"
       :guide-book-paper="recordToObject('GuideBookPaper', guideBookPaper)"

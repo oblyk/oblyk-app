@@ -8,16 +8,9 @@
       {{ $t('components.guideBookPaper.tabs.info') }}
     </v-tab>
 
-    <!-- Crags list tabs -->
-    <v-tab :to="`${guideBookPaper.path}/crags`">
-      <v-badge
-        color="primary"
-        inline
-        value="guideBookPaper.crags_count > 0"
-        :content="guideBookPaper.crags_count"
-      >
-        {{ $t('components.guideBookPaper.tabs.crags') }}
-      </v-badge>
+    <!-- Point of sales -->
+    <v-tab :to="`${guideBookPaper.path}/points-of-sale`">
+      {{ $t('components.guideBookPaper.tabs.pointsOfSale') }}
     </v-tab>
 
     <!-- Photos tabs -->

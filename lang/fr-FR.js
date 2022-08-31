@@ -863,6 +863,7 @@ export default {
     guideBookPaper: {
       fullName: 'Topo papier',
       type: 'Topo',
+      cragsTitle: 'Sites présent dans : %{name}',
       pointOfSale: 'Point de vente',
       relatedArticles: 'Articles liés',
       removeFromGuideBook: 'Retirer du topo',
@@ -920,6 +921,7 @@ export default {
         info: 'Détails',
         photos: 'Photos',
         crags: 'Sites',
+        pointsOfSale: 'Points de vente',
         links: 'Liens',
         map: 'Carte',
         alternatives: 'Alternatives'
@@ -2231,6 +2233,18 @@ export default {
       fun_climbing: 'Fun Climbing',
       training_space: 'Espace entrainement',
       pan: 'Pan'
+    },
+    climbsShort: {
+      sport_climbing: 'V',
+      bouldering: 'B',
+      multi_pitch: 'GV',
+      trad_climbing: 'T',
+      aid_climbing: 'A',
+      deep_water: 'DW',
+      via_ferrata: 'VF',
+      fun_climbing: 'FC',
+      training_space: 'E',
+      pan: 'P'
     },
     word: {
       name: 'Mot',

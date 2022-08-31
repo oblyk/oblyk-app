@@ -1,10 +1,10 @@
 <template>
-  <div class="text-center guide-book-paper-cover full-height d-flex">
+  <div class="text-center guide-book-paper-cover full-height">
     <v-img
       :src="guideBookPaper.coverUrl"
       :lazy-src="guideBookPaper.thumbnailCoverUrl"
       :alt="guideBookPaper.name"
-      class="rounded-sm align-self-center"
+      class="rounded-sm"
     />
   </div>
 </template>

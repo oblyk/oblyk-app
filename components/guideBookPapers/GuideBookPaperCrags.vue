@@ -8,7 +8,7 @@
     />
     <div
       v-if="$auth.loggedIn"
-      class="mt-3 text-right"
+      class="mt-3 text-right pa-3"
     >
       <v-btn
         small

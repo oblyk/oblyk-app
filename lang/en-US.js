@@ -863,6 +863,7 @@ export default {
     guideBookPaper: {
       fullName: 'Paper guide book',
       type: 'Guide book',
+      cragsTitle: 'Climbing sites in : %{name}',
       pointOfSale: 'Point of sale',
       relatedArticles: 'Related articles',
       removeFromGuideBook: 'Remove from guide book',
@@ -920,6 +921,7 @@ export default {
         info: 'Details',
         photos: 'Photos',
         crags: 'Crags',
+        pointsOfSale: 'Points of sale',
         links: 'Links',
         map: 'Map',
         alternatives: 'Alternatives'
@@ -2231,6 +2233,18 @@ export default {
       fun_climbing: 'Fun Climbing',
       training_space: 'Training space',
       pan: 'Pan'
+    },
+    climbsShort: {
+      sport_climbing: 'SC',
+      bouldering: 'B',
+      multi_pitch: 'MP',
+      trad_climbing: 'TC',
+      aid_climbing: 'AC',
+      deep_water: 'DW',
+      via_ferrata: 'VF',
+      fun_climbing: 'FC',
+      training_space: 'T',
+      pan: 'P'
     },
     word: {
       name: 'Word',
