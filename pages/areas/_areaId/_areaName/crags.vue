@@ -1,13 +1,13 @@
 <template>
   <div>
-    <div v-if="loadingCrags">
-      <div v-for="index in 3" :key="`crag-skeleton-${index}`">
-        <v-skeleton-loader class="mb-3" type="list-item-avatar-two-line" />
-      </div>
-    </div>
+    <v-skeleton-loader
+      v-if="loadingCrags"
+      class="mb-3"
+      type="text, text, text"
+    />
     <area-crags
       v-if="!loadingCrags"
-      :crags="crags"
+      :crags-data="crags"
       :area="area"
     />
   </div>
@@ -15,7 +15,6 @@
 
 <script>
 import AreaApi from '@/services/oblyk-api/AreaApi'
-import Crag from '@/models/Crag'
 import AreaCrags from '@/components/areas/AreaCrags'
 
 export default {
@@ -77,11 +76,9 @@ export default {
       this.crags = []
       this.loadingCrags = true
       new AreaApi(this.$axios, this.$auth)
-        .crags(this.area.id)
+        .cragsFigures(this.area.id)
         .then((resp) => {
-          for (const crag of resp.data) {
-            this.crags.push(new Crag({ attributes: crag }))
-          }
+          this.crags = resp.data
         })
         .catch((err) => {
           this.$root.$emit('alertFromApiError', err, 'area')

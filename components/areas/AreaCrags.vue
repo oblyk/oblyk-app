@@ -1,56 +1,49 @@
 <template>
   <div>
-    <div
-      v-for="crag in crags"
-      :key="crag.id"
-      class="area-crags-list"
-    >
-      <div class="area-crag-card">
-        <crag-small-card :crag="crag" class="mb-3" />
-      </div>
-      <div class="area-crag-action text-center">
+    <crags-table
+      :crags-data="cragsData.crag_with_levels"
+      :route-figures="cragsData.route_figures"
+      :callback-function="removeCrag"
+      :callback-icon="mdiDelete"
+    />
+
+    <client-only>
+      <div v-if="$auth.loggedIn" class="mt-3 text-right">
         <v-btn
-          v-if="isLoggedIn"
-          :title="$t('components.area.removeFromArea')"
-          icon
-          @click="removeCrag(crag)"
+          text
+          outlined
+          :to="`/a${area.path}/add-crag`"
+          color="primary"
         >
-          <v-icon>
-            {{ mdiDelete }}
+          <v-icon
+            left
+          >
+            {{ mdiTerrain }}
           </v-icon>
+          {{ $t('components.area.addCragInArea') }}
         </v-btn>
       </div>
-    </div>
-    <div v-if="isLoggedIn" class="mt-3">
-      <v-btn
-        text
-        :to="`/a${area.path}/add-crag`"
-        color="primary"
-      >
-        <v-icon
-          left
-        >
-          {{ mdiTerrain }}
-        </v-icon>
-        {{ $t('components.area.addCragInArea') }}
-      </v-btn>
-    </div>
+    </client-only>
   </div>
 </template>
 
 <script>
 import { mdiDelete, mdiTerrain } from '@mdi/js'
-import { SessionConcern } from '@/concerns/SessionConcern'
-import CragSmallCard from '@/components/crags/CragSmallCard'
 import AreaApi from '~/services/oblyk-api/AreaApi'
+import CragsTable from '~/components/crags/CragsTable'
 
 export default {
   name: 'AreaCrags',
-  components: { CragSmallCard },
-  mixins: [SessionConcern],
+  components: { CragsTable },
   props: {
-    crags: Array,
-    area: Object
+    cragsData: {
+      type: Object,
+      default: null
+    },
+    area: {
+      type: Object,
+      required: true
+    }
   },
 
   data () {

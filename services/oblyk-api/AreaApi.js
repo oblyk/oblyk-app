@@ -37,6 +37,14 @@ class AreaApi extends BaseApi {
     })
   }
 
+  cragsFigures (areaId) {
+    return this.axios.request({
+      method: 'GET',
+      url: `${this.baseUrl}/public/areas/${areaId}/crags_figures.json`,
+      headers: { HttpApiAccessToken: this.apiAccessToken }
+    })
+  }
+
   find (areaId) {
     return this.axios.request({
       method: 'GET',
