@@ -21,11 +21,14 @@ class AreaApi extends BaseApi {
     })
   }
 
-  geoJson (areaId) {
+  geoJson (areaId, minimalistic = true) {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/public/areas/${areaId}/geo_json.json`,
-      headers: { HttpApiAccessToken: this.apiAccessToken }
+      headers: { HttpApiAccessToken: this.apiAccessToken },
+      params: {
+        minimalistic
+      }
     })
   }
 

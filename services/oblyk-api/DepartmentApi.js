@@ -25,12 +25,17 @@ class DepartmentApi extends BaseApi {
     })
   }
 
-  geoJson (country, department, filters) {
+  geoJson (country, department, filters, minimalistic = true) {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/public/countries/${country}/departments/${department}/geo_json.json`,
       headers: { HttpApiAccessToken: this.apiAccessToken },
-      params: filters
+      params: {
+        gyms: filters.gyms,
+        crags: filters.crags,
+        climbing_type: filters.climbing_type,
+        minimalistic
+      }
     })
   }
 }

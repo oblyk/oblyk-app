@@ -9,13 +9,14 @@ class ApproachApi extends BaseApi {
     })
   }
 
-  geoJsonAround (cragId, approachId) {
+  geoJsonAround (cragId, approachId, minimalistic = true) {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/public/crags/${cragId}/approaches/geo_json_around.json`,
       headers: { HttpApiAccessToken: this.apiAccessToken },
       params: {
-        exclude_id: approachId
+        exclude_id: approachId,
+        minimalistic
       }
     })
   }

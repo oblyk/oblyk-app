@@ -9,13 +9,14 @@ class CragSectorApi extends BaseApi {
     })
   }
 
-  geoJsonAround (cragId, cragSectorId) {
+  geoJsonAround (cragId, cragSectorId, minimalistic = true) {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/public/crags/${cragId}/crag_sectors/geo_json_around.json`,
       headers: { HttpApiAccessToken: this.apiAccessToken },
       params: {
-        exclude_id: cragSectorId
+        exclude_id: cragSectorId,
+        minimalistic
       }
     })
   }

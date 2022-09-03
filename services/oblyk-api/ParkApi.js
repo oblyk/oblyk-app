@@ -9,13 +9,14 @@ class ParkApi extends BaseApi {
     })
   }
 
-  geoJsonAround (cragId, parkId) {
+  geoJsonAround (cragId, parkId, minimalistic = true) {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/public/crags/${cragId}/parks/geo_json_around.json`,
       headers: { HttpApiAccessToken: this.apiAccessToken },
       params: {
-        exclude_id: parkId
+        exclude_id: parkId,
+        minimalistic
       }
     })
   }

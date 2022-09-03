@@ -117,13 +117,16 @@ class CurrentUserApi extends BaseApi {
     })
   }
 
-  ascendedCragsGeoJson () {
+  ascendedCragsGeoJson (minimalistic = true) {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/current_users/ascended_crags_geo_json.json`,
       headers: {
         Authorization: this.authToken(),
         HttpApiAccessToken: this.apiAccessToken
+      },
+      params: {
+        minimalistic
       }
     })
   }

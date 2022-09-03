@@ -12,36 +12,36 @@ import User from '@/models/User'
 export const MapPopupHelpers = {
   mixins: [DateHelpers, GradeMixin, SessionConcern],
   methods: {
-    getHtmlPopup (feature) {
-      if (feature.properties.type === 'Crag') {
-        return this.cragPopup(feature)
-      } else if (feature.properties.type === 'Gym') {
-        return this.gymPopup(feature)
-      } else if (feature.properties.type === 'PlaceOfSale') {
-        return this.placeOfSalePopup(feature)
-      } else if (feature.properties.type === 'CragSector') {
-        return this.cragSectorPopup(feature)
-      } else if (feature.properties.type === 'Park') {
-        return this.parkPopup(feature)
-      } else if (feature.properties.type === 'Approach') {
-        return this.approachPopup(feature)
-      } else if (feature.properties.type === 'PartnerUser') {
-        return this.userPartnerPopup(feature)
+    getHtmlPopup (type, data) {
+      if (type === 'Crag') {
+        return this.cragPopup(data)
+      } else if (type === 'Gym') {
+        return this.gymPopup(data)
+      } else if (type === 'PlaceOfSale') {
+        return this.placeOfSalePopup(data)
+      } else if (type === 'CragSector') {
+        return this.cragSectorPopup(data)
+      } else if (type === 'Park') {
+        return this.parkPopup(data)
+      } else if (type === 'Approach') {
+        return this.approachPopup(data)
+      } else if (type === 'PartnerUser') {
+        return this.userPartnerPopup(data)
       }
     },
 
-    cragPopup (feature) {
-      const crag = new Crag({ attributes: feature.properties })
+    cragPopup (data) {
+      const crag = new Crag({ attributes: data })
 
       let linePart = ''
-      if (crag.route_count > 0) {
+      if (crag.routes_figures.route_count > 0) {
         linePart = `
             <tr>
               <th>${this.$t('components.map.lines')}</th>
               <td>
-                ${crag.route_count} ${this.$t('components.map.lines')},
-                ${this.$t('components.map.rangingFrom')} ${crag.grade_min_text || '?'}
-                ${this.$t('components.map.to')} ${crag.grade_max_text || '?'}
+                ${crag.routes_figures.route_count} ${this.$t('components.map.lines')},
+                ${this.$t('components.map.rangingFrom')} ${crag.routes_figures.grade.min_text || '?'}
+                ${this.$t('components.map.to')} ${crag.routes_figures.grade.max_text || '?'}
               </td>
             </tr>
           `
@@ -49,14 +49,14 @@ export const MapPopupHelpers = {
 
       const popup = document.createElement('div')
       popup.innerHTML = `
-        <div class="map-popup-cover" style="background-image: url(${crag.mapThumbnailCoverUrl})"></div>
+        <div class="map-popup-cover" style="background-image: url(${crag.thumbnailCoverUrl})"></div>
         <table class="map-popup-information-table">
           <tr>
             <td colspan="2" class="text-h6 pl-1 pr-1">${crag.name}</td>
           </tr>
           <tr>
             <th>${this.$t('components.map.place')}</th>
-            <td>${crag.localization}</td>
+            <td>${crag.city}, ${crag.region}</td>
           </tr>
           <tr>
             <th>${this.$t('components.map.type')}</th>
@@ -73,12 +73,12 @@ export const MapPopupHelpers = {
       return popup
     },
 
-    cragSectorPopup (feature) {
-      const cragSector = new CragSector({ attributes: feature.properties })
+    cragSectorPopup (data) {
+      const cragSector = new CragSector({ attributes: data })
       const popup = document.createElement('div')
       let mapCover = ''
-      if (cragSector.map_thumbnail_url) {
-        mapCover = `<div class="map-popup-cover" style="background-image: url(${cragSector.mapThumbnailCoverUrl})"></div>`
+      if (cragSector.photo.thumbnail_url) {
+        mapCover = `<div class="map-popup-cover" style="background-image: url(${cragSector.thumbnailCoverUrl})"></div>`
       }
       popup.innerHTML = `
         ${mapCover}
@@ -96,19 +96,19 @@ export const MapPopupHelpers = {
       return popup
     },
 
-    gymPopup (feature) {
-      const gym = new Gym({ attributes: feature.properties })
+    gymPopup (data) {
+      const gym = new Gym({ attributes: data })
 
       const popup = document.createElement('div')
       popup.innerHTML = `
-        <div class="map-popup-cover" style="background-image: url(${gym.mapThumbnailCoverUrl})"></div>
+        <div class="map-popup-cover" style="background-image: url(${gym.thumbnailBannerUrl})"></div>
         <table class="map-popup-information-table">
           <tr>
             <td colspan="2" class="gym-map-title">${gym.name}</td>
           </tr>
           <tr>
             <th>${this.$t('components.map.place')}</th>
-            <td>${gym.localization}</td>
+            <td>${gym.city}, ${gym.region}</td>
           </tr>
           <tr>
             <th>${this.$t('components.map.type')}</th>
@@ -124,10 +124,10 @@ export const MapPopupHelpers = {
       return popup
     },
 
-    placeOfSalePopup (feature) {
-      const placeOfSale = new PlaceOfSale({ attributes: feature.properties })
+    placeOfSalePopup (data) {
+      const placeOfSale = new PlaceOfSale({ attributes: data })
 
-      let urlPart
+      let urlPart = ''
       if (placeOfSale.url) {
         urlPart = `
           <tr>
@@ -144,7 +144,7 @@ export const MapPopupHelpers = {
           </tr>
           <tr>
             <th>${this.$t('components.map.place')}</th>
-            <td>${placeOfSale.localization}</td>
+            <td>${placeOfSale.address || ''}, ${placeOfSale.city || ''} (${placeOfSale.country || ''})</td>
           </tr>
           ${urlPart}
           <tr>
@@ -155,8 +155,8 @@ export const MapPopupHelpers = {
       `
     },
 
-    parkPopup (feature) {
-      const park = new Park({ attributes: feature.properties })
+    parkPopup (data) {
+      const park = new Park({ attributes: data })
 
       const popup = document.createElement('div')
       popup.innerHTML = `
@@ -175,8 +175,8 @@ export const MapPopupHelpers = {
       return popup
     },
 
-    approachPopup (feature) {
-      const approach = new Approach({ attributes: feature.properties })
+    approachPopup (data) {
+      const approach = new Approach({ attributes: data })
 
       const popup = document.createElement('div')
 
@@ -217,8 +217,8 @@ export const MapPopupHelpers = {
       return popup
     },
 
-    userPartnerPopup (feature) {
-      const user = new User({ attributes: feature.properties })
+    userPartnerPopup (data) {
+      const user = new User({ attributes: data })
 
       let genreAndAge = null
       if (user.genre) {

@@ -54,11 +54,14 @@ class GymApi extends BaseApi {
     })
   }
 
-  geoJson () {
+  geoJson (minimalistic = true) {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/gyms/geo_json.json`,
-      headers: { HttpApiAccessToken: this.apiAccessToken }
+      headers: { HttpApiAccessToken: this.apiAccessToken },
+      params: {
+        minimalistic
+      }
     })
   }
 

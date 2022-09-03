@@ -94,13 +94,16 @@ class UserApi extends BaseApi {
     })
   }
 
-  userPartnerGeoJson (userUuid) {
+  userPartnerGeoJson (userUuid, minimalistic = true) {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/users/${userUuid}/partner_user_geo_json.json`,
       headers: {
         Authorization: this.authToken(),
         HttpApiAccessToken: this.apiAccessToken
+      },
+      params: {
+        minimalistic
       }
     })
   }

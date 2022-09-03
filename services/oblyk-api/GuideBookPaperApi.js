@@ -38,11 +38,17 @@ class GuideBookPaperApi extends BaseApi {
     })
   }
 
-  around (lat, lng, dist) {
+  around (lat, lng, dist, minimalistic_geo_json = true) {
     return this.axios.request({
       method: 'GET',
-      url: `${this.baseUrl}/public/guide_book_papers/around.json?lat=${lat}&lng=${lng}&dist=${dist}`,
-      headers: { HttpApiAccessToken: this.apiAccessToken }
+      url: `${this.baseUrl}/public/guide_book_papers/around.json`,
+      headers: { HttpApiAccessToken: this.apiAccessToken },
+      params: {
+        lat,
+        lng,
+        dist,
+        minimalistic_geo_json
+      }
     })
   }
 
@@ -70,11 +76,14 @@ class GuideBookPaperApi extends BaseApi {
     })
   }
 
-  geoJson (id) {
+  geoJson (id, minimalistic = true) {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/public/guide_book_papers/${id}/geo_json.json`,
-      headers: { HttpApiAccessToken: this.apiAccessToken }
+      headers: { HttpApiAccessToken: this.apiAccessToken },
+      params: {
+        minimalistic
+      }
     })
   }
 

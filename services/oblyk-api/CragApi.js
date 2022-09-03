@@ -38,11 +38,14 @@ class CragApi extends BaseApi {
     })
   }
 
-  geoJson () {
+  geoJson (minimalistic = true) {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/public/crags/geo_json.json`,
-      headers: { HttpApiAccessToken: this.apiAccessToken }
+      headers: { HttpApiAccessToken: this.apiAccessToken },
+      params: {
+        minimalistic
+      }
     })
   }
 
@@ -83,11 +86,14 @@ class CragApi extends BaseApi {
     })
   }
 
-  geoJsonAround (cragId) {
+  geoJsonAround (cragId, minimalistic = true) {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/public/crags/${cragId}/geo_json_around.json`,
-      headers: { HttpApiAccessToken: this.apiAccessToken }
+      headers: { HttpApiAccessToken: this.apiAccessToken },
+      params: {
+        minimalistic
+      }
     })
   }
 

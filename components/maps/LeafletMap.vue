@@ -99,6 +99,13 @@ import { MapMarkerHelpers } from '@/mixins/MapMarkerHelpers'
 import LeafletLayerSelector from '@/components/maps/leafletControls/LeafletLayerSelector'
 import LeafletLegend from '@/components/maps/leafletControls/LeafletLegend'
 import LeafletLocalizationCenter from '~/components/maps/leafletControls/LeafletLocalizationCenter'
+import CragApi from '~/services/oblyk-api/CragApi'
+import GymApi from '~/services/oblyk-api/GymApi'
+import CragSectorApi from '~/services/oblyk-api/CragSectorApi'
+import PlaceOfSaleApi from '~/services/oblyk-api/PlaceOfSaleApi'
+import ParkApi from '~/services/oblyk-api/ParkApi'
+import ApproachApi from '~/services/oblyk-api/ApproachApi'
+import UserApi from '~/services/oblyk-api/UserApi'
 
 export default {
   name: 'LeafletMap',
@@ -275,7 +282,7 @@ export default {
             layer.options.interactive = false
           }
         } else {
-          layer.bindPopup(this.getHtmlPopup(feature))
+          layer.on('click', () => { this.buildPopup(layer, feature.properties) })
         }
       }
     },
@@ -307,6 +314,64 @@ export default {
 
     setView (options) {
       this.$refs.leafletMap.mapObject.setView([options.latitude, options.longitude], options.zoom)
+    },
+
+    buildPopup (marker, properties) {
+      marker.unbindPopup()
+      marker.bindPopup(`<div><p class="text-center pa-3 mb-0 mt-0">${this.$t('common.loading')}</p></div>`)
+      marker.togglePopup()
+      this
+        .getData(properties)
+        .then((resp) => {
+          marker.setPopupContent(this.getHtmlPopup(properties.type, resp))
+        })
+    },
+
+    getData (properties) {
+      let apiService = null
+      let primaryId = null
+      let secondaryId = null
+
+      // Select right api service
+      if (properties.type === 'Crag') {
+        primaryId = properties.id
+        apiService = new CragApi(this.$axios, this.$auth)
+      } else if (properties.type === 'Gym') {
+        primaryId = properties.id
+        apiService = new GymApi(this.$axios, this.$auth)
+      } else if (properties.type === 'CragSector') {
+        primaryId = properties.id
+        apiService = new CragSectorApi(this.$axios, this.$auth)
+      } else if (properties.type === 'PlaceOfSale') {
+        primaryId = properties.guide_book_paper_id
+        secondaryId = properties.id
+        apiService = new PlaceOfSaleApi(this.$axios, this.$auth)
+      } else if (properties.type === 'Park') {
+        primaryId = properties.crag_id
+        secondaryId = properties.id
+        apiService = new ParkApi(this.$axios, this.$auth)
+      } else if (properties.type === 'Approach') {
+        primaryId = properties.crag_id
+        secondaryId = properties.id
+        apiService = new ApproachApi(this.$axios, this.$auth)
+      } else if (properties.type === 'PartnerUser') {
+        primaryId = properties.uuid
+        apiService = new UserApi(this.$axios, this.$auth)
+      } else {
+        return false
+      }
+
+      // Get data
+      return new Promise((resolve, reject) => {
+        apiService
+          .find(primaryId, secondaryId)
+          .then((resp) => {
+            resolve(resp.data)
+          })
+          .catch((err) => {
+            reject(err)
+          })
+      })
     }
   }
 }
