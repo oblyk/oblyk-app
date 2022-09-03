@@ -424,8 +424,14 @@ export default {
     const urlParams = new URLSearchParams(window.location.search)
     this.addedFromAscent = urlParams.get('added_from_ascent') === 'true'
     this.redirectTo = urlParams.get('redirect_to')
-    this.data.name = urlParams.get('name')
-    this.data.sections[0].grade = urlParams.get('grade')
+    const cragRouteName = urlParams.get('name')
+    const grade = urlParams.get('grade')
+    if (cragRouteName) {
+      this.data.name = cragRouteName
+    }
+    if (grade) {
+      this.data.sections[0].grade = grade
+    }
     this.$root.$on('showSimilarRoute', (results) => {
       this.showSimilarRoute(results)
     })
