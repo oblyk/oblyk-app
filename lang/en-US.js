@@ -1732,6 +1732,8 @@ export default {
       addArea: 'Add %{name} in area'
     },
     cragRoute: {
+      title: '%{name} %{grade}, %{cragName}',
+      description: '%{name} %{grade}, %{type} forming part of the climbing site %{cragName}. see the details of the line: grade, photo, opinion, etc.',
       new: 'Add crag route'
     },
     cragSector: {

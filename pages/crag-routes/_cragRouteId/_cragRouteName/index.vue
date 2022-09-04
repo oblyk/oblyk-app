@@ -96,6 +96,53 @@ export default {
     return {
       mdiCheckAll
     }
+  },
+
+  head () {
+    return {
+      title: this.cragMetaTitle,
+      meta: [
+        { hid: 'description', name: 'description', content: this.cragMetaDescription },
+        { hid: 'og:title', property: 'og:title', content: this.cragMetaTitle },
+        { hid: 'og:description', property: 'og:description', content: this.cragMetaDescription },
+        { hid: 'og:image', property: 'og:image', content: this.cragMetaImage },
+        { hid: 'og:url', property: 'og:url', content: this.cragMetaUrl }
+      ]
+    }
+  },
+
+  computed: {
+    cragMetaTitle () {
+      return this.$t(
+        'meta.cragRoute.title',
+        {
+          name: (this.cragRoute || {}).name,
+          grade: (this.cragRoute || {}).grade_to_s,
+          cragName: (this.cragRoute || { crag: {} }).crag.name
+        }
+      )
+    },
+    cragMetaDescription () {
+      return this.$t(
+        'meta.cragRoute.description',
+        {
+          name: (this.cragRoute || {}).name,
+          grade: (this.cragRoute || {}).grade_to_s,
+          type: this.$t(`models.climbs.${(this.cragRoute || {}).climbing_type}`),
+          cragName: (this.cragRoute || { crag: {} }).crag.name
+        }
+      )
+    },
+    cragMetaImage () {
+      if (this.cragRoute && this.cragRoute.photo) {
+        return this.cragRoute.coverUrl
+      } else {
+        return `${process.env.VUE_APP_OBLYK_APP_URL}/images/oblyk-og-image.jpg`
+      }
+    },
+    cragMetaUrl () {
+      return `${process.env.VUE_APP_OBLYK_APP_URL}${(this.cragRoute || {}).path}`
+    }
   }
 }
 </script>

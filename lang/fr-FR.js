@@ -1732,6 +1732,8 @@ export default {
       addArea: 'Ajouter %{name} à une zone'
     },
     cragRoute: {
+      title: '%{name} %{grade}, %{cragName}',
+      description: "%{name} %{grade}, %{type} faisant partie du site d'escalade %{cragName}. voir le detail de la ligne : cotation, photo, avis, etc.",
       new: 'Ajouter une ligne'
     },
     cragSector: {
