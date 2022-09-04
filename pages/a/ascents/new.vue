@@ -113,6 +113,8 @@
             <v-col class="grow">
               <u>{{ $t('models.ascentCragRoute.crag_route_id') }} :</u><br>
               <strong>{{ cragRoute.name }}</strong>
+              {{ cragRoute.grade_to_s }}
+              {{ $t(`models.climbs.${cragRoute.climbing_type}`) }}
             </v-col>
             <v-col class="shrink">
               <v-btn
