@@ -78,7 +78,10 @@
       </v-alert>
 
       <!-- Select crag routes -->
-      <div v-if="!cragRoute">
+      <div
+        v-if="!cragRoute"
+        ref="cragRouteList"
+      >
         <crag-routes
           :crag="crag"
           :card-elevation="0"
@@ -135,6 +138,7 @@
         <!-- Ascent form -->
         <v-sheet
           v-if="!successAdded"
+          ref="ascentCragRouteForm"
           class="rounded pa-4 mt-3"
         >
           <p>
@@ -308,6 +312,9 @@ export default {
         .find(this.cragId)
         .then((resp) => {
           this.crag = new Crag({ attributes: resp.data })
+          setTimeout(() => {
+            this.$refs.cragRouteList.$el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+          }, 500)
         })
         .finally(() => {
           this.loadingCragFromQuery = false
@@ -320,6 +327,9 @@ export default {
         .find(this.cragId, cragRouteId)
         .then((resp) => {
           this.cragRoute = new CragRoute({ attributes: resp.data })
+          setTimeout(() => {
+            this.$refs.ascentCragRouteForm.$el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+          }, 500)
         })
         .finally(() => {
           this.loadingCragRoute = false
