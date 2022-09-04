@@ -22,26 +22,36 @@
       </v-col>
     </v-row>
 
-    <v-bottom-navigation
+    <v-app-bar
       v-if="mobilInterface"
       app
       height="40"
+      elevation="0"
       horizontal
       grow
+      class="border-bottom"
     >
       <v-btn
+        text
+        width="50%"
         @click="showLine()"
       >
         <span>{{ $t('components.gymSpace.routes') }}</span>
-        <v-icon>{{ mdiArrowDecision }}</v-icon>
+        <v-icon right>
+          {{ mdiArrowDecision }}
+        </v-icon>
       </v-btn>
       <v-btn
+        text
+        width="50%"
         @click="showPlan()"
       >
         <span>{{ $t('components.gymSpace.plan') }}</span>
-        <v-icon>{{ mdiMapLegend }}</v-icon>
+        <v-icon right>
+          {{ mdiMapLegend }}
+        </v-icon>
       </v-btn>
-    </v-bottom-navigation>
+    </v-app-bar>
   </div>
 </template>
 
