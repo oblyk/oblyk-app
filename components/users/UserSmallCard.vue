@@ -33,7 +33,7 @@
               :subscribe-id="user.id"
               :unfollowed-icon="mdiAccountOutline"
               :followed-icon="mdiAccount"
-              followed-color="green"
+              followed-color="primary"
               :large="false"
             />
           </v-list-item-title>

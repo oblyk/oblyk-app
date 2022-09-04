@@ -1,9 +1,10 @@
 <template>
   <v-btn
     text
-    small
+    outlined
+    :block="block"
     :loading="loadingStartConversation"
-    color="teal"
+    color="primary"
     @click="startConversation()"
   >
     <v-icon
@@ -28,6 +29,10 @@ export default {
     user: {
       type: Object,
       required: true
+    },
+    block: {
+      type: Boolean,
+      required: false
     }
   },
 

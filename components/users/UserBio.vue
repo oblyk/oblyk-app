@@ -1,12 +1,12 @@
 <template>
-  <v-card class="full-height">
-    <v-card-title>
+  <v-card class="full-height d-flex flex-column">
+    <v-card-title class="flex-grow-0">
       <v-icon left>
         {{ mdiTextAccount }}
       </v-icon>
       {{ $t('components.user.bio') }}
     </v-card-title>
-    <v-card-text>
+    <v-card-text class="flex-grow-1">
       <!-- Bio -->
       <markdown-text
         v-if="user.description"
@@ -27,24 +27,43 @@
         {{ $t('date.lastActivity', { date: dateFromNow(user.last_activity_at) }) }}
       </p>
     </v-card-text>
-    <v-card-actions v-if="isLoggedIn">
-      <v-spacer />
-      <start-conversation-btn :user="user" />
-    </v-card-actions>
+    <client-only>
+      <div
+        v-if="$auth.loggedIn && $auth.user.id !== user.id"
+        class="flex-grow-0 text-right pa-2"
+      >
+        <subscribe-btn
+          subscribe-type="User"
+          :subscribe-id="user.id"
+          :unfollowed-icon="mdiAccountOutline"
+          :followed-icon="mdiAccount"
+          followed-color="primary"
+          :type-text="true"
+          :large="true"
+          text-color="primary"
+          :block="isMobile"
+          class="mb-2 mb-md-0"
+        />
+        <start-conversation-btn
+          :user="user"
+          :block="isMobile"
+        />
+      </div>
+    </client-only>
   </v-card>
 </template>
 
 <script>
-import { mdiTextAccount } from '@mdi/js'
+import { mdiTextAccount, mdiAccountOutline, mdiAccount } from '@mdi/js'
 import { DateHelpers } from '@/mixins/DateHelpers'
 import StartConversationBtn from '@/components/messengers/forms/StartConversationBtn'
-import { SessionConcern } from '@/concerns/SessionConcern'
+import SubscribeBtn from '~/components/forms/SubscribeBtn'
 const MarkdownText = () => import('@/components/ui/MarkdownText')
 
 export default {
   name: 'UserBio',
-  components: { StartConversationBtn, MarkdownText },
-  mixins: [DateHelpers, SessionConcern],
+  components: { SubscribeBtn, StartConversationBtn, MarkdownText },
+  mixins: [DateHelpers],
   props: {
     user: {
       type: Object,
@@ -54,8 +73,15 @@ export default {
 
   data () {
     return {
-      mdiTextAccount
+      isMobile: false,
+      mdiTextAccount,
+      mdiAccountOutline,
+      mdiAccount
     }
+  },
+
+  mounted () {
+    this.isMobile = window.innerWidth < 600
   }
 }
 </script>

@@ -2,10 +2,13 @@
   <v-btn
     v-if="isLoggedIn"
     class="subscribe-btn"
+    :block="block"
     :outlined="large"
     :icon="!large"
     :loading="requesting"
     :title="label()"
+    :text="typeText"
+    :color="textColor"
     @click.prevent="changeSubscription()"
   >
     <v-icon
@@ -72,6 +75,18 @@ export default {
     requestMadeLabel: {
       type: String,
       default: 'actions.cancelRequest'
+    },
+    typeText: {
+      type: Boolean,
+      default: false
+    },
+    textColor: {
+      type: String,
+      default: ''
+    },
+    block: {
+      type: Boolean,
+      required: false
     }
   },
 
