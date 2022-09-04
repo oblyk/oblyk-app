@@ -105,7 +105,7 @@
 
         <v-toolbar
           flat
-          class="mt-10 rounded-tl-lg rounded-tr-lg"
+          class="mt-10 rounded-tl rounded-tr"
         >
           <v-toolbar-title class="font-weight-bold">
             {{ $t('components.department.mapTitle') }}
