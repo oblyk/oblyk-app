@@ -45,10 +45,7 @@
         </v-icon>
       </v-list-item-title>
       <v-list-item-subtitle class="span-comma">
-        <span
-          v-if="route.crag_sector"
-          @click.stop=""
-        >
+        <span v-if="route.crag_sector">
           <v-icon x-small>
             {{ mdiTextureBox }}
           </v-icon>
