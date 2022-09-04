@@ -6,7 +6,7 @@
         <v-col
           v-for="video in videos"
           :key="`video-${video.id}`"
-          class="col-12 col-md-6 col-lg-3"
+          class="col-12 col-md-6 col-lg-4"
         >
           <video-card
             :video="video"
