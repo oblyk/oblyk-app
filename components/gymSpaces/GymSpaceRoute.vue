@@ -1,9 +1,6 @@
 <template>
-  <div>
-    <div
-      v-if="!editingSectorPolygon"
-      class="gym-space-routes-and-sectors"
-    >
+  <div class="pt-3">
+    <div v-if="!editingSectorPolygon">
       <!-- Gym space selector -->
       <div class="row">
         <div class="col">
