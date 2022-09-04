@@ -81,7 +81,6 @@ export default {
 .article-container {
   max-width: 900px;
   min-height: calc(100vh - 420px);
-  background: #fff;
   padding: 16px 45px;
   margin-top: -17px;
   position: relative;
@@ -117,6 +116,16 @@ export default {
     h6 {
       line-height: 1.3;
     }
+  }
+}
+.theme--light {
+  .article-container {
+    background: #fff;
+  }
+}
+.theme--dark {
+  .article-container {
+    background: rgb(22,22,22);
   }
 }
 @media screen and (max-width: 569px) {
