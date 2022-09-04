@@ -3,8 +3,8 @@
     <h1 class="font-weight-medium">
       <crag-route-avatar
         :crag-route="cragRoute"
-        size="57"
-        border-width="5"
+        :size="57"
+        :border-width="5"
         base-font-size="1.1rem"
       />
       {{ cragRoute.name }}
