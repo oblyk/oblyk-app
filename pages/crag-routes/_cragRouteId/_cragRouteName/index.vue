@@ -22,7 +22,7 @@
 
       <!-- Ascents -->
       <v-card
-        v-if="isLoggedIn"
+        v-if="$auth.loggedIn"
         class="mt-5"
       >
         <v-container>
@@ -72,7 +72,6 @@
 <script>
 import { mdiCheckAll } from '@mdi/js'
 import { CragRouteConcern } from '~/concerns/CragRouteConcern'
-import { SessionConcern } from '~/concerns/SessionConcern'
 import CragRouteHead from '~/components/cragRoutes/layout/CragRouteHead'
 import CragRouteDescription from '~/components/cragRoutes/CragRouteDescription'
 import CragRouteComments from '~/components/cragRoutes/CragRouteComments'
@@ -91,7 +90,7 @@ export default {
     CragRouteDescription,
     CragRouteHead
   },
-  mixins: [CragRouteConcern, SessionConcern],
+  mixins: [CragRouteConcern],
 
   data () {
     return {
