@@ -28,7 +28,7 @@
           </v-btn>
         </p>
       </v-img>
-      <v-row>
+      <v-row class="mt-0">
         <v-col class="gym-tag-large-col pr-0">
           <gym-route-tag-and-hold :gym-route="gymRoute" />
         </v-col>
