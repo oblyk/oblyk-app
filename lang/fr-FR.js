@@ -799,7 +799,10 @@ export default {
       whichRoute: 'Quelle ligne avez-vous fait ?',
       addedAscentToLogbook: 'Ajouter une croix à mon carnet',
       whichCrag: 'Quel site ?',
-      cragNotFound: 'Vous ne trouvez pas votre falaise ?'
+      cragNotFound: 'Vous ne trouvez pas votre falaise ?',
+      addNewAscent: 'Ajouter une autre croix',
+      seeLogbook: 'Voir mon carnet',
+      goToCrag: 'Aller au site'
     },
     ascentGymRoute: {
       new: 'Ajouter à mon carnet',

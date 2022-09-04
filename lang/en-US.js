@@ -799,7 +799,10 @@ export default {
       whichRoute: 'Which route did you go?',
       addedAscentToLogbook: 'Add ascent to my logbook',
       whichCrag: 'Which crag ?',
-      cragNotFound: "Can't find your crag?"
+      cragNotFound: "Can't find your crag?",
+      addNewAscent: 'Add another ascent',
+      seeLogbook: 'See my logbook',
+      goToCrag: 'Go to crag'
     },
     ascentGymRoute: {
       new: 'Add in my logbook',

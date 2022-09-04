@@ -167,31 +167,35 @@
             </strong>
           </v-alert>
           <v-row justify="center">
-            <v-col cols="12" md="6" lg="4">
+            <v-col cols="12" md="6" lg="5">
               <v-btn
                 outlined
                 text
                 block
                 color="primary"
+                class="mb-2"
                 @click="resetCragRoute"
               >
                 <v-icon left>
                   {{ mdiPlus }}
                 </v-icon>
-                Ajouter une nouvelle croix sur ce site
+                {{ $t('components.ascentCragRoute.addNewAscent') }}
               </v-btn>
               <v-btn
+                outlined
                 text
                 block
                 color="primary"
-                :to="`/users/me/${$auth.user.slug_name}/ascents/send-list`"
+                :to="`/me/${$auth.user.slug_name}/ascents/send-list`"
+                class="mb-2"
               >
                 <v-icon left>
                   {{ mdiBookOutline }}
                 </v-icon>
-                voir mon carnet
+                {{ $t('components.ascentCragRoute.seeLogbook') }}
               </v-btn>
               <v-btn
+                outlined
                 text
                 block
                 color="primary"
@@ -200,7 +204,7 @@
                 <v-icon left>
                   {{ mdiTerrain }}
                 </v-icon>
-                aller au site : {{ crag.name }}
+                {{ $t('components.ascentCragRoute.goToCrag') }} : {{ crag.name }}
               </v-btn>
             </v-col>
           </v-row>
