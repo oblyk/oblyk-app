@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="mt-3">
     <div
       v-if="!currentUserCanSeeAscents()"
       class="text-center mt-10 mb-10"

@@ -81,6 +81,12 @@ strong {
   display: none !important;
 }
 
+.transparent-tabs {
+  .v-tabs-bar {
+    background: none !important;
+  }
+}
+
 .light-primary-hoverable {
   &:hover {
     background-color: rgba(49, 153, 78, 0.1) !important;

@@ -2,6 +2,7 @@
   <v-tabs
     show-arrows
     height="30"
+    class="transparent-tabs"
   >
     <!-- Photos -->
     <v-tab :to="`${user.userPath}/media/photos`">

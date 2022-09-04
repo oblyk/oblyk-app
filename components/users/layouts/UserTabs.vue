@@ -1,12 +1,12 @@
 <template>
   <v-tabs
     show-arrows
+    class="rounded"
   >
     <!-- Profil -->
     <v-tab :to="user.userPath">
       <v-icon
         :small="!isMobile"
-        color="teal"
         left
       >
         {{ mdiAccountBox }}
@@ -21,7 +21,6 @@
       <v-icon
         :small="!isMobile"
         left
-        color="blue"
       >
         {{ mdiCheckAll }}
       </v-icon>
@@ -35,7 +34,6 @@
       <v-icon
         :small="!isMobile"
         left
-        color="blue"
       >
         {{ mdiCamera }}
       </v-icon>
@@ -52,7 +50,6 @@
       <v-icon
         :small="!isMobile"
         left
-        color="amber"
       >
         {{ mdiStar }}
       </v-icon>
@@ -69,7 +66,6 @@
       <v-icon
         :small="!isMobile"
         left
-        color="green"
       >
         {{ mdiTooltipAccount }}
       </v-icon>
