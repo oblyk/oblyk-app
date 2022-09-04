@@ -1,7 +1,7 @@
 <template>
   <v-list-item
     link
-    :to="notificationLink()"
+    :to="notificationLink"
     @click="markedAsRead()"
   >
     <v-list-item-avatar>
@@ -15,9 +15,9 @@
           left
           small
         >
-          {{ notificationIcon() }}
+          {{ notificationIcon }}
         </v-icon>
-        {{ notificationText() }}
+        {{ notificationText }}
       </v-list-item-title>
       <v-list-item-subtitle>
         {{ dateFromNow(notification.posted_at) }}
@@ -60,7 +60,7 @@ export default {
     }
   },
 
-  methods: {
+  computed: {
     notificationText () {
       if (this.notification.notification_type === 'new_message') {
         return this.$t('components.notification.type.new_message', { name: this.notification.Parent.first_name })
@@ -97,14 +97,16 @@ export default {
       if (this.notification.notification_type === 'new_message') {
         return `/me/${this.loggedInUser.slugName}/messenger/${this.notification.Notifiable.conversation_id}`
       } else if (['new_follower', 'subscribe_accepted', 'request_for_follow_up'].includes(this.notification.notification_type)) {
-        return `/users/${this.notification.Notifiable.uuid}/${this.notification.Notifiable.slug_name}/profile`
+        return `/users/${this.notification.Notifiable.uuid}/${this.notification.Notifiable.slug_name}`
       } else if (this.notification.notification_type === 'new_article') {
         return `/articles/${this.notification.Notifiable.id}/${this.notification.Notifiable.slug_name}`
       } else {
         return '/'
       }
-    },
+    }
+  },
 
+  methods: {
     markedAsRead () {
       new NotificationApi(this.$axios, this.$auth).read(this.notification.id)
     }

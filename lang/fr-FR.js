@@ -563,7 +563,7 @@ export default {
       type: {
         new_message: 'Nouveau message de %{name}',
         new_follower: '%{name} à commencé à vous suivre',
-        subscribe_accepted: '%{name} a accepté que vous le suiviez',
+        subscribe_accepted: '%{name} a accepté que vous le·a suiviez',
         request_for_follow_up: '%{name} demande à vous suivre',
         new_article: 'Nouvel article ! %{name}'
       }
