@@ -90,7 +90,10 @@
         v-if="user.followers_count > 0"
         class="subtitle-1 d-md-none mt-n2 mb-0"
       >
-        <nuxt-link :to="`${user.currentUserPath}/community/followers`" class="discrete-link">
+        <nuxt-link
+          :to="`${itsMe() ? `${user.currentUserPath}/community` : user.userPath}/followers`"
+          class="discrete-link"
+        >
           {{ user.followers_count }} abonné·es
         </nuxt-link>
       </p>
@@ -137,7 +140,7 @@ export default {
 
   methods: {
     itsMe () {
-      return (this.loggedInUser.uuid === this.user.uuid)
+      return (this.$auth.loggedIn && this.$auth.user.uuid === this.user.uuid)
     }
   }
 }
