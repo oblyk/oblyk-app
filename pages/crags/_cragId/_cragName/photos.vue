@@ -41,7 +41,7 @@
           <v-col
             v-for="video in videos"
             :key="`video-${video.id}`"
-            class="col-12 col-md-6 col-lg-3"
+            class="col-12 col-md-6 col-lg-4"
           >
             <video-card
               :video="video"
@@ -142,7 +142,7 @@ export default {
         .then((resp) => {
           this.videos = []
           for (const video of resp.data) {
-            this.videos.push(new Video(video))
+            this.videos.push(new Video({ attributes: video }))
           }
         })
         .catch((err) => {
