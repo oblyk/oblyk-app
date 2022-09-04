@@ -75,10 +75,12 @@ export default {
   }
 }
 .article-head-img {
+  border-radius: 16px;
   height: 500px;
 }
 @media screen and (max-width: 767px) {
   .article-head-img {
+    border-radius: 0;
     height: 350px;
   }
 }

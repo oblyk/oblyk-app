@@ -13,7 +13,9 @@
     </v-container>
   </div>
   <div v-else>
-    <article-head :article="article" />
+    <v-container class="article-header-container">
+      <article-head :article="article" />
+    </v-container>
     <v-container class="article-container">
       <section
         class="article-body mb-10 mt-4"
@@ -82,7 +84,7 @@ export default {
   max-width: 900px;
   min-height: calc(100vh - 420px);
   padding: 16px 45px;
-  margin-top: -17px;
+  margin-top: -35px;
   position: relative;
   border-radius: 15px;
   box-shadow: 0 8px 15px -8px rgba(0, 0, 0, 0.15);
@@ -135,6 +137,7 @@ export default {
   .article-container {
     border-radius: 0;
     box-shadow: none;
+    margin-top: 0;
     padding: 8px 24px;
     .article-body {
       font-size: 0.95em;
@@ -147,6 +150,9 @@ export default {
     font-size: 2.5rem;
     line-height: 1.1;
     margin-bottom: 11px;
+  }
+  .article-header-container {
+    padding: 0;
   }
 }
 </style>
