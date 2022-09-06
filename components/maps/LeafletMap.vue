@@ -173,7 +173,7 @@ export default {
     showLocalization: {
       type: Boolean,
       required: false,
-      default: false
+      default: true
     },
     options: {
       type: Object,

@@ -47,7 +47,6 @@
                 :clustered="false"
                 :track-location="false"
                 map-style="outdoor"
-                :show-localization="true"
               />
             </div>
           </client-only>

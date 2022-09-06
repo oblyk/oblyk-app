@@ -6,7 +6,6 @@
       :latitude-force="latitude"
       :longitude-force="longitude"
       :zoom-force="zoom"
-      :show-localization="true"
     />
   </client-only>
 </template>
