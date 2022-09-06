@@ -9,6 +9,10 @@ export const state = {
 export const getters = {
   IAmGeolocated: (state) => {
     return state.longitude !== null && state.latitude !== null
+  },
+
+  localizationActivated: (state) => {
+    return state.status === 'activate'
   }
 }
 

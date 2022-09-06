@@ -131,6 +131,12 @@ export default {
     }
   },
 
+  computed: {
+    localizationActivated () {
+      return this.$store.getters['geolocation/localizationActivated']
+    }
+  },
+
   watch: {
     '$store.state.cookie.okCookie' () {
       this.cookiesMessage = this.$store.getters['cookie/showCookiePopup']
@@ -141,7 +147,7 @@ export default {
     },
 
     '$store.state.geolocation.status' () {
-      if (this.$store.state.geolocation.status === 'activate') {
+      if (this.localizationActivated) {
         this.activateWatchGeolocation()
       } else if (this.watchLocationId !== null) {
         this.deactivateWatchGeolocation()
@@ -225,8 +231,11 @@ export default {
               longitude: position.coords.longitude
             })
           },
-          () => {
-            this.$store.dispatch('geolocation/deactivateLocation')
+          (err) => {
+            if (err.code !== 3) {
+              // Disable localization if the error is not a timeout
+              this.$store.dispatch('geolocation/deactivateLocation')
+            }
           },
           {
             enableHighAccuracy: false,
