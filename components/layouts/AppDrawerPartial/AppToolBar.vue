@@ -116,16 +116,20 @@ export default {
 .theme--light {
   .oblyk-app-drawer-actions .oblyk-app-drawer-actions-area{
     background-color: rgb(240, 240, 245);
-    .v-icon__svg {
-      fill: black;
+    .v-icon:not(.primary--text) {
+      .v-icon__svg {
+        fill: black;
+      }
     }
   }
 }
 .theme--dark {
   .oblyk-app-drawer-actions .oblyk-app-drawer-actions-area {
     background-color: rgb(37, 37, 37);
-    .v-icon__svg {
-      fill: white;
+    .v-icon:not(.primary--text) {
+      .v-icon__svg {
+        fill: white;
+      }
     }
   }
 }
