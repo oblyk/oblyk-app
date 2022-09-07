@@ -652,7 +652,8 @@ export default {
       deactivated: 'Activer ma localisation',
       private: "Ta localisation n'est pas enregistrée par Oblyk.",
       IAmHere: 'Je suis là',
-      activateLocation: 'Activer ma localisation'
+      activateLocation: 'Activer ma localisation',
+      waitingLocalization: 'Récupération de votre position ...'
     },
     session: {
       connectAlert: 'Vous devez être connecté·e pour accéder à cette page',

@@ -52,6 +52,12 @@
           </client-only>
         </div>
 
+        <div v-if="!IAmGeolocated && localizationActivated">
+          <p class="text--disabled text-center mt-4 mb-5">
+            {{ $t('components.localization.waitingLocalization') }}
+          </p>
+        </div>
+
         <v-alert
           class="mt-3 mb-0"
           dense

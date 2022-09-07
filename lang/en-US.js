@@ -652,7 +652,8 @@ export default {
       deactivated: 'Activate my location',
       private: 'Your location is not recorded by Oblyk.',
       IAmHere: 'I am here',
-      activateLocation: 'Activate my location'
+      activateLocation: 'Activate my location',
+      waitingLocalization: 'Retrieving your location ...'
     },
     session: {
       connectAlert: 'You must be logged in to access this page',
