@@ -233,6 +233,7 @@
               :clustered="false"
               :options="{ rounded: true }"
               map-style="outdoor"
+              :circle-properties="circleProperties"
             />
           </client-only>
         </div>
@@ -289,6 +290,14 @@ export default {
     return {
       latLng: `${this.crag.latitude}, ${this.crag.longitude}`,
       geoJsons: null,
+      circleProperties: {
+        radius: 50 * 1000,
+        center: [this.crag.latitude, this.crag.longitude],
+        color: '#43a047',
+        weight: 1,
+        fill: false,
+        dashArray: [10, 5]
+      },
 
       mdiInformation,
       mdiPlus,
