@@ -52,6 +52,7 @@ export default {
     editMyProfile: 'Edit my profile',
     no: 'No',
     yes: 'Yes',
+    change: 'Change',
     IUnderstand: 'I understand',
     activate: 'Activate',
     disable: 'Disable',
@@ -1152,6 +1153,7 @@ export default {
     user: {
       type: 'Climber',
       globalInformation: 'General Information',
+      changePassword: 'Change password',
       privacyParameters: 'Privacy parameters',
       partnerSearch: 'Partner search',
       otherSetting: 'Others settings',
@@ -1242,6 +1244,7 @@ export default {
       },
       settingTabs: {
         general: 'General',
+        connection: 'Connection',
         privacy: 'Privacy',
         partner: 'Climbers Map',
         notifications: 'Notifications',
@@ -1964,6 +1967,12 @@ export default {
       public_profile: 'Public profile',
       public_outdoor_ascents: 'Public outdoor ascents',
       public_indoor_ascents: 'Public indoor ascents'
+    },
+    password: {
+      rules: 'Must contain: 8 or more characters, one upper case, one lower case and one number',
+      email: 'Email',
+      password: 'Password',
+      password_confirmation: 'Password confirmation'
     },
     crag: {
       name: 'Name',

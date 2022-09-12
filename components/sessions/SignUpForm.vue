@@ -40,6 +40,8 @@
       :type="showPassword ? 'text' : 'password'"
       required
       class="required-field"
+      :hint="$t('models.password.rules')"
+      persistent-hint
       :append-icon="showPassword ? mdiEyeOff : mdiEye"
       @click:append="showPassword = !showPassword"
     />

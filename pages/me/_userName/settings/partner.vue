@@ -17,7 +17,6 @@ import PartnerForm from '@/components/users/forms/PartnerForm'
 import EnableLocalization from '@/components/users/notificationCard/EnableLocalization'
 
 export default {
-  name: 'CurrentUserPartnerSettingsView',
   components: { EnableLocalization, PartnerForm },
   props: {
     user: {

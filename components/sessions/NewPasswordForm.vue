@@ -22,6 +22,8 @@
       required
       :append-icon="showPassword ? mdiEyeOff : mdiEye"
       class="required-field"
+      :hint="$t('models.password.rules')"
+      persistent-hint
       @click:append="showPassword = !showPassword"
     />
 

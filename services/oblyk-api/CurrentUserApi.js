@@ -261,6 +261,20 @@ class CurrentUserApi extends BaseApi {
     })
   }
 
+  updatePassword (data) {
+    return this.axios.request({
+      method: 'PUT',
+      url: `${this.baseUrl}/current_users/update_password.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
+      data: {
+        user: data
+      }
+    })
+  }
+
   delete () {
     return this.axios.request({
       method: 'DELETE',

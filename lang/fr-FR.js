@@ -52,6 +52,7 @@ export default {
     editMyProfile: 'Modifier mon profil',
     no: 'Non',
     yes: 'Oui',
+    change: 'Changer',
     IUnderstand: "J'ai compris",
     activate: 'Activer',
     disable: 'Désactiver',
@@ -1152,6 +1153,7 @@ export default {
     user: {
       type: 'Grimpeur·euse',
       globalInformation: 'Information général',
+      changePassword: 'Changer mon mot de passe',
       privacyParameters: 'Paramètres de confidentialité',
       partnerSearch: 'Recherche de partenaire',
       notificationSetting: 'Paramètre des notifications',
@@ -1242,6 +1244,7 @@ export default {
       },
       settingTabs: {
         general: 'Généraux',
+        connection: 'Connexion',
         privacy: 'Confidentialité',
         partner: 'Carte des grimpeur·euse·s',
         notifications: 'Notifications',
@@ -1964,6 +1967,12 @@ export default {
       public_profile: 'Profil publique',
       public_outdoor_ascents: 'Carnet de croix outdoor publique',
       public_indoor_ascents: 'Carnet de croix indoor publique'
+    },
+    password: {
+      rules: 'Doit contenir : 8 caractères ou plus, une majuscule, une minuscule et un chiffre',
+      email: 'Email',
+      password: 'Mot de passe',
+      password_confirmation: 'Confirmation du mot de passe'
     },
     crag: {
       name: 'Nom du site',

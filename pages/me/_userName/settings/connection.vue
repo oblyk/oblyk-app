@@ -3,19 +3,19 @@
     <v-row justify="center">
       <v-col class="global-form-width">
         <h2 class="mb-4">
-          {{ $t('components.user.globalInformation') }}
+          {{ $t('components.user.changePassword') }}
         </h2>
-        <user-form :user="user" submit-methode="put" />
+        <connection-form :user="user" submit-methode="put" />
       </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script>
-import UserForm from '@/components/users/forms/UserForm'
+import ConnectionForm from '~/components/users/forms/ConnectionForm'
 
 export default {
-  components: { UserForm },
+  components: { ConnectionForm },
   props: {
     user: {
       type: Object,
