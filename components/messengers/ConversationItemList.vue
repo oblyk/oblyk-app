@@ -16,7 +16,7 @@
       <v-list-item-title
         :class="newMessage ? 'new-message' : ''"
       >
-        {{ conversation.title(loggedInUser.uuid) }}
+        {{ conversationTitle }}
       </v-list-item-title>
       <v-list-item-subtitle>
         <strong>
@@ -52,6 +52,18 @@ export default {
   data () {
     return {
       newMessage: true
+    }
+  },
+
+  computed: {
+    conversationTitle () {
+      const title = []
+      for (const user of (this.conversation || {}).conversation_users || []) {
+        if (this.loggedInUser.uuid !== user.uuid) {
+          title.push(user.first_name)
+        }
+      }
+      return title.join(', ')
     }
   },
 

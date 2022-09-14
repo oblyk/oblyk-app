@@ -17,14 +17,4 @@ export default class Conversation extends ActiveData {
   get path () {
     return `/me/user/messenger/${this.id}`
   }
-
-  title (loggedInUserUuid) {
-    const title = []
-    for (const user of this.conversation_users) {
-      if (loggedInUserUuid !== user.uuid) {
-        title.push(user.name)
-      }
-    }
-    return title.join(', ')
-  }
 }

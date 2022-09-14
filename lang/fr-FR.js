@@ -1305,7 +1305,7 @@ export default {
       }
     },
     messenger: {
-      messageEmpty: "Il n'y a pas de message dans cette conversation pour l'instant"
+      messageEmpty: 'Démarrer une conversation avec %{name}'
     },
     dailyCrosses: {
       title: 'Souvenir de mes croix',
@@ -1712,7 +1712,7 @@ export default {
     },
     messenger: {
       list: 'Ma messagerie',
-      conversation: '%{name} - Messagerie'
+      conversation: 'Conversation avec %{name}'
     },
     newConversation: {
       title: 'Nouvelle conversation'

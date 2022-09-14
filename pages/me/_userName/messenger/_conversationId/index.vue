@@ -1,5 +1,6 @@
 <template>
   <div class="full-height">
+    <!-- Loading conversation -->
     <div v-if="loadingConversation">
       <v-sheet class="mr-10 mt-4 pa-3">
         <v-skeleton-loader type="paragraph" />
@@ -11,6 +12,8 @@
         <v-skeleton-loader type="paragraph" />
       </v-sheet>
     </div>
+
+    <!-- Messenger layout -->
     <v-sheet
       v-else
       class="full-height rounded"
@@ -28,7 +31,7 @@
           >
             <v-icon>{{ mdiArrowLeft }}</v-icon>
           </v-btn>
-          {{ conversation.title(loggedInUser.uuid) }}
+          {{ conversationTitle }}
         </h4>
       </div>
 
@@ -65,7 +68,7 @@
             v-if="!loadingConversationMessages && conversationMessages.length === 0"
             class="text-center text--disabled"
           >
-            {{ $t('components.messenger.messageEmpty') }}
+            {{ $t('components.messenger.messageEmpty', { name: conversationTitle }) }}
           </p>
         </div>
 
@@ -125,16 +128,19 @@ export default {
 
   head () {
     return {
-      title: this.conversationTitle
+      title: this.$t('meta.messenger.conversation', { name: this.conversationTitle })
     }
   },
 
   computed: {
     conversationTitle () {
-      if (this.conversation) {
-        return this.$t('meta.messenger.conversation', { name: this.conversation.title(this.loggedInUser.uuid) })
+      const title = []
+      for (const user of (this.conversation || {}).conversation_users || []) {
+        if (this.loggedInUser.uuid !== user.uuid) {
+          title.push(user.first_name)
+        }
       }
-      return ''
+      return title.join(', ')
     }
   },
 
