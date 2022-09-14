@@ -89,6 +89,7 @@ export default {
     return {
       loadingAscendedCragRoutes: true,
       cragRoutes: [],
+      firstLoading: true,
 
       order: 'difficulty',
       sortItems: [
@@ -114,13 +115,17 @@ export default {
   watch: {
     order () {
       localStorage.setItem('ascentListOrder', this.order)
-      this.resetAscents()
-      this.ascendedCragRoutes()
+      if (!this.firstLoading) {
+        this.resetAscents()
+        this.ascendedCragRoutes()
+      }
     },
 
     climbingType () {
-      this.resetAscents()
-      this.ascendedCragRoutes()
+      if (!this.firstLoading) {
+        this.resetAscents()
+        this.ascendedCragRoutes()
+      }
     }
   },
 
@@ -164,6 +169,7 @@ export default {
           this.failureToLoadingMore()
         })
         .finally(() => {
+          this.firstLoading = false
           this.loadingAscendedCragRoutes = false
           this.finallyMoreIsLoaded()
         })
