@@ -152,7 +152,7 @@
               </h2>
               <p
                 class="font-weight-bold mb-3 mt-3"
-                v-html="$t('home.header.climbers.title')"
+                v-html="$t('home.header.climbers.intro')"
               />
               <div class="actions-and-link">
                 <v-btn
