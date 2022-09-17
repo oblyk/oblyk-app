@@ -1,174 +1,179 @@
 <template>
-  <v-row>
-    <v-col>
-      <h4 class="text-center mb-10 text-h5 font-weight-bold">
-        {{ $t('home.figures.title') }}
-      </h4>
-
-      <div v-if="loadingFigures">
-        <v-row
-          v-for="index in 3"
-          :key="`skeleton-${index}`"
-          no-gutters
-          class="mb-10"
-        >
-          <v-col class="col-4">
-            <v-skeleton-loader class="mx-auto" type="chip" width="100" />
-            <v-skeleton-loader class="mx-auto mt-3" type="text" width="100" />
-          </v-col>
-          <v-col class="col-4">
-            <v-skeleton-loader class="mx-auto" type="chip" width="100" />
-            <v-skeleton-loader class="mx-auto mt-3" type="text" width="100" />
-          </v-col>
-          <v-col class="col-4">
-            <v-skeleton-loader class="mx-auto" type="chip" width="100" />
-            <v-skeleton-loader class="mx-auto mt-3" type="text" width="100" />
-          </v-col>
-        </v-row>
-      </div>
-      <div
-        v-if="!loadingFigures"
-        class="oblyk-figures"
-      >
-        <v-row>
-          <v-col class="text-center col-4">
-            <p class="figures">
-              {{ figures.all.crags_count }}
-              <small
-                v-if="figures.latest.crags_count > 0"
-                :title="$tc('home.figures.in24Hours.crags', figures.latest.crags_count, { count: figures.latest.crags_count } )"
-              >
-                +{{ figures.latest.crags_count }}
+  <div>
+    <h3 class="text-center mb-7 text-h5 font-weight-bold">
+      {{ $t('home.figures.title') }}
+    </h3>
+    <v-sheet
+      class="pl-4 pr-4 pt-10 pb-10 rounded-lg"
+    >
+      <v-row>
+        <v-col>
+          <div v-if="loadingFigures">
+            <v-row
+              v-for="index in 3"
+              :key="`skeleton-${index}`"
+              no-gutters
+              class="mb-10"
+            >
+              <v-col class="col-4">
+                <v-skeleton-loader class="mx-auto" type="chip" width="100" />
+                <v-skeleton-loader class="mx-auto mt-3" type="text" width="100" />
+              </v-col>
+              <v-col class="col-4">
+                <v-skeleton-loader class="mx-auto" type="chip" width="100" />
+                <v-skeleton-loader class="mx-auto mt-3" type="text" width="100" />
+              </v-col>
+              <v-col class="col-4">
+                <v-skeleton-loader class="mx-auto" type="chip" width="100" />
+                <v-skeleton-loader class="mx-auto mt-3" type="text" width="100" />
+              </v-col>
+            </v-row>
+          </div>
+          <div
+            v-if="!loadingFigures"
+            class="oblyk-figures"
+          >
+            <v-row>
+              <v-col class="text-center col-4">
+                <p class="figures">
+                  {{ figures.all.crags_count }}
+                  <small
+                    v-if="figures.latest.crags_count > 0"
+                    :title="$tc('home.figures.in24Hours.crags', figures.latest.crags_count, { count: figures.latest.crags_count } )"
+                  >
+                    +{{ figures.latest.crags_count }}
+                  </small>
+                </p>
+                <p>
+                  {{ $t('home.figures.crags') }}
+                </p>
+              </v-col>
+              <v-col class="text-center col-4">
+                <p class="figures">
+                  {{ figures.all.users_count }}
+                  <small
+                    v-if="figures.latest.users_count > 0"
+                    :title="$tc('home.figures.in24Hours.climbers', figures.latest.users_count, { count: figures.latest.users_count } )"
+                  >
+                    +{{ figures.latest.users_count }}
+                  </small>
+                </p>
+                <p>
+                  {{ $t('home.figures.climbers') }}
+                </p>
+              </v-col>
+              <v-col class="text-center col-4">
+                <p class="figures">
+                  {{ figures.all.gyms_count }}
+                  <small
+                    v-if="figures.latest.gyms_count > 0"
+                    :title="$tc('home.figures.in24Hours.gyms', figures.latest.gyms_count, { count: figures.latest.gyms_count } )"
+                  >
+                    +{{ figures.latest.gyms_count }}
+                  </small>
+                </p>
+                <p>
+                  {{ $t('home.figures.gyms') }}
+                </p>
+              </v-col>
+              <v-col class="text-center col-4">
+                <p class="figures">
+                  {{ figures.all.routes_count }}
+                  <small
+                    v-if="figures.latest.routes_count > 0"
+                    :title="$tc('home.figures.in24Hours.routes', figures.latest.routes_count, { count: figures.latest.routes_count } )"
+                  >
+                    +{{ figures.latest.routes_count }}
+                  </small>
+                </p>
+                <p>
+                  {{ $t('home.figures.routes') }}
+                </p>
+              </v-col>
+              <v-col class="text-center col-4">
+                <p class="figures">
+                  {{ figures.all.ascents_count }}
+                  <small
+                    v-if="figures.latest.ascents_count > 0"
+                    :title="$tc('home.figures.in24Hours.ascents', figures.latest.ascents_count, { count: figures.latest.ascents_count } )"
+                  >
+                    +{{ figures.latest.ascents_count }}
+                  </small>
+                </p>
+                <p>
+                  {{ $t('home.figures.ascents') }}
+                </p>
+              </v-col>
+              <v-col class="text-center col-4">
+                <p class="figures">
+                  {{ figures.all.photos_count }}
+                  <small
+                    v-if="figures.latest.photos_count > 0"
+                    :title="$tc('home.figures.in24Hours.photos', figures.latest.photos_count, { count: figures.latest.photos_count } )"
+                  >
+                    +{{ figures.latest.photos_count }}
+                  </small>
+                </p>
+                <p>
+                  {{ $t('home.figures.photos') }}
+                </p>
+              </v-col>
+              <v-col class="text-center col-4">
+                <p class="figures">
+                  {{ figures.all.guides_count }}
+                  <small
+                    v-if="figures.latest.guides_count > 0"
+                    :title="$tc('home.figures.in24Hours.guides', figures.latest.guides_count, { count: figures.latest.guides_count } )"
+                  >
+                    +{{ figures.latest.guides_count }}
+                  </small>
+                </p>
+                <p>
+                  {{ $t('home.figures.guides') }}
+                </p>
+              </v-col>
+              <v-col class="text-center col-4">
+                <p class="figures">
+                  {{ figures.all.comments_count }}
+                  <small
+                    v-if="figures.latest.comments_count > 0"
+                    :title="$tc('home.figures.in24Hours.comments', figures.latest.comments_count, { count: figures.latest.comments_count } )"
+                  >
+                    +{{ figures.latest.comments_count }}
+                  </small>
+                </p>
+                <p>
+                  {{ $t('home.figures.comments') }}
+                </p>
+              </v-col>
+              <v-col class="text-center col-4">
+                <p class="figures">
+                  {{ figures.all.videos_count }}
+                  <small
+                    v-if="figures.latest.videos_count > 0"
+                    :title="$tc('home.figures.in24Hours.videos', figures.latest.videos_count, { count: figures.latest.videos_count } )"
+                  >
+                    +{{ figures.latest.videos_count }}
+                  </small>
+                </p>
+                <p>
+                  {{ $t('home.figures.videos') }}
+                </p>
+              </v-col>
+            </v-row>
+            <p
+              v-if="addInLast24Hours > 0"
+              class="text-center figures"
+            >
+              <small>
+                {{ $tc('home.figures.addedSince24Hours', addInLast24Hours, { count: addInLast24Hours }) }}
               </small>
             </p>
-            <p>
-              {{ $t('home.figures.crags') }}
-            </p>
-          </v-col>
-          <v-col class="text-center col-4">
-            <p class="figures">
-              {{ figures.all.users_count }}
-              <small
-                v-if="figures.latest.users_count > 0"
-                :title="$tc('home.figures.in24Hours.climbers', figures.latest.users_count, { count: figures.latest.users_count } )"
-              >
-                +{{ figures.latest.users_count }}
-              </small>
-            </p>
-            <p>
-              {{ $t('home.figures.climbers') }}
-            </p>
-          </v-col>
-          <v-col class="text-center col-4">
-            <p class="figures">
-              {{ figures.all.gyms_count }}
-              <small
-                v-if="figures.latest.gyms_count > 0"
-                :title="$tc('home.figures.in24Hours.gyms', figures.latest.gyms_count, { count: figures.latest.gyms_count } )"
-              >
-                +{{ figures.latest.gyms_count }}
-              </small>
-            </p>
-            <p>
-              {{ $t('home.figures.gyms') }}
-            </p>
-          </v-col>
-          <v-col class="text-center col-4">
-            <p class="figures">
-              {{ figures.all.routes_count }}
-              <small
-                v-if="figures.latest.routes_count > 0"
-                :title="$tc('home.figures.in24Hours.routes', figures.latest.routes_count, { count: figures.latest.routes_count } )"
-              >
-                +{{ figures.latest.routes_count }}
-              </small>
-            </p>
-            <p>
-              {{ $t('home.figures.routes') }}
-            </p>
-          </v-col>
-          <v-col class="text-center col-4">
-            <p class="figures">
-              {{ figures.all.ascents_count }}
-              <small
-                v-if="figures.latest.ascents_count > 0"
-                :title="$tc('home.figures.in24Hours.ascents', figures.latest.ascents_count, { count: figures.latest.ascents_count } )"
-              >
-                +{{ figures.latest.ascents_count }}
-              </small>
-            </p>
-            <p>
-              {{ $t('home.figures.ascents') }}
-            </p>
-          </v-col>
-          <v-col class="text-center col-4">
-            <p class="figures">
-              {{ figures.all.photos_count }}
-              <small
-                v-if="figures.latest.photos_count > 0"
-                :title="$tc('home.figures.in24Hours.photos', figures.latest.photos_count, { count: figures.latest.photos_count } )"
-              >
-                +{{ figures.latest.photos_count }}
-              </small>
-            </p>
-            <p>
-              {{ $t('home.figures.photos') }}
-            </p>
-          </v-col>
-          <v-col class="text-center col-4">
-            <p class="figures">
-              {{ figures.all.guides_count }}
-              <small
-                v-if="figures.latest.guides_count > 0"
-                :title="$tc('home.figures.in24Hours.guides', figures.latest.guides_count, { count: figures.latest.guides_count } )"
-              >
-                +{{ figures.latest.guides_count }}
-              </small>
-            </p>
-            <p>
-              {{ $t('home.figures.guides') }}
-            </p>
-          </v-col>
-          <v-col class="text-center col-4">
-            <p class="figures">
-              {{ figures.all.comments_count }}
-              <small
-                v-if="figures.latest.comments_count > 0"
-                :title="$tc('home.figures.in24Hours.comments', figures.latest.comments_count, { count: figures.latest.comments_count } )"
-              >
-                +{{ figures.latest.comments_count }}
-              </small>
-            </p>
-            <p>
-              {{ $t('home.figures.comments') }}
-            </p>
-          </v-col>
-          <v-col class="text-center col-4">
-            <p class="figures">
-              {{ figures.all.videos_count }}
-              <small
-                v-if="figures.latest.videos_count > 0"
-                :title="$tc('home.figures.in24Hours.videos', figures.latest.videos_count, { count: figures.latest.videos_count } )"
-              >
-                +{{ figures.latest.videos_count }}
-              </small>
-            </p>
-            <p>
-              {{ $t('home.figures.videos') }}
-            </p>
-          </v-col>
-        </v-row>
-        <p
-          v-if="addInLast24Hours > 0"
-          class="text-center figures"
-        >
-          <small>
-            {{ $tc('home.figures.addedSince24Hours', addInLast24Hours, { count: addInLast24Hours }) }}
-          </small>
-        </p>
-      </div>
-    </v-col>
-  </v-row>
+          </div>
+        </v-col>
+      </v-row>
+    </v-sheet>
+  </div>
 </template>
 
 <script>

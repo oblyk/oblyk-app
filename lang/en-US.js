@@ -14,7 +14,8 @@ export default {
     ok: 'ok',
     search: 'Search',
     addFilters: 'Add filters',
-    createMyAccount: 'Creat my account',
+    createMyAccount: 'Create my account',
+    createFreeAccount: 'Create my free account',
     changeBanner: 'Change banner',
     uploadBanner: 'Upload banner',
     dontAskMeAgain: "Don't ask me again",
@@ -1499,6 +1500,25 @@ export default {
     }
   },
   home: {
+    header: {
+      title: {
+        intro: 'Community and open source platform dedicated to climbing.'
+      },
+      crags: {
+        title: 'Crags, Routes & Guidebooks of the world',
+        intro: 'Oblyk is tens of thousands of routes referenced on thousands of climbing sites.<br>Find where to climb around you!',
+        find: 'Find a natural site'
+      },
+      ascents: {
+        title: 'Keep a ascents logbook',
+        intro: 'Keep track of the routes, boulders and multi pitches you do as you go along in your climbing life.'
+      },
+      climbers: {
+        title: 'Find a climbing partner',
+        intro: "Sign up for the climber's map, find climbers around you.<br>Get in touch and organise your first outing!",
+        find: 'Find a climber'
+      }
+    },
     crags: {
       title: 'Check crags information',
       body: 'Oblyk is a big <strong>climbing spots</strong> database from France and the world, always <strong>updated by the community</strong>. You can see it using the search or using the <strong>crags map</strong>.',

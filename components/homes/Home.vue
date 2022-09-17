@@ -1,20 +1,6 @@
 <template>
   <div>
-    <v-parallax
-      id="home-parallax"
-      src="/images/oblyk-home-baume-rousse-small.webp"
-      srcset="/images/oblyk-home-baume-rousse-small.webp 800w, /images/oblyk-home-baume-rousse.webp 1640w, /images/oblyk-home-baume-rousse.webp 1980w"
-      class="text-center home-parallax"
-      height="550"
-    >
-      <h1 class="font-weight-medium oblyk-title">
-        Oblyk
-      </h1>
-      <h2 class="oblyk-subtitle">
-        Outdoor & Indoor Climbing Community
-      </h2>
-    </v-parallax>
-
+    <home-header />
     <v-container class="home-container">
       <lazy-hydrate when-visible>
         <home-box-crag-info class="home-boxes" />
@@ -26,19 +12,19 @@
         <home-box-partner class="home-boxes" />
       </lazy-hydrate>
       <lazy-hydrate when-visible>
-        <home-box-help class="home-boxes" />
-      </lazy-hydrate>
-      <lazy-hydrate when-visible>
         <home-box-guide-book class="home-boxes" />
-      </lazy-hydrate>
-      <lazy-hydrate when-visible>
-        <home-box-developer class="home-boxes" />
       </lazy-hydrate>
       <lazy-hydrate when-visible>
         <last-article />
       </lazy-hydrate>
       <lazy-hydrate when-visible>
         <home-box-figures />
+      </lazy-hydrate>
+      <lazy-hydrate when-visible>
+        <home-box-help class="home-boxes" />
+      </lazy-hydrate>
+      <lazy-hydrate when-visible>
+        <home-box-developer class="home-boxes" />
       </lazy-hydrate>
     </v-container>
     <app-footer />
@@ -47,6 +33,7 @@
 
 <script>
 import LazyHydrate from 'vue-lazy-hydration'
+import HomeHeader from '~/components/homes/HomeHeader'
 const HomeBoxCragInfo = () => import('@/components/homes/HomeBoxCragInfo')
 const HomeBoxAscentsLog = () => import('@/components/homes/HomeBoxAscentsLog')
 const HomeBoxDeveloper = () => import('@/components/homes/HomeBoxDeveloper')
@@ -60,6 +47,7 @@ const LastArticle = () => import('@/components/articles/LastArticle')
 export default {
   name: 'Home',
   components: {
+    HomeHeader,
     LazyHydrate,
     HomeBoxDeveloper,
     LastArticle,

@@ -1,12 +1,9 @@
 <template>
   <div class="mb-16">
-    <h3 class="text-h5 text-md-h4 font-weight-bold text-center mb-5">
+    <h3 class="text-h5 font-weight-bold text-center mb-5">
       {{ $t('components.article.whatsNew') }}
     </h3>
-    <div
-      v-if="loadingLastArticles"
-      class="last-article-container"
-    >
+    <div v-if="loadingLastArticles">
       <div
         v-for="index in 3"
         :key="`skeleton-last-article-${index}`"
@@ -69,11 +66,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-.last-article-container {
-  max-width: 900px;
-  margin-left: auto;
-  margin-right: auto;
-}
-</style>

@@ -15,6 +15,7 @@ export default {
     search: 'Chercher',
     addFilters: 'Ajouter des filtres',
     createMyAccount: 'Créer mon compte',
+    createFreeAccount: 'Créer mon compte gratuit',
     changeBanner: 'Changer le bandeau',
     uploadBanner: 'Uploader un bandeau',
     dontAskMeAgain: 'Ne plus me demander',
@@ -1499,6 +1500,25 @@ export default {
     }
   },
   home: {
+    header: {
+      title: {
+        intro: "Plateforme communautaire et open source dédiée à l'escalade."
+      },
+      crags: {
+        title: 'Les falaises, Voies & Topos du monde',
+        intro: "Oblyk c'est des dizaines de milliers de voies référencées sur des milliers de sites d'escalade.<br>Trouver où grimper autour de chez vous !",
+        find: 'Trouver un site naturel'
+      },
+      ascents: {
+        title: 'Tien un carnet de croix',
+        intro: 'Note tes voies, blocs, grande-voies que tu fais à fur et à mesure de ta vie de grimpeur.<br>Suis tes performances et souviens-toi de ce que tu as fait.'
+      },
+      climbers: {
+        title: 'Trouve un·e partenaire de grimpe',
+        intro: 'Inscrit toi a la carte des grimpeurs, trouve des grimpeurs ou grimpeuse autour de toi.<br>Prenez contact et organisez votre première sortie !',
+        find: 'Trouve un·e grimpeur·euse'
+      }
+    },
     crags: {
       title: 'Check les infos des falaises',
       body: "Oblyk est une grande base de donnée des <strong>falaises d'escalade</strong> de France et du monde constamment <strong>enrichie par la communauté</strong>, tu peux consulter celle-ci en utilisant la recherche ou en naviguant sur la <strong>carte des falaises.</strong>",

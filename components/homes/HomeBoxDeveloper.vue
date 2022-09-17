@@ -1,6 +1,6 @@
 <template>
   <v-row>
-    <v-col align-self="center" cols="12" md="6" order-md="last">
+    <v-col align-self="center" cols="12" md="6">
       <h3 class="text-h5 mb-3 font-weight-bold">
         {{ $t('home.developer.title') }}
       </h3>
