@@ -8,5 +8,13 @@ class CommonApi extends BaseApi {
       headers: { HttpApiAccessToken: this.apiAccessToken }
     })
   }
+
+  lastAdded () {
+    return this.axios.request({
+      method: 'GET',
+      url: `${this.baseUrl}/last_added.json`,
+      headers: { HttpApiAccessToken: this.apiAccessToken }
+    })
+  }
 }
 export default CommonApi

@@ -1553,6 +1553,11 @@ export default {
       body2: '<strong>Buying a guidebook</strong>, it is helping passionate climbers who give a lot to maintain, develop, clean climbing spots where you will climb for free.',
       action: 'Our tools for guide books'
     },
+    lastObjects: {
+      crags: 'Latest climbing sites added',
+      gyms: 'Latest climbing gyms added',
+      cragRoutes: 'The latest crag routes and boulders added'
+    },
     figures: {
       title: 'Oblyk in a few figures',
       crags: 'Crags',

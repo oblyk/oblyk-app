@@ -1553,6 +1553,11 @@ export default {
       body2: "<strong>Acheter un topo</strong>, c'est soutenir des passionnés qui donnent énormément pour maintenir, développer, nettoyer les <strong>sites d'escalade</strong> sur lesquels vous allez grimper gratuitement.",
       action: 'Nos outils pour les topos'
     },
+    lastObjects: {
+      crags: 'Les derniers sites ajoutés',
+      gyms: 'Les derniers salles ajoutées',
+      cragRoutes: 'Les dernières voies et blocs'
+    },
     figures: {
       title: 'Oblyk en quelques chiffres',
       crags: 'Falaises',
