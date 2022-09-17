@@ -1522,7 +1522,7 @@ export default {
     crags: {
       title: 'Check les infos des falaises',
       body: "Oblyk est une grande base de donnée des <strong>falaises d'escalade</strong> de France et du monde constamment <strong>enrichie par la communauté</strong>, tu peux consulter celle-ci en utilisant la recherche ou en naviguant sur la <strong>carte des falaises.</strong>",
-      action: 'La carte des falaises'
+      action: 'Trouver un site naturel'
     },
     ascents: {
       title: 'Tiens un carnet de croix',
@@ -1531,7 +1531,7 @@ export default {
     partner: {
       title: 'Trouve un·e partenaire de grimpe',
       body: "Tu arrives dans une nouvelle région, tu aimerais trouver quelqu'un avec qui <strong>grimper en falaise ou en salle</strong> ?<br>Regarde du côté de notre <strong>carte des grimpeuses et grimpeurs</strong>, peut-être que tu trouveras quelqu'un avec qui grimper.",
-      action: 'La carte des grimpeur·euse·s'
+      action: 'Comment ça marche ?'
     },
     supportUs: {
       title: 'Nous soutenir',

@@ -6,7 +6,7 @@
       </h3>
       <p v-html="$t('home.crags.body')" />
       <p class="text-right">
-        <v-btn outlined color="primary" to="/maps/crags">
+        <v-btn outlined color="primary" to="/find/crags">
           {{ $t('home.crags.action') }}
         </v-btn>
       </p>

@@ -1522,7 +1522,7 @@ export default {
     crags: {
       title: 'Check crags information',
       body: 'Oblyk is a big <strong>climbing spots</strong> database from France and the world, always <strong>updated by the community</strong>. You can see it using the search or using the <strong>crags map</strong>.',
-      action: 'Crags map'
+      action: 'Find a crags'
     },
     ascents: {
       title: 'Hold a sendlist',
@@ -1531,7 +1531,7 @@ export default {
     partner: {
       title: 'Find a climbing partner',
       body: 'Coming in a new region, looking for someone to <strong>climb with, in the gym or outdoor</strong>?<bt>Look into the <strong>map of climber</strong>, maybe you will find somebody to climb with. ',
-      action: 'More about it'
+      action: 'how it works ?'
     },
     supportUs: {
       title: 'Support Us',
