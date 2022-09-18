@@ -15,6 +15,7 @@
     </v-col>
     <v-col align-self="center" cols="12" md="6">
       <v-img
+        contain
         width="576"
         height="254"
         src="/svg/homes/help.svg"

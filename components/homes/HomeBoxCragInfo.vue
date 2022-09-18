@@ -13,6 +13,7 @@
     </v-col>
     <v-col align-self="center" cols="12" md="6">
       <v-img
+        contain
         width="576"
         height="285"
         src="/svg/homes/crags-info.svg"
