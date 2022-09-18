@@ -230,4 +230,10 @@ export default {
     top: 64px
   }
 }
+
+@media screen and (max-width: 960px) {
+  .last-objects .last-objects-scroll-to-right {
+    right: -8px;
+  }
+}
 </style>
