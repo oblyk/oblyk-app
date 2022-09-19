@@ -91,7 +91,7 @@ export default {
     },
 
     imgBalise (photo) {
-      return `<img src="${photo.pictureUrl}" alt="${photo.description}">`
+      return `<img src="${photo.pictureUrl}" alt="${photo.description}" loading="lazy">`
     }
   }
 }

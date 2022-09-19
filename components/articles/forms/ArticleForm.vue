@@ -37,14 +37,24 @@
       <p class="font-weight-bold">
         {{ $t('components.article.helpers.title') }}
       </p>
-      <ul>
-        <li>
-          <code>text-center</code> : {{ $t('components.article.helpers.textCenter') }} <copy-btn message="text-center" />
-        </li>
-        <li>
-          <code>text--disabled</code> : {{ $t('components.article.helpers.textDisabled') }} <copy-btn message="text--disabled" />
-        </li>
-      </ul>
+      <v-row>
+        <v-col cols="6" md="4" lg="3">
+          <v-text-field
+            :label="$t('components.article.helpers.textCenter')"
+            dense
+            value="text-center"
+            outlined
+          />
+        </v-col>
+        <v-col cols="6" md="4" lg="3">
+          <v-text-field
+            :label="$t('components.article.helpers.textDisabled')"
+            dense
+            value="text--disabled"
+            outlined
+          />
+        </v-col>
+      </v-row>
     </div>
 
     <close-form />
@@ -61,11 +71,10 @@ import SubmitForm from '@/components/forms/SubmitForm'
 import ArticleApi from '~/services/oblyk-api/ArticleApi'
 import CloseForm from '@/components/forms/CloseForm'
 import Article from '@/models/Article'
-import CopyBtn from '@/components/ui/CopyBtn'
 
 export default {
   name: 'ArticleForm',
-  components: { CopyBtn, CloseForm, SubmitForm },
+  components: { CloseForm, SubmitForm },
   mixins: [FormHelpers],
   props: {
     article: {
