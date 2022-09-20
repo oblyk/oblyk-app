@@ -18,6 +18,7 @@
     </v-container>
     <v-container class="article-container">
       <section
+        ref="articleBody"
         class="article-body mb-10 mt-4"
         v-html="article.body"
       />
@@ -36,6 +37,37 @@
         {{ $t('components.comment.comments') }}
       </h2>
       <comment-list commentable-type="Article" :commentable-id="article.id" />
+
+      <v-dialog
+        v-model="pictureDialog"
+        dark
+        overlay-opacity="0.9"
+        content-class="picture-dialogue"
+      >
+        <v-row
+          class="ma-0"
+          @click="pictureDialog = false"
+        >
+          <v-col
+            align-self="center"
+            class="pa-0 text-center"
+          >
+            <v-img
+              height="calc(100vh - 150px)"
+              width="calc(100vw - 80px)"
+              class="d-inline-block"
+              contain
+              :src="pictureDialogSrc"
+              :alt="pictureDialogTitle"
+            />
+            <div class="pt-4 text-center">
+              <p class="mb-0 font-weight-bold picture-dialogue-subtitle">
+                {{ pictureDialogTitle }}
+              </p>
+            </div>
+          </v-col>
+        </v-row>
+      </v-dialog>
     </v-container>
     <app-footer />
   </div>
@@ -67,7 +99,18 @@ export default {
 
   data () {
     return {
+      clickIsAdded: false,
+      pictureDialog: false,
+      pictureDialogSrc: null,
+      pictureDialogTitle: null,
+
       mdiForum
+    }
+  },
+
+  watch: {
+    article () {
+      setTimeout(() => { this.addOnClickOnImg() }, 500)
     }
   },
 
@@ -75,6 +118,26 @@ export default {
     setTimeout(() => {
       new ArticleApi(this.$axios, this.$auth).view(this.article.id)
     }, 5000)
+  },
+
+  methods: {
+    openPictureDialog (imgEl) {
+      this.pictureDialogSrc = imgEl.getAttribute('src')
+      this.pictureDialogTitle = imgEl.getAttribute('alt')
+      this.pictureDialog = true
+    },
+
+    addOnClickOnImg () {
+      if (this.article.body && this.$refs.articleBody && !this.clickIsAdded) {
+        for (const picture of this.$refs.articleBody.querySelectorAll('img')) {
+          picture.addEventListener('click', (event) => {
+            event.preventDefault()
+            this.openPictureDialog(picture)
+          })
+        }
+        this.clickIsAdded = true
+      }
+    }
   }
 }
 </script>
@@ -98,10 +161,15 @@ export default {
       text-align: justify;
     }
     img {
+      cursor: pointer;
       max-width: 100%;
       border-radius: 10px;
       -webkit-filter: drop-shadow(0 5px 11px rgba(0,0,0,0.02));
       filter: drop-shadow(0 5px 11px rgba(0,0,0,0.02));
+      transition: transform 0.2s;
+      &:hover {
+        transform: scale(1.1);
+      }
     }
     p + img {
       margin-top: 15px;
@@ -118,6 +186,13 @@ export default {
     h6 {
       line-height: 1.3;
     }
+  }
+}
+.picture-dialogue {
+  box-shadow: none;
+  height: calc(100vh - 50px);
+  .picture-dialogue-subtitle {
+    color: white;
   }
 }
 .theme--light {
