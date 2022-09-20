@@ -117,19 +117,25 @@
     </div>
 
     <!-- Last crag routes -->
-    <h3 class="mb-2 mt-10 text-h5 font-weight-bold">
+    <h3 class="mb-5 mt-10 text-h5 font-weight-bold">
       <v-icon left>
         {{ mdiSourceBranch }}
       </v-icon>
       {{ $t('home.lastObjects.cragRoutes') }}
     </h3>
 
-    <div
-      v-for="(cragRoute, index) in lastObjects.cragRoutes"
-      :key="`crag-route-ascent-${index}`"
-    >
-      <crag-route-small-line :route="cragRoute" />
-    </div>
+    <v-row>
+      <v-col
+        v-for="(cragRoute, index) in lastObjects.cragRoutes"
+        :key="`crag-route-ascent-${index}`"
+        class="pa-1"
+        cols="12"
+        md="6"
+        lg="4"
+      >
+        <crag-route-small-line :route="cragRoute" />
+      </v-col>
+    </v-row>
 
     <client-only>
       <crag-route-drawer />
