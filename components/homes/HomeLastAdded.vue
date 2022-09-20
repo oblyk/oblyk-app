@@ -39,8 +39,13 @@
               :alt="crag.name"
             >
               <div class="last-objects-item-description">
-                <p class="mb-0 text-truncate font-weight-bold">
+                <p class="mb-n1 text-truncate font-weight-bold">
                   {{ crag.name }}
+                </p>
+                <p class="mb-0 text-truncate">
+                  <small>
+                    {{ crag.city }}, {{ crag.region }}
+                  </small>
                 </p>
               </div>
             </v-img>
@@ -97,8 +102,13 @@
               :alt="gym.name"
             >
               <div class="last-objects-item-description">
-                <p class="mb-0 text-truncate font-weight-bold">
+                <p class="mb-n1 text-truncate font-weight-bold">
                   {{ gym.name }}
+                </p>
+                <p class="mb-0 text-truncate">
+                  <small>
+                    {{ gym.city }}, {{ gym.region }}
+                  </small>
                 </p>
               </div>
             </v-img>
