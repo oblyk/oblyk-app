@@ -4,7 +4,7 @@
       {{ $t('home.figures.title') }}
     </h3>
     <v-sheet
-      class="pl-4 pr-4 pt-10 pb-10 rounded-lg"
+      class="px-0 px-md-4 py-10 rounded-lg"
     >
       <v-row>
         <v-col>
@@ -224,6 +224,7 @@ export default {
   .figures {
     font-size: 1.2em;
     margin-bottom: 0;
+    white-space: nowrap;
     small {
       display: inline-block;
       margin-top: -5px;
