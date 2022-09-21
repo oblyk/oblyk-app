@@ -16,7 +16,11 @@
           <v-list-item-content>
             <v-list-item-title>
               {{ gym.country }}, {{ gym.city }}
-              <v-btn small class="ml-2">
+              <v-btn
+                small
+                class="ml-2"
+                elevation="0"
+              >
                 {{ $t('actions.seeOnTheMap') }}
               </v-btn>
             </v-list-item-title>
