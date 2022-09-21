@@ -107,7 +107,7 @@
                 </p>
                 <p class="mb-0 text-truncate">
                   <small>
-                    {{ gym.city }}, {{ gym.region }}
+                    {{ gym.city }}, {{ gym.country }}
                   </small>
                 </p>
               </div>
