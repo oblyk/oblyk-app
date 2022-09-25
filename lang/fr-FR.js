@@ -1510,12 +1510,12 @@ export default {
         find: 'Trouver un site naturel'
       },
       ascents: {
-        title: 'Tien un carnet de croix',
-        intro: 'Note tes voies, blocs, grande-voies que tu fais à fur et à mesure de ta vie de grimpeur.<br>Suis tes performances et souviens-toi de ce que tu as fait.'
+        title: 'Tiens un carnet de croix',
+        intro: 'Note tes voies, blocs, grande-voies que tu fais au fur et à mesure de ta vie de grimpeur.<br>Suis tes performances et souviens-toi de ce que tu as fait.'
       },
       climbers: {
         title: 'Trouve un·e partenaire de grimpe',
-        intro: 'Inscrit toi a la carte des grimpeurs, trouve des grimpeurs ou grimpeuse autour de toi.<br>Prenez contact et organisez votre première sortie !',
+        intro: 'Inscris-toi à la carte des grimpeurs, trouve des grimpeurs ou grimpeuses autour de toi.<br>Prenez contact et organisez votre première sortie !',
         find: 'Trouve un·e grimpeur·euse'
       }
     },
