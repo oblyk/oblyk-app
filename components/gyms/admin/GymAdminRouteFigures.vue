@@ -1,6 +1,6 @@
 <template>
   <v-card
-    :to="`${gym.amindPath}/routes/tables`"
+    :to="`${gym.adminPath}/routes/tables`"
     class="full-height"
   >
     <v-card-title>

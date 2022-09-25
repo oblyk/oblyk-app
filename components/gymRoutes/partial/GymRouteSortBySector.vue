@@ -29,7 +29,7 @@
           <!-- Edit Sector -->
           <v-list-item
             link
-            :to="`/a${gymSector.path}/edit`"
+            :to="`${gymSector.path}/edit`"
           >
             <v-list-item-icon>
               <v-icon>{{ mdiPencil }}</v-icon>
