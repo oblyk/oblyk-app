@@ -40,14 +40,14 @@
                   {{ $t('actions.createFreeAccount') }}
                 </v-btn>
                 <v-btn
-                  to="https://www.facebook.com/pageoblyk"
+                  href="https://www.facebook.com/pageoblyk"
                   icon
                   class="mb-2 ml-md-2"
                 >
                   <v-icon>{{ mdiFacebook }}</v-icon>
                 </v-btn>
                 <v-btn
-                  to="https://github.com/oblyk"
+                  href="https://github.com/oblyk"
                   icon
                   class="mb-2"
                 >
