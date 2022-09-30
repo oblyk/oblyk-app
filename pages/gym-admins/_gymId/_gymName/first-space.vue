@@ -32,7 +32,7 @@
         <p v-if="gym.gym_grades_count > 0" class="text-center mt-10">
           <v-btn
             color="primary"
-            :to="`/a${gym.path}/spaces/new`"
+            :to="`/a${gym.spacePath}/new`"
           >
             {{ $t('components.gym.createFirstSpace') }}
           </v-btn>
