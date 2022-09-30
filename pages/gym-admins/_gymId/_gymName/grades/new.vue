@@ -6,7 +6,7 @@
           {{ $t('components.gymGrade.add') }}
         </h2>
         <p class="subtitle-2 mb-8">
-          {{ $t('components.gymGrade.explain') }}}
+          {{ $t('components.gymGrade.explain') }}
         </p>
 
         <gym-grade-form

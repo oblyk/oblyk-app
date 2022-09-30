@@ -23,7 +23,7 @@
             <v-btn
               text
               color="primary"
-              :to="`${gym.path}/first-difficulty-system`"
+              :to="`${gym.adminPath}/first-difficulty-system`"
             >
               {{ $t('components.gym.difficultySystem') }}
             </v-btn>

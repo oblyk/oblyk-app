@@ -1,6 +1,6 @@
 <template>
   <v-card
-    :to="gym.gym_spaces.length > 0 ? gym.firstSpacePath : `${gym.path}/first-space`"
+    :to="gym.gym_spaces.length === 0 ? `${gym.adminPath}/first-space` : gym.firstSpacePath"
     class="full-height"
   >
     <v-card-title>
@@ -33,7 +33,10 @@ import { mdiMap } from '@mdi/js'
 export default {
   name: 'GymAdminSpaceFigures',
   props: {
-    gym: Object
+    gym: {
+      type: Object,
+      required: true
+    }
   },
 
   data () {
