@@ -28,7 +28,7 @@ export default class Gym extends ActiveData {
 
   get firstSpacePath () {
     const space = (this.gym_spaces || [])[0]
-    return (space) ? `${this.adminPath}/${space.id}/${space.slug_name}/plan` : ''
+    return (space) ? `${this.spacePath}/${space.id}/${space.slug_name}/plan` : ''
   }
 
   get bannerUrl () {

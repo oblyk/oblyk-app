@@ -31,7 +31,7 @@
     <client-only>
       <v-tab
         v-if="currentUserIsGymAdmin()"
-        :to="`${gym.path}/admin`"
+        :to="gym.adminPath"
       >
         {{ $t('components.gym.tabs.admin') }}
       </v-tab>
