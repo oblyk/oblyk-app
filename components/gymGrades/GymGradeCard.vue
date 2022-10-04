@@ -27,7 +27,7 @@
             <tr
               v-for="gradeLine in gymGrade.gradeLines"
               :key="gradeLine.id"
-              @click="!presentation ? $router.push(`/a${gradeLine.path}/edit`) : null"
+              @click="!presentation ? $router.push(`${gradeLine.path}/edit`) : null"
             >
               <td class="smallest-table-column">
                 {{ gradeLine.order }}

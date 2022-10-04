@@ -15,7 +15,7 @@ export default class GymGradeLine extends ActiveData {
   }
 
   get path () {
-    return `/gyms/${this.gym.id}/${this.gym.slug_name}/grades/${this.gym_grade.id}/grade-lines/${this.id}`
+    return `/gym-admins/${this.gym.id}/${this.gym.slug_name}/grades/${this.gym_grade.id}/grade-lines/${this.id}`
   }
 
   get gradeValue () {
