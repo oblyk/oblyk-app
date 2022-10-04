@@ -28,8 +28,6 @@ export default class GymRoute extends ActiveData {
   get pictureUrl () {
     if (this.hasPicture) {
       return `${process.env.VUE_APP_OBLYK_API_URL}${this.picture}`
-    } else if (this.Gym.banner_thumbnail_url) {
-      return `${process.env.VUE_APP_OBLYK_API_URL}${this.Gym.banner_thumbnail_url}`
     } else {
       return '/svg/missing-picture.svg'
     }

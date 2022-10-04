@@ -7,6 +7,7 @@
   >
     <v-row class="mb-4">
       <v-col
+        v-if="gymRoute.thumbnail"
         class="pt-0 pb-0 gym-route-image-col"
       >
         <v-avatar

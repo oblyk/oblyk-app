@@ -3,13 +3,12 @@
     <template #activator="{ on, attrs }">
       <v-btn
         icon
-        dark
-        large
+        :large="large"
         v-bind="attrs"
         v-on="on"
       >
         <v-icon
-          large
+          :large="large"
         >
           {{ mdiDotsVertical }}
         </v-icon>
@@ -88,7 +87,11 @@ export default {
   name: 'GymRouteActionMenu',
   props: {
     gymRoute: Object,
-    getSpaceRoutes: Function
+    getSpaceRoutes: Function,
+    large: {
+      type: Boolean,
+      default: true
+    }
   },
 
   data () {

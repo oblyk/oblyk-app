@@ -4,7 +4,9 @@
 
     <v-card v-if="!loadingRoute" color="mt-5 mb-5">
       <v-img
-        :height="gymRoute.hasPicture ? 550 : 60"
+        v-if="gymRoute.hasPicture"
+        dark
+        :height="gymRoute.hasPicture ? 400 : 60"
         :src="gymRoute.pictureUrl"
         gradient="to bottom, rgba(0, 0, 0, 0.5) 0%, transparent 100px"
       >
@@ -18,7 +20,6 @@
           <v-btn
             icon
             large
-            dark
             class="float-right"
             @click="changeCardSize()"
           >
@@ -29,16 +30,41 @@
         </p>
       </v-img>
       <v-row class="mt-0">
-        <v-col class="gym-tag-large-col pr-0">
+        <v-col
+          v-if="!gymRoute.hasPicture"
+          cols="1"
+        >
+          <gym-route-action-menu
+            v-if="currentUserIsGymAdmin()"
+            :get-space-routes="getSpaceRoutes"
+            :gym-route="gymRoute"
+            :large="false"
+          />
+        </v-col>
+        <v-col align-self="center" class="gym-tag-large-col pr-0 text-center">
           <gym-route-tag-and-hold :gym-route="gymRoute" />
         </v-col>
-        <v-col>
+        <v-col align-self="center">
           <strong>
             {{ gymRoute.name }}
           </strong>
         </v-col>
-        <v-col class="gym-grade-large-col text-center pl-0">
+        <v-col align-self="center" class="gym-grade-large-col text-center pl-0">
           <gym-route-grade-and-point :gym-route="gymRoute" />
+        </v-col>
+        <v-col
+          v-if="!gymRoute.hasPicture"
+          cols="1"
+        >
+          <v-btn
+            icon
+            class="float-right"
+            @click="changeCardSize()"
+          >
+            <v-icon>
+              {{ mdiClose }}
+            </v-icon>
+          </v-btn>
         </v-col>
       </v-row>
 
