@@ -51,7 +51,10 @@
             {{ mdiCheckAll }}
           </v-icon>
           {{ gymRoute.ascents_count || 0 }}
-          <ascent-gym-route-status-icon :gym-route="gymRoute" />
+          <ascent-gym-route-status-icon
+            v-if="$auth.loggedIn"
+            :gym-route="gymRoute"
+          />
         </span>
       </v-col>
     </v-row>

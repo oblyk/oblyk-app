@@ -31,11 +31,10 @@
       </v-img>
       <v-row class="mt-0">
         <v-col
-          v-if="!gymRoute.hasPicture"
+          v-if="!gymRoute.hasPicture && currentUserIsGymAdmin()"
           cols="1"
         >
           <gym-route-action-menu
-            v-if="currentUserIsGymAdmin()"
             :get-space-routes="getSpaceRoutes"
             :gym-route="gymRoute"
             :large="false"
