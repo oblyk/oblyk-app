@@ -63,22 +63,21 @@
             :items="tables.routes"
             :items-per-page="15"
             :loading="loadingRoutes"
-            class="elevation-1"
             item-key="id"
             show-select
           >
-            <template #item.color="{ item }">
+            <template #[`item.color`]="{ item }">
               <gym-route-tag-and-hold :gym-route="item.color" />
             </template>
-            <template #item.space="{ item }">
+            <template #[`item.space`]="{ item }">
               <nuxt-link :to="`${item.space.gymSpacePath}/plan`">
                 {{ item.space.gym_space.name }}
               </nuxt-link>
             </template>
-            <template #item.openedAt="{ item }">
+            <template #[`item.openedAt`]="{ item }">
               {{ humanizeDate(item.openedAt) }}
             </template>
-            <template #item.edit="{ item }">
+            <template #[`item.edit`]="{ item }">
               <nuxt-link
                 :to="`/a${item.edit.path}/edit?redirect_to=${$route.fullPath}`"
               >
