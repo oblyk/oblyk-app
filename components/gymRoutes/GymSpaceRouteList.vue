@@ -22,7 +22,6 @@
 
     <!-- Routes list -->
     <div v-if="!loadingRoutes">
-
       <!-- If sort by sector -->
       <gym-routes-by-sector
         v-if="sort === 'sector'"
@@ -125,8 +124,8 @@ export default {
   },
 
   mounted () {
-    this.$root.$on('filterBySector', (gymSectorId) => {
-      this.filterBySector(gymSectorId)
+    this.$root.$on('filterBySector', (gymSectorId, sectorName) => {
+      this.filterBySector(gymSectorId, sectorName)
     })
 
     this.$root.$on('dismountGymRoutesInSector', (gymId, spaceId, sectorId) => {
@@ -225,8 +224,8 @@ export default {
       }
     },
 
-    filterBySector (sectorId) {
-      this.filter.text = `secteur ${sectorId}`
+    filterBySector (sectorId, sectorName) {
+      this.filter.text = `secteur : ${sectorName}`
       this.filter.icon = mdiTextureBox
       this.getRoutes(sectorId)
       this.$root.$emit('showGymSpaceLine')

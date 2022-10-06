@@ -30,7 +30,7 @@
           :weight="2"
           dash-array="5px"
           :lat-lngs="sector.jsonPolygon"
-          @click="filterBySector(sector.id)"
+          @click="filterBySector(sector.id, sector.name)"
         />
       </editable-map>
     </div>
@@ -232,8 +232,8 @@ export default {
         })
     },
 
-    filterBySector (sectorId) {
-      this.$root.$emit('filterBySector', sectorId)
+    filterBySector (sectorId, sectorName) {
+      this.$root.$emit('filterBySector', sectorId, sectorName)
       this.activeSector(sectorId)
     }
   }
