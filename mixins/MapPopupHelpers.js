@@ -245,7 +245,7 @@ export const MapPopupHelpers = {
       popup.innerHTML = `
         <div class="map-popup-cover" style="background-image: url(${user.thumbnailBannerUrl})">
           <div class="user-map-popup-name-and-avatar">
-             <img alt="${user.full_name}" src="${user.thumbnailAvatarUrl}" class="user-map-popup-avatar" />
+             <img alt="${user.full_name}" src="${user.avatarUrl}" class="user-map-popup-avatar" />
              <span class="user-map-popup-name">
                 <strong>${user.full_name}</strong><br>
                 ${genreAndAge}
