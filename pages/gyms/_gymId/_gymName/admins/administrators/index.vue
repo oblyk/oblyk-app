@@ -3,6 +3,8 @@
     <spinner v-if="loadingGymAdministrators" />
 
     <v-container v-if="!loadingGymAdministrators">
+      <v-breadcrumbs :items="breadcrumbs" />
+
       <v-simple-table>
         <template #default>
           <thead>
@@ -38,11 +40,14 @@
         </template>
       </v-simple-table>
 
-      <div class="mt-3">
+      <div
+        v-if="gym"
+        class="mt-3"
+      >
         <v-btn
           icon
           left
-          :to="`/gyms/${gymId}/${gymName}/admins`"
+          :to="gym.adminPath"
         >
           <v-icon>
             {{ mdiArrowLeft }}
@@ -53,7 +58,7 @@
           class="float-right"
           color="primary"
           outlined
-          :to="`/gyms/${gymId}/${gymName}/administrators/new`"
+          :to="`${gym.adminPath}/administrators/new`"
         >
           {{ $t('actions.addMember') }}
         </v-btn>
@@ -66,25 +71,46 @@
 import { mdiDelete, mdiArrowLeft } from '@mdi/js'
 import Spinner from '@/components/layouts/Spiner'
 import GymAdministratorApi from '@/services/oblyk-api/GymAdministratorApi'
+import { GymFetchConcern } from '~/concerns/GymFetchConcern'
 
 export default {
   meta: { orphanRoute: true },
   components: { Spinner },
+  mixins: [GymFetchConcern],
 
   data () {
     return {
       mdiDelete,
       mdiArrowLeft,
       loadingGymAdministrators: true,
-      gymAdministrators: [],
-      gymId: this.$route.params.gymId,
-      gymName: this.$route.params.gymName
+      gymAdministrators: []
     }
   },
 
   head () {
     return {
       title: this.$t('meta.gym.newAdministrator')
+    }
+  },
+
+  computed: {
+    breadcrumbs () {
+      return [
+        {
+          text: this.gym?.name,
+          disable: true
+        },
+        {
+          text: this.$t('components.gymAdmin.home'),
+          to: `${this.gym?.adminPath}`,
+          exact: true
+        },
+        {
+          text: this.$t('components.gymAdmin.team'),
+          to: `${this.gym?.adminPath}/administrators`,
+          exact: true
+        }
+      ]
     }
   },
 
@@ -95,7 +121,7 @@ export default {
   methods: {
     getGymAdministrators () {
       new GymAdministratorApi(this.$axios, this.$auth)
-        .all(this.gymId)
+        .all(this.$route.params.gymId)
         .then((resp) => {
           this.gymAdministrators = resp.data
         })
@@ -111,7 +137,7 @@ export default {
       if (confirm(this.$t('actions.areYouSur'))) {
         this.loadingGymAdministrators = true
         new GymAdministratorApi(this.$axios, this.$auth)
-          .delete(this.gymId, administratorId)
+          .delete(this.$route.params.gymId, administratorId)
           .then(() => {
             this.getGymAdministrators()
           })

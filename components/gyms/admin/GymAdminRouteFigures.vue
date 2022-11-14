@@ -24,7 +24,10 @@ import GymApi from '~/services/oblyk-api/GymApi'
 export default {
   name: 'GymAdminRouteFigures',
   props: {
-    gym: Object
+    gym: {
+      type: Object,
+      required: true
+    }
   },
 
   data () {

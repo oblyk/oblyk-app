@@ -3,6 +3,7 @@
     <spinner v-if="loadingGymGrade || loadingGymGradeLine" />
 
     <v-container v-if="!loadingGymGrade && !loadingGymGradeLine">
+      <v-breadcrumbs :items="breadcrumbs" />
       <v-row justify="center">
         <v-col class="global-form-width">
           <h2 class="mb-4">
@@ -36,6 +37,45 @@ export default {
   head () {
     return {
       title: this.$t('meta.gym.grade.editLine')
+    }
+  },
+
+  computed: {
+    gym () {
+      return this.gymGrade?.Gym
+    },
+
+    breadcrumbs () {
+      return [
+        {
+          text: this.gym?.name,
+          disable: true
+        },
+        {
+          text: this.$t('components.gymAdmin.home'),
+          to: this.gym?.adminPath,
+          exact: true
+        },
+        {
+          text: this.$t('components.gymAdmin.difficultySystem'),
+          to: `${this.gym?.adminPath}/grades`,
+          exact: true
+        },
+        {
+          text: this.gymGrade.name,
+          to: `${this.gym?.adminPath}/grades/${this.gymGrade.id}`,
+          exact: true
+        },
+        {
+          text: this.gymGradeLine.name,
+          disabled: true
+        },
+        {
+          text: this.$t('actions.edit'),
+          to: `${this.gym?.adminPath}/grades/${this.gymGrade.id}/grade-lines/${this.gymGradeLine.id}/edit`,
+          exact: true
+        }
+      ]
     }
   }
 }

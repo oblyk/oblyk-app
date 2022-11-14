@@ -1,15 +1,17 @@
 <template>
   <div>
     <!-- Switch & Actions menu -->
+    <v-sheet
+      class="rounded pa-4 mt-4 mb-4"
+    >
+      <v-switch
+        v-model="mountedRoute"
+        class="mt-0 d-inline-block"
+        hide-details
+        :label="mountedRoute ? $t('components.gymAdmin.mountedRoutes') : $t('components.gymAdmin.dismountedRoutes')"
+      />
+    </v-sheet>
     <v-row>
-      <v-col>
-        <v-switch
-          v-model="mountedRoute"
-          class="mt-0"
-          hide-details
-          :label="mountedRoute ? $t('components.gymAdmin.mountedRoutes') : $t('components.gymAdmin.dismountedRoutes')"
-        />
-      </v-col>
       <v-col
         v-if="routeSelected.length > 0"
         class="text-right"

@@ -3,6 +3,7 @@
     <spinner v-if="loadingGymGrade" />
 
     <v-container v-if="!loadingGymGrade">
+      <v-breadcrumbs :items="breadcrumbs" />
       <gym-grade-card :gym-grade="gymGrade" :presentation="false" />
       <div class="mt-4">
         <v-btn
@@ -35,7 +36,37 @@ export default {
 
   head () {
     return {
-      title: (this.gymGrade || {}).name
+      title: this.gymGrade?.name
+    }
+  },
+
+  computed: {
+    gym () {
+      return this.gymGrade?.Gym
+    },
+
+    breadcrumbs () {
+      return [
+        {
+          text: this.gym?.name,
+          disable: true
+        },
+        {
+          text: this.$t('components.gymAdmin.home'),
+          to: this.gym?.adminPath,
+          exact: true
+        },
+        {
+          text: this.$t('components.gymAdmin.difficultySystem'),
+          to: `${this.gym?.adminPath}/grades`,
+          exact: true
+        },
+        {
+          text: this.gymGrade.name,
+          to: `${this.gym?.adminPath}/grades/${this.gymGrade.id}`,
+          exact: true
+        }
+      ]
     }
   }
 }

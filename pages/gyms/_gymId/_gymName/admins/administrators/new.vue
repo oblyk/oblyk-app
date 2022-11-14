@@ -1,5 +1,6 @@
 <template>
   <v-container v-if="gym">
+    <v-breadcrumbs :items="breadcrumbs" />
     <v-row justify="center">
       <v-col class="global-form-width">
         <h2 class="mb-4">
@@ -16,18 +17,44 @@
 </template>
 
 <script>
-import { GymConcern } from '~/concerns/GymConcern'
 import GymAdministratorForm from '~/components/gymAdministrators/forms/gymAdministratorForm.vue'
+import { GymFetchConcern } from '~/concerns/GymFetchConcern'
 
 export default {
   meta: { orphanRoute: true },
   components: { GymAdministratorForm },
-  mixins: [GymConcern],
+  mixins: [GymFetchConcern],
   middleware: ['auth'],
 
   head () {
     return {
       title: this.$t('meta.gym.administrators')
+    }
+  },
+
+  computed: {
+    breadcrumbs () {
+      return [
+        {
+          text: this.gym?.name,
+          disable: true
+        },
+        {
+          text: this.$t('components.gymAdmin.home'),
+          to: `${this.gym?.adminPath}`,
+          exact: true
+        },
+        {
+          text: this.$t('components.gymAdmin.team'),
+          to: `${this.gym?.adminPath}/administrators`,
+          exact: true
+        },
+        {
+          text: this.$t('actions.new'),
+          to: `${this.gym?.adminPath}/administrators/new`,
+          exact: true
+        }
+      ]
     }
   }
 }

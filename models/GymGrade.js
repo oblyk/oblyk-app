@@ -1,6 +1,7 @@
 import ActiveData from '@/models/ActiveData'
 import GymGradeApi from '~/services/oblyk-api/GymGradeApi'
 import GymGradeLine from '@/models/GymGradeLine'
+import Gym from '~/models/Gym'
 
 export default class GymGrade extends ActiveData {
   toJSON () {
@@ -53,5 +54,9 @@ export default class GymGrade extends ActiveData {
       lines.push(new GymGradeLine({ attributes: line }))
     }
     return lines
+  }
+
+  get Gym () {
+    return new Gym({ attributes: this.gym })
   }
 }

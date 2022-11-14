@@ -1,5 +1,9 @@
 <template>
   <v-container v-if="gym" fluid>
+    <v-breadcrumbs
+      :items="breadcrumbs"
+      class="mb-1"
+    />
     <v-row>
       <v-col class="col-md-12 pa-2">
         <gym-admin-welcome :gym="gym" />
@@ -79,6 +83,22 @@ export default {
   head () {
     return {
       title: this.$t('meta.gym.admin', { name: (this.gym || {}).name })
+    }
+  },
+
+  computed: {
+    breadcrumbs () {
+      return [
+        {
+          text: this.gym?.name,
+          disable: true
+        },
+        {
+          text: this.$t('components.gymAdmin.home'),
+          to: this.gym?.adminPath,
+          exact: true
+        }
+      ]
     }
   }
 }

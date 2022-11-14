@@ -1,5 +1,5 @@
 <template>
-  <v-tabs show-arrows>
+  <v-tabs show-arrows class="rounded">
     <v-tab :to="gym.adminPath">
       <v-icon>{{ mdiArrowLeft }}</v-icon>
     </v-tab>

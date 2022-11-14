@@ -3,6 +3,7 @@
     <spinner v-if="loadingGymGrades" />
 
     <v-container v-if="!loadingGymGrades">
+      <v-breadcrumbs :items="breadcrumbs" />
       <div
         v-for="gymGrade in gymGrades"
         :key="gymGrade.id"
@@ -15,7 +16,7 @@
         {{ $t('components.gymGrade.noSystem') }}
       </p>
 
-      <p class="mt-3" :class="gymGrades.length === 0 ? 'text-center' : 'text-right'">
+      <div class="mt-3" :class="gymGrades.length === 0 ? 'text-center' : 'text-right'">
         <v-btn
           color="primary"
           outlined
@@ -23,7 +24,7 @@
         >
           {{ $t('actions.addSystem') }}
         </v-btn>
-      </p>
+      </div>
     </v-container>
   </div>
 </template>
@@ -33,10 +34,12 @@ import Spinner from '@/components/layouts/Spiner'
 import GymGradeApi from '@/services/oblyk-api/GymGradeApi'
 import GymGradeCard from '@/components/gymGrades/GymGradeCard'
 import GymGrade from '@/models/GymGrade'
+import { GymFetchConcern } from '~/concerns/GymFetchConcern'
 
 export default {
   meta: { orphanRoute: true },
   components: { GymGradeCard, Spinner },
+  mixins: [GymFetchConcern],
 
   data () {
     return {
@@ -50,6 +53,27 @@ export default {
   head () {
     return {
       title: this.$t('meta.gym.grade.grades')
+    }
+  },
+
+  computed: {
+    breadcrumbs () {
+      return [
+        {
+          text: this.gym?.name,
+          disable: true
+        },
+        {
+          text: this.$t('components.gymAdmin.home'),
+          to: this.gym?.adminPath,
+          exact: true
+        },
+        {
+          text: this.$t('components.gymAdmin.difficultySystem'),
+          to: `${this.gym?.adminPath}/grades`,
+          exact: true
+        }
+      ]
     }
   },
 

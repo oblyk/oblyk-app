@@ -116,6 +116,13 @@ strong {
   margin-top: 19px;
 }
 
+.v-breadcrumbs {
+  overflow-x: auto;
+  white-space: nowrap;
+  flex-wrap: nowrap !important;
+  padding-left: 5px !important;
+}
+
 .smallest-table-column {
   width: 10px;
   white-space: nowrap;
