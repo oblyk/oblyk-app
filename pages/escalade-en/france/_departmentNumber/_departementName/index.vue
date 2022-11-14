@@ -203,7 +203,7 @@
             :label="`Chercher une ville de ${department.name}`"
             :prepend-inner-icon="mdiMagnify"
           />
-          <div v-for="(town, index) in filteredTowns" :key="`town-${index}`">
+          <div v-for="(town, index) in filteredTowns" :key="`town-${index}`" class="mb-1">
             <v-alert
               v-if="index === 0 || (firstTownLetter(department.towns[index - 1].name) !== firstTownLetter(town.name))"
               dense
@@ -212,11 +212,9 @@
             >
               {{ firstTownLetter(town.name) }}
             </v-alert>
-            <p>
-              <nuxt-link :to="`/escalade-autour-de/${town.slug_name}`">
-                {{ town.name }}, {{ town.zipcode }}
-              </nuxt-link>
-            </p>
+            <nuxt-link :to="`/escalade-autour-de/${town.slug_name}`">
+              {{ town.name }}, {{ town.zipcode }}
+            </nuxt-link>
           </div>
         </v-sheet>
       </div>
@@ -446,7 +444,7 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 .climb-around-department {
   h2 {
     font-size: 1.4em;
