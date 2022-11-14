@@ -66,7 +66,7 @@ export default {
       if (this.loadingGymSpaces) { return }
 
       if (this.selectedGymSpaceId === 0) {
-        this.$router.push(`/a${this.gymSpace.gymPath}/spaces/new`)
+        this.$router.push(`${this.gymSpace.gymPath}/spaces/new`)
       } else {
         let selectedGymSpace = null
 
@@ -75,7 +75,7 @@ export default {
             selectedGymSpace = gymSpace
           }
         }
-        this.$router.push(`/gym-spaces/${this.gymSpace.gym.id}/${this.gymSpace.gym.slug_name}/spaces/${this.selectedGymSpaceId}/${selectedGymSpace.slug_name}/plan`)
+        this.$router.push(`/gyms/${this.gymSpace.gym.id}/${this.gymSpace.gym.slug_name}/spaces/${this.selectedGymSpaceId}/${selectedGymSpace.slug_name}/plan`)
       }
     }
   }

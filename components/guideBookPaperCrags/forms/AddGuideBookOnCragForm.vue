@@ -41,7 +41,7 @@
         <v-btn
           text
           color="primary"
-          to="/a/guide-book-papers/new"
+          to="/guide-book-papers/new"
         >
           <v-icon
             left

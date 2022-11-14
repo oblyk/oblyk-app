@@ -35,7 +35,7 @@
         class="text-right mt-4"
       >
         <v-btn
-          :to="`/a/links/${linkableType}/${linkableId}/new?redirect_to=${redirectTo}`"
+          :to="`/links/${linkableType}/${linkableId}/new?redirect_to=${redirectTo}`"
           text
           color="primary"
         >

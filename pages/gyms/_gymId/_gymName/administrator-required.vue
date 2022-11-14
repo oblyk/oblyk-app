@@ -19,6 +19,7 @@
 import { mdiLock } from '@mdi/js'
 
 export default {
+  meta: { orphanRoute: true },
   props: {
     gym: {
       type: Object,

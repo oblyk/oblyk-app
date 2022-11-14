@@ -17,7 +17,7 @@
       <!-- Paper guide book -->
       <v-list-item
         link
-        :to="`/a${crag.path}/add-on-guide-book`"
+        :to="`${crag.path}/add-on-guide-book`"
       >
         <v-list-item-icon>
           <v-icon>{{ mdiBookOpenVariant }}</v-icon>
@@ -30,7 +30,7 @@
       <!-- Pdf guide book -->
       <v-list-item
         link
-        :to="`/a${crag.path}/new-pdf-guide-book?redirect_to=${$route.fullPath}`"
+        :to="`${crag.path}/new-pdf-guide-book?redirect_to=${$route.fullPath}`"
       >
         <v-list-item-icon>
           <v-icon>{{ mdiFilePdfBox }}</v-icon>
@@ -43,7 +43,7 @@
       <!-- Web guide book -->
       <v-list-item
         link
-        :to="`/a${crag.path}/new-web-guide-book?redirect_to=${$route.fullPath}`"
+        :to="`${crag.path}/new-web-guide-book?redirect_to=${$route.fullPath}`"
       >
         <v-list-item-icon>
           <v-icon>{{ mdiWeb }}</v-icon>

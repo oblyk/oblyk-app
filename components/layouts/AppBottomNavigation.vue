@@ -17,7 +17,7 @@
     <v-btn
       v-if="$auth.loggedIn"
       value="add cross"
-      to="/a/ascents/new"
+      to="/ascents/new"
     >
       <v-icon color="white">
         {{ mdiPlusBoxOutline }}

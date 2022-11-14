@@ -3,7 +3,7 @@
     <client-only>
       <v-btn
         v-if="isLoggedIn"
-        :to="`/a/photos/Crag/${crag.id}/new?redirect_to=${$route.fullPath}`"
+        :to="`/photos/Crag/${crag.id}/new?redirect_to=${$route.fullPath}`"
         text
         color="primary"
       >
@@ -28,7 +28,7 @@
       <div v-if="!loadingVideos">
         <v-btn
           v-if="isLoggedIn"
-          :to="`/a/videos/Crag/${crag.id}/new?redirect_to=${$route.fullPath}`"
+          :to="`/videos/Crag/${crag.id}/new?redirect_to=${$route.fullPath}`"
           text
           color="primary"
         >

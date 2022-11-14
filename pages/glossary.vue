@@ -33,7 +33,7 @@
               text
               small
               color="primary"
-              to="/a/words/new"
+              to="/words/new"
             >
               {{ $t('components.word.addNew') }}
             </v-btn>

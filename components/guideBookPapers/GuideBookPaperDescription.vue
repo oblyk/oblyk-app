@@ -103,7 +103,7 @@
                 small
                 :title="$t('actions.reportProblem')"
                 color="primary"
-                :to="`/a/reports/GuideBookPaper/${guideBookPaper.id}/new?redirect_to=${$route.fullPath}`"
+                :to="`/reports/GuideBookPaper/${guideBookPaper.id}/new?redirect_to=${$route.fullPath}`"
               >
                 <v-icon
                   small
@@ -116,7 +116,7 @@
                 small
                 outlined
                 color="primary"
-                :to="`/a${guideBookPaper.path}/edit`"
+                :to="`${guideBookPaper.path}/edit`"
               >
                 <v-icon
                   small
@@ -127,7 +127,7 @@
                 {{ $t('actions.edit') }}
               </v-btn>
               <v-btn
-                :to="`/a${guideBookPaper.path}/cover`"
+                :to="`${guideBookPaper.path}/cover`"
                 text
                 outlined
                 small

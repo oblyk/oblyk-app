@@ -14,7 +14,7 @@
           <client-only>
             <v-btn
               v-if="isLoggedIn"
-              :to="`/a${crag.path}/edit`"
+              :to="`${crag.path}/edit`"
               small
               icon
               :title="$t('actions.edit')"

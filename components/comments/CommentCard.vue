@@ -8,7 +8,7 @@
       <owner-label
         :history="comment.history"
         :owner="comment.creator"
-        :edit-path="`/a${comment.path}/edit?redirect_to=${redirectTo}`"
+        :edit-path="`${comment.path}/edit?redirect_to=${redirectTo}`"
         :reports="{ type: 'Comment', id: comment.id }"
         :delete-function="deleteComment"
       />

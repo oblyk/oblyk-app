@@ -47,10 +47,10 @@ export default {
     return {
       redirectTo: null,
       data: {
-        id: (this.guideBookWeb || {}).id,
-        crag_id: (this.guideBookWeb || {}).crag_id || this.cragId,
-        name: (this.guideBookWeb || {}).name,
-        url: (this.guideBookWeb || {}).url
+        id: this.guideBookWeb?.id,
+        crag_id: this.guideBookWeb?.crag?.id || this.cragId,
+        name: this.guideBookWeb?.name,
+        url: this.guideBookWeb?.url
       }
     }
   },

@@ -26,7 +26,7 @@
         <p class="text-right">
           <v-btn
             v-if="isLoggedIn"
-            :to="`/a/videos/CragRoute/${cragRoute.id}/new?redirect_to=${$route.fullPath}`"
+            :to="`/videos/CragRoute/${cragRoute.id}/new?redirect_to=${$route.fullPath}`"
             text
             small
             color="primary"

@@ -62,7 +62,7 @@
         class="text-right mt-4"
       >
         <v-btn
-          :to="`/a/comments/CragRoute/${cragRoute.id}/new?redirect_to=${redirectTo}`"
+          :to="`/comments/CragRoute/${cragRoute.id}/new?redirect_to=${redirectTo}`"
           text
           small
           color="primary"

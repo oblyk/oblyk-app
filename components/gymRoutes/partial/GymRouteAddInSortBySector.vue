@@ -4,7 +4,7 @@
       text
       color="primary"
       small
-      :to="`/a${gymSector.path}/routes/new`"
+      :to="`${gymSector.path}/routes/new`"
     >
       <v-icon left>
         {{ mdiSourceBranchPlus }}

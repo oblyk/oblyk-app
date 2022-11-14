@@ -31,7 +31,7 @@
         <v-btn
           icon
           dark
-          :to="`/a/reports/Photo/${photo.id}/new?redirect_to=${$route.fullPath}`"
+          :to="`/reports/Photo/${photo.id}/new?redirect_to=${$route.fullPath}`"
           :title="$t('actions.reportProblem')"
           @click.stop=""
         >
@@ -72,7 +72,7 @@
           v-if="photo.creator.uuid === loggedInUser.uuid"
           icon
           dark
-          :to="`/a${photo.path}/edit?redirect_to=${$route.fullPath}`"
+          :to="`${photo.path}/edit?redirect_to=${$route.fullPath}`"
           @click.stop=""
         >
           <v-icon small>

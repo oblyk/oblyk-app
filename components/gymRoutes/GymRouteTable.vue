@@ -79,7 +79,7 @@
             </template>
             <template #[`item.edit`]="{ item }">
               <nuxt-link
-                :to="`/a${item.edit.path}/edit?redirect_to=${$route.fullPath}`"
+                :to="`${item.edit.path}/edit?redirect_to=${$route.fullPath}`"
               >
                 <v-icon small>
                   {{ mdiPencil }}

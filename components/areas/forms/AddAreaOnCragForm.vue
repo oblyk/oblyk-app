@@ -41,7 +41,7 @@
         <v-btn
           text
           color="primary"
-          to="/a/areas/new"
+          to="/areas/new"
         >
           <v-icon
             left

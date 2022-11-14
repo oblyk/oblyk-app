@@ -21,7 +21,7 @@
                 <v-btn
                   v-if="isLoggedIn && loggedInUser.uuid === guideBookPdf.creator.uuid"
                   icon
-                  :to="`/a${guideBookPdf.path}/edit?redirect_to=${$route.fullPath}`"
+                  :to="`${guideBookPdf.path}/edit?redirect_to=${$route.fullPath}`"
                 >
                   <v-icon small>{{ mdiPencil }}</v-icon>
                 </v-btn>

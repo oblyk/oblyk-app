@@ -73,12 +73,12 @@ export default {
       file: null,
       uploadPercentage: 0,
       data: {
-        id: (this.guideBookPdf || {}).id,
-        crag_id: (this.guideBookPdf || {}).crag_id || this.cragId,
-        name: (this.guideBookPdf || {}).name,
-        publication_year: (this.guideBookPdf || {}).publication_year,
-        author: (this.guideBookPdf || {}).author,
-        description: (this.guideBookPdf || {}).description
+        id: this.guideBookPdf?.id,
+        crag_id: this.guideBookPdf?.crag?.id || this.cragId,
+        name: this.guideBookPdf?.name,
+        publication_year: this.guideBookPdf?.publication_year,
+        author: this.guideBookPdf?.author,
+        description: this.guideBookPdf?.description
       }
     }
   },

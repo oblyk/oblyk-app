@@ -24,7 +24,7 @@
     <owner-label
       :owner="placeOfSale.creator"
       :history="placeOfSale.history"
-      :edit-path="`/a/guide-book-papers/${placeOfSale.guide_book_paper_id}/guide/place-of-sales/${placeOfSale.id}/edit?redirect_to=${$route.fullPath}`"
+      :edit-path="`/guide-book-papers/${placeOfSale.guide_book_paper_id}/guide/place-of-sales/${placeOfSale.id}/edit?redirect_to=${$route.fullPath}`"
       :delete-function="deletePlaceOfSale"
       :reports="{ type: 'PlaceOfSale', id: placeOfSale.id }"
     />

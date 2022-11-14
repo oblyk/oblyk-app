@@ -43,6 +43,9 @@
 import AppFooter from '@/components/layouts/AppFooter'
 
 export default {
+  meta: {
+    test: true
+  },
   components: { AppFooter },
 
   data () {

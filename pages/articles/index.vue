@@ -3,7 +3,7 @@
     <v-container class="article-feed-container">
       <p v-if="isLoggedIn && isSuperAdmin" class="text-right mt-3">
         <v-btn
-          to="/a/articles/new"
+          to="/articles/new"
           color="primary"
         >
           <v-icon left>

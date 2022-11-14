@@ -29,7 +29,7 @@
     >
       <v-spacer />
       <v-btn
-        :to="`/a${word.path}/edit`"
+        :to="`${word.path}/edit`"
         right
         text
         color="primary"

@@ -15,7 +15,7 @@
       <!-- Edit gym space -->
       <v-list-item
         link
-        :to="`/a${gymSpace.path}/edit`"
+        :to="`${gymSpace.path}/edit`"
       >
         <v-list-item-icon>
           <v-icon>{{ mdiPencil }}</v-icon>
@@ -62,7 +62,7 @@
       <!-- Create a new secteur -->
       <v-list-item
         link
-        :to="`/a${gymSpace.path}/sectors/new`"
+        :to="`${gymSpace.path}/sectors/new`"
       >
         <v-list-item-icon>
           <v-icon>{{ mdiShapeSquarePlus }}</v-icon>
@@ -77,7 +77,7 @@
       <!-- Create a new space -->
       <v-list-item
         link
-        :to="`/a${gymSpace.gymPath}/spaces/new`"
+        :to="`${gymSpace.gymPath}/spaces/new`"
       >
         <v-list-item-icon>
           <v-icon>{{ mdiMapPlus }}</v-icon>
@@ -98,7 +98,10 @@ import { mdiDotsVertical, mdiPencil, mdiMap, mdiSourceBranchPlus, mdiShapeSquare
 export default {
   name: 'GymSpaceActionMenu',
   props: {
-    gymSpace: Object
+    gymSpace: {
+      type: Object,
+      required: true
+    }
   },
 
   data () {

@@ -159,7 +159,7 @@
                       icon
                       x-small
                       fab
-                      :to="`/a${crag.path}/add-on-area`"
+                      :to="`${crag.path}/add-on-area`"
                     >
                       <v-icon>
                         {{ mdiPlus }}

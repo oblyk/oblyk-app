@@ -33,7 +33,7 @@
                 <v-icon class="mr-2">
                   {{ mdiArrowRight }}
                 </v-icon>
-                <nuxt-link to="/a/organizations/new">
+                <nuxt-link to="/organizations/new">
                   {{ $t('common.pages.apiAndDevelopers.createMyOrganisation') }}
                 </nuxt-link>
               </p>
