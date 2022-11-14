@@ -41,6 +41,7 @@ import SubmitForm from '@/components/forms/SubmitForm'
 import ParkApi from '~/services/oblyk-api/ParkApi'
 import CloseForm from '@/components/forms/CloseForm'
 import Spinner from '@/components/layouts/Spiner'
+import Crag from '~/models/Crag'
 const MapInput = () => import('@/components/forms/MapInput')
 
 export default {
@@ -97,7 +98,8 @@ export default {
 
       promise
         .then(() => {
-          this.$router.push(`${this.crag.path}/maps`)
+          const crag = new Crag({ attributes: this.crag })
+          this.$router.push(`${crag.path}/maps`)
         })
         .catch((err) => {
           this.$root.$emit('alertFromApiError', err, 'park')
