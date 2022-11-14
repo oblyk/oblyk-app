@@ -29,7 +29,7 @@
           class="text-right mt-3"
         >
           <v-btn
-            :to="`/a${guideBookPaper.path}/place-of-sales/new?redirect_to=${$route.fullPath}`"
+            :to="`${guideBookPaper.path}/place-of-sales/new?redirect_to=${$route.fullPath}`"
             text
             small
             color="primary"

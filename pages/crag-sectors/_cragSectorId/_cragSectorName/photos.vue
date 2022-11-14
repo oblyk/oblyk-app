@@ -3,7 +3,7 @@
     <div>
       <v-btn
         v-if="isLoggedIn"
-        :to="`/a/photos/CragSector/${cragSector.id}/new?redirect_to=${$route.fullPath}`"
+        :to="`/photos/CragSector/${cragSector.id}/new?redirect_to=${$route.fullPath}`"
         text
         color="primary"
       >

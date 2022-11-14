@@ -7,7 +7,7 @@
       {{ $t('components.article.aboutAuthor') }}
       <span v-if="isLoggedIn && loggedInUser.id === article.author.user_id">
         <v-btn
-          :to="`/a${article.Author.path}/edit?redirect_to=${$route.fullPath}`"
+          :to="`${article.Author.path}/edit?redirect_to=${$route.fullPath}`"
           icon
         >
           <v-icon small>
@@ -15,7 +15,7 @@
           </v-icon>
         </v-btn>
         <v-btn
-          :to="`/a${article.Author.path}/cover?redirect_to=${$route.fullPath}`"
+          :to="`${article.Author.path}/cover?redirect_to=${$route.fullPath}`"
           icon
         >
           <v-icon small>

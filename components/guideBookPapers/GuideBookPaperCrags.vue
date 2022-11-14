@@ -14,7 +14,7 @@
         small
         text
         outlined
-        :to="`/a${guideBookPaper.path}/add-crag`"
+        :to="`${guideBookPaper.path}/add-crag`"
         color="primary"
       >
         <v-icon

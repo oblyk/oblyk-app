@@ -19,7 +19,7 @@
 
       <v-btn
         icon
-        :to="`/a${alert.path}/edit?redirect_to=${$route.fullPath}`"
+        :to="`${alert.path}/edit?redirect_to=${$route.fullPath}`"
       >
         <v-icon small>
           {{ mdiPencil }}

@@ -18,7 +18,7 @@
       {{ cragSector.crag.country }}, {{ cragSector.crag.region }}, {{ cragSector.crag.city }}
       <v-btn
         v-if="$auth.loggedIn"
-        :to="`/a${cragSector.Crag.path}/sectors/${cragSector.id}/${cragSector.slug_name}/edit`"
+        :to="`${cragSector.Crag.path}/sectors/${cragSector.id}/${cragSector.slug_name}/edit`"
         small
         icon
         :title="$t('actions.edit')"

@@ -30,7 +30,7 @@
           <client-only>
             <v-btn
               v-if="userCanTouch()"
-              :to="`/a${gym.path}/edit`"
+              :to="`${gym.path}/edit`"
               small
               icon
               :title="$t('actions.edit')"
@@ -43,7 +43,7 @@
 
             <v-btn
               v-if="userCanTouch()"
-              :to="`/a${gym.path}/logo`"
+              :to="`${gym.path}/logo`"
               small
               :title="$t('actions.changeLogo')"
               icon
@@ -58,7 +58,7 @@
 
             <v-btn
               v-if="userCanTouch()"
-              :to="`/a${gym.path}/banner`"
+              :to="`${gym.path}/banner`"
               small
               :title="$t('actions.changeBanner')"
               icon

@@ -19,7 +19,7 @@
     <div class="conversation-add-btn">
       <v-btn
         fab
-        :to="`/a${user.currentUserPath}/messenger/new`"
+        :to="`${user.currentUserPath}/messenger/new`"
         :title="$t('actions.newConversation')"
         color="primary"
       >

@@ -14,7 +14,7 @@
     <v-list>
       <!-- Edit article -->
       <v-list-item
-        :to="`/a${article.path}/edit`"
+        :to="`${article.path}/edit`"
       >
         <v-list-item-icon>
           <v-icon>{{ mdiPencil }}</v-icon>
@@ -26,7 +26,7 @@
 
       <!-- Add crag -->
       <v-list-item
-        :to="`/a${article.path}/add-crags`"
+        :to="`${article.path}/add-crags`"
       >
         <v-list-item-icon>
           <v-icon>{{ mdiTerrain }}</v-icon>
@@ -38,7 +38,7 @@
 
       <!-- Add guide book -->
       <v-list-item
-        :to="`/a${article.path}/add-guide-books`"
+        :to="`${article.path}/add-guide-books`"
       >
         <v-list-item-icon>
           <v-icon>{{ mdiBookOpenVariant }}</v-icon>
@@ -62,7 +62,7 @@
 
       <!-- Change article cover -->
       <v-list-item
-        :to="`/a${article.path}/cover`"
+        :to="`${article.path}/cover`"
       >
         <v-list-item-icon>
           <v-icon>{{ mdiPanorama }}</v-icon>

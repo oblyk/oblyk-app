@@ -170,7 +170,7 @@ export const MapPopupHelpers = {
           <button>${this.$t('actions.edit')}</button>
         </div>
       `
-      popup.querySelector('button').addEventListener('click', () => { this.$router.push(`/a${park.path}/edit`) })
+      popup.querySelector('button').addEventListener('click', () => { this.$router.push(`${park.path}/edit`) })
 
       return popup
     },
@@ -212,7 +212,7 @@ export const MapPopupHelpers = {
           <button>${this.$t('actions.edit')}</button>
         </div>
       `
-      popup.querySelector('button').addEventListener('click', () => { this.$router.push(`/a${approach.path}/edit`) })
+      popup.querySelector('button').addEventListener('click', () => { this.$router.push(`${approach.path}/edit`) })
 
       return popup
     },

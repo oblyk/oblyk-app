@@ -47,7 +47,11 @@ export default {
     // https://github.com/nuxt-community/moment-module
     '@nuxtjs/moment',
     // https://github.com/nuxt-community/dotenv-module
-    '@nuxtjs/dotenv'
+    '@nuxtjs/dotenv',
+    // https://github.com/dword-design/nuxt-route-meta
+    'nuxt-route-meta',
+    // Rebuilds the router by taking out the routes that should not be in their parents
+    '~/modules/router.orphan'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -73,6 +77,20 @@ export default {
       Disallow: process.env.VUE_APP_OBLYK_APP_STAGING === 'true' ? '/' : ''
     }
   },
+
+  // router: {
+  //   extendRoutes (routes, resolve) {
+  //     routes.forEach((route) => {
+  //       if (route.path.includes('contact')) {
+  //         console.log(route)
+  //       }
+  //       if ((route.meta || {}).test) {
+  //         console.log(route.meta, 'route.meta')
+  //         // do something with auth routes
+  //       }
+  //     })
+  //   }
+  // },
 
   // https://auth.nuxtjs.org/
   auth: {

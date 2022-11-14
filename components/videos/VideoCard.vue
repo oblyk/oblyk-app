@@ -7,7 +7,7 @@
     <owner-label
       :owner="video.creator"
       :history="video.history"
-      :edit-path="`/a${video.path}/edit?redirect_to=${$route.fullPath}`"
+      :edit-path="`${video.path}/edit?redirect_to=${$route.fullPath}`"
       :delete-function="deleteVideo"
       :reports="{ type: 'Video', id: video.id }"
     />

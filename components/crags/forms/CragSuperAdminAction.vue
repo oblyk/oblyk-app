@@ -14,7 +14,7 @@
     </template>
     <v-list>
       <v-list-item
-        :to="`/a/alerts/Crag/${crag.id}/new?redirect_to=${$route.fullPath}`"
+        :to="`/alerts/Crag/${crag.id}/new?redirect_to=${$route.fullPath}`"
       >
         <v-list-item-icon>
           <v-icon>{{ mdiBellPlus }}</v-icon>

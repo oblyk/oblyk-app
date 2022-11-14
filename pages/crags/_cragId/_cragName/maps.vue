@@ -9,7 +9,7 @@
           text
           small
           color="primary"
-          :to="`/a${crag.path}/parks/new`"
+          :to="`${crag.path}/parks/new`"
         >
           <v-icon left>
             {{ mdiParking }}
@@ -20,7 +20,7 @@
           text
           small
           color="primary"
-          :to="`/a${crag.path}/approaches/new`"
+          :to="`${crag.path}/approaches/new`"
         >
           <v-icon left>
             {{ mdiWalk }}

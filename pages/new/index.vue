@@ -7,7 +7,7 @@
       <p class="mb-12 text-center text--disabled" v-html="$t('common.pages.enrichOblyk.intro')" />
       <v-row>
         <v-col cols="6" md="3" offset-md="3">
-          <v-card to="/a/crags/new">
+          <v-card to="/crags/new">
             <v-card-text class="text-center">
               <v-icon x-large>
                 {{ mdiTerrain }}
@@ -19,7 +19,7 @@
           </v-card>
         </v-col>
         <v-col cols="6" md="3">
-          <v-card to="/a/gyms/new">
+          <v-card to="/gyms/new">
             <v-card-text class="text-center">
               <v-icon x-large>
                 {{ mdiOfficeBuildingMarkerOutline }}

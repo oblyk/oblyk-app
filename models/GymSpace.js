@@ -18,7 +18,7 @@ export default class GymSpace extends ActiveData {
   }
 
   get path () {
-    return `/gym-spaces/${this.gym.id}/${this.gym.slug_name}/spaces/${this.id}/${this.slug_name}`
+    return `/gyms/${this.gym.id}/${this.gym.slug_name}/spaces/${this.id}/${this.slug_name}`
   }
 
   get gymPath () {

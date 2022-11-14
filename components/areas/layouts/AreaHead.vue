@@ -20,7 +20,7 @@
           <client-only>
             <v-btn
               v-if="isLoggedIn"
-              :to="`/a${area.path}/edit`"
+              :to="`${area.path}/edit`"
               icon
               :title="$t('actions.edit')"
               class="ml-1"

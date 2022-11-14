@@ -18,7 +18,7 @@
       <!-- Edit route -->
       <v-list-item
         link
-        :to="`/a${gymRoute.path}/edit`"
+        :to="`${gymRoute.path}/edit`"
       >
         <v-list-item-icon>
           <v-icon>{{ mdiPencil }}</v-icon>

@@ -74,6 +74,7 @@
     </client-only>
   </div>
 </template>
+
 <script>
 import { mdiCommentPlus } from '@mdi/js'
 import CommentApi from '~/services/oblyk-api/CommentApi'

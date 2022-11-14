@@ -2,7 +2,7 @@
   <div>
     <v-container>
       <v-btn
-        to="/a/newsletters/new"
+        to="/newsletters/new"
         color="primary"
       >
         <v-icon left>

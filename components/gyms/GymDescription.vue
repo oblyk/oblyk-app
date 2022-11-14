@@ -27,7 +27,7 @@
     >
       <v-btn
         outlined
-        :to="`/a${gym.path}/administration-request`"
+        :to="`${gym.path}/administration-request`"
         color="primary"
       >
         {{ $t('components.gym.IAmManager') }}

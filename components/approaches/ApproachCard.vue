@@ -81,7 +81,7 @@
       <v-spacer />
       <v-btn
         text
-        :to="`/a${approach.path}/edit`"
+        :to="`${approach.path}/edit`"
       >
         {{ $t('actions.edit') }}
       </v-btn>

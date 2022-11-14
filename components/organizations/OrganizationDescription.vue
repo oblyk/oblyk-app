@@ -31,7 +31,7 @@
           <v-subheader>
             {{ $t('components.organization.manage') }}
           </v-subheader>
-          <v-list-item :to="`/a${organization.path}/edit`">
+          <v-list-item :to="`${organization.path}/edit`">
             <v-list-item-icon>
               <v-icon>{{ mdiPencil }}</v-icon>
             </v-list-item-icon>

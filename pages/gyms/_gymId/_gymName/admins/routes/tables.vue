@@ -1,0 +1,19 @@
+<template>
+  <v-container fluid>
+    <gym-routes-table
+      v-if="gym"
+      :gym="gym"
+    />
+  </v-container>
+</template>
+
+<script>
+import GymRoutesTable from '@/components/gymRoutes/GymRouteTable'
+import { GymConcern } from '~/concerns/GymConcern'
+
+export default {
+  meta: { orphanRoute: true },
+  components: { GymRoutesTable },
+  mixins: [GymConcern]
+}
+</script>

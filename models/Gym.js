@@ -19,11 +19,11 @@ export default class Gym extends ActiveData {
   }
 
   get adminPath () {
-    return `/gym-admins/${this.id}/${this.slug_name}`
+    return `/gyms/${this.id}/${this.slug_name}/admins`
   }
 
   get spacePath () {
-    return `/gym-spaces/${this.id}/${this.slug_name}/spaces`
+    return `/gyms/${this.id}/${this.slug_name}/spaces`
   }
 
   get firstSpacePath () {

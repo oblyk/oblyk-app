@@ -4,7 +4,7 @@
     <v-container v-else>
       <div class="mb-5">
         <v-btn
-          :to="`/a/photos/Article/${articleId}/new?redirect_to=${$route.fullPath}`"
+          :to="`/photos/Article/${articleId}/new?redirect_to=${$route.fullPath}`"
           text
           color="primary"
         >
@@ -34,7 +34,7 @@
           </div>
           <div class="text-right mt-2">
             <v-btn
-              :to="`/a${photo.path}/edit?redirect_to=${$route.fullPath}`"
+              :to="`${photo.path}/edit?redirect_to=${$route.fullPath}`"
               depressed
             >
               {{ $t('actions.edit') }}

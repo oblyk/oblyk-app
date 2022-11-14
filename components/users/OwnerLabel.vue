@@ -34,7 +34,7 @@
       <!-- Report btn -->
       <v-btn
         v-if="reports && isLoggedIn"
-        :to="`/a/reports/${reports.type}/${reports.id}/new?redirect_to=${$route.fullPath}`"
+        :to="`/reports/${reports.type}/${reports.id}/new?redirect_to=${$route.fullPath}`"
         :title="$t('actions.reportProblem')"
         icon
         small

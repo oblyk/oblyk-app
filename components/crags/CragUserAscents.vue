@@ -42,7 +42,7 @@
           right
           text
           color="primary"
-          :to="`/a/ascents/new?crag_id=${crag.id}`"
+          :to="`/ascents/new?crag_id=${crag.id}`"
         >
           {{ $t('components.layout.appBar.addCross') }}
         </v-btn>

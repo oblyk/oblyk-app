@@ -24,7 +24,7 @@
         <v-card-actions>
           <!-- Edit -->
           <v-btn
-            :to="newsletter.path('edit')"
+            :to="`${newsletter.path}/edit`"
             text
           >
             <v-icon left>
@@ -35,7 +35,7 @@
 
           <!-- Photos -->
           <v-btn
-            :to="newsletter.path('photos')"
+            :to="`${newsletter.path}/photos`"
             text
           >
             <v-icon left>

@@ -6,7 +6,7 @@
     >
       <template #activator="{ on, attrs }">
         <v-btn
-          :to="`/a${crag.path}/sectors/new`"
+          :to="`${crag.path}/sectors/new`"
           v-bind="attrs"
           color="primary"
           text
@@ -74,9 +74,9 @@ export default {
   methods: {
     newRoutePath () {
       if (this.cragSector) {
-        return `/a${this.cragSector.Crag.path}/routes/new`
+        return `${this.cragSector.Crag.path}/routes/new`
       } else {
-        return `/a${this.crag.path}/routes/new`
+        return `${this.crag.path}/routes/new`
       }
     }
   }
