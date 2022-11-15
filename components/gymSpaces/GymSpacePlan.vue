@@ -29,6 +29,8 @@
           :fill-opacity="0"
           :weight="2"
           dash-array="5px"
+          fill-color="rgb(49, 153, 78)"
+          color="rgb(49, 153, 78)"
           :lat-lngs="sector.jsonPolygon"
           @click="filterBySector(sector.id, sector.name)"
         />
