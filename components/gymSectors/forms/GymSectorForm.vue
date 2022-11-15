@@ -131,7 +131,7 @@ export default {
 
       promise
         .then(() => {
-          this.$router.push(`${this.gymSpace.path}/plan`)
+          this.$router.push(this.gymSpace.path)
         })
         .catch((err) => {
           this.$root.$emit('alertFromApiError', err, 'gymSector')

@@ -76,7 +76,7 @@ export default {
         })
           .then((resp) => {
             const gymRoute = new GymRoute({ attributes: resp.data })
-            this.$router.push(`${gymRoute.gymSpacePath}/plan`)
+            this.$router.push(gymRoute.gymSpacePath)
           })
           .catch((err) => {
             this.$root.$emit('alertFromApiError', err, 'gymRoute')

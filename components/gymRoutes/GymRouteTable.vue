@@ -72,7 +72,7 @@
               <gym-route-tag-and-hold :gym-route="item.color" />
             </template>
             <template #[`item.space`]="{ item }">
-              <nuxt-link :to="`${item.space.gymSpacePath}/plan`">
+              <nuxt-link :to="item.space.gymSpacePath">
                 {{ item.space.gym_space.name }}
               </nuxt-link>
             </template>

@@ -66,7 +66,7 @@ export default {
       })
         .then((resp) => {
           const gymSpace = new GymSpace({ attributes: resp.data })
-          this.$router.push(`${gymSpace.path}/plan`)
+          this.$router.push(gymSpace.path)
         })
         .catch((err) => {
           this.$root.$emit('alertFromApiError', err, 'gymSpace')

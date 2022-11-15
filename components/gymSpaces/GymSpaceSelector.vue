@@ -75,7 +75,7 @@ export default {
             selectedGymSpace = gymSpace
           }
         }
-        this.$router.push(`/gyms/${this.gymSpace.gym.id}/${this.gymSpace.gym.slug_name}/spaces/${this.selectedGymSpaceId}/${selectedGymSpace.slug_name}/plan`)
+        this.$router.push(`/gyms/${this.gymSpace.gym.id}/${this.gymSpace.gym.slug_name}/spaces/${this.selectedGymSpaceId}/${selectedGymSpace.slug_name}`)
       }
     }
   }
