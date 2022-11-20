@@ -6,15 +6,16 @@
     <template #activator="{ on, attrs }">
       <v-btn
         text
-        color="primary"
+        outlined
         small
+        color="primary"
         v-bind="attrs"
         v-on="on"
       >
         <v-icon left>
           {{ mdiCheck }}
         </v-icon>
-        <span v-if="isRepetition">
+        <span v-if="inMyLogBook">
           {{ $t('actions.addRepetition') }}
         </span>
         <span v-else>
@@ -32,7 +33,7 @@
           :gym-route="gymRoute"
           submit-methode="post"
           :callback="successCallback"
-          :default-ascent-status="isRepetition ? 'repetition' : 'sent'"
+          :default-ascent-status="inMyLogBook ? 'repetition' : 'sent'"
         />
       </v-card-text>
     </v-card>
@@ -50,17 +51,31 @@ export default {
     gymRoute: {
       type: Object,
       required: true
-    },
-    isRepetition: {
-      type: Boolean,
-      default: false
     }
   },
 
   data () {
     return {
-      mdiCheck,
-      ascentModal: false
+      ascentModal: false,
+
+      mdiCheck
+    }
+  },
+
+  computed: {
+    gymRouteAscents () {
+      return this.$auth.loggedIn ? this.$auth.user.ascent_gym_routes || [] : []
+    },
+
+    inMyLogBook () {
+      let inMyLogBook = false
+      for (const ascent of this.gymRouteAscents) {
+        if (ascent.gym_route_id === this.gymRoute.id && ascent.ascent_status !== 'project') {
+          inMyLogBook = true
+          break
+        }
+      }
+      return inMyLogBook
     }
   },
 

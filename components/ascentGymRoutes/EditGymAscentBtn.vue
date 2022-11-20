@@ -40,8 +40,14 @@ export default {
   name: 'EditGymAscentBtn',
   components: { AscentGymRouteForm },
   props: {
-    gymRoute: Object,
-    ascentGymRoute: Object
+    gymRoute: {
+      type: Object,
+      required: true
+    },
+    ascentGymRoute: {
+      type: Object,
+      required: true
+    }
   },
 
   data () {

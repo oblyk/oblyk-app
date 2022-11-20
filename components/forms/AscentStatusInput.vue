@@ -21,7 +21,10 @@ export default {
   name: 'AscentStatusInput',
   mixins: [InputHelpers],
   props: {
-    value: String
+    value: {
+      type: String,
+      default: null
+    }
   },
 
   data () {

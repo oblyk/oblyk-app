@@ -1,47 +1,54 @@
 <template>
-  <div
-    ref="map-col-box"
-    v-resize="setWidthMap"
-  >
-    <div ref="map-area" class="gym-space-map">
-      <spinner v-if="reloadingData" />
+  <div ref="map-area" class="gym-space-map">
+    <spinner v-if="reloadingData" />
 
-      <editable-map
-        v-if="!reloadingData"
-        ref="map"
-        editable
-        :min-zoom="minZoom"
-        :crs="crs"
-        :options="{ zoomControl: false }"
-        style="height: 100%; width: 100%"
-        @ready="onReadyMap()"
-      >
-        <l-image-overlay
-          :url="url"
-          :bounds="bounds"
-        />
-        <l-control-zoom position="topright" />
+    <editable-map
+      v-if="!reloadingData"
+      ref="map"
+      editable
+      :min-zoom="minZoom"
+      :crs="crs"
+      :options="{ zoomControl: false }"
+      style="height: 100%; width: 100%"
+      @ready="onReadyMap"
+      @click="closeOpenedRoute"
+    >
+      <l-image-overlay
+        :url="url"
+        :bounds="bounds"
+      />
+      <l-control-zoom position="topright" />
 
-        <editable-polygon
-          v-for="(sector, sectorIndex) in sectorPolygons"
-          :key="`polygon-sector-${sectorIndex}`"
-          :ref="`polygon-sector-${sector.id}`"
-          :fill-opacity="0"
-          :weight="2"
-          dash-array="5px"
-          fill-color="rgb(49, 153, 78)"
-          color="rgb(49, 153, 78)"
-          :lat-lngs="sector.jsonPolygon"
-          @click="filterBySector(sector.id, sector.name)"
-        />
-      </editable-map>
-    </div>
+      <l-control position="topright">
+        <div class="leaflet-bar">
+          <a @click="setMapView">
+            <v-icon light small color="black">
+              {{ mdiArrowExpandAll }}
+            </v-icon>
+          </a>
+        </div>
+      </l-control>
+
+      <editable-polygon
+        v-for="(sector, sectorIndex) in sectorPolygons"
+        :key="`polygon-sector-${sectorIndex}`"
+        :ref="`polygon-sector-${sector.id}`"
+        :fill-opacity="0"
+        :weight="2"
+        dash-array="5px"
+        fill-color="rgb(49, 153, 78)"
+        color="rgb(49, 153, 78)"
+        :lat-lngs="sector.jsonPolygon"
+        @click="filterBySector(sector.id, sector.name)"
+      />
+    </editable-map>
   </div>
 </template>
 
 <script>
+import { mdiArrowExpandAll } from '@mdi/js'
 import { CRS } from 'leaflet'
-import { LImageOverlay, LControlZoom } from 'vue2-leaflet'
+import { LImageOverlay, LControlZoom, LControl } from 'vue2-leaflet'
 import { EditableMap, EditablePolygon } from 'vue2-leaflet-editable'
 import GymSectorApi from '~/services/oblyk-api/GymSectorApi'
 import 'leaflet/dist/leaflet.css'
@@ -56,7 +63,8 @@ export default {
     EditableMap,
     EditablePolygon,
     LImageOverlay,
-    LControlZoom
+    LControlZoom,
+    LControl
   },
   mixins: [MapDrawingHelpers],
 
@@ -77,7 +85,9 @@ export default {
       isNewPolygon: false,
       savingPolygon: false,
       crs: CRS.Simple,
-      gymSpaceData: this.gymSpace
+      gymSpaceData: this.gymSpace,
+
+      mdiArrowExpandAll
     }
   },
 
@@ -115,36 +125,40 @@ export default {
     this.$root.$on('stopEditingSectorPolygon', () => {
       this.stopEditingSectorPolygon()
     })
-    this.$root.$on('setWidthMap', () => {
-      this.setWidthMap()
+    this.$root.$on('setMapViewOnSector', (gymSectorId) => {
+      this.setMapViewOnSector(gymSectorId)
     })
-    this.setWidthMap()
   },
 
   beforeDestroy () {
     this.$root.$off('startEditSectorPolygon')
     this.$root.$off('activeSector')
     this.$root.$off('stopEditingSectorPolygon')
-    this.$root.$off('setWidthMap')
   },
 
   methods: {
+    closeOpenedRoute () {
+      if (this.$route.query.route) {
+        this.$router.push({
+          path: this.$route.path
+        })
+      }
+    },
+
     onReadyMap () {
       this.map = this.$refs.map.mapObject
       this.setMapView()
     },
 
-    setWidthMap () {
-      const width = this.$refs['map-col-box'].offsetWidth
-      if (width === 0) {
-        this.$refs['map-area'].style.width = '100%'
-      } else {
-        this.$refs['map-area'].style.width = `${this.$refs['map-col-box'].offsetWidth - 10}px`
-      }
+    setMapView () {
+      const paddingLeft = this.$vuetify.breakpoint.mobile ? 0 : 455
+      this.map.fitBounds(this.bounds, { paddingTopLeft: [paddingLeft, 0] })
     },
 
-    setMapView () {
-      this.map.fitBounds(this.bounds)
+    setMapViewOnSector (gymSectorId) {
+      const polygonSector = this.$refs[`polygon-sector-${gymSectorId}`]
+      const paddingLeft = this.$vuetify.breakpoint.mobile ? 0 : 455
+      this.map.fitBounds(polygonSector[0].mapObject.getBounds(), { paddingTopLeft: [paddingLeft, 0] })
     },
 
     startEditSectorPolygon (gymSectorId) {
@@ -155,6 +169,7 @@ export default {
         polygonSector[0].enableEdit()
         this.drawingSectorPolygon = polygonSector[0].mapObject
         this.isNewPolygon = false
+        this.setMapViewOnSector(gymSectorId)
       } else {
         this.drawingSectorPolygon = this.map.editTools.startPolygon()
         this.isNewPolygon = true
@@ -166,6 +181,7 @@ export default {
       this.map.editTools.stopDrawing()
       this.drawingSectorPolygon.disableEdit()
       this.saveSectorPolygon(this.drawingSectorPolygon._latlngs)
+      this.setMapView()
     },
 
     clearSectorSelection () {
@@ -243,11 +259,9 @@ export default {
 </script>
 <style lang="scss">
 .gym-space-map {
-  position: fixed;
-  right: 0;
   top: 64px;
-  width: calc(100vw - 765px);
-  height: calc(100vh - 64px);
+  width: 100%;
+  height: 100%;
   .leaflet-container {
     background-color: #1e1e1e;
   }
@@ -265,7 +279,7 @@ export default {
 .theme--light {
   .gym-space-map {
     .leaflet-container {
-      background-color: #f5f5f5;
+      background-color: rgb(240, 240, 245);
     }
   }
 }
@@ -283,7 +297,7 @@ export default {
     top: 48px;
     left: 0;
     width: 100vw !important;
-    height: calc(100vh - 88px);
+    height: calc(100vh - 45px);
   }
 }
 .leaflet-interactive {

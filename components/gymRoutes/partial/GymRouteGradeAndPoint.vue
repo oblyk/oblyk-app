@@ -1,5 +1,8 @@
 <template>
-  <div class="text-center">
+  <div
+    class="text-center"
+    :class="inline ? 'd-inline-block' : ''"
+  >
     <strong
       v-if="gymRoute.points_to_s"
     >
@@ -16,7 +19,14 @@
 export default {
   name: 'GymRouteGradeAndPoint',
   props: {
-    gymRoute: Object
+    gymRoute: {
+      type: Object,
+      required: true
+    },
+    inline: {
+      type: Boolean,
+      default: false
+    }
   }
 }
 </script>

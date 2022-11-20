@@ -1,17 +1,17 @@
 <template>
   <div>
     <span
-      v-for="(section, index) in gymRoute.sections"
-      :key="`section-${index}`"
+      v-for="(section, sectionIndex) in gymRoute.sections"
+      :key="`section-${sectionIndex}`"
     >
       <span v-if="gymRoute.sections.length > 1">
-        L.{{ index + 1 }} :
+        L.{{ sectionIndex + 1 }} :
       </span>
       <v-chip
+        v-for="(tag, tagIndex) in section.tags"
+        :key="`tag-${tagIndex}`"
         small
         class="mr-2"
-        v-for="(tag, index) in section.tags"
-        :key="`tag-${index}`"
       >
         <v-icon
           class="mr-1"
@@ -31,7 +31,10 @@ import { mdiPound } from '@mdi/js'
 export default {
   name: 'GymRouteTags',
   props: {
-    gymRoute: Object
+    gymRoute: {
+      type: Object,
+      required: true
+    }
   },
 
   data () {

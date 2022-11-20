@@ -36,6 +36,7 @@ export default {
     uploadMap: 'Uploader un plan',
     browse: 'Parcourir ...',
     addPicture: 'Ajouter une photo',
+    editPicture: 'Modifier la photo',
     defineThumbnail: 'Définir la miniature',
     upload: 'Uploader',
     dismountRoute: 'Démonter la ligne',
@@ -1024,9 +1025,12 @@ export default {
       addNewExplain: "Un secteur est une petite division d'un espace, exemple : Grand devers droite, couloir 4, etc. C'est là que seront renseignées les lignes",
       explainGroupName: "Vous pouvez grouper vos couloirs / secteurs avec 'Nom du regroupement', exemple vous pouvez avoir 3 secteurs : 'Couloir 1', 'Couloir 2', 'Couloir 3', groupé dans 'Les dalles'",
       resultingParametersOf: 'Issu des paramètres de : %{name}',
-      editSectorPolygon: 'Éditer le tracer sur le plan',
+      editSectorPolygon: 'Modifier le tracer du secteur',
+      createSectorPolygon: 'Tracer le secteur sur le plan',
+      removeSectorPolygon: 'Supprimer le tracer du secteur',
       clicOnPlan: 'Cliquez sur la carte, ou déplacez les poignets blanche pour éditer le tracer du secteur sur le plan.',
-      clicOnFinish: 'Une fois fini cliquez sur terminer'
+      clicOnFinish: 'Une fois fini cliquez sur terminer',
+      viewOnMap: 'Centrer le plan sur ce secteur'
     },
     gymRoute: {
       addNew: 'Ajouter une nouvelle ligne',
@@ -1042,6 +1046,7 @@ export default {
       refTo: 'En référence à',
       climbersComments: 'Commentaires des grimpeur·euse·s',
       inMyLogBook: 'Dans mon carnet',
+      ascents: '1 ascension | %{count} ascensions',
       sorts: {
         opened_at: "Trier par date d'ouverture",
         sector: 'Trier par secteur',

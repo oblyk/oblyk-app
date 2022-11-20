@@ -36,6 +36,7 @@ export default {
     uploadMap: 'Upload map',
     browse: 'Browse ...',
     addPicture: 'Add picture',
+    editPicture: 'Edit picture',
     defineThumbnail: 'Define thumbnail',
     upload: 'Upload',
     dismountRoute: 'Dismount route',
@@ -1024,9 +1025,12 @@ export default {
       addNewExplain: 'A sector is a small division of a space, for example: The large slope, slabs, etc.. This is where the lines will be filled in.',
       explainGroupName: "You can group your corridors / sectors with 'Group name', example you can have 3 sectors: 'Corridor 1', 'Corridor 2', 'Corridor 3', grouped in 'Slabs'.",
       resultingParametersOf: 'Resulting from the parameters of : %{name}',
-      editSectorPolygon: 'Edit the drawing on the plan',
+      editSectorPolygon: 'Edit the sector drawing on the plan',
+      createSectorPolygon: 'Draw the area on the map',
+      removeSectorPolygon: 'Remove the drawing',
       clicOnPlan: 'Click on the map, or move the white wrists to edit the plot of the area on the map.',
-      clicOnFinish: 'Once finished click on finish'
+      clicOnFinish: 'Once finished click on finish',
+      viewOnMap: 'Focus the plan on this area'
     },
     gymRoute: {
       addNew: 'Add a new route',
@@ -1042,6 +1046,7 @@ export default {
       refTo: 'In reference to',
       climbersComments: "Climbers' comments",
       inMyLogBook: 'In my log book',
+      ascents: '1 ascent | %{count} ascents',
       sorts: {
         opened_at: 'Sort by opening date',
         sector: 'Sort by sector',

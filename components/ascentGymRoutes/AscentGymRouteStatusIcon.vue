@@ -17,8 +17,14 @@ export default {
   name: 'AscentGymRouteStatusIcon',
   mixins: [DateHelpers],
   props: {
-    gymRoute: Object,
-    ascentStatus: String
+    gymRoute: {
+      type: Object,
+      required: true
+    },
+    ascentStatus: {
+      type: String,
+      default: null
+    }
   },
 
   data () {

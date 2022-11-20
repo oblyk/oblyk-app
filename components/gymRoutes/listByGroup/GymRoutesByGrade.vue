@@ -5,33 +5,54 @@
       :key="`opened-at-${index}`"
       class="mb-6"
     >
-      <div
-        v-for="(route, index) in item.routes"
-        :key="`gym-route-card-${route.id}`"
+      <v-list
+        color="rgba(0, 0, 0, 0)"
+        subheader
+        two-line
       >
-        <!-- Route card -->
-        <gym-route-card
-          :placement="placement(index, item.routes.length)"
-          :gym-route="route"
-          :get-space-routes="getRoutes"
-        />
-      </div>
+        <v-subheader class="font-weight-bold px-0 border-bottom">
+          <v-icon left small class="mb-1">
+            {{ mdiNumeric7BoxMultiple }}
+          </v-icon>
+          <span v-html="gradeValueToText(item.grade)" />
+        </v-subheader>
+
+        <template v-for="(route, routeIndex) in item.routes">
+          <gym-route-list-item
+            :key="`gym-route-card-${routeIndex}`"
+            :gym-route="route"
+          />
+        </template>
+      </v-list>
     </div>
   </div>
 </template>
 
 <script>
-import GymRouteCard from '@/components/gymRoutes/GymRouteCarde'
+import { mdiNumeric7BoxMultiple } from '@mdi/js'
 import { DateHelpers } from '@/mixins/DateHelpers'
+import GymRouteListItem from '~/components/gymRoutes/GymRouteListItem.vue'
+import { GradeMixin } from '~/mixins/GradeMixin'
 
 export default {
   name: 'GymRoutesByGrade',
-  mixins: [DateHelpers],
-  components: { GymRouteCard },
+  components: { GymRouteListItem },
+  mixins: [DateHelpers, GradeMixin],
   props: {
-    grades: Array,
-    getRoutes: Function,
-    placement: Function
+    grades: {
+      type: Array,
+      required: true
+    },
+    getRoutes: {
+      type: Function,
+      default: null
+    }
+  },
+
+  data () {
+    return {
+      mdiNumeric7BoxMultiple
+    }
   }
 }
 </script>

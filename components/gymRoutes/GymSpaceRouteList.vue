@@ -1,24 +1,28 @@
 <template>
   <div>
     <!-- Sort sector select -->
-    <gym-space-route-sort v-model="sort" />
+    <div class="mb-2">
+      <gym-space-route-sort v-model="sort" />
 
-    <!-- Active filter -->
-    <div v-if="filter.text">
-      <v-chip
-        class="ma-2"
-        close
-        @click:close="clearFilter()"
-      >
-        <v-icon x-small left>
-          {{ filter.icon }}
-        </v-icon>
-        {{ filter.text }}
-      </v-chip>
+      <!-- Active filter -->
+      <div v-if="filter.text">
+        <v-chip
+          class="mt-1"
+          close
+          @click:close="clearFilter()"
+        >
+          <v-icon x-small left>
+            {{ filter.icon }}
+          </v-icon>
+          {{ filter.text }}
+        </v-chip>
+      </div>
     </div>
 
     <!-- Load routes -->
-    <spinner v-if="loadingRoutes" :full-height="false" />
+    <div v-if="loadingRoutes">
+      <v-skeleton-loader type="list-item-avatar" />
+    </div>
 
     <!-- Routes list -->
     <div v-if="!loadingRoutes">
@@ -67,7 +71,6 @@
 import { mdiTextureBox } from '@mdi/js'
 import { SessionConcern } from '@/concerns/SessionConcern'
 import GymSpaceRouteSort from '@/components/gymRoutes/partial/GymSpaceRouteSort'
-import Spinner from '@/components/layouts/Spiner'
 import GymRouteApi from '~/services/oblyk-api/GymRouteApi'
 import GymSectorApi from '~/services/oblyk-api/GymSectorApi'
 import GymRoute from '@/models/GymRoute'
@@ -82,7 +85,6 @@ export default {
     GymRoutesByGrade,
     GymRoutesByOpenedAt,
     GymRoutesBySector,
-    Spinner,
     GymSpaceRouteSort
   },
   mixins: [SessionConcern],
@@ -90,12 +92,16 @@ export default {
     gymSpace: {
       type: Object,
       required: true
+    },
+    activeGymRouteId: {
+      type: [String, Number],
+      default: null
     }
   },
 
   data () {
     return {
-      sort: 'opened_at',
+      sort: 'sector',
       routes: [],
       sectors: [],
       openedAts: [],
@@ -132,13 +138,18 @@ export default {
       this.dismountRoutes(gymId, spaceId, sectorId)
     })
 
-    this.sort = localStorage.getItem('gym_route_sort')
+    this.$root.$on('reloadSpaceRoutes', () => {
+      this.getRoutes()
+    })
+
+    this.sort = localStorage.getItem('gym_route_sort') || 'sector'
     this.getRoutes()
   },
 
   beforeDestroy () {
     this.$root.$off('filterBySector')
     this.$root.$off('dismountGymRoutesInSector')
+    this.$root.$off('reloadSpaceRoutes')
   },
 
   methods: {

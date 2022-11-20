@@ -2,16 +2,17 @@
   <v-menu offset-y right>
     <template #activator="{ on, attrs }">
       <v-btn
-        icon
-        :large="large"
+        color="primary"
+        outlined
+        small
+        text
         v-bind="attrs"
         v-on="on"
       >
-        <v-icon
-          :large="large"
-        >
-          {{ mdiDotsVertical }}
+        <v-icon left>
+          {{ mdiPencil }}
         </v-icon>
+        {{ $t('actions.edit') }}
       </v-btn>
     </template>
     <v-list>
@@ -39,9 +40,9 @@
           <v-icon>{{ mdiCamera }}</v-icon>
         </v-list-item-icon>
         <v-list-item-content>
-          <v-list-item-title>
-            {{ $t('actions.addPicture') }}
-          </v-list-item-title>
+          <v-list-item-title
+            v-text="gymRoute.hasPicture ? $t('actions.editPicture') : $t('actions.addPicture')"
+          />
         </v-list-item-content>
       </v-list-item>
 
@@ -80,23 +81,20 @@
   </v-menu>
 </template>
 <script>
-import { mdiDotsVertical, mdiPencil, mdiCamera, mdiCrop, mdiBackburger } from '@mdi/js'
+import { mdiPencil, mdiCamera, mdiCrop, mdiBackburger } from '@mdi/js'
 import GymRouteApi from '~/services/oblyk-api/GymRouteApi'
 
 export default {
-  name: 'GymRouteActionMenu',
+  name: 'GymRouteActionBtn',
   props: {
-    gymRoute: Object,
-    getSpaceRoutes: Function,
-    large: {
-      type: Boolean,
-      default: true
+    gymRoute: {
+      type: Object,
+      required: true
     }
   },
 
   data () {
     return {
-      mdiDotsVertical,
       mdiPencil,
       mdiCamera,
       mdiCrop,
@@ -111,7 +109,7 @@ export default {
           this.gymRoute.gym.id,
           this.gymRoute.id
         ).then(() => {
-          this.getSpaceRoutes()
+          this.$root.$emit('reloadSpaceRoutes')
         }).catch((err) => {
           this.$root.$emit('alertFromApiError', err, 'gymRoute')
         })

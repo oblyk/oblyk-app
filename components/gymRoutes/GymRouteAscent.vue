@@ -21,12 +21,6 @@
           :ascent-gym-route="ascent"
         />
       </div>
-      <div class="text-right">
-        <add-gym-ascent-btn
-          :gym-route="gymRoute"
-          :is-repetition="ascents.length > 0"
-        />
-      </div>
     </v-col>
   </v-row>
 </template>
@@ -37,21 +31,24 @@ import { DateHelpers } from '@/mixins/DateHelpers'
 import AscentGymRouteApi from '~/services/oblyk-api/AscentGymRouteApi'
 import AscentGymRoute from '@/models/AscentGymRoute'
 import AscentGymRouteSmallCard from '@/components/ascentGymRoutes/AscentGymRouteSmallCard'
-import AddGymAscentBtn from '@/components/ascentGymRoutes/AddGymAscentBtn'
 
 export default {
   name: 'GymRouteAscent',
-  components: { AddGymAscentBtn, AscentGymRouteSmallCard },
+  components: { AscentGymRouteSmallCard },
   mixins: [DateHelpers],
   props: {
-    gymRoute: Object
+    gymRoute: {
+      type: Object,
+      required: true
+    }
   },
 
   data () {
     return {
-      mdiCheckBold,
       loadingAscents: true,
-      ascents: []
+      ascents: [],
+
+      mdiCheckBold
     }
   },
 

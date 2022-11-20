@@ -37,6 +37,14 @@ export default class GymRoute extends ActiveData {
     return (this.picture)
   }
 
+  get hasTags () {
+    let tagCounter = 0
+    for (const section of this.sections) {
+      tagCounter += section?.tags?.length || 0
+    }
+    return tagCounter > 0
+  }
+
   get thumbnailUrl () {
     if (this.thumbnail) {
       return `${process.env.VUE_APP_OBLYK_API_URL}${this.thumbnail}`

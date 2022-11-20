@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <p class="text-center mt-10 mb-5">
+  <div class="pt-10 pb-5">
+    <p class="text-center">
       <v-icon x-large>
         {{ mdiVectorPolygon }}
       </v-icon>
@@ -13,6 +13,8 @@
     </p>
     <p class="text-center mt-10">
       <v-btn
+        text
+        outlined
         color="primary"
         @click="stopEditingSectorPolygon()"
       >

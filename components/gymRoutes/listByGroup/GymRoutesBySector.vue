@@ -6,17 +6,41 @@
       class="mb-5"
       @mouseenter="$root.$emit('activeSector', item.sector.id)"
     >
-      <!-- Sector head -->
-      <gym-route-sort-by-sector :gym-sector="item.sector" />
+      <!-- Route List by sector -->
+      <v-list
+        color="rgba(0, 0, 0, 0)"
+        subheader
+        two-line
+      >
+        <v-subheader class="font-weight-bold px-0 border-bottom">
+          <v-icon left small class="mb-1">
+            {{ mdiTextureBox }}
+          </v-icon>
+          {{ item.sector.name }}
+          <v-spacer />
+          <v-btn
+            v-if="item.sector.hasPolygon"
+            icon
+            :title="$t('components.gymSector.viewOnMap')"
+            @click="setMapViewOnSector(item.sector.id)"
+          >
+            <v-icon>
+              {{ mdiImageFilterCenterFocusStrong }}
+            </v-icon>
+          </v-btn>
+          <gym-sector-admin-menu
+            v-if="currentUserIsGymAdmin()"
+            :gym-sector="item.sector"
+          />
+        </v-subheader>
 
-      <!-- Route card -->
-      <gym-route-card
-        v-for="(route, index) in item.routes"
-        :key="`gym-route-card-${route.id}`"
-        :placement="placement(index, item.routes.length)"
-        :gym-route="route"
-        :get-space-routes="getRoutes"
-      />
+        <template v-for="(route, routeIndex) in item.routes">
+          <gym-route-list-item
+            :key="`gym-route-card-${routeIndex}`"
+            :gym-route="route"
+          />
+        </template>
+      </v-list>
 
       <p v-if="item.routes.length === 0" class="text-center text--disabled">
         {{ $t('components.gymRoute.noRouteInSector') }}
@@ -32,19 +56,43 @@
 </template>
 
 <script>
-import GymRouteSortBySector from '@/components/gymRoutes/partial/GymRouteSortBySector'
-import GymRouteCard from '@/components/gymRoutes/GymRouteCarde'
-import GymRouteAddInSortBySector from '@/components/gymRoutes/partial/GymRouteAddInSortBySector'
+import { mdiTextureBox, mdiImageFilterCenterFocusStrong } from '@mdi/js'
 import { SessionConcern } from '@/concerns/SessionConcern'
+import GymRouteAddInSortBySector from '@/components/gymRoutes/partial/GymRouteAddInSortBySector'
+import GymRouteListItem from '~/components/gymRoutes/GymRouteListItem.vue'
+import GymSectorAdminMenu from '~/components/gymSectors/GymSectorAdminMenu.vue'
 
 export default {
   name: 'GymRoutesBySector',
+  components: {
+    GymSectorAdminMenu,
+    GymRouteListItem,
+    GymRouteAddInSortBySector
+  },
   mixins: [SessionConcern],
-  components: { GymRouteAddInSortBySector, GymRouteCard, GymRouteSortBySector },
+
   props: {
-    sectors: Array,
-    getRoutes: Function,
-    placement: Function
+    sectors: {
+      type: Array,
+      required: true
+    },
+    getRoutes: {
+      type: Function,
+      default: null
+    }
+  },
+
+  data () {
+    return {
+      mdiTextureBox,
+      mdiImageFilterCenterFocusStrong
+    }
+  },
+
+  methods: {
+    setMapViewOnSector (sectorId) {
+      this.$root.$emit('setMapViewOnSector', sectorId)
+    }
   }
 }
 </script>

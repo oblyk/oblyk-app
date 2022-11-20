@@ -75,7 +75,7 @@ export default {
 <style lang="scss" scoped>
 .route-note {
   .v-icon {
-    vertical-align: baseline;
+    vertical-align: middle;
   }
 }
 </style>

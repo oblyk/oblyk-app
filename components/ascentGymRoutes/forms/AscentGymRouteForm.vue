@@ -71,12 +71,18 @@ export default {
     DateHelpers
   ],
   props: {
-    gymRoute: Object,
+    gymRoute: {
+      type: Object,
+      required: true
+    },
     ascentGymRoute: {
       type: Object,
-      required: false
+      default: null
     },
-    callback: Function,
+    callback: {
+      type: Function,
+      default: null
+    },
     defaultAscentStatus: {
       type: String,
       default: 'sent'

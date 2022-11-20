@@ -75,8 +75,14 @@ export default {
   components: { Note, EditGymAscentBtn, AscentGymRouteStatusIcon },
   mixins: [DateHelpers, RecordToObjectHelpers],
   props: {
-    ascentGymRoute: Object,
-    gymRoute: Object
+    ascentGymRoute: {
+      type: Object,
+      required: true
+    },
+    gymRoute: {
+      type: Object,
+      required: true
+    }
   },
 
   data () {

@@ -20,7 +20,10 @@ import { mdiSourceBranchPlus } from '@mdi/js'
 export default {
   name: 'GymRouteAddInSortBySector',
   props: {
-    gymSector: Object
+    gymSector: {
+      type: Object,
+      required: true
+    }
   },
 
   data () {

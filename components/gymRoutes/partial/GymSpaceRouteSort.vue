@@ -4,7 +4,10 @@
     :items="items"
     item-text="text"
     item-value="value"
-    :prepend-icon="mdiSortAscending"
+    outlined
+    dense
+    hide-details
+    :prepend-inner-icon="mdiSortAscending"
     @input="change"
   />
 </template>
@@ -23,13 +26,14 @@ export default {
 
   data () {
     return {
-      mdiSortAscending,
       items: [
         { text: this.$t('components.gymRoute.sorts.opened_at'), value: 'opened_at' },
         { text: this.$t('components.gymRoute.sorts.sector'), value: 'sector' },
         { text: this.$t('components.gymRoute.sorts.grade'), value: 'grade' }
       ],
-      sort: this.value
+      sort: this.value,
+
+      mdiSortAscending
     }
   },
 

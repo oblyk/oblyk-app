@@ -6,8 +6,8 @@
       <v-icon
         v-for="(color, index) in gymRoute.tag_colors"
         :key="`gym-route-tag-color-${index}`"
+        :style="`color: ${color}`"
         medium
-        v-bind:style="`color: ${color}`"
       >
         {{ mdiBookmark }}
       </v-icon>
@@ -18,8 +18,8 @@
       <v-icon
         v-for="(color, index) in gymRoute.hold_colors"
         :key="`gym-route-hold-color-${index}`"
+        :style="`color: ${color}`"
         medium
-        v-bind:style="`color: ${color}`"
       >
         {{ mdiChartBubble }}
       </v-icon>
@@ -33,7 +33,10 @@ import { mdiBookmark, mdiChartBubble } from '@mdi/js'
 export default {
   name: 'GymRouteTagAndHold',
   props: {
-    gymRoute: Object
+    gymRoute: {
+      type: Object,
+      required: true
+    }
   },
 
   data () {
