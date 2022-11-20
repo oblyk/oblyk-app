@@ -2,7 +2,7 @@
   <v-list-item
     v-model="activeRoute"
     color="primary"
-    class="gym-route-list-item"
+    class="gym-route-list-item mb-1"
     :class="gymRoute.thumbnail ? 'pl-0' : ''"
     @click="openGymRoute"
   >
@@ -11,7 +11,7 @@
       class="my-0"
       height="72"
       width="72"
-      tile
+      rounded
     >
       <v-img
         height="72"
