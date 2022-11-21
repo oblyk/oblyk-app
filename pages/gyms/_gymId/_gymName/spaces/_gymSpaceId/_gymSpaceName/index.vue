@@ -249,6 +249,7 @@ export default {
   height: 100%;
   max-height: 100% !important;
   margin: 0;
+  overflow-x: hidden;
   .v-card {
     min-height: 100%;
     .close-gym-route-dialog {
