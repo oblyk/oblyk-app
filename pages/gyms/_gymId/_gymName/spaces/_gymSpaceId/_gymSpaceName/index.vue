@@ -54,11 +54,13 @@
     >
       <v-dialog
         :value="true"
-        fullscreen
-        hide-overlay
         transition="dialog-bottom-transition"
+        content-class="gym-route-dialog"
+        persistent
       >
-        <v-card>
+        <v-card
+          v-touch="{ down: () => swipeDownGymRouteModal() }"
+        >
           <spinner v-if="loadingGymRoute" />
           <gym-route-info
             v-if="gymRoute"
@@ -161,6 +163,15 @@ export default {
         }).finally(() => {
           this.loadingGymRoute = false
         })
+    },
+
+    swipeDownGymRouteModal () {
+      if (this.$route.query.route) {
+        const dialogue = document.querySelector('.gym-route-dialog')
+        if (dialogue.scrollTop === 0) {
+          this.$router.push({ path: this.$route.path })
+        }
+      }
     }
   }
 }
@@ -222,6 +233,15 @@ export default {
       width: calc(100vw - 300px);
       height: calc(100vh - 64px);
     }
+  }
+}
+.gym-route-dialog {
+  width: 100%;
+  height: 100%;
+  max-height: 100% !important;
+  margin: 0;
+  .v-card {
+    min-height: 100%;
   }
 }
 .theme--dark {
