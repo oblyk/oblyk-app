@@ -58,14 +58,26 @@
         content-class="gym-route-dialog"
         persistent
       >
-        <v-card
-          v-touch="{ down: () => swipeDownGymRouteModal() }"
-        >
+        <v-card>
           <spinner v-if="loadingGymRoute" />
           <gym-route-info
             v-if="gymRoute"
             :gym-route="gymRoute"
           />
+          <v-btn
+            class="close-gym-route-dialog"
+            text
+            fab
+            small
+            outlined
+            fixed
+            icon
+            @click="closeGymRouteModal"
+          >
+            <v-icon>
+              {{ mdiChevronDown }}
+            </v-icon>
+          </v-btn>
         </v-card>
       </v-dialog>
     </div>
@@ -73,6 +85,7 @@
 </template>
 
 <script>
+import { mdiChevronDown } from '@mdi/js'
 import { GymSpaceConcern } from '@/concerns/GymSpaceConcern'
 import GymSpaceInfoAndRoutes from '~/components/gymSpaces/GymSpaceInfoAndRoutes.vue'
 import GymSpacePlanMissing from '@/components/gymSpaces/GymSpacePlanMissing'
@@ -99,8 +112,9 @@ export default {
     return {
       gym: null,
       gymRoute: null,
+      loadingGymRoute: false,
 
-      loadingGymRoute: false
+      mdiChevronDown
     }
   },
 
@@ -165,13 +179,8 @@ export default {
         })
     },
 
-    swipeDownGymRouteModal () {
-      if (this.$route.query.route) {
-        const dialogue = document.querySelector('.gym-route-dialog')
-        if (dialogue.scrollTop === 0) {
-          this.$router.push({ path: this.$route.path })
-        }
-      }
+    closeGymRouteModal () {
+      this.$router.push({ path: this.$route.path })
     }
   }
 }
@@ -242,16 +251,34 @@ export default {
   margin: 0;
   .v-card {
     min-height: 100%;
+    .close-gym-route-dialog {
+      right: 4px;
+      bottom: 4px;
+    }
   }
 }
 .theme--dark {
   .gym-route-card {
     background-color: rgba(0, 0, 0, 0.9) !important;
   }
+  .gym-route-dialog {
+    .v-card {
+      .close-gym-route-dialog {
+        background-color: rgb(0, 0, 0);
+      }
+    }
+  }
 }
 .theme--light {
   .gym-route-card {
     background-color: rgba(255, 255, 255, 0.8) !important;
+  }
+  .gym-route-dialog {
+    .v-card {
+      .close-gym-route-dialog {
+        background-color: rgb(255, 255, 255);
+      }
+    }
   }
 }
 </style>
