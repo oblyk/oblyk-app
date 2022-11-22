@@ -30,7 +30,6 @@
       <gym-routes-by-sector
         v-if="sort === 'sector'"
         :sectors="sectors"
-        :placement="placement"
         :get-routes="getRoutes"
       />
 
@@ -38,7 +37,6 @@
       <div v-if="sort === 'opened_at'">
         <gym-routes-by-opened-at
           :opened-ats="openedAts"
-          :placement="placement"
           :get-routes="getRoutes"
         />
         <!-- if no routes in opened_ats -->
@@ -53,7 +51,6 @@
       <div v-if="sort === 'grade'">
         <gym-routes-by-grade
           :grades="grades"
-          :placement="placement"
           :get-routes="getRoutes"
         />
         <!-- if no routes in grade -->
@@ -221,18 +218,6 @@ export default {
           this.loadingRoutes = false
           this.firstLoaded = true
         })
-    },
-
-    placement (index, length) {
-      if (index === 0 && length > 1) {
-        return 'first'
-      } else if (index === 0 && length === 1) {
-        return 'unique'
-      } else if (index !== 0 && index + 1 !== length) {
-        return 'middle'
-      } else {
-        return 'last'
-      }
     },
 
     filterBySector (sectorId, sectorName) {
