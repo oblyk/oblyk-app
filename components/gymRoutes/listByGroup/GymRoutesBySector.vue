@@ -12,7 +12,7 @@
         subheader
         two-line
       >
-        <v-subheader class="font-weight-bold px-0 border-bottom">
+        <v-subheader class="font-weight-bold mb-1 px-0 border-bottom">
           <v-icon left small class="mb-1">
             {{ mdiTextureBox }}
           </v-icon>
