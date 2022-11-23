@@ -1,11 +1,14 @@
 <template>
-  <div>
+  <div
+    :class="$vuetify.breakpoint.mobile ? 'mobile-interface' : 'desktop-interface'"
+  >
     <v-img
       v-if="gymRoute.hasPicture"
-      :class="!$vuetify.breakpoint.mobile ? 'rounded' : ''"
-      dark
-      contain
+      class="rounded gym-route-picture"
+      :class="fullHeightPicture ? '--full-height' : '--limited-height'"
+      cover
       :src="gymRoute.pictureUrl"
+      @click="fullHeightPicture = !fullHeightPicture"
     />
 
     <!-- Information, ascents, etc. -->
@@ -213,6 +216,7 @@ export default {
     return {
       loadingAscents: true,
       ascents: [],
+      fullHeightPicture: false,
 
       mdiComment,
       mdiClose,
@@ -257,6 +261,26 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.gym-route-picture {
+  transition: max-height 0.3s;
+  &.--full-height {
+    max-height: calc(100vh - 64px);
+  }
+}
+.mobile-interface {
+  .gym-route-picture {
+    &.--limited-height {
+      max-height: calc(100vw - 60px);
+    }
+  }
+}
+.desktop-interface {
+  .gym-route-picture {
+    &.--limited-height {
+      max-height: 350px;
+    }
+  }
+}
 .gym-route-title {
   .tag-and-hold {
     max-width: 65px;
