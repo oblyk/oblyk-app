@@ -3,7 +3,7 @@
     <div v-if="!editingSectorPolygon">
       <!-- Gym space selector -->
       <v-sheet
-        class="blur-card pa-4"
+        class="blur-card px-4 pt-1 pb-4"
         :class="$vuetify.breakpoint.mobile ? 'elevation-3' : ''"
         rounded
       >
@@ -16,34 +16,33 @@
         </div>
 
         <!-- Gym Title -->
-        <h3
+        <v-list
           v-if="gym"
-          class="mb-3"
+          class="pt-0"
+          color="rgba(0,0,0,0)"
         >
-          <v-avatar
-            v-if="gym.logo"
-            size="30"
-            class="mr-2 vertical-align-top"
-          >
-            <v-img :src="gym.logoUrl" alt="gym logo" />
-          </v-avatar>
-          {{ gym.name }}
-        </h3>
+          <v-list-item class="pl-0">
+            <v-list-item-avatar v-if="gym.logo">
+              <v-avatar
+                size="40"
+                class="mr-2 vertical-align-top"
+              >
+                <v-img :src="gym.logoUrl" alt="gym logo" />
+              </v-avatar>
+            </v-list-item-avatar>
+            <v-list-item-title class="font-weight-bold">
+              {{ gym.name }}
+            </v-list-item-title>
+            <v-list-item-action
+              v-if="currentUserIsGymAdmin()"
+            >
+              <gym-space-action-menu :gym-space="gymSpace" />
+            </v-list-item-action>
+          </v-list-item>
+        </v-list>
 
         <!-- Space selector -->
-        <div class="row">
-          <div class="col">
-            <gym-space-selector
-              :gym-space="gymSpace"
-            />
-          </div>
-          <div
-            v-if="currentUserIsGymAdmin()"
-            class="col space-actions-btn"
-          >
-            <gym-space-action-menu :gym-space="gymSpace" />
-          </div>
-        </div>
+        <gym-space-selector :gym-space="gymSpace" />
 
         <!-- Space description -->
         <div class="gym-space-description">
