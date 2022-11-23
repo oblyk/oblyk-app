@@ -1,7 +1,7 @@
 <template>
   <div
     class="explain-plan-missing d-flex align-center justify-center"
-    :class="$vuetify.breakpoint.mobile ? 'mobil-interface' : 'desktop-interface'"
+    :class="$vuetify.breakpoint.mobile ? 'mobile-interface' : 'desktop-interface'"
   >
     <div>
       <p class="text-center">

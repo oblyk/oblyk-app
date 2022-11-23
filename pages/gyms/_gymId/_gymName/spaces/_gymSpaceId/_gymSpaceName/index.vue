@@ -19,7 +19,7 @@
       <!-- Plan area -->
       <div
         class="gym-space-plan"
-        :class="$vuetify.breakpoint.mobile ? 'mobil-interface' : 'desktop-interface'"
+        :class="$vuetify.breakpoint.mobile ? 'mobile-interface' : 'desktop-interface'"
       >
         <client-only>
           <gym-space-plan v-if="gymSpace.plan" :gym-space="gymSpace" />
@@ -140,7 +140,7 @@ export default {
     leftSideClass () {
       const leftClass = []
       if (this.$vuetify.breakpoint.mobile) {
-        leftClass.push('mobil-interface')
+        leftClass.push('mobile-interface')
       } else {
         leftClass.push('desktop-interface')
       }
@@ -220,6 +220,11 @@ export default {
       margin-top: 0;
       .gym-space-info-and-routes {
         width: 450px;
+      }
+    }
+    &.mobile-interface {
+      .gym-space-info-and-routes {
+        margin-bottom: 45px;
       }
     }
 
