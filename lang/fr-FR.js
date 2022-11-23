@@ -2206,6 +2206,7 @@ export default {
       user: 'Un compte Oblyk associé à ce mail'
     },
     gymSpace: {
+      loading: "Chargement de l'espace ...",
       name: "Nom de l'espace",
       description: 'Description',
       order: "Ordre d'importance",

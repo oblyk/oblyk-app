@@ -1,85 +1,99 @@
 <template>
-  <div
-    v-if="gymSpace"
-    class="gym-spaces-interface"
-  >
-    <!-- Plan area -->
-    <div
-      class="gym-space-plan"
-      :class="$vuetify.breakpoint.mobile ? 'mobil-interface' : 'desktop-interface'"
+  <div>
+    <!-- Load Gym Space-->
+    <v-container
+      v-if="!gymSpace"
+      class="mt-15"
     >
-      <client-only>
-        <gym-space-plan v-if="gymSpace.plan" :gym-space="gymSpace" />
-        <gym-space-plan-missing v-else :gym-space="gymSpace" />
-      </client-only>
-    </div>
+      <spinner :full-height="false" />
+      <p class="text-center text--disabled">
+        {{ $t('models.gymSpace.loading') }}
+      </p>
+    </v-container>
 
-    <!-- Space informations and routes -->
+    <!-- Gym space -->
     <div
-      class="gym-space-left-side"
-      :class="leftSideClass"
+      v-else
+      class="gym-spaces-interface"
     >
-      <!-- Space informations and routes -->
-      <div class="gym-space-info-and-routes">
-        <gym-space-info-and-routes
-          :gym-space="gymSpace"
-          :gym="gym"
-        />
+      <!-- Plan area -->
+      <div
+        class="gym-space-plan"
+        :class="$vuetify.breakpoint.mobile ? 'mobil-interface' : 'desktop-interface'"
+      >
+        <client-only>
+          <gym-space-plan v-if="gymSpace.plan" :gym-space="gymSpace" />
+          <gym-space-plan-missing v-else :gym-space="gymSpace" />
+        </client-only>
       </div>
 
-      <!-- Open gym route in right side of info in desktop interface -->
-      <v-slide-x-transition>
-        <div
-          v-if="!$vuetify.breakpoint.mobile"
-          v-show="loadingGymRoute || gymRoute"
-          class="gym-route-on-desktop-container py-3"
-        >
-          <div class="gym-route-on-desktop-card">
-            <v-card class="gym-route-card">
-              <spinner v-if="loadingGymRoute" />
-              <gym-route-info
-                v-if="gymRoute"
-                :gym-route="gymRoute"
-              />
-            </v-card>
-          </div>
-        </div>
-      </v-slide-x-transition>
-    </div>
-
-    <!-- Open gym route in full screen on mobile -->
-    <div
-      v-if="(gymRoute || loadingGymRoute) && $vuetify.breakpoint.mobile"
-      class="gym-route-modal-on-mobile"
-    >
-      <v-dialog
-        :value="true"
-        transition="dialog-bottom-transition"
-        content-class="gym-route-dialog"
-        persistent
+      <!-- Space informations and routes -->
+      <div
+        class="gym-space-left-side"
+        :class="leftSideClass"
       >
-        <v-card>
-          <spinner v-if="loadingGymRoute" />
-          <gym-route-info
-            v-if="gymRoute"
-            :gym-route="gymRoute"
+        <!-- Space informations and routes -->
+        <div class="gym-space-info-and-routes">
+          <gym-space-info-and-routes
+            :gym-space="gymSpace"
+            :gym="gym"
           />
-          <v-btn
-            class="close-gym-route-dialog"
-            text
-            fab
-            small
-            outlined
-            fixed
-            icon
-            @click="closeGymRouteModal"
+        </div>
+
+        <!-- Open gym route in right side of info in desktop interface -->
+        <v-slide-x-transition>
+          <div
+            v-if="!$vuetify.breakpoint.mobile"
+            v-show="loadingGymRoute || gymRoute"
+            class="gym-route-on-desktop-container py-3"
           >
-            <v-icon>
-              {{ mdiChevronDown }}
-            </v-icon>
-          </v-btn>
-        </v-card>
-      </v-dialog>
+            <div class="gym-route-on-desktop-card">
+              <v-card class="gym-route-card">
+                <spinner v-if="loadingGymRoute" />
+                <gym-route-info
+                  v-if="gymRoute"
+                  :gym-route="gymRoute"
+                />
+              </v-card>
+            </div>
+          </div>
+        </v-slide-x-transition>
+      </div>
+
+      <!-- Open gym route in full screen on mobile -->
+      <div
+        v-if="(gymRoute || loadingGymRoute) && $vuetify.breakpoint.mobile"
+        class="gym-route-modal-on-mobile"
+      >
+        <v-dialog
+          :value="true"
+          transition="dialog-bottom-transition"
+          content-class="gym-route-dialog"
+          persistent
+        >
+          <v-card>
+            <spinner v-if="loadingGymRoute" />
+            <gym-route-info
+              v-if="gymRoute"
+              :gym-route="gymRoute"
+            />
+            <v-btn
+              class="close-gym-route-dialog"
+              text
+              fab
+              small
+              outlined
+              fixed
+              icon
+              @click="closeGymRouteModal"
+            >
+              <v-icon>
+                {{ mdiChevronDown }}
+              </v-icon>
+            </v-btn>
+          </v-card>
+        </v-dialog>
+      </div>
     </div>
   </div>
 </template>

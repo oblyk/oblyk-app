@@ -2206,6 +2206,7 @@ export default {
       email: 'Email'
     },
     gymSpace: {
+      loading: 'Loading space ...',
       name: 'Space name',
       description: 'Description',
       order: 'Order of importance',
