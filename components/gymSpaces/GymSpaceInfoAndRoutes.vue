@@ -41,6 +41,13 @@
           </v-list-item>
         </v-list>
 
+        <!-- Skeleton loader for gym name -->
+        <v-skeleton-loader
+          v-else
+          class="my-3"
+          type="list-item-avatar"
+        />
+
         <!-- Space selector -->
         <gym-space-selector :gym-space="gymSpace" />
 
