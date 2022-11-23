@@ -224,7 +224,7 @@ export default {
     }
     &.mobile-interface {
       .gym-space-info-and-routes {
-        margin-bottom: 45px;
+        padding-bottom: 45px;
       }
     }
 
