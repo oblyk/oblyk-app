@@ -18,7 +18,7 @@
         <!-- Gym Title -->
         <v-list
           v-if="gym"
-          class="pt-0"
+          class="pt-0 pb-0"
           color="rgba(0,0,0,0)"
         >
           <v-list-item class="pl-0">
@@ -31,7 +31,7 @@
               </v-avatar>
             </v-list-item-avatar>
             <v-list-item-title class="font-weight-bold">
-              {{ gym.name }}
+              {{ gym.name }}<span class="font-weight-regular">, {{ gymSpace.name }}</span>
             </v-list-item-title>
             <v-list-item-action
               v-if="currentUserIsGymAdmin()"
@@ -52,7 +52,7 @@
         <gym-space-selector :gym-space="gymSpace" />
 
         <!-- Space description -->
-        <div class="gym-space-description">
+        <div class="gym-space-description mt-2">
           <markdown-text
             v-if="gymSpace.description"
             :text="gymSpace.description"
@@ -169,9 +169,7 @@ export default {
     }
   }
 }
-.gym-space-description {
-  margin-top: -1.2em;
-}
+.gym-space-description {}
 .space-actions-btn {
   max-width: 40px;
   padding-left: 0;

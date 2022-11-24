@@ -208,7 +208,7 @@ export default {
   position: relative;
 
   .gym-space-left-side {
-    margin-top: calc(100vh - 160px);
+    margin-top: calc(100vh - 260px);
     z-index: 1;
     position: relative;
     width: 100%;

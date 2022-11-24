@@ -33,6 +33,14 @@ export default class GymSpace extends ActiveData {
     }
   }
 
+  get planThumbnailUrl () {
+    if (this.plan) {
+      return `${process.env.VUE_APP_OBLYK_API_URL}${this.plan_thumbnail_url}`
+    } else {
+      return '/images/gym-default-banner.jpg'
+    }
+  }
+
   get Gym () {
     return new Gym({ attributes: this.gym })
   }
