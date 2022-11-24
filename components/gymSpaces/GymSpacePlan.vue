@@ -134,6 +134,7 @@ export default {
     this.$root.$off('startEditSectorPolygon')
     this.$root.$off('activeSector')
     this.$root.$off('stopEditingSectorPolygon')
+    this.$root.$off('setMapViewOnSector')
   },
 
   methods: {
