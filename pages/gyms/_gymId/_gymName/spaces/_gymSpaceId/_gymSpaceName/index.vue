@@ -71,7 +71,10 @@
           content-class="gym-route-dialog"
           persistent
         >
-          <v-card>
+          <v-card
+            @touchstart="touchEvent('start', $event)"
+            @touchend="touchEvent('end', $event)"
+          >
             <spinner v-if="loadingGymRoute" />
             <gym-route-info
               v-if="gymRoute"
@@ -127,6 +130,8 @@ export default {
       gym: null,
       gymRoute: null,
       loadingGymRoute: false,
+      closeDragStart: null,
+      toucheClientY: 0,
 
       mdiChevronDown
     }
@@ -195,6 +200,23 @@ export default {
 
     closeGymRouteModal () {
       this.$router.push({ path: this.$route.path })
+    },
+
+    touchEvent (touchStatus, event) {
+      const dialogue = document.querySelector('.gym-route-dialog')
+      if (dialogue.scrollTop === 0 && touchStatus === 'start') {
+        this.closeDragStart = true
+        this.toucheClientY = event.changedTouches[0].clientY
+      }
+      if (touchStatus === 'end' && this.closeDragStart === true) {
+        if (event.changedTouches[0].clientY - this.toucheClientY > 100) {
+          this.closeGymRouteModal()
+        }
+      }
+      if (touchStatus === 'end') {
+        this.closeDragStart = null
+        this.toucheClientY = null
+      }
     }
   }
 }
