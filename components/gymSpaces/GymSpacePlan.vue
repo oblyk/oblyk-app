@@ -153,13 +153,27 @@ export default {
 
     setMapView () {
       const paddingLeft = this.$vuetify.breakpoint.mobile ? 0 : 455
-      this.map.fitBounds(this.bounds, { paddingTopLeft: [paddingLeft, 0] })
+      const paddingBottom = this.$vuetify.breakpoint.mobile ? 240 : 0
+      this.map.fitBounds(
+        this.bounds,
+        {
+          paddingTopLeft: [paddingLeft, 0],
+          paddingBottomRight: [0, paddingBottom]
+        }
+      )
     },
 
     setMapViewOnSector (gymSectorId) {
       const polygonSector = this.$refs[`polygon-sector-${gymSectorId}`]
       const paddingLeft = this.$vuetify.breakpoint.mobile ? 0 : 455
-      this.map.fitBounds(polygonSector[0].mapObject.getBounds(), { paddingTopLeft: [paddingLeft, 0] })
+      const paddingBottom = this.$vuetify.breakpoint.mobile ? 240 : 0
+      this.map.fitBounds(
+        polygonSector[0].mapObject.getBounds(),
+        {
+          paddingTopLeft: [paddingLeft, 0],
+          paddingBottomRight: [0, paddingBottom]
+        }
+      )
     },
 
     startEditSectorPolygon (gymSectorId) {

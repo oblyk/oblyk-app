@@ -92,6 +92,12 @@ export default {
   methods: {
     setMapViewOnSector (sectorId) {
       this.$root.$emit('setMapViewOnSector', sectorId)
+      if (this.$vuetify.breakpoint.mobile) {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        })
+      }
     }
   }
 }
