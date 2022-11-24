@@ -80,20 +80,6 @@
               v-if="gymRoute"
               :gym-route="gymRoute"
             />
-            <v-btn
-              class="close-gym-route-dialog"
-              text
-              fab
-              small
-              outlined
-              fixed
-              icon
-              @click="closeGymRouteModal"
-            >
-              <v-icon>
-                {{ mdiChevronDown }}
-              </v-icon>
-            </v-btn>
           </v-card>
         </v-dialog>
       </div>
@@ -293,34 +279,16 @@ export default {
   overflow-x: hidden;
   .v-card {
     min-height: 100%;
-    .close-gym-route-dialog {
-      right: 4px;
-      bottom: 4px;
-    }
   }
 }
 .theme--dark {
   .gym-route-card {
     background-color: rgba(0, 0, 0, 0.9) !important;
   }
-  .gym-route-dialog {
-    .v-card {
-      .close-gym-route-dialog {
-        background-color: rgb(0, 0, 0);
-      }
-    }
-  }
 }
 .theme--light {
   .gym-route-card {
     background-color: rgba(255, 255, 255, 0.8) !important;
-  }
-  .gym-route-dialog {
-    .v-card {
-      .close-gym-route-dialog {
-        background-color: rgb(255, 255, 255);
-      }
-    }
   }
 }
 </style>
