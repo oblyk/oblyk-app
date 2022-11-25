@@ -16,7 +16,10 @@
       <!-- Title -->
       <v-row class="gym-route-title">
         <v-col align-self="center" class="tag-and-hold">
-          <gym-route-tag-and-hold :gym-route="gymRoute" />
+          <gym-route-tag-and-hold
+            :size="40"
+            :gym-route="gymRoute"
+          />
         </v-col>
         <v-col align-self="center" class="name-and-grade">
           <gym-route-grade-and-point
