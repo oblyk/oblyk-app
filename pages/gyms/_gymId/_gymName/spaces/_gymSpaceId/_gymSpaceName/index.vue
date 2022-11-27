@@ -195,7 +195,7 @@ export default {
         this.toucheClientY = event.changedTouches[0].clientY
       }
       if (touchStatus === 'end' && this.closeDragStart === true) {
-        if (event.changedTouches[0].clientY - this.toucheClientY > 100) {
+        if (event.changedTouches[0].clientY - this.toucheClientY > 50) {
           this.closeGymRouteModal()
         }
       }
