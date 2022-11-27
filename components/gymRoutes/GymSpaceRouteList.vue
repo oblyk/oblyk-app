@@ -98,7 +98,7 @@ export default {
 
   data () {
     return {
-      sort: 'sector',
+      sort: 'opened_at',
       routes: [],
       sectors: [],
       openedAts: [],
