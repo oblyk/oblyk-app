@@ -3,21 +3,19 @@
     <!-- Sort sector select -->
     <div class="mb-2">
       <gym-space-route-sort v-model="sort" />
-
-      <!-- Active filter -->
-      <div v-if="filter.text">
-        <v-chip
-          class="mt-1"
-          close
-          @click:close="clearFilter()"
-        >
-          <v-icon x-small left>
-            {{ filter.icon }}
-          </v-icon>
-          {{ filter.text }}
-        </v-chip>
-      </div>
     </div>
+
+    <!-- Show highlighted sector -->
+    <v-alert
+      v-if="showSectorsToast"
+      text
+      dense
+      color="primary"
+      dismissible
+      @input="closeSectorFilter"
+    >
+      <span v-html="$t('components.gymSpace.showSector', { name: showSectorName })" />
+    </v-alert>
 
     <!-- Load routes -->
     <div v-if="loadingRoutes">
@@ -30,6 +28,7 @@
       <gym-routes-by-sector
         v-if="sort === 'sector'"
         :sectors="sectors"
+        :show-sector-id="showSectorId"
         :get-routes="getRoutes"
       />
 
@@ -37,6 +36,7 @@
       <div v-if="sort === 'opened_at'">
         <gym-routes-by-opened-at
           :opened-ats="openedAts"
+          :show-sector-id="showSectorId"
           :get-routes="getRoutes"
         />
         <!-- if no routes in opened_ats -->
@@ -51,6 +51,7 @@
       <div v-if="sort === 'grade'">
         <gym-routes-by-grade
           :grades="grades"
+          :show-sector-id="showSectorId"
           :get-routes="getRoutes"
         />
         <!-- if no routes in grade -->
@@ -65,7 +66,6 @@
 </template>
 
 <script>
-import { mdiTextureBox } from '@mdi/js'
 import { SessionConcern } from '@/concerns/SessionConcern'
 import GymSpaceRouteSort from '@/components/gymRoutes/partial/GymSpaceRouteSort'
 import GymRouteApi from '~/services/oblyk-api/GymRouteApi'
@@ -106,12 +106,14 @@ export default {
       gymRoutes: [],
       loadingRoutes: true,
       firstLoaded: false,
-      filter: {
-        text: null,
-        icon: null
-      },
+      showSectorId: null,
+      showSectorName: null
+    }
+  },
 
-      mdiTextureBox
+  computed: {
+    showSectorsToast () {
+      return this.showSectorId !== null
     }
   },
 
@@ -221,16 +223,17 @@ export default {
     },
 
     filterBySector (sectorId, sectorName) {
-      this.filter.text = `secteur : ${sectorName}`
-      this.filter.icon = mdiTextureBox
-      this.getRoutes(sectorId)
-      this.$root.$emit('showGymSpaceLine')
+      this.showSectorId = sectorId
+      this.showSectorName = sectorName
+      setTimeout(() => {
+        const firstGymRouteSectorName = document.querySelector('.gym-route-sector-name')
+        firstGymRouteSectorName.scrollIntoView({ behavior: 'smooth' })
+      }, 300)
     },
 
-    clearFilter () {
-      this.filter.text = null
-      this.filter.icon = null
-      this.getRoutes()
+    closeSectorFilter () {
+      this.showSectorId = null
+      this.showSectorName = null
     },
 
     dismountRoutes (gymId, spaceId, sectorId) {

@@ -1017,7 +1017,8 @@ export default {
       explainMissingPlan: 'Uploader une plan de <cite>"%{name}"</cite> sur lequel vous pourrez tracer les secteurs',
       uploadPlanFor: 'Télécharger un plan pour : %{name}',
       routes: 'Ouvertures',
-      plan: 'Plan'
+      plan: 'Plan',
+      showSector: 'Lignes du secteur <strong>%{name}</strong> mises en évidence.'
     },
     gymSector: {
       addNew: 'Créer un nouveau secteur',

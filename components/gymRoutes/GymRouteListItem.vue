@@ -26,6 +26,21 @@
         {{ gymRoute.name }}
       </v-list-item-title>
       <v-list-item-subtitle>
+        <v-chip
+          v-if="showSector"
+          outlined
+          small
+          color="primary"
+          class="gym-route-sector-name font-weight-bold"
+        >
+          <v-icon
+            x-small
+            left
+          >
+            {{ mdiTextureBox }}
+          </v-icon>
+          {{ gymRoute.gym_sector.name }}
+        </v-chip>
         <ascent-gym-route-status-icon
           v-if="$auth.loggedIn"
           :gym-route="gymRoute"
@@ -56,7 +71,7 @@
 </template>
 
 <script>
-import { mdiCheckAll } from '@mdi/js'
+import { mdiCheckAll, mdiTextureBox } from '@mdi/js'
 import GymRouteTagAndHold from '~/components/gymRoutes/partial/GymRouteTagAndHold.vue'
 import Note from '~/components/notes/Note.vue'
 import GymRouteGradeAndPoint from '~/components/gymRoutes/partial/GymRouteGradeAndPoint.vue'
@@ -75,12 +90,17 @@ export default {
     gymRoute: {
       type: Object,
       required: true
+    },
+    showSector: {
+      type: Boolean,
+      default: false
     }
   },
 
   data () {
     return {
-      mdiCheckAll
+      mdiCheckAll,
+      mdiTextureBox
     }
   },
 

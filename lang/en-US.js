@@ -1017,7 +1017,8 @@ export default {
       explainMissingPlan: 'Upload a plan of <cite>"%{name}"</cite> on which you can draw the sectors.',
       uploadPlanFor: 'Upload a plan for : %{name}',
       routes: 'Routes',
-      plan: 'Plan'
+      plan: 'Plan',
+      showSector: 'Line in <strong>%{name}</strong> sector highlighted.'
     },
     gymSector: {
       addNew: 'Create a new sector',

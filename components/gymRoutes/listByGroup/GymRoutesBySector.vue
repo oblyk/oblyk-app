@@ -2,6 +2,7 @@
   <div>
     <div
       v-for="(item, index) in sectors"
+      :id="`gym-route-sector-${item.sector.id}`"
       :key="`sector-${index}`"
       class="mb-5"
       @mouseenter="$root.$emit('activeSector', item.sector.id)"
@@ -38,6 +39,7 @@
           <gym-route-list-item
             :key="`gym-route-card-${routeIndex}`"
             :gym-route="route"
+            :show-sector="route.gym_sector_id === showSectorId"
           />
         </template>
       </v-list>
@@ -78,6 +80,10 @@ export default {
     },
     getRoutes: {
       type: Function,
+      default: null
+    },
+    showSectorId: {
+      type: Number,
       default: null
     }
   },
