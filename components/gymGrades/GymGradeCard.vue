@@ -7,19 +7,23 @@
       {{ gymGrade.name }}
     </v-card-title>
     <v-card-text>
-      <p>
+      <p class="mb-1">
         <strong>
-          {{ $t('components.gymGrade.system') }} :
+          {{ $t('components.gymGrade.whichGradeSystem') }} :
         </strong>
-        <span v-html="$t(`components.gymGrade.gradeSystem.${gymGrade.difficulty_system}`)" />
+        <span v-if="gymGrade.difficulty_by_grade" v-html="$t('models.gymGrade.difficulty_by_grade')" />
+        <span v-if="gymGrade.difficulty_by_level" v-html="$t('models.gymGrade.difficulty_by_level')" />
+      </p>
+      <p class="mb-1">
+        <strong>
+          {{ $t('components.gymGrade.whichIdentificationSystem') }} :
+        </strong>
+        <span v-if="gymGrade.tag_color" v-html="$t('models.gymGrade.tag_color')" />
+        <span v-if="gymGrade.hold_color" v-html="$t('models.gymGrade.hold_color')" />
       </p>
       <p>
-        <strong>
-          {{ $t('components.gymGrade.value') }} :
-        </strong>
-        <span v-if="gymGrade.use_grade_system" v-html="$t('models.gymGrade.use_grade_system')" />
-        <span v-if="gymGrade.use_point_system" v-html="$t('models.gymGrade.use_point_system')" />
-        <span v-if="gymGrade.use_point_division_system" v-html="$t('models.gymGrade.use_point_division_system')" />
+        <strong>{{ $t('components.gymGrade.whichPointSystem') }} :</strong>
+        <span v-html="$t(`models.gymGrade.point_system_types.${gymGrade.point_system_type}`)" />
       </p>
       <v-simple-table>
         <template #default>

@@ -6,6 +6,7 @@
       v-if="!loadingGymGrade"
       @submit.prevent="submit()"
     >
+      <!-- Choose pre-recorded difficulty -->
       <v-select
         v-if="gymGrade.need_grade_line"
         v-model="data.gym_grade_line_id"
@@ -18,6 +19,7 @@
         @change="onChangeDifficulty()"
       />
 
+      <!-- Route name -->
       <v-text-field
         v-model="data.name"
         outlined
@@ -45,6 +47,8 @@
           </v-tooltip>
         </template>
       </v-text-field>
+
+      <!-- Random crag route name and information -->
       <p
         v-if="cragRoute.name"
         class="mb-4 mt-1"
@@ -57,12 +61,30 @@
         <cite>({{ cragRoute.Crag.city }})</cite>
       </p>
 
+      <!-- Openers -->
       <v-text-field
         v-model="data.openers"
         outlined
         :label="$t('models.gymRoute.openers')"
       />
 
+      <!-- Open at -->
+      <date-picker-input
+        v-model="data.opened_at"
+        :label="$t('models.gymRoute.opened_at')"
+      />
+
+      <!-- Tags -->
+      <div v-if="!multiPitch">
+        <tags-input
+          v-for="(value, index) in data.sections"
+          :key="index"
+          v-model="value.tags"
+          :label="multiPitch ? $t('models.gymRoute.tags_by_section', { index: index + 1 }) : $t('models.gymRoute.tags')"
+        />
+      </div>
+
+      <!-- Description -->
       <markdown-input
         v-model="data.description"
         :label="$t('models.gymRoute.description')"
@@ -78,77 +100,72 @@
       </p>
 
       <div v-show="showAutomaticParameters">
+        <!-- Multi pitch route if sector accept this -->
         <v-checkbox
           v-show="(gymSector.can_be_more_than_one_pitch)"
           v-model="multiPitch"
           :label="$t('components.gymRoute.multiPitchRoute')"
         />
 
-        <!-- Points -->
+        <!-- Points if fix -->
         <v-text-field
-          v-if="(gymGrade.use_point_system)"
+          v-if="(gymGrade.point_system_type === 'fix')"
           v-model="data.points"
           outlined
           type="number"
-          :required="(gymGrade.use_point_system)"
+          :required="(gymGrade.point_system_type === 'fix')"
           :label="$t('models.gymRoute.points')"
         />
 
-        <!-- Tags -->
-        <div v-if="!gymGrade.use_grade_system">
-          <tags-input
-            v-for="(value, index) in data.sections"
-            :key="index"
-            v-model="value.tags"
-            :label="multiPitch ? $t('models.gymRoute.tags_by_section', { index: index + 1 }) : $t('models.gymRoute.tags')"
-          />
-        </div>
-
-        <div v-show="(gymGrade.use_grade_system)" class="row">
-          <!-- Grade by section -->
-          <div class="col-sm-3">
+        <!-- Grade + (height and tags by pitch in multi pitches) -->
+        <div
+          v-for="(section, sectionIndex) in data.sections"
+          :key="`section-index-${sectionIndex}`"
+          class="row"
+        >
+          <!-- If route use grade like 7a, 6b, etc. -->
+          <div v-show="(gymGrade.difficulty_by_grade)" class="col">
             <v-text-field
-              v-for="(value, index) in data.sections"
-              :key="index"
-              v-model="value.grade"
+              v-model="section.grade"
               outlined
-              :required="(gymGrade.use_grade_system)"
-              :label="multiPitch ? $t('models.gymRoute.grade_by_section', { index: index + 1 }) : $t('models.gymRoute.grade')"
+              hide-details
+              :required="(gymGrade.difficulty_by_grade)"
+              :label="multiPitch ? $t('models.gymRoute.grade_by_section', { index: sectionIndex + 1 }) : $t('models.gymRoute.grade')"
             />
           </div>
 
           <!-- height by section if more than one pitch -->
-          <div v-if="multiPitch && data.sections.length > 1" class="col-sm-3">
+          <div v-if="multiPitch" class="col">
             <v-text-field
-              v-for="(value, index) in data.sections"
-              :key="index"
-              v-model="value.height"
+              v-model="section.height"
               outlined
+              hide-details
               type="number"
-              :label="$t('models.gymRoute.height_by_section', { index: index + 1 })"
+              :label="$t('models.gymRoute.height_by_section', { index: sectionIndex + 1 })"
             />
           </div>
 
           <!-- Tags by section if more than one pitch -->
-          <div class="col">
+          <div v-if="multiPitch" class="col">
             <tags-input
-              v-for="(value, index) in data.sections"
-              :key="index"
-              v-model="value.tags"
-              :label="multiPitch ? $t('models.gymRoute.tags_by_section', { index: index + 1 }) : $t('models.gymRoute.tags')"
+              v-model="section.tags"
+              hide-details
+              :label="$t('models.gymRoute.tags_by_section', { index: sectionIndex + 1 })"
             />
           </div>
         </div>
 
+        <!-- Button for add pitch-->
         <div
           v-if="multiPitch"
-          class="text-right add-pitch-to-route"
+          class="text-right mt-1"
         >
           <v-btn
             v-if="data.sections.length > 1"
             icon
+            text
+            class="mr-3"
             :title="$t('components.gymRoute.removePitch')"
-            small
             @click="removePitch()"
           >
             <v-icon>
@@ -159,7 +176,9 @@
           <v-btn
             icon
             :title="$t('components.gymRoute.addPitch')"
-            small
+            text
+            outlined
+            color="primary"
             @click="addPitch()"
           >
             <v-icon>
@@ -168,29 +187,27 @@
           </v-btn>
         </div>
 
-        <!-- Tag colors -->
-        <color-input
-          v-show="(gymGrade.needTagColor)"
-          v-model="data.tag_colors"
-          label="Couleurs des etiquettes"
-          :icon="mdiBookmarkMultipleOutline"
-        />
+        <!-- Tag and holds color -->
+        <div class="mt-5">
+          <!-- Tag colors -->
+          <color-input
+            v-show="gymGrade.tag_color || (data.tag_colors && data.tag_colors.length > 0)"
+            v-model="data.tag_colors"
+            label="Couleurs des étiquettes"
+            :icon="mdiBookmarkMultipleOutline"
+          />
 
-        <!-- Hold colors -->
-        <color-input
-          v-show="(gymGrade.needHoldColor)"
-          v-model="data.hold_colors"
-          label="Couleurs des prises"
-          :icon="mdiChartBubble"
-        />
-
-        <!-- Open at -->
-        <date-picker-input
-          v-model="data.opened_at"
-          :label="$t('models.gymRoute.opened_at')"
-        />
+          <!-- Hold colors -->
+          <color-input
+            v-show="gymGrade.hold_color || (data.hold_colors && data.hold_colors.length > 0)"
+            v-model="data.hold_colors"
+            label="Couleurs des prises"
+            :icon="mdiChartBubble"
+          />
+        </div>
       </div>
 
+      <!-- Params form sector (height and climbing type) -->
       <p class="subtitle-2">
         <span @click="showResultingParameters = !showResultingParameters">
           <v-icon left>
@@ -199,6 +216,7 @@
           {{ $t('components.gymRoute.resultingParametersOf', { name: gymSector.name }) }}
         </span>
       </p>
+
       <div v-show="showResultingParameters">
         <!-- Climbing Type -->
         <v-select
@@ -292,13 +310,6 @@ export default {
 
   data () {
     return {
-      mdiShuffleVariant,
-      mdiChevronDown,
-      mdiChevronRight,
-      mdiPlus,
-      mdiMinus,
-      mdiBookmarkMultipleOutline,
-      mdiChartBubble,
       findingRandomName: false,
       cragRoute: {},
       redirectTo: null,
@@ -308,22 +319,22 @@ export default {
       showResultingParameters: false,
       loadingGymGrade: true,
       data: {
-        id: (this.gymRoute || {}).id,
-        name: (this.gymRoute || {}).name,
-        openers: (this.gymRoute || {}).openers,
-        description: (this.gymRoute || {}).description,
-        height: (this.gymRoute || {}).height || this.gymSector.height,
-        points: (this.gymRoute || {}).points,
-        grade: (this.gymRoute || {}).grade,
-        tag_colors: (this.gymRoute || {}).tag_colors,
-        hold_colors: (this.gymRoute || {}).hold_colors,
-        opened_at: (this.gymRoute || {}).opened_at || this.today().format('YYYY-MM-DD'),
-        climbing_type: (this.gymRoute || {}).climbing_type || this.gymSector.climbing_type,
-        gym_grade_line_id: (this.gymRoute || {}).gym_grade_line_id,
+        id: this.gymRoute?.id,
+        name: this.gymRoute?.name,
+        openers: this.gymRoute?.openers,
+        description: this.gymRoute?.description,
+        height: this.gymRoute?.height || this.gymSector.height,
+        points: this.gymRoute?.points,
+        grade: this.gymRoute?.grade,
+        tag_colors: this.gymRoute?.tag_colors,
+        hold_colors: this.gymRoute?.hold_colors,
+        opened_at: this.gymRoute?.opened_at || this.today().format('YYYY-MM-DD'),
+        climbing_type: this.gymRoute?.climbing_type || this.gymSector.climbing_type,
+        gym_grade_line_id: this.gymRoute?.gym_grade_line_id,
         gym_space_id: this.gymSector.gym_space.id,
         gym_sector_id: this.gymSector.id,
         gym_id: this.gymSector.gym.id,
-        sections: (this.gymRoute || {}).sections || [{ grade: null, height: null, tags: [] }]
+        sections: this.gymRoute?.sections || [{ grade: null, height: null, tags: [] }]
       },
       climbingGymList: [
         { text: this.$t('models.climbs.sport_climbing'), value: 'sport_climbing' },
@@ -331,7 +342,15 @@ export default {
         { text: this.$t('models.climbs.pan'), value: 'pan' }
       ],
       gymGradeLines: [],
-      gymGrade: null
+      gymGrade: null,
+
+      mdiShuffleVariant,
+      mdiChevronDown,
+      mdiChevronRight,
+      mdiPlus,
+      mdiMinus,
+      mdiBookmarkMultipleOutline,
+      mdiChartBubble
     }
   },
 
@@ -402,8 +421,13 @@ export default {
       for (const section of this.data.sections) {
         section.grade = selectedGradeLine.grade_text
       }
-      this.data.hold_colors = selectedGradeLine.colors
-      this.data.tag_colors = selectedGradeLine.colors
+
+      if (this.gymGrade.hold_color) {
+        this.data.hold_colors = selectedGradeLine.colors
+      }
+      if (this.gymGrade.tag_color) {
+        this.data.tag_colors = selectedGradeLine.colors
+      }
     },
 
     getGymGrade () {
@@ -429,9 +453,3 @@ export default {
   }
 }
 </script>
-<style lang="scss" scoped>
-.add-pitch-to-route {
-  margin-top: -25px;
-  margin-bottom: 1em;
-}
-</style>

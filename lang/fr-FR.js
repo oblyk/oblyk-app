@@ -1058,16 +1058,13 @@ export default {
       noSystem: "Aucun système de difficulté est renseigné pour l'instant",
       add: 'Ajouter un système de difficultés',
       explain: 'Les systèmes de difficultés ont pour but de vous faciliter la tâche de renseignement de vos lignes par la suite.',
-      whichSystem: 'Comment identifier vous vos lignes ? (couleur de prise, etiquette, etc.)',
-      whichGradeSystem: 'Quelle système de valeur utilisez vous pour coter vos lignes ?',
+      whichIdentificationSystem: "Comment j'identifie une ligne ?",
+      whichGradeSystem: "Comment je connais la difficulté d'une ligne ?",
+      whichPointSystem: "Est-ce que j'utilise un système de point ?",
       system: 'Système',
+      typeOfSystem: 'Type de système',
       value: 'Valeur',
-      gradeSystem: {
-        hold_color: 'La couleur des prises indiquent la difficulté <cite>(recommandé pour le bloc)</cite>',
-        tag_color: 'Les étiquettes au départ des lignes indiquent la difficulté <cite>(recommandé pour la voie en salle privée)</cite>',
-        pan: 'Les étiquettes sur toutes les prises de la ligne indiquent la difficulté <cite>(recommandé pour le pan)</cite>',
-        grade: "Pas d'étiquette, pas de couleur de prise spécifique, la cotation est indiqué pour la ligne <cite>(recommandé pour la voie en club)</cite>"
-      }
+      both: 'Les deux'
     },
     gymGradeLine: {
       colors: {
@@ -2259,10 +2256,16 @@ export default {
     },
     gymGrade: {
       name: 'Nom du système',
-      difficulty_system: 'Type de système',
-      use_grade_system: "System de cotation 'normal' <cite>(7a, 6b+, etc.)</cite>",
-      use_point_system: 'System de cotation par point fixe <cite>(50pts, 500pts, etc.)</cite>',
-      use_point_division_system: "System de cotation par division des points <cite>(1000 pts / nombre d'ascension)</cite>"
+      difficulty_by_grade: "System de cotation 'normal' <cite>(7a, 6b+, etc.)</cite>.",
+      difficulty_by_level: 'System de niveau <cite>(jaune, vert, bleu, etc.)</cite>.',
+      tag_color: 'Par des étiquettes.',
+      hold_color: 'Par la couleur de prise.',
+      point_system_type: 'Type de système par point',
+      point_system_types: {
+        fix: 'Un nombre de points fixe donné par le niveau <cite>(50pts, 500pts, etc.)</cite>',
+        divisible: "1000pt / divisé par le nombre d'ascension",
+        none: 'Pas de système de point'
+      }
     },
     gymGradeLine: {
       name: 'Nom du niveau',

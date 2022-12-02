@@ -1061,13 +1061,8 @@ export default {
       whichSystem: 'How do you identify your routes? (grip color, label, etc.)',
       whichGradeSystem: 'What value system do you use to rate your routes?',
       system: 'System',
-      value: 'Value',
-      gradeSystem: {
-        hold_color: 'The color of the holds indicate the difficulty <cite>(recommended for the block)</cite>.',
-        tag_color: 'The labels at the start of the routes indicate the difficulty <cite>(recommended for the private gym route)</cite>.',
-        pan: 'Labels on all holds of the route indicate difficulty <cite>(recommended for pan)</cite>.',
-        grade: 'No label, no specific hold color, the grade is indicated for the route <cite>(recommended for club track)</cite>.'
-      }
+      typeOfSystem: 'Type of system',
+      value: 'Value'
     },
     gymGradeLine: {
       colors: {
@@ -2259,10 +2254,16 @@ export default {
     },
     gymGrade: {
       name: 'System name',
-      difficultySystem: 'System type',
-      use_grade_system: "'Normal' grade system <cite>(7a, 6b+, etc.)</cite>",
-      use_point_system: 'Grade system by points <cite>(50pts, 500pts, etc.)</cite>',
-      use_point_division_system: 'Scoring system by division of points <cite>(1000 pts / number of ascents)</cite>'
+      difficulty_by_grade: "'Normal' grade system <cite>(7a, 6b+, etc.)</cite>.",
+      difficulty_by_level: 'Level system <cite>(yellow, green, blue, etc.)</cite>.',
+      tag_color: 'There are tags at the start of the routes.',
+      hold_color: 'Sockets are of the same colour within a route.',
+      point_system_type: 'Type of system per point',
+      point_system_types: {
+        fix: 'Grade system by points <cite>(50pts, 500pts, etc.)</cite>',
+        divisible: 'Scoring system by division of points <cite>(1000 pts / number of ascents)</cite>',
+        none: 'No point system'
+      }
     },
     gymGradeLine: {
       name: 'Level name',

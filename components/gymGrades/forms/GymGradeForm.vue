@@ -7,75 +7,66 @@
     />
 
     <p class="subtitle-2 mt-1">
-      {{ $t('components.gymGrade.whichSystem') }}
+      {{ $t('components.gymGrade.whichIdentificationSystem') }}
     </p>
 
-    <v-radio-group v-model="data.difficulty_system">
-      <v-radio
-        value="hold_color"
-      >
-        <template #label>
-          <span v-html="$t('components.gymGrade.gradeSystem.hold_color')" />
-        </template>
-      </v-radio>
+    <v-checkbox
+      v-model="data.tag_color"
+      hide-details
+    >
+      <template #label>
+        <span v-html="$t('models.gymGrade.tag_color')" />
+      </template>
+    </v-checkbox>
 
-      <v-radio
-        class="mt-3"
-        value="tag_color"
-      >
-        <template #label>
-          <span v-html="$t('components.gymGrade.gradeSystem.tag_color')" />
-        </template>
-      </v-radio>
+    <v-checkbox v-model="data.hold_color">
+      <template #label>
+        <span v-html="$t('models.gymGrade.hold_color')" />
+      </template>
+    </v-checkbox>
 
-      <v-radio
-        class="mt-3"
-        value="pan"
-      >
-        <template #label>
-          <span v-html="$t('components.gymGrade.gradeSystem.pan')" />
-        </template>
-      </v-radio>
-
-      <v-radio
-        class="mt-3"
-        value="grade"
-      >
-        <template #label>
-          <span v-html="$t('components.gymGrade.gradeSystem.grade')" />
-        </template>
-      </v-radio>
-    </v-radio-group>
-
-    <p class="subtitle-2 mt-6">
+    <p class="subtitle-2 mt-3">
       {{ $t('components.gymGrade.whichGradeSystem') }}
     </p>
 
     <v-checkbox
-      v-model="data.use_grade_system"
+      v-model="data.difficulty_by_grade"
+      hide-details
     >
       <template #label>
-        <span v-html="$t('models.gymGrade.use_grade_system')" />
+        <span v-html="$t('models.gymGrade.difficulty_by_grade')" />
       </template>
     </v-checkbox>
 
-    <v-checkbox
-      v-model="data.use_point_system"
-      @change="uncheckDivisionPoint()"
-    >
+    <v-checkbox v-model="data.difficulty_by_level">
       <template #label>
-        <span v-html="$t('models.gymGrade.use_point_system')" />
+        <span v-html="$t('models.gymGrade.difficulty_by_level')" />
       </template>
     </v-checkbox>
 
-    <v-checkbox
-      v-model="data.use_point_division_system"
-      @change="uncheckPoint()"
-    >
-      <template #label>
-        <span v-html="$t('models.gymGrade.use_point_division_system')" />
-      </template>
-    </v-checkbox>
+    <p class="subtitle-2 mt-3">
+      {{ $t('components.gymGrade.whichPointSystem') }}
+    </p>
+
+    <v-radio-group v-model="data.point_system_type">
+      <v-radio value="fix">
+        <template #label>
+          <span v-html="$t('models.gymGrade.point_system_types.fix')" />
+        </template>
+      </v-radio>
+
+      <v-radio value="divisible">
+        <template #label>
+          <span v-html="$t('models.gymGrade.point_system_types.divisible')" />
+        </template>
+      </v-radio>
+
+      <v-radio value="none">
+        <template #label>
+          <span v-html="$t('models.gymGrade.point_system_types.none')" />
+        </template>
+      </v-radio>
+    </v-radio-group>
 
     <close-form />
     <submit-form
@@ -110,13 +101,14 @@ export default {
   data () {
     return {
       data: {
-        id: (this.gymGrade || {}).id,
-        name: (this.gymGrade || {}).name,
+        id: this.gymGrade?.id,
+        name: this.gymGrade?.name,
         gym_id: this.gymId,
-        difficulty_system: (this.gymGrade || {}).difficulty_system,
-        use_grade_system: (this.gymGrade || {}).use_grade_system || false,
-        use_point_system: (this.gymGrade || {}).use_point_system || false,
-        use_point_division_system: (this.gymGrade || {}).use_point_division_system || false
+        difficulty_by_grade: this.gymGrade?.difficulty_by_grade,
+        difficulty_by_level: this.gymGrade?.difficulty_by_level,
+        tag_color: this.gymGrade?.tag_color,
+        hold_color: this.gymGrade?.hold_color,
+        point_system_type: this.gymGrade?.point_system_type
       }
     }
   },
@@ -136,14 +128,6 @@ export default {
         }).then(() => {
           this.submitOverlay = false
         })
-    },
-
-    uncheckDivisionPoint () {
-      if (this.data.use_point_system) { this.data.use_point_division_system = false }
-    },
-
-    uncheckPoint () {
-      if (this.data.use_point_division_system) { this.data.use_point_system = false }
     }
   }
 }

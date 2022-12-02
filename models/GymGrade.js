@@ -24,22 +24,10 @@ export default class GymGrade extends ActiveData {
     return `/gyms/${this.gym.id}/${this.gym.slug_name}/admins/grades`
   }
 
-  get needColor () {
-    return (this.difficulty_system === 'hold_color' || this.difficulty_system === 'tag_color' || this.difficulty_system === 'pan')
-  }
-
-  get needTagColor () {
-    return (this.difficulty_system === 'tag_color' || this.difficulty_system === 'pan')
-  }
-
-  get needHoldColor () {
-    return (this.difficulty_system === 'tag_color' || this.difficulty_system === 'hold_color' || this.difficulty_system === 'grade')
-  }
-
   get colorFor () {
-    if (this.difficulty_system === 'hold_color') {
+    if (this.hold_color && !this.tag_color) {
       return 'hold'
-    } else if (this.difficulty_system === 'tag_color' || this.difficulty_system === 'pan') {
+    } else if (this.tag_color) {
       return 'tag'
     } else {
       return 'nothing'
