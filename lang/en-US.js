@@ -1029,6 +1029,7 @@ export default {
       editSectorPolygon: 'Edit the sector drawing on the plan',
       createSectorPolygon: 'Draw the area on the map',
       removeSectorPolygon: 'Remove the drawing',
+      removeSectorPolygonConfirm: 'Are you sure you are deleting the drawing on the plan?',
       clicOnPlan: 'Click on the map, or move the white wrists to edit the plot of the area on the map.',
       clicOnFinish: 'Once finished click on finish',
       viewOnMap: 'Focus the plan on this area'

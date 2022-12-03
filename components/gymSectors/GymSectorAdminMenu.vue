@@ -98,6 +98,7 @@ import {
   mdiVectorSquareRemove,
   mdiSourceBranchPlus
 } from '@mdi/js'
+import GymSectorApi from '~/services/oblyk-api/GymSectorApi'
 
 export default {
   name: 'GymSectorAdminMenu',
@@ -136,7 +137,18 @@ export default {
     },
 
     removeSectorPolygon () {
-      alert('en développement')
+      if (confirm(this.$t('components.gymSector.removeSectorPolygonConfirm'))) {
+        new GymSectorApi(this.$axios, this.$auth)
+          .update({
+            gym_id: this.gymSector.gym.id,
+            gym_space_id: this.gymSector.gym_space.id,
+            id: this.gymSector.id,
+            polygon: null
+          })
+          .then(() => {
+            window.location.reload()
+          })
+      }
     }
   }
 }

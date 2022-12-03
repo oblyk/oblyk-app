@@ -1029,6 +1029,7 @@ export default {
       editSectorPolygon: 'Modifier le tracer du secteur',
       createSectorPolygon: 'Tracer le secteur sur le plan',
       removeSectorPolygon: 'Supprimer le tracer du secteur',
+      removeSectorPolygonConfirm: 'Êtes vous sûr de supprimer le tracé du secteur sur le plan ?',
       clicOnPlan: 'Cliquez sur la carte, ou déplacez les poignets blanche pour éditer le tracer du secteur sur le plan.',
       clicOnFinish: 'Une fois fini cliquez sur terminer',
       viewOnMap: 'Centrer le plan sur ce secteur'
