@@ -78,19 +78,9 @@ export default {
     }
   },
 
-  // router: {
-  //   extendRoutes (routes, resolve) {
-  //     routes.forEach((route) => {
-  //       if (route.path.includes('contact')) {
-  //         console.log(route)
-  //       }
-  //       if ((route.meta || {}).test) {
-  //         console.log(route.meta, 'route.meta')
-  //         // do something with auth routes
-  //       }
-  //     })
-  //   }
-  // },
+  router: {
+    middleware: 'maintenance'
+  },
 
   // https://auth.nuxtjs.org/
   auth: {
