@@ -8,6 +8,11 @@
         <gym-contact :gym="gym" />
       </v-col>
     </v-row>
+    <v-row v-if="$auth.loggedIn">
+      <v-col cols="12">
+        <gym-user-ascents :gym="gym" />
+      </v-col>
+    </v-row>
     <v-row>
       <v-col cols="12">
         <!-- Around climbers -->
@@ -30,9 +35,10 @@ import GymContact from '@/components/gyms/GymContact'
 import GymDescription from '@/components/gyms/GymDescription'
 import ClimbersAround from '~/components/partners/ClimbersAround'
 import VersionInformation from '~/components/ui/VersionInformation'
+import GymUserAscents from '~/components/gyms/GymUserAscents.vue'
 
 export default {
-  components: { VersionInformation, ClimbersAround, GymDescription, GymContact },
+  components: { GymUserAscents, VersionInformation, ClimbersAround, GymDescription, GymContact },
   props: {
     gym: {
       type: Object,

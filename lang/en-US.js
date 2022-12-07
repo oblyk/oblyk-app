@@ -112,7 +112,8 @@ export default {
     update: 'Update',
     aroundMe: 'Around me',
     changeCrag: 'Change crag',
-    changeRoute: 'Change line'
+    changeRoute: 'Change line',
+    addMyAscents: 'Add my ascents'
   },
   colors: {
     noColor: 'No color',
@@ -136,6 +137,7 @@ export default {
     darkRed: 'Dark red',
     pastelOrange: 'Pastel orange',
     orange: 'Orange',
+    fluorescentOrange: 'Fluorescent orange',
     pastelYellow: 'Pastel yellow',
     yellow: 'Yellow',
     fluorescentYellow: 'Fluorescent yellow',
@@ -183,6 +185,8 @@ export default {
     crosses: 'crosses',
     linesCount: 'one line | %{count} lines',
     seeMore: 'see more',
+    ascents: 'Ascents',
+    since: 'since %{date}',
     pages: {
       cookies: 'Oblyk uses cookies only for operational purposes.',
       newVersion: 'A new Oblyk version is here!',
@@ -815,7 +819,10 @@ export default {
       pitchMade: 'Pitches made',
       ascentMadeOn: 'Ascent made on %{date}',
       madeOn: 'made on %{date}',
-      iMadeCountPitch: 'I made the %{count} pitch'
+      iMadeCountPitch: 'I made the %{count} pitch',
+      cumulativeHeight: '<strong>%{meter}m</strong> cumulative',
+      maxGrade: 'Max realised : <strong>%{grade}</strong>',
+      noAscents: "I don't have a ascent here"
     },
     area: {
       description: '<strong>%{name}</strong> is a grouping of %{crags} climbing crags.<br>These crags contain in total %{routes} routes, ranging from <strong>%{min}</strong> to <strong>%{max}</strong>',
@@ -1059,8 +1066,9 @@ export default {
       noSystem: 'No system of difficulty is currently reported.',
       add: 'Add a difficulty system',
       explain: 'The purpose of the difficulty systems is to make it easier for you to inform your lines afterwards.',
-      whichSystem: 'How do you identify your routes? (grip color, label, etc.)',
-      whichGradeSystem: 'What value system do you use to rate your routes?',
+      whichIdentificationSystem: 'How do I identify a route?',
+      whichGradeSystem: 'How do I know the difficulty of a route?',
+      whichPointSystem: 'Do I use a point system ?',
       system: 'System',
       typeOfSystem: 'Type of system',
       value: 'Value'
@@ -1074,6 +1082,9 @@ export default {
         grade: 'Example: 6a, 7a, 7c+, etc.',
         points: 'Example: 500, 50, 200, etc.'
       }
+    },
+    climbingSession: {
+      ascentsByColorsAndGrade: 'My ascents by grade and color'
     },
     logBook: {
       inFewFigures: 'In few figures',

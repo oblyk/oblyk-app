@@ -23,6 +23,7 @@ export const HoldColorsHelpers = {
         { text: this.$t('colors.darkRed'), value: '#800000' },
         { text: this.$t('colors.pastelOrange'), value: '#ffccaa' },
         { text: this.$t('colors.orange'), value: '#ff6600' },
+        { text: this.$t('colors.fluorescentOrange'), value: '#fc552a' },
         { text: this.$t('colors.pastelYellow'), value: '#ffeeaa' },
         { text: this.$t('colors.yellow'), value: '#ffcc00' },
         { text: this.$t('colors.fluorescentYellow'), value: '#eaff09' },

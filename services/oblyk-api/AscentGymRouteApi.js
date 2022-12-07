@@ -1,7 +1,7 @@
 import BaseApi from '~/services/oblyk-api/BaseApi'
 
 class AscentGymRouteApi extends BaseApi {
-  all (gymRouteId = null) {
+  all (params = {}) {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/ascent_gym_routes.json`,
@@ -9,9 +9,7 @@ class AscentGymRouteApi extends BaseApi {
         Authorization: this.authToken(),
         HttpApiAccessToken: this.apiAccessToken
       },
-      params: {
-        gym_route_id: gymRouteId
-      }
+      params
     })
   }
 

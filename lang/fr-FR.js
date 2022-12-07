@@ -112,7 +112,8 @@ export default {
     update: 'Mettre à jour',
     aroundMe: 'Autour de moi',
     changeCrag: 'Changer le site',
-    changeRoute: 'Changer la ligne'
+    changeRoute: 'Changer la ligne',
+    addMyAscents: 'Ajouter mes croix'
   },
   colors: {
     noColor: 'Pas de couleur',
@@ -136,6 +137,7 @@ export default {
     darkRed: 'Rouge profond',
     pastelOrange: 'Orange pastel',
     orange: 'Orange',
+    fluorescentOrange: 'Orange fluo',
     pastelYellow: 'Jaune pastel',
     yellow: 'Jaune',
     fluorescentYellow: 'Jaune fluo',
@@ -183,6 +185,8 @@ export default {
     crosses: 'croix',
     linesCount: 'une ligne | %{count} lignes',
     seeMore: 'voir plus',
+    ascents: 'Croix',
+    since: 'depuis le %{date}',
     pages: {
       cookies: 'Oblyk utilise des cookies uniquement à des fins de fonctionnement.',
       newVersion: "Une nouvelle version d'Oblyk est là !",
@@ -815,7 +819,10 @@ export default {
       pitchMade: 'Longueurs faites',
       ascentMadeOn: 'Croix faite le %{date}',
       madeOn: 'fait le %{date}',
-      iMadeCountPitch: "J'ai fait les %{count} longueurs"
+      iMadeCountPitch: "J'ai fait les %{count} longueurs",
+      cumulativeHeight: '<strong>%{meter}m</strong> cumulés',
+      maxGrade: 'Max réalisé : <strong>%{grade}</strong>',
+      noAscents: "Je n'ai pas de croix ici"
     },
     area: {
       description: "<strong>%{name}</strong> est un groupement de %{crags} site d'escalades.<br>Ces sites contiennent au total %{routes} lignes, allant de <strong>%{min}</strong> à <strong>%{max}</strong>",
@@ -1064,8 +1071,7 @@ export default {
       whichPointSystem: "Est-ce que j'utilise un système de point ?",
       system: 'Système',
       typeOfSystem: 'Type de système',
-      value: 'Valeur',
-      both: 'Les deux'
+      value: 'Valeur'
     },
     gymGradeLine: {
       colors: {
@@ -1076,6 +1082,9 @@ export default {
         grade: 'Exemple: 6a, 7a, 7c+, etc.',
         points: 'Exemple: 500, 50, 200, etc.'
       }
+    },
+    climbingSession: {
+      ascentsByColorsAndGrade: 'Mes croix par cotation et couleur'
     },
     logBook: {
       inFewFigures: 'En quelque chiffres',

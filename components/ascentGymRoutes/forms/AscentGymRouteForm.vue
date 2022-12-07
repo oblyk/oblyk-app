@@ -93,13 +93,13 @@ export default {
     return {
       mdiCalendar,
       data: {
-        id: (this.ascentGymRoute || {}).id,
-        ascent_status: (this.ascentGymRoute || {}).ascent_status || this.defaultAscentStatus,
-        released_at: (this.ascentGymRoute || {}).released_at || this.today().format('YYYY-MM-DD'),
-        selected_sections: (this.ascentGymRoute || {}).sections_done || this.gymRoute.sections.map((section, index) => index),
-        gym_route_id: (this.ascentGymRoute || {}).gym_route_id || this.gymRoute.id,
-        note: (this.ascentGymRoute || {}).note,
-        comment: (this.ascentGymRoute || {}).comment
+        id: this.ascentGymRoute?.id,
+        ascent_status: this.ascentGymRoute?.ascent_status || this.defaultAscentStatus,
+        released_at: this.ascentGymRoute?.released_at || this.today().format('YYYY-MM-DD'),
+        selected_sections: this.ascentGymRoute?.sections_done || this.gymRoute.sections.map((section, index) => index),
+        gym_route_id: this.ascentGymRoute?.gym_route_id || this.gymRoute.id,
+        note: this.ascentGymRoute?.note,
+        comment: this.ascentGymRoute?.comment
       }
     }
   },

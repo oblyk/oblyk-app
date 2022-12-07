@@ -239,18 +239,29 @@ strong {
   }
 }
 
+.border {
+  border-style: solid;
+  border-width: 1px;
+}
+
 .border-bottom {
   border-bottom-style: solid;
   border-bottom-width: 1px;
 }
 
 .theme--dark {
-  .border-bottom {
+  .border-bottom, .border {
     border-color: rgb(50, 50, 50);
+  }
+  .back-app-color {
+    background-color: rgb(18, 18, 18);
   }
 }
 .theme--light {
-  .border-bottom {
+  .border-bottom, .border {
     border-color: rgb(230, 230, 230);
+  }
+  .back-app-color {
+    background-color: rgb(240, 240, 245);
   }
 }

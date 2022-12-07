@@ -75,7 +75,7 @@ export default {
       this.loadingAscents = true
       this.ascents = []
       new AscentGymRouteApi(this.$axios, this.$auth)
-        .all(this.gymRoute.id)
+        .all({ gym_route_id: this.gymRoute.id })
         .then((resp) => {
           for (const ascent of resp.data) {
             this.ascents.push(new AscentGymRoute({ attributes: ascent }))
