@@ -8,7 +8,7 @@
       <p
         :class="$vuetify.breakpoint.mobile ? 'mb-0 font-italic pl-1' : 'border-bottom mb-0 font-italic'"
       >
-        {{ dateFromNow(climbingSession.session_date) }}
+        {{ dateFromToday(climbingSession.session_date) }}
       </p>
     </v-col>
     <v-col

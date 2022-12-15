@@ -80,4 +80,12 @@ export default class Gym extends ActiveData {
     if (this.training_space) { list.push('training_space') }
     return list
   }
+
+  get climbableTypes () {
+    const list = []
+    if (this.bouldering) { list.push('bouldering') }
+    if (this.sport_climbing) { list.push('sport_climbing') }
+    if (this.pan) { list.push('pan') }
+    return list
+  }
 }

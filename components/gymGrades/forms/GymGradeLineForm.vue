@@ -39,6 +39,9 @@
       v-show="gymGrade.tag_color || gymGrade.hold_color"
       v-model="data.colors"
       :label="$t(`components.gymGradeLine.colors.${gymGrade.colorFor}`)"
+      :multiple="true"
+      :colors-limit="2"
+      :icon="gymGrade.tag_color ? 'bookmark' : 'circle'"
     />
 
     <close-form />

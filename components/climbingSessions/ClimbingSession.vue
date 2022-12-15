@@ -50,10 +50,29 @@ export default {
   },
 
   mounted () {
+    this.$root.$on('reloadClimbingSession', () => {
+      this.reload()
+    })
     this.getClimbingSessions()
   },
 
+  beforeDestroy () {
+    this.$root.$off('reloadClimbingSession')
+  },
+
   methods: {
+    reload () {
+      this.page = 1
+      this.sessions = []
+      this.loadingClimbingSessions = true
+      this.crags = []
+      this.gyms = []
+      this.noMoreDataToLoad = false
+      this.cragsAdded = []
+      this.gymsAdded = []
+      this.getClimbingSessions()
+    },
+
     getClimbingSessions () {
       this.moreIsBeingLoaded()
 

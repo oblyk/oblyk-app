@@ -194,7 +194,9 @@
             v-show="gymGrade.tag_color || (data.tag_colors && data.tag_colors.length > 0)"
             v-model="data.tag_colors"
             label="Couleurs des étiquettes"
-            :icon="mdiBookmarkMultipleOutline"
+            icon="Bookmark"
+            :multiple="true"
+            :colors-limit="2"
           />
 
           <!-- Hold colors -->
@@ -202,7 +204,9 @@
             v-show="gymGrade.hold_color || (data.hold_colors && data.hold_colors.length > 0)"
             v-model="data.hold_colors"
             label="Couleurs des prises"
-            :icon="mdiChartBubble"
+            icon="Circle"
+            :multiple="true"
+            :colors-limit="2"
           />
         </div>
       </div>

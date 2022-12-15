@@ -5,7 +5,7 @@
       :class="heightClass"
     >
       <bar-chart
-        :data="chartData()"
+        :data="chartData"
         :options="{
           responsive: true,
           maintainAspectRatio: false,
@@ -42,7 +42,7 @@ export default {
     }
   },
 
-  methods: {
+  computed: {
     chartData () {
       const labels = []
       for (const label of this.data.labels) {

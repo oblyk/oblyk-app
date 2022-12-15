@@ -239,6 +239,23 @@ strong {
   }
 }
 
+.activable-v-sheet {
+  border-style: solid;
+  border-width: 3px;
+  cursor: pointer;
+  &:hover {
+    background: rgba(49, 153, 78, 0.2);
+    border-color: rgba(49, 153, 78, 0.3);
+  }
+  &.--active {
+    border-color: rgb(49, 153, 78);
+    background: rgba(49, 153, 78, 0.2);
+  }
+  &.--inactive {
+    border-color: rgba(100, 100, 100, 0.1);
+  }
+}
+
 .border {
   border-style: solid;
   border-width: 1px;

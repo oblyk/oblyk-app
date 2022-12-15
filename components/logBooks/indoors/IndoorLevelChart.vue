@@ -5,7 +5,7 @@
       :class="heightClass"
     >
       <bar-chart
-        :data="chartData()"
+        :data="chartData"
         :options="{
           responsive: true,
           maintainAspectRatio: false,
@@ -45,7 +45,7 @@ export default {
     }
   },
 
-  methods: {
+  computed: {
     chartData () {
       return {
         datasets: [{

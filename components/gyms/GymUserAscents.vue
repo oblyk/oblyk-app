@@ -41,15 +41,12 @@
                     </small>
                   </p>
                 </v-sheet>
-                <v-btn
+                <add-gym-ascents-btn
                   class="mt-4"
-                  text
-                  outlined
-                  block
-                  color="primary"
-                >
-                  {{ $t('actions.addMyAscents') }}
-                </v-btn>
+                  :gym="gym"
+                  :block-btn="true"
+                  :callback="getGymUserAscents"
+                />
               </v-col>
               <v-col cols="12" md="7">
                 <div
@@ -116,13 +113,10 @@
           {{ $t('components.ascentGymRoute.noAscents') }}
         </p>
 
-        <v-btn
-          text
-          outlined
-          color="primary"
-        >
-          {{ $t('actions.addMyAscents') }}
-        </v-btn>
+        <add-gym-ascents-btn
+          :gym="gym"
+          :callback="getGymUserAscents"
+        />
       </div>
     </v-card-text>
   </v-card>
@@ -135,10 +129,11 @@ import LogBookIndoorApi from '~/services/oblyk-api/LogBookIndoorApi'
 import IndoorGradeChart from '~/components/logBooks/indoors/IndoorGradeChart.vue'
 import IndoorLevelChart from '~/components/logBooks/indoors/IndoorLevelChart.vue'
 import ClimbingSession from '~/components/climbingSessions/ClimbingSession.vue'
+import AddGymAscentsBtn from '~/components/ascentGymRoutes/AddGymAscentsBtn.vue'
 
 export default {
   name: 'GymUserAscents',
-  components: { ClimbingSession, IndoorLevelChart, IndoorGradeChart },
+  components: { AddGymAscentsBtn, ClimbingSession, IndoorLevelChart, IndoorGradeChart },
   mixins: [DateHelpers],
 
   props: {

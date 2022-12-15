@@ -13,6 +13,7 @@
         :label="label"
         readonly
         clearable
+        :hide-details="hideDetails"
         :prepend-inner-icon="icon"
         :placeholder="$t('date.format_dd_mm_yyyy')"
         v-bind="attrs"
@@ -50,10 +51,20 @@ export default {
   props: {
     value: {
       type: String,
-      required: false
+      default: null
     },
-    label: String,
-    icon: String
+    label: {
+      type: String,
+      default: null
+    },
+    icon: {
+      type: String,
+      default: null
+    },
+    hideDetails: {
+      type: Boolean,
+      default: false
+    }
   },
 
   data () {

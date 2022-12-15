@@ -23,6 +23,16 @@ export const DateHelpers = {
       return this.$moment(date).fromNow()
     },
 
+    dateFromToday (date) {
+      const today = this.$moment().format('YYYY-MM-DD')
+      this.$moment.locale(this.$vuetify.lang.current)
+      if (date === today) {
+        return this.$t('common.today')
+      } else {
+        return this.$moment(today).to(this.$moment(date))
+      }
+    },
+
     feedDateFromNow (date) {
       const breakingDate = this.$moment().subtract(15, 'day').format('YYYY-MM-DD')
       if (this.dateIsAfterDate(

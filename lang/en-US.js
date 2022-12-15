@@ -8,6 +8,7 @@ export default {
     edit: 'Edit',
     new: 'New',
     add: 'Add',
+    apply: 'Apply',
     editSector: 'Edit sector',
     create: 'Create',
     delete: 'Delete',
@@ -113,10 +114,11 @@ export default {
     aroundMe: 'Around me',
     changeCrag: 'Change crag',
     changeRoute: 'Change line',
-    addMyAscents: 'Add my ascents'
+    addMyAscents: 'Add my ascents',
+    addAAscents: 'Add a ascent'
   },
   colors: {
-    noColor: 'No color',
+    noColor: 'Ø',
     white: 'White',
     grey: 'Grey',
     black: 'Black',
@@ -135,11 +137,14 @@ export default {
     pastelRed: 'Pastel red',
     red: 'Red',
     darkRed: 'Dark red',
+    fluorescentRed: 'Fluorescent red',
     pastelOrange: 'Pastel orange',
     orange: 'Orange',
     fluorescentOrange: 'Fluorescent orange',
+    darkOrange: 'Dark orange',
     pastelYellow: 'Pastel yellow',
     yellow: 'Yellow',
+    darkYellow: 'Dark yellow',
     fluorescentYellow: 'Fluorescent yellow',
     brown: 'Brown',
     beige: 'Beige'
@@ -173,6 +178,7 @@ export default {
     from: 'From',
     to: 'To',
     on: 'on',
+    today: 'today',
     open: 'Open',
     close: 'Close',
     field: 'Field',
@@ -502,7 +508,15 @@ export default {
       genre: 'Genre',
       emailNotifications: 'Receive e-mail notification when :',
       usageType: 'Usage Type',
-      foundingStatus: 'Contributes to the funding of the sites ?'
+      foundingStatus: 'Contributes to the funding of the sites ?',
+      colorMulti: 'Choose up to %{colorsLimit} colours',
+      colorSingle: 'Choose a colour',
+      ascentStatusIcon: 'Status of the sequence',
+      colorSystem: {
+        chooseOrder: 'Choose a colour order',
+        usage: 'Already used %{count} times here',
+        create: 'Create a new colour order'
+      }
     },
     searchPlace: {
       placeholder: 'Search for a city, a place, etc.'
@@ -823,6 +837,24 @@ export default {
       cumulativeHeight: '<strong>%{meter}m</strong> cumulative',
       maxGrade: 'Max realised : <strong>%{grade}</strong>',
       noAscents: "I don't have a ascent here"
+    },
+    ascentGymBulk: {
+      addMyAscents: 'Fill in my ascents by :',
+      byGrade: 'Grade <cite>(5b, 6a ...)</cite>',
+      byColor: 'Color <cite>(vert, bleu ...)</cite>',
+      colorOrder: 'Order of colours <cite>(click to change)</cite>',
+      waiteColor: 'waiting for the colours ...',
+      defaultHeight: 'Default height for %{climbingType} : %{height}m',
+      pitchHeight: 'Height of a one pitch',
+      ascentToday: 'Crosses made today',
+      addAscentBy: {
+        title: 'Add your ascents by %{ascentsBy} :',
+        color: 'color',
+        grade: 'grade'
+      }
+    },
+    colorSystem: {
+      plusToAdd: 'Press + to add the colours in the right order'
     },
     area: {
       description: '<strong>%{name}</strong> is a grouping of %{crags} climbing crags.<br>These crags contain in total %{routes} routes, ranging from <strong>%{min}</strong> to <strong>%{max}</strong>',
@@ -2117,6 +2149,9 @@ export default {
       comment: 'Comment',
       climbing_type: 'Climbing type',
       released_at: 'Released at'
+    },
+    climbingSession: {
+      description: 'Comment from my session'
     },
     area: {
       name: 'Name'

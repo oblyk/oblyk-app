@@ -52,6 +52,20 @@ class AscentGymRouteApi extends BaseApi {
     })
   }
 
+  createBulk (data) {
+    return this.axios.request({
+      method: 'POST',
+      url: `${this.baseUrl}/ascent_gym_routes/create_bulk.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
+      data: {
+        gym_ascents: data
+      }
+    })
+  }
+
   delete (ascentGymRouteId) {
     return this.axios.request({
       method: 'DELETE',

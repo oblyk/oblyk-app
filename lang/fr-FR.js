@@ -8,6 +8,7 @@ export default {
     edit: 'Modifier',
     new: 'Nouveau',
     add: 'Ajouter',
+    apply: 'Appliquer',
     editSector: 'Modifier le secteur',
     create: 'Créer',
     delete: 'Supprimer',
@@ -113,10 +114,11 @@ export default {
     aroundMe: 'Autour de moi',
     changeCrag: 'Changer le site',
     changeRoute: 'Changer la ligne',
-    addMyAscents: 'Ajouter mes croix'
+    addMyAscents: 'Ajouter mes croix',
+    addAAscents: 'Ajouter une croix'
   },
   colors: {
-    noColor: 'Pas de couleur',
+    noColor: 'Ø',
     white: 'Blanc',
     grey: 'Gris',
     black: 'Noir',
@@ -135,11 +137,14 @@ export default {
     pastelRed: 'Rouge pastel',
     red: 'Rouge',
     darkRed: 'Rouge profond',
+    fluorescentRed: 'Rouge fluo',
     pastelOrange: 'Orange pastel',
     orange: 'Orange',
     fluorescentOrange: 'Orange fluo',
+    darkOrange: 'Orange sombre',
     pastelYellow: 'Jaune pastel',
     yellow: 'Jaune',
+    darkYellow: 'Jaune sombre',
     fluorescentYellow: 'Jaune fluo',
     brown: 'Marron',
     beige: 'Beige'
@@ -173,6 +178,7 @@ export default {
     from: 'De',
     to: 'À',
     on: 'sur',
+    today: "aujourd'hui",
     open: 'Ouvert',
     close: 'Fermer',
     field: 'Champ',
@@ -502,7 +508,15 @@ export default {
       genre: 'Genre',
       emailNotifications: 'Recevoir une notification e-mail quand :',
       usageType: "Type d'usage",
-      foundingStatus: 'Contribue au financement des sites ?'
+      foundingStatus: 'Contribue au financement des sites ?',
+      colorMulti: "Choisissez jusqu'à %{colorsLimit} couleurs",
+      colorSingle: 'Choisissez une couleur',
+      ascentStatusIcon: "Status de l'enchaînement",
+      colorSystem: {
+        chooseOrder: 'Choisissez un ordre de couleur',
+        usage: 'Déjà utilisé %{count} fois ici',
+        create: 'Créer un nouvel ordre de couleur'
+      }
     },
     searchPlace: {
       placeholder: 'Chercher une ville, un lieu, etc.'
@@ -823,6 +837,24 @@ export default {
       cumulativeHeight: '<strong>%{meter}m</strong> cumulés',
       maxGrade: 'Max réalisé : <strong>%{grade}</strong>',
       noAscents: "Je n'ai pas de croix ici"
+    },
+    ascentGymBulk: {
+      addMyAscents: 'Renseigner mes croix par :',
+      byGrade: 'Cotation <cite>(5b, 6a ...)</cite>',
+      byColor: 'Couleur <cite>(vert, bleu ...)</cite>',
+      colorOrder: 'Ordre des couleurs <cite>(cliquer pour changer)</cite>',
+      waiteColor: 'en attente des couleurs ...',
+      defaultHeight: 'Hauteur par défaut pour le %{climbingType} : %{height}m',
+      pitchHeight: "Hauteur d'une longueur",
+      ascentToday: "Croix réalisée(s) aujourd'hui",
+      addAscentBy: {
+        title: 'Ajouter vos croix par %{ascentsBy} :',
+        color: 'couleur',
+        grade: 'cotation'
+      }
+    },
+    colorSystem: {
+      plusToAdd: 'Faite + pour ajouter les couleurs dans la bon ordre'
     },
     area: {
       description: "<strong>%{name}</strong> est un groupement de %{crags} site d'escalades.<br>Ces sites contiennent au total %{routes} lignes, allant de <strong>%{min}</strong> à <strong>%{max}</strong>",
@@ -2117,6 +2149,9 @@ export default {
       comment: 'Commentaire',
       climbing_type: "Type d'escalade",
       released_at: 'Réalisé le'
+    },
+    climbingSession: {
+      description: 'Commentaire de ma session'
     },
     area: {
       name: 'Nom'

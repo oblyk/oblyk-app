@@ -1,54 +1,166 @@
 <template>
-  <v-select
-    v-model="selectedColors"
-    :items="colors"
-    chips
-    :label="label"
-    multiple
-    :required="required"
-    :prepend-inner-icon="icon"
-    outlined
-    clearable
-    @input="change"
-  >
-    <template #selection="{ attrs, item, selected }">
-      <v-chip
-        v-bind="attrs"
-        :input-value="selected"
+  <div :class="inputStyle === 'button' ? 'd-inline-block' : ''">
+    <div @click="colorModal = true">
+      <v-select
+        v-if="inputStyle === 'Select'"
+        v-model="selectedColors"
+        outlined
+        readonly
+        :multiple="!onlySimpleColor"
+        :items="colors"
+        :label="label"
+        chips
       >
-        <v-icon left :style="`color: ${item.value}`">
-          {{ mdiCircle }}
-        </v-icon>
-        {{ item.text }}
-      </v-chip>
-    </template>
-  </v-select>
+        <template #selection="{ attrs, item, selected }">
+          <v-chip
+            v-bind="attrs"
+            :input-value="selected"
+          >
+            <v-icon left :style="`color: ${item.value}`">
+              {{ icon === 'Circle' ? mdiCircle : mdiBookmark }}
+            </v-icon>
+            {{ item.text }}
+          </v-chip>
+        </template>
+      </v-select>
+      <v-btn
+        v-if="inputStyle === 'button'"
+        text
+        min-width="37"
+        class="px-0 text-center"
+      >
+        <div
+          v-if="multiple"
+          class="d-inline-block"
+        >
+          <v-icon
+            v-for="(color, colorIndex) in selectedColors"
+            :key="`color-index-${colorIndex}`"
+            :color="color"
+          >
+            {{ mdiCircle }}
+          </v-icon>
+        </div>
+        <div v-else>
+          <v-icon :color="selectedColors">
+            {{ mdiCircle }}
+          </v-icon>
+        </div>
+      </v-btn>
+    </div>
+    <v-dialog
+      v-model="colorModal"
+      width="450"
+      :fullscreen="$vuetify.breakpoint.mobile"
+    >
+      <v-card>
+        <v-card-title
+          :class="$vuetify.breakpoint.mobile ? 'px-2' : 'px-4'"
+          v-text="colorsLimit > 1 ? $t('components.input.colorMulti', { colorsLimit: colorsLimit }) : $t('components.input.colorSingle')"
+        />
+        <v-card-text
+          class="pb-0"
+          :class="$vuetify.breakpoint.mobile ? 'px-1' : 'px-4'"
+        >
+          <v-sheet
+            v-for="(color, colorIndex) in availableColors"
+            :key="`color-index-${colorIndex}`"
+            style="width: calc(25% - 5px)"
+            class="activable-v-sheet d-inline-block text-center px-2 pt-2 ml-1 rounded-sm"
+            :class="selectedColors && selectedColors.includes(color.value) ? '--active' : '--inactive'"
+            @click="addColor(color.value)"
+          >
+            <v-icon
+              :color="color.value"
+              large
+            >
+              {{ mdiCircle }}
+            </v-icon>
+            <p class="mb-0 text-truncate">
+              <small :class="color.simple && !onlySimpleColor ? 'font-weight-bold' : ''">
+                {{ color.text }}
+              </small>
+            </p>
+          </v-sheet>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer />
+          <v-btn
+            text
+            color="primary"
+            @click="colorModal = false"
+          >
+            {{ $t('actions.ok') }}
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+  </div>
 </template>
 
 <script>
-import { mdiCircle } from '@mdi/js'
+import { mdiCircle, mdiBookmark } from '@mdi/js'
 import { HoldColorsHelpers } from '@/mixins/HoldColorsHelpers'
 
 export default {
   name: 'ColorInput',
   mixins: [HoldColorsHelpers],
   props: {
-    value: Array,
-    label: String,
+    value: {
+      type: [Array, String],
+      default: null
+    },
+    inputStyle: {
+      type: String,
+      default: 'Select'
+    },
+    icon: {
+      type: String,
+      default: 'Circle'
+    },
+    label: {
+      type: String,
+      default: null
+    },
     required: {
       type: Boolean,
       default: false
     },
-    icon: {
-      type: String,
-      required: false
+    multiple: {
+      type: Boolean,
+      default: false
+    },
+    openOnMounted: {
+      type: Boolean,
+      default: false
+    },
+    onlySimpleColor: {
+      type: Boolean,
+      default: false
+    },
+    colorsLimit: {
+      type: Number,
+      default: 1
     }
   },
 
   data () {
     return {
+      colorModal: false,
+      selectedColors: this.value,
+
       mdiCircle,
-      selectedColors: this.value
+      mdiBookmark
+    }
+  },
+
+  computed: {
+    availableColors () {
+      if (this.onlySimpleColor) {
+        return this.simpleColors()
+      } else {
+        return this.colors
+      }
     }
   },
 
@@ -58,9 +170,29 @@ export default {
     }
   },
 
+  mounted () {
+    if (this.openOnMounted) {
+      this.colorModal = true
+    }
+  },
+
   methods: {
-    change () {
-      this.$emit('input', this.selectedColors)
+    addColor (color) {
+      if (this.multiple) {
+        if (this.selectedColors.includes(color)) {
+          const colorIndex = this.selectedColors.indexOf(color)
+          this.selectedColors.splice(colorIndex, 1)
+        } else if (this.selectedColors.length === this.colorsLimit) {
+          this.selectedColors.shift()
+          this.selectedColors.push(color)
+        } else {
+          this.selectedColors.push(color)
+        }
+      } else {
+        this.selectedColors = color
+        this.$emit('input', this.selectedColors)
+        this.colorModal = false
+      }
     }
   }
 }
