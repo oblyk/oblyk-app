@@ -19,7 +19,7 @@
 
     <v-card class="pa-4">
       <v-card-title class="px-2">
-        {{ t$('components.input.ascentStatusIcon') }}
+        {{ $t('components.input.ascentStatusIcon') }}
       </v-card-title>
       <v-sheet
         v-for="(status, ascentStatusIndex) in ascentStatuses"
