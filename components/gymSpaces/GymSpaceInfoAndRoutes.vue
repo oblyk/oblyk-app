@@ -151,7 +151,7 @@ export default {
 }
 .theme--dark {
   .blur-card {
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: rgba(17, 17, 17, 0.9);
   }
   .scroll-encourage {
     div {

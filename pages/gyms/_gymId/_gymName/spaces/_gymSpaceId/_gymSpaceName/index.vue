@@ -283,7 +283,7 @@ export default {
 }
 .theme--dark {
   .gym-route-card {
-    background-color: rgba(0, 0, 0, 0.9) !important;
+    background-color: rgba(17, 17, 17, 0.9) !important;
   }
 }
 .theme--light {
