@@ -3,6 +3,7 @@
     <v-card
       link
       flat
+      :class="bordered ? 'border' : ''"
       :to="gym.path"
     >
       <v-list-item
@@ -63,6 +64,10 @@ export default {
       required: true
     },
     small: {
+      type: Boolean,
+      default: false
+    },
+    bordered: {
       type: Boolean,
       default: false
     }

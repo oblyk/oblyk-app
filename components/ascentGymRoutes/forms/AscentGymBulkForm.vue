@@ -31,7 +31,7 @@
       />
     </div>
 
-    <!-- Type d'escalade -->
+    <!-- Climbing type -->
     <div
       v-if="gym.climbableTypes.length > 1"
       class="my-4"
@@ -51,7 +51,7 @@
     </div>
 
     <p class="mb-3 mt-5">
-      {{ $t('components.ascentGymBulk.addAscentBy.title', { ascentsBy: $t(`components.ascentGymBulk.addAscentBy.${data.ascentsBy}`) }) }} :
+      {{ $t('components.ascentGymBulk.addAscentBy.title', { ascentsBy: $t(`components.ascentGymBulk.addAscentBy.${data.ascentsBy}`) }) }}
     </p>
     <v-sheet
       v-for="(ascent, ascentIndex) in data.ascents"
@@ -67,7 +67,7 @@
             outlined
             hide-details
             type="text"
-            label="Quantité"
+            :label="$t('models.ascentGymRoute.quantity')"
           />
         </v-col>
         <v-col class="px-1">
@@ -77,7 +77,7 @@
             outlined
             hide-details
             type="text"
-            label="cotation"
+            :label="$t('models.ascentGymRoute.grade')"
           />
           <div
             v-if="data.ascentsBy === 'color'"

@@ -9,7 +9,7 @@
     <v-btn
       v-if="goBackBtn"
       icon
-      @click="$router.go(-1)"
+      @click="goBackClick"
     >
       <v-icon>{{ mdiArrowLeft }}</v-icon>
     </v-btn>
@@ -52,6 +52,10 @@ export default {
       type: Boolean,
       default: true
     },
+    goBackCallback: {
+      type: Function,
+      default: null
+    },
     progressable: {
       type: Boolean,
       default: false
@@ -65,6 +69,16 @@ export default {
   data () {
     return {
       mdiArrowLeft
+    }
+  },
+
+  methods: {
+    goBackClick () {
+      if (this.goBackCallback) {
+        this.goBackCallback()
+      } else {
+        this.$router.go(-1)
+      }
     }
   }
 }

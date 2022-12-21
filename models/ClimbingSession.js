@@ -6,15 +6,15 @@ export default class ClimbingSession extends ActiveData {
     return this._buildJsonObject(ClimbingSession)
   }
 
-  _find (id) {
-    return this._apiFind(ClimbingSessionApi, id)
+  _find (sessionDate) {
+    return this._apiFind(ClimbingSessionApi, sessionDate)
   }
 
   get className () {
     return 'ClimbingSession'
   }
 
-  get path () {
-    return `/climbing-sessions/${this.id}`
+  get currentUserPath () {
+    return `/me/${this.user.slug_name}/climbing-sessions/${this.session_date}`
   }
 }

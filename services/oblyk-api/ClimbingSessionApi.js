@@ -11,18 +11,18 @@ class ClimbingSessionApi extends BaseApi {
       },
       params: {
         page,
-        gym_ids: filters.gym_ids,
-        crag_ids: filters.crag_ids,
-        only_crag: filters.only_crag || false,
-        only_gym: filters.only_gym || false
+        gym_ids: filters?.gym_ids,
+        crag_ids: filters?.crag_ids,
+        only_crag: filters?.only_crag || false,
+        only_gym: filters?.only_gym || false
       }
     })
   }
 
-  find (climbingSessionId) {
+  find (climbingSessionSessionDate) {
     return this.axios.request({
       method: 'GET',
-      url: `${this.baseUrl}/current_users/climbing_sessions/${climbingSessionId}.json`,
+      url: `${this.baseUrl}/current_users/climbing_sessions/${climbingSessionSessionDate}.json`,
       headers: {
         Authorization: this.authToken(),
         HttpApiAccessToken: this.apiAccessToken
@@ -33,7 +33,7 @@ class ClimbingSessionApi extends BaseApi {
   update (data) {
     return this.axios.request({
       method: 'PUT',
-      url: `${this.baseUrl}/current_users/climbing_sessions/${data.id}.json`,
+      url: `${this.baseUrl}/current_users/climbing_sessions/${data.session_date}.json`,
       headers: {
         Authorization: this.authToken(),
         HttpApiAccessToken: this.apiAccessToken

@@ -3,6 +3,7 @@
     <v-card
       link
       flat
+      :class="bordered ? 'border' : ''"
       :to="linkable ? crag.path : null"
     >
       <v-list-item
@@ -66,6 +67,10 @@ export default {
       default: true
     },
     small: {
+      type: Boolean,
+      default: false
+    },
+    bordered: {
       type: Boolean,
       default: false
     }

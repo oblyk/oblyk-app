@@ -110,6 +110,7 @@ export default {
     unsubscribeMe: 'Me désinscrire',
     accept: 'Accepter',
     reject: 'Refuser',
+    comment: 'Commenter',
     update: 'Mettre à jour',
     aroundMe: 'Autour de moi',
     changeCrag: 'Changer le site',
@@ -178,6 +179,7 @@ export default {
     from: 'De',
     to: 'À',
     on: 'sur',
+    made: 'fait',
     today: "aujourd'hui",
     open: 'Ouvert',
     close: 'Fermer',
@@ -193,6 +195,8 @@ export default {
     seeMore: 'voir plus',
     ascents: 'Croix',
     since: 'depuis le %{date}',
+    count: 'un | %{count}',
+    areYouSurToDelete: 'Êtes vous sur de vouloir supprimer ?',
     pages: {
       cookies: 'Oblyk utilise des cookies uniquement à des fins de fonctionnement.',
       newVersion: "Une nouvelle version d'Oblyk est là !",
@@ -1116,7 +1120,14 @@ export default {
       }
     },
     climbingSession: {
-      ascentsByColorsAndGrade: 'Mes croix par cotation et couleur'
+      list: 'Mes sessions',
+      title: 'Session du %{date}',
+      ascentsAt: 'Mes croix du %{date}',
+      climbingPlaces: "Les lieux où j'ai grimpé·e",
+      climbingPartners: "Les personnes avec qui j'ai grimpé·e",
+      ascentsByColorsAndGrade: 'Mes croix par cotation et couleur',
+      editComment: 'Éditer mon commentaire',
+      addComment: 'Commenter ma session'
     },
     logBook: {
       inFewFigures: 'En quelque chiffres',
@@ -1927,6 +1938,14 @@ export default {
       photos: 'Mes photos',
       videos: 'Mes vidéos'
     },
+    climbingSessions: {
+      title: 'Mes sessions de grimpes',
+      description: 'La liste de toutes mes sessions de grimpes'
+    },
+    climbingSession: {
+      title: 'Ma session de grimpe du %{date}',
+      description: "Les croix, lieux, grimpeurs et grimpeuses avec qui j'ai grimpé le %{date}"
+    },
     user: {
       title: '%{name} son profil de grimpeur·euse',
       description: 'consulter le profil de %{name}, grimpeur·euse de la communauté Oblyk',
@@ -2145,6 +2164,9 @@ export default {
       gym_route: 'Ligne',
       sections: 'Sections',
       height: 'Hauteur',
+      quantity: 'Quantité',
+      grade: 'Cotation',
+      level: 'Niveau',
       note: 'Note',
       comment: 'Commentaire',
       climbing_type: "Type d'escalade",

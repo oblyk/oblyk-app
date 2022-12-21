@@ -22,6 +22,7 @@
             :key="`gym-route-card-${routeIndex}`"
             :gym-route="route"
             :show-sector="route.gym_sector_id === showSectorId"
+            class="mb-1"
           />
         </template>
       </v-list>

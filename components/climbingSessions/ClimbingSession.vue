@@ -8,6 +8,7 @@
       :crag-references="crags"
     />
     <loading-more
+      class="mt-4"
       :loading-more="loadingMoreData"
       :no-more-data="noMoreDataToLoad"
       :get-function="getClimbingSessions"

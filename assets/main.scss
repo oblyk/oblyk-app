@@ -256,6 +256,15 @@ strong {
   }
 }
 
+.rounded-list-item {
+  &.v-list-item {
+    border-radius: 15px;
+    &:before {
+      border-radius: 15px;
+    }
+  }
+}
+
 .border {
   border-style: solid;
   border-width: 1px;

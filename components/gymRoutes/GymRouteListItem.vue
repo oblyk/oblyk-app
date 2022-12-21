@@ -2,8 +2,8 @@
   <v-list-item
     v-model="activeRoute"
     color="primary"
-    class="gym-route-list-item mb-1"
-    :class="gymRoute.thumbnail ? 'pl-0' : ''"
+    class="rounded-list-item"
+    :class="itemListClass"
     @click="openGymRoute"
   >
     <v-list-item-avatar
@@ -94,6 +94,14 @@ export default {
     showSector: {
       type: Boolean,
       default: false
+    },
+    relativePath: {
+      type: Boolean,
+      default: true
+    },
+    bordered: {
+      type: Boolean,
+      default: false
     }
   },
 
@@ -111,6 +119,17 @@ export default {
 
     activeRoute () {
       return parseInt(this.activeGymRouteId) === this.gymRoute.id
+    },
+
+    itemListClass () {
+      const klass = []
+      if (this.bordered) {
+        klass.push('border')
+      }
+      if (this.gymRoute.thumbnail) {
+        klass.push('pl-0')
+      }
+      return klass.join(' ')
     }
   },
 
@@ -118,9 +137,10 @@ export default {
     openGymRoute () {
       const query = {}
       if (!this.activeRoute) { query.route = this.gymRoute.id }
+      const path = this.relativePath ? this.$route.path : this.gymRoute.gymSpacePath
       this.$router.push(
         {
-          path: this.$route.path,
+          path,
           query
         }
       )
@@ -128,13 +148,3 @@ export default {
   }
 }
 </script>
-
-<style scoped lang="scss">
-.gym-route-list-item {
-  &.v-list-item {
-    &:before {
-      border-radius: 15px;
-    }
-  }
-}
-</style>

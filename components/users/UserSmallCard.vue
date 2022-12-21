@@ -3,6 +3,7 @@
     <v-card
       link
       flat
+      :class="bordered ? 'border' : ''"
       :to="linkable ? user.userPath : null"
       @click="callback ? callback(user) : null"
     >
@@ -83,6 +84,10 @@ export default {
     callback: {
       type: Function,
       default: null
+    },
+    bordered: {
+      type: Boolean,
+      default: false
     }
   },
 

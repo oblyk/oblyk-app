@@ -6,7 +6,7 @@
       class="pr-0 pb-0"
     >
       <p
-        :class="$vuetify.breakpoint.mobile ? 'mb-0 font-italic pl-1' : 'border-bottom mb-0 font-italic'"
+        :class="$vuetify.breakpoint.mobile ? 'mb-1 font-italic pl-1' : 'border-bottom mb-1 font-italic'"
       >
         {{ dateFromToday(climbingSession.session_date) }}
       </p>
@@ -16,8 +16,10 @@
       md="9"
       :class="$vuetify.breakpoint.mobile ? 'pt-1' : 'pl-0'"
     >
-      <v-sheet
+      <v-card
+        :to="climbingSession.currentUserPath"
         class="pt-2 pb-1 px-4 rounded-sm border"
+        hover
       >
         <!-- Ascents by grade -->
         <small
@@ -112,7 +114,7 @@
         <p class="text-right mb-0 text--disabled">
           <small>{{ $t('common.at') }} {{ humanizeDate(climbingSession.session_date) }}</small>
         </p>
-      </v-sheet>
+      </v-card>
     </v-col>
   </v-row>
 </template>

@@ -1,6 +1,6 @@
 <template>
   <v-icon
-    v-if="ascentInLogBook"
+    v-if="ascentInLogBook || ascentStatus"
     small
     :title="title()"
     color="amber darken-1"
@@ -19,7 +19,7 @@ export default {
   props: {
     gymRoute: {
       type: Object,
-      required: true
+      default: null
     },
     ascentStatus: {
       type: String,
@@ -42,18 +42,26 @@ export default {
 
   computed: {
     gymRouteAscents () {
-      return this.$auth.user.ascent_gym_routes
+      if (this.gymRoute) {
+        return this.$auth.user.ascent_gym_routes
+      } else {
+        return null
+      }
     }
   },
 
   watch: {
     gymRouteAscents () {
-      this.findAscentInLogBook()
+      if (this.gymRoute) {
+        this.findAscentInLogBook()
+      }
     }
   },
 
   created () {
-    this.findAscentInLogBook()
+    if (this.gymRoute) {
+      this.findAscentInLogBook()
+    }
   },
 
   methods: {

@@ -45,6 +45,15 @@ export const HoldColorsHelpers = {
         }
       }
       return colors
+    },
+
+    hexColorToName (hexColor) {
+      for (const color of this.colors) {
+        if (color.value === hexColor) {
+          return color.text
+        }
+      }
+      return null
     }
   }
 }

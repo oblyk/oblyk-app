@@ -110,6 +110,7 @@ export default {
     unsubscribeMe: 'Unsubscribe me',
     accept: 'Accept',
     reject: 'Reject',
+    comment: 'Comment',
     update: 'Update',
     aroundMe: 'Around me',
     changeCrag: 'Change crag',
@@ -178,6 +179,7 @@ export default {
     from: 'From',
     to: 'To',
     on: 'on',
+    made: 'made',
     today: 'today',
     open: 'Open',
     close: 'Close',
@@ -193,6 +195,8 @@ export default {
     seeMore: 'see more',
     ascents: 'Ascents',
     since: 'since %{date}',
+    count: 'one | %{count}',
+    areYouSurToDelete: 'Are you sure you want to delete?',
     pages: {
       cookies: 'Oblyk uses cookies only for operational purposes.',
       newVersion: 'A new Oblyk version is here!',
@@ -1116,7 +1120,14 @@ export default {
       }
     },
     climbingSession: {
-      ascentsByColorsAndGrade: 'My ascents by grade and color'
+      list: 'My sessions',
+      title: 'Session of %{date}',
+      ascentsAt: 'My ascents of %{date}',
+      climbingPlaces: 'Places where I climbed',
+      climbingPartners: 'The people I climbed with',
+      ascentsByColorsAndGrade: 'My ascents by grade and color',
+      editComment: 'Edit my comment',
+      addComment: 'Comment my session'
     },
     logBook: {
       inFewFigures: 'In few figures',
@@ -1927,6 +1938,14 @@ export default {
       photos: 'My pictures',
       videos: 'My videos'
     },
+    climbingSessions: {
+      title: 'My climbing sessions',
+      description: 'The list of all my climbing sessions'
+    },
+    climbingSession: {
+      title: 'My climbing session on %{date}',
+      description: 'My ascents, places, climbers with whom I climbed on %{date}'
+    },
     user: {
       title: '%{name} his climbing profile',
       description: 'View the profile of  %{name}, climber of the community Oblyk',
@@ -2145,6 +2164,9 @@ export default {
       gym_route: 'Gym route',
       sections: 'Sections',
       height: 'Height',
+      quantity: 'Quantity',
+      grade: 'Grade',
+      level: 'Level',
       note: 'Note',
       comment: 'Comment',
       climbing_type: 'Climbing type',

@@ -22,16 +22,16 @@ export default class AscentGymRoute extends ActiveData {
   }
 
   get Gym () {
-    return new Gym(this.gym)
+    return new Gym({ attributes: this.gym })
   }
 
   get GymRoute () {
-    const gymRoute = new GymRoute(this.gym_route)
+    const gymRoute = new GymRoute({ attributes: this.gym_route })
     gymRoute.gym = this.gym
     return gymRoute
   }
 
   get User () {
-    return new User(this.user)
+    return new User({ attributes: this.user })
   }
 }
