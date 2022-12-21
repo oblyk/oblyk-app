@@ -63,7 +63,7 @@
             v-model="routeSelected"
             :headers="tables.headers"
             :items="tables.routes"
-            :items-per-page="15"
+            :items-per-page="mountedRoute ? -1 : 15"
             :loading="loadingRoutes"
             item-key="id"
             show-select
