@@ -9,26 +9,31 @@
           {{ mdiMap }}
         </v-icon>
       </p>
-      <p
-        class="text-center"
-        v-html="$t('components.gymSpace.explainMissingPlan', { name: gymSpace.name })"
-      />
-      <p class="text-center">
-        <v-btn
-          :to="`${gymSpace.path}/upload-plan`"
-          outlined
-        >
-          {{ $t('actions.uploadMap') }}
-        </v-btn>
-      </p>
+      <div v-if="currentUserIsGymAdmin()">
+        <p
+          class="text-center"
+          v-html="$t('components.gymSpace.explainMissingPlan', { name: gymSpace.name })"
+        />
+        <p class="text-center">
+          <v-btn
+            :to="`${gymSpace.path}/upload-plan`"
+            outlined
+          >
+            {{ $t('actions.uploadMap') }}
+          </v-btn>
+        </p>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import { mdiMap } from '@mdi/js'
+import { SessionConcern } from '~/concerns/SessionConcern'
+
 export default {
   name: 'GymSpacePlanMissing',
+  mixins: [SessionConcern],
   props: {
     gymSpace: {
       type: Object,
