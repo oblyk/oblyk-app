@@ -141,6 +141,7 @@ export default {
     return {
       mdiAlert,
       gymsAround: [],
+      redirectTo: null,
       localization: {
         latitude: (this.gym || {}).latitude,
         longitude: (this.gym || {}).longitude,
@@ -201,6 +202,15 @@ export default {
     }
   },
 
+  mounted () {
+    const urlParams = new URLSearchParams(window.location.search)
+    this.redirectTo = urlParams.get('redirect_to')
+    const nameParam = urlParams.get('name')
+    if (nameParam) {
+      this.data.name = nameParam
+    }
+  },
+
   methods: {
     getGymAround () {
       if (this.isEditingForm()) { return }
@@ -225,7 +235,11 @@ export default {
       promise
         .then((resp) => {
           const gym = new Gym({ attributes: resp.data })
-          this.$router.push(gym.path)
+          if (this.redirectTo) {
+            this.$router.push(`${this.redirectTo}?gym_id=${gym.id}`)
+          } else {
+            this.$router.push(gym.path)
+          }
         })
         .catch((err) => {
           this.$root.$emit('alertFromApiError', err, 'gym')

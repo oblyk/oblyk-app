@@ -840,7 +840,12 @@ export default {
       iMadeCountPitch: "J'ai fait les %{count} longueurs",
       cumulativeHeight: '<strong>%{meter}m</strong> cumulés',
       maxGrade: 'Max réalisé : <strong>%{grade}</strong>',
-      noAscents: "Je n'ai pas de croix ici"
+      noAscents: "Je n'ai pas de croix ici",
+      whichGym: 'Quelle salle ?',
+      gymPage: 'Page de la salle',
+      addNewAscents: "Ajouter d'autres croix",
+      addingSuccess: 'Croix ajoutée(s) !',
+      gymNotFound: 'Vous ne trouvez pas votre salle ?'
     },
     ascentGymBulk: {
       addMyAscents: 'Renseigner mes croix par :',
@@ -1006,6 +1011,7 @@ export default {
       type: 'Salle',
       addNew: 'Ajouter une nouvelle salle',
       newGym: 'Nouvelle salle',
+      searchGym: 'Chercher une salle',
       tabs: {
         info: 'Info',
         guideBook: 'Topo',
@@ -1127,12 +1133,15 @@ export default {
       climbingPartners: "Les personnes avec qui j'ai grimpé·e",
       ascentsByColorsAndGrade: 'Mes croix par cotation et couleur',
       editComment: 'Éditer mon commentaire',
-      addComment: 'Commenter ma session'
+      addComment: 'Commenter ma session',
+      myIndoorSession: 'Mes sessions indoor',
+      myOutdoorSession: 'Mes sessions outdoor'
     },
     logBook: {
       inFewFigures: 'En quelque chiffres',
       climbingType: "Type d'escalade",
       grades: 'Croix par cotations',
+      levels: 'Croix par niveaux',
       years: 'Croix par années',
       months: 'Croix par mois',
       evolution: 'Évolution',
@@ -1143,6 +1152,7 @@ export default {
       emptyTickList: "Vous n'avez aucune ligne dans votre tick list pour l'instant",
       IHaveNoAscents: "Je n'ai pas encore de croix",
       myAscentsHere: 'Mes croix ici',
+      myIndoorLogBook: 'Mes croix indoor',
       sortItem: {
         difficulty: 'Difficulté',
         crags: 'Site',
@@ -1154,6 +1164,7 @@ export default {
       figures: {
         countries: '%{count} pays | %{count} pays',
         crags: '%{count} site | %{count} sites',
+        gyms: '%{count} salle | %{count} salles',
         regions: '%{count} région | %{count} régions',
         ascents: '%{count} croix | %{count} croix',
         meters: '%{count} mètre grimpé | %{count} mètres grimpé',
@@ -1466,7 +1477,14 @@ export default {
           home: 'Home',
           feed: 'Fil',
           messenger: 'Messagerie',
-          ascents: 'Mon carnet de grimpe',
+          ascents: {
+            title: 'Mes carnets de grimpe',
+            outdoor: 'Carnet outdoor',
+            indoor: 'Carnet indoor',
+            session: 'Mes sessions',
+            addOutdoorAscents: 'Ajouter une croix <strong class="text-decoration-underline">outdoor</strong>',
+            addIndoorAscents: 'Ajouter une croix <strong class="text-decoration-underline">indoor</strong>'
+          },
           subscribers: 'Abonnés',
           guideBooks: 'Ma topothèque',
           favorites: 'Favoris',

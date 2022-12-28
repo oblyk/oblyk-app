@@ -1,5 +1,11 @@
 <template>
   <div>
+    <p
+      v-if="showTitle"
+      class="font-weight-bold"
+    >
+      {{ $t('components.logBook.levels') }}
+    </p>
     <div
       class="level-chart"
       :class="heightClass"
@@ -42,6 +48,10 @@ export default {
     heightClass: {
       type: String,
       default: 'height-200'
+    },
+    showTitle: {
+      type: Boolean,
+      default: false
     }
   },
 
@@ -72,6 +82,10 @@ export default {
 
   &.height-200 {
     height: 200px
+  }
+
+  &.height-215 {
+    height: 215px
   }
 
   &.height-250 {

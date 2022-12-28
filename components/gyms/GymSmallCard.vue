@@ -2,9 +2,9 @@
   <div>
     <v-card
       link
-      flat
+      class="hoverable-card"
       :class="bordered ? 'border' : ''"
-      :to="gym.path"
+      :to="linkable ? gym.path : null"
     >
       <v-list-item
         :three-line="!small"
@@ -23,15 +23,14 @@
           </v-avatar>
         </v-list-item-avatar>
         <v-list-item-content
-          :class="small ? 'pt-0 pb-0' : ''"
+          :class="small ? 'pt-3 pb-0' : ''"
         >
           <v-list-item-title class="font-weight-bold">
             <span class="vertical-align-middle">
               {{ gym.name }}
             </span>
-            <subscribe-btn subscribe-type="Gym" :subscribe-id="gym.id" :large="false" />
           </v-list-item-title>
-          <v-list-item-subtitle :class="small ? 'mt-n1 mb-3' : 'mt-n3 mb-4'">
+          <v-list-item-subtitle :class="small ? 'mb-3' : 'mb-4'">
             <v-alert
               dense
               text
@@ -45,6 +44,13 @@
             </client-only>
           </v-list-item-subtitle>
         </v-list-item-content>
+        <v-list-item-action>
+          <subscribe-btn
+            subscribe-type="Gym"
+            :subscribe-id="gym.id"
+            :large="false"
+          />
+        </v-list-item-action>
       </v-list-item>
     </v-card>
   </div>
@@ -62,6 +68,10 @@ export default {
     gym: {
       type: Object,
       required: true
+    },
+    linkable: {
+      type: Boolean,
+      default: true
     },
     small: {
       type: Boolean,

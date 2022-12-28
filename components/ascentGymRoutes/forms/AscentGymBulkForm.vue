@@ -198,6 +198,7 @@
 
     <div class="text-right mt-3">
       <v-btn
+        v-if="closeAscentModal"
         text
         elevation="0"
         @click="closeAscentModal"
@@ -271,10 +272,6 @@ export default {
   computed: {
     haveSpaces () {
       return this.gym.gym_spaces.length > 0
-    },
-
-    haveGradeSystem () {
-      return this.gym.gym_grades_count > 0
     }
   },
 
@@ -337,7 +334,9 @@ export default {
         })
         .then(() => {
           this.ascentsModal = false
-          this.closeAscentModal()
+          if (this.closeAscentModal) {
+            this.closeAscentModal()
+          }
           this.callback()
           this.$root.$emit('reloadClimbingSession')
           this.savePreferences()

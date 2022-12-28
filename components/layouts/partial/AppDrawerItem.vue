@@ -38,10 +38,6 @@ export default {
       type: String,
       required: true
     }
-  },
-
-  mounted () {
-    console.log(this.icon)
   }
 }
 </script>

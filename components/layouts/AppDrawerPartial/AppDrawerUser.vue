@@ -22,16 +22,51 @@
       </v-list-item-title>
     </v-list-item>
 
-    <v-list-item :to="`/me/${$auth.user.slug_name}/ascents/send-list`">
-      <v-list-item-icon>
-        <v-icon>
-          {{ mdiBookOutline }}
-        </v-icon>
-      </v-list-item-icon>
-      <v-list-item-title>
-        {{ $t('components.layout.appDrawer.user.ascents') }}
-      </v-list-item-title>
-    </v-list-item>
+    <v-list-group
+      :prepend-icon="mdiBookOutline"
+      no-action
+    >
+      <template #activator>
+        <v-list-item-content>
+          <v-list-item-title>
+            {{ $t('components.layout.appDrawer.user.ascents.title') }}
+          </v-list-item-title>
+        </v-list-item-content>
+      </template>
+
+      <v-list-item :to="`/me/${$auth.user.slug_name}/ascents/outdoor`">
+        <v-list-item-icon>
+          <v-icon>
+            {{ mdiTerrain }}
+          </v-icon>
+        </v-list-item-icon>
+        <v-list-item-title>
+          {{ $t('components.layout.appDrawer.user.ascents.outdoor') }}
+        </v-list-item-title>
+      </v-list-item>
+
+      <v-list-item :to="`/me/${$auth.user.slug_name}/ascents/indoor`">
+        <v-list-item-icon>
+          <v-icon>
+            {{ mdiOfficeBuildingMarker }}
+          </v-icon>
+        </v-list-item-icon>
+        <v-list-item-title>
+          {{ $t('components.layout.appDrawer.user.ascents.indoor') }}
+        </v-list-item-title>
+      </v-list-item>
+
+      <v-list-item :to="`/me/${$auth.user.slug_name}/climbing-sessions`">
+        <v-list-item-icon>
+          <v-icon>
+            {{ mdiTimelineText }}
+          </v-icon>
+        </v-list-item-icon>
+        <v-list-item-title>
+          {{ $t('components.layout.appDrawer.user.ascents.session') }}
+        </v-list-item-title>
+      </v-list-item>
+    </v-list-group>
 
     <v-list-item :to="`/me/${$auth.user.slug_name}/favorites/crags`">
       <v-list-item-icon>
@@ -87,7 +122,10 @@ import {
   mdiAccountStarOutline,
   mdiStarOutline,
   mdiBookshelf,
-  mdiMap
+  mdiMap,
+  mdiTerrain,
+  mdiOfficeBuildingMarker,
+  mdiTimelineText
 } from '@mdi/js'
 
 export default {
@@ -101,7 +139,10 @@ export default {
       mdiAccountStarOutline,
       mdiStarOutline,
       mdiBookshelf,
-      mdiMap
+      mdiMap,
+      mdiTerrain,
+      mdiOfficeBuildingMarker,
+      mdiTimelineText
     }
   }
 }

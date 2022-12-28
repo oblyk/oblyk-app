@@ -186,7 +186,7 @@
                 text
                 block
                 color="primary"
-                :to="`/me/${$auth.user.slug_name}/ascents/send-list`"
+                :to="`/me/${$auth.user.slug_name}/ascents/outdoor`"
                 class="mb-2"
               >
                 <v-icon left>
@@ -216,13 +216,13 @@
 
 <script>
 import { mdiTerrain, mdiPlus, mdiSourceBranchPlus, mdiMagnify, mdiCheckAll, mdiClose, mdiBookOutline } from '@mdi/js'
-import CragSearchForm from '~/components/crags/forms/CragSearchForm'
+import CragSearchForm from '~/components/crags/forms/CragSearchForm.vue'
 import CragApi from '~/services/oblyk-api/CragApi'
 import Crag from '~/models/Crag'
 import CragRouteApi from '~/services/oblyk-api/CragRouteApi'
 import CragRoute from '~/models/CragRoute'
-import AscentCragRouteForm from '~/components/ascentCragRoutes/forms/AscentCragRouteForm'
-import CragRoutes from '~/components/cragRoutes/CragRoutes'
+import AscentCragRouteForm from '~/components/ascentCragRoutes/forms/AscentCragRouteForm.vue'
+import CragRoutes from '~/components/cragRoutes/CragRoutes.vue'
 
 export default {
   meta: { orphanRoute: true },

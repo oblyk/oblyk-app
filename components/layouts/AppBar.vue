@@ -19,24 +19,51 @@
 
     <!-- Add cross -->
     <client-only>
-      <v-btn
-        v-if="$auth.loggedIn"
-        icon
-        aria-label="Add cross"
-        class="add-cross-btn"
-        :title="$t('components.layout.appBar.addCross')"
-        to="/ascents/new"
-      >
-        <v-icon>
-          {{ mdiPlusBoxOutline }}
-        </v-icon>
-      </v-btn>
+      <v-menu offset-y>
+        <template #activator="{ on, attrs }">
+          <v-btn
+            v-if="$auth.loggedIn"
+            icon
+            aria-label="Add cross"
+            class="add-cross-btn"
+            :title="$t('components.layout.appBar.addCross')"
+            v-bind="attrs"
+            v-on="on"
+          >
+            <v-icon>
+              {{ mdiPlusBoxOutline }}
+            </v-icon>
+          </v-btn>
+        </template>
+        <v-list>
+          <v-list-item to="/ascents/outdoor/new">
+            <v-list-item-icon>
+              <v-icon>
+                {{ mdiTerrain }}
+              </v-icon>
+            </v-list-item-icon>
+            <v-list-item-title
+              v-html="$t('components.layout.appDrawer.user.ascents.addOutdoorAscents')"
+            />
+          </v-list-item>
+          <v-list-item to="/ascents/indoor/new">
+            <v-list-item-icon>
+              <v-icon>
+                {{ mdiOfficeBuildingMarker }}
+              </v-icon>
+            </v-list-item-icon>
+            <v-list-item-title
+              v-html="$t('components.layout.appDrawer.user.ascents.addIndoorAscents')"
+            />
+          </v-list-item>
+        </v-list>
+      </v-menu>
     </client-only>
   </v-app-bar>
 </template>
 
 <script>
-import { mdiPlusBoxOutline } from '@mdi/js'
+import { mdiPlusBoxOutline, mdiTerrain, mdiOfficeBuildingMarker } from '@mdi/js'
 import GlobalSearchDialog from '~/components/searches/GlobalSearchDialog'
 
 export default {
@@ -54,7 +81,9 @@ export default {
 
   data () {
     return {
-      mdiPlusBoxOutline
+      mdiPlusBoxOutline,
+      mdiTerrain,
+      mdiOfficeBuildingMarker
     }
   }
 }

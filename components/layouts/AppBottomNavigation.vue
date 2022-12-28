@@ -14,15 +14,46 @@
         {{ mdiMenu }}
       </v-icon>
     </v-btn>
-    <v-btn
+    <v-menu
       v-if="$auth.loggedIn"
-      value="add cross"
-      to="/ascents/new"
     >
-      <v-icon color="white">
-        {{ mdiPlusBoxOutline }}
-      </v-icon>
-    </v-btn>
+      <template #activator="{ on, attrs }">
+        <v-btn
+          icon
+          aria-label="Add cross"
+          class="add-cross-btn"
+          :title="$t('components.layout.appBar.addCross')"
+          v-bind="attrs"
+          v-on="on"
+        >
+          <v-icon>
+            {{ mdiPlusBoxOutline }}
+          </v-icon>
+        </v-btn>
+      </template>
+      <v-list>
+        <v-list-item to="/ascents/outdoor/new">
+          <v-list-item-icon>
+            <v-icon>
+              {{ mdiTerrain }}
+            </v-icon>
+          </v-list-item-icon>
+          <v-list-item-title
+            v-html="$t('components.layout.appDrawer.user.ascents.addOutdoorAscents')"
+          />
+        </v-list-item>
+        <v-list-item to="/ascents/indoor/new">
+          <v-list-item-icon>
+            <v-icon>
+              {{ mdiOfficeBuildingMarker }}
+            </v-icon>
+          </v-list-item-icon>
+          <v-list-item-title
+            v-html="$t('components.layout.appDrawer.user.ascents.addIndoorAscents')"
+          />
+        </v-list-item>
+      </v-list>
+    </v-menu>
     <v-btn
       :to="$auth.loggedIn ? `/me/${$auth.user.slug_name}` : '/'"
       value="home"
@@ -74,7 +105,13 @@
 </template>
 
 <script>
-import { mdiMenu, mdiPlusBoxOutline, mdiAccountCircleOutline } from '@mdi/js'
+import {
+  mdiMenu,
+  mdiPlusBoxOutline,
+  mdiAccountCircleOutline,
+  mdiTerrain,
+  mdiOfficeBuildingMarker
+} from '@mdi/js'
 import LazyHydrate from 'vue-lazy-hydration'
 import GlobalSearchDialog from '~/components/searches/GlobalSearchDialog'
 import AppBarProfil from '~/components/layouts/partial/AppBarProfile'
@@ -101,7 +138,9 @@ export default {
 
       mdiMenu,
       mdiPlusBoxOutline,
-      mdiAccountCircleOutline
+      mdiAccountCircleOutline,
+      mdiTerrain,
+      mdiOfficeBuildingMarker
     }
   },
 

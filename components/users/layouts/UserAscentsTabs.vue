@@ -3,16 +3,16 @@
     show-arrows
     class="border-bottom"
   >
-    <v-tab :to="`${user.currentUserPath}/ascents/send-list`">
+    <v-tab :to="`${user.currentUserPath}/ascents/outdoor`">
       {{ $t('components.user.ascentTabs.sendList') }}
     </v-tab>
-    <v-tab :to="`${user.currentUserPath}/ascents/tick-list`">
+    <v-tab :to="`${user.currentUserPath}/ascents/outdoor/tick-list`">
       {{ $t('components.user.ascentTabs.tickList') }}
     </v-tab>
-    <v-tab :to="`${user.currentUserPath}/ascents/projects`">
+    <v-tab :to="`${user.currentUserPath}/ascents/outdoor/projects`">
       {{ $t('components.user.ascentTabs.projects') }}
     </v-tab>
-    <v-tab :to="`${user.currentUserPath}/ascents/analytiks`">
+    <v-tab :to="`${user.currentUserPath}/ascents/outdoor/analytiks`">
       {{ $t('components.user.ascentTabs.analytiks') }}
     </v-tab>
     <v-tab to="/maps/my-map">

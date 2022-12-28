@@ -5,23 +5,27 @@
         <v-row>
           <!-- Climbing type chart -->
           <v-col class="col-12 col-md-6 col-lg-3">
-            <spinner v-if="loadingClimbingTypeChart" :full-height="false" />
-            <log-book-climbing-type-chart
-              v-if="!loadingClimbingTypeChart"
-              :data="climbingTypeData"
-              :legend="false"
-            />
-            <!-- Climbing type legend -->
-            <climbing-type-legend class="mt-3" />
+            <div v-if="loadTheRest">
+              <spinner v-if="loadingClimbingTypeChart" :full-height="false" />
+              <log-book-climbing-type-chart
+                v-if="!loadingClimbingTypeChart"
+                :data="climbingTypeData"
+                :legend="false"
+              />
+              <!-- Climbing type legend -->
+              <climbing-type-legend class="mt-3" />
+            </div>
           </v-col>
 
           <!-- Climbing grade chart -->
           <v-col class="col-12 col-md-6 col-lg-4">
-            <spinner v-if="loadingGradeChart" :full-height="false" />
-            <log-book-grade-chart
-              v-if="!loadingGradeChart"
-              :data="gradeData"
-            />
+            <div v-if="loadTheRest">
+              <spinner v-if="loadingGradeChart" :full-height="false" />
+              <log-book-grade-chart
+                v-if="!loadingGradeChart"
+                :data="gradeData"
+              />
+            </div>
           </v-col>
 
           <!-- Global figures -->
@@ -36,6 +40,7 @@
       </v-card-text>
     </v-card>
     <v-card
+      v-if="loadTheRest"
       class="mt-3"
     >
       <v-card-text>
@@ -79,6 +84,8 @@ export default {
 
   data () {
     return {
+      loadTheRest: false,
+
       loadingFigures: true,
       figures: {},
 
@@ -98,8 +105,6 @@ export default {
 
   mounted () {
     this.getFigures()
-    this.getClimbingTypeChart()
-    this.getGradeChart()
   },
 
   methods: {
@@ -109,10 +114,19 @@ export default {
         .figures()
         .then((resp) => {
           this.figures = resp.data
+          if (this.figures.ascents > 0) {
+            this.loadTheRest = true
+            this.getOtherChars()
+          }
         })
         .finally(() => {
           this.loadingFigures = false
         })
+    },
+
+    getOtherChars () {
+      this.getClimbingTypeChart()
+      this.getGradeChart()
     },
 
     getClimbingTypeChart () {

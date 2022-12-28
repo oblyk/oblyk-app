@@ -37,7 +37,7 @@
               height="160"
               class="text-center pa-4"
               rounded
-              to="/ascents/new"
+              to="/ascents/outdoor/new"
             >
               <p class="font-weight-bold mb-7">
                 {{ $t('components.dailyCrosses.addCrosses') }}
@@ -57,7 +57,7 @@
               height="160"
               class="text-center pa-4"
               rounded
-              :to="`/me/${$auth.user.slug_name}/ascents/send-list`"
+              :to="`/me/${$auth.user.slug_name}/ascents/outdoor`"
             >
               <p class="font-weight-bold mb-7">
                 {{ $t('components.dailyCrosses.myLogbook') }}

@@ -840,7 +840,12 @@ export default {
       iMadeCountPitch: 'I made the %{count} pitch',
       cumulativeHeight: '<strong>%{meter}m</strong> cumulative',
       maxGrade: 'Max realised : <strong>%{grade}</strong>',
-      noAscents: "I don't have a ascent here"
+      noAscents: "I don't have a ascent here",
+      whichGym: 'Which gym ?',
+      gymPage: 'Climbing gym page',
+      addNewAscents: 'Add new ascents',
+      addingSuccess: 'Ascent(s) added !',
+      gymNotFound: "Can't find your climbing gym?"
     },
     ascentGymBulk: {
       addMyAscents: 'Fill in my ascents by :',
@@ -1006,6 +1011,7 @@ export default {
       type: 'Gym',
       addNew: 'Add a new climbing gym',
       newGym: 'New climbing gym',
+      searchGym: 'Search a climbing gym',
       tabs: {
         info: 'Info',
         guideBook: 'Guide book',
@@ -1127,12 +1133,15 @@ export default {
       climbingPartners: 'The people I climbed with',
       ascentsByColorsAndGrade: 'My ascents by grade and color',
       editComment: 'Edit my comment',
-      addComment: 'Comment my session'
+      addComment: 'Comment my session',
+      myIndoorSession: 'My indoor sessions',
+      myOutdoorSession: 'My outdoor sessions'
     },
     logBook: {
       inFewFigures: 'In few figures',
       climbingType: 'Climbing type',
       grades: 'Ascents by grades',
+      levels: 'Ascents by levels',
       years: 'Ascents by years',
       months: 'Ascents by months',
       evolution: 'Evolution',
@@ -1143,6 +1152,7 @@ export default {
       emptyTickList: "You don't have any route in your tick list for the moment",
       IHaveNoAscents: 'I have no ascents here yet',
       myAscentsHere: 'My ascents here',
+      myIndoorLogBook: 'My indoor ascents',
       sortItem: {
         difficulty: 'Difficulty',
         crags: 'Crag',
@@ -1154,6 +1164,7 @@ export default {
       figures: {
         countries: '%{count} country | %{count} countries',
         crags: '%{count} crag | %{count} crags',
+        gyms: '%{count} salle | %{count} salles',
         regions: '%{count} region | %{count} regions',
         ascents: '%{count} ascent | %{count} ascents',
         meters: '%{count} meter climbed | %{count} meters climbed',
@@ -1466,7 +1477,14 @@ export default {
           home: 'Home',
           feed: 'Feed',
           messenger: 'Messenger',
-          ascents: 'My climbing book',
+          ascents: {
+            title: 'My climbing books',
+            outdoor: 'Outdoor logbook',
+            indoor: 'Indoor logbook',
+            session: 'My sessions',
+            addOutdoorAscents: 'Add <strong class="text-decoration-underline">outdoor</strong> ascents',
+            addIndoorAscents: 'Add <strong class="text-decoration-underline">indoor</strong> ascents'
+          },
           subscribers: 'Subscribers',
           guideBooks: 'My guide book store',
           favorites: 'Favorites',

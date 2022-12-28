@@ -1,7 +1,7 @@
 <template>
   <v-container fluid>
     <v-row>
-      <v-col class="col-12 col-md-6 col-lg-4">
+      <v-col cols="12" md="6" lg="4">
         <v-card>
           <v-card-text>
             <spinner v-if="loadingClimbingTypeChart" :full-height="false" />
@@ -15,7 +15,7 @@
           </v-card-text>
         </v-card>
       </v-col>
-      <v-col class="col-12 col-md-6 col-lg-4">
+      <v-col cols="12" md="6" lg="4">
         <v-card>
           <v-card-text>
             <spinner v-if="loadingGradeChart" :full-height="false" />
@@ -27,7 +27,7 @@
           </v-card-text>
         </v-card>
       </v-col>
-      <v-col class="col-12 col-md-6 col-lg-4">
+      <v-col cols="12" md="6" lg="4">
         <v-card>
           <v-card-text>
             <spinner v-if="loadingEvolutionChart" :full-height="false" />
@@ -41,7 +41,7 @@
       </v-col>
     </v-row>
     <v-row>
-      <v-col class="col-12 col-md-6 col-lg-8">
+      <v-col cols="12" md="6" lg="8">
         <v-card>
           <v-card-text>
             <spinner v-if="loadingMonthChart" :full-height="false" />
@@ -53,7 +53,7 @@
           </v-card-text>
         </v-card>
       </v-col>
-      <v-col class="col-12 col-md-6 col-lg-4">
+      <v-col cols="12" md="6" lg="4">
         <v-card>
           <v-card-text>
             <spinner v-if="loadingYearChart" :full-height="false" />

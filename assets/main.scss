@@ -162,6 +162,10 @@ strong {
   cursor: pointer;
 }
 
+.hoverable-card {
+  transition: background-color 0.3s;
+}
+
 .no-hover-table .v-data-table__wrapper {
   table {
     tr {
@@ -282,6 +286,11 @@ strong {
   .back-app-color {
     background-color: rgb(18, 18, 18);
   }
+  .hoverable-card {
+    &:hover {
+      background-color: rgb(18, 18, 18);
+    }
+  }
 }
 .theme--light {
   .border-bottom, .border {
@@ -289,5 +298,10 @@ strong {
   }
   .back-app-color {
     background-color: rgb(240, 240, 245);
+  }
+  .hoverable-card {
+    &:hover {
+      background-color: rgb(240, 240, 245);
+    }
   }
 }
