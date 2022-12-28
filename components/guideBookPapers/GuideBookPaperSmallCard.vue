@@ -3,6 +3,7 @@
     <v-card
       link
       flat
+      class="hoverable-card"
       :to="linkable ? guideBookPaper.path : null"
     >
       <v-list-item three-line>
@@ -19,41 +20,23 @@
         </v-list-item-avatar>
         <v-list-item-content>
           <v-list-item-title class="font-weight-bold">
-            <v-row>
-              <v-col cols="10" class="text-truncate pr-0">
-                <span class="vertical-align-middle">
-                  <v-chip
-                    v-if="guideBookPaper.fundingAttributes.displayed"
-                    outlined
-                    class="pr-1 pl-1 mr-1 mb-1"
-                    small
-                    :color="guideBookPaper.fundingAttributes.color"
-                  >
-                    <v-icon
-                      small
-                      :title="$t(guideBookPaper.fundingAttributes.labelKey)"
-                    >
-                      {{ fundingIcon() }}
-                    </v-icon>
-                  </v-chip>
-                  {{ guideBookPaper.name }}
-                </span>
-              </v-col>
-              <v-col cols="2" class="text-right pt-1">
-                <client-only>
-                  <subscribe-btn
-                    subscribe-type="GuideBookPaper"
-                    :subscribe-id="guideBookPaper.id"
-                    :large="false"
-                    followed-color="deep-purple"
-                    :followed-icon="mdiBookshelf"
-                    :unfollowed-icon="mdiBookshelf"
-                    subscribe-label="actions.addToLibrary"
-                    unsubscribe-label="actions.removeFromLibrary"
-                  />
-                </client-only>
-              </v-col>
-            </v-row>
+            <span class="vertical-align-middle">
+              <v-chip
+                v-if="guideBookPaper.fundingAttributes.displayed"
+                outlined
+                class="pr-1 pl-1 mr-1 mb-1"
+                small
+                :color="guideBookPaper.fundingAttributes.color"
+              >
+                <v-icon
+                  small
+                  :title="$t(guideBookPaper.fundingAttributes.labelKey)"
+                >
+                  {{ fundingIcon() }}
+                </v-icon>
+              </v-chip>
+              {{ guideBookPaper.name }}
+            </span>
           </v-list-item-title>
           <v-list-item-subtitle class="mt-n3 mb-4 text-truncate">
             <v-alert
@@ -66,6 +49,20 @@
             {{ guideBookPaper.author }}, {{ guideBookPaper.editor }}, {{ guideBookPaper.publication_year }}
           </v-list-item-subtitle>
         </v-list-item-content>
+        <v-list-item-action>
+          <client-only>
+            <subscribe-btn
+              subscribe-type="GuideBookPaper"
+              :subscribe-id="guideBookPaper.id"
+              :large="false"
+              followed-color="deep-purple"
+              :followed-icon="mdiBookshelf"
+              :unfollowed-icon="mdiBookshelf"
+              subscribe-label="actions.addToLibrary"
+              unsubscribe-label="actions.removeFromLibrary"
+            />
+          </client-only>
+        </v-list-item-action>
       </v-list-item>
     </v-card>
   </div>

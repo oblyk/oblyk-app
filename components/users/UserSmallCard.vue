@@ -3,6 +3,7 @@
     <v-card
       link
       flat
+      class="hoverable-card"
       :class="bordered ? 'border' : ''"
       :to="linkable ? user.userPath : null"
       @click="callback ? callback(user) : null"
@@ -28,15 +29,6 @@
             <span class="vertical-align-middle">
               {{ user.full_name }}
             </span>
-            <subscribe-btn
-              v-if="subscribable"
-              subscribe-type="User"
-              :subscribe-id="user.id"
-              :unfollowed-icon="mdiAccountOutline"
-              :followed-icon="mdiAccount"
-              followed-color="primary"
-              :large="false"
-            />
           </v-list-item-title>
           <v-list-item-subtitle
             v-if="!small"
@@ -51,6 +43,18 @@
             </v-alert>
           </v-list-item-subtitle>
         </v-list-item-content>
+        <v-list-item-action
+          v-if="subscribable"
+        >
+          <subscribe-btn
+            subscribe-type="User"
+            :subscribe-id="user.id"
+            :unfollowed-icon="mdiAccountOutline"
+            :followed-icon="mdiAccount"
+            followed-color="primary"
+            :large="false"
+          />
+        </v-list-item-action>
       </v-list-item>
     </v-card>
   </div>

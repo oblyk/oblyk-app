@@ -3,6 +3,7 @@
     <v-card
       link
       flat
+      class="hoverable-card"
       :class="bordered ? 'border' : ''"
       :to="linkable ? crag.path : null"
     >
@@ -22,12 +23,11 @@
             <v-img :src="crag.thumbnailCoverUrl" />
           </v-avatar>
         </v-list-item-avatar>
-        <v-list-item-content :class="small ? 'pt-0 pb-0' : ''">
+        <v-list-item-content :class="small ? 'pt-1 pb-0' : ''">
           <v-list-item-title class="font-weight-bold">
             <span class="vertical-align-middle">
               {{ crag.name }}
             </span>
-            <subscribe-btn subscribe-type="Crag" :subscribe-id="crag.id" :large="false" />
           </v-list-item-title>
           <v-list-item-subtitle :class="small ? 'mb-2' : 'mt-n3 mb-4'">
             <v-alert
@@ -43,6 +43,9 @@
             </client-only>
           </v-list-item-subtitle>
         </v-list-item-content>
+        <v-list-item-action>
+          <subscribe-btn subscribe-type="Crag" :subscribe-id="crag.id" :large="false" />
+        </v-list-item-action>
       </v-list-item>
     </v-card>
   </div>
