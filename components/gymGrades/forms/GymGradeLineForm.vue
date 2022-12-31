@@ -89,7 +89,7 @@ export default {
       data: {
         id: this.gymGradeLine?.id,
         name: this.gymGradeLine?.name,
-        colors: this.gymGradeLine?.colors,
+        colors: this.gymGradeLine?.colors || [],
         grade_text: this.gymGradeLine?.grade_text,
         points: this.gymGradeLine?.points,
         order: this.gymGradeLine?.order || this.gymGrade.next_grade_lines_order || 1,
