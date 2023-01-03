@@ -330,8 +330,8 @@ export default {
         height: this.gymRoute?.height || this.gymSector.height,
         points: this.gymRoute?.points,
         grade: this.gymRoute?.grade,
-        tag_colors: this.gymRoute?.tag_colors,
-        hold_colors: this.gymRoute?.hold_colors,
+        tag_colors: this.gymRoute?.tag_colors || [],
+        hold_colors: this.gymRoute?.hold_colors || [],
         opened_at: this.gymRoute?.opened_at || this.today().format('YYYY-MM-DD'),
         climbing_type: this.gymRoute?.climbing_type || this.gymSector.climbing_type,
         gym_grade_line_id: this.gymRoute?.gym_grade_line_id,
@@ -426,11 +426,12 @@ export default {
         section.grade = selectedGradeLine.grade_text
       }
 
+      const colors = selectedGradeLine.colors
       if (this.gymGrade.hold_color) {
-        this.data.hold_colors = selectedGradeLine.colors
+        this.data.hold_colors = colors.map((color) => { return color })
       }
       if (this.gymGrade.tag_color) {
-        this.data.tag_colors = selectedGradeLine.colors
+        this.data.tag_colors = colors.map((color) => { return color })
       }
     },
 
