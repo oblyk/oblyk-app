@@ -43,6 +43,7 @@
           {{ $t('components.logBook.figures.max_grade', { grade: gradeValueToText(figures.max_grade_value) }) }}
         </v-col>
         <v-col
+          v-if="$auth.loggedIn && user.id === $auth.user.id"
           cols="12"
           class="text-right"
         >
@@ -96,6 +97,10 @@ export default {
   mixins: [GradeMixin],
   props: {
     figures: {
+      type: Object,
+      required: true
+    },
+    user: {
       type: Object,
       required: true
     }

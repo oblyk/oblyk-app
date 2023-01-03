@@ -12,6 +12,7 @@
             <log-book-indoor-figures
               v-if="!loadingFigures && figures.ascents > 0"
               :figures="figures"
+              :user="$auth.user"
             />
 
             <div

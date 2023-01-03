@@ -45,6 +45,7 @@
               <log-book-figures
                 v-if="!loadingFigures"
                 :figures="figures"
+                :user="user"
               />
             </v-col>
           </v-row>
