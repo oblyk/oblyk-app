@@ -156,5 +156,49 @@ class UserApi extends BaseApi {
       }
     })
   }
+
+  indoorFigures (userUuid) {
+    return this.axios.request({
+      method: 'GET',
+      url: `${this.baseUrl}/users/${userUuid}/indoor_figures.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
+    })
+  }
+
+  indoorClimbingTypeChart (userUuid) {
+    return this.axios.request({
+      method: 'GET',
+      url: `${this.baseUrl}/users/${userUuid}/indoor_climb_types_chart.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
+    })
+  }
+
+  indoorGradeChart (userUuid) {
+    return this.axios.request({
+      method: 'GET',
+      url: `${this.baseUrl}/users/${userUuid}/indoor_grade_chart.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
+    })
+  }
+
+  indoorByLevelsChart (userUuid) {
+    return this.axios.request({
+      method: 'GET',
+      url: `${this.baseUrl}/users/${userUuid}/indoor_by_level_chart.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
+    })
+  }
 }
 export default UserApi

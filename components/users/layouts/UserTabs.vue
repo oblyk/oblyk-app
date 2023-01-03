@@ -4,7 +4,10 @@
     class="rounded"
   >
     <!-- Profil -->
-    <v-tab :to="user.userPath">
+    <v-tab
+      :to="user.userPath"
+      exact-path
+    >
       <v-icon
         :small="!isMobile"
         left
@@ -17,7 +20,9 @@
     </v-tab>
 
     <!-- Ascents -->
-    <v-tab :to="`${user.userPath}/ascents`">
+    <v-tab
+      :to="`${user.userPath}/ascents/outdoor`"
+    >
       <v-icon
         :small="!isMobile"
         left
