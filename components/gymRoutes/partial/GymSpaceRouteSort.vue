@@ -29,7 +29,8 @@ export default {
       items: [
         { text: this.$t('components.gymRoute.sorts.opened_at'), value: 'opened_at' },
         { text: this.$t('components.gymRoute.sorts.sector'), value: 'sector' },
-        { text: this.$t('components.gymRoute.sorts.grade'), value: 'grade' }
+        { text: this.$t('components.gymRoute.sorts.grade'), value: 'grade' },
+        { text: this.$t('components.gymRoute.sorts.level'), value: 'level' }
       ],
       sort: this.value,
 

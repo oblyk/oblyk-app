@@ -61,6 +61,21 @@
           </p>
         </div>
       </div>
+
+      <!-- If sort by level -->
+      <div v-if="sort === 'level'">
+        <gym-routes-by-level
+          :levels="levels"
+          :show-sector-id="showSectorId"
+          :get-routes="getRoutes"
+        />
+        <!-- if no routes in level -->
+        <div v-if="levels.length === 0">
+          <p class="text-center text--disabled">
+            {{ $t('components.gymRoute.noRoute') }}
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -75,10 +90,12 @@ import GymSector from '@/models/GymSector'
 import GymRoutesBySector from '@/components/gymRoutes/listByGroup/GymRoutesBySector'
 import GymRoutesByOpenedAt from '@/components/gymRoutes/listByGroup/GymRoutesByOpenedAt'
 import GymRoutesByGrade from '@/components/gymRoutes/listByGroup/GymRoutesByGrade'
+import GymRoutesByLevel from '~/components/gymRoutes/listByGroup/GymRoutesByLevel.vue'
 
 export default {
   name: 'GymSpaceRouteList',
   components: {
+    GymRoutesByLevel,
     GymRoutesByGrade,
     GymRoutesByOpenedAt,
     GymRoutesBySector,
@@ -103,6 +120,7 @@ export default {
       sectors: [],
       openedAts: [],
       grades: [],
+      levels: [],
       gymRoutes: [],
       loadingRoutes: true,
       firstLoaded: false,
@@ -207,6 +225,22 @@ export default {
               }
               this.grades.push({
                 grade: grade.grade,
+                routes
+              })
+            }
+          } else if (this.sort === 'level') {
+            // If by level
+            const levels = resp.data.level
+            for (const level of levels) {
+              const routes = []
+              for (const route of level.routes) {
+                routes.push(new GymRoute({ attributes: route }))
+              }
+              this.levels.push({
+                name: level.name,
+                colors: level.colors,
+                tag_color: level.tag_color,
+                hold_color: level.hold_color,
                 routes
               })
             }

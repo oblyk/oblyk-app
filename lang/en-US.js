@@ -1101,7 +1101,9 @@ export default {
       sorts: {
         opened_at: 'Sort by opening date',
         sector: 'Sort by sector',
-        grade: 'Sort by difficulty'
+        grade: 'Sort by difficulty',
+        level: 'Sort by level',
+        point: 'Sort by point'
       }
     },
     gymGrade: {
