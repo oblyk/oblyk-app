@@ -62,11 +62,11 @@
           cols="3"
           class="pr-0"
         >
-          <v-text-field
+          <v-select
             v-model="ascent.quantity"
             outlined
             hide-details
-            type="text"
+            :items="Array.from({ length: 30 }, (_, i) => i + 1)"
             :label="$t('models.ascentGymRoute.quantity')"
           />
         </v-col>

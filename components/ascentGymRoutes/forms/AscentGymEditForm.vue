@@ -44,10 +44,10 @@
       />
 
       <!-- Quantity -->
-      <v-text-field
+      <v-select
         v-model="data.quantity"
         outlined
-        type="text"
+        :items="Array.from({ length: 30 }, (_, i) => i + 1)"
         :label="$t('models.ascentGymRoute.quantity')"
       />
 
