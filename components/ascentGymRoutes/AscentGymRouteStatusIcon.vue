@@ -66,13 +66,14 @@ export default {
 
   methods: {
     findAscentInLogBook () {
-      for (const ascent of this.gymRouteAscents) {
-        if (this.gymRoute.id === ascent.gym_route_id) {
-          this.ascentInLogBook = ascent
-          return
-        }
-      }
-      this.ascentInLogBook = null
+      if (!this.gymRouteAscents || this.gymRouteAscents.length === 0) { return }
+
+      const statusOrder = ['repetition', 'onsight', 'flash', 'red_point', 'sent', 'project', 'tick_list']
+      const ascents = this.gymRouteAscents.filter(gymRouteAscent => gymRouteAscent.gym_route_id === this.gymRoute.id)
+
+      if (!ascents || ascents.length === 0) { return }
+
+      this.ascentInLogBook = ascents.sort((a, b) => statusOrder.indexOf(a.ascent_status) - statusOrder.indexOf(b.ascent_status))[0]
     },
 
     status () {
@@ -101,7 +102,7 @@ export default {
     title () {
       const status = this.$t(`models.ascentStatus.${this.status()}`)
       let date = ''
-      if ((this.ascentInLogBook || {}).released_at) {
+      if (this.ascentInLogBook?.released_at) {
         date = `${this.humanizeDate(this.gymRouteAscents.released_at)} :`
       }
       return `${date} ${status}`
