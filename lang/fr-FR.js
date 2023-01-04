@@ -1101,7 +1101,7 @@ export default {
       sorts: {
         opened_at: "Trier par date d'ouverture",
         sector: 'Trier par secteur',
-        grade: 'Trier par difficulté',
+        grade: 'Trier par cotation',
         level: 'Trier par niveau',
         point: 'Trier par point'
       }
