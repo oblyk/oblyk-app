@@ -26,7 +26,7 @@
           v-bind="attrs"
           v-on="on"
         >
-          <v-icon>
+          <v-icon color="white">
             {{ mdiPlusBoxOutline }}
           </v-icon>
         </v-btn>
