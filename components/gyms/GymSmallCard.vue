@@ -1,9 +1,8 @@
 <template>
   <div>
     <v-card
-      link
-      class="hoverable-card"
-      :class="bordered ? 'border' : ''"
+      :link="linkable"
+      :class="bindClass"
       :to="linkable ? gym.path : null"
     >
       <v-list-item
@@ -97,6 +96,17 @@ export default {
         this.gym.latitude,
         this.gym.longitude
       )
+    },
+
+    bindClass () {
+      const classList = []
+      if (this.bordered) {
+        classList.push('border')
+      }
+      if (this.linkable) {
+        classList.push('hoverable-card')
+      }
+      return classList.join(' ')
     }
   }
 }

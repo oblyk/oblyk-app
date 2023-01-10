@@ -1,10 +1,9 @@
 <template>
   <div>
     <v-card
-      link
+      :link="linkable"
       flat
-      class="hoverable-card"
-      :class="bordered ? 'border' : ''"
+      :class="bindClass"
       :to="linkable ? crag.path : null"
     >
       <v-list-item
@@ -93,6 +92,17 @@ export default {
         this.crag.latitude,
         this.crag.longitude
       )
+    },
+
+    bindClass () {
+      const classList = []
+      if (this.bordered) {
+        classList.push('border')
+      }
+      if (this.linkable) {
+        classList.push('hoverable-card')
+      }
+      return classList.join(' ')
     }
   }
 }

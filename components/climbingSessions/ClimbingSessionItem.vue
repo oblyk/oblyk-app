@@ -76,41 +76,29 @@
           <markdown-text :text="climbingSession.description" />
         </v-sheet>
 
-        <v-sheet
+        <div
           v-if="crags.length + gyms.length > 0"
-          class="mt-2 back-app-color px-2 pb-0 pt-2 rounded-sm"
+          class="mb-2"
         >
-          <div
+          <crag-small-card
             v-for="(crag, cragIndex) in crags"
             :key="`crag-index-${cragIndex}`"
-            class="d-inline-block text-center"
-            style="width: 60px"
-          >
-            <v-avatar>
-              <v-img :src="crag.thumbnailCoverUrl" :alt="crag.name" />
-            </v-avatar>
-            <p class="mb-0 text-truncate">
-              <small>
-                {{ crag.name }}
-              </small>
-            </p>
-          </div>
-          <div
+            class="mt-2"
+            :crag="crag"
+            :linkable="false"
+            small
+            bordered
+          />
+          <gym-small-card
             v-for="(gym, gymIndex) in gyms"
             :key="`gym-index-${gymIndex}`"
-            class="d-inline-block text-center"
-            style="width: 60px"
-          >
-            <v-avatar>
-              <v-img :src="gym.logoUrl" :alt="gym.name" />
-            </v-avatar>
-            <p class="mb-0 text-truncate">
-              <small>
-                {{ gym.name }}
-              </small>
-            </p>
-          </div>
-        </v-sheet>
+            class="mt-2"
+            :gym="gym"
+            :linkable="false"
+            small
+            bordered
+          />
+        </div>
         <p class="text-right mb-0 text--disabled">
           <small>{{ $t('common.at') }} {{ humanizeDate(climbingSession.session_date) }}</small>
         </p>
@@ -124,10 +112,12 @@ import { mdiCircle } from '@mdi/js'
 import { DateHelpers } from '~/mixins/DateHelpers'
 import { GradeMixin } from '~/mixins/GradeMixin'
 import MarkdownText from '~/components/ui/MarkdownText.vue'
+import CragSmallCard from '~/components/crags/CragSmallCard.vue'
+import GymSmallCard from '~/components/gyms/GymSmallCard.vue'
 
 export default {
   name: 'ClimbingSessionItem',
-  components: { MarkdownText },
+  components: { GymSmallCard, CragSmallCard, MarkdownText },
   mixins: [DateHelpers, GradeMixin],
   props: {
     climbingSession: {
