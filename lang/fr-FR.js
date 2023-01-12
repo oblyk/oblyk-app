@@ -1841,7 +1841,11 @@ export default {
       description: "%{name} : site d'escalade à %{city} en %{region}. Détail des voies, localisation, topos, photos, etc.",
       new: 'Ajouter une falaise',
       addGuideBook: 'Ajouter un topo à %{name}',
-      addArea: 'Ajouter %{name} à une zone'
+      addArea: 'Ajouter %{name} à une zone',
+      routes: {
+        title: "Les voies de %{name}, site d'escalade en %{region}",
+        description: "Retrouvez toutes les voies et blocs du site d'escalade de %{name}, les cotations et les avis des grimpeurs"
+      }
     },
     cragRoute: {
       title: '%{name} %{grade}, %{cragName}',

@@ -1841,7 +1841,11 @@ export default {
       description: '%{name} : climbing crag in %{city} in %{region}. Details of the routes, location, guide books, photos, etc.',
       new: 'Create new crag',
       addGuideBook: 'Add paper guide at %{name}',
-      addArea: 'Add %{name} in area'
+      addArea: 'Add %{name} in area',
+      routes: {
+        title: 'The routes of %{name}, climbing site in %{region}',
+        description: "Find all the routes and boulders of the %{name} climbing site, the quotations and the climbers' opinions"
+      }
     },
     cragRoute: {
       title: '%{name} %{grade}, %{cragName}',
