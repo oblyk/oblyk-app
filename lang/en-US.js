@@ -1486,8 +1486,8 @@ export default {
             outdoor: 'Outdoor logbook',
             indoor: 'Indoor logbook',
             session: 'My sessions',
-            addOutdoorAscents: 'Add <strong class="text-decoration-underline">outdoor</strong> ascents',
-            addIndoorAscents: 'Add <strong class="text-decoration-underline">indoor</strong> ascents'
+            addOutdoorAscents: '<strong class="text-decoration-underline">outdoor</strong> ascents',
+            addIndoorAscents: '<strong class="text-decoration-underline">indoor</strong> ascents'
           },
           subscribers: 'Subscribers',
           guideBooks: 'My guide book store',

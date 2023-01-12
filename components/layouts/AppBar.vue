@@ -13,26 +13,28 @@
     <!-- Search on Oblyk -->
     <client-only>
       <global-search-dialog activator="text-field" />
-    </client-only>
 
-    <v-spacer />
-
-    <!-- Add cross -->
-    <client-only>
+      <!-- Add cross -->
       <v-menu offset-y>
         <template #activator="{ on, attrs }">
           <v-btn
             v-if="$auth.loggedIn"
-            icon
             aria-label="Add cross"
-            class="add-cross-btn"
+            class="add-cross-btn ml-3"
+            rounded
+            color="rgba(0,0,0,0)"
+            elevation="0"
             :title="$t('components.layout.appBar.addCross')"
             v-bind="attrs"
             v-on="on"
           >
-            <v-icon>
+            <v-icon
+              left
+              size="33"
+            >
               {{ mdiPlusBoxOutline }}
             </v-icon>
+            {{ $t('actions.addAAscents') }} ...
           </v-btn>
         </template>
         <v-list>
@@ -59,6 +61,7 @@
         </v-list>
       </v-menu>
     </client-only>
+    <v-spacer />
   </v-app-bar>
 </template>
 
@@ -91,6 +94,14 @@ export default {
 
 <style lang="scss">
 .v-application {
+  .add-cross-btn {
+    padding-left: 7px !important;
+    .v-icon {
+      border-radius: 50%;
+      padding: 4px;
+      color: white;
+    }
+  }
   &.theme--dark {
     .custom-app-bar {
       background-color: #121212 !important;
@@ -107,6 +118,9 @@ export default {
       border-width: 1px;
       .add-cross-btn {
         color: black;
+        .v-icon {
+          background-color: black;
+        }
       }
       .v-app-bar__nav-icon {
         color: black;

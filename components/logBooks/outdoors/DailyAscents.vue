@@ -37,13 +37,13 @@
               height="160"
               class="text-center pa-4"
               rounded
-              to="/ascents/outdoor/new"
+              to="/ascents/new"
             >
               <p class="font-weight-bold mb-7">
                 {{ $t('components.dailyCrosses.addCrosses') }}
               </p>
               <v-icon x-large>
-                {{ mdiPlus }}
+                {{ mdiPlusBoxOutline }}
               </v-icon>
             </v-card>
           </div>
@@ -103,7 +103,7 @@
 </template>
 
 <script>
-import { mdiArrowRight, mdiPlus, mdiBookOutline, mdiMap } from '@mdi/js'
+import { mdiArrowRight, mdiPlusBoxOutline, mdiBookOutline, mdiMap } from '@mdi/js'
 import LogBookOutdoorApi from '~/services/oblyk-api/LogBookOutdoorApi'
 import DailyAscentsPart from '~/components/logBooks/outdoors/DailyAscentsPart'
 
@@ -117,7 +117,7 @@ export default {
       days: [],
 
       mdiArrowRight,
-      mdiPlus,
+      mdiPlusBoxOutline,
       mdiBookOutline,
       mdiMap
     }

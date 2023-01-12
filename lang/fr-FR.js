@@ -1486,8 +1486,8 @@ export default {
             outdoor: 'Carnet outdoor',
             indoor: 'Carnet indoor',
             session: 'Mes sessions',
-            addOutdoorAscents: 'Ajouter une croix <strong class="text-decoration-underline">outdoor</strong>',
-            addIndoorAscents: 'Ajouter une croix <strong class="text-decoration-underline">indoor</strong>'
+            addOutdoorAscents: 'Une croix <strong class="text-decoration-underline">outdoor</strong>',
+            addIndoorAscents: 'Une croix <strong class="text-decoration-underline">indoor</strong>'
           },
           subscribers: 'Abonnés',
           guideBooks: 'Ma topothèque',
