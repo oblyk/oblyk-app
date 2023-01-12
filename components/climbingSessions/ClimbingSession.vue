@@ -13,6 +13,11 @@
       :no-more-data="noMoreDataToLoad"
       :get-function="getClimbingSessions"
     />
+    <p
+      v-if="sessions.length === 0 && !loadingClimbingSessions"
+      class="text-center mt-4"
+      v-html="$t('components.climbingSession.empty')"
+    />
   </div>
 </template>
 

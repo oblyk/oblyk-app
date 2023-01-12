@@ -1137,7 +1137,8 @@ export default {
       editComment: 'Éditer mon commentaire',
       addComment: 'Commenter ma session',
       myIndoorSession: 'Mes sessions indoor',
-      myOutdoorSession: 'Mes sessions outdoor'
+      myOutdoorSession: 'Mes sessions outdoor',
+      empty: "Vous n'avez pas encore de session de grimpe.<br>Ajoutez des croix à votre carnet pour voir vos sessions !"
     },
     logBook: {
       inFewFigures: 'En quelque chiffres',
