@@ -7,6 +7,7 @@
     class="oblyk-bottom-navigation"
   >
     <v-btn
+      aria-label="Open menu"
       value="menu"
       @click="inverseDrawer"
     >
