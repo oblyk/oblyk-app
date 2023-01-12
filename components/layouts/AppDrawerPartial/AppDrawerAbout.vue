@@ -41,7 +41,10 @@
       </v-list-item>
 
       <!-- Helps -->
-      <v-list-item to="/helps">
+      <v-list-item
+        href="https://oblyk.github.io/app-user-doc"
+        target="_blank"
+      >
         <v-list-item-icon>
           <v-icon>
             {{ mdiSchool }}
@@ -49,6 +52,12 @@
         </v-list-item-icon>
         <v-list-item-title>
           {{ $t('components.layout.appDrawer.helps') }}
+          <v-icon
+            small
+            right
+          >
+            {{ mdiOpenInNew }}
+          </v-icon>
         </v-list-item-title>
       </v-list-item>
 
@@ -113,7 +122,8 @@ import {
   mdiInformationOutline,
   mdiSchool,
   mdiCodeBrackets,
-  mdiEmail
+  mdiEmail,
+  mdiOpenInNew
 } from '@mdi/js'
 import AppDrawerTool from '~/components/layouts/AppDrawerPartial/AppDrawerTool'
 
@@ -129,7 +139,8 @@ export default {
       mdiInformationOutline,
       mdiSchool,
       mdiCodeBrackets,
-      mdiEmail
+      mdiEmail,
+      mdiOpenInNew
     }
   }
 }

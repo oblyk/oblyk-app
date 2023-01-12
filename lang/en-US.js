@@ -1546,39 +1546,6 @@ export default {
       }
     }
   },
-  helps: {
-    title: 'Helps',
-    manageMyAccount: {
-      title: 'Manage my account',
-      deleteMyAccount: {
-        title: 'Delete my account',
-        explain: "Not interested in Oblyk anymore? You can delete your account. That's your right, and we won't hold you back.",
-        list: 'To delete your account you must :',
-        beConnected: 'Be connected to your account ;',
-        mySettings: 'My settings',
-        goToSettings: 'Go to your settings',
-        deployActions: "Deploy <cite class='font-weight-bold'>Actions on my account</cite>."
-      },
-      ascentsExport: {
-        title: 'Exporting my crosses or projects',
-        explain: "Go to your settings, go to the 'others' tab and then to the 'export my crosses or projects' menu.",
-        link: 'My profiles / My settings / others'
-      }
-    },
-    crag: {
-      title: 'Crags',
-      addApproach: {
-        title: 'Add approach',
-        explain: 'To add an approach step on a crag you must :',
-        findCrag: 'Find your crag with the search or the crags map',
-        mapTab: "Go to the 'Map' tab",
-        addApproachBtn: "Click on the 'Add a step' button",
-        descriptionAndType: 'Give a description and type of walk',
-        drawApproach: 'Click on the map to add the points along the approach walk (from the car park to the crag)',
-        tips: '<strong>Tips :</strong> Feel free to change the type of map to find the map that helps you trace the walk the most'
-      }
-    }
-  },
   home: {
     header: {
       title: {
@@ -1686,10 +1653,6 @@ export default {
     },
     news: {
       title: 'Oblyk news'
-    },
-    helps: {
-      title: 'Help, how to use Oblyk',
-      description: "With this short tutorial, learn how to use Oblyk in a few clicks, and take advantage of the tools of the climbers' community site"
     },
     supportUs: {
       title: 'Support Oblyk, make a donation',

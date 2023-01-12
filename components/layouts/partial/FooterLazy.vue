@@ -41,9 +41,21 @@
         <nuxt-link class="d-block" to="/about">
           {{ $t('components.layout.footer.about') }}
         </nuxt-link>
-        <nuxt-link class="d-block" to="/helps" rel="nofollow">
+        <a
+          class="d-block"
+          href="https://oblyk.github.io/app-user-doc"
+          target="_blank"
+          rel="nofollow"
+        >
           {{ $t('components.layout.footer.helps') }}
-        </nuxt-link>
+          <v-icon
+            class="mb-1"
+            small
+            right
+          >
+            {{ mdiOpenInNew }}
+          </v-icon>
+        </a>
         <nuxt-link class="d-block" to="/api-and-developers">
           {{ $t('components.layout.footer.apiAndDevelopers') }}
         </nuxt-link>
@@ -129,7 +141,16 @@
 </template>
 
 <script>
-import { mdiCopyright, mdiHeart, mdiFlag, mdiFacebook, mdiGithub, mdiEmail, mdiDatabase } from '@mdi/js'
+import {
+  mdiCopyright,
+  mdiHeart,
+  mdiFlag,
+  mdiFacebook,
+  mdiGithub,
+  mdiEmail,
+  mdiDatabase,
+  mdiOpenInNew
+} from '@mdi/js'
 
 export default {
   name: 'FooterLazy',
@@ -142,7 +163,8 @@ export default {
       mdiFacebook,
       mdiGithub,
       mdiEmail,
-      mdiDatabase
+      mdiDatabase,
+      mdiOpenInNew
     }
   },
 
