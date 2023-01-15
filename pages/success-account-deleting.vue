@@ -22,9 +22,20 @@ import AppFooter from '@/components/layouts/AppFooter'
 export default {
   components: { AppFooter },
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Compte supprimé'
+      },
+      en: {
+        metaTitle: 'Account deleted'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.successAccountDeleting.title'),
+      title: this.$t('metaTitle'),
       meta: [
         { hid: 'robots', name: 'robots', content: 'noindex' }
       ]

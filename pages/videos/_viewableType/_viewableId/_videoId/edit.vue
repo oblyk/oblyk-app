@@ -28,9 +28,20 @@ export default {
   mixins: [VideoConcern],
   middleware: ['auth'],
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Modifier la video'
+      },
+      en: {
+        metaTitle: 'Edit video'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.video.edit')
+      title: this.$t('metaTitle')
     }
   }
 }

@@ -22,9 +22,20 @@ import AppFooter from '@/components/layouts/AppFooter'
 export default {
   components: { AppFooter, NewPasswordForm },
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Changer mon mot de passe'
+      },
+      en: {
+        metaTitle: 'Change my password'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.session.newPassword'),
+      title: this.$t('metaTitle'),
       meta: [
         { hid: 'robots', name: 'robots', content: 'noindex' }
       ]

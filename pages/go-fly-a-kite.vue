@@ -22,14 +22,27 @@ import AppFooter from '@/components/layouts/AppFooter'
 export default {
   components: { AppFooter },
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Vous êtes un robot ?',
+        metaDescription: 'Vous avez un comportement anormal, nous vous avons bloqué.'
+      },
+      en: {
+        metaTitle: 'You are robot?',
+        metaDescription: 'You have an abnormal behavior, we blocked you'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.goFlyAKiteView.title'),
+      title: this.$t('metaTitle'),
       meta: [
         { hid: 'robots', name: 'robots', content: 'noindex' },
-        { hid: 'description', name: 'description', content: this.$t('meta.goFlyAKiteView.description') },
-        { hid: 'og:title', property: 'og:title', content: this.$t('meta.goFlyAKiteView.title') },
-        { hid: 'og:description', property: 'og:description', content: this.$t('meta.goFlyAKiteView.description') },
+        { hid: 'description', name: 'description', content: this.$t('metaDescription') },
+        { hid: 'og:title', property: 'og:title', content: this.$t('metaTitle') },
+        { hid: 'og:description', property: 'og:description', content: this.$t('metaDescription') },
         { hid: 'og:image', property: 'og:image', content: `${process.env.VUE_APP_OBLYK_APP_URL}/images/oblyk-og-image.jpg` }
       ]
     }

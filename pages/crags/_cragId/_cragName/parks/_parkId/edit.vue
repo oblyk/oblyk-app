@@ -25,9 +25,20 @@ export default {
   mixins: [ParkConcern],
   middleware: ['auth'],
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Modifier le parking'
+      },
+      en: {
+        metaTitle: 'Edit park'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.park.edit')
+      title: this.$t('metaTitle')
     }
   }
 }

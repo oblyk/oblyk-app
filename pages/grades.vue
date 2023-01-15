@@ -173,13 +173,26 @@ export default {
     }
   },
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Les cotations sur Oblyk',
+        metaDescription: 'Oblyk permet plusieurs notations pour la cotations et un code couleur est associé à une difficulté, voici comment ça marche'
+      },
+      en: {
+        metaTitle: 'Grades on oblyk',
+        metaDescription: 'Oblyk allows several notations for scoring and a color code is associated with a difficulty, here is how it works'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.grade.title'),
+      title: this.$t('metaTitle'),
       meta: [
-        { hid: 'description', name: 'description', content: this.$t('meta.grade.description') },
-        { hid: 'og:title', property: 'og:title', content: this.$t('meta.grade.title') },
-        { hid: 'og:description', property: 'og:description', content: this.$t('meta.grade.description') },
+        { hid: 'description', name: 'description', content: this.$t('metaDescription') },
+        { hid: 'og:title', property: 'og:title', content: this.$t('metaTitle') },
+        { hid: 'og:description', property: 'og:description', content: this.$t('metaDescription') },
         { hid: 'og:image', property: 'og:image', content: `${process.env.VUE_APP_OBLYK_APP_URL}/img/images/oblyk-og-image.jpg` }
       ]
     }

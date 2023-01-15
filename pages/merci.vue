@@ -29,14 +29,27 @@ import AppFooter from '@/components/layouts/AppFooter'
 export default {
   components: { AppFooter },
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Merci !',
+        metaDescription: "Un énorme merci pour votre don ! Grâce à vous, Oblyk peut continuer à se développer et envisager l'avenir plus sereinement."
+      },
+      en: {
+        metaTitle: 'Thanks !',
+        metaDescription: 'A huge thank you for your donation! Thanks to you, Oblyk can continue to develop and look forward to a brighter future.'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.thanks.title'),
+      title: this.$t('metaTitle'),
       meta: [
         { hid: 'robots', name: 'robots', content: 'noindex' },
-        { hid: 'description', name: 'description', content: this.$t('meta.thanks.description') },
-        { hid: 'og:title', property: 'og:title', content: this.$t('meta.thanks.title') },
-        { hid: 'og:description', property: 'og:description', content: this.$t('meta.thanks.description') },
+        { hid: 'description', name: 'description', content: this.$t('metaDescription') },
+        { hid: 'og:title', property: 'og:title', content: this.$t('metaTitle') },
+        { hid: 'og:description', property: 'og:description', content: this.$t('metaDescription') },
         { hid: 'og:image', property: 'og:image', content: `${process.env.VUE_APP_OBLYK_APP_URL}/images/oblyk-og-image.jpg` }
       ]
     }

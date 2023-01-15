@@ -7,13 +7,24 @@ export const WordConcern = {
     }
   },
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: "Lexique des terms d'escalade"
+      },
+      en: {
+        metaTitle: 'Glossary of climbing terms'
+      }
+    }
+  },
+
   head () {
     return {
-      title: `${(this.word || {}).name} - ${this.$t('meta.glossary.title')}`,
+      title: `${this.word?.name} - ${this.$t('metaTitle')}`,
       meta: [
-        { hid: 'description', name: 'description', content: (this.word || {}).definition },
-        { hid: 'og:title', property: 'og:title', content: `${(this.word || {}).name} - ${this.$t('meta.glossary.title')}` },
-        { hid: 'og:description', property: 'og:description', content: (this.word || {}).definition },
+        { hid: 'description', name: 'description', content: this.word?.definition },
+        { hid: 'og:title', property: 'og:title', content: `${this.word?.name} - ${this.$t('metaTitle')}` },
+        { hid: 'og:description', property: 'og:description', content: this.word?.definition },
         { hid: 'og:image', property: 'og:image', content: `${process.env.VUE_APP_OBLYK_APP_URL}/images/oblyk-og-image.jpg` }
       ]
     }

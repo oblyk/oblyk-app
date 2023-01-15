@@ -51,13 +51,26 @@ export default {
     }
   },
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Me créer un compte',
+        metaDescription: "Me créer un mon compte pour suivre ma progression, trouver des partenaire d'escalade et avoir des infos local de la communauté de la grimpe"
+      },
+      en: {
+        metaTitle: 'Create an account',
+        metaDescription: 'Create an account to track my progress, find climbing partners and get local info from the climbing community'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.session.signUpTitle'),
+      title: this.$t('metaTitle'),
       meta: [
-        { hid: 'description', name: 'description', content: this.$t('meta.session.signUpDescription') },
-        { hid: 'og:title', property: 'og:title', content: this.$t('meta.session.signUpTitle') },
-        { hid: 'og:description', property: 'og:description', content: this.$t('meta.session.signUpDescription') },
+        { hid: 'description', name: 'description', content: this.$t('metaDescription') },
+        { hid: 'og:title', property: 'og:title', content: this.$t('metaTitle') },
+        { hid: 'og:description', property: 'og:description', content: this.$t('metaDescription') },
         { hid: 'og:url', property: 'og:url', content: `${process.env.VUE_APP_OBLYK_APP_URL}/sign-in` }
       ]
     }

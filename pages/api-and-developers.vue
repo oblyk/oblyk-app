@@ -81,13 +81,26 @@ export default {
     }
   },
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: "API des falaises et voies d'escalades",
+        metaDescription: "Les API d'Oblyk vous permettes de consulter une grande base de donnée des falaises et voies d'escalade en France et dans le monde"
+      },
+      en: {
+        metaTitle: 'Climbing crags and routes API',
+        metaDescription: "Oblyk's APIs allow you to consult a large database of crags and climbing routes in France and in the world"
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.apiAndDevelopers.title'),
+      title: this.$t('metaTitle'),
       meta: [
-        { hid: 'description', name: 'description', content: this.$t('meta.apiAndDevelopers.description') },
-        { hid: 'og:title', property: 'og:title', content: this.$t('meta.apiAndDevelopers.title') },
-        { hid: 'og:description', property: 'og:description', content: this.$t('meta.apiAndDevelopers.description') },
+        { hid: 'description', name: 'description', content: this.$t('metaDescription') },
+        { hid: 'og:title', property: 'og:title', content: this.$t('metaTitle') },
+        { hid: 'og:description', property: 'og:description', content: this.$t('metaDescription') },
         { hid: 'og:image', property: 'og:image', content: `${process.env.VUE_APP_OBLYK_APP_URL}/images/oblyk-og-image.jpg` }
       ]
     }

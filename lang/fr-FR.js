@@ -6,6 +6,7 @@ export default {
     submit: 'Envoyer',
     cancel: 'Annuler',
     edit: 'Modifier',
+    editName: 'Modifier %{name}',
     new: 'Nouveau',
     add: 'Ajouter',
     apply: 'Appliquer',
@@ -1636,8 +1637,7 @@ export default {
       links: 'Liens -',
       map: 'Carte -',
       guideBooks: 'Topos -',
-      crags: 'Sites -',
-      edit: 'Modifier %{name}'
+      crags: 'Sites -'
     },
     termsOfUse: {
       title: "Condition d'utilisation",
@@ -1653,30 +1653,6 @@ export default {
     },
     news: {
       title: "Actualités d'Oblyk"
-    },
-    supportUs: {
-      title: 'Supporter Oblyk, faire un don',
-      description: "Supporter le développement d'Oblyk pour qu'il puisse continuer à évoluer"
-    },
-    thanks: {
-      title: 'Merci !',
-      body: "Un énorme merci pour votre don ! Grâce à vous, Oblyk peut continuer à se développer et envisager l'avenir plus sereinement."
-    },
-    contact: {
-      title: "Contacter l'équipe d'Oblyk",
-      description: "Pour toute question, toute proposition, ou tout simplement pour nous aider, n'hésitez pas à nous contacter !"
-    },
-    goFlyAKiteView: {
-      title: 'Vous êtes un robot ?',
-      description: 'You have an abnormal behavior, we blocked you'
-    },
-    reportProblem: {
-      title: 'Signaler un problème',
-      description: "Vous avez trouvé un problème? dit le nous pour qu'on le corrige"
-    },
-    grade: {
-      title: 'Les cotations sur Oblyk',
-      description: 'Oblyk permet plusieurs notations pour la cotations et un code couleur est associé à une difficulté, voici comment ça marche'
     },
     cragMap: {
       title: "Carte des sites d'escalade en France et ailleurs",
@@ -1749,20 +1725,8 @@ export default {
         new: 'Ajouter un secteur'
       }
     },
-    glossary: {
-      title: "Lexique des terms d'escalade",
-      description: "Le lexique communautaire des termes de l'escalade pour décoder le parler grimpeur·euse"
-    },
     word: {
       new: 'Nouvelle définition'
-    },
-    home: {
-      title: 'Oblyk - Escalade, Carnet de croix & Carte des grimpeur·euse·s',
-      description: "Oblyk est un site communautaire d'escalade outdoor et indoor, on peut : voir les informations des falaises, noter ses croix, trouver un partenaire d'escalade, etc."
-    },
-    oblyk: {
-      title: 'Oblyk - Escalade, Carnet de croix & Carte des grimpeur·euse·s',
-      description: "Oblyk est un site communautaire d'escalade outdoor et indoor, on peut : voir les informations des falaises, noter ses croix, trouver un partenaire d'escalade, etc."
     },
     ascentCragRoute: {
       new: 'Ajouter à mon carnet',
@@ -1838,10 +1802,6 @@ export default {
     recommendedGuides: {
       title: 'Topos intéressants',
       description: "Nous trouvons les topos qui pourrais t'intéresser par rapport à ton carnet de croix"
-    },
-    library: {
-      title: "Topos d'escalade",
-      description: 'Les topos de France et du monde : infos, falaises, carte des sites'
     },
     guideBookFeature: {
       title: "Topos d'escalades et fonctionnalités",
@@ -1962,52 +1922,6 @@ export default {
         title: 'Abonnement de %{name}',
         description: 'Voir les abonnements aux falaises, salles, et autre grimpeur·euse de %{name}'
       }
-    },
-    error: {
-      notFoundTitle: 'Page introuvable',
-      notFoundDescription: 'La page que vous demandez est introuvable'
-    },
-    link: {
-      new: 'Ajouter un nouveau lien'
-    },
-    park: {
-      new: 'Ajouter un parking',
-      edit: 'Modifier le parking'
-    },
-    photo: {
-      new: 'Ajouter une photo',
-      edit: 'Modifier la photo'
-    },
-    video: {
-      new: 'Ajouter une video',
-      edit: 'Modifier la video'
-    },
-    placeOfSale: {
-      new: 'Ajouter un pont de vente',
-      edit: 'Modifier le point de vente'
-    },
-    session: {
-      newPassword: 'Changer mon mot de passe',
-      resetPasswordTitle: 'Mot de passe oublié ?',
-      resetPasswordDescription: 'Vous avez oublié votre mot de passe ? renseignez votre adresse mail pour le réinitialiser',
-      privacyStep: 'Ma confidentialité',
-      signInTitle: 'Me connecter',
-      signInDescription: 'Me connecter à mon compte Oblyk et retrouver toutes les infos de la grimpes autour de chez moi',
-      signUpTitle: 'Me créer un compte',
-      signUpDescription: "Me créer un mon compte pour suivre ma progression, trouver des partenaire d'escalade et avoir des infos local de la communauté de la grimpe"
-    },
-    version: {
-      title: 'Versions'
-    },
-    successAccountDeleting: {
-      title: 'Compte supprimé'
-    },
-    apiAndDevelopers: {
-      title: "API des falaises et voies d'escalades",
-      description: "Les API d'Oblyk vous permettes de consulter une grande base de donnée des falaises et voies d'escalade en France et dans le monde"
-    },
-    organization: {
-      new: 'Enregistrer mon organisation'
     }
   },
   errors: {

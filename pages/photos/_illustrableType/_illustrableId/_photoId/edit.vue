@@ -23,9 +23,20 @@ export default {
   mixins: [PhotoConcern],
   middleware: ['auth'],
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Modifier la photo'
+      },
+      en: {
+        metaTitle: 'Edit photo'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.photo.edit')
+      title: this.$t('metaTitle')
     }
   }
 }

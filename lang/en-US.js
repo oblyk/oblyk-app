@@ -6,6 +6,7 @@ export default {
     submit: 'Submit',
     cancel: 'Cancel',
     edit: 'Edit',
+    editName: 'Edit %{name}',
     new: 'New',
     add: 'Add',
     apply: 'Apply',
@@ -1636,8 +1637,7 @@ export default {
       links: 'Links -',
       map: 'Maps -',
       guideBooks: 'Guide books -',
-      crags: 'Crags -',
-      edit: 'Edit %{name}'
+      crags: 'Crags -'
     },
     termsOfUse: {
       title: 'Terms and conditions of use',
@@ -1653,30 +1653,6 @@ export default {
     },
     news: {
       title: 'Oblyk news'
-    },
-    supportUs: {
-      title: 'Support Oblyk, make a donation',
-      description: 'Support the development of Oblyk so that it can continue to evolve'
-    },
-    thanks: {
-      title: 'Thanks !',
-      body: 'A huge thank you for your donation! Thanks to you, Oblyk can continue to develop and look forward to a brighter future.'
-    },
-    contact: {
-      title: 'Contact the Oblyk team',
-      description: 'For any question, any proposal, or simply to help us, do not hesitate to contact us!'
-    },
-    goFlyAKiteView: {
-      title: 'You are robot?',
-      '': ''
-    },
-    reportProblem: {
-      title: 'Report a problem',
-      description: 'Have you found a problem? Tell us so we can fix it'
-    },
-    grade: {
-      title: 'Grades on oblyk',
-      description: 'Oblyk allows several notations for scoring and a color code is associated with a difficulty, here is how it works'
     },
     cragMap: {
       title: 'Map of climbing sites in France and elsewhere',
@@ -1749,20 +1725,8 @@ export default {
         new: 'Add a sector'
       }
     },
-    glossary: {
-      title: 'Glossary of climbing terms',
-      description: "The community lexicon of climbing terms to decode the climber's language"
-    },
     word: {
       new: 'New definition'
-    },
-    home: {
-      title: 'Oblyk - Climbing community, Log book & Partner search',
-      description: 'Oblyk is an outdoor and indoor climbing community site, you can: see crag information, keep a logbook, find a climbing partner, etc.'
-    },
-    oblyk: {
-      title: 'Oblyk - Climbing community, Log book & Partner search',
-      description: 'Oblyk is an outdoor and indoor climbing community site, you can: see crag information, keep a logbook, find a climbing partner, etc.'
     },
     ascentCragRoute: {
       new: 'Add to my logbook',
@@ -1838,10 +1802,6 @@ export default {
     recommendedGuides: {
       title: 'Interesting guide books',
       description: 'We find the guide books that might interest you in relation to your log book'
-    },
-    library: {
-      title: 'Climbing guides',
-      description: 'Guides of France and the world: information, cliffs, map of sites'
     },
     guideBookFeature: {
       title: 'Climbing guides and features',
@@ -1962,52 +1922,6 @@ export default {
         title: 'Subscribe of %{name}',
         description: 'View memberships to cliffs, gyms, and other climbers in %{name}'
       }
-    },
-    error: {
-      notFoundTitle: 'Page not found',
-      notFoundDescription: 'The page you requested cannot be found'
-    },
-    link: {
-      new: 'Add a new link'
-    },
-    park: {
-      new: 'Add a park',
-      edit: 'Edit park'
-    },
-    photo: {
-      new: 'Add a photo',
-      edit: 'Edit photo'
-    },
-    video: {
-      new: 'Add a video',
-      edit: 'Edit video'
-    },
-    placeOfSale: {
-      new: 'Add a place of sale',
-      edit: 'Edit place of sale'
-    },
-    session: {
-      newPassword: 'Change my password',
-      resetPasswordTitle: 'Forgot your password?',
-      resetPasswordDescription: 'Forgot your password? Enter your email address to reset it',
-      privacyStep: 'My privacy',
-      signInTitle: 'Connect me',
-      signInDescription: 'Connect me to my Oblyk account and find all informations about the climbing around me',
-      signUpTitle: 'Create an account',
-      signUpDescription: 'Create an account to track my progress, find climbing partners and get local info from the climbing community'
-    },
-    version: {
-      title: 'Versions'
-    },
-    successAccountDeleting: {
-      title: 'Account deleted'
-    },
-    apiAndDevelopers: {
-      title: 'Climbing crags and routes API',
-      description: "Oblyk's APIs allow you to consult a large database of crags and climbing routes in France and in the world"
-    },
-    organization: {
-      new: 'Register my organization'
     }
   },
   errors: {

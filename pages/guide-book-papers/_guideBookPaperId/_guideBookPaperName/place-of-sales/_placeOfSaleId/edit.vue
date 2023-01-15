@@ -27,9 +27,20 @@ export default {
   mixins: [PlaceOfSaleConcern],
   middleware: ['auth'],
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Modifier le point de vente'
+      },
+      en: {
+        metaTitle: 'Edit place of sale'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.placeOfSale.edit')
+      title: this.$t('metaTitle')
     }
   }
 }

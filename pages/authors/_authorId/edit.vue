@@ -30,7 +30,7 @@ export default {
 
   head () {
     return {
-      title: this.$t('meta.generics.edit', { name: (this.author || {}).name })
+      title: this.$t('actions.editName', { name: this.author?.name })
     }
   }
 }

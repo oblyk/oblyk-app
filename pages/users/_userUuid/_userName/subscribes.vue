@@ -75,6 +75,19 @@ export default {
     }
   },
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Abonnement de %{name}',
+        metaDescription: 'Voir les abonnements aux falaises, salles, et autre grimpeur·euse de %{name}'
+      },
+      en: {
+        metaTitle: 'Subscribe of %{name}',
+        metaDescription: 'View memberships to cliffs, gyms, and other climbers in %{name}'
+      }
+    }
+  },
+
   head () {
     return {
       title: this.userMetaTitle,
@@ -89,10 +102,10 @@ export default {
 
   computed: {
     userMetaTitle () {
-      return this.$t('meta.user.subscribe.title', { name: (this.user || {}).first_name })
+      return this.$t('metaTitle', { name: (this.user || {}).first_name })
     },
     userMetaDescription () {
-      return this.$t('meta.user.subscribe.description', { name: (this.user || {}).first_name })
+      return this.$t('metaDescription', { name: (this.user || {}).first_name })
     },
     userMetaUrl () {
       if (this.user) {

@@ -36,9 +36,20 @@ export default {
   components: { AppFooter, UserPrivacyForm },
   mixins: [SessionConcern, CurrentUserConcern],
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Ma confidentialité'
+      },
+      en: {
+        metaTitle: 'My privacy'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.session.privacyStep'),
+      title: this.$t('metaTitle'),
       meta: [
         { hid: 'robots', name: 'robots', content: 'noindex' }
       ]

@@ -21,9 +21,20 @@ export default {
   components: { LinkForm },
   middleware: ['auth'],
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Ajouter un nouveau lien'
+      },
+      en: {
+        metaTitle: 'Add a new link'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.link.new')
+      title: this.$t('metaTitle')
     }
   }
 }

@@ -24,13 +24,26 @@ export default {
     }
   },
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Page introuvable',
+        metaDescription: 'La page que vous demandez est introuvable'
+      },
+      en: {
+        metaTitle: 'Page not found',
+        metaDescription: 'The page you requested cannot be found'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.error.notFoundTitle'),
+      title: this.$t('metaTitle'),
       meta: [
-        { hid: 'description', name: 'description', content: this.$t('meta.error.notFoundDescription') },
-        { hid: 'og:title', property: 'og:title', content: this.$t('meta.error.notFoundTitle') },
-        { hid: 'og:description', property: 'og:description', content: this.$t('meta.error.notFoundDescription') }
+        { hid: 'description', name: 'description', content: this.$t('metaDescription') },
+        { hid: 'og:title', property: 'og:title', content: this.$t('metaTitle') },
+        { hid: 'og:description', property: 'og:description', content: this.$t('metaDescription') }
       ]
     }
   }
