@@ -8,8 +8,15 @@
         <v-col class="col-md-6" order-md="last">
           <p v-html="$t('common.pages.newsletterUnsubscribe.paragraphe')" />
           <newsletter-unsubscribe-form
+            v-if="mounted"
             :email="email"
           />
+          <div
+            v-else
+            class="text-center text--disabled"
+          >
+            {{ $t('common.loading') }}
+          </div>
         </v-col>
         <v-col class="col-md-6">
           <v-img contain src="/svg/contact.svg" />
@@ -29,6 +36,7 @@ export default {
 
   data () {
     return {
+      mounted: false,
       email: null
     }
   },
@@ -48,6 +56,7 @@ export default {
   mounted () {
     const urlParams = new URLSearchParams(window.location.search)
     this.email = urlParams.get('email')
+    this.mounted = true
   }
 }
 </script>
