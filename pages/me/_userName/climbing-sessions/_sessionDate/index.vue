@@ -277,14 +277,27 @@ export default {
     }
   },
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Ma session de grimpe du %{date}',
+        metaDescription: "Les croix, lieux, grimpeurs et grimpeuses avec qui j'ai grimpé le %{date}"
+      },
+      en: {
+        metaTitle: 'My climbing session on %{date}',
+        metaDescription: 'My ascents, places, climbers with whom I climbed on %{date}'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.climbingSession.title', { date: this.humanizeDate(this.climbingSession?.session_date) }),
+      title: this.$t('metaTitle', { date: this.humanizeDate(this.climbingSession?.session_date) }),
       meta: [
         { hid: 'robots', name: 'robots', content: 'noindex' },
-        { hid: 'description', name: 'description', content: this.$t('meta.climbingSession.description', { date: this.humanizeDate(this.climbingSession?.session_date) }) },
-        { hid: 'og:title', property: 'og:title', content: this.$t('meta.climbingSession.title', { date: this.humanizeDate(this.climbingSession?.session_date) }) },
-        { hid: 'og:description', property: 'og:description', content: this.$t('meta.climbingSession.description', { date: this.humanizeDate(this.climbingSession?.session_date) }) },
+        { hid: 'description', name: 'description', content: this.$t('metaDescription', { date: this.humanizeDate(this.climbingSession?.session_date) }) },
+        { hid: 'og:title', property: 'og:title', content: this.$t('metaTitle', { date: this.humanizeDate(this.climbingSession?.session_date) }) },
+        { hid: 'og:description', property: 'og:description', content: this.$t('metaDescription', { date: this.humanizeDate(this.climbingSession?.session_date) }) },
         { hid: 'og:image', property: 'og:image', content: `${process.env.VUE_APP_OBLYK_APP_URL}/images/oblyk-og-image.jpg` }
       ]
     }

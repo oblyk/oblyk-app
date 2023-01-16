@@ -25,9 +25,20 @@ export default {
   components: { ApproachFrom },
   mixins: [CragConcern],
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Créer une approche'
+      },
+      en: {
+        metaTitle: 'Create approach'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.approach.new')
+      title: this.$t('metaTitle')
     }
   }
 }

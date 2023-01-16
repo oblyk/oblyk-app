@@ -116,7 +116,7 @@ export default {
 
   head () {
     return {
-      title: this.$t('meta.currentUser.analytiks')
+      title: 'Analytiks'
     }
   },
 

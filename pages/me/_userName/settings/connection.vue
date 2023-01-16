@@ -23,9 +23,20 @@ export default {
     }
   },
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Mes paramètres de connexion'
+      },
+      en: {
+        metaTitle: 'My connection parameters'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.currentUser.edit')
+      title: this.$t('metaTitle')
     }
   }
 }

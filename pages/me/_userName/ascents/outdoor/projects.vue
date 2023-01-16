@@ -44,9 +44,20 @@ export default {
     }
   },
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Mes projets'
+      },
+      en: {
+        metaTitle: 'My projects'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.currentUser.project')
+      title: this.$t('metaTitle')
     }
   },
 

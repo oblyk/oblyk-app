@@ -28,9 +28,20 @@ export default {
   mixins: [AlertConcern],
   middleware: ['auth'],
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: "Modifier l'alerte"
+      },
+      en: {
+        metaTitle: 'Edit alert'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.alert.edit')
+      title: this.$t('metaTitle')
     }
   }
 }

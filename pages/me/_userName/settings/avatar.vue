@@ -26,9 +26,20 @@ export default {
   components: { UserImageForm, Spinner },
   mixins: [CurrentUserConcern],
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Changer mon avatar'
+      },
+      en: {
+        metaTitle: 'Change my avatar'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.currentUser.avatar')
+      title: this.$t('metaTitle')
     }
   }
 }

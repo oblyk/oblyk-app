@@ -198,9 +198,20 @@ export default {
     }
   },
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Mes croix indoor'
+      },
+      en: {
+        metaTitle: 'My indoor ascents'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('components.logBook.myIndoorLogBook')
+      title: this.$t('metaTitle')
     }
   },
 

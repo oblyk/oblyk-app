@@ -27,9 +27,20 @@ export default {
     user: { type: Object, required: true }
   },
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Mes paramètres de notification'
+      },
+      en: {
+        metaTitle: 'My notification parameters'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.currentUser.notificationSetting')
+      title: this.$t('metaTitle')
     }
   }
 }

@@ -70,9 +70,20 @@ export default {
     }
   },
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Topothèque'
+      },
+      en: {
+        metaTitle: 'Library'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.currentUser.guideBook')
+      title: this.$t('metaTitle')
     }
   },
 

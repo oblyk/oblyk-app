@@ -56,6 +56,19 @@ export default {
     }
   },
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Videos de %{name}',
+        metaDescription: "Voir les vidéos d'escalade prise par %{name} sur les différentes falaises qu'iel a parcourut"
+      },
+      en: {
+        metaTitle: 'Videos of %{name}',
+        metaDescription: 'See the climbing videos taken by %{name} on the different cliffs he climbed'
+      }
+    }
+  },
+
   head () {
     return {
       title: this.userMetaTitle,
@@ -70,14 +83,14 @@ export default {
 
   computed: {
     userMetaTitle () {
-      return this.$t('meta.user.video.title', { name: (this.user || {}).first_name })
+      return this.$t('metaTitle', { name: this.user?.first_name })
     },
     userMetaDescription () {
-      return this.$t('meta.user.video.description', { name: (this.user || {}).first_name })
+      return this.$t('metaDescription', { name: this.user?.first_name })
     },
     userMetaUrl () {
       if (this.user) {
-        return `${process.env.VUE_APP_OBLYK_APP_URL}${this.user.path}/videos`
+        return `${process.env.VUE_APP_OBLYK_APP_URL}${this.user?.path}/videos`
       }
       return ''
     }

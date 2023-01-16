@@ -27,9 +27,20 @@ export default {
   mixins: [ApproachConcern],
   middleware: ['auth'],
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: "Modifier l'approche"
+      },
+      en: {
+        metaTitle: 'Edit approach'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.approach.edit')
+      title: this.$t('metaTitle')
     }
   }
 }

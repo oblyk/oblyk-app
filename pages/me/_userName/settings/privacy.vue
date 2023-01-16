@@ -20,9 +20,20 @@ export default {
     user: { type: Object, required: true }
   },
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Mes paramètres de confidentialité'
+      },
+      en: {
+        metaTitle: 'My privacy parameters'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.currentUser.privacySetting')
+      title: this.$t('metaTitle')
     }
   }
 }

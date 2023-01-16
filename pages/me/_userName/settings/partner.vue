@@ -25,9 +25,20 @@ export default {
     }
   },
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Mes paramètres de recherche de partenaire'
+      },
+      en: {
+        metaTitle: 'My partner search settings'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.currentUser.partnerSetting')
+      title: this.$t('metaTitle')
     }
   }
 }

@@ -45,9 +45,20 @@ export default {
     }
   },
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Autre paramètres'
+      },
+      en: {
+        metaTitle: 'Other parameters'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.currentUser.otherSetting')
+      title: this.$t('metaTitle')
     }
   }
 }

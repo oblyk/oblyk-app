@@ -15,9 +15,20 @@ export default {
     user: { type: Object, required: true }
   },
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Mes photos'
+      },
+      en: {
+        metaTitle: 'My pictures'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.currentUser.photos')
+      title: this.$t('metaTitle')
     }
   }
 }

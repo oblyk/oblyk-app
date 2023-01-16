@@ -78,12 +78,6 @@ export default {
     }
   },
 
-  head () {
-    return {
-      title: this.$t('meta.currentUser.followers')
-    }
-  },
-
   data () {
     return {
       loadingFollowers: true,
@@ -91,6 +85,23 @@ export default {
 
       loadingWaitingFollowers: true,
       waitingFollowers: []
+    }
+  },
+
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Mes abonnées'
+      },
+      en: {
+        metaTitle: 'My followers'
+      }
+    }
+  },
+
+  head () {
+    return {
+      title: this.$t('metaTitle')
     }
   },
 

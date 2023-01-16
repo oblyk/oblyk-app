@@ -19,9 +19,20 @@ export default {
   components: { UserCommunityTabs, Spinner },
   mixins: [CurrentUserConcern],
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Ma communauté'
+      },
+      en: {
+        metaTitle: 'My community'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.currentUser.community')
+      title: this.$t('metaTitle')
     }
   }
 }

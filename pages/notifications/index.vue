@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <h1 content="mt-5 mb-5">
-      {{ $t('meta.notifications.title') }}
+      {{ $t('components.notification.title') }}
     </h1>
 
     <!-- Load notification -->
@@ -73,9 +73,20 @@ export default {
     }
   },
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Mes notifications'
+      },
+      en: {
+        metaTitle: 'My notifications'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.notifications.title')
+      title: this.$t('metaTitle')
     }
   },
 

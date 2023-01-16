@@ -183,7 +183,6 @@ export default {
         file: 'fr-FR.js'
       }
     ],
-    vueI18nLoader: true,
     lazy: true,
     langDir: 'lang/'
   },
