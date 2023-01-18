@@ -9,14 +9,10 @@ export const GymSpaceConcern = {
 
   computed: {
     gymSpaceMetaTitle () {
-      if (this.gymSpace) {
-        return this.$t('meta.gym.space.title', { name: this.gymSpace.name, gym: this.gymSpace.gym.name })
-      }
+      return this.$t('metaTitle', { name: this.gymSpace?.name, gym: this.gymSpace?.gym?.name })
     },
     gymSpaceMetaDescription () {
-      if (this.gymSpace) {
-        return this.$t('meta.gym.space.description', { gym: this.gymSpace.gym.name })
-      }
+      return this.$t('metaDescription', { gym: this.gymSpace?.gym?.name })
     },
     gymSpaceMetaImage () {
       if (this.gymSpace && this.gymSpace.gym.banner) {
@@ -26,8 +22,19 @@ export const GymSpaceConcern = {
       }
     },
     gymSpaceMetaUrl () {
-      if (this.gymSpace) {
-        return `${process.env.VUE_APP_OBLYK_APP_URL}${this.gymSpace.path}`
+      return `${process.env.VUE_APP_OBLYK_APP_URL}${this.gymSpace?.path}`
+    }
+  },
+
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: "%{name} topo indoor de la salle d'escalade %{gym}",
+        metaDescription: "Consulter le détail des voies d'escalade de %{gym}, ajoutez vos croix pour suivre votre progression"
+      },
+      en: {
+        metaTitle: '%{name} indoor guide book of climbing gym %{gym}',
+        metaDescription: 'Consult the details of the climbing routes of %{gym}, add your ascents to track your progress'
       }
     }
   },

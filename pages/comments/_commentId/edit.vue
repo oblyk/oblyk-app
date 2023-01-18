@@ -27,9 +27,20 @@ export default {
   mixins: [CommentConcern],
   middleware: ['auth'],
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Modifier le commentaire'
+      },
+      en: {
+        metaTitle: 'Edit comment'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.comment.edit')
+      title: this.$t('metaTitle')
     }
   }
 }

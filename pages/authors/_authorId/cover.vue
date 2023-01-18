@@ -24,9 +24,20 @@ export default {
   mixins: [AuthorConcern, SessionConcern],
   middleware: ['auth'],
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: "Ajouter une couverture à l'auteur"
+      },
+      en: {
+        metaTitle: 'Add author cover'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.author.cover')
+      title: this.$t('metaTitle')
     }
   }
 }

@@ -86,14 +86,26 @@ export default {
     }
   },
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: "Trouver un topo d'escalade",
+        metaDescription: "Trouves les topos d'escalades qu'il y a autour d'une ville ou d'un lieu en France et dans le monde"
+      },
+      en: {
+        metaTitle: 'Find a climbing guide',
+        metaDescription: 'Find the climbing topos that are around a city or a place in France and in the world'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.guideBookPaperFind.title'),
-      description: this.$t('meta.guideBookPaperFind.description'),
+      title: this.$t('metaTitle'),
       meta: [
-        { hid: 'description', name: 'description', content: this.description },
-        { hid: 'og:title', property: 'og:title', content: this.title },
-        { hid: 'og:description', property: 'og:description', content: this.description },
+        { hid: 'description', name: 'description', content: this.$t('metaDescription') },
+        { hid: 'og:title', property: 'og:title', content: this.$t('metaTitle') },
+        { hid: 'og:description', property: 'og:description', content: this.$t('metaDescription') },
         { hid: 'og:image', property: 'og:image', content: `${process.env.VUE_APP_OBLYK_APP_URL}/images/oblyk-og-image.jpg` }
       ]
     }

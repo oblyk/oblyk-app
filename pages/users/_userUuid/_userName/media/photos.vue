@@ -45,10 +45,10 @@ export default {
 
   computed: {
     userMetaTitle () {
-      return this.$t('meta.user.photo.title', { name: this.user?.first_name })
+      return this.$t('metaTitle', { name: this.user?.first_name })
     },
     userMetaDescription () {
-      return this.$t('meta.user.photo.description', { name: this.user?.first_name })
+      return this.$t('metaDescription', { name: this.user?.first_name })
     },
     userMetaUrl () {
       if (this.user) {

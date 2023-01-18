@@ -24,9 +24,20 @@ export default {
   mixins: [GuideBookPaperConcern, SessionConcern],
   middleware: ['auth'],
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Changer la couverture de %{name}'
+      },
+      en: {
+        metaTitle: 'Change cover of %{name}'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.guideBookPaper.cover', { name: (this.guideBookPaper || {}).name })
+      title: this.$t('metaTitle', { name: this.guideBookPaper?.name })
     }
   }
 }

@@ -14,6 +14,23 @@
 import ConversationForm from '~/components/messengers/forms/ConversationForm'
 
 export default {
-  components: { ConversationForm }
+  components: { ConversationForm },
+
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Nouvelle conversation'
+      },
+      en: {
+        metaTitle: 'New conversation'
+      }
+    }
+  },
+
+  head () {
+    return {
+      title: this.$t('metaTitle')
+    }
+  }
 }
 </script>

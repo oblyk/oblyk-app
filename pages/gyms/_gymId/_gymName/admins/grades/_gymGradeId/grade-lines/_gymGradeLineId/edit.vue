@@ -34,9 +34,20 @@ export default {
   mixins: [GymGradeConcern, GymGradeLineConcern],
   middleware: ['auth'],
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Modifier le niveau'
+      },
+      en: {
+        metaTitle: 'Edit level'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.gym.grade.editLine')
+      title: this.$t('metaTitle')
     }
   },
 

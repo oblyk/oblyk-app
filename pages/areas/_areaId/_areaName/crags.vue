@@ -27,15 +27,28 @@ export default {
     return {
       crags: [],
       loadingCrags: true,
-      areaCragsMetaTitle: `${this.$t('meta.generics.crags')} ${this.$t('meta.crag.title', {
-        name: (this.area || {}).name,
-        region: (this.area || {}).region
-      })}`,
-      areaCragsMetaDescription: `${this.$t('meta.generics.crags')} ${this.$t('meta.crag.description', {
-        name: (this.area || {}).name,
-        region: (this.area || {}).region,
-        city: (this.area || {}).city
-      })}`
+      areaCragsMetaTitle: this.$t('metaTitle', {
+        name: this.area?.name,
+        region: this.area?.region
+      }),
+      areaCragsMetaDescription: this.$t('metaDescription', {
+        name: this.area?.name,
+        region: this.area?.region,
+        city: this.area?.city
+      })
+    }
+  },
+
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: "Les falaises de %{name}, Groupe de sites d'escalade",
+        metaDescription: "Voir les falaises du groupe de sites d'escalade de %{name}, quels spots de grimpe il présente ou encore quelle variété de cotations on y trouve"
+      },
+      en: {
+        metaTitle: 'Crags of %{name}, climbing crags group',
+        metaDescription: 'See the crags of the group of climbing sites of %{name}, what kind of climbing spots it offers or what variety of grades can be found there'
+      }
     }
   },
 
@@ -43,26 +56,10 @@ export default {
     return {
       titleTemplate: this.areaCragsMetaTitle,
       meta: [
-        {
-          hid: 'og:title',
-          property: 'og:title',
-          content: this.areaCragsMetaTitle
-        },
-        {
-          hid: 'description',
-          name: 'description',
-          content: this.areaCragsMetaDescription
-        },
-        {
-          hid: 'og:description',
-          property: 'og:description',
-          content: this.areaCragsMetaDescription
-        },
-        {
-          hid: 'og:url',
-          property: 'og:url',
-          content: `${process.env.VUE_APP_OBLYK_APP_URL}${this.area.path}/crags`
-        }
+        { hid: 'og:title', property: 'og:title', content: this.areaCragsMetaTitle },
+        { hid: 'description', name: 'description', content: this.areaCragsMetaDescription },
+        { hid: 'og:description', property: 'og:description', content: this.areaCragsMetaDescription },
+        { hid: 'og:url', property: 'og:url', content: `${process.env.VUE_APP_OBLYK_APP_URL}${this.area?.path}/crags` }
       ]
     }
   },

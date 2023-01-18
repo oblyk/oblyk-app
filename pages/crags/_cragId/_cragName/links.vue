@@ -21,15 +21,28 @@ export default {
 
   data () {
     return {
-      cragLinksMetaTitle: `${this.$t('meta.generics.links')} ${this.$t('meta.crag.title', {
-        name: (this.crag || {}).name,
-        region: (this.crag || {}).region
-      })}`,
-      cragLinksMetaDescription: `${this.$t('meta.generics.links')} ${this.$t('meta.crag.description', {
-        name: (this.crag || {}).name,
-        region: (this.crag || {}).region,
-        city: (this.crag || {}).city
-      })}`
+      cragLinksMetaTitle: this.$t('metaTitle', {
+        name: this.crag?.name,
+        region: this.crag?.region
+      }),
+      cragLinksMetaDescription: this.$t('metaDescription', {
+        name: this.crag?.name,
+        region: this.crag?.region,
+        city: this.crag?.city
+      })
+    }
+  },
+
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Les liens de %{name}, escalade en %{region}',
+        metaDescription: "Les liens de %{name} : site d'escalade à %{city} en %{region}"
+      },
+      en: {
+        metaTitle: 'Links of %{name}, climb in %{region}',
+        metaDescription: 'Links of %{name} : climbing crag in %{city} in %{region}'
+      }
     }
   },
 

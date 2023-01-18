@@ -174,25 +174,26 @@ export default {
     }
   },
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: "Trouver le topo d'escalade que vous cherchez",
+        metaDescription: "Chercher un topo d'escalade autour d'une ville, consulté les dernières nouveauté, fait votre topothèque, etc."
+      },
+      en: {
+        metaTitle: 'Find the climbing guidebook you are looking for',
+        metaDescription: 'Search for a climbing guide book around a city, check the latest news, make your own guidebook library, etc.'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.findGuideBooks.title'),
+      title: this.$t('metaTitle'),
       meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: this.$t('meta.findGuideBooks.description')
-        },
-        {
-          hid: 'og:title',
-          property: 'og:title',
-          content: this.$t('meta.findGuideBooks.title')
-        },
-        {
-          hid: 'og-description',
-          property: 'og:description',
-          content: this.$t('meta.findGuideBooks.description')
-        }
+        { hid: 'description', name: 'description', content: this.$t('metaDescription') },
+        { hid: 'og:title', property: 'og:title', content: this.$t('metaTitle') },
+        { hid: 'og-description', property: 'og:description', content: this.$t('metaDescription') }
       ]
     }
   }

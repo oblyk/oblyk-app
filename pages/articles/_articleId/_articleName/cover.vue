@@ -25,7 +25,7 @@ export default {
 
   head () {
     return {
-      title: this.$t('meta.article.addCover')
+      title: "Ajouter une couverture d'article"
     }
   }
 }

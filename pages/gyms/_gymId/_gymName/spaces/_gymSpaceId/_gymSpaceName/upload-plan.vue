@@ -24,9 +24,20 @@ export default {
   components: { GymSpacePlanForm },
   mixins: [GymSpaceConcern],
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Modifier le plan de fond'
+      },
+      en: {
+        metaTitle: 'Modify the background schema'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.gym.space.plan')
+      title: this.$t('metaTitle')
     }
   }
 }

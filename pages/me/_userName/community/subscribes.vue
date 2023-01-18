@@ -76,7 +76,7 @@ export default {
 
   head () {
     return {
-      title: this.$t('meta.currentUser.subscribes')
+      title: this.$t('metaTitle')
     }
   },
 

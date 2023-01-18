@@ -26,9 +26,20 @@ export default {
   mixins: [GymConcern, SessionConcern, ProtectedGymConcern],
   middleware: ['auth'],
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Changer le logo'
+      },
+      en: {
+        metaTitle: 'Edit logo'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.gym.logo')
+      title: this.$t('metaTitle')
     }
   }
 }

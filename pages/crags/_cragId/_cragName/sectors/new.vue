@@ -24,9 +24,20 @@ export default {
   mixins: [CragConcern],
   middleware: ['auth'],
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Ajouter un secteur'
+      },
+      en: {
+        metaTitle: 'Add sector'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.cragSector.new')
+      title: this.$t('metaTitle')
     }
   }
 }

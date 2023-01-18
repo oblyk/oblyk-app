@@ -28,9 +28,20 @@ export default {
   mixins: [CragRouteConcern, AscentCragRouteConcern],
   middleware: ['auth'],
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Modifier ma croix'
+      },
+      en: {
+        metaTitle: 'Edit my ascent'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.ascentCragRoute.edit')
+      title: this.$t('metaTitle')
     }
   }
 }

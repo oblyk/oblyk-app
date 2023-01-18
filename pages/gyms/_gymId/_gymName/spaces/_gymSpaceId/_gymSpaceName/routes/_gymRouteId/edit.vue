@@ -29,9 +29,20 @@ export default {
   components: { GymRouteForm, Spinner },
   mixins: [GymRouteConcern],
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Modifier la ligne'
+      },
+      en: {
+        metaTitle: 'Edit route'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.gym.route.edit')
+      title: this.$t('metaTitle')
     }
   }
 }

@@ -141,13 +141,26 @@ export default {
     }
   },
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: "Recherche de partenaire d'escalade, comment ça marche ?",
+        metaDescription: "La recherche de partenaire d'escalade te permet de trouver des grimpeur·euse·s autours de toi qui cherche aussi des gens pour grimper. Comment ça fonctionne ?"
+      },
+      en: {
+        metaTitle: 'Search for a climbing partner, how does it work?',
+        metaDescription: 'The climbing partner search allows you to find climbers around you who are also looking for people to climb with. How does it work?'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.aboutPartner.title'),
+      title: this.$t('metaTitle'),
       meta: [
-        { hid: 'description', name: 'description', content: this.$t('meta.aboutPartner.description') },
-        { hid: 'og:title', property: 'og:title', content: this.$t('meta.aboutPartner.title') },
-        { hid: 'og:description', property: 'og:description', content: this.$t('meta.aboutPartner.description') },
+        { hid: 'description', name: 'description', content: this.$t('metaDescription') },
+        { hid: 'og:title', property: 'og:title', content: this.$t('metaTitle') },
+        { hid: 'og:description', property: 'og:description', content: this.$t('metaDescription') },
         { hid: 'og:image', property: 'og:image', content: `${process.env.VUE_APP_OBLYK_APP_URL}/images/oblyk-og-image.jpg` }
       ]
     }

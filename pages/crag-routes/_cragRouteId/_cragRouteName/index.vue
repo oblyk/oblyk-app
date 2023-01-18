@@ -98,6 +98,19 @@ export default {
     }
   },
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: '%{name} %{grade}, %{cragName}',
+        metaDescription: "%{name} %{grade}, %{type} faisant partie du site d'escalade %{cragName}. voir le detail de la ligne : cotation, photo, avis, etc."
+      },
+      en: {
+        metaTitle: '%{name} %{grade}, %{cragName}',
+        metaDescription: '%{name} %{grade}, %{type} forming part of the climbing site %{cragName}. see the details of the line: grade, photo, opinion, etc.'
+      }
+    }
+  },
+
   head () {
     return {
       title: this.cragMetaTitle,
@@ -114,22 +127,22 @@ export default {
   computed: {
     cragMetaTitle () {
       return this.$t(
-        'meta.cragRoute.title',
+        'metaTitle',
         {
-          name: (this.cragRoute || {}).name,
-          grade: (this.cragRoute || {}).grade_to_s,
-          cragName: (this.cragRoute || { crag: {} }).crag.name
+          name: this.cragRoute?.name,
+          grade: this.cragRoute?.grade_to_s,
+          cragName: this.cragRoute?.crag?.name
         }
       )
     },
     cragMetaDescription () {
       return this.$t(
-        'meta.cragRoute.description',
+        'metaDescription',
         {
-          name: (this.cragRoute || {}).name,
-          grade: (this.cragRoute || {}).grade_to_s,
-          type: this.$t(`models.climbs.${(this.cragRoute || {}).climbing_type}`),
-          cragName: (this.cragRoute || { crag: {} }).crag.name
+          name: this.cragRoute?.name,
+          grade: this.cragRoute?.grade_to_s,
+          type: this.$t(`models.climbs.${this.cragRoute?.climbing_type}`),
+          cragName: this.cragRoute?.crag?.name
         }
       )
     },
@@ -141,7 +154,7 @@ export default {
       }
     },
     cragMetaUrl () {
-      return `${process.env.VUE_APP_OBLYK_APP_URL}${(this.cragRoute || {}).path}`
+      return `${process.env.VUE_APP_OBLYK_APP_URL}${this.cragRoute?.path}`
     }
   }
 }

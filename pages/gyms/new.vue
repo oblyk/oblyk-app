@@ -19,9 +19,20 @@ export default {
   components: { GymForm },
   middleware: ['auth'],
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: "Ajouter une nouvelle salle d'escalade"
+      },
+      en: {
+        metaTitle: 'Add a new climbing gym'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.gym.new')
+      title: this.$t('metaTitle')
     }
   }
 }

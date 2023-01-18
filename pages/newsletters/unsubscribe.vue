@@ -33,13 +33,26 @@ export default {
     }
   },
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Se désinscrire de la newsletter',
+        metaDescription: "Vous ne voulez plus recevoir notre newsletter, c'est ici que ça se passe"
+      },
+      en: {
+        metaTitle: 'Unsubscribe from the newsletter',
+        metaDescription: "You don't want to receive our newsletter anymore, this is where it happens"
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.newsletters.unsubscribe.newTitle'),
+      title: this.$t('metaTitle'),
       meta: [
-        { hid: 'description', name: 'description', content: this.$t('meta.newsletter.unsubscribe.newDescription') },
-        { hid: 'og:title', property: 'og:title', content: this.$t('meta.newsletters.unsubscribe.newTitle') },
-        { hid: 'og:description', property: 'og:description', content: this.$t('meta.newsletter.unsubscribe.newDescription') },
+        { hid: 'description', name: 'description', content: this.$t('metaDescription') },
+        { hid: 'og:title', property: 'og:title', content: this.$t('metaTitle') },
+        { hid: 'og:description', property: 'og:description', content: this.$t('metaDescription') },
         { hid: 'og:url', property: 'og:url', content: `${process.env.VUE_APP_OBLYK_APP_URL}/newsletters/unsubscribe` }
       ]
     }

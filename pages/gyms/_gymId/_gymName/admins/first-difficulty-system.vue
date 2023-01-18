@@ -43,9 +43,20 @@ export default {
     }
   },
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Premier système de difficulté'
+      },
+      en: {
+        metaTitle: 'First difficulty system'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.gym.grade.firstDifficulty')
+      title: this.$t('metaTitle')
     }
   }
 }

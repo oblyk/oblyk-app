@@ -23,9 +23,20 @@ export default {
   mixins: [CragConcern],
   middleware: ['auth'],
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Ajouter un topo à %{name}'
+      },
+      en: {
+        metaTitle: 'Add paper guide at %{name}'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.crag.addGuideBook', { name: (this.crag || {}).name })
+      title: this.$t('metaTitle', { name: this.crag?.name })
     }
   }
 }

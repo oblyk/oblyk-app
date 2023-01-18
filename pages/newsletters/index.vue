@@ -58,7 +58,7 @@ export default {
 
   head () {
     return {
-      title: this.$t('meta.newsletter.list')
+      title: 'Newsletters'
     }
   },
 

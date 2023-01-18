@@ -103,14 +103,25 @@ export default {
     }
   },
 
+  i18n: {
+    messages: {
+      fr: {
+        metaDescription: 'Consulté ici la newsletter que vous avez reçu dans votre boîte email'
+      },
+      en: {
+        metaDescription: 'Consulted here the newsletter you received in your email box'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.name,
+      title: this.newsletter?.name,
       meta: [
-        { hid: 'description', name: 'description', content: this.$t('meta.newsletter.unsubscribe.newDescription') },
-        { hid: 'og:title', property: 'og:title', content: this.name },
-        { hid: 'og:description', property: 'og:description', content: this.$t('meta.newsletter.unsubscribe.newDescription') },
-        { hid: 'og:url', property: 'og:url', content: `${process.env.VUE_APP_OBLYK_APP_URL}/newsletters/unsubscribe` }
+        { hid: 'description', name: 'description', content: this.$t('metaDescription') },
+        { hid: 'og:title', property: 'og:title', content: this.newsletter?.name },
+        { hid: 'og:description', property: 'og:description', content: this.$t('metaDescription') },
+        { hid: 'og:url', property: 'og:url', content: `${process.env.VUE_APP_OBLYK_APP_URL}/${this.newsletter?.path}` }
       ]
     }
   },

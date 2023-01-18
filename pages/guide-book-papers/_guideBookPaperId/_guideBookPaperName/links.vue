@@ -21,16 +21,25 @@ export default {
 
   data () {
     return {
-      guideBookPaperMetaTitle: `
-      ${this.$t('meta.generics.links')}
-      ${this.$t('meta.guideBookPaper.title', {
-        name: (this.guideBookPaper || {}).name
-      })}`,
-      guideBookPaperMetaDescription: `
-      ${this.$t('meta.generics.links')}
-      ${this.$t('meta.guideBookPaper.description', {
-        name: (this.guideBookPaper || {}).name
-      })}`
+      guideBookPaperMetaTitle: this.$t('metaTitle', {
+        name: this.guideBookPaper?.name
+      }),
+      guideBookPaperMetaDescription: this.$t('metaDescription', {
+        name: this.guideBookPaper?.name
+      })
+    }
+  },
+
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: "Les liens de %{name}, topo d'escalade",
+        metaDescription: "Voir les liens du topo d'escalade %{name}."
+      },
+      en: {
+        metaTitle: 'Links of %{name}, climbing guide book',
+        metaDescription: 'See the links of %{name} climbing guide book'
+      }
     }
   },
 

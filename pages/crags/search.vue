@@ -536,13 +536,26 @@ export default {
     }
   },
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: "Recherche avancée de sites d'escalades : trouver des sites d'escalades en France et dans le monde",
+        metaDescription: "Trouver exactement le site d'escalade que vous chercher, filter avec le niveau du site, l'orientation, le temps de marche, etc."
+      },
+      en: {
+        metaTitle: 'Advanced climbing crag search : find climbing crags in France and in the world',
+        metaDescription: 'Find exactly the climbing crag you are looking for, filter with the level of the crag, the orientation, the walking time, etc.'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.searchCrag.title'),
+      title: this.$t('metaTitle'),
       meta: [
-        { hid: 'description', name: 'description', content: this.$t('meta.searchCrag.description') },
-        { hid: 'og:title', property: 'og:title', content: this.$t('meta.searchCrag.title') },
-        { hid: 'og:description', property: 'og:description', content: this.$t('meta.searchCrag.description') },
+        { hid: 'description', name: 'description', content: this.$t('metaDescription') },
+        { hid: 'og:title', property: 'og:title', content: this.$t('metaTitle') },
+        { hid: 'og:description', property: 'og:description', content: this.$t('metaDescription') },
         { hid: 'og:image', property: 'og:image', content: `${process.env.VUE_APP_OBLYK_APP_URL}/images/meta-advanced-search.jpg` }
       ]
     }

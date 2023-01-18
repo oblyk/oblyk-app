@@ -22,9 +22,20 @@ export default {
   meta: { orphanRoute: true },
   components: { GymSpaceForm },
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Créer un nouvel espace'
+      },
+      en: {
+        metaTitle: 'Create a new space'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.gym.space.new')
+      title: this.$t('metaTitle')
     }
   }
 }

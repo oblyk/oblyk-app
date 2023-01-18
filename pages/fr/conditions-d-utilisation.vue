@@ -356,12 +356,12 @@ export default {
 
   head () {
     return {
-      title: this.$t('meta.termsOfUse.title'),
+      title: "Condition d'utilisation",
       meta: [
         { hid: 'robots', name: 'robots', content: 'noindex' },
-        { hid: 'description', name: 'description', content: this.$t('meta.termsOfUse.description') },
-        { hid: 'og:title', property: 'og:title', content: this.$t('meta.termsOfUse.title') },
-        { hid: 'og:description', property: 'og:description', content: this.$t('meta.termsOfUse.description') },
+        { hid: 'description', name: 'description', content: "Voir les conditions générales d'utilisation d'Oblyk, le site communautaire d'escalade : notre politique de confidentialité et nos mentions légales" },
+        { hid: 'og:title', property: 'og:title', content: "Condition d'utilisation" },
+        { hid: 'og:description', property: 'og:description', content: "Voir les conditions générales d'utilisation d'Oblyk, le site communautaire d'escalade : notre politique de confidentialité et nos mentions légales" },
         { hid: 'og:image', property: 'og:image', content: `${process.env.VUE_APP_OBLYK_APP_URL}/images/oblyk-og-image.jpg` }
       ]
     }

@@ -125,25 +125,26 @@ export default {
     }
   },
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Trouver un grimpeur ou une grimpeuse',
+        metaDescription: 'Trouver un ou une partenaire de grimpe avec Oblyk'
+      },
+      en: {
+        metaTitle: 'Find a climber',
+        metaDescription: 'Find a climbing partner with Oblyk'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.findClimbers.title'),
+      title: this.$t('metaTitle'),
       meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: this.$t('meta.findClimbers.description')
-        },
-        {
-          hid: 'og:title',
-          property: 'og:title',
-          content: this.$t('meta.findClimbers.title')
-        },
-        {
-          hid: 'og-description',
-          property: 'og:description',
-          content: this.$t('meta.findClimbers.description')
-        }
+        { hid: 'description', name: 'description', content: this.$t('metaDescription') },
+        { hid: 'og:title', property: 'og:title', content: this.$t('metaTitle') },
+        { hid: 'og-description', property: 'og:description', content: this.$t('metaDescription') }
       ]
     }
   }

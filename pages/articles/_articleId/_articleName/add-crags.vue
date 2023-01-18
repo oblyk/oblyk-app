@@ -25,7 +25,7 @@ export default {
 
   head () {
     return {
-      title: this.$t('meta.article.addCrag')
+      title: "Ajouter une falaise à l'article"
     }
   }
 }

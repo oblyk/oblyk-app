@@ -21,9 +21,20 @@ export default {
   components: { CragForm },
   middleware: ['auth'],
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Ajouter une falaise'
+      },
+      en: {
+        metaTitle: 'Create new crag'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.crag.new')
+      title: this.$t('metaTitle')
     }
   }
 }

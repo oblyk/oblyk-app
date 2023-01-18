@@ -22,9 +22,20 @@ export default {
   components: { GuideBookPdfForm },
   middleware: ['auth'],
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Ajouter un topo PDF'
+      },
+      en: {
+        metaTitle: 'Add PDF guide'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.guideBookPdf.new')
+      title: this.$t('metaTitle')
     }
   }
 }

@@ -9,14 +9,10 @@ export const GuideBookPaperConcern = {
 
   computed: {
     guideBookPaperMetaTitle () {
-      return this.$t('meta.guideBookPaper.title', {
-        name: (this.guideBookPaper || {}).name
-      })
+      return this.$t('metaTitle', { name: this.guideBookPaper?.name })
     },
     guideBookPaperMetaDescription () {
-      return this.$t('meta.guideBookPaper.description', {
-        name: (this.guideBookPaper || {}).name
-      })
+      return this.$t('metaDescription', { name: this.guideBookPaper?.name })
     },
     guideBookPaperMetaImage () {
       if (this.guideBookPaper) {
@@ -26,8 +22,19 @@ export const GuideBookPaperConcern = {
       }
     },
     guideBookPaperMetaUrl () {
-      if (this.guideBookPaper) {
-        return `${process.env.VUE_APP_OBLYK_APP_URL}${this.guideBookPaper.path}`
+      return `${process.env.VUE_APP_OBLYK_APP_URL}${this.guideBookPaper?.path}`
+    }
+  },
+
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: "%{name}, topo d'escalade",
+        metaDescription: "Voir les informations du topo d'escalade %{name}. Détail des sites, localisations, photos, carte, etc."
+      },
+      en: {
+        metaTitle: '%{name}, climbing guide book',
+        metaDescription: 'See the information of %{name}. Crag details, location, photos, map, etc.'
       }
     }
   },

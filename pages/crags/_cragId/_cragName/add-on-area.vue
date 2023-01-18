@@ -23,9 +23,20 @@ export default {
   mixins: [CragConcern],
   middleware: ['auth'],
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Ajouter %{name} à une zone'
+      },
+      en: {
+        metaTitle: 'Add %{name} in area'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.crag.addArea', { name: (this.crag || {}).name })
+      title: this.$t('metaTitle', { name: this.crag?.name })
     }
   }
 }

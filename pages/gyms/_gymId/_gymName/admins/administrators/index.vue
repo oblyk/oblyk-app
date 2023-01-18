@@ -87,9 +87,20 @@ export default {
     }
   },
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Les administrateurs'
+      },
+      en: {
+        metaTitle: 'Administrators'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.gym.newAdministrator')
+      title: this.$t('metaTitle')
     }
   },
 

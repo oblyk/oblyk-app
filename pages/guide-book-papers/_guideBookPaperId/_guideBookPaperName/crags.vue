@@ -32,16 +32,12 @@ export default {
   data () {
     return {
       crags: [],
-      guideBookPaperMetaTitle: `
-      ${this.$t('meta.generics.crags')}
-      ${this.$t('meta.guideBookPaper.title', {
-        name: (this.guideBookPaper || {}).name
-      })}`,
-      guideBookPaperMetaDescription: `
-      ${this.$t('meta.generics.crags')}
-      ${this.$t('meta.guideBookPaper.description', {
-        name: (this.guideBookPaper || {}).name
-      })}`
+      guideBookPaperMetaTitle: this.$t('metaTitle', {
+        name: this.guideBookPaper?.name
+      }),
+      guideBookPaperMetaDescription: this.$t('metaDescription', {
+        name: this.guideBookPaper?.name
+      })
     }
   },
 
@@ -54,6 +50,19 @@ export default {
     ).then((resp) => {
       this.crags = resp.data
     })
+  },
+
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: "Les falaises de %{name}, topo d'escalade",
+        metaDescription: "Voir les falaises du topo d'escalade %{name}."
+      },
+      en: {
+        metaTitle: 'Crags of %{name}, climbing guide book',
+        metaDescription: 'See the crags of %{name} climbing guide book'
+      }
+    }
   },
 
   head () {
