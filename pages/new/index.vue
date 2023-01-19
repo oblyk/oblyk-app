@@ -48,10 +48,28 @@ import Feed from '~/components/feeds/Feed'
 
 export default {
   components: { Feed, AppFooter },
+
   data () {
     return {
       mdiTerrain,
       mdiOfficeBuildingMarkerOutline
+    }
+  },
+
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Enrichir Oblyk'
+      },
+      en: {
+        metaTitle: 'Enrich Oblyk'
+      }
+    }
+  },
+
+  head () {
+    return {
+      title: this.$t('metaTitle')
     }
   }
 }

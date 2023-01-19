@@ -26,9 +26,20 @@ export default {
   mixins: [CragConcern, CragSectorConcern],
   middleware: ['auth'],
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Ajouter une ligne'
+      },
+      en: {
+        metaTitle: 'Add crag route'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.cragRoute.new')
+      title: this.$t('metaTitle')
     }
   }
 }

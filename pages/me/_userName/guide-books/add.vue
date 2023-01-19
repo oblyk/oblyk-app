@@ -31,9 +31,20 @@ export default {
     }
   },
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Ajouter un topo'
+      },
+      en: {
+        metaTitle: 'Add guide book'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.currentUser.addGuideBook')
+      title: this.$t('metaTitle')
     }
   }
 }

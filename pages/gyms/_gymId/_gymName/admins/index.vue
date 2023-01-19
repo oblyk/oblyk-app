@@ -105,9 +105,20 @@ export default {
     }
   },
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: '%{name} - Dashboard'
+      },
+      en: {
+        metaTitle: '%{name} - Dashboard'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.gym.admin', { name: (this.gym || {}).name })
+      title: this.$t('metaTitle', { name: this.gym?.name })
     }
   },
 

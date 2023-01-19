@@ -126,25 +126,26 @@ export default {
     }
   },
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: "Trouver une salle d'escalade",
+        metaDescription: "Trouver une salle d'escalade autour de votre ville grâce à la carte des salle d'escalade ou en recherchant autour d'un lieux"
+      },
+      en: {
+        metaTitle: 'Find a climbing gym',
+        metaDescription: 'Find a climbing gym around your city with the climbing gym map or by searching around a location'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.findGym.title'),
+      title: this.$t('metaTitle'),
       meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: this.$t('meta.findGym.description')
-        },
-        {
-          hid: 'og:title',
-          property: 'og:title',
-          content: this.$t('meta.findGym.title')
-        },
-        {
-          hid: 'og-description',
-          property: 'og:description',
-          content: this.$t('meta.findGym.description')
-        }
+        { hid: 'description', name: 'description', content: this.$t('metaDescription') },
+        { hid: 'og:title', property: 'og:title', content: this.$t('metaTitle') },
+        { hid: 'og-description', property: 'og:description', content: this.$t('metaDescription') }
       ]
     }
   }

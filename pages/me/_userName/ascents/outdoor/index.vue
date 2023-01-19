@@ -98,9 +98,20 @@ export default {
     }
   },
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Mes croix outdoor'
+      },
+      en: {
+        metaTitle: 'My outdoor ascents'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.currentUser.sendList')
+      title: this.$t('metaTitle')
     }
   },
 

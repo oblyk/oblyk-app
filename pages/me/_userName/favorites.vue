@@ -35,9 +35,20 @@ export default {
     }
   },
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Mes favorites'
+      },
+      en: {
+        metaTitle: 'My favorites'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.currentUser.favorites')
+      title: this.$t('metaTitle')
     }
   },
 

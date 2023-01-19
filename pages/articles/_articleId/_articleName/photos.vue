@@ -67,7 +67,7 @@ export default {
 
   head () {
     return {
-      title: this.$t('meta.article.photoList')
+      title: "Photos de l'article"
     }
   },
 

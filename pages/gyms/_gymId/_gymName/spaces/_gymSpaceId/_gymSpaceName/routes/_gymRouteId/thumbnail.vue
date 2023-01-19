@@ -25,9 +25,20 @@ export default {
   components: { GymRouteThumbnailForm, Spinner },
   mixins: [GymRouteConcern],
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Définir une miniature'
+      },
+      en: {
+        metaTitle: 'Define thumbnail'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.gym.route.thumbnail')
+      title: this.$t('metaTitle')
     }
   }
 }

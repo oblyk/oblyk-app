@@ -27,9 +27,20 @@ export default {
   components: { GymRoutePictureForm, Spinner },
   mixins: [GymRouteConcern],
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Définir une photo'
+      },
+      en: {
+        metaTitle: 'Define the picture'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.gym.route.picture')
+      title: this.$t('metaTitle')
     }
   }
 }

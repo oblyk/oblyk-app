@@ -50,13 +50,26 @@ export default {
     }
   },
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Me connecter',
+        metaDescription: 'Me connecter à mon compte Oblyk et retrouver toutes les infos de la grimpes autour de chez moi'
+      },
+      en: {
+        metaTitle: 'Connect me',
+        metaDescription: 'Connect me to my Oblyk account and find all informations about the climbing around me'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.session.signInTitle'),
+      title: this.$t('metaTitle'),
       meta: [
-        { hid: 'description', name: 'description', content: this.$t('meta.session.signInDescription') },
-        { hid: 'og:title', property: 'og:title', content: this.$t('meta.session.signInTitle') },
-        { hid: 'og:description', property: 'og:description', content: this.$t('meta.session.signInDescription') },
+        { hid: 'description', name: 'description', content: this.$t('metaDescription') },
+        { hid: 'og:title', property: 'og:title', content: this.$t('metaTitle') },
+        { hid: 'og:description', property: 'og:description', content: this.$t('metaDescription') },
         { hid: 'og:url', property: 'og:url', content: `${process.env.VUE_APP_OBLYK_APP_URL}/sign-in` }
       ]
     }

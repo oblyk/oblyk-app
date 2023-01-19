@@ -24,7 +24,7 @@ export default {
 
   head () {
     return {
-      title: this.$t('meta.article.addGuideBook')
+      title: "Ajouter un topo à l'article"
     }
   }
 }

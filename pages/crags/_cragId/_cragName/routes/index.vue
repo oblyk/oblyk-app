@@ -20,13 +20,26 @@ export default {
     }
   },
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: "Les voies de %{name}, site d'escalade en %{region}",
+        metaDescription: "Retrouvez toutes les voies et blocs du site d'escalade de %{name}, les cotations et les avis des grimpeurs"
+      },
+      en: {
+        metaTitle: 'The routes of %{name}, climbing site in %{region}',
+        metaDescription: "Find all the routes and boulders of the %{name} climbing site, the quotations and the climbers' opinions"
+      }
+    }
+  },
+
   data () {
     return {
-      cragRoutesTitle: this.$t('meta.crag.routes.title', {
+      cragRoutesTitle: this.$t('metaTitle', {
         name: this.crag?.name,
         region: this.crag?.regions
       }),
-      cragRoutesDescription: this.$t('meta.crag.routes.description', {
+      cragRoutesDescription: this.$t('metaDescription', {
         name: this.crag?.name
       })
     }

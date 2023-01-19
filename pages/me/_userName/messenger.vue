@@ -51,9 +51,20 @@ export default {
     }
   },
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Ma messagerie'
+      },
+      en: {
+        metaTitle: 'My messenger'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.messenger.list')
+      title: this.$t('metaTitle')
     }
   },
 

@@ -24,9 +24,20 @@ export default {
   mixins: [GuideBookPaperConcern],
   middleware: ['auth'],
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Ajouter un site à %{name}'
+      },
+      en: {
+        metaTitle: 'Add crag in %{name}'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.guideBookPaper.addCrag', { name: (this.guideBookPaper || {}).name })
+      title: this.$t('metaTitle', { name: this.guideBookPaper?.name })
     }
   }
 }

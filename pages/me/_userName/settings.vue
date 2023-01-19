@@ -18,9 +18,20 @@ export default {
   components: { UserSettingsTabs, Spinner },
   mixins: [CurrentUserConcern],
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Paramètres'
+      },
+      en: {
+        metaTitle: 'Settings'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.currentUser.settings')
+      title: this.$t('metaTitle')
     }
   }
 }

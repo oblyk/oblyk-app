@@ -98,7 +98,7 @@ export default {
 
   head () {
     return {
-      title: this.$t('meta.version.title'),
+      title: 'Versions',
       meta: [
         { hid: 'robots', name: 'robots', content: 'noindex' }
       ]

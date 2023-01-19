@@ -56,9 +56,20 @@ export default {
     }
   },
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Mes salles'
+      },
+      en: {
+        metaTitle: 'My gyms'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.currentUser.favoriteGym')
+      title: this.$t('metaTitle')
     }
   },
 

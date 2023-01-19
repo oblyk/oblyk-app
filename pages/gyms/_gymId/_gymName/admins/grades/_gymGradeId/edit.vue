@@ -32,9 +32,20 @@ export default {
   mixins: [GymGradeConcern],
   middleware: ['auth'],
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Modifier le system de cotation'
+      },
+      en: {
+        metaTitle: 'Edit grade system'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.gym.grade.edit')
+      title: this.$t('metaTitle')
     }
   },
 

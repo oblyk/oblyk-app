@@ -73,6 +73,19 @@ export default {
     }
   },
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: "Les photos de %{name}, secteur d'escalade de %{crag}",
+        metaDescription: "Les photos de  %{name}, secteur d'escalade %{crag} situé à %{city} en %{region}."
+      },
+      en: {
+        metaTitle: 'Pictures of %{name}, climbing sector of %{crag}',
+        metaDescription: 'Pictures of %{name}, climbing sector of %{crag} located at %{city} in %{region}'
+      }
+    }
+  },
+
   head () {
     return {
       title: this.cragSectorMetaTitle,
@@ -104,27 +117,21 @@ export default {
   computed: {
     cragSectorMetaTitle () {
       if (this.cragSector) {
-        return `
-        ${this.$t('meta.generics.pictures')}
-        ${this.$t('meta.cragSector.title', {
+        return this.$t('metaTitle', {
           name: this.cragSector.name,
           crag: this.cragSector.Crag.name
-        })}
-        `
+        })
       }
       return ''
     },
     cragSectorMetaDescription () {
       if (this.cragSector) {
-        return `
-        ${this.$t('meta.generics.pictures')}
-        ${this.$t('meta.cragSector.description', {
+        return this.$t('metaDescription', {
           name: this.cragSector.name,
           crag: this.cragSector.Crag.name,
           region: this.cragSector.Crag.region,
           city: this.cragSector.Crag.city
-        })}
-        `
+        })
       }
       return ''
     },

@@ -26,9 +26,20 @@ export default {
   mixins: [CragRouteConcern],
   middleware: ['auth'],
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Ajouter à mon carnet'
+      },
+      en: {
+        metaTitle: 'Add to my logbook'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.ascentCragRoute.new')
+      title: this.$t('metaTitle')
     }
   }
 }

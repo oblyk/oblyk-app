@@ -68,6 +68,19 @@ export default {
   mixins: [SessionConcern, GymConcern],
   middleware: ['auth'],
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: "Demande d'administration de %{name}",
+        metaDescription: "Administrez la salle d'escalade de %{name} pour créer votre topo indoor et animer votre communauté"
+      },
+      en: {
+        metaTitle: 'Request for administration of %{name}',
+        metaDescription: 'Manage the %{name} climbing gym to create your indoor topo and animate your community'
+      }
+    }
+  },
+
   head () {
     return {
       title: this.adminRequestMetaTitle,
@@ -82,18 +95,15 @@ export default {
 
   computed: {
     adminRequestMetaTitle () {
-      return this.$t('meta.gym.administratorRequestTitle', { name: (this.gym || {}).name })
+      return this.$t('metaTitle', { name: this.gym?.name })
     },
 
     adminRequestMetaDescription () {
-      return this.$t('meta.gym.administratorRequestDescription', { name: (this.gym || {}).name })
+      return this.$t('metaDescription', { name: this.gym?.name })
     },
 
     adminRequestMetaUrl () {
-      if (this.gym) {
-        return `${process.env.VUE_APP_OBLYK_APP_URL}${this.gym.path}/administration-request`
-      }
-      return ''
+      return `${process.env.VUE_APP_OBLYK_APP_URL}${this.gym?.path}/administration-request`
     }
   }
 }

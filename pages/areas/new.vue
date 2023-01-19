@@ -21,9 +21,20 @@ export default {
   components: { AreaForm },
   middleware: ['auth'],
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Créer un groupe de site'
+      },
+      en: {
+        metaTitle: 'Create crags group'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.area.new')
+      title: this.$t('metaTitle')
     }
   }
 }

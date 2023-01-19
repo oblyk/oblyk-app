@@ -78,8 +78,8 @@ export default {
   data () {
     return {
       crags: [],
-      guideBookPaperMetaTitle: this.$t('meta.guideBookPaper.alternative.title', { name: (this.guideBookPaper || {}).name }),
-      guideBookPaperMetaDescription: this.$t('meta.guideBookPaper.alternative.description', { name: (this.guideBookPaper || {}).name })
+      guideBookPaperMetaTitle: this.$t('metaTitle', { name: this.guideBookPaper?.name }),
+      guideBookPaperMetaDescription: this.$t('metaDescription', { name: this.guideBookPaper?.name })
     }
   },
 
@@ -92,6 +92,19 @@ export default {
     ).then((resp) => {
       this.crags = resp.data
     })
+  },
+
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Topos alternatifs à %{name}',
+        metaDescription: "Liste des autres topos d'escalades qui traitent des mêmes sites que le topo %{name}"
+      },
+      en: {
+        metaTitle: 'Alternative guides to %{name}',
+        metaDescription: 'List of other climbing guidebooks that deal with the same crags as the guidebook %{name}'
+      }
+    }
   },
 
   head () {

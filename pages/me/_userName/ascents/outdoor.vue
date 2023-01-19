@@ -18,9 +18,20 @@ export default {
   components: { UserAccentsTabs, Spinner },
   mixins: [CurrentUserConcern],
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Mes croix outdoor'
+      },
+      en: {
+        metaTitle: 'My outdoor ascents'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.currentUser.ascents')
+      title: this.$t('metaTitle')
     }
   }
 }

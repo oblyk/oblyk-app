@@ -50,9 +50,20 @@ export default {
     }
   },
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Les systèmes de difficultés'
+      },
+      en: {
+        metaTitle: 'Difficulty systems'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.gym.grade.grades')
+      title: this.$t('metaTitle')
     }
   },
 

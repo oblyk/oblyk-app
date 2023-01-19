@@ -31,9 +31,20 @@ export default {
   mixins: [GymGradeConcern],
   middleware: ['auth'],
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Nouveau niveau'
+      },
+      en: {
+        metaTitle: 'New level'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.gym.grade.newLine')
+      title: this.$t('metaTitle')
     }
   },
 

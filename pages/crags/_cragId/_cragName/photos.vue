@@ -90,15 +90,28 @@ export default {
       mdiVideoPlus,
       loadingVideos: true,
       videos: [],
-      cragPhotoMetaTitle: `${this.$t('meta.generics.pictures')} ${this.$t('meta.crag.title', {
-        name: (this.crag || {}).name,
-        region: (this.crag || {}).region
-      })}`,
-      cragPhotoMetaDescription: `${this.$t('meta.generics.pictures')} ${this.$t('meta.crag.description', {
-        name: (this.crag || {}).name,
-        region: (this.crag || {}).region,
-        city: (this.crag || {}).city
-      })}`
+      cragPhotoMetaTitle: this.$t('metaTitle', {
+        name: this.crag?.name,
+        region: this.crag?.region
+      }),
+      cragPhotoMetaDescription: this.$t('metaDescription', {
+        name: this.crag?.name,
+        region: this.crag?.region,
+        city: this.crag?.city
+      })
+    }
+  },
+
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Les photos de %{name}, escalade en %{region}',
+        metaDescription: "Les photos de %{name} : site d'escalade à %{city} en %{region}"
+      },
+      en: {
+        metaTitle: 'Pictures of %{name}, climb in %{region}',
+        metaDescription: 'Pictures of %{name} : climbing crag in %{city} in %{region}'
+      }
     }
   },
 

@@ -25,7 +25,7 @@ export default {
 
   head () {
     return {
-      title: this.$t('meta.generics.edit', { name: (this.article || {}).name })
+      title: this.$t('actions.editName', { name: this.article?.name })
     }
   }
 }

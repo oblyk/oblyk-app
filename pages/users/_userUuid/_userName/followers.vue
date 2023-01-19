@@ -54,6 +54,19 @@ export default {
     }
   },
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Les abonnés de %{name}',
+        metaDescription: 'Voir les grimpeur·euse·s abonnées à %{name}, grimpeur·euse de la communauté Oblyk'
+      },
+      en: {
+        metaTitle: 'The subscribers of %{name}',
+        metaDescription: 'See the climbers subscribed to %{name}, climber of the community Oblyk'
+      }
+    }
+  },
+
   head () {
     return {
       title: this.userMetaTitle,
@@ -68,14 +81,14 @@ export default {
 
   computed: {
     userMetaTitle () {
-      return this.$t('meta.user.follower.title', { name: (this.user || {}).first_name })
+      return this.$t('metaTitle', { name: this.user?.first_name })
     },
     userMetaDescription () {
-      return this.$t('meta.user.follower.description', { name: (this.user || {}).first_name })
+      return this.$t('metaDescription', { name: this.user?.first_name })
     },
     userMetaUrl () {
       if (this.user) {
-        return `${process.env.VUE_APP_OBLYK_APP_URL}${this.user.path}/followers`
+        return `${process.env.VUE_APP_OBLYK_APP_URL}${this.user?.path}/followers`
       }
       return ''
     }

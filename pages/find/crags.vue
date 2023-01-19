@@ -174,25 +174,26 @@ export default {
     }
   },
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: "Trouver un site d'escalade",
+        metaDescription: "Trouver le site d'escalade que vous cherchez avec la carte des falaises du monde, ou autour d'une ville ou selon des critères bien particulier grâce à nos outils de recherche."
+      },
+      en: {
+        metaTitle: 'Find a climbing site',
+        metaDescription: "Find the climbing crag you are looking for with the map of the world's crags, or around a city or according to specific criteria with our search tools."
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.findCrag.title'),
+      title: this.$t('metaTitle'),
       meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: this.$t('meta.findCrag.description')
-        },
-        {
-          hid: 'og:title',
-          property: 'og:title',
-          content: this.$t('meta.findCrag.title')
-        },
-        {
-          hid: 'og-description',
-          property: 'og:description',
-          content: this.$t('meta.findCrag.description')
-        }
+        { hid: 'description', name: 'description', content: this.$t('metaDescription') },
+        { hid: 'og:title', property: 'og:title', content: this.$t('metaTitle') },
+        { hid: 'og-description', property: 'og:description', content: this.$t('metaDescription') }
       ]
     }
   }

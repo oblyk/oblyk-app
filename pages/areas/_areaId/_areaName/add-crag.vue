@@ -22,9 +22,20 @@ export default {
   components: { AddCragInAreaForm },
   mixins: [AreaConcern],
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Ajouter un site à %{name}'
+      },
+      en: {
+        metaTitle: 'Add crag in %{name}'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.area.addCrag', { name: (this.area || {}).name })
+      title: this.$t('metaTitle', { name: this.area?.name })
     }
   }
 }

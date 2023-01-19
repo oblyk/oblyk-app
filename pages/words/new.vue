@@ -20,9 +20,20 @@ export default {
   components: { WordForm },
   middleware: ['auth'],
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Nouvelle définition'
+      },
+      en: {
+        metaTitle: 'New definition'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.word.new')
+      title: this.$t('metaTitle')
     }
   }
 }

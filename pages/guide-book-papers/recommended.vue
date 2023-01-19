@@ -71,13 +71,26 @@ export default {
     }
   },
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Topos intéressants',
+        metaDescription: "Nous trouvons les topos qui pourrais t'intéresser par rapport à ton carnet de croix"
+      },
+      en: {
+        metaTitle: 'Interesting guide books',
+        metaDescription: 'We find the guide books that might interest you in relation to your log book'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.recommendedGuides.title'),
+      title: this.$t('metaTitle'),
       meta: [
-        { hid: 'description', name: 'description', content: this.$t('meta.recommendedGuides.description') },
-        { hid: 'og:title', property: 'og:title', content: this.$t('meta.recommendedGuides.title') },
-        { hid: 'og:description', property: 'og:description', content: this.$t('meta.recommendedGuides.description') },
+        { hid: 'description', name: 'description', content: this.$t('metaDescription') },
+        { hid: 'og:title', property: 'og:title', content: this.$t('metaTitle') },
+        { hid: 'og:description', property: 'og:description', content: this.$t('metaDescription') },
         { hid: 'og:image', property: 'og:image', content: `${process.env.VUE_APP_OBLYK_APP_URL}/img/images/oblyk-og-image.jpg` }
       ]
     }

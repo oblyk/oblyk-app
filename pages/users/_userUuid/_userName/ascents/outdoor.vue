@@ -138,6 +138,19 @@ export default {
     }
   },
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Les croix outdoor de %{name}',
+        metaDescription: 'Consulter les croix outdoor faites par %{name} tout au long de sa vie de grimpeur·euse'
+      },
+      en: {
+        metaTitle: 'The outdoor ascents of %{name}',
+        metaDescription: 'Consult the outdoor ascents made by %{name} throughout his climbing life'
+      }
+    }
+  },
+
   head () {
     return {
       title: this.userMetaTitle,
@@ -152,14 +165,14 @@ export default {
 
   computed: {
     userMetaTitle () {
-      return this.$t('meta.user.ascent.title', { name: (this.user || {}).first_name })
+      return this.$t('metaTitle', { name: this.user?.first_name })
     },
     userMetaDescription () {
-      return this.$t('meta.user.ascent.description', { name: (this.user || {}).first_name })
+      return this.$t('metaDescription', { name: this.user?.first_name })
     },
     userMetaUrl () {
       if (this.user) {
-        return `${process.env.VUE_APP_OBLYK_APP_URL}${this.user.path}/ascents`
+        return `${process.env.VUE_APP_OBLYK_APP_URL}${this.user?.path}/ascents/outdoor`
       }
       return ''
     }

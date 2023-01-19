@@ -10,10 +10,10 @@ export const CragConcern = {
 
   computed: {
     cragMetaTitle () {
-      return this.$t('meta.crag.title', { name: (this.crag || {}).name, region: (this.crag || {}).region })
+      return this.$t('metaTitle', { name: this.crag?.name, region: this.crag?.region })
     },
     cragMetaDescription () {
-      return this.$t('meta.crag.description', { name: (this.crag || {}).name, region: (this.crag || {}).region, city: (this.crag || {}).city })
+      return this.$t('metaDescription', { name: this.crag?.name, region: this.crag?.region, city: this.crag?.city })
     },
     cragMetaImage () {
       if (this.crag && this.crag.photo) {
@@ -23,8 +23,19 @@ export const CragConcern = {
       }
     },
     cragMetaUrl () {
-      if (this.crag) {
-        return `${process.env.VUE_APP_OBLYK_APP_URL}${this.crag.path}`
+      return `${process.env.VUE_APP_OBLYK_APP_URL}${this.crag?.path}`
+    }
+  },
+
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: '%{name}, escalade en %{region}',
+        metaDescription: "%{name} : site d'escalade à %{city} en %{region}. Détail des voies, localisation, topos, photos, etc."
+      },
+      en: {
+        metaTitle: '%{name}, climb in %{region}',
+        metaDescription: '%{name} : climbing crag in %{city} in %{region}. Details of the routes, location, guide books, photos, etc.'
       }
     }
   },

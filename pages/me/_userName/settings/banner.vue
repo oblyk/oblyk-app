@@ -27,9 +27,20 @@ export default {
   components: { UserImageForm, Spinner },
   mixins: [CurrentUserConcern],
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Changer mon bandeau'
+      },
+      en: {
+        metaTitle: 'Change my banner'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.currentUser.banner')
+      title: this.$t('metaTitle')
     }
   }
 }

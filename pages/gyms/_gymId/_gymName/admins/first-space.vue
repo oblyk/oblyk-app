@@ -63,6 +63,19 @@ export default {
     }
   },
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Créer le premier espace de %{name}',
+        metaDescription: "commencez à créer votre topo d'escalade indoor en créant le première espace de %{name}"
+      },
+      en: {
+        metaTitle: 'Create the first space for %{name}',
+        metaDescription: 'Start creating your indoor climbing map by creating the first %{name} space'
+      }
+    }
+  },
+
   head () {
     return {
       title: this.firstSpaceMetaTitle,
@@ -77,18 +90,15 @@ export default {
 
   computed: {
     firstSpaceMetaTitle () {
-      return this.$t('meta.gym.space.firstTilte', { name: (this.gym || {}).name })
+      return this.$t('metaTitle', { name: this.gym?.name })
     },
 
     firstSpaceMetaDescription () {
-      return this.$t('meta.gym.space.firstDescription', { name: (this.gym || {}).name })
+      return this.$t('metaDescription', { name: this.gym?.name })
     },
 
     firstSpaceMetaUrl () {
-      if (this.gym) {
-        return `${process.env.VUE_APP_OBLYK_APP_URL}${this.gym.path}/first-space`
-      }
-      return ''
+      return `${process.env.VUE_APP_OBLYK_APP_URL}${this.gym?.path}/first-space`
     }
   },
 

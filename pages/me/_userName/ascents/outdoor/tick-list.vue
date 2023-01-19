@@ -30,16 +30,27 @@ export default {
     user: { type: Object, required: true }
   },
 
-  head () {
-    return {
-      title: this.$t('meta.currentUser.tickList')
-    }
-  },
-
   data () {
     return {
       loadingTickList: true,
       tickList: []
+    }
+  },
+
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Ma tick-list'
+      },
+      en: {
+        metaTitle: 'My tick-list'
+      }
+    }
+  },
+
+  head () {
+    return {
+      title: this.$t('metaTitle')
     }
   },
 

@@ -22,9 +22,20 @@ export default {
   components: { PhotoForm },
   middleware: ['auth'],
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Ajouter une photo'
+      },
+      en: {
+        metaTitle: 'Add a photo'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.photo.new')
+      title: this.$t('metaTitle')
     }
   }
 }

@@ -31,13 +31,26 @@ import AppFooter from '@/components/layouts/AppFooter'
 export default {
   components: { PayPalForm, AppFooter },
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Supporter Oblyk, faire un don',
+        metaDescription: "Supporter le développement d'Oblyk pour qu'il puisse continuer à évoluer"
+      },
+      en: {
+        metaTitle: 'Support Oblyk, make a donation',
+        metaDescription: 'Support the development of Oblyk so that it can continue to evolve'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.supportUs.title'),
+      title: this.$t('metaTitle'),
       meta: [
-        { hid: 'description', name: 'description', content: this.$t('meta.supportUs.description') },
-        { hid: 'og:title', property: 'og:title', content: this.$t('meta.supportUs.title') },
-        { hid: 'og:description', property: 'og:description', content: this.$t('meta.supportUs.description') },
+        { hid: 'description', name: 'description', content: this.$t('metaDescription') },
+        { hid: 'og:title', property: 'og:title', content: this.$t('metaTitle') },
+        { hid: 'og:description', property: 'og:description', content: this.$t('metaDescription') },
         { hid: 'og:image', property: 'og:image', content: `${process.env.VUE_APP_OBLYK_APP_URL}/images/oblyk-og-image.jpg` }
       ]
     }

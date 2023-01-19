@@ -335,13 +335,26 @@ export default {
       })
   },
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: "Escalade %{name} : falaises, topos et salles d'escalade",
+        metaDescription: "Retrouve les informations sur les sites d'escalade %{name} (voie, grande voie, bloc, via ferrata ...), les topos et les salles d'escalade sur Oblyk"
+      },
+      en: {
+        metaTitle: 'Climbing %{name} : crags, guide book and climbing gyms',
+        metaDescription: 'Find information on climbing sites %{name} (routes, multi pitches, boulder, via ferrata ...), guide books and climbing gyms on Oblyk'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.climbingAround.department.title', { name: this.metaTitleName }),
+      title: this.$t('metaTitle', { name: this.metaTitleName }),
       meta: [
-        { hid: 'description', name: 'description', content: this.$t('meta.climbingAround.department.description', { name: this.metaDescriptionName }) },
-        { hid: 'og:title', property: 'og:title', content: this.$t('meta.climbingAround.department.title', { name: this.metaTitleName }) },
-        { hid: 'og:description', property: 'og:description', content: this.$t('meta.climbingAround.department.description', { name: this.metaDescriptionName }) },
+        { hid: 'description', name: 'description', content: this.$t('metaDescription', { name: this.metaDescriptionName }) },
+        { hid: 'og:title', property: 'og:title', content: this.$t('metaTitle', { name: this.metaTitleName }) },
+        { hid: 'og:description', property: 'og:description', content: this.$t('metaDescription', { name: this.metaDescriptionName }) },
         { hid: 'og:image', property: 'og:image', content: `${process.env.VUE_APP_OBLYK_APP_URL}/images/meta-image-escalade-en-france.jpg` }
       ]
     }

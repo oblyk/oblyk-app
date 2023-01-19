@@ -21,9 +21,20 @@ export default {
   components: { AlertForm },
   middleware: ['auth'],
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Créer une alerte'
+      },
+      en: {
+        metaTitle: 'Create alert'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.alert.new')
+      title: this.$t('metaTitle')
     }
   }
 }

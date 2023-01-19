@@ -30,9 +30,20 @@ export default {
     }
   },
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Ma carte'
+      },
+      en: {
+        metaTitle: 'My map'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.currentUser.map')
+      title: this.$t('metaTitle')
     }
   },
 

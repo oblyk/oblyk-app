@@ -34,38 +34,16 @@ export default {
     }
   },
 
-  computed: {
-    cragSectorMetaTitle () {
-      if (this.cragSector) {
-        return `
-        ${this.$t('meta.generics.map')}
-        ${this.$t('meta.cragSector.title', {
-          name: this.cragSector.name,
-          crag: this.cragSector.Crag.name
-        })}
-        `
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: "La carte de %{name}, secteur d'escalade de %{crag}",
+        metaDescription: "La carte de  %{name}, secteur d'escalade %{crag} situé à %{city} en %{region}."
+      },
+      en: {
+        metaTitle: 'Map of %{name}, climbing sector of %{crag}',
+        metaDescription: 'Map of %{name}, climbing sector of %{crag} located at %{city} in %{region}'
       }
-      return ''
-    },
-    cragSectorMetaDescription () {
-      if (this.cragSector) {
-        return `
-        ${this.$t('meta.generics.map')}
-        ${this.$t('meta.cragSector.description', {
-          name: this.cragSector.name,
-          crag: this.cragSector.Crag.name,
-          region: this.cragSector.Crag.region,
-          city: this.cragSector.Crag.city
-        })}
-        `
-      }
-      return ''
-    },
-    cragSectorMetaUrl () {
-      if (this.cragSector) {
-        return `${process.env.VUE_APP_OBLYK_APP_URL}${this.cragSector.path}/maps`
-      }
-      return ''
     }
   },
 
@@ -94,6 +72,35 @@ export default {
           content: this.cragSectorMetaUrl
         }
       ]
+    }
+  },
+
+  computed: {
+    cragSectorMetaTitle () {
+      if (this.cragSector) {
+        return this.$t('metaTitle', {
+          name: this.cragSector.name,
+          crag: this.cragSector.Crag.name
+        })
+      }
+      return ''
+    },
+    cragSectorMetaDescription () {
+      if (this.cragSector) {
+        return this.$t('metaDescription', {
+          name: this.cragSector.name,
+          crag: this.cragSector.Crag.name,
+          region: this.cragSector.Crag.region,
+          city: this.cragSector.Crag.city
+        })
+      }
+      return ''
+    },
+    cragSectorMetaUrl () {
+      if (this.cragSector) {
+        return `${process.env.VUE_APP_OBLYK_APP_URL}${this.cragSector.path}/maps`
+      }
+      return ''
     }
   },
 

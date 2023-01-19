@@ -18,6 +18,19 @@ export default {
     }
   },
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Photos de %{name}',
+        metaDescription: "Voir les photos d'escalade prise par %{name} sur les différentes falaises qu'iel a parcourut"
+      },
+      en: {
+        metaTitle: 'Photos of %{name}',
+        metaDescription: 'See the climbing pictures taken by %{name} on the different cliffs he climbed'
+      }
+    }
+  },
+
   head () {
     return {
       title: this.userMetaTitle,
@@ -32,14 +45,14 @@ export default {
 
   computed: {
     userMetaTitle () {
-      return this.$t('meta.user.photo.title', { name: (this.user || {}).first_name })
+      return this.$t('metaTitle', { name: this.user?.first_name })
     },
     userMetaDescription () {
-      return this.$t('meta.user.photo.description', { name: (this.user || {}).first_name })
+      return this.$t('metaDescription', { name: this.user?.first_name })
     },
     userMetaUrl () {
       if (this.user) {
-        return `${process.env.VUE_APP_OBLYK_APP_URL}${this.user.path}/media/photos`
+        return `${process.env.VUE_APP_OBLYK_APP_URL}${this.user?.path}/media/photos`
       }
       return ''
     }

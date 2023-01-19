@@ -126,9 +126,20 @@ export default {
     }
   },
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Conversation avec %{name}'
+      },
+      en: {
+        metaTitle: 'Conversation with %{name}'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.messenger.conversation', { name: this.conversationTitle })
+      title: this.$t('metaTitle', { name: this.conversationTitle })
     }
   },
 

@@ -27,9 +27,20 @@ export default {
   components: { GymSectorForm },
   mixins: [GymSpaceConcern],
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Ajouter un secteur'
+      },
+      en: {
+        metaTitle: 'Add a sector'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.gym.sector.new')
+      title: this.$t('metaTitle')
     }
   }
 }

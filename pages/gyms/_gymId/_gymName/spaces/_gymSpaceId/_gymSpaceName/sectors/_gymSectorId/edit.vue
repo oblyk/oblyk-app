@@ -37,7 +37,7 @@ export default {
 
   head () {
     return {
-      title: this.$t('meta.generics.edit', { name: (this.gymSector || {}).name })
+      title: this.$t('actions.editName', { name: this.gymSector?.name })
     }
   }
 }

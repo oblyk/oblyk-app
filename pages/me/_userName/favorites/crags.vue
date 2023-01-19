@@ -56,9 +56,20 @@ export default {
     }
   },
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Mes falaises'
+      },
+      en: {
+        metaTitle: 'My crags'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.currentUser.favoriteCrag')
+      title: this.$t('metaTitle')
     }
   },
 

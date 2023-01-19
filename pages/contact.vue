@@ -54,14 +54,27 @@ export default {
     }
   },
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: "Contacter l'équipe d'Oblyk",
+        metaDescription: "Pour toute question, toute proposition, ou tout simplement pour nous aider, n'hésitez pas à nous contacter !"
+      },
+      en: {
+        metaTitle: 'Contact the Oblyk team',
+        metaDescription: 'For any question, any proposal, or simply to help us, do not hesitate to contact us!'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.contact.title'),
+      title: this.$t('metaTitle'),
       meta: [
         { hid: 'robots', name: 'robots', content: 'noindex' },
-        { hid: 'description', name: 'description', content: this.$t('meta.contact.description') },
-        { hid: 'og:title', property: 'og:title', content: this.$t('meta.contact.title') },
-        { hid: 'og:description', property: 'og:description', content: this.$t('meta.contact.description') },
+        { hid: 'description', name: 'description', content: this.$t('metaDescription') },
+        { hid: 'og:title', property: 'og:title', content: this.$t('metaTitle') },
+        { hid: 'og:description', property: 'og:description', content: this.$t('metaDescription') },
         { hid: 'og:image', property: 'og:image', content: `${process.env.VUE_APP_OBLYK_APP_URL}/images/oblyk-og-image.jpg` }
       ]
     }

@@ -10,7 +10,7 @@ export const CragSectorConcern = {
   computed: {
     cragSectorMetaTitle () {
       if (this.cragSector) {
-        return this.$t('meta.cragSector.title', {
+        return this.$t('metaTitle', {
           name: this.cragSector.name,
           crag: this.cragSector.Crag.name
         })
@@ -18,7 +18,7 @@ export const CragSectorConcern = {
     },
     cragSectorMetaDescription () {
       if (this.cragSector) {
-        return this.$t('meta.cragSector.description', {
+        return this.$t('metaDescription', {
           name: this.cragSector.name,
           crag: this.cragSector.Crag.name,
           region: this.cragSector.Crag.region,
@@ -36,6 +36,19 @@ export const CragSectorConcern = {
     cragSectorMetaUrl () {
       if (this.cragSector) {
         return `${process.env.VUE_APP_OBLYK_APP_URL}${this.cragSector.path}`
+      }
+    }
+  },
+
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: "%{name}, secteur d'escalade de %{crag}",
+        metaDescription: "%{name}, secteur d'escalade %{crag} situé à %{city} en %{region}. Détail des voies, localisation, photos, etc."
+      },
+      en: {
+        metaTitle: '%{name}, climbing sector of %{crag}',
+        metaDescription: '%{name}, climbing sector of %{crag} located at %{city} in %{region}. Details of the routes, location, photos, etc.'
       }
     }
   },

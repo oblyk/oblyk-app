@@ -25,9 +25,20 @@ export default {
   mixins: [GuideBookPdfConcern],
   middleware: ['auth'],
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Modifier le topo PDF'
+      },
+      en: {
+        metaTitle: 'Edit PDF guide'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.guideBookPdf.edit')
+      title: this.$t('metaTitle')
     }
   }
 }

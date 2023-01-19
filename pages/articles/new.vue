@@ -21,7 +21,7 @@ export default {
 
   head () {
     return {
-      title: this.$t('meta.article.new')
+      title: 'Nouvel article'
     }
   }
 }

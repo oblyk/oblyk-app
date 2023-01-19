@@ -349,12 +349,12 @@ export default {
 
   head () {
     return {
-      title: this.$t('meta.termsOfUse.title'),
+      title: 'Terms and conditions of use',
       meta: [
         { hid: 'robots', name: 'robots', content: 'noindex' },
-        { hid: 'description', name: 'description', content: this.$t('meta.termsOfUse.description') },
-        { hid: 'og:title', property: 'og:title', content: this.$t('meta.termsOfUse.title') },
-        { hid: 'og:description', property: 'og:description', content: this.$t('meta.termsOfUse.description') },
+        { hid: 'description', name: 'description', content: 'See the general terms of use of Oblyk, the climbing community website : our privacy policy and our legal notice' },
+        { hid: 'og:title', property: 'og:title', content: 'Terms and conditions of use' },
+        { hid: 'og:description', property: 'og:description', content: 'See the general terms of use of Oblyk, the climbing community website : our privacy policy and our legal notice' },
         { hid: 'og:image', property: 'og:image', content: `${process.env.VUE_APP_OBLYK_APP_URL}/images/oblyk-og-image.jpg` }
       ]
     }

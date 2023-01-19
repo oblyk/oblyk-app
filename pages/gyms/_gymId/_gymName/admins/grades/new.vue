@@ -29,9 +29,20 @@ export default {
   mixins: [GymFetchConcern],
   middleware: ['auth'],
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Nouveau system de cotation'
+      },
+      en: {
+        metaTitle: 'New grade system'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.gym.grade.new')
+      title: this.$t('metaTitle')
     }
   },
 

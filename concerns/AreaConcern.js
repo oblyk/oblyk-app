@@ -9,14 +9,10 @@ export const AreaConcern = {
 
   computed: {
     areaMetaTitle () {
-      return this.$t('meta.area.title', {
-        name: (this.area || {}).name
-      })
+      return this.$t('metaTitle', { name: this.area?.name })
     },
     areaMetaDescription () {
-      return this.$t('meta.area.description', {
-        name: (this.area || {}).name
-      })
+      return this.$t('metaDescription', { name: this.area?.name })
     },
     areaMetaImage () {
       if (this.area && this.area.photo) {
@@ -26,8 +22,19 @@ export const AreaConcern = {
       }
     },
     areaMetaUrl () {
-      if (this.area) {
-        return `${process.env.VUE_APP_OBLYK_APP_URL}${this.area.path}`
+      return `${process.env.VUE_APP_OBLYK_APP_URL}${this.area?.path}`
+    }
+  },
+
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: "%{name}, Groupe de sites d'escalade",
+        metaDescription: "Voir le résumé du groupe de sites d'escalade de %{name}, quels spots de grimpe il présente ou encore quelle variété de cotations on y trouve"
+      },
+      en: {
+        metaTitle: '%{name}, climbing crags group',
+        metaDescription: 'See the summary of the group of climbing sites of %{name}, what kind of climbing spots it offers or what variety of grades can be found there'
       }
     }
   },

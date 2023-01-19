@@ -28,15 +28,28 @@ export default {
 
   data () {
     return {
-      cragGuidesMetaTitle: `${this.$t('meta.generics.guideBooks')} ${this.$t('meta.crag.title', {
+      cragGuidesMetaTitle: this.$t('metaTitle', {
         name: (this.crag || {}).name,
         region: (this.crag || {}).region
-      })}`,
-      cragGuidesMetaDescription: `${this.$t('meta.generics.guideBooks')} ${this.$t('meta.crag.description', {
+      }),
+      cragGuidesMetaDescription: this.$t('metaDescription', {
         name: (this.crag || {}).name,
         region: (this.crag || {}).region,
         city: (this.crag || {}).city
-      })}`
+      })
+    }
+  },
+
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Les topos de %{name}, escalade en %{region}',
+        metaDescription: "Les topos de %{name} : site d'escalade à %{city} en %{region}"
+      },
+      en: {
+        metaTitle: 'Climbing guide book of %{name}, climb in %{region}',
+        metaDescription: 'Climbing guide book of %{name} : climbing crag in %{city} in %{region}'
+      }
     }
   },
 

@@ -25,9 +25,20 @@ export default {
   mixins: [GuideBookWebConcern],
   middleware: ['auth'],
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Modifier le topo web'
+      },
+      en: {
+        metaTitle: 'Edit web guide'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.guideBookWeb.edit')
+      title: this.$t('metaTitle')
     }
   }
 }

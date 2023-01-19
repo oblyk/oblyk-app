@@ -29,16 +29,25 @@ export default {
   data () {
     return {
       geoJsons: null,
-      guideBookPaperMetaTitle: `
-      ${this.$t('meta.generics.map')}
-      ${this.$t('meta.guideBookPaper.title', {
-        name: (this.guideBookPaper || {}).name
-      })}`,
-      guideBookPaperMetaDescription: `
-      ${this.$t('meta.generics.map')}
-      ${this.$t('meta.guideBookPaper.description', {
-        name: (this.guideBookPaper || {}).name
-      })}`
+      guideBookPaperMetaTitle: this.$t('metaTitle', {
+        name: this.guideBookPaper?.name
+      }),
+      guideBookPaperMetaDescription: this.$t('metaDescription', {
+        name: this.guideBookPaper?.name
+      })
+    }
+  },
+
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: "La carte de %{name}, topo d'escalade",
+        metaDescription: "Voir la carte du topo d'escalade %{name}."
+      },
+      en: {
+        metaTitle: 'Map of %{name}, climbing guide book',
+        metaDescription: 'See the map of %{name} climbing guide book'
+      }
     }
   },
 

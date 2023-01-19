@@ -26,9 +26,20 @@ export default {
   mixins: [GymFetchConcern],
   middleware: ['auth'],
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Ajouter un administrateur'
+      },
+      en: {
+        metaTitle: 'Add administrator'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.gym.administrators')
+      title: this.$t('metaTitle')
     }
   },
 

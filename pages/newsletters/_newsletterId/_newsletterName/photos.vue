@@ -67,7 +67,7 @@ export default {
 
   head () {
     return {
-      title: this.$t('meta.newsletter.photos')
+      title: 'Photo de la newsletter'
     }
   },
 

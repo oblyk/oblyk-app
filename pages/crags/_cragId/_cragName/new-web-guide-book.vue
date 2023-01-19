@@ -22,9 +22,20 @@ export default {
   components: { GuideBookWebForm },
   middleware: ['auth'],
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Ajouter un topo web'
+      },
+      en: {
+        metaTitle: 'Add web guide'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.guideBookWeb.new')
+      title: this.$t('metaTitle')
     }
   }
 }

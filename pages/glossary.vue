@@ -111,13 +111,26 @@ export default {
     }
   },
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: "Lexique des terms d'escalade",
+        metaDescription: "Le lexique communautaire des termes de l'escalade pour décoder le parler grimpeur·euse"
+      },
+      en: {
+        metaTitle: 'Glossary of climbing terms',
+        metaDescription: "The community lexicon of climbing terms to decode the climber's language"
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.glossary.title'),
+      title: this.$t('metaTitle'),
       meta: [
-        { hid: 'description', name: 'description', content: this.$t('meta.glossary.description') },
-        { hid: 'og:title', property: 'og:title', content: this.$t('meta.glossary.title') },
-        { hid: 'og:description', property: 'og:description', content: this.$t('meta.glossary.description') },
+        { hid: 'description', name: 'description', content: this.$t('metaDescription') },
+        { hid: 'og:title', property: 'og:title', content: this.$t('metaTitle') },
+        { hid: 'og:description', property: 'og:description', content: this.$t('metaDescription') },
         { hid: 'og:image', property: 'og:image', content: `${process.env.VUE_APP_OBLYK_APP_URL}/images/oblyk-og-image.jpg` }
       ]
     }

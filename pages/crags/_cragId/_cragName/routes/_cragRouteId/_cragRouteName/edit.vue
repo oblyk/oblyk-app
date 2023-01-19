@@ -52,7 +52,7 @@ export default {
 
   head () {
     return {
-      title: this.$t('meta.generics.edit', { name: (this.cragRoute || {}).name })
+      title: this.$t('actions.editName', { name: this.cragRoute?.name })
     }
   }
 }

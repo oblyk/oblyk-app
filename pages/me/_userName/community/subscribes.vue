@@ -63,9 +63,20 @@ export default {
     }
   },
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Mes abonnées'
+      },
+      en: {
+        metaTitle: 'My followers'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.currentUser.subscribes')
+      title: this.$t('metaTitle')
     }
   },
 

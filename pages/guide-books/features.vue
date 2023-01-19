@@ -172,13 +172,26 @@ export default {
     }
   },
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: "Topos d'escalades et fonctionnalités",
+        metaDescription: "Oblyk propose de nombreux outils permettant de trouver les topos, connaître les sites d'escalade qu'ils présentent, avoir une topothèque numérique, etc."
+      },
+      en: {
+        metaTitle: 'Climbing guides and features',
+        metaDescription: 'Oblyk offers many tools for finding guides, knowing the climbing crags they present, having a digital topo library, etc.'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.guideBookFeature.title'),
+      title: this.$t('metaTitle'),
       meta: [
-        { hid: 'description', name: 'description', content: this.$t('meta.guideBookFeature.description') },
-        { hid: 'og:title', property: 'og:title', content: this.$t('meta.guideBookFeature.title') },
-        { hid: 'og:description', property: 'og:description', content: this.$t('meta.guideBookFeature.description') },
+        { hid: 'description', name: 'description', content: this.$t('metaDescription') },
+        { hid: 'og:title', property: 'og:title', content: this.$t('metaTitle') },
+        { hid: 'og:description', property: 'og:description', content: this.$t('metaDescription') },
         { hid: 'og:image', property: 'og:image', content: `${process.env.VUE_APP_OBLYK_APP_URL}/images/oblyk-og-image.jpg` }
       ]
     }

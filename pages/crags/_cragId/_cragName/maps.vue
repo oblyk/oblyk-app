@@ -104,15 +104,28 @@ export default {
       mdiMap,
       geoJsons: null,
       approaches: [],
-      cragMapMetaTitle: `${this.$t('meta.generics.map')} ${this.$t('meta.crag.title', {
-        name: (this.crag || {}).name,
-        region: (this.crag || {}).region
-      })}`,
-      cragMapMetaDescription: `${this.$t('meta.generics.map')} ${this.$t('meta.crag.description', {
-        name: (this.crag || {}).name,
-        region: (this.crag || {}).region,
-        city: (this.crag || {}).city
-      })}`
+      cragMapMetaTitle: this.$t('metaTitle', {
+        name: this.crag?.name,
+        region: this.crag?.region
+      }),
+      cragMapMetaDescription: this.$t('metaDescription', {
+        name: this.crag?.name,
+        region: this.crag?.region,
+        city: this.crag?.city
+      })
+    }
+  },
+
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'La carte de %{name}, escalade en %{region}',
+        metaDescription: "La carte de %{name} : site d'escalade à %{city} en %{region}"
+      },
+      en: {
+        metaTitle: 'Map of %{name}, climb in %{region}',
+        metaDescription: 'Map of %{name} : climbing crag in %{city} in %{region}'
+      }
     }
   },
 

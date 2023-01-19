@@ -24,15 +24,28 @@ export default {
 
   data () {
     return {
-      areaPhotosMetaTitle: `${this.$t('meta.generics.pictures')} ${this.$t('meta.crag.title', {
-        name: (this.area || {}).name,
-        region: (this.area || {}).region
-      })}`,
-      areaPhotosMetaDescription: `${this.$t('meta.generics.pictures')} ${this.$t('meta.crag.description', {
-        name: (this.area || {}).name,
-        region: (this.area || {}).region,
-        city: (this.area || {}).city
-      })}`
+      areaPhotosMetaTitle: this.$t('metaTitle', {
+        name: this.area?.name,
+        region: this.area?.region
+      }),
+      areaPhotosMetaDescription: this.$t('metaDescription', {
+        name: this.area?.name,
+        region: this.area?.region,
+        city: this.area?.city
+      })
+    }
+  },
+
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: "Les photos de %{name}, Groupe de sites d'escalade",
+        metaDescription: "Voir les photos du groupe de sites d'escalade de %{name}, quels spots de grimpe il présente ou encore quelle variété de cotations on y trouve"
+      },
+      en: {
+        metaTitle: 'Pictures of %{name}, climbing crags group',
+        metaDescription: 'See the pictures of the group of climbing sites of %{name}, what kind of climbing spots it offers or what variety of grades can be found there'
+      }
     }
   },
 

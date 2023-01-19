@@ -33,9 +33,20 @@ export default {
     }
   },
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Administrateur requis'
+      },
+      en: {
+        metaTitle: 'Required administrator'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.gym.requiredAdministrator')
+      title: this.$t('metaTitle')
     }
   }
 }

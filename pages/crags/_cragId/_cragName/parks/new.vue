@@ -23,9 +23,20 @@ export default {
   components: { ParkForm },
   mixins: [CragConcern],
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Ajouter un parking'
+      },
+      en: {
+        metaTitle: 'Add a park'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.park.new')
+      title: this.$t('metaTitle')
     }
   }
 }

@@ -19,13 +19,26 @@ import AppFooter from '@/components/layouts/AppFooter'
 export default {
   components: { AppFooter },
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: "Vous n'êtes plus inscrit à la newsletter",
+        metaDescription: 'Vous être désinscrit de la newsletter, à bientôt'
+      },
+      en: {
+        metaTitle: 'You are no longer subscribed to the newsletter',
+        metaDescription: 'You are unsubscribed from the newsletter, see you soon'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.newsletters.unsubscribe.successTitle'),
+      title: this.$t('metaTitle'),
       meta: [
-        { hid: 'description', name: 'description', content: this.$t('meta.newsletter.unsubscribe.successDescription') },
-        { hid: 'og:title', property: 'og:title', content: this.$t('meta.newsletters.unsubscribe.successTitle') },
-        { hid: 'og:description', property: 'og:description', content: this.$t('meta.newsletter.unsubscribe.successDescription') },
+        { hid: 'description', name: 'description', content: this.$t('metaDescription') },
+        { hid: 'og:title', property: 'og:title', content: this.$t('metaTitle') },
+        { hid: 'og:description', property: 'og:description', content: this.$t('metaDescription') },
         { hid: 'og:url', property: 'og:url', content: `${process.env.VUE_APP_OBLYK_APP_URL}/newsletters/successful-unsubscribe` }
       ]
     }

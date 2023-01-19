@@ -41,9 +41,20 @@ export default {
     }
   },
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Choisissez un secteur'
+      },
+      en: {
+        metaTitle: 'Choose a sector'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.gym.route.chooseSector')
+      title: this.$t('metaTitle')
     }
   }
 }

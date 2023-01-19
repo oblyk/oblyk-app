@@ -19,9 +19,20 @@ export default {
   components: { OrganizationForm },
   middleware: ['auth'],
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Enregistrer mon organisation'
+      },
+      en: {
+        metaTitle: 'Register my organization'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.organization.new')
+      title: this.$t('metaTitle')
     }
   }
 }

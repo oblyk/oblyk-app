@@ -21,9 +21,20 @@ export default {
   components: { CommentForm },
   middleware: ['auth'],
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Ajouter un commentaire'
+      },
+      en: {
+        metaTitle: 'Add comment'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.comment.new')
+      title: this.$t('metaTitle')
     }
   }
 }

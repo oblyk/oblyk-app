@@ -23,9 +23,20 @@ export default {
   components: { VideoForm },
   middleware: ['auth'],
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Ajouter une video'
+      },
+      en: {
+        metaTitle: 'Add a video'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.video.new')
+      title: this.$t('metaTitle')
     }
   }
 }

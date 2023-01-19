@@ -9,16 +9,16 @@ export const GymConcern = {
 
   computed: {
     gymMetaTitle () {
-      return this.$t('meta.gym.title', { name: (this.gym || {}).name, city: (this.gym || {}).city })
+      return this.$t('metaTitle', { name: this.gym?.name, city: this.gym?.city })
     },
     gymMetaDescription () {
       return this.$t(
-        'meta.gym.description',
+        'metaDescription',
         {
-          name: (this.gym || {}).name,
-          city: (this.gym || {}).city,
-          big_city: (this.gym || {}).big_city,
-          region: (this.gym || {}).region
+          name: this.gym?.name,
+          city: this.gym?.city,
+          big_city: this.gym?.big_city,
+          region: this.gym?.region
         }
       )
     },
@@ -30,8 +30,19 @@ export const GymConcern = {
       }
     },
     gymMetaUrl () {
-      if (this.gym) {
-        return `${process.env.VUE_APP_OBLYK_APP_URL}${this.gym.path}`
+      return `${process.env.VUE_APP_OBLYK_APP_URL}${this.gym?.path}`
+    }
+  },
+
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: "%{name}, salle d'escalade à %{city}",
+        metaDescription: "%{name} est une salle d'escalade à %{city} en %{region} (proche de %{big_city}). consultez la localisation, les photos, le topo, etc."
+      },
+      en: {
+        metaTitle: '%{name}, climbing gym in  %{city}',
+        metaDescription: '%{name} is a climbing gym in  %{city} in %{region} (near to %{big_city}). consult the location, photos, indoor guide, etc.'
       }
     }
   },

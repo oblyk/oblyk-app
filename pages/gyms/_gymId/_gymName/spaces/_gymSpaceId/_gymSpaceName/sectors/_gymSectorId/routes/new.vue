@@ -28,9 +28,20 @@ export default {
   components: { GymRouteForm, Spinner },
   mixins: [GymSectorConcern],
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Ajouter une ligne'
+      },
+      en: {
+        metaTitle: 'Add a new route'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.gym.route.new')
+      title: this.$t('metaTitle')
     }
   }
 }

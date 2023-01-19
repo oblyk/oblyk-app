@@ -135,6 +135,23 @@ export default {
       mdiAccountMultipleCheckOutline,
       mdiBookCheck
     }
+  },
+
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Mon profil Oblyk'
+      },
+      en: {
+        metaTitle: 'My Oblyk profile'
+      }
+    }
+  },
+
+  head () {
+    return {
+      title: this.$t('metaTitle')
+    }
   }
 }
 </script>

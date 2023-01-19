@@ -21,9 +21,20 @@ export default {
   components: { GuideBookPaperForm },
   middleware: ['auth'],
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Ajouter un topo'
+      },
+      en: {
+        metaTitle: 'Add guide book'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.guideBookPaper.new')
+      title: this.$t('metaTitle')
     }
   }
 }

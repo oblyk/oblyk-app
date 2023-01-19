@@ -121,13 +121,26 @@ export default {
     })
   },
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: "Escalade en France: falaises, topos et salles d'escalade",
+        metaDescription: "Retrouve les informations sur les sites d'escalade en France (voie, grande voie, bloc, via ferrata ...), les topos et les salles d'escalade sur Oblyk"
+      },
+      en: {
+        metaTitle: 'Climbing in France: crags, guide books and climbing gyms',
+        metaDescription: 'Find information on climbing sites in France (routes, multi pitches, boulder, via ferrata ...), guide books and climbing gyms on Oblyk'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.climbingAround.france.title'),
+      title: this.$t('metaTitle'),
       meta: [
-        { hid: 'description', name: 'description', content: this.$t('meta.climbingAround.france.description') },
-        { hid: 'og:title', property: 'og:title', content: this.$t('meta.climbingAround.france.title') },
-        { hid: 'og:description', property: 'og:description', content: this.$t('meta.climbingAround.france.description') },
+        { hid: 'description', name: 'description', content: this.$t('metaDescription') },
+        { hid: 'og:title', property: 'og:title', content: this.$t('metaTitle') },
+        { hid: 'og:description', property: 'og:description', content: this.$t('metaDescription') },
         { hid: 'og:image', property: 'og:image', content: `${process.env.VUE_APP_OBLYK_APP_URL}/images/meta-image-escalade-en-france.jpg` }
       ]
     }

@@ -19,9 +19,20 @@ export default {
   components: { PlaceOfSaleForm },
   middleware: ['auth'],
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Ajouter un point de vente'
+      },
+      en: {
+        metaTitle: 'Add a place of sale'
+      }
+    }
+  },
+
   head () {
     return {
-      title: this.$t('meta.placeOfSale.new')
+      title: this.$t('metaTitle')
     }
   }
 }
