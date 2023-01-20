@@ -145,7 +145,13 @@ export default {
       author: 'Oblyk Community',
       lang: 'fr',
       theme_color: '#121212',
-      background_color: '#121212'
+      background_color: '#121212',
+      scope: `${process.env.VUE_APP_OBLYK_APP_URL}`,
+      orientation: 'any',
+      categories: [
+        'social',
+        'sports'
+      ]
     },
     meta: {
       name: 'Oblyk - Climbing Community',
@@ -153,6 +159,9 @@ export default {
       description: 'Oblyk est un site participatif d\'escalade outdoor et indoor, vous pouvez consulter les informations des falaises, noter ses croix, trouver un partenaire d\'escalade, etc.',
       theme_color: '#121212',
       lang: 'fr'
+    },
+    icon: {
+      purpose: ['maskable']
     }
   },
 
