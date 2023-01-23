@@ -1,3 +1,4 @@
+import pwaIcons from './pwa-icons.options'
 require('dotenv').config()
 
 export default {
@@ -151,7 +152,8 @@ export default {
       categories: [
         'social',
         'sports'
-      ]
+      ],
+      ...pwaIcons
     },
     meta: {
       name: 'Oblyk - Climbing Community',
@@ -160,9 +162,7 @@ export default {
       theme_color: '#121212',
       lang: 'fr'
     },
-    icon: {
-      purpose: ['maskable']
-    }
+    icon: false
   },
 
   loading: {
