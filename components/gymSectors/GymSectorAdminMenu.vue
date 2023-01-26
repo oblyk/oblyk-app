@@ -27,6 +27,7 @@
 
       <!-- Edit polyline -->
       <v-list-item
+        v-if="showPlanOptions"
         link
         @click="startEditSectorPolygon()"
       >
@@ -68,10 +69,10 @@
 
       <!-- Remove sector polygone -->
       <v-divider
-        v-if="gymSector.hasPolygon"
+        v-if="gymSector.hasPolygon && showPlanOptions"
       />
       <v-list-item
-        v-if="gymSector.hasPolygon"
+        v-if="gymSector.hasPolygon && showPlanOptions"
         link
         @click="removeSectorPolygon()"
       >
@@ -106,6 +107,10 @@ export default {
     gymSector: {
       type: Object,
       required: true
+    },
+    showPlanOptions: {
+      type: Boolean,
+      default: true
     }
   },
 

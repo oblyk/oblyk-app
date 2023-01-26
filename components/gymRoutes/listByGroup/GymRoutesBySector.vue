@@ -20,7 +20,7 @@
           {{ item.sector.name }}
           <v-spacer />
           <v-btn
-            v-if="item.sector.hasPolygon"
+            v-if="item.sector.hasPolygon && showPlanOptions"
             icon
             :title="$t('components.gymSector.viewOnMap')"
             @click="setMapViewOnSector(item.sector.id)"
@@ -32,6 +32,7 @@
           <gym-sector-admin-menu
             v-if="currentUserIsGymAdmin()"
             :gym-sector="item.sector"
+            :show-plan-options="showPlanOptions"
           />
         </v-subheader>
 
@@ -86,6 +87,10 @@ export default {
     showSectorId: {
       type: Number,
       default: null
+    },
+    showPlanOptions: {
+      type: Boolean,
+      default: true
     }
   },
 

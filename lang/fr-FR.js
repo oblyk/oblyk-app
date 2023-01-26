@@ -1035,7 +1035,9 @@ export default {
       gymAround: '%{count} salle dans les environs | %{count} salles dans les environs',
       gymCount: '<strong>%{count}</strong> salle | <strong>%{count}</strong> salles',
       gymAroundInCreate: 'Il y a une salle à moins de 1 km : | Il y a %{count} salles à moins de 1km :',
-      doNotCreateADuplicate: 'Ne créer pas un doublon si un·e autre grimpeur·euse a déjà référencé cette salle !'
+      doNotCreateADuplicate: 'Ne créer pas un doublon si un·e autre grimpeur·euse a déjà référencé cette salle !',
+      spaces: 'Les espaces',
+      guidebook: 'Le topo'
     },
     gymAdmin: {
       welcome: "Bienvenue sur la page d'administration de %{name}",

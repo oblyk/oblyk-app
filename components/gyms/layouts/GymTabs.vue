@@ -8,15 +8,8 @@
     </v-tab>
 
     <v-tab
-      v-if="gym.gym_spaces.length === 0"
-      :to="`${gym.adminPath}/first-space`"
-    >
-      {{ $t('components.gym.tabs.guideBook') }}
-    </v-tab>
-
-    <v-tab
       v-if="gym.gym_spaces.length > 0"
-      :to="gym.firstSpacePath"
+      :to="spacesPath"
     >
       <v-badge
         color="primary"
@@ -48,6 +41,18 @@ export default {
     gym: {
       type: Object,
       required: true
+    }
+  },
+
+  computed: {
+    spacesPath () {
+      if (this.gym.gym_spaces.length === 0) {
+        return `${this.gym.adminPath}/first-space`
+      } else if (this.gym.gym_spaces.length === 1) {
+        return this.gym.firstSpacePath
+      } else {
+        return `${this.gym.path}/spaces`
+      }
     }
   }
 }

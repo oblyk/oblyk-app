@@ -94,6 +94,20 @@
           />
         </v-col>
 
+        <!-- Space -->
+        <v-col v-if="showSpace" cols="6">
+          <description-line
+            :icon="mdiMap"
+            :item-title="$t('models.gymRoute.gym_space_id')"
+          >
+            <template #content>
+              <nuxt-link :to="gymRoute.gymSpacePath">
+                {{ gymRoute.gym_space.name }}
+              </nuxt-link>
+            </template>
+          </description-line>
+        </v-col>
+
         <!-- Route opener -->
         <v-col v-if="gymRoute.openers" cols="6">
           <description-line
@@ -178,7 +192,8 @@ import {
   mdiCalendar,
   mdiTextureBox,
   mdiBolt,
-  mdiPound
+  mdiPound,
+  mdiMap
 } from '@mdi/js'
 import { SessionConcern } from '@/concerns/SessionConcern'
 import { DateHelpers } from '@/mixins/DateHelpers'
@@ -212,6 +227,10 @@ export default {
     gymRoute: {
       type: Object,
       required: true
+    },
+    showSpace: {
+      type: Boolean,
+      default: false
     }
   },
 
@@ -228,7 +247,8 @@ export default {
       mdiCalendar,
       mdiTextureBox,
       mdiBolt,
-      mdiPound
+      mdiPound,
+      mdiMap
     }
   },
 

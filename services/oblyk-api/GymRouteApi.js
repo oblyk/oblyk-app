@@ -1,11 +1,12 @@
 import BaseApi from '~/services/oblyk-api/BaseApi'
 
 class GymRouteApi extends BaseApi {
-  allInGym (gymId) {
+  allInGym (gymId, groupBy, orderBy) {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/gyms/${gymId}/gym_routes.json`,
-      headers: { HttpApiAccessToken: this.apiAccessToken }
+      headers: { HttpApiAccessToken: this.apiAccessToken },
+      params: { group_by: groupBy, order_by: orderBy }
     })
   }
 

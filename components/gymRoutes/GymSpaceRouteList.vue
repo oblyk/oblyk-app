@@ -30,6 +30,7 @@
         :sectors="sectors"
         :show-sector-id="showSectorId"
         :get-routes="getRoutes"
+        :show-plan-options="showPlanOptions"
       />
 
       <!-- If sort by opened_at -->
@@ -105,11 +106,19 @@ export default {
   props: {
     gymSpace: {
       type: Object,
-      required: true
+      default: null
+    },
+    gym: {
+      type: Object,
+      default: null
     },
     activeGymRouteId: {
       type: [String, Number],
       default: null
+    },
+    showPlanOptions: {
+      type: Boolean,
+      default: true
     }
   },
 
@@ -172,14 +181,27 @@ export default {
   methods: {
     getRoutes (sectorFilter = null) {
       this.loadingRoutes = true
+      const gymRouteApi = new GymRouteApi(this.$axios, this.$auth)
+      let promise
 
-      new GymRouteApi(this.$axios, this.$auth)
-        .allInSpace(
-          this.gymSpace.gym.id,
-          this.gymSpace.id,
-          this.sort,
-          this.sort
-        )
+      if (this.gym) {
+        promise = gymRouteApi
+          .allInGym(
+            this.gym.id,
+            this.sort,
+            this.sort
+          )
+      } else {
+        promise = gymRouteApi
+          .allInSpace(
+            this.gymSpace.gym.id,
+            this.gymSpace.id,
+            this.sort,
+            this.sort
+          )
+      }
+
+      promise
         .then((resp) => {
           this.gymRoutes = []
           this.sectors = []

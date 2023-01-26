@@ -49,7 +49,10 @@
         />
 
         <!-- Space selector -->
-        <gym-space-selector :gym-space="gymSpace" />
+        <gym-space-selector
+          :gym-space="gymSpace"
+          :gym="gymSpace.gym"
+        />
 
         <!-- Space description -->
         <div class="gym-space-description mt-2">

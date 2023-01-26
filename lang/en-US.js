@@ -1035,7 +1035,9 @@ export default {
       gymAround: '%{count} gym around | %{count} gyms around',
       gymCount: '<strong>%{count}</strong> gym | <strong>%{count}</strong> gyms',
       cragAroundInCreate: 'There are one gym within 1km: | There are %{count} gyms within 1km:',
-      doNotCreateADuplicate: 'Do not create a duplicate if another climber has already referenced this gym!'
+      doNotCreateADuplicate: 'Do not create a duplicate if another climber has already referenced this gym!',
+      spaces: 'Spaces',
+      guidebook: 'Routes list'
     },
     gymAdmin: {
       welcome: 'Welcome to the administration page of %{name}',

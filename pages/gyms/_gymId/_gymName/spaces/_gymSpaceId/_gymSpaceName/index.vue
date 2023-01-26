@@ -14,7 +14,7 @@
     <!-- Gym space -->
     <div
       v-else
-      class="gym-spaces-interface"
+      class="gym-space-interface"
     >
       <!-- Plan area -->
       <div
@@ -209,7 +209,7 @@ export default {
 </script>
 
 <style lang="scss">
-.gym-spaces-interface {
+.gym-space-interface {
   max-width: 100vw;
   margin-left: 0;
   height: calc(100vh - 64px);

@@ -7,7 +7,7 @@
     </div>
     <div v-if="!loadingGymSpaces && gymSpaces.length">
       <p class="mb-2">
-        <small class="text--disabled">Les espaces de {{ gymSpace.gym.name }} :</small>
+        <small class="text--disabled">Les espaces de {{ gym.name }} :</small>
       </p>
       <div class="text-no-wrap overflow-x-auto">
         <nuxt-link
@@ -45,6 +45,7 @@
           </p>
         </nuxt-link>
         <nuxt-link
+          v-if="gymSpace"
           :to="`/gyms/${gym.id}/${gym.slug_name}/spaces`"
           class="gym-space-block text-center discrete-link inactive"
         >
@@ -79,24 +80,22 @@ export default {
   props: {
     gymSpace: {
       type: Object,
+      default: null
+    },
+    gym: {
+      type: Object,
       required: true
     }
   },
 
   data () {
     return {
-      selectedGymSpaceId: this.gymSpace.id,
+      selectedGymSpaceId: this.gymSpace?.id,
       gymSpaces: [],
       loadingGymSpaces: true,
 
       mdiMapOutline,
       mdiAsterisk
-    }
-  },
-
-  computed: {
-    gym () {
-      return this.gymSpace.gym
     }
   },
 
@@ -109,7 +108,7 @@ export default {
       this.loadingGymSpaces = true
       this.gymSpaces = []
       new GymSpaceApi(this.$axios, this.$auth)
-        .all(this.gymSpace.gym.id)
+        .all(this.gym.id)
         .then((resp) => {
           for (const space of resp.data) {
             this.gymSpaces.push(new GymSpace({ attributes: space }))
@@ -138,7 +137,7 @@ export default {
             selectedGymSpace = gymSpace
           }
         }
-        this.$router.push(`/gyms/${this.gymSpace.gym.id}/${this.gymSpace.gym.slug_name}/spaces/${this.selectedGymSpaceId}/${selectedGymSpace.slug_name}`)
+        this.$router.push(`/gyms/${this.gym.id}/${this.gym.slug_name}/spaces/${this.selectedGymSpaceId}/${selectedGymSpace.slug_name}`)
       }
     }
   }
