@@ -11,8 +11,13 @@
         two-line
       >
         <v-subheader class="font-weight-bold mb-1 px-0 border-bottom">
-          <v-icon left small class="mb-1">
-            {{ mdiNumeric7BoxMultiple }}
+          <v-icon
+            left
+            small
+            class="mb-1"
+            :color="gradeValueToColor(item.grade)"
+          >
+            {{ mdiCircle }}
           </v-icon>
           <span v-html="gradeValueToText(item.grade)" />
         </v-subheader>
@@ -31,7 +36,7 @@
 </template>
 
 <script>
-import { mdiNumeric7BoxMultiple } from '@mdi/js'
+import { mdiCircle } from '@mdi/js'
 import { DateHelpers } from '@/mixins/DateHelpers'
 import GymRouteListItem from '~/components/gymRoutes/GymRouteListItem.vue'
 import { GradeMixin } from '~/mixins/GradeMixin'
@@ -57,7 +62,7 @@ export default {
 
   data () {
     return {
-      mdiNumeric7BoxMultiple
+      mdiCircle
     }
   }
 }
