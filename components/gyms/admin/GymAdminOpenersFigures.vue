@@ -1,33 +1,33 @@
 <template>
   <v-card
-    :to="`${gym.adminPath}/administrators`"
+    :to="`${gym.adminPath}/openers`"
     class="full-height"
   >
     <v-card-title>
       <v-icon left>
-        {{ mdiAccountGroup }}
+        {{ mdiBolt }}
       </v-icon>
-      {{ $t('components.gymAdmin.team') }}
+      {{ $t('components.gymAdmin.openers') }}
     </v-card-title>
     <v-card-text class="text-center pt-5 pb-7">
-      <spinner v-if="loadingGymAdministrators" :full-height="false" />
+      <spinner v-if="loadingOpeners" :full-height="false" />
       <strong
-        v-if="!loadingGymAdministrators"
+        v-if="!loadingOpeners"
         class="big-font-size"
       >
-        {{ gymAdministrators.length }}
+        {{ openers.length }}
       </strong>
     </v-card-text>
   </v-card>
 </template>
 
 <script>
-import { mdiAccountGroup } from '@mdi/js'
+import { mdiBolt } from '@mdi/js'
 import Spinner from '@/components/layouts/Spiner'
-import GymAdministratorApi from '~/services/oblyk-api/GymAdministratorApi'
+import GymOpenerApi from '~/services/oblyk-api/GymOpenerApi'
 
 export default {
-  name: 'GymAdminTeamFigures',
+  name: 'GymAdminOpenersFigures',
   components: { Spinner },
   props: {
     gym: {
@@ -38,28 +38,29 @@ export default {
 
   data () {
     return {
-      mdiAccountGroup,
-      loadingGymAdministrators: true,
-      gymAdministrators: []
+      loadingOpeners: true,
+      openers: [],
+
+      mdiBolt
     }
   },
 
   created () {
-    this.getGymAdministrators()
+    this.getOpeners()
   },
 
   methods: {
-    getGymAdministrators () {
-      new GymAdministratorApi(this.$axios, this.$auth)
+    getOpeners () {
+      new GymOpenerApi(this.$axios, this.$auth)
         .all(this.gym.id)
         .then((resp) => {
-          this.gymAdministrators = resp.data
+          this.openers = resp.data
         })
         .catch((err) => {
           this.$root.$emit('alertFromApiError', err, 'gymAdministrator')
         })
         .finally(() => {
-          this.loadingGymAdministrators = false
+          this.loadingOpeners = false
         })
     }
   }

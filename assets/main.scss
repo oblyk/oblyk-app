@@ -231,6 +231,8 @@ strong {
 .required-field .v-label::after {
   content: " *";
   color: #f44336;
+  font-size: 1.4em;
+  vertical-align: text-top;
 }
 
 .black-btn-icon {

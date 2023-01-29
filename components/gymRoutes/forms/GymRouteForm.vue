@@ -62,10 +62,10 @@
       </p>
 
       <!-- Openers -->
-      <v-text-field
-        v-model="data.openers"
-        outlined
-        :label="$t('models.gymRoute.openers')"
+      <gym-opener-input
+        v-model="data.gym_opener_ids"
+        :gym="gymSector.gym"
+        :with-deactivated-opener="isEditingForm()"
       />
 
       <!-- Open at -->
@@ -288,10 +288,12 @@ import TagsInput from '@/components/forms/TagsInput'
 import CragRouteApi from '~/services/oblyk-api/CragRouteApi'
 import CragRoute from '@/models/CragRoute'
 import MarkdownInput from '@/components/forms/MarkdownInput'
+import GymOpenerInput from '~/components/forms/GymOpenerInput'
 
 export default {
   name: 'GymRouteForm',
   components: {
+    GymOpenerInput,
     MarkdownInput,
     TagsInput,
     DatePickerInput,
@@ -325,7 +327,7 @@ export default {
       data: {
         id: this.gymRoute?.id,
         name: this.gymRoute?.name,
-        openers: this.gymRoute?.openers,
+        gym_opener_ids: this.gymRoute?.gym_opener_ids || [],
         description: this.gymRoute?.description,
         height: this.gymRoute?.height || this.gymSector.height,
         points: this.gymRoute?.points,

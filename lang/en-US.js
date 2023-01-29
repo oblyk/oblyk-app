@@ -47,6 +47,7 @@ export default {
     finish: 'Finish',
     backToName: 'Back to %{name}',
     addMember: 'Add a member',
+    addOpener: 'Add a opener',
     see: 'See',
     seeOnTheMap: 'See on the map',
     seeEmail: 'See email',
@@ -60,6 +61,7 @@ export default {
     change: 'Change',
     IUnderstand: 'I understand',
     activate: 'Activate',
+    deactivate: 'Deactivate',
     disable: 'Disable',
     newPassword: 'New password',
     changeMyPassword: 'Changer mon mot de passe',
@@ -517,6 +519,8 @@ export default {
       colorMulti: 'Choose up to %{colorsLimit} colours',
       colorSingle: 'Choose a colour',
       ascentStatusIcon: 'Status of the sequence',
+      gymOpener: 'Openers',
+      gymAddOpener: 'Add an opener',
       colorSystem: {
         chooseOrder: 'Choose a colour order',
         usage: 'Already used %{count} times here',
@@ -1045,6 +1049,7 @@ export default {
       GuideBookSettings: 'Guide books settings',
       gestionSettings: 'Gestion',
       team: 'Team',
+      openers: 'Openers',
       home: 'Dashboard',
       difficultySystem: 'Difficulty system',
       spaces: 'Spaces',
@@ -1881,6 +1886,13 @@ export default {
     },
     gymAdministrator: {
       email: 'Email'
+    },
+    gymOpener: {
+      name: 'Name / Alias',
+      first_name: 'First name',
+      last_name: 'Last name',
+      email: 'e-mail',
+      email_explain: "Enter the opener's email address to link it to their Oblyk account"
     },
     gymSpace: {
       loading: 'Loading space ...',

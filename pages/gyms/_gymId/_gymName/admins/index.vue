@@ -29,49 +29,55 @@
         class="mb-1"
       />
       <v-row>
-        <v-col class="col-md-12 pa-2">
+        <v-col cols="12" class="pa-2">
           <gym-admin-welcome :gym="gym" />
         </v-col>
       </v-row>
 
       <!-- Guide book settings -->
       <v-row>
-        <div class="col-sm-12 mt-10">
+        <v-col cols="12" class="mt-10">
           <p class="subtitle-1 mb-0">
             <v-icon left>
               {{ mdiMapLegend }}
             </v-icon>
             {{ $t('components.gymAdmin.GuideBookSettings') }}
           </p>
-        </div>
+        </v-col>
       </v-row>
       <v-row>
-        <div class="col-sm-12 col-md-6 col-lg-4 pa-2">
+        <v-col cols="12" md="6" lg="4" class="pa-2">
           <gym-admin-route-figures :gym="gym" />
-        </div>
-        <div class="col-sm-12 col-md-6 col-lg-4 pa-2">
+        </v-col>
+        <v-col cols="12" md="6" lg="4" class="pa-2">
           <gym-admin-space-figures :gym="gym" />
-        </div>
-        <div class="col-sm-12 col-md-6 col-lg-4 pa-2">
+        </v-col>
+        <v-col cols="12" md="6" lg="4" class="pa-2">
           <gym-admin-difficulty-system-figures :gym="gym" />
-        </div>
+        </v-col>
       </v-row>
 
       <!-- Gestion settings -->
       <v-row>
-        <div class="col-sm-12 mt-10">
+        <v-col
+          cols="12"
+          class="mt-10"
+        >
           <p class="subtitle-1 mb-0">
             <v-icon left>
               {{ mdiTune }}
             </v-icon>
             {{ $t('components.gymAdmin.gestionSettings') }}
           </p>
-        </div>
+        </v-col>
       </v-row>
       <v-row>
-        <div class="col-sm-12 col-md-6 col-lg-4 pa-2">
+        <v-col cols="12" md="6" lg="4" class="pa-2">
           <gym-admin-team-figures :gym="gym" />
-        </div>
+        </v-col>
+        <v-col cols="12" md="6" lg="4" class="pa-2">
+          <gym-admin-openers-figures :gym="gym" />
+        </v-col>
       </v-row>
     </div>
   </v-container>
@@ -85,10 +91,12 @@ import GymAdminTeamFigures from '~/components/gyms/admin/GymAdminTeamFigures'
 import GymAdminWelcome from '~/components/gyms/admin/GymAdminWelcome'
 import GymAdminSpaceFigures from '~/components/gyms/admin/GymAdminSpaceFigures'
 import GymAdminRouteFigures from '~/components/gyms/admin/GymAdminRouteFigures'
+import GymAdminOpenersFigures from '~/components/gyms/admin/GymAdminOpenersFigures.vue'
 
 export default {
   meta: { orphanRoute: true },
   components: {
+    GymAdminOpenersFigures,
     GymAdminRouteFigures,
     GymAdminSpaceFigures,
     GymAdminWelcome,

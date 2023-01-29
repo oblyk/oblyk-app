@@ -109,11 +109,11 @@
         </v-col>
 
         <!-- Route opener -->
-        <v-col v-if="gymRoute.openers" cols="6">
+        <v-col v-if="gymRoute.openers.length > 0" cols="6">
           <description-line
             :icon="mdiBolt"
             :item-title="$t('models.gymRoute.openers')"
-            :item-value="gymRoute.openers"
+            :item-value="gymRoute.openers.map(opener => opener.name).join(', ')"
           />
         </v-col>
 

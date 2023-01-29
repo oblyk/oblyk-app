@@ -47,6 +47,7 @@ export default {
     finish: 'Terminer',
     backToName: 'Retour à %{name}',
     addMember: 'Ajouter un membre',
+    addOpener: 'Ajouter un·e ouvreur·euse',
     see: 'Voir',
     seeOnTheMap: 'Voir sur la carte',
     seeEmail: "Voir l'email",
@@ -60,6 +61,7 @@ export default {
     change: 'Changer',
     IUnderstand: "J'ai compris",
     activate: 'Activer',
+    deactivate: 'Désactiver',
     disable: 'Désactiver',
     newPassword: 'Nouveau mot de passe',
     changeMyPassword: 'Changer mon mot de passe',
@@ -517,6 +519,8 @@ export default {
       colorMulti: "Choisissez jusqu'à %{colorsLimit} couleurs",
       colorSingle: 'Choisissez une couleur',
       ascentStatusIcon: "Status de l'enchaînement",
+      gymOpener: 'Ouvreurs, Ouvreuses',
+      gymAddOpener: 'Ajouter un·e ouvreur·euse',
       colorSystem: {
         chooseOrder: 'Choisissez un ordre de couleur',
         usage: 'Déjà utilisé %{count} fois ici',
@@ -1045,6 +1049,7 @@ export default {
       GuideBookSettings: 'Paramètres topos',
       gestionSettings: 'Gestion',
       team: 'Équipe',
+      openers: 'Ouvreurs et ouvreuses',
       home: 'Dashboard',
       difficultySystem: 'Système de difficulté',
       spaces: 'Espaces',
@@ -1881,6 +1886,13 @@ export default {
     },
     gymAdministrator: {
       user: 'Un compte Oblyk associé à ce mail'
+    },
+    gymOpener: {
+      name: 'Nom / Pseudonyme',
+      first_name: 'Prénom',
+      last_name: 'Nom de famille',
+      email: 'email',
+      email_explain: "Renseigner l'e-mail de l'ouvreur ou l'ouvreuse pour le·a lier à son compte Oblyk"
     },
     gymSpace: {
       loading: "Chargement de l'espace ...",

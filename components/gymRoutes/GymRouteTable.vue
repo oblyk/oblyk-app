@@ -116,9 +116,6 @@ export default {
 
   data () {
     return {
-      mdiBackburger,
-      mdiForwardburger,
-      mdiPencil,
       routes: [],
       mountedRoute: true,
       loadingRoutes: true,
@@ -181,7 +178,11 @@ export default {
           }
         ],
         routes: []
-      }
+      },
+
+      mdiBackburger,
+      mdiForwardburger,
+      mdiPencil
     }
   },
 
@@ -227,7 +228,7 @@ export default {
             grade: route.grade_to_s,
             sector: route.gym_sector.name,
             space: route,
-            opener: route.openers,
+            opener: route.openers.map(opener => opener.name).join(', '),
             openedAt: route.opened_at,
             ascentsCount: route.ascents_count,
             edit: route
