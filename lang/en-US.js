@@ -77,6 +77,7 @@ export default {
     addComment: 'Add comment',
     addOpinion: 'Ajouter my opinion',
     editComment: 'Edit comment',
+    editInformation: 'Edit information',
     reportProblem: 'Report a problem',
     addVideo: 'Add video',
     editVideo: 'Edit video',
@@ -1057,7 +1058,12 @@ export default {
       dismountedRoutes: 'List of dismounted routes',
       mountedRoutes: 'List of mounted routes',
       dismountRoutes: 'Dismount %{count} line | Dismount %{count} lines',
-      mountRoutes: 'Mount %{count} line | Mount %{count} lines'
+      mountRoutes: 'Mount %{count} line | Mount %{count} lines',
+      missingInformation: 'Some information about your room is missing, like :',
+      addYourLogo: 'Add your logo',
+      updateYourLogo: 'Change your logo',
+      addYourBanner: 'Add your banner',
+      updateYourBanner: 'Change your banner'
     },
     gymAdministrationRequest: {
       helloName: 'Hello %{name}',

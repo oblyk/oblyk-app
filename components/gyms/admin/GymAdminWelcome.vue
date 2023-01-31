@@ -13,6 +13,18 @@
     </v-card-title>
     <v-card-text>
       {{ $t('components.gymAdmin.welcome', { name: gym.name }) }}
+      <p
+        v-if="missingInformation.length > 0"
+        class="mt-6"
+      >
+        <v-icon
+          left
+          color="amber"
+        >
+          {{ mdiAlertCircle }}
+        </v-icon>
+        {{ $t('components.gymAdmin.missingInformation') }} {{ missingInformation.join(', ') }}
+      </p>
     </v-card-text>
     <v-card-actions>
       <v-btn
@@ -25,22 +37,156 @@
         </v-icon>
         {{ $t('components.gymAdmin.publicPage') }}
       </v-btn>
+      <v-menu offset-y>
+        <template #activator="{ on, attrs }">
+          <v-btn
+            text
+            outlined
+            class="ml-2 pr-3"
+            v-bind="attrs"
+            v-on="on"
+          >
+            <v-icon left>
+              {{ mdiDotsVertical }}
+            </v-icon>
+            {{ $t('actions.edit') }}
+            <v-icon
+              v-if="missingSomething"
+              right
+              color="amber"
+            >
+              {{ mdiAlertCircle }}
+            </v-icon>
+          </v-btn>
+        </template>
+        <v-list>
+          <v-list-item :to="`${gym.path}/edit`">
+            <v-list-item-icon>
+              <v-icon>
+                {{ mdiPencil }}
+              </v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>
+                {{ $t('actions.editInformation') }}
+              </v-list-item-title>
+            </v-list-item-content>
+            <v-list-item-action
+              v-if="missingInformation.length > 0"
+            >
+              <v-icon
+                small
+                left
+                color="amber"
+              >
+                {{ mdiAlertCircle }}
+              </v-icon>
+            </v-list-item-action>
+          </v-list-item>
+          <v-list-item :to="`${gym.path}/logo`">
+            <v-list-item-icon>
+              <v-icon>
+                {{ mdiAlphaLCircleOutline }}
+              </v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title
+                v-text="missingLogo ? $t('components.gymAdmin.addYourLogo') : $t('components.gymAdmin.updateYourLogo')"
+              />
+            </v-list-item-content>
+            <v-list-item-action
+              v-if="missingLogo.length > 0"
+            >
+              <v-icon
+                small
+                left
+                color="amber"
+              >
+                {{ mdiAlertCircle }}
+              </v-icon>
+            </v-list-item-action>
+          </v-list-item>
+          <v-list-item :to="`${gym.path}/banner`">
+            <v-list-item-icon>
+              <v-icon>
+                {{ mdiImageArea }}
+              </v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title
+                v-text="missingBanner ? $t('components.gymAdmin.addYourBanner') : $t('components.gymAdmin.updateYourBanner')"
+              />
+            </v-list-item-content>
+            <v-list-item-action
+              v-if="missingBanner.length > 0"
+            >
+              <v-icon
+                small
+                left
+                color="amber"
+              >
+                {{ mdiAlertCircle }}
+              </v-icon>
+            </v-list-item-action>
+          </v-list-item>
+        </v-list>
+      </v-menu>
     </v-card-actions>
   </v-card>
 </template>
 
 <script>
-import { mdiEarth } from '@mdi/js'
+import {
+  mdiEarth,
+  mdiPencil,
+  mdiDotsVertical,
+  mdiAlertCircle,
+  mdiAlphaLCircleOutline,
+  mdiImageArea
+} from '@mdi/js'
 
 export default {
   name: 'GymAdminWelcome',
   props: {
-    gym: Object
+    gym: {
+      type: Object,
+      required: true
+    }
   },
 
   data () {
     return {
-      mdiEarth
+      mdiEarth,
+      mdiPencil,
+      mdiDotsVertical,
+      mdiAlertCircle,
+      mdiAlphaLCircleOutline,
+      mdiImageArea
+    }
+  },
+
+  computed: {
+    missingLogo () {
+      return !this.gym.logo
+    },
+
+    missingBanner () {
+      return !this.gym.banner
+    },
+
+    missingInformation () {
+      const informationMissing = []
+      if (!this.gym.description) { informationMissing.push(this.$t('models.gym.description')) }
+      if (!this.gym.address) { informationMissing.push(this.$t('models.gym.address')) }
+      if (!this.gym.postal_code) { informationMissing.push(this.$t('models.gym.postal_code')) }
+      if (!this.gym.city) { informationMissing.push(this.$t('models.gym.city')) }
+      if (!this.gym.big_city) { informationMissing.push(this.$t('models.gym.big_city')) }
+      if (!this.gym.web_site) { informationMissing.push(this.$t('models.gym.web_site')) }
+      return informationMissing
+    },
+
+    missingSomething () {
+      return (this.missingLogo || this.missingBanner || this.missingInformation.length > 0)
     }
   }
 }
