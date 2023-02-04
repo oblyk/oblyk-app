@@ -44,7 +44,10 @@
               </v-list-item-avatar>
               <v-list-item-content>
                 <v-list-item-title>
-                  <h1 class="mb-n1" style="color: white">
+                  <h1
+                    class="mb-n1 text-truncate"
+                    style="color: white"
+                  >
                     {{ gym.name }}
                   </h1>
                 </v-list-item-title>
