@@ -1,8 +1,5 @@
 <template>
-  <v-card
-    :to="presentation ? gymGrade.path : null"
-    :hover="presentation"
-  >
+  <v-card>
     <v-card-title>
       {{ gymGrade.name }}
     </v-card-title>
@@ -31,7 +28,6 @@
             <tr
               v-for="gradeLine in gymGrade.gradeLines"
               :key="gradeLine.id"
-              @click="!presentation ? $router.push(`${gradeLine.path}/edit`) : null"
             >
               <td class="smallest-table-column">
                 {{ gradeLine.order }}
@@ -53,50 +49,83 @@
               <td>
                 {{ gradeLine.name }}
               </td>
+              <td
+                v-if="editable"
+                class="text-right"
+              >
+                <v-btn
+                  icon
+                  :to="`${gradeLine.path}/edit`"
+                >
+                  <v-icon small>
+                    {{ mdiPencil }}
+                  </v-icon>
+                </v-btn>
+              </td>
             </tr>
           </tbody>
         </template>
       </v-simple-table>
-
-      <div v-if="!presentation" class="text-right mt-4">
-        <v-btn
-          color="error"
-          class="ml-2"
-          :loading="loadingDelete"
-          outlined
-          @click="deleteGrade()"
-        >
-          {{ $t('actions.delete') }}
-        </v-btn>
-
-        <v-btn
-          v-if="gymGrade.need_grade_line"
-          color="primary"
-          class="ml-2"
-          outlined
-          :to="`${gymGrade.path}/grade-lines/new`"
-        >
-          <v-icon left>
-            {{ mdiPlus }}
-          </v-icon>
-          {{ $t('actions.addLevel') }}
-        </v-btn>
-
-        <v-btn
-          color="primary"
-          class="ml-2"
-          :to="`${gymGrade.path}/edit`"
-          outlined
-        >
-          {{ $t('actions.edit') }}
-        </v-btn>
-      </div>
     </v-card-text>
+    <v-card-actions>
+      <v-spacer />
+
+      <!-- buttons in presentation mode -->
+      <v-btn
+        v-if="presentation"
+        color="primary"
+        text
+        :to="gymGrade.path"
+      >
+        {{ $t('actions.see') }}
+      </v-btn>
+
+      <!-- Buttons in editable mode -->
+      <v-btn
+        v-if="editable"
+        color="error"
+        class="ml-2"
+        :loading="loadingDelete"
+        text
+        @click="deleteGrade()"
+      >
+        <v-icon left>
+          {{ mdiTrashCan }}
+        </v-icon>
+        {{ $t('actions.delete') }}
+      </v-btn>
+
+      <v-btn
+        v-if="editable && gymGrade.need_grade_line"
+        color="primary"
+        class="ml-2"
+        text
+        :to="`${gymGrade.path}/grade-lines/new`"
+      >
+        <v-icon left>
+          {{ mdiPlus }}
+        </v-icon>
+        {{ $t('actions.addLevel') }}
+      </v-btn>
+
+      <v-btn
+        v-if="editable"
+        color="primary"
+        class="ml-2"
+        :to="`${gymGrade.path}/edit`"
+        text
+      >
+        <v-icon left>
+          {{ mdiPencil }}
+        </v-icon>
+        {{ $t('actions.edit') }}
+      </v-btn>
+    </v-card-actions>
   </v-card>
 </template>
 
 <script>
-import { mdiCircle, mdiPlus } from '@mdi/js'
+import { mdiCircle, mdiPlus, mdiPencil, mdiTrashCan } from '@mdi/js'
 import GymGradeApi from '~/services/oblyk-api/GymGradeApi'
 
 export default {
@@ -115,9 +144,18 @@ export default {
 
   data () {
     return {
+      loadingDelete: false,
+
       mdiCircle,
       mdiPlus,
-      loadingDelete: false
+      mdiPencil,
+      mdiTrashCan
+    }
+  },
+
+  computed: {
+    editable () {
+      return !this.presentation
     }
   },
 

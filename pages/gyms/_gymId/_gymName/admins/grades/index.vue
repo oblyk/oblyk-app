@@ -9,19 +9,28 @@
         :key="gymGrade.id"
         class="mb-4"
       >
-        <gym-grade-card :gym-grade="gymGradeModel(gymGrade)" />
+        <gym-grade-card :gym-grade="gymGrade" />
       </div>
 
-      <p v-if="gymGrades.length === 0" class="text-center mt-10 mb-10">
+      <p
+        v-if="gymGrades.length === 0"
+        class="text-center mt-10 mb-10"
+      >
         {{ $t('components.gymGrade.noSystem') }}
       </p>
 
-      <div class="mt-3" :class="gymGrades.length === 0 ? 'text-center' : 'text-right'">
+      <div
+        class="mt-3"
+        :class="gymGrades.length === 0 ? 'text-center' : 'text-right'"
+      >
         <v-btn
           color="primary"
-          outlined
+          text
           :to="`/gyms/${gymId}/${gymName}/admins/grades/new`"
         >
+          <v-icon left>
+            {{ mdiPlus }}
+          </v-icon>
           {{ $t('actions.addSystem') }}
         </v-btn>
       </div>
@@ -30,11 +39,12 @@
 </template>
 
 <script>
+import { mdiPlus } from '@mdi/js'
+import { GymFetchConcern } from '~/concerns/GymFetchConcern'
 import Spinner from '@/components/layouts/Spiner'
 import GymGradeApi from '@/services/oblyk-api/GymGradeApi'
 import GymGradeCard from '@/components/gymGrades/GymGradeCard'
 import GymGrade from '@/models/GymGrade'
-import { GymFetchConcern } from '~/concerns/GymFetchConcern'
 
 export default {
   meta: { orphanRoute: true },
@@ -46,7 +56,9 @@ export default {
       loadingGymGrades: true,
       gymGrades: [],
       gymId: this.$route.params.gymId,
-      gymName: this.$route.params.gymName
+      gymName: this.$route.params.gymName,
+
+      mdiPlus
     }
   },
 
@@ -97,7 +109,9 @@ export default {
       new GymGradeApi(this.$axios, this.$auth)
         .all(this.gymId)
         .then((resp) => {
-          this.gymGrades = resp.data
+          for (const gymGrade of resp.data) {
+            this.gymGrades.push(new GymGrade({ attributes: gymGrade }))
+          }
         })
         .catch((err) => {
           this.$root.$emit('alertFromApiError', err, 'gymGrade')
@@ -105,10 +119,6 @@ export default {
         .finally(() => {
           this.loadingGymGrades = false
         })
-    },
-
-    gymGradeModel (data) {
-      return new GymGrade({ attributes: data })
     }
   }
 }
