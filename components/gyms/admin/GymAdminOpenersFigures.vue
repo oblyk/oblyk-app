@@ -7,12 +7,13 @@
       {{ $t('components.gymAdmin.openers') }}
     </v-card-title>
     <v-card-text class="text-center pt-5 pb-7">
-      <spinner v-if="loadingOpeners" :full-height="false" />
-      <strong
-        v-if="!loadingOpeners"
-        class="big-font-size"
-      >
-        {{ openers.length }}
+      <strong class="big-font-size">
+        <span v-if="loadingOpeners">
+          ...
+        </span>
+        <span v-else>
+          {{ openers.length }}
+        </span>
       </strong>
     </v-card-text>
     <v-card-actions>
@@ -30,12 +31,10 @@
 
 <script>
 import { mdiBolt } from '@mdi/js'
-import Spinner from '@/components/layouts/Spiner'
 import GymOpenerApi from '~/services/oblyk-api/GymOpenerApi'
 
 export default {
   name: 'GymAdminOpenersFigures',
-  components: { Spinner },
   props: {
     gym: {
       type: Object,

@@ -52,7 +52,7 @@ export default {
 
   data () {
     return {
-      routesCount: 0,
+      routesCount: '...',
 
       mdiSourceBranch,
       mdiTable,
