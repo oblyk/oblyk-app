@@ -1,8 +1,5 @@
 <template>
-  <v-card
-    :to="`${gym.adminPath}/routes/tables`"
-    class="full-height"
-  >
+  <v-card class="full-height">
     <v-card-title>
       <v-icon left>
         {{ mdiSourceBranch }}
@@ -14,11 +11,34 @@
         {{ routesCount }}
       </strong>
     </v-card-text>
+    <v-card-actions>
+      <v-spacer />
+      <v-btn
+        text
+        color="primary"
+        :to="`${gym.adminPath}/routes/tables`"
+      >
+        <v-icon left>
+          {{ mdiTable }}
+        </v-icon>
+        {{ $t('components.gymAdmin.gestionSettings') }}
+      </v-btn>
+      <v-btn
+        text
+        color="primary"
+        :to="`${gym.adminPath}/routes/statistics`"
+      >
+        <v-icon left>
+          {{ mdiChartBar }}
+        </v-icon>
+        {{ $t('components.gymAdmin.statistic') }}
+      </v-btn>
+    </v-card-actions>
   </v-card>
 </template>
 
 <script>
-import { mdiSourceBranch } from '@mdi/js'
+import { mdiSourceBranch, mdiTable, mdiChartBar } from '@mdi/js'
 import GymApi from '~/services/oblyk-api/GymApi'
 
 export default {
@@ -32,8 +52,11 @@ export default {
 
   data () {
     return {
+      routesCount: 0,
+
       mdiSourceBranch,
-      routesCount: 0
+      mdiTable,
+      mdiChartBar
     }
   },
 

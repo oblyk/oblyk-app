@@ -1,6 +1,5 @@
 <template>
   <v-card
-    :to="`${gym.adminPath}/administrators`"
     class="full-height"
   >
     <v-card-title>
@@ -18,6 +17,16 @@
         {{ gymAdministrators.length }}
       </strong>
     </v-card-text>
+    <v-card-actions>
+      <v-spacer />
+      <v-btn
+        text
+        color="primary"
+        :to="`${gym.adminPath}/administrators`"
+      >
+        {{ $t('components.gymAdmin.team') }}
+      </v-btn>
+    </v-card-actions>
   </v-card>
 </template>
 

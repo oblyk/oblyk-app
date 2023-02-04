@@ -1,8 +1,5 @@
 <template>
-  <v-card
-    :to="gym.gym_grades_count > 0 ? `${gym.adminPath}/grades` : `${gym.adminPath}/first-difficulty-system`"
-    class="full-height"
-  >
+  <v-card class="full-height">
     <v-card-title>
       <v-icon left>
         {{ mdiSortBoolAscending }}
@@ -14,6 +11,16 @@
         {{ gym.gym_grades_count }}
       </strong>
     </v-card-text>
+    <v-card-actions>
+      <v-spacer />
+      <v-btn
+        text
+        color="primary"
+        :to="gym.gym_grades_count > 0 ? `${gym.adminPath}/grades` : `${gym.adminPath}/first-difficulty-system`"
+      >
+        {{ $t('components.gymAdmin.difficultySystemShort') }}
+      </v-btn>
+    </v-card-actions>
   </v-card>
 </template>
 

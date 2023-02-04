@@ -1,8 +1,5 @@
 <template>
-  <v-card
-    :to="spacesPath"
-    class="full-height"
-  >
+  <v-card class="full-height">
     <v-card-title>
       <v-icon left>
         {{ mdiMap }}
@@ -18,18 +15,30 @@
       <v-spacer />
       <v-btn
         :to="`${gym.spacePath}/new`"
-        small
         text
         color="primary"
       >
+        <v-icon left>
+          {{ mdiPlus }}
+        </v-icon>
         {{ $t('components.gymSpace.create') }}
+      </v-btn>
+      <v-btn
+        :to="gym.spacePath"
+        elevation="0"
+        color="primary"
+      >
+        <v-icon left>
+          {{ mdiMap }}
+        </v-icon>
+        {{ $t('components.gymSpace.list') }}
       </v-btn>
     </v-card-actions>
   </v-card>
 </template>
 
 <script>
-import { mdiMap } from '@mdi/js'
+import { mdiMap, mdiPlus } from '@mdi/js'
 export default {
   name: 'GymAdminSpaceFigures',
   props: {
@@ -41,7 +50,8 @@ export default {
 
   data () {
     return {
-      mdiMap
+      mdiMap,
+      mdiPlus
     }
   },
 

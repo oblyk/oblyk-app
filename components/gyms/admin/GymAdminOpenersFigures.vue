@@ -1,8 +1,5 @@
 <template>
-  <v-card
-    :to="`${gym.adminPath}/openers`"
-    class="full-height"
-  >
+  <v-card class="full-height">
     <v-card-title>
       <v-icon left>
         {{ mdiBolt }}
@@ -18,6 +15,16 @@
         {{ openers.length }}
       </strong>
     </v-card-text>
+    <v-card-actions>
+      <v-spacer />
+      <v-btn
+        text
+        color="primary"
+        :to="`${gym.adminPath}/openers`"
+      >
+        {{ $t('components.gymAdmin.openers') }}
+      </v-btn>
+    </v-card-actions>
   </v-card>
 </template>
 
