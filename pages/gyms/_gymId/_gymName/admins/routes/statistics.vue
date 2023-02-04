@@ -19,6 +19,23 @@ export default {
   meta: { orphanRoute: true },
   mixins: [GymFetchConcern],
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: '%{name} - Statistique'
+      },
+      en: {
+        metaTitle: '%{name} - Statistic'
+      }
+    }
+  },
+
+  head () {
+    return {
+      title: this.$t('metaTitle', { name: this.gym?.name })
+    }
+  },
+
   computed: {
     breadcrumbs () {
       return [

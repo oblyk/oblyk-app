@@ -18,6 +18,23 @@ export default {
   components: { GymAdminRoutesTabs, GymRoutesTable },
   mixins: [GymFetchConcern],
 
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: '%{name} - Gestion des ouvertures'
+      },
+      en: {
+        metaTitle: '%{name} - Routes management'
+      }
+    }
+  },
+
+  head () {
+    return {
+      title: this.$t('metaTitle', { name: this.gym?.name })
+    }
+  },
+
   computed: {
     breadcrumbs () {
       return [
