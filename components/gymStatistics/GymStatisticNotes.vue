@@ -118,7 +118,7 @@ export default {
 
   methods: {
     percent (note) {
-      return this.noteSum !== 0 ? parseInt(note) / this.noteSum * 100 : 0
+      return this.noteSum !== 0 ? Math.round(parseInt(note) / this.noteSum * 1000) / 10 : 0
     },
 
     getGrades () {
