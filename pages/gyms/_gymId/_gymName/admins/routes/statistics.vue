@@ -3,21 +3,113 @@
     <div v-if="gym">
       <v-breadcrumbs :items="breadcrumbs" />
       <gym-admin-routes-tabs :gym="gym" />
-      <p class="text-center font-italic mt-10">
-        Développement en cours ...
-      </p>
+      <div>
+        <!-- Filters -->
+        <gym-statistic-filters
+          :emit-filters="emitFilters"
+          :gym="gym"
+          class="mt-4"
+        />
+
+        <!-- Statistic -->
+        <v-row class="mt-2">
+          <!-- Figures -->
+          <v-col
+            cols="12"
+            md="4"
+            class="align-stretch"
+          >
+            <gym-statistic-figures
+              :filters="filters"
+              :gym="gym"
+            />
+          </v-col>
+
+          <!-- Route by grades -->
+          <v-col
+            cols="12"
+            md="4"
+            class="align-stretch"
+          >
+            <gym-statistic-grades-chart
+              :filters="filters"
+              :gym="gym"
+            />
+          </v-col>
+
+          <!-- Routes by level -->
+          <v-col
+            cols="12"
+            md="4"
+            class="align-stretch"
+          >
+            <gym-statistic-levels-chart
+              :filters="filters"
+              :gym="gym"
+            />
+          </v-col>
+
+          <!-- Notes -->
+          <v-col
+            cols="12"
+            md="3"
+            class="align-stretch"
+          >
+            <gym-statistic-notes
+              :filters="filters"
+              :gym="gym"
+            />
+          </v-col>
+
+          <!-- Opening frequencies -->
+          <v-col
+            cols="12"
+            md="9"
+            class="align-stretch"
+          >
+            <gym-statistic-opening-frequencies-chart
+              :filters="filters"
+              :gym="gym"
+            />
+          </v-col>
+        </v-row>
+      </div>
     </div>
   </v-container>
 </template>
 
 <script>
-import GymAdminRoutesTabs from '~/components/gyms/layouts/GymAdminRoutesTabs.vue'
 import { GymFetchConcern } from '~/concerns/GymFetchConcern'
+import GymAdminRoutesTabs from '~/components/gyms/layouts/GymAdminRoutesTabs.vue'
+import GymStatisticFilters from '~/components/gymStatistics/GymStatisticFilters.vue'
+import GymStatisticFigures from '~/components/gymStatistics/GymStatisticFigures.vue'
+import GymStatisticGradesChart from '~/components/gymStatistics/GymStatisticGradesChart.vue'
+import GymStatisticLevelsChart from '~/components/gymStatistics/GymStatisticLevelsChart.vue'
+import GymStatisticNotes from '~/components/gymStatistics/GymStatisticNotes.vue'
+import GymStatisticOpeningFrequenciesChart from '~/components/gymStatistics/GymStatisticOpeningFrequenciesChart.vue'
 
 export default {
-  components: { GymAdminRoutesTabs },
+  components: {
+    GymStatisticOpeningFrequenciesChart,
+    GymStatisticNotes,
+    GymStatisticLevelsChart,
+    GymStatisticGradesChart,
+    GymStatisticFigures,
+    GymStatisticFilters,
+    GymAdminRoutesTabs
+  },
   meta: { orphanRoute: true },
   mixins: [GymFetchConcern],
+
+  data () {
+    return {
+      filters: {
+        date: this.$moment().format('YYYY-MM-DD'),
+        spaceIds: [],
+        openerIds: []
+      }
+    }
+  },
 
   i18n: {
     messages: {
@@ -58,6 +150,16 @@ export default {
           exact: true
         }
       ]
+    }
+  },
+
+  methods: {
+    emitFilters (filters) {
+      this.filters = {
+        date: filters.date,
+        space_ids: filters.spaceIds,
+        opener_ids: filters.openerIds
+      }
     }
   }
 }

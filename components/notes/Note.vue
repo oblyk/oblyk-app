@@ -1,43 +1,43 @@
 <template>
   <span
-    v-if="note"
+    v-if="note !== null"
     :title="noteLabel()"
     class="route-note"
   >
     <span v-if="note === 0">
-      <v-icon small>{{ mdiStarOutline }}</v-icon>
-      <v-icon small>{{ mdiStarOutline }}</v-icon>
-      <v-icon small>{{ mdiStarOutline }}</v-icon>
+      <v-icon :color="color" small>{{ mdiStarOutline }}</v-icon>
+      <v-icon :color="color" small>{{ mdiStarOutline }}</v-icon>
+      <v-icon :color="color" small>{{ mdiStarOutline }}</v-icon>
     </span>
     <span v-if="note === 1">
-      <v-icon small>{{ mdiStarHalfFull }}</v-icon>
-      <v-icon small>{{ mdiStarOutline }}</v-icon>
-      <v-icon small>{{ mdiStarOutline }}</v-icon>
+      <v-icon :color="color" small>{{ mdiStarHalfFull }}</v-icon>
+      <v-icon :color="color" small>{{ mdiStarOutline }}</v-icon>
+      <v-icon :color="color" small>{{ mdiStarOutline }}</v-icon>
     </span>
     <span v-if="note === 2">
-      <v-icon small>{{ mdiStar }}</v-icon>
-      <v-icon small>{{ mdiStarOutline }}</v-icon>
-      <v-icon small>{{ mdiStarOutline }}</v-icon>
+      <v-icon :color="color" small>{{ mdiStar }}</v-icon>
+      <v-icon :color="color" small>{{ mdiStarOutline }}</v-icon>
+      <v-icon :color="color" small>{{ mdiStarOutline }}</v-icon>
     </span>
     <span v-if="note === 3">
-      <v-icon small>{{ mdiStar }}</v-icon>
-      <v-icon small>{{ mdiStarHalfFull }}</v-icon>
-      <v-icon small>{{ mdiStarOutline }}</v-icon>
+      <v-icon :color="color" small>{{ mdiStar }}</v-icon>
+      <v-icon :color="color" small>{{ mdiStarHalfFull }}</v-icon>
+      <v-icon :color="color" small>{{ mdiStarOutline }}</v-icon>
     </span>
     <span v-if="note === 4">
-      <v-icon small>{{ mdiStar }}</v-icon>
-      <v-icon small>{{ mdiStar }}</v-icon>
-      <v-icon small>{{ mdiStarOutline }}</v-icon>
+      <v-icon :color="color" small>{{ mdiStar }}</v-icon>
+      <v-icon :color="color" small>{{ mdiStar }}</v-icon>
+      <v-icon :color="color" small>{{ mdiStarOutline }}</v-icon>
     </span>
     <span v-if="note === 5">
-      <v-icon small>{{ mdiStar }}</v-icon>
-      <v-icon small>{{ mdiStar }}</v-icon>
-      <v-icon small>{{ mdiStarHalfFull }}</v-icon>
+      <v-icon :color="color" small>{{ mdiStar }}</v-icon>
+      <v-icon :color="color" small>{{ mdiStar }}</v-icon>
+      <v-icon :color="color" small>{{ mdiStarHalfFull }}</v-icon>
     </span>
     <span v-if="note === 6">
-      <v-icon small>{{ mdiStar }}</v-icon>
-      <v-icon small>{{ mdiStar }}</v-icon>
-      <v-icon small>{{ mdiStar }}</v-icon>
+      <v-icon :color="color" small>{{ mdiStar }}</v-icon>
+      <v-icon :color="color" small>{{ mdiStar }}</v-icon>
+      <v-icon :color="color" small>{{ mdiStar }}</v-icon>
     </span>
   </span>
 </template>
@@ -52,6 +52,10 @@ export default {
     note: {
       type: Number,
       required: true
+    },
+    color: {
+      type: String,
+      default: null
     }
   },
 
