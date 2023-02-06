@@ -4,7 +4,7 @@
     class="white--text align-end rounded"
     height="320px"
   >
-    <div class="d-inline-block pa-4">
+    <div class="d-block d-md-inline-block pa-2 pa-md-3 pa-lg-4">
       <v-card>
         <v-card-title class="py-1">
           <v-list class="py-0">
