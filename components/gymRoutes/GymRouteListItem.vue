@@ -46,7 +46,7 @@
           :gym-route="gymRoute"
         />
         <note
-          v-if="gymRoute.note"
+          v-if="gymRoute.note !== null"
           :note="gymRoute.note"
         />
       </v-list-item-subtitle>

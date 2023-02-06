@@ -61,7 +61,7 @@
             :item-title="$t('models.gymRoute.note')"
           >
             <template #content>
-              <note :note="gymRoute.note" />
+              <note v-if="gymRoute.note !== null" :note="gymRoute.note" />
               <small class="grey--text ml-1">({{ gymRoute.note_count }})</small>
             </template>
           </description-line>
@@ -165,8 +165,8 @@
           class="mt-2 mb-5"
         >
           {{ ascent.comment }}
-          <br v-if="ascent.note">
-          <note :note="ascent.note" />
+          <br v-if="ascent.note !== null">
+          <note v-if="ascent.note !== null" :note="ascent.note" />
           {{ $t('common.by') }}
           <nuxt-link :to="`/users/${ascent.user.uuid}/${ascent.user.slug_name}`">
             {{ ascent.user.first_name }}

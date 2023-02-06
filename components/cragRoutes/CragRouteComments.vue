@@ -35,7 +35,7 @@
             :text="comment.comment.comment"
           />
           <div>
-            <note v-if="comment.comment.note" :note="comment.comment.note" />
+            <note v-if="comment.comment.note !== null" :note="comment.comment.note" />
             <small>
               <nuxt-link :to="`/users/${comment.comment.creator.uuid}/${comment.comment.creator.slug_name}`">
                 {{ comment.comment.creator.full_name }}

@@ -31,7 +31,7 @@
         </cite>
         <br v-if="ascentGymRoute.comment">
         <note
-          v-if="ascentGymRoute.note"
+          v-if="ascentGymRoute.note !== null"
           :note="ascentGymRoute.note"
         />
       </p>

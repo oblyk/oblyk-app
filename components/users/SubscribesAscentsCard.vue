@@ -37,7 +37,7 @@
                 {{ ascent.comment }}
               </p>
               <note
-                v-if="ascent.note"
+                v-if="ascent.note !== null"
                 :note="ascent.note"
               />
             </div>
