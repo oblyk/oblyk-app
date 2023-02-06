@@ -90,6 +90,19 @@
         :label="$t('models.gymRoute.description')"
       />
 
+      <!-- Sector -->
+      <v-select
+        v-if="isEditingForm()"
+        v-model="data.gym_sector_id"
+        :items="similarSectors"
+        item-text="name"
+        item-value="id"
+        :label="$t('models.gymRoute.gym_sector_id')"
+        outlined
+        required
+        :loading="loadingSimilarSector"
+      />
+
       <p class="subtitle-2">
         <span @click="showAutomaticParameters = !showAutomaticParameters">
           <v-icon left>
@@ -324,6 +337,8 @@ export default {
       showAutomaticParameters: true,
       showResultingParameters: false,
       loadingGymGrade: true,
+      loadingSimilarSector: true,
+      similarSectors: [],
       data: {
         id: this.gymRoute?.id,
         name: this.gymRoute?.name,
@@ -338,7 +353,7 @@ export default {
         climbing_type: this.gymRoute?.climbing_type || this.gymSector.climbing_type,
         gym_grade_line_id: this.gymRoute?.gym_grade_line_id,
         gym_space_id: this.gymSector.gym_space.id,
-        gym_sector_id: this.gymSector.id,
+        gym_sector_id: null,
         gym_id: this.gymSector.gym.id,
         sections: this.gymRoute?.sections || [{ grade: null, height: null, tags: [] }]
       },
@@ -365,6 +380,12 @@ export default {
     this.multiPitch = this.data.sections.length > 1
     const urlParams = new URLSearchParams(window.location.search)
     this.redirectTo = urlParams.get('redirect_to')
+
+    // Set gym sector id
+    this.data.gym_sector_id ||= this.gymSector.id
+    if (this.isEditingForm()) {
+      this.getSimilarSectors()
+    }
   },
 
   methods: {
@@ -405,6 +426,18 @@ export default {
         })
         .finally(() => {
           this.findingRandomName = false
+        })
+    },
+
+    getSimilarSectors () {
+      this.loadingSimilarSector = true
+      new GymRouteApi(this.$axios, this.$auth)
+        .similarSectors(this.gymSector.gym.id, this.gymRoute.id)
+        .then((resp) => {
+          this.similarSectors = resp.data
+        })
+        .finally(() => {
+          this.loadingSimilarSector = false
         })
     },
 

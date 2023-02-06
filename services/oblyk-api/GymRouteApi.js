@@ -43,6 +43,17 @@ class GymRouteApi extends BaseApi {
     })
   }
 
+  similarSectors (gymId, routeId) {
+    return this.axios.request({
+      method: 'GET',
+      url: `${this.baseUrl}/gyms/${gymId}/gym_routes/${routeId}/similar_sectors.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
+    })
+  }
+
   update (data) {
     return this.axios.request({
       method: 'PUT',
