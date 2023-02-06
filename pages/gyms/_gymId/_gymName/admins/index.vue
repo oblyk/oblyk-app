@@ -24,25 +24,23 @@
 
     <!-- Gym admin -->
     <div v-if="gym">
-      <v-breadcrumbs
-        :items="breadcrumbs"
-        class="mb-1"
-      />
       <v-row>
         <v-col cols="12" class="pa-2">
           <gym-admin-welcome :gym="gym" />
         </v-col>
       </v-row>
 
+      <v-breadcrumbs :items="breadcrumbs" />
+
       <!-- Guide book settings -->
       <v-row>
-        <v-col cols="12" class="mt-10">
-          <p class="subtitle-1 mb-0">
-            <v-icon left>
+        <v-col cols="12" class="mt-3">
+          <h4 class="mb-0">
+            <v-icon class="mb-1" left>
               {{ mdiMapLegend }}
             </v-icon>
             {{ $t('components.gymAdmin.GuideBookSettings') }}
-          </p>
+          </h4>
         </v-col>
       </v-row>
       <v-row>
@@ -61,14 +59,14 @@
       <v-row>
         <v-col
           cols="12"
-          class="mt-10"
+          class="mt-5"
         >
-          <p class="subtitle-1 mb-0">
-            <v-icon left>
+          <h4 class="mb-0">
+            <v-icon class="mb-1" left>
               {{ mdiTune }}
             </v-icon>
             {{ $t('components.gymAdmin.gestionSettings') }}
-          </p>
+          </h4>
         </v-col>
       </v-row>
       <v-row>
