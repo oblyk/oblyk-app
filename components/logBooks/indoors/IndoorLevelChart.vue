@@ -88,6 +88,10 @@ export default {
     height: 215px
   }
 
+  &.height-220 {
+    height: 220px
+  }
+
   &.height-250 {
     height: 250px
   }

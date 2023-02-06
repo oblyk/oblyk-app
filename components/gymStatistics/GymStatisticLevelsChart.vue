@@ -16,8 +16,12 @@
       <div v-if="levels.length > 0">
         <indoor-level-chart
           :data="levels[chartIndex].chart"
+          :height-class="levels.length > 1 ? 'height-220' : 'height-250'"
         />
-        <div class="text-no-wrap overflow-x-auto mt-3">
+        <div
+          v-if="levels.length > 1"
+          class="text-no-wrap overflow-x-auto mt-3"
+        >
           <v-chip
             v-for="(level, levelIndex) in levels"
             :key="`level-index-${levelIndex}`"
