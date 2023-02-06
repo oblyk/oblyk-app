@@ -1046,7 +1046,7 @@ export default {
       guidebook: 'Le topo'
     },
     gymAdmin: {
-      welcome: "Bienvenue sur la page d'administration de %{name}",
+      adminTitle: "Zone d'administration",
       publicPage: 'Page publique',
       GuideBookSettings: 'Paramètres topos',
       gestionSettings: 'Gestion',

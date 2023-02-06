@@ -1046,7 +1046,7 @@ export default {
       guidebook: 'Routes list'
     },
     gymAdmin: {
-      welcome: 'Welcome to the administration page of %{name}',
+      adminTitle: 'Administration area',
       publicPage: 'Public page',
       GuideBookSettings: 'Guide books settings',
       gestionSettings: 'Gestion',
