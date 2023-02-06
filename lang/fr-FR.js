@@ -1034,7 +1034,7 @@ export default {
       createDifficultySystemSpace: 'Créer mon premier système de difficulté',
       difficultySystem: 'Système de difficulté ?',
       administratorRequired: 'Vous devez être administrateur de la salle pour avoir accès à cette page.',
-      IAmManager: 'Je suis le gérant',
+      IAmManager: 'Je suis le·a gérant·e',
       contactAndLocalization: 'Contact & Localisation',
       seePhoneNumber: 'Voir le numéro de téléphone',
       seeEmail: "Voir l'email",
