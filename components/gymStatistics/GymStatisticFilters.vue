@@ -7,14 +7,14 @@
       {{ $t('components.gymStatistic.filterTitle') }}
     </h4>
     <v-row>
-      <v-col>
+      <v-col cols="12" md="4" lg="3">
         <date-picker-input
           v-model="filters.date"
           :label="$t('components.gymStatistic.filterDate')"
           :hide-details="true"
         />
       </v-col>
-      <v-col>
+      <v-col cols="12" md="4" lg="3">
         <v-select
           v-model="filters.spaceIds"
           :items="gym.gym_spaces"
@@ -26,7 +26,7 @@
           :label="$t('components.gymStatistic.filterSpace')"
         />
       </v-col>
-      <v-col>
+      <v-col cols="12" md="4" lg="4">
         <v-select
           v-model="filters.openerIds"
           :items="openers"
@@ -40,13 +40,15 @@
         />
       </v-col>
       <v-col
-        style="max-width: 150px"
+        cols="12"
+        md="12"
+        lg="2"
         class="text-right"
       >
         <v-btn
           class="mt-1"
           outlined
-          block
+          :block="$vuetify.breakpoint.lg"
           text
           large
           color="primary"
