@@ -1100,7 +1100,7 @@ export default {
     gymSpace: {
       list: 'Spaces',
       name: 'Space',
-      create: 'Create a new space',
+      create: 'New space',
       addNew: 'Add a new space',
       explain: 'A <cite>"space"</cite> and a large area of a room that can contain several sectors. example: "Lane space", "Block space", "Pan", etc.<br> It is up to you to find the best division for your room.',
       explainMissingPlan: 'Upload a plan of <cite>"%{name}"</cite> on which you can draw the sectors.',
