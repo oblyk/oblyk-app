@@ -1082,7 +1082,7 @@ export default {
       filterTitle: 'Filter mon analyse',
       filterDate: 'Analysé les ouvertures à la date du',
       filterSpace: 'Espaces à analyser',
-      filterOpener: 'Ouvreur',
+      filterOpener: 'Ouvreurs et ouvreuses',
       gradeChartTitle: 'Ouvertures par cotation',
       levelChartTitle: 'Ouvertures par niveau',
       notesTitle: 'Appréciation des ouvertures',
