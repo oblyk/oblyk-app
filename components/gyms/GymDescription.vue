@@ -25,19 +25,34 @@
       v-if="!gym.administered"
       class="text-center"
     >
-      <v-btn
-        outlined
-        :to="`${gym.path}/administration-request`"
-        color="primary"
+      <v-badge
+        content="beta"
+        color="blue"
+        overlap
       >
-        {{ $t('components.gym.IAmManager') }}
-      </v-btn>
+        <template #badge>
+          <v-icon
+            left
+            class="mr-1"
+          >
+            {{ mdiFlask }}
+          </v-icon>
+          Beta
+        </template>
+        <v-btn
+          outlined
+          :to="`${gym.path}/administration-request`"
+          color="primary"
+        >
+          {{ $t('components.gym.IAmManager') }}
+        </v-btn>
+      </v-badge>
     </v-card-text>
   </v-card>
 </template>
 
 <script>
-import { mdiText } from '@mdi/js'
+import { mdiText, mdiFlask } from '@mdi/js'
 
 const MarkdownText = () => import('@/components/ui/MarkdownText')
 
@@ -53,7 +68,8 @@ export default {
 
   data () {
     return {
-      mdiText
+      mdiText,
+      mdiFlask
     }
   }
 }
