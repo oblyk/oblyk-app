@@ -110,9 +110,7 @@
                     v-text="missingLogo ? $t('components.gymAdmin.addYourLogo') : $t('components.gymAdmin.updateYourLogo')"
                   />
                 </v-list-item-content>
-                <v-list-item-action
-                  v-if="missingLogo.length > 0"
-                >
+                <v-list-item-action v-if="missingLogo">
                   <v-icon
                     small
                     left
@@ -133,9 +131,7 @@
                     v-text="missingBanner ? $t('components.gymAdmin.addYourBanner') : $t('components.gymAdmin.updateYourBanner')"
                   />
                 </v-list-item-content>
-                <v-list-item-action
-                  v-if="missingBanner.length > 0"
-                >
+                <v-list-item-action v-if="missingBanner">
                   <v-icon
                     small
                     left
