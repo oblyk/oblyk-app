@@ -1,9 +1,31 @@
 <template>
   <div>
     <!-- Sort sector select -->
-    <div class="mb-2">
-      <gym-space-route-sort v-model="sort" />
-    </div>
+    <v-row class="mb-2">
+      <v-col
+        :cols="currentUserIsGymAdmin() ? '10' : '12'"
+      >
+        <gym-space-route-sort v-model="sort" />
+      </v-col>
+      <v-col
+        v-if="currentUserIsGymAdmin()"
+        cols="2"
+        class="text-right"
+      >
+        <v-btn
+          text
+          icon
+          large
+          color="primary"
+          :to="gymSpace ? `${gymSpace.path}/select-sector` : `${gym.path}/select-space`"
+          :title="$t('actions.addLine')"
+        >
+          <v-icon>
+            {{ mdiSourceBranchPlus }}
+          </v-icon>
+        </v-btn>
+      </v-col>
+    </v-row>
 
     <!-- Show highlighted sector -->
     <v-alert
@@ -82,6 +104,7 @@
 </template>
 
 <script>
+import { mdiSourceBranchPlus } from '@mdi/js'
 import { SessionConcern } from '@/concerns/SessionConcern'
 import GymSpaceRouteSort from '@/components/gymRoutes/partial/GymSpaceRouteSort'
 import GymRouteApi from '~/services/oblyk-api/GymRouteApi'
@@ -134,7 +157,9 @@ export default {
       loadingRoutes: true,
       firstLoaded: false,
       showSectorId: null,
-      showSectorName: null
+      showSectorName: null,
+
+      mdiSourceBranchPlus
     }
   },
 

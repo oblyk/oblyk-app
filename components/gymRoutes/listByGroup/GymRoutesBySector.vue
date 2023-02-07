@@ -51,18 +51,29 @@
       </p>
 
       <!-- Add route in sector -->
-      <gym-route-add-in-sort-by-sector
+      <div
         v-if="currentUserIsGymAdmin()"
-        :gym-sector="item.sector"
-      />
+        class="text-right"
+      >
+        <v-btn
+          text
+          color="primary"
+          small
+          :to="`${item.sector.path}/routes/new`"
+        >
+          <v-icon left>
+            {{ mdiSourceBranchPlus }}
+          </v-icon>
+          {{ $t('actions.addLine') }}
+        </v-btn>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import { mdiTextureBox, mdiImageFilterCenterFocusStrong } from '@mdi/js'
+import { mdiTextureBox, mdiImageFilterCenterFocusStrong, mdiSourceBranchPlus } from '@mdi/js'
 import { SessionConcern } from '@/concerns/SessionConcern'
-import GymRouteAddInSortBySector from '@/components/gymRoutes/partial/GymRouteAddInSortBySector'
 import GymRouteListItem from '~/components/gymRoutes/GymRouteListItem.vue'
 import GymSectorAdminMenu from '~/components/gymSectors/GymSectorAdminMenu.vue'
 
@@ -70,8 +81,7 @@ export default {
   name: 'GymRoutesBySector',
   components: {
     GymSectorAdminMenu,
-    GymRouteListItem,
-    GymRouteAddInSortBySector
+    GymRouteListItem
   },
   mixins: [SessionConcern],
 
@@ -97,7 +107,8 @@ export default {
   data () {
     return {
       mdiTextureBox,
-      mdiImageFilterCenterFocusStrong
+      mdiImageFilterCenterFocusStrong,
+      mdiSourceBranchPlus
     }
   },
 

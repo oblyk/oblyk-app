@@ -1102,6 +1102,7 @@ export default {
       list: 'Les espaces',
       create: 'Nouvel espace',
       addNew: 'Ajouter un nouvel espace',
+      chooseSpace: 'Choisissez un espace',
       explain: "Un <cite>\"espace\"</cite> et une grande zone d'une salle qui peut contenir plusieurs secteurs. exemple : \"Espace de voie\", \"Espace de bloc\", \"Pan\", etc.<br>À vous de trouver la meilleurs division pour votre salle.",
       explainMissingPlan: 'Uploader une plan de <cite>"%{name}"</cite> sur lequel vous pourrez tracer les secteurs',
       uploadPlanFor: 'Télécharger un plan pour : %{name}',
