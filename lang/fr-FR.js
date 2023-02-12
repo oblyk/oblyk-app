@@ -1465,6 +1465,7 @@ export default {
         contribute: 'Contribuer',
         oblyk: 'Oblyk',
         contact: 'Nous contacter',
+        indoor: 'Topo indoor',
         toolBar: {
           account: 'Gérer mon profil',
           notification: 'Mes notifications',
@@ -1587,6 +1588,12 @@ export default {
       title: 'Trouve un·e partenaire de grimpe',
       body: "Tu arrives dans une nouvelle région, tu aimerais trouver quelqu'un avec qui <strong>grimper en falaise ou en salle</strong> ?<br>Regarde du côté de notre <strong>carte des grimpeuses et grimpeurs</strong>, peut-être que tu trouveras quelqu'un avec qui grimper.",
       action: 'Comment ça marche ?'
+    },
+    indoor: {
+      title: 'Créer le topo indoor de votre salle',
+      body: "Oblyk c'est aussi une application qui vous permet de <strong>créer et gérer</strong> facilement les <strong>ouvertures de votre salle d'escalade</strong>.",
+      body2: 'Connectez-vous avez votre communauté de grimpeurs et grimpeuses, offrez-leurs un outil numérique pour <strong>consulter le topo de votre salle</strong> mais aussi <strong>noter leur croix indoor !</strong>',
+      action: 'Créer mon topo indoor'
     },
     supportUs: {
       title: 'Nous soutenir',

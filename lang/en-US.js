@@ -1465,6 +1465,7 @@ export default {
         contribute: 'Contribute',
         oblyk: 'Oblyk',
         contact: 'Contact us',
+        indoor: 'Indoor guidebook',
         toolBar: {
           account: 'Manage my profile',
           notification: 'My notifications',
@@ -1587,6 +1588,12 @@ export default {
       title: 'Find a climbing partner',
       body: 'Coming in a new region, looking for someone to <strong>climb with, in the gym or outdoor</strong>?<bt>Look into the <strong>map of climber</strong>, maybe you will find somebody to climb with. ',
       action: 'how it works ?'
+    },
+    indoor: {
+      title: 'Create the indoor guidebook of your climbing gym',
+      body: 'Oblyk is also an application that allows you to easily <strong>create and manage the openings of your climbing gym.</strong>',
+      body2: 'Connect to your community of climbers, offer them a digital tool to <strong>consult the guidebook</strong> of your climbing gym but also to note their <strong>indoor cross!</strong>',
+      action: 'Create my indoor guidebook'
     },
     supportUs: {
       title: 'Support Us',

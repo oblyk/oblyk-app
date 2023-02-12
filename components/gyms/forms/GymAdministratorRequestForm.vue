@@ -71,8 +71,18 @@ export default {
   components: { Spinner, CloseForm, SubmitForm },
   mixins: [FormHelpers, SessionConcern, CurrentUserConcern],
   props: {
-    gym: Object,
-    method: String
+    gym: {
+      type: Object,
+      required: true
+    },
+    method: {
+      type: String,
+      required: true
+    },
+    callback: {
+      type: Function,
+      default: null
+    }
   },
 
   data () {
@@ -111,6 +121,9 @@ export default {
         .create(this.data)
         .then(() => {
           this.submitted = true
+          if (this.callback) {
+            this.callback()
+          }
         })
         .catch((err) => {
           this.$root.$emit('alertFromApiError', err, 'gymAdministratorRequest')

@@ -144,15 +144,12 @@ export default {
   props: {
     redirectTo: {
       type: String,
-      required: false,
       default: null
     }
   },
 
   data () {
     return {
-      mdiEyeOff,
-      mdiEye,
       termsOfUse: false,
       newsletterSubscribe: false,
       email: null,
@@ -170,7 +167,10 @@ export default {
       locales: [
         { text: 'Français', value: 'fr' },
         { text: 'English', value: 'en' }
-      ]
+      ],
+
+      mdiEyeOff,
+      mdiEye
     }
   },
 

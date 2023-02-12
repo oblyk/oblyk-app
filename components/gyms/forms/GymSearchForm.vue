@@ -5,7 +5,7 @@
         <v-text-field
           ref="GymSearchForm"
           v-model="query"
-          :label="$t('components.gym.searchGym')"
+          :label="$t(this.label)"
           outlined
           :loading="searching"
           clearable
@@ -78,6 +78,10 @@ export default {
     aroundMeBtn: {
       type: Boolean,
       default: false
+    },
+    label: {
+      type: String,
+      default: 'components.gym.searchGym'
     }
   },
 

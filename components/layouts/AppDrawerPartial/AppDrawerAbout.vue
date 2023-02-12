@@ -29,7 +29,10 @@
       </v-list-item>
 
       <!-- About -->
-      <v-list-item to="/about">
+      <v-list-item
+        exact-path
+        to="/about"
+      >
         <v-list-item-icon>
           <v-icon>
             {{ mdiInformationOutline }}
@@ -61,6 +64,32 @@
         </v-list-item-title>
       </v-list-item>
 
+      <!-- Indoor guidebook -->
+      <v-list-item to="/about/indoor">
+        <v-list-item-icon>
+          <v-icon>
+            {{ mdiSourceBranch }}
+          </v-icon>
+        </v-list-item-icon>
+        <v-list-item-title>
+          {{ $t('components.layout.appDrawer.indoor') }}
+          <v-chip
+            color="blue"
+            class="ml-1"
+            dark
+            small
+          >
+            <v-icon
+              left
+              x-small
+            >
+              {{ mdiFlask }}
+            </v-icon>
+            Beta
+          </v-chip>
+        </v-list-item-title>
+      </v-list-item>
+
       <!-- API and Developers -->
       <v-list-item to="/api-and-developers">
         <v-list-item-icon>
@@ -72,7 +101,8 @@
           {{ $t('common.pages.apiAndDevelopers.title') }}
         </v-list-item-title>
       </v-list-item>
-      <!-- API and Developers -->
+
+      <!-- Contact -->
       <v-list-item to="/contact">
         <v-list-item-icon>
           <v-icon>
@@ -123,7 +153,9 @@ import {
   mdiSchool,
   mdiCodeBrackets,
   mdiEmail,
-  mdiOpenInNew
+  mdiOpenInNew,
+  mdiSourceBranch,
+  mdiFlask
 } from '@mdi/js'
 import AppDrawerTool from '~/components/layouts/AppDrawerPartial/AppDrawerTool'
 
@@ -140,7 +172,9 @@ export default {
       mdiSchool,
       mdiCodeBrackets,
       mdiEmail,
-      mdiOpenInNew
+      mdiOpenInNew,
+      mdiSourceBranch,
+      mdiFlask
     }
   }
 }

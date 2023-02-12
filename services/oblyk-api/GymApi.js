@@ -1,11 +1,14 @@
 import BaseApi from '~/services/oblyk-api/BaseApi'
 
 class GymApi extends BaseApi {
-  all () {
+  all (ids = null) {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/gyms.json`,
-      headers: { HttpApiAccessToken: this.apiAccessToken }
+      headers: { HttpApiAccessToken: this.apiAccessToken },
+      params: {
+        ids
+      }
     })
   }
 

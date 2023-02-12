@@ -1,0 +1,716 @@
+<template>
+  <div>
+    <v-container>
+      <!-- Title and subtitle -->
+      <v-img
+        src="/images/indoor/indoor-presentation-banner.webp"
+        alt="bandeau de présentation d'Oblyk indoor"
+        height="300"
+        class="rounded align-end text-center mt-4 mb-10"
+      >
+        <v-sheet class="d-inline-block px-4 px-lg-15 py-3 rounded mb-lg-5 elevation-8">
+          <h1 class="text-center">
+            Oblyk pour votre salle
+          </h1>
+          <p class="subtitle-2 mb-2 text-center">
+            Créer <em>LE</em> topo de votre salle d'escalade
+          </p>
+        </v-sheet>
+      </v-img>
+
+      <!-- Beta banner -->
+      <v-sheet
+        class="pa-4 mt-10 mb-10 beta-background"
+        rounded
+        dark
+      >
+        <h4 class="mb-3">
+          <v-icon left>
+            {{ mdiFlask }}
+          </v-icon>
+          Oblyk pour les salles est en version Beta
+        </h4>
+        <p>
+          <strong><u>Qu'est ce que ça signifie ?</u></strong><br>
+          Toutes les fonctionnalités prévues ne sont pas encore présentes et vous pouvez tomber sur des bugs.
+          Mais nous estimons que l'outil est suffisamment stable et fonctionnel pour être utilisé.
+        </p>
+        <p>
+          N'hésitez pas à nous remonter vos suggestions ou problèmes que vous rencontrez !
+        </p>
+      </v-sheet>
+
+      <div class="px-lg-15">
+        <p class="text-center">
+          Créer le <strong>topo indoor</strong> de votre <strong>salle d'escalade</strong>. Gérez facilement la rotation de vos <strong>ouvertures</strong>. Connectez-vous à votre <strong>communauté de grimpeurs et grimpeuses</strong>. Aidez les à progresser en leurs permettant de <strong>noter leurs croix indoor</strong>.<br>
+          Et plein d'autres fonctionnalités !
+        </p>
+      </div>
+
+      <v-row class="my-15">
+        <v-col cols="12" md="6" class="d-flex">
+          <div class="px-5 align-self-center">
+            <h3 class="mb-3">
+              <span class="primary--text">Organisez votre topo</span> comme vous l'entendez
+            </h3>
+            <p>
+              Votre salle est unique, on vous donne les outils pour la représentez comme elle est. Divisez votre salle en espace et en secteur logique pour vous.
+            </p>
+            <p>
+              Ajoutez ensuite vos voies et bloc en quelques clic grace à une configuration de vos espaces simple et efficace.
+            </p>
+          </div>
+        </v-col>
+        <v-col
+          cols="12"
+          md="6"
+          order-lg="first"
+          class="d-flex justify-center"
+        >
+          <v-img
+            class="align-self-center"
+            src="/svg/indoor/spaces.svg"
+            alt="Concept des espaces sur Oblyk indoor"
+          />
+        </v-col>
+      </v-row>
+
+      <v-row class="my-15">
+        <v-col
+          cols="12"
+          md="6"
+          class="d-flex"
+        >
+          <div class="px-5 align-self-center">
+            <h3 class="mb-3">
+              Peut importe le type d'escalade ou vos systèmes de difficultés, <span class="primary--text">on s'adapte à votre salle</span>
+            </h3>
+            <p>
+              Que vous soyez une salle de voie, de bloc, de pan, que vous utilisez des étiquettes pour le niveau ou des cotations, ou les deux. Vous pouvez créer le topo de votre salle sur Oblyk.
+            </p>
+            <p class="font-weight-bold mb-2">
+              Oblyk indoor est conçu pour gérer :
+            </p>
+            <ul class="list-style-none">
+              <li>
+                <v-icon
+                  left
+                  color="primary"
+                  class="mb-1"
+                >
+                  {{ mdiCheckboxOutline }}
+                </v-icon>
+                Les blocs, voies, pans et voies de vitesse
+              </li>
+              <li>
+                <v-icon
+                  left
+                  color="primary"
+                  class="mb-1"
+                >
+                  {{ mdiCheckboxOutline }}
+                </v-icon>
+                Les niveaux par couleur de prise ou d'étiquette
+              </li>
+              <li>
+                <v-icon
+                  left
+                  color="primary"
+                  class="mb-1"
+                >
+                  {{ mdiCheckboxOutline }}
+                </v-icon>
+                Les niveaux par cotation "standard" (5c, 6a+, etc.)
+              </li>
+              <li>
+                <v-icon
+                  left
+                  color="primary"
+                  class="mb-1"
+                >
+                  {{ mdiCheckboxOutline }}
+                </v-icon>
+                La difficulté par un système de point
+              </li>
+              <li>
+                <v-icon
+                  left
+                  color="primary"
+                  class="mb-1"
+                >
+                  {{ mdiCheckboxOutline }}
+                </v-icon>
+                Les voies de plusieurs longueurs
+              </li>
+            </ul>
+          </div>
+        </v-col>
+        <v-col
+          cols="12"
+          md="6"
+          class="d-flex justify-center"
+        >
+          <v-img
+            max-width="330"
+            class="align-self-center"
+            src="/svg/indoor/grades.svg"
+            alt="Les différents systèmes de cotation"
+          />
+        </v-col>
+      </v-row>
+
+      <v-row class="my-15">
+        <v-col
+          cols="12"
+          md="6"
+          class="d-flex justify-center"
+        >
+          <div class="px-5 align-self-center">
+            <h3 class="mb-3">
+              <span class="primary--text">Supervisez vos ouvertures</span> en un clic
+            </h3>
+            <p>
+              Regarder où vous en êtes de vos ouvertures, depuis quand elles sont montées, lesquelles sont les plus grimpées, comment est répartie le niveau d'escalade dans votre salles, etc.
+            </p>
+            <p>
+              Besoin de plus de finesse ? filtrer simple vos statistiques pour analyser une partie de vos ouverture selon des critères comme l'espace ou les ouvreurs / ouvreuses.
+            </p>
+          </div>
+        </v-col>
+        <v-col
+          cols="12"
+          md="6"
+          class="d-flex justify-center"
+          order-lg="first"
+        >
+          <v-img
+            class="align-self-center"
+            src="/svg/indoor/statistic.svg"
+            alt="Les statistiques d'Oblyk indoor"
+          />
+        </v-col>
+      </v-row>
+
+      <v-row class="my-15">
+        <v-col
+          cols="12"
+          md="6"
+          class="d-flex"
+        >
+          <div class="px-5  align-self-center">
+            <h3 class="mb-3">
+              <span class="primary--text">Un outil numérique</span> pour vos grimpeurs et grimpeuses
+            </h3>
+            <p>
+              Créer le topo intérieur de votre salle d'escalade vous permet de mieux maitrisez vous ouvertures,
+              mais aussi d'offrir à vos grimpeurs et grimpeuse un nouveau service numérique lié à votre salle.
+            </p>
+            <p class="font-weight-bold mb-2">
+              Grâce à votre topo :
+            </p>
+            <ul class="list-style-none">
+              <li class="mb-4">
+                <v-icon left class="mt-n1" color="amber darken-2">
+                  {{ mdiCheckboxOutline }}
+                </v-icon>
+                Les grimpeurs et grimpeuses peuvent noter les voies qu'ils font pour garder un suivi de leur séance et les aider à progressez
+              </li>
+              <li class="mb-4">
+                <v-icon left class="mt-n1" color="red">
+                  {{ mdiHeartHalfFull }}
+                </v-icon>
+                Ils, elles peuvent vous remontez les blocs/voies qu'ils et elles ont apprécié et vous aidez dans la qualité de vos ouvertures
+              </li>
+              <li class="mb-4">
+                <v-icon left class="mt-n1" color="blue">
+                  {{ mdiRefreshCircle }}
+                </v-icon>
+                Ils, elles peuvent voir s'il y a des nouvelles ouvertures ou connaître celles qui vont prochainement êtres démontées
+              </li>
+              <li class="mb-4">
+                <v-icon left class="mt-n1" color="green">
+                  {{ mdiTerrain }}
+                </v-icon>
+                Ils, elles ont un seul carnet de croix pour l'Outdoor et l'Indoor !
+              </li>
+            </ul>
+          </div>
+        </v-col>
+        <v-col
+          cols="12"
+          md="6"
+          class="d-flex justify-center"
+        >
+          <v-img
+            max-width="360"
+            class="align-self-center"
+            src="/svg/indoor/climbers-logbook.svg"
+            alt="Le carnet de croix indoor des grimpeurs"
+          />
+        </v-col>
+      </v-row>
+
+      <v-row class="my-15">
+        <v-col
+          cols="12"
+          md="6"
+          class="d-flex"
+        >
+          <div class="px-5 align-self-center">
+            <h3 class="mb-3">
+              Vous <span class="primary--text">imprimez des étiquettes</span> pour vos pieds de voie ? on vous mache le travail
+            </h3>
+            <p>
+              Sélectionnez un secteurs, une journée d'ouverture ou des lignes en particulier, cliquez sur imprimez ! vos étiquettes sont prêtent à être posées au pied de leurs voies.
+            </p>
+            <p class="font-weight-bold mt-5">
+              <v-icon
+                left
+                color="blue"
+              >
+                {{ mdiFlask }}
+              </v-icon>
+              L'impression d'étiquette n'est pas encore disponible
+            </p>
+          </div>
+        </v-col>
+        <v-col
+          order-lg="first"
+          cols="12"
+          md="6"
+          class="d-flex justify-center"
+        >
+          <v-img
+            max-width="330"
+            class="align-self-center"
+            src="/svg/indoor/work-in-progress.svg"
+            alt="Le développement est en cours"
+          />
+        </v-col>
+      </v-row>
+
+      <v-row class="my-15">
+        <v-col
+          cols="12"
+          md="6"
+          class="d-flex"
+        >
+          <div class="px-5 align-self-center">
+            <h3 class="mb-3">
+              <span class="primary--text">Organisez des contests</span> n'a jamais été aussi simple !
+            </h3>
+            <p>
+              Organisez un contest via Oblyk vous permet de vous affranchir de l'inscription des participants et du dépouillement des résultats.
+            </p>
+            <p>
+              Choisissez une période, une limite d'inscrit s'il en faut une, les blocs qui font parties du contest et le système de compte de point que vous voulez utiliser. Oblyk s'occupe de tout le reste.
+            </p>
+            <p class="font-weight-bold mt-5">
+              <v-icon
+                left
+                color="blue"
+              >
+                {{ mdiFlask }}
+              </v-icon>
+              Les contests ne sont pas encore disponible
+            </p>
+          </div>
+        </v-col>
+        <v-col
+          cols="12"
+          md="6"
+          class="d-flex justify-center"
+        >
+          <v-img
+            max-width="330"
+            class="align-self-center"
+            src="/svg/indoor/work-in-progress.svg"
+            alt="Le développement est en cours"
+          />
+        </v-col>
+      </v-row>
+
+      <v-row class="my-15">
+        <v-col
+          cols="12"
+          md="6"
+          class="d-flex"
+        >
+          <div class="px-5">
+            <h3 class="mb-3">
+              Nos reportings ne vous suffisent pas ? <span class="primary--text">Faite ce que vous voulez avec notre API</span>
+            </h3>
+            <p>
+              Oblyk est entièrement conçu sur une API, l'application que vous voyez là et complétement décorrélé du server de donnée.<br>
+              Si vous souhaitez consulter vos données dans un contexte que nous vous fournissions pas, nous pouvons vous donner accès à notre API REST pour que vous puissiez récupérer vos données d'ouvertures brute.
+            </p>
+            <v-card
+              class="pa-4 mt-10 mb-10"
+              rounded
+              dark
+              color="blue"
+              to="/contact"
+            >
+              <p class="mb-0 font-weight-bold">
+                <v-icon left class="mt-n1">
+                  {{ mdiEmail }}
+                </v-icon>
+                <u>Contactez-nous</u>
+                pour en savoir plus
+              </p>
+            </v-card>
+          </div>
+        </v-col>
+        <v-col
+          order-lg="first"
+          cols="12"
+          md="6"
+          class="d-flex justify-center"
+        >
+          <v-img
+            max-width="330"
+            class="align-self-center"
+            src="/svg/indoor/api.svg"
+            alt="Les API d'Oblyk"
+          />
+        </v-col>
+      </v-row>
+
+      <div
+        v-intersect="onIntersectGyms"
+        class="my-15"
+      >
+        <h3 class="text-center mb-4">
+          <span class="primary--text">Ils, elles utilisent Oblyk</span> pour gérer les ouvertures de leur salle !
+        </h3>
+        <v-row v-if="loadingGyms">
+          <v-col
+            cols="12"
+            md="6"
+            lg="4"
+          >
+            <v-skeleton-loader type="list-item-avatar-two-line" />
+          </v-col>
+          <v-col
+            cols="12"
+            md="6"
+            lg="4"
+          >
+            <v-skeleton-loader type="list-item-avatar-two-line" />
+          </v-col>
+          <v-col
+            cols="12"
+            md="6"
+            lg="4"
+          >
+            <v-skeleton-loader type="list-item-avatar-two-line" />
+          </v-col>
+        </v-row>
+        <div class="mt-2">
+          <v-row
+            v-if="!loadingGyms"
+            justify="center"
+          >
+            <v-col
+              v-for="(gym, gymIndex) in gyms"
+              :key="`gym-index-${gymIndex}`"
+              cols="12"
+              md="6"
+              lg="4"
+            >
+              <gym-small-card
+                :gym="gym"
+                small
+                bordered
+              />
+            </v-col>
+          </v-row>
+        </div>
+      </div>
+
+      <div class="mt-16 mb-7">
+        <h3 class="text-center mb-3">
+          <span class="primary--text">À chaque dimension de salle</span> un plan adapté !
+        </h3>
+      </div>
+
+      <!-- Beta banner -->
+      <v-sheet
+        class="pa-4 mb-10 beta-background"
+        rounded
+        dark
+      >
+        <h4 class="mb-3">
+          <v-icon left>
+            {{ mdiFlask }}
+          </v-icon>
+          Temps que Oblyk indoor est en Beta, toutes les fonctionnalités sont gratuites !
+        </h4>
+        <p>
+          Les plans que vous verrez ci-dessous sont une estimation de ce que nous prévoyons de mettre en place en terme de tarification.<br>
+          Il se peut qu'ils évoluent sur les prix et les fonctionnalités proposées.
+        </p>
+        <p>
+          Si les fonctionnalités ou les prix sont revue en votre défaveur le jour de la finalisation d'Oblyk Indoor,
+          nous offrions une période de gratuité pour : <br>
+          <strong>1)</strong> vous remerciez d'avoir essayé le système ;<br>
+          <strong>2)</strong> vous donnez le temps de décidez d'adhérer ou non à un plan payant si vous utilisez des fonctionnalités payantes.
+        </p>
+      </v-sheet>
+
+      <v-row>
+        <!-- Starter formule -->
+        <v-col cols="12" md="6" lg="4">
+          <v-card
+            class="full-height d-flex flex-column"
+          >
+            <v-card-title class="border-bottom">
+              Gratuit
+            </v-card-title>
+            <div class="pa-4 text-justify">
+              Idéal pour commencer sans aucune contrainte financière.
+              Créer votre topo, ayez une vision simplifiée de vos ouvertures et permettez à vos grimpeurs et grimpeuses de noter leur croix.
+            </div>
+            <div class="px-4 pb-4">
+              <p class="mb-1">
+                <v-icon left class="mt-n1" color="primary">
+                  {{ mdiCheckBold }}
+                </v-icon>
+                Créer des espaces et lignes en illimité
+              </p>
+              <p class="mb-1">
+                <v-icon left class="mt-n1" color="primary">
+                  {{ mdiCheckBold }}
+                </v-icon>
+                Statistiques basiques
+              </p>
+            </div>
+            <div class="text-right pb-4 pr-6 mt-auto">
+              <strong class="text-h4">0€</strong>
+              <p class="mb-0">
+                <span class="text--disabled">alors lancez-vous !</span>
+              </p>
+            </div>
+          </v-card>
+        </v-col>
+
+        <!-- Big gyms -->
+        <v-col cols="12" md="6" lg="4">
+          <v-card
+            class="full-height d-flex flex-column"
+          >
+            <v-card-title class="border-bottom">
+              Essentiel
+            </v-card-title>
+            <div class="pa-4 text-justify">
+              C'est le plan idéal si vous avez une salle ou deux et que vous voulez avoir accès à la plus part des fonctionnalités qui vous concerne.
+            </div>
+            <div class="px-4 pb-4">
+              <p class="mb-4">
+                <v-icon left class="mt-n1" color="primary">
+                  {{ mdiCheckAll }}
+                </v-icon>
+                Les fonctionnalités du plan <strong>'Gratuit'</strong>
+              </p>
+              <p class="mb-1">
+                <v-icon left class="mt-n1" color="primary">
+                  {{ mdiCheckBold }}
+                </v-icon>
+                Illustrez vos lignes avec des photos
+              </p>
+              <p class="mb-1">
+                <v-icon left class="mt-n1" color="primary">
+                  {{ mdiCheckBold }}
+                </v-icon>
+                Statistiques avancés
+              </p>
+              <p class="mb-1">
+                <v-icon left class="mt-n1" color="primary">
+                  {{ mdiCheckBold }}
+                </v-icon>
+                Impression d'étiquette
+              </p>
+              <p class="mb-1">
+                <v-icon left class="mt-n1" color="primary">
+                  {{ mdiCheckBold }}
+                </v-icon>
+                2 contests / an
+              </p>
+            </div>
+            <div class="text-right pb-4 pr-6 mt-auto">
+              <strong class="text-h4">{{ 18 / priceDiviser }}€</strong>
+              <p class="mb-0">
+                <span class="text--disabled">TTC, par mois et par salle</span>
+              </p>
+            </div>
+          </v-card>
+        </v-col>
+
+        <!-- Big gyms -->
+        <v-col cols="12" md="6" lg="4">
+          <v-card
+            class="full-height d-flex flex-column"
+          >
+            <v-card-title class="border-bottom">
+              Groupe
+            </v-card-title>
+            <div class="pa-4 text-justify">
+              Vous êtes un groupe de salle ? ou vous avez un besoin de fonctionnalité avancée ? ce plan est conçu pour vous.
+            </div>
+            <div class="px-4 pb-4">
+              <p class="mb-4">
+                <v-icon left class="mt-n1" color="primary">
+                  {{ mdiCheckAll }}
+                </v-icon>
+                Les fonctionnalités du plan <strong>'Essentiel'</strong>
+              </p>
+              <p class="mb-1">
+                <v-icon left class="mt-n1" color="primary">
+                  {{ mdiCheckBold }}
+                </v-icon>
+                Contest illimité
+              </p>
+              <p class="mb-1">
+                <v-icon left class="mt-n1" color="primary">
+                  {{ mdiCheckBold }}
+                </v-icon>
+                Gestion multi salle
+              </p>
+              <p class="mb-1">
+                <v-icon left class="mt-n1" color="primary">
+                  {{ mdiCheckBold }}
+                </v-icon>
+                Accès à vos données par API
+              </p>
+            </div>
+            <div class="text-right pb-4 pr-6 mt-auto">
+              <strong class="text-h4">{{ 60 / priceDiviser }}€</strong>
+              <p class="mb-0">
+                <span class="text--disabled">TTC, par mois et par salle</span>
+              </p>
+            </div>
+          </v-card>
+        </v-col>
+      </v-row>
+      <v-sheet rounded class="mt-4 pa-4">
+        <span class="vertical-align-middle">
+          <strong class="primary--text">Vous êtes un club ?</strong> Bénéficiez de <strong>-50%</strong> sur tout nos plans
+        </span>
+        <v-chip color="with" class="ml-2">
+          <v-switch
+            v-model="iAmAClub"
+            label="Je suis un club"
+          />
+        </v-chip>
+      </v-sheet>
+
+      <div class="text-center my-16">
+        <v-btn
+          x-large
+          color="primary"
+          to="/gyms/starter"
+        >
+          Créer le topo de ma salle <span class="d-none d-lg-inline ml-1">maintenant</span> !
+        </v-btn>
+      </div>
+    </v-container>
+    <app-footer />
+  </div>
+</template>
+
+<script>
+import {
+  mdiFlask,
+  mdiEmail,
+  mdiCheckboxOutline,
+  mdiHeartHalfFull,
+  mdiRefreshCircle,
+  mdiTerrain,
+  mdiCheckBold,
+  mdiCheckAll
+} from '@mdi/js'
+import GymApi from '~/services/oblyk-api/GymApi'
+import Gym from '~/models/Gym'
+import GymSmallCard from '~/components/gyms/GymSmallCard.vue'
+import AppFooter from '~/components/layouts/AppFooter.vue'
+
+export default {
+  components: { AppFooter, GymSmallCard },
+
+  data () {
+    return {
+      loadingGyms: true,
+      intersectGyms: false,
+      gyms: [],
+      iAmAClub: false,
+
+      mdiFlask,
+      mdiEmail,
+      mdiCheckboxOutline,
+      mdiHeartHalfFull,
+      mdiRefreshCircle,
+      mdiTerrain,
+      mdiCheckBold,
+      mdiCheckAll
+    }
+  },
+
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: "Créer le topo indoor de votre salle d'escalade",
+        metaDescription: "Organisez votre salle d'escalade en espace et secteur, permettez à vos grimpeurs et grimpeuses de noter leur croix, supervisez vos ouvertures, et pleins d'autres fonctionnalités"
+      },
+      en: {
+        metaTitle: 'Create the indoor guidebook of your climbing gym',
+        metaDescription: 'Organize your climbing gym in space and sector, allow your climbers to rate their ascents, supervise your openings, and many other features'
+      }
+    }
+  },
+
+  head () {
+    return {
+      title: this.$t('metaTitle'),
+      meta: [
+        { hid: 'description', name: 'description', content: this.$t('metaDescription') },
+        { hid: 'og:title', property: 'og:title', content: this.$t('metaTitle') },
+        { hid: 'og:description', property: 'og:description', content: this.$t('metaDescription') },
+        { hid: 'og:image', property: 'og:image', content: `${process.env.VUE_APP_OBLYK_APP_URL}/images/indoor/og-indoor-presentation-banner.webp` }
+      ]
+    }
+  },
+
+  computed: {
+    priceDiviser () {
+      return this.iAmAClub ? 2 : 1
+    }
+  },
+
+  methods: {
+    onIntersectGyms (entries, observer) {
+      if (!this.intersectGyms && entries[0].isIntersecting) {
+        this.getExhibitionGyms()
+        this.intersectGyms = true
+      }
+    },
+
+    getExhibitionGyms () {
+      this.loadingGyms = true
+      const exhibitionGyms = process.env.VUE_APP_EXHIBITION_GYM.split(',') || []
+
+      if (exhibitionGyms.length < 1) { return }
+
+      new GymApi(this.$axios, this.$auth)
+        .all(exhibitionGyms)
+        .then((resp) => {
+          for (const gym of resp.data) {
+            this.gyms.push(new Gym({ attributes: gym }))
+          }
+        })
+        .finally(() => {
+          this.loadingGyms = false
+        })
+    }
+  }
+}
+</script>
