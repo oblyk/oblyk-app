@@ -14,13 +14,6 @@
       />
 
       <v-text-field
-        v-model="data.group_sector_name"
-        outlined
-        :label="$t('models.gymSector.group_sector_name')"
-        required
-      />
-
-      <v-text-field
         v-model="data.height"
         outlined
         type="number"
@@ -98,14 +91,13 @@ export default {
     return {
       loadingGymGrades: true,
       data: {
-        id: (this.gymSector || {}).id,
-        name: (this.gymSector || {}).name,
-        group_sector_name: (this.gymSector || {}).group_sector_name,
-        height: (this.gymSector || {}).height,
-        description: (this.gymSector || {}).description,
-        can_be_more_than_one_pitch: (this.gymSector || {}).can_be_more_than_one_pitch,
-        climbing_type: (this.gymSector || {}).climbing_type || this.gymSpace.climbing_type,
-        gym_grade_id: (this.gymSector || {}).gym_grade_id || this.gymSpace.gym_grade_id,
+        id: this.gymSector?.id,
+        name: this.gymSector?.name,
+        height: this.gymSector?.height,
+        description: this.gymSector?.description,
+        can_be_more_than_one_pitch: this.gymSector?.can_be_more_than_one_pitch,
+        climbing_type: this.gymSector?.climbing_type || this.gymSpace.climbing_type,
+        gym_grade_id: this.gymSector?.gym_grade_id || this.gymSpace.gym_grade_id,
         gym_space_id: this.gymSpace.id,
         gym_id: this.gymSpace.gym.id
       },
