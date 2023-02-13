@@ -13,10 +13,10 @@
         </v-card-title>
         <v-card-text>
           <p>
-            Le compte Oblyk vous permettra de vous connectez et vous donnera le droit d'administrer votre salle.
+            Le compte Oblyk vous permettra de vous connecter et vous donnera le droit d'administrer votre salle.
           </p>
           <p>
-            <strong>Note :</strong> Créez un compte à votre nom propres et non au nom de la salle.
+            <strong>Note :</strong> Créez un compte à votre nom propre et non au nom de la salle.
             Vous pourrez ensuite ajouter autant d'administrateur que vous voudrez sans avoir besoin de partager un compte.
           </p>
         </v-card-text>
@@ -84,7 +84,7 @@
         </v-card-title>
         <v-card-text>
           <p class="mb-0">
-            Oblyk référence les salles d'escalades de France <em>(et du monde)</em>, peut-être que votre salle existe déjà dans notre base de donnée.<br>
+            Oblyk référence les salles d'escalades de France <em>(et du monde)</em>, peut-être que votre salle existe déjà dans notre base de données.<br>
             Si c'est le cas vous n'aurez qu'à en prendre la gestion. Sinon créez-la.
           </p>
         </v-card-text>

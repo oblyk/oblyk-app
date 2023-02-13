@@ -1592,7 +1592,7 @@ export default {
     indoor: {
       title: 'Créer le topo indoor de votre salle',
       body: "Oblyk c'est aussi une application qui vous permet de <strong>créer et gérer</strong> facilement les <strong>ouvertures de votre salle d'escalade</strong>.",
-      body2: 'Connectez-vous avez votre communauté de grimpeurs et grimpeuses, offrez-leurs un outil numérique pour <strong>consulter le topo de votre salle</strong> mais aussi <strong>noter leur croix indoor !</strong>',
+      body2: 'Connectez-vous à votre communauté de grimpeurs et grimpeuses, offrez-leurs un outil numérique pour <strong>consulter le topo de votre salle</strong> mais aussi <strong>noter leur croix indoor !</strong>',
       action: 'Créer mon topo indoor'
     },
     supportUs: {

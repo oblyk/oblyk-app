@@ -42,7 +42,7 @@
 
       <div class="px-lg-15">
         <p class="text-center">
-          Créer le <strong>topo indoor</strong> de votre <strong>salle d'escalade</strong>. Gérez facilement la rotation de vos <strong>ouvertures</strong>. Connectez-vous à votre <strong>communauté de grimpeurs et grimpeuses</strong>. Aidez les à progresser en leurs permettant de <strong>noter leurs croix indoor</strong>.<br>
+          Créer le <strong>topo indoor</strong> de votre <strong>salle d'escalade</strong>. Gérez facilement la rotation de vos <strong>ouvertures</strong>. Connectez-vous à votre <strong>communauté de grimpeurs et grimpeuses</strong>. Aidez-les à progresser en leur permettant de <strong>noter leurs croix indoor</strong>.<br>
           Et plein d'autres fonctionnalités !
         </p>
       </div>
@@ -54,10 +54,10 @@
               <span class="primary--text">Organisez votre topo</span> comme vous l'entendez
             </h3>
             <p>
-              Votre salle est unique, on vous donne les outils pour la représentez comme elle est. Divisez votre salle en espace et en secteur logique pour vous.
+              Votre salle est unique, on vous donne les outils pour la représenter comme elle est. Divisez votre salle en espace et en secteur logique pour vous.
             </p>
             <p>
-              Ajoutez ensuite vos voies et bloc en quelques clic grace à une configuration de vos espaces simple et efficace.
+              Ajoutez ensuite vos voies et blocs en quelques clics grâce à une configuration de vos espaces simple et efficace.
             </p>
           </div>
         </v-col>
@@ -170,10 +170,10 @@
               <span class="primary--text">Supervisez vos ouvertures</span> en un clic
             </h3>
             <p>
-              Regarder où vous en êtes de vos ouvertures, depuis quand elles sont montées, lesquelles sont les plus grimpées, comment est répartie le niveau d'escalade dans votre salles, etc.
+              Regardez où vous en êtes de vos ouvertures, depuis quand elles sont montées, lesquelles sont les plus grimpées, comment est répartie le niveau d'escalade dans votre salle, etc.
             </p>
             <p>
-              Besoin de plus de finesse ? filtrer simple vos statistiques pour analyser une partie de vos ouverture selon des critères comme l'espace ou les ouvreurs / ouvreuses.
+              Besoin de plus de finesse ? filtrer simplement vos statistiques pour analyser une partie de vos ouvertures selon des critères comme l'espace ou les ouvreurs / ouvreuses.
             </p>
           </div>
         </v-col>
@@ -202,7 +202,7 @@
               <span class="primary--text">Un outil numérique</span> pour vos grimpeurs et grimpeuses
             </h3>
             <p>
-              Créer le topo intérieur de votre salle d'escalade vous permet de mieux maitrisez vous ouvertures,
+              Créer le topo intérieur de votre salle d'escalade vous permet de mieux maîtriser vos ouvertures,
               mais aussi d'offrir à vos grimpeurs et grimpeuse un nouveau service numérique lié à votre salle.
             </p>
             <p class="font-weight-bold mb-2">
@@ -213,25 +213,25 @@
                 <v-icon left class="mt-n1" color="amber darken-2">
                   {{ mdiCheckboxOutline }}
                 </v-icon>
-                Les grimpeurs et grimpeuses peuvent noter les voies qu'ils font pour garder un suivi de leur séance et les aider à progressez
+                Les grimpeurs et grimpeuses peuvent noter les voies qu'ils font pour garder un suivi de leur séance et les aider à progresser
               </li>
               <li class="mb-4">
                 <v-icon left class="mt-n1" color="red">
                   {{ mdiHeartHalfFull }}
                 </v-icon>
-                Ils, elles peuvent vous remontez les blocs/voies qu'ils et elles ont apprécié et vous aidez dans la qualité de vos ouvertures
+                Ils et elles peuvent vous remontez les blocs/voies qu'ils et elles ont apprécié et vous aidez dans la qualité de vos ouvertures
               </li>
               <li class="mb-4">
                 <v-icon left class="mt-n1" color="blue">
                   {{ mdiRefreshCircle }}
                 </v-icon>
-                Ils, elles peuvent voir s'il y a des nouvelles ouvertures ou connaître celles qui vont prochainement êtres démontées
+                Ils et elles peuvent voir s'il y a des nouvelles ouvertures ou connaître celles qui vont prochainement êtres démontées
               </li>
               <li class="mb-4">
                 <v-icon left class="mt-n1" color="green">
                   {{ mdiTerrain }}
                 </v-icon>
-                Ils, elles ont un seul carnet de croix pour l'Outdoor et l'Indoor !
+                Ils et elles ont un seul carnet de croix pour <strong>l'outdoor</strong> et <strong>l'indoor</strong> !
               </li>
             </ul>
           </div>
@@ -258,10 +258,10 @@
         >
           <div class="px-5 align-self-center">
             <h3 class="mb-3">
-              Vous <span class="primary--text">imprimez des étiquettes</span> pour vos pieds de voie ? on vous mache le travail
+              Vous <span class="primary--text">imprimez des étiquettes</span> pour vos pieds de voie ? on vous mâche le travail
             </h3>
             <p>
-              Sélectionnez un secteurs, une journée d'ouverture ou des lignes en particulier, cliquez sur imprimez ! vos étiquettes sont prêtent à être posées au pied de leurs voies.
+              Sélectionnez un secteur, une journée d'ouverture ou des lignes en particulier, cliquez sur <strong>"imprimer"</strong> ! Vos étiquettes sont prêtes à être posées au pied de leurs voies.
             </p>
             <p class="font-weight-bold mt-5">
               <v-icon
@@ -300,10 +300,10 @@
               <span class="primary--text">Organisez des contests</span> n'a jamais été aussi simple !
             </h3>
             <p>
-              Organisez un contest via Oblyk vous permet de vous affranchir de l'inscription des participants et du dépouillement des résultats.
+              Organiser un contest via Oblyk vous permet de vous affranchir de l'inscription des participants et du dépouillement des résultats.
             </p>
             <p>
-              Choisissez une période, une limite d'inscrit s'il en faut une, les blocs qui font parties du contest et le système de compte de point que vous voulez utiliser. Oblyk s'occupe de tout le reste.
+              Choisissez une période, une limite d'inscrit s'il en faut une, les blocs qui font partie du contest et le système de compte de point que vous voulez utiliser. Oblyk s'occupe de tout le reste.
             </p>
             <p class="font-weight-bold mt-5">
               <v-icon
@@ -341,8 +341,8 @@
               Nos reportings ne vous suffisent pas ? <span class="primary--text">Faite ce que vous voulez avec notre API</span>
             </h3>
             <p>
-              Oblyk est entièrement conçu sur une API, l'application que vous voyez là et complétement décorrélé du server de donnée.<br>
-              Si vous souhaitez consulter vos données dans un contexte que nous vous fournissions pas, nous pouvons vous donner accès à notre API REST pour que vous puissiez récupérer vos données d'ouvertures brute.
+              Oblyk est entièrement conçu sur une API, l'application que vous voyez là et complètement décorrélé du serveur de donnée.<br>
+              Si vous souhaitez consulter vos données dans un contexte que nous ne vous fournissons pas, nous pouvons vous donner accès à notre API REST pour que vous puissiez récupérer vos données d'ouvertures brute.
             </p>
             <v-card
               class="pa-4 mt-10 mb-10"
@@ -381,7 +381,7 @@
         class="my-15"
       >
         <h3 class="text-center mb-4">
-          <span class="primary--text">Ils, elles utilisent Oblyk</span> pour gérer les ouvertures de leur salle !
+          <span class="primary--text">Ils et elles utilisent Oblyk</span> pour gérer les ouvertures de leur salle !
         </h3>
         <v-row v-if="loadingGyms">
           <v-col
@@ -444,17 +444,17 @@
           <v-icon left>
             {{ mdiFlask }}
           </v-icon>
-          Temps que Oblyk indoor est en Beta, toutes les fonctionnalités sont gratuites !
+          Tant que Oblyk indoor est en beta, toutes les fonctionnalités sont gratuites !
         </h4>
         <p>
-          Les plans que vous verrez ci-dessous sont une estimation de ce que nous prévoyons de mettre en place en terme de tarification.<br>
+          Les plans que vous verrez ci-dessous sont une estimation de ce que nous prévoyons de mettre en place en termes de tarification.<br>
           Il se peut qu'ils évoluent sur les prix et les fonctionnalités proposées.
         </p>
         <p>
           Si les fonctionnalités ou les prix sont revue en votre défaveur le jour de la finalisation d'Oblyk Indoor,
-          nous offrions une période de gratuité pour : <br>
+          nous offrirons une période de gratuité pour : <br>
           <strong>1)</strong> vous remerciez d'avoir essayé le système ;<br>
-          <strong>2)</strong> vous donnez le temps de décidez d'adhérer ou non à un plan payant si vous utilisez des fonctionnalités payantes.
+          <strong>2)</strong> vous donnez le temps de décider d'adhérer ou non à un plan payant si vous utilisez des fonctionnalités payantes.
         </p>
       </v-sheet>
 
@@ -469,7 +469,7 @@
             </v-card-title>
             <div class="pa-4 text-justify">
               Idéal pour commencer sans aucune contrainte financière.
-              Créer votre topo, ayez une vision simplifiée de vos ouvertures et permettez à vos grimpeurs et grimpeuses de noter leur croix.
+              Créez votre topo, ayez une vision simplifiée de vos ouvertures et permettez à vos grimpeurs et grimpeuses de noter leur croix.
             </div>
             <div class="px-4 pb-4">
               <p class="mb-1">
@@ -503,7 +503,7 @@
               Essentiel
             </v-card-title>
             <div class="pa-4 text-justify">
-              C'est le plan idéal si vous avez une salle ou deux et que vous voulez avoir accès à la plus part des fonctionnalités qui vous concerne.
+              C'est le plan idéal si vous avez une salle ou deux et que vous voulez avoir accès à la plupart des fonctionnalités qui vous concerne.
             </div>
             <div class="px-4 pb-4">
               <p class="mb-4">
