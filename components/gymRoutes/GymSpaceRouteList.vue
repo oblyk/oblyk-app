@@ -103,6 +103,21 @@
           </p>
         </div>
       </div>
+
+      <!-- If sort by points -->
+      <div v-if="sort === 'point'">
+        <gym-routes-by-point
+          :routes="points"
+          :show-sector-id="showSectorId"
+          :get-routes="getRoutes"
+        />
+        <!-- if no routes in point -->
+        <div v-if="points.length === 0">
+          <p class="text-center text--disabled">
+            {{ $t('components.gymRoute.noRoute') }}
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -119,10 +134,12 @@ import GymRoutesBySector from '@/components/gymRoutes/listByGroup/GymRoutesBySec
 import GymRoutesByOpenedAt from '@/components/gymRoutes/listByGroup/GymRoutesByOpenedAt'
 import GymRoutesByGrade from '@/components/gymRoutes/listByGroup/GymRoutesByGrade'
 import GymRoutesByLevel from '~/components/gymRoutes/listByGroup/GymRoutesByLevel.vue'
+import GymRoutesByPoint from '~/components/gymRoutes/listByGroup/GymRoutesByPoint.vue'
 
 export default {
   name: 'GymSpaceRouteList',
   components: {
+    GymRoutesByPoint,
     GymRoutesByLevel,
     GymRoutesByGrade,
     GymRoutesByOpenedAt,
@@ -157,6 +174,7 @@ export default {
       openedAts: [],
       grades: [],
       levels: [],
+      points: [],
       gymRoutes: [],
       loadingRoutes: true,
       firstLoaded: false,
@@ -294,6 +312,11 @@ export default {
                 hold_color: level.hold_color,
                 routes
               })
+            }
+          } else if (this.sort === 'point') {
+            this.points = []
+            for (const route of resp.data) {
+              this.points.push(new GymRoute({ attributes: route }))
             }
           }
           localStorage.setItem('gym_route_sort', this.sort)
