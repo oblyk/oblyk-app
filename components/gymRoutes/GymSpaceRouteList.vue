@@ -5,7 +5,11 @@
       <v-col
         :cols="currentUserIsGymAdmin() ? '10' : '12'"
       >
-        <gym-space-route-sort v-model="sort" />
+        <gym-space-route-sort
+          v-model="sort"
+          :gym="gym"
+          :gym-space="gymSpace"
+        />
       </v-col>
       <v-col
         v-if="currentUserIsGymAdmin()"
