@@ -60,14 +60,11 @@
 import { mdiEyeOff, mdiEye } from '@mdi/js'
 import SubmitForm from '@/components/forms/SubmitForm'
 import RequiredExplained from '~/components/forms/RequiredExplained'
-import { NotificationChannel } from '~/channels/NotificationChannel'
-import { Cable } from '~/channels/Cable'
 import NotificationApi from '~/services/oblyk-api/NotificationApi'
 
 export default {
   name: 'SignInForm',
   components: { RequiredExplained, SubmitForm },
-  mixins: [Cable, NotificationChannel],
   props: {
     redirectTo: {
       type: String,
@@ -102,11 +99,7 @@ export default {
         })
 
         // Connect to notification channel
-        this.$cable.subscribe(
-          {
-            channel: 'NotificationChannel'
-          }
-        )
+        this.$cable.subscribe({ channel: 'NotificationChannel' })
 
         // Get unread notification
         await new NotificationApi(this.$axios, this.$auth)

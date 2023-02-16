@@ -35,12 +35,10 @@
 <script>
 import { mdiAccountPlus, mdiLogin, mdiLogout } from '@mdi/js'
 import { SessionConcern } from '@/concerns/SessionConcern'
-import { NotificationChannel } from '~/channels/NotificationChannel'
-import { Cable } from '~/channels/Cable'
 
 export default {
   name: 'LoginLogoutBtn',
-  mixins: [SessionConcern, NotificationChannel, Cable],
+  mixins: [SessionConcern],
 
   data () {
     return {

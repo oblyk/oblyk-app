@@ -91,7 +91,6 @@ import ConversationMessageApi from '@/services/oblyk-api/ConversationMessageApi'
 import ConversationApi from '@/services/oblyk-api/ConversationApi'
 import ConversationMessageList from '@/components/messengers/ConversationMessageList'
 import { DateHelpers } from '@/mixins/DateHelpers'
-import { ConversationChannel } from '@/channels/ConversationChannel'
 
 export default {
   components: {
@@ -101,7 +100,6 @@ export default {
   },
   mixins: [
     ConversationConcern,
-    ConversationChannel,
     SessionConcern,
     DateHelpers
   ],

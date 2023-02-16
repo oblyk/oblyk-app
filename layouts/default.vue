@@ -98,7 +98,7 @@
 import { mdiCookie, mdiGift } from '@mdi/js'
 import LazyHydrate from 'vue-lazy-hydration'
 import { Cable } from '~/channels/Cable'
-import { NotificationChannel } from '~/channels/NotificationChannel'
+import { Channels } from '~/channels/Channels'
 import AppBar from '~/components/layouts/AppBar'
 import AppAlert from '~/components/layouts/AppAlert'
 import AppBottomNavigation from '~/components/layouts/AppBottomNavigation'
@@ -115,7 +115,10 @@ export default {
     AppBar,
     LazyHydrate
   },
-  mixins: [Cable, NotificationChannel],
+  mixins: [
+    Cable,
+    Channels
+  ],
 
   data () {
     return {
@@ -169,13 +172,14 @@ export default {
       this.activateWatchGeolocation()
     }
     if (this.$auth.loggedIn) {
-      this.connectNotification()
+      this.$auth.fetchUser()
+      this.connectChannel()
       this.getUnreadNotification()
     }
   },
 
   beforeDestroy () {
-    this.disconnectNotification()
+    this.disconnectChannel()
   },
 
   methods: {
@@ -198,12 +202,8 @@ export default {
       }
     },
 
-    connectNotification () {
-      this.$cable.subscribe(
-        {
-          channel: 'NotificationChannel'
-        }
-      )
+    connectChannel () {
+      this.$cable.subscribe({ channel: 'NotificationChannel' })
     },
 
     getUnreadNotification () {
@@ -214,7 +214,7 @@ export default {
         })
     },
 
-    disconnectNotification () {
+    disconnectChannel () {
       this.$cable.unsubscribe('NotificationChannel')
     },
 
