@@ -281,6 +281,10 @@ strong {
   border-bottom-width: 1px;
 }
 
+.v-data-table tbody tr.v-data-table__selected {
+  background-color: rgba(49, 153, 78, 0.2) !important;
+}
+
 .theme--dark {
   .border-bottom, .border {
     border-color: rgb(50, 50, 50);

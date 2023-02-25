@@ -4,56 +4,69 @@
     <v-sheet
       class="rounded pa-4 mt-4 mb-4"
     >
-      <v-switch
-        v-model="mountedRoute"
-        class="mt-0 d-inline-block"
-        hide-details
-        :label="mountedRoute ? $t('components.gymAdmin.mountedRoutes') : $t('components.gymAdmin.dismountedRoutes')"
-      />
+      <v-row>
+        <v-col>
+          <v-switch
+            v-model="mountedRoute"
+            class="mt-0 d-inline-block"
+            hide-details
+            :label="mountedRoute ? $t('components.gymAdmin.mountedRoutes') : $t('components.gymAdmin.dismountedRoutes')"
+          />
+        </v-col>
+        <v-col
+          v-if="routeSelected.length > 0"
+          class="text-right"
+        >
+          <v-menu offset-y>
+            <template #activator="{ on, attrs }">
+              <v-btn
+                color="primary"
+                elevation="0"
+                v-bind="attrs"
+                v-on="on"
+              >
+                <v-icon left>
+                  {{ mdiDotsVertical }}
+                </v-icon>
+                {{ $t('actions.actions') }}
+              </v-btn>
+            </template>
+            <v-list>
+              <v-list-item
+                v-if="mountedRoute"
+                @click="dismountCollection()"
+              >
+                <v-list-item-icon>
+                  <v-icon>{{ mdiBackburger }}</v-icon>
+                </v-list-item-icon>
+                <v-list-item-title>
+                  {{ $tc('components.gymAdmin.dismountRoutes', routeSelected.length, { count: routeSelected.length }) }}
+                </v-list-item-title>
+              </v-list-item>
+              <v-list-item
+                v-if="!mountedRoute"
+                @click="mountCollection()"
+              >
+                <v-list-item-icon>
+                  <v-icon>{{ mdiForwardburger }}</v-icon>
+                </v-list-item-icon>
+                <v-list-item-title>
+                  {{ $tc('components.gymAdmin.mountRoutes', routeSelected.length, { count: routeSelected.length }) }}
+                </v-list-item-title>
+              </v-list-item>
+              <v-list-item @click="printCollection()">
+                <v-list-item-icon>
+                  <v-icon>{{ mdiPrinter }}</v-icon>
+                </v-list-item-icon>
+                <v-list-item-title>
+                  {{ $tc('components.gymAdmin.printRoutes', routeSelected.length, { count: routeSelected.length }) }}
+                </v-list-item-title>
+              </v-list-item>
+            </v-list>
+          </v-menu>
+        </v-col>
+      </v-row>
     </v-sheet>
-    <v-row>
-      <v-col
-        v-if="routeSelected.length > 0"
-        class="text-right"
-      >
-        <v-menu offset-y>
-          <template #activator="{ on, attrs }">
-            <v-btn
-              color="primary"
-              small
-              v-bind="attrs"
-              v-on="on"
-            >
-              {{ $t('actions.actions') }}
-            </v-btn>
-          </template>
-          <v-list>
-            <v-list-item
-              v-if="mountedRoute"
-              @click="dismountCollection()"
-            >
-              <v-list-item-icon>
-                <v-icon>{{ mdiBackburger }}</v-icon>
-              </v-list-item-icon>
-              <v-list-item-title>
-                {{ $tc('components.gymAdmin.dismountRoutes', routeSelected.length, { count: routeSelected.length }) }}
-              </v-list-item-title>
-            </v-list-item>
-            <v-list-item
-              v-if="!mountedRoute"
-              @click="mountCollection()"
-            >
-              <v-list-item-icon>
-                <v-icon>{{ mdiForwardburger }}</v-icon>
-              </v-list-item-icon>
-              <v-list-item-title>
-                {{ $tc('components.gymAdmin.mountRoutes', routeSelected.length, { count: routeSelected.length }) }}
-              </v-list-item-title>
-            </v-list-item>
-          </v-list>
-        </v-menu>
-      </v-col>
-    </v-row>
 
     <!-- Routes table -->
     <v-row>
@@ -77,7 +90,32 @@
               </nuxt-link>
             </template>
             <template #[`item.openedAt`]="{ item }">
+              <v-btn
+                small
+                icon
+                left
+                :title="`${$t('actions.selectOrUnselect')} : ${humanizeDate(item.openedAt)}`"
+                @click="routesBulkSelector(item.id, 'openedAt')"
+              >
+                <v-icon small>
+                  {{ mdiCheckAll }}
+                </v-icon>
+              </v-btn>
               {{ humanizeDate(item.openedAt) }}
+            </template>
+            <template #[`item.sector`]="{ item }">
+              <v-btn
+                small
+                icon
+                left
+                :title="`${$t('actions.selectOrUnselect')} : ${item.sector}`"
+                @click="routesBulkSelector(item.id, 'sector')"
+              >
+                <v-icon small>
+                  {{ mdiCheckAll }}
+                </v-icon>
+              </v-btn>
+              {{ item.sector }}
             </template>
             <template #[`item.edit`]="{ item }">
               <nuxt-link
@@ -96,7 +134,14 @@
 </template>
 
 <script>
-import { mdiBackburger, mdiForwardburger, mdiPencil } from '@mdi/js'
+import {
+  mdiBackburger,
+  mdiDotsVertical,
+  mdiForwardburger,
+  mdiPencil,
+  mdiPrinter,
+  mdiCheckAll
+} from '@mdi/js'
 import { DateHelpers } from '@/mixins/DateHelpers'
 import GymApi from '~/services/oblyk-api/GymApi'
 import GymRoute from '@/models/GymRoute'
@@ -182,7 +227,10 @@ export default {
 
       mdiBackburger,
       mdiForwardburger,
-      mdiPencil
+      mdiPencil,
+      mdiPrinter,
+      mdiDotsVertical,
+      mdiCheckAll
     }
   },
 
@@ -216,6 +264,27 @@ export default {
         .finally(() => {
           this.loadingRoutes = false
         })
+    },
+
+    routesBulkSelector (routeId, attribute) {
+      const selectedRoute = this.tables.routes.find(route => route.id === routeId)
+      const inSelectedRoute = this.routeSelected.find(route => route.id === routeId)
+
+      if (inSelectedRoute) {
+        const newSelectedRoute = []
+        for (const route of this.routeSelected) {
+          if (route[attribute] !== selectedRoute[attribute]) {
+            newSelectedRoute.push(route)
+          }
+        }
+        this.routeSelected = newSelectedRoute
+      } else {
+        for (const route of this.tables.routes) {
+          if (route[attribute] === selectedRoute[attribute]) {
+            this.routeSelected.push(route)
+          }
+        }
+      }
     },
 
     formatRoutes () {
@@ -266,6 +335,39 @@ export default {
         .then(() => {
           this.routeSelected = []
           this.getRoutes()
+        })
+    },
+
+    printCollection () {
+      if (this.routeSelected.length === 0) { return false }
+
+      const routeIds = []
+      for (const route of this.routeSelected) {
+        routeIds.push(route.id)
+      }
+      this.loadingRoutes = true
+      new GymRouteApi(this.$axios, this.$auth)
+        .printCollection(this.gym.id, routeIds)
+        .then((resp) => {
+          const newBlob = new Blob([resp.data], { type: 'application/pdf' })
+          if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+            window.navigator.msSaveOrOpenBlob(newBlob)
+            return
+          }
+
+          const data = window.URL.createObjectURL(newBlob)
+          const link = document.createElement('a')
+          link.href = data
+          link.setAttribute(
+            'download',
+            this.$t('components.gymRoute.printedFileName', { date: this.$moment().format('YYYY-MM-DD'), name: this.gym.name })
+          )
+          link.click()
+          setTimeout(() => { window.URL.revokeObjectURL(data) }, 100)
+          this.routeSelected = []
+        })
+        .finally(() => {
+          this.loadingRoutes = false
         })
     }
   }
