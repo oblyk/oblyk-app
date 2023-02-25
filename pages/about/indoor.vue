@@ -263,15 +263,6 @@
             <p>
               Sélectionnez un secteur, une journée d'ouverture ou des lignes en particulier, cliquez sur <strong>"imprimer"</strong> ! Vos étiquettes sont prêtes à être posées au pied de leurs voies.
             </p>
-            <p class="font-weight-bold mt-5">
-              <v-icon
-                left
-                color="blue"
-              >
-                {{ mdiFlask }}
-              </v-icon>
-              L'impression d'étiquette n'est pas encore disponible
-            </p>
           </div>
         </v-col>
         <v-col
@@ -283,8 +274,8 @@
           <v-img
             max-width="330"
             class="align-self-center"
-            src="/svg/indoor/work-in-progress.svg"
-            alt="Le développement est en cours"
+            src="/svg/indoor/print-route-sheet.svg"
+            alt="Imprimer les fiches pour vos voies"
           />
         </v-col>
       </v-row>
