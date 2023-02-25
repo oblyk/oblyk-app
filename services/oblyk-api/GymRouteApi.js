@@ -28,9 +28,10 @@ class GymRouteApi extends BaseApi {
   }
 
   find (gymId, spaceId, routeId) {
+    const url = spaceId ? `${this.baseUrl}/gyms/${gymId}/gym_spaces/${spaceId}/gym_routes/${routeId}.json` : `${this.baseUrl}/gyms/${gymId}/gym_routes/${routeId}.json`
     return this.axios.request({
       method: 'GET',
-      url: `${this.baseUrl}/gyms/${gymId}/gym_spaces/${spaceId}/gym_routes/${routeId}.json`,
+      url,
       headers: { HttpApiAccessToken: this.apiAccessToken }
     })
   }
