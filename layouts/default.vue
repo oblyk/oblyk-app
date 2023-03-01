@@ -204,6 +204,7 @@ export default {
 
     connectChannel () {
       this.$cable.subscribe({ channel: 'NotificationChannel' })
+      this.$cable.subscribe({ channel: 'FetchUserChannel' })
     },
 
     getUnreadNotification () {
@@ -216,6 +217,7 @@ export default {
 
     disconnectChannel () {
       this.$cable.unsubscribe('NotificationChannel')
+      this.$cable.unsubscribe('FetchUserChannel')
     },
 
     reloadApp () {

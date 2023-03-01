@@ -230,6 +230,7 @@ export default {
 
               // Connect to Notification Channel
               this.$cable.subscribe({ channel: 'NotificationChannel' })
+              this.$cable.subscribe({ channel: 'FetchUserChannel' })
             })
             .finally(() => {
               this.submitOverlay = false

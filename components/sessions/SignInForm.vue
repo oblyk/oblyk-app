@@ -100,6 +100,7 @@ export default {
 
         // Connect to notification channel
         this.$cable.subscribe({ channel: 'NotificationChannel' })
+        this.$cable.subscribe({ channel: 'FetchUserChannel' })
 
         // Get unread notification
         await new NotificationApi(this.$axios, this.$auth)

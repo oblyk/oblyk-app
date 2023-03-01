@@ -51,6 +51,7 @@ export default {
   methods: {
     disconnected () {
       this.$cable.unsubscribe('NotificationChannel')
+      this.$cable.unsubscribe('FetchUserChannel')
       this.logout()
     }
   }

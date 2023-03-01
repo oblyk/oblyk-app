@@ -16,6 +16,15 @@ export const Channels = {
         this.$root.$emit('receivedConversationMessage', data)
       },
       disconnected () { }
+    },
+
+    // Channel for Re Fetch User when something change
+    FetchUserChannel: {
+      connected () { },
+      received (data) {
+        this.$auth.fetchUser()
+      },
+      disconnected () { }
     }
   }
 }
