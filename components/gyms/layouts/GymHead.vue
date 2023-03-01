@@ -81,11 +81,12 @@
 import { mdiPencil, mdiAlphaLCircle, mdiPanorama } from '@mdi/js'
 import { SessionConcern } from '@/concerns/SessionConcern'
 import SubscribeBtn from '@/components/forms/SubscribeBtn'
+import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
 
 export default {
   name: 'GymHead',
   components: { SubscribeBtn },
-  mixins: [SessionConcern],
+  mixins: [SessionConcern, GymRolesHelpers],
   props: {
     gym: {
       type: Object,
@@ -103,7 +104,7 @@ export default {
 
   methods: {
     userCanTouch () {
-      return this.isLoggedIn && (!this.gym.administered || this.currentUserIsGymAdmin())
+      return this.isLoggedIn && (!this.gym.administered || (this.currentUserIsGymAdmin() && this.gymAuthCan(this.gym, 'manage_gym')))
     }
   }
 }

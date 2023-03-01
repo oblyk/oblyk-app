@@ -14,6 +14,7 @@
     <v-list>
       <!-- Edit gym space -->
       <v-list-item
+        v-if="gymAuthCan(gym, 'manage_space')"
         link
         :to="`${gymSpace.path}/edit`"
       >
@@ -29,6 +30,7 @@
 
       <!-- Change space plan -->
       <v-list-item
+        v-if="gymAuthCan(gym, 'manage_space')"
         link
         :to="`${gymSpace.path}/upload-plan`"
       >
@@ -46,6 +48,7 @@
 
       <!-- New line -->
       <v-list-item
+        v-if="gymAuthCan(gym, 'manage_opening')"
         link
         :to="`${gymSpace.path}/select-sector`"
       >
@@ -61,6 +64,7 @@
 
       <!-- Create a new secteur -->
       <v-list-item
+        v-if="gymAuthCan(gym, 'manage_space')"
         link
         :to="`${gymSpace.path}/sectors/new`"
       >
@@ -76,6 +80,7 @@
 
       <!-- Create a new space -->
       <v-list-item
+        v-if="gymAuthCan(gym, 'manage_space')"
         link
         :to="`${gymSpace.gymPath}/spaces/new`"
       >
@@ -93,12 +98,25 @@
 </template>
 
 <script>
-import { mdiDotsVertical, mdiPencil, mdiMap, mdiSourceBranchPlus, mdiShapeSquarePlus, mdiMapPlus } from '@mdi/js'
+import {
+  mdiDotsVertical,
+  mdiPencil,
+  mdiMap,
+  mdiSourceBranchPlus,
+  mdiShapeSquarePlus,
+  mdiMapPlus
+} from '@mdi/js'
+import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
 
 export default {
   name: 'GymSpaceActionMenu',
+  mixins: [GymRolesHelpers],
   props: {
     gymSpace: {
+      type: Object,
+      required: true
+    },
+    gym: {
       type: Object,
       required: true
     }

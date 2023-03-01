@@ -28,7 +28,7 @@
             </v-list-item>
           </v-list>
         </v-card-title>
-        <v-card-text>
+        <v-card-text v-if="gymAuthCan(gym, 'manage_gym')">
           <p
             v-if="missingInformation.length > 0"
             class="mt-6"
@@ -53,7 +53,10 @@
             </v-icon>
             {{ $t('components.gymAdmin.publicPage') }}
           </v-btn>
-          <v-menu offset-y>
+          <v-menu
+            v-if="gymAuthCan(gym, 'manage_gym')"
+            offset-y
+          >
             <template #activator="{ on, attrs }">
               <v-btn
                 text
@@ -158,9 +161,11 @@ import {
   mdiAlphaLCircleOutline,
   mdiImageArea
 } from '@mdi/js'
+import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
 
 export default {
   name: 'GymAdminWelcome',
+  mixins: [GymRolesHelpers],
   props: {
     gym: {
       type: Object,

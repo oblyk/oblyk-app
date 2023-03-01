@@ -67,7 +67,7 @@
         </template>
       </v-simple-table>
     </v-card-text>
-    <v-card-actions>
+    <v-card-actions v-if="gymAuthCan(gym, 'manage_space')">
       <v-spacer />
 
       <!-- buttons in presentation mode -->
@@ -127,11 +127,17 @@
 <script>
 import { mdiCircle, mdiPlus, mdiPencil, mdiTrashCan } from '@mdi/js'
 import GymGradeApi from '~/services/oblyk-api/GymGradeApi'
+import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
 
 export default {
   name: 'GymGradeCard',
+  mixins: [GymRolesHelpers],
   props: {
     gymGrade: {
+      type: Object,
+      required: true
+    },
+    gym: {
       type: Object,
       required: true
     },

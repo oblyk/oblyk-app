@@ -14,6 +14,7 @@
     <v-list>
       <!-- Edit Sector -->
       <v-list-item
+        v-if="gymAuthCan(gym, 'manage_space')"
         link
         :to="`${gymSector.path}/edit`"
       >
@@ -27,7 +28,7 @@
 
       <!-- Edit polyline -->
       <v-list-item
-        v-if="showPlanOptions"
+        v-if="showPlanOptions && gymAuthCan(gym, 'manage_space')"
         link
         @click="startEditSectorPolygon()"
       >
@@ -43,6 +44,7 @@
 
       <!-- Add new route in sector -->
       <v-list-item
+        v-if="gymAuthCan(gym, 'manage_opening')"
         link
         :to="`${gymSector.path}/routes/new`"
       >
@@ -56,6 +58,7 @@
 
       <!-- Dismount all routes in sector -->
       <v-list-item
+        v-if="gymAuthCan(gym, 'manage_opening')"
         link
         @click="dismountRoutes()"
       >
@@ -69,10 +72,10 @@
 
       <!-- Remove sector polygone -->
       <v-divider
-        v-if="gymSector.hasPolygon && showPlanOptions"
+        v-if="gymSector.hasPolygon && showPlanOptions && gymAuthCan(gym, 'manage_space')"
       />
       <v-list-item
-        v-if="gymSector.hasPolygon && showPlanOptions"
+        v-if="gymSector.hasPolygon && showPlanOptions && gymAuthCan(gym, 'manage_space')"
         link
         @click="removeSectorPolygon()"
       >
@@ -100,11 +103,17 @@ import {
   mdiSourceBranchPlus
 } from '@mdi/js'
 import GymSectorApi from '~/services/oblyk-api/GymSectorApi'
+import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
 
 export default {
   name: 'GymSectorAdminMenu',
+  mixins: [GymRolesHelpers],
   props: {
     gymSector: {
+      type: Object,
+      required: true
+    },
+    gym: {
       type: Object,
       required: true
     },

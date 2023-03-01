@@ -4,7 +4,11 @@
 
     <v-container v-if="!loadingGymGrade">
       <v-breadcrumbs :items="breadcrumbs" />
-      <gym-grade-card :gym-grade="gymGrade" :presentation="false" />
+      <gym-grade-card
+        :gym-grade="gymGrade"
+        :gym="gym"
+        :presentation="false"
+      />
       <div class="mt-4">
         <v-btn
           :to="gymGrade.listPath"

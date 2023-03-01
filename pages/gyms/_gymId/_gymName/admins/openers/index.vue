@@ -1,7 +1,7 @@
 <template>
   <v-container>
-    <spinner v-if="loadingOpeners" />
-    <div v-else>
+    <spinner v-if="loadingOpeners && !gym" />
+    <div v-if="!loadingOpeners && gym">
       <v-breadcrumbs :items="breadcrumbs" />
 
       <v-simple-table>
@@ -17,7 +17,7 @@
               <th class="text-left">
                 {{ $t('models.gymOpener.last_name') }}
               </th>
-              <th />
+              <th v-if="gymAuthCan(gym, 'manage_opener')" />
             </tr>
           </thead>
           <tbody>
@@ -38,7 +38,10 @@
               </td>
               <td>{{ opener.first_name }}</td>
               <td>{{ opener.last_name }}</td>
-              <td class="text-right">
+              <td
+                v-if="gymAuthCan(gym, 'manage_opener')"
+                class="text-right"
+              >
                 <v-menu>
                   <template #activator="{ on, attrs }">
                     <v-btn
@@ -98,6 +101,7 @@
         </v-btn>
 
         <v-btn
+          v-if="gymAuthCan(gym, 'manage_opener')"
           class="float-right"
           color="primary"
           outlined
@@ -116,11 +120,12 @@ import { GymFetchConcern } from '~/concerns/GymFetchConcern'
 import GymOpenerApi from '~/services/oblyk-api/GymOpenerApi'
 import Spinner from '~/components/layouts/Spiner.vue'
 import GymOpener from '~/models/GymOpener'
+import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
 
 export default {
   components: { Spinner },
   meta: { orphanRoute: true },
-  mixins: [GymFetchConcern],
+  mixins: [GymFetchConcern, GymRolesHelpers],
 
   data () {
     return {

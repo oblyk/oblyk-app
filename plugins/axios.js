@@ -16,8 +16,7 @@ export default function ({ $axios, redirect, $auth }) {
       }
       redirect('/sign-in')
     } else if (code === 403) {
-      await $auth.logout('local')
-      window.location.reload()
+      window.location.href = '/errors/right-required'
     } else {
       return Promise.reject(error)
     }

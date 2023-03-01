@@ -1,15 +1,18 @@
 <template>
   <div>
-    <spinner v-if="loadingGymGrades" />
+    <spinner v-if="loadingGymGrades && !gym" />
 
-    <v-container v-if="!loadingGymGrades">
+    <v-container v-if="!loadingGymGrades && gym">
       <v-breadcrumbs :items="breadcrumbs" />
       <div
         v-for="gymGrade in gymGrades"
         :key="gymGrade.id"
         class="mb-4"
       >
-        <gym-grade-card :gym-grade="gymGrade" />
+        <gym-grade-card
+          :gym="gym"
+          :gym-grade="gymGrade"
+        />
       </div>
 
       <p
@@ -20,6 +23,7 @@
       </p>
 
       <div
+        v-if="gymAuthCan(gym, 'manage_space')"
         class="mt-3"
         :class="gymGrades.length === 0 ? 'text-center' : 'text-right'"
       >
@@ -45,11 +49,12 @@ import Spinner from '@/components/layouts/Spiner'
 import GymGradeApi from '@/services/oblyk-api/GymGradeApi'
 import GymGradeCard from '@/components/gymGrades/GymGradeCard'
 import GymGrade from '@/models/GymGrade'
+import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
 
 export default {
   meta: { orphanRoute: true },
   components: { GymGradeCard, Spinner },
-  mixins: [GymFetchConcern],
+  mixins: [GymFetchConcern, GymRolesHelpers],
 
   data () {
     return {

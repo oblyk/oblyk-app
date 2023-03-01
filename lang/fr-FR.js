@@ -524,6 +524,7 @@ export default {
       colorSingle: 'Choisissez une couleur',
       ascentStatusIcon: "Status de l'enchaînement",
       gymOpener: 'Ouvreurs, Ouvreuses',
+      gymRoles: 'Peut gérer',
       gymAddOpener: 'Ajouter un·e ouvreur·euse',
       colorSystem: {
         chooseOrder: 'Choisissez un ordre de couleur',
@@ -1922,7 +1923,8 @@ export default {
       last_name: 'Nom'
     },
     gymAdministrator: {
-      user: 'Un compte Oblyk associé à ce mail'
+      user: 'Un compte Oblyk associé à ce mail',
+      roles: 'Peut gérer'
     },
     gymOpener: {
       name: 'Nom / Pseudonyme',
@@ -2001,6 +2003,13 @@ export default {
       order: 'Ordre',
       grade_text: 'Cotation moyenne de ce niveau',
       points: 'Points pour ce niveau'
+    },
+    roles: {
+      manage_team_member: "Les membres de l'équipe",
+      manage_opening: 'Les ouvertures',
+      manage_space: 'Les espaces et secteur',
+      manage_gym: 'La salle',
+      manage_opener: 'Les ouvreurs·euses'
     },
     climbs: {
       sport_climbing: 'Voie',

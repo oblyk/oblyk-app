@@ -30,8 +30,9 @@
             </v-icon>
           </v-btn>
           <gym-sector-admin-menu
-            v-if="currentUserIsGymAdmin()"
+            v-if="currentUserIsGymAdmin() && (gymAuthCan(gym, 'manage_space') || gymAuthCan(gym, 'manage_opening'))"
             :gym-sector="item.sector"
+            :gym="gym"
             :show-plan-options="showPlanOptions"
           />
         </v-subheader>
@@ -52,7 +53,7 @@
 
       <!-- Add route in sector -->
       <div
-        v-if="currentUserIsGymAdmin()"
+        v-if="currentUserIsGymAdmin() && gymAuthCan(gym, 'manage_opening')"
         class="text-right"
       >
         <v-btn
@@ -76,6 +77,7 @@ import { mdiTextureBox, mdiImageFilterCenterFocusStrong, mdiSourceBranchPlus } f
 import { SessionConcern } from '@/concerns/SessionConcern'
 import GymRouteListItem from '~/components/gymRoutes/GymRouteListItem.vue'
 import GymSectorAdminMenu from '~/components/gymSectors/GymSectorAdminMenu.vue'
+import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
 
 export default {
   name: 'GymRoutesBySector',
@@ -83,11 +85,15 @@ export default {
     GymSectorAdminMenu,
     GymRouteListItem
   },
-  mixins: [SessionConcern],
+  mixins: [SessionConcern, GymRolesHelpers],
 
   props: {
     sectors: {
       type: Array,
+      required: true
+    },
+    gym: {
+      type: Object,
       required: true
     },
     getRoutes: {

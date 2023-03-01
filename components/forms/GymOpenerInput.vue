@@ -13,7 +13,10 @@
       :loadin="loadingOpener"
       @change="onChange()"
     >
-      <template #append-outer>
+      <template
+        v-if="gymAuthCan(gym, 'manage_opener')"
+        #append-outer
+      >
         <v-tooltip bottom>
           <template #activator="{ on }">
             <v-btn
@@ -55,10 +58,12 @@
 import { mdiAccountPlus } from '@mdi/js'
 import GymOpenerApi from '~/services/oblyk-api/GymOpenerApi'
 import GymOpenerForm from '~/components/gyms/forms/GymOpenerForm.vue'
+import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
 
 export default {
   name: 'GymOpenerInput',
   components: { GymOpenerForm },
+  mixins: [GymRolesHelpers],
   props: {
     value: {
       type: Array,

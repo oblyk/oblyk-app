@@ -18,6 +18,7 @@
           <sign-up-form
             v-if="!isLoggedIn"
             :redirect-to="redirectTo"
+            :pre-filled-email="preFilledEmail"
           />
 
           <p v-if="isLoggedIn">
@@ -47,7 +48,8 @@ export default {
   data () {
     return {
       redirectTo: null,
-      climbersMap: false
+      climbersMap: false,
+      preFilledEmail: null
     }
   },
 
@@ -79,6 +81,7 @@ export default {
   mounted () {
     const urlParams = new URLSearchParams(window.location.search)
     this.redirectTo = urlParams.get('redirect_to')
+    this.preFilledEmail = urlParams.get('email')
     this.climbersMap = urlParams.get('partner_request') === 'true'
   }
 }

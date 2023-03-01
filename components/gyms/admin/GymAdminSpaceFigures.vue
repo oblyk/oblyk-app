@@ -14,6 +14,7 @@
     <v-card-actions>
       <v-spacer />
       <v-btn
+        v-if="gymAuthCan(gym, 'manage_space')"
         :to="`${gym.spacePath}/new`"
         text
         color="primary"
@@ -39,8 +40,10 @@
 
 <script>
 import { mdiMap, mdiPlus } from '@mdi/js'
+import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
 export default {
   name: 'GymAdminSpaceFigures',
+  mixins: [GymRolesHelpers],
   props: {
     gym: {
       type: Object,

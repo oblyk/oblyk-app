@@ -79,7 +79,7 @@
             :items-per-page="mountedRoute ? -1 : 15"
             :loading="loadingRoutes"
             item-key="id"
-            show-select
+            :show-select="gymAuthCan(gym, 'manage_opening')"
           >
             <template #[`item.color`]="{ item }">
               <gym-route-tag-and-hold :gym-route="item.color" />
@@ -91,6 +91,7 @@
             </template>
             <template #[`item.openedAt`]="{ item }">
               <v-btn
+                v-if="gymAuthCan(gym, 'manage_opening')"
                 small
                 icon
                 left
@@ -105,6 +106,7 @@
             </template>
             <template #[`item.sector`]="{ item }">
               <v-btn
+                v-if="gymAuthCan(gym, 'manage_opening')"
                 small
                 icon
                 left
@@ -119,6 +121,7 @@
             </template>
             <template #[`item.edit`]="{ item }">
               <nuxt-link
+                v-if="gymAuthCan(gym, 'manage_opening')"
                 :to="`${item.edit.path}/edit?redirect_to=${$route.fullPath}`"
               >
                 <v-icon small>
@@ -147,11 +150,12 @@ import GymApi from '~/services/oblyk-api/GymApi'
 import GymRoute from '@/models/GymRoute'
 import GymRouteTagAndHold from '@/components/gymRoutes/partial/GymRouteTagAndHold'
 import GymRouteApi from '~/services/oblyk-api/GymRouteApi'
+import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
 
 export default {
   name: 'GymRoutesTable',
   components: { GymRouteTagAndHold },
-  mixins: [DateHelpers],
+  mixins: [DateHelpers, GymRolesHelpers],
   props: {
     gym: {
       type: Object,

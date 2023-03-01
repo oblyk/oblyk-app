@@ -524,6 +524,7 @@ export default {
       colorSingle: 'Choose a colour',
       ascentStatusIcon: 'Status of the sequence',
       gymOpener: 'Openers',
+      gymRoles: 'Can manage',
       gymAddOpener: 'Add an opener',
       colorSystem: {
         chooseOrder: 'Choose a colour order',
@@ -1922,7 +1923,8 @@ export default {
       last_name: 'Last name'
     },
     gymAdministrator: {
-      email: 'Email'
+      email: 'Email',
+      roles: 'Can manage'
     },
     gymOpener: {
       name: 'Name / Alias',
@@ -2001,6 +2003,13 @@ export default {
       order: 'Order',
       grade_text: 'Average rating of this level',
       points: 'Points for this level'
+    },
+    roles: {
+      manage_team_member: 'Team member',
+      manage_opening: 'Opening',
+      manage_space: 'Space and sector',
+      manage_gym: 'Gym',
+      manage_opener: 'Openers'
     },
     climbs: {
       sport_climbing: 'Sport Climbing',

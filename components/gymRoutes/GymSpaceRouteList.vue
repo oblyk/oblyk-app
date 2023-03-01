@@ -3,7 +3,7 @@
     <!-- Sort sector select -->
     <v-row class="mb-2">
       <v-col
-        :cols="currentUserIsGymAdmin() ? '10' : '12'"
+        :cols="currentUserIsGymAdmin() && gymAuthCan(gym, 'manage_opening') ? '10' : '12'"
       >
         <gym-space-route-sort
           v-model="sort"
@@ -12,7 +12,7 @@
         />
       </v-col>
       <v-col
-        v-if="currentUserIsGymAdmin()"
+        v-if="currentUserIsGymAdmin() && gymAuthCan(gym, 'manage_opening')"
         cols="2"
         class="text-right"
       >
@@ -57,6 +57,7 @@
         :show-sector-id="showSectorId"
         :get-routes="getRoutes"
         :show-plan-options="showPlanOptions"
+        :gym="gym"
       />
 
       <!-- If sort by opened_at -->
@@ -135,6 +136,7 @@ import GymRoutesByOpenedAt from '@/components/gymRoutes/listByGroup/GymRoutesByO
 import GymRoutesByGrade from '@/components/gymRoutes/listByGroup/GymRoutesByGrade'
 import GymRoutesByLevel from '~/components/gymRoutes/listByGroup/GymRoutesByLevel.vue'
 import GymRoutesByPoint from '~/components/gymRoutes/listByGroup/GymRoutesByPoint.vue'
+import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
 
 export default {
   name: 'GymSpaceRouteList',
@@ -146,7 +148,7 @@ export default {
     GymRoutesBySector,
     GymSpaceRouteSort
   },
-  mixins: [SessionConcern],
+  mixins: [SessionConcern, GymRolesHelpers],
   props: {
     gymSpace: {
       type: Object,

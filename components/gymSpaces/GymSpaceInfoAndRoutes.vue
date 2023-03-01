@@ -34,9 +34,12 @@
               {{ gym.name }}<span class="font-weight-regular">, {{ gymSpace.name }}</span>
             </v-list-item-title>
             <v-list-item-action
-              v-if="currentUserIsGymAdmin()"
+              v-if="currentUserIsGymAdmin() && (gymAuthCan(gym, 'manage_space') || gymAuthCan(gym, 'manage_opening'))"
             >
-              <gym-space-action-menu :gym-space="gymSpace" />
+              <gym-space-action-menu
+                :gym-space="gymSpace"
+                :gym="gym"
+              />
             </v-list-item-action>
           </v-list-item>
         </v-list>
@@ -69,7 +72,10 @@
         :class="$vuetify.breakpoint.mobile ? 'elevation-3' : ''"
         rounded
       >
-        <gym-space-route-list :gym-space="gymSpace" />
+        <gym-space-route-list
+          :gym-space="gymSpace"
+          :gym="gym"
+        />
       </v-sheet>
     </div>
 
@@ -90,6 +96,7 @@ import GymSpaceActionMenu from '@/components/gymSpaces/GymSpaceActionMenu'
 import GymSpaceRouteList from '@/components/gymRoutes/GymSpaceRouteList'
 import GymSectorEditingPlan from '@/components/gymSectors/GymSectorEditingPlan'
 import { SessionConcern } from '@/concerns/SessionConcern'
+import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
 const MarkdownText = () => import('@/components/ui/MarkdownText')
 
 export default {
@@ -101,7 +108,7 @@ export default {
     GymSpaceActionMenu,
     GymSpaceSelector
   },
-  mixins: [SessionConcern],
+  mixins: [SessionConcern, GymRolesHelpers],
 
   props: {
     gymSpace: {

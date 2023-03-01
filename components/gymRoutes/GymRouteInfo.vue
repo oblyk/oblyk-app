@@ -141,7 +141,7 @@
         />
 
         <gym-route-action-btn
-          v-if="$auth.loggedIn && currentUserIsGymAdmin()"
+          v-if="$auth.loggedIn && currentUserIsGymAdmin() && gymAuthCan(gymRoute.gym, 'manage_opening')"
           :gym-route="gymRoute"
         />
       </div>
@@ -207,6 +207,7 @@ import AscentGymRoute from '@/models/AscentGymRoute'
 import DescriptionLine from '~/components/ui/DescriptionLine.vue'
 import GymRouteActionBtn from '~/components/gymRoutes/partial/GymRouteActionBtn.vue'
 import AddGymAscentBtn from '~/components/ascentGymRoutes/AddGymAscentBtn.vue'
+import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
 const MarkdownText = () => import('@/components/ui/MarkdownText')
 
 export default {
@@ -222,7 +223,7 @@ export default {
     GymRouteGradeAndPoint,
     GymRouteTagAndHold
   },
-  mixins: [SessionConcern, DateHelpers],
+  mixins: [SessionConcern, DateHelpers, GymRolesHelpers],
   props: {
     gymRoute: {
       type: Object,

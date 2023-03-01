@@ -35,6 +35,7 @@
         <!-- Space informations and routes -->
         <div class="gym-space-info-and-routes">
           <gym-space-info-and-routes
+            v-if="gym"
             :gym-space="gymSpace"
             :gym="gym"
           />

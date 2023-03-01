@@ -146,6 +146,10 @@ export default {
       type: String,
       required: false,
       default: null
+    },
+    preFilledEmail: {
+      type: String,
+      default: null
     }
   },
 
@@ -171,6 +175,12 @@ export default {
         { text: 'Français', value: 'fr' },
         { text: 'English', value: 'en' }
       ]
+    }
+  },
+
+  watch: {
+    preFilledEmail () {
+      this.email = this.preFilledEmail
     }
   },
 
