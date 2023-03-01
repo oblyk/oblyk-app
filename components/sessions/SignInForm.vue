@@ -68,21 +68,21 @@ export default {
   props: {
     redirectTo: {
       type: String,
-      required: false,
-      default: '/'
+      default: null
     }
   },
 
   data () {
     return {
-      mdiEyeOff,
-      mdiEye,
       overlay: false,
       oblyk_full_name: null,
       email: null,
       password: null,
       showPassword: false,
-      rememberMe: true
+      rememberMe: true,
+
+      mdiEyeOff,
+      mdiEye
     }
   },
 
@@ -109,7 +109,11 @@ export default {
             this.$store.dispatch('notification/changeNotificationStatus', resp.data > 0)
           })
 
-        await this.$router.push(`/me/${this.$auth.user.slug_name}`)
+        if (this.redirectTo) {
+          await this.$router.push(this.redirectTo)
+        } else {
+          await this.$router.push(`/me/${this.$auth.user.slug_name}`)
+        }
       } catch (err) {
         this.$root.$emit('alertFromApiError', err, 'user')
       }

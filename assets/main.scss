@@ -271,6 +271,12 @@ strong {
   }
 }
 
+.beta-background {
+  background: linear-gradient(-45deg, #1E88E5 12.5%, #208be9 12.5%, #208be9 37.5%, #1E88E5 37.5%, #1E88E5 62.5%, #208be9 62.5%, #208be9 87.5%, #1E88E5 87.5%);
+  background-size: 50px 50px;
+  background-position: 50px 50px;
+}
+
 .border {
   border-style: solid;
   border-width: 1px;

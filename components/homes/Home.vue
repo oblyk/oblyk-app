@@ -15,6 +15,9 @@
         <home-box-guide-book class="home-boxes" />
       </lazy-hydrate>
       <lazy-hydrate when-visible>
+        <home-box-indoor class="home-boxes" />
+      </lazy-hydrate>
+      <lazy-hydrate when-visible>
         <last-article />
       </lazy-hydrate>
       <lazy-hydrate when-visible>
@@ -37,6 +40,7 @@
 <script>
 import LazyHydrate from 'vue-lazy-hydration'
 import HomeHeader from '~/components/homes/HomeHeader'
+const HomeBoxIndoor = () => import('~/components/homes/HomeBoxIndoor')
 const HomeLastAdded = () => import('~/components/homes/HomeLastAdded')
 const HomeBoxCragInfo = () => import('@/components/homes/HomeBoxCragInfo')
 const HomeBoxAscentsLog = () => import('@/components/homes/HomeBoxAscentsLog')
@@ -51,6 +55,7 @@ const LastArticle = () => import('@/components/articles/LastArticle')
 export default {
   name: 'Home',
   components: {
+    HomeBoxIndoor,
     HomeHeader,
     LazyHydrate,
     HomeLastAdded,
