@@ -202,12 +202,13 @@
         >
           <v-btn
             text
+            class="px-2"
             :to="`/me/${$auth.user.slug_name}/climbing-sessions/${climbingSession.previous_climbing_session}`"
           >
             <v-icon class="mr-2">
               {{ mdiArrowLeft }}
             </v-icon>
-            {{ humanizeDate(climbingSession.previous_climbing_session) }}
+            {{ humanizeDate(climbingSession.previous_climbing_session, 'll') }}
           </v-btn>
         </v-col>
         <v-col
@@ -215,10 +216,11 @@
           class="text-right"
         >
           <v-btn
-            :to="`/me/${$auth.user.slug_name}/climbing-sessions/${climbingSession.next_climbing_session}`"
             text
+            class="px-2"
+            :to="`/me/${$auth.user.slug_name}/climbing-sessions/${climbingSession.next_climbing_session}`"
           >
-            {{ humanizeDate(climbingSession.next_climbing_session) }}
+            {{ humanizeDate(climbingSession.next_climbing_session, 'll') }}
             <v-icon class="ml-2">
               {{ mdiArrowRight }}
             </v-icon>
