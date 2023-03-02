@@ -67,6 +67,33 @@
               {{ mdiCircle }}
             </v-icon>
           </v-badge>
+          <span
+            v-if="climbingSession.stats.project_by_grades.length > 0"
+            class="mr-1"
+          >
+            |
+          </span>
+          <v-badge
+            v-for="(grade, byProjectGradeIndex) in climbingSession.stats.project_by_grades"
+            :key="`index-project-grade-${byProjectGradeIndex}`"
+            overlap
+            dark
+            color="black"
+            :value="grade.count > 1"
+            bordered
+            :class="grade.count > 1 ? 'mr-3' : 'mr-1'"
+          >
+            <template #badge>
+              x{{ grade.count }}
+            </template>
+            <v-chip
+              :color="gradeValueToColor(grade.grade_value)"
+              outlined
+              class="font-weight-bold"
+            >
+              {{ grade.grade_text }}
+            </v-chip>
+          </v-badge>
         </div>
 
         <v-sheet
