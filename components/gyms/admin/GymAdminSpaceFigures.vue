@@ -25,6 +25,7 @@
         {{ $t('components.gymSpace.create') }}
       </v-btn>
       <v-btn
+        v-if="gym.gym_spaces.length > 0"
         :to="gym.spacePath"
         elevation="0"
         color="primary"
