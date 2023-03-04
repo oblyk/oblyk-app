@@ -82,20 +82,6 @@
 
       <!-- Buttons in editable mode -->
       <v-btn
-        v-if="editable"
-        color="error"
-        class="ml-2"
-        :loading="loadingDelete"
-        text
-        @click="deleteGrade()"
-      >
-        <v-icon left>
-          {{ mdiTrashCan }}
-        </v-icon>
-        {{ $t('actions.delete') }}
-      </v-btn>
-
-      <v-btn
         v-if="editable && gymGrade.need_grade_line"
         color="primary"
         class="ml-2"
@@ -109,23 +95,68 @@
       </v-btn>
 
       <v-btn
-        v-if="editable"
-        color="primary"
-        class="ml-2"
-        :to="`${gymGrade.path}/edit`"
+        v-if="editable && !$vuetify.breakpoint.mobile"
         text
+        color="primary"
+        :to="`${gymGrade.path}/edit`"
       >
         <v-icon left>
           {{ mdiPencil }}
         </v-icon>
         {{ $t('actions.edit') }}
       </v-btn>
+
+      <v-menu offset-y>
+        <template #activator="{ on, attrs }">
+          <v-btn
+            icon
+            elevation="0"
+            :loading="loadingDelete"
+            class="ml-2"
+            v-bind="attrs"
+            v-on="on"
+          >
+            <v-icon left>
+              {{ mdiDotsVertical }}
+            </v-icon>
+          </v-btn>
+        </template>
+        <v-list>
+          <v-list-item
+            :to="`${gymGrade.path}/edit`"
+          >
+            <v-list-item-icon>
+              <v-icon>{{ mdiPencil }}</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>
+              {{ $t('actions.edit') }}
+            </v-list-item-title>
+          </v-list-item>
+          <v-divider />
+          <v-list-item @click="deleteGrade()">
+            <v-list-item-icon>
+              <v-icon>
+                {{ mdiTrashCan }}
+              </v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>
+              {{ $t('actions.delete') }}
+            </v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
     </v-card-actions>
   </v-card>
 </template>
 
 <script>
-import { mdiCircle, mdiPlus, mdiPencil, mdiTrashCan } from '@mdi/js'
+import {
+  mdiCircle,
+  mdiPlus,
+  mdiPencil,
+  mdiTrashCan,
+  mdiDotsVertical
+} from '@mdi/js'
 import GymGradeApi from '~/services/oblyk-api/GymGradeApi'
 import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
 
@@ -155,7 +186,8 @@ export default {
       mdiCircle,
       mdiPlus,
       mdiPencil,
-      mdiTrashCan
+      mdiTrashCan,
+      mdiDotsVertical
     }
   },
 
