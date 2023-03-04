@@ -177,6 +177,8 @@ export default {
     votes: 'Votes',
     minutes: 'minutes',
     number: 'nombre',
+    documentation: 'Documentation',
+    seeDocumentation: "Consultez la documentation pour en connaître d'avantage :",
     at: 'le',
     is: 'à',
     in: 'en',

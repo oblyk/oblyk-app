@@ -5,7 +5,16 @@
         <h2 class="mb-4">
           {{ $t('components.gymSpace.addNew') }}
         </h2>
-        <p class="subtitle-2 mb-8" v-html="$t('components.gymSpace.explain')" />
+        <p class="subtitle-2 mb-3" v-html="$t('components.gymSpace.explain')" />
+        <p class="subtitle-2 mb-8">
+          {{ $t('common.seeDocumentation') }}
+          <a
+            href="https://oblyk.github.io/app-user-doc/docs/indoor/espace/concept"
+            target="_blank"
+          >
+            {{ $t('common.documentation') }}
+          </a>
+        </p>
         <gym-space-form
           :gym-id="$route.params.gymId"
           submit-methode="post"

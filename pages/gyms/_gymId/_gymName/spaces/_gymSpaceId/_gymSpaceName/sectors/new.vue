@@ -6,8 +6,17 @@
           {{ $t('components.gymSector.addNew') }}
         </h2>
         <p class="subtitle-2" v-html="$t('components.gymSector.addNewExplain')" />
-        <p class="subtitle-2 mb-8">
+        <p class="subtitle-2 mb-3">
           {{ $t('components.gymSector.explainGroupName') }}
+        </p>
+        <p class="subtitle-2 mb-8">
+          {{ $t('common.seeDocumentation') }}
+          <a
+            href="https://oblyk.github.io/app-user-doc/docs/indoor/secteur/"
+            target="_blank"
+          >
+            {{ $t('common.documentation') }}
+          </a>
         </p>
         <gym-sector-form
           :gym-space="gymSpace"

@@ -177,6 +177,8 @@ export default {
     votes: 'Votes',
     minutes: 'minutes',
     number: 'number',
+    documentation: 'Documentation',
+    seeDocumentation: 'See the documentation for more information :',
     at: 'at',
     is: 'is',
     in: 'in',

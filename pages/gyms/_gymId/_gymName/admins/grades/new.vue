@@ -6,8 +6,17 @@
         <h2 class="mb-4">
           {{ $t('components.gymGrade.add') }}
         </h2>
-        <p class="subtitle-2 mb-8">
+        <p class="subtitle-2 mb-3">
           {{ $t('components.gymGrade.explain') }}
+        </p>
+        <p class="subtitle-2 mb-8">
+          {{ $t('common.seeDocumentation') }}
+          <a
+            href="https://oblyk.github.io/app-user-doc/docs/indoor/systeme-de-difficulte/concept"
+            target="_blank"
+          >
+            {{ $t('common.documentation') }}
+          </a>
         </p>
 
         <gym-grade-form
