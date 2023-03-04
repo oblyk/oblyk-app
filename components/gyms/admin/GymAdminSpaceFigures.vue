@@ -15,7 +15,7 @@
       <v-spacer />
       <v-btn
         v-if="gymAuthCan(gym, 'manage_space')"
-        :to="`${gym.spacePath}/new`"
+        :to="newSpacePath"
         text
         color="primary"
       >
@@ -68,6 +68,10 @@ export default {
       } else {
         return `${this.gym.path}/spaces`
       }
+    },
+
+    newSpacePath () {
+      return this.gym.gym_spaces.length === 0 ? `${this.gym.adminPath}/first-space` : `${this.gym.spacePath}/new`
     }
   }
 }
