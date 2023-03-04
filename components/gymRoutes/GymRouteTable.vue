@@ -4,72 +4,16 @@
     <v-sheet
       class="rounded pa-4 mt-4 mb-4"
     >
-      <v-row>
-        <v-col>
-          <v-switch
-            v-model="mountedRoute"
-            class="mt-0 d-inline-block"
-            hide-details
-            :label="mountedRoute ? $t('components.gymAdmin.mountedRoutes') : $t('components.gymAdmin.dismountedRoutes')"
-          />
-        </v-col>
-        <v-col
-          v-if="routeSelected.length > 0"
-          class="text-right"
-        >
-          <v-menu offset-y>
-            <template #activator="{ on, attrs }">
-              <v-btn
-                color="primary"
-                elevation="0"
-                v-bind="attrs"
-                v-on="on"
-              >
-                <v-icon left>
-                  {{ mdiDotsVertical }}
-                </v-icon>
-                {{ $t('actions.actions') }}
-              </v-btn>
-            </template>
-            <v-list>
-              <v-list-item
-                v-if="mountedRoute"
-                @click="dismountCollection()"
-              >
-                <v-list-item-icon>
-                  <v-icon>{{ mdiBackburger }}</v-icon>
-                </v-list-item-icon>
-                <v-list-item-title>
-                  {{ $tc('components.gymAdmin.dismountRoutes', routeSelected.length, { count: routeSelected.length }) }}
-                </v-list-item-title>
-              </v-list-item>
-              <v-list-item
-                v-if="!mountedRoute"
-                @click="mountCollection()"
-              >
-                <v-list-item-icon>
-                  <v-icon>{{ mdiForwardburger }}</v-icon>
-                </v-list-item-icon>
-                <v-list-item-title>
-                  {{ $tc('components.gymAdmin.mountRoutes', routeSelected.length, { count: routeSelected.length }) }}
-                </v-list-item-title>
-              </v-list-item>
-              <v-list-item @click="printCollection()">
-                <v-list-item-icon>
-                  <v-icon>{{ mdiPrinter }}</v-icon>
-                </v-list-item-icon>
-                <v-list-item-title>
-                  {{ $tc('components.gymAdmin.printRoutes', routeSelected.length, { count: routeSelected.length }) }}
-                </v-list-item-title>
-              </v-list-item>
-            </v-list>
-          </v-menu>
-        </v-col>
-      </v-row>
+      <v-switch
+        v-model="mountedRoute"
+        class="mt-0 d-inline-block"
+        hide-details
+        :label="mountedRoute ? $t('components.gymAdmin.mountedRoutes') : $t('components.gymAdmin.dismountedRoutes')"
+      />
     </v-sheet>
 
     <!-- Routes table -->
-    <v-row>
+    <v-row class="mb-10">
       <v-col>
         <client-only>
           <v-data-table
@@ -133,6 +77,63 @@
         </client-only>
       </v-col>
     </v-row>
+
+    <!-- Actions -->
+    <v-scale-transition>
+      <div
+        v-show="routeSelected.length > 0"
+        :style="`position: fixed; bottom: ${$vuetify.breakpoint.mobile ? 55 : 10}px; right: 10px`"
+      >
+        <v-menu offset-y>
+          <template #activator="{ on, attrs }">
+            <v-btn
+              large
+              color="primary"
+              elevation="0"
+              v-bind="attrs"
+              v-on="on"
+            >
+              <v-icon left>
+                {{ mdiDotsVertical }}
+              </v-icon>
+              {{ $t('actions.actions') }}
+            </v-btn>
+          </template>
+          <v-list>
+            <v-list-item
+              v-if="mountedRoute"
+              @click="dismountCollection()"
+            >
+              <v-list-item-icon>
+                <v-icon>{{ mdiBackburger }}</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>
+                {{ $tc('components.gymAdmin.dismountRoutes', routeSelected.length, { count: routeSelected.length }) }}
+              </v-list-item-title>
+            </v-list-item>
+            <v-list-item
+              v-if="!mountedRoute"
+              @click="mountCollection()"
+            >
+              <v-list-item-icon>
+                <v-icon>{{ mdiForwardburger }}</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>
+                {{ $tc('components.gymAdmin.mountRoutes', routeSelected.length, { count: routeSelected.length }) }}
+              </v-list-item-title>
+            </v-list-item>
+            <v-list-item @click="printCollection()">
+              <v-list-item-icon>
+                <v-icon>{{ mdiPrinter }}</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>
+                {{ $tc('components.gymAdmin.printRoutes', routeSelected.length, { count: routeSelected.length }) }}
+              </v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </v-menu>
+      </div>
+    </v-scale-transition>
   </div>
 </template>
 
@@ -146,11 +147,11 @@ import {
   mdiCheckAll
 } from '@mdi/js'
 import { DateHelpers } from '@/mixins/DateHelpers'
+import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
 import GymApi from '~/services/oblyk-api/GymApi'
 import GymRoute from '@/models/GymRoute'
 import GymRouteTagAndHold from '@/components/gymRoutes/partial/GymRouteTagAndHold'
 import GymRouteApi from '~/services/oblyk-api/GymRouteApi'
-import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
 
 export default {
   name: 'GymRoutesTable',
