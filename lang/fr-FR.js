@@ -1164,7 +1164,8 @@ export default {
       whichPointSystem: "Est-ce que j'utilise un système de point ?",
       system: 'Système',
       typeOfSystem: 'Type de système',
-      value: 'Valeur'
+      value: 'Valeur',
+      exampleTitle: "Exemple de la représentation d'une ligne sur le topo"
     },
     gymGradeLine: {
       colors: {

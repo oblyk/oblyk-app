@@ -68,6 +68,17 @@
       </v-radio>
     </v-radio-group>
 
+    <p class="subtitle-2 mb-2">
+      {{ $t('components.gymGrade.exampleTitle') }}
+    </p>
+
+    <v-sheet
+      rounded
+      class="mb-6"
+    >
+      <gym-route-list-item :gym-route="fakeRoute" />
+    </v-sheet>
+
     <close-form />
     <submit-form
       :overlay="submitOverlay"
@@ -82,10 +93,12 @@ import SubmitForm from '@/components/forms/SubmitForm'
 import GymGradeApi from '~/services/oblyk-api/GymGradeApi'
 import GymGrade from '@/models/GymGrade'
 import CloseForm from '@/components/forms/CloseForm'
+import GymRouteListItem from '~/components/gymRoutes/GymRouteListItem.vue'
+import GymRoute from '~/models/GymRoute'
 
 export default {
   name: 'GymGradeForm',
-  components: { CloseForm, SubmitForm },
+  components: { GymRouteListItem, CloseForm, SubmitForm },
   mixins: [FormHelpers],
   props: {
     gymId: {
@@ -110,6 +123,33 @@ export default {
         hold_color: this.gymGrade?.hold_color,
         point_system_type: this.gymGrade?.point_system_type
       }
+    }
+  },
+
+  computed: {
+    fakeRoute () {
+      const holds = this.data.hold_color ? ['#0055d4'] : null
+      const tags = this.data.tag_color ? ['#ab37c8'] : null
+      const ascentsCount = this.data.point_system_type === 'divisible' ? 4 : 0
+      let pointsToS = ''
+      if (this.data.point_system_type === 'divisible') {
+        pointsToS = '250pt'
+      } else if (this.data.point_system_type === 'fix') {
+        pointsToS = '50pt'
+      }
+      const gradeToS = this.data.difficulty_by_grade ? '6b+' : ''
+      return new GymRoute({
+        attributes: {
+          id: 0,
+          name: 'Exemple',
+          hold_colors: holds,
+          tag_colors: tags,
+          note: null,
+          ascents_count: ascentsCount,
+          points_to_s: pointsToS,
+          grade_to_s: gradeToS
+        }
+      })
     }
   },
 

@@ -1164,7 +1164,8 @@ export default {
       whichPointSystem: 'Do I use a point system ?',
       system: 'System',
       typeOfSystem: 'Type of system',
-      value: 'Value'
+      value: 'Value',
+      exampleTitle: 'Example of the representation of a line on the guide book'
     },
     gymGradeLine: {
       colors: {
