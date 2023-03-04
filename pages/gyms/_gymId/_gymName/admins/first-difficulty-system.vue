@@ -18,6 +18,7 @@
         </p>
         <p class="text-center mt-10">
           <v-btn
+            elevation="0"
             color="primary"
             :to="`${gym.adminPath}/grades/new`"
           >

@@ -21,7 +21,7 @@
 
           <p class="text-center">
             <v-btn
-              text
+              elevation="0"
               color="primary"
               :to="`${gym.adminPath}/first-difficulty-system`"
             >
