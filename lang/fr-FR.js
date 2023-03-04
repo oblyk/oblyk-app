@@ -1056,6 +1056,7 @@ export default {
       GuideBookSettings: 'Paramètres topos',
       gestionSettings: 'Gestion',
       statistic: 'Statistique',
+      various: 'Divers',
       team: "L'équipe",
       openers: 'Les ouvreurs et ouvreuses',
       home: 'Dashboard',

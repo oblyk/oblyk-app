@@ -23,7 +23,10 @@
     </div>
 
     <!-- Gym admin -->
-    <div v-if="gym">
+    <div
+      v-if="gym"
+      class="mb-5"
+    >
       <v-row>
         <v-col cols="12" class="pa-2">
           <gym-admin-welcome :gym="gym" />
@@ -33,16 +36,12 @@
       <v-breadcrumbs :items="breadcrumbs" />
 
       <!-- Guide book settings -->
-      <v-row>
-        <v-col cols="12" class="mt-3">
-          <h4 class="mb-0">
-            <v-icon class="mb-1" left>
-              {{ mdiMapLegend }}
-            </v-icon>
-            {{ $t('components.gymAdmin.GuideBookSettings') }}
-          </h4>
-        </v-col>
-      </v-row>
+      <h4 class="mb-3 mt-8">
+        <v-icon class="mb-1" left>
+          {{ mdiMapLegend }}
+        </v-icon>
+        {{ $t('components.gymAdmin.GuideBookSettings') }}
+      </h4>
       <v-row>
         <v-col cols="12" md="6" lg="4" class="pa-2">
           <gym-admin-route-figures :gym="gym" />
@@ -56,19 +55,12 @@
       </v-row>
 
       <!-- Gestion settings -->
-      <v-row>
-        <v-col
-          cols="12"
-          class="mt-5"
-        >
-          <h4 class="mb-0">
-            <v-icon class="mb-1" left>
-              {{ mdiTune }}
-            </v-icon>
-            {{ $t('components.gymAdmin.gestionSettings') }}
-          </h4>
-        </v-col>
-      </v-row>
+      <h4 class="mb-3 mt-8">
+        <v-icon class="mb-1" left>
+          {{ mdiTune }}
+        </v-icon>
+        {{ $t('components.gymAdmin.gestionSettings') }}
+      </h4>
       <v-row>
         <v-col cols="12" md="6" lg="4" class="pa-2">
           <gym-admin-team-figures :gym="gym" />
@@ -77,12 +69,30 @@
           <gym-admin-openers-figures :gym="gym" />
         </v-col>
       </v-row>
+
+      <h4 class="mb-1 mt-8">
+        <v-icon class="mb-1" left>
+          {{ mdiFolder }}
+        </v-icon>
+        {{ $t('components.gymAdmin.various') }}
+      </h4>
+      <v-btn
+        text
+        color="primary"
+        href="https://oblyk.github.io/app-user-doc/docs/indoor/"
+        target="_blank"
+      >
+        <v-icon left>
+          {{ mdiHelpCircleOutline }}
+        </v-icon>
+        {{ $t('common.documentation') }}
+      </v-btn>
     </div>
   </v-container>
 </template>
 
 <script>
-import { mdiMapLegend, mdiTune } from '@mdi/js'
+import { mdiMapLegend, mdiTune, mdiFolder, mdiHelpCircleOutline } from '@mdi/js'
 import { GymConcern } from '~/concerns/GymConcern'
 import GymAdminDifficultySystemFigures from '~/components/gyms/admin/GymAdminDifficultySystemFigures'
 import GymAdminTeamFigures from '~/components/gyms/admin/GymAdminTeamFigures'
@@ -107,7 +117,9 @@ export default {
   data () {
     return {
       mdiMapLegend,
-      mdiTune
+      mdiTune,
+      mdiFolder,
+      mdiHelpCircleOutline
     }
   },
 

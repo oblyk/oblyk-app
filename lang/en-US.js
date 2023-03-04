@@ -1057,6 +1057,7 @@ export default {
       gestionSettings: 'Gestion',
       team: 'Team',
       statistic: 'Statistic',
+      various: 'Various',
       openers: 'Openers',
       home: 'Dashboard',
       difficultySystem: 'Difficulty system',
