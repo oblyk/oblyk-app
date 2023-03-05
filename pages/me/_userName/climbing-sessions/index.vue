@@ -1,7 +1,7 @@
 <template>
-  <v-container>
+  <v-container fluid>
     <v-row class="mt-4">
-      <v-col cols="12" lg="8" offset-lg="1">
+      <v-col cols="12" lg="9" offset-lg="1">
         <climbing-session
           v-if="paramsAreRetrieved"
           :filters="filters"

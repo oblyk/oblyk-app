@@ -7,11 +7,19 @@
       <v-btn
         color="primary"
         text
-        small
+        :small="climbingSession.description !== null"
+        :outlined="climbingSession.description === null"
         v-bind="attrs"
         v-on="on"
-        v-text="climbingSession.description ? $t('components.climbingSession.editComment') : $t('components.climbingSession.addComment')"
-      />
+      >
+        <v-icon
+          v-if="climbingSession.description === null"
+          left
+        >
+          {{ mdiPencil }}
+        </v-icon>
+        <span v-text="climbingSession.description ? $t('components.climbingSession.editComment') : $t('components.climbingSession.addComment')" />
+      </v-btn>
     </template>
 
     <v-card>
@@ -30,6 +38,7 @@
 </template>
 
 <script>
+import { mdiPencil } from '@mdi/js'
 import ClimbingSessionForm from '~/components/climbingSessions/forms/ClimbingSessionForm.vue'
 
 export default {
@@ -50,7 +59,9 @@ export default {
 
   data () {
     return {
-      editClimbingSessionModal: false
+      editClimbingSessionModal: false,
+
+      mdiPencil
     }
   },
 

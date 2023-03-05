@@ -6,6 +6,7 @@
       :climbing-session="session"
       :gym-references="gyms"
       :crag-references="crags"
+      class="mb-7"
     />
     <loading-more
       class="mt-4"
