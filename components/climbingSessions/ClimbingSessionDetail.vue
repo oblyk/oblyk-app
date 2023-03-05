@@ -5,6 +5,9 @@
       class="mt-2 mb-5"
     >
       <p class="mb-1 subtitle-2">
+        <v-icon left small color="primary" class="vertical-align-text-top">
+          {{ mdiText }}
+        </v-icon>
         {{ $t('components.ascentCragRoute.myCommentaire') }}
       </p>
       <markdown-text
@@ -28,7 +31,7 @@
     <!-- Ascents -->
     <div class="mt-4">
       <p class="pb-1 mb-1 subtitle-2">
-        <v-icon left small color="primary">
+        <v-icon left small color="primary" class="vertical-align-text-top">
           {{ mdiCheckAll }}
         </v-icon>
         {{ $t('components.climbingSession.ascentsAt', { date: humanizeDate(sessionDetail.session_date) }) }}
@@ -85,7 +88,7 @@
     <!-- Crags and Gyms -->
     <div class="mt-10">
       <p class="pb-1 mb-1 subtitle-2">
-        <v-icon left small color="primary">
+        <v-icon left small color="primary" class="vertical-align-text-top">
           {{ mdiMapMarker }}
         </v-icon>
         {{ $t('components.climbingSession.climbingPlaces') }}
@@ -115,7 +118,7 @@
       class="mt-9"
     >
       <p class="pb-1 mb-0 subtitle-2">
-        <v-icon left small color="primary">
+        <v-icon left small color="primary" class="vertical-align-text-top">
           {{ mdiAccountMultiple }}
         </v-icon>
         {{ $t('components.climbingSession.climbingPartners') }}
@@ -142,7 +145,7 @@
 </template>
 
 <script>
-import { mdiAccountMultiple, mdiMapMarker, mdiCheckAll } from '@mdi/js'
+import { mdiAccountMultiple, mdiMapMarker, mdiCheckAll, mdiText } from '@mdi/js'
 import { DateHelpers } from '~/mixins/DateHelpers'
 import GymSmallCard from '~/components/gyms/GymSmallCard.vue'
 import UserSmallCard from '~/components/users/UserSmallCard.vue'
@@ -189,7 +192,8 @@ export default {
 
       mdiAccountMultiple,
       mdiMapMarker,
-      mdiCheckAll
+      mdiCheckAll,
+      mdiText
     }
   },
 
