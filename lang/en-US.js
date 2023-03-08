@@ -126,7 +126,7 @@ export default {
     addAAscents: 'Add a ascent'
   },
   colors: {
-    noColor: 'Ø',
+    noColor: 'All',
     white: 'White',
     grey: 'Grey',
     black: 'Black',

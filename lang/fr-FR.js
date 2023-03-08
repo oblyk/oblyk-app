@@ -126,7 +126,7 @@ export default {
     addAAscents: 'Ajouter une croix'
   },
   colors: {
-    noColor: 'Ø',
+    noColor: 'Toutes',
     white: 'Blanc',
     grey: 'Gris',
     black: 'Noir',
