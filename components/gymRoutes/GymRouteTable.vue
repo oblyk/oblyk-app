@@ -185,6 +185,12 @@ export default {
             value: 'grade'
           },
           {
+            text: this.$t('models.gymRoute.points'),
+            align: 'start',
+            sortable: true,
+            value: 'points'
+          },
+          {
             text: this.$t('models.gymRoute.short_name'),
             align: 'start',
             sortable: true,
@@ -300,6 +306,7 @@ export default {
             color: route,
             name: route.name,
             grade: route.grade_to_s,
+            points: route.points_to_s,
             sector: route.gym_sector.name,
             space: route,
             opener: route.openers.map(opener => opener.name).join(', '),
