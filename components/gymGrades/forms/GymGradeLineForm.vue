@@ -42,6 +42,7 @@
       :multiple="true"
       :colors-limit="2"
       :icon="gymGrade.tag_color ? 'bookmark' : 'circle'"
+      :disable-all-color="true"
     />
 
     <close-form />

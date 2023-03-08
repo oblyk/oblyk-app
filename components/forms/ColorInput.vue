@@ -16,7 +16,11 @@
             v-bind="attrs"
             :input-value="selected"
           >
-            <v-icon left :style="`color: ${item.value}`">
+            <v-icon
+              v-if="item.value !== '#00000000'"
+              left
+              :style="`color: ${item.value}`"
+            >
               {{ icon === 'Circle' ? mdiCircle : mdiBookmark }}
             </v-icon>
             {{ item.text }}
@@ -66,8 +70,8 @@
             v-for="(color, colorIndex) in availableColors"
             :key="`color-index-${colorIndex}`"
             style="width: calc(25% - 5px)"
-            class="activable-v-sheet d-inline-block text-center px-2 pt-2 ml-1 rounded-sm"
-            :class="selectedColors && selectedColors.includes(color.value) ? '--active' : '--inactive'"
+            class="d-inline-block text-center px-2 pt-2 ml-1 rounded-sm"
+            :class="btnClass(color)"
             @click="addColor(color.value)"
           >
             <v-icon
@@ -141,6 +145,10 @@ export default {
     colorsLimit: {
       type: Number,
       default: 1
+    },
+    disableAllColor: {
+      type: Boolean,
+      default: false
     }
   },
 
@@ -178,7 +186,16 @@ export default {
 
   methods: {
     addColor (color) {
-      if (this.multiple) {
+      if (color === '#00000000' && this.disableAllColor) { return false }
+
+      if (color === '#00000000') {
+        this.selectedColors = [color]
+        this.$emit('input', this.selectedColors)
+        this.colorModal = false
+      } else if (this.multiple) {
+        if (this.selectedColors.includes('#00000000')) {
+          this.selectedColors.splice(this.selectedColors.indexOf('#00000000'), 1)
+        }
         if (this.selectedColors.includes(color)) {
           const colorIndex = this.selectedColors.indexOf(color)
           this.selectedColors.splice(colorIndex, 1)
@@ -193,6 +210,11 @@ export default {
         this.$emit('input', this.selectedColors)
         this.colorModal = false
       }
+    },
+
+    btnClass (color) {
+      const hoverable = this.disableAllColor && color.value === '#00000000' ? '' : 'activable-v-sheet'
+      return this.selectedColors && this.selectedColors.includes(color.value) ? `${hoverable} --active` : `${hoverable} --inactive`
     }
   }
 }

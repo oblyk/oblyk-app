@@ -210,6 +210,7 @@
             icon="Bookmark"
             :multiple="true"
             :colors-limit="2"
+            :disable-all-color="true"
           />
 
           <!-- Hold colors -->

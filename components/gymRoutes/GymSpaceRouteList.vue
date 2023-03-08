@@ -150,11 +150,11 @@ export default {
   },
   mixins: [SessionConcern, GymRolesHelpers],
   props: {
-    gymSpace: {
-      type: Object,
-      default: null
-    },
     gym: {
+      type: Object,
+      required: true
+    },
+    gymSpace: {
       type: Object,
       default: null
     },
@@ -233,18 +233,18 @@ export default {
       const gymRouteApi = new GymRouteApi(this.$axios, this.$auth)
       let promise
 
-      if (this.gym) {
+      if (this.gymSpace) {
         promise = gymRouteApi
-          .allInGym(
-            this.gym.id,
+          .allInSpace(
+            this.gymSpace.gym.id,
+            this.gymSpace.id,
             this.sort,
             this.sort
           )
       } else {
         promise = gymRouteApi
-          .allInSpace(
-            this.gymSpace.gym.id,
-            this.gymSpace.id,
+          .allInGym(
+            this.gym.id,
             this.sort,
             this.sort
           )

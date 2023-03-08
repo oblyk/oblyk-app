@@ -6,7 +6,7 @@
     <strong
       v-if="gymRoute.points_to_s"
     >
-      {{ gymRoute.points_to_s }}
+      {{ gymRoute.points_to_s }}<small style="margin-left: 2px" class="font-weight-regular vertical-align-top">pts</small>
     </strong>
     <strong
       v-if="gymRoute.grade_to_s"
