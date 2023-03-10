@@ -1,11 +1,7 @@
-import { SessionConcern } from '@/concerns/SessionConcern'
-
 export const Cable = {
-  mixins: [SessionConcern],
-
   watch: {
-    isLoggedIn () {
-      if (this.isLoggedIn) {
+    'this.$auth.loggedIn' () {
+      if (this.$auth.loggedIn) {
         this.connectCable()
       } else {
         this.disconnectCable()
@@ -15,8 +11,8 @@ export const Cable = {
 
   methods: {
     connectCable () {
-      if (this.isLoggedIn) {
-        this.$cable.connection.connect(`${process.env.VUE_APP_OBLYK_API_CABLE_URL}?token=${this.getWsToken}`)
+      if (this.$auth.loggedIn) {
+        this.$cable.connection.connect(`${process.env.VUE_APP_OBLYK_API_CABLE_URL}?token=${this.$auth.user.ws_token}`)
       }
     },
 
