@@ -192,7 +192,9 @@ export default {
         file: 'fr-FR.js'
       }
     ],
-    lazy: true,
+    lazy: {
+      skipNuxtState: true
+    },
     langDir: 'lang/'
   },
 
