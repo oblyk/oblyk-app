@@ -4,6 +4,7 @@
       v-if="cragSector.havingPicture"
       dark
       height="400px"
+      class="rounded"
       gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
       :lazy-src="cragSector.thumbnailCoverUrl"
       :src="croppedSrc"

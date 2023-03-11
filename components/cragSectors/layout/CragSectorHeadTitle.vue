@@ -1,6 +1,9 @@
 <template>
   <div>
-    <h1 class="font-weight-medium ">
+    <h1
+      class="font-weight-medium mb-2"
+      style="line-height: 0.9em"
+    >
       {{ cragSector.name }}
     </h1>
     <div>

@@ -82,6 +82,9 @@ export const CragSectorConcern = {
           property: 'og:url',
           content: this.cragSectorMetaUrl
         }
+      ],
+      link: [
+        { rel: 'preconnect', href: this.cragSectorMetaImage }
       ]
     }
   },
