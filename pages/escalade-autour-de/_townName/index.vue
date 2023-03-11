@@ -55,144 +55,153 @@
         </v-sheet>
 
         <!-- Crags table -->
-        <div
-          v-if="town.crags.crag_count_around > 0"
-          class="mt-16"
-        >
-          <h2 class="mb-3">
-            <v-icon left class="vertical-align-baseline mb-1">
-              {{ mdiTerrain }}
-            </v-icon>
-            {{ $tc('components.town.cragsAround', town.crags.crag_count_around, { count: town.crag_count_around, name: town.name }) }}
-          </h2>
-          <crags-table
-            :crags-data="town.crags.crag_with_levels"
-            :route-figures="town.crags.route_figures"
-          />
-        </div>
+        <lazy-hydrate when-visible>
+          <div
+            v-if="town.crags.crag_count_around > 0"
+            class="mt-16"
+          >
+            <h2 class="mb-3">
+              <v-icon left class="vertical-align-baseline mb-1">
+                {{ mdiTerrain }}
+              </v-icon>
+              {{ $tc('components.town.cragsAround', town.crags.crag_count_around, { count: town.crag_count_around, name: town.name }) }}
+            </h2>
+            <crags-table
+              :crags-data="town.crags.crag_with_levels"
+              :route-figures="town.crags.route_figures"
+            />
+          </div>
 
-        <!-- Nearest crag -->
-        <div
-          v-else
-          class="mt-16"
-        >
-          <h2 class="mb-3">
-            <v-icon left class="vertical-align-baseline mb-1">
-              {{ mdiTerrain }}
-            </v-icon>
-            {{ $t('components.town.nearestCrag', { name: town.name }) }}
-          </h2>
-          <p>
-            Il n'y a pas de site de grimpe naturel à moins de <strong>{{ town.dist }} km</strong> de {{ town.name }}.
-            Le site le plus proche est <strong>{{ toCragObject(town.crags.nearest).name }}</strong> à {{ town.crags.nearest_dist }} km.
-          </p>
+          <!-- Nearest crag -->
+          <div
+            v-else
+            class="mt-16"
+          >
+            <h2 class="mb-3">
+              <v-icon left class="vertical-align-baseline mb-1">
+                {{ mdiTerrain }}
+              </v-icon>
+              {{ $t('components.town.nearestCrag', { name: town.name }) }}
+            </h2>
+            <p>
+              Il n'y a pas de site de grimpe naturel à moins de <strong>{{ town.dist }} km</strong> de {{ town.name }}.
+              Le site le plus proche est <strong>{{ toCragObject(town.crags.nearest).name }}</strong> à {{ town.crags.nearest_dist }} km.
+            </p>
 
-          <crag-small-card
-            :crag="toCragObject(town.crags.nearest)"
-            small
-            class="mb-2"
-          />
-        </div>
+            <crag-small-card
+              :crag="toCragObject(town.crags.nearest)"
+              small
+              class="mb-2"
+            />
+          </div>
+        </lazy-hydrate>
 
         <!-- Gym around -->
-        <div
-          v-if="town.gyms.around.length > 0"
-          class="mt-16"
-        >
-          <h2 class="mb-3">
-            <v-icon left class="vertical-align-baseline mb-1">
-              {{ mdiOfficeBuildingMarker }}
-            </v-icon>
-            {{ $tc('components.town.gymsAround', town.gyms.around.length, { count: town.gyms.around.length, name: town.name }) }}
-          </h2>
+        <lazy-hydrate when-visible>
+          <div
+            v-if="town.gyms.around.length > 0"
+            class="mt-16"
+          >
+            <h2 class="mb-3">
+              <v-icon left class="vertical-align-baseline mb-1">
+                {{ mdiOfficeBuildingMarker }}
+              </v-icon>
+              {{ $tc('components.town.gymsAround', town.gyms.around.length, { count: town.gyms.around.length, name: town.name }) }}
+            </h2>
 
-          <gym-small-card
-            v-for="(gym, index) in town.gyms.around"
-            :key="`gym-${index}`"
-            :gym="toGymObject(gym)"
-            small
-            class="mb-2"
-          />
-        </div>
+            <gym-small-card
+              v-for="(gym, index) in town.gyms.around"
+              :key="`gym-${index}`"
+              :gym="toGymObject(gym)"
+              small
+              class="mb-2"
+            />
+          </div>
 
-        <!-- Nearest gym -->
-        <div
-          v-else
-          class="mt-16"
-        >
-          <h2 class="mb-3">
-            <v-icon left class="vertical-align-baseline mb-1">
-              {{ mdiOfficeBuildingMarker }}
-            </v-icon>
-            {{ $t('components.town.nearestGym', { name: town.name }) }}
-          </h2>
-          <p>
-            Il n'y a pas de salle à moins de <strong>{{ town.dist }} km</strong> de {{ town.name }},
-            il faudra s'éloigner de {{ town.gyms.nearest_dist }} km pour trouver la salle <strong>{{ toGymObject(town.gyms.nearest).name }}</strong> à <strong>{{ town.gyms.nearest.city }}</strong>.
-          </p>
-          <gym-small-card
-            :gym="toGymObject(town.gyms.nearest)"
-            small
-          />
-        </div>
+          <!-- Nearest gym -->
+          <div
+            v-else
+            class="mt-16"
+          >
+            <h2 class="mb-3">
+              <v-icon left class="vertical-align-baseline mb-1">
+                {{ mdiOfficeBuildingMarker }}
+              </v-icon>
+              {{ $t('components.town.nearestGym', { name: town.name }) }}
+            </h2>
+            <p>
+              Il n'y a pas de salle à moins de <strong>{{ town.dist }} km</strong> de {{ town.name }},
+              il faudra s'éloigner de {{ town.gyms.nearest_dist }} km pour trouver la salle <strong>{{ toGymObject(town.gyms.nearest).name }}</strong> à <strong>{{ town.gyms.nearest.city }}</strong>.
+            </p>
+            <gym-small-card
+              :gym="toGymObject(town.gyms.nearest)"
+              small
+            />
+          </div>
+        </lazy-hydrate>
 
         <!-- Guide book papers -->
-        <div
-          v-if="town.guide_book_papers.length > 0"
-          class="mt-16"
-        >
-          <h2 class="mb-3">
-            <v-icon left class="vertical-align-baseline mb-1">
-              {{ mdiBookshelf }}
-            </v-icon>
-            {{ $t('components.town.guideBooks', { name: town.name }) }}
-          </h2>
-          <v-sheet
-            rounded
-            class="pa-5"
+        <lazy-hydrate when-visible>
+          <div
+            v-if="town.guide_book_papers.length > 0"
+            class="mt-16"
           >
-            <v-row>
-              <v-col
-                v-for="(guide, index) in town.guide_book_papers"
-                :key="`guide-${index}`"
-                cols="12"
-                md="6"
-                lg="3"
-              >
-                <guide-book-paper-cover-card
-                  :guide-book-paper="toGuideObject(guide)"
-                />
-              </v-col>
-            </v-row>
-          </v-sheet>
-        </div>
-
-        <div v-if="geoJsons && geoJsons.features.length > 0">
-          <h2 class="mt-9">
-            <v-icon left class="vertical-align-baseline mb-1">
-              {{ mdiMap }}
-            </v-icon>
-            {{ $t('components.town.map', { name: town.name }) }}
-          </h2>
-
-          <client-only>
+            <h2 class="mb-3">
+              <v-icon left class="vertical-align-baseline mb-1">
+                {{ mdiBookshelf }}
+              </v-icon>
+              {{ $t('components.town.guideBooks', { name: town.name }) }}
+            </h2>
             <v-sheet
               rounded
-              class="pa-4 mt-3"
+              class="pa-5"
             >
-              <div class="town-map-area">
-                <spinner v-if="loadingGeoJson" />
-                <leaflet-map
-                  v-else
-                  :track-location="false"
-                  :clustered="false"
-                  :geo-jsons="geoJsons"
-                  map-style="outdoor"
-                  :circle-properties="circleProperties"
-                />
-              </div>
+              <v-row>
+                <v-col
+                  v-for="(guide, index) in town.guide_book_papers"
+                  :key="`guide-${index}`"
+                  cols="12"
+                  md="6"
+                  lg="3"
+                >
+                  <guide-book-paper-cover-card
+                    :guide-book-paper="toGuideObject(guide)"
+                  />
+                </v-col>
+              </v-row>
             </v-sheet>
-          </client-only>
+          </div>
+        </lazy-hydrate>
+
+        <!-- Town map -->
+        <div v-intersect="loadGeoJson">
+          <div v-if="geoJsons && geoJsons.features.length > 0">
+            <h2 class="mt-9">
+              <v-icon left class="vertical-align-baseline mb-1">
+                {{ mdiMap }}
+              </v-icon>
+              {{ $t('components.town.map', { name: town.name }) }}
+            </h2>
+
+            <client-only>
+              <v-sheet
+                rounded
+                class="pa-4 mt-3"
+              >
+                <div class="town-map-area">
+                  <spinner v-if="loadingGeoJson" />
+                  <leaflet-map
+                    v-else
+                    :track-location="false"
+                    :clustered="false"
+                    :geo-jsons="geoJsons"
+                    map-style="outdoor"
+                    :circle-properties="circleProperties"
+                  />
+                </div>
+              </v-sheet>
+            </client-only>
+          </div>
         </div>
       </div>
     </v-container>
@@ -201,6 +210,7 @@
 </template>
 
 <script>
+import LazyHydrate from 'vue-lazy-hydration'
 import { mdiMagnify, mdiArrowLeft, mdiTerrain, mdiBookshelf, mdiOfficeBuildingMarker, mdiMap } from '@mdi/js'
 import TownApi from '~/services/oblyk-api/TownApi'
 import CragSmallCard from '~/components/crags/CragSmallCard'
@@ -213,13 +223,14 @@ import AppFooter from '~/components/layouts/AppFooter'
 import TownDescription from '~/components/towns/TownDescription'
 import CragsTable from '~/components/crags/CragsTable'
 import Spinner from '~/components/layouts/Spiner'
-import TownSearchForm from '~/components/towns/forms/TownSearchForm'
+const TownSearchForm = () => import('~/components/towns/forms/TownSearchForm')
 const LeafletMap = () => import('~/components/maps/LeafletMap')
 
 export default {
   components: {
     TownSearchForm,
     LeafletMap,
+    LazyHydrate,
     Spinner,
     CragsTable,
     TownDescription,
@@ -297,11 +308,11 @@ export default {
     }
   },
 
-  mounted () {
-    this.getGeoJson()
-  },
-
   methods: {
+    loadGeoJson () {
+      this.getGeoJson()
+    },
+
     toCragObject (crag) {
       return new Crag({ attributes: crag })
     },
