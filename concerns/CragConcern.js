@@ -49,6 +49,9 @@ export const CragConcern = {
         { hid: 'og:description', property: 'og:description', content: this.cragMetaDescription },
         { hid: 'og:image', property: 'og:image', content: this.cragMetaImage },
         { hid: 'og:url', property: 'og:url', content: this.cragMetaUrl }
+      ],
+      link: [
+        { rel: 'preconnect', href: this.cragMetaImage }
       ]
     }
   },
