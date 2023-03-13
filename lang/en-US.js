@@ -189,6 +189,7 @@ export default {
     to: 'To',
     on: 'on',
     made: 'made',
+    all: 'All',
     today: 'today',
     open: 'Open',
     close: 'Close',
@@ -1049,6 +1050,13 @@ export default {
       doNotCreateADuplicate: 'Do not create a duplicate if another climber has already referenced this gym!',
       spaces: 'Spaces',
       guidebook: 'Routes list'
+    },
+    gymRanking: {
+      rank: 'Ranking',
+      allRank: 'Overall ranking for all periods',
+      rankOf: 'The %{date} ranking',
+      seeRankOf: 'See the %{date} ranking',
+      rankNumber: '%{number}st | %{number}nd'
     },
     gymAdmin: {
       adminTitle: 'Administration area',

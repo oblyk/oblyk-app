@@ -66,6 +66,11 @@
           </v-img>
         </v-card>
 
+        <gym-go-to-ranking
+          :gym="gym"
+          class="mb-4"
+        />
+
         <!-- Space selector in mobile interface -->
         <v-sheet
           v-if="$vuetify.breakpoint.mobile"
@@ -167,7 +172,6 @@
 </template>
 
 <script>
-
 import { GymConcern } from '~/concerns/GymConcern'
 import Spinner from '~/components/layouts/Spiner.vue'
 import GymSpaceSelector from '~/components/gymSpaces/GymSpaceSelector.vue'
@@ -177,9 +181,11 @@ import GymRouteApi from '~/services/oblyk-api/GymRouteApi'
 import GymRoute from '~/models/GymRoute'
 import GymRouteInfo from '~/components/gymRoutes/GymRouteInfo.vue'
 import SubscribeBtn from '~/components/forms/SubscribeBtn.vue'
+import GymGoToRanking from '~/components/gyms/GymGoToRanking.vue'
 
 export default {
   components: {
+    GymGoToRanking,
     SubscribeBtn,
     GymRouteInfo,
     GymSpaceList,

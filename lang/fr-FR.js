@@ -189,6 +189,7 @@ export default {
     to: 'À',
     on: 'sur',
     made: 'fait',
+    all: 'Tout',
     today: "aujourd'hui",
     open: 'Ouvert',
     close: 'Fermer',
@@ -1049,6 +1050,13 @@ export default {
       doNotCreateADuplicate: 'Ne créer pas un doublon si un·e autre grimpeur·euse a déjà référencé cette salle !',
       spaces: 'Les espaces',
       guidebook: 'Le topo'
+    },
+    gymRanking: {
+      rank: 'Le classement',
+      allRank: 'Classement général toutes périodes confondues',
+      rankOf: 'Le classement de %{date}',
+      seeRankOf: 'Voir le classement de %{date}',
+      rankNumber: '%{number}er | %{number}ème'
     },
     gymAdmin: {
       adminTitle: "Zone d'administration",

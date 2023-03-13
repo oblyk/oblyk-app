@@ -57,6 +57,15 @@ class GymApi extends BaseApi {
     })
   }
 
+  rank (gymId, params) {
+    return this.axios.request({
+      method: 'GET',
+      url: `${this.baseUrl}/gyms/${gymId}/ascent_scores.json`,
+      headers: { HttpApiAccessToken: this.apiAccessToken },
+      params
+    })
+  }
+
   geoJson (minimalistic = true) {
     return this.axios.request({
       method: 'GET',

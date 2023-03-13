@@ -66,6 +66,12 @@
         </div>
       </v-sheet>
 
+      <gym-go-to-ranking
+        :gym="gym"
+        additional-class="blur-card"
+        class="mt-4"
+      />
+
       <!-- Route list -->
       <v-sheet
         class="pa-4 mt-4 blur-card"
@@ -97,11 +103,13 @@ import GymSpaceRouteList from '@/components/gymRoutes/GymSpaceRouteList'
 import GymSectorEditingPlan from '@/components/gymSectors/GymSectorEditingPlan'
 import { SessionConcern } from '@/concerns/SessionConcern'
 import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
+import GymGoToRanking from '~/components/gyms/GymGoToRanking.vue'
 const MarkdownText = () => import('@/components/ui/MarkdownText')
 
 export default {
   name: 'GymSpaceInfoAndRoutes',
   components: {
+    GymGoToRanking,
     MarkdownText,
     GymSectorEditingPlan,
     GymSpaceRouteList,
