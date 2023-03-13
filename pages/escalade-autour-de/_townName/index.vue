@@ -247,6 +247,7 @@ export default {
 
       geoJsons: null,
       loadingGeoJson: true,
+      geoJsonIsLoad: false,
 
       showTownSearch: false,
 
@@ -310,6 +311,8 @@ export default {
 
   methods: {
     loadGeoJson () {
+      if (this.geoJsonIsLoad) { return false }
+
       this.getGeoJson()
     },
 
@@ -326,6 +329,7 @@ export default {
     },
 
     getGeoJson () {
+      this.geoJsonIsLoad = true
       this.loadingGeoJson = true
       new TownApi(
         this.$axios,
