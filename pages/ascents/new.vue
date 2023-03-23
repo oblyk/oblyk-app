@@ -17,7 +17,7 @@
         </v-card>
       </v-col>
       <v-col cols="6" md="3">
-        <v-card to="ascents/indoor/new">
+        <v-card to="/ascents/indoor/new">
           <v-card-text class="text-center">
             <v-icon x-large>
               {{ mdiOfficeBuildingMarkerOutline }}
