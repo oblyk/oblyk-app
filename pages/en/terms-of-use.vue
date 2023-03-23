@@ -47,10 +47,6 @@
         </li>
         <li>
           Article 7 : Limitation of warranties
-          <ul>
-            <li>7.1 Warranties</li>
-            <li>7.2 Website closure or interruption</li>
-          </ul>
         </li>
         <li>
           Article 8 : Hyperlinks
@@ -84,14 +80,23 @@
         stated to <strong>Oblyk.org</strong> users the identity of the website's owners, and of the hosting provider.
       </p>
       <p>
-        <strong>Oblyk.org</strong> was published by Lucien Chastan. The editing directors of <strong>Oblyk.org</strong>
+        <strong>Oblyk.org</strong> was published by Lucien Chastan. The editing director of <strong>Oblyk.org</strong>
         are Lucien Chastan.
       </p>
       <p>
-        <strong>Oblyk.org</strong> is hosted by : PHPNET FRANCE, headquartered at 97-97 bis rue du général Mangin in
-        Grenoble (38100) FRANCE, number of SIRET 451878128 00037, with the VAT N° TVA FR32451878128. PHPNET FRANCE can
-        be reached at (+33) 04 82 53 02 10, and at the following email address
-        <a class="lien_mentions" href="mailto:support@phpnet.org">support@phpnet.org</a>.
+        Contact : <a href="mailto:ekip@oblyk.org">ekip@oblyk.org</a>
+      </p>
+      <p>
+        <u><strong>Oblyk.org</strong> API hosting :</u><br>
+        The API part of <strong>Oblyk.org</strong>, which stores photos, documents and all data, is hosted by the association <a href="https://onetsolutions.net/">FELINN</a> (Force d'Émancipation Locale pour l'Indépendance et la Neutralité du Net) based in Lyon.
+      </p>
+      <p>
+        <u><strong>Oblyk.org</strong> App hosting :</u><br>
+        The <strong>Oblyk.org</strong> web application is hosted by <a href="https://onetsolutions.net/">ONETSOLUTIONS</a> - Société par action simplifiée. 1 Allée de l'Ecluse, 33370 YVRAC
+      </p>
+      <p>
+        <u><strong>Oblyk.org</strong> Documentation hosting :</u><br>
+        <strong>Oblyk.org</strong> documentation is generated and hosted by <a href="https://github.com/">Github</a>
       </p>
       <p>
         The processing of data on <strong>Oblyk.org</strong> is carried out in full conformity with privacy and legality
@@ -288,24 +293,6 @@
       </p>
 
       <h3>Article 7 : Limitation of warranties</h3>
-      <h4>7.1 Warranties</h4>
-      <p>
-        The website is provided 'as is'. It is accessible depending on its availability, without any express or implied
-        warranty from <strong>Oblyk.org</strong>. Especially, <strong>Oblyk.org</strong> does not guarantee that :
-      </p>
-      <ul class="mb-6">
-        <li>
-          the website, the contents or the offered products will meet the users' expectations
-        </li>
-        <li>
-          the website will work without interruptions and without mistakes
-        </li>
-        <li>
-          the mistakes will be corrected
-        </li>
-      </ul>
-
-      <h4>7.2 Website closure or interruption</h4>
       <p>
         <strong>Oblyk.org</strong> reserves the right, at any time, to interrupt temporarily or definitively all or part
         of this website, without previous notice and compensation. By no means shall <strong>Oblyk.org</strong> be held

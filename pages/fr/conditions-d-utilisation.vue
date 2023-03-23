@@ -49,10 +49,6 @@
         </li>
         <li>
           Article 7 : Limitation de garanties
-          <ul>
-            <li>7.1 Garanties</li>
-            <li>7.2 Fermeture ou suspension du site</li>
-          </ul>
         </li>
         <li>
           Article 8 : Liens hypertextes
@@ -89,14 +85,23 @@
         l'organisme hébergeur du site.
       </p>
       <p>
-        <strong>Oblyk.org</strong> est édité par Lucien Chastan. Les directeurs de rédaction
+        <strong>Oblyk.org</strong> est édité par Lucien Chastan. Le directeur de rédaction
         d'<strong>Oblyk.org</strong> est Lucien Chastan.
       </p>
       <p>
-        <strong>Oblyk.org</strong> est hébergé par : PHPNET FRANCE, ayant son siège social au 97-97 bis rue du général
-        Mangin à Grenoble (38100) FRANCE, numéro de SIRET 451878128 00037, avec le N° TVA FR32451878128. La société
-        PHPNET FRANCE est joignable au (+33) 04 82 53 02 10, et à l'adresse
-        <a class="lien_mentions" href="mailto:support@phpnet.org">support@phpnet.org</a>.
+        Contact : <a href="mailto:ekip@oblyk.org">ekip@oblyk.org</a>
+      </p>
+      <p>
+        <u>Hébergement de l’API de <strong>Oblyk.org</strong> :</u><br>
+        La partie API d’<strong>Oblyk.org</strong>, qui stock les photos, documents et l’intégralité des données est hébergée par l’association la <a href="https://www.felinn.org/">FELINN</a> (Force d'Émancipation Locale pour l'Indépendance et la Neutralité du Net) domiciliée à Lyon.
+      </p>
+      <p>
+        <u>Hébergement de l’application de <strong>Oblyk.org</strong> :</u><br>
+        L’application Web de <strong>Oblyk.org</strong> est hébergée par <a href="https://onetsolutions.net/">ONETSOLUTIONS</a> - Société par action simplifiée. 1 Allée de l'Ecluse, 33370 YVRAC
+      </p>
+      <p>
+        <u>Hébergement de la documentation de <strong>Oblyk.org</strong> :</u><br>
+        La documentation d’<strong>Oblyk.org</strong> est généré et hébergé par <a href="https://github.com/">Github</a>
       </p>
       <p>
         Le traitement informatique des données sur le site <strong>Oblyk.org</strong> se fait dans le respect de la vie
@@ -300,19 +305,6 @@
       </p>
 
       <h3>Article 7 : Limitation de garanties</h3>
-      <h4>7.1 Garanties</h4>
-      <p>
-        Le site est fourni en l'état. Il est accessible en fonction de sa disponibilité, sans aucune garantie expresse
-        ou implicite de la part d'<strong>Oblyk.org</strong>. En particulier, <strong>Oblyk.org</strong> ne garantit pas
-        que :
-      </p>
-      <ul class="mb-6">
-        <li>le site, les contenus ou les produits proposés répondront parfaitement aux attentes des utilisateurs</li>
-        <li>le site fonctionnera de façon ininterrompue et sans erreurs</li>
-        <li>les erreurs seront corrigées</li>
-      </ul>
-
-      <h4>7.2 Fermeture ou suspension du site</h4>
       <p>
         <strong>Oblyk.org</strong> se réserve la possibilité, à tout moment, d'interrompre temporairement ou
         définitivement tout ou partie de ce site internet, sans préavis ni indemnités. <strong>Oblyk.org</strong> ne
