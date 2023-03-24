@@ -100,10 +100,6 @@ export const SessionConcern = {
       return IAmSubscribed
     },
 
-    loggedInUserUserPath (page = '') {
-      return `/me/${this.$auth.user.slug_name}/${page}`
-    },
-
     async logout () {
       await this.$auth.logout('local')
     }

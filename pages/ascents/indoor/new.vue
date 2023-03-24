@@ -94,7 +94,7 @@
             block
             outlined
             text
-            :to="`/me/${$auth.user.slug_name}/ascents/indoor`"
+            to="`/home/ascents/indoor"
           >
             <v-icon
               color="primary"

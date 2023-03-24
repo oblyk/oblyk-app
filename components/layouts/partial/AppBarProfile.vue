@@ -27,7 +27,7 @@
     </v-list-item>
 
     <!-- Messenger -->
-    <v-list-item :to="`/me/${$auth.user.slug_name}/messenger`">
+    <v-list-item to="/home/messenger">
       <v-list-item-icon>
         <v-icon>
           {{ mdiForum }}
@@ -39,7 +39,7 @@
     </v-list-item>
 
     <!-- Avatar -->
-    <v-list-item :to="`/me/${$auth.user.slug_name}/settings/avatar`">
+    <v-list-item to="/home/settings/avatar">
       <v-list-item-icon>
         <v-icon>
           {{ mdiAccountCircle }}
@@ -51,7 +51,7 @@
     </v-list-item>
 
     <!-- Avatar -->
-    <v-list-item :to="`/me/${$auth.user.slug_name}/settings/banner`">
+    <v-list-item to="/home/settings/banner">
       <v-list-item-icon>
         <v-icon>
           {{ mdiPanorama }}
@@ -63,7 +63,7 @@
     </v-list-item>
 
     <!-- Settings -->
-    <v-list-item :to="`/me/${$auth.user.slug_name}/settings/general`">
+    <v-list-item to="/home/settings/general">
       <v-list-item-icon>
         <v-icon>
           {{ mdiCog }}

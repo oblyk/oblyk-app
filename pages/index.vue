@@ -13,7 +13,7 @@ export default {
   middleware ({ store, redirect }) {
     // If the user is authenticated
     if (store.state.auth.loggedIn) {
-      return redirect(`/me/${store.state.auth.user.slug_name}`)
+      return redirect('/home')
     }
   },
 

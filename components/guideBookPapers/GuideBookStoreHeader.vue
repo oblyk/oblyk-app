@@ -112,7 +112,7 @@
       <v-btn
         text
         color="primary"
-        :to="`/me/${currentUser.slug_name}/guide-books/add`"
+        to="/home/guide-books/add"
       >
         <v-icon left>
           {{ mdiBookPlus }}

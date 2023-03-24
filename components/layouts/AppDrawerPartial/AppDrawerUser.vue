@@ -9,7 +9,7 @@
     </v-subheader>
 
     <v-list-item
-      :to="`/me/${$auth.user.slug_name}`"
+      to="/home"
       exact
     >
       <v-list-item-icon>
@@ -34,7 +34,7 @@
         </v-list-item-content>
       </template>
 
-      <v-list-item :to="`/me/${$auth.user.slug_name}/ascents/outdoor`">
+      <v-list-item to="/home/ascents/outdoor">
         <v-list-item-icon>
           <v-icon>
             {{ mdiTerrain }}
@@ -45,7 +45,7 @@
         </v-list-item-title>
       </v-list-item>
 
-      <v-list-item :to="`/me/${$auth.user.slug_name}/ascents/indoor`">
+      <v-list-item to="/home/ascents/indoor">
         <v-list-item-icon>
           <v-icon>
             {{ mdiOfficeBuildingMarker }}
@@ -56,7 +56,7 @@
         </v-list-item-title>
       </v-list-item>
 
-      <v-list-item :to="`/me/${$auth.user.slug_name}/climbing-sessions`">
+      <v-list-item to="/home/climbing-sessions">
         <v-list-item-icon>
           <v-icon>
             {{ mdiTimelineText }}
@@ -68,7 +68,7 @@
       </v-list-item>
     </v-list-group>
 
-    <v-list-item :to="`/me/${$auth.user.slug_name}/favorites/crags`">
+    <v-list-item to="/home/favorites/crags">
       <v-list-item-icon>
         <v-icon>
           {{ mdiStarOutline }}
@@ -79,7 +79,7 @@
       </v-list-item-title>
     </v-list-item>
 
-    <v-list-item :to="`/me/${$auth.user.slug_name}/messenger`">
+    <v-list-item to="/home/messenger">
       <v-list-item-icon>
         <v-icon>
           {{ mdiMessageTextOutline }}
@@ -90,7 +90,7 @@
       </v-list-item-title>
     </v-list-item>
 
-    <v-list-item :to="`/me/${$auth.user.slug_name}/guide-books`">
+    <v-list-item to="/home/guide-books">
       <v-list-item-icon>
         <v-icon>
           {{ mdiBookshelf }}

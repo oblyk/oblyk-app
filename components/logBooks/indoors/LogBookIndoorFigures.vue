@@ -51,7 +51,7 @@
             text
             outlined
             class="mr-2"
-            :to="`/me/${$auth.user.slug_name}/climbing-sessions?only-indoor=true`"
+            to="/home/climbing-sessions?only-indoor=true"
           >
             <v-icon
               left

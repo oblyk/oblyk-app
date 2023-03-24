@@ -57,7 +57,7 @@
               height="160"
               class="text-center pa-4"
               rounded
-              :to="`/me/${$auth.user.slug_name}/ascents/outdoor`"
+              to="/home/ascents/outdoor"
             >
               <p class="font-weight-bold mb-7">
                 {{ $t('components.dailyCrosses.myLogbook') }}

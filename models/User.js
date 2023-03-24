@@ -20,7 +20,7 @@ export default class User extends ActiveData {
   }
 
   get currentUserPath () {
-    return `/me/${this.slug_name}`
+    return '/home'
   }
 
   get userPath () {

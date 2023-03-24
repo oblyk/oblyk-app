@@ -92,7 +92,7 @@ export default {
       new ConversationApi(this.$axios, this.$auth)
         .create(userData)
         .then((resp) => {
-          this.$router.push(this.loggedInUserUserPath(`messenger/${resp.data.id}`))
+          this.$router.push(`/home/messenger/${resp.data.id}`)
         })
         .catch((err) => {
           this.$root.$emit('alertFromApiError', err, 'user')

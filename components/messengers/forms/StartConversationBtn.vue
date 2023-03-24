@@ -62,7 +62,7 @@ export default {
         .create(data)
         .then((resp) => {
           this.$router.push(
-            `/me/${this.$auth.user.slug_name}/messenger/${resp.data.id}`
+            `/home/messenger/${resp.data.id}`
           )
         })
         .catch((err) => {

@@ -112,7 +112,7 @@ export default {
         if (this.redirectTo) {
           await this.$router.push(this.redirectTo)
         } else {
-          await this.$router.push(`/me/${this.$auth.user.slug_name}`)
+          await this.$router.push('/home')
         }
       } catch (err) {
         this.$root.$emit('alertFromApiError', err, 'user')

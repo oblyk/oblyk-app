@@ -15,6 +15,6 @@ export default class ClimbingSession extends ActiveData {
   }
 
   get currentUserPath () {
-    return `/me/${this.user.slug_name}/climbing-sessions/${this.session_date}`
+    return `/home/climbing-sessions/${this.session_date}`
   }
 }

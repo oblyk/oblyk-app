@@ -15,6 +15,6 @@ export default class Conversation extends ActiveData {
   }
 
   get path () {
-    return `/me/user/messenger/${this.id}`
+    return `/home/messenger/${this.id}`
   }
 }

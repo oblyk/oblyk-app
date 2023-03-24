@@ -186,7 +186,7 @@
                 text
                 block
                 color="primary"
-                :to="`/me/${$auth.user.slug_name}/ascents/outdoor`"
+                to="/home/ascents/outdoor"
                 class="mb-2"
               >
                 <v-icon left>

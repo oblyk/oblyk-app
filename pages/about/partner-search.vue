@@ -39,7 +39,7 @@
           </p>
           <p v-html="$t('common.pages.partner.steps.configuration.body')" />
           <p v-if="isLoggedIn" class="text-right">
-            <v-btn outlined color="primary" :to="`/me/${loggedInUser.slugName}/settings/partner`">
+            <v-btn outlined color="primary" to="/home/settings/partner">
               <v-icon left>
                 {{ mdiHuman }}
               </v-icon>
@@ -60,7 +60,7 @@
           </p>
           <p v-html="$t('common.pages.partner.steps.location.body')" />
           <p v-if="isLoggedIn" class="text-right">
-            <v-btn outlined color="primary" :to="`/me/${loggedInUser.slugName}/settings/partner`">
+            <v-btn outlined color="primary" to="`/home/settings/partner">
               <v-icon left>
                 {{ mdiMapMarkerRadius }}
               </v-icon>
@@ -102,7 +102,7 @@
           </p>
           <p v-html="$t('common.pages.partner.steps.contact.body')" />
           <p v-if="isLoggedIn" class="text-right">
-            <v-btn outlined color="primary" :to="`/me/${loggedInUser.slugName}/messenger`">
+            <v-btn outlined color="primary" to="/home/messenger">
               <v-icon left>
                 {{ mdiForum }}
               </v-icon>

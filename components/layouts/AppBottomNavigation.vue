@@ -56,7 +56,7 @@
       </v-list>
     </v-menu>
     <v-btn
-      :to="$auth.loggedIn ? `/me/${$auth.user.slug_name}` : '/'"
+      :to="$auth.loggedIn ? '/home' : '/'"
       value="home"
       @click="clicHome"
     >

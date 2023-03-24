@@ -49,7 +49,7 @@
           text
           outlined
           class="mr-2"
-          :to="`/me/${$auth.user.slug_name}/climbing-sessions?only-outdoor=true`"
+          to="/home/climbing-sessions?only-outdoor=true"
         >
           <v-icon
             left

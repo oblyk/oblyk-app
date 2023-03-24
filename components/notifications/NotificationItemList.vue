@@ -95,7 +95,7 @@ export default {
 
     notificationLink () {
       if (this.notification.notification_type === 'new_message') {
-        return `/me/${this.loggedInUser.slugName}/messenger/${this.notification.Notifiable.conversation_id}`
+        return `/home/messenger/${this.notification.Notifiable.conversation_id}`
       } else if (['new_follower', 'subscribe_accepted', 'request_for_follow_up'].includes(this.notification.notification_type)) {
         return `/users/${this.notification.Notifiable.uuid}/${this.notification.Notifiable.slug_name}`
       } else if (this.notification.notification_type === 'new_article') {
