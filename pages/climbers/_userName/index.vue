@@ -35,11 +35,11 @@
 </template>
 
 <script>
-import UserBio from '@/components/users/UserBio'
-import UserContribution from '@/components/users/UserContribution'
-import UserPartnerMap from '@/components/users/UserPatnerMap'
-import UserApi from '@/services/oblyk-api/UserApi'
-import Spinner from '@/components/layouts/Spiner'
+import UserBio from '~/components/users/UserBio.vue'
+import UserContribution from '~/components/users/UserContribution.vue'
+import UserPartnerMap from '~/components/users/UserPatnerMap.vue'
+import UserApi from '~/services/oblyk-api/UserApi'
+import Spinner from '~/components/layouts/Spiner.vue'
 
 export default {
   name: 'UserProfileView',

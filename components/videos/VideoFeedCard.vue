@@ -10,7 +10,7 @@
       <div v-if="video.creator.uuid">
         {{ $t('actions.addedBy') }} :
         <nuxt-link
-          :to="`/users/${video.creator.uuid}/${video.creator.slug_name}/profile`"
+          :to="`/climbers/${video.creator.slug_name}/profile`"
         >
           {{ video.creator.name }}
         </nuxt-link>

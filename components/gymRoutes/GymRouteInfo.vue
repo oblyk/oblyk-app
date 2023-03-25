@@ -168,7 +168,7 @@
           <br v-if="ascent.note !== null">
           <note v-if="ascent.note !== null" :note="ascent.note" />
           {{ $t('common.by') }}
-          <nuxt-link :to="`/users/${ascent.user.uuid}/${ascent.user.slug_name}`">
+          <nuxt-link :to="`/climbers/${ascent.user.slug_name}`">
             {{ ascent.user.first_name }}
           </nuxt-link>
         </div>

@@ -19,11 +19,11 @@
 </template>
 
 <script>
-import { UserConcern } from '@/concerns/UserConcern'
-import UserHead from '@/components/users/layouts/UserHead'
-import UserTabs from '@/components/users/layouts/UserTabs'
-import SkeletonLoaderHead from '~/components/layouts/SkeletonLoaderHead'
-import AppFooter from '~/components/layouts/AppFooter'
+import { UserConcern } from '~/concerns/UserConcern'
+import UserHead from '~/components/users/layouts/UserHead.vue'
+import UserTabs from '~/components/users/layouts/UserTabs.vue'
+import SkeletonLoaderHead from '~/components/layouts/SkeletonLoaderHead.vue'
+import AppFooter from '~/components/layouts/AppFooter.vue'
 
 export default {
   components: { AppFooter, SkeletonLoaderHead, UserTabs, UserHead },

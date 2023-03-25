@@ -25,8 +25,8 @@
 
 <script>
 import { mdiLock } from '@mdi/js'
-import { SessionConcern } from '@/concerns/SessionConcern'
-import UserMediaTabs from '@/components/users/layouts/UserMediaTabs'
+import { SessionConcern } from '~/concerns/SessionConcern'
+import UserMediaTabs from '~/components/users/layouts/UserMediaTabs.vue'
 
 export default {
   components: { UserMediaTabs },

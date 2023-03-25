@@ -1,45 +1,47 @@
 <template>
-  <div class="mt-5">
-    <spinner v-if="loadingFollowers" />
-
-    <div v-if="!loadingFollowers">
+  <div>
+    <spinner v-if="loadingVideos" :full-height="false" />
+    <div v-if="!loadingVideos">
       <v-row>
         <v-col
-          v-for="(follower, index) in followers"
-          :key="`follower-${index}`"
+          v-for="video in videos"
+          :key="`video-${video.id}`"
           class="col-12 col-md-6 col-lg-4"
         >
-          <user-small-card class="mb-2" :user="recordToObject('User', follower)" />
+          <video-card
+            :video="video"
+            :get-videos="getVideos"
+          />
         </v-col>
       </v-row>
 
       <loading-more
-        :get-function="getSubscribes"
+        :get-function="getVideos"
         :no-more-data="noMoreDataToLoad"
         :loading-more="loadingMoreData"
       />
 
       <p
-        v-if="followers.length === 0 && !loadingFollowers"
+        v-if="videos.length === 0 && !loadingVideos"
         class="text-center text--disabled mt-5 mb-5"
       >
-        {{ $t('components.user.followersEmpty', { name: user.first_name }) }}
+        {{ $t('components.video.noVideo') }}
       </p>
     </div>
   </div>
 </template>
 
 <script>
-import { LoadingMoreHelpers } from '@/mixins/LoadingMoreHelpers'
-import { RecordToObjectHelpers } from '~/mixins/RecordToObjectHelpers'
-import UserApi from '@/services/oblyk-api/UserApi'
-import UserSmallCard from '@/components/users/UserSmallCard'
-import Spinner from '@/components/layouts/Spiner'
-import LoadingMore from '@/components/layouts/LoadingMore'
+import Video from '~/models/Video'
+import UserApi from '~/services/oblyk-api/UserApi'
+import Spinner from '~/components/layouts/Spiner.vue'
+import VideoCard from '~/components/videos/VideoCard.vue'
+import LoadingMore from '~/components/layouts/LoadingMore.vue'
+import { LoadingMoreHelpers } from '~/mixins/LoadingMoreHelpers'
 
 export default {
-  components: { LoadingMore, Spinner, UserSmallCard },
-  mixins: [LoadingMoreHelpers, RecordToObjectHelpers],
+  components: { LoadingMore, VideoCard, Spinner },
+  mixins: [LoadingMoreHelpers],
   props: {
     user: {
       type: Object,
@@ -49,20 +51,20 @@ export default {
 
   data () {
     return {
-      loadingFollowers: true,
-      followers: []
+      loadingVideos: true,
+      videos: []
     }
   },
 
   i18n: {
     messages: {
       fr: {
-        metaTitle: 'Les abonnés de %{name}',
-        metaDescription: 'Voir les grimpeur·euse·s abonnées à %{name}, grimpeur·euse de la communauté Oblyk'
+        metaTitle: 'Videos de %{name}',
+        metaDescription: "Voir les vidéos d'escalade prise par %{name} sur les différentes falaises qu'iel a parcourut"
       },
       en: {
-        metaTitle: 'The subscribers of %{name}',
-        metaDescription: 'See the climbers subscribed to %{name}, climber of the community Oblyk'
+        metaTitle: 'Videos of %{name}',
+        metaDescription: 'See the climbing videos taken by %{name} on the different cliffs he climbed'
       }
     }
   },
@@ -88,33 +90,33 @@ export default {
     },
     userMetaUrl () {
       if (this.user) {
-        return `${process.env.VUE_APP_OBLYK_APP_URL}${this.user?.path}/followers`
+        return `${process.env.VUE_APP_OBLYK_APP_URL}${this.user?.path}/videos`
       }
       return ''
     }
   },
 
   mounted () {
-    this.getSubscribes()
+    this.getVideos()
   },
 
   methods: {
-    getSubscribes () {
+    getVideos () {
       this.moreIsBeingLoaded()
       new UserApi(this.$axios, this.$auth)
-        .followers(this.user.uuid, this.page)
+        .videos(this.user.uuid, this.page)
         .then((resp) => {
-          for (const follower of resp.data) {
-            this.followers.push(follower)
+          for (const video of resp.data) {
+            this.videos.push(new Video({ attributes: video }))
           }
           this.successLoadingMore(resp)
         })
         .catch((err) => {
-          this.$root.$emit('alertFromApiError', err, 'user')
+          this.$root.$emit('alertFromApiError', err, 'video')
           this.failureToLoadingMore()
         })
         .finally(() => {
-          this.loadingFollowers = false
+          this.loadingVideos = false
           this.finallyMoreIsLoaded()
         })
     }
