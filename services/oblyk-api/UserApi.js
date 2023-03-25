@@ -1,10 +1,10 @@
 import BaseApi from '~/services/oblyk-api/BaseApi'
 
 class UserApi extends BaseApi {
-  find (userUuid) {
+  find (userName) {
     return this.axios.request({
       method: 'GET',
-      url: `${this.baseUrl}/users/${userUuid}.json`,
+      url: `${this.baseUrl}/users/${userName}.json`,
       headers: {
         Authorization: this.authToken(),
         HttpApiAccessToken: this.apiAccessToken
@@ -27,10 +27,10 @@ class UserApi extends BaseApi {
     })
   }
 
-  contribution (userUuid) {
+  contribution (userName) {
     return this.axios.request({
       method: 'GET',
-      url: `${this.baseUrl}/users/${userUuid}/contribution.json`,
+      url: `${this.baseUrl}/users/${userName}/contribution.json`,
       headers: {
         Authorization: this.authToken(),
         HttpApiAccessToken: this.apiAccessToken
@@ -38,24 +38,10 @@ class UserApi extends BaseApi {
     })
   }
 
-  photos (userUuid, page = 1) {
+  photos (userName, page = 1) {
     return this.axios.request({
       method: 'GET',
-      url: `${this.baseUrl}/users/${userUuid}/photos.json`,
-      headers: {
-        Authorization: this.authToken(),
-        HttpApiAccessToken: this.apiAccessToken
-      },
-      params: {
-        page
-      }
-    })
-  }
-
-  videos (userUuid, page = 1) {
-    return this.axios.request({
-      method: 'GET',
-      url: `${this.baseUrl}/users/${userUuid}/videos.json`,
+      url: `${this.baseUrl}/users/${userName}/photos.json`,
       headers: {
         Authorization: this.authToken(),
         HttpApiAccessToken: this.apiAccessToken
@@ -66,10 +52,10 @@ class UserApi extends BaseApi {
     })
   }
 
-  subscribes (userUuid, page = 1) {
+  videos (userName, page = 1) {
     return this.axios.request({
       method: 'GET',
-      url: `${this.baseUrl}/users/${userUuid}/subscribes.json`,
+      url: `${this.baseUrl}/users/${userName}/videos.json`,
       headers: {
         Authorization: this.authToken(),
         HttpApiAccessToken: this.apiAccessToken
@@ -80,10 +66,10 @@ class UserApi extends BaseApi {
     })
   }
 
-  followers (userUuid, page = 1) {
+  subscribes (userName, page = 1) {
     return this.axios.request({
       method: 'GET',
-      url: `${this.baseUrl}/users/${userUuid}/followers.json`,
+      url: `${this.baseUrl}/users/${userName}/subscribes.json`,
       headers: {
         Authorization: this.authToken(),
         HttpApiAccessToken: this.apiAccessToken
@@ -94,10 +80,24 @@ class UserApi extends BaseApi {
     })
   }
 
-  userPartnerGeoJson (userUuid, minimalistic = true) {
+  followers (userName, page = 1) {
     return this.axios.request({
       method: 'GET',
-      url: `${this.baseUrl}/users/${userUuid}/partner_user_geo_json.json`,
+      url: `${this.baseUrl}/users/${userName}/followers.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
+      params: {
+        page
+      }
+    })
+  }
+
+  userPartnerGeoJson (userName, minimalistic = true) {
+    return this.axios.request({
+      method: 'GET',
+      url: `${this.baseUrl}/users/${userName}/partner_user_geo_json.json`,
       headers: {
         Authorization: this.authToken(),
         HttpApiAccessToken: this.apiAccessToken
@@ -108,10 +108,10 @@ class UserApi extends BaseApi {
     })
   }
 
-  outdoorFigures (userUuid) {
+  outdoorFigures (userName) {
     return this.axios.request({
       method: 'GET',
-      url: `${this.baseUrl}/users/${userUuid}/outdoor_figures.json`,
+      url: `${this.baseUrl}/users/${userName}/outdoor_figures.json`,
       headers: {
         Authorization: this.authToken(),
         HttpApiAccessToken: this.apiAccessToken
@@ -119,10 +119,10 @@ class UserApi extends BaseApi {
     })
   }
 
-  outdoorClimbTypesChart (userUuid) {
+  outdoorClimbTypesChart (userName) {
     return this.axios.request({
       method: 'GET',
-      url: `${this.baseUrl}/users/${userUuid}/outdoor_climb_types_chart.json`,
+      url: `${this.baseUrl}/users/${userName}/outdoor_climb_types_chart.json`,
       headers: {
         Authorization: this.authToken(),
         HttpApiAccessToken: this.apiAccessToken
@@ -130,10 +130,10 @@ class UserApi extends BaseApi {
     })
   }
 
-  ascendedCragRoutes (userUuid, order = 'difficulty', climbingType = 'all', page = 1) {
+  ascendedCragRoutes (userName, order = 'difficulty', climbingType = 'all', page = 1) {
     return this.axios.request({
       method: 'GET',
-      url: `${this.baseUrl}/users/${userUuid}/ascended_crag_routes.json`,
+      url: `${this.baseUrl}/users/${userName}/ascended_crag_routes.json`,
       headers: {
         Authorization: this.authToken(),
         HttpApiAccessToken: this.apiAccessToken
@@ -146,10 +146,10 @@ class UserApi extends BaseApi {
     })
   }
 
-  outdoorGradesChart (userUuid) {
+  outdoorGradesChart (userName) {
     return this.axios.request({
       method: 'GET',
-      url: `${this.baseUrl}/users/${userUuid}/outdoor_grades_chart.json`,
+      url: `${this.baseUrl}/users/${userName}/outdoor_grades_chart.json`,
       headers: {
         Authorization: this.authToken(),
         HttpApiAccessToken: this.apiAccessToken
@@ -157,10 +157,10 @@ class UserApi extends BaseApi {
     })
   }
 
-  indoorFigures (userUuid) {
+  indoorFigures (userName) {
     return this.axios.request({
       method: 'GET',
-      url: `${this.baseUrl}/users/${userUuid}/indoor_figures.json`,
+      url: `${this.baseUrl}/users/${userName}/indoor_figures.json`,
       headers: {
         Authorization: this.authToken(),
         HttpApiAccessToken: this.apiAccessToken
@@ -168,10 +168,10 @@ class UserApi extends BaseApi {
     })
   }
 
-  indoorClimbingTypeChart (userUuid) {
+  indoorClimbingTypeChart (userName) {
     return this.axios.request({
       method: 'GET',
-      url: `${this.baseUrl}/users/${userUuid}/indoor_climb_types_chart.json`,
+      url: `${this.baseUrl}/users/${userName}/indoor_climb_types_chart.json`,
       headers: {
         Authorization: this.authToken(),
         HttpApiAccessToken: this.apiAccessToken
@@ -179,10 +179,10 @@ class UserApi extends BaseApi {
     })
   }
 
-  indoorGradeChart (userUuid) {
+  indoorGradeChart (userName) {
     return this.axios.request({
       method: 'GET',
-      url: `${this.baseUrl}/users/${userUuid}/indoor_grade_chart.json`,
+      url: `${this.baseUrl}/users/${userName}/indoor_grade_chart.json`,
       headers: {
         Authorization: this.authToken(),
         HttpApiAccessToken: this.apiAccessToken
@@ -190,10 +190,10 @@ class UserApi extends BaseApi {
     })
   }
 
-  indoorByLevelsChart (userUuid) {
+  indoorByLevelsChart (userName) {
     return this.axios.request({
       method: 'GET',
-      url: `${this.baseUrl}/users/${userUuid}/indoor_by_level_chart.json`,
+      url: `${this.baseUrl}/users/${userName}/indoor_by_level_chart.json`,
       headers: {
         Authorization: this.authToken(),
         HttpApiAccessToken: this.apiAccessToken

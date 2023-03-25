@@ -97,7 +97,7 @@ export default {
       if (this.notification.notification_type === 'new_message') {
         return `/home/messenger/${this.notification.Notifiable.conversation_id}`
       } else if (['new_follower', 'subscribe_accepted', 'request_for_follow_up'].includes(this.notification.notification_type)) {
-        return `/users/${this.notification.Notifiable.uuid}/${this.notification.Notifiable.slug_name}`
+        return `/climbers/${this.notification.Notifiable.slug_name}`
       } else if (this.notification.notification_type === 'new_article') {
         return `/articles/${this.notification.Notifiable.id}/${this.notification.Notifiable.slug_name}`
       } else {

@@ -41,15 +41,15 @@
 </template>
 
 <script>
-import { LoadingMoreHelpers } from '@/mixins/LoadingMoreHelpers'
+import { LoadingMoreHelpers } from '~/mixins/LoadingMoreHelpers'
 import { RecordToObjectHelpers } from '~/mixins/RecordToObjectHelpers'
-import UserApi from '@/services/oblyk-api/UserApi'
-import GymSmallCard from '@/components/gyms/GymSmallCard'
-import CragSmallCard from '@/components/crags/CragSmallCard'
-import Spinner from '@/components/layouts/Spiner'
-import GuideBookPaperSmallCard from '@/components/guideBookPapers/GuideBookPaperSmallCard'
-import UserSmallCard from '@/components/users/UserSmallCard'
-import LoadingMore from '@/components/layouts/LoadingMore'
+import UserApi from '~/services/oblyk-api/UserApi'
+import GymSmallCard from '~/components/gyms/GymSmallCard.vue'
+import CragSmallCard from '~/components/crags/CragSmallCard.vue'
+import Spinner from '~/components/layouts/Spiner.vue'
+import GuideBookPaperSmallCard from '~/components/guideBookPapers/GuideBookPaperSmallCard.vue'
+import UserSmallCard from '~/components/users/UserSmallCard.vue'
+import LoadingMore from '~/components/layouts/LoadingMore.vue'
 
 export default {
   components: {

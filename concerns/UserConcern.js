@@ -59,7 +59,7 @@ export const UserConcern = {
       axios: this.$axios,
       auth: this.$auth
     })._find(
-      this.$route.params.userUuid
+      this.$route.params.userName
     )
   }
 }

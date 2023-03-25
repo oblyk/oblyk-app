@@ -15,7 +15,7 @@
           {{ humanizeDate(version.created_at) }}
           <span v-if="version.user">
             {{ $t('common.by').toLowerCase() }}
-            <nuxt-link :to="`/users/${version.user.uuid}/${version.user.slug_name}`">
+            <nuxt-link :to="`/climbers/${version.user.slug_name}`">
               {{ version.user.name }}
             </nuxt-link>
           </span>

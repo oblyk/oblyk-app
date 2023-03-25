@@ -37,7 +37,7 @@
           <div>
             <note v-if="comment.comment.note !== null" :note="comment.comment.note" />
             <small>
-              <nuxt-link :to="`/users/${comment.comment.creator.uuid}/${comment.comment.creator.slug_name}`">
+              <nuxt-link :to="`/climbers/${comment.comment.creator.slug_name}`">
                 {{ comment.comment.creator.full_name }}
               </nuxt-link>
               {{ $t('common.at') }} {{ humanizeDate(comment.comment.released_at) }}

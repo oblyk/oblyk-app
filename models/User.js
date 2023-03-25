@@ -1,5 +1,4 @@
 import ActiveData from '@/models/ActiveData'
-import CurrentUserApi from '~/services/oblyk-api/CurrentUserApi'
 import UserApi from '~/services/oblyk-api/UserApi'
 
 export default class User extends ActiveData {
@@ -7,12 +6,8 @@ export default class User extends ActiveData {
     return this._buildJsonObject(User)
   }
 
-  _find (id) {
-    return this._apiFind(UserApi, id)
-  }
-
-  _findCurrent () {
-    return this._apiFind(CurrentUserApi)
+  _find (name) {
+    return this._apiFind(UserApi, name)
   }
 
   get className () {
@@ -24,7 +19,7 @@ export default class User extends ActiveData {
   }
 
   get userPath () {
-    return `/users/${this.uuid}/${this.slug_name}`
+    return `/climbers/${this.slug_name}`
   }
 
   get path () {

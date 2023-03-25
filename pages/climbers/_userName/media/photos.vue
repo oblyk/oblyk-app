@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import PhotoGallery from '~/components/photos/PhotoGallery'
+import PhotoGallery from '~/components/photos/PhotoGallery.vue'
 
 export default {
   components: { PhotoGallery },
