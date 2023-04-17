@@ -313,5 +313,44 @@ class CurrentUserApi extends BaseApi {
       }
     })
   }
+
+  partnerFigures () {
+    return this.axios.request({
+      method: 'GET',
+      url: `${this.baseUrl}/current_users/partner_figures.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
+    })
+  }
+
+  partnerAroundLocalities (filters, newSince, page = 1) {
+    return this.axios.request({
+      method: 'GET',
+      url: `${this.baseUrl}/current_users/partner_around_localities.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
+      params: {
+        level: filters.level,
+        climbing_type: filters.climbingType,
+        new_since: newSince,
+        page
+      }
+    })
+  }
+
+  partnerChecked () {
+    return this.axios.request({
+      method: 'PUT',
+      url: `${this.baseUrl}/current_users/partner_checked.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
+    })
+  }
 }
 export default CurrentUserApi

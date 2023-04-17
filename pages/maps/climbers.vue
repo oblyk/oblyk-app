@@ -7,23 +7,30 @@
         :latitude-force="latitude"
         :longitude-force="longitude"
         :zoom-force="zoom"
+        :clustered="true"
+        :locality-users="localityUsers"
       />
+      <locality-user-drawer />
       <partner-modal />
     </client-only>
   </div>
 </template>
 
 <script>
-import PartnerApi from '@/services/oblyk-api/PartnerApi'
 import PartnerModal from '@/components/partners/PartnerModal'
+import LocalityApi from '~/services/oblyk-api/LocalityApi'
+import { AddLocalityUserToMap } from '~/mixins/AddLocalityUserToMap'
+import LocalityUserDrawer from '~/components/localityUsers/LocalityUsersDrawer.vue'
 const LeafletMap = () => import('@/components/maps/LeafletMap')
 
 export default {
   name: 'PartnerMapView',
   components: {
+    LocalityUserDrawer,
     PartnerModal,
     LeafletMap
   },
+  mixins: [AddLocalityUserToMap],
 
   data () {
     return {
@@ -73,7 +80,7 @@ export default {
 
   methods: {
     getGeoJson () {
-      new PartnerApi(this.$axios, this.$auth)
+      new LocalityApi(this.$axios, this.$auth)
         .geoJson()
         .then((resp) => {
           this.geoJsons = { features: resp.data.features }

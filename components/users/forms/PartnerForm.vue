@@ -6,10 +6,26 @@
         :label="$t('models.user.partner_search')"
       />
 
-      <div
-        v-if="data.partner_search"
-      >
-        <p class="mt-5">
+      <div v-if="data.partner_search">
+        <div
+          v-if="!$auth.user.date_of_birth"
+          class="mb-10"
+        >
+          <p class="mt-5 mb-2 font-weight-bold text-decoration-underline">
+            {{ $t('components.user.myDateOfBirth') }}
+          </p>
+          <date-of-birth-input
+            v-model="data.date_of_birth"
+            hide-details
+            class="required-field"
+          />
+          <p
+            class="text--disabled mt-1"
+            v-html="$t('components.user.dateOfBirthExplain')"
+          />
+        </div>
+
+        <p class="mt-5 font-weight-bold text-decoration-underline">
           {{ $t('components.user.whatClimbingType') }}
         </p>
         <climbing-type-input
@@ -17,7 +33,7 @@
           environment="user"
         />
 
-        <p class="mt-5">
+        <p class="mt-5 font-weight-bold text-decoration-underline">
           {{ $t('components.user.whichLevel') }}
         </p>
         <v-row>
@@ -43,27 +59,42 @@
           </v-col>
         </v-row>
 
-        <p class="mt-5">
+        <!-- Bio -->
+        <p class="mt-5 font-weight-bold text-decoration-underline">
           {{ $t('components.user.completeBio') }}
         </p>
-        <!-- Bio -->
         <markdown-input
           v-model="data.description"
           :label="$t('models.user.description')"
         />
 
-        <!-- Partner map -->
-        <client-only>
-          <map-input
-            v-model="partnerLocalization"
-            :default-latitude="data.partner_latitude"
-            :default-longitude="data.partner_longitude"
-            :default-zoom="data.partner_latitude ? 10 : 4"
-            title-key="components.user.partnerMapTitle"
-            style-map="outdoor"
-            class="mb-3"
+        <!-- Localities -->
+        <div class="mb-8">
+          <p class="mb-2 mt-3 font-weight-bold text-decoration-underline">
+            {{ $t('components.user.partnerLocalitiesTitle') }}
+          </p>
+          <search-place-localisation
+            v-model="newLocality"
           />
-        </client-only>
+          <div
+            v-if="localityUsers.length > 0"
+            class="mb-8 mt-10"
+          >
+            <p class="font-weight-bold text-decoration-underline mb-2">
+              {{ $t('components.user.myCities') }}
+            </p>
+
+            <div
+              v-for="(localityUser, localityUserIndex) in localityUsers"
+              :key="`place-index-${localityUserIndex}`"
+            >
+              <locality-user-edit-card
+                :locality-user="localityUser"
+                :reload-localities="getLocalityUsers"
+              />
+            </div>
+          </div>
+        </div>
       </div>
 
       <submit-form
@@ -80,11 +111,22 @@ import CurrentUserApi from '~/services/oblyk-api/CurrentUserApi'
 import SubmitForm from '@/components/forms/SubmitForm'
 import ClimbingTypeInput from '@/components/forms/ClimbingTypeInput'
 import MarkdownInput from '@/components/forms/MarkdownInput'
-const MapInput = () => import('@/components/forms/MapInput')
+import SearchPlaceLocalisation from '~/components/forms/SearchPlaceInput.vue'
+import LocalityUserApi from '~/services/oblyk-api/LocalityUserApi'
+import LocalityUser from '~/models/LocalityUser'
+import LocalityUserEditCard from '~/components/localityUsers/forms/LocalityUserEditCard.vue'
+import DateOfBirthInput from '~/components/forms/DateOfBirthInput.vue'
 
 export default {
   name: 'PartnerForm',
-  components: { MapInput, MarkdownInput, ClimbingTypeInput, SubmitForm },
+  components: {
+    DateOfBirthInput,
+    LocalityUserEditCard,
+    SearchPlaceLocalisation,
+    MarkdownInput,
+    ClimbingTypeInput,
+    SubmitForm
+  },
   mixins: [FormHelpers],
   props: {
     user: {
@@ -95,11 +137,10 @@ export default {
 
   data () {
     return {
+      newLocality: null,
+      loadingLocalityUsers: true,
+      localityUsers: [],
       climbingTypes: this.user ? this.user.climbingTypes : [],
-      partnerLocalization: {
-        latitude: (this.user || {}).partner_latitude || (this.user || {}).latitude,
-        longitude: (this.user || {}).partner_longitude || (this.user || {}).longitude
-      },
       gradesList: [
         { text: '3a', value: 13 },
         { text: '3b', value: 15 },
@@ -124,32 +165,24 @@ export default {
         { text: '9c', value: 53 }
       ],
       data: {
-        partner_search: (this.user || {}).partner_search || false,
-        bouldering: (this.user || {}).bouldering,
-        sport_climbing: (this.user || {}).sport_climbing,
-        multi_pitch: (this.user || {}).multi_pitch,
-        trad_climbing: (this.user || {}).trad_climbing,
-        aid_climbing: (this.user || {}).aid_climbing,
-        deep_water: (this.user || {}).deep_water,
-        via_ferrata: (this.user || {}).via_ferrata,
-        pan: (this.user || {}).pan,
-        grade_min: (this.user || {}).grade_min,
-        grade_max: (this.user || {}).grade_max,
-        description: (this.user || {}).description,
-        partner_latitude: (this.user || {}).partner_latitude || (this.user || {}).latitude,
-        partner_longitude: (this.user || {}).partner_longitude || (this.user || {}).longitude
+        partner_search: this.user?.partner_search || false,
+        date_of_birth: this.user?.date_of_birth,
+        bouldering: this.user?.bouldering,
+        sport_climbing: this.user?.sport_climbing,
+        multi_pitch: this.user?.multi_pitch,
+        trad_climbing: this.user?.trad_climbing,
+        aid_climbing: this.user?.aid_climbing,
+        deep_water: this.user?.deep_water,
+        via_ferrata: this.user?.via_ferrata,
+        pan: this.user?.pan,
+        grade_min: this.user?.grade_min,
+        grade_max: this.user?.grade_max,
+        description: this.user?.description
       }
     }
   },
 
   watch: {
-    partnerLocalization: {
-      handler () {
-        this.data.partner_latitude = this.partnerLocalization.latitude
-        this.data.partner_longitude = this.partnerLocalization.longitude
-      },
-      deep: true
-    },
     climbingTypes: {
       handler () {
         this.data.bouldering = this.climbingTypes.includes('bouldering')
@@ -162,27 +195,72 @@ export default {
         this.data.pan = this.climbingTypes.includes('pan')
       },
       deep: true
+    },
+
+    newLocality () {
+      this.addLocalityUser(this.newLocality.lat, this.newLocality.lng)
     }
+  },
+
+  mounted () {
+    this.getLocalityUsers()
   },
 
   methods: {
     submit () {
       this.submitOverlay = true
 
+      // If no date of birth
+      if (this.data.date_of_birth === null) {
+        this.$root.$emit('alertSimpleError', `${this.$t('models.user.date_of_birth')} ${this.$t('errors.rules.is_required')}`)
+        this.submitOverlay = false
+        return false
+      }
+
+      // If user is minor
+      if (
+        this
+          .$moment(this.data.date_of_birth)
+          .isAfter(
+            this.$moment().subtract(18, 'year')
+          )
+      ) {
+        this.$root.$emit('alertSimpleError', this.$t('errors.rules.you_must_be_major'))
+        this.submitOverlay = false
+        return false
+      }
+
       new CurrentUserApi(this.$axios, this.$auth)
         .update(this.data)
         .then(() => {
-          if (this.data.partner_latitude !== null) {
-            localStorage.setItem('map-latitude', this.data.partner_latitude)
-            localStorage.setItem('map-longitude', this.data.partner_longitude)
-            localStorage.setItem('map-zoom', '12')
-          }
-          this.$router.push('/maps/climbers')
+          this.$auth.fetchUser().then(() => {
+            this.$router.push(this.data.partner_search ? '/maps/climbers' : '/home')
+          })
         })
         .catch((err) => {
           this.$root.$emit('alertFromApiError', err, 'user')
         }).then(() => {
           this.submitOverlay = false
+        })
+    },
+
+    getLocalityUsers () {
+      this.loadingLocalityUsers = true
+      this.localityUsers = []
+      new LocalityUserApi(this.$axios, this.$auth)
+        .all()
+        .then((resp) => {
+          for (const localityUser of resp.data) {
+            this.localityUsers.push(new LocalityUser({ attributes: localityUser }))
+          }
+        })
+    },
+
+    addLocalityUser (latitude, longitude) {
+      new LocalityUserApi(this.$axios, this.$auth)
+        .create({ latitude, longitude })
+        .then(() => {
+          this.getLocalityUsers()
         })
     }
   }

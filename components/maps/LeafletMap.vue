@@ -63,6 +63,7 @@
           :options="geoJsonOptions"
         />
 
+        <!-- Circle -->
         <l-circle
           v-if="circleProperties"
           :lat-lng="circleProperties.center"
@@ -73,6 +74,18 @@
           :fill-color="circleProperties.fillColor || 'blue'"
           :fill-opacity="circleProperties.fillOpacity || 0.2"
           :weight="circleProperties.weight || 3"
+        />
+
+        <!-- Locality users -->
+        <l-circle
+          v-for="(localityUser, localityUserIndex) in localityUsers"
+          :key="`locality-user-index-${localityUserIndex}`"
+          :lat-lng="[localityUser.locality.latitude, localityUser.locality.longitude]"
+          :radius="localityUser.radius * 1000"
+          color="rgb(49, 153, 78)"
+          :fill="false"
+          :interactive="false"
+          :weight="1"
         />
 
         <l-marker
@@ -137,43 +150,39 @@ export default {
     },
     trackLocation: {
       type: Boolean,
-      required: false,
       default: true
     },
     zoomForce: {
       type: Number,
-      required: false,
       default: null
     },
     latitudeForce: {
       type: [Number, String],
-      required: false,
       default: null
     },
     longitudeForce: {
       type: [Number, String],
-      required: false,
       default: null
     },
     scrollWheelZoom: {
       type: Boolean,
-      required: false,
       default: true
     },
     clustered: {
       type: Boolean,
-      required: false,
       default: true
     },
     circleProperties: {
       type: Object,
-      required: false,
       default: null
     },
     showLocalization: {
       type: Boolean,
-      required: false,
       default: true
+    },
+    localityUsers: {
+      type: Array,
+      default: null
     },
     options: {
       type: Object,
@@ -259,8 +268,8 @@ export default {
   methods: {
     pointToLayerFunction () {
       return (feature, latLng) => {
-        if (feature.properties.icon === 'partner-user') {
-          return L.marker(latLng, { icon: L.divIcon(this.userMarker(feature.properties)) })
+        if (feature.properties.icon === 'locality') {
+          return L.marker(latLng, { icon: L.divIcon(this.localityMarker(feature.properties)) })
         } else {
           return L.marker(latLng, { icon: L.icon(this.markers[feature.properties.icon]) })
         }
@@ -281,6 +290,10 @@ export default {
             layer.options.fill = false
             layer.options.interactive = false
           }
+        } else if (feature.properties.type === 'Locality') {
+          layer.on('click', () => {
+            this.$router.push({ path: this.$route.path, query: { locality: feature.properties.id } })
+          })
         } else {
           layer.on('click', () => { this.buildPopup(layer, feature.properties) })
         }

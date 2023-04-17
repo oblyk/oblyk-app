@@ -10,8 +10,9 @@
       rounded
       dense
       hide-details
+      clearable
       @keyup="search()"
-      @click:clear="onSearch = false"
+      @click:clear="clearSearch()"
       @focus="scrollToElement"
     />
 
@@ -68,16 +69,19 @@ export default {
 
   methods: {
     search () {
-      if (this.previousQuery === this.query) {
-        this.searching = false
+      const query = this.query?.trim()
+
+      if (query === '' || query === null) {
+        this.clearSearch()
         return
       }
+      if (this.previousQuery === query) { return }
 
       this.osmApi = new OsmNominatim(this.$axios) || this.osmApi
       // Cancel old request
       this.osmApi.cancelSearch()
 
-      this.previousQuery = this.query
+      this.previousQuery = query
       this.onSearch = true
       this.searching = true
 
@@ -88,7 +92,7 @@ export default {
 
       this.searchTimeOut = setTimeout(() => {
         this.osmApi
-          .search(this.query)
+          .search(query)
           .then((resp) => {
             this.resultVisible = true
             this.results = []
@@ -107,6 +111,12 @@ export default {
             this.searching = false
           })
       }, 500)
+    },
+
+    clearSearch () {
+      this.results = []
+      clearTimeout(this.searchTimeOut)
+      this.searching = false
     },
 
     emitObject (result) {

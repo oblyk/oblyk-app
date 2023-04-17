@@ -7,8 +7,8 @@
       <v-row>
         <!-- Crags -->
         <v-col
+          cols="6"
           class="text-center hover-col"
-          :class="user.partner_search ? 'col-4 col-md-4' : 'col-6 col-md-6'"
           @click="cragsDialog = true"
         >
           <v-sheet
@@ -37,8 +37,8 @@
 
         <!-- Gyms -->
         <v-col
+          cols="6"
           class="text-center hover-col"
-          :class="user.partner_search ? 'col-4 col-md-4' : 'col-6 col-md-6'"
           @click="gymsDialog = true"
         >
           <v-sheet
@@ -55,36 +55,6 @@
               v-if="!loadingGyms"
               class="mt-2 mb-0 text-truncate"
               v-html="$tc('components.gym.gymCount', gyms.length, { count: gyms.length })"
-            />
-            <p
-              v-else
-              class="mt-2 mb-0"
-            >
-              ...
-            </p>
-          </v-sheet>
-        </v-col>
-
-        <!-- Climbers -->
-        <v-col
-          v-if="user.partner_search"
-          class="col-4 text-center hover-col"
-          @click="climbersDialog = true"
-        >
-          <v-sheet
-            rounded
-            class="pa-3 around-card-bnt"
-          >
-            <v-icon
-              large
-              color="primary"
-            >
-              {{ mdiHuman }}
-            </v-icon>
-            <p
-              v-if="!loadingClimbers"
-              class="mt-2 mb-0 text-truncate"
-              v-html="$tc('components.user.userCount', climbers.length, { count: climbers.length })"
             />
             <p
               v-else
@@ -157,75 +127,6 @@
           </v-card-actions>
         </v-card>
       </v-dialog>
-
-      <!-- climbers modal -->
-      <v-dialog
-        v-model="climbersDialog"
-        max-width="700"
-      >
-        <v-card>
-          <v-card-title class="headline">
-            {{ $tc('components.user.userAround', climbers.length, { count: climbers.length }) }}
-          </v-card-title>
-          <v-card-text>
-            <user-small-card
-              v-for="(user, index) in climbers"
-              :key="`users-${index}`"
-              :small="true"
-              :user="user"
-            />
-          </v-card-text>
-          <v-card-actions>
-            <v-spacer />
-            <v-btn
-              color="primary"
-              text
-              @click="climbersDialog = false"
-            >
-              {{ $t('common.close') }}
-            </v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-dialog>
-
-      <!-- Around Settings modal -->
-      <v-dialog
-        v-model="aroundSettingsDialog"
-        max-width="700"
-      >
-        <v-card>
-          <v-card-title class="headline">
-            {{ $tc('components.user.aroundSettings') }}
-          </v-card-title>
-          <v-card-text>
-            <p>{{ $t('components.user.chooseNewsArea') }}</p>
-            <v-slider
-              v-model="settingDistance"
-              color="primary"
-              :label="$t('components.user.distanceSetting', { distance: settingDistance })"
-              min="1"
-              max="100"
-              thumb-label
-            />
-          </v-card-text>
-          <v-card-actions>
-            <v-spacer />
-            <v-btn
-              color="primary"
-              text
-              @click="aroundSettingsDialog = false"
-            >
-              {{ $t('common.close') }}
-            </v-btn>
-            <v-btn
-              color="primary"
-              @click="setFeedSetting()"
-            >
-              {{ $t('components.user.saveMyPreference') }}
-            </v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-dialog>
     </div>
     <div
       v-else
@@ -251,20 +152,17 @@
 </template>
 
 <script>
-import { mdiMapMarkerRadius, mdiTerrain, mdiHomeRoof, mdiHuman } from '@mdi/js'
+import { mdiTerrain, mdiHomeRoof } from '@mdi/js'
 import CragApi from '~/services/oblyk-api/CragApi'
 import GymApi from '~/services/oblyk-api/GymApi'
-import PartnerApi from '~/services/oblyk-api/PartnerApi'
 import Crag from '@/models/Crag'
 import Gym from '@/models/Gym'
-import User from '@/models/User'
 import CragSmallCard from '@/components/crags/CragSmallCard'
 import GymSmallCard from '@/components/gyms/GymSmallCard'
-import UserSmallCard from '@/components/users/UserSmallCard'
 
 export default {
   name: 'AroundCard',
-  components: { UserSmallCard, GymSmallCard, CragSmallCard },
+  components: { GymSmallCard, CragSmallCard },
   props: {
     user: {
       type: Object,
@@ -274,22 +172,16 @@ export default {
 
   data () {
     return {
-      mdiMapMarkerRadius,
-      mdiTerrain,
-      mdiHomeRoof,
-      mdiHuman,
       distance: 20,
-      settingDistance: null,
       cragsDialog: false,
       gymsDialog: false,
-      climbersDialog: false,
-      aroundSettingsDialog: false,
       crags: [],
       gyms: [],
-      climbers: [],
       loadingCrags: true,
       loadingGyms: true,
-      loadingClimbers: true
+
+      mdiTerrain,
+      mdiHomeRoof
     }
   },
 
@@ -317,7 +209,6 @@ export default {
 
   mounted () {
     this.distance = localStorage.getItem('distanceAroundLocation') || 20
-    this.settingDistance = this.distance
     this.getElementAround()
   },
 
@@ -326,7 +217,6 @@ export default {
       if (this.IAmGeolocated) {
         this.getCragsAround()
         this.getGymsAround()
-        if (this.user.partner_search) { this.getPartnersAround() }
       }
     },
 
@@ -366,31 +256,6 @@ export default {
         .finally(() => {
           this.loadingGyms = false
         })
-    },
-
-    getPartnersAround () {
-      this.loadingClimbers = true
-      new PartnerApi(this.$axios, this.$auth)
-        .partnersAround(
-          this.latitude,
-          this.longitude,
-          this.distance
-        )
-        .then((resp) => {
-          this.climbers = []
-          for (const user of resp.data) {
-            this.climbers.push(new User({ attributes: user }))
-          }
-        })
-        .finally(() => {
-          this.loadingClimbers = false
-        })
-    },
-
-    setFeedSetting () {
-      this.distance = this.settingDistance
-      localStorage.setItem('distanceAroundLocation', this.settingDistance)
-      this.aroundSettingsDialog = false
     },
 
     openLocalizationPopup () {

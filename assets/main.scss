@@ -46,8 +46,10 @@ strong {
 }
 
 .color-grade-span {
-  border-bottom: 0.15em solid;
+  border-bottom: 0.25em solid;
   display: inline-block;
+  font-weight: bolder;
+  padding: 2px;
   line-height: 0.75;
 }
 
@@ -79,6 +81,10 @@ strong {
 
 .vertical-align-text-top {
   vertical-align: text-top !important;
+}
+
+.vertical-align-text-bottom {
+  vertical-align: text-bottom !important;
 }
 
 .full-name-field-form {

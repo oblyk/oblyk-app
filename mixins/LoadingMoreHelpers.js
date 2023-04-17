@@ -10,6 +10,7 @@ export const LoadingMoreHelpers = {
   methods: {
     resetLoadMorePageNumber (page = 1) {
       this.page = page
+      this.noMoreDataToLoad = false
     },
 
     moreIsBeingLoaded () {

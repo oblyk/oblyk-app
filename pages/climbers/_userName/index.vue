@@ -26,10 +26,10 @@
 
     <!-- User partner search -->
     <v-col
-      v-if="user.partner_search && user.partner_latitude"
+      v-if="user.partner_search"
       class="col-12 col-md-6 pt-0 pb-0"
     >
-      <user-partner-map :user="user" />
+      <climber-localities :user="user" />
     </v-col>
   </v-row>
 </template>
@@ -37,15 +37,15 @@
 <script>
 import UserBio from '~/components/users/UserBio.vue'
 import UserContribution from '~/components/users/UserContribution.vue'
-import UserPartnerMap from '~/components/users/UserPatnerMap.vue'
 import UserApi from '~/services/oblyk-api/UserApi'
 import Spinner from '~/components/layouts/Spiner.vue'
+import ClimberLocalities from '~/components/users/ClimberLocalities.vue'
 
 export default {
   name: 'UserProfileView',
   components: {
+    ClimberLocalities,
     Spinner,
-    UserPartnerMap,
     UserContribution,
     UserBio
   },

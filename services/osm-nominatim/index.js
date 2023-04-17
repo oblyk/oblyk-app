@@ -31,7 +31,7 @@ class OsmNominatim {
       url: 'https://nominatim.openstreetmap.org/search',
       cancelToken: this.tokenSearchSource.token,
       params: {
-        q: query,
+        city: query,
         format: 'json',
         addressdetails: 1,
         email: 'ekip@oblky.org'

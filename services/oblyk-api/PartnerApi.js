@@ -1,17 +1,6 @@
 import BaseApi from '~/services/oblyk-api/BaseApi'
 
 class PartnerApi extends BaseApi {
-  geoJson (minimalistic = true) {
-    return this.axios.request({
-      method: 'GET',
-      url: `${this.baseUrl}/partners/geo_json.json`,
-      headers: { HttpApiAccessToken: this.apiAccessToken },
-      params: {
-        minimalistic
-      }
-    })
-  }
-
   figures () {
     return this.axios.request({
       method: 'GET',

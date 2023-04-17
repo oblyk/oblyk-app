@@ -4,9 +4,12 @@
     :items="climbByEnvironment()"
     item-text="text"
     item-value="value"
-    chips
+    :chips="chips"
+    :dense="dense"
+    :hide-details="hideDetails"
     :label="$t('components.input.climbing_type')"
-    multiple
+    :multiple="multiple"
+    :clearable="clearable"
     outlined
     @change="onChange"
   />
@@ -16,8 +19,31 @@
 export default {
   name: 'ClimbingTypeInput',
   props: {
-    value: Array,
-    environment: String
+    value: [Array, String],
+    environment: {
+      type: String,
+      default: 'crag'
+    },
+    chips: {
+      type: Boolean,
+      default: true
+    },
+    dense: {
+      type: Boolean,
+      default: false
+    },
+    multiple: {
+      type: Boolean,
+      default: true
+    },
+    hideDetails: {
+      type: Boolean,
+      default: false
+    },
+    clearable: {
+      type: Boolean,
+      default: false
+    }
   },
 
   data () {

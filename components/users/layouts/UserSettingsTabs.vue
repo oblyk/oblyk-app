@@ -12,7 +12,10 @@
     </v-tab>
 
     <!-- Partner settings -->
-    <v-tab :to="`${user.currentUserPath}/settings/partner`">
+    <v-tab
+      v-if="!$auth.user.minor"
+      :to="`${user.currentUserPath}/settings/partner`"
+    >
       <v-icon left small>
         {{ mdiMapMarkerRadius }}
       </v-icon>

@@ -19,6 +19,7 @@ export default {
     selectOrUnselect: 'sélectionner / désélectionner',
     search: 'Chercher',
     addFilters: 'Ajouter des filtres',
+    deleteFilters: 'Supprimer les filtres',
     createMyAccount: 'Créer mon compte',
     createFreeAccount: 'Créer mon compte gratuit',
     changeBanner: 'Changer le bandeau',
@@ -123,7 +124,10 @@ export default {
     changeCrag: 'Changer le site',
     changeRoute: 'Changer la ligne',
     addMyAscents: 'Ajouter mes croix',
-    addAAscents: 'Ajouter une croix'
+    addAAscents: 'Ajouter une croix',
+    deleteNote: 'Supprimer la note',
+    addNote: 'Ajouter une note',
+    editNote: 'Modifier la note'
   },
   colors: {
     noColor: 'Toutes',
@@ -203,10 +207,21 @@ export default {
     crosses: 'croix',
     linesCount: 'une ligne | %{count} lignes',
     seeMore: 'voir plus',
+    seeAll: 'Tout voir',
     ascents: 'Croix',
     since: 'depuis le %{date}',
     count: 'un | %{count}',
     areYouSurToDelete: 'Êtes vous sur de vouloir supprimer ?',
+    filters: 'Filtres',
+    map: 'Carte',
+    setting: 'Réglage',
+    new: '%{count} nouveau | %{count} nouveaux',
+    climbers: {
+      long: '%{count} grimpeur ou grimpeuse | %{count} grimpeurs et grimpeuses',
+      longWithoutCount: 'grimpeur ou grimpeuse | grimpeurs et grimpeuses',
+      short: '%{count} grimpeur·euse | %{count} grimpeurs·euses',
+      shortWithoutCount: 'grimpeur·euse | grimpeurs·euses'
+    },
     pages: {
       cookies: 'Oblyk utilise des cookies uniquement à des fins de fonctionnement.',
       newVersion: "Une nouvelle version d'Oblyk est là !",
@@ -280,6 +295,8 @@ export default {
         connect: 'Pour voir les grimpeurs et grimpeuses inscrit·e·s sur la recherche de partenaire, il faut déjà que tu aies un compte !',
         figuresGlobal: 'Déjà <strong>%{global} grimpeur·euse·s</strong> sont inscrit·e·s à la carte',
         figuresWeekly: ', dont <strong>%{weekly} nouveaux</strong> cette semaine !',
+        emptyClimbersWithFilter: "Il n'y a pas de grimpeurs ou grimpeuses avec les filtres que vous avez choisi",
+        connectForMatch: 'Crée-toi un compte et rencontre les <strong>grimpeurs et grimpeuses</strong><br>inscrits·es à <strong>%{name}</strong> !',
         steps: {
           configuration: {
             title: 'Étape 1 : Mon profil',
@@ -1292,8 +1309,8 @@ export default {
       successfulEditMessage: 'Votre profile à été mis à jour',
       whatClimbingType: "Quel type d'escalade pratiquez-vous ?",
       whichLevel: 'Dans quel niveau aimez-vous grimper ?',
-      bePartPartner: 'Voulez vous faire partie de la carte des grimpeur·euse·s ?',
-      bePartPartnerExplain: 'Faire partie de la carte des grimpeur·euse·s vous permet de trouver des gens avec qui grimper !',
+      bePartPartner: 'Voulez vous faire partie de la carte des grimpeurs et grimpeuses ?',
+      bePartPartnerExplain: 'Faire partie de la carte des grimpeurs et grimpeuses vous permet de trouver des gens avec qui grimper autour de chez !',
       localizationDeactivated: 'Localisation désactivée',
       localizationActivated: 'Localisation activée',
       activateLocalization: 'Activer la localisation',
@@ -1306,7 +1323,12 @@ export default {
       bio: 'Bio',
       completeBio: 'Complétez votre bio',
       oblykContribution: 'Contribution à Oblyk',
-      partnerMapTitle: "Choisissez l'endroit où vous souhaitez apparaître sur la carte",
+      partnerLocalitiesTitle: 'Ajoutez les villes dans lesquelles vous grimpez',
+      myCities: 'Mes villes',
+      myPartnerSearch: 'Ma recherche de partenaire',
+      myDateOfBirth: 'Ma date de naissance',
+      dateOfBirthExplain: 'Vous devez avoir <strong>plus de 18 ans</strong> pour faire partie de la recherche de partenaire.',
+      climbersActiveRecently: 'Grimpeurs et grimpeuses actives récemment',
       emptyContribution: "%{name} n'a pas encore contribué à Oblyk",
       climbersMap: 'Sur la carte des grimpeur·euse·s',
       openClimbersMap: 'Ouvrir la carte des grimpeur·euse·s',
@@ -1698,10 +1720,10 @@ export default {
   errors: {
     rules: {
       email_or_password_suite_not_find: "Pas de compte trouvé pour le mot de passe et l'e-mail donnée",
-      is_required: 'est requis',
+      is_required: 'est requis(e)',
       is_mandatory: 'est obligatoire',
-      is_already_taken: 'est déjà pris',
-      is_too_short: 'est trop court',
+      is_already_taken: 'est déjà pris(e)',
+      is_too_short: 'est trop court(e)',
       must_be_positive: 'doit être positif',
       is_invalid: 'est invalide',
       is_not_a_permitted_value: "n'est pas dans la liste des valeurs autorisées",
@@ -1709,7 +1731,9 @@ export default {
       you_cannot_have_both_point_systems: 'Vous ne pouvez pas avoir les deux systèmes de point',
       is_not_in_the_right_format: "n'est pas au bon format",
       confirm: 'doit être identique',
-      un_destroyable: "L'élément ne peut être supprimé"
+      un_destroyable: "L'élément ne peut être supprimé",
+      cannot_be_changed: 'ne peut pas être changé(e)',
+      you_must_be_major: 'Vous devez être majeur'
     }
   },
   models: {
@@ -2088,7 +2112,12 @@ export default {
     genres: {
       undefined: 'Indéfini',
       male: 'Homme',
-      female: 'Femme'
+      female: 'Femme',
+      climbers: {
+        undefined: 'Indéfini',
+        male: 'Grimpeur',
+        female: 'Grimpeuse'
+      }
     },
     tags: {
       crimps: 'Réglettes',

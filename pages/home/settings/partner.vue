@@ -5,8 +5,11 @@
         <h2 class="mb-4">
           {{ $t('components.user.partnerSearch') }}
         </h2>
-        <enable-localization :user="user" />
-        <partner-form :user="user" submit-methode="put" />
+        <partner-form
+          v-if="user"
+          :user="user"
+          submit-methode="put"
+        />
       </v-col>
     </v-row>
   </v-container>
@@ -14,10 +17,9 @@
 
 <script>
 import PartnerForm from '~/components/users/forms/PartnerForm.vue'
-import EnableLocalization from '~/components/users/notificationCard/EnableLocalization.vue'
 
 export default {
-  components: { EnableLocalization, PartnerForm },
+  components: { PartnerForm },
   props: {
     user: {
       type: Object,
@@ -28,10 +30,10 @@ export default {
   i18n: {
     messages: {
       fr: {
-        metaTitle: 'Mes paramètres de recherche de partenaire'
+        metaTitle: 'Ma présence sur la carte des grimpeurs'
       },
       en: {
-        metaTitle: 'My partner search settings'
+        metaTitle: "My presence on the climbers' map"
       }
     }
   },

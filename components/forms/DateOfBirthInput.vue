@@ -12,6 +12,7 @@
         :label="$t('components.input.dateOfBirth')"
         readonly
         outlined
+        :hide-details="hideDetails"
         v-bind="attrs"
         @blur="date = parseDate(dateFormatted)"
         v-on="on"
@@ -47,7 +48,17 @@
 <script>
 export default {
   name: 'DateOfBirthInput',
-  props: { value: String },
+  props: {
+    value: {
+      type: String,
+      required: true
+    },
+    hideDetails: {
+      type: Boolean,
+      default: false
+    }
+  },
+
   data () {
     return {
       dateFormatted: this.formatDate(this.value),

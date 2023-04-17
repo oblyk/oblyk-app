@@ -18,7 +18,7 @@
 
           <!-- Enable partner search -->
           <enable-partner-search
-            v-if="currentUser.partner_search === null"
+            v-if="currentUser.partner_search === null && !$auth.user.minor"
             :user="currentUser"
             class="mb-3"
           />
@@ -49,6 +49,11 @@
               <around-card :user="currentUser" />
             </v-col>
           </v-row>
+
+          <my-partner-figures
+            v-if="currentUser.partner_search"
+            class="mt-7"
+          />
 
           <v-row class="mt-7">
             <!-- Friends crosses -->
@@ -109,10 +114,12 @@ import Feed from '~/components/feeds/Feed.vue'
 import DailyAscents from '~/components/logBooks/outdoors/DailyAscents.vue'
 import SubscribesAscentsCard from '~/components/users/SubscribesAscentsCard.vue'
 import AddSubscribesCard from '~/components/users/AddSubscribesCard.vue'
+import MyPartnerFigures from '~/components/users/MyPartnerFigures.vue'
 const CragRouteDrawer = () => import('~/components/cragRoutes/CragRouteDrawer.vue')
 
 export default {
   components: {
+    MyPartnerFigures,
     AddSubscribesCard,
     SubscribesAscentsCard,
     DailyAscents,

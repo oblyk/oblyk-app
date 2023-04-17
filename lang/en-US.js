@@ -19,6 +19,7 @@ export default {
     selectOrUnselect: 'select / unselect',
     search: 'Search',
     addFilters: 'Add filters',
+    deleteFilters: 'Remove filters',
     createMyAccount: 'Create my account',
     createFreeAccount: 'Create my free account',
     changeBanner: 'Change banner',
@@ -123,7 +124,10 @@ export default {
     changeCrag: 'Change crag',
     changeRoute: 'Change line',
     addMyAscents: 'Add my ascents',
-    addAAscents: 'Add a ascent'
+    addAAscents: 'Add a ascent',
+    deleteNote: 'Delete note',
+    addNote: 'Add note',
+    editNote: 'Edit note'
   },
   colors: {
     noColor: 'All',
@@ -203,10 +207,21 @@ export default {
     crosses: 'crosses',
     linesCount: 'one line | %{count} lines',
     seeMore: 'see more',
+    seeAll: 'See all',
     ascents: 'Ascents',
     since: 'since %{date}',
     count: 'one | %{count}',
     areYouSurToDelete: 'Are you sure you want to delete?',
+    filters: 'Filters',
+    map: 'Map',
+    setting: 'Setting',
+    new: '%{count} new | %{count} new',
+    climbers: {
+      long: '%{count} climber | %{count} climbers',
+      longWithoutCount: 'climber | climbers',
+      short: '%{count} climber | %{count} climbers',
+      shortWithoutCount: 'climber | climbers'
+    },
     pages: {
       cookies: 'Oblyk uses cookies only for operational purposes.',
       newVersion: 'A new Oblyk version is here!',
@@ -280,6 +295,8 @@ export default {
         connect: 'To see registered climbers, you have to register your own account !',
         figuresGlobal: 'Already %{global} climbers are registered to the map',
         figuresWeekly: ', including %{weekly} new this week!',
+        emptyClimbersWithFilter: 'There are no climbers with the filters you have chosen',
+        connectForMatch: 'Create an account and meet the <strong>climbers</strong><br>registered at <strong>%{name}</strong> !',
         steps: {
           configuration: {
             title: 'Step 1 : My profile',
@@ -1306,7 +1323,12 @@ export default {
       bio: 'Bio',
       completeBio: 'Complete your bio',
       oblykContribution: 'Oblyk contribution',
-      partnerMapTitle: 'Choose where you want to appear on the map',
+      partnerLocalitiesTitle: 'Add the cities I climb in',
+      myCities: 'My cities',
+      myPartnerSearch: 'My partner search',
+      myDateOfBirth: 'My date of birth',
+      dateOfBirthExplain: 'You must be <strong>over 18</strong> to be part of the partner search.',
+      climbersActiveRecently: 'Climbers active recently',
       emptyContribution: '%{name} has not yet contributed to Oblyk',
       climbersMap: 'In climbers map',
       openClimbersMap: "Open the climbers' map",
@@ -1709,7 +1731,9 @@ export default {
       you_cannot_have_both_point_systems: 'you cannot have both point systems',
       is_not_in_the_right_format: 'is not in the right format',
       confirm: 'must be identical',
-      un_destroyable: 'Item cannot be deleted'
+      un_destroyable: 'Item cannot be deleted',
+      cannot_be_changed: 'cannot be changed',
+      you_must_be_major: 'you must be over 18'
     }
   },
   models: {
@@ -2088,7 +2112,12 @@ export default {
     genres: {
       undefined: 'Undefined',
       male: 'Male',
-      female: 'Female'
+      female: 'Female',
+      climbers: {
+        undefined: 'Undefined',
+        male: 'He climber',
+        female: 'She climber'
+      }
     },
     tags: {
       crimps: 'Crimps',

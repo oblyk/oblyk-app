@@ -28,7 +28,10 @@
     </v-list-item>
 
     <!-- Partner search -->
-    <v-list-item to="/find/climbers">
+    <v-list-item
+      v-if="!$auth.loggedIn || !$auth.user.minor"
+      to="/find/climbers"
+    >
       <v-list-item-icon>
         <v-icon>
           {{ mdiAccountGroupOutline }}
