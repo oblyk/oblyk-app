@@ -1,5 +1,17 @@
 <template>
   <v-container v-if="gym">
+    <div>
+      <v-btn
+        outlined
+        text
+        @click="$router.go(-1)"
+      >
+        <v-icon left>
+          {{ mdiArrowLeft }}
+        </v-icon>
+        {{ gym.name }}
+      </v-btn>
+    </div>
     <h1 class="text-center mt-5">
       <v-avatar
         v-if="gym.logoUrl"
