@@ -10,9 +10,6 @@
             {{ gymSector.name }}
           </h2>
           <p class="subtitle-2" v-html="$t('components.gymSector.addNewExplain')" />
-          <p class="subtitle-2 mb-8">
-            {{ $t('components.gymSector.explainGroupName') }}
-          </p>
           <gym-sector-form
             :gym-space="gymSpace"
             :gym-sector="gymSector"
