@@ -8,7 +8,7 @@
       <locality-user-filter
         v-model="filters"
         :elevation="0"
-        bg-color="white"
+        bg-color="backCardColor"
       />
     </div>
 

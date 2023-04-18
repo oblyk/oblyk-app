@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h4 class="mb-2">
+    <h4 class="mb-2 mt-6 mt-md-0">
       <v-icon left>
         {{ mdiMap }}
       </v-icon>

@@ -15,7 +15,8 @@ export default {
         accent: '#2979ff',
         error: '#b71c1c',
         warning: '#fb8c00',
-        myMessage: '#f5f5f5'
+        myMessage: '#f5f5f5',
+        backCardColor: '#fff'
       },
       dark: {
         primary: '#31994e',
@@ -24,7 +25,8 @@ export default {
         accent: '#448aff',
         error: '#b71c1c',
         warning: '#fb8c00',
-        myMessage: '#121212'
+        myMessage: '#121212',
+        backCardColor: '#1e1e1e'
       }
     },
     options: { variations: false }
