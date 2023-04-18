@@ -32,7 +32,10 @@
                   :item-value="`${gymSpace.figures.routes_count} ligne(s)`"
                 />
               </v-col>
-              <v-col cols="6">
+              <v-col
+                v-if="gymSpace.figures.last_route_opened_at"
+                cols="6"
+              >
                 <description-line
                   :icon="mdiCalendar"
                   :title="humanizeDate(gymSpace.figures.last_route_opened_at)"
