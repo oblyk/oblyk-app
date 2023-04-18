@@ -78,9 +78,9 @@ export default {
       const promise = (this.isEditingForm()) ? new GymOpenerApi(this.$axios, this.$auth).update(this.data) : new GymOpenerApi(this.$axios, this.$auth).create(this.data)
 
       promise
-        .then(() => {
+        .then((resp) => {
           if (this.callback) {
-            this.callback()
+            this.callback(resp.data)
           } else {
             this.$router.push(`${this.gym.path}/admins/openers`)
           }

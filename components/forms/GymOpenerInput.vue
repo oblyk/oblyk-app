@@ -95,7 +95,7 @@ export default {
   },
 
   methods: {
-    getOpeners () {
+    getOpeners (opener = null) {
       this.loadingOpener = true
       this.openersList = []
       this.addOpenerModal = false
@@ -110,6 +110,9 @@ export default {
                 value: opener.id
               }
             )
+          }
+          if (opener) {
+            this.openers.push(opener.id)
           }
         })
         .finally(() => {
