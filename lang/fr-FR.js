@@ -1792,7 +1792,7 @@ export default {
       east: 'Est',
       south_east: 'Sud Est',
       south: 'Sud',
-      south_west: 'Sub Ouest',
+      south_west: 'Sud Ouest',
       west: 'Ouest',
       north_west: 'Nord Ouest'
     },
