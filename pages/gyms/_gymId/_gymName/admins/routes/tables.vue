@@ -3,7 +3,9 @@
     <div v-if="gym">
       <v-breadcrumbs :items="breadcrumbs" />
       <gym-admin-routes-tabs :gym="gym" />
-      <gym-routes-table :gym="gym" />
+      <client-only>
+        <gym-routes-table :gym="gym" />
+      </client-only>
     </div>
   </v-container>
 </template>

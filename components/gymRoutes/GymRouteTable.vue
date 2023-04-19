@@ -63,6 +63,16 @@
               </v-btn>
               {{ item.sector }}
             </template>
+            <template #[`item.ascentsCount`]="{ item }">
+              <v-btn
+                v-if="item.ascentsCount > 0"
+                small
+                icon
+                @click="getAscents(item.id)"
+              >
+                {{ item.ascentsCount }}
+              </v-btn>
+            </template>
             <template #[`item.edit`]="{ item }">
               <nuxt-link
                 v-if="gymAuthCan(gym, 'manage_opening')"
@@ -134,6 +144,67 @@
         </v-menu>
       </div>
     </v-scale-transition>
+
+    <!-- Ascent -->
+    <v-dialog
+      v-model="ascentsDialog"
+      max-width="600"
+    >
+      <v-card>
+        <v-card-title>
+          {{ $t('models.gymRoute.ascents') }}
+        </v-card-title>
+        <p
+          v-if="loadingAscents"
+          class="py-5 text-center"
+        >
+          {{ $t('common.loading') }}
+        </p>
+        <div
+          v-else
+          class="px-4"
+        >
+          <div
+            v-for="(ascent, ascentIndex) in routeAscents"
+            :key="`ascent-index-${ascentIndex}`"
+            class="border pa-2 rounded mb-2"
+          >
+            <p class="mb-0">
+              <nuxt-link
+                class="text-decoration-none"
+                :to="`/climbers/${ascent.user.slug_name}`"
+              >
+                {{ ascent.user.full_name }}
+              </nuxt-link> -
+              <ascent-gym-route-status-icon
+                :ascent-status="ascent.ascent_status"
+                class="mr-1 mb-1"
+              />
+              {{ $t(`models.ascentStatus.${ascent.ascent_status}`) }} {{ $t('common.at') }} {{ humanizeDate(ascent.released_at) }}
+              <note
+                v-if="ascent.note !== null"
+                :note="ascent.note"
+              />
+            </p>
+            <p
+              v-if="ascent.comment"
+              class="mb-0 mt-1 font-italic"
+            >
+              {{ ascent.comment }}
+            </p>
+          </div>
+        </div>
+        <v-card-actions>
+          <v-spacer />
+          <v-btn
+            text
+            @click="ascentsDialog = false"
+          >
+            {{ $t('actions.close') }}
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 
@@ -152,10 +223,13 @@ import GymApi from '~/services/oblyk-api/GymApi'
 import GymRoute from '@/models/GymRoute'
 import GymRouteTagAndHold from '@/components/gymRoutes/partial/GymRouteTagAndHold'
 import GymRouteApi from '~/services/oblyk-api/GymRouteApi'
+import AscentGymRoute from '~/models/AscentGymRoute'
+import Note from '~/components/notes/Note.vue'
+import AscentGymRouteStatusIcon from '~/components/ascentGymRoutes/AscentGymRouteStatusIcon.vue'
 
 export default {
   name: 'GymRoutesTable',
-  components: { GymRouteTagAndHold },
+  components: { AscentGymRouteStatusIcon, Note, GymRouteTagAndHold },
   mixins: [DateHelpers, GymRolesHelpers],
   props: {
     gym: {
@@ -170,6 +244,9 @@ export default {
       mountedRoute: true,
       loadingRoutes: true,
       routeSelected: [],
+      ascentsDialog: false,
+      loadingAscents: true,
+      routeAscents: [],
       tables: {
         headers: [
           {
@@ -380,6 +457,23 @@ export default {
         })
         .finally(() => {
           this.loadingRoutes = false
+        })
+    },
+
+    getAscents (routeId) {
+      this.ascentsDialog = true
+      this.loadingAscents = true
+      this.routeAscents = []
+      new GymRouteApi(this.$axios, this.$auth)
+        .routeAscents(this.gym.id, routeId)
+        .then((resp) => {
+          for (const routeAscent of resp.data) {
+            if (routeAscent.ascent_status === 'project') { continue }
+            this.routeAscents.push(new AscentGymRoute({ attributes: routeAscent }))
+          }
+        })
+        .finally(() => {
+          this.loadingAscents = false
         })
     }
   }
