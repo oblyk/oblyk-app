@@ -11,14 +11,13 @@
       v-if="gym.gym_spaces.length > 0"
       :to="spacesPath"
     >
-      <v-badge
+      <v-btn
+        elevation="0"
         color="primary"
-        inline
-        :value="gym.gym_spaces.length > 0"
-        :content="gym.gym_spaces.length"
+        class="white--text"
       >
         {{ $t('components.gym.tabs.guideBook') }}
-      </v-badge>
+      </v-btn>
     </v-tab>
 
     <client-only>
