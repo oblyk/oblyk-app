@@ -1985,6 +1985,7 @@ export default {
     },
     gymSector: {
       name: 'Nom du secteur',
+      order: 'Ordre',
       description: 'Description',
       group_sector_name: 'Nom du regroupement',
       climbing_type: "Type d'escalade",

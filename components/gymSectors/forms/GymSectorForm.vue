@@ -6,12 +6,23 @@
       v-if="!loadingGymGrades"
       @submit.prevent="submit()"
     >
-      <v-text-field
-        v-model="data.name"
-        outlined
-        :label="$t('models.gymSector.name')"
-        required
-      />
+      <v-row>
+        <v-col cols="3" md="2" lg="2">
+          <v-text-field
+            v-model="data.order"
+            outlined
+            :label="$t('models.gymSector.order')"
+          />
+        </v-col>
+        <v-col>
+          <v-text-field
+            v-model="data.name"
+            outlined
+            :label="$t('models.gymSector.name')"
+            required
+          />
+        </v-col>
+      </v-row>
 
       <v-text-field
         v-model="data.height"
@@ -93,6 +104,7 @@ export default {
       data: {
         id: this.gymSector?.id,
         name: this.gymSector?.name,
+        order: this.gymSector?.order || (this.gymSpace.last_sector_order + 1),
         height: this.gymSector?.height,
         description: this.gymSector?.description,
         can_be_more_than_one_pitch: this.gymSector?.can_be_more_than_one_pitch,
