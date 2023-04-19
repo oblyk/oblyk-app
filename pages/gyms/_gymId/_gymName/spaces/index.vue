@@ -52,6 +52,16 @@
                   </h1>
                 </v-list-item-title>
                 <v-list-item-subtitle>
+                  <v-btn
+                    small
+                    icon
+                    :to="gym.path"
+                    class="mr-1 mt-n1"
+                  >
+                    <v-icon>
+                      {{ mdiInformationOutline }}
+                    </v-icon>
+                  </v-btn>
                   <strong>{{ gym.city }}</strong>, {{ gym.address }}
                 </v-list-item-subtitle>
               </v-list-item-content>
@@ -172,6 +182,7 @@
 </template>
 
 <script>
+import { mdiInformationOutline } from '@mdi/js'
 import { GymConcern } from '~/concerns/GymConcern'
 import Spinner from '~/components/layouts/Spiner.vue'
 import GymSpaceSelector from '~/components/gymSpaces/GymSpaceSelector.vue'
@@ -201,7 +212,9 @@ export default {
       gymRoute: null,
       loadingGymRoute: false,
       closeDragStart: null,
-      toucheClientY: 0
+      toucheClientY: 0,
+
+      mdiInformationOutline
     }
   },
 
