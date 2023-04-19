@@ -1140,7 +1140,7 @@ export default {
       uploadPlanFor: 'Upload a plan for : %{name}',
       routes: 'Routes',
       plan: 'Plan',
-      showSector: 'Line in <strong>%{name}</strong> sector highlighted.'
+      showSector: 'Lines in <strong>%{name}</strong> sector.'
     },
     gymSector: {
       addNew: 'Create a new sector',

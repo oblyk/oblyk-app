@@ -26,7 +26,6 @@
           <gym-route-list-item
             :key="`gym-route-card-${routeIndex}`"
             :gym-route="route"
-            :show-sector="route.gym_sector_id === showSectorId"
             class="mb-1"
           />
         </template>
@@ -52,10 +51,6 @@ export default {
     },
     getRoutes: {
       type: Function,
-      default: null
-    },
-    showSectorId: {
-      type: Number,
       default: null
     }
   },

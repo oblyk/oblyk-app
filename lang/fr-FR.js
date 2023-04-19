@@ -1140,7 +1140,7 @@ export default {
       uploadPlanFor: 'Télécharger un plan pour : %{name}',
       routes: 'Ouvertures',
       plan: 'Plan',
-      showSector: 'Lignes du secteur <strong>%{name}</strong> mises en évidence.'
+      showSector: 'Lignes du secteur <strong>%{name}</strong>.'
     },
     gymSector: {
       addNew: 'Créer un nouveau secteur',

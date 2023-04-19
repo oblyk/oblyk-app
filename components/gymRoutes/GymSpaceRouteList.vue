@@ -53,8 +53,7 @@
       <!-- If sort by sector -->
       <gym-routes-by-sector
         v-if="sort === 'sector'"
-        :sectors="sectors"
-        :show-sector-id="showSectorId"
+        :sectors="filteredSectors"
         :get-routes="getRoutes"
         :show-plan-options="showPlanOptions"
         :gym="gym"
@@ -63,8 +62,7 @@
       <!-- If sort by opened_at -->
       <div v-if="sort === 'opened_at'">
         <gym-routes-by-opened-at
-          :opened-ats="openedAts"
-          :show-sector-id="showSectorId"
+          :opened-ats="filteredOpenedAts"
           :get-routes="getRoutes"
         />
         <!-- if no routes in opened_ats -->
@@ -78,8 +76,7 @@
       <!-- If sort by grade -->
       <div v-if="sort === 'grade'">
         <gym-routes-by-grade
-          :grades="grades"
-          :show-sector-id="showSectorId"
+          :grades="filteredGrades"
           :get-routes="getRoutes"
         />
         <!-- if no routes in grade -->
@@ -93,8 +90,7 @@
       <!-- If sort by level -->
       <div v-if="sort === 'level'">
         <gym-routes-by-level
-          :levels="levels"
-          :show-sector-id="showSectorId"
+          :levels="filteredLevels"
           :get-routes="getRoutes"
         />
         <!-- if no routes in level -->
@@ -108,8 +104,7 @@
       <!-- If sort by points -->
       <div v-if="sort === 'point'">
         <gym-routes-by-point
-          :routes="points"
-          :show-sector-id="showSectorId"
+          :routes="filteredPoints"
           :get-routes="getRoutes"
         />
         <!-- if no routes in point -->
@@ -190,6 +185,80 @@ export default {
   computed: {
     showSectorsToast () {
       return this.showSectorId !== null
+    },
+
+    filteredSectors () {
+      const sectors = []
+      for (const sector of this.sectors) {
+        if (!this.showSectorId || sector.sector.id === this.showSectorId) {
+          sectors.push(sector)
+        }
+      }
+      return sectors
+    },
+
+    filteredGrades () {
+      const grades = []
+      for (const grade of this.grades) {
+        const routes = []
+        for (const route of grade.routes) {
+          if (!this.showSectorId || route.gym_sector_id === this.showSectorId) {
+            routes.push(route)
+          }
+        }
+        if (routes.length > 0) {
+          grades.push({ grade: grade.grade, routes })
+        }
+      }
+      return grades
+    },
+
+    filteredOpenedAts () {
+      const openedAts = []
+      for (const openedAt of this.openedAts) {
+        const routes = []
+        for (const route of openedAt.routes) {
+          if (!this.showSectorId || route.gym_sector_id === this.showSectorId) {
+            routes.push(route)
+          }
+        }
+        if (routes.length > 0) {
+          openedAts.push({ openedAt: openedAt.openedAt, routes })
+        }
+      }
+      return openedAts
+    },
+
+    filteredLevels () {
+      const levels = []
+      for (const level of this.levels) {
+        const routes = []
+        for (const route of level.routes) {
+          if (!this.showSectorId || route.gym_sector_id === this.showSectorId) {
+            routes.push(route)
+          }
+        }
+        if (routes.length > 0) {
+          levels.push({
+            name: level.name,
+            colors: level.colors,
+            tag_color: level.tag_color,
+            hold_color: level.hold_color,
+            routes
+          })
+        }
+      }
+      return levels
+    },
+
+    filteredPoints () {
+      const points = []
+      for (const route of this.points) {
+        if (!this.showSectorId || route.gym_sector_id === this.showSectorId) {
+          points.push(route)
+        }
+      }
+      return points
     }
   },
 
@@ -336,7 +405,7 @@ export default {
       this.showSectorId = sectorId
       this.showSectorName = sectorName
       setTimeout(() => {
-        const firstGymRouteSectorName = document.querySelector('.gym-route-sector-name')
+        const firstGymRouteSectorName = document.querySelector('.gym-route-list-item')
         firstGymRouteSectorName.scrollIntoView({ behavior: 'smooth' })
       }, 300)
     },
