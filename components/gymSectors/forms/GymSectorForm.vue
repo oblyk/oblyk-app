@@ -101,6 +101,7 @@ export default {
   data () {
     return {
       loadingGymGrades: true,
+      redirectTo: null,
       data: {
         id: this.gymSector?.id,
         name: this.gymSector?.name,
@@ -124,7 +125,9 @@ export default {
     }
   },
 
-  created () {
+  mounted () {
+    const urlParams = new URLSearchParams(window.location.search)
+    this.redirectTo = urlParams.get('redirect_to')
     this.getGymGrades()
   },
 
@@ -135,7 +138,11 @@ export default {
 
       promise
         .then(() => {
-          this.$router.push(this.gymSpace.path)
+          if (this.redirectTo) {
+            this.$router.push(this.redirectTo)
+          } else {
+            this.$router.push(this.gymSpace.path)
+          }
         })
         .catch((err) => {
           this.$root.$emit('alertFromApiError', err, 'gymSector')

@@ -5,6 +5,16 @@
         {{ mdiMap }}
       </v-icon>
       {{ $t('components.gymAdmin.spaces') }}
+      <v-spacer v-if="gymAuthCan(gym, 'manage_space')" />
+      <v-btn
+        v-if="gymAuthCan(gym, 'manage_space')"
+        :to="`${gym.adminPath}/tree-structures`"
+        icon
+      >
+        <v-icon>
+          {{ mdiCogOutline }}
+        </v-icon>
+      </v-btn>
     </v-card-title>
     <v-card-text class="text-center pt-5 pb-7">
       <strong class="big-font-size">
@@ -40,8 +50,9 @@
 </template>
 
 <script>
-import { mdiMap, mdiPlus } from '@mdi/js'
+import { mdiMap, mdiPlus, mdiCogOutline } from '@mdi/js'
 import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
+
 export default {
   name: 'GymAdminSpaceFigures',
   mixins: [GymRolesHelpers],
@@ -55,7 +66,8 @@ export default {
   data () {
     return {
       mdiMap,
-      mdiPlus
+      mdiPlus,
+      mdiCogOutline
     }
   },
 

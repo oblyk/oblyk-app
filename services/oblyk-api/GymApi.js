@@ -45,6 +45,17 @@ class GymApi extends BaseApi {
     })
   }
 
+  treeStructures (gymId) {
+    return this.axios.request({
+      method: 'GET',
+      url: `${this.baseUrl}/gyms/${gymId}/tree_structures.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
+    })
+  }
+
   search (query) {
     const CancelToken = this.axios.CancelToken
     this.tokenSearchSource = CancelToken.source()

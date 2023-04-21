@@ -44,5 +44,16 @@ class GymSpaceApi extends BaseApi {
       }
     })
   }
+
+  delete (gymId, spaceId) {
+    return this.axios.request({
+      method: 'DELETE',
+      url: `${this.baseUrl}/gyms/${gymId}/gym_spaces/${spaceId}.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
+    })
+  }
 }
 export default GymSpaceApi

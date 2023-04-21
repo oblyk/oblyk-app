@@ -1082,6 +1082,7 @@ export default {
       gestionSettings: 'Gestion',
       team: 'Team',
       statistic: 'Statistic',
+      structure: 'Structure',
       various: 'Various',
       openers: 'Openers',
       home: 'Dashboard',

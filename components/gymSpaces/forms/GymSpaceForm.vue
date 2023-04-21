@@ -51,6 +51,7 @@
     </v-form>
   </div>
 </template>
+
 <script>
 import { FormHelpers } from '@/mixins/FormHelpers'
 import CloseForm from '@/components/forms/CloseForm'
@@ -79,14 +80,15 @@ export default {
   data () {
     return {
       loadingGymGrades: true,
+      redirectTo: null,
       data: {
-        id: (this.gymSpace || {}).id,
-        name: (this.gymSpace || {}).name,
-        order: (this.gymSpace || {}).order,
-        description: (this.gymSpace || {}).description,
-        climbing_type: (this.gymSpace || {}).climbing_type,
-        gym_grade_id: (this.gymSpace || {}).gym_grade_id,
-        gym_id: (this.gymSpace || {}).gym_id || this.gymId
+        id: this.gymSpace?.id,
+        name: this.gymSpace?.name,
+        order: this.gymSpace?.order,
+        description: this.gymSpace?.description,
+        climbing_type: this.gymSpace?.climbing_type,
+        gym_grade_id: this.gymSpace?.gym_grade_id,
+        gym_id: this.gymSpace?.gym_id || this.gymId
       },
       climbingGymList: [
         { text: this.$t('models.climbs.sport_climbing'), value: 'sport_climbing' },
@@ -99,7 +101,9 @@ export default {
     }
   },
 
-  created () {
+  mounted () {
+    const urlParams = new URLSearchParams(window.location.search)
+    this.redirectTo = urlParams.get('redirect_to')
     this.getGymGrades()
   },
 
@@ -111,7 +115,11 @@ export default {
       promise
         .then((resp) => {
           const gymSpace = new GymSpace({ attributes: resp.data })
-          this.$router.push(gymSpace.path)
+          if (this.redirectTo) {
+            this.$router.push(this.redirectTo)
+          } else {
+            this.$router.push(gymSpace.path)
+          }
         })
         .catch((err) => {
           this.$root.$emit('alertFromApiError', err, 'gymSpace')
