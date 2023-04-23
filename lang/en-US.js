@@ -822,6 +822,7 @@ export default {
       addPitch: 'Add pitch',
       removePitch: 'Remove pitch',
       routeAdded: "Route : '%{name}' added",
+      mustBeLogin: '<span class="font-weight-bold">Log in</span> or <span class="font-weight-bold">create an account</span> to <span class="font-weight-bold">ses a route names</span> and much more!',
       tips: '<strong>Tips</strong> : use <kbd>tab</kbd> for navigate, <kbd>espace</kbd> for open lists',
       similarRoute: 'One route looks like | {count} routes looks like',
       sort: {

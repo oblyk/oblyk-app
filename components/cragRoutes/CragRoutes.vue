@@ -62,6 +62,29 @@
         />
       </v-card-text>
 
+      <v-sheet
+        v-if="!$auth.loggedIn"
+        class="rounded text-center pa-4 my-2 border mx-4"
+      >
+        <p class="mb-2" v-html="$t('components.cragRoute.mustBeLogin')" />
+        <div>
+          <v-btn
+            elevation="0"
+            color="primary"
+            :to="`/sign-in?redirect_to=${$route.fullPath}`"
+          >
+            {{ $t('actions.signIn') }}
+          </v-btn>
+          <v-btn
+            elevation="0"
+            color="primary"
+            :to="`/sign-up?redirect_to=${$route.fullPath}`"
+          >
+            {{ $t('actions.signUp') }}
+          </v-btn>
+        </div>
+      </v-sheet>
+
       <v-skeleton-loader
         v-if="loadingRoutes"
         class="mx-auto"

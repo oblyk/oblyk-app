@@ -89,6 +89,8 @@ export default {
 
   methods: {
     getCragRoute () {
+      if (!this.$auth.loggedIn) { return false }
+
       this.cragRouteDrawer = true
       this.loadingCragRoute = true
 

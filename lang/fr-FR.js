@@ -822,6 +822,7 @@ export default {
       addPitch: 'Ajouter une longueur',
       removePitch: 'Supprimer une longueur',
       routeAdded: "Ligne : '%{name}' ajoutée",
+      mustBeLogin: '<span class="font-weight-bold">Connectez-vous</span> ou <span class="font-weight-bold">créez-vous un compte</span> pour <span class="font-weight-bold">voir le nom des voies</span> et bien plus !',
       tips: '<strong>Tips</strong> : utiliser <kbd>tab</kbd> pour naviguer, <kbd>espace</kbd> pour ouvrir les listes',
       similarRoute: 'Une ligne ressemble | {count} lignes ressemblent',
       sort: {
