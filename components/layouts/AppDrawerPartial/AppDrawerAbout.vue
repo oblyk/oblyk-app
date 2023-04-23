@@ -91,7 +91,10 @@
       </v-list-item>
 
       <!-- API and Developers -->
-      <v-list-item to="/api-and-developers">
+      <v-list-item
+        v-if="false"
+        to="/api-and-developers"
+      >
         <v-list-item-icon>
           <v-icon>
             {{ mdiCodeBrackets }}

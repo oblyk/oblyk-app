@@ -29,7 +29,10 @@
       <lazy-hydrate when-visible>
         <home-box-help class="home-boxes" />
       </lazy-hydrate>
-      <lazy-hydrate when-visible>
+      <lazy-hydrate
+        v-if="false"
+        when-visible
+      >
         <home-box-developer class="home-boxes" />
       </lazy-hydrate>
     </v-container>

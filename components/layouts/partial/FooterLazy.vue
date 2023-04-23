@@ -56,7 +56,11 @@
             {{ mdiOpenInNew }}
           </v-icon>
         </a>
-        <nuxt-link class="d-block" to="/api-and-developers">
+        <nuxt-link
+          v-if="false"
+          class="d-block"
+          to="/api-and-developers"
+        >
           {{ $t('components.layout.footer.apiAndDevelopers') }}
         </nuxt-link>
         <nuxt-link class="d-block" to="/support-us">
