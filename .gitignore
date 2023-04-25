@@ -93,3 +93,4 @@ sw.*
 
 # Deployment
 config/deploy/next.rb
+config/deploy/production.rb
