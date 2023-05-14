@@ -63,6 +63,8 @@ export default {
     no: 'No',
     yes: 'Yes',
     change: 'Change',
+    continue: 'Continue',
+    previous: 'Previous',
     IUnderstand: 'I understand',
     activate: 'Activate',
     deactivate: 'Deactivate',
@@ -727,9 +729,23 @@ export default {
       resetPasswordError: 'Invalid e-mail address or without associated account',
       newPasswordError: 'The link has expired, or the two passwords are not identical',
       createAccountForWatch: "Create an account to view %{name}'s profile !",
+      me: 'Me',
+      privacy: 'Privacy',
+      guideBook: 'Guide books',
+      publicOrPrivate: 'Public or private ?',
       privacyStep: {
         title: 'One last little thing!',
         explain: 'Take 30 seconds to choose what you want the rest of the community to see of your activity.'
+      },
+      buyGuide: {
+        part1: 'One more thing!',
+        part2: "Do you climb outdoors? <strong>Buy the topos! It's important.</strong>",
+        part3: 'Perhaps you are new to outdoor climbing, or you have never thought about the <strong>importance of guidebooks for our sport?</strong> Here are <strong>3 reasons</strong> why you should <strong>buy paper topos</strong>:',
+        reason1: 'Income from guide book sales <strong>enables the maintenance of the crags</strong> you climb for free;',
+        reason2: 'The topos contain <strong>essential information</strong> for finding your way around the climbing crags that <strong>you will not find on Oblyk</strong> <cite>(such as the trace and order of the routes on the crag);</cite>',
+        reason3: 'More than just climbing guides, <strong>the guide book are part of our sport</strong>. You will find geological explanations, information on the fauna, the history of the sites, anecdotes, etc.',
+        part4: 'Have the reflex : <strong>I go to the crag, I buy the guide book</strong> <cite>(we have plenty of tools to help you find the right topos)</cite>',
+        part5: 'Thank you for your understanding 🙂'
       }
     },
     note: {

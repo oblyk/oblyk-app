@@ -68,6 +68,8 @@
           :label="$t('models.user.description')"
         />
 
+        <genre-input v-model="data.genre" />
+
         <!-- Localities -->
         <div class="mb-8">
           <p class="mb-2 mt-3 font-weight-bold text-decoration-underline">
@@ -116,10 +118,12 @@ import LocalityUserApi from '~/services/oblyk-api/LocalityUserApi'
 import LocalityUser from '~/models/LocalityUser'
 import LocalityUserEditCard from '~/components/localityUsers/forms/LocalityUserEditCard.vue'
 import DateOfBirthInput from '~/components/forms/DateOfBirthInput.vue'
+import GenreInput from '~/components/forms/GenreInput.vue'
 
 export default {
   name: 'PartnerForm',
   components: {
+    GenreInput,
     DateOfBirthInput,
     LocalityUserEditCard,
     SearchPlaceLocalisation,
@@ -167,6 +171,7 @@ export default {
       data: {
         partner_search: this.user?.partner_search || false,
         date_of_birth: this.user?.date_of_birth,
+        genre: this.user?.genre,
         bouldering: this.user?.bouldering,
         sport_climbing: this.user?.sport_climbing,
         multi_pitch: this.user?.multi_pitch,

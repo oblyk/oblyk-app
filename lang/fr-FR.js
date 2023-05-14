@@ -63,6 +63,8 @@ export default {
     no: 'Non',
     yes: 'Oui',
     change: 'Changer',
+    continue: 'Continuer',
+    previous: 'Précédent',
     IUnderstand: "J'ai compris",
     activate: 'Activer',
     deactivate: 'Désactiver',
@@ -727,9 +729,23 @@ export default {
       resetPasswordError: 'Adresse mail invalide ou sans compte associé',
       newPasswordError: 'Le lien a expiré, ou les deux mots de passe ne sont pas identique',
       createAccountForWatch: 'Créez-vous un compte pour voir le profil de %{name} !',
+      me: 'Moi',
+      privacy: 'Confidentialité',
+      guideBook: 'Les topos',
+      publicOrPrivate: 'Publique ou privé ?',
       privacyStep: {
         title: 'Une dernière petite chose!',
         explain: 'Prenez 30 secondes pour choisir ce que vous acceptez que le reste de la communauté voie de votre activité.'
+      },
+      buyGuide: {
+        part1: 'Une dernière chose !',
+        part2: "Vous grimpez en extérieur ? <strong>Achetez les topos ! C'est important.</strong>",
+        part3: "Vous êtes peut-être nouveau dans la pratique de l'escalade outdoor, ou vous ne vous étiez jamais posé·e la question de <strong>l'importance des topos pour notre sport</strong> ? Voici <strong>3 raisons</strong> pour lesquelles vous devez acheter les topos papiers :",
+        reason1: "Le revenu des ventes de topo <strong>permet l'entretien des falaises</strong> sur lesquelles vous grimpez gratuitement ;",
+        reason2: "Les topos contiennent des <strong>informations indispensables</strong> pour se repérer sur les sites d'escalade <strong>que vous ne trouverez pas sur Oblyk</strong> <cite>(comme le tracé et l'ordre des voies sur la falaise)</cite> ;",
+        reason3: "Plus que de simples guides d'escalade, <strong>les topos font partie de notre sport</strong>. Vous y trouverez des explications géologiques, des informations sur la faune, l'histoire des sites, des anecdotes, etc.",
+        part4: "Ayez le réflexe : <strong>je vais en falaise, j'achète le topo</strong> <cite>(nous avons plein d'outils pour vous aider à trouver les bons topos)</cite>",
+        part5: 'Merci de votre compréhension 🙂'
       }
     },
     note: {

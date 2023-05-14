@@ -14,6 +14,7 @@
       <v-icon>{{ mdiArrowLeft }}</v-icon>
     </v-btn>
     <v-btn
+      elevation="0"
       color="primary"
       :tabindex="tabindex"
       :type="submitBtnColor"

@@ -3,16 +3,8 @@
     <v-container>
       <v-row justify="center">
         <v-col class="global-form-width" align-self="center">
-          <v-alert
-            v-if="climbersMap"
-            color="info"
-            class="mb-10"
-          >
-            {{ $t('components.session.createAccountForWatch', { name: partnerName }) }}
-          </v-alert>
-
           <h1 class="mb-4 text-h5 font-weight-bold">
-            {{ $t('actions.signUp') }}
+            {{ $t('actions.createMyAccount') }}
           </h1>
 
           <sign-up-form
@@ -48,7 +40,6 @@ export default {
   data () {
     return {
       redirectTo: null,
-      climbersMap: false,
       preFilledEmail: null
     }
   },
@@ -82,7 +73,6 @@ export default {
     const urlParams = new URLSearchParams(window.location.search)
     this.redirectTo = urlParams.get('redirect_to')
     this.preFilledEmail = urlParams.get('email')
-    this.climbersMap = urlParams.get('partner_request') === 'true'
   }
 }
 </script>
