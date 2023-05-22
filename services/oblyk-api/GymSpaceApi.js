@@ -9,6 +9,14 @@ class GymSpaceApi extends BaseApi {
     })
   }
 
+  groups (gymId) {
+    return this.axios.request({
+      method: 'GET',
+      url: `${this.baseUrl}/gyms/${gymId}/gym_spaces/groups.json`,
+      headers: { HttpApiAccessToken: this.apiAccessToken }
+    })
+  }
+
   find (gymId, spaceId) {
     return this.axios.request({
       method: 'GET',

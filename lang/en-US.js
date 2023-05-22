@@ -98,6 +98,7 @@ export default {
     createAndQuite: 'Create & quit',
     continueToAdd: 'Continue to add',
     addArea: 'Add new crags group',
+    createGroup: 'Create group',
     addRepetition: 'Add a repetition',
     addInMyLogbook: 'Add on my logbook',
     addInMyTickList: 'Add on my tick list',
@@ -218,6 +219,7 @@ export default {
     map: 'Map',
     setting: 'Setting',
     new: '%{count} new | %{count} new',
+    group: 'Group',
     climbers: {
       long: '%{count} climber | %{count} climbers',
       longWithoutCount: 'climber | climbers',
@@ -1106,6 +1108,7 @@ export default {
       difficultySystem: 'Difficulty system',
       difficultySystemShort: 'Systems',
       spaces: 'Spaces',
+      spaceGroups: 'Space groups',
       routes: 'Routes',
       dismountedRoutes: 'List of dismounted routes',
       mountedRoutes: 'List of mounted routes',
@@ -1999,7 +2002,12 @@ export default {
       description: 'Description',
       order: 'Order of importance',
       climbing_type: 'Majority climbing type',
-      gym_grade_id: 'Difficulty system'
+      gym_grade_id: 'Difficulty system',
+      gym_space_group_id: 'Group'
+    },
+    gymSpaceGroup: {
+      name: 'Group name',
+      order: 'Order'
     },
     gymSector: {
       name: 'Secteur name',

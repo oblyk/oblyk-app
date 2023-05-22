@@ -1,9 +1,12 @@
 <template>
   <div>
-    <spinner v-if="loadingGymGrades" :full-height="false" />
+    <spinner
+      v-if="loadingGymGrades || loadingGym"
+      :full-height="false"
+    />
 
     <v-form
-      v-if="!loadingGymGrades"
+      v-else
       @submit.prevent="submit()"
     >
       <v-text-field
@@ -43,6 +46,16 @@
         outlined
       />
 
+      <v-select
+        v-if="gym.gym_space_groups.length > 0"
+        v-model="data.gym_space_group_id"
+        :items="gym.gym_space_groups"
+        item-text="name"
+        item-value="id"
+        :label="$t('models.gymSpace.gym_space_group_id')"
+        outlined
+      />
+
       <close-form />
       <submit-form
         :overlay="submitOverlay"
@@ -61,6 +74,7 @@ import GymGradeApi from '~/services/oblyk-api/GymGradeApi'
 import GymSpaceApi from '~/services/oblyk-api/GymSpaceApi'
 import GymSpace from '@/models/GymSpace'
 import MarkdownInput from '@/components/forms/MarkdownInput'
+import GymApi from '~/services/oblyk-api/GymApi'
 
 export default {
   name: 'GymSpaceForm',
@@ -80,7 +94,9 @@ export default {
   data () {
     return {
       loadingGymGrades: true,
+      loadingGym: true,
       redirectTo: null,
+      gym: null,
       data: {
         id: this.gymSpace?.id,
         name: this.gymSpace?.name,
@@ -88,6 +104,7 @@ export default {
         description: this.gymSpace?.description,
         climbing_type: this.gymSpace?.climbing_type,
         gym_grade_id: this.gymSpace?.gym_grade_id,
+        gym_space_group_id: this.gymSpace?.gym_space_group_id,
         gym_id: this.gymSpace?.gym_id || this.gymId
       },
       climbingGymList: [
@@ -105,6 +122,7 @@ export default {
     const urlParams = new URLSearchParams(window.location.search)
     this.redirectTo = urlParams.get('redirect_to')
     this.getGymGrades()
+    this.getGym()
   },
 
   methods: {
@@ -137,6 +155,18 @@ export default {
           }
         }).finally(() => {
           this.loadingGymGrades = false
+        })
+    },
+
+    getGym () {
+      this.loadingGym = true
+      new GymApi(this.$axios, this.$auth)
+        .find(this.gymId)
+        .then((resp) => {
+          this.gym = resp.data
+        })
+        .finally(() => {
+          this.loadingGym = false
         })
     }
   }

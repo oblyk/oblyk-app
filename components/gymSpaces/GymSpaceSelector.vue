@@ -5,13 +5,61 @@
       <v-skeleton-loader class="d-inline-block" type="avatar" />
       <v-skeleton-loader class="d-inline-block" type="avatar" />
     </div>
-    <div v-if="!loadingGymSpaces && gymSpaces.length">
+    <div v-if="!loadingGymSpaces && (groups.length > 0 || ungroupedSpaces.length > 0)">
       <p class="mb-2">
         <small class="text--disabled">Les espaces de {{ gym.name }} :</small>
       </p>
       <div class="text-no-wrap overflow-x-auto">
+        <!-- Grouped spaces -->
+        <div
+          v-for="(group, groupIndex) in groups"
+          :key="`gym-space-index-${groupIndex}`"
+          class="d-inline-block gym-spaces-selector-groups"
+        >
+          <p class="text-center mb-1">
+            <small class="font-weight-bold">
+              {{ group.name }}
+            </small>
+          </p>
+          <nuxt-link
+            v-for="(space, gymSpaceIndex) in group.gym_spaces"
+            :key="`gym-space-index-${gymSpaceIndex}`"
+            :to="space.path"
+            class="gym-space-block text-center discrete-link"
+            :class="selectedGymSpaceId === space.id ? 'active' : 'inactive'"
+          >
+            <v-avatar
+              size="70"
+              class="gym-space-avatar"
+            >
+              <v-img
+                v-if="space.plan"
+                :src="space.planThumbnailUrl"
+                height="62"
+                width="62"
+                contain
+              />
+              <v-icon
+                v-else
+                size="40"
+              >
+                {{ mdiMapOutline }}
+              </v-icon>
+            </v-avatar>
+            <p
+              class="text-truncate text-center mb-0"
+              :class="selectedGymSpaceId === space.id ? 'font-weight-bold' : ''"
+            >
+              <small>
+                {{ space.name }}
+              </small>
+            </p>
+          </nuxt-link>
+        </div>
+
+        <!-- Ungrouped spaces -->
         <nuxt-link
-          v-for="(space, gymSpaceIndex) in gymSpaces"
+          v-for="(space, gymSpaceIndex) in ungroupedSpaces"
           :key="`gym-space-index-${gymSpaceIndex}`"
           :to="space.path"
           class="gym-space-block text-center discrete-link"
@@ -44,6 +92,8 @@
             </small>
           </p>
         </nuxt-link>
+
+        <!-- All spaces -->
         <nuxt-link
           v-if="gymSpace"
           :to="`/gyms/${gym.id}/${gym.slug_name}/spaces`"
@@ -93,6 +143,8 @@ export default {
       selectedGymSpaceId: this.gymSpace?.id,
       gymSpaces: [],
       loadingGymSpaces: true,
+      groups: [],
+      ungroupedSpaces: [],
 
       mdiMapOutline,
       mdiAsterisk
@@ -107,11 +159,25 @@ export default {
     getAllGymSpace () {
       this.loadingGymSpaces = true
       this.gymSpaces = []
+      this.groups = []
+      this.ungroupedSpaces = []
       new GymSpaceApi(this.$axios, this.$auth)
-        .all(this.gym.id)
+        .groups(this.gym.id)
         .then((resp) => {
-          for (const space of resp.data) {
-            this.gymSpaces.push(new GymSpace({ attributes: space }))
+          for (const group of resp.data.grouped_spaces) {
+            const spaces = []
+            for (const space of group.gym_spaces) {
+              spaces.push(new GymSpace({ attributes: space }))
+            }
+            this.groups.push({
+              name: group.name,
+              id: group.id,
+              order: group.order,
+              gym_spaces: spaces
+            })
+          }
+          for (const space of resp.data.ungrouped_spaces) {
+            this.ungroupedSpaces.push(new GymSpace({ attributes: space }))
           }
         }).catch((err) => {
           this.$root.$emit('alertFromApiError', err, 'gymSpace')
@@ -150,6 +216,15 @@ export default {
     display: inline-block;
     width: 80px;
   }
+  .gym-spaces-selector-groups {
+    border-width: 3px;
+    border-style: solid;
+    border-radius: 6px;
+    padding-left: 3px;
+    padding-right: 3px;
+    margin-right: 10px;
+    border-color: rgb(240, 240, 245);
+  }
   .gym-space-avatar {
     border-style: solid;
     border-width: 4px;
@@ -184,6 +259,9 @@ export default {
         border-color: rgb(57, 57, 57);
       }
     }
+  }
+  .gym-spaces-selector-groups {
+    border-color: rgb(37, 37, 37);
   }
 }
 </style>

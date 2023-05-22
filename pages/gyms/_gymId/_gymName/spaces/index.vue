@@ -145,9 +145,6 @@
           <div
             v-show="!(loadingGymRoute || gymRoute)"
           >
-            <h2 class="mb-2">
-              {{ $t('components.gym.spaces') }}
-            </h2>
             <gym-space-list :gym="gym" />
           </div>
         </v-slide-y-transition>

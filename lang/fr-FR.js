@@ -98,6 +98,7 @@ export default {
     createAndQuite: 'Créer & quitter',
     continueToAdd: "Continuer d'ajouter",
     addArea: 'Ajouter un nouveau groupe',
+    createGroup: 'Créer un groupe',
     addRepetition: 'Ajouter une répétition',
     addInMyLogbook: 'Ajouter à mon carnet',
     addInMyTickList: 'Ajouter à ma tick list',
@@ -218,6 +219,7 @@ export default {
     map: 'Carte',
     setting: 'Réglage',
     new: '%{count} nouveau | %{count} nouveaux',
+    group: 'Groupe',
     climbers: {
       long: '%{count} grimpeur ou grimpeuse | %{count} grimpeurs et grimpeuses',
       longWithoutCount: 'grimpeur ou grimpeuse | grimpeurs et grimpeuses',
@@ -1106,6 +1108,7 @@ export default {
       difficultySystem: 'Système de difficulté',
       difficultySystemShort: 'Les systèmes',
       spaces: 'Espaces',
+      spaceGroups: "Groupes d'espace",
       routes: 'Lignes',
       dismountedRoutes: 'Liste des lignes démontées',
       mountedRoutes: 'Liste des lignes montées',
@@ -1999,7 +2002,12 @@ export default {
       description: 'Description',
       order: "Ordre d'importance",
       climbing_type: "Type d'escalade majoritaire",
-      gym_grade_id: 'Système de difficulté'
+      gym_grade_id: 'Système de difficulté',
+      gym_space_group_id: 'Groupe'
+    },
+    gymSpaceGroup: {
+      name: 'Nom du groupe',
+      order: 'Ordre'
     },
     gymSector: {
       name: 'Nom du secteur',
