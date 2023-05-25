@@ -16,6 +16,7 @@
         :label="$t('models.gymRoute.gym_grade_line_id')"
         outlined
         required
+        :menu-props="{ maxHeight: 500 }"
         @change="onChangeDifficulty()"
       />
 
@@ -258,13 +259,13 @@
         />
       </div>
 
-      <close-form />
       <submit-form
         :overlay="submitOverlay"
         :submit-local-key="submitText()"
       >
         <v-btn
           v-if="!isEditingForm()"
+          elevation="0"
           color="primary"
           class="float-right mr-2"
           @click="submitAndThenPicture()"
@@ -288,7 +289,6 @@ import {
 } from '@mdi/js'
 import { FormHelpers } from '@/mixins/FormHelpers'
 import { HoldColorsHelpers } from '@/mixins/HoldColorsHelpers'
-import CloseForm from '@/components/forms/CloseForm'
 import SubmitForm from '@/components/forms/SubmitForm'
 import Spinner from '@/components/layouts/Spiner'
 import GymGradeApi from '~/services/oblyk-api/GymGradeApi'
@@ -313,8 +313,7 @@ export default {
     DatePickerInput,
     ColorInput,
     Spinner,
-    SubmitForm,
-    CloseForm
+    SubmitForm
   },
   mixins: [FormHelpers, HoldColorsHelpers, DateHelpers],
   props: {

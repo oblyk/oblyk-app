@@ -8,6 +8,7 @@
     item-value="value"
     :prepend-inner-icon="mdiStar"
     :label="$t('components.input.note')"
+    :menu-props="{ maxHeight: 360 }"
     outlined
     clearable
     @change="onChange"

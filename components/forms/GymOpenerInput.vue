@@ -8,6 +8,7 @@
       chips
       clearable
       :label="$t('components.input.gymOpener')"
+      :menu-props="{ maxHeight: 500 }"
       multiple
       outlined
       :loadin="loadingOpener"
