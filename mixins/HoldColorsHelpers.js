@@ -17,7 +17,7 @@ export const HoldColorsHelpers = {
         { text: this.$t('colors.purple'), value: '#ab37c8', simple: true },
         { text: this.$t('colors.pastelPurple'), value: '#e9afdd', simple: false },
         { text: this.$t('colors.deepPurple'), value: '#440055', simple: false },
-        { text: this.$t('colors.fluorescentPink'), value: '#ff2ad4', simple: false },
+        { text: this.$t('colors.pink'), value: '#ff2ad4', simple: true },
         { text: this.$t('colors.red'), value: '#ff0000', simple: true },
         { text: this.$t('colors.pastelRed'), value: '#ffaaaa', simple: false },
         { text: this.$t('colors.darkRed'), value: '#800000', simple: false },

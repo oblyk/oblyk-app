@@ -148,7 +148,7 @@ export default {
     pastelPurple: 'Violet pastel',
     purple: 'Violet',
     deepPurple: 'Violet profond',
-    fluorescentPink: 'Rose fluo',
+    pink: 'Rose',
     pastelRed: 'Rouge pastel',
     red: 'Rouge',
     darkRed: 'Rouge profond',

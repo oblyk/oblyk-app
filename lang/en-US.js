@@ -148,7 +148,7 @@ export default {
     pastelPurple: 'Pastel purple',
     purple: 'Purple',
     deepPurple: 'Deep purple',
-    fluorescentPink: 'Fluorescent pink',
+    pink: 'Pink',
     pastelRed: 'Pastel red',
     red: 'Red',
     darkRed: 'Dark red',
