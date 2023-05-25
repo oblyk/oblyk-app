@@ -1,7 +1,11 @@
 <template>
   <div>
     <p class="mb-0 text-truncate">
-      <v-icon small left>
+      <v-icon
+        small
+        left
+        :color="iconColor"
+      >
         {{ icon }}
       </v-icon>
       {{ itemTitle }}
@@ -28,6 +32,10 @@ export default {
   name: 'DescriptionLine',
   props: {
     icon: {
+      type: String,
+      default: null
+    },
+    iconColor: {
       type: String,
       default: null
     },

@@ -72,8 +72,32 @@
     <markdown-text
       v-if="gymSpace.description"
       :text="gymSpace.description"
-      class="border rounded-sm pt-4 px-4"
+      class="border rounded-sm pt-4 px-4 mb-4"
     />
+    <v-row>
+      <v-col>
+        <description-line
+          :icon="mdiCircle"
+          :icon-color="climbingTypeColors[gymSpace.climbing_type]"
+          class="border rounded-sm pa-1"
+          :item-title="$t('components.input.climbing_type')"
+          :item-value="$t(`models.climbs.${gymSpace.climbing_type}`)"
+        />
+      </v-col>
+      <v-col>
+        <description-line
+          :icon="mdiSortBoolAscending"
+          class="border rounded-sm pa-1"
+          :item-title="$t('components.gymAdmin.difficultySystem')"
+        >
+          <template #content>
+            <nuxt-link :to="`${gymSpace.Gym.adminPath}/grades/${gymSpace.gym_grade.id}`">
+              {{ gymSpace.gym_grade.name }}
+            </nuxt-link>
+          </template>
+        </description-line>
+      </v-col>
+    </v-row>
     <p class="text-decoration-underline mt-5 mb-2">
       {{ $t('components.cragSector.sectors') }} :
     </p>
@@ -84,14 +108,20 @@
     >
       <v-list-item>
         <v-list-item-content>
-          <v-list-item-title class="font-weight-bold">
+          <v-list-item-title>
             <v-chip
               small
               class="mr-2"
             >
               {{ sector.order }}
             </v-chip>
-            {{ sector.name }}
+            <strong>
+              {{ sector.name }}
+            </strong>
+            , {{ sector.height }}m
+            <span v-if="sector.can_be_more_than_one_pitch">
+              , {{ $t('models.gymSector.can_be_more_than_one_pitch') }}
+            </span>
           </v-list-item-title>
         </v-list-item-content>
         <v-list-item-action>
@@ -141,14 +171,17 @@
 </template>
 
 <script>
-import { mdiDotsVertical, mdiDelete, mdiPencil } from '@mdi/js'
+import { mdiDotsVertical, mdiDelete, mdiPencil, mdiCircle, mdiSortBoolAscending } from '@mdi/js'
 import MarkdownText from '~/components/ui/MarkdownText.vue'
 import GymSpaceApi from '~/services/oblyk-api/GymSpaceApi'
 import GymSectorApi from '~/services/oblyk-api/GymSectorApi'
+import DescriptionLine from '~/components/ui/DescriptionLine.vue'
+import { ClimbingTypeMixin } from '~/mixins/ClimbingTypeMixin'
 
 export default {
   name: 'GymSpaceTreeDetail',
-  components: { MarkdownText },
+  components: { DescriptionLine, MarkdownText },
+  mixins: [ClimbingTypeMixin],
   props: {
     gymSpace: {
       type: Object,
@@ -168,7 +201,9 @@ export default {
     return {
       mdiDotsVertical,
       mdiDelete,
-      mdiPencil
+      mdiPencil,
+      mdiCircle,
+      mdiSortBoolAscending
     }
   },
 
