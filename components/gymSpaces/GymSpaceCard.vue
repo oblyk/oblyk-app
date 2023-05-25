@@ -19,10 +19,11 @@
       <v-card-title class="pb-1">
         {{ gymSpace.name }}
       </v-card-title>
-      <v-card-text class="pb-0">
+      <v-card-text :class="gymSpace.figures.routes_count > 0 ? 'pb-0' : ''">
         {{ gymSpace.description }}
       </v-card-text>
       <v-card-text
+        v-if="gymSpace.figures.routes_count > 0"
         class="pt-0 mt-auto"
       >
         <v-row
