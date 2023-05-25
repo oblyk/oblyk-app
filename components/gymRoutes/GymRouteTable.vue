@@ -298,13 +298,13 @@ export default {
             value: 'space'
           },
           {
-            text: this.$t('models.gymRoute.ascents_count'),
+            text: this.$t('models.gymRoute.ascents'),
             align: 'start',
             sortable: true,
             value: 'ascentsCount'
           },
           {
-            text: this.$t('actions.edit'),
+            text: '',
             align: 'center',
             sortable: false,
             value: 'edit'
