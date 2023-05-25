@@ -1115,6 +1115,7 @@ export default {
       dismountRoutes: 'Dismount %{count} line | Dismount %{count} lines',
       mountRoutes: 'Mount %{count} line | Mount %{count} lines',
       printRoutes: 'Print line | Print %{count} lines',
+      exportRoutes: 'Export line | Export %{count} lines',
       missingInformation: 'Some information about your room is missing, like :',
       addYourLogo: 'Add your logo',
       updateYourLogo: 'Change your logo',
@@ -1192,6 +1193,7 @@ export default {
       inMyLogBook: 'In my log book',
       ascents: '1 ascent | %{count} ascents',
       printedFileName: 'Route sheet - %{date} - %{name}.pdf',
+      exportedFileName: 'Routes export - %{date} - %{name}.csv',
       sorts: {
         opened_at: 'Sort by opening date',
         sector: 'Sort by sector',

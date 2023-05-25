@@ -1115,6 +1115,7 @@ export default {
       dismountRoutes: 'Démonter la ligne | Démonter les %{count} lignes',
       mountRoutes: 'Monter la ligne | Monter les %{count} lignes',
       printRoutes: 'Imprimer la ligne | Imprimer les %{count} lignes',
+      exportRoutes: 'Exporter la ligne | Exporter les %{count} lignes',
       missingInformation: 'Il manque quelques information sur votre salle, comme :',
       addYourLogo: 'Ajouter votre logo',
       updateYourLogo: 'Changer votre logo',
@@ -1192,6 +1193,7 @@ export default {
       inMyLogBook: 'Dans mon carnet',
       ascents: '1 ascension | %{count} ascensions',
       printedFileName: 'Fiche de voie - %{date} - %{name}.pdf',
+      exportedFileName: 'Export des voies - %{date} - %{name}.csv',
       sorts: {
         opened_at: "Trier par date d'ouverture",
         sector: 'Trier par secteur',

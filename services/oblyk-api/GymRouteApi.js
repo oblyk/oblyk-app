@@ -109,6 +109,21 @@ class GymRouteApi extends BaseApi {
     })
   }
 
+  exportCollection (gymId, gymRouteIds) {
+    return this.axios.request({
+      method: 'GET',
+      url: `${this.baseUrl}/gyms/${gymId}/gym_routes/export.csv`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
+      responseType: 'blob',
+      params: {
+        ids: gymRouteIds
+      }
+    })
+  }
+
   mountCollection (gymId, gymRouteIds) {
     return this.axios.request({
       method: 'PUT',

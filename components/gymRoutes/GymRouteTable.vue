@@ -140,6 +140,14 @@
                 {{ $tc('components.gymAdmin.printRoutes', routeSelected.length, { count: routeSelected.length }) }}
               </v-list-item-title>
             </v-list-item>
+            <v-list-item @click="exportCollection()">
+              <v-list-item-icon>
+                <v-icon>{{ mdiTableArrowRight }}</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>
+                {{ $tc('components.gymAdmin.exportRoutes', routeSelected.length, { count: routeSelected.length }) }}
+              </v-list-item-title>
+            </v-list-item>
           </v-list>
         </v-menu>
       </div>
@@ -215,7 +223,8 @@ import {
   mdiForwardburger,
   mdiPencil,
   mdiPrinter,
-  mdiCheckAll
+  mdiCheckAll,
+  mdiTableArrowRight
 } from '@mdi/js'
 import { DateHelpers } from '@/mixins/DateHelpers'
 import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
@@ -318,7 +327,8 @@ export default {
       mdiPencil,
       mdiPrinter,
       mdiDotsVertical,
-      mdiCheckAll
+      mdiCheckAll,
+      mdiTableArrowRight
     }
   },
 
@@ -450,6 +460,39 @@ export default {
           link.setAttribute(
             'download',
             this.$t('components.gymRoute.printedFileName', { date: this.$moment().format('YYYY-MM-DD'), name: this.gym.name })
+          )
+          link.click()
+          setTimeout(() => { window.URL.revokeObjectURL(data) }, 100)
+          this.routeSelected = []
+        })
+        .finally(() => {
+          this.loadingRoutes = false
+        })
+    },
+
+    exportCollection () {
+      if (this.routeSelected.length === 0) { return false }
+
+      const routeIds = []
+      for (const route of this.routeSelected) {
+        routeIds.push(route.id)
+      }
+      this.loadingRoutes = true
+      new GymRouteApi(this.$axios, this.$auth)
+        .exportCollection(this.gym.id, routeIds)
+        .then((resp) => {
+          const newBlob = new Blob([resp.data], { type: 'text/csv' })
+          if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+            window.navigator.msSaveOrOpenBlob(newBlob)
+            return
+          }
+
+          const data = window.URL.createObjectURL(newBlob)
+          const link = document.createElement('a')
+          link.href = data
+          link.setAttribute(
+            'download',
+            this.$t('components.gymRoute.exportedFileName', { date: this.$moment().format('YYYY-MM-DD'), name: this.gym.name })
           )
           link.click()
           setTimeout(() => { window.URL.revokeObjectURL(data) }, 100)
