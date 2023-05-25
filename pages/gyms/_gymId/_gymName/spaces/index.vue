@@ -15,6 +15,7 @@
     <v-row
       v-else
       class="gym-spaces-interface"
+      :class="$vuetify.breakpoint.mobile ? '--mobile-interface' : '--desktop-interface'"
     >
       <!-- Spaces informations and routes -->
       <v-col
@@ -95,7 +96,7 @@
         <!-- Route list -->
         <v-sheet class="rounded px-4 pt-2 pb-4 mt-2">
           <h2
-            v-if="$vuetify.breakpoint.mobile"
+            v-if="!$vuetify.breakpoint.mobile"
             class="mb-2"
           >
             {{ $t('components.gym.guidebook') }}
@@ -117,7 +118,7 @@
 
       <!-- Spaces list or selected route -->
       <v-col
-        v-if="$vuetify.breakpoint.mobile"
+        v-if="!$vuetify.breakpoint.mobile"
         class="gym-spaces-list"
         cols="12"
         md="7"
@@ -279,7 +280,12 @@ export default {
 
 <style lang="scss">
 .gym-spaces-interface {
-  height: calc(100vh - 64px);
+  &.--desktop-interface {
+    height: calc(100vh - 64px);
+  }
+  &.--mobile-interface {
+    height: calc(100vh - 43px);
+  }
 
   .gym-space-info-and-routes {
     height: 100%;
@@ -316,11 +322,6 @@ export default {
 .theme--light {
   .gym-route-card {
     background-color: rgba(255, 255, 255, 0.8) !important;
-  }
-}
-@media screen and (max-width: 767px) {
-  .gym-spaces-interface {
-    height: calc(100vh - 43px);
   }
 }
 </style>

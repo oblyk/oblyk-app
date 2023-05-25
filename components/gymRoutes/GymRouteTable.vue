@@ -300,7 +300,7 @@ export default {
           {
             text: this.$t('models.gymRoute.ascents_count'),
             align: 'start',
-            sortable: false,
+            sortable: true,
             value: 'ascentsCount'
           },
           {
