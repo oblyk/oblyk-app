@@ -35,6 +35,6 @@ export default {
     iconfont: 'mdiSvg'
   },
   breakpoint: {
-    mobileBreakpoint: 'xs'
+    mobileBreakpoint: 'sm'
   }
 }

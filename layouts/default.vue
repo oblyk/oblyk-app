@@ -1,8 +1,8 @@
 <template>
-  <v-app v-resize="onResize">
+  <v-app>
     <!-- Top app bar -->
     <app-bar
-      v-if="!mobile"
+      v-if="!$vuetify.breakpoint.mobile"
       :inverse-drawer="inverseDrawer"
     />
 
@@ -27,7 +27,7 @@
 
     <client-only>
       <app-bottom-navigation
-        v-if="mobile"
+        v-if="$vuetify.breakpoint.mobile"
         :inverse-drawer="inverseDrawer"
       />
 
@@ -127,7 +127,6 @@ export default {
       readyToUpdatePwa: false,
 
       watchLocationId: null,
-      mobile: true,
 
       mdiCookie,
       mdiGift
@@ -255,10 +254,6 @@ export default {
           this.$store.dispatch('geolocation/deactivateLocation')
         }
       }
-    },
-
-    onResize () {
-      this.mobile = window.innerWidth < 600
     }
   }
 }

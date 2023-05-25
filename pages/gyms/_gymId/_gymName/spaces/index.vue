@@ -95,7 +95,7 @@
         <!-- Route list -->
         <v-sheet class="rounded px-4 pt-2 pb-4 mt-2">
           <h2
-            v-if="!$vuetify.breakpoint.mobile"
+            v-if="$vuetify.breakpoint.mobile"
             class="mb-2"
           >
             {{ $t('components.gym.guidebook') }}
@@ -117,7 +117,7 @@
 
       <!-- Spaces list or selected route -->
       <v-col
-        v-if="!$vuetify.breakpoint.mobile"
+        v-if="$vuetify.breakpoint.mobile"
         class="gym-spaces-list"
         cols="12"
         md="7"
