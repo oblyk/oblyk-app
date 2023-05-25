@@ -34,7 +34,7 @@
             icon
             large
             class="float-right"
-            @click="closeGymCard()"
+            @click="closeGymRouteCard()"
           >
             <v-icon large>
               {{ mdiClose }}
@@ -90,8 +90,22 @@
           <description-line
             :icon="mdiTextureBox"
             :item-title="$t('models.gymRoute.gym_sector_id')"
-            :item-value="gymRoute.gym_sector.name"
-          />
+          >
+            <template #content>
+              <v-btn
+                v-if="!showSpace"
+                small
+                text
+                outlined
+                @click="showSector"
+              >
+                {{ gymRoute.gym_sector.name }}
+              </v-btn>
+              <strong v-if="showSpace">
+                {{ gymRoute.gym_sector.name }}
+              </strong>
+            </template>
+          </description-line>
         </v-col>
 
         <!-- Space -->
@@ -258,13 +272,14 @@ export default {
   },
 
   methods: {
-    closeGymCard () {
+    closeGymRouteCard () {
       this.$router.push(
         {
           path: this.$route.path
         }
       )
     },
+
     getAscents () {
       this.loadingAscents = true
       new GymRouteApi(this.$axios, this.$auth)
@@ -279,6 +294,12 @@ export default {
         .finally(() => {
           this.loadingAscents = false
         })
+    },
+
+    showSector () {
+      this.closeGymRouteCard()
+      this.$root.$emit('setMapViewOnSector', this.gymRoute.gym_sector_id)
+      this.$root.$emit('filterBySector', this.gymRoute.gym_sector_id, this.gymRoute.gym_sector.name)
     }
   }
 }

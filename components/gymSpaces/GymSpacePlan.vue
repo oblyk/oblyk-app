@@ -128,6 +128,9 @@ export default {
     this.$root.$on('setMapViewOnSector', (gymSectorId) => {
       this.setMapViewOnSector(gymSectorId)
     })
+    this.$root.$on('setMapView', () => {
+      this.setMapView()
+    })
   },
 
   beforeDestroy () {
@@ -135,6 +138,7 @@ export default {
     this.$root.$off('activeSector')
     this.$root.$off('stopEditingSectorPolygon')
     this.$root.$off('setMapViewOnSector')
+    this.$root.$off('setMapView')
   },
 
   methods: {

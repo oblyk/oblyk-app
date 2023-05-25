@@ -411,6 +411,7 @@ export default {
     },
 
     closeSectorFilter () {
+      this.$root.$emit('setMapView')
       this.showSectorId = null
       this.showSectorName = null
     },
