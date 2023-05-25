@@ -137,9 +137,13 @@ export default {
       const promise = (this.isEditingForm()) ? new GymSectorApi(this.$axios, this.$auth).update(this.data) : new GymSectorApi(this.$axios, this.$auth).create(this.data)
 
       promise
-        .then(() => {
+        .then((resp) => {
           if (this.redirectTo) {
-            this.$router.push(this.redirectTo)
+            if (this.redirectTo === 'add-route') {
+              this.$router.push(`${this.gymSpace.path}/sectors/${resp.data.id}/routes/new`)
+            } else {
+              this.$router.push(this.redirectTo)
+            }
           } else {
             this.$router.push(this.gymSpace.path)
           }

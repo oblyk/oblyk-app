@@ -22,22 +22,42 @@
             {{ sector.description }}
           </v-card-text>
         </v-card>
+
+        <div
+          v-if="gymAuthCan(gymSpace.gym, 'manage_space')"
+          class="text-right"
+        >
+          <v-btn
+            elevation="0"
+            outlined
+            text
+            color="primary"
+            :to="`${gymSpace.path}/sectors/new?redirect_to=add-route`"
+          >
+            <v-icon left>
+              {{ mdiPlus }}
+            </v-icon>
+            {{ $t('actions.newSector') }}
+          </v-btn>
+        </div>
       </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script>
-import { mdiTextureBox } from '@mdi/js'
+import { mdiTextureBox, mdiPlus } from '@mdi/js'
 import { GymSpaceConcern } from '@/concerns/GymSpaceConcern'
+import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
 
 export default {
   meta: { orphanRoute: true },
-  mixins: [GymSpaceConcern],
+  mixins: [GymSpaceConcern, GymRolesHelpers],
 
   data () {
     return {
-      mdiTextureBox
+      mdiTextureBox,
+      mdiPlus
     }
   },
 
