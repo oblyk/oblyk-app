@@ -294,6 +294,7 @@ export default {
 .mobile-interface {
   .gym-route-picture {
     &.--limited-height {
+      height: calc(100vw - 60px);
       max-height: calc(100vw - 60px);
     }
   }
@@ -301,6 +302,7 @@ export default {
 .desktop-interface {
   .gym-route-picture {
     &.--limited-height {
+      height: 350px;
       max-height: 350px;
     }
   }
