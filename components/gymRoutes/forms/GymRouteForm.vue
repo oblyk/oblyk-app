@@ -70,7 +70,7 @@
       />
 
       <!-- Open at -->
-      <date-picker-input
+      <date-picker-menu-input
         v-model="data.opened_at"
         :label="$t('models.gymRoute.opened_at')"
       />
@@ -289,6 +289,7 @@ import {
 } from '@mdi/js'
 import { FormHelpers } from '@/mixins/FormHelpers'
 import { HoldColorsHelpers } from '@/mixins/HoldColorsHelpers'
+import { DateHelpers } from '@/mixins/DateHelpers'
 import SubmitForm from '@/components/forms/SubmitForm'
 import Spinner from '@/components/layouts/Spiner'
 import GymGradeApi from '~/services/oblyk-api/GymGradeApi'
@@ -296,21 +297,20 @@ import GymRouteApi from '~/services/oblyk-api/GymRouteApi'
 import GymGrade from '@/models/GymGrade'
 import ColorInput from '@/components/forms/ColorInput'
 import GymRoute from '@/models/GymRoute'
-import DatePickerInput from '@/components/forms/DatePickerInput'
-import { DateHelpers } from '@/mixins/DateHelpers'
 import TagsInput from '@/components/forms/TagsInput'
 import CragRouteApi from '~/services/oblyk-api/CragRouteApi'
 import CragRoute from '@/models/CragRoute'
 import MarkdownInput from '@/components/forms/MarkdownInput'
 import GymOpenerInput from '~/components/forms/GymOpenerInput'
+import DatePickerMenuInput from '~/components/forms/DatePickerMenuInput.vue'
 
 export default {
   name: 'GymRouteForm',
   components: {
+    DatePickerMenuInput,
     GymOpenerInput,
     MarkdownInput,
     TagsInput,
-    DatePickerInput,
     ColorInput,
     Spinner,
     SubmitForm
