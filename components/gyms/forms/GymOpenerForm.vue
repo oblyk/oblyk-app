@@ -20,8 +20,8 @@
       :label="$t('models.gymOpener.last_name')"
     />
 
-    <close-form />
     <submit-form
+      :go-back-btn="false"
       :overlay="submitOverlay"
       :submit-local-key="submitText()"
     />
@@ -33,12 +33,10 @@ import { mdiAlert } from '@mdi/js'
 import { FormHelpers } from '@/mixins/FormHelpers'
 import GymOpenerApi from '~/services/oblyk-api/GymOpenerApi'
 import SubmitForm from '@/components/forms/SubmitForm'
-import CloseForm from '@/components/forms/CloseForm'
 
 export default {
   name: 'GymOpenerForm',
   components: {
-    CloseForm,
     SubmitForm
   },
   mixins: [FormHelpers],
