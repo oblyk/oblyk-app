@@ -44,6 +44,25 @@
         </v-list-item-content>
       </v-list-item>
 
+      <v-list-item
+        v-if="gymAuthCan(gym, 'manage_space')"
+        link
+        @click="$root.$emit('showEditingSectorColor', true)"
+      >
+        <v-list-item-content>
+          <v-list-item-title>
+            <v-icon
+              left
+              class="mr-7"
+              :color="gymSpace.sectors_color || 'rgb(49, 153, 78)'"
+            >
+              {{ mdiFormatColorFill }}
+            </v-icon>
+            {{ $t('models.gymSpace.sectors_color') }}
+          </v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+
       <v-divider />
 
       <!-- New line -->
@@ -104,7 +123,8 @@ import {
   mdiMap,
   mdiSourceBranchPlus,
   mdiShapeSquarePlus,
-  mdiMapPlus
+  mdiMapPlus,
+  mdiFormatColorFill
 } from '@mdi/js'
 import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
 
@@ -129,7 +149,8 @@ export default {
       mdiMap,
       mdiSourceBranchPlus,
       mdiShapeSquarePlus,
-      mdiMapPlus
+      mdiMapPlus,
+      mdiFormatColorFill
     }
   }
 }

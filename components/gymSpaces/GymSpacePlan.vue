@@ -36,8 +36,8 @@
         :fill-opacity="0"
         :weight="2"
         dash-array="5px"
-        fill-color="rgb(49, 153, 78)"
-        color="rgb(49, 153, 78)"
+        :fill-color="testColour || gymSpace.sectors_color || 'rgb(49, 153, 78)'"
+        :color="testColour || gymSpace.sectors_color || 'rgb(49, 153, 78)'"
         :lat-lngs="sector.jsonPolygon"
         @click="filterBySector(sector.id, sector.name)"
       />
@@ -87,6 +87,7 @@ export default {
       savingPolygon: false,
       crs: CRS.Simple,
       gymSpaceData: this.gymSpace,
+      testColour: null,
 
       mdiArrowExpandAll
     }
@@ -126,6 +127,9 @@ export default {
     this.$root.$on('setMapView', () => {
       this.setMapView()
     })
+    this.$root.$on('setTestColour', (color) => {
+      this.testColour = color
+    })
   },
 
   beforeDestroy () {
@@ -134,6 +138,7 @@ export default {
     this.$root.$off('stopEditingSectorPolygon')
     this.$root.$off('setMapViewOnSector')
     this.$root.$off('setMapView')
+    this.$root.$off('setTestColour')
   },
 
   methods: {

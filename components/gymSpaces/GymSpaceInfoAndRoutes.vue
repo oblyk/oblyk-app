@@ -1,6 +1,6 @@
 <template>
   <div :class="$vuetify.breakpoint.mobile ? '' : 'pa-3'">
-    <div v-if="!editingSectorPolygon">
+    <div v-if="!editingSectorPolygon && !editingSectorColor">
       <!-- Gym space selector -->
       <v-sheet
         class="blur-card px-4 pt-1 pb-4"
@@ -93,6 +93,17 @@
     >
       <gym-sector-editing-plan />
     </v-sheet>
+
+    <!-- If in editing sector colors -->
+    <v-sheet
+      v-if="editingSectorColor"
+      class="blur-card h-100"
+      rounded
+    >
+      <gym-space-editing-sectors-color
+        :gym-space="gymSpace"
+      />
+    </v-sheet>
   </div>
 </template>
 
@@ -104,11 +115,13 @@ import GymSectorEditingPlan from '@/components/gymSectors/GymSectorEditingPlan'
 import { SessionConcern } from '@/concerns/SessionConcern'
 import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
 import GymGoToRanking from '~/components/gyms/GymGoToRanking.vue'
+import GymSpaceEditingSectorsColor from '~/components/gymSpaces/GymSpaceEditingSectorsColor.vue'
 const MarkdownText = () => import('@/components/ui/MarkdownText')
 
 export default {
   name: 'GymSpaceInfoAndRoutes',
   components: {
+    GymSpaceEditingSectorsColor,
     GymGoToRanking,
     MarkdownText,
     GymSectorEditingPlan,
@@ -131,24 +144,23 @@ export default {
 
   data () {
     return {
-      editingSectorPolygon: false
+      editingSectorPolygon: false,
+      editingSectorColor: false
     }
   },
 
   mounted () {
     this.$root.$on('showEditingExplain', (visible) => {
-      this.showEditingExplain(visible)
+      this.editingSectorPolygon = visible
+    })
+    this.$root.$on('showEditingSectorColor', (visible) => {
+      this.editingSectorColor = visible
     })
   },
 
   beforeDestroy () {
     this.$root.$off('showEditingExplain')
-  },
-
-  methods: {
-    showEditingExplain (visible) {
-      this.editingSectorPolygon = visible
-    }
+    this.$root.$off('showEditingSectorColor')
   }
 }
 </script>

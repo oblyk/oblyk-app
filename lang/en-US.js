@@ -15,6 +15,7 @@ export default {
     create: 'Create',
     delete: 'Delete',
     close: 'Close',
+    valid: 'Valid',
     ok: 'ok',
     selectOrUnselect: 'select / unselect',
     search: 'Search',
@@ -1162,7 +1163,8 @@ export default {
       uploadPlanFor: 'Upload a plan for : %{name}',
       routes: 'Routes',
       plan: 'Plan',
-      showSector: 'Lines in <strong>%{name}</strong> sector.'
+      showSector: 'Lines in <strong>%{name}</strong> sector.',
+      colorExplain: 'Choose a colour for the sectors on the map.'
     },
     gymSector: {
       addNew: 'Create a new sector',
@@ -2004,6 +2006,7 @@ export default {
       description: 'Description',
       order: 'Order of importance',
       climbing_type: 'Majority climbing type',
+      sectors_color: 'Sectors color',
       gym_grade_id: 'Difficulty system',
       gym_space_group_id: 'Group'
     },

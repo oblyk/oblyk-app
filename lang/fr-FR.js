@@ -15,6 +15,7 @@ export default {
     create: 'Créer',
     delete: 'Supprimer',
     close: 'Fermer',
+    valid: 'Valider',
     ok: 'ok',
     selectOrUnselect: 'sélectionner / désélectionner',
     search: 'Chercher',
@@ -1162,7 +1163,8 @@ export default {
       uploadPlanFor: 'Télécharger un plan pour : %{name}',
       routes: 'Ouvertures',
       plan: 'Plan',
-      showSector: 'Lignes du secteur <strong>%{name}</strong>.'
+      showSector: 'Lignes du secteur <strong>%{name}</strong>.',
+      colorExplain: 'Choisissez une couleur pour le tracé des secteurs sur le plan.'
     },
     gymSector: {
       addNew: 'Créer un nouveau secteur',
@@ -2003,6 +2005,7 @@ export default {
       name: "Nom de l'espace",
       description: 'Description',
       order: "Ordre d'importance",
+      sectors_color: 'Couleur des secteurs',
       climbing_type: "Type d'escalade majoritaire",
       gym_grade_id: 'Système de difficulté',
       gym_space_group_id: 'Groupe'
