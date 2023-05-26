@@ -55,6 +55,7 @@ import 'leaflet/dist/leaflet.css'
 import { MapDrawingHelpers } from '@/mixins/MapDrawingHelpers'
 import Spinner from '@/components/layouts/Spiner'
 import GymSpace from '@/models/GymSpace'
+import GymSpaceApi from '~/services/oblyk-api/GymSpaceApi'
 
 export default {
   name: 'GymSpacePlan',
@@ -106,12 +107,6 @@ export default {
 
     bounds () {
       return [[0, 0], [this.gymSpaceData.scheme_height / 6, this.gymSpaceData.scheme_width / 6]]
-    }
-  },
-
-  watch: {
-    bounds () {
-      this.setMapView()
     }
   },
 
@@ -254,17 +249,20 @@ export default {
 
     reloadGymSpaceData () {
       this.reloadingData = true
-      new GymSpace({ axios: this.$axios, auth: this.$auth })
+      new GymSpaceApi(this.$axios, this.$auth)
         .find(
           this.gymSpaceData.gym.id,
           this.gymSpaceData.id
         )
         .then((resp) => {
-          this.gymSpaceData = resp
+          const gymSpace = new GymSpace({ attributes: resp.data })
+          this.gymSpaceData = gymSpace
+          this.$root.$emit('ReFetchGymSpace', gymSpace)
         })
         .catch((err) => {
           this.$root.$emit('alertFromApiError', err, 'gymSpace')
-        }).finally(() => {
+        })
+        .finally(() => {
           this.reloadingData = false
         })
     },

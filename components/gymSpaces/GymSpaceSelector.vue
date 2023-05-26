@@ -23,7 +23,7 @@
           </p>
           <nuxt-link
             v-for="(space, gymSpaceIndex) in group.gym_spaces"
-            :key="`gym-space-index-${gymSpaceIndex}`"
+            :key="`grouped-gym-space-index-${gymSpaceIndex}`"
             :to="space.path"
             class="gym-space-block text-center discrete-link"
             :class="selectedGymSpaceId === space.id ? 'active' : 'inactive'"
@@ -60,7 +60,7 @@
         <!-- Ungrouped spaces -->
         <nuxt-link
           v-for="(space, gymSpaceIndex) in ungroupedSpaces"
-          :key="`gym-space-index-${gymSpaceIndex}`"
+          :key="`ungrouped-gym-space-index-${gymSpaceIndex}`"
           :to="space.path"
           class="gym-space-block text-center discrete-link"
           :class="selectedGymSpaceId === space.id ? 'active' : 'inactive'"

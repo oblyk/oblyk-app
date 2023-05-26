@@ -1,10 +1,21 @@
 import GymSpace from '@/models/GymSpace'
+import GymSpaceApi from '~/services/oblyk-api/GymSpaceApi'
 
 export const GymSpaceConcern = {
   data () {
     return {
       gymSpace: null
     }
+  },
+
+  mounted () {
+    this.$root.$on('ReFetchGymSpace', (gymSpace) => {
+      this.reFetchGymSpace(gymSpace)
+    })
+  },
+
+  beforeDestroy () {
+    this.$root.$off('ReFetchGymSpace')
   },
 
   computed: {
@@ -60,5 +71,19 @@ export const GymSpaceConcern = {
       this.$route.params.gymId,
       this.$route.params.gymSpaceId
     )
+  },
+
+  methods: {
+    reFetchGymSpace (gymSpace) {
+      if (gymSpace) {
+        this.gymSpace = gymSpace
+      } else {
+        new GymSpaceApi(this.$axios, this.$auth)
+          .find(this.gymSpace.id)
+          .then((resp) => {
+            this.gymSpace = new GymSpace({ attributes: resp.data })
+          })
+      }
+    }
   }
 }
