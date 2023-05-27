@@ -1,18 +1,19 @@
 <template>
   <div>
     <v-select
+      ref="gymOpenerInput"
       v-model="openers"
       :items="openersList"
       item-text="text"
       item-value="value"
       chips
-      clearable
       :label="$t('components.input.gymOpener')"
       :menu-props="{ maxHeight: 500 }"
       multiple
       outlined
       :loadin="loadingOpener"
       @change="onChange()"
+      @focus="onFocus"
     >
       <template
         v-if="gymAuthCan(gym, 'manage_opener')"
@@ -21,6 +22,7 @@
         <v-tooltip bottom>
           <template #activator="{ on }">
             <v-btn
+              tabindex="-1"
               class="mt-n2"
               icon
               @click="addOpenerModal = true"
@@ -123,6 +125,10 @@ export default {
 
     onChange () {
       this.$emit('input', this.openers)
+    },
+
+    onFocus () {
+      this.$refs.gymOpenerInput.isMenuActive = true
     }
   }
 }

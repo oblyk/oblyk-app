@@ -35,6 +35,7 @@
             <template #activator="{ on }">
               <v-btn
                 class="mt-n2"
+                tabindex="-1"
                 icon
                 :loading="findingRandomName"
                 @click="findRandomRoute"
@@ -127,6 +128,7 @@
           v-model="data.points"
           outlined
           type="number"
+          suffix="points"
           :required="(gymGrade.point_system_type === 'fix')"
           :label="$t('models.gymRoute.points')"
         />
@@ -207,7 +209,7 @@
           <color-input
             v-show="gymGrade.tag_color || (data.tag_colors && data.tag_colors.length > 0)"
             v-model="data.tag_colors"
-            label="Couleurs des étiquettes"
+            :label="$t('models.gymRoute.tag_colors')"
             icon="Bookmark"
             :multiple="true"
             :colors-limit="2"
@@ -218,7 +220,7 @@
           <color-input
             v-show="gymGrade.hold_color || (data.hold_colors && data.hold_colors.length > 0)"
             v-model="data.hold_colors"
-            label="Couleurs des prises"
+            :label="$t('models.gymRoute.hold_colors')"
             icon="Circle"
             :multiple="true"
             :colors-limit="2"

@@ -10,6 +10,7 @@
         :items="colors"
         :label="label"
         chips
+        @focus="colorModal = true"
       >
         <template #selection="{ attrs, item, selected }">
           <v-chip

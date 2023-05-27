@@ -2045,7 +2045,7 @@ export default {
       opened_at: "Date d'ouverture",
       polyline: 'Tracé',
       colors: 'Colors',
-      hold_colors: 'Couleurs des prises',
+      hold_colors: 'Couleur des prises',
       tag_colors: 'Couleur des étiquettes',
       sections: 'Sections',
       gym_sector_id: 'Secteur',
