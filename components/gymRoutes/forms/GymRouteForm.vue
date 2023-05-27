@@ -259,20 +259,131 @@
         />
       </div>
 
-      <submit-form
-        :overlay="submitOverlay"
-        :submit-local-key="submitText()"
-      >
+      <div>
         <v-btn
-          v-if="!isEditingForm()"
+          icon
+          @click="$router.go(-1)"
+        >
+          <v-icon>{{ mdiArrowLeft }}</v-icon>
+        </v-btn>
+        <v-btn
+          :loading="addingRoute"
           elevation="0"
           color="primary"
-          class="float-right mr-2"
-          @click="submitAndThenPicture()"
+          class="float-right"
+          @click="submit"
         >
-          {{ $t('actions.createAndPicture') }}
+          {{ $t(submitText()) }}
         </v-btn>
-      </submit-form>
+      </div>
+
+      <client-only>
+        <!-- After add dialog-->
+        <v-dialog
+          v-model="afterAddDialog"
+          persistent
+          width="350"
+        >
+          <v-card class="pa-4">
+            <v-alert
+              text
+              type="success"
+            >
+              {{ $t('components.gymRoute.routeAdded') }} !
+            </v-alert>
+            <div v-if="newGymRoute">
+              <p class="text-decoration-underline">
+                {{ $t('common.whatDoYouWantToDo') }}
+              </p>
+
+              <!-- Go to picture -->
+              <v-btn
+                v-if="!hidePictureBtn"
+                outlined
+                large
+                text
+                block
+                color="primary"
+                class="mb-3"
+                @click="openPictureDialog()"
+              >
+                <v-icon
+                  class="mr-3"
+                  left
+                >
+                  {{ mdiCameraPlus }}
+                </v-icon>
+                {{ $t('components.gymRoute.takeMainPicture') }}
+              </v-btn>
+
+              <!-- New adding -->
+              <v-btn
+                outlined
+                large
+                text
+                block
+                color="primary"
+                class="mb-3"
+                @click="resetForNewAdd()"
+              >
+                <v-icon
+                  left
+                  class="mr-3"
+                >
+                  {{ mdiSourceBranchPlus }}
+                </v-icon>
+                {{ $t('components.gymRoute.addNewRoute') }}
+              </v-btn>
+
+              <!-- Continuer d'ajouter -->
+              <v-btn
+                outlined
+                large
+                text
+                block
+                :to="newGymRoute.pathInSpace"
+              >
+                <v-icon
+                  left
+                  class="mr-3"
+                >
+                  {{ mdiArrowRightBoldBoxOutline }}
+                </v-icon>
+                {{ $t('common.goTo', { name: newGymRoute.gym_space.name }) }}
+              </v-btn>
+            </div>
+          </v-card>
+        </v-dialog>
+
+        <!-- Picture dialog -->
+        <v-dialog
+          v-model="pictureDialog"
+          persistent
+          width="500"
+        >
+          <v-card
+            v-if="newGymRoute"
+          >
+            <v-card-title>
+              {{ pictureStep === 'main' ? $t('components.gymRoute.mainPicture') : $t('components.gymRoute.thumbnailPicture') }}
+            </v-card-title>
+            <div class="pa-4">
+              <gym-route-picture-form
+                v-if="pictureStep === 'main'"
+                :go-back-btn="false"
+                :callback="pictureMainStepCallback"
+                :gym-route="newGymRoute"
+              />
+              <gym-route-thumbnail-form
+                v-if="pictureStep === 'thumbnail'"
+                :go-back-btn="false"
+                :gym-route="newGymRoute"
+                :callback="pictureThumbnailStepCallback"
+              />
+            </div>
+          </v-card>
+        </v-dialog>
+      </client-only>
     </v-form>
   </div>
 </template>
@@ -285,12 +396,15 @@ import {
   mdiPlus,
   mdiMinus,
   mdiBookmarkMultipleOutline,
-  mdiChartBubble
+  mdiChartBubble,
+  mdiCameraPlus,
+  mdiArrowLeft,
+  mdiArrowRightBoldBoxOutline,
+  mdiSourceBranchPlus
 } from '@mdi/js'
 import { FormHelpers } from '@/mixins/FormHelpers'
 import { HoldColorsHelpers } from '@/mixins/HoldColorsHelpers'
 import { DateHelpers } from '@/mixins/DateHelpers'
-import SubmitForm from '@/components/forms/SubmitForm'
 import Spinner from '@/components/layouts/Spiner'
 import GymGradeApi from '~/services/oblyk-api/GymGradeApi'
 import GymRouteApi from '~/services/oblyk-api/GymRouteApi'
@@ -303,17 +417,20 @@ import CragRoute from '@/models/CragRoute'
 import MarkdownInput from '@/components/forms/MarkdownInput'
 import GymOpenerInput from '~/components/forms/GymOpenerInput'
 import DatePickerMenuInput from '~/components/forms/DatePickerMenuInput.vue'
+const GymRouteThumbnailForm = () => import('~/components/gymRoutes/forms/GymRouteThumbnailForm.vue')
+const GymRoutePictureForm = () => import('~/components/gymRoutes/forms/GymRoutePictureForm.vue')
 
 export default {
   name: 'GymRouteForm',
   components: {
+    GymRouteThumbnailForm,
+    GymRoutePictureForm,
     DatePickerMenuInput,
     GymOpenerInput,
     MarkdownInput,
     TagsInput,
     ColorInput,
-    Spinner,
-    SubmitForm
+    Spinner
   },
   mixins: [FormHelpers, HoldColorsHelpers, DateHelpers],
   props: {
@@ -339,6 +456,12 @@ export default {
       loadingGymGrade: true,
       loadingSimilarSector: true,
       similarSectors: [],
+      afterAddDialog: false,
+      addingRoute: false,
+      pictureDialog: false,
+      newGymRoute: null,
+      pictureStep: 'main',
+      hidePictureBtn: false,
       data: {
         id: this.gymRoute?.id,
         name: this.gymRoute?.name,
@@ -371,7 +494,11 @@ export default {
       mdiPlus,
       mdiMinus,
       mdiBookmarkMultipleOutline,
-      mdiChartBubble
+      mdiChartBubble,
+      mdiCameraPlus,
+      mdiArrowLeft,
+      mdiArrowRightBoldBoxOutline,
+      mdiSourceBranchPlus
     }
   },
 
@@ -389,31 +516,58 @@ export default {
   },
 
   methods: {
-    submitAndThenPicture () {
-      this.nextAction = 'picture'
-      this.submit()
-    },
-
     submit () {
-      this.submitOverlay = true
+      this.addingRoute = true
       const promise = (this.isEditingForm()) ? new GymRouteApi(this.$axios, this.$auth).update(this.data) : new GymRouteApi(this.$axios, this.$auth).create(this.data)
 
       promise
         .then((resp) => {
-          const gymRoute = new GymRoute({ attributes: resp.data })
+          this.newGymRoute = new GymRoute({ attributes: resp.data })
           if (this.redirectTo) {
             this.$router.push(this.redirectTo)
-          } else if (this.nextAction === 'picture') {
-            this.$router.push(`${gymRoute.path}/picture`)
+          } else if (!this.isEditingForm()) {
+            this.afterAddDialog = true
           } else {
-            this.$router.push(`${gymRoute.gymSpacePath}?route=${gymRoute.id}`)
+            this.$router.push(`${this.newGymRoute.gymSpacePath}?route=${this.newGymRoute.id}`)
           }
         })
         .catch((err) => {
           this.$root.$emit('alertFromApiError', err, 'gymRoute')
         }).then(() => {
-          this.submitOverlay = false
+          this.addingRoute = false
         })
+    },
+
+    resetForNewAdd () {
+      this.newGymRoute = null
+      this.afterAddDialog = false
+      this.pictureDialog = false
+      this.hidePictureBtn = false
+      this.pictureStep = 'main'
+      this.data.id = null
+      this.data.name = null
+      this.data.description = null
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      })
+    },
+
+    openPictureDialog () {
+      this.afterAddDialog = false
+      this.pictureDialog = true
+    },
+
+    pictureMainStepCallback (gymRoute) {
+      this.newGymRoute = gymRoute
+      this.pictureStep = 'thumbnail'
+    },
+
+    pictureThumbnailStepCallback (gymRoute) {
+      this.afterAddDialog = true
+      this.pictureDialog = false
+      this.newGymRoute = gymRoute
+      this.hidePictureBtn = true
     },
 
     findRandomRoute () {

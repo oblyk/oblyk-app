@@ -19,6 +19,7 @@
     </div>
     <close-form />
     <submit-form
+      :go-back-btn="goBackBtn"
       :overlay="submitOverlay"
       :progressable="true"
       :progress-value="uploadPercentage"
@@ -43,6 +44,14 @@ export default {
     gymRoute: {
       type: Object,
       required: true
+    },
+    goBackBtn: {
+      type: Boolean,
+      default: true
+    },
+    callback: {
+      type: Function,
+      default: null
     }
   },
 
@@ -76,7 +85,11 @@ export default {
         })
           .then((resp) => {
             const gymRoute = new GymRoute({ attributes: resp.data })
-            this.$router.push(`${gymRoute.gymSpacePath}?route=${gymRoute.id}`)
+            if (this.callback) {
+              this.callback(gymRoute)
+            } else {
+              this.$router.push(`${gymRoute.gymSpacePath}?route=${gymRoute.id}`)
+            }
           })
           .catch((err) => {
             this.$root.$emit('alertFromApiError', err, 'gymRoute')
