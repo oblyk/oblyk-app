@@ -1108,8 +1108,13 @@ export default {
       team: "L'équipe",
       openers: 'Les ouvreurs et ouvreuses',
       home: 'Dashboard',
+      parameters: 'Paramètres',
       difficultySystem: 'Système de difficulté',
+      difficultySystemExplain: 'Paramètre des systèmes de difficulté, système de points, cotation par niveau, etc.',
       difficultySystemShort: 'Les systèmes',
+      climbingStyle: "Styles d'escalade",
+      climbingStyleExplain: "Sélectionner la liste de style d'escalades que vous utilisez majoritairement.",
+      styles: 'Les styles',
       spaces: 'Espaces',
       spaceGroups: "Groupes d'espace",
       routes: 'Lignes',
@@ -1124,6 +1129,11 @@ export default {
       updateYourLogo: 'Changer votre logo',
       addYourBanner: 'Ajouter votre bandeau',
       updateYourBanner: 'Changer votre bandeau'
+    },
+    gymClimbingStyles: {
+      title: "Les styles d'escalade de ma salle",
+      explain: "Choisissez les styles d'escalades que vous souhaitez utiliser couramment. Lors de l'ajout des voies/blocs/pans ces styles vous seront proposer en priorité, vous gagnerez ainsi du temps à l'ajout de vos lignes.<br><cite>(Vous pourrez toujours choisir les autres styles même s'ils ne sont pas cochés)</cite>",
+      noColor: 'Pas de couleur'
     },
     gymStatistic: {
       figuresTitle: 'En quelques chiffres',
@@ -2115,6 +2125,18 @@ export default {
       fun_climbing: 'FC',
       training_space: 'E',
       pan: 'P'
+    },
+    climbingStyle: {
+      boulder: 'Bloc',
+      endurance: 'Conti',
+      resistance: 'Rési',
+      technical: 'Technique',
+      physics: 'Physique',
+      finger: 'À doigt',
+      grip: 'À friction',
+      coordination: 'Coordination',
+      tall_people: 'Morpho',
+      small_people: 'Adapté aux petites tailles'
     },
     word: {
       name: 'Mot',

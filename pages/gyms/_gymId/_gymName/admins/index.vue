@@ -50,7 +50,7 @@
           <gym-admin-space-figures :gym="gym" />
         </v-col>
         <v-col cols="12" md="6" lg="4" class="pa-2">
-          <gym-admin-difficulty-system-figures :gym="gym" />
+          <gym-admin-interactive-guide-parameters :gym="gym" />
         </v-col>
       </v-row>
 
@@ -94,22 +94,22 @@
 <script>
 import { mdiMapLegend, mdiTune, mdiFolder, mdiHelpCircleOutline } from '@mdi/js'
 import { GymConcern } from '~/concerns/GymConcern'
-import GymAdminDifficultySystemFigures from '~/components/gyms/admin/GymAdminDifficultySystemFigures'
 import GymAdminTeamFigures from '~/components/gyms/admin/GymAdminTeamFigures'
 import GymAdminWelcome from '~/components/gyms/admin/GymAdminWelcome'
 import GymAdminSpaceFigures from '~/components/gyms/admin/GymAdminSpaceFigures'
 import GymAdminRouteFigures from '~/components/gyms/admin/GymAdminRouteFigures'
 import GymAdminOpenersFigures from '~/components/gyms/admin/GymAdminOpenersFigures.vue'
+import GymAdminInteractiveGuideParameters from '~/components/gyms/admin/GymAdminInteractiveGuideParameters.vue'
 
 export default {
   meta: { orphanRoute: true },
   components: {
+    GymAdminInteractiveGuideParameters,
     GymAdminOpenersFigures,
     GymAdminRouteFigures,
     GymAdminSpaceFigures,
     GymAdminWelcome,
-    GymAdminTeamFigures,
-    GymAdminDifficultySystemFigures
+    GymAdminTeamFigures
   },
 
   mixins: [GymConcern],

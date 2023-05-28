@@ -1108,8 +1108,13 @@ export default {
       various: 'Various',
       openers: 'Openers',
       home: 'Dashboard',
+      parameters: 'Parameters',
       difficultySystem: 'Difficulty system',
+      difficultySystemExplain: 'Difficulty system settings, points system, level rating, etc.',
       difficultySystemShort: 'Systems',
+      climbingStyle: 'Climbing styles',
+      climbingStyleExplain: 'Select the list of climbing styles you use most.',
+      styles: 'Styles',
       spaces: 'Spaces',
       spaceGroups: 'Space groups',
       routes: 'Routes',
@@ -1124,6 +1129,11 @@ export default {
       updateYourLogo: 'Change your logo',
       addYourBanner: 'Add your banner',
       updateYourBanner: 'Change your banner'
+    },
+    gymClimbingStyles: {
+      title: 'Climbing styles in my gym',
+      explain: 'Choose the climbing styles you want to use most often. When adding routes, these styles will be given priority, saving you time when adding your routes<br><cite>(you can always choose other styles even if they are not ticked)</cite>.',
+      noColor: 'No color'
     },
     gymStatistic: {
       figuresTitle: 'In a few figures',
@@ -2115,6 +2125,18 @@ export default {
       fun_climbing: 'FC',
       training_space: 'T',
       pan: 'P'
+    },
+    climbingStyle: {
+      boulder: 'Bolder',
+      endurance: 'Endurance',
+      resistance: 'Resistance',
+      technical: 'Technical',
+      physics: 'Physics',
+      finger: 'Finger',
+      grip: 'Grip',
+      coordination: 'Coordination',
+      tall_people: 'For larger',
+      small_people: 'For smaller'
     },
     word: {
       name: 'Word',
