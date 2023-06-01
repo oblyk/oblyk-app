@@ -136,6 +136,7 @@
                 v-if="gymRoute"
                 :gym-route="gymRoute"
                 :show-space="true"
+                :gym="gym"
               />
             </v-card>
           </div>
@@ -171,6 +172,7 @@
               v-if="gymRoute"
               :gym-route="gymRoute"
               :show-space="true"
+              :gym="gym"
             />
           </v-card>
         </v-dialog>

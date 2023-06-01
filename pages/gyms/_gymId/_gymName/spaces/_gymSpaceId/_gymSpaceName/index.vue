@@ -54,6 +54,7 @@
                 <gym-route-info
                   v-if="gymRoute"
                   :gym-route="gymRoute"
+                  :gym="gym"
                 />
               </v-card>
             </div>
@@ -80,6 +81,7 @@
             <gym-route-info
               v-if="gymRoute"
               :gym-route="gymRoute"
+              :gym="gym"
             />
           </v-card>
         </v-dialog>

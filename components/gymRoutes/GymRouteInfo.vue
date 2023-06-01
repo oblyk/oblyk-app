@@ -132,15 +132,16 @@
         </v-col>
 
         <!-- Route tags -->
-        <v-col v-if="gymRoute.hasTags" cols="12">
+        <v-col v-if="gym && gymRoute.hasStyles" cols="12">
           <description-line
             :icon="mdiPound"
-            :item-title="$t('models.gymRoute.tags')"
+            :item-title="$t('models.gymRoute.styles')"
           >
             <template #content>
-              <gym-route-tags
+              <gym-route-climbing-styles
                 class="mt-2"
                 :gym-route="gymRoute"
+                :gym="gym"
               />
             </template>
           </description-line>
@@ -213,7 +214,6 @@ import { SessionConcern } from '@/concerns/SessionConcern'
 import { DateHelpers } from '@/mixins/DateHelpers'
 import GymRouteTagAndHold from '@/components/gymRoutes/partial/GymRouteTagAndHold'
 import GymRouteGradeAndPoint from '@/components/gymRoutes/partial/GymRouteGradeAndPoint'
-import GymRouteTags from '@/components/gymRoutes/partial/GymRouteTags'
 import GymRouteAscent from '@/components/gymRoutes/GymRouteAscent'
 import Note from '@/components/notes/Note'
 import GymRouteApi from '~/services/oblyk-api/GymRouteApi'
@@ -222,18 +222,19 @@ import DescriptionLine from '~/components/ui/DescriptionLine.vue'
 import GymRouteActionBtn from '~/components/gymRoutes/partial/GymRouteActionBtn.vue'
 import AddGymAscentBtn from '~/components/ascentGymRoutes/AddGymAscentBtn.vue'
 import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
+import GymRouteClimbingStyles from '~/components/gymRoutes/partial/GymRouteClimbingStyles.vue'
 const MarkdownText = () => import('@/components/ui/MarkdownText')
 
 export default {
   name: 'GymRouteInfo',
   components: {
+    GymRouteClimbingStyles,
     AddGymAscentBtn,
     GymRouteActionBtn,
     DescriptionLine,
     Note,
     MarkdownText,
     GymRouteAscent,
-    GymRouteTags,
     GymRouteGradeAndPoint,
     GymRouteTagAndHold
   },
@@ -246,6 +247,10 @@ export default {
     showSpace: {
       type: Boolean,
       default: false
+    },
+    gym: {
+      type: Object,
+      default: null
     }
   },
 

@@ -188,6 +188,7 @@ export default {
     documentation: 'Documentation',
     seeDocumentation: "Consultez la documentation pour en connaître d'avantage :",
     whatDoYouWantToDo: 'Que voulez vous faire ?',
+    others: 'Autres',
     goTo: 'Aller à %{name}',
     at: 'le',
     is: 'à',
@@ -527,6 +528,7 @@ export default {
     input: {
       climbing_type: "Type d'escalade",
       tags: 'Tags',
+      climbingStyle: "Styles d'escalade",
       rocks: 'Type de roche',
       rain: 'Exposition à la pluie',
       sun: 'Ensoleillement',
@@ -1133,7 +1135,8 @@ export default {
     gymClimbingStyles: {
       title: "Les styles d'escalade de ma salle",
       explain: "Choisissez les styles d'escalades que vous souhaitez utiliser couramment. Lors de l'ajout des voies/blocs/pans ces styles vous seront proposer en priorité, vous gagnerez ainsi du temps à l'ajout de vos lignes.<br><cite>(Vous pourrez toujours choisir les autres styles même s'ils ne sont pas cochés)</cite>",
-      noColor: 'Pas de couleur'
+      noColor: 'Pas de couleur',
+      favorites: 'Favoris'
     },
     gymStatistic: {
       figuresTitle: 'En quelques chiffres',
@@ -2047,6 +2050,7 @@ export default {
       height: 'Hauteur',
       height_by_section: 'Hauteur L.%{index}',
       tags_by_section: 'Tags L.%{index}',
+      styles_by_section: 'Styles L.%{index}',
       height_total: 'Hauteur total',
       climbing_type: 'Type de grimpe',
       favorite: 'Favori',
@@ -2073,6 +2077,7 @@ export default {
       points: 'Points',
       grade: 'Cotation',
       tags: 'Tags',
+      styles: 'Styles',
       grade_by_section: 'Cotation L.%{index}'
     },
     gymGrade: {

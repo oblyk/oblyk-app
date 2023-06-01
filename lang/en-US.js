@@ -188,6 +188,7 @@ export default {
     documentation: 'Documentation',
     seeDocumentation: 'See the documentation for more information :',
     whatDoYouWantToDo: 'What do you want to do?',
+    others: 'Others',
     goTo: 'Go to %{name}',
     at: 'at',
     is: 'is',
@@ -527,6 +528,7 @@ export default {
     input: {
       climbing_type: 'Climbing type',
       tags: 'Tags',
+      climbingStyle: 'Climbing styles',
       rocks: 'Rock type',
       rain: 'Rain exposure',
       sun: 'Sunshine',
@@ -1133,7 +1135,8 @@ export default {
     gymClimbingStyles: {
       title: 'Climbing styles in my gym',
       explain: 'Choose the climbing styles you want to use most often. When adding routes, these styles will be given priority, saving you time when adding your routes<br><cite>(you can always choose other styles even if they are not ticked)</cite>.',
-      noColor: 'No color'
+      noColor: 'No color',
+      favorites: 'Favorites'
     },
     gymStatistic: {
       figuresTitle: 'In a few figures',
@@ -2047,6 +2050,7 @@ export default {
       height: 'Height',
       height_by_section: 'Height L.%{index}',
       tags_by_section: 'Tags L.%{index}',
+      styles_by_section: 'Styles L.%{index}',
       height_total: 'Height total',
       climbing_type: 'Climbing type',
       favorite: 'Favorite',
@@ -2073,6 +2077,7 @@ export default {
       points: 'Points',
       grade: 'Grade',
       tags: 'Tags',
+      styles: 'Styles',
       grade_by_section: 'Grade L.%{index}'
     },
     gymGrade: {

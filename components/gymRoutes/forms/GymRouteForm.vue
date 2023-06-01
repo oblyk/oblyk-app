@@ -78,11 +78,13 @@
 
       <!-- Tags -->
       <div v-if="!multiPitch">
-        <tags-input
+        <indoor-climbing-styles-input
           v-for="(value, index) in data.sections"
-          :key="index"
-          v-model="value.tags"
-          :label="multiPitch ? $t('models.gymRoute.tags_by_section', { index: index + 1 }) : $t('models.gymRoute.tags')"
+          :key="`style-index-${index}`"
+          v-model="value.styles"
+          :gym="gymSector.gym"
+          :climbing-type="data.climbing_type"
+          :label="multiPitch ? $t('models.gymRoute.styles_by_section', { index: index + 1 }) : $t('models.gymRoute.styles')"
         />
       </div>
 
@@ -163,10 +165,11 @@
 
           <!-- Tags by section if more than one pitch -->
           <div v-if="multiPitch" class="col">
-            <tags-input
-              v-model="section.tags"
-              hide-details
-              :label="$t('models.gymRoute.tags_by_section', { index: sectionIndex + 1 })"
+            <indoor-climbing-styles-input
+              v-model="section.styles"
+              :gym="gymSector.gym"
+              :climbing-type="data.climbing_type"
+              :label="$t('models.gymRoute.styles_by_section', { index: sectionIndex + 1 })"
             />
           </div>
         </div>
@@ -413,24 +416,24 @@ import GymRouteApi from '~/services/oblyk-api/GymRouteApi'
 import GymGrade from '@/models/GymGrade'
 import ColorInput from '@/components/forms/ColorInput'
 import GymRoute from '@/models/GymRoute'
-import TagsInput from '@/components/forms/TagsInput'
 import CragRouteApi from '~/services/oblyk-api/CragRouteApi'
 import CragRoute from '@/models/CragRoute'
 import MarkdownInput from '@/components/forms/MarkdownInput'
 import GymOpenerInput from '~/components/forms/GymOpenerInput'
 import DatePickerMenuInput from '~/components/forms/DatePickerMenuInput.vue'
+import IndoorClimbingStylesInput from '~/components/forms/IndoorClimbingStyleInput.vue'
 const GymRouteThumbnailForm = () => import('~/components/gymRoutes/forms/GymRouteThumbnailForm.vue')
 const GymRoutePictureForm = () => import('~/components/gymRoutes/forms/GymRoutePictureForm.vue')
 
 export default {
   name: 'GymRouteForm',
   components: {
+    IndoorClimbingStylesInput,
     GymRouteThumbnailForm,
     GymRoutePictureForm,
     DatePickerMenuInput,
     GymOpenerInput,
     MarkdownInput,
-    TagsInput,
     ColorInput,
     Spinner
   },
@@ -480,7 +483,7 @@ export default {
         gym_space_id: this.gymSector.gym_space.id,
         gym_sector_id: null,
         gym_id: this.gymSector.gym.id,
-        sections: this.gymRoute?.sections || [{ grade: null, height: null, tags: [] }]
+        sections: this.gymRoute?.sections || [{ grade: null, height: null, styles: [] }]
       },
       climbingGymList: [
         { text: this.$t('models.climbs.sport_climbing'), value: 'sport_climbing' },
