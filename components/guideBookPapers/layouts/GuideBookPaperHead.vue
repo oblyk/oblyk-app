@@ -12,10 +12,14 @@
         </div>
         <client-only>
           <div
-            v-if="$auth.loggedIn"
             class="text-right mt-4 flex-grow-0"
           >
+            <share-btn
+              :title="guideBookPaper.name"
+              :url="guideBookPaper.path"
+            />
             <subscribe-btn
+              v-if="$auth.loggedIn"
               subscribe-type="GuideBookPaper"
               :subscribe-id="guideBookPaper.id"
               :large="true"
@@ -24,6 +28,7 @@
               :unfollowed-icon="mdiBookshelf"
               subscribe-label="actions.addToLibrary"
               unsubscribe-label="actions.removeFromLibrary"
+              class="ml-3"
             />
           </div>
         </client-only>
@@ -42,10 +47,11 @@ import { mdiBookshelf } from '@mdi/js'
 import GuideBookPaperDescription from '~/components/guideBookPapers/GuideBookPaperDescription'
 import SubscribeBtn from '~/components/forms/SubscribeBtn'
 import GuideBookPaperCover from '~/components/guideBookPapers/GuideBookPaperCover'
+import ShareBtn from '~/components/ui/ShareBtn.vue'
 
 export default {
   name: 'GuideBookPaperHead',
-  components: { GuideBookPaperCover, SubscribeBtn, GuideBookPaperDescription },
+  components: { ShareBtn, GuideBookPaperCover, SubscribeBtn, GuideBookPaperDescription },
   props: {
     guideBookPaper: {
       type: Object,

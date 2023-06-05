@@ -19,7 +19,7 @@
       </v-btn>
     </template>
     <v-card class="oblyk-share-dialog">
-      <v-card-title>
+      <v-card-title class="text-truncate">
         {{ $t('actions.share') }} : {{ title }}
       </v-card-title>
       <v-card-text class="pb-0">
