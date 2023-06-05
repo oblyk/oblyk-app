@@ -19,7 +19,7 @@
           {{ area.name }}
           <client-only>
             <v-btn
-              v-if="isLoggedIn"
+              v-if="$auth.loggedIn"
               :to="`${area.path}/edit`"
               icon
               :title="$t('actions.edit')"
@@ -29,6 +29,10 @@
                 {{ mdiPencil }}
               </v-icon>
             </v-btn>
+            <share-btn
+              :title="area.name"
+              :url="area.path"
+            />
           </client-only>
         </h1>
         <div>
@@ -41,11 +45,11 @@
 
 <script>
 import { mdiPencil } from '@mdi/js'
-import { SessionConcern } from '@/concerns/SessionConcern'
+import ShareBtn from '~/components/ui/ShareBtn.vue'
 
 export default {
   name: 'AreaHead',
-  mixins: [SessionConcern],
+  components: { ShareBtn },
   props: {
     area: {
       type: Object,
@@ -55,9 +59,10 @@ export default {
 
   data () {
     return {
-      mdiPencil,
       croppedSrc: this.area.croppedCoverUrl,
-      largeSrc: this.area.coverUrl
+      largeSrc: this.area.coverUrl,
+
+      mdiPencil
     }
   },
 
