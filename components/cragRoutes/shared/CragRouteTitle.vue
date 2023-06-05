@@ -8,6 +8,10 @@
         base-font-size="1.1rem"
       />
       {{ cragRoute.name }}
+      <share-btn
+        :title="cragRoute.name"
+        :url="cragRoute.path"
+      />
     </h1>
     <div>
       <nuxt-link
@@ -43,10 +47,11 @@
 <script>
 import { mdiPencil, mdiTerrain } from '@mdi/js'
 import CragRouteAvatar from '~/components/cragRoutes/partial/CragRouteAvatar'
+import ShareBtn from '~/components/ui/ShareBtn.vue'
 
 export default {
   name: 'CragRouteTitle',
-  components: { CragRouteAvatar },
+  components: { ShareBtn, CragRouteAvatar },
   props: {
     cragRoute: {
       type: Object,
