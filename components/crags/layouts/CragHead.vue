@@ -55,6 +55,10 @@
               :incrementable="true"
               subscribe-type="Crag"
             />
+            <share-btn
+              :title="crag.name"
+              :content="`${appPath}${crag.path}`"
+            />
           </client-only>
         </div>
       </div>
@@ -66,12 +70,13 @@
 import { mdiPencil, mdiMapMarkerRadiusOutline } from '@mdi/js'
 import { SessionConcern } from '@/concerns/SessionConcern'
 import ClimbingStyleCragChips from '~/components/crags/ClimbingStyleCragChips'
+import ShareBtn from '~/components/ui/ShareBtn.vue'
 const SubscribeBtn = () => import('@/components/forms/SubscribeBtn')
 const CragSuperAdminAction = () => import('@/components/crags/forms/CragSuperAdminAction')
 
 export default {
   name: 'CragHead',
-  components: { ClimbingStyleCragChips, CragSuperAdminAction, SubscribeBtn },
+  components: { ShareBtn, ClimbingStyleCragChips, CragSuperAdminAction, SubscribeBtn },
   mixins: [SessionConcern],
   props: {
     crag: {
@@ -84,6 +89,7 @@ export default {
     return {
       croppedSrc: this.crag.croppedCoverUrl,
       largeSrc: this.crag.coverUrl,
+      appPath: process.env.VUE_APP_OBLYK_APP_URL,
 
       mdiPencil,
       mdiMapMarkerRadiusOutline
