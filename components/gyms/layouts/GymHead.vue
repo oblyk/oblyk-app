@@ -22,6 +22,10 @@
           {{ gym.name }}
           <client-only>
             <subscribe-btn subscribe-type="Gym" :subscribe-id="gym.id" :incrementable="true" />
+            <share-btn
+              :title="gym.name"
+              :url="gym.path"
+            />
           </client-only>
         </h1>
         <span>
@@ -82,10 +86,11 @@ import { mdiPencil, mdiAlphaLCircle, mdiPanorama } from '@mdi/js'
 import { SessionConcern } from '@/concerns/SessionConcern'
 import SubscribeBtn from '@/components/forms/SubscribeBtn'
 import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
+import ShareBtn from '~/components/ui/ShareBtn.vue'
 
 export default {
   name: 'GymHead',
-  components: { SubscribeBtn },
+  components: { ShareBtn, SubscribeBtn },
   mixins: [SessionConcern, GymRolesHelpers],
   props: {
     gym: {

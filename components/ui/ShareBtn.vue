@@ -5,12 +5,15 @@
   >
     <template #activator="{ on, attrs }">
       <v-btn
+        :small="small"
         icon
         :title="$t('actions.share')"
         v-bind="attrs"
         v-on="on"
       >
-        <v-icon>
+        <v-icon
+          :small="small"
+        >
           {{ mdiShare }}
         </v-icon>
       </v-btn>
@@ -35,7 +38,7 @@
           {{ $t('actions.shareOn') }} ...
         </v-btn>
         <v-text-field
-          v-model="copyContent"
+          v-model="copyUrl"
           outlined
           :hint="copied ? `${$t('actions.textCopied')} !` : null"
           persistent-hint
@@ -67,7 +70,7 @@ export default {
       type: String,
       required: true
     },
-    content: {
+    url: {
       type: String,
       required: true
     },
@@ -79,7 +82,7 @@ export default {
 
   data () {
     return {
-      copyContent: this.content,
+      copyUrl: `${process.env.VUE_APP_OBLYK_APP_URL}${this.url}`,
       copied: false,
       shareDialog: false,
 
@@ -95,7 +98,7 @@ export default {
         return navigator.canShare(
           {
             title: this.title,
-            url: this.content
+            url: this.copyUrl
           }
         )
       } catch (err) {
@@ -108,7 +111,7 @@ export default {
     copy () {
       navigator
         .clipboard
-        .writeText(this.copyContent)
+        .writeText(this.copyUrl)
         .then(() => {
           this.copied = true
           setTimeout(() => { this.copied = false }, 3000)
@@ -119,7 +122,7 @@ export default {
       try {
         await navigator.share({
           title: this.title,
-          url: this.content
+          url: this.copyUrl
         })
       } catch (err) {
         console.error(err)

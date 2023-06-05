@@ -57,7 +57,7 @@
             />
             <share-btn
               :title="crag.name"
-              :content="`${appPath}${crag.path}`"
+              :url="crag.path"
             />
           </client-only>
         </div>
@@ -89,7 +89,6 @@ export default {
     return {
       croppedSrc: this.crag.croppedCoverUrl,
       largeSrc: this.crag.coverUrl,
-      appPath: process.env.VUE_APP_OBLYK_APP_URL,
 
       mdiPencil,
       mdiMapMarkerRadiusOutline
