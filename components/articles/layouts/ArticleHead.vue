@@ -25,6 +25,10 @@
             </v-icon>
             {{ article.comments_count }}
           </span>
+          <share-btn
+            :title="article.name"
+            :url="article.path"
+          />
           <span v-if="isLoggedIn && isSuperAdmin">
             <article-action-menu :article="article" />
           </span>
@@ -39,10 +43,11 @@ import { mdiComment } from '@mdi/js'
 import { DateHelpers } from '@/mixins/DateHelpers'
 import { SessionConcern } from '@/concerns/SessionConcern'
 import ArticleActionMenu from '@/components/articles/forms/ArticleActionMenu'
+import ShareBtn from '~/components/ui/ShareBtn.vue'
 
 export default {
   name: 'ArticleHead',
-  components: { ArticleActionMenu },
+  components: { ShareBtn, ArticleActionMenu },
   mixins: [DateHelpers, SessionConcern],
   props: {
     article: {
