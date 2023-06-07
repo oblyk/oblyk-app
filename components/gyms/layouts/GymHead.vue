@@ -9,33 +9,44 @@
       class="gym-header-banner"
     >
       <div class="gym-header-title">
-        <div class="clear-both gym-header-title-and-logo">
+        <div class="d-flex flex-row gym-header-title-and-logo">
           <v-avatar
             size="80"
-            class="float-left mr-3"
+            class="mr-3 align-self-center"
           >
             <v-img
               :src="gym.logoUrl"
               :alt="`logo ${gym.name}`"
             />
           </v-avatar>
-          <h1 class="font-weight-medium">
-            {{ gym.name }}
-            <client-only>
-              <subscribe-btn
-                subscribe-type="Gym"
-                :subscribe-id="gym.id"
-                :incrementable="true"
-                :type-text="true"
-                :large="false"
-                :outlined="true"
-                class="vertical-align-text-bottom ml-1"
-              />
-            </client-only>
-          </h1>
-          <div class="mb-2">
-            {{ gym.country }}, {{ gym.city }}
+          <div class="align-self-center">
+            <h1 class="font-weight-medium">
+              {{ gym.name }}
+              <client-only>
+                <subscribe-btn
+                  subscribe-type="Gym"
+                  :subscribe-id="gym.id"
+                  :incrementable="true"
+                  :type-text="true"
+                  :large="false"
+                  :outlined="true"
+                  class="vertical-align-text-bottom ml-1"
+                />
+              </client-only>
+            </h1>
+            <div
+              v-if="!$vuetify.breakpoint.mobile"
+              class="mb-2"
+            >
+              {{ gym.country }}, {{ gym.city }}
+            </div>
           </div>
+        </div>
+        <div
+          v-if="$vuetify.breakpoint.mobile"
+          class="mb-2"
+        >
+          {{ gym.country }}, {{ gym.city }}
         </div>
         <div>
           <client-only>
@@ -140,7 +151,7 @@ export default {
     }
   }
   .gym-header-title {
-    min-width: 400px;
+    display: inline-block;
     max-width: 100%;
     position: absolute;
     padding: 1em;
@@ -153,7 +164,7 @@ export default {
       margin: 0;
     }
     .gym-header-title-and-logo {
-      height: 85px;
+      min-height: 85px;
     }
   }
 }
