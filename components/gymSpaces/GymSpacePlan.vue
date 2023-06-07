@@ -8,7 +8,7 @@
       editable
       :min-zoom="minZoom"
       :crs="crs"
-      :options="{ zoomControl: false }"
+      :options="{ zoomControl: false, zoomSnap: 0.2, zoomDelta: 0.2 }"
       style="height: 100%; width: 100%"
       @ready="onReadyMap"
       @click="closeOpenedRoute"
