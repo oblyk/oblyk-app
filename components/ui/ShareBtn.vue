@@ -6,16 +6,22 @@
     <template #activator="{ on, attrs }">
       <v-btn
         :small="small"
-        icon
+        :icon="icon"
+        :text="!icon"
+        :outlined="!icon"
         :title="$t('actions.share')"
         v-bind="attrs"
         v-on="on"
       >
         <v-icon
+          :left="!icon"
           :small="small"
         >
-          {{ mdiShare }}
+          {{ mdiShareVariant }}
         </v-icon>
+        <span v-if="!icon">
+          {{ $t('actions.share') }}
+        </span>
       </v-btn>
     </template>
     <v-card class="oblyk-share-dialog">
@@ -33,7 +39,7 @@
           @click="share"
         >
           <v-icon left>
-            {{ mdiShare }}
+            {{ mdiShareVariant }}
           </v-icon>
           {{ $t('actions.shareOn') }} ...
         </v-btn>
@@ -61,7 +67,7 @@
 </template>
 
 <script>
-import { mdiShare, mdiContentCopy, mdiCheck } from '@mdi/js'
+import { mdiShareVariant, mdiContentCopy, mdiCheck } from '@mdi/js'
 
 export default {
   name: 'ShareBtn',
@@ -77,6 +83,10 @@ export default {
     small: {
       type: Boolean,
       default: false
+    },
+    icon: {
+      type: Boolean,
+      default: true
     }
   },
 
@@ -86,7 +96,7 @@ export default {
       copied: false,
       shareDialog: false,
 
-      mdiShare,
+      mdiShareVariant,
       mdiContentCopy,
       mdiCheck
     }

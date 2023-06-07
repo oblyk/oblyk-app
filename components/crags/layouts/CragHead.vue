@@ -12,18 +12,15 @@
         <h1 class="font-weight-medium mb-n1">
           {{ crag.name }}
           <client-only>
-            <v-btn
-              v-if="isLoggedIn"
-              :to="`${crag.path}/edit`"
-              small
-              icon
-              :title="$t('actions.edit')"
-              class="ml-1"
-            >
-              <v-icon small>
-                {{ mdiPencil }}
-              </v-icon>
-            </v-btn>
+            <subscribe-btn
+              class="vertical-align-text-bottom"
+              :subscribe-id="crag.id"
+              :incrementable="true"
+              subscribe-type="Crag"
+              :type-text="true"
+              :large="false"
+              :outlined="true"
+            />
           </client-only>
         </h1>
 
@@ -37,28 +34,56 @@
           </v-icon>
           <span>
             {{ crag.city }}, {{ crag.region }} ({{ crag.country }})
-            <client-only>
-              <crag-super-admin-action
-                v-if="isSuperAdmin"
-                :crag="crag"
-              />
-            </client-only>
           </span>
         </div>
         <div>
           <client-only>
-            <climbing-style-crag-chips
-              :crag="crag"
-            />
-            <subscribe-btn
-              :subscribe-id="crag.id"
-              :incrementable="true"
-              subscribe-type="Crag"
-            />
             <share-btn
               :title="crag.name"
               :url="crag.path"
+              :icon="false"
             />
+            <v-menu
+              v-if="$auth.loggedIn"
+              offset-y
+            >
+              <template #activator="{ on, attrs }">
+                <v-btn
+                  icon
+                  text
+                  outlined
+                  v-bind="attrs"
+                  v-on="on"
+                >
+                  <v-icon>
+                    {{ mdiDotsVertical }}
+                  </v-icon>
+                </v-btn>
+              </template>
+              <v-list>
+                <v-list-item
+                  :to="`${crag.path}/edit`"
+                >
+                  <v-list-item-icon>
+                    <v-icon>{{ mdiPencil }}</v-icon>
+                  </v-list-item-icon>
+                  <v-list-item-title>
+                    {{ $t('actions.edit') }}
+                  </v-list-item-title>
+                </v-list-item>
+                <v-list-item
+                  v-if="isSuperAdmin"
+                  :to="`/alerts/Crag/${crag.id}/new?redirect_to=${$route.fullPath}`"
+                >
+                  <v-list-item-icon>
+                    <v-icon>{{ mdiBellPlus }}</v-icon>
+                  </v-list-item-icon>
+                  <v-list-item-title>
+                    {{ $t('actions.addAlert') }}
+                  </v-list-item-title>
+                </v-list-item>
+              </v-list>
+            </v-menu>
           </client-only>
         </div>
       </div>
@@ -67,16 +92,14 @@
 </template>
 
 <script>
-import { mdiPencil, mdiMapMarkerRadiusOutline } from '@mdi/js'
+import { mdiDotsVertical, mdiMapMarkerRadiusOutline, mdiBellPlus, mdiPencil } from '@mdi/js'
 import { SessionConcern } from '@/concerns/SessionConcern'
-import ClimbingStyleCragChips from '~/components/crags/ClimbingStyleCragChips'
 import ShareBtn from '~/components/ui/ShareBtn.vue'
 const SubscribeBtn = () => import('@/components/forms/SubscribeBtn')
-const CragSuperAdminAction = () => import('@/components/crags/forms/CragSuperAdminAction')
 
 export default {
   name: 'CragHead',
-  components: { ShareBtn, ClimbingStyleCragChips, CragSuperAdminAction, SubscribeBtn },
+  components: { ShareBtn, SubscribeBtn },
   mixins: [SessionConcern],
   props: {
     crag: {
@@ -90,8 +113,10 @@ export default {
       croppedSrc: this.crag.croppedCoverUrl,
       largeSrc: this.crag.coverUrl,
 
-      mdiPencil,
-      mdiMapMarkerRadiusOutline
+      mdiDotsVertical,
+      mdiMapMarkerRadiusOutline,
+      mdiBellPlus,
+      mdiPencil
     }
   },
 

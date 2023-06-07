@@ -3,7 +3,7 @@
     v-if="isLoggedIn"
     class="subscribe-btn"
     :block="block"
-    :outlined="large"
+    :outlined="large || outlined"
     :icon="!large"
     :loading="requesting"
     :title="label()"
@@ -85,6 +85,10 @@ export default {
       default: ''
     },
     block: {
+      type: Boolean,
+      required: false
+    },
+    outlined: {
       type: Boolean,
       required: false
     }

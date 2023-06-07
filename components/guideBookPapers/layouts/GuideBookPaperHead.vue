@@ -14,10 +14,6 @@
           <div
             class="text-right mt-4 flex-grow-0"
           >
-            <share-btn
-              :title="guideBookPaper.name"
-              :url="guideBookPaper.path"
-            />
             <subscribe-btn
               v-if="$auth.loggedIn"
               subscribe-type="GuideBookPaper"
@@ -47,11 +43,10 @@ import { mdiBookshelf } from '@mdi/js'
 import GuideBookPaperDescription from '~/components/guideBookPapers/GuideBookPaperDescription'
 import SubscribeBtn from '~/components/forms/SubscribeBtn'
 import GuideBookPaperCover from '~/components/guideBookPapers/GuideBookPaperCover'
-import ShareBtn from '~/components/ui/ShareBtn.vue'
 
 export default {
   name: 'GuideBookPaperHead',
-  components: { ShareBtn, GuideBookPaperCover, SubscribeBtn, GuideBookPaperDescription },
+  components: { GuideBookPaperCover, SubscribeBtn, GuideBookPaperDescription },
   props: {
     guideBookPaper: {
       type: Object,

@@ -22,8 +22,13 @@
             <description-line
               :icon="mdiTerrain"
               :item-title="$t('models.crag.climbing_types')"
-              :item-value="crag.climbingTypes.map((climb) => { return $t(`models.crag.${climb}`) }).join(', ')"
-            />
+            >
+              <template #content>
+                <climbing-style-crag-chips
+                  :crag="crag"
+                />
+              </template>
+            </description-line>
           </v-col>
 
           <!-- Lines -->
@@ -265,11 +270,13 @@ import CragApi from '~/services/oblyk-api/CragApi'
 import DescriptionLine from '~/components/ui/DescriptionLine'
 import Compass from '~/components/ui/Compass'
 import Seasons from '~/components/ui/Seasons'
+import ClimbingStyleCragChips from '~/components/crags/ClimbingStyleCragChips.vue'
 const LeafletMap = () => import('@/components/maps/LeafletMap')
 
 export default {
   name: 'CragInfo',
   components: {
+    ClimbingStyleCragChips,
     Seasons,
     Compass,
     DescriptionLine,

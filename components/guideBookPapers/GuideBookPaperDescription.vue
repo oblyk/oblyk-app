@@ -83,6 +83,13 @@
                 item-suffix="grammes"
               />
             </v-col>
+            <v-col cols="6">
+              <share-btn
+                :title="guideBookPaper.name"
+                :url="guideBookPaper.path"
+                :icon="false"
+              />
+            </v-col>
             <v-col
               v-if="guideBookPaper.next_guide_book_paper"
               cols="12"
@@ -166,10 +173,11 @@ import {
 } from '@mdi/js'
 import DescriptionLine from '@/components/ui/DescriptionLine'
 import GuideBookPaperNextVersion from '~/components/guideBookPapers/GuideBookPaperNextVersion'
+import ShareBtn from '~/components/ui/ShareBtn.vue'
 
 export default {
   name: 'GuideBookPaperDescription',
-  components: { GuideBookPaperNextVersion, DescriptionLine },
+  components: { ShareBtn, GuideBookPaperNextVersion, DescriptionLine },
   props: {
     guideBookPaper: {
       type: Object,
