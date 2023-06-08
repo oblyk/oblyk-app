@@ -105,6 +105,6 @@ export default {
 <style lang="scss" scoped>
 .thumbnail-crop-area {
   height: 650px;
-  max-height: calc(100vh - 100px);
+  max-height: calc(100vh - 250px);
 }
 </style>
