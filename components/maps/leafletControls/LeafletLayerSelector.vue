@@ -3,7 +3,10 @@
     <a v-if="!showLayersSelector" @click.prevent="showLayersSelector = true">
       <v-icon light small>{{ mdiLayers }}</v-icon>
     </a>
-    <div v-if="showLayersSelector" class="leaflet-customer-control">
+    <div
+      v-if="showLayersSelector"
+      class="leaflet-customer-control"
+    >
       <v-radio-group
         v-model="layerIndex"
         hide-details
@@ -45,9 +48,10 @@ export default {
 
   data () {
     return {
-      mdiLayers,
       layerIndex: this.value,
-      showLayersSelector: false
+      showLayersSelector: false,
+
+      mdiLayers
     }
   },
 
@@ -67,3 +71,16 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.leaflet-customer-control {
+  background-color: white;
+  padding: 10px;
+  color: black;
+
+  .v-input {
+    margin-top: 0;
+    padding-top: 0;
+  }
+}
+</style>

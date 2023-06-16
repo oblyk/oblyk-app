@@ -14,60 +14,65 @@
         v-model="data.description"
         outlined
         required
+        hide-details
         :label="$t('models.cragSector.description')"
       />
 
-      <p v-if="!isEditingForm()">
-        {{ $t('components.approach.newPolylineExplain') }}
-      </p>
+      <div v-if="map">
+        <p v-if="!isEditingForm()">
+          {{ $t('components.approach.newPolylineExplain') }}
+        </p>
 
-      <p v-if="isEditingForm()">
-        {{ $t('components.approach.editPolylineExplain') }}
-      </p>
+        <p v-if="isEditingForm()">
+          {{ $t('components.approach.editPolylineExplain') }}
+        </p>
 
-      <client-only>
-        <editable-map
-          ref="approachMap"
-          class="mt-5 approach-editable-map"
-          editable
-          :zoom="15"
-          :center="[crag.latitude, crag.longitude]"
-          :options="{ zoomControl: false }"
-          style="height: 500px; width: 100%"
-          @ready="onReadyMap()"
-        >
-          <l-control-zoom position="topright" />
+        <client-only>
+          <editable-map
+            ref="approachMap"
+            class="mt-5 approach-editable-map"
+            editable
+            :zoom="15"
+            :center="[crag.latitude, crag.longitude]"
+            :options="{ zoomControl: false }"
+            style="height: 500px; width: 100%"
+            @ready="onReadyMap()"
+          >
+            <l-control-zoom position="topright" />
 
-          <!-- Layer Selector -->
-          <l-control position="topright">
-            <leaflet-layer-selector v-model="layerIndex" map-style="outdoor" />
-          </l-control>
+            <!-- Layer Selector -->
+            <l-control position="topright">
+              <leaflet-layer-selector v-model="layerIndex" map-style="outdoor" />
+            </l-control>
 
-          <l-tile-layer
-            :url="layer.url"
-            :attribution="layer.attribution"
-          />
+            <l-tile-layer
+              :url="layer.url"
+              :attribution="layer.attribution"
+            />
 
-          <l-geo-json
-            v-if="geoJsons"
-            :geojson="geoJsons"
-            :options="geoJsonOptions"
-          />
+            <l-geo-json
+              v-if="geoJsons"
+              :geojson="geoJsons"
+              :options="geoJsonOptions"
+            />
 
-          <editable-polyline
-            v-if="approach"
-            ref="approach-editable-line"
-            :fill-opacity="0"
-            :editable="true"
-            :weight="2"
-            dash-array="5px"
-            :lat-lngs="approach.polyline"
-          />
-        </editable-map>
-      </client-only>
+            <editable-polyline
+              v-if="approach"
+              ref="approach-editable-line"
+              :fill-opacity="0"
+              :editable="true"
+              :weight="2"
+              dash-array="5px"
+              :lat-lngs="approach.polyline"
+            />
+          </editable-map>
+        </client-only>
+      </div>
 
-      <close-form />
       <submit-form
+        class="mt-2"
+        :rounded-overlay="true"
+        :go-back-btn="backBtn"
         :overlay="submitOverlay"
         :submit-local-key="submitText()"
       />
@@ -82,7 +87,6 @@ import { EditableMap, EditablePolyline } from 'vue2-leaflet-editable'
 import { FormHelpers } from '@/mixins/FormHelpers'
 import ApproachApi from '@/services/oblyk-api/ApproachApi'
 import Spinner from '@/components/layouts/Spiner'
-import CloseForm from '@/components/forms/CloseForm'
 import SubmitForm from '@/components/forms/SubmitForm'
 import LeafletLayerSelector from '@/components/maps/leafletControls/LeafletLayerSelector'
 import 'leaflet/dist/leaflet.css'
@@ -102,7 +106,6 @@ export default {
     LControlZoom,
     LGeoJson,
     SubmitForm,
-    CloseForm,
     Spinner
   },
   mixins: [FormHelpers, MapMarkerHelpers, MapPopupHelpers],
@@ -114,6 +117,18 @@ export default {
     approach: {
       type: Object,
       default: null
+    },
+    callback: {
+      type: Function,
+      default: null
+    },
+    map: {
+      type: Boolean,
+      default: true
+    },
+    backBtn: {
+      type: Boolean,
+      default: true
     }
   },
 
@@ -160,8 +175,18 @@ export default {
     }
   },
 
+  watch: {
+    'approach.polyline' () {
+      this.data.polyline = this.approach.polyline
+    }
+  },
+
   mounted () {
-    this.getGeoJsonAround()
+    if (this.map) {
+      this.getGeoJsonAround()
+    } else {
+      this.loadingGeoJson = false
+    }
   },
 
   methods: {
@@ -185,17 +210,23 @@ export default {
     submit () {
       this.submitOverlay = true
 
-      if (this.isEditingForm()) {
-        const polyline = this.$refs['approach-editable-line']
-        this.data.polyline = this.latLngToArray(polyline.mapObject._latlngs)
-      } else {
-        this.data.polyline = this.latLngToArray(this.newApproachPolyline._latlngs)
+      if (this.map) {
+        if (this.isEditingForm()) {
+          const polyline = this.$refs['approach-editable-line']
+          this.data.polyline = this.latLngToArray(polyline.mapObject._latlngs)
+        } else {
+          this.data.polyline = this.latLngToArray(this.newApproachPolyline._latlngs)
+        }
       }
 
       const promise = (this.isEditingForm()) ? new ApproachApi(this.$axios, this.$auth).update(this.data) : new ApproachApi(this.$axios, this.$auth).create(this.data)
       promise
-        .then(() => {
-          this.$router.push(`${this.crag.path}/maps`)
+        .then((resp) => {
+          if (this.callback) {
+            this.callback(resp.data)
+          } else {
+            this.$router.push(`${this.crag.path}/maps`)
+          }
         })
         .catch((err) => {
           this.$root.$emit('alertFromApiError', err, 'approach')

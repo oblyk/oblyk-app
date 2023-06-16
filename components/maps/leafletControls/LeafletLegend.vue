@@ -54,24 +54,33 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-ul {
-  padding-left: 0;
-  list-style-type: none;
-  li {
-    &:before {
-      content: '';
-      display: inline-block;
-      height: 12px;
-      width: 12px;
-      margin-right: 10px;
-      border-radius: 50%;
+.leaflet-customer-control {
+  background-color: white;
+  padding: 10px;
+  color: black;
+  .v-input {
+    margin-top: 0;
+    padding-top: 0;
+  }
+  ul {
+    padding-left: 0;
+    list-style-type: none;
+    li {
+      &:before {
+        content: '';
+        display: inline-block;
+        height: 12px;
+        width: 12px;
+        margin-right: 10px;
+        border-radius: 50%;
+      }
+      &.oblyk-legend-boulder:before { background-color: #ffcb00; }
+      &.oblyk-legend-sport-climbing:before { background-color: #3a71c7; }
+      &.oblyk-legend-multi-pitch:before { background-color: #ff5656; }
+      &.oblyk-legend-deep-water:before { background-color: #86ccdd; }
+      &.oblyk-legend-via-ferrata:before { background-color: #3cc770; }
+      &.oblyk-legend-fun-climbing:before { background-color: #ff80b2; }
     }
-    &.oblyk-legend-boulder:before { background-color: #ffcb00; }
-    &.oblyk-legend-sport-climbing:before { background-color: #3a71c7; }
-    &.oblyk-legend-multi-pitch:before { background-color: #ff5656; }
-    &.oblyk-legend-deep-water:before { background-color: #86ccdd; }
-    &.oblyk-legend-via-ferrata:before { background-color: #3cc770; }
-    &.oblyk-legend-fun-climbing:before { background-color: #ff80b2; }
   }
 }
 </style>

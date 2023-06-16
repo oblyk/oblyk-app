@@ -7,9 +7,10 @@
       >
         <v-btn
           text
+          outlined
           small
           color="primary"
-          :to="`${crag.path}/parks/new`"
+          :to="`${crag.path}/maps/edit`"
         >
           <v-icon left>
             {{ mdiParking }}
@@ -18,9 +19,10 @@
         </v-btn>
         <v-btn
           text
+          outlined
           small
           color="primary"
-          :to="`${crag.path}/approaches/new`"
+          :to="`${crag.path}/maps/edit`"
         >
           <v-icon left>
             {{ mdiWalk }}
@@ -55,6 +57,15 @@
           </v-icon>
           {{ $t('components.map.title') }}
         </h2>
+        <v-spacer />
+        <v-btn
+          v-if="$auth.loggedIn"
+          outlined
+          text
+          :to="`${crag.path}/maps/edit`"
+        >
+          {{ $t('actions.editMapElements') }}
+        </v-btn>
       </v-card-title>
       <v-card-text class="full-height">
         <client-only>
@@ -79,12 +90,12 @@
 
 <script>
 import { mdiParking, mdiWalk, mdiMap } from '@mdi/js'
-import { SessionConcern } from '@/concerns/SessionConcern'
-import CragApi from '@/services/oblyk-api/CragApi'
-import ApproachApi from '@/services/oblyk-api/ApproachApi'
-import Approach from '@/models/Approach'
-import ApproachCard from '@/components/approaches/ApproachCard'
-const LeafletMap = () => import('@/components/maps/LeafletMap')
+import { SessionConcern } from '~/concerns/SessionConcern'
+import CragApi from '~/services/oblyk-api/CragApi'
+import ApproachApi from '~/services/oblyk-api/ApproachApi'
+import Approach from '~/models/Approach'
+import ApproachCard from '~/components/approaches/ApproachCard.vue'
+const LeafletMap = () => import('~/components/maps/LeafletMap.vue')
 
 export default {
   name: 'CragMapDetailsView',

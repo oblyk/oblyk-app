@@ -278,6 +278,15 @@ export default {
 
     onEachFeatureFunction () {
       return (feature, layer) => {
+        if (feature.properties.type === 'RockBar') {
+          layer.options.color = '#616161'
+          layer.options.weight = 7
+        }
+        if (feature.properties.type === 'Approach') {
+          layer.options.color = '#795548'
+          layer.options.dashArray = [10, 10]
+          layer.options.weight = 6
+        }
         if (feature.properties.type === 'Department') {
           layer.options.color = 'rgb(234, 141, 125)'
           layer.options.weight = 2

@@ -34,6 +34,8 @@ export default {
     addRoute: 'Add route',
     newRoute: 'New route',
     addLine: 'Add line',
+    editMapElements: 'Modifying map elements',
+    addRockBar: 'Add rock bar',
     signIn: 'Sign in',
     signUp: 'Sign up',
     addLevel: 'Add level',
@@ -134,7 +136,8 @@ export default {
     addAAscents: 'Add a ascent',
     deleteNote: 'Delete note',
     addNote: 'Add note',
-    editNote: 'Edit note'
+    editNote: 'Edit note',
+    next: 'Next'
   },
   colors: {
     noColor: 'All',
@@ -815,6 +818,12 @@ export default {
       information: 'Detailed information',
       locationAndAccess: 'Location & Access',
       gradesAndLevels: 'Grades & Levels',
+      explainMapEditor: 'Click on an element of the map to modify it.<br>Or click on "Add" to add a car park, an approach step, etc.',
+      explainGlobalLocation: 'Drag the marker to change the general location of the crag.',
+      explainPark: 'Click on the map at the car park location. Or move the pink marker.',
+      explainApproach: 'Click on the map at the various points where the approach walk passes',
+      explainRockBar: 'Click on the map at the various points to trace the rock bar',
+      globalLocation: 'Global location',
       tabs: {
         info: 'Info',
         routes: 'Routes',
@@ -1886,6 +1895,10 @@ export default {
       grade: 'Grade',
       description: 'Description'
     },
+    rockBar: {
+      title: 'Rock bar',
+      crag_sector_id: 'Sector'
+    },
     ascentCragRoute: {
       type: 'Type',
       ascent_status: 'Ascent status',
@@ -1942,11 +1955,13 @@ export default {
       institutional: 'Public institution / Open source project'
     },
     park: {
-      description: 'Description',
+      title: 'Car park',
+      description: 'More information about this car park',
       crag: 'Crag'
     },
     approach: {
-      description: 'Description',
+      title: 'Approach walk',
+      description: 'Information on the approach walk',
       no_description: 'no description filled in',
       elevation_drop: 'Elevation drop',
       approach_type: 'Approach type',

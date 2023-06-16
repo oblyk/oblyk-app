@@ -1,6 +1,7 @@
 <template>
   <div class="submit-form-area">
     <overlay-form
+      :rounded="roundedOverlay"
       :overlay="overlay"
       :progressable="progressable"
       :progress-value="progressValue"
@@ -64,6 +65,10 @@ export default {
     progressValue: {
       type: Number,
       default: null
+    },
+    roundedOverlay: {
+      type: Boolean,
+      default: false
     }
   },
 

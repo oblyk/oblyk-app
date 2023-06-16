@@ -1,6 +1,7 @@
 <template>
   <v-overlay
     absolute
+    :class="rounded ? 'rounded' : ''"
     :value="overlay"
   >
     <!-- unprogressable loader -->
@@ -36,6 +37,10 @@ export default {
       default: null
     },
     progressable: {
+      type: Boolean,
+      default: false
+    },
+    rounded: {
       type: Boolean,
       default: false
     }

@@ -34,6 +34,8 @@ export default {
     addRoute: 'Ajouter une ligne',
     newRoute: 'Nouvelle ligne',
     addLine: 'Ajouter une ligne',
+    editMapElements: 'Modifier les éléments de la carte',
+    addRockBar: 'Ajouter une barre rocheuse',
     signIn: 'Me connecter',
     signUp: 'Créer un compte',
     addLevel: 'Ajouter un niveau',
@@ -134,7 +136,8 @@ export default {
     addAAscents: 'Ajouter une croix',
     deleteNote: 'Supprimer la note',
     addNote: 'Ajouter une note',
-    editNote: 'Modifier la note'
+    editNote: 'Modifier la note',
+    next: 'Suivant'
   },
   colors: {
     noColor: 'Toutes',
@@ -815,6 +818,12 @@ export default {
       information: 'Informations détaillées',
       locationAndAccess: 'Localisation & Accès',
       gradesAndLevels: 'Cotations & Niveaux',
+      explainMapEditor: "Cliquer sur un élément de la carte pour le modifier.<br>Où cliquer sur \"Ajouter\" pour ajouter un parking, une marche d'approche, etc.",
+      explainGlobalLocation: "Fait glisser le marker pour modifier l'emplacement général de la falaise.",
+      explainPark: "Cliquer sur la carte à l'emplacement du parking. Ou déplacez le marqueur rose.",
+      explainApproach: "Cliquer sur la carte aux différents points où passe la marche d'approche",
+      explainRockBar: 'Cliquer sur la carte aux différents points pour tracer la barre rocheuse',
+      globalLocation: 'Emplacement général',
       tabs: {
         info: 'Info',
         routes: 'Voies',
@@ -1886,6 +1895,10 @@ export default {
       grade: 'Cotation',
       description: 'Description'
     },
+    rockBar: {
+      title: 'Barre rocheuse',
+      crag_sector_id: 'Secteur'
+    },
     ascentCragRoute: {
       type: 'Type',
       ascent_status: "Status de l'ascension",
@@ -1942,11 +1955,13 @@ export default {
       institutional: 'Institution public / Projet open source'
     },
     park: {
-      description: 'Description',
+      title: 'Parking',
+      description: 'Infos complémentaires sur ce parking',
       crag: 'Falaise'
     },
     approach: {
-      description: 'Description',
+      title: "Marche d'approche",
+      description: "Info sur la marche d'approche",
       no_description: 'pas de description renseignée',
       elevation_drop: 'Dénivelé',
       approach_type: 'Type de marche',

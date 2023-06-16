@@ -11,10 +11,13 @@
         outlined
         required
         hide-details
+        class="mb-2"
         :label="$t('models.park.description')"
       />
 
-      <client-only>
+      <client-only
+        v-if="map"
+      >
         <map-input
           v-model="localization"
           :default-latitude="data.latitude || crag.latitude"
@@ -26,8 +29,10 @@
         />
       </client-only>
 
-      <close-form />
       <submit-form
+        class="mt-2"
+        :rounded-overlay="true"
+        :go-back-btn="backBtn"
         :overlay="submitOverlay"
         :submit-local-key="submitText()"
       />
@@ -39,14 +44,14 @@
 import { FormHelpers } from '@/mixins/FormHelpers'
 import SubmitForm from '@/components/forms/SubmitForm'
 import ParkApi from '~/services/oblyk-api/ParkApi'
-import CloseForm from '@/components/forms/CloseForm'
 import Spinner from '@/components/layouts/Spiner'
 import Crag from '~/models/Crag'
+import Park from '~/models/Park'
 const MapInput = () => import('@/components/forms/MapInput')
 
 export default {
   name: 'ParkForm',
-  components: { Spinner, MapInput, CloseForm, SubmitForm },
+  components: { Spinner, MapInput, SubmitForm },
   mixins: [FormHelpers],
   props: {
     crag: {
@@ -56,6 +61,18 @@ export default {
     park: {
       type: Object,
       default: null
+    },
+    callback: {
+      type: Function,
+      default: null
+    },
+    map: {
+      type: Boolean,
+      default: true
+    },
+    backBtn: {
+      type: Boolean,
+      default: true
     }
   },
 
@@ -84,11 +101,21 @@ export default {
         this.data.longitude = this.localization.longitude
       },
       deep: true
+    },
+    'park.latitude' () {
+      this.data.latitude = this.park.latitude
+    },
+    'park.longitude' () {
+      this.data.longitude = this.park.longitude
     }
   },
 
   mounted () {
-    this.getGeoJsonAround()
+    if (this.map) {
+      this.getGeoJsonAround()
+    } else {
+      this.loadingGeoJson = false
+    }
   },
 
   methods: {
@@ -97,9 +124,14 @@ export default {
       const promise = (this.isEditingForm()) ? new ParkApi(this.$axios, this.$auth).update(this.data) : new ParkApi(this.$axios, this.$auth).create(this.data)
 
       promise
-        .then(() => {
-          const crag = new Crag({ attributes: this.crag })
-          this.$router.push(`${crag.path}/maps`)
+        .then((resp) => {
+          if (this.callback) {
+            const park = new Park({ attributes: resp.data })
+            this.callback(park)
+          } else {
+            const crag = new Crag({ attributes: this.crag })
+            this.$router.push(`${crag.path}/maps`)
+          }
         })
         .catch((err) => {
           this.$root.$emit('alertFromApiError', err, 'park')
