@@ -6,6 +6,7 @@
       :latitude-force="latitude"
       :longitude-force="longitude"
       :zoom-force="zoom"
+      :search-place="true"
     />
   </client-only>
 </template>

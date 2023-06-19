@@ -5,238 +5,240 @@
       :class="options.rounded ? 'rounded-leaflet' : ''"
     >
       <div
-        v-if="magicCard"
+        v-if="magicCard || searchPlace"
         class="leaflet-map-search-card pa-2"
       >
         <search-place-input
-          class="leaflet-search-in-map"
+          v-if="searchPlace"
+          class="leaflet-search-in-map mb-1"
           :callback="goToPlace"
           :solo-style="true"
         />
-        <small
-          v-if="!magicPlace"
-          class="d-block pl-1 mt-1"
-          style="color: black"
-        >
-          {{ $t('components.map.magicCard.clicForTool') }} ...
-        </small>
-        <v-card
-          v-if="magicPlace"
-          :loading="loadingMagicPlace"
-          class="mt-2 border"
-        >
-          <div v-if="!sunController">
-            <v-list-item>
-              <v-list-item-icon class="mr-4">
-                <v-icon>
-                  {{ mdiAutoFix }}
-                </v-icon>
-              </v-list-item-icon>
-              <v-list-item-content class="py-1">
-                <v-list-item-title>
-                  {{ $t('components.map.magicCard.title') }}
-                </v-list-item-title>
-                <v-list-item-subtitle>
-                  {{ magicPlace.lat.toFixed(6) }}, {{ magicPlace.lng.toFixed(6) }}
-                </v-list-item-subtitle>
-              </v-list-item-content>
-              <v-list-item-action>
-                <v-btn
-                  icon
-                  @click="closeMagicCard"
-                >
+        <div v-if="magicCard">
+          <small
+            v-if="!magicPlace"
+            class="d-block pl-1"
+            style="color: black"
+          >
+            {{ $t('components.map.magicCard.clicForTool') }} ...
+          </small>
+          <v-card
+            v-if="magicPlace"
+            :loading="loadingMagicPlace"
+            class="mt-2 border"
+          >
+            <div v-if="!sunController">
+              <v-list-item>
+                <v-list-item-icon class="mr-4">
                   <v-icon>
-                    {{ mdiClose }}
+                    {{ mdiAutoFix }}
                   </v-icon>
-                </v-btn>
-              </v-list-item-action>
-            </v-list-item>
-            <v-card-text class="px-2 py-0">
-              <p
-                v-if="loadingMagicPlace"
-                class="text--disabled text-center my-2"
-              >
-                {{ $t('components.map.magicCard.fetchData') }} ...
-              </p>
-              <div v-if="!loadingMagicPlace && showMagicActions">
-                <p class="mx-2 mb-2">
-                  {{ magicPlace.city }}, {{ magicPlace.address }}, {{ magicPlace.region }} <cite>({{ magicPlace.code_country }})</cite>
-                </p>
-                <v-row
-                  no-gutters
+                </v-list-item-icon>
+                <v-list-item-content class="py-1">
+                  <v-list-item-title>
+                    {{ $t('components.map.magicCard.title') }}
+                  </v-list-item-title>
+                  <v-list-item-subtitle>
+                    {{ magicPlace.lat.toFixed(6) }}, {{ magicPlace.lng.toFixed(6) }}
+                  </v-list-item-subtitle>
+                </v-list-item-content>
+                <v-list-item-action>
+                  <v-btn
+                    icon
+                    @click="closeMagicCard"
+                  >
+                    <v-icon>
+                      {{ mdiClose }}
+                    </v-icon>
+                  </v-btn>
+                </v-list-item-action>
+              </v-list-item>
+              <v-card-text class="px-2 py-0">
+                <p
+                  v-if="loadingMagicPlace"
+                  class="text--disabled text-center my-2"
                 >
-                  <v-col class="mr-1">
+                  {{ $t('components.map.magicCard.fetchData') }} ...
+                </p>
+                <div v-if="!loadingMagicPlace && showMagicActions">
+                  <p class="mx-2 mb-2">
+                    {{ magicPlace.city }}, {{ magicPlace.address }}, {{ magicPlace.region }} <cite>({{ magicPlace.code_country }})</cite>
+                  </p>
+                  <v-row
+                    no-gutters
+                  >
+                    <v-col class="mr-1">
+                      <v-sheet
+                        rounded
+                        class="activable-v-sheet pa-2 text-center border"
+                        @click="openSunController"
+                      >
+                        <v-icon
+                          color="#ffcc00"
+                          size="30"
+                        >
+                          {{ mdiSunCompass }}
+                        </v-icon>
+                        <p class="mb-0 mt-1 font-weight-bold">
+                          {{ $t('components.map.magicCard.sun') }}
+                        </p>
+                      </v-sheet>
+                    </v-col>
+                    <v-col class="mx-1">
+                      <v-menu>
+                        <template #activator="{ on, attrs }">
+                          <v-sheet
+                            rounded
+                            class="activable-v-sheet pa-2 text-center border"
+                            v-bind="attrs"
+                            v-on="on"
+                          >
+                            <v-icon
+                              color="primary"
+                              size="30"
+                            >
+                              {{ mdiMagnifyPlusOutline }}
+                            </v-icon>
+                            <p class="mb-0 mt-1 font-weight-bold">
+                              {{ $t('actions.search') }}
+                            </p>
+                          </v-sheet>
+                        </template>
+                        <v-list>
+                          <v-list-item
+                            :to="`/crags/search${addQueryParams}`"
+                          >
+                            <v-list-item-icon>
+                              <v-icon>
+                                {{ mdiTerrain }}
+                              </v-icon>
+                            </v-list-item-icon>
+                            <v-list-item-title>
+                              {{ $t('common.pages.find.somethingElse.crag') }}
+                            </v-list-item-title>
+                          </v-list-item>
+                          <v-list-item
+                            :to="`/guide-book-papers/find${addQueryParams}`"
+                          >
+                            <v-list-item-icon>
+                              <v-icon>
+                                {{ mdiBookshelf }}
+                              </v-icon>
+                            </v-list-item-icon>
+                            <v-list-item-title>
+                              {{ $t('common.pages.find.somethingElse.guideBook') }}
+                            </v-list-item-title>
+                          </v-list-item>
+                        </v-list>
+                      </v-menu>
+                    </v-col>
+                    <v-col
+                      v-if="$auth.loggedIn"
+                      class="ml-1"
+                    >
+                      <v-menu>
+                        <template #activator="{ on, attrs }">
+                          <v-sheet
+                            rounded
+                            class="activable-v-sheet pa-2 text-center border"
+                            v-bind="attrs"
+                            v-on="on"
+                          >
+                            <v-icon size="30">
+                              {{ mdiPlus }}
+                            </v-icon>
+                            <p class="mb-0 mt-1 font-weight-bold">
+                              {{ $t('actions.add') }}
+                            </p>
+                          </v-sheet>
+                        </template>
+                        <v-list>
+                          <v-list-item
+                            :to="`/crags/new${addQueryParams}`"
+                          >
+                            <v-list-item-icon>
+                              <v-icon>
+                                {{ mdiTerrain }}
+                              </v-icon>
+                            </v-list-item-icon>
+                            <v-list-item-title>
+                              {{ $t('actions.addCrag') }}
+                            </v-list-item-title>
+                          </v-list-item>
+                          <v-list-item
+                            :to="`/gyms/new${addQueryParams}`"
+                          >
+                            <v-list-item-icon>
+                              <v-icon>
+                                {{ mdiOfficeBuilding }}
+                              </v-icon>
+                            </v-list-item-icon>
+                            <v-list-item-title>
+                              {{ $t('actions.addGym') }}
+                            </v-list-item-title>
+                          </v-list-item>
+                        </v-list>
+                      </v-menu>
+                    </v-col>
+                  </v-row>
+                </div>
+              </v-card-text>
+            </div>
+            <div v-if="sunController">
+              <v-list-item>
+                <v-list-item-icon class="mr-4">
+                  <v-icon>
+                    {{ mdiSunCompass }}
+                  </v-icon>
+                </v-list-item-icon>
+                <v-list-item-content class="py-1">
+                  <v-list-item-title>
+                    {{ $t('components.map.magicCard.sunshineAt') }} :
+                  </v-list-item-title>
+                </v-list-item-content>
+                <v-list-item-action>
+                  <v-btn
+                    icon
+                    @click="closeSunController"
+                  >
+                    <v-icon>
+                      {{ mdiClose }}
+                    </v-icon>
+                  </v-btn>
+                </v-list-item-action>
+              </v-list-item>
+              <v-card-text
+                v-if="showMagicActions"
+                class="px-2 py-0"
+              >
+                <v-row no-gutters>
+                  <v-col cols="9">
                     <v-sheet
                       rounded
-                      class="activable-v-sheet pa-2 text-center border"
-                      @click="openSunController"
+                      class="border activable-v-sheet text-center pa-2 mr-1"
+                      @click="timeModal = true; dateTimeModalType = 'date'"
                     >
-                      <v-icon
-                        color="#ffcc00"
-                        size="30"
-                      >
-                        {{ mdiSunCompass }}
-                      </v-icon>
-                      <p class="mb-0 mt-1 font-weight-bold">
-                        {{ $t('components.map.magicCard.sun') }}
-                      </p>
+                      {{ sunData.date.toLocaleDateString([], { year: 'numeric', month: 'long', day: 'numeric' }) }}
                     </v-sheet>
                   </v-col>
-                  <v-col class="mx-1">
-                    <v-menu>
-                      <template #activator="{ on, attrs }">
-                        <v-sheet
-                          rounded
-                          class="activable-v-sheet pa-2 text-center border"
-                          v-bind="attrs"
-                          v-on="on"
-                        >
-                          <v-icon
-                            color="primary"
-                            size="30"
-                          >
-                            {{ mdiMagnifyPlusOutline }}
-                          </v-icon>
-                          <p class="mb-0 mt-1 font-weight-bold">
-                            {{ $t('actions.search') }}
-                          </p>
-                        </v-sheet>
-                      </template>
-                      <v-list>
-                        <v-list-item
-                          :to="`/crags/search${addQueryParams}`"
-                        >
-                          <v-list-item-icon>
-                            <v-icon>
-                              {{ mdiTerrain }}
-                            </v-icon>
-                          </v-list-item-icon>
-                          <v-list-item-title>
-                            {{ $t('common.pages.find.somethingElse.crag') }}
-                          </v-list-item-title>
-                        </v-list-item>
-                        <v-list-item
-                          :to="`/guide-book-papers/find${addQueryParams}`"
-                        >
-                          <v-list-item-icon>
-                            <v-icon>
-                              {{ mdiBookshelf }}
-                            </v-icon>
-                          </v-list-item-icon>
-                          <v-list-item-title>
-                            {{ $t('common.pages.find.somethingElse.guideBook') }}
-                          </v-list-item-title>
-                        </v-list-item>
-                      </v-list>
-                    </v-menu>
-                  </v-col>
-                  <v-col
-                    v-if="$auth.loggedIn"
-                    class="ml-1"
-                  >
-                    <v-menu>
-                      <template #activator="{ on, attrs }">
-                        <v-sheet
-                          rounded
-                          class="activable-v-sheet pa-2 text-center border"
-                          v-bind="attrs"
-                          v-on="on"
-                        >
-                          <v-icon size="30">
-                            {{ mdiPlus }}
-                          </v-icon>
-                          <p class="mb-0 mt-1 font-weight-bold">
-                            {{ $t('actions.add') }}
-                          </p>
-                        </v-sheet>
-                      </template>
-                      <v-list>
-                        <v-list-item
-                          :to="`/crags/new${addQueryParams}`"
-                        >
-                          <v-list-item-icon>
-                            <v-icon>
-                              {{ mdiTerrain }}
-                            </v-icon>
-                          </v-list-item-icon>
-                          <v-list-item-title>
-                            {{ $t('actions.addCrag') }}
-                          </v-list-item-title>
-                        </v-list-item>
-                        <v-list-item
-                          :to="`/gyms/new${addQueryParams}`"
-                        >
-                          <v-list-item-icon>
-                            <v-icon>
-                              {{ mdiOfficeBuilding }}
-                            </v-icon>
-                          </v-list-item-icon>
-                          <v-list-item-title>
-                            {{ $t('actions.addGym') }}
-                          </v-list-item-title>
-                        </v-list-item>
-                      </v-list>
-                    </v-menu>
+                  <v-col cols="3">
+                    <v-sheet
+                      rounded
+                      class="border activable-v-sheet text-center pa-2 ml-1"
+                      @click="timeModal = true; dateTimeModalType = 'time'"
+                    >
+                      {{ sunData.date.toLocaleTimeString([], { hour: '2-digit', minute:'2-digit' }) }}
+                    </v-sheet>
                   </v-col>
                 </v-row>
-              </div>
-            </v-card-text>
-          </div>
-          <div v-if="sunController">
-            <v-list-item>
-              <v-list-item-icon class="mr-4">
-                <v-icon>
-                  {{ mdiSunCompass }}
-                </v-icon>
-              </v-list-item-icon>
-              <v-list-item-content class="py-1">
-                <v-list-item-title>
-                  {{ $t('components.map.magicCard.sunshineAt') }} :
-                </v-list-item-title>
-              </v-list-item-content>
-              <v-list-item-action>
-                <v-btn
-                  icon
-                  @click="closeSunController"
-                >
-                  <v-icon>
-                    {{ mdiClose }}
-                  </v-icon>
-                </v-btn>
-              </v-list-item-action>
-            </v-list-item>
-            <v-card-text
-              v-if="showMagicActions"
-              class="px-2 py-0"
-            >
-              <v-row no-gutters>
-                <v-col cols="9">
-                  <v-sheet
-                    rounded
-                    class="border activable-v-sheet text-center pa-2 mr-1"
-                    @click="timeModal = true; dateTimeModalType = 'date'"
-                  >
-                    {{ sunData.date.toLocaleDateString([], { year: 'numeric', month: 'long', day: 'numeric' }) }}
-                  </v-sheet>
-                </v-col>
-                <v-col cols="3">
-                  <v-sheet
-                    rounded
-                    class="border activable-v-sheet text-center pa-2 ml-1"
-                    @click="timeModal = true; dateTimeModalType = 'time'"
-                  >
-                    {{ sunData.date.toLocaleTimeString([], { hour: '2-digit', minute:'2-digit' }) }}
-                  </v-sheet>
-                </v-col>
-              </v-row>
-              <div class="slide-and-times-bar">
-                <div class="times-bar">
-                  <div
-                    v-if="sunData.durations.beforeSunrise !== 0"
-                    style="background-color: #162d50"
-                    :style="`width: ${sunData.durations.beforeSunrise / 1440 * 100}%;`"
-                    title="Nuit"
-                  /><div
+                <div class="slide-and-times-bar">
+                  <div class="times-bar">
+                    <div
+                      v-if="sunData.durations.beforeSunrise !== 0"
+                      style="background-color: #162d50"
+                      :style="`width: ${sunData.durations.beforeSunrise / 1440 * 100}%;`"
+                      title="Nuit"
+                    /><div
                     v-if="sunData.durations.day !== 0"
                     style="background-color: #ffcc00"
                     :style="`width: ${sunData.durations.day / 1440 * 100}%;`"
@@ -247,94 +249,95 @@
                     :style="`width: ${sunData.durations.afterSunset / 1440 * 100}%;`"
                     title="Nuit"
                   />
+                  </div>
+                  <v-slider
+                    v-model="minute"
+                    class="hours-slide"
+                    color="rgba(255,255,255,0)"
+                    track-color="rgba(255,255,255,0)"
+                    thumb-color="white"
+                    :max="1440"
+                    :min="0"
+                    hide-details
+                  />
                 </div>
-                <v-slider
-                  v-model="minute"
-                  class="hours-slide"
-                  color="rgba(255,255,255,0)"
-                  track-color="rgba(255,255,255,0)"
-                  thumb-color="white"
-                  :max="1440"
-                  :min="0"
-                  hide-details
-                />
-              </div>
-              <v-row
-                class="mt-1"
-                no-gutters
-              >
-                <v-col class="mr-1">
-                  <v-sheet
-                    rounded
-                    class="border activable-v-sheet text-center pa-2 pt-3"
-                    @click="minute = sunData.sunrise.getHours() * 60 + sunData.sunrise.getMinutes()"
-                  >
-                    <div class="mb-1">
-                      <v-img src="/markers/sunrise-marker.png" height="30" contain />
-                    </div>
-                    <strong>
-                      {{ sunData.sunrise.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) }}
-                    </strong>
-                  </v-sheet>
-                </v-col>
-                <v-col class="ml-1">
-                  <v-sheet
-                    rounded
-                    class="border activable-v-sheet text-center pa-2 pt-3"
-                    @click="minute = sunData.sunset.getHours() * 60 + sunData.sunset.getMinutes()"
-                  >
-                    <div class="mb-1">
-                      <v-img src="/markers/sunset-marker.png" height="30" contain />
-                    </div>
-                    <strong>
-                      {{ sunData.sunset.toLocaleTimeString([], { hour: '2-digit', minute:'2-digit' }) }}
-                    </strong>
-                  </v-sheet>
-                </v-col>
-              </v-row>
-              <v-dialog
-                v-model="timeModal"
-                width="290"
-              >
-                <v-card>
-                  <v-date-picker
-                    v-if="dateTimeModalType === 'date'"
-                    v-model="dateTimeModalDate"
-                  />
-                  <v-time-picker
-                    v-if="dateTimeModalType === 'time'"
-                    v-model="dateTimeModalTime"
-                    format="24hr"
-                  />
-                  <v-card-actions>
-                    <v-spacer />
-                    <v-btn
-                      text
-                      @click="timeModal = false"
+                <v-row
+                  class="mt-1"
+                  no-gutters
+                >
+                  <v-col class="mr-1">
+                    <v-sheet
+                      rounded
+                      class="border activable-v-sheet text-center pa-2 pt-3"
+                      @click="minute = sunData.sunrise.getHours() * 60 + sunData.sunrise.getMinutes()"
                     >
-                      {{ $t('actions.close') }}
-                    </v-btn>
-                    <v-btn
-                      elevation="0"
-                      color="primary"
-                      @click="selectDateTime"
+                      <div class="mb-1">
+                        <v-img src="/markers/sunrise-marker.png" height="30" contain />
+                      </div>
+                      <strong>
+                        {{ sunData.sunrise.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) }}
+                      </strong>
+                    </v-sheet>
+                  </v-col>
+                  <v-col class="ml-1">
+                    <v-sheet
+                      rounded
+                      class="border activable-v-sheet text-center pa-2 pt-3"
+                      @click="minute = sunData.sunset.getHours() * 60 + sunData.sunset.getMinutes()"
                     >
-                      {{ $t('actions.valid') }}
-                    </v-btn>
-                  </v-card-actions>
-                </v-card>
-              </v-dialog>
-            </v-card-text>
-          </div>
-          <div
-            class="text-center py-0 collapse-magic-card"
-            @click="showMagicActions = !showMagicActions"
-          >
-            <v-icon :class="showMagicActions ? '' : '--animate-arrow'">
-              {{ showMagicActions ? mdiChevronUp : mdiChevronDown }}
-            </v-icon>
-          </div>
-        </v-card>
+                      <div class="mb-1">
+                        <v-img src="/markers/sunset-marker.png" height="30" contain />
+                      </div>
+                      <strong>
+                        {{ sunData.sunset.toLocaleTimeString([], { hour: '2-digit', minute:'2-digit' }) }}
+                      </strong>
+                    </v-sheet>
+                  </v-col>
+                </v-row>
+                <v-dialog
+                  v-model="timeModal"
+                  width="290"
+                >
+                  <v-card>
+                    <v-date-picker
+                      v-if="dateTimeModalType === 'date'"
+                      v-model="dateTimeModalDate"
+                    />
+                    <v-time-picker
+                      v-if="dateTimeModalType === 'time'"
+                      v-model="dateTimeModalTime"
+                      format="24hr"
+                    />
+                    <v-card-actions>
+                      <v-spacer />
+                      <v-btn
+                        text
+                        @click="timeModal = false"
+                      >
+                        {{ $t('actions.close') }}
+                      </v-btn>
+                      <v-btn
+                        elevation="0"
+                        color="primary"
+                        @click="selectDateTime"
+                      >
+                        {{ $t('actions.valid') }}
+                      </v-btn>
+                    </v-card-actions>
+                  </v-card>
+                </v-dialog>
+              </v-card-text>
+            </div>
+            <div
+              class="text-center py-0 collapse-magic-card"
+              @click="showMagicActions = !showMagicActions"
+            >
+              <v-icon :class="showMagicActions ? '' : '--animate-arrow'">
+                {{ showMagicActions ? mdiChevronUp : mdiChevronDown }}
+              </v-icon>
+            </div>
+          </v-card>
+        </div>
       </div>
       <l-map
         ref="leafletMap"
@@ -554,6 +557,10 @@ export default {
       default: null
     },
     magicCard: {
+      type: Boolean,
+      default: false
+    },
+    searchPlace: {
       type: Boolean,
       default: false
     },

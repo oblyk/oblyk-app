@@ -7,6 +7,7 @@
       :longitude-force="longitude"
       :zoom-force="zoom"
       :magic-card="true"
+      :search-place="true"
     />
   </client-only>
 </template>

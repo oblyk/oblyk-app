@@ -8,6 +8,7 @@
           :geo-jsons="geoJsons"
           :track-location="false"
           :clustered="false"
+          :search-place="true"
         />
       </client-only>
     </div>
