@@ -76,16 +76,6 @@ export default class CragSector extends ActiveData {
     }
   }
 
-  get mapThumbnailCoverUrl () {
-    if (this.map_thumbnail_url) {
-      return `${process.env.VUE_APP_OBLYK_API_URL}${this.map_thumbnail_url}`
-    } else if (this.crag.map_thumbnail_url) {
-      return `${process.env.VUE_APP_OBLYK_API_URL}${this.crag.map_thumbnail_url}`
-    } else {
-      return '/images/default-crag-banner.jpg'
-    }
-  }
-
   get orientations () {
     const list = []
     if (this.north) { list.push('north') }

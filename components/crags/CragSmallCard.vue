@@ -19,7 +19,16 @@
             :size="small ? 45 : 70"
             tile
           >
-            <v-img :src="crag.thumbnailCoverUrl" />
+            <v-img
+              v-if="(crag.photo || {}).url"
+              :src="crag.thumbnailCoverUrl"
+            />
+            <v-icon
+              v-else
+              class="px-1 mt-n1"
+            >
+              {{ mdiTerrain }}
+            </v-icon>
           </v-avatar>
         </v-list-item-avatar>
         <v-list-item-content :class="small ? 'pt-1 pb-0' : ''">
@@ -29,13 +38,6 @@
             </span>
           </v-list-item-title>
           <v-list-item-subtitle :class="small ? 'mb-2' : 'mt-n3 mb-4'">
-            <v-alert
-              dense
-              text
-              class="d-inline-block mr-1 mb-0 pl-2 pr-2 pt-0 pb-0"
-            >
-              {{ $t('components.crag.type') }}
-            </v-alert>
             {{ crag.country }}, {{ crag.city }}
             <client-only>
               <cite v-if="IAmGeolocated"> - {{ $t('common.is') }} {{ distance }} km</cite>
@@ -51,6 +53,7 @@
 </template>
 
 <script>
+import { mdiTerrain } from '@mdi/js'
 import SubscribeBtn from '@/components/forms/SubscribeBtn'
 import { LocalizationHelpers } from '@/mixins/LocalizationHelpers'
 
@@ -75,6 +78,12 @@ export default {
     bordered: {
       type: Boolean,
       default: false
+    }
+  },
+
+  data () {
+    return {
+      mdiTerrain
     }
   },
 

@@ -3,11 +3,18 @@
     <v-img
       dark
       height="400px"
-      :lazy-src="crag.thumbnailCoverUrl"
       :src="croppedSrc"
       :srcset="`${croppedSrc} 500w, ${largeSrc} 600w`"
       class="crag-header-banner"
     >
+      <template #placeholder>
+        <div class="crag-header-banner-spinner">
+          <v-progress-circular
+            indeterminate
+            :color="$vuetify.theme.dark ? 'white' : 'blue-grey'"
+          />
+        </div>
+      </template>
       <div class="crag-header-title">
         <h1 class="font-weight-medium mb-n1">
           {{ crag.name }}
@@ -142,6 +149,11 @@ export default {
 .crag-header {
   .crag-header-banner {
     border-radius: 15px 15px 0 0;
+    .crag-header-banner-spinner {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
   }
   .crag-header-title {
     position: absolute;

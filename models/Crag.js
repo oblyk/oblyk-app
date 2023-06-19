@@ -20,32 +20,28 @@ export default class Crag extends ActiveData {
   }
 
   get coverUrl () {
-    if ((this.photo || {}).url) {
+    if (this.photo?.url) {
       return `${process.env.VUE_APP_OBLYK_API_URL}${this.photo.url}`
+    } else if (this.static_map?.banner_url) {
+      return `${process.env.VUE_APP_OBLYK_API_URL}${this.static_map.banner_url}`
     } else {
       return '/images/default-crag-banner.jpg'
     }
   }
 
   get croppedCoverUrl () {
-    if ((this.photo || {}).cropped_url) {
+    if (this.photo?.cropped_url) {
       return `${process.env.VUE_APP_OBLYK_API_URL}${this.photo.cropped_url}`
+    } else if (this.static_map?.url) {
+      return `${process.env.VUE_APP_OBLYK_API_URL}${this.static_map.url}`
     } else {
       return '/images/default-crag-banner.jpg'
     }
   }
 
   get thumbnailCoverUrl () {
-    if ((this.photo || {}).thumbnail_url) {
+    if (this.photo?.thumbnail_url) {
       return `${process.env.VUE_APP_OBLYK_API_URL}${this.photo.thumbnail_url}`
-    } else {
-      return '/images/default-crag-banner.jpg'
-    }
-  }
-
-  get mapThumbnailCoverUrl () {
-    if (this.map_thumbnail_url) {
-      return `${process.env.VUE_APP_OBLYK_API_URL}${this.map_thumbnail_url}`
     } else {
       return '/images/default-crag-banner.jpg'
     }

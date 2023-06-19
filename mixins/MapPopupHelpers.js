@@ -47,9 +47,14 @@ export const MapPopupHelpers = {
           `
       }
 
+      let banner = ''
+      if (crag.photo?.thumbnail_url) {
+        banner = `<div class="map-popup-cover" style="background-image: url(${crag.thumbnailCoverUrl})"></div>`
+      }
+
       const popup = document.createElement('div')
       popup.innerHTML = `
-        <div class="map-popup-cover" style="background-image: url(${crag.thumbnailCoverUrl})"></div>
+        ${banner}
         <table class="map-popup-information-table">
           <tr>
             <td colspan="2" class="text-h6 pl-1 pr-1">${crag.name}</td>
