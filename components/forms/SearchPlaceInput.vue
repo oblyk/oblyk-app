@@ -3,11 +3,12 @@
     <v-text-field
       ref="searchPlaceInput"
       v-model="query"
-      :prepend-inner-icon="mdiMapSearch"
+      :prepend-inner-icon="mdiMapSearchOutline"
       :label="$t('components.searchPlace.placeholder')"
       :loading="searching"
-      filled
-      rounded
+      :filled="!soloStyle"
+      :solo="soloStyle"
+      :rounded="!soloStyle"
       dense
       hide-details
       clearable
@@ -41,29 +42,40 @@
 </template>
 
 <script>
-import { mdiMapSearch } from '@mdi/js'
+import { mdiMapSearchOutline } from '@mdi/js'
 import OsmNominatim from '~/services/osm-nominatim'
 
 export default {
-  name: 'SearchPlaceLocalisation',
+  name: 'SearchPlaceInput',
 
   props: {
     value: {
       type: Object,
+      default: null
+    },
+
+    soloStyle: {
+      type: Boolean,
+      default: false
+    },
+
+    callback: {
+      type: Function,
       default: null
     }
   },
 
   data () {
     return {
-      mdiMapSearch,
       query: null,
       searching: false,
       onSearch: false,
       resultVisible: true,
       previousQuery: null,
       results: [],
-      osmApi: null
+      osmApi: null,
+
+      mdiMapSearchOutline
     }
   },
 
@@ -120,7 +132,12 @@ export default {
     },
 
     emitObject (result) {
+      this.previousQuery = result.city
+      this.query = result.city
       this.resultVisible = false
+      if (this.callback) {
+        this.callback(result)
+      }
       this.$emit('input', result)
     },
 

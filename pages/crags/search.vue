@@ -10,7 +10,7 @@
         {{ $t('common.pages.cragSearch.localisation') }}
       </v-card-title>
       <v-card-text>
-        <search-place-localisation v-model="localisation" />
+        <search-place-input v-model="localisation" />
         <p
           v-if="localisation"
           class="mb-0 mt-3 pl-1"
@@ -461,12 +461,12 @@ import {
   mdiWindowClose
 } from '@mdi/js'
 import CragApi from '~/services/oblyk-api/CragApi'
-import SearchPlaceLocalisation from '~/components/forms/SearchPlaceInput'
+import SearchPlaceInput from '~/components/forms/SearchPlaceInput'
 import { GradeMixin } from '~/mixins/GradeMixin'
 import CragsTable from '~/components/crags/CragsTable'
 
 export default {
-  components: { CragsTable, SearchPlaceLocalisation },
+  components: { CragsTable, SearchPlaceInput },
   mixins: [GradeMixin],
   data () {
     return {
@@ -594,6 +594,35 @@ export default {
     },
 
     distance () {
+      this.search()
+    }
+  },
+
+  mounted () {
+    const urlParams = new URLSearchParams(window.location.search)
+    const latitudeParam = urlParams.get('latitude')
+    const longitudeParam = urlParams.get('longitude')
+    const postalCodeParam = urlParams.get('postal_code')
+    const codeCountryParam = urlParams.get('code_country')
+    const countryParam = urlParams.get('country')
+    const cityParam = urlParams.get('city')
+    const regionParam = urlParams.get('region')
+    const addressParam = urlParams.get('address')
+    const bigCityParam = urlParams.get('big_city')
+    if (latitudeParam) {
+      this.latitude = latitudeParam
+      this.longitude = longitudeParam
+      this.localisation = {
+        lat: latitudeParam,
+        lng: longitudeParam,
+        postal_code: postalCodeParam,
+        code_country: codeCountryParam,
+        country: countryParam,
+        city: cityParam,
+        big_city: bigCityParam,
+        region: regionParam,
+        address: addressParam
+      }
       this.search()
     }
   },

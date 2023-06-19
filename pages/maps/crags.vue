@@ -6,6 +6,7 @@
       :latitude-force="latitude"
       :longitude-force="longitude"
       :zoom-force="zoom"
+      :magic-card="true"
     />
   </client-only>
 </template>

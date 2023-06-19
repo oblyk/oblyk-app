@@ -181,7 +181,7 @@ export default {
         this.data.latitude = this.localization.latitude
         this.data.longitude = this.localization.longitude
         this.data.postal_code = this.localization.postal_code
-        this.data.country_code = this.localization.country_code
+        this.data.code_country = this.localization.country_code
         this.data.country = this.localization.country
         this.data.city = this.localization.city
         this.data.address = this.localization.address
@@ -206,9 +206,24 @@ export default {
     const urlParams = new URLSearchParams(window.location.search)
     this.redirectTo = urlParams.get('redirect_to')
     const nameParam = urlParams.get('name')
-    if (nameParam) {
-      this.data.name = nameParam
-    }
+    const latitudeParam = urlParams.get('latitude')
+    const longitudeParam = urlParams.get('longitude')
+    const postalCodeParam = urlParams.get('postal_code')
+    const codeCountryParam = urlParams.get('code_country')
+    const countryParam = urlParams.get('country')
+    const cityParam = urlParams.get('city')
+    const addressParam = urlParams.get('address')
+    const bigCityParam = urlParams.get('big_city')
+
+    if (nameParam) { this.data.name = nameParam }
+    if (latitudeParam) { this.data.latitude = latitudeParam }
+    if (longitudeParam) { this.data.longitude = longitudeParam }
+    if (postalCodeParam) { this.data.postal_code = postalCodeParam }
+    if (codeCountryParam) { this.data.code_country = codeCountryParam }
+    if (countryParam) { this.data.country = countryParam }
+    if (cityParam) { this.data.city = cityParam }
+    if (addressParam) { this.data.address = addressParam }
+    if (bigCityParam) { this.data.big_city = bigCityParam }
   },
 
   methods: {

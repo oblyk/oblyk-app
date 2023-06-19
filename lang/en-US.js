@@ -714,6 +714,13 @@ export default {
         deepWater: 'Deep water',
         viaFerrata: 'Via Ferrata',
         funClimbing: 'Fun Climbing'
+      },
+      magicCard: {
+        title: 'What to do here',
+        fetchData: 'Local information retrieval',
+        sun: 'Sun',
+        sunshineAt: 'Sunshine at',
+        clicForTool: 'click on the map for more tools'
       }
     },
     localization: {

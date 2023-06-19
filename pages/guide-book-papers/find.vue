@@ -7,7 +7,7 @@
       >
         {{ $t('components.guideBookPaperFind.title') }}
       </h1>
-      <search-place-localisation v-model="place" />
+      <search-place-input v-model="place" />
       <v-slider
         v-if="place"
         v-model="dist"
@@ -62,7 +62,7 @@
 
 <script>
 import { RecordToObjectHelpers } from '@/mixins/RecordToObjectHelpers'
-import SearchPlaceLocalisation from '@/components/forms/SearchPlaceInput'
+import SearchPlaceInput from '@/components/forms/SearchPlaceInput'
 import GuideBookPaperApi from '@/services/oblyk-api/GuideBookPaperApi'
 import Spinner from '@/components/layouts/Spiner'
 import GuideBookPaperAroundCard from '@/components/guideBookPapers/GuideBookPaperAroundCard'
@@ -72,7 +72,7 @@ export default {
   components: {
     GuideBookPaperAroundCard,
     Spinner,
-    SearchPlaceLocalisation,
+    SearchPlaceInput,
     AppFooter
   },
   mixins: [RecordToObjectHelpers],
@@ -117,6 +117,33 @@ export default {
     },
 
     dist () {
+      this.getGuideBookAround()
+    }
+  },
+
+  mounted () {
+    const urlParams = new URLSearchParams(window.location.search)
+    const latitudeParam = urlParams.get('latitude')
+    const longitudeParam = urlParams.get('longitude')
+    const postalCodeParam = urlParams.get('postal_code')
+    const codeCountryParam = urlParams.get('code_country')
+    const countryParam = urlParams.get('country')
+    const cityParam = urlParams.get('city')
+    const regionParam = urlParams.get('region')
+    const addressParam = urlParams.get('address')
+    const bigCityParam = urlParams.get('big_city')
+    if (latitudeParam) {
+      this.place = {
+        lat: latitudeParam,
+        lng: longitudeParam,
+        postal_code: postalCodeParam,
+        code_country: codeCountryParam,
+        country: countryParam,
+        city: cityParam,
+        big_city: bigCityParam,
+        region: regionParam,
+        address: addressParam
+      }
       this.getGuideBookAround()
     }
   },

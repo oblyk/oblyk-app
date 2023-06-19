@@ -75,7 +75,7 @@
           <p class="mb-2 mt-3 font-weight-bold text-decoration-underline">
             {{ $t('components.user.partnerLocalitiesTitle') }}
           </p>
-          <search-place-localisation
+          <search-place-input
             v-model="newLocality"
           />
           <div
@@ -113,20 +113,20 @@ import CurrentUserApi from '~/services/oblyk-api/CurrentUserApi'
 import SubmitForm from '@/components/forms/SubmitForm'
 import ClimbingTypeInput from '@/components/forms/ClimbingTypeInput'
 import MarkdownInput from '@/components/forms/MarkdownInput'
-import SearchPlaceLocalisation from '~/components/forms/SearchPlaceInput.vue'
 import LocalityUserApi from '~/services/oblyk-api/LocalityUserApi'
 import LocalityUser from '~/models/LocalityUser'
 import LocalityUserEditCard from '~/components/localityUsers/forms/LocalityUserEditCard.vue'
 import DateOfBirthInput from '~/components/forms/DateOfBirthInput.vue'
 import GenreInput from '~/components/forms/GenreInput.vue'
+import SearchPlaceInput from '~/components/forms/SearchPlaceInput.vue'
 
 export default {
   name: 'PartnerForm',
   components: {
+    SearchPlaceInput,
     GenreInput,
     DateOfBirthInput,
     LocalityUserEditCard,
-    SearchPlaceLocalisation,
     MarkdownInput,
     ClimbingTypeInput,
     SubmitForm

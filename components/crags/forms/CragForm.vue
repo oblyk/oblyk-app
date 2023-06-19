@@ -17,7 +17,7 @@
         v-model="localization"
         :default-latitude="data.latitude"
         :default-longitude="data.longitude"
-        :default-zoom="isEditingForm() ? 10 : 4"
+        :default-zoom="data.latitude !== null ? 13 : 4"
         style-map="outdoor"
         class="mb-3"
       />
@@ -218,9 +218,20 @@ export default {
     const urlParams = new URLSearchParams(window.location.search)
     this.redirectTo = urlParams.get('redirect_to')
     const nameParam = urlParams.get('name')
-    if (nameParam) {
-      this.data.name = nameParam
-    }
+    const latitudeParam = urlParams.get('latitude')
+    const longitudeParam = urlParams.get('longitude')
+    const codeCountryParam = urlParams.get('code_country')
+    const countryParam = urlParams.get('country')
+    const cityParam = urlParams.get('city')
+    const regionParam = urlParams.get('region')
+
+    if (nameParam) { this.data.name = nameParam }
+    if (latitudeParam) { this.data.latitude = latitudeParam }
+    if (longitudeParam) { this.data.longitude = longitudeParam }
+    if (codeCountryParam) { this.data.code_country = codeCountryParam }
+    if (countryParam) { this.data.country = countryParam }
+    if (cityParam) { this.data.city = cityParam }
+    if (regionParam) { this.data.region = regionParam }
   },
 
   methods: {
