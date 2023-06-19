@@ -239,16 +239,16 @@
                       :style="`width: ${sunData.durations.beforeSunrise / 1440 * 100}%;`"
                       title="Nuit"
                     /><div
-                    v-if="sunData.durations.day !== 0"
-                    style="background-color: #ffcc00"
-                    :style="`width: ${sunData.durations.day / 1440 * 100}%;`"
-                    title="Jour"
-                  /><div
-                    v-if="sunData.durations.afterSunset !== 0"
-                    style="background-color: #162d50"
-                    :style="`width: ${sunData.durations.afterSunset / 1440 * 100}%;`"
-                    title="Nuit"
-                  />
+                      v-if="sunData.durations.day !== 0"
+                      style="background-color: #ffcc00"
+                      :style="`width: ${sunData.durations.day / 1440 * 100}%;`"
+                      title="Jour"
+                    /><div
+                      v-if="sunData.durations.afterSunset !== 0"
+                      style="background-color: #162d50"
+                      :style="`width: ${sunData.durations.afterSunset / 1440 * 100}%;`"
+                      title="Nuit"
+                    />
                   </div>
                   <v-slider
                     v-model="minute"
