@@ -17,7 +17,7 @@
         v-model="localization"
         :default-latitude="data.latitude"
         :default-longitude="data.longitude"
-        :default-zoom="data.latitude !== null ? 13 : 4"
+        :default-zoom="data.latitude === null || data.latitude === undefined ? 4 : 13"
         style-map="outdoor"
         class="mb-3"
       />

@@ -22,7 +22,7 @@
         v-model="localization"
         :default-latitude="data.latitude"
         :default-longitude="data.longitude"
-        :default-zoom="isEditingForm() ? 10 : 4"
+        :default-zoom="data.latitude === null || data.latitude === undefined ? 4 : 13"
         style-map="street"
         class="mb-3"
       />
