@@ -226,21 +226,42 @@
           {{ latLng }}
           <qr-code-btn :value="latLng" />
         </div>
-        <div style="height: calc(100% - 75px); min-height: 400px">
-          <client-only>
-            <leaflet-map
-              :track-location="false"
-              :geo-jsons="geoJsons"
-              :zoom-force="16"
-              :latitude-force="parseFloat(crag.latitude)"
-              :longitude-force="parseFloat(crag.longitude)"
-              :scroll-wheel-zoom="true"
-              :clustered="false"
-              :options="{ rounded: true }"
-              map-style="outdoor"
-              :circle-properties="circleProperties"
-            />
-          </client-only>
+        <div style="height: calc(100% - 85px); min-height: 400px">
+          <v-img
+            class="rounded"
+            height="100%"
+            width="100%"
+            :src="crag.staticMapUrl"
+          >
+            <v-row
+              class="fill-height ma-0"
+              align="center"
+              justify="center"
+            >
+              <v-col class="text-center">
+                <div>
+                  <v-btn
+                    elevation="0"
+                    dark
+                    rounded
+                    large
+                    color="rgba(0,0,0,0.5)"
+                    :to="`/maps/crags?lat=${crag.latitude}&lng=${crag.longitude}&zoom=16&crag_id=${crag.id}`"
+                  >
+                    {{ $t('actions.seeMap') }}
+                  </v-btn>
+                </div>
+                <div>
+                  <small
+                    class="d-inline-block font-weight-bold px-4 px-3 rounded mt-1"
+                    style="background-color: rgba(255, 255, 255, 0.4)"
+                  >
+                    {{ $t('models.park.names') }} · {{ $t('models.rockBar.sunshine') }} · {{ $t('components.approach.names') }}
+                  </small>
+                </div>
+              </v-col>
+            </v-row>
+          </v-img>
         </div>
       </v-col>
     </v-row>
@@ -266,12 +287,10 @@ import { SessionConcern } from '@/concerns/SessionConcern'
 import QrCodeBtn from '@/components/forms/QrCodeBtn'
 import AlertList from '@/components/alerts/AlertList'
 import GoToCragModal from '@/components/crags/GoToCragModal'
-import CragApi from '~/services/oblyk-api/CragApi'
 import DescriptionLine from '~/components/ui/DescriptionLine'
 import Compass from '~/components/ui/Compass'
 import Seasons from '~/components/ui/Seasons'
 import ClimbingStyleCragChips from '~/components/crags/ClimbingStyleCragChips.vue'
-const LeafletMap = () => import('@/components/maps/LeafletMap')
 
 export default {
   name: 'CragInfo',
@@ -280,7 +299,6 @@ export default {
     Seasons,
     Compass,
     DescriptionLine,
-    LeafletMap,
     GoToCragModal,
     AlertList,
     QrCodeBtn
@@ -296,15 +314,6 @@ export default {
   data () {
     return {
       latLng: `${this.crag.latitude}, ${this.crag.longitude}`,
-      geoJsons: null,
-      circleProperties: {
-        radius: 50 * 1000,
-        center: [this.crag.latitude, this.crag.longitude],
-        color: '#43a047',
-        weight: 1,
-        fill: false,
-        dashArray: [10, 5]
-      },
 
       mdiInformation,
       mdiPlus,
@@ -318,20 +327,6 @@ export default {
       mdiMap,
       mdiWalk,
       mdiWeatherPouring
-    }
-  },
-
-  mounted () {
-    this.getGeoJson()
-  },
-
-  methods: {
-    getGeoJson () {
-      new CragApi(this.$axios, this.$auth)
-        .geoJsonAround(this.crag.id)
-        .then((resp) => {
-          this.geoJsons = { features: resp.data.features }
-        })
     }
   }
 }

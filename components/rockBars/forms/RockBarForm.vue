@@ -6,8 +6,9 @@
       item-text="name"
       item-value="id"
       :label="$t('models.rockBar.crag_sector_id')"
+      :hint="$t('components.crag.explainRockBarSector')"
+      persistent-hint
       outlined
-      hide-details
       clearable
     />
 

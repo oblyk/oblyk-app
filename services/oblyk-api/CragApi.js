@@ -49,6 +49,17 @@ class CragApi extends BaseApi {
     })
   }
 
+  additionalGeoJsonFeatures (cragIds) {
+    return this.axios.request({
+      method: 'GET',
+      url: `${this.baseUrl}/public/crags/additional_geo_json_features.json`,
+      headers: { HttpApiAccessToken: this.apiAccessToken },
+      params: {
+        ids: cragIds
+      }
+    })
+  }
+
   guideBooksAround (cragId) {
     return this.axios.request({
       method: 'GET',

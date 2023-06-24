@@ -8,6 +8,7 @@ import CragSector from '@/models/CragSector'
 import Park from '@/models/Park'
 import Approach from '@/models/Approach'
 import User from '@/models/User'
+import RockBar from '~/models/RockBar'
 
 export const MapPopupHelpers = {
   mixins: [DateHelpers, GradeMixin, SessionConcern],
@@ -15,6 +16,8 @@ export const MapPopupHelpers = {
     getHtmlPopup (type, data) {
       if (type === 'Crag') {
         return this.cragPopup(data)
+      } else if (type === 'RockBar') {
+        return this.rockBarPopup(data)
       } else if (type === 'Gym') {
         return this.gymPopup(data)
       } else if (type === 'PlaceOfSale') {
@@ -74,6 +77,72 @@ export const MapPopupHelpers = {
         </div>
       `
       popup.querySelector('button').addEventListener('click', () => { this.$router.push(crag.path) })
+
+      return popup
+    },
+
+    rockBarPopup (data) {
+      const rockBar = new RockBar({ attributes: data })
+
+      let linePart = ''
+      let routeCount = 0
+      let minText = 0
+      let maxText = 0
+      if (rockBar.crag_sector && rockBar.crag_sector.routes_figures.count > 0) {
+        routeCount = rockBar.crag_sector.routes_figures.count
+        minText = rockBar.crag_sector.routes_figures.grade.min_text
+        maxText = rockBar.crag_sector.routes_figures.grade.max_text
+      } else if (rockBar.crag.routes_figures.route_count > 0) {
+        routeCount = rockBar.crag.routes_figures.route_count
+        minText = rockBar.crag.routes_figures.grade.min_text
+        maxText = rockBar.crag.routes_figures.grade.max_text
+      }
+      if (routeCount > 0) {
+        linePart = `
+            <tr>
+              <th>${this.$t('components.map.lines')}</th>
+              <td>
+                ${routeCount} ${this.$t('components.map.lines')},
+                ${this.$t('components.map.rangingFrom')} ${minText || '?'}
+                ${this.$t('components.map.to')} ${maxText || '?'}
+              </td>
+            </tr>
+          `
+      }
+
+      let banner = ''
+      if (rockBar.crag_sector && rockBar.crag_sector.photo?.thumbnail_url) {
+        banner = `<div class="map-popup-cover" style="background-image: url(${rockBar.CragSector.thumbnailCoverUrl})"></div>`
+      }
+      if (!rockBar.crag_sector && rockBar.crag.photo?.thumbnail_url) {
+        banner = `<div class="map-popup-cover" style="background-image: url(${rockBar.Crag.thumbnailCoverUrl})"></div>`
+      }
+
+      let type = ''
+      if (rockBar.crag_sector) {
+        type = `${this.$t('models.rockBar.crag_sector_id')} : `
+      }
+
+      const popup = document.createElement('div')
+      popup.innerHTML = `
+        ${banner}
+        <table class="map-popup-information-table">
+          <tr>
+            <td colspan="2" class="text-h6 pl-1 pr-1">${type}${rockBar.crag_sector?.name || rockBar.crag.name}</td>
+          </tr>
+          ${linePart}
+        </table>
+        <div class="map-popup-link-area">
+          <button>${this.$t('actions.see')}</button>
+        </div>
+      `
+      popup.querySelector('button').addEventListener('click', () => {
+        if (rockBar.crag_sector) {
+          this.$router.push(rockBar.CragSector.path)
+        } else {
+          this.$router.push(rockBar.Crag.path)
+        }
+      })
 
       return popup
     },

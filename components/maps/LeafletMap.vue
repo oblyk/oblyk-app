@@ -5,11 +5,37 @@
       :class="options.rounded ? 'rounded-leaflet' : ''"
     >
       <div
-        v-if="magicCard || searchPlace"
+        v-if="magicCard || searchPlace || loadingCrag || crag"
         class="leaflet-map-search-card pa-2"
       >
+        <v-sheet
+          v-if="crag"
+          class="rounded"
+        >
+          <v-list-item>
+            <v-list-item-icon class="mr-3">
+              <v-btn
+                :to="crag.path"
+                large
+                icon
+              >
+                <v-icon>
+                  {{ mdiArrowLeft }}
+                </v-icon>
+              </v-btn>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>
+                {{ crag.name }}
+              </v-list-item-title>
+              <v-list-item-subtitle>
+                {{ crag.city }}, {{ crag.region }} ({{ crag.country }})
+              </v-list-item-subtitle>
+            </v-list-item-content>
+          </v-list-item>
+        </v-sheet>
         <search-place-input
-          v-if="searchPlace"
+          v-if="searchPlace && !crag"
           class="leaflet-search-in-map mb-1"
           :callback="goToPlace"
           :solo-style="true"
@@ -348,9 +374,10 @@
           worldCopyJump: true,
           scrollWheelZoom: scrollWheelZoom
         }"
-        @click="clickOnMap"
-        @move="savePosition"
-        @zoom="saveZoom"
+        @click="onClickMap"
+        @move="onMoveMap"
+        @moveend="getBoundsFeatures"
+        @zoom="onZoomMap"
       >
         <!-- Zoom Control -->
         <l-control-zoom position="topright" />
@@ -395,6 +422,13 @@
         <l-geo-json
           v-if="!clustered"
           :geojson="geoJsons"
+          :options="geoJsonOptions"
+        />
+
+        <!-- Additional Geo json features-->
+        <l-geo-json
+          v-if="zoom >= 14"
+          :geojson="additionalGeoJson"
           :options="geoJsonOptions"
         />
 
@@ -450,8 +484,18 @@
         <l-polyline
           v-if="sunLocation && magicPlace && showSunRay"
           :lat-lngs="[[magicPlace.lat, magicPlace.lng], [sunLocation.lat, sunLocation.lng]]"
-          :options="{ color: '#ffcc00', weight: 5, dashArray: [10, 10]}"
+          :options="{ color: '#ffcc00', weight: 5, dashArray: [10, 10] }"
         />
+
+        <!-- Shadow -->
+        <template v-for="(sunnyPart, sunnyPartIndex) in sunnyPartOfRocks">
+          <l-polyline
+            v-if="sunData != null && ((!sunnyPart.useOr && (sunData.alpha >= sunnyPart.minAlpha && sunData.alpha <= sunnyPart.maxAlpha)) || (sunnyPart.useOr && (sunData.alpha <= sunnyPart.minAlpha || sunData.alpha >= sunnyPart.maxAlpha))) && minute >= sunTimes.sunrise && minute <= sunTimes.sunset"
+            :key="`sunny-part-index-${sunnyPartIndex}`"
+            :lat-lngs="sunnyPart.latLngs"
+            :options="{ color: '#ffcc00', weight: 5 }"
+          />
+        </template>
       </l-map>
     </div>
   </client-only>
@@ -468,9 +512,11 @@ import {
   mdiChevronUp,
   mdiChevronDown,
   mdiClose,
-  mdiBookshelf
+  mdiBookshelf,
+  mdiArrowLeft
 } from '@mdi/js'
 import L, { icon } from 'leaflet'
+import 'leaflet-textpath/leaflet.textpath'
 import 'leaflet/dist/leaflet.css'
 import SunCalc from 'suncalc'
 import { LMap, LTileLayer, LControlZoom, LGeoJson, LControl, LCircle, LMarker, LTooltip, LPolyline } from 'vue2-leaflet'
@@ -488,6 +534,7 @@ import ParkApi from '~/services/oblyk-api/ParkApi'
 import ApproachApi from '~/services/oblyk-api/ApproachApi'
 import UserApi from '~/services/oblyk-api/UserApi'
 import OsmNominatim from '~/services/osm-nominatim'
+import RockBarApi from '~/services/oblyk-api/RockBarApi'
 const SearchPlaceInput = () => import('~/components/forms/SearchPlaceInput.vue')
 
 export default {
@@ -564,6 +611,22 @@ export default {
       type: Boolean,
       default: false
     },
+    cragAddFetching: {
+      type: Boolean,
+      default: false
+    },
+    loadAddFeatures: {
+      type: Boolean,
+      default: null
+    },
+    crag: {
+      type: Object,
+      default: null
+    },
+    loadingCrag: {
+      type: Boolean,
+      default: false
+    },
     options: {
       type: Object,
       required: false,
@@ -583,6 +646,9 @@ export default {
       map: null,
       showLayersSelector: false,
       layerIndex: 0,
+      additionalGeoJson: { features: [] },
+      sunnyRocksGeoJson: { features: [] },
+      fetchCragIds: [],
       zoom: this.zoomForce || parseFloat(localStorage.getItem('map-zoom') || '10'),
       center: L.latLng(
         this.latitudeForce || parseFloat(localStorage.getItem('map-latitude') || '45'),
@@ -622,6 +688,8 @@ export default {
           iconUrl: '/markers/sunset-marker.png', iconSize: [34, 34], iconAnchor: [17, 17], popupAnchor: [0, -17]
         }
       ),
+
+      sunnyPartOfRocks: [],
       magicPlace: null,
       magicPlaceData: null,
       loadingMagicPlace: null,
@@ -644,7 +712,8 @@ export default {
       mdiChevronUp,
       mdiChevronDown,
       mdiClose,
-      mdiBookshelf
+      mdiBookshelf,
+      mdiArrowLeft
     }
   },
 
@@ -666,12 +735,12 @@ export default {
         return [
           {
             name: 'Mapbox Outdoor',
-            url: 'https://api.mapbox.com/styles/v1/clucien/ckingo0rf3thf17qovbo16s3b/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiY2x1Y2llbiIsImEiOiJjaWlkYWhuMGswMHRxdmxtMWNyeWpjZGk0In0.-bHAKhr-aUjboWKoE0B-WA',
+            url: `https://api.mapbox.com/styles/v1/${process.env.VUE_APP_MAPBOX_TERRAIN_STYLE}/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.VUE_APP_MAPBOX_TOKEN}`,
             attribution: '&copy; <a href="https://www.mapbox.com/about/maps/">Mapbox</a> &copy; <a href="https://www.openstreetmap.org/about/">Open Street Map</a> contributors'
           },
           {
             name: 'Eseri Satelite',
-            url: 'https://api.mapbox.com/styles/v1/clucien/ckjulgum0007217plefa1328h/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiY2x1Y2llbiIsImEiOiJjaWlkYWhuMGswMHRxdmxtMWNyeWpjZGk0In0.-bHAKhr-aUjboWKoE0B-WA',
+            url: `https://api.mapbox.com/styles/v1/${process.env.VUE_APP_MAPBOX_SATELLITE_STYLE}/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.VUE_APP_MAPBOX_TOKEN}`,
             attribution: '&copy; <a href="https://www.mapbox.com/about/maps/">Mapbox</a> &copy; <a href="https://www.openstreetmap.org/about/">Open Street Map</a> contributors'
           },
           {
@@ -804,6 +873,12 @@ export default {
       const hour = Math.trunc(this.minute / 60)
       const minute = this.minute - hour * 60
       this.dateTimeModalTime = `${hour < 10 ? `0${hour}` : hour}:${minute < 10 ? `0${minute}` : minute}`
+    },
+
+    loadAddFeatures () {
+      if (this.loadAddFeatures) {
+        this.getBoundsFeatures()
+      }
     }
   },
 
@@ -835,10 +910,13 @@ export default {
     onEachFeatureFunction () {
       return (feature, layer) => {
         if (feature.properties.type === 'RockBar') {
+          layer.options.bubblingMouseEvents = false
           layer.options.color = '#616161'
           layer.options.weight = 7
+          layer.setText('‣ ', { offset: -1, repeat: true, attributes: { fill: '#616161', 'font-size': '22px', rotate: 90 }, below: true })
         }
         if (feature.properties.type === 'Approach') {
+          layer.options.bubblingMouseEvents = false
           layer.options.color = '#795548'
           layer.options.dashArray = [10, 10]
           layer.options.weight = 6
@@ -865,13 +943,22 @@ export default {
       }
     },
 
-    clickOnMap (event) {
+    onClickMap (event) {
       if (this.magicCard) {
         this.magicPlace = { lat: event.latlng.lat, lng: event.latlng.lng }
         this.showMagicActions = true
         this.addressDetail()
       }
       this.hideOpensControl()
+    },
+
+    onMoveMap () {
+      this.zoom = this.$refs.leafletMap.mapObject.getZoom()
+      this.savePosition()
+    },
+
+    onZoomMap () {
+      this.saveZoom()
     },
 
     hideOpensControl () {
@@ -946,6 +1033,24 @@ export default {
         })
     },
 
+    getBoundsFeatures () {
+      const zoom = this.$refs.leafletMap.mapObject.getZoom()
+      if (zoom < 14 || !this.cragAddFetching) { return false }
+
+      const bounds = this.$refs.leafletMap.mapObject.getBounds()
+      const cragsIds = []
+      this.$refs.leafletMap.mapObject.eachLayer(function (layer) {
+        if (layer instanceof L.Marker) {
+          if (bounds.contains(layer.getLatLng())) {
+            if (layer.feature?.properties?.type === 'Crag') {
+              cragsIds.push(layer.feature.properties.id)
+            }
+          }
+        }
+      })
+      this.getAdditionalFeatures(cragsIds)
+    },
+
     getData (properties) {
       let apiService = null
       let primaryId = null
@@ -961,6 +1066,10 @@ export default {
       } else if (properties.type === 'CragSector') {
         primaryId = properties.id
         apiService = new CragSectorApi(this.$axios, this.$auth)
+      } else if (properties.type === 'RockBar') {
+        primaryId = properties.crag_id
+        secondaryId = properties.id
+        apiService = new RockBarApi(this.$axios, this.$auth)
       } else if (properties.type === 'PlaceOfSale') {
         primaryId = properties.guide_book_paper_id
         secondaryId = properties.id
@@ -991,6 +1100,54 @@ export default {
             reject(err)
           })
       })
+    },
+
+    getAdditionalFeatures (cragIds) {
+      const unfetchCragIds = cragIds.filter(cragId => !this.fetchCragIds.includes(cragId))
+      this.fetchCragIds = this.fetchCragIds.concat(unfetchCragIds)
+      if (unfetchCragIds.length === 0) { return false }
+
+      new CragApi(this.$axios, this.$auth)
+        .additionalGeoJsonFeatures(unfetchCragIds)
+        .then((resp) => {
+          this.additionalGeoJson.features = this.additionalGeoJson.features.concat(resp.data.features)
+          this.createSunnyRockPart()
+        })
+    },
+
+    createSunnyRockPart () {
+      this.sunnyPartOfRocks = []
+      for (const feature of this.additionalGeoJson.features) {
+        if (feature.properties?.type === 'RockBar') {
+          const coordinates = structuredClone(feature.geometry.coordinates)
+          for (let i = 0; i < coordinates.length - 1; i++) {
+            const latDiff = coordinates[i][1] - coordinates[i + 1][1]
+            const lngDiff = coordinates[i + 1][0] - coordinates[i][0]
+            const alpha = Math.atan(latDiff / lngDiff) * (180 / Math.PI)
+            const minAlpha = -90 + alpha
+            const maxAlpha = 90 + alpha
+            const useOr = (latDiff > 0 && lngDiff < 0 && alpha < 0) || (latDiff < 0 && lngDiff < 0 && alpha > 0)
+
+            this.sunnyPartOfRocks.push(
+              {
+                useOr,
+                minAlpha,
+                maxAlpha,
+                latLngs: [
+                  [
+                    coordinates[i][1],
+                    coordinates[i][0]
+                  ],
+                  [
+                    coordinates[i + 1][1],
+                    coordinates[i + 1][0]
+                  ]
+                ]
+              }
+            )
+          }
+        }
+      }
     },
 
     goToPlace (place, zoom = 15) {
@@ -1041,6 +1198,7 @@ export default {
     }
   }
   .leaflet-map-search-card {
+    max-width: calc(100vw - 50px);
     z-index: 7;
     position: absolute;
     top: 5px;

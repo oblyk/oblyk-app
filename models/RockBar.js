@@ -1,5 +1,7 @@
 import ActiveData from '@/models/ActiveData'
 import RockBarApi from '~/services/oblyk-api/RockBarApi'
+import Crag from '~/models/Crag'
+import CragSector from '~/models/CragSector'
 
 export default class RockBar extends ActiveData {
   toJSON () {
@@ -12,5 +14,13 @@ export default class RockBar extends ActiveData {
 
   get className () {
     return 'RockBar'
+  }
+
+  get Crag () {
+    return new Crag({ attributes: this.crag })
+  }
+
+  get CragSector () {
+    return new CragSector({ attributes: this.crag_sector })
   }
 }

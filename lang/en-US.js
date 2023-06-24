@@ -47,6 +47,7 @@ export default {
     editPicture: 'Edit picture',
     defineThumbnail: 'Define thumbnail',
     upload: 'Upload',
+    reverse: 'Reverse',
     dismountRoute: 'Dismount route',
     dismountAllRoutes: 'Dismount all routes',
     createAndPicture: 'Create + Picture',
@@ -59,6 +60,7 @@ export default {
     addMember: 'Add a member',
     addOpener: 'Add a opener',
     see: 'See',
+    seeMap: 'See map',
     seeOnTheMap: 'See on the map',
     seeEmail: 'See email',
     myAvatar: 'My avatar',
@@ -830,6 +832,8 @@ export default {
       explainPark: 'Click on the map at the car park location. Or move the pink marker.',
       explainApproach: 'Click on the map at the various points where the approach walk passes',
       explainRockBar: 'Click on the map at the various points to trace the rock bar',
+      explainRockBarSector: 'You can assign the rock bar to a particular crag sector, or leave it empty to represent the crag in general.',
+      cragFoot: 'Crag foot',
       globalLocation: 'Global location',
       tabs: {
         info: 'Info',
@@ -956,6 +960,7 @@ export default {
       }
     },
     approach: {
+      names: 'Approaches',
       cardTitle: 'Approach walk',
       newPolylineExplain: 'Click at each point where the approach step passes from the parking lot.',
       editPolylineExplain: 'Move the white squares to change the path of the approach step',
@@ -1903,6 +1908,7 @@ export default {
       description: 'Description'
     },
     rockBar: {
+      sunshine: 'Sunshine',
       title: 'Rock bar',
       crag_sector_id: 'Sector'
     },
@@ -1962,6 +1968,7 @@ export default {
       institutional: 'Public institution / Open source project'
     },
     park: {
+      names: 'Parks',
       title: 'Car park',
       description: 'More information about this car park',
       crag: 'Crag'

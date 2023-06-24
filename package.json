@@ -23,6 +23,7 @@
     "chart.js": "^2.9.4",
     "core-js": "^3.15.1",
     "leaflet": "^1.7.1",
+    "leaflet-textpath": "^1.2.3",
     "marked": "^4.0.10",
     "npm2": "^2.0.0",
     "nuxt": "^2.15.7",

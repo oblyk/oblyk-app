@@ -8,12 +8,17 @@
       :zoom-force="zoom"
       :magic-card="true"
       :search-place="true"
+      :crag-add-fetching="true"
+      :load-add-features="loadAddFeatures"
+      :loading-crag="loadingCrag"
+      :crag="crag"
     />
   </client-only>
 </template>
 
 <script>
 import CragApi from '@/services/oblyk-api/CragApi'
+import Crag from '~/models/Crag'
 const LeafletMap = () => import('@/components/maps/LeafletMap')
 
 export default {
@@ -25,7 +30,11 @@ export default {
       geoJsons: null,
       latitude: null,
       longitude: null,
-      zoom: null
+      zoom: null,
+      loadAddFeatures: false,
+      cragId: null,
+      crag: null,
+      loadingCrag: false
     }
   },
 
@@ -59,7 +68,11 @@ export default {
     const urlParams = new URLSearchParams(window.location.search)
     this.latitude = urlParams.get('lat')
     this.longitude = urlParams.get('lng')
-    this.zoom = this.latitude !== null ? 15 : null
+    this.cragId = urlParams.get('crag_id')
+    if (urlParams.get('lat')) { this.zoom = parseInt(urlParams.get('zoom')) }
+    if (this.cragId) {
+      this.getCrag()
+    }
   },
 
   methods: {
@@ -68,8 +81,21 @@ export default {
         .geoJson()
         .then((resp) => {
           this.geoJsons = { features: resp.data.features }
+          setTimeout(() => { this.loadAddFeatures = true }, 1000)
         })
         .finally(() => {})
+    },
+
+    getCrag () {
+      this.loadingCrag = true
+      new CragApi(this.$axios, this.$auth)
+        .find(this.cragId)
+        .then((resp) => {
+          this.crag = new Crag({ attributes: resp.data })
+        })
+        .finally(() => {
+          this.loadingCrag = false
+        })
     }
   }
 }

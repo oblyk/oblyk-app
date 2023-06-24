@@ -248,6 +248,28 @@
               v-if="editablePolylineLocated && !rockBarLoading"
               class="mt-4 mb-2"
             >
+              <v-row class="mb-1">
+                <v-col cols="5" class="text-center">
+                  <div class="pt-1">
+                    <v-img src="/images/rock-bar-orientation-helper.png" contain height="15px" width="100%" />
+                  </div>
+                  <small class="text--disabled">
+                    {{ $t('components.crag.cragFoot') }}
+                  </small>
+                </v-col>
+                <v-col class="text-right">
+                  <v-btn
+                    outlined
+                    text
+                    @click="reversePolyline"
+                  >
+                    <v-icon left size="25">
+                      {{ oblykReverseRockBar }}
+                    </v-icon>
+                    {{ $t('actions.reverse') }}
+                  </v-btn>
+                </v-col>
+              </v-row>
               <rock-bar-from
                 :submit-methode="submitMethod"
                 :crag="crag"
@@ -322,9 +344,11 @@ import {
   mdiChevronDown
 } from '@mdi/js'
 import L from 'leaflet'
+import 'leaflet-textpath/leaflet.textpath'
 import 'leaflet/dist/leaflet.css'
 import { LControl, LControlZoom, LGeoJson, LTileLayer } from 'vue2-leaflet'
 import { EditableMap, EditablePolyline } from 'vue2-leaflet-editable'
+import { oblykReverseRockBar } from '~/assets/oblyk-icons'
 import LeafletLayerSelector from '~/components/maps/leafletControls/LeafletLayerSelector.vue'
 import CragApi from '~/services/oblyk-api/CragApi'
 import { MapMarkerHelpers } from '~/mixins/MapMarkerHelpers'
@@ -379,14 +403,14 @@ export default {
       currentEditableObject: null,
       layers: [
         {
-          name: 'Eseri Topo',
-          url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}',
-          attribution: '&copy; <a href="https://www.esrifrance.fr/">Esri</a> &copy; <a href="https://www.openstreetmap.org/about/">Open Street Map</a> contributors'
+          name: 'Mapbox Outdoor',
+          url: `https://api.mapbox.com/styles/v1/${process.env.VUE_APP_MAPBOX_TERRAIN_STYLE}/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.VUE_APP_MAPBOX_TOKEN}`,
+          attribution: '&copy; <a href="https://www.mapbox.com/about/maps/">Mapbox</a> &copy; <a href="https://www.openstreetmap.org/about/">Open Street Map</a> contributors'
         },
         {
           name: 'Eseri Satelite',
-          url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-          attribution: '&copy; <a href="https://www.esrifrance.fr/">Esri</a> &copy; <a href="https://www.openstreetmap.org/about/">Open Street Map</a> contributors'
+          url: `https://api.mapbox.com/styles/v1/${process.env.VUE_APP_MAPBOX_SATELLITE_STYLE}/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.VUE_APP_MAPBOX_TOKEN}`,
+          attribution: '&copy; <a href="https://www.mapbox.com/about/maps/">Mapbox</a> &copy; <a href="https://www.openstreetmap.org/about/">Open Street Map</a> contributors'
         },
         {
           name: 'CyclOSM',
@@ -424,7 +448,8 @@ export default {
       mdiClose,
       mdiArrowLeft,
       mdiChevronUp,
-      mdiChevronDown
+      mdiChevronDown,
+      oblykReverseRockBar
     }
   },
 
@@ -509,6 +534,7 @@ export default {
         if (feature.properties.type === 'RockBar') {
           layer.options.color = '#616161'
           layer.options.weight = 7
+          layer.setText('‣ ', { offset: -1, repeat: true, attributes: { fill: '#616161', 'font-size': '22px', rotate: 90 }, below: true })
         }
         if (feature.properties.type === 'Approach') {
           layer.options.color = '#795548'
@@ -623,6 +649,9 @@ export default {
       this.submitMethod = 'post'
       this.falseModelLoader()
       this.editableMarker = this.map.editTools.startPolyline(null, { color: 'rgb(255, 85, 153)' })
+      if (type === 'RockBar') {
+        this.editableMarker.setText('‣ ', { offset: -1, repeat: true, attributes: { fill: 'rgb(255, 85, 153)', 'font-size': '22px', rotate: 90 }, below: true })
+      }
       this.editableMarker.on('editable:drawing:commit', () => { this.editablePolylineMove(this.editableMarker) })
       this.editableMarker.on('editable:drawing:clicked', () => { this.editablePolylineMove(this.editableMarker) })
     },
@@ -641,6 +670,7 @@ export default {
       this.startEdit = true
       this.editType = feature.properties.type
       polyline.on('editable:editing', () => { this.editablePolylineMove(polyline) })
+      this.editableMarker = polyline
     },
 
     editablePolylineMove (polyline) {
@@ -648,6 +678,16 @@ export default {
         this.newPolyline = this.latLgnToArray([polyline._latlngs])
         this.editablePolylineLocated = true
       }
+    },
+
+    reversePolyline () {
+      this.editableMarker.editor.disable()
+      this.editableMarker.setLatLngs(this.editableMarker.getLatLngs().reverse())
+      this.editableMarker.enableEdit()
+      if (this.submitMethod === 'post') {
+        this.editableMarker.editor.continueBackward()
+      }
+      this.editablePolylineMove(this.editableMarker)
     },
 
     // UPDATE CRAG LOCATION

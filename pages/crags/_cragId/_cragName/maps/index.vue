@@ -68,21 +68,41 @@
         </v-btn>
       </v-card-title>
       <v-card-text class="full-height">
-        <client-only>
-          <leaflet-map
-            class="crag-map"
-            :track-location="false"
-            :geo-jsons="geoJsons"
-            :zoom-force="16"
-            :latitude-force="parseFloat(crag.latitude)"
-            :longitude-force="parseFloat(crag.longitude)"
-            :scroll-wheel-zoom="true"
-            :clustered="false"
-            map-style="outdoor"
-            :options="{ rounded: true }"
-            :circle-properties="circleProperties"
-          />
-        </client-only>
+        <v-img
+          class="rounded"
+          height="100%"
+          width="100%"
+          :src="crag.staticMapUrl"
+        >
+          <v-row
+            class="fill-height ma-0"
+            align="center"
+            justify="center"
+          >
+            <v-col class="text-center">
+              <div>
+                <v-btn
+                  elevation="0"
+                  dark
+                  rounded
+                  large
+                  color="rgba(0,0,0,0.5)"
+                  :to="`/maps/crags?lat=${crag.latitude}&lng=${crag.longitude}&zoom=16&crag_id=${crag.id}`"
+                >
+                  {{ $t('actions.seeMap') }}
+                </v-btn>
+              </div>
+              <div>
+                <small
+                  class="d-inline-block font-weight-bold px-4 px-3 rounded mt-1"
+                  style="background-color: rgba(255, 255, 255, 0.4)"
+                >
+                  {{ $t('models.park.names') }} · {{ $t('models.rockBar.sunshine') }} · {{ $t('components.approach.names') }}
+                </small>
+              </div>
+            </v-col>
+          </v-row>
+        </v-img>
       </v-card-text>
     </v-card>
   </div>
@@ -91,15 +111,13 @@
 <script>
 import { mdiParking, mdiWalk, mdiMap } from '@mdi/js'
 import { SessionConcern } from '~/concerns/SessionConcern'
-import CragApi from '~/services/oblyk-api/CragApi'
 import ApproachApi from '~/services/oblyk-api/ApproachApi'
 import Approach from '~/models/Approach'
 import ApproachCard from '~/components/approaches/ApproachCard.vue'
-const LeafletMap = () => import('~/components/maps/LeafletMap.vue')
 
 export default {
   name: 'CragMapDetailsView',
-  components: { ApproachCard, LeafletMap },
+  components: { ApproachCard },
   mixins: [SessionConcern],
   props: {
     crag: {
@@ -168,33 +186,11 @@ export default {
     }
   },
 
-  computed: {
-    circleProperties () {
-      return {
-        radius: 50000,
-        center: [this.crag.latitude, this.crag.longitude],
-        color: '#43a047',
-        weight: 1,
-        fill: false,
-        dashArray: [10, 5]
-      }
-    }
-  },
-
   mounted () {
-    this.getGeoJson()
     this.getApproaches()
   },
 
   methods: {
-    getGeoJson () {
-      new CragApi(this.$axios, this.$auth)
-        .geoJsonAround(this.crag.id)
-        .then((resp) => {
-          this.geoJsons = { features: resp.data.features }
-        })
-    },
-
     getApproaches () {
       new ApproachApi(this.$axios, this.$auth)
         .all(this.crag.id)
@@ -207,10 +203,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.crag-map {
-  border-radius: 5px;
-  height: calc(100vh - 250px);
-}
-</style>

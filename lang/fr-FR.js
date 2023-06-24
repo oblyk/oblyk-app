@@ -47,6 +47,7 @@ export default {
     editPicture: 'Modifier la photo',
     defineThumbnail: 'Définir la miniature',
     upload: 'Uploader',
+    reverse: 'Retourner',
     dismountRoute: 'Démonter la ligne',
     dismountAllRoutes: 'Démonter toutes les lignes',
     createAndPicture: 'Créer + Photo',
@@ -59,6 +60,7 @@ export default {
     addMember: 'Ajouter un membre',
     addOpener: 'Ajouter un·e ouvreur·euse',
     see: 'Voir',
+    seeMap: 'Voir la carte',
     seeOnTheMap: 'Voir sur la carte',
     seeEmail: "Voir l'email",
     myAvatar: 'Mon avatar',
@@ -829,7 +831,9 @@ export default {
       explainGlobalLocation: "Fait glisser le marker pour modifier l'emplacement général de la falaise.",
       explainPark: "Cliquer sur la carte à l'emplacement du parking. Ou déplacez le marqueur rose.",
       explainApproach: "Cliquer sur la carte aux différents points où passe la marche d'approche",
-      explainRockBar: 'Cliquer sur la carte aux différents points pour tracer la barre rocheuse',
+      explainRockBar: 'Cliquer sur la carte aux différents points pour tracer la barre rocheuse.',
+      explainRockBarSector: 'Vous pouvez affecter la barre rocheuse à un secteur en particulier, ou laisser vide pour représenter la falaise en général.',
+      cragFoot: 'Pied de falaise',
       globalLocation: 'Emplacement général',
       tabs: {
         info: 'Info',
@@ -956,6 +960,7 @@ export default {
       }
     },
     approach: {
+      names: 'Approches',
       cardTitle: "Marche d'approches",
       newPolylineExplain: 'Cliquer à chaque endroit où passe la marche d’approche en partant du parkings',
       editPolylineExplain: "Déplacer les carrés blanc pour modifier le tracé de la marche d'approche",
@@ -1903,6 +1908,7 @@ export default {
       description: 'Description'
     },
     rockBar: {
+      sunshine: 'Ensoleillement',
       title: 'Barre rocheuse',
       crag_sector_id: 'Secteur'
     },
@@ -1962,6 +1968,7 @@ export default {
       institutional: 'Institution public / Projet open source'
     },
     park: {
+      names: 'Parkings',
       title: 'Parking',
       description: 'Infos complémentaires sur ce parking',
       crag: 'Falaise'

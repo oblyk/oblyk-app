@@ -47,6 +47,10 @@ export default class Crag extends ActiveData {
     }
   }
 
+  get staticMapUrl () {
+    return `${process.env.VUE_APP_OBLYK_API_URL}${this.static_map.url}`
+  }
+
   get climbingTypes () {
     const list = []
     if (this.sport_climbing) { list.push('sport_climbing') }

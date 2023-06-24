@@ -1,26 +1,44 @@
 <template>
-  <client-only>
-    <leaflet-map
-      v-if="cragSector"
-      class="crag-sector-map"
-      :track-location="false"
-      :geo-jsons="geoJsons"
-      :zoom-force="16"
-      :latitude-force="parseFloat(cragSector.latitude || cragSector.Crag.latitude)"
-      :longitude-force="parseFloat(cragSector.longitude || cragSector.Crag.longitude)"
-      :scroll-wheel-zoom="false"
-      map-style="outdoor"
-    />
-  </client-only>
+  <v-img
+    class="rounded"
+    height="100%"
+    width="100%"
+    :src="cragSector.Crag.staticMapUrl"
+  >
+    <v-row
+      class="fill-height ma-0"
+      align="center"
+      justify="center"
+    >
+      <v-col class="text-center">
+        <div>
+          <v-btn
+            elevation="0"
+            dark
+            rounded
+            large
+            color="rgba(0,0,0,0.5)"
+            :to="`/maps/crags?lat=${cragSector.crag.latitude}&lng=${cragSector.crag.longitude}&zoom=16&crag_id=${cragSector.crag.id}&crag_sector_id=${cragSector.id}`"
+          >
+            {{ $t('actions.seeMap') }}
+          </v-btn>
+        </div>
+        <div>
+          <small
+            class="d-inline-block font-weight-bold px-4 px-3 rounded mt-1"
+            style="background-color: rgba(255, 255, 255, 0.4)"
+          >
+            {{ $t('models.park.names') }} · {{ $t('models.rockBar.sunshine') }} · {{ $t('components.approach.names') }}
+          </small>
+        </div>
+      </v-col>
+    </v-row>
+  </v-img>
 </template>
 
 <script>
-import CragApi from '~/services/oblyk-api/CragApi'
-const LeafletMap = () => import('@/components/maps/LeafletMap')
-
 export default {
   name: 'CragSectorMapView',
-  components: { LeafletMap },
   props: {
     cragSector: {
       type: Object,
@@ -101,20 +119,6 @@ export default {
         return `${process.env.VUE_APP_OBLYK_APP_URL}${this.cragSector.path}/maps`
       }
       return ''
-    }
-  },
-
-  mounted () {
-    this.getGeoJson()
-  },
-
-  methods: {
-    getGeoJson () {
-      new CragApi(this.$axios, this.$auth)
-        .geoJsonAround(this.cragSector.Crag.id)
-        .then((resp) => {
-          this.geoJsons = { features: resp.data.features }
-        })
     }
   }
 }
