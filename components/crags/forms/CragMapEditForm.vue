@@ -533,7 +533,7 @@ export default {
         if (feature.properties.type === 'RockBar') {
           layer.options.color = '#616161'
           layer.options.weight = 7
-          layer.setText('‣ ', { offset: -1, repeat: true, attributes: { fill: '#616161', 'font-size': '22px', rotate: 90 }, below: true })
+          layer.setText('♦ ', { offset: 10, repeat: true, attributes: { fill: '#616161', 'font-size': '22px' }, below: true })
         }
         if (feature.properties.type === 'Approach') {
           layer.options.color = '#795548'
@@ -647,9 +647,9 @@ export default {
       this.editType = type
       this.submitMethod = 'post'
       this.falseModelLoader()
-      this.editableMarker = this.map.editTools.startPolyline(null, { color: 'rgb(255, 85, 153)' })
+      this.editableMarker = this.map.editTools.startPolyline(null, { color: 'rgb(255, 85, 153)', weight: 4 })
       if (type === 'RockBar') {
-        this.editableMarker.setText('‣ ', { offset: -1, repeat: true, attributes: { fill: 'rgb(255, 85, 153)', 'font-size': '22px', rotate: 90 }, below: true })
+        this.editableMarker.setText('♦ ', { offset: 7, repeat: true, attributes: { fill: 'rgb(255, 85, 153)', 'font-size': '15px' }, below: true })
       }
       this.editableMarker.on('editable:drawing:commit', () => { this.editablePolylineMove(this.editableMarker) })
       this.editableMarker.on('editable:drawing:clicked', () => { this.editablePolylineMove(this.editableMarker) })
