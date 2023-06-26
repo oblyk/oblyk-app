@@ -3,7 +3,6 @@
     <v-card
       :loading="loadingGeoJson"
       class="crag-edit-map-card"
-      width="400"
     >
       <v-list-item>
         <v-list-item-icon class="mr-3">
@@ -771,7 +770,7 @@ export default {
     top: 10px;
     left: 10px;
     width: 450px;
-    max-width: calc(100% - 20px);
+    max-width: calc(100% - 60px);
   }
   .collapse-card {
     transition: background-color 0.3s;
