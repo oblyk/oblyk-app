@@ -9,8 +9,8 @@
         class="leaflet-map-search-card pa-2"
       >
         <v-sheet
-          v-if="crag"
-          class="rounded"
+          v-if="crag && !sunController"
+          class="rounded mb-2"
         >
           <v-list-item>
             <v-list-item-icon class="mr-3">
@@ -35,7 +35,7 @@
           </v-list-item>
         </v-sheet>
         <search-place-input
-          v-if="searchPlace && !crag"
+          v-if="searchPlace && !crag && !sunController"
           class="leaflet-search-in-map mb-1"
           :callback="goToPlace"
           :solo-style="true"
@@ -51,7 +51,7 @@
           <v-card
             v-if="magicPlace"
             :loading="loadingMagicPlace"
-            class="mt-2 border"
+            class="border"
           >
             <div v-if="!sunController">
               <v-list-item>
@@ -257,38 +257,8 @@
                     </v-sheet>
                   </v-col>
                 </v-row>
-                <div class="slide-and-times-bar">
-                  <div class="times-bar">
-                    <div
-                      v-if="sunData.durations.beforeSunrise !== 0"
-                      style="background-color: #162d50"
-                      :style="`width: ${sunData.durations.beforeSunrise / 1440 * 100}%;`"
-                      title="Nuit"
-                    /><div
-                      v-if="sunData.durations.day !== 0"
-                      style="background-color: #ffcc00"
-                      :style="`width: ${sunData.durations.day / 1440 * 100}%;`"
-                      title="Jour"
-                    /><div
-                      v-if="sunData.durations.afterSunset !== 0"
-                      style="background-color: #162d50"
-                      :style="`width: ${sunData.durations.afterSunset / 1440 * 100}%;`"
-                      title="Nuit"
-                    />
-                  </div>
-                  <v-slider
-                    v-model="minute"
-                    class="hours-slide"
-                    color="rgba(255,255,255,0)"
-                    track-color="rgba(255,255,255,0)"
-                    thumb-color="white"
-                    :max="1440"
-                    :min="0"
-                    hide-details
-                  />
-                </div>
                 <v-row
-                  class="mt-1"
+                  class="mt-2"
                   no-gutters
                 >
                   <v-col class="mr-1">
@@ -297,9 +267,9 @@
                       class="border activable-v-sheet text-center pa-2 pt-3"
                       @click="minute = sunData.sunrise.getHours() * 60 + sunData.sunrise.getMinutes()"
                     >
-                      <div class="mb-1">
-                        <v-img src="/markers/sunrise-marker.png" height="30" contain />
-                      </div>
+                      <v-icon left color="#ffcc00">
+                        {{ mdiWeatherSunsetUp }}
+                      </v-icon>
                       <strong>
                         {{ sunData.sunrise.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) }}
                       </strong>
@@ -311,9 +281,9 @@
                       class="border activable-v-sheet text-center pa-2 pt-3"
                       @click="minute = sunData.sunset.getHours() * 60 + sunData.sunset.getMinutes()"
                     >
-                      <div class="mb-1">
-                        <v-img src="/markers/sunset-marker.png" height="30" contain />
-                      </div>
+                      <v-icon left color="#ffcc00">
+                        {{ mdiWeatherSunsetDown }}
+                      </v-icon>
                       <strong>
                         {{ sunData.sunset.toLocaleTimeString([], { hour: '2-digit', minute:'2-digit' }) }}
                       </strong>
@@ -365,6 +335,41 @@
           </v-card>
         </div>
       </div>
+      <v-sheet
+        v-if="magicCard && sunController"
+        class="leaflet-sun-time-line pa-1 border-top"
+      >
+        <div class="slide-and-times-bar">
+          <div class="times-bar">
+            <div
+              v-if="sunData.durations.beforeSunrise !== 0"
+              style="background-color: #162d50"
+              :style="`width: ${sunData.durations.beforeSunrise / 1440 * 100}%;`"
+              title="Nuit"
+            /><div
+              v-if="sunData.durations.day !== 0"
+              style="background-color: #ffcc00"
+              :style="`width: ${sunData.durations.day / 1440 * 100}%;`"
+              title="Jour"
+            /><div
+              v-if="sunData.durations.afterSunset !== 0"
+              style="background-color: #162d50"
+              :style="`width: ${sunData.durations.afterSunset / 1440 * 100}%;`"
+              title="Nuit"
+            />
+          </div>
+          <v-slider
+            v-model="minute"
+            class="hours-slide"
+            color="rgba(255,255,255,0)"
+            track-color="rgba(255,255,255,0)"
+            thumb-color="white"
+            :max="1440"
+            :min="0"
+            hide-details
+          />
+        </div>
+      </v-sheet>
       <l-map
         ref="leafletMap"
         :zoom="zoom"
@@ -513,7 +518,9 @@ import {
   mdiChevronDown,
   mdiClose,
   mdiBookshelf,
-  mdiArrowLeft
+  mdiArrowLeft,
+  mdiWeatherSunsetUp,
+  mdiWeatherSunsetDown
 } from '@mdi/js'
 import L, { icon } from 'leaflet'
 import 'leaflet-textpath/leaflet.textpath'
@@ -713,7 +720,9 @@ export default {
       mdiChevronDown,
       mdiClose,
       mdiBookshelf,
-      mdiArrowLeft
+      mdiArrowLeft,
+      mdiWeatherSunsetUp,
+      mdiWeatherSunsetDown
     }
   },
 
@@ -1197,6 +1206,33 @@ export default {
       border-radius: 15px;
     }
   }
+  .leaflet-sun-time-line {
+    position: absolute;
+    bottom: 1px;
+    left: 0;
+    z-index: 7;
+    width: 100%;
+  }
+  .slide-and-times-bar {
+    position: relative;
+    .times-bar {
+      position: absolute;
+      width: calc(100% - 14px);
+      top: 6px;
+      left: 0;
+      margin-right: 7px;
+      margin-left: 7px;
+      div {
+        height: 15px;
+        display: inline-block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        &:first-child { border-radius: 4px 0 0 4px; }
+        &:last-child { border-radius: 0 4px 4px 0; }
+      }
+    }
+  }
   .leaflet-map-search-card {
     max-width: calc(100vw - 50px);
     z-index: 7;
@@ -1221,26 +1257,6 @@ export default {
         animation-iteration-count: infinite;
         animation-direction: normal;
         animation-play-state: running;
-      }
-    }
-    .slide-and-times-bar {
-      position: relative;
-      .times-bar {
-        position: absolute;
-        width: calc(100% - 14px);
-        top: 8px;
-        left: 0;
-        margin-right: 7px;
-        margin-left: 7px;
-        div {
-          height: 15px;
-          display: inline-block;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          &:first-child { border-radius: 4px 0 0 4px; }
-          &:last-child { border-radius: 0 4px 4px 0; }
-        }
       }
     }
   }

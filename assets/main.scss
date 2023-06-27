@@ -113,6 +113,10 @@ strong {
   }
 }
 
+.oblyk-navigation-drawer {
+  z-index: 9;
+}
+
 .v-application--is-ltr .v-text-field .v-input__prepend-inner {
   padding-right: 10px;
 }
@@ -243,7 +247,7 @@ strong {
   z-index: 5 !important;
 }
 .leaflet-top {
-  z-index: 5 !important;
+  z-index: 8 !important;
 }
 .leaflet-bottom {
   z-index: 5 !important;
@@ -313,12 +317,17 @@ strong {
   border-bottom-width: 1px;
 }
 
+.border-top {
+  border-top-style: solid;
+  border-top-width: 1px;
+}
+
 .v-data-table tbody tr.v-data-table__selected {
   background-color: rgba(49, 153, 78, 0.2) !important;
 }
 
 .theme--dark {
-  .border-bottom, .border {
+  .border-bottom, .border-top, .border {
     border-color: rgb(50, 50, 50);
   }
   .back-app-color {
@@ -331,7 +340,7 @@ strong {
   }
 }
 .theme--light {
-  .border-bottom, .border {
+  .border-bottom, .border-top, .border {
     border-color: rgb(230, 230, 230);
   }
   .back-app-color {
