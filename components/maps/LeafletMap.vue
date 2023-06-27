@@ -1208,10 +1208,11 @@ export default {
   }
   .leaflet-sun-time-line {
     position: absolute;
-    bottom: 1px;
-    left: 0;
+    bottom: 7px;
+    left: calc((100% - 500px) / 2);
+    border-radius: 10px;
     z-index: 7;
-    width: 100%;
+    width: 500px;
   }
   .slide-and-times-bar {
     position: relative;
@@ -1447,6 +1448,14 @@ export default {
   }
   100% {
     transform: translateY(0);
+  }
+}
+@media only screen and (max-width: 600px) {
+  .leaflet-map .leaflet-sun-time-line {
+    bottom: 1px;
+    left: 0;
+    border-radius: 1px;
+    width: 100%;
   }
 }
 </style>
