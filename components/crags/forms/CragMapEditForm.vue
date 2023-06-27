@@ -247,7 +247,7 @@
               v-if="editablePolylineLocated && !rockBarLoading"
               class="mt-4 mb-2"
             >
-              <v-row class="mb-1">
+              <v-row class="mb-1" no-gutters>
                 <v-col cols="5" class="text-center">
                   <div class="pt-1">
                     <v-img src="/images/rock-bar-orientation-helper.png" contain height="15px" width="100%" />
@@ -256,7 +256,7 @@
                     {{ $t('components.crag.cragFoot') }}
                   </small>
                 </v-col>
-                <v-col class="text-right">
+                <v-col cols="7" class="text-right">
                   <v-btn
                     outlined
                     text
@@ -533,7 +533,7 @@ export default {
         if (feature.properties.type === 'RockBar') {
           layer.options.color = '#616161'
           layer.options.weight = 7
-          layer.setText('♦ ', { offset: 10, repeat: true, attributes: { fill: '#616161', 'font-size': '22px' }, below: true })
+          layer.setText('• ', { offset: 12, repeat: true, attributes: { fill: '#616161' }, below: true })
         }
         if (feature.properties.type === 'Approach') {
           layer.options.color = '#795548'
@@ -649,7 +649,7 @@ export default {
       this.falseModelLoader()
       this.editableMarker = this.map.editTools.startPolyline(null, { color: 'rgb(255, 85, 153)', weight: 4 })
       if (type === 'RockBar') {
-        this.editableMarker.setText('♦ ', { offset: 7, repeat: true, attributes: { fill: 'rgb(255, 85, 153)', 'font-size': '15px' }, below: true })
+        this.editableMarker.setText('• ', { offset: 12, repeat: true, attributes: { fill: 'rgb(255, 85, 153)' }, below: true })
       }
       this.editableMarker.on('editable:drawing:commit', () => { this.editablePolylineMove(this.editableMarker) })
       this.editableMarker.on('editable:drawing:clicked', () => { this.editablePolylineMove(this.editableMarker) })

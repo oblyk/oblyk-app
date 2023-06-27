@@ -922,7 +922,7 @@ export default {
           layer.options.bubblingMouseEvents = false
           layer.options.color = '#616161'
           layer.options.weight = 7
-          layer.setText('♦ ', { repeat: true, offset: 10, attributes: { fill: '#616161', 'font-size': '22px' }, below: true })
+          layer.setText('• ', { repeat: true, offset: 12, attributes: { fill: '#616161' }, below: true })
         }
         if (feature.properties.type === 'Approach') {
           layer.options.bubblingMouseEvents = false
