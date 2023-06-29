@@ -310,6 +310,7 @@
         <l-tile-layer
           :url="layer.url"
           :attribution="layer.attribution"
+          :options="{ maxZoom: 20 }"
         />
 
         <l-geo-json
