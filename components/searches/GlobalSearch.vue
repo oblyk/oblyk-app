@@ -102,30 +102,6 @@
         </p>
       </div>
 
-      <!-- Area result -->
-      <div v-if="areaResults.length > 0">
-        <p
-          id="area-result-title"
-          class="global-search-result-title"
-          :class="showAreaResults ? 'result-is-expanded' : 'result-is-collapse'"
-          @click="showAreaResults = !showAreaResults"
-        >
-          <v-icon left>
-            {{ mdiChevronDown }}
-          </v-icon>
-          {{ $tc('components.search.count.area', areaResults.length, { count: areaResults.length } ) }}
-        </p>
-        <div v-if="showAreaResults">
-          <div
-            v-for="(area, index) in areaResults"
-            :key="`area-result-${index}`"
-            @click="closeAndSaveSearch()"
-          >
-            <area-small-card :area="area" />
-          </div>
-        </div>
-      </div>
-
       <!-- Crag result -->
       <div v-if="cragResults.length > 0">
         <p
@@ -147,6 +123,30 @@
             @click="closeAndSaveSearch()"
           >
             <crag-small-card :small="true" :crag="crag" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Area result -->
+      <div v-if="areaResults.length > 0">
+        <p
+          id="area-result-title"
+          class="global-search-result-title"
+          :class="showAreaResults ? 'result-is-expanded' : 'result-is-collapse'"
+          @click="showAreaResults = !showAreaResults"
+        >
+          <v-icon left>
+            {{ mdiChevronDown }}
+          </v-icon>
+          {{ $tc('components.search.count.area', areaResults.length, { count: areaResults.length } ) }}
+        </p>
+        <div v-if="showAreaResults">
+          <div
+            v-for="(area, index) in areaResults"
+            :key="`area-result-${index}`"
+            @click="closeAndSaveSearch()"
+          >
+            <area-small-card :area="area" />
           </div>
         </div>
       </div>
