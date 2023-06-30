@@ -50,7 +50,7 @@
     <version-information
       class="mt-4"
       :object="guideBookPaper"
-      object-type="GuideBookPaper"
+      object-type="guideBookPaper"
     />
   </div>
 </template>
