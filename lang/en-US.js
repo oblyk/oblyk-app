@@ -68,6 +68,7 @@ export default {
     uploadAvatar: 'Upload profil picture',
     mySettings: 'My settings',
     editMyProfile: 'Edit my profile',
+    seeSunshine: 'See sunshine',
     no: 'No',
     yes: 'Yes',
     change: 'Change',

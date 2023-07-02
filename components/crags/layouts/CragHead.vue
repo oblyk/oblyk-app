@@ -15,6 +15,15 @@
           />
         </div>
       </template>
+      <v-btn
+        class="seeOnMapBtn"
+        text
+        small
+        outlined
+        :to="`/maps/crags?lat=${crag.latitude}&lng=${crag.longitude}&zoom=16&crag_id=${crag.id}`"
+      >
+        {{ $t('actions.seeOnTheMap') }}
+      </v-btn>
       <div class="crag-header-title">
         <h1 class="font-weight-medium mb-n1">
           {{ crag.name }}
@@ -147,6 +156,12 @@ export default {
 </script>
 <style lang="scss" scoped>
 .crag-header {
+  .seeOnMapBtn {
+    position: absolute;
+    right: 7px;
+    top: 7px;
+    background-color: rgba(255, 255, 255, 0.2)
+  }
   .crag-header-banner {
     border-radius: 15px 15px 0 0;
     .crag-header-banner-spinner {

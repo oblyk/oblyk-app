@@ -68,6 +68,7 @@ export default {
     uploadAvatar: 'Uploader une photo',
     mySettings: 'Mes paramètres',
     editMyProfile: 'Modifier mon profil',
+    seeSunshine: "Voir l'ensoleillement",
     no: 'Non',
     yes: 'Oui',
     change: 'Changer',

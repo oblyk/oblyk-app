@@ -33,6 +33,24 @@
               </v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
+          <v-list-item class="mt-n5 pb-1">
+            <v-list-item-icon class="my-0" />
+            <v-list-item-title class="pt-0">
+              <v-btn
+                text
+                outlined
+                @click="setSunOnCrag"
+              >
+                <v-icon
+                  left
+                  color="#ffcc00"
+                >
+                  {{ mdiSunCompass }}
+                </v-icon>
+                {{ $t('models.rockBar.sunshine') }}
+              </v-btn>
+            </v-list-item-title>
+          </v-list-item>
         </v-sheet>
         <search-place-input
           v-if="searchPlace && !crag && !sunController"
@@ -703,6 +721,7 @@ export default {
       loadingMagicPlace: null,
       showMagicActions: true,
       sunController: false,
+      openSunOnCrag: false,
       minute: new Date().getHours() * 60 + new Date().getMinutes(),
       sunDate: new Date(),
       timeModal: false,
@@ -976,18 +995,32 @@ export default {
       this.$root.$emit('hideLeafletMapLegend')
     },
 
+    setSunOnCrag () {
+      this.magicPlace = {
+        lat: parseFloat(this.crag.latitude),
+        lng: parseFloat(this.crag.longitude)
+      }
+      this.openSunOnCrag = true
+      this.sunController = true
+    },
+
     openSunController () {
       this.goToPlace(
         this.magicPlace,
         this.$refs.leafletMap.mapObject.getZoom()
       )
+      this.openSunOnCrag = false
       this.sunController = true
     },
 
     closeSunController () {
-      this.sunController = false
-      this.showMagicActions = true
-      this.addressDetail()
+      if (!this.openSunOnCrag) {
+        this.sunController = false
+        this.showMagicActions = true
+        this.addressDetail()
+      } else {
+        this.closeMagicCard()
+      }
     },
 
     closeMagicCard () {
