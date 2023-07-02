@@ -5,18 +5,21 @@
         <h2 class="mb-4">
           {{ $t('components.organization.addNew') }}
         </h2>
-        <organization-form submit-methode="post" />
+        <v-alert
+          type="info"
+          text
+        >
+          L'inscription des organisations est fermée pour l'instant.
+        </v-alert>
       </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script>
-import OrganizationForm from '~/components/organizations/forms/OrganizationForm'
 
 export default {
   meta: { orphanRoute: true },
-  components: { OrganizationForm },
   middleware: ['auth'],
 
   i18n: {
