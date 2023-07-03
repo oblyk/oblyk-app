@@ -1240,7 +1240,9 @@ export default {
       takeMainPicture: 'Take main picture',
       addNewRoute: 'Add new route',
       mainPicture: 'Main picture',
+      mainPictureExplain: 'A photo of the whole boulder or the first part of a route',
       thumbnailPicture: 'Representative detail',
+      thumbnailPictureExplain: 'Framing a detail like the starting shot',
       sorts: {
         opened_at: 'Sort by opening date',
         sector: 'Sort by sector',

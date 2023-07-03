@@ -1240,7 +1240,9 @@ export default {
       takeMainPicture: 'Prendre la photo principal',
       addNewRoute: 'Ajouter une autre ligne',
       mainPicture: 'Photo de ligne',
+      mainPictureExplain: "Une photo du bloc dans sa globalité ou de la première partie d'une voie",
       thumbnailPicture: 'Détail représentatif',
+      thumbnailPictureExplain: 'Cadrer un detail comme la prise de départ',
       sorts: {
         opened_at: "Trier par date d'ouverture",
         sector: 'Trier par secteur',

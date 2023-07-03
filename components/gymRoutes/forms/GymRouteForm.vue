@@ -372,6 +372,9 @@
             <v-card-title>
               {{ pictureStep === 'main' ? $t('components.gymRoute.mainPicture') : $t('components.gymRoute.thumbnailPicture') }}
             </v-card-title>
+            <v-card-subtitle>
+              {{ pictureStep === 'main' ? $t('components.gymRoute.mainPictureExplain') : $t('components.gymRoute.thumbnailPictureExplain') }}
+            </v-card-subtitle>
             <div class="pa-4">
               <gym-route-picture-form
                 v-if="pictureStep === 'main'"
