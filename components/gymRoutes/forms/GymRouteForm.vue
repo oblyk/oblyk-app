@@ -369,13 +369,23 @@
           <v-card
             v-if="newGymRoute"
           >
-            <v-card-title>
-              {{ pictureStep === 'main' ? $t('components.gymRoute.mainPicture') : $t('components.gymRoute.thumbnailPicture') }}
-            </v-card-title>
-            <v-card-subtitle>
-              {{ pictureStep === 'main' ? $t('components.gymRoute.mainPictureExplain') : $t('components.gymRoute.thumbnailPictureExplain') }}
-            </v-card-subtitle>
-            <div class="pa-4">
+            <v-list-item>
+              <v-list-item-avatar>
+                <gym-route-tag-and-hold :gym-route="newGymRoute" />
+              </v-list-item-avatar>
+              <v-list-item-content>
+                <v-list-item-title>
+                  {{ pictureStep === 'main' ? $t('components.gymRoute.mainPicture') : $t('components.gymRoute.thumbnailPicture') }}
+                </v-list-item-title>
+                <v-list-item-subtitle style="white-space: normal">
+                  {{ pictureStep === 'main' ? $t('components.gymRoute.mainPictureExplain') : $t('components.gymRoute.thumbnailPictureExplain') }}
+                </v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
+            <div
+              v-if="newGymRoute"
+              class="pa-4"
+            >
               <gym-route-picture-form
                 v-if="pictureStep === 'main'"
                 :go-back-btn="false"
@@ -425,12 +435,14 @@ import MarkdownInput from '@/components/forms/MarkdownInput'
 import GymOpenerInput from '~/components/forms/GymOpenerInput'
 import DatePickerMenuInput from '~/components/forms/DatePickerMenuInput.vue'
 import IndoorClimbingStylesInput from '~/components/forms/IndoorClimbingStyleInput.vue'
+import GymRouteTagAndHold from '~/components/gymRoutes/partial/GymRouteTagAndHold.vue'
 const GymRouteThumbnailForm = () => import('~/components/gymRoutes/forms/GymRouteThumbnailForm.vue')
 const GymRoutePictureForm = () => import('~/components/gymRoutes/forms/GymRoutePictureForm.vue')
 
 export default {
   name: 'GymRouteForm',
   components: {
+    GymRouteTagAndHold,
     IndoorClimbingStylesInput,
     GymRouteThumbnailForm,
     GymRoutePictureForm,

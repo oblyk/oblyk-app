@@ -17,6 +17,17 @@ class GymSectorApi extends BaseApi {
     })
   }
 
+  lastRoutesWithPictures (gymId, spaceId, sectorId) {
+    return this.axios.request({
+      method: 'GET',
+      url: `${this.baseUrl}/gyms/${gymId}/gym_spaces/${spaceId}/gym_sectors/${sectorId}/last_routes_with_pictures.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
+    })
+  }
+
   update (data) {
     return this.axios.request({
       method: 'PUT',

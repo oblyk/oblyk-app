@@ -1243,6 +1243,7 @@ export default {
       mainPictureExplain: 'A photo of the whole boulder or the first part of a route',
       thumbnailPicture: 'Representative detail',
       thumbnailPictureExplain: 'Framing a detail like the starting shot',
+      reusePicture: 'Reusing a photo',
       sorts: {
         opened_at: 'Sort by opening date',
         sector: 'Sort by sector',

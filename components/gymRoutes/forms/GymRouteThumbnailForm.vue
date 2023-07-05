@@ -17,7 +17,6 @@
         :fixed-number="[1, 1]"
       />
     </div>
-    <close-form />
     <submit-form
       :go-back-btn="goBackBtn"
       :overlay="submitOverlay"
@@ -32,13 +31,12 @@ import { VueCropper } from 'vue-cropper'
 import { FormHelpers } from '@/mixins/FormHelpers'
 import { AppConcern } from '@/concerns/AppConcern'
 import { SessionConcern } from '@/concerns/SessionConcern'
-import CloseForm from '@/components/forms/CloseForm'
 import SubmitForm from '@/components/forms/SubmitForm'
 import GymRoute from '@/models/GymRoute'
 
 export default {
   name: 'GymRouteThumbnailForm',
-  components: { CloseForm, SubmitForm, VueCropper },
+  components: { SubmitForm, VueCropper },
   mixins: [FormHelpers, AppConcern, SessionConcern],
   props: {
     gymRoute: {

@@ -1243,6 +1243,7 @@ export default {
       mainPictureExplain: "Une photo du bloc dans sa globalité ou de la première partie d'une voie",
       thumbnailPicture: 'Détail représentatif',
       thumbnailPictureExplain: 'Cadrer un detail comme la prise de départ',
+      reusePicture: 'Réutiliser une photo',
       sorts: {
         opened_at: "Trier par date d'ouverture",
         sector: 'Trier par secteur',
