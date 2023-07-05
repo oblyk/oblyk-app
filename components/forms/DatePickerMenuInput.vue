@@ -61,6 +61,7 @@ export default {
   watch: {
     date (val) {
       this.dateFormatted = this.formatDate(this.date)
+      this.dateMenu = false
     }
   },
 
