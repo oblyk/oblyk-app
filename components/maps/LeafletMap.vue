@@ -275,39 +275,6 @@
                     </v-sheet>
                   </v-col>
                 </v-row>
-                <v-row
-                  class="mt-2"
-                  no-gutters
-                >
-                  <v-col class="mr-1">
-                    <v-sheet
-                      rounded
-                      class="border activable-v-sheet text-center pa-2 pt-3"
-                      @click="minute = sunData.sunrise.getHours() * 60 + sunData.sunrise.getMinutes()"
-                    >
-                      <v-icon left color="#ffcc00">
-                        {{ mdiWeatherSunsetUp }}
-                      </v-icon>
-                      <strong>
-                        {{ sunData.sunrise.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) }}
-                      </strong>
-                    </v-sheet>
-                  </v-col>
-                  <v-col class="ml-1">
-                    <v-sheet
-                      rounded
-                      class="border activable-v-sheet text-center pa-2 pt-3"
-                      @click="minute = sunData.sunset.getHours() * 60 + sunData.sunset.getMinutes()"
-                    >
-                      <v-icon left color="#ffcc00">
-                        {{ mdiWeatherSunsetDown }}
-                      </v-icon>
-                      <strong>
-                        {{ sunData.sunset.toLocaleTimeString([], { hour: '2-digit', minute:'2-digit' }) }}
-                      </strong>
-                    </v-sheet>
-                  </v-col>
-                </v-row>
                 <v-dialog
                   v-model="timeModal"
                   width="290"
@@ -537,9 +504,7 @@ import {
   mdiChevronDown,
   mdiClose,
   mdiBookshelf,
-  mdiArrowLeft,
-  mdiWeatherSunsetUp,
-  mdiWeatherSunsetDown
+  mdiArrowLeft
 } from '@mdi/js'
 import L, { icon } from 'leaflet'
 import 'leaflet-textpath/leaflet.textpath'
@@ -740,9 +705,7 @@ export default {
       mdiChevronDown,
       mdiClose,
       mdiBookshelf,
-      mdiArrowLeft,
-      mdiWeatherSunsetUp,
-      mdiWeatherSunsetDown
+      mdiArrowLeft
     }
   },
 
