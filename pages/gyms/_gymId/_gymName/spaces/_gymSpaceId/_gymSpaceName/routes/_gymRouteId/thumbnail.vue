@@ -5,10 +5,15 @@
     <v-container v-if="!loadingGymRoute">
       <v-row justify="center">
         <v-col class="global-form-width">
-          <h2 class="mb-4">
-            Définir la miniature
+          <h2>
+            {{ $t('actions.defineThumbnail') }}
           </h2>
-          <gym-route-thumbnail-form :gym-route="gymRoute" />
+          <p class="text--disabled mb-4">
+            {{ $t('components.gymRoute.thumbnailPictureExplain') }}
+          </p>
+          <client-only>
+            <gym-route-thumbnail-form :gym-route="gymRoute" />
+          </client-only>
         </v-col>
       </v-row>
     </v-container>
@@ -18,7 +23,7 @@
 <script>
 import { GymRouteConcern } from '@/concerns/GymRouteConcern'
 import Spinner from '@/components/layouts/Spiner'
-import GymRouteThumbnailForm from '@/components/gymRoutes/forms/GymRouteThumbnailForm'
+const GymRouteThumbnailForm = () => import('@/components/gymRoutes/forms/GymRouteThumbnailForm')
 
 export default {
   meta: { orphanRoute: true },

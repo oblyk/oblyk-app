@@ -10,8 +10,8 @@
         :output-size="1"
         output-type="jpeg"
         :auto-crop="true"
-        auto-crop-width="150"
-        auto-crop-height="150"
+        :auto-crop-width="gymRoute.thumbnail_position ? gymRoute.thumbnail_position.thb_w : 150"
+        :auto-crop-height="gymRoute.thumbnail_position ? gymRoute.thumbnail_position.thb_h : 150"
         :center-box="true"
         :fixed="true"
         :fixed-number="[1, 1]"
@@ -64,9 +64,20 @@ export default {
     submit () {
       this.submitOverlay = true
       const formData = new FormData()
+      const imgPosition = this.$refs.cropper.getImgAxis()
+      const thbPosition = this.$refs.cropper.getCropAxis()
+      const cropData = {
+        img_w: imgPosition.x2 - imgPosition.x1,
+        img_h: imgPosition.y2 - imgPosition.y1,
+        thb_h: this.$refs.cropper.cropH,
+        thb_w: this.$refs.cropper.cropW,
+        thb_x: thbPosition.x1 - imgPosition.x1,
+        thb_y: thbPosition.y1 - imgPosition.y1
+      }
 
       this.$refs.cropper.getCropBlob((data) => {
         formData.append('gym_route[thumbnail]', data)
+        formData.append('gym_route[thumbnail_position]', JSON.stringify(cropData))
 
         this.$axios({
           method: 'POST',

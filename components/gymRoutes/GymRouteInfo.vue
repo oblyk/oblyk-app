@@ -4,12 +4,54 @@
   >
     <v-img
       v-if="gymRoute.hasPicture"
+      ref="gymRoutePicture"
       class="rounded gym-route-picture"
-      :class="fullHeightPicture ? '--full-height' : '--limited-height'"
+      :class="fullHeightPicture ? `--full-height ${landscapePicture ? '--landscape' : '--portrait' }` : `--limited-height ${landscapePicture ? '--landscape' : '--portrait' }`"
       cover
       :src="gymRoute.pictureUrl"
       @click="fullHeightPicture = !fullHeightPicture"
-    />
+    >
+      <div
+        v-if="gymRoute.thumbnail_position"
+        class="gym-route-thumbnail-position"
+        :style="`height: ${thbPos.h}%; width: ${thbPos.w}%; top: calc(50% - ${thbPos.dy}%); left: calc(50% - ${thbPos.dx}%)`"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="GymRouteGradient" x1="0" x2="100%" y1="0" y2="0">
+              <stop
+                v-for="(gradiant, gradiantIndex) in thumbnailGradiant"
+                :key="`gradiant-index-${gradiantIndex}`"
+                :stop-color="gradiant.color"
+                :offset="`${gradiant.offset}%`"
+              />
+            </linearGradient>
+          </defs>
+          <rect
+            x="3"
+            y="3"
+            height="100%"
+            width="100%"
+            style="width:calc(100% - 6px);height:calc(100% - 6px)"
+            rx="20"
+            ry="20"
+            stroke-width="6"
+            fill="transparent"
+            stroke="url(#GymRouteGradient)"
+          />
+        </svg>
+      </div>
+      <v-btn
+        v-if="!landscapePicture"
+        icon
+        style="position: absolute; bottom: 10px; right: 10px"
+        @click.stop="fullHeightPicture = !fullHeightPicture"
+      >
+        <v-icon>
+          {{ fullHeightPicture ? mdiArrowCollapse : mdiArrowExpand }}
+        </v-icon>
+      </v-btn>
+    </v-img>
 
     <!-- Information, ascents, etc. -->
     <div class="pa-2">
@@ -208,7 +250,9 @@ import {
   mdiTextureBox,
   mdiBolt,
   mdiPound,
-  mdiMap
+  mdiMap,
+  mdiArrowExpand,
+  mdiArrowCollapse
 } from '@mdi/js'
 import { SessionConcern } from '@/concerns/SessionConcern'
 import { DateHelpers } from '@/mixins/DateHelpers'
@@ -268,7 +312,49 @@ export default {
       mdiTextureBox,
       mdiBolt,
       mdiPound,
-      mdiMap
+      mdiMap,
+      mdiArrowExpand,
+      mdiArrowCollapse
+    }
+  },
+
+  computed: {
+    landscapePicture () {
+      if (this.gymRoute.calculated_thumbnail_position === null) { return null }
+
+      return this.gymRoute.calculated_thumbnail_position.img_w > this.gymRoute.calculated_thumbnail_position.img_h
+    },
+
+    thbPos () {
+      if (this.gymRoute.calculated_thumbnail_position === null) { return null }
+
+      const thbP = this.gymRoute.calculated_thumbnail_position
+      const isLandscape = thbP.img_w > thbP.img_h
+      return {
+        h: this.fullHeightPicture || isLandscape ? thbP.h : thbP.h / 350 * thbP.img_h,
+        w: thbP.w,
+        dx: thbP.delta_x,
+        dy: this.fullHeightPicture || isLandscape ? thbP.delta_y : thbP.delta_y / 350 * thbP.img_h
+      }
+    },
+
+    thumbnailGradiant () {
+      if (this.gymRoute.calculated_thumbnail_position === null) { return null }
+
+      const colors = this.gymRoute.tag_colors && this.gymRoute.tag_colors.length > 0 ? this.gymRoute.tag_colors : this.gymRoute.hold_colors
+      const numberOfColor = colors.length
+      const gradiant = []
+      if (numberOfColor === 1) {
+        gradiant.push({ color: colors[0], offset: 0 })
+        gradiant.push({ color: colors[0], offset: 1 })
+      } else {
+        let index = 0
+        for (const color of colors) {
+          gradiant.push({ color, offset: 100 / (numberOfColor - 1) * index })
+          index++
+        }
+      }
+      return gradiant
     }
   },
 
@@ -328,9 +414,19 @@ export default {
 .desktop-interface {
   .gym-route-picture {
     &.--limited-height {
-      height: 350px;
       max-height: 350px;
+      &.--portrait {
+        height: 350px;
+      }
     }
+  }
+}
+.gym-route-thumbnail-position {
+  box-sizing: border-box;
+  position: absolute;
+  svg {
+    width:100%;
+    height:100%;
   }
 }
 .gym-route-title {
