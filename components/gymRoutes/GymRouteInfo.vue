@@ -28,14 +28,14 @@
             </linearGradient>
           </defs>
           <rect
-            x="3"
-            y="3"
+            x="4"
+            y="4"
             height="100%"
             width="100%"
-            style="width:calc(100% - 6px);height:calc(100% - 6px)"
-            rx="20"
-            ry="20"
-            stroke-width="6"
+            style="width:calc(100% - 8px);height:calc(100% - 8px)"
+            rx="50%"
+            ry="50%"
+            stroke-width="8"
             fill="transparent"
             stroke="url(#GymRouteGradient)"
           />
@@ -425,6 +425,7 @@ export default {
   box-sizing: border-box;
   position: absolute;
   svg {
+    animation: opacity-pulse 5s infinite;
     opacity: 0.5;
     width:100%;
     height:100%;
@@ -443,5 +444,10 @@ export default {
     max-width: 30px;
     text-align: center;
   }
+}
+@keyframes opacity-pulse {
+  0% { opacity: 0.5; }
+  50% { opacity: 0.8; }
+  100% { opacity: 0.5; }
 }
 </style>
