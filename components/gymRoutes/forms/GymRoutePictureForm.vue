@@ -4,8 +4,8 @@
     @submit.prevent="submit()"
   >
     <v-file-input
-      v-if="gymRoutesSelected === null || gymRoutesSelected === undefined"
       v-model="file"
+      :disabled="!(routeCoverSelected === null || routeCoverSelected === undefined)"
       outlined
       truncate-length="15"
       :placeholder="$t('actions.browse')"
@@ -21,9 +21,9 @@
       </div>
       <div class="border rounded mb-4 mt-2">
         <v-slide-group
-          v-model="gymRoutesSelected"
+          v-model="routeCoverSelected"
           active-class="success"
-          show-arrows
+          show-arrows="always"
         >
           <v-slide-item
             v-for="(lastGymRoute, gymRouteIndex) in lastGymRoutes"
@@ -32,7 +32,7 @@
           >
             <v-img
               :src="lastGymRoute.pictureUrl"
-              width="180"
+              width="250px"
               class="ma-4 rounded align-end"
               :gradient="active ? 'to bottom, rgba(49, 153, 78 ,0.4), rgba(49, 153, 78, 0.4)' : 'to bottom, rgba(0,0,0,0.1) 80%, rgba(0,0,0,.7) 100%'"
               @click="toggle"
@@ -85,7 +85,7 @@ export default {
 
   data () {
     return {
-      gymRoutesSelected: null,
+      routeCoverSelected: null,
       uploadPercentage: 0,
       loadingLastRoutes: true,
       lastGymRoutes: [],
@@ -99,13 +99,19 @@ export default {
 
   methods: {
     submit () {
+      if (
+        (this.routeCoverSelected === null || this.routeCoverSelected === undefined) && (this.file === null || this.file === undefined)
+      ) {
+        return false
+      }
+
       this.submitOverlay = true
       const formData = new FormData()
 
-      if (this.gymRoutesSelected !== null) {
-        formData.append('gym_route[picture_from_gym_route_id]', this.lastGymRoutes[parseInt(this.gymRoutesSelected)].id)
+      if (this.routeCoverSelected !== null) {
+        formData.append('gym_route[gym_route_cover_id]', this.lastGymRoutes[parseInt(this.routeCoverSelected)].id)
       } else {
-        formData.append('gym_route[picture]', this.file)
+        formData.append('gym_route[gym_route_cover][picture]', this.file)
       }
 
       this.$axios({
