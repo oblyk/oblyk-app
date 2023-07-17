@@ -14,7 +14,20 @@
           height="150"
           :src="gymSpace.planUrl"
           :lazy-src="gymSpace.planThumbnailUrl"
-        />
+        >
+          <template #placeholder>
+            <v-row
+              class="fill-height ma-0"
+              align="center"
+              justify="center"
+            >
+              <v-progress-circular
+                indeterminate
+                color="grey lighten-5"
+              />
+            </v-row>
+          </template>
+        </v-img>
       </div>
       <v-card-title class="pb-1">
         {{ gymSpace.name }}
