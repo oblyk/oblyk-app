@@ -29,14 +29,15 @@ export default {
 
   data () {
     return {
+      ascentInLogBook: null,
+
       mdiCropSquare,
       mdiCheckboxMarkedCircle,
       mdiRecordCircle,
       mdiFlash,
       mdiEye,
       mdiAutorenew,
-      mdiCropFree,
-      ascentInLogBook: null
+      mdiCropFree
     }
   },
 
