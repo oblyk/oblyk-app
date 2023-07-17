@@ -42,24 +42,22 @@
         </div>
 
         <!-- Open gym route in right side of info in desktop interface -->
-        <v-slide-x-transition>
-          <div
-            v-if="!$vuetify.breakpoint.mobile"
-            v-show="loadingGymRoute || gymRoute"
-            class="gym-route-on-desktop-container py-3"
-          >
-            <div class="gym-route-on-desktop-card">
-              <v-card class="gym-route-card">
-                <spinner v-if="loadingGymRoute" />
-                <gym-route-info
-                  v-if="gymRoute"
-                  :gym-route="gymRoute"
-                  :gym="gym"
-                />
-              </v-card>
-            </div>
+        <div
+          v-if="!$vuetify.breakpoint.mobile"
+          v-show="loadingGymRoute || gymRoute"
+          class="gym-route-on-desktop-container py-3"
+        >
+          <div class="gym-route-on-desktop-card">
+            <v-card class="gym-route-card">
+              <spinner v-if="loadingGymRoute" />
+              <gym-route-info
+                v-if="gymRoute"
+                :gym-route="gymRoute"
+                :gym="gym"
+              />
+            </v-card>
           </div>
-        </v-slide-x-transition>
+        </div>
       </div>
 
       <!-- Open gym route in full screen on mobile -->

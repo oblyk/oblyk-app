@@ -125,31 +125,27 @@
         lg="8"
       >
         <!-- Open gym route in right side of info in desktop interface -->
-        <v-slide-x-transition>
-          <div
-            v-show="loadingGymRoute || gymRoute"
-            class="gym-route-on-desktop-container"
-          >
-            <v-card class="gym-route-card">
-              <spinner v-if="loadingGymRoute" />
-              <gym-route-info
-                v-if="gymRoute"
-                :gym-route="gymRoute"
-                :show-space="true"
-                :gym="gym"
-              />
-            </v-card>
-          </div>
-        </v-slide-x-transition>
+        <div
+          v-show="loadingGymRoute || gymRoute"
+          class="gym-route-on-desktop-container"
+        >
+          <v-card class="gym-route-card">
+            <spinner v-if="loadingGymRoute" />
+            <gym-route-info
+              v-if="gymRoute"
+              :gym-route="gymRoute"
+              :show-space="true"
+              :gym="gym"
+            />
+          </v-card>
+        </div>
 
         <!-- Gym Space Liste -->
-        <v-slide-y-transition>
-          <div
-            v-show="!(loadingGymRoute || gymRoute)"
-          >
-            <gym-space-list :gym="gym" />
-          </div>
-        </v-slide-y-transition>
+        <div
+          v-show="!(loadingGymRoute || gymRoute)"
+        >
+          <gym-space-list :gym="gym" />
+        </div>
       </v-col>
 
       <!-- Open gym route in full screen on mobile -->
