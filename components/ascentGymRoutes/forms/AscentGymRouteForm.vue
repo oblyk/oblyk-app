@@ -1,55 +1,53 @@
 <template>
-  <div>
-    <v-form @submit.prevent="submit()">
-      <!-- Ascent status -->
-      <ascent-status-input v-model="data.ascent_status" />
+  <v-form @submit.prevent="submit()">
+    <!-- Ascent status -->
+    <ascent-status-input v-model="data.ascent_status" />
 
-      <!-- Released at -->
-      <date-picker-input
-        v-model="data.released_at"
-        :icon="mdiCalendar"
-        :label="$t('models.ascentGymRoute.released_at')"
-      />
+    <!-- Released at -->
+    <date-picker-input
+      v-model="data.released_at"
+      :icon="mdiCalendar"
+      :label="$t('models.ascentGymRoute.released_at')"
+    />
 
-      <note-input
-        v-model="data.note"
-      />
+    <note-input
+      v-model="data.note"
+    />
 
-      <v-textarea
-        v-model="data.comment"
-        outlined
-        :label="$t('models.ascentGymRoute.comment')"
-      />
+    <v-textarea
+      v-model="data.comment"
+      outlined
+      :label="$t('models.ascentGymRoute.comment')"
+    />
 
-      <!-- Sections choice -->
+    <!-- Sections choice -->
+    <div
+      v-if="gymRoute && gymRoute.sections.length > 1"
+      class="mb-7"
+    >
+      <p class="subtitle-2">
+        {{ $t('components.ascentGymRoute.pitchMade') }} :
+      </p>
       <div
-        v-if="gymRoute && gymRoute.sections.length > 1"
-        class="mb-7"
+        v-for="(section, index) in gymRoute.sections"
+        :key="`section-${index}`"
       >
-        <p class="subtitle-2">
-          {{ $t('components.ascentGymRoute.pitchMade') }} :
-        </p>
-        <div
-          v-for="(section, index) in gymRoute.sections"
-          :key="`section-${index}`"
-        >
-          <v-checkbox
-            v-model="data.selected_sections"
-            :label="`L.${index + 1} - ${section.grade}`"
-            :value="index"
-            hide-details
-          />
-        </div>
+        <v-checkbox
+          v-model="data.selected_sections"
+          :label="`L.${index + 1} - ${section.grade}`"
+          :value="index"
+          hide-details
+        />
       </div>
+    </div>
 
-      <close-form />
-      <submit-form
-        :overlay="submitOverlay"
-        :go-back-btn="false"
-        :submit-local-key="isEditingForm() ? 'actions.edit' : 'actions.add'"
-      />
-    </v-form>
-  </div>
+    <close-form />
+    <submit-form
+      :overlay="submitOverlay"
+      :go-back-btn="false"
+      :submit-local-key="isEditingForm() ? 'actions.edit' : 'actions.add'"
+    />
+  </v-form>
 </template>
 
 <script>
