@@ -139,6 +139,7 @@
                 small
                 text
                 outlined
+                class="text-truncate"
                 @click="showSector"
               >
                 {{ gymRoute.gym_sector.name }}
@@ -197,8 +198,15 @@
           :gym-route="gymRoute"
         />
 
+      </div>
+      <div
+        v-if="$auth.loggedIn && currentUserIsGymAdmin() && gymAuthCan(gymRoute.gym, 'manage_opening')"
+        class="border-bottom border-top py-2 mb-2"
+      >
+        <small class="mr-2">
+          {{ $t('components.gymAdmin.administration') }} :
+        </small>
         <gym-route-action-btn
-          v-if="$auth.loggedIn && currentUserIsGymAdmin() && gymAuthCan(gymRoute.gym, 'manage_opening')"
           :gym-route="gymRoute"
         />
       </div>

@@ -1125,6 +1125,7 @@ export default {
       rankNumber: '%{number}st | %{number}nd'
     },
     gymAdmin: {
+      administration: 'Administration',
       adminTitle: 'Administration area',
       publicPage: 'Public page',
       GuideBookSettings: 'Guide books settings',

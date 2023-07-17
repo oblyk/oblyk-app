@@ -1125,6 +1125,7 @@ export default {
       rankNumber: '%{number}er | %{number}ème'
     },
     gymAdmin: {
+      administration: 'Administration',
       adminTitle: "Zone d'administration",
       publicPage: 'Page publique',
       GuideBookSettings: 'Paramètres topos',

@@ -6,14 +6,15 @@
     <template #activator="{ on, attrs }">
       <v-btn
         text
-        outlined
-        small
-        color="primary"
+        class="black-btn-icon --with-border"
         v-bind="attrs"
         v-on="on"
       >
-        <v-icon left>
-          {{ mdiCheck }}
+        <v-icon
+          size="25"
+          left
+        >
+          {{ mdiPlusBoxOutline }}
         </v-icon>
         <span v-if="inMyLogBook">
           {{ $t('actions.addRepetition') }}
@@ -41,7 +42,7 @@
 </template>
 
 <script>
-import { mdiCheck } from '@mdi/js'
+import { mdiPlusBoxOutline } from '@mdi/js'
 import AscentGymRouteForm from '@/components/ascentGymRoutes/forms/AscentGymRouteForm'
 
 export default {
@@ -58,7 +59,7 @@ export default {
     return {
       ascentModal: false,
 
-      mdiCheck
+      mdiPlusBoxOutline
     }
   },
 
