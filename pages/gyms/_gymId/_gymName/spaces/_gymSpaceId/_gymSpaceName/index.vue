@@ -92,7 +92,6 @@
 import { mdiChevronDown } from '@mdi/js'
 import { GymSpaceConcern } from '@/concerns/GymSpaceConcern'
 import GymSpaceInfoAndRoutes from '~/components/gymSpaces/GymSpaceInfoAndRoutes.vue'
-import GymSpacePlanMissing from '@/components/gymSpaces/GymSpacePlanMissing'
 import Gym from '~/models/Gym'
 import GymApi from '~/services/oblyk-api/GymApi'
 import GymRouteApi from '~/services/oblyk-api/GymRouteApi'
@@ -100,6 +99,7 @@ import GymRoute from '~/models/GymRoute'
 import GymRouteInfo from '~/components/gymRoutes/GymRouteInfo.vue'
 import Spinner from '~/components/layouts/Spiner.vue'
 const GymSpacePlan = () => import('@/components/gymSpaces/GymSpacePlan')
+const GymSpacePlanMissing = () => import('@/components/gymSpaces/GymSpacePlanMissing')
 
 export default {
   meta: { orphanRoute: true },
