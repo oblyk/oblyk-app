@@ -134,17 +134,17 @@
             :item-title="$t('models.gymRoute.gym_sector_id')"
           >
             <template #content>
-              <v-btn
+              <a
                 v-if="!showSpace"
-                small
-                text
-                outlined
-                class="text-truncate"
+                class="text-truncate d-block"
                 @click="showSector"
               >
                 {{ gymRoute.gym_sector.name }}
-              </v-btn>
-              <strong v-if="showSpace">
+              </a>
+              <strong
+                v-if="showSpace"
+                class="text-truncate d-block"
+              >
                 {{ gymRoute.gym_sector.name }}
               </strong>
             </template>
