@@ -424,8 +424,11 @@ export default {
 .gym-route-thumbnail-position {
   box-sizing: border-box;
   position: absolute;
+  border-color: rgba(255, 255, 255, 0.5);
+  border-width: 2px;
+  border-radius: 50%;
+  border-style: solid;
   svg {
-    animation: opacity-pulse 5s infinite;
     opacity: 0.5;
     width:100%;
     height:100%;
@@ -444,10 +447,5 @@ export default {
     max-width: 30px;
     text-align: center;
   }
-}
-@keyframes opacity-pulse {
-  0% { opacity: 0.5; }
-  50% { opacity: 0.8; }
-  100% { opacity: 0.5; }
 }
 </style>
