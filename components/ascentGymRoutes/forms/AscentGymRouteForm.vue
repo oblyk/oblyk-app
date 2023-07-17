@@ -46,7 +46,7 @@
       <submit-form
         :overlay="submitOverlay"
         :go-back-btn="false"
-        :submit-local-key="submitText()"
+        :submit-local-key="isEditingForm() ? 'actions.edit' : 'actions.add'"
       />
     </v-form>
   </div>
