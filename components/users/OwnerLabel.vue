@@ -1,64 +1,79 @@
 <template>
   <div class="caption">
     {{ $t('common.by') }}
-    <nuxt-link class="owner-label-link" :to="user.userPath" v-text="owner.full_name" />
+    <nuxt-link class="owner-label-link text-decoration-none" :to="user.userPath" v-text="owner.full_name" />
     {{ $t('common.at') }} {{ humanizeDate(history.created_at) }}
 
     <client-only>
-      <!-- Edit btn -->
-      <v-btn
-        v-if="editPath && isLoggedIn && loggedInUser.uuid === user.uuid"
-        :to="editPath"
-        :title="$t('actions.edit')"
-        icon
-        small
-      >
-        <v-icon x-small>
-          {{ mdiPencil }}
-        </v-icon>
-      </v-btn>
-
-      <!-- Delete btn -->
-      <v-btn
-        v-if="deleteFunction && isLoggedIn && loggedInUser.uuid === user.uuid"
-        :title="$t('actions.delete')"
-        icon
-        small
-        @click="deleteFunction()"
-      >
-        <v-icon x-small>
-          {{ mdiDelete }}
-        </v-icon>
-      </v-btn>
-
-      <!-- Report btn -->
-      <v-btn
-        v-if="reports && isLoggedIn"
-        :to="`/reports/${reports.type}/${reports.id}/new?redirect_to=${$route.fullPath}`"
-        :title="$t('actions.reportProblem')"
-        icon
-        small
-      >
-        <v-icon x-small>
-          {{ mdiFlag }}
-        </v-icon>
-      </v-btn>
+      <v-menu v-if="$auth.loggedIn">
+        <template #activator="{ on, attrs }">
+          <v-btn
+            class="vertical-align-sub"
+            left
+            small
+            icon
+            v-bind="attrs"
+            v-on="on"
+          >
+            <v-icon small>
+              {{ mdiDotsVertical }}
+            </v-icon>
+          </v-btn>
+        </template>
+        <v-list>
+          <v-list-item
+            v-if="editPath && $auth.user.uuid === user.uuid"
+            :to="editPath"
+          >
+            <v-list-item-icon>
+              <v-icon>
+                {{ mdiPencil }}
+              </v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              {{ $t('actions.edit') }}
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item
+            v-if="deleteFunction && $auth.user.uuid === user.uuid"
+            @click="deleteFunction()"
+          >
+            <v-list-item-icon>
+              <v-icon>
+                {{ mdiDelete }}
+              </v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              {{ $t('actions.delete') }}
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item
+            v-if="reports"
+            :to="`/reports/${reports.type}/${reports.id}/new?redirect_to=${$route.fullPath}`"
+          >
+            <v-list-item-icon>
+              <v-icon>
+                {{ mdiFlag }}
+              </v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              {{ $t('actions.reportProblem') }}
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
+      </v-menu>
     </client-only>
   </div>
 </template>
 
 <script>
-import { mdiPencil, mdiDelete, mdiFlag } from '@mdi/js'
+import { mdiPencil, mdiDelete, mdiFlag, mdiDotsVertical } from '@mdi/js'
 import { DateHelpers } from '@/mixins/DateHelpers'
-import { SessionConcern } from '@/concerns/SessionConcern'
 import User from '@/models/User'
 
 export default {
   name: 'OwnerLabel',
-  mixins: [
-    DateHelpers,
-    SessionConcern
-  ],
+  mixins: [DateHelpers],
 
   props: {
     owner: {
@@ -85,17 +100,13 @@ export default {
 
   data () {
     return {
+      user: new User({ attributes: this.owner }),
+
       mdiPencil,
       mdiDelete,
       mdiFlag,
-      user: new User({ attributes: this.owner })
+      mdiDotsVertical
     }
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.owner-label-link {
-  text-decoration: none;
-}
-</style>

@@ -1,5 +1,8 @@
 <template>
-  <v-card flat>
+  <v-card
+    flat
+    class="rounded-sm"
+  >
     <v-card-text>
       <div>
         {{ $t('components.ascentGymRoute.ascentMadeOn', { date: humanizeDate(ascentGymRoute.released_at) }) }}
@@ -29,11 +32,6 @@
         <cite v-if="ascentGymRoute.comment">
           {{ ascentGymRoute.comment }}
         </cite>
-        <br v-if="ascentGymRoute.comment">
-        <note
-          v-if="ascentGymRoute.note !== null"
-          :note="ascentGymRoute.note"
-        />
       </p>
 
       <div v-if="ascentGymRoute.GymRoute.sections_count > 1">
@@ -68,11 +66,10 @@ import { RecordToObjectHelpers } from '@/mixins/RecordToObjectHelpers'
 import AscentGymRouteApi from '~/services/oblyk-api/AscentGymRouteApi'
 import AscentGymRouteStatusIcon from '@/components/ascentGymRoutes/AscentGymRouteStatusIcon'
 import EditGymAscentBtn from '@/components/ascentGymRoutes/EditGymAscentBtn'
-import Note from '@/components/notes/Note'
 
 export default {
   name: 'AscentGymRouteSmallCard',
-  components: { Note, EditGymAscentBtn, AscentGymRouteStatusIcon },
+  components: { EditGymAscentBtn, AscentGymRouteStatusIcon },
   mixins: [DateHelpers, RecordToObjectHelpers],
   props: {
     ascentGymRoute: {
@@ -87,10 +84,11 @@ export default {
 
   data () {
     return {
-      mdiDelete,
       ascentUserDialog: false,
       subscribes: [],
-      loadingSubscribes: true
+      loadingSubscribes: true,
+
+      mdiDelete
     }
   },
 

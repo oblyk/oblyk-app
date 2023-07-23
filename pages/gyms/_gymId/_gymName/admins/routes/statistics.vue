@@ -55,7 +55,7 @@
             md="3"
             class="align-stretch"
           >
-            <gym-statistic-notes
+            <gym-statistic-like-figures
               :filters="filters"
               :gym="gym"
             />
@@ -85,13 +85,13 @@ import GymStatisticFilters from '~/components/gymStatistics/GymStatisticFilters.
 import GymStatisticFigures from '~/components/gymStatistics/GymStatisticFigures.vue'
 import GymStatisticGradesChart from '~/components/gymStatistics/GymStatisticGradesChart.vue'
 import GymStatisticLevelsChart from '~/components/gymStatistics/GymStatisticLevelsChart.vue'
-import GymStatisticNotes from '~/components/gymStatistics/GymStatisticNotes.vue'
 import GymStatisticOpeningFrequenciesChart from '~/components/gymStatistics/GymStatisticOpeningFrequenciesChart.vue'
+import GymStatisticLikeFigures from '~/components/gymStatistics/GymStatisticLikeFigures.vue'
 
 export default {
   components: {
+    GymStatisticLikeFigures,
     GymStatisticOpeningFrequenciesChart,
-    GymStatisticNotes,
     GymStatisticLevelsChart,
     GymStatisticGradesChart,
     GymStatisticFigures,

@@ -52,8 +52,9 @@ export default {
 
   data () {
     return {
-      mdiPencil,
-      ascentModal: false
+      ascentModal: false,
+
+      mdiPencil
     }
   },
 

@@ -32,7 +32,7 @@
     <!-- Add comment-->
     <client-only>
       <div
-        v-if="isLoggedIn"
+        v-if="$auth.loggedIn"
         class="text-right mt-4"
       >
         <v-dialog
@@ -80,13 +80,11 @@ import { mdiCommentPlus } from '@mdi/js'
 import CommentApi from '~/services/oblyk-api/CommentApi'
 import Comment from '@/models/Comment'
 import CommentCard from '@/components/comments/CommentCard'
-import { SessionConcern } from '@/concerns/SessionConcern'
 const CommentForm = () => import('@/components/comments/forms/CommentForm')
 
 export default {
   name: 'CommentList',
   components: { CommentForm, CommentCard },
-  mixins: [SessionConcern],
   props: {
     commentableId: {
       type: [String, Number],
@@ -108,11 +106,12 @@ export default {
 
   data () {
     return {
-      mdiCommentPlus,
       comments: [],
       loadingComments: true,
       redirectTo: this.$route.fullPath,
-      commentFormDialog: false
+      commentFormDialog: false,
+
+      mdiCommentPlus
     }
   },
 

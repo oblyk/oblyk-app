@@ -12,14 +12,12 @@
         {{ $t('components.loadMore.loadMore') }}
       </span>
     </v-btn>
-    <div v-if="skeletonType === 'photos'" class="mt-3">
+    <div v-if="skeletonType === 'photos'">
       <v-skeleton-loader
-        v-for="index in 3"
-        :key="`photo-list-${index}`"
         type="image"
-        class="d-inline-block mr-4"
-        height="180"
-        width="180"
+        style="aspect-ratio: 1"
+        tile
+        width="100%"
       />
     </div>
     <div v-else>

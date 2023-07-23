@@ -2,18 +2,26 @@
   <div
     class="full-height photo-map-viewer"
   >
+    <p
+      v-if="!urlLoaded"
+      class="load-picture-indicator"
+    >
+      {{ $t('common.loading') }}
+    </p>
     <client-only>
       <editable-map
         ref="map"
         editable
         :crs="crs"
-        :options="{ zoomControl: false }"
+        :options="{ zoomControl: false, zoomSnap: 0.1, zoomDelta: 0.1 }"
         style="height: 100%; width: 100%"
+        :style="`opacity: ${urlLoaded ? 1 : 0}`"
         @ready="onReadyViewer()"
       >
         <l-image-overlay
           :url="url"
           :bounds="bounds"
+          @load="urlLoaded = true"
         />
       </editable-map>
     </client-only>
@@ -41,7 +49,8 @@ export default {
 
   data () {
     return {
-      crs: CRS.Simple
+      crs: CRS.Simple,
+      urlLoaded: false
     }
   },
 
@@ -56,9 +65,16 @@ export default {
   },
 
   watch: {
+    url () {
+      this.urlLoaded = false
+    },
     photo () {
       this.setMapView()
     }
+  },
+
+  mounted () {
+    this.urlLoaded = true
   },
 
   methods: {
@@ -78,6 +94,13 @@ export default {
 .photo-map-viewer {
   .leaflet-container {
     background-color: #121212;
+  }
+  .load-picture-indicator {
+    z-index: 1;
+    position: fixed;
+    top: calc(100vh / 2);
+    width: 100%;
+    text-align: center;
   }
   .leaflet-control-attribution {
     background: none !important;

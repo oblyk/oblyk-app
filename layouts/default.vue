@@ -103,6 +103,7 @@ import AppBar from '~/components/layouts/AppBar'
 import AppAlert from '~/components/layouts/AppAlert'
 import AppBottomNavigation from '~/components/layouts/AppBottomNavigation'
 import NotificationApi from '~/services/oblyk-api/NotificationApi'
+import CurrentUserApi from '~/services/oblyk-api/CurrentUserApi'
 const AppDrawer = () => import('@/components/layouts/AppDrawer')
 const LocalizationPopup = () => import('~/components/maps/LocalizationPopup')
 
@@ -174,6 +175,7 @@ export default {
       this.$auth.fetchUser()
       this.connectChannel()
       this.getUnreadNotification()
+      this.getLikes()
     }
   },
 
@@ -211,6 +213,14 @@ export default {
         .unreadCount()
         .then((resp) => {
           this.$store.dispatch('notification/changeNotificationStatus', resp.data > 0)
+        })
+    },
+
+    getLikes () {
+      new CurrentUserApi(this.$axios, this.$auth)
+        .likes()
+        .then((resp) => {
+          this.$store.dispatch('likes/storeLikes', resp.data)
         })
     },
 

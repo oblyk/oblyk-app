@@ -33,15 +33,15 @@ import {
   mdiStarCheck,
   mdiStarPlusOutline,
   mdiNewspaperVariantMultipleOutline,
+  mdiHeart,
   mdiBell
 } from '@mdi/js'
 import { DateHelpers } from '@/mixins/DateHelpers'
-import { SessionConcern } from '@/concerns/SessionConcern'
 import NotificationApi from '~/services/oblyk-api/NotificationApi'
 
 export default {
   name: 'NotificationItemList',
-  mixins: [DateHelpers, SessionConcern],
+  mixins: [DateHelpers],
   props: {
     notification: {
       type: Object,
@@ -56,6 +56,7 @@ export default {
       mdiStarCheck,
       mdiStarPlusOutline,
       mdiNewspaperVariantMultipleOutline,
+      mdiHeart,
       mdiBell
     }
   },
@@ -72,6 +73,11 @@ export default {
         return this.$t('components.notification.type.request_for_follow_up', { name: this.notification.Notifiable.first_name })
       } else if (this.notification.notification_type === 'new_article') {
         return this.$t('components.notification.type.new_article', { name: this.notification.Notifiable.name })
+      } else if (this.notification.notification_type === 'new_like') {
+        return this.$t('components.notification.type.new_like', {
+          name: this.notification.Parent.first_name,
+          type: this.$t(`components.like.type.${this.notification.Notifiable.likeable_type}`)
+        })
       } else {
         return this.notification.notification_type
       }
@@ -88,6 +94,8 @@ export default {
         return mdiStarPlusOutline
       } else if (this.notification.notification_type === 'new_article') {
         return mdiNewspaperVariantMultipleOutline
+      } else if (this.notification.notification_type === 'new_like') {
+        return mdiHeart
       } else {
         return mdiBell
       }
@@ -100,6 +108,16 @@ export default {
         return `/climbers/${this.notification.Notifiable.slug_name}`
       } else if (this.notification.notification_type === 'new_article') {
         return `/articles/${this.notification.Notifiable.id}/${this.notification.Notifiable.slug_name}`
+      } else if (this.notification.notification_type === 'new_like') {
+        if (this.notification.Notifiable.likeable_type === 'Comment') {
+          return `/comments/${this.notification.Notifiable.likeable_id}`
+        } else if (this.notification.Notifiable.likeable_type === 'Photo') {
+          return `/photos/${this.notification.Notifiable.likeable_id}`
+        } else if (this.notification.Notifiable.likeable_type === 'Video') {
+          return `/videos/${this.notification.Notifiable.likeable_id}`
+        } else {
+          return ''
+        }
       } else {
         return '/'
       }

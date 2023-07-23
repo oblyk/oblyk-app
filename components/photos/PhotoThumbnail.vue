@@ -2,9 +2,9 @@
   <v-img
     v-if="!deleted"
     :src="photo.thumbnailUrl"
-    max-height="200"
-    class="photo-thumbnail"
+    class="photo-thumbnail hoverable"
     :gradient="photoOver ? 'to top, rgba(0, 0, 0, 0.4) 0%, transparent 72px' : 'to top, rgba(0, 0, 0, 0) 0%, transparent 72px'"
+    aspect-ratio="1"
     @mouseenter="photoOver = true"
     @mouseleave="photoOver = false"
     @click="openLightBoxDialog(photoIndex)"
@@ -24,69 +24,100 @@
 
     <client-only>
       <div
-        v-if="isLoggedIn && photoOver"
+        v-if="$auth.loggedIn"
         class="photo-actions"
+        @click.stop=""
       >
-        <!-- Report problem -->
-        <v-btn
-          icon
+        <like-btn
+          :likeable-id="photo.id"
+          likeable-type="Photo"
+          :initial-like-count="photo.likes_count"
           dark
-          :to="`/reports/Photo/${photo.id}/new?redirect_to=${$route.fullPath}`"
-          :title="$t('actions.reportProblem')"
-          @click.stop=""
-        >
-          <v-icon small>
-            {{ mdiFlag }}
-          </v-icon>
-        </v-btn>
+        />
+        <v-menu>
+          <template #activator="{ on, attrs }">
+            <v-btn
+              icon
+              dark
+              :loading="updatingBanner"
+              v-bind="attrs"
+              v-on="on"
+            >
+              <v-icon>
+                {{ mdiDotsVertical }}
+              </v-icon>
+            </v-btn>
+          </template>
+          <v-list>
+            <!-- Report problem -->
+            <v-list-item
+              :to="`/reports/Photo/${photo.id}/new?redirect_to=${$route.fullPath}`"
+              @click.stop=""
+            >
+              <v-list-item-icon>
+                <v-icon>
+                  {{ mdiFlag }}
+                </v-icon>
+              </v-list-item-icon>
+              <v-list-item-content>
+                {{ $t('actions.reportProblem') }}
+              </v-list-item-content>
+            </v-list-item>
 
-        <!-- Define as a banner -->
-        <v-btn
-          v-if="environnementType"
-          icon
-          dark
-          :title="defineBtnTitle()"
-          :loading="updatingBanner"
-          @click.stop="defineAsBanner()"
-        >
-          <v-icon small>
-            {{ mdiPanorama }}
-          </v-icon>
-        </v-btn>
+            <!-- Define as a banner -->
+            <v-list-item
+              v-if="environnementType"
+              @click.stop="defineAsBanner()"
+            >
+              <v-list-item-icon>
+                <v-icon>
+                  {{ mdiPanorama }}
+                </v-icon>
+              </v-list-item-icon>
+              <v-list-item-content>
+                {{ defineBtnTitle() }}
+              </v-list-item-content>
+            </v-list-item>
 
-        <!-- Destroy -->
-        <v-btn
-          v-if="photo.creator.uuid === loggedInUser.uuid"
-          icon
-          dark
-          :loading="deletingPhoto"
-          @click.stop="deletePhoto()"
-        >
-          <v-icon small>
-            {{ mdiDelete }}
-          </v-icon>
-        </v-btn>
+            <!-- Destroy -->
+            <v-list-item
+              v-if="photo.creator.uuid === $auth.user.uuid"
+              @click.stop="deletePhoto()"
+            >
+              <v-list-item-icon>
+                <v-icon>
+                  {{ mdiDelete }}
+                </v-icon>
+              </v-list-item-icon>
+              <v-list-item-content>
+                {{ $t('actions.delete') }}
+              </v-list-item-content>
+            </v-list-item>
 
-        <!-- Edit -->
-        <v-btn
-          v-if="photo.creator.uuid === loggedInUser.uuid"
-          icon
-          dark
-          :to="`${photo.path}/edit?redirect_to=${$route.fullPath}`"
-          @click.stop=""
-        >
-          <v-icon small>
-            {{ mdiPencil }}
-          </v-icon>
-        </v-btn>
+            <!-- Edit -->
+            <v-list-item
+              v-if="photo.creator.uuid === $auth.user.uuid"
+              :to="`${photo.path}/edit?redirect_to=${$route.fullPath}`"
+              @click.stop=""
+            >
+              <v-list-item-icon>
+                <v-icon>
+                  {{ mdiPencil }}
+                </v-icon>
+              </v-list-item-icon>
+              <v-list-item-content>
+                {{ $t('actions.edit') }}
+              </v-list-item-content>
+            </v-list-item>
+          </v-list>
+        </v-menu>
       </div>
     </client-only>
   </v-img>
 </template>
 
 <script>
-import { mdiFlag, mdiPanorama, mdiDelete, mdiPencil } from '@mdi/js'
-import { SessionConcern } from '@/concerns/SessionConcern'
+import { mdiFlag, mdiPanorama, mdiDelete, mdiPencil, mdiDotsVertical } from '@mdi/js'
 import CragApi from '~/services/oblyk-api/CragApi'
 import Crag from '@/models/Crag'
 import CragSectorApi from '~/services/oblyk-api/CragSectorApi'
@@ -96,10 +127,11 @@ import CragRoute from '@/models/CragRoute'
 import AreaApi from '~/services/oblyk-api/AreaApi'
 import Area from '@/models/Area'
 import PhotoApi from '~/services/oblyk-api/PhotoApi'
+import LikeBtn from '~/components/forms/LikeBtn.vue'
 
 export default {
   name: 'PhotoThumbnail',
-  mixins: [SessionConcern],
+  components: { LikeBtn },
   props: {
     photo: {
       type: Object,
@@ -119,24 +151,26 @@ export default {
     },
     environnementType: {
       type: String,
-      required: true
+      default: null
     },
     environnementObject: {
       type: Object,
-      required: true
+      default: null
     }
   },
 
   data () {
     return {
+      deleted: false,
+      photoOver: false,
+      updatingBanner: false,
+      deletingPhoto: false,
+
       mdiFlag,
       mdiPanorama,
       mdiDelete,
       mdiPencil,
-      deleted: false,
-      photoOver: false,
-      updatingBanner: false,
-      deletingPhoto: false
+      mdiDotsVertical
     }
   },
 
@@ -226,10 +260,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.photo-thumbnail {
-  border-radius: 2px;
-  cursor: pointer;
-}
 .photo-actions {
   position: absolute;
   text-align: right;

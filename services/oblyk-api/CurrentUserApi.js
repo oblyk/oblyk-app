@@ -71,6 +71,17 @@ class CurrentUserApi extends BaseApi {
     })
   }
 
+  likes () {
+    return this.axios.request({
+      method: 'GET',
+      url: `${this.baseUrl}/current_users/likes.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
+    })
+  }
+
   subscribesAscents (page = 1) {
     return this.axios.request({
       method: 'GET',

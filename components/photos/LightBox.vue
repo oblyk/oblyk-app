@@ -29,7 +29,10 @@
 
     <!-- Picture viewer -->
     <v-col class="full-height pb-0 pt-0">
-      <photo-viewer :photo="photo" />
+      <photo-viewer
+        v-if="photo"
+        :photo="photo"
+      />
     </v-col>
 
     <!-- Next picture -->
@@ -47,7 +50,7 @@ import { mdiClose } from '@mdi/js'
 import LightBoxArrow from '@/components/photos/LightBoxArrow'
 import PhotoCardInfo from '@/components/photos/PhotoCardInfo'
 import PhotoCollection from '@/components/photos/PhotoCollection'
-const PhotoViewer = () => import('@/components/photos/PhotoViewer')
+import PhotoViewer from '@/components/photos/PhotoViewer'
 
 export default {
   name: 'LightBox',

@@ -1,14 +1,20 @@
 <template>
   <div>
     <div v-if="loadingGallery">
-      <v-skeleton-loader
-        v-for="index in 3"
-        :key="`photo-list-${index}`"
-        type="image"
-        class="d-inline-block mr-4"
-        height="180"
-        width="180"
-      />
+      <v-row no-gutters>
+        <v-col
+          cols="4"
+          md="3"
+          lg="2"
+        >
+          <v-skeleton-loader
+            type="image"
+            tile
+            style="aspect-ratio: 1"
+            width="100%"
+          />
+        </v-col>
+      </v-row>
     </div>
     <v-row
       v-if="!loadingGallery"
@@ -17,7 +23,10 @@
       <v-col
         v-for="(photo, index) in photos"
         :key="`photo-${index}`"
-        class="col-6 col-md-4 d-flex child-flex pa-1"
+        cols="4"
+        md="3"
+        lg="2"
+        style="padding: 1px"
         :class="lgCol"
       >
         <photo-thumbnail
@@ -30,6 +39,19 @@
         />
       </v-col>
       <v-col
+        v-if="!loadingGallery"
+        cols="4"
+        md="3"
+        lg="2"
+      >
+        <loading-more
+          :get-function="getPhotos"
+          :loading-more="loadingMoreData"
+          :no-more-data="noMoreDataToLoad"
+          skeleton-type="photos"
+        />
+      </v-col>
+      <v-col
         v-if="photos.length === 0"
       >
         <p class="text-center text--disabled mt-5 mb-5">
@@ -37,14 +59,6 @@
         </p>
       </v-col>
     </v-row>
-
-    <loading-more
-      v-if="!loadingGallery"
-      :get-function="getPhotos"
-      :loading-more="loadingMoreData"
-      :no-more-data="noMoreDataToLoad"
-      skeleton-type="photos"
-    />
 
     <!-- Full screen dialog for lightbox -->
     <client-only>
@@ -70,7 +84,6 @@
 <script>
 import { LoadingMoreHelpers } from '@/mixins/LoadingMoreHelpers'
 import PhotoThumbnail from '@/components/photos/PhotoThumbnail'
-import LightBox from '@/components/photos/LightBox'
 import UserApi from '~/services/oblyk-api/UserApi'
 import Photo from '@/models/Photo'
 import LoadingMore from '@/components/layouts/LoadingMore'
@@ -80,6 +93,7 @@ import CragRouteApi from '~/services/oblyk-api/CragRouteApi'
 import CragApi from '~/services/oblyk-api/CragApi'
 import GuideBookPaperApi from '~/services/oblyk-api/GuideBookPaperApi'
 import CurrentUserApi from '~/services/oblyk-api/CurrentUserApi'
+const LightBox = () => import('@/components/photos/LightBox')
 
 export default {
   name: 'PhotoGallery',

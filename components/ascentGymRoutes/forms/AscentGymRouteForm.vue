@@ -10,9 +10,24 @@
       :label="$t('models.ascentGymRoute.released_at')"
     />
 
-    <note-input
-      v-model="data.note"
-    />
+    <!-- Real favorite -->
+    <div class="border --current-color-border rounded mb-7 px-3 py-1">
+      <like-btn
+        ref="btnLike"
+        class="vertical-align-sub"
+        :likeable-id="gymRoute.id"
+        likeable-type="GymRoute"
+        :small="false"
+        @click.stop=""
+      />
+      <strong
+        class="hoverable"
+        @click="$refs.btnLike.likeOrUnlike()"
+      >
+        {{ $t('components.like.isRealFavorite') }}
+        {{ iLikeIt ? '!' : '?' }}
+      </strong>
+    </div>
 
     <v-textarea
       v-model="data.comment"
@@ -59,11 +74,11 @@ import AscentGymRouteApi from '~/services/oblyk-api/AscentGymRouteApi'
 import CloseForm from '@/components/forms/CloseForm'
 import AscentStatusInput from '@/components/forms/AscentStatusInput'
 import DatePickerInput from '@/components/forms/DatePickerInput'
-import NoteInput from '@/components/forms/NoteInput'
+import LikeBtn from '~/components/forms/LikeBtn.vue'
 
 export default {
   name: 'AscentGymRouteForm',
-  components: { NoteInput, DatePickerInput, AscentStatusInput, CloseForm, SubmitForm },
+  components: { LikeBtn, DatePickerInput, AscentStatusInput, CloseForm, SubmitForm },
   mixins: [
     FormHelpers,
     DateHelpers
@@ -99,6 +114,12 @@ export default {
         note: this.ascentGymRoute?.note,
         comment: this.ascentGymRoute?.comment
       }
+    }
+  },
+
+  computed: {
+    iLikeIt () {
+      return this.$store.getters['likes/storedLikes'].GymRoute?.includes(this.gymRoute.id)
     }
   },
 

@@ -17,6 +17,7 @@ export default {
     close: 'Close',
     valid: 'Valid',
     ok: 'ok',
+    like: 'Like',
     selectOrUnselect: 'select / unselect',
     search: 'Search',
     addFilters: 'Add filters',
@@ -199,6 +200,7 @@ export default {
     whatDoYouWantToDo: 'What do you want to do?',
     others: 'Others',
     goTo: 'Go to %{name}',
+    realFavorite: 'Real favorite',
     at: 'at',
     is: 'is',
     in: 'in',
@@ -639,7 +641,8 @@ export default {
         new_follower: '%{name} started following you',
         subscribe_accepted: '%{name} has agreed to let you follow him',
         request_for_follow_up: '%{name} asks to follow you',
-        new_article: 'New article! %{name}'
+        new_article: 'New article! %{name}',
+        new_like: '%{name} likes yours %{type}'
       }
     },
     country: {
@@ -1184,7 +1187,11 @@ export default {
       notesTitle: 'Assessment of openings',
       noteSum: 'Number of votes',
       openingFrequenciesTitle: 'Opening frequency',
-      noData: 'No data available'
+      noData: 'No data available',
+      likeTitle: 'The likes on the openings',
+      likesCount: 'Total likes',
+      averageLike: 'Like / routes',
+      likedRatio: 'Routes are liked'
     },
     gymAdministrationRequest: {
       helloName: 'Hello %{name}',
@@ -1333,6 +1340,7 @@ export default {
       noLink: 'There is no link referenced here for the moment'
     },
     comment: {
+      on: 'Comment on',
       comments: 'Comments',
       countInfos: 'One comment posted | %{count} comments posted',
       noComment: 'There is no comment here for the moment',
@@ -1358,12 +1366,16 @@ export default {
     photo: {
       imageOptimization: 'Image optimization ...',
       photos: 'Photos',
+      photoOf: 'Photo of',
+      postedBy: 'Posted by',
       countInfos: 'One photo posted | %{count} photos posted',
       noPhoto: 'There is no picture here for the moment'
     },
     video: {
-      title: 'Videos',
       countInfos: 'One video posted | %{count} videos posted',
+      title: 'Videos',
+      videoOf: 'Video of',
+      postedBy: 'Posted by',
       noVideo: 'There is no video here for the moment'
     },
     partner: {
@@ -1509,6 +1521,19 @@ export default {
       noAscents: 'Your friends have not yet completed their log book',
       followYourFriends: 'Follow your friends to see their latest achievements.',
       addSubscribesBtn: 'My Subscriptions'
+    },
+    like: {
+      like: 'Like',
+      likesCount: 'Like | Likes',
+      IAlreadyIt: 'I already like',
+      isRealFavorite: 'Is a real favorite',
+      type: {
+        GymRoute: 'indoor route',
+        Comment: 'comment',
+        Photo: 'photo',
+        Video: 'video',
+        Article: 'article'
+      }
     },
     feed: {
       newWord: 'New definition of %{name}',
@@ -2093,7 +2118,7 @@ export default {
       favorite: 'Favorite',
       openers: 'Openers',
       description: 'Additional information',
-      opened_at: 'Open date',
+      opened_at: 'Opened at',
       polyline: 'Polyline',
       colors: 'Colors',
       hold_colors: 'Hold colors',
@@ -2108,6 +2133,7 @@ export default {
       note_count: 'Number of note',
       ascents: 'Ascents',
       ascents_count: 'Number of ascents',
+      likes_count: 'Number of likes',
       sections_count: 'Number of sections',
       max_grade_text: 'Max grade',
       min_grade_text: 'Min grade',

@@ -25,6 +25,25 @@
             item-key="id"
             :show-select="gymAuthCan(gym, 'manage_opening')"
           >
+            <!-- Header slot -->
+            <template #[`header.ascentsCount`]="{ header }">
+              <v-icon
+                small
+                :title="header.text"
+              >
+                {{ mdiBookCheckOutline }}
+              </v-icon>
+            </template>
+            <template #[`header.likesCount`]="{ header }">
+              <v-icon
+                small
+                :title="header.text"
+              >
+                {{ mdiHeartOutline }}
+              </v-icon>
+            </template>
+
+            <!-- Row slot -->
             <template #[`item.color`]="{ item }">
               <gym-route-tag-and-hold :gym-route="item.color" />
             </template>
@@ -46,7 +65,7 @@
                   {{ mdiCheckAll }}
                 </v-icon>
               </v-btn>
-              {{ humanizeDate(item.openedAt) }}
+              {{ humanizeDate(item.openedAt, 'D MMM YY') }}
             </template>
             <template #[`item.sector`]="{ item }">
               <v-btn
@@ -224,7 +243,9 @@ import {
   mdiPencil,
   mdiPrinter,
   mdiCheckAll,
-  mdiTableArrowRight
+  mdiTableArrowRight,
+  mdiBookCheckOutline,
+  mdiHeartOutline
 } from '@mdi/js'
 import { DateHelpers } from '@/mixins/DateHelpers'
 import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
@@ -313,6 +334,12 @@ export default {
             value: 'ascentsCount'
           },
           {
+            text: this.$t('models.gymRoute.likes_count'),
+            align: 'start',
+            sortable: true,
+            value: 'likesCount'
+          },
+          {
             text: '',
             align: 'center',
             sortable: false,
@@ -328,7 +355,9 @@ export default {
       mdiPrinter,
       mdiDotsVertical,
       mdiCheckAll,
-      mdiTableArrowRight
+      mdiTableArrowRight,
+      mdiBookCheckOutline,
+      mdiHeartOutline
     }
   },
 
@@ -399,6 +428,7 @@ export default {
             opener: route.openers.map(opener => opener.name).join(', '),
             openedAt: route.opened_at,
             ascentsCount: route.ascents_count,
+            likesCount: route.likes_count,
             edit: route
           }
         )

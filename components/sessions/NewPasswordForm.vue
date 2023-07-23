@@ -52,6 +52,7 @@ import { mdiEyeOff, mdiEye } from '@mdi/js'
 import SubmitForm from '@/components/forms/SubmitForm'
 import SessionApi from '~/services/oblyk-api/SessionApi'
 import RequiredExplained from '~/components/forms/RequiredExplained'
+import CurrentUserApi from '~/services/oblyk-api/CurrentUserApi'
 
 export default {
   name: 'NewPasswordForm',
@@ -96,6 +97,13 @@ export default {
                 password: this.password
               }
             }).then(() => {
+              // get likes
+              new CurrentUserApi(this.$axios, this.$auth)
+                .likes()
+                .then((resp) => {
+                  this.$store.dispatch('likes/storeLikes', resp.data)
+                })
+
               this.$router.push('/')
             }).finally(() => {
               this.overlay = false

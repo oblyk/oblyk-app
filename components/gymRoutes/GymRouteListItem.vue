@@ -21,59 +21,56 @@
     </v-list-item-avatar>
 
     <v-list-item-content>
-      <v-list-item-title>
-        <gym-route-tag-and-hold :gym-route="gymRoute" />
-        {{ gymRoute.name }}
+      <v-list-item-title class="d-flex">
+        <div class="mr-auto text-truncate">
+          <gym-route-tag-and-hold :gym-route="gymRoute" />
+          {{ gymRoute.name }}
+        </div>
+        <div class="pt-1">
+          <gym-route-grade-and-point :gym-route="gymRoute" />
+        </div>
       </v-list-item-title>
-      <v-list-item-subtitle>
-        <v-chip
-          v-if="showSector"
-          outlined
-          small
-          color="primary"
-          class="gym-route-sector-name font-weight-bold"
-        >
-          <v-icon
-            x-small
-            left
+      <v-list-item-subtitle class="d-flex">
+        <div class="mr-auto">
+          <ascent-gym-route-status-icon
+            v-if="$auth.loggedIn"
+            :gym-route="gymRoute"
+          />
+        </div>
+        <div>
+          <!-- Likes -->
+          <strong v-if="gymRoute.likes_count && gymRoute.likes_count > 0">
+            <v-icon
+              class="vertical-align-text-bottom"
+              color="red"
+              small
+            >
+              {{ mdiHeart }}
+            </v-icon>
+            {{ gymRoute.likes_count }}
+          </strong>
+          <!-- Ascents -->
+          <strong
+            v-if="gymRoute.ascents_count || 0 !== 0"
+            class="text--disabled"
           >
-            {{ mdiTextureBox }}
-          </v-icon>
-          {{ gymRoute.gym_sector.name }}
-        </v-chip>
-        <ascent-gym-route-status-icon
-          v-if="$auth.loggedIn"
-          :gym-route="gymRoute"
-        />
-        <note
-          v-if="gymRoute.note !== null"
-          :note="gymRoute.note"
-        />
+            <v-icon
+              small
+              class="ml-2 text--disabled"
+            >
+              {{ mdiCheckAll }}
+            </v-icon>
+            {{ gymRoute.ascents_count || 0 }}
+          </strong>
+        </div>
       </v-list-item-subtitle>
     </v-list-item-content>
-
-    <v-list-item-action>
-      <gym-route-grade-and-point :gym-route="gymRoute" />
-      <span
-        v-if="gymRoute.ascents_count || 0 !== 0"
-        class="text--disabled"
-      >
-        <v-icon
-          small
-          class="ml-2 text--disabled"
-        >
-          {{ mdiCheckAll }}
-        </v-icon>
-        {{ gymRoute.ascents_count || 0 }}
-      </span>
-    </v-list-item-action>
   </v-list-item>
 </template>
 
 <script>
-import { mdiCheckAll, mdiTextureBox } from '@mdi/js'
+import { mdiCheckAll, mdiHeart } from '@mdi/js'
 import GymRouteTagAndHold from '~/components/gymRoutes/partial/GymRouteTagAndHold.vue'
-import Note from '~/components/notes/Note.vue'
 import GymRouteGradeAndPoint from '~/components/gymRoutes/partial/GymRouteGradeAndPoint.vue'
 import AscentGymRouteStatusIcon from '~/components/ascentGymRoutes/AscentGymRouteStatusIcon.vue'
 
@@ -82,7 +79,6 @@ export default {
   components: {
     AscentGymRouteStatusIcon,
     GymRouteGradeAndPoint,
-    Note,
     GymRouteTagAndHold
   },
 
@@ -91,24 +87,16 @@ export default {
       type: Object,
       required: true
     },
-    showSector: {
-      type: Boolean,
-      default: false
-    },
     relativePath: {
       type: Boolean,
       default: true
-    },
-    bordered: {
-      type: Boolean,
-      default: false
     }
   },
 
   data () {
     return {
       mdiCheckAll,
-      mdiTextureBox
+      mdiHeart
     }
   },
 

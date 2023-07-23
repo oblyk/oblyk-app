@@ -1,10 +1,10 @@
 <template>
-  <div class="comment-card">
+  <div class="back-app-color rounded-sm pa-2">
     <markdown-text
       v-if="comment.body"
       :text="comment.body"
     />
-    <div class="comment-owner">
+    <div class="comment-owner d-flex justify-space-between">
       <owner-label
         :history="comment.history"
         :owner="comment.creator"
@@ -12,20 +12,27 @@
         :reports="{ type: 'Comment', id: comment.id }"
         :delete-function="deleteComment"
       />
+      <div>
+        <like-btn
+          class="align-end"
+          :initial-like-count="comment.likes_count"
+          :likeable-id="comment.id"
+          likeable-type="Comment"
+        />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import { SessionConcern } from '@/concerns/SessionConcern'
 import OwnerLabel from '@/components/users/OwnerLabel'
 import CommentApi from '~/services/oblyk-api/CommentApi'
+import LikeBtn from '~/components/forms/LikeBtn'
 const MarkdownText = () => import('@/components/ui/MarkdownText')
 
 export default {
   name: 'CommentCard',
-  components: { MarkdownText, OwnerLabel },
-  mixins: [SessionConcern],
+  components: { LikeBtn, MarkdownText, OwnerLabel },
   props: {
     comment: {
       type: Object,
@@ -59,22 +66,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.comment-card {
-  border-radius: 5px;
-  padding: 10px;
-}
-
-.theme--light {
-  .comment-card {
-    background-color: #f5f5f5;
-  }
-}
-
-.theme--dark {
-  .comment-card {
-    background-color: #121212;
-  }
-}
-</style>

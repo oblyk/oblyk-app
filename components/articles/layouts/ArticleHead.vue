@@ -16,6 +16,12 @@
         <div>
           {{ $t('components.article.writtenBy', { name: article.author.name }) }},
           {{ $t('common.at') }} {{ humanizeDate(article.published_at) }}
+          <like-btn
+            class="ml-1"
+            :likeable-id="article.id"
+            likeable-type="Article"
+            :initial-like-count="article.likes_count"
+          />
           <span
             v-if="article.comments_count && article.comments_count > 0"
             class="ml-2"
@@ -44,10 +50,11 @@ import { DateHelpers } from '@/mixins/DateHelpers'
 import { SessionConcern } from '@/concerns/SessionConcern'
 import ArticleActionMenu from '@/components/articles/forms/ArticleActionMenu'
 import ShareBtn from '~/components/ui/ShareBtn.vue'
+import LikeBtn from '~/components/forms/LikeBtn.vue'
 
 export default {
   name: 'ArticleHead',
-  components: { ShareBtn, ArticleActionMenu },
+  components: { LikeBtn, ShareBtn, ArticleActionMenu },
   mixins: [DateHelpers, SessionConcern],
   props: {
     article: {

@@ -61,6 +61,7 @@ import { mdiEyeOff, mdiEye } from '@mdi/js'
 import SubmitForm from '@/components/forms/SubmitForm'
 import RequiredExplained from '~/components/forms/RequiredExplained'
 import NotificationApi from '~/services/oblyk-api/NotificationApi'
+import CurrentUserApi from '~/services/oblyk-api/CurrentUserApi'
 
 export default {
   name: 'SignInForm',
@@ -107,6 +108,13 @@ export default {
           .unreadCount()
           .then((resp) => {
             this.$store.dispatch('notification/changeNotificationStatus', resp.data > 0)
+          })
+
+        // Get likes
+        await new CurrentUserApi(this.$axios, this.$auth)
+          .likes()
+          .then((resp) => {
+            this.$store.dispatch('likes/storeLikes', resp.data)
           })
 
         if (this.redirectTo) {

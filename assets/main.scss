@@ -310,6 +310,9 @@ strong {
 .border {
   border-style: solid;
   border-width: 1px;
+  &.--current-color-border {
+    border-color: currentColor !important;
+  }
 }
 
 .border-bottom {

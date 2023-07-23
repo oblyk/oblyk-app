@@ -1,41 +1,37 @@
 <template>
-  <v-row>
-    <v-col>
-      <p
-        v-if="ascents.length > 0"
-        class="pl-3 mb-0"
-      >
-        <v-icon small class="mr-2">
-          {{ mdiCheckBold }}
-        </v-icon>
-        <u>
-          {{ $t('components.gymRoute.inMyLogBook') }}
-        </u>
-      </p>
-      <div
-        v-for="ascent in ascents"
-        :key="`ascent-${ascent.id}`"
-      >
-        <ascent-gym-route-small-card
-          :gym-route="gymRoute"
-          :ascent-gym-route="ascent"
-        />
-      </div>
-    </v-col>
-  </v-row>
+  <v-sheet
+    v-if="ascents.length > 0"
+    class="back-app-color rounded-sm pa-2"
+  >
+    <description-line
+      :item-title="$t('components.gymRoute.inMyLogBook')"
+      :icon="mdiBookCheckOutline"
+    >
+      <template #content>
+        <div
+          v-for="ascent in ascents"
+          :key="`ascent-${ascent.id}`"
+        >
+          <ascent-gym-route-small-card
+            :gym-route="gymRoute"
+            :ascent-gym-route="ascent"
+          />
+        </div>
+      </template>
+    </description-line>
+  </v-sheet>
 </template>
 
 <script>
-import { mdiCheckBold } from '@mdi/js'
-import { DateHelpers } from '@/mixins/DateHelpers'
+import { mdiBookCheckOutline } from '@mdi/js'
 import AscentGymRouteApi from '~/services/oblyk-api/AscentGymRouteApi'
 import AscentGymRoute from '@/models/AscentGymRoute'
 import AscentGymRouteSmallCard from '@/components/ascentGymRoutes/AscentGymRouteSmallCard'
+import DescriptionLine from '~/components/ui/DescriptionLine.vue'
 
 export default {
   name: 'GymRouteAscent',
-  components: { AscentGymRouteSmallCard },
-  mixins: [DateHelpers],
+  components: { DescriptionLine, AscentGymRouteSmallCard },
   props: {
     gymRoute: {
       type: Object,
@@ -48,7 +44,7 @@ export default {
       loadingAscents: true,
       ascents: [],
 
-      mdiCheckBold
+      mdiBookCheckOutline
     }
   },
 

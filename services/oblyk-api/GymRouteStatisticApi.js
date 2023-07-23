@@ -49,6 +49,18 @@ class GymRouteStatisticApi extends BaseApi {
     })
   }
 
+  likeFigures (gymId, filters) {
+    return this.axios.request({
+      method: 'POST',
+      url: `${this.baseUrl}/gyms/${gymId}/statistics/gym_route_statistics/like_figures.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
+      data: { filters }
+    })
+  }
+
   openingFrequencies (gymId, filters) {
     return this.axios.request({
       method: 'POST',

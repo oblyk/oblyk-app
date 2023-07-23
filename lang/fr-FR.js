@@ -17,6 +17,7 @@ export default {
     close: 'Fermer',
     valid: 'Valider',
     ok: 'ok',
+    like: 'Aimer',
     selectOrUnselect: 'sélectionner / désélectionner',
     search: 'Chercher',
     addFilters: 'Ajouter des filtres',
@@ -199,6 +200,7 @@ export default {
     whatDoYouWantToDo: 'Que voulez vous faire ?',
     others: 'Autres',
     goTo: 'Aller à %{name}',
+    realFavorite: 'Coup de cœur',
     at: 'le',
     is: 'à',
     in: 'en',
@@ -639,7 +641,8 @@ export default {
         new_follower: '%{name} à commencé à vous suivre',
         subscribe_accepted: '%{name} a accepté que vous le·a suiviez',
         request_for_follow_up: '%{name} demande à vous suivre',
-        new_article: 'Nouvel article ! %{name}'
+        new_article: 'Nouvel article ! %{name}',
+        new_like: '%{name} aime votre %{type}'
       }
     },
     country: {
@@ -1184,7 +1187,11 @@ export default {
       notesTitle: 'Appréciation des ouvertures',
       noteSum: 'Nombre de vote',
       openingFrequenciesTitle: "Fréquence d'ouverture",
-      noData: 'Pas de donnée disponible'
+      noData: 'Pas de donnée disponible',
+      likeTitle: 'Les likes sur les ouvertures',
+      likesCount: 'Total des likes',
+      averageLike: 'Likes / ouvertures',
+      likedRatio: 'Des lignes sont likées'
     },
     gymAdministrationRequest: {
       helloName: 'Bonjour %{name}',
@@ -1232,7 +1239,7 @@ export default {
       noRouteInSector: 'Aucune ligne dans ce secteur',
       findRandomName: 'Trouver un nom aléatoire',
       refTo: 'En référence à',
-      climbersComments: 'Commentaires des grimpeur·euse·s',
+      climbersComments: 'Avis des grimpeurs et grimpeuses',
       inMyLogBook: 'Dans mon carnet',
       ascents: '1 ascension | %{count} ascensions',
       printedFileName: 'Fiche de voie - %{date} - %{name}.pdf',
@@ -1333,6 +1340,7 @@ export default {
       noLink: "Il n'y a pas de lien référencé ici pour l'instant"
     },
     comment: {
+      on: 'Commentaire sur',
       comments: 'Commentaires',
       countInfos: 'Un commentaire posté | %{count} commentaires postés',
       noComment: "Il n'y a pas de commentaire ici pour l'instant",
@@ -1358,12 +1366,16 @@ export default {
     photo: {
       imageOptimization: "Optimisation de l'image ...",
       photos: 'Photos',
+      photoOf: 'Photo de',
+      postedBy: 'Posté par',
       countInfos: 'Une photo postée | %{count} photos postées',
       noPhoto: "Il n'y a pas de photo ici pour l'instant"
     },
     video: {
       countInfos: 'Une video postée | %{count} vidéos postées',
       title: 'Vidéos',
+      videoOf: 'Vidéo de',
+      postedBy: 'Posté par',
       noVideo: "Il n'y a pas de vidéo ici pour l'instant"
     },
     partner: {
@@ -1509,6 +1521,19 @@ export default {
       noAscents: "Tes ami·e·s n'ont pas encore complété leur carnet de croix.",
       followYourFriends: 'Suis tes ami·es pour voir leur dernières réalisations.',
       addSubscribesBtn: 'Mes Abonnements'
+    },
+    like: {
+      like: 'Like',
+      likesCount: 'Like | Likes',
+      IAlreadyIt: "J'aime déjà",
+      isRealFavorite: "C'est un coup de cœur",
+      type: {
+        GymRoute: 'voie indoor',
+        Comment: 'commentaire',
+        Photo: 'photo',
+        Video: 'vidéo',
+        Article: 'article'
+      }
     },
     feed: {
       newWord: 'Nouvelle définition de %{name}',
@@ -2093,7 +2118,7 @@ export default {
       favorite: 'Favori',
       openers: 'Ouvreurs',
       description: 'Complément d’information',
-      opened_at: "Date d'ouverture",
+      opened_at: 'Ouvert le',
       polyline: 'Tracé',
       colors: 'Colors',
       hold_colors: 'Couleur des prises',
@@ -2108,6 +2133,7 @@ export default {
       note_count: 'Nombre de note',
       ascents: 'Ascensions',
       ascents_count: "Nombre d'ascension",
+      likes_count: 'Nombre de like',
       sections_count: 'Nombre de section',
       max_grade_text: 'Cotation max',
       min_grade_text: 'Cotation min',

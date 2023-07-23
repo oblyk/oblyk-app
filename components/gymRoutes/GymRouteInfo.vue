@@ -88,50 +88,68 @@
       <!-- Route description -->
       <v-sheet
         v-if="gymRoute.description"
-        rounded
-        class="px-3 pb-1 pt-4 my-2 font-italic"
+        class="px-3 pb-1 pt-4 my-2 font-italic back-app-color rounded-sm"
       >
         <markdown-text :text="gymRoute.description" />
       </v-sheet>
 
       <!-- Global information -->
-      <v-row class="my-2">
-        <!-- Route note -->
-        <v-col v-if="gymRoute.note" cols="6">
+      <v-row
+        class="mb-2"
+        no-gutters
+      >
+        <!-- Route real favorite -->
+        <v-col
+          v-if="gymRoute.likes_count && gymRoute.likes_count > 0"
+          cols="6"
+          class="my-1 px-1"
+        >
           <description-line
-            :icon="mdiStarOutline"
-            :item-title="$t('models.gymRoute.note')"
-          >
-            <template #content>
-              <note v-if="gymRoute.note !== null" :note="gymRoute.note" />
-              <small class="grey--text ml-1">({{ gymRoute.note_count }})</small>
-            </template>
-          </description-line>
+            :icon="mdiHeart"
+            icon-color="red"
+            :item-title="$t('common.realFavorite')"
+            :item-value="`${gymRoute.likes_count} ${$t('common.realFavorite')}`"
+            class="back-app-color rounded-sm px-2 py-1"
+          />
         </v-col>
 
         <!-- Route ascent count -->
-        <v-col v-if="gymRoute.ascents_count || 0 > 0" cols="6">
+        <v-col
+          v-if="gymRoute.ascents_count || 0 > 0"
+          cols="6"
+          class="my-1 px-1"
+        >
           <description-line
             :icon="mdiCheckAll"
             :item-title="$t('models.gymRoute.ascents')"
             :item-value="$tc('components.gymRoute.ascents', gymRoute.ascents_count, { count: gymRoute.ascents_count })"
+            class="back-app-color rounded-sm px-2 py-1"
           />
         </v-col>
 
         <!-- Route opened_at -->
-        <v-col v-if="gymRoute.opened_at" cols="6">
+        <v-col
+          v-if="gymRoute.opened_at"
+          cols="6"
+          class="my-1 px-1"
+        >
           <description-line
             :icon="mdiCalendar"
             :item-title="$t('models.gymRoute.opened_at')"
-            :item-value="humanizeDate(gymRoute.opened_at)"
+            :item-value="humanizeDate(gymRoute.opened_at, 'll')"
+            class="back-app-color rounded-sm px-2 py-1"
           />
         </v-col>
 
         <!-- Sector -->
-        <v-col cols="6">
+        <v-col
+          cols="6"
+          class="my-1 px-1"
+        >
           <description-line
             :icon="mdiTextureBox"
             :item-title="$t('models.gymRoute.gym_sector_id')"
+            class="back-app-color rounded-sm px-2 py-1"
           >
             <template #content>
               <a
@@ -152,10 +170,15 @@
         </v-col>
 
         <!-- Space -->
-        <v-col v-if="showSpace" cols="6">
+        <v-col
+          v-if="showSpace"
+          cols="6"
+          class="my-1 px-1"
+        >
           <description-line
             :icon="mdiMap"
             :item-title="$t('models.gymRoute.gym_space_id')"
+            class="back-app-color rounded-sm px-2 py-1"
           >
             <template #content>
               <nuxt-link :to="gymRoute.gymSpacePath">
@@ -166,19 +189,29 @@
         </v-col>
 
         <!-- Route opener -->
-        <v-col v-if="gymRoute.openers.length > 0" cols="6">
+        <v-col
+          v-if="gymRoute.openers.length > 0"
+          cols="6"
+          class="my-1 px-1"
+        >
           <description-line
             :icon="mdiBolt"
             :item-title="$t('models.gymRoute.openers')"
             :item-value="gymRoute.openers.map(opener => opener.name).join(', ')"
+            class="back-app-color rounded-sm px-2 py-1"
           />
         </v-col>
 
         <!-- Route tags -->
-        <v-col v-if="gym && gymRoute.hasStyles" cols="12">
+        <v-col
+          v-if="gym && gymRoute.hasStyles"
+          cols="12"
+          class="my-1 px-1"
+        >
           <description-line
             :icon="mdiPound"
             :item-title="$t('models.gymRoute.styles')"
+            class="back-app-color rounded-sm px-2 pb-2 pt-1"
           >
             <template #content>
               <gym-route-climbing-styles
@@ -191,13 +224,24 @@
         </v-col>
       </v-row>
 
+      <!-- Cross list and add in logbook btn -->
+      <gym-route-ascent
+        v-if="$auth.loggedIn"
+        :gym-route="gymRoute"
+      />
+
       <!-- Edit and add to logbook -->
       <div class="text-right mt-2 mb-3">
+        <like-btn
+          class="vertical-align-bottom"
+          :likeable-id="gymRoute.id"
+          likeable-type="GymRoute"
+          :small="false"
+        />
         <add-gym-ascent-btn
           v-if="$auth.loggedIn"
           :gym-route="gymRoute"
         />
-
       </div>
       <div
         v-if="$auth.loggedIn && currentUserIsGymAdmin() && gymAuthCan(gymRoute.gym, 'manage_opening')"
@@ -206,44 +250,33 @@
         <small class="mr-2">
           {{ $t('components.gymAdmin.administration') }} :
         </small>
-        <gym-route-action-btn
-          :gym-route="gymRoute"
-        />
+        <gym-route-action-btn :gym-route="gymRoute" />
       </div>
 
       <!-- Climber ascent part -->
-      <div
+      <v-sheet
         v-if="ascents.length > 0"
-        class="pr-3 pl-3"
+        class="back-app-color rounded-sm px-2 pb-2 pt-1"
       >
-        <p class="mb-0">
-          <v-icon small class="mr-2">
-            {{ mdiComment }}
-          </v-icon>
-          <u>
-            {{ $t('components.gymRoute.climbersComments') }}
-          </u>
-        </p>
-        <div
-          v-for="(ascent, index) in ascents"
-          :key="`gym-route-ascent-${index}`"
-          class="mt-2 mb-5"
+        <description-line
+          :item-title="$t('components.gymRoute.climbersComments')"
+          :icon="mdiComment"
         >
-          {{ ascent.comment }}
-          <br v-if="ascent.note !== null">
-          <note v-if="ascent.note !== null" :note="ascent.note" />
-          {{ $t('common.by') }}
-          <nuxt-link :to="`/climbers/${ascent.user.slug_name}`">
-            {{ ascent.user.first_name }}
-          </nuxt-link>
-        </div>
-      </div>
-
-      <!-- Cross list and add in logbook btn -->
-      <gym-route-ascent
-        v-if="isLoggedIn"
-        :gym-route="gymRoute"
-      />
+          <template #content>
+            <v-sheet
+              v-for="(ascent, index) in ascents"
+              :key="`gym-route-ascent-${index}`"
+              class="rounded-sm px-2 py-1 mt-2"
+            >
+              {{ ascent.comment }}
+              {{ $t('common.by') }}
+              <nuxt-link :to="`/climbers/${ascent.user.slug_name}`">
+                {{ ascent.user.first_name }}
+              </nuxt-link>
+            </v-sheet>
+          </template>
+        </description-line>
+      </v-sheet>
     </div>
   </div>
 </template>
@@ -252,7 +285,7 @@
 import {
   mdiClose,
   mdiComment,
-  mdiStarOutline,
+  mdiHeart,
   mdiCheckAll,
   mdiCalendar,
   mdiTextureBox,
@@ -267,7 +300,6 @@ import { DateHelpers } from '@/mixins/DateHelpers'
 import GymRouteTagAndHold from '@/components/gymRoutes/partial/GymRouteTagAndHold'
 import GymRouteGradeAndPoint from '@/components/gymRoutes/partial/GymRouteGradeAndPoint'
 import GymRouteAscent from '@/components/gymRoutes/GymRouteAscent'
-import Note from '@/components/notes/Note'
 import GymRouteApi from '~/services/oblyk-api/GymRouteApi'
 import AscentGymRoute from '@/models/AscentGymRoute'
 import DescriptionLine from '~/components/ui/DescriptionLine.vue'
@@ -275,16 +307,17 @@ import GymRouteActionBtn from '~/components/gymRoutes/partial/GymRouteActionBtn.
 import AddGymAscentBtn from '~/components/ascentGymRoutes/AddGymAscentBtn.vue'
 import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
 import GymRouteClimbingStyles from '~/components/gymRoutes/partial/GymRouteClimbingStyles.vue'
+import LikeBtn from '~/components/forms/LikeBtn.vue'
 const MarkdownText = () => import('@/components/ui/MarkdownText')
 
 export default {
   name: 'GymRouteInfo',
   components: {
+    LikeBtn,
     GymRouteClimbingStyles,
     AddGymAscentBtn,
     GymRouteActionBtn,
     DescriptionLine,
-    Note,
     MarkdownText,
     GymRouteAscent,
     GymRouteGradeAndPoint,
@@ -314,7 +347,7 @@ export default {
 
       mdiComment,
       mdiClose,
-      mdiStarOutline,
+      mdiHeart,
       mdiCheckAll,
       mdiCalendar,
       mdiTextureBox,
