@@ -58,9 +58,9 @@
         {{ mdiAccount }}
       </v-icon>
       <nuxt-link
-        :to="photo.Creator.path"
+        :to="`/climbers/${photo.creator.slug_name}`"
       >
-        {{ photo.Creator.name }}
+        {{ photo.creator.full_name }}
       </nuxt-link>
     </v-card-title>
   </div>
