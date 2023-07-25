@@ -42,6 +42,14 @@
                 {{ mdiHeartOutline }}
               </v-icon>
             </template>
+            <template #[`header.difficultyAppreciation`]="{ header }">
+              <v-icon
+                small
+                :title="header.text"
+              >
+                {{ mdiGauge }}
+              </v-icon>
+            </template>
 
             <!-- Row slot -->
             <template #[`item.color`]="{ item }">
@@ -91,6 +99,16 @@
               >
                 {{ item.ascentsCount }}
               </v-btn>
+            </template>
+            <template #[`item.difficultyAppreciation`]="{ item }">
+              <v-icon
+                v-if="item.difficultyAppreciation !== null"
+                :style="`transform: rotate(${item.difficultyAppreciation * -90}deg)`"
+                :title="difficultyAppreciationStatus(item.difficultyAppreciation)"
+                :color="difficultyColor(item.difficultyAppreciation)"
+              >
+                {{ mdiArrowRightThin }}
+              </v-icon>
             </template>
             <template #[`item.edit`]="{ item }">
               <nuxt-link
@@ -245,7 +263,9 @@ import {
   mdiCheckAll,
   mdiTableArrowRight,
   mdiBookCheckOutline,
-  mdiHeartOutline
+  mdiHeartOutline,
+  mdiGauge,
+  mdiArrowRightThin
 } from '@mdi/js'
 import { DateHelpers } from '@/mixins/DateHelpers'
 import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
@@ -340,6 +360,12 @@ export default {
             value: 'likesCount'
           },
           {
+            text: this.$t('models.gymRoute.difficulty_appreciation'),
+            align: 'start',
+            sortable: true,
+            value: 'difficultyAppreciation'
+          },
+          {
             text: '',
             align: 'center',
             sortable: false,
@@ -357,7 +383,9 @@ export default {
       mdiCheckAll,
       mdiTableArrowRight,
       mdiBookCheckOutline,
-      mdiHeartOutline
+      mdiHeartOutline,
+      mdiGauge,
+      mdiArrowRightThin
     }
   },
 
@@ -429,6 +457,7 @@ export default {
             openedAt: route.opened_at,
             ascentsCount: route.ascents_count,
             likesCount: route.likes_count,
+            difficultyAppreciation: route.difficulty_appreciation,
             edit: route
           }
         )
@@ -548,6 +577,31 @@ export default {
         .finally(() => {
           this.loadingAscents = false
         })
+    },
+
+    difficultyColor (difficultyAppreciation) {
+      let colorDiff = null
+      if (difficultyAppreciation > 0) {
+        colorDiff = Math.abs(difficultyAppreciation) * 127
+        return `rgb(${128 + colorDiff}, ${128 - colorDiff}, ${128 - colorDiff})`
+      } else {
+        colorDiff = Math.abs(difficultyAppreciation) * 100
+        return `rgb(${128 - colorDiff}, ${128 - colorDiff}, ${128 + colorDiff})`
+      }
+    },
+
+    difficultyAppreciationStatus (difficultyAppreciation) {
+      if (difficultyAppreciation >= 0.6) {
+        return this.$t('components.difficulty.hard')
+      } else if (difficultyAppreciation >= 0.2) {
+        return this.$t('components.difficulty.pretty_hard')
+      } else if (difficultyAppreciation >= -0.2) {
+        return this.$t('components.difficulty.just')
+      } else if (difficultyAppreciation >= -0.6) {
+        return this.$t('components.difficulty.pretty_soft')
+      } else {
+        return this.$t('components.difficulty.soft')
+      }
     }
   }
 }

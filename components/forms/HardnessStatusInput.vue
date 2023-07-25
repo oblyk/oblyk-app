@@ -6,7 +6,7 @@
     :items="hardnessStatuses"
     item-text="text"
     item-value="value"
-    :label="$t('components.input.hardnessStatus')"
+    :label="$t(labelKey)"
     outlined
     :prepend-inner-icon="mdiNumeric7BoxMultipleOutline"
     clearable
@@ -23,18 +23,23 @@ export default {
   name: 'HardnessStatusInput',
   mixins: [InputHelpers],
   props: {
-    value: String
+    value: String,
+    labelKey: {
+      type: String,
+      default: 'components.input.hardnessStatus'
+    }
   },
 
   data () {
     return {
-      mdiNumeric7BoxMultipleOutline,
       hardnessStatuses: [
         { text: this.$t('models.hardnessStatus.easy_for_the_grade'), value: 'easy_for_the_grade' },
         { text: this.$t('models.hardnessStatus.this_grade_is_accurate'), value: 'this_grade_is_accurate' },
         { text: this.$t('models.hardnessStatus.sandbagged'), value: 'sandbagged' }
       ],
-      hardnessStatus: this.value
+      hardnessStatus: this.value,
+
+      mdiNumeric7BoxMultipleOutline
     }
   },
 

@@ -12,7 +12,8 @@
         outlined
         :label="label"
         readonly
-        clearable
+        :class="required ? 'required-field' : ''"
+        :clearable="!required"
         :hide-details="hideDetails"
         :prepend-inner-icon="icon"
         :placeholder="$t('date.format_dd_mm_yyyy')"
@@ -62,6 +63,10 @@ export default {
       default: null
     },
     hideDetails: {
+      type: Boolean,
+      default: false
+    },
+    required: {
       type: Boolean,
       default: false
     }

@@ -6,9 +6,9 @@
     :items="ascentStatuses"
     item-text="text"
     item-value="value"
+    class="required-field"
     :label="$t('components.input.ascentStatus')"
     outlined
-    clearable
     @change="onChange"
     @focus="onFocus"
   >

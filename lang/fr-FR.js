@@ -554,6 +554,7 @@ export default {
       ascentStatus: "Statut de l'ascension",
       ropingStatus: 'Mode',
       hardnessStatus: 'Appréciation de la difficulté',
+      howFindDifficulty: 'Comment avez-vous trouvé la difficulté ?',
       note: 'Note',
       dateOfBirth: 'Date de naissance',
       genre: 'Genre',
@@ -1189,9 +1190,11 @@ export default {
       openingFrequenciesTitle: "Fréquence d'ouverture",
       noData: 'Pas de donnée disponible',
       likeTitle: 'Les likes sur les ouvertures',
+      difficultyTitle: 'Ressentie des difficultés',
       likesCount: 'Total des likes',
       averageLike: 'Likes / ouvertures',
-      likedRatio: 'Des lignes sont likées'
+      likedRatio: 'Des lignes sont likées',
+      onAverage: 'En moyen'
     },
     gymAdministrationRequest: {
       helloName: 'Bonjour %{name}',
@@ -1971,7 +1974,8 @@ export default {
       note: 'Note',
       comment: 'Commentaire',
       climbing_type: "Type d'escalade",
-      released_at: 'Réalisé le'
+      released_at: 'Réalisé le',
+      hardness_status: 'Appréciation de la difficulté'
     },
     climbingSession: {
       description: 'Commentaire de ma session'
@@ -2128,7 +2132,7 @@ export default {
       gym_space_id: 'Espace',
       gym_grade_line_id: 'Difficulté',
       gym_grade_line: 'Difficulté',
-      grade_value_appreciation: 'Cotation par les grimpeur·euse·s',
+      difficulty_appreciation: 'Ressentie de la difficulté',
       note: 'Note',
       note_count: 'Nombre de note',
       ascents: 'Ascensions',
@@ -2401,9 +2405,9 @@ export default {
       multi_pitch_alternate_lead: 'Réversible (Grande voie)'
     },
     hardnessStatus: {
-      easy_for_the_grade: 'Facile pour la cotation',
-      this_grade_is_accurate: 'Juste, bien côté',
-      sandbagged: 'Dur pour la cotation !'
+      easy_for_the_grade: '😎 Facile pour la cotation',
+      this_grade_is_accurate: '👌 Juste, bien côté',
+      sandbagged: '🥵 Dur pour la cotation !'
     },
     note: {
       terrible: '0/6 - Horrible !',

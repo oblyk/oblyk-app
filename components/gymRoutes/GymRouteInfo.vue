@@ -202,6 +202,52 @@
           />
         </v-col>
 
+        <!-- Difficulty appreciation -->
+        <v-col
+          v-if="gymRoute.votes"
+          cols="12"
+          class="my-1 px-1"
+        >
+          <description-line
+            :icon="mdiGauge"
+            :item-title="$t('models.gymRoute.difficulty_appreciation')"
+            class="back-app-color rounded-sm px-2 py-1"
+          >
+            <template #content>
+              <v-chip
+                v-if="gymRoute.votes.difficulty_appreciations.easy_for_the_grade"
+                outlined
+                :title="$t('models.hardnessStatus.easy_for_the_grade')"
+              >
+                😎 {{ gymRoute.votes.difficulty_appreciations.easy_for_the_grade.count }}
+              </v-chip>
+              <v-chip
+                v-if="gymRoute.votes.difficulty_appreciations.this_grade_is_accurate"
+                outlined
+                :title="$t('models.hardnessStatus.this_grade_is_accurate')"
+              >
+                👌 {{ gymRoute.votes.difficulty_appreciations.this_grade_is_accurate.count }}
+              </v-chip>
+              <v-chip
+                v-if="gymRoute.votes.difficulty_appreciations.sandbagged"
+                outlined
+                :title="$t('models.hardnessStatus.sandbagged')"
+              >
+                🥵 {{ gymRoute.votes.difficulty_appreciations.sandbagged.count }}
+              </v-chip>
+              <v-icon
+                class="vertical-align-sub"
+                left
+                right
+                small
+              >
+                {{ mdiArrowRight }}
+              </v-icon>
+              {{ $t(`components.difficulty.${difficultyAppreciationStatus}`) }}
+            </template>
+          </description-line>
+        </v-col>
+
         <!-- Route tags -->
         <v-col
           v-if="gym && gymRoute.hasStyles"
@@ -268,11 +314,14 @@
               :key="`gym-route-ascent-${index}`"
               class="rounded-sm px-2 py-1 mt-2"
             >
-              {{ ascent.comment }}
-              {{ $t('common.by') }}
-              <nuxt-link :to="`/climbers/${ascent.user.slug_name}`">
-                {{ ascent.user.first_name }}
-              </nuxt-link>
+              <div>{{ ascent.comment }}</div>
+              <small class="text--disabled">
+                {{ $t('common.by') }}
+                <nuxt-link :to="`/climbers/${ascent.user.slug_name}`">
+                  {{ ascent.user.first_name }}
+                </nuxt-link>
+                le {{ humanizeDate(ascent.released_at) }}
+              </small>
             </v-sheet>
           </template>
         </description-line>
@@ -293,7 +342,9 @@ import {
   mdiPound,
   mdiMap,
   mdiArrowExpand,
-  mdiArrowCollapse
+  mdiArrowCollapse,
+  mdiGauge,
+  mdiArrowRight
 } from '@mdi/js'
 import { SessionConcern } from '@/concerns/SessionConcern'
 import { DateHelpers } from '@/mixins/DateHelpers'
@@ -355,7 +406,9 @@ export default {
       mdiPound,
       mdiMap,
       mdiArrowExpand,
-      mdiArrowCollapse
+      mdiArrowCollapse,
+      mdiGauge,
+      mdiArrowRight
     }
   },
 
@@ -396,6 +449,21 @@ export default {
         }
       }
       return gradiant
+    },
+
+    difficultyAppreciationStatus () {
+      const appreciation = this.gymRoute.difficulty_appreciation
+      if (appreciation >= 0.6) {
+        return 'hard'
+      } else if (appreciation >= 0.2) {
+        return 'pretty_hard'
+      } else if (appreciation >= -0.2) {
+        return 'just'
+      } else if (appreciation >= -0.6) {
+        return 'pretty_soft'
+      } else {
+        return 'soft'
+      }
     }
   },
 
