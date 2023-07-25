@@ -29,7 +29,7 @@
 
     <!-- Picture viewer -->
     <v-col class="full-height pb-0 pt-0">
-      <photo-viewer
+      <photo-viewer-v-img
         v-if="photo"
         :photo="photo"
       />
@@ -50,12 +50,12 @@ import { mdiClose } from '@mdi/js'
 import LightBoxArrow from '@/components/photos/LightBoxArrow'
 import PhotoCardInfo from '@/components/photos/PhotoCardInfo'
 import PhotoCollection from '@/components/photos/PhotoCollection'
-import PhotoViewer from '@/components/photos/PhotoViewer'
+import PhotoViewerVImg from '~/components/photos/PhotoViewerVImg.vue'
 
 export default {
   name: 'LightBox',
   components: {
-    PhotoViewer,
+    PhotoViewerVImg,
     PhotoCollection,
     PhotoCardInfo,
     LightBoxArrow
