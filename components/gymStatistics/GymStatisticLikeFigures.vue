@@ -26,9 +26,9 @@
       <v-row>
         <v-col class="text-center" style="line-height: 1em">
           <strong class="d-block mb-2">
-            {{ likeFigures.likes_count }}
+            {{ appreciationFigures.like.likes_count }}
             <small class="text--disabled">
-              {{ $tc('components.like.likesCount', likeFigures.likes_count) }}
+              {{ $tc('components.like.likesCount', appreciationFigures.like.likes_count) }}
             </small>
           </strong>
           <small>
@@ -37,9 +37,9 @@
         </v-col>
         <v-col class="text-center" style="line-height: 1em">
           <strong class="d-block mb-2">
-            {{ Math.round(likeFigures.average_like * 10) / 10 }}
+            {{ Math.round(appreciationFigures.like.average_like * 10) / 10 }}
             <small class="text--disabled">
-              {{ $tc('components.like.likesCount', likeFigures.average_like) }}
+              {{ $tc('components.like.likesCount', appreciationFigures.like.average_like) }}
             </small>
           </strong>
           <small>
@@ -48,19 +48,72 @@
         </v-col>
         <v-col class="text-center" style="line-height: 1em">
           <strong class="d-block mb-2">
-            {{ Math.round(likeFigures.liked_ratio * 1000) / 10 }} <small class="text--disabled">%</small>
+            {{ Math.round(appreciationFigures.like.liked_ratio * 1000) / 10 }} <small class="text--disabled">%</small>
           </strong>
           <small>
             {{ $t('components.gymStatistic.likedRatio') }}
           </small>
         </v-col>
       </v-row>
+      <p class="mt-5 mb-2">
+        <v-icon
+          class="vertical-align-sub"
+          left
+          small
+        >
+          {{ mdiGauge }}
+        </v-icon>
+        {{ $t('components.gymStatistic.difficultyTitle') }}
+      </p>
+      <div>
+        <v-chip
+          :title="$t('models.hardnessStatus.easy_for_the_grade')"
+          outlined
+        >
+          😎 {{ appreciationFigures.difficulty.easy_for_the_grade }}
+        </v-chip>
+        <v-chip
+          :title="$t('models.hardnessStatus.this_grade_is_accurate')"
+          outlined
+        >
+          👌 {{ appreciationFigures.difficulty.this_grade_is_accurate }}
+        </v-chip>
+        <v-chip
+          :title="$t('models.hardnessStatus.sandbagged')"
+          outlined
+        >
+          🥵 {{ appreciationFigures.difficulty.sandbagged }}
+        </v-chip>
+        <v-icon
+          small
+          class="mx-1"
+        >
+          {{ mdiArrowRight }}
+        </v-icon>
+        <v-chip
+          outlined
+          pill
+          :title="appreciationFigures.difficulty.difficulty_average"
+          class="px-1"
+        >
+          <v-icon
+            class="vertical-align-text-top"
+            :style="`transform: rotate(${appreciationFigures.difficulty.difficulty_average * -90}deg)`"
+            :color="difficultyColor(appreciationFigures.difficulty.difficulty_average)"
+          >
+            {{ mdiArrowRightThin }}
+          </v-icon>
+        </v-chip>
+        <p class="mb-0 mt-1">
+          {{ $t('components.gymStatistic.onAverage') }} : <strong>{{ difficultyAppreciationStatus(appreciationFigures.difficulty.difficulty_average) }}</strong>
+        </p>
+      </div>
     </div>
   </v-sheet>
 </template>
 
 <script>
-import { mdiHeart, mdiHeartMultipleOutline } from '@mdi/js'
+import { mdiHeart, mdiHeartMultipleOutline, mdiGauge, mdiArrowRightThin, mdiArrowRight } from '@mdi/js'
 import GymRouteStatisticApi from '~/services/oblyk-api/GymRouteStatisticApi'
 
 export default {
@@ -79,10 +132,13 @@ export default {
   data () {
     return {
       loading: true,
-      likeFigures: {},
+      appreciationFigures: {},
 
       mdiHeart,
-      mdiHeartMultipleOutline
+      mdiHeartMultipleOutline,
+      mdiGauge,
+      mdiArrowRightThin,
+      mdiArrowRight
     }
   },
 
@@ -107,13 +163,38 @@ export default {
     getLikeFigures () {
       this.loading = true
       new GymRouteStatisticApi(this.$axios, this.$auth)
-        .likeFigures(this.gym.id, this.filters)
+        .appreciationFigures(this.gym.id, this.filters)
         .then((resp) => {
-          this.likeFigures = resp.data
+          this.appreciationFigures = resp.data
         })
         .finally(() => {
           this.loading = false
         })
+    },
+
+    difficultyColor (difficultyAppreciation) {
+      let colorDiff = null
+      if (difficultyAppreciation > 0) {
+        colorDiff = Math.abs(difficultyAppreciation) * 127
+        return `rgb(${128 + colorDiff}, ${128 - colorDiff}, ${128 - colorDiff})`
+      } else {
+        colorDiff = Math.abs(difficultyAppreciation) * 100
+        return `rgb(${128 - colorDiff}, ${128 - colorDiff}, ${128 + colorDiff})`
+      }
+    },
+
+    difficultyAppreciationStatus (difficultyAppreciation) {
+      if (difficultyAppreciation >= 0.6) {
+        return this.$t('components.difficulty.hard')
+      } else if (difficultyAppreciation >= 0.2) {
+        return this.$t('components.difficulty.pretty_hard')
+      } else if (difficultyAppreciation >= -0.2) {
+        return this.$t('components.difficulty.just')
+      } else if (difficultyAppreciation >= -0.6) {
+        return this.$t('components.difficulty.pretty_soft')
+      } else {
+        return this.$t('components.difficulty.soft')
+      }
     }
   }
 }

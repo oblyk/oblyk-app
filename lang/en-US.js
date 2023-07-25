@@ -554,6 +554,7 @@ export default {
       ascentStatus: 'Ascent status',
       ropingStatus: 'Roping status',
       hardnessStatus: 'Difficulty appreciation',
+      howFindDifficulty: 'How did you find the difficulty?',
       note: 'Note',
       dateOfBirth: 'Date of birth',
       genre: 'Genre',
@@ -1189,9 +1190,11 @@ export default {
       openingFrequenciesTitle: 'Opening frequency',
       noData: 'No data available',
       likeTitle: 'The likes on the openings',
+      difficultyTitle: 'Feeling difficulties',
       likesCount: 'Total likes',
       averageLike: 'Like / routes',
-      likedRatio: 'Routes are liked'
+      likedRatio: 'Routes are liked',
+      onAverage: 'On average'
     },
     gymAdministrationRequest: {
       helloName: 'Hello %{name}',
@@ -1971,7 +1974,8 @@ export default {
       note: 'Note',
       comment: 'Comment',
       climbing_type: 'Climbing type',
-      released_at: 'Released at'
+      released_at: 'Released at',
+      hardness_status: 'Difficulty appreciation'
     },
     climbingSession: {
       description: 'Comment from my session'
@@ -2128,7 +2132,7 @@ export default {
       gym_space_id: 'Space',
       gym_grade_line_id: 'Difficulty',
       gym_grade_line: 'Difficulty',
-      grade_value_appreciation: 'Grade value appreciation',
+      difficulty_appreciation: 'feelings of difficulty',
       note: 'Note',
       note_count: 'Number of note',
       ascents: 'Ascents',
@@ -2401,9 +2405,9 @@ export default {
       multi_pitch_alternate_lead: 'Alternate lead (multi pitch)'
     },
     hardnessStatus: {
-      easy_for_the_grade: 'Easy for the grade',
-      this_grade_is_accurate: 'This grade is accurate',
-      sandbagged: 'Sandbagged !'
+      easy_for_the_grade: '😎 Easy for the grade',
+      this_grade_is_accurate: '👌 This grade is accurate',
+      sandbagged: '🥵 Sandbagged !'
     },
     note: {
       terrible: '0/6 - Terrible!',

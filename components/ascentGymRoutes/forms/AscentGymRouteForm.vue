@@ -6,6 +6,7 @@
     <!-- Released at -->
     <date-picker-input
       v-model="data.released_at"
+      :required="true"
       :icon="mdiCalendar"
       :label="$t('models.ascentGymRoute.released_at')"
     />
@@ -29,9 +30,17 @@
       </strong>
     </div>
 
+    <!-- Hardness status -->
+    <hardness-status-input
+      v-if="gymRoute.sections.length === 1"
+      v-model="data.hardness_status"
+      label-key="components.input.howFindDifficulty"
+    />
+
     <v-textarea
       v-model="data.comment"
       outlined
+      hide-details
       :label="$t('models.ascentGymRoute.comment')"
     />
 
@@ -56,6 +65,8 @@
       </div>
     </div>
 
+    <required-explained class="mt-2" />
+
     <close-form />
     <submit-form
       :overlay="submitOverlay"
@@ -75,10 +86,20 @@ import CloseForm from '@/components/forms/CloseForm'
 import AscentStatusInput from '@/components/forms/AscentStatusInput'
 import DatePickerInput from '@/components/forms/DatePickerInput'
 import LikeBtn from '~/components/forms/LikeBtn.vue'
+import HardnessStatusInput from '~/components/forms/HardnessStatusInput.vue'
+import RequiredExplained from '~/components/forms/RequiredExplained.vue'
 
 export default {
   name: 'AscentGymRouteForm',
-  components: { LikeBtn, DatePickerInput, AscentStatusInput, CloseForm, SubmitForm },
+  components: {
+    RequiredExplained,
+    HardnessStatusInput,
+    LikeBtn,
+    DatePickerInput,
+    AscentStatusInput,
+    CloseForm,
+    SubmitForm
+  },
   mixins: [
     FormHelpers,
     DateHelpers
@@ -108,6 +129,7 @@ export default {
       data: {
         id: this.ascentGymRoute?.id,
         ascent_status: this.ascentGymRoute?.ascent_status || this.defaultAscentStatus,
+        hardness_status: this.ascentGymRoute?.hardness_status,
         released_at: this.ascentGymRoute?.released_at || this.today().format('YYYY-MM-DD'),
         selected_sections: this.ascentGymRoute?.sections_done || this.gymRoute.sections.map((section, index) => index),
         gym_route_id: this.ascentGymRoute?.gym_route_id || this.gymRoute.id,
