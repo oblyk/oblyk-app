@@ -1,11 +1,12 @@
 <template>
   <div class="full-height">
     <v-img
+      :key="url"
+      :src="url"
+      :lazy-src="thumbnailUrl"
       width="100%"
       height="100%"
       contain
-      :src="url"
-      :lazy-src="thumbnailUrl"
     >
       <template #placeholder>
         <v-row
