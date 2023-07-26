@@ -1,12 +1,14 @@
 <template>
-  <div class="full-height">
+  <div class="full-height overflow-auto">
     <v-img
       :key="url"
       :src="url"
       :lazy-src="thumbnailUrl"
       width="100%"
-      height="100%"
-      contain
+      :height="fullWidth ? 'auto' : (photo.description ? 'calc(100% - 35px)' : '100%')"
+      :contain="!fullWidth"
+      :style="`cursor: ${fullWidth ? 'zoom-out' : 'zoom-in'}`"
+      @click="fullWidth = !fullWidth"
     >
       <template #placeholder>
         <v-row
@@ -21,6 +23,12 @@
         </v-row>
       </template>
     </v-img>
+    <div
+      v-if="photo.description"
+      class="text-center pa-1"
+    >
+      {{ photo.description }}
+    </div>
   </div>
 </template>
 
@@ -35,6 +43,12 @@ export default {
     }
   },
 
+  data () {
+    return {
+      fullWidth: false
+    }
+  },
+
   computed: {
     url () {
       return this.photo.pictureUrl
@@ -42,6 +56,12 @@ export default {
 
     thumbnailUrl () {
       return this.photo.thumbnailUrl
+    }
+  },
+
+  watch: {
+    photo () {
+      this.fullWidth = false
     }
   }
 }
