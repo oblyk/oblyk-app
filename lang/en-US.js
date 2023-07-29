@@ -18,6 +18,7 @@ export default {
     valid: 'Valid',
     ok: 'ok',
     like: 'Like',
+    reply: 'Reply',
     selectOrUnselect: 'select / unselect',
     search: 'Search',
     addFilters: 'Add filters',
@@ -643,7 +644,8 @@ export default {
         subscribe_accepted: '%{name} has agreed to let you follow him',
         request_for_follow_up: '%{name} asks to follow you',
         new_article: 'New article! %{name}',
-        new_like: '%{name} likes yours %{type}'
+        new_like: '%{name} likes yours %{type}',
+        new_reply: '%{name} has replied to one of your comments'
       }
     },
     country: {
@@ -1347,7 +1349,8 @@ export default {
       comments: 'Comments',
       countInfos: 'One comment posted | %{count} comments posted',
       noComment: 'There is no comment here for the moment',
-      climbersComments: 'Comments from climbers'
+      climbersComments: 'Comments from climbers',
+      seeReplies: 'See a reply | See %{count} replies'
     },
     report: {
       aProblem: 'Oh a problem ...',

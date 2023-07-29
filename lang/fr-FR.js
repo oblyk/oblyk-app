@@ -18,6 +18,7 @@ export default {
     valid: 'Valider',
     ok: 'ok',
     like: 'Aimer',
+    reply: 'Répondre',
     selectOrUnselect: 'sélectionner / désélectionner',
     search: 'Chercher',
     addFilters: 'Ajouter des filtres',
@@ -643,7 +644,8 @@ export default {
         subscribe_accepted: '%{name} a accepté que vous le·a suiviez',
         request_for_follow_up: '%{name} demande à vous suivre',
         new_article: 'Nouvel article ! %{name}',
-        new_like: '%{name} aime votre %{type}'
+        new_like: '%{name} aime votre %{type}',
+        new_reply: "%{name} à répondu à l'un de vos commentaires"
       }
     },
     country: {
@@ -1347,7 +1349,8 @@ export default {
       comments: 'Commentaires',
       countInfos: 'Un commentaire posté | %{count} commentaires postés',
       noComment: "Il n'y a pas de commentaire ici pour l'instant",
-      climbersComments: 'Commentaires des grimpeur·euse·s'
+      climbersComments: 'Commentaires des grimpeur·euse·s',
+      seeReplies: 'Voir une réponse | Voir %{count} réponses'
     },
     report: {
       aProblem: 'Ah un problème ...',

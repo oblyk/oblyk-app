@@ -34,7 +34,8 @@ import {
   mdiStarPlusOutline,
   mdiNewspaperVariantMultipleOutline,
   mdiHeart,
-  mdiBell
+  mdiBell,
+  mdiReply
 } from '@mdi/js'
 import { DateHelpers } from '@/mixins/DateHelpers'
 import NotificationApi from '~/services/oblyk-api/NotificationApi'
@@ -46,18 +47,6 @@ export default {
     notification: {
       type: Object,
       required: true
-    }
-  },
-
-  data () {
-    return {
-      mdiMessageText,
-      mdiStarPlus,
-      mdiStarCheck,
-      mdiStarPlusOutline,
-      mdiNewspaperVariantMultipleOutline,
-      mdiHeart,
-      mdiBell
     }
   },
 
@@ -78,6 +67,8 @@ export default {
           name: this.notification.Parent.first_name,
           type: this.$t(`components.like.type.${this.notification.Notifiable.likeable_type}`)
         })
+      } else if (this.notification.notification_type === 'new_reply') {
+        return this.$t('components.notification.type.new_reply', { name: this.notification.Parent.first_name })
       } else {
         return this.notification.notification_type
       }
@@ -96,6 +87,8 @@ export default {
         return mdiNewspaperVariantMultipleOutline
       } else if (this.notification.notification_type === 'new_like') {
         return mdiHeart
+      } else if (this.notification.notification_type === 'new_reply') {
+        return mdiReply
       } else {
         return mdiBell
       }
@@ -118,6 +111,8 @@ export default {
         } else {
           return ''
         }
+      } else if (this.notification.notification_type === 'new_reply') {
+        return `/comments/${this.notification.Notifiable.commentable_id}`
       } else {
         return '/'
       }

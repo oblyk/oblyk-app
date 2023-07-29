@@ -41,5 +41,8 @@ export default {
       border-width: 1px;
     }
   }
+  p:last-child {
+    margin-bottom: 0;
+  }
 }
 </style>

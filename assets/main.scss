@@ -341,6 +341,9 @@ strong {
       background-color: rgb(18, 18, 18);
     }
   }
+  .sheet-background-color {
+    background-color: rgb(22, 22, 22);
+  }
 }
 .theme--light {
   .border-bottom, .border-top, .border {
@@ -353,5 +356,8 @@ strong {
     &:hover {
       background-color: rgb(240, 240, 245);
     }
+  }
+  .sheet-background-color {
+    background-color: rgb(255, 255, 255);
   }
 }

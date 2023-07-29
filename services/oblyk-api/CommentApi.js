@@ -21,6 +21,15 @@ class CommentApi extends BaseApi {
     })
   }
 
+  comments (commentId, page = 1) {
+    return this.axios.request({
+      method: 'GET',
+      url: `${this.baseUrl}/comments/${commentId}/comments.json`,
+      headers: { HttpApiAccessToken: this.apiAccessToken },
+      params: { page }
+    })
+  }
+
   create (data) {
     return this.axios.request({
       method: 'POST',
