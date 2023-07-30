@@ -17,6 +17,12 @@ export default {
     }
   },
 
+  beforeCreate () {
+    if (this.$auth.loggedIn) {
+      this.$router.replace('/home')
+    }
+  },
+
   i18n: {
     messages: {
       fr: {
