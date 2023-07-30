@@ -49,21 +49,6 @@
             </v-btn>
           </template>
           <v-list>
-            <!-- Report problem -->
-            <v-list-item
-              :to="`/reports/Photo/${photo.id}/new?redirect_to=${$route.fullPath}`"
-              @click.stop=""
-            >
-              <v-list-item-icon>
-                <v-icon>
-                  {{ mdiFlag }}
-                </v-icon>
-              </v-list-item-icon>
-              <v-list-item-content>
-                {{ $t('actions.reportProblem') }}
-              </v-list-item-content>
-            </v-list-item>
-
             <!-- Define as a banner -->
             <v-list-item
               v-if="environnementType"
@@ -107,6 +92,21 @@
               </v-list-item-icon>
               <v-list-item-content>
                 {{ $t('actions.edit') }}
+              </v-list-item-content>
+            </v-list-item>
+
+            <!-- Report problem -->
+            <v-list-item
+              :to="`/reports/Photo/${photo.id}/new?redirect_to=${$route.fullPath}`"
+              @click.stop=""
+            >
+              <v-list-item-icon>
+                <v-icon>
+                  {{ mdiFlag }}
+                </v-icon>
+              </v-list-item-icon>
+              <v-list-item-content>
+                {{ $t('actions.reportProblem') }}
               </v-list-item-content>
             </v-list-item>
           </v-list>
