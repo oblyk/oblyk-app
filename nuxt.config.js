@@ -147,6 +147,7 @@ export default {
       lang: 'fr',
       theme_color: '#121212',
       background_color: '#121212',
+      orientation: 'any',
       scope: `${process.env.VUE_APP_OBLYK_APP_URL}`,
       start_url: `${process.env.VUE_APP_OBLYK_APP_URL}?standalone=true`,
       categories: [
