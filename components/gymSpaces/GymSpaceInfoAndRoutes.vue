@@ -91,7 +91,9 @@
       class="blur-card h-100"
       rounded
     >
-      <gym-sector-editing-plan />
+      <gym-sector-editing-plan
+        v-if="editingSectorPolygon"
+      />
     </v-sheet>
 
     <!-- If in editing sector colors -->
@@ -101,6 +103,7 @@
       rounded
     >
       <gym-space-editing-sectors-color
+        v-if="editingSectorColor"
         :gym-space="gymSpace"
       />
     </v-sheet>
@@ -108,14 +111,14 @@
 </template>
 
 <script>
+import { SessionConcern } from '@/concerns/SessionConcern'
+import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
 import GymSpaceSelector from '@/components/gymSpaces/GymSpaceSelector'
 import GymSpaceActionMenu from '@/components/gymSpaces/GymSpaceActionMenu'
 import GymSpaceRouteList from '@/components/gymRoutes/GymSpaceRouteList'
-import GymSectorEditingPlan from '@/components/gymSectors/GymSectorEditingPlan'
-import { SessionConcern } from '@/concerns/SessionConcern'
-import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
 import GymGoToRanking from '~/components/gyms/GymGoToRanking.vue'
-import GymSpaceEditingSectorsColor from '~/components/gymSpaces/GymSpaceEditingSectorsColor.vue'
+const GymSectorEditingPlan = () => import('@/components/gymSectors/GymSectorEditingPlan')
+const GymSpaceEditingSectorsColor = () => import('~/components/gymSpaces/GymSpaceEditingSectorsColor')
 const MarkdownText = () => import('@/components/ui/MarkdownText')
 
 export default {

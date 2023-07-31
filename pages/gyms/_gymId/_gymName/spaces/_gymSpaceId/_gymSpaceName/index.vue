@@ -1,80 +1,57 @@
 <template>
-  <div>
-    <!-- Load Gym Space-->
-    <v-container
-      v-if="!gymSpace"
-      class="mt-15"
-    >
-      <spinner :full-height="false" />
-      <p class="text-center text--disabled">
-        {{ $t('models.gymSpace.loading') }}
-      </p>
-    </v-container>
-
-    <!-- Gym space -->
+  <!-- Gym space -->
+  <div class="gym-space-interface">
+    <!-- Plan area -->
     <div
-      v-else
-      class="gym-space-interface"
+      class="gym-space-plan"
+      :class="$vuetify.breakpoint.mobile ? 'mobile-interface' : 'desktop-interface'"
     >
-      <!-- Plan area -->
-      <div
-        class="gym-space-plan"
-        :class="$vuetify.breakpoint.mobile ? 'mobile-interface' : 'desktop-interface'"
-      >
-        <client-only>
-          <gym-space-plan v-if="gymSpace.plan" :gym-space="gymSpace" />
-          <gym-space-plan-missing v-else :gym-space="gymSpace" />
-        </client-only>
+      <client-only>
+        <gym-space-plan
+          v-if="gymSpace && gymSpace.plan"
+          :gym-space="gymSpace"
+        />
+        <gym-space-plan-missing
+          v-if="gymSpace && !gymSpace.plan"
+          :gym-space="gymSpace"
+        />
+        <p
+          v-if="!gymSpace"
+          class="text-center text--disabled mt-5"
+        >
+          {{ $t('models.gymSpace.loading') }}
+        </p>
+      </client-only>
+    </div>
+
+    <!-- Space information and routes -->
+    <div
+      class="gym-space-left-side"
+      :class="leftSideClass"
+    >
+      <!-- Space information and routes -->
+      <div class="gym-space-info-and-routes">
+        <v-sheet
+          v-if="!gymSpace"
+          class="rounded pa-4 ma-4"
+          style="height: calc(100vh - 100px)"
+        >
+          <v-skeleton-loader type="sentences, avatar" />
+        </v-sheet>
+        <gym-space-info-and-routes
+          v-if="gymSpace && gym"
+          :gym-space="gymSpace"
+          :gym="gym"
+        />
       </div>
 
-      <!-- Space informations and routes -->
+      <!-- Open gym route in right side of info in desktop interface -->
       <div
-        class="gym-space-left-side"
-        :class="leftSideClass"
+        v-if="!$vuetify.breakpoint.mobile && (loadingGymRoute || gymRoute)"
+        class="gym-route-on-desktop-container py-3"
       >
-        <!-- Space informations and routes -->
-        <div class="gym-space-info-and-routes">
-          <gym-space-info-and-routes
-            v-if="gym"
-            :gym-space="gymSpace"
-            :gym="gym"
-          />
-        </div>
-
-        <!-- Open gym route in right side of info in desktop interface -->
-        <div
-          v-if="!$vuetify.breakpoint.mobile"
-          v-show="loadingGymRoute || gymRoute"
-          class="gym-route-on-desktop-container py-3"
-        >
-          <div class="gym-route-on-desktop-card">
-            <v-card class="gym-route-card">
-              <spinner v-if="loadingGymRoute" />
-              <gym-route-info
-                v-if="gymRoute"
-                :gym-route="gymRoute"
-                :gym="gym"
-              />
-            </v-card>
-          </div>
-        </div>
-      </div>
-
-      <!-- Open gym route in full screen on mobile -->
-      <div
-        v-if="(gymRoute || loadingGymRoute) && $vuetify.breakpoint.mobile"
-        class="gym-route-modal-on-mobile"
-      >
-        <v-dialog
-          :value="true"
-          transition="dialog-bottom-transition"
-          content-class="gym-route-dialog"
-          persistent
-        >
-          <v-card
-            @touchstart="touchEvent('start', $event)"
-            @touchend="touchEvent('end', $event)"
-          >
+        <div class="gym-route-on-desktop-card">
+          <v-card class="gym-route-card">
             <spinner v-if="loadingGymRoute" />
             <gym-route-info
               v-if="gymRoute"
@@ -82,8 +59,33 @@
               :gym="gym"
             />
           </v-card>
-        </v-dialog>
+        </div>
       </div>
+    </div>
+
+    <!-- Open gym route in full screen on mobile -->
+    <div
+      v-if="(gymRoute || loadingGymRoute) && $vuetify.breakpoint.mobile"
+      class="gym-route-modal-on-mobile"
+    >
+      <v-dialog
+        :value="true"
+        transition="dialog-bottom-transition"
+        content-class="gym-route-dialog"
+        persistent
+      >
+        <v-card
+          @touchstart="touchEvent('start', $event)"
+          @touchend="touchEvent('end', $event)"
+        >
+          <spinner v-if="loadingGymRoute" />
+          <gym-route-info
+            v-if="gymRoute"
+            :gym-route="gymRoute"
+            :gym="gym"
+          />
+        </v-card>
+      </v-dialog>
     </div>
   </div>
 </template>
@@ -137,7 +139,7 @@ export default {
         leftClass.push('desktop-interface')
       }
 
-      if (this.activeGymRouteId) {
+      if (this.gymRoute !== null) {
         leftClass.push('--with-active-gym-route')
       }
       return leftClass.join(' ')
@@ -155,18 +157,18 @@ export default {
   },
 
   mounted () {
-    this.getGym()
-    if (this.activeGymRouteId) {
-      this.getGymRoute()
-    }
+    this.getGym(true)
   },
 
   methods: {
-    getGym () {
+    getGym (loadRouteAfter = false) {
       new GymApi(this.$axios, this.$auth)
         .find(this.$route.params.gymId)
         .then((resp) => {
           this.gym = new Gym({ attributes: resp.data })
+          if (loadRouteAfter && this.activeGymRouteId) {
+            this.getGymRoute()
+          }
         })
     },
 
@@ -211,27 +213,22 @@ export default {
 
 <style lang="scss">
 .gym-space-interface {
-  max-width: 100vw;
-  margin-left: 0;
-  height: calc(100vh - 64px);
-  position: relative;
-
   .gym-space-left-side {
-    margin-top: calc(100vh - 260px);
     z-index: 1;
     position: relative;
-    width: 100%;
     &.desktop-interface {
+      width: 450px;
+      margin-top: 0;
       &.--with-active-gym-route {
         width: 900px;
       }
-      width: 450px;
-      margin-top: 0;
       .gym-space-info-and-routes {
         width: 450px;
       }
     }
     &.mobile-interface {
+      width: 100%;
+      margin-top: calc(100vh - 260px);
       .gym-space-info-and-routes {
         padding-bottom: 45px;
       }

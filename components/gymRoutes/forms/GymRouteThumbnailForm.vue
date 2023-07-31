@@ -3,7 +3,10 @@
     enctype="multipart/form-data"
     @submit.prevent="submit()"
   >
-    <div class="thumbnail-crop-area mb-5">
+    <div
+      class="thumbnail-crop-area mb-5"
+      style="height: 650px; max-height: calc(100vh - 285px);"
+    >
       <vue-cropper
         ref="cropper"
         :img="gymRoute.pictureUrl"
@@ -97,7 +100,16 @@ export default {
             if (this.callback) {
               this.callback(gymRoute)
             } else {
-              this.$router.push(`${gymRoute.gymSpacePath}?route=${gymRoute.id}`)
+              setTimeout(() => {
+                this.$router.push(
+                  {
+                    path: gymRoute.gymSpacePath,
+                    query: {
+                      route: gymRoute.id
+                    }
+                  }
+                )
+              }, 500)
             }
           })
           .catch((err) => {
@@ -110,10 +122,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.thumbnail-crop-area {
-  height: 650px;
-  max-height: calc(100vh - 285px);
-}
-</style>
