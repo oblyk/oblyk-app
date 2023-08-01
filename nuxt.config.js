@@ -150,6 +150,13 @@ export default {
       orientation: 'any',
       scope: `${process.env.VUE_APP_OBLYK_APP_URL}`,
       start_url: `${process.env.VUE_APP_OBLYK_APP_URL}?standalone=true`,
+      related_applications: [
+        {
+          platform: 'play',
+          url: 'https://play.google.com/store/apps/details?id=org.oblyk.twa',
+          id: 'org.oblyk.twa'
+        }
+      ],
       categories: [
         'social',
         'sports'
