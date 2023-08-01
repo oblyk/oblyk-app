@@ -632,16 +632,7 @@ export default {
       loadingGyms: true,
       intersectGyms: false,
       gyms: [],
-      iAmAClub: false,
-
-      mdiFlask,
-      mdiEmail,
-      mdiCheckboxOutline,
-      mdiHeartHalfFull,
-      mdiRefreshCircle,
-      mdiTerrain,
-      mdiCheckBold,
-      mdiCheckAll
+      iAmAClub: false
     }
   },
 
@@ -674,6 +665,17 @@ export default {
     priceDiviser () {
       return this.iAmAClub ? 2 : 1
     }
+  },
+
+  created () {
+    this.mdiFlask = mdiFlask
+    this.mdiEmail = mdiEmail
+    this.mdiCheckboxOutline = mdiCheckboxOutline
+    this.mdiHeartHalfFull = mdiHeartHalfFull
+    this.mdiRefreshCircle = mdiRefreshCircle
+    this.mdiTerrain = mdiTerrain
+    this.mdiCheckBold = mdiCheckBold
+    this.mdiCheckAll = mdiCheckAll
   },
 
   methods: {
