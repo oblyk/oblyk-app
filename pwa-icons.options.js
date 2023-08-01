@@ -85,6 +85,11 @@ export default {
       purpose: 'any'
     },
     {
+      src: '/pwa-icons/monochrome/monochrome_x512.png',
+      type: 'image/png',
+      sizes: '512x512'
+    },
+    {
       src: '/pwa-icons/windows11/SmallTile.scale-100.png',
       type: 'image/png',
       sizes: '71x71'
