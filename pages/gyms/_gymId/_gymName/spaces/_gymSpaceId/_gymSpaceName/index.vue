@@ -93,13 +93,13 @@
 <script>
 import { mdiChevronDown } from '@mdi/js'
 import { GymSpaceConcern } from '@/concerns/GymSpaceConcern'
-import GymSpaceInfoAndRoutes from '~/components/gymSpaces/GymSpaceInfoAndRoutes.vue'
+import GymSpaceInfoAndRoutes from '~/components/gymSpaces/GymSpaceInfoAndRoutes'
 import Gym from '~/models/Gym'
 import GymApi from '~/services/oblyk-api/GymApi'
 import GymRouteApi from '~/services/oblyk-api/GymRouteApi'
 import GymRoute from '~/models/GymRoute'
-import GymRouteInfo from '~/components/gymRoutes/GymRouteInfo.vue'
-import Spinner from '~/components/layouts/Spiner.vue'
+import Spinner from '~/components/layouts/Spiner'
+const GymRouteInfo = () => import('~/components/gymRoutes/GymRouteInfo')
 const GymSpacePlan = () => import('@/components/gymSpaces/GymSpacePlan')
 const GymSpacePlanMissing = () => import('@/components/gymSpaces/GymSpacePlanMissing')
 
@@ -139,7 +139,7 @@ export default {
         leftClass.push('desktop-interface')
       }
 
-      if (this.gymRoute !== null) {
+      if (this.gymRoute !== null || this.loadingGymRoute) {
         leftClass.push('--with-active-gym-route')
       }
       return leftClass.join(' ')

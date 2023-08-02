@@ -62,6 +62,7 @@
       <!-- If sort by opened_at -->
       <div v-if="sort === 'opened_at'">
         <gym-routes-by-opened-at
+          v-if="sort === 'opened_at'"
           :opened-ats="filteredOpenedAts"
           :get-routes="getRoutes"
         />
@@ -76,6 +77,7 @@
       <!-- If sort by grade -->
       <div v-if="sort === 'grade'">
         <gym-routes-by-grade
+          v-if="sort === 'grade'"
           :grades="filteredGrades"
           :get-routes="getRoutes"
         />
@@ -90,6 +92,7 @@
       <!-- If sort by level -->
       <div v-if="sort === 'level'">
         <gym-routes-by-level
+          v-if="sort === 'level'"
           :levels="filteredLevels"
           :get-routes="getRoutes"
         />
@@ -104,6 +107,7 @@
       <!-- If sort by points -->
       <div v-if="sort === 'point'">
         <gym-routes-by-point
+          v-if="sort === 'point'"
           :routes="filteredPoints"
           :get-routes="getRoutes"
         />
@@ -126,12 +130,12 @@ import GymRouteApi from '~/services/oblyk-api/GymRouteApi'
 import GymSectorApi from '~/services/oblyk-api/GymSectorApi'
 import GymRoute from '@/models/GymRoute'
 import GymSector from '@/models/GymSector'
-import GymRoutesBySector from '@/components/gymRoutes/listByGroup/GymRoutesBySector'
-import GymRoutesByOpenedAt from '@/components/gymRoutes/listByGroup/GymRoutesByOpenedAt'
-import GymRoutesByGrade from '@/components/gymRoutes/listByGroup/GymRoutesByGrade'
-import GymRoutesByLevel from '~/components/gymRoutes/listByGroup/GymRoutesByLevel.vue'
-import GymRoutesByPoint from '~/components/gymRoutes/listByGroup/GymRoutesByPoint.vue'
 import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
+const GymRoutesBySector = () => import('@/components/gymRoutes/listByGroup/GymRoutesBySector')
+const GymRoutesByOpenedAt = () => import('@/components/gymRoutes/listByGroup/GymRoutesByOpenedAt')
+const GymRoutesByGrade = () => import('@/components/gymRoutes/listByGroup/GymRoutesByGrade')
+const GymRoutesByLevel = () => import('~/components/gymRoutes/listByGroup/GymRoutesByLevel')
+const GymRoutesByPoint = () => import('~/components/gymRoutes/listByGroup/GymRoutesByPoint.vue')
 
 export default {
   name: 'GymSpaceRouteList',
