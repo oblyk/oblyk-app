@@ -1217,7 +1217,8 @@ export default {
       routes: 'Routes',
       plan: 'Plan',
       showSector: 'Lines in <strong>%{name}</strong> sector.',
-      colorExplain: 'Choose a colour for the sectors on the map.'
+      colorExplain: 'Choose a colour for the sectors on the map.',
+      anchorExplain: 'If ticked: you can enter the anchor number for each route.'
     },
     gymSector: {
       addNew: 'Create a new sector',
@@ -2097,7 +2098,8 @@ export default {
       climbing_type: 'Majority climbing type',
       sectors_color: 'Sectors color',
       gym_grade_id: 'Difficulty system',
-      gym_space_group_id: 'Group'
+      gym_space_group_id: 'Group',
+      anchor: 'Display routes anchor numbers'
     },
     gymSpaceGroup: {
       name: 'Group name',
@@ -2148,7 +2150,8 @@ export default {
       grade: 'Grade',
       tags: 'Tags',
       styles: 'Styles',
-      grade_by_section: 'Grade L.%{index}'
+      grade_by_section: 'Grade L.%{index}',
+      anchor_number: 'Anchor n°'
     },
     gymGrade: {
       name: 'System name',

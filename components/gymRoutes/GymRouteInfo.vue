@@ -70,6 +70,12 @@
             class="mr-1"
           />
           {{ gymRoute.name }}
+          <small
+            v-if="gymRoute.anchor_number"
+            class="text--disabled d-block mt-n1 font-weight-regular"
+          >
+            {{ $t('models.gymRoute.anchor_number') }}{{ gymRoute.anchor_number }}
+          </small>
         </v-col>
         <v-col align-self="center" class="close-btn">
           <v-btn

@@ -42,6 +42,7 @@
         :items="gymGrades"
         item-text="text"
         item-value="value"
+        hide-details
         :label="$t('models.gymSpace.gym_grade_id')"
         outlined
       />
@@ -52,8 +53,17 @@
         :items="gym.gym_space_groups"
         item-text="name"
         item-value="id"
+        hide-details
         :label="$t('models.gymSpace.gym_space_group_id')"
         outlined
+      />
+
+      <v-checkbox
+        v-model="data.anchor"
+        class="mb-5"
+        :label="$t('models.gymSpace.anchor')"
+        :hint="$t('components.gymSpace.anchorExplain')"
+        persistent-hint
       />
 
       <close-form />
@@ -105,6 +115,7 @@ export default {
         climbing_type: this.gymSpace?.climbing_type,
         gym_grade_id: this.gymSpace?.gym_grade_id,
         gym_space_group_id: this.gymSpace?.gym_space_group_id,
+        anchor: this.gymSpace?.anchor,
         gym_id: this.gymSpace?.gym_id || this.gymId
       },
       climbingGymList: [

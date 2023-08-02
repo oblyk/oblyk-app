@@ -21,39 +21,54 @@
       />
 
       <!-- Route name -->
-      <v-text-field
-        v-model="data.name"
-        outlined
-        hide-details
-        :class="cragRoute.name ? 'mb-0' : 'mb-8'"
-        :label="$t('models.gymRoute.name')"
-      >
-        <template #append-outer>
-          <v-tooltip
-            bottom
+      <v-row :class="cragRoute.name ? 'mb-0' : 'mb-4'">
+        <v-col
+          v-if="gymSector.anchor"
+          cols="3"
+        >
+          <v-text-field
+            v-model="data.anchor_number"
+            outlined
+            type="number"
+            hide-details
+            :label="$t('models.gymRoute.anchor_number')"
+          />
+        </v-col>
+        <v-col>
+          <v-text-field
+            v-model="data.name"
+            outlined
+            hide-details
+            :label="$t('models.gymRoute.name')"
           >
-            <template #activator="{ on }">
-              <v-btn
-                class="mt-n2"
-                tabindex="-1"
-                icon
-                :loading="findingRandomName"
-                @click="findRandomRoute"
+            <template #append-outer>
+              <v-tooltip
+                bottom
               >
-                <v-icon v-on="on">
-                  {{ mdiShuffleVariant }}
-                </v-icon>
-              </v-btn>
+                <template #activator="{ on }">
+                  <v-btn
+                    class="mt-n2"
+                    tabindex="-1"
+                    icon
+                    :loading="findingRandomName"
+                    @click="findRandomRoute"
+                  >
+                    <v-icon v-on="on">
+                      {{ mdiShuffleVariant }}
+                    </v-icon>
+                  </v-btn>
+                </template>
+                {{ $t('components.gymRoute.findRandomName') }}
+              </v-tooltip>
             </template>
-            {{ $t('components.gymRoute.findRandomName') }}
-          </v-tooltip>
-        </template>
-      </v-text-field>
+          </v-text-field>
+        </v-col>
+      </v-row>
 
       <!-- Random crag route name and information -->
       <p
         v-if="cragRoute.name"
-        class="mb-4 mt-1"
+        class="mb-5"
       >
         {{ $t('components.gymRoute.refTo') }} :
         <u>{{ cragRoute.name }} {{ cragRoute.grade_to_s }}</u>,
@@ -494,6 +509,7 @@ export default {
         hold_colors: this.gymRoute?.hold_colors || [],
         opened_at: this.gymRoute?.opened_at || this.today().format('YYYY-MM-DD'),
         climbing_type: this.gymRoute?.climbing_type || this.gymSector.climbing_type,
+        anchor_number: this.gymRoute?.anchor_number,
         gym_grade_line_id: this.gymRoute?.gym_grade_line_id,
         gym_space_id: this.gymSector.gym_space.id,
         gym_sector_id: null,

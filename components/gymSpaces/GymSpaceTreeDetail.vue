@@ -97,6 +97,19 @@
           </template>
         </description-line>
       </v-col>
+      <v-col
+        v-if="gymSpace.anchor"
+        cols="12"
+      >
+        <v-icon
+          class="vertical-align-text-top"
+          small
+          left
+        >
+          {{ mdiCheck }}
+        </v-icon>
+        {{ $t('models.gymSpace.anchor') }}
+      </v-col>
     </v-row>
     <p class="text-decoration-underline mt-5 mb-2">
       {{ $t('components.cragSector.sectors') }} :
@@ -171,7 +184,7 @@
 </template>
 
 <script>
-import { mdiDotsVertical, mdiDelete, mdiPencil, mdiCircle, mdiSortBoolAscending } from '@mdi/js'
+import { mdiDotsVertical, mdiDelete, mdiPencil, mdiCircle, mdiSortBoolAscending, mdiCheck } from '@mdi/js'
 import MarkdownText from '~/components/ui/MarkdownText.vue'
 import GymSpaceApi from '~/services/oblyk-api/GymSpaceApi'
 import GymSectorApi from '~/services/oblyk-api/GymSectorApi'
@@ -203,7 +216,8 @@ export default {
       mdiDelete,
       mdiPencil,
       mdiCircle,
-      mdiSortBoolAscending
+      mdiSortBoolAscending,
+      mdiCheck
     }
   },
 

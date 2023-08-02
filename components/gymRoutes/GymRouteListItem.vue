@@ -36,6 +36,9 @@
             v-if="$auth.loggedIn"
             :gym-route="gymRoute"
           />
+          <small v-if="gymRoute.anchor_number">
+            {{ $t('models.gymRoute.anchor_number') }}{{ gymRoute.anchor_number }}
+          </small>
         </div>
         <div>
           <!-- Likes -->

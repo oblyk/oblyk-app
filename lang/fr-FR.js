@@ -1217,7 +1217,8 @@ export default {
       routes: 'Ouvertures',
       plan: 'Plan',
       showSector: 'Lignes du secteur <strong>%{name}</strong>.',
-      colorExplain: 'Choisissez une couleur pour le tracé des secteurs sur le plan.'
+      colorExplain: 'Choisissez une couleur pour le tracé des secteurs sur le plan.',
+      anchorExplain: 'Si coché : vous pourrez renseigner le numéro de relais sur chaque voie'
     },
     gymSector: {
       addNew: 'Créer un nouveau secteur',
@@ -2097,7 +2098,8 @@ export default {
       sectors_color: 'Couleur des secteurs',
       climbing_type: "Type d'escalade majoritaire",
       gym_grade_id: 'Système de difficulté',
-      gym_space_group_id: 'Groupe'
+      gym_space_group_id: 'Groupe',
+      anchor: 'Afficher les numéros de relais des voies'
     },
     gymSpaceGroup: {
       name: 'Nom du groupe',
@@ -2127,7 +2129,7 @@ export default {
       description: 'Complément d’information',
       opened_at: 'Ouvert le',
       polyline: 'Tracé',
-      colors: 'Colors',
+      colors: 'Couleurs',
       hold_colors: 'Couleur des prises',
       tag_colors: 'Couleur des étiquettes',
       sections: 'Sections',
@@ -2148,7 +2150,8 @@ export default {
       grade: 'Cotation',
       tags: 'Tags',
       styles: 'Styles',
-      grade_by_section: 'Cotation L.%{index}'
+      grade_by_section: 'Cotation L.%{index}',
+      anchor_number: 'Relais n°'
     },
     gymGrade: {
       name: 'Nom du système',
