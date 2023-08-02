@@ -4,15 +4,18 @@
       <v-breadcrumbs :items="breadcrumbs" />
       <gym-admin-routes-tabs :gym="gym" />
       <client-only>
-        <gym-routes-table :gym="gym" />
+        <gym-routes-table
+          :gym="gym"
+          class="mt-4"
+        />
       </client-only>
     </div>
   </v-container>
 </template>
 
 <script>
-import GymRoutesTable from '@/components/gymRoutes/GymRouteTable'
 import { GymFetchConcern } from '~/concerns/GymFetchConcern'
+import GymRoutesTable from '@/components/gymRoutes/GymRouteTable'
 import GymAdminRoutesTabs from '~/components/gyms/layouts/GymAdminRoutesTabs.vue'
 
 export default {

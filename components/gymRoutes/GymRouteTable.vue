@@ -1,17 +1,5 @@
 <template>
   <div>
-    <!-- Switch & Actions menu -->
-    <v-sheet
-      class="rounded pa-4 mt-4 mb-4"
-    >
-      <v-switch
-        v-model="mountedRoute"
-        class="mt-0 d-inline-block"
-        hide-details
-        :label="mountedRoute ? $t('components.gymAdmin.mountedRoutes') : $t('components.gymAdmin.dismountedRoutes')"
-      />
-    </v-sheet>
-
     <!-- Routes table -->
     <v-row class="mb-10">
       <v-col>
@@ -20,13 +8,16 @@
             v-model="routeSelected"
             :headers="tableHeaders"
             :items="tableRoutes"
-            :items-per-page="mountedRoute ? -1 : 15"
+            :items-per-page="-1"
             :loading="loadingRoutes"
             item-key="id"
-            :show-select="gymAuthCan(gym, 'manage_opening')"
+            :show-select="canManageOpening"
           >
             <!-- Header slot -->
-            <template #[`header.ascentsCount`]="{ header }">
+            <template
+              v-once
+              #[`header.ascentsCount`]="{ header }"
+            >
               <v-icon
                 small
                 :title="header.text"
@@ -34,7 +25,10 @@
                 {{ mdiBookCheckOutline() }}
               </v-icon>
             </template>
-            <template #[`header.likesCount`]="{ header }">
+            <template
+              v-once
+              #[`header.likesCount`]="{ header }"
+            >
               <v-icon
                 small
                 :title="header.text"
@@ -42,7 +36,10 @@
                 {{ mdiHeartOutline() }}
               </v-icon>
             </template>
-            <template #[`header.difficultyAppreciation`]="{ header }">
+            <template
+              v-once
+              #[`header.difficultyAppreciation`]="{ header }"
+            >
               <v-icon
                 small
                 :title="header.text"
@@ -52,17 +49,26 @@
             </template>
 
             <!-- Row slot -->
-            <template #[`item.color`]="{ item }">
+            <template
+              v-once
+              #[`item.color`]="{ item }"
+            >
               <gym-route-tag-and-hold :gym-route="item.color" />
             </template>
-            <template #[`item.space`]="{ item }">
+            <template
+              v-once
+              #[`item.space`]="{ item }"
+            >
               <nuxt-link :to="item.space.gymSpacePath">
                 {{ item.space.gym_space.name }}
               </nuxt-link>
             </template>
-            <template #[`item.openedAt`]="{ item }">
+            <template
+              v-once
+              #[`item.openedAt`]="{ item }"
+            >
               <v-btn
-                v-if="gymAuthCan(gym, 'manage_opening')"
+                v-if="canManageOpening"
                 small
                 icon
                 left
@@ -75,9 +81,12 @@
               </v-btn>
               {{ humanizeDate(item.openedAt, 'D MMM YY') }}
             </template>
-            <template #[`item.anchorNumber`]="{ item }">
+            <template
+              v-once
+              #[`item.anchorNumber`]="{ item }"
+            >
               <v-btn
-                v-if="gymAuthCan(gym, 'manage_opening') && item.anchorNumber !== null"
+                v-if="canManageOpening && item.anchorNumber !== null"
                 small
                 icon
                 left
@@ -90,9 +99,12 @@
               </v-btn>
               {{ item.anchorNumber }}
             </template>
-            <template #[`item.sector`]="{ item }">
+            <template
+              v-once
+              #[`item.sector`]="{ item }"
+            >
               <v-btn
-                v-if="gymAuthCan(gym, 'manage_opening')"
+                v-if="canManageOpening"
                 small
                 icon
                 left
@@ -105,7 +117,10 @@
               </v-btn>
               {{ item.sector }}
             </template>
-            <template #[`item.ascentsCount`]="{ item }">
+            <template
+              v-once
+              #[`item.ascentsCount`]="{ item }"
+            >
               <v-btn
                 v-if="item.ascentsCount > 0"
                 small
@@ -115,7 +130,10 @@
                 {{ item.ascentsCount }}
               </v-btn>
             </template>
-            <template #[`item.difficultyAppreciation`]="{ item }">
+            <template
+              v-once
+              #[`item.difficultyAppreciation`]="{ item }"
+            >
               <v-icon
                 v-if="item.difficultyAppreciation !== null"
                 :style="`transform: rotate(${item.difficultyAppreciation * -90}deg)`"
@@ -125,7 +143,10 @@
                 {{ mdiArrowRightThin() }}
               </v-icon>
             </template>
-            <template #[`item.edit`]="{ item }">
+            <template
+              v-once
+              #[`item.edit`]="{ item }"
+            >
               <nuxt-link :to="`${item.edit.path}/edit?redirect_to=${$route.fullPath}`">
                 <v-icon small>
                   {{ mdiPencil() }}
@@ -159,10 +180,7 @@
             </v-btn>
           </template>
           <v-list>
-            <v-list-item
-              v-if="mountedRoute"
-              @click="dismountCollection()"
-            >
+            <v-list-item @click="dismountCollection()">
               <v-list-item-icon>
                 <v-icon>{{ mdiBackburger() }}</v-icon>
               </v-list-item-icon>
@@ -170,10 +188,7 @@
                 {{ $tc('components.gymAdmin.dismountRoutes', routeSelected.length, { count: routeSelected.length }) }}
               </v-list-item-title>
             </v-list-item>
-            <v-list-item
-              v-if="!mountedRoute"
-              @click="mountCollection()"
-            >
+            <v-list-item @click="mountCollection()">
               <v-list-item-icon>
                 <v-icon>{{ mdiForwardburger() }}</v-icon>
               </v-list-item-icon>
@@ -291,7 +306,11 @@ import AscentGymRouteStatusIcon from '~/components/ascentGymRoutes/AscentGymRout
 
 export default {
   name: 'GymRoutesTable',
-  components: { AscentGymRouteStatusIcon, Note, GymRouteTagAndHold },
+  components: {
+    AscentGymRouteStatusIcon,
+    Note,
+    GymRouteTagAndHold
+  },
   mixins: [DateHelpers, GymRolesHelpers],
   props: {
     gym: {
@@ -303,7 +322,6 @@ export default {
   data () {
     return {
       routes: [],
-      mountedRoute: true,
       loadingRoutes: true,
       routeSelected: [],
       ascentsDialog: false,
@@ -426,7 +444,7 @@ export default {
       }
 
       // Is user can be manage route
-      if (this.gymAuthCan(this.gym, 'manage_opening')) {
+      if (this.canManageOpening) {
         headers.push(
           {
             order: 13,
@@ -439,13 +457,10 @@ export default {
       }
 
       return headers.sort((a, b) => a.order - b.order)
-    }
-  },
+    },
 
-  watch: {
-    mountedRoute () {
-      this.routeSelected = []
-      this.getRoutes()
+    canManageOpening () {
+      return this.gymAuthCan(this.gym, 'manage_opening')
     }
   },
 
@@ -459,10 +474,7 @@ export default {
       this.routes = []
       this.tableRoutes = []
       new GymApi(this.$axios, this.$auth)
-        .routes(
-          this.gym.id,
-          !this.mountedRoute
-        )
+        .routes(this.gym.id)
         .then((resp) => {
           for (const route of resp.data) {
             this.routes.push(new GymRoute({ attributes: route }))
