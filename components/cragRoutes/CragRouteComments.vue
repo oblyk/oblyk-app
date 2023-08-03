@@ -58,7 +58,7 @@
     <!-- Add comment-->
     <client-only>
       <div
-        v-if="isLoggedIn"
+        v-if="$auth.loggedIn"
         class="text-right mt-4"
       >
         <v-btn
@@ -79,7 +79,6 @@
 
 <script>
 import { mdiCommentAccount, mdiCommentPlus } from '@mdi/js'
-import { SessionConcern } from '@/concerns/SessionConcern'
 import CommentApi from '~/services/oblyk-api/CommentApi'
 import Comment from '@/models/Comment'
 import CommentCard from '@/components/comments/CommentCard'
@@ -90,7 +89,7 @@ const MarkdownText = () => import('@/components/ui/MarkdownText')
 export default {
   name: 'CragRouteComments',
   components: { MarkdownText, Note, CommentCard },
-  mixins: [SessionConcern, DateHelpers],
+  mixins: [DateHelpers],
   props: {
     cragRoute: {
       type: Object,
@@ -100,11 +99,12 @@ export default {
 
   data () {
     return {
-      mdiCommentAccount,
-      mdiCommentPlus,
       comments: [],
       loadingComments: true,
-      redirectTo: this.$route.fullPath
+      redirectTo: this.$route.fullPath,
+
+      mdiCommentAccount,
+      mdiCommentPlus
     }
   },
 
@@ -142,14 +142,14 @@ export default {
       const comments = {}
       const sortComments = []
       for (const comment of this.comments) {
-        comments[this.$moment(comment.history.created_at).format('YYYY-MM-DD')] = {
+        comments[this.$moment(comment.history.created_at).format('YYYY-MM-DD-HH-mm-ss')] = {
           type: 'Comment',
           comment
         }
       }
 
       for (const ascentComment of this.cragRoute.ascent_comments) {
-        comments[this.$moment(ascentComment.released_at).format('YYYY-MM-DD')] = {
+        comments[this.$moment(ascentComment.released_at).format('YYYY-MM-DD-HH-mm-ss')] = {
           type: 'AscentComment',
           comment: ascentComment
         }
