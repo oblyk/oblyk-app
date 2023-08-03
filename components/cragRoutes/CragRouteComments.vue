@@ -64,7 +64,7 @@
         <v-btn
           :to="`/comments/CragRoute/${cragRoute.id}/new?redirect_to=${redirectTo}`"
           text
-          small
+          outlined
           color="primary"
         >
           <v-icon left small>

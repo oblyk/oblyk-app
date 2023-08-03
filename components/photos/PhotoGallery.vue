@@ -51,14 +51,15 @@
           skeleton-type="photos"
         />
       </v-col>
-      <v-col
-        v-if="photos.length === 0"
-      >
-        <p class="text-center text--disabled mt-5 mb-5">
-          {{ $t('components.photo.noPhoto') }}
-        </p>
-      </v-col>
     </v-row>
+
+    <!-- No photos -->
+    <p
+      v-if="!loadingGallery && photos.length === 0"
+      class="text-center text--disabled my-5"
+    >
+      {{ $t('components.photo.noPhoto') }}
+    </p>
 
     <!-- Full screen dialog for lightbox -->
     <client-only>

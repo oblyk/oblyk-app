@@ -2,6 +2,7 @@
   <v-btn
     v-if="!inMyTickList"
     text
+    outlined
     color="primary"
     :loading="loadingAdd"
     @click="addInTickList()"

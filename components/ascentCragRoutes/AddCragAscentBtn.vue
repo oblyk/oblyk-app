@@ -6,12 +6,12 @@
     <template #activator="{ on, attrs }">
       <v-btn
         text
-        color="primary"
+        class="black-btn-icon --with-border"
         v-bind="attrs"
         v-on="on"
       >
         <v-icon left>
-          {{ mdiCheck }}
+          {{ mdiPlusBoxOutline }}
         </v-icon>
         <span v-if="isRepetition">
           {{ $t('actions.addRepetition') }}
@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import { mdiCheck } from '@mdi/js'
+import { mdiPlusBoxOutline } from '@mdi/js'
 import AscentCragRouteForm from '@/components/ascentCragRoutes/forms/AscentCragRouteForm'
 
 export default {
@@ -57,8 +57,9 @@ export default {
 
   data () {
     return {
-      mdiCheck,
-      ascentModal: false
+      ascentModal: false,
+
+      mdiPlusBoxOutline
     }
   },
 

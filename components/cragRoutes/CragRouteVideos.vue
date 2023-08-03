@@ -22,13 +22,19 @@
           />
         </v-col>
       </v-row>
+      <p
+        v-if="videos.length === 0"
+        class="text--disabled my-5 text-center"
+      >
+        {{ $t('components.video.noVideo') }}
+      </p>
       <client-only>
         <p class="text-right">
           <v-btn
             v-if="isLoggedIn"
             :to="`/videos/CragRoute/${cragRoute.id}/new?redirect_to=${$route.fullPath}`"
             text
-            small
+            outlined
             color="primary"
           >
             <v-icon small left>

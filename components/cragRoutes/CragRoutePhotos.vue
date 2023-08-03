@@ -21,7 +21,7 @@
             v-if="isLoggedIn"
             :to="`/photos/CragRoute/${cragRoute.id}/new?redirect_to=${$route.fullPath}`"
             text
-            small
+            outlined
             color="primary"
           >
             <v-icon small left>
