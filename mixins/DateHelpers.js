@@ -4,10 +4,6 @@ export const DateHelpers = {
       return this.$moment()
     },
 
-    utcDate () {
-      return this.$moment.utc().format()
-    },
-
     humanizeDate (date, format = 'LL') {
       this.$moment.locale(this.$vuetify.lang.current)
       return this.$moment(date).format(format)
@@ -52,10 +48,6 @@ export const DateHelpers = {
     humanizeDateDuration (date) {
       this.$moment.locale(this.$vuetify.lang.current)
       return this.$moment.duration(this.$moment().diff(this.$moment(date), 'minutes'), 'minutes').humanize()
-    },
-
-    isSameDay (firstDate, secondDate) {
-      return this.$moment(firstDate).format('YYYY-MM-DD') === this.$moment(secondDate).format('YYYY-MM-DD')
     },
 
     isoDate (date) {
