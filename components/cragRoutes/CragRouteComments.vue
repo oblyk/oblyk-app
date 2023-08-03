@@ -28,7 +28,7 @@
 
         <div
           v-if="comment.type === 'AscentComment'"
-          class="ascent-comment-card"
+          class="rounded-sm back-app-color pa-2"
         >
           <markdown-text
             v-if="comment.comment.comment"
@@ -167,22 +167,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.ascent-comment-card {
-  border-radius: 5px;
-  padding: 10px;
-}
-
-.theme--light {
-  .ascent-comment-card {
-    background-color: #f5f5f5;
-  }
-}
-
-.theme--dark {
-  .ascent-comment-card {
-    background-color: #121212;
-  }
-}
-</style>

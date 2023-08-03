@@ -1385,6 +1385,9 @@ export default {
       postedBy: 'Posted by',
       noVideo: 'There is no video here for the moment'
     },
+    ascent: {
+      countInfos: 'One ascent | %{count} ascents'
+    },
     partner: {
       xAround: 'One climber is around | %{count} climbers are around',
       around: 'Local climbers',

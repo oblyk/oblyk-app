@@ -43,6 +43,17 @@
         >
           {{ mdiComment }}
         </v-icon>
+        <small class="ml-3">
+          {{ route.ascents_count }}
+          <v-icon
+            v-if="route.ascents_count > 0"
+            class="vertical-align-sub"
+            :title="$tc('components.ascent.countInfos', route.ascents_count, { count: route.ascents_count } )"
+            small
+          >
+            {{ mdiCheckAll }}
+          </v-icon>
+        </small>
       </v-list-item-title>
       <v-list-item-subtitle class="span-comma">
         <span v-if="route.crag_sector">
@@ -69,7 +80,7 @@
 </template>
 
 <script>
-import { mdiCamera, mdiFilmstrip, mdiComment, mdiTextureBox } from '@mdi/js'
+import { mdiCamera, mdiFilmstrip, mdiComment, mdiTextureBox, mdiCheckAll } from '@mdi/js'
 import GradeRouteNote from '@/components/cragRoutes/partial/CragRouteNote'
 import CragRouteAvatar from '@/components/cragRoutes/partial/CragRouteAvatar'
 import AscentCragRouteStatusIcon from '@/components/ascentCragRoutes/AscentCragRouteStatusIcon'
@@ -90,7 +101,8 @@ export default {
       mdiCamera,
       mdiFilmstrip,
       mdiComment,
-      mdiTextureBox
+      mdiTextureBox,
+      mdiCheckAll
     }
   }
 }

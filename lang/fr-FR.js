@@ -1385,6 +1385,9 @@ export default {
       postedBy: 'Posté par',
       noVideo: "Il n'y a pas de vidéo ici pour l'instant"
     },
+    ascent: {
+      countInfos: 'Une ascension | %{count} ascensions'
+    },
     partner: {
       xAround: 'Un grimpeur·euse est dans le coin | %{count} grimpeur·euse·s sont dans le coin',
       around: 'Les grimpeurs et grimpeuses du coin',

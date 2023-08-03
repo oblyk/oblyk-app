@@ -127,6 +127,16 @@
                   </cite>
                 </td>
               </tr>
+
+              <!-- Ascension count -->
+              <tr v-if="cragRoute.ascents_count > 0">
+                <th class="smallest-table-column text-right">
+                  <v-icon>{{ mdiCheckAll }}</v-icon>
+                </th>
+                <td>
+                  {{ $tc('components.ascent.countInfos', cragRoute.ascents_count, { count: cragRoute.ascents_count }) }}
+                </td>
+              </tr>
             </tbody>
           </template>
         </v-simple-table>
@@ -323,7 +333,8 @@ import {
   mdiArrowExpandVertical,
   mdiNut,
   mdiArrowExpandUp,
-  mdiBolt
+  mdiBolt,
+  mdiCheckAll
 } from '@mdi/js'
 import CragRouteSectionList from '@/components/cragRoutes/CragRouteSectionList'
 import CragRouteNoteModal from '@/components/cragRoutes/partial/CragRouteNoteModal'
@@ -361,7 +372,8 @@ export default {
       mdiArrowExpandVertical,
       mdiNut,
       mdiArrowExpandUp,
-      mdiBolt
+      mdiBolt,
+      mdiCheckAll
     }
   }
 }
