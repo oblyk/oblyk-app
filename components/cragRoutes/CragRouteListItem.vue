@@ -43,12 +43,14 @@
         >
           {{ mdiComment }}
         </v-icon>
-        <small class="ml-3">
+        <small
+          v-if="route.ascents_count > 0"
+          class="ml-2 d-inline-block rounded border py-1 px-2"
+          :title="$tc('components.ascent.countInfos', route.ascents_count, { count: route.ascents_count } )"
+        >
           {{ route.ascents_count }}
           <v-icon
-            v-if="route.ascents_count > 0"
             class="vertical-align-sub"
-            :title="$tc('components.ascent.countInfos', route.ascents_count, { count: route.ascents_count } )"
             small
           >
             {{ mdiCheckAll }}
