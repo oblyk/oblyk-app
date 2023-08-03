@@ -41,9 +41,12 @@
         <v-btn
           right
           text
-          color="primary"
+          class="black-btn-icon --with-border"
           :to="`/ascents/outdoor/new?crag_id=${crag.id}`"
         >
+          <v-icon left>
+            {{ mdiPlusBoxOutline }}
+          </v-icon>
           {{ $t('components.layout.appBar.addCross') }}
         </v-btn>
       </v-card-actions>
@@ -55,7 +58,7 @@
 </template>
 
 <script>
-import { mdiFormatListChecks } from '@mdi/js'
+import { mdiFormatListChecks, mdiPlusBoxOutline } from '@mdi/js'
 import LogBookOutdoorApi from '~/services/oblyk-api/LogBookOutdoorApi'
 import AscentCragRoute from '~/models/AscentCragRoute'
 import CragRouteSmallLine from '~/components/cragRoutes/CragRouteSmallLine'
@@ -77,7 +80,8 @@ export default {
       limit: 3,
       ascents: [],
 
-      mdiFormatListChecks
+      mdiFormatListChecks,
+      mdiPlusBoxOutline
     }
   },
 

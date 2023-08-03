@@ -41,7 +41,7 @@
                 <div v-if="crag.routes_figures.route_count > 0">
                   <nuxt-link
                     :to="`${crag.path}/routes`"
-                    class="text-decoration-none font-weight-bold"
+                    class="text-decoration-none font-weight-bold d-inline-block border rounded py-1 px-2"
                   >
                     {{ crag.routes_figures.route_count }} {{ $t('components.crag.lines') }}.
                   </nuxt-link>

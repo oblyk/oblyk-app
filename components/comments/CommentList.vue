@@ -43,7 +43,7 @@
             <v-btn
               v-bind="attrs"
               text
-              small
+              outlined
               color="primary"
               v-on="on"
             >
