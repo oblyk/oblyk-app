@@ -18,7 +18,17 @@
             :size="small ? 45 : 70"
             tile
           >
-            <v-img :src="cragRoute.thumbnailCoverUrl" />
+            <v-img
+              v-if="(cragRoute.photo || {}).url"
+              :src="cragRoute.thumbnailCoverUrl"
+            />
+            <v-icon
+              v-else
+              size="35"
+              class="px-1"
+            >
+              {{ mdiSourceBranch }}
+            </v-icon>
           </v-avatar>
         </v-list-item-avatar>
         <v-list-item-content :class="small ? 'pt-2 pb-0' : ''">
@@ -52,12 +62,17 @@
 </template>
 
 <script>
+import { mdiSourceBranch } from '@mdi/js'
 import AscentCragRouteStatusIcon from '@/components/ascentCragRoutes/AscentCragRouteStatusIcon'
+
 export default {
   name: 'CragRouteSmallCard',
   components: { AscentCragRouteStatusIcon },
   props: {
-    cragRoute: Object,
+    cragRoute: {
+      type: Object,
+      required: true
+    },
     linkable: {
       type: Boolean,
       required: false,
@@ -66,6 +81,12 @@ export default {
     small: {
       type: Boolean,
       default: false
+    }
+  },
+
+  data () {
+    return {
+      mdiSourceBranch
     }
   }
 }
