@@ -15,7 +15,7 @@
         <crag-route-description :crag-route="cragRoute" />
         <client-only>
           <crag-route-ascent
-            v-if="isLoggedIn"
+            v-if="$auth.loggedIn"
             :crag-route="cragRoute"
           />
         </client-only>
@@ -48,7 +48,6 @@ import CragRouteComments from '@/components/cragRoutes/CragRouteComments'
 import CragRoutePhotos from '@/components/cragRoutes/CragRoutePhotos'
 import CragRouteVideos from '@/components/cragRoutes/CragRouteVideos'
 import CragRouteAscent from '@/components/cragRoutes/CragRouteAscent'
-import { SessionConcern } from '@/concerns/SessionConcern'
 import VersionInformation from '~/components/ui/VersionInformation'
 
 export default {
@@ -63,7 +62,6 @@ export default {
     CragRouteHead,
     Spinner
   },
-  mixins: [SessionConcern],
 
   data () {
     return {
