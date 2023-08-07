@@ -60,7 +60,7 @@
           </p>
           <p v-html="$t('common.pages.partner.steps.location.body')" />
           <p v-if="isLoggedIn" class="text-right">
-            <v-btn outlined color="primary" to="`/home/settings/partner">
+            <v-btn outlined color="primary" to="/home/settings/partner">
               <v-icon left>
                 {{ mdiMapMarkerRadius }}
               </v-icon>
