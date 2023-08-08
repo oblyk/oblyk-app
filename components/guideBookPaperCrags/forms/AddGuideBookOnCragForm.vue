@@ -41,7 +41,7 @@
         <v-btn
           text
           color="primary"
-          to="/guide-book-papers/new"
+          :to="`/guide-book-papers/new?add_crag_id=${crag.id}`"
         >
           <v-icon
             left

@@ -87,21 +87,23 @@ export default {
 
   data () {
     return {
-      mdiCurrencyEur,
-      mdiBookOpenPageVariant,
       data: {
-        id: (this.guideBookPaper || {}).id,
-        name: (this.guideBookPaper || {}).name,
-        author: (this.guideBookPaper || {}).author,
-        editor: (this.guideBookPaper || {}).editor,
-        publication_year: (this.guideBookPaper || {}).publication_year,
-        funding_status: (this.guideBookPaper || {}).funding_status,
-        price_cents: (this.guideBookPaper || {}).price_cents,
-        ean: (this.guideBookPaper || {}).ean,
-        number_of_page: (this.guideBookPaper || {}).number_of_page,
-        weight: (this.guideBookPaper || {}).weight
+        id: this.guideBookPaper?.id,
+        name: this.guideBookPaper?.name,
+        author: this.guideBookPaper?.author,
+        editor: this.guideBookPaper?.editor,
+        publication_year: this.guideBookPaper?.publication_year,
+        funding_status: this.guideBookPaper?.funding_status,
+        price_cents: this.guideBookPaper?.price_cents,
+        ean: this.guideBookPaper?.ean,
+        number_of_page: this.guideBookPaper?.number_of_page,
+        weight: this.guideBookPaper?.weight,
+        add_crag_id: null
       },
-      price: (this.guideBookPaper || {}).price_cents && (this.guideBookPaper || {}).price_cents !== 0 ? (this.guideBookPaper || {}).price_cents / 100 : null
+      price: this.guideBookPaper?.price_cents && this.guideBookPaper?.price_cents !== 0 ? this.guideBookPaper?.price_cents / 100 : null,
+
+      mdiCurrencyEur,
+      mdiBookOpenPageVariant
     }
   },
 
@@ -111,6 +113,12 @@ export default {
         this.data.price_cents = this.price * 100
       }
     }
+  },
+
+  mounted () {
+    const urlParams = new URLSearchParams(window.location.search)
+    const addCragId = urlParams.get('add_crag_id')
+    if (addCragId) { this.data.add_crag_id = addCragId }
   },
 
   methods: {
