@@ -136,11 +136,6 @@
         </nuxt-link>
       </v-col>
     </v-row>
-    <v-row class="mt-0">
-      <v-col cols="12 pt-0">
-        <code class="ml-2">app version: 3.0.0</code>
-      </v-col>
-    </v-row>
   </v-container>
 </template>
 
