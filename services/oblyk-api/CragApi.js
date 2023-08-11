@@ -38,13 +38,14 @@ class CragApi extends BaseApi {
     })
   }
 
-  geoJson (minimalistic = true) {
+  geoJson (minimalistic = true, params = {}) {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/public/crags/geo_json.json`,
       headers: { HttpApiAccessToken: this.apiAccessToken },
       params: {
-        minimalistic
+        minimalistic,
+        ...params
       }
     })
   }

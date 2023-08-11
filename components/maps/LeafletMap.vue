@@ -58,6 +58,148 @@
           :callback="goToPlace"
           :solo-style="true"
         />
+        <div v-if="cragMapFilter" class="mb-1">
+          <v-card
+            rounded
+            :loading="loadingFilter"
+          >
+            <div>
+              <v-btn
+                text
+                @click="showMapFilter = !showMapFilter"
+              >
+                <v-icon left class="vertical-align-top">
+                  {{ mdiFilter }}
+                </v-icon>
+                {{ $t('common.pages.find.crags.map.filter.btnTile') }}
+              </v-btn>
+            </div>
+            <div
+              v-if="showMapFilter"
+              class="pa-2"
+            >
+              <v-select
+                v-model="filter.climbing_style"
+                outlined
+                dense
+                hide-details
+                :label="$t('common.pages.find.crags.map.filter.styleLabel')"
+                class="mb-2"
+                chips
+                clearable
+                :items="climbingStyles"
+              >
+                <template #selection="data">
+                  <v-chip
+                    small
+                    v-bind="data.attrs"
+                    :input-value="data.selected"
+                  >
+                    <span
+                      class="vertical-align-middle"
+                      :class="`climbs-pastille ${data.item.value}`"
+                    >
+                      {{ data.item.text }}
+                    </span>
+                  </v-chip>
+                </template>
+              </v-select>
+              <v-row>
+                <v-col
+                  cols="5"
+                  md="4"
+                  class="pr-0"
+                >
+                  <v-select
+                    v-model="filter.altitudeSwitch"
+                    outlined
+                    hide-details
+                    dense
+                    :label="$t('common.pages.find.crags.map.filter.upOrDow')"
+                    :items="moreOrLess"
+                  />
+                </v-col>
+                <v-col>
+                  <v-text-field
+                    v-model="filter.altitude"
+                    outlined
+                    hide-details
+                    dense
+                    clearable
+                    step="50"
+                    type="number"
+                    :label="$t('common.pages.find.crags.map.filter.elevation')"
+                  />
+                </v-col>
+              </v-row>
+              <p class="mb-0 mt-2">
+                {{ $t('common.pages.find.crags.map.filter.orientation') }}
+              </p>
+              <v-row
+                class="mt-0 mb-3"
+                no-gutters
+              >
+                <v-col>
+                  <v-checkbox
+                    v-model="filter.orientations"
+                    class="mt-0"
+                    :label="$t('models.orientations.east')"
+                    hide-details
+                    value="east"
+                  />
+                </v-col>
+                <v-col>
+                  <v-checkbox
+                    v-model="filter.orientations"
+                    class="mt-0"
+                    :label="$t('models.orientations.north')"
+                    hide-details
+                    value="north"
+                  />
+                </v-col>
+                <v-col>
+                  <v-checkbox
+                    v-model="filter.orientations"
+                    class="mt-0"
+                    :label="$t('models.orientations.west')"
+                    hide-details
+                    value="west"
+                  />
+                </v-col>
+                <v-col>
+                  <v-checkbox
+                    v-model="filter.orientations"
+                    class="mt-0"
+                    :label="$t('models.orientations.south')"
+                    hide-details
+                    value="south"
+                  />
+                </v-col>
+              </v-row>
+              <p class="mb-n1 pl-2">
+                {{ gradeRangeLabel }}
+              </p>
+              <v-range-slider
+                v-model="filter.gradeRange"
+                min="0"
+                max="52"
+                step="2"
+                hide-details
+                class="mb-2"
+              />
+              <div class="text-center">
+                <v-btn
+                  icon
+                  @click="showMapFilter = false"
+                >
+                  <v-icon>
+                    {{ mdiChevronUp }}
+                  </v-icon>
+                </v-btn>
+              </div>
+            </div>
+          </v-card>
+        </div>
         <div v-if="magicCard">
           <small
             v-if="!magicPlace"
@@ -398,12 +540,11 @@
 
         <!-- GeoJson & Marker cluster if clustered -->
         <v-marker-cluster
-          v-if="clustered"
+          v-if="clusteredMarker"
           :options="{ disableClusteringAtZoom: 12 }"
         >
           <l-geo-json
-            v-for="(geojson, index) in geoJsons"
-            :key="`geosjon-${index}`"
+            :key="`cluster-geo-json-${rerenderGeoJsonKey}`"
             :geojson="geoJsons"
             :options="geoJsonOptions"
           />
@@ -411,7 +552,8 @@
 
         <!-- GeoJson & Marker cluster if not clustered -->
         <l-geo-json
-          v-if="!clustered"
+          v-if="!clusteredMarker"
+          :key="`un-cluster-geo-json-${rerenderGeoJsonKey}`"
           :geojson="geoJsons"
           :options="geoJsonOptions"
         />
@@ -419,6 +561,7 @@
         <!-- Additional Geo json features-->
         <l-geo-json
           v-if="zoom >= 14"
+          :key="`additional-geo-json-${rerenderAddGeoJsonKey}`"
           :geojson="additionalGeoJson"
           :options="geoJsonOptions"
         />
@@ -504,7 +647,8 @@ import {
   mdiChevronDown,
   mdiClose,
   mdiBookshelf,
-  mdiArrowLeft
+  mdiArrowLeft,
+  mdiFilter
 } from '@mdi/js'
 import L, { icon } from 'leaflet'
 import 'leaflet-textpath/leaflet.textpath'
@@ -618,6 +762,14 @@ export default {
       type: Boolean,
       default: false
     },
+    cragMapFilter: {
+      type: Boolean,
+      default: false
+    },
+    filterCallback: {
+      type: Function,
+      default: null
+    },
     options: {
       type: Object,
       required: false,
@@ -641,6 +793,11 @@ export default {
       sunnyRocksGeoJson: { features: [] },
       fetchCragIds: [],
       zoom: this.zoomForce || parseFloat(localStorage.getItem('map-zoom') || '10'),
+      showMapFilter: false,
+      rerenderGeoJsonKey: 1,
+      rerenderAddGeoJsonKey: 1,
+      clusteredMarker: this.clustered,
+      timeToFilter: null,
       center: L.latLng(
         this.latitudeForce || parseFloat(localStorage.getItem('map-latitude') || '45'),
         this.longitudeForce || parseFloat(localStorage.getItem('map-longitude') || '4.5')
@@ -679,6 +836,26 @@ export default {
           iconUrl: '/markers/sunset-marker.png', iconSize: [34, 34], iconAnchor: [17, 17], popupAnchor: [0, -17]
         }
       ),
+      filter: {
+        climbing_style: null,
+        gradeRange: [0, 52],
+        orientations: [],
+        altitudeSwitch: null,
+        altitude: null
+      },
+      loadingFilter: false,
+      climbingStyles: [
+        { value: 'sport_climbing', text: this.$t('models.climbs.sport_climbing') },
+        { value: 'bouldering', text: this.$t('models.climbs.bouldering') },
+        { value: 'multi_pitch', text: this.$t('models.climbs.multi_pitch') },
+        { value: 'trad_climbing', text: this.$t('models.climbs.trad_climbing') },
+        { value: 'deep_water', text: this.$t('models.climbs.deep_water') },
+        { value: 'via_ferrata', text: this.$t('models.climbs.via_ferrata') }
+      ],
+      moreOrLess: [
+        { value: 'above', text: 'Au dessus de' },
+        { value: 'below', text: 'En dessous de' }
+      ],
 
       sunnyPartOfRocks: [],
       magicPlace: null,
@@ -695,6 +872,18 @@ export default {
       dateTimeModalTime: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
       dateTimeModalType: 'date',
 
+      gradeByValue: [
+        '1a', '1a+', '1b', '1b+', '1c', '1c+',
+        '2a', '2a+', '2b', '2b+', '2c', '2c+',
+        '3a', '3a+', '3b', '3b+', '3c', '3c+',
+        '4a', '4a+', '4b', '4b+', '4c', '4c+',
+        '5a', '5a+', '5b', '5b+', '5c', '5c+',
+        '6a', '6a+', '6b', '6b+', '6c', '6c+',
+        '7a', '7a+', '7b', '7b+', '7c', '7c+',
+        '8a', '8a+', '8b', '8b+', '8c', '8c+',
+        '9a', '9a+', '9b', '9b+', '9c', '9c+'
+      ],
+
       mdiAutoFix,
       mdiTerrain,
       mdiOfficeBuilding,
@@ -705,7 +894,8 @@ export default {
       mdiChevronDown,
       mdiClose,
       mdiBookshelf,
-      mdiArrowLeft
+      mdiArrowLeft,
+      mdiFilter
     }
   },
 
@@ -857,6 +1047,21 @@ export default {
 
     showSunRay () {
       return this.minute >= this.sunTimes.sunrise && this.minute <= this.sunTimes.sunset
+    },
+
+    gradeRangeLabel () {
+      const min = this.filter.gradeRange[0]
+      const max = this.filter.gradeRange[1]
+      const object = this.filter.climbing_style !== null ? this.$t(`models.climbs.${this.filter.climbing_style}`).toLowerCase() : 'ligne'
+      if (min === 0 && max === 52) {
+        return this.$t('common.pages.find.crags.map.filter.whatDifficulty')
+      } else if (min > 0 && max === 52) {
+        return this.$t('common.pages.find.crags.map.filter.orMore', { type: object, grade: this.gradeByValue[min] })
+      } else if (min === 0 && max < 52) {
+        return this.$t('common.pages.find.crags.map.filter.orLess', { type: object, grade: this.gradeByValue[max] })
+      } else {
+        return this.$t('common.pages.find.crags.map.filter.around', { type: object, min: this.gradeByValue[min], max: this.gradeByValue[max] })
+      }
     }
   },
 
@@ -871,6 +1076,18 @@ export default {
       if (this.loadAddFeatures) {
         this.getBoundsFeatures()
       }
+    },
+
+    geoJsons () {
+      this.rerenderGeoJsonKey += 1
+      this.loadingFilter = false
+    },
+
+    filter: {
+      handler () {
+        this.submitFilter()
+      },
+      deep: true
     }
   },
 
@@ -1187,6 +1404,18 @@ export default {
         .finally(() => {
           this.loadingMagicPlace = false
         })
+    },
+
+    submitFilter () {
+      clearTimeout(this.timeToFilter)
+      this.loadingFilter = true
+      this.timeToFilter = setTimeout(() => {
+        this.filterCallback(this.filter)
+        if (this.$vuetify.breakpoint.mobile) {
+          this.showMapFilter = false
+        }
+        this.clusteredMarker = false
+      }, 800)
     }
   }
 }

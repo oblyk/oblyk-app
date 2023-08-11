@@ -12,6 +12,8 @@
       :load-add-features="loadAddFeatures"
       :loading-crag="loadingCrag"
       :crag="crag"
+      :crag-map-filter="true"
+      :filter-callback="getGeoJson"
     />
   </client-only>
 </template>
@@ -76,9 +78,9 @@ export default {
   },
 
   methods: {
-    getGeoJson () {
+    getGeoJson (params = null) {
       new CragApi(this.$axios, this.$auth)
-        .geoJson()
+        .geoJson(true, params)
         .then((resp) => {
           this.geoJsons = { features: resp.data.features }
           setTimeout(() => { this.loadAddFeatures = true }, 1000)

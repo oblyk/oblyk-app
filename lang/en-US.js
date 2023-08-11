@@ -436,7 +436,18 @@ export default {
           intro: 'We have all the tools you need to find a crag around your home, your holiday destination<br> or anywhere else in France and the world.',
           map: {
             title: 'Map of climbing crags',
-            explain: 'Move freely on the map of all the climbing crags we have.'
+            explain: 'Move freely on the map of all the climbing crags we have.',
+            filter: {
+              btnTile: 'Filtering crags',
+              styleLabel: 'Sport ? Boulder ? Multi-pitches ? etc.',
+              upOrDow: 'Above / below',
+              elevation: 'Elevation (meters)',
+              orientation: 'What orientations ?',
+              whatDifficulty: 'What difficulty are you looking for ?',
+              orMore: '%{type} of %{grade} or more',
+              orLess: '%{type} of %{grade} or less',
+              around: '%{type} around %{min} and %{max}'
+            }
           },
           aroundCity: {
             title: 'Around a city',

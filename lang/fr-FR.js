@@ -436,7 +436,18 @@ export default {
           intro: "Nous avons tous les outils qu'il vous faut pour trouver une falaise autour de chez vous, de votre lieux de vacance<br> ou n'importe où d'autre en France et dans le monde.",
           map: {
             title: "Carte des sites d'escalades",
-            explain: "Déplacer vous librement sur la carte de tous les site d'escalades que nous avons."
+            explain: "Déplacer vous librement sur la carte de tous les site d'escalades que nous avons.",
+            filter: {
+              btnTile: 'Filtrer les sites',
+              styleLabel: 'Voie ? Bloc ? Grande Voie ? etc.',
+              upOrDow: 'Au dessus / en dessous de',
+              elevation: 'Altitude (mètre)',
+              orientation: 'Quelle orientations ?',
+              whatDifficulty: 'Quelle difficulté cherchez-vous ?',
+              orMore: 'Des %{type} en %{grade} ou plus',
+              orLess: 'Des %{type} en %{grade} ou moins',
+              around: 'Des %{type} autour du %{min} et du %{max}'
+            }
           },
           aroundCity: {
             title: "Autour d'une ville",
