@@ -1,8 +1,14 @@
 <template>
-  <div>
-    <h2 class="text-h6">
-      <v-icon class="vertical-align-sub mr-1">
-        {{ mdiArrowUpBoldBoxOutline }}
+  <div class="border rounded pl-2 pt-2" style="border-color: #ffc107">
+    <h2
+      class="text-h6 amber--text"
+      :class="$vuetify.theme.dark ? '' : 'text--darken-3'"
+    >
+      <v-icon
+        color="amber"
+        class="vertical-align-sub mr-1"
+      >
+        {{ mdiShimmer }}
       </v-icon>
       {{ $t('components.guideBookPaper.nextVersionTitle') }}
     </h2>
@@ -14,7 +20,7 @@
 </template>
 
 <script>
-import { mdiArrowUpBoldBoxOutline } from '@mdi/js'
+import { mdiShimmer } from '@mdi/js'
 import GuideBookPaperSmallCard from '@/components/guideBookPapers/GuideBookPaperSmallCard'
 import { RecordToObjectHelpers } from '@/mixins/RecordToObjectHelpers'
 
@@ -31,7 +37,7 @@ export default {
 
   data () {
     return {
-      mdiArrowUpBoldBoxOutline
+      mdiShimmer
     }
   }
 }
