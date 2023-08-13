@@ -1411,9 +1411,6 @@ export default {
       this.loadingFilter = true
       this.timeToFilter = setTimeout(() => {
         this.filterCallback(this.filter)
-        if (this.$vuetify.breakpoint.mobile) {
-          this.showMapFilter = false
-        }
         this.clusteredMarker = false
       }, 800)
     }
