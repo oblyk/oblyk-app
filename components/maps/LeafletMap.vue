@@ -516,7 +516,11 @@
 
         <!-- Layer Selector -->
         <l-control position="topright">
-          <leaflet-layer-selector v-model="layerIndex" :map-style="mapStyle" />
+          <leaflet-layer-selector
+            ref="leafletLayerSelector"
+            v-model="layerIndex"
+            :layers="layers"
+          />
         </l-control>
 
         <!-- Set center to localization -->
@@ -528,7 +532,7 @@
 
         <!-- Legend -->
         <l-control position="bottomright">
-          <leaflet-legend />
+          <leaflet-legend ref="leafletLegend" />
         </l-control>
 
         <!-- Layer -->
@@ -916,16 +920,25 @@ export default {
       if (this.$auth.loggedIn) {
         return [
           {
-            name: 'Mapbox Outdoor',
+            title: 'relief',
+            name: 'Eseri Topo',
+            url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}',
+            attribution: '&copy; <a href="https://www.esrifrance.fr/">Esri</a> &copy; <a href="https://www.openstreetmap.org/about/">Open Street Map</a> contributors'
+          },
+          {
+            title: 'reliefMapbox',
+            name: 'Mapbox',
             url: `https://api.mapbox.com/styles/v1/${process.env.VUE_APP_MAPBOX_TERRAIN_STYLE}/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.VUE_APP_MAPBOX_TOKEN}`,
             attribution: '&copy; <a href="https://www.mapbox.com/about/maps/">Mapbox</a> &copy; <a href="https://www.openstreetmap.org/about/">Open Street Map</a> contributors'
           },
           {
-            name: 'Eseri Satelite',
+            title: 'satellite',
+            name: 'Mapbox',
             url: `https://api.mapbox.com/styles/v1/${process.env.VUE_APP_MAPBOX_SATELLITE_STYLE}/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.VUE_APP_MAPBOX_TOKEN}`,
             attribution: '&copy; <a href="https://www.mapbox.com/about/maps/">Mapbox</a> &copy; <a href="https://www.openstreetmap.org/about/">Open Street Map</a> contributors'
           },
           {
+            title: 'detailedRelief',
             name: 'CyclOSM',
             url: 'https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png',
             attribution: '&copy; <a href="https://www.cyclosm.org">CyclOSM</a> &copy; <a href="https://www.openstreetmap.org/about/">Open Street Map</a> contributors'
@@ -934,16 +947,19 @@ export default {
       } else {
         return [
           {
+            title: 'relief',
             name: 'Eseri Topo',
             url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}',
             attribution: '&copy; <a href="https://www.esrifrance.fr/">Esri</a> &copy; <a href="https://www.openstreetmap.org/about/">Open Street Map</a> contributors'
           },
           {
+            title: 'satellite',
             name: 'Eseri Satelite',
             url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
             attribution: '&copy; <a href="https://www.esrifrance.fr/">Esri</a> &copy; <a href="https://www.openstreetmap.org/about/">Open Street Map</a> contributors'
           },
           {
+            title: 'detailedRelief',
             name: 'CyclOSM',
             url: 'https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png',
             attribution: '&copy; <a href="https://www.cyclosm.org">CyclOSM</a> &copy; <a href="https://www.openstreetmap.org/about/">Open Street Map</a> contributors'
@@ -1171,8 +1187,8 @@ export default {
     },
 
     hideOpensControl () {
-      this.$root.$emit('hideLeafletMapLayerSelector')
-      this.$root.$emit('hideLeafletMapLegend')
+      this.$refs.leafletLayerSelector.hideLeafletMapLayerSelector()
+      this.$refs.leafletLegend.hideLeafletMapLegend()
     },
 
     setSunOnCrag () {
@@ -1411,9 +1427,6 @@ export default {
       this.loadingFilter = true
       this.timeToFilter = setTimeout(() => {
         this.filterCallback(this.filter)
-        if (this.$vuetify.breakpoint.mobile) {
-          this.showMapFilter = false
-        }
         this.clusteredMarker = false
       }, 800)
     }

@@ -43,12 +43,10 @@ export default {
     }
   },
 
-  mounted () {
-    this.$root.$on('hideLeafletMapLegend', () => { this.showLegend = false })
-  },
-
-  beforeDestroy () {
-    this.$root.$off('hideLeafletMapLegend')
+  methods: {
+    hideLeafletMapLegend () {
+      this.showLegend = false
+    }
   }
 }
 </script>
