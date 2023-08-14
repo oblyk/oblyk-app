@@ -14,16 +14,10 @@
         @change="onChange"
       >
         <v-radio
-          :label="$t('components.map.layers.relief')"
-          :value="0"
-        />
-        <v-radio
-          :label="$t('components.map.layers.satellite')"
-          :value="1"
-        />
-        <v-radio
-          :label="$t('components.map.layers.detailedRelief')"
-          :value="2"
+          v-for="(layer, layerForIndex) in layers"
+          :key="`layer-index${layerForIndex}`"
+          :label="$t(`components.map.layers.${layer.title}`)"
+          :value="layerForIndex"
         />
       </v-radio-group>
     </div>
@@ -40,8 +34,8 @@ export default {
       type: Number,
       default: null
     },
-    mapStyle: {
-      type: String,
+    layers: {
+      type: Array,
       default: null
     }
   },
@@ -56,16 +50,41 @@ export default {
   },
 
   mounted () {
-    this.$root.$on('hideLeafletMapLayerSelector', () => { this.showLayersSelector = false })
-  },
-
-  beforeDestroy () {
-    this.$root.$off('hideLeafletMapLayerSelector')
+    let localLayer = localStorage.getItem('MapLayerTitle')
+    if (localLayer) {
+      try {
+        localLayer = JSON.parse(localLayer)
+        const lastSaveAt = Math.abs(new Date().getTime() - localLayer.timestamp) / 1000 / 3600
+        let layerFound = false
+        if (lastSaveAt <= 24) {
+          for (const layer in this.layers) {
+            const index = parseInt(layer)
+            if (this.layers[index].title === localLayer.title) {
+              this.layerIndex = index
+              this.$emit('input', this.layerIndex)
+              layerFound = true
+              break
+            }
+          }
+        }
+        if (!layerFound) { localStorage.removeItem('MapLayerTitle') }
+      } catch {
+        localStorage.removeItem('MapLayerTitle')
+      }
+    }
   },
 
   methods: {
     onChange () {
+      localStorage.setItem(
+        'MapLayerTitle',
+        JSON.stringify({ title: this.layers[this.layerIndex].title, timestamp: new Date().getTime() })
+      )
       this.$emit('input', this.layerIndex)
+      this.showLayersSelector = false
+    },
+
+    hideLeafletMapLayerSelector () {
       this.showLayersSelector = false
     }
   }

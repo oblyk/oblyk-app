@@ -722,7 +722,8 @@ export default {
         explain: 'Cliquez sur la carte, ou glisser le marquer pour changer la localisation'
       },
       layers: {
-        relief: 'Relief',
+        relief: 'Relief Eseri',
+        reliefMapbox: 'Relief Mapbox',
         street: 'Carte',
         satellite: 'Satellite',
         detailedRelief: 'Relief détailé'
