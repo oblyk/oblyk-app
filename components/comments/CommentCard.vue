@@ -17,7 +17,7 @@
       />
       <div>
         <v-btn
-          v-if="isMainComment || isMainReply"
+          v-if="$auth.loggedIn && (isMainComment || isMainReply)"
           v-model="showReply"
           text
           :icon="!isMainComment"
