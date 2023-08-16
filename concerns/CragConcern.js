@@ -53,7 +53,7 @@ export const CragConcern = {
         { hid: 'og:url', property: 'og:url', content: this.cragMetaUrl }
       ],
       link: [
-        { rel: 'preload', href: this.cragMetaImage }
+        { rel: 'preload', href: this.cragMetaImage, as: 'image' }
       ]
     }
   },

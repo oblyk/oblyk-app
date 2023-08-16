@@ -56,6 +56,9 @@ export const GymConcern = {
         { hid: 'og:description', property: 'og:description', content: this.gymMetaDescription },
         { hid: 'og:image', property: 'og:image', content: this.gymMetaImage },
         { hid: 'og:url', property: 'og:url', content: this.gymMetaUrl }
+      ],
+      link: [
+        { rel: 'preload', href: this.gymMetaImage, as: 'image' }
       ]
     }
   },

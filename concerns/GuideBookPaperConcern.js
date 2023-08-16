@@ -68,6 +68,9 @@ export const GuideBookPaperConcern = {
           property: 'og:url',
           content: this.guideBookPaperMetaUrl
         }
+      ],
+      link: [
+        { rel: 'preload', href: this.guideBookPaperMetaImage, as: 'image' }
       ]
     }
   },

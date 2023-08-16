@@ -68,6 +68,9 @@ export const AreaConcern = {
           property: 'og:url',
           content: this.areaMetaUrl
         }
+      ],
+      link: [
+        { rel: 'preload', href: this.areaMetaImage, as: 'image' }
       ]
     }
   },

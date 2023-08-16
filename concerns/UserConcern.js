@@ -50,6 +50,9 @@ export const UserConcern = {
         { hid: 'og:description', property: 'og:description', content: this.userMetaDescription },
         { hid: 'og:image', property: 'og:image', content: this.userMetaImage },
         { hid: 'og:url', property: 'og:url', content: this.userMetaUrl }
+      ],
+      link: [
+        { rel: 'preload', href: this.userMetaImage, as: 'image' }
       ]
     }
   },

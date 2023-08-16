@@ -89,6 +89,9 @@ export const ArticleConcern = {
           property: 'article:tag',
           content: 'Climbing'
         }
+      ],
+      link: [
+        { rel: 'preload', href: this.articleMetaImage, as: 'image' }
       ]
     }
   },

@@ -59,6 +59,9 @@ export const GymSpaceConcern = {
         { hid: 'og:description', property: 'og:description', content: this.gymSpaceMetaDescription },
         { hid: 'og:image', property: 'og:image', content: this.gymSpaceMetaImage },
         { hid: 'og:url', property: 'og:url', content: this.gymSpaceMetaUrl }
+      ],
+      link: [
+        { rel: 'preload', href: this.gymSpaceMetaImage, as: 'image' }
       ]
     }
   },
