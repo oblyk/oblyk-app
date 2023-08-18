@@ -30,8 +30,11 @@
     </div>
 
     <!-- Add comment-->
-    <client-only v-if="$auth.loggedIn">
-      <div class="text-right mt-4">
+    <client-only>
+      <div
+        v-if="$auth.loggedIn"
+        class="text-right mt-4"
+      >
         <v-dialog
           v-model="commentFormDialog"
           width="600"

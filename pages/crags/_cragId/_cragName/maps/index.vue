@@ -1,35 +1,37 @@
 <template>
   <div>
     <div>
-      <div
-        v-if="isLoggedIn"
-        class="mt-2 mb-2"
-      >
-        <v-btn
-          text
-          outlined
-          small
-          color="primary"
-          :to="`${crag.path}/maps/edit`"
+      <client-only>
+        <div
+          v-if="$auth.loggedIn"
+          class="mt-2 mb-2"
         >
-          <v-icon left>
-            {{ mdiParking }}
-          </v-icon>
-          {{ $t('actions.addPark') }}
-        </v-btn>
-        <v-btn
-          text
-          outlined
-          small
-          color="primary"
-          :to="`${crag.path}/maps/edit`"
-        >
-          <v-icon left>
-            {{ mdiWalk }}
-          </v-icon>
-          {{ $t('actions.addApproach') }}
-        </v-btn>
-      </div>
+          <v-btn
+            text
+            outlined
+            small
+            color="primary"
+            :to="`${crag.path}/maps/edit`"
+          >
+            <v-icon left>
+              {{ mdiParking }}
+            </v-icon>
+            {{ $t('actions.addPark') }}
+          </v-btn>
+          <v-btn
+            text
+            outlined
+            small
+            color="primary"
+            :to="`${crag.path}/maps/edit`"
+          >
+            <v-icon left>
+              {{ mdiWalk }}
+            </v-icon>
+            {{ $t('actions.addApproach') }}
+          </v-btn>
+        </div>
+      </client-only>
 
       <div v-if="approaches.length > 0" class="mb-7">
         <p class="mt-5">
@@ -58,14 +60,16 @@
           {{ $t('components.map.title') }}
         </h2>
         <v-spacer />
-        <v-btn
-          v-if="$auth.loggedIn"
-          outlined
-          text
-          :to="`${crag.path}/maps/edit`"
-        >
-          {{ $t('actions.editMapElements') }}
-        </v-btn>
+        <client-only>
+          <v-btn
+            v-if="$auth.loggedIn"
+            outlined
+            text
+            :to="`${crag.path}/maps/edit`"
+          >
+            {{ $t('actions.editMapElements') }}
+          </v-btn>
+        </client-only>
       </v-card-title>
       <v-card-text class="full-height">
         <v-img
@@ -94,7 +98,7 @@
               </div>
               <div>
                 <small
-                  class="d-inline-block font-weight-bold px-4 px-3 rounded mt-1"
+                  class="d-inline-block font-weight-bold px-4 px-3 rounded mt-1 theme--dark"
                   style="background-color: rgba(255, 255, 255, 0.4)"
                 >
                   {{ $t('models.park.names') }} · {{ $t('models.rockBar.sunshine') }} · {{ $t('components.approach.names') }}
@@ -110,7 +114,6 @@
 
 <script>
 import { mdiParking, mdiWalk, mdiMap } from '@mdi/js'
-import { SessionConcern } from '~/concerns/SessionConcern'
 import ApproachApi from '~/services/oblyk-api/ApproachApi'
 import Approach from '~/models/Approach'
 import ApproachCard from '~/components/approaches/ApproachCard.vue'
@@ -118,7 +121,6 @@ import ApproachCard from '~/components/approaches/ApproachCard.vue'
 export default {
   name: 'CragMapDetailsView',
   components: { ApproachCard },
-  mixins: [SessionConcern],
   props: {
     crag: {
       type: Object,
@@ -128,9 +130,6 @@ export default {
 
   data () {
     return {
-      mdiParking,
-      mdiWalk,
-      mdiMap,
       geoJsons: null,
       approaches: [],
       cragMapMetaTitle: this.$t('metaTitle', {
@@ -141,7 +140,11 @@ export default {
         name: this.crag?.name,
         region: this.crag?.region,
         city: this.crag?.city
-      })
+      }),
+
+      mdiParking,
+      mdiWalk,
+      mdiMap
     }
   },
 

@@ -31,7 +31,7 @@
       <client-only>
         <p class="text-right">
           <v-btn
-            v-if="isLoggedIn"
+            v-if="$auth.loggedIn"
             :to="`/videos/CragRoute/${cragRoute.id}/new?redirect_to=${$route.fullPath}`"
             text
             outlined
@@ -51,7 +51,6 @@
 <script>
 import { mdiVideo, mdiVideoPlus } from '@mdi/js'
 import Spinner from '@/components/layouts/Spiner'
-import { SessionConcern } from '@/concerns/SessionConcern'
 import CragRouteApi from '~/services/oblyk-api/CragRouteApi'
 import VideoCard from '@/components/videos/VideoCard'
 import Video from '@/models/Video'
@@ -59,7 +58,6 @@ import Video from '@/models/Video'
 export default {
   name: 'CragRouteVideos',
   components: { VideoCard, Spinner },
-  mixins: [SessionConcern],
   props: {
     cragRoute: {
       type: Object,
@@ -73,10 +71,11 @@ export default {
 
   data () {
     return {
-      mdiVideo,
-      mdiVideoPlus,
       loadingVideos: true,
-      videos: []
+      videos: [],
+
+      mdiVideo,
+      mdiVideoPlus
     }
   },
 

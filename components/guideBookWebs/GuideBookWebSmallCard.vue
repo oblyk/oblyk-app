@@ -21,7 +21,7 @@
               {{ guideBookWeb.name }}
               <client-only>
                 <v-btn
-                  v-if="isLoggedIn && loggedInUser.uuid === guideBookWeb.creator.uuid"
+                  v-if="$auth.loggedIn && $auth.user.uuid === guideBookWeb.creator.uuid"
                   icon
                   :to="`${guideBookWeb.path}/edit?redirect_to=${$route.fullPath}`"
                 >
@@ -43,11 +43,9 @@
 
 <script>
 import { mdiPencil } from '@mdi/js'
-import { SessionConcern } from '@/concerns/SessionConcern'
 
 export default {
   name: 'GuideBookWebSmallCard',
-  mixins: [SessionConcern],
   props: {
     guideBookWeb: {
       type: Object,

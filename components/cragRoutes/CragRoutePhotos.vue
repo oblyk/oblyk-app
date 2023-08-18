@@ -18,7 +18,7 @@
       <client-only>
         <p class="text-right">
           <v-btn
-            v-if="isLoggedIn"
+            v-if="$auth.loggedIn"
             :to="`/photos/CragRoute/${cragRoute.id}/new?redirect_to=${$route.fullPath}`"
             text
             outlined
@@ -38,12 +38,10 @@
 <script>
 import { mdiImage, mdiImagePlus } from '@mdi/js'
 import PhotoGallery from '@/components/photos/PhotoGallery'
-import { SessionConcern } from '@/concerns/SessionConcern'
 
 export default {
   name: 'CragRoutePhotos',
   components: { PhotoGallery },
-  mixins: [SessionConcern],
   props: {
     cragRoute: {
       type: Object,

@@ -1,24 +1,24 @@
 <template>
   <div>
     <guide-list :crag="crag" />
-    <div
-      v-if="isLoggedIn"
-      class="mt-3"
-    >
-      <add-guide-book-btn :crag="crag" />
-    </div>
+    <client-only>
+      <div
+        v-if="$auth.loggedIn"
+        class="mt-3"
+      >
+        <add-guide-book-btn :crag="crag" />
+      </div>
+    </client-only>
   </div>
 </template>
 
 <script>
-import { SessionConcern } from '@/concerns/SessionConcern'
 import AddGuideBookBtn from '@/components/crags/forms/AddGuideBookBtn'
 import GuideList from '@/components/crags/GuideList'
 
 export default {
   name: 'CragGuideBooksView',
   components: { GuideList, AddGuideBookBtn },
-  mixins: [SessionConcern],
   props: {
     crag: {
       type: Object,

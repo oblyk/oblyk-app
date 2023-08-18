@@ -88,7 +88,7 @@
                   </v-list-item-title>
                 </v-list-item>
                 <v-list-item
-                  v-if="isSuperAdmin"
+                  v-if="$auth.loggedIn && $auth.user.super_admin"
                   :to="`/alerts/Crag/${crag.id}/new?redirect_to=${$route.fullPath}`"
                 >
                   <v-list-item-icon>
@@ -109,14 +109,12 @@
 
 <script>
 import { mdiDotsVertical, mdiMapMarkerRadiusOutline, mdiBellPlus, mdiPencil } from '@mdi/js'
-import { SessionConcern } from '@/concerns/SessionConcern'
 import ShareBtn from '~/components/ui/ShareBtn.vue'
 const SubscribeBtn = () => import('@/components/forms/SubscribeBtn')
 
 export default {
   name: 'CragHead',
   components: { ShareBtn, SubscribeBtn },
-  mixins: [SessionConcern],
   props: {
     crag: {
       type: Object,

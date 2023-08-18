@@ -44,7 +44,7 @@
 
       <client-only>
         <p
-          v-if="guides.length === 0"
+          v-if="guides.length === 0 && $auth.loggedIn"
           class="text-center mt-10"
         >
           {{ $t('components.crag.noGuide') }}<br>

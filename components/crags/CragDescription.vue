@@ -224,7 +224,9 @@
         <div>
           <strong>GPS :</strong>
           {{ latLng }}
-          <qr-code-btn :value="latLng" />
+          <client-only>
+            <qr-code-btn :value="latLng" />
+          </client-only>
         </div>
         <div style="height: calc(100% - 85px); min-height: 400px">
           <v-img

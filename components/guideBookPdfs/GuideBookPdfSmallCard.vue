@@ -19,7 +19,7 @@
               {{ guideBookPdf.name }}
               <client-only>
                 <v-btn
-                  v-if="isLoggedIn && loggedInUser.uuid === guideBookPdf.creator.uuid"
+                  v-if="$auth.loggedIn && $auth.user.uuid === guideBookPdf.creator.uuid"
                   icon
                   :to="`${guideBookPdf.path}/edit?redirect_to=${$route.fullPath}`"
                 >
@@ -30,7 +30,8 @@
           </v-list-item-title>
           <v-list-item-subtitle class="mb-3 mt-n1">
             <a
-              class="link-to-pdf-file"
+              class="text-decoration-none"
+              style="color: #e53935"
               :href="guideBookPdf.url"
             >
               <v-icon left small class="mb-1" color="red darken-1">
@@ -55,11 +56,9 @@
 
 <script>
 import { mdiPencil, mdiFilePdfBox } from '@mdi/js'
-import { SessionConcern } from '@/concerns/SessionConcern'
 
 export default {
   name: 'GuideBookPdfSmallCard',
-  mixins: [SessionConcern],
   props: {
     guideBookPdf: {
       type: Object,
@@ -75,10 +74,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.link-to-pdf-file {
-  color: #e53935;
-  text-decoration: none;
-}
-</style>

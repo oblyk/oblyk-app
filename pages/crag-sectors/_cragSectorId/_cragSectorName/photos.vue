@@ -1,17 +1,19 @@
 <template>
   <v-container>
     <div>
-      <v-btn
-        v-if="isLoggedIn"
-        :to="`/photos/CragSector/${cragSector.id}/new?redirect_to=${$route.fullPath}`"
-        text
-        color="primary"
-      >
-        <v-icon left>
-          {{ mdiImagePlus }}
-        </v-icon>
-        {{ $t('actions.addPicture') }}
-      </v-btn>
+      <client-only>
+        <v-btn
+          v-if="$auth.loggedIn"
+          :to="`/photos/CragSector/${cragSector.id}/new?redirect_to=${$route.fullPath}`"
+          text
+          color="primary"
+        >
+          <v-icon left>
+            {{ mdiImagePlus }}
+          </v-icon>
+          {{ $t('actions.addPicture') }}
+        </v-btn>
+      </client-only>
       <photo-gallery
         environnement-type="cragSector"
         :environnement-object="cragSector"
@@ -47,7 +49,6 @@
 
 <script>
 import { mdiImagePlus } from '@mdi/js'
-import { SessionConcern } from '~/concerns/SessionConcern'
 import CragSectorApi from '~/services/oblyk-api/CragSectorApi'
 import Video from '~/models/Video'
 import Spinner from '~/components/layouts/Spiner'
@@ -57,7 +58,6 @@ import VideoCard from '~/components/videos/VideoCard'
 export default {
   name: 'CragSectorPhotosView',
   components: { VideoCard, PhotoGallery, Spinner },
-  mixins: [SessionConcern],
   props: {
     cragSector: {
       type: Object,

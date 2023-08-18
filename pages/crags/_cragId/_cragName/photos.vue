@@ -2,7 +2,7 @@
   <v-sheet class="pa-4 rounded">
     <client-only>
       <v-btn
-        v-if="isLoggedIn"
+        v-if="$auth.loggedIn"
         :to="`/photos/Crag/${crag.id}/new?redirect_to=${$route.fullPath}`"
         text
         color="primary"
@@ -27,7 +27,7 @@
 
       <div v-if="!loadingVideos">
         <v-btn
-          v-if="isLoggedIn"
+          v-if="$auth.loggedIn"
           :to="`/videos/Crag/${crag.id}/new?redirect_to=${$route.fullPath}`"
           text
           color="primary"
@@ -62,7 +62,6 @@
 
 <script>
 import { mdiImagePlus, mdiVideoPlus } from '@mdi/js'
-import { SessionConcern } from '@/concerns/SessionConcern'
 import CragApi from '@/services/oblyk-api/CragApi'
 import Spinner from '@/components/layouts/Spiner'
 import PhotoGallery from '@/components/photos/PhotoGallery'
@@ -76,7 +75,6 @@ export default {
     PhotoGallery,
     Spinner
   },
-  mixins: [SessionConcern],
   props: {
     crag: {
       type: Object,
@@ -86,8 +84,6 @@ export default {
 
   data () {
     return {
-      mdiImagePlus,
-      mdiVideoPlus,
       loadingVideos: true,
       videos: [],
       cragPhotoMetaTitle: this.$t('metaTitle', {
@@ -98,7 +94,10 @@ export default {
         name: this.crag?.name,
         region: this.crag?.region,
         city: this.crag?.city
-      })
+      }),
+
+      mdiImagePlus,
+      mdiVideoPlus
     }
   },
 

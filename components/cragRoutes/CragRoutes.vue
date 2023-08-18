@@ -12,13 +12,13 @@
             </v-icon>
             {{ $t(titleTranslateKey) }}
           </v-col>
-          <v-col
-            v-if="isLoggedIn"
-            cols="12"
-            md="6"
-            class="add-sector-or-route"
-          >
-            <client-only>
+          <client-only>
+            <v-col
+              v-if="$auth.loggedIn"
+              cols="12"
+              md="6"
+              class="add-sector-or-route"
+            >
               <slot
                 v-if="hasCustomAddedBtn"
                 name="add-btn"
@@ -28,8 +28,8 @@
                 :crag="crag"
                 :crag-sector="cragSector"
               />
-            </client-only>
-          </v-col>
+            </v-col>
+          </client-only>
         </v-row>
       </v-card-title>
       <v-card-subtitle>
@@ -62,28 +62,30 @@
         />
       </v-card-text>
 
-      <v-sheet
-        v-if="!$auth.loggedIn"
-        class="rounded text-center pa-4 my-2 border mx-4"
-      >
-        <p class="mb-2" v-html="$t('components.cragRoute.mustBeLogin')" />
-        <div>
-          <v-btn
-            elevation="0"
-            color="primary"
-            :to="`/sign-in?redirect_to=${$route.fullPath}`"
-          >
-            {{ $t('actions.signIn') }}
-          </v-btn>
-          <v-btn
-            elevation="0"
-            color="primary"
-            :to="`/sign-up?redirect_to=${$route.fullPath}`"
-          >
-            {{ $t('actions.signUp') }}
-          </v-btn>
-        </div>
-      </v-sheet>
+      <client-only>
+        <v-sheet
+          v-if="!$auth.loggedIn"
+          class="rounded text-center pa-4 my-2 border mx-4"
+        >
+          <p class="mb-2" v-html="$t('components.cragRoute.mustBeLogin')" />
+          <div>
+            <v-btn
+              elevation="0"
+              color="primary"
+              :to="`/sign-in?redirect_to=${$route.fullPath}`"
+            >
+              {{ $t('actions.signIn') }}
+            </v-btn>
+            <v-btn
+              elevation="0"
+              color="primary"
+              :to="`/sign-up?redirect_to=${$route.fullPath}`"
+            >
+              {{ $t('actions.signUp') }}
+            </v-btn>
+          </div>
+        </v-sheet>
+      </client-only>
 
       <v-skeleton-loader
         v-if="loadingRoutes"
@@ -128,7 +130,6 @@
 
 <script>
 import { mdiSourceBranch } from '@mdi/js'
-import { SessionConcern } from '@/concerns/SessionConcern'
 import { LoadingMoreHelpers } from '@/mixins/LoadingMoreHelpers'
 import CragRouteApi from '~/services/oblyk-api/CragRouteApi'
 import CragRoute from '@/models/CragRoute'
@@ -151,7 +152,7 @@ export default {
     LoadingMore,
     CragRouteListItem
   },
-  mixins: [SessionConcern, LoadingMoreHelpers],
+  mixins: [LoadingMoreHelpers],
 
   props: {
     crag: {

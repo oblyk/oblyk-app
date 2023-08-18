@@ -26,7 +26,6 @@
 
 <script>
 import { mdiNewspaperVariantMultiple } from '@mdi/js'
-import { SessionConcern } from '@/concerns/SessionConcern'
 import Spinner from '@/components/layouts/Spiner'
 import CragApi from '~/services/oblyk-api/CragApi'
 import Article from '@/models/Article'
@@ -35,7 +34,6 @@ import ArticleFeedCard from '@/components/articles/ArticleFeedCard'
 export default {
   name: 'CragArticles',
   components: { ArticleFeedCard, Spinner },
-  mixins: [SessionConcern],
   props: {
     crag: {
       type: Object,
@@ -45,9 +43,10 @@ export default {
 
   data () {
     return {
-      mdiNewspaperVariantMultiple,
       loadingArticles: true,
-      articles: []
+      articles: [],
+
+      mdiNewspaperVariantMultiple
     }
   },
 

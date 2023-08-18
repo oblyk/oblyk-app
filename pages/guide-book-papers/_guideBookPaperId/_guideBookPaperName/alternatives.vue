@@ -32,7 +32,7 @@
       :key="`alternative-crag-${cragIndex}`"
     >
       <crag-small-card
-        :crag="recordToObject('Crag', alternative.crag)"
+        :crag="cragObject(alternative.crag)"
         small
       />
       <div class="row mt-1 mb-10">
@@ -50,7 +50,7 @@
           class="col-12 col-md-4 col-lg-2"
         >
           <guide-book-paper-cover-card
-            :guide-book-paper="recordToObject('GuideBookPaper', guide)"
+            :guide-book-paper="guideBookPaperObject(guide)"
             cover-height="100px"
           />
         </div>
@@ -60,14 +60,14 @@
 </template>
 
 <script>
-import { RecordToObjectHelpers } from '~/mixins/RecordToObjectHelpers'
 import GuideBookPaperApi from '@/services/oblyk-api/GuideBookPaperApi'
 import CragSmallCard from '~/components/crags/CragSmallCard'
 import GuideBookPaperCoverCard from '~/components/guideBookPapers/GuideBookPaperCoverCard'
+import GuideBookPaper from '~/models/GuideBookPaper'
+import Crag from '~/models/Crag'
 
 export default {
   components: { GuideBookPaperCoverCard, CragSmallCard },
-  mixins: [RecordToObjectHelpers],
   props: {
     guideBookPaper: {
       type: Object,
@@ -132,6 +132,16 @@ export default {
           content: `${process.env.VUE_APP_OBLYK_APP_URL}${this.guideBookPaper.path}/alternatives`
         }
       ]
+    }
+  },
+
+  methods: {
+    guideBookPaperObject (object) {
+      return new GuideBookPaper({ attributes: object })
+    },
+
+    cragObject (object) {
+      return new Crag({ attributes: object })
     }
   }
 }

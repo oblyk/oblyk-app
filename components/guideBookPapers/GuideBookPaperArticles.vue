@@ -26,14 +26,12 @@
 import { mdiNewspaperVariantMultiple } from '@mdi/js'
 import GuideBookPaperApi from '~/services/oblyk-api/GuideBookPaperApi'
 import Spinner from '@/components/layouts/Spiner'
-import { SessionConcern } from '@/concerns/SessionConcern'
 import Article from '@/models/Article'
 import ArticleFeedCard from '@/components/articles/ArticleFeedCard'
 
 export default {
   name: 'GuideBookPaperArticles',
   components: { ArticleFeedCard, Spinner },
-  mixins: [SessionConcern],
   props: {
     guideBookPaper: {
       type: Object,
@@ -43,9 +41,10 @@ export default {
 
   data () {
     return {
-      mdiNewspaperVariantMultiple,
       loadingArticles: true,
-      articles: []
+      articles: [],
+
+      mdiNewspaperVariantMultiple
     }
   },
 

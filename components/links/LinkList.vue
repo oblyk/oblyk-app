@@ -31,7 +31,7 @@
     <!-- Add link-->
     <client-only>
       <div
-        v-if="isLoggedIn"
+        v-if="$auth.loggedIn"
         class="text-right mt-4"
       >
         <v-btn
@@ -54,12 +54,10 @@ import { mdiLinkVariantPlus } from '@mdi/js'
 import LinkCard from '@/components/links/LinkCard'
 import LinkApi from '~/services/oblyk-api/LinkApi'
 import Link from '@/models/Link'
-import { SessionConcern } from '@/concerns/SessionConcern'
 
 export default {
   name: 'LinkList',
   components: { LinkCard },
-  mixins: [SessionConcern],
   props: {
     linkableId: {
       type: [String, Number],
@@ -73,10 +71,11 @@ export default {
 
   data () {
     return {
-      mdiLinkVariantPlus,
       links: [],
       loadingLinks: true,
-      redirectTo: this.$route.fullPath
+      redirectTo: this.$route.fullPath,
+
+      mdiLinkVariantPlus
     }
   },
 

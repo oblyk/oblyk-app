@@ -20,21 +20,23 @@
         </v-container>
       </v-card>
 
-      <!-- Ascents -->
-      <v-card
-        v-if="$auth.loggedIn"
-        class="mt-5"
-      >
-        <v-container>
-          <p class="mb-0">
-            <v-icon left>
-              {{ mdiCheckAll }}
-            </v-icon>
-            {{ $t('components.cragRoute.inMyLogbook') }}
-          </p>
-          <crag-route-ascent :crag-route="cragRoute" />
-        </v-container>
-      </v-card>
+      <client-only>
+        <!-- Ascents -->
+        <v-card
+          v-if="$auth.loggedIn"
+          class="mt-5"
+        >
+          <v-container>
+            <p class="mb-0">
+              <v-icon left>
+                {{ mdiCheckAll }}
+              </v-icon>
+              {{ $t('components.cragRoute.inMyLogbook') }}
+            </p>
+            <crag-route-ascent :crag-route="cragRoute" />
+          </v-container>
+        </v-card>
+      </client-only>
 
       <!-- Comments -->
       <v-card class="mt-5">

@@ -24,22 +24,24 @@
           {{ $t('components.placeOfSale.noPlace') }}
         </p>
 
-        <div
-          v-if="isLoggedIn"
-          class="text-right mt-3"
-        >
-          <v-btn
-            :to="`${guideBookPaper.path}/place-of-sales/new?redirect_to=${$route.fullPath}`"
-            text
-            small
-            color="primary"
+        <client-only>
+          <div
+            v-if="$auth.loggedIn"
+            class="text-right mt-3"
           >
-            <v-icon left small>
-              {{ mdiStorePlus }}
-            </v-icon>
-            {{ $t('actions.addPlaceOfSale') }}
-          </v-btn>
-        </div>
+            <v-btn
+              :to="`${guideBookPaper.path}/place-of-sales/new?redirect_to=${$route.fullPath}`"
+              text
+              small
+              color="primary"
+            >
+              <v-icon left small>
+                {{ mdiStorePlus }}
+              </v-icon>
+              {{ $t('actions.addPlaceOfSale') }}
+            </v-btn>
+          </div>
+        </client-only>
       </div>
     </v-card-text>
   </div>
@@ -47,7 +49,6 @@
 
 <script>
 import { mdiStore, mdiStorePlus } from '@mdi/js'
-import { SessionConcern } from '@/concerns/SessionConcern'
 import GuideBookPaperApi from '~/services/oblyk-api/GuideBookPaperApi'
 import PlaceOfSale from '@/models/PlaceOfSale'
 import PlaceOfSaleCard from '@/components/placeOfSales/PlaceOfSaleCard'
@@ -56,7 +57,6 @@ import Spinner from '@/components/layouts/Spiner'
 export default {
   name: 'GuideBookPaperPlaceOfSales',
   components: { Spinner, PlaceOfSaleCard },
-  mixins: [SessionConcern],
   props: {
     guideBookPaper: {
       type: Object,

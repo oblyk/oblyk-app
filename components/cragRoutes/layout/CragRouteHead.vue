@@ -30,13 +30,11 @@
 </template>
 
 <script>
-import { SessionConcern } from '@/concerns/SessionConcern'
 import CragRouteTitle from '~/components/cragRoutes/shared/CragRouteTitle'
 
 export default {
   name: 'CragRouteHead',
   components: { CragRouteTitle },
-  mixins: [SessionConcern],
   props: {
     cragRoute: {
       type: Object,

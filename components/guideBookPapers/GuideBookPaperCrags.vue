@@ -6,25 +6,27 @@
       :callback-function="removeCrag"
       :callback-icon="mdiDelete"
     />
-    <div
-      v-if="$auth.loggedIn"
-      class="mt-3 text-right pa-3"
-    >
-      <v-btn
-        small
-        text
-        outlined
-        :to="`${guideBookPaper.path}/add-crag`"
-        color="primary"
+    <client-only>
+      <div
+        v-if="$auth.loggedIn"
+        class="mt-3 text-right pa-3"
       >
-        <v-icon
-          left
+        <v-btn
+          small
+          text
+          outlined
+          :to="`${guideBookPaper.path}/add-crag`"
+          color="primary"
         >
-          {{ mdiTerrain }}
-        </v-icon>
-        {{ $t('components.guideBookPaper.addCragInGuide') }}
-      </v-btn>
-    </div>
+          <v-icon
+            left
+          >
+            {{ mdiTerrain }}
+          </v-icon>
+          {{ $t('components.guideBookPaper.addCragInGuide') }}
+        </v-btn>
+      </div>
+    </client-only>
   </div>
 </template>
 

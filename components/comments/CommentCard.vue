@@ -15,28 +15,30 @@
         :reports="{ type: 'Comment', id: comment.id }"
         :delete-function="deleteComment"
       />
-      <div>
-        <v-btn
-          v-if="$auth.loggedIn && (isMainComment || isMainReply)"
-          v-model="showReply"
-          text
-          :icon="!isMainComment"
-          @click="openReplyForm"
-        >
-          <span v-if="isMainComment">
-            {{ $t('actions.reply') }}
-          </span>
-          <v-icon :right="isMainComment">
-            {{ showReply ? mdiClose : mdiReply }}
-          </v-icon>
-        </v-btn>
-        <like-btn
-          class="align-end"
-          :initial-like-count="comment.likes_count"
-          :likeable-id="comment.id"
-          likeable-type="Comment"
-        />
-      </div>
+      <client-only>
+        <div>
+          <v-btn
+            v-if="$auth.loggedIn && (isMainComment || isMainReply)"
+            v-model="showReply"
+            text
+            :icon="!isMainComment"
+            @click="openReplyForm"
+          >
+            <span v-if="isMainComment">
+              {{ $t('actions.reply') }}
+            </span>
+            <v-icon :right="isMainComment">
+              {{ showReply ? mdiClose : mdiReply }}
+            </v-icon>
+          </v-btn>
+          <like-btn
+            class="align-end"
+            :initial-like-count="comment.likes_count"
+            :likeable-id="comment.id"
+            likeable-type="Comment"
+          />
+        </div>
+      </client-only>
     </div>
 
     <div v-if="isMainComment || isMainReply">
@@ -51,31 +53,35 @@
       </div>
 
       <!-- Load more reply comments -->
-      <div
-        v-if="comment.comments_count && comment.comments_count - comments.length > 0 && !noMoreReplyComments && !loadingComments"
-      >
-        <v-btn
-          small
-          text
-          @click="getReplyComments"
-        >
-          {{ $tc('components.comment.seeReplies', comment.comments_count - comments.length, { count: comment.comments_count - comments.length }) }}
-        </v-btn>
-      </div>
+      <client-only>
+        <div v-if="$auth.loggedIn">
+          <div
+            v-if="comment.comments_count && comment.comments_count - comments.length > 0 && !noMoreReplyComments && !loadingComments"
+          >
+            <v-btn
+              small
+              text
+              @click="getReplyComments"
+            >
+              {{ $tc('components.comment.seeReplies', comment.comments_count - comments.length, { count: comment.comments_count - comments.length }) }}
+            </v-btn>
+          </div>
 
-      <!-- Reply form -->
-      <v-text-field
-        v-if="showReply"
-        ref="replyTextField"
-        v-model="replyData.body"
-        class="mt-2"
-        :loading="loadingReply"
-        rows="1"
-        dense
-        outlined
-        :append-icon="mdiSend"
-        @click:append="sendReply"
-      />
+          <!-- Reply form -->
+          <v-text-field
+            v-if="showReply"
+            ref="replyTextField"
+            v-model="replyData.body"
+            class="mt-2"
+            :loading="loadingReply"
+            rows="1"
+            dense
+            outlined
+            :append-icon="mdiSend"
+            @click:append="sendReply"
+          />
+        </div>
+      </client-only>
 
       <!-- Loading comment -->
       <div v-if="loadingComments" class="text-center">

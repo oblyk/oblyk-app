@@ -49,9 +49,10 @@ export default {
 
   data () {
     return {
+      redirectTo: this.$route.fullPath,
+
       mdiLink,
-      mdiFormatAlignJustify,
-      redirectTo: this.$route.fullPath
+      mdiFormatAlignJustify
     }
   },
 

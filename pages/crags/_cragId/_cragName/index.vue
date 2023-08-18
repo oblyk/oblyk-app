@@ -6,16 +6,18 @@
         <crag-info :crag="crag" />
       </v-col>
     </v-row>
-    <v-row v-if="$auth.loggedIn">
-      <lazy-hydrate when-visible>
-        <v-col class="col-12">
-          <crag-user-ascents
-            v-if="$auth.loggedIn"
-            :crag="crag"
-          />
-        </v-col>
-      </lazy-hydrate>
-    </v-row>
+    <client-only>
+      <v-row v-if="$auth.loggedIn">
+        <lazy-hydrate when-visible>
+          <v-col class="col-12">
+            <crag-user-ascents
+              v-if="$auth.loggedIn"
+              :crag="crag"
+            />
+          </v-col>
+        </lazy-hydrate>
+      </v-row>
+    </client-only>
 
     <!-- Guide book and climbers around -->
     <lazy-hydrate when-visible>

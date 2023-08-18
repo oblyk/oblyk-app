@@ -14,14 +14,13 @@
 </template>
 
 <script>
-import { SessionConcern } from '~/concerns/SessionConcern'
 import { GuideBookPaperConcern } from '~/concerns/GuideBookPaperConcern'
 import GuideBookPaperCoverForm from '~/components/guideBookPapers/forms/GuideBookPaperCoverForm'
 
 export default {
   meta: { orphanRoute: true },
   components: { GuideBookPaperCoverForm },
-  mixins: [GuideBookPaperConcern, SessionConcern],
+  mixins: [GuideBookPaperConcern],
   middleware: ['auth'],
 
   i18n: {

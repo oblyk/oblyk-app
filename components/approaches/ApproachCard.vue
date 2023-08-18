@@ -77,28 +77,28 @@
         </v-col>
       </v-row>
     </v-card-text>
-    <v-card-actions v-if="isLoggedIn">
-      <v-spacer />
-      <v-btn
-        text
-        :to="`${approach.path}/edit`"
-      >
-        {{ $t('actions.edit') }}
-      </v-btn>
-    </v-card-actions>
+    <client-only>
+      <v-card-actions v-if="$auth.loggedIn">
+        <v-spacer />
+        <v-btn
+          text
+          :to="`${approach.path}/edit`"
+        >
+          {{ $t('actions.edit') }}
+        </v-btn>
+      </v-card-actions>
+    </client-only>
   </v-card>
 </template>
 
 <script>
 import { mdiText, mdiChartLineVariant, mdiWalk, mdiArrowExpand, mdiTimerOutline } from '@mdi/js'
-import { SessionConcern } from '@/concerns/SessionConcern'
 const MarkdownText = () => import('@/components/ui/MarkdownText')
 const ApproachElevationChart = () => import('@/components/approaches/ApproachElevationChart')
 
 export default {
   name: 'ApproachCard',
   components: { ApproachElevationChart, MarkdownText },
-  mixins: [SessionConcern],
   props: {
     approach: {
       type: Object,
