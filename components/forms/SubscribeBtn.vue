@@ -1,7 +1,6 @@
 <template>
-  <client-only>
+  <client-only v-if="$auth.loggedIn">
     <v-btn
-      v-if="$auth.loggedIn"
       class="subscribe-btn"
       :block="block"
       :outlined="large || outlined"
@@ -104,8 +103,10 @@ export default {
   },
 
   mounted () {
-    if (this.subscribed() && this.incrementable) {
-      new FollowApi(this.$axios, this.$auth).increment(this.subscribeType, this.subscribeId)
+    if (this.$auth.loggedIn) {
+      if (this.subscribed() && this.incrementable) {
+        new FollowApi(this.$axios, this.$auth).increment(this.subscribeType, this.subscribeId)
+      }
     }
   },
 
