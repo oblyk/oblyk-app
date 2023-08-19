@@ -79,7 +79,7 @@
                   {{ mdiCheckAll() }}
                 </v-icon>
               </v-btn>
-              {{ humanizeDate(item.openedAt, 'D MMM YY') }}
+              {{ humanizeDate(item.openedAt, 'd LLL yy') }}
             </template>
             <template
               v-once
@@ -584,7 +584,7 @@ export default {
           link.href = data
           link.setAttribute(
             'download',
-            this.$t('components.gymRoute.printedFileName', { date: this.$moment().format('YYYY-MM-DD'), name: this.gym.name })
+            this.$t('components.gymRoute.printedFileName', { date: this.ISODateToday(), name: this.gym.name })
           )
           link.click()
           setTimeout(() => { window.URL.revokeObjectURL(data) }, 100)
@@ -617,7 +617,7 @@ export default {
           link.href = data
           link.setAttribute(
             'download',
-            this.$t('components.gymRoute.exportedFileName', { date: this.$moment().format('YYYY-MM-DD'), name: this.gym.name })
+            this.$t('components.gymRoute.exportedFileName', { date: this.ISODateToday(), name: this.gym.name })
           )
           link.click()
           setTimeout(() => { window.URL.revokeObjectURL(data) }, 100)

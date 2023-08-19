@@ -1,5 +1,5 @@
 <template>
-  <small :title="humanizeDate(feed.posted_at, 'LLL')">
+  <small :title="humanizeDate(feed.posted_at, 'DATETIME_FULL')">
     {{ this.$t('common.posted') }}
     {{ feedDateFromNow(feed.posted_at) }}
   </small>

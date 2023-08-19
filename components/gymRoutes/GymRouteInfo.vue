@@ -142,7 +142,7 @@
           <description-line
             :icon="mdiCalendar"
             :item-title="$t('models.gymRoute.opened_at')"
-            :item-value="humanizeDate(gymRoute.opened_at, 'll')"
+            :item-value="humanizeDate(gymRoute.opened_at, 'DATE_MED')"
             class="back-app-color rounded-sm px-2 py-1"
           />
         </v-col>

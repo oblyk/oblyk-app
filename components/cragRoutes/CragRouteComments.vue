@@ -142,14 +142,14 @@ export default {
       const comments = {}
       const sortComments = []
       for (const comment of this.comments) {
-        comments[this.$moment(comment.history.created_at).format('YYYY-MM-DD-HH-mm-ss')] = {
+        comments[this.isoDate(comment.history.created_at)] = {
           type: 'Comment',
           comment
         }
       }
 
       for (const ascentComment of this.cragRoute.ascent_comments) {
-        comments[this.$moment(ascentComment.released_at).format('YYYY-MM-DD-HH-mm-ss')] = {
+        comments[this.isoDate(ascentComment.released_at)] = {
           type: 'AscentComment',
           comment: ascentComment
         }

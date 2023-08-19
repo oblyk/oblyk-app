@@ -1,40 +1,49 @@
+const { DateTime } = require('luxon')
+
 export const DateHelpers = {
   methods: {
     today () {
-      return this.$moment()
+      return DateTime.now()
     },
 
-    humanizeDate (date, format = 'LL') {
-      this.$moment.locale(this.$vuetify.lang.current)
-      return this.$moment(date).format(format)
+    toDateTime (date) {
+      return DateTime.fromISO(date)
     },
 
-    yearsOld (dateOfBirth, toS = true) {
-      const yearsOld = this.$moment().diff(this.$moment(dateOfBirth), 'years')
-      return toS ? `${yearsOld}${this.$t('date.yearsOld')}` : yearsOld
+    isoToday () {
+      return DateTime.now().toISODate()
+    },
+
+    ISODateToday () {
+      return DateTime.now().toISODate()
+    },
+
+    humanizeDate (date, format = 'DATE_FULL') {
+      const dateParsed = DateTime.fromISO(date).setLocale(this.$vuetify.lang.current)
+      if (['DATE', 'TIME'].includes(format.substring(0, 4))) {
+        return dateParsed.toLocaleString(DateTime[format])
+      } else {
+        return dateParsed.toFormat(format)
+      }
     },
 
     dateFromNow (date) {
-      this.$moment.locale(this.$vuetify.lang.current)
-      return this.$moment(date).fromNow()
+      return DateTime.fromISO(date)
+        .setLocale(this.$vuetify.lang.current)
+        .toRelative()
     },
 
     dateFromToday (date) {
-      const today = this.$moment().format('YYYY-MM-DD')
-      this.$moment.locale(this.$vuetify.lang.current)
-      if (date === today) {
+      if (date === DateTime.now().toISO()) {
         return this.$t('common.today')
       } else {
-        return this.$moment(today).to(this.$moment(date))
+        return this.dateFromNow(date)
       }
     },
 
     feedDateFromNow (date) {
-      const breakingDate = this.$moment().subtract(15, 'day').format('YYYY-MM-DD')
-      if (this.dateIsAfterDate(
-        date,
-        breakingDate
-      )) {
+      const dif = DateTime.now().diff(DateTime.fromISO(date), 'days').toObject()
+      if (dif.days > 15) {
         return `${this.$t('common.at')} ${this.humanizeDate(date)}`
       } else {
         return this.dateFromNow(date)
@@ -42,16 +51,15 @@ export const DateHelpers = {
     },
 
     dateIsAfterDate (firstDate, secondDate) {
-      return this.$moment(secondDate).isAfter(this.$moment(firstDate))
+      return DateTime.fromISO(secondDate).diff(DateTime.fromISO(firstDate)).toObject().milliseconds > 0
     },
 
-    humanizeDateDuration (date) {
-      this.$moment.locale(this.$vuetify.lang.current)
-      return this.$moment.duration(this.$moment().diff(this.$moment(date), 'minutes'), 'minutes').humanize()
+    dateIsBeforeDate (firstDate, secondDate) {
+      return DateTime.fromISO(secondDate).diff(DateTime.fromISO(firstDate)).toObject().milliseconds < 0
     },
 
     isoDate (date) {
-      return this.$moment(date).format('YYYY-MM-DD')
+      return DateTime.fromISO(date).toISO()
     }
   }
 }

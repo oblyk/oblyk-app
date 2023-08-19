@@ -62,7 +62,7 @@
             <v-icon class="mr-2">
               {{ mdiArrowLeft }}
             </v-icon>
-            {{ humanizeDate(climbingSession.previous_climbing_session, 'll') }}
+            {{ humanizeDate(climbingSession.previous_climbing_session, 'DATE_MED') }}
           </v-btn>
         </v-col>
         <v-col
@@ -74,7 +74,7 @@
             class="px-2"
             :to="`/home/climbing-sessions/${climbingSession.next_climbing_session}`"
           >
-            {{ humanizeDate(climbingSession.next_climbing_session, 'll') }}
+            {{ humanizeDate(climbingSession.next_climbing_session, 'DATE_MED') }}
             <v-icon class="ml-2">
               {{ mdiArrowRight }}
             </v-icon>

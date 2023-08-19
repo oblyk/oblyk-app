@@ -45,8 +45,6 @@ export default {
     '@nuxtjs/vuetify',
     // https://i18n.nuxtjs.org/
     '@nuxtjs/i18n',
-    // https://github.com/nuxt-community/moment-module
-    '@nuxtjs/moment',
     // https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
     // https://github.com/dword-design/nuxt-route-meta
@@ -204,10 +202,6 @@ export default {
       skipNuxtState: true
     },
     langDir: 'lang/'
-  },
-
-  moment: {
-    locales: ['fr', 'en-gb']
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

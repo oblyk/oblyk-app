@@ -38,7 +38,7 @@
         <description-line
           :item-title="$t('components.gymStatistic.oldestOpeningDate')"
           :icon="mdiCalendarArrowLeft"
-          :title="humanizeDate(figures.opening.oldest_opening_date, 'DD/MM/YYYY')"
+          :title="humanizeDate(figures.opening.oldest_opening_date, 'DATE_SHORT')"
         >
           <template #content>
             <span v-if="figures.opening.oldest_route_age">
@@ -54,7 +54,7 @@
         <description-line
           :item-title="$t('components.gymStatistic.youngestOpeningDate')"
           :icon="mdiCalendarArrowRight"
-          :title="humanizeDate(figures.opening.youngest_opening_date, 'DD/MM/YYYY')"
+          :title="humanizeDate(figures.opening.youngest_opening_date, 'DATE_SHORT')"
         >
           <template #content>
             <span v-if="figures.opening.youngest_route_age">

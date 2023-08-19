@@ -87,7 +87,7 @@ export default {
 
     lastMessageAt () {
       if (this.conversation.last_message.posted_at) {
-        return this.humanizeDateDuration(this.conversation.last_message.posted_at)
+        return this.dateFromNow(this.conversation.last_message.posted_at)
       } else {
         return ''
       }

@@ -32,7 +32,7 @@
         v-if="startDate !== null"
         class="subtitle-2"
       >
-        {{ $t('components.gymRanking.rankOf', { date: startDate.format('MMMM') }) }}
+        {{ $t('components.gymRanking.rankOf', { date: startDate.setLocale($vuetify.lang.current).toFormat('LLLL') }) }}
       </p>
       <v-btn
         v-if="startDate !== null"
@@ -45,7 +45,7 @@
         <v-icon left>
           {{ mdiArrowLeft }}
         </v-icon>
-        {{ previousMonth.format('MMMM') }}
+        {{ previousMonth.setLocale($vuetify.lang.current).toFormat('LLLL') }}
       </v-btn>
       <v-btn
         v-if="startDate === null"
@@ -55,7 +55,7 @@
         color="primary"
         @click="changeDate('current')"
       >
-        {{ $t('components.gymRanking.seeRankOf', { date: $moment().locale($vuetify.lang.current).format('MMMM') }) }}
+        {{ $t('components.gymRanking.seeRankOf', { date: humanizeDate(isoToday(), 'LLLL') }) }}
       </v-btn>
       <v-btn
         v-if="startDate !== null"
@@ -75,7 +75,7 @@
         color="primary"
         @click="changeDate('next')"
       >
-        {{ nextMonth.format('MMMM') }}
+        {{ nextMonth.setLocale($vuetify.lang.current).toFormat('LLLL') }}
         <v-icon right>
           {{ mdiArrowRight }}
         </v-icon>
@@ -282,10 +282,11 @@ import { mdiTrophy, mdiArrowLeft, mdiArrowRight } from '@mdi/js'
 import { GymConcern } from '~/concerns/GymConcern'
 import GymApi from '~/services/oblyk-api/GymApi'
 import User from '~/models/User'
+import { DateHelpers } from '~/mixins/DateHelpers'
 
 export default {
   meta: { orphanRoute: true },
-  mixins: [GymConcern],
+  mixins: [GymConcern, DateHelpers],
 
   data () {
     return {
@@ -334,28 +335,29 @@ export default {
 
   methods: {
     changeDate (type) {
-      this.$moment.locale(this.$vuetify.lang.current)
       if (type === 'previous' || type === 'next') {
-        this.startDate ||= this.$moment().startOf('month')
-        this.endDate ||= this.$moment().endOf('month')
+        this.startDate ||= this.today().startOf('month')
+        this.endDate ||= this.today().endOf('month')
       }
+
       if (type === 'all') {
         this.startDate = null
         this.endDate = null
       } else if (type === 'current') {
-        this.startDate = this.$moment().startOf('months')
-        this.endDate = this.$moment().endOf('month')
+        this.startDate = this.today().startOf('months')
+        this.endDate = this.today().endOf('month')
       } else if (type === 'previous') {
-        this.startDate.subtract(1, 'months')
-        this.endDate = this.$moment(this.startDate.format('YYYY-MM-DD')).endOf('month')
+        this.startDate = this.startDate.minus({ months: 1 })
+        this.endDate = this.toDateTime(this.startDate.toISO()).endOf('month')
       } else if (type === 'next') {
-        this.startDate.add(1, 'months')
-        this.endDate = this.$moment(this.startDate.format('YYYY-MM-DD')).endOf('month')
+        this.startDate = this.startDate.minus({ months: 1 })
+        this.endDate = this.toDateTime(this.startDate.toISO()).endOf('month')
       }
+
       if (this.startDate) {
-        this.haveNextMonth = this.$moment(this.startDate.format('YYYY-MM-DD')).add(1, 'month').isBefore(this.$moment())
-        this.nextMonth = this.$moment(this.startDate.format('YYYY-MM-DD')).add(1, 'month')
-        this.previousMonth = this.$moment(this.startDate.format('YYYY-MM-DD')).subtract(1, 'month')
+        this.haveNextMonth = this.dateIsBeforeDate(this.ISODateToday(), this.startDate.plus({ months: 1 }).toISO())
+        this.nextMonth = this.toDateTime(this.startDate.toISO()).plus({ months: 1 })
+        this.previousMonth = this.toDateTime(this.startDate.toISO()).minus({ months: 1 })
       }
       this.getRank()
     },
@@ -366,7 +368,7 @@ export default {
       this.loadingScore = true
       let params = null
       if (this.startDate) {
-        params = { start_date: this.startDate.format('YYYY-MM-DD'), end_date: this.endDate.format('YYYY-MM-DD') }
+        params = { start_date: this.startDate.toISO(), end_date: this.endDate.toISO() }
       }
       new GymApi(this.$axios, this.$auth)
         .rank(this.$route.params.gymId, params)

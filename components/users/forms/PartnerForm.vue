@@ -119,6 +119,7 @@ import LocalityUserEditCard from '~/components/localityUsers/forms/LocalityUserE
 import DateOfBirthInput from '~/components/forms/DateOfBirthInput.vue'
 import GenreInput from '~/components/forms/GenreInput.vue'
 import SearchPlaceInput from '~/components/forms/SearchPlaceInput.vue'
+import { DateHelpers } from '~/mixins/DateHelpers'
 
 export default {
   name: 'PartnerForm',
@@ -131,7 +132,7 @@ export default {
     ClimbingTypeInput,
     SubmitForm
   },
-  mixins: [FormHelpers],
+  mixins: [FormHelpers, DateHelpers],
   props: {
     user: {
       type: Object,
@@ -224,11 +225,10 @@ export default {
 
       // If user is minor
       if (
-        this
-          .$moment(this.data.date_of_birth)
-          .isAfter(
-            this.$moment().subtract(18, 'year')
-          )
+        this.dateIsBeforeDate(
+          this.data.date_of_birth,
+          this.today().minus({ years: 18 }).toISO()
+        )
       ) {
         this.$root.$emit('alertSimpleError', this.$t('errors.rules.you_must_be_major'))
         this.submitOverlay = false

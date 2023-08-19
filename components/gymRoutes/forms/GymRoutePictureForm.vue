@@ -38,7 +38,7 @@
               @click="toggle"
             >
               <div class="text-center py-2">
-                {{ humanizeDate(gymRoute.history.created_at, 'DD/MM/YYYY HH:MM') }}
+                {{ humanizeDate(gymRoute.history.created_at, 'DATETIME_SHORT') }}
               </div>
             </v-img>
           </v-slide-item>

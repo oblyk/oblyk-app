@@ -14,8 +14,8 @@
           </v-avatar>
           <p class="ml-3">
             {{ user.full_name }}<br>
-            <small v-if="user.date_of_birth">
-              {{ yearsOld(user.date_of_birth) }}
+            <small v-if="user.age">
+              {{ `${user.age}${$t('date.yearsOld')}` }}
             </small>
           </p>
         </v-card-title>

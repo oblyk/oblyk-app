@@ -65,10 +65,12 @@
 import { mdiFilter } from '@mdi/js'
 import DatePickerInput from '~/components/forms/DatePickerInput.vue'
 import GymOpenerApi from '~/services/oblyk-api/GymOpenerApi'
+import { DateHelpers } from '~/mixins/DateHelpers'
 
 export default {
   name: 'GymStatisticFilters',
   components: { DatePickerInput },
+  mixins: [DateHelpers],
   props: {
     gym: {
       type: Object,
@@ -85,7 +87,7 @@ export default {
       openers: [],
       loadingOpeners: true,
       filters: {
-        date: this.$moment().format('YYYY-MM-DD'),
+        date: this.ISODateToday(),
         spaceIds: [],
         openerIds: []
       },

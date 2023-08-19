@@ -145,7 +145,7 @@ export default {
   watch: {
     filters: {
       handler () {
-        this.getGrades()
+        this.getLikeFigures()
       },
       deep: true
     }

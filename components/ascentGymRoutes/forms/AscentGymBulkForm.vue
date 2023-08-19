@@ -224,10 +224,17 @@ import DatePickerInput from '~/components/forms/DatePickerInput.vue'
 import AscentGymRouteApi from '~/services/oblyk-api/AscentGymRouteApi'
 import ColorSystemInput from '~/components/forms/ColorSystemInput.vue'
 import ColorSystemLineInput from '~/components/forms/ColorSystemLineInput.vue'
+import { DateHelpers } from '~/mixins/DateHelpers'
 
 export default {
   name: 'AscentGymBulkForm',
-  components: { ColorSystemLineInput, ColorSystemInput, AscentStatusIconInput, DatePickerInput },
+  components: {
+    ColorSystemLineInput,
+    ColorSystemInput,
+    AscentStatusIconInput,
+    DatePickerInput
+  },
+  mixins: [DateHelpers],
 
   props: {
     gym: {
@@ -257,7 +264,7 @@ export default {
         ascentsBy: 'grade',
         climbingType: this.gym.climbableTypes[0],
         description: null,
-        released_at: this.$moment().format('YYYY-MM-DD'),
+        released_at: this.ISODateToday(),
         ascents: [
           { height: null, grade: null, color_system_line_id: null, quantity: 1, ascent_status: 'sent' }
         ]
@@ -359,7 +366,7 @@ export default {
         ascentsBy: 'grade',
         climbingType: this.gym.climbableTypes[0],
         description: null,
-        released_at: this.$moment().format('YYYY-MM-DD'),
+        released_at: this.ISODateToday(),
         ascents: [
           { height: null, grade: null, color_system_line_id: null, quantity: 1, ascent_status: 'sent' }
         ]

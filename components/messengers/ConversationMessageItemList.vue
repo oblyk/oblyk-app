@@ -27,9 +27,9 @@
     />
     <p class="ma-0 text-right">
       <small
-        :title="humanizeDate(conversationMessage.posted_at, 'LLL')"
+        :title="humanizeDate(conversationMessage.posted_at, 'DATETIME_FULL')"
       >
-        {{ humanizeDateDuration(conversationMessage.posted_at) }}
+        {{ dateFromNow(conversationMessage.posted_at) }}
       </small>
     </p>
   </v-sheet>

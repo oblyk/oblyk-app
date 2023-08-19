@@ -46,7 +46,7 @@ export default {
     chartData () {
       const labels = []
       for (const label of this.data.labels) {
-        labels.push(this.humanizeDate(label, 'DD/MM/YYYY'))
+        labels.push(this.humanizeDate(label, 'DATE_SHORT'))
       }
 
       return {

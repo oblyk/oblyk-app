@@ -87,6 +87,7 @@ import GymStatisticGradesChart from '~/components/gymStatistics/GymStatisticGrad
 import GymStatisticLevelsChart from '~/components/gymStatistics/GymStatisticLevelsChart.vue'
 import GymStatisticOpeningFrequenciesChart from '~/components/gymStatistics/GymStatisticOpeningFrequenciesChart.vue'
 import GymStatisticLikeFigures from '~/components/gymStatistics/GymStatisticLikeFigures.vue'
+import { DateHelpers } from '~/mixins/DateHelpers'
 
 export default {
   components: {
@@ -99,12 +100,12 @@ export default {
     GymAdminRoutesTabs
   },
   meta: { orphanRoute: true },
-  mixins: [GymFetchConcern],
+  mixins: [GymFetchConcern, DateHelpers],
 
   data () {
     return {
       filters: {
-        date: this.$moment().format('YYYY-MM-DD'),
+        date: this.ISODateToday(),
         spaceIds: [],
         openerIds: []
       }
