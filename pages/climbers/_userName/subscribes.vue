@@ -11,22 +11,22 @@
         >
           <gym-small-card
             v-if="subscribe.followable_type === 'Gym'"
-            :gym="recordToObject('Gym', subscribe.followable_object)"
+            :gym="subscribeToObject('Gym', subscribe.followable_object)"
           />
 
           <crag-small-card
             v-if="subscribe.followable_type === 'Crag'"
-            :crag="recordToObject('Crag', subscribe.followable_object)"
+            :crag="subscribeToObject('Crag', subscribe.followable_object)"
           />
 
           <guide-book-paper-small-card
             v-if="subscribe.followable_type === 'GuideBookPaper'"
-            :guide-book-paper="recordToObject('GuideBookPaper', subscribe.followable_object)"
+            :guide-book-paper="subscribeToObject('GuideBookPaper', subscribe.followable_object)"
           />
 
           <user-small-card
             v-if="subscribe.followable_type === 'User'"
-            :user="recordToObject('User', subscribe.followable_object)"
+            :user="subscribeToObject('User', subscribe.followable_object)"
           />
         </v-col>
       </v-row>
@@ -42,7 +42,6 @@
 
 <script>
 import { LoadingMoreHelpers } from '~/mixins/LoadingMoreHelpers'
-import { RecordToObjectHelpers } from '~/mixins/RecordToObjectHelpers'
 import UserApi from '~/services/oblyk-api/UserApi'
 import GymSmallCard from '~/components/gyms/GymSmallCard.vue'
 import CragSmallCard from '~/components/crags/CragSmallCard.vue'
@@ -50,6 +49,10 @@ import Spinner from '~/components/layouts/Spiner.vue'
 import GuideBookPaperSmallCard from '~/components/guideBookPapers/GuideBookPaperSmallCard.vue'
 import UserSmallCard from '~/components/users/UserSmallCard.vue'
 import LoadingMore from '~/components/layouts/LoadingMore.vue'
+import Gym from '~/models/Gym'
+import Crag from '~/models/Crag'
+import GuideBookPaper from '~/models/GuideBookPaper'
+import User from '~/models/User'
 
 export default {
   components: {
@@ -60,7 +63,7 @@ export default {
     CragSmallCard,
     GymSmallCard
   },
-  mixins: [LoadingMoreHelpers, RecordToObjectHelpers],
+  mixins: [LoadingMoreHelpers],
   props: {
     user: {
       type: Object,
@@ -138,6 +141,18 @@ export default {
           this.loadingSubscribes = false
           this.finallyMoreIsLoaded()
         })
+    },
+
+    subscribeToObject (type, object) {
+      if (type === 'Gym') {
+        return new Gym({ attributes: object })
+      } else if (type === 'Crag') {
+        return new Crag({ attributes: object })
+      } else if (type === 'GuideBookPaper') {
+        return new GuideBookPaper({ attributes: object })
+      } else if (type === 'User') {
+        return new User({ attributes: object })
+      }
     }
   }
 }

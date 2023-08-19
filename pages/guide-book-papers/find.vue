@@ -34,7 +34,7 @@
             <div>
               <guide-book-paper-around-card
                 class="mt-3"
-                :guide-book-paper="recordToObject('GuideBookPaper', guideAndCrags.guide)"
+                :guide-book-paper="guideBookObject(guideAndCrags.guide)"
                 :crag-in="guideAndCrags.crags_in_area"
                 :dist="dist"
                 :place="place"
@@ -61,12 +61,12 @@
 </template>
 
 <script>
-import { RecordToObjectHelpers } from '@/mixins/RecordToObjectHelpers'
 import SearchPlaceInput from '@/components/forms/SearchPlaceInput'
 import GuideBookPaperApi from '@/services/oblyk-api/GuideBookPaperApi'
 import Spinner from '@/components/layouts/Spiner'
 import GuideBookPaperAroundCard from '@/components/guideBookPapers/GuideBookPaperAroundCard'
 import AppFooter from '@/components/layouts/AppFooter'
+import GuideBookPaper from '~/models/GuideBookPaper'
 
 export default {
   components: {
@@ -75,7 +75,6 @@ export default {
     SearchPlaceInput,
     AppFooter
   },
-  mixins: [RecordToObjectHelpers],
 
   data () {
     return {
@@ -159,6 +158,10 @@ export default {
         .finally(() => {
           this.loadGuidesAround = false
         })
+    },
+
+    guideBookObject (guideBook) {
+      return GuideBookPaper({ attributes: guideBook })
     }
   }
 }

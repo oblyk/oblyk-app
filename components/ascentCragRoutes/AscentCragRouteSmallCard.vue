@@ -157,7 +157,7 @@
 <script>
 import { mdiDelete, mdiPlus, mdiLock, mdiLockOpen } from '@mdi/js'
 import { DateHelpers } from '@/mixins/DateHelpers'
-import { RecordToObjectHelpers } from '@/mixins/RecordToObjectHelpers'
+import { CragRouteHelpers } from '~/mixins/CragRouteHelpers'
 import AscentCragRouteStatusIcon from '@/components/ascentCragRoutes/AscentCragRouteStatusIcon'
 import Note from '@/components/notes/Note'
 import NoteClass from '@/models/Note'
@@ -167,7 +167,6 @@ import CurrentUserApi from '~/services/oblyk-api/CurrentUserApi'
 import UserSmallCard from '@/components/users/UserSmallCard'
 import User from '@/models/User'
 import Spinner from '@/components/layouts/Spiner'
-import { CragRouteHelpers } from '~/mixins/CragRouteHelpers'
 const MarkdownText = () => import('@/components/ui/MarkdownText')
 
 export default {
@@ -182,7 +181,6 @@ export default {
   },
   mixins: [
     DateHelpers,
-    RecordToObjectHelpers,
     CragRouteHelpers
   ],
   props: {
@@ -198,13 +196,14 @@ export default {
 
   data () {
     return {
+      ascentUserDialog: false,
+      subscribes: [],
+      loadingSubscribes: true,
+
       mdiDelete,
       mdiPlus,
       mdiLock,
-      mdiLockOpen,
-      ascentUserDialog: false,
-      subscribes: [],
-      loadingSubscribes: true
+      mdiLockOpen
     }
   },
 

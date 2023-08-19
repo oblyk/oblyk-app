@@ -84,7 +84,7 @@
                 >
                   <div v-if="index < cragListLimite">
                     <crag-small-card
-                      :crag="recordToObject('Crag', crag)"
+                      :crag="cragObject(crag)"
                       :small="true"
                     />
                   </div>
@@ -142,15 +142,14 @@
 
 <script>
 import { mdiBookshelf, mdiCurrencyUsdOff, mdiHandCoin, mdiHelpCircleOutline } from '@mdi/js'
-import { RecordToObjectHelpers } from '@/mixins/RecordToObjectHelpers'
 import SubscribeBtn from '@/components/forms/SubscribeBtn'
 import CragSmallCard from '@/components/crags/CragSmallCard'
+import Crag from '~/models/Crag'
 const LeafletMap = () => import('@/components/maps/LeafletMap')
 
 export default {
   name: 'GuideBookPaperAroundCard',
   components: { LeafletMap, CragSmallCard, SubscribeBtn },
-  mixins: [RecordToObjectHelpers],
   props: {
     guideBookPaper: {
       type: Object,
@@ -223,6 +222,10 @@ export default {
       } else {
         return mdiHelpCircleOutline
       }
+    },
+
+    cragObject (object) {
+      return new Crag({ attributes: object })
     }
   }
 }

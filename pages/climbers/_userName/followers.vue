@@ -9,7 +9,7 @@
           :key="`follower-${index}`"
           class="col-12 col-md-6 col-lg-4"
         >
-          <user-small-card class="mb-2" :user="recordToObject('User', follower)" />
+          <user-small-card class="mb-2" :user="userToObject(follower)" />
         </v-col>
       </v-row>
 
@@ -31,15 +31,15 @@
 
 <script>
 import { LoadingMoreHelpers } from '~/mixins/LoadingMoreHelpers'
-import { RecordToObjectHelpers } from '~/mixins/RecordToObjectHelpers'
 import UserApi from '~/services/oblyk-api/UserApi'
-import UserSmallCard from '~/components/users/UserSmallCard.vue'
-import Spinner from '~/components/layouts/Spiner.vue'
-import LoadingMore from '~/components/layouts/LoadingMore.vue'
+import UserSmallCard from '~/components/users/UserSmallCard'
+import Spinner from '~/components/layouts/Spiner'
+import LoadingMore from '~/components/layouts/LoadingMore'
+import User from '~/models/User'
 
 export default {
   components: { LoadingMore, Spinner, UserSmallCard },
-  mixins: [LoadingMoreHelpers, RecordToObjectHelpers],
+  mixins: [LoadingMoreHelpers],
   props: {
     user: {
       type: Object,
@@ -117,6 +117,10 @@ export default {
           this.loadingFollowers = false
           this.finallyMoreIsLoaded()
         })
+    },
+
+    userToObject (user) {
+      return new User({ attributes: user })
     }
   }
 }

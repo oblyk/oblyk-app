@@ -62,7 +62,6 @@
 <script>
 import { mdiDelete } from '@mdi/js'
 import { DateHelpers } from '@/mixins/DateHelpers'
-import { RecordToObjectHelpers } from '@/mixins/RecordToObjectHelpers'
 import AscentGymRouteApi from '~/services/oblyk-api/AscentGymRouteApi'
 import AscentGymRouteStatusIcon from '@/components/ascentGymRoutes/AscentGymRouteStatusIcon'
 import EditGymAscentBtn from '@/components/ascentGymRoutes/EditGymAscentBtn'
@@ -70,7 +69,7 @@ import EditGymAscentBtn from '@/components/ascentGymRoutes/EditGymAscentBtn'
 export default {
   name: 'AscentGymRouteSmallCard',
   components: { EditGymAscentBtn, AscentGymRouteStatusIcon },
-  mixins: [DateHelpers, RecordToObjectHelpers],
+  mixins: [DateHelpers],
   props: {
     ascentGymRoute: {
       type: Object,

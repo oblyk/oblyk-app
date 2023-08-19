@@ -1,7 +1,7 @@
 <template>
-  <div class="border rounded pl-2 pt-2" style="border-color: #ffc107">
+  <div class="border rounded pt-2" style="border-color: #ffc107">
     <h2
-      class="text-h6 amber--text"
+      class="text-h6 amber--text pl-2"
       :class="$vuetify.theme.dark ? '' : 'text--darken-3'"
     >
       <v-icon
@@ -14,7 +14,7 @@
     </h2>
     <guide-book-paper-small-card
       v-if="guideBookPaper"
-      :guide-book-paper="recordToObject('GuideBookPaper', guideBookPaper)"
+      :guide-book-paper="GuideBookPaper"
     />
   </div>
 </template>
@@ -22,12 +22,11 @@
 <script>
 import { mdiShimmer } from '@mdi/js'
 import GuideBookPaperSmallCard from '@/components/guideBookPapers/GuideBookPaperSmallCard'
-import { RecordToObjectHelpers } from '@/mixins/RecordToObjectHelpers'
+import GuideBookPaper from '~/models/GuideBookPaper'
 
 export default {
   name: 'GuideBookPaperNextVersion',
   components: { GuideBookPaperSmallCard },
-  mixins: [RecordToObjectHelpers],
   props: {
     guideBookPaper: {
       type: Object,
@@ -38,6 +37,12 @@ export default {
   data () {
     return {
       mdiShimmer
+    }
+  },
+
+  computed: {
+    GuideBookPaper () {
+      return new GuideBookPaper({ attributes: this.guideBookPaper })
     }
   }
 }

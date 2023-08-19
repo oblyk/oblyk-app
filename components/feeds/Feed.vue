@@ -21,7 +21,6 @@
 </template>
 <script>
 import { DateHelpers } from '@/mixins/DateHelpers'
-import { RecordToObjectHelpers } from '@/mixins/RecordToObjectHelpers'
 import { LoadingMoreHelpers } from '@/mixins/LoadingMoreHelpers'
 import LoadingMore from '@/components/layouts/LoadingMore'
 import CurrentUserApi from '~/services/oblyk-api/CurrentUserApi'
@@ -39,7 +38,6 @@ export default {
   },
   mixins: [
     DateHelpers,
-    RecordToObjectHelpers,
     LoadingMoreHelpers
   ],
   props: {
