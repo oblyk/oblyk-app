@@ -8,19 +8,21 @@
           </h1>
 
           <sign-up-form
-            v-if="!isLoggedIn"
+            v-if="!$auth.loggedIn"
             :redirect-to="redirectTo"
             :pre-filled-email="preFilledEmail"
           />
 
-          <p v-if="isLoggedIn">
-            <v-alert
-              outlined
-              type="info"
-            >
-              {{ $t('components.session.alreadyConnected') }}
-            </v-alert>
-          </p>
+          <client-only>
+            <div v-if="$auth.loggedIn">
+              <v-alert
+                outlined
+                type="info"
+              >
+                {{ $t('components.session.alreadyConnected') }}
+              </v-alert>
+            </div>
+          </client-only>
         </v-col>
       </v-row>
     </v-container>
@@ -29,13 +31,11 @@
 </template>
 
 <script>
-import { SessionConcern } from '@/concerns/SessionConcern'
 import SignUpForm from '@/components/sessions/SignUpForm'
 import AppFooter from '@/components/layouts/AppFooter'
 
 export default {
   components: { AppFooter, SignUpForm },
-  mixins: [SessionConcern],
 
   data () {
     return {

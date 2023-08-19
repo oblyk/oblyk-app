@@ -51,17 +51,16 @@
 
 <script>
 import { FormHelpers } from '@/mixins/FormHelpers'
+import { AppConcern } from '@/concerns/AppConcern'
 import PhotoApi from '~/services/oblyk-api/PhotoApi'
 import SubmitForm from '@/components/forms/SubmitForm'
 import CloseForm from '@/components/forms/CloseForm'
 import MarkdownInput from '@/components/forms/MarkdownInput'
-import { SessionConcern } from '@/concerns/SessionConcern'
-import { AppConcern } from '@/concerns/AppConcern'
 
 export default {
   name: 'PhotoForm',
   components: { MarkdownInput, CloseForm, SubmitForm },
-  mixins: [FormHelpers, SessionConcern, AppConcern],
+  mixins: [FormHelpers, AppConcern],
 
   props: {
     photo: {
@@ -122,7 +121,7 @@ export default {
           method: 'POST',
           url,
           headers: {
-            Authorization: this.getToken,
+            Authorization: this.$auth.$storage.getUniversal('_token.local'),
             HttpApiAccessToken: this.apiAccessToken,
             'Content-Type': 'multipart/form-data'
           },

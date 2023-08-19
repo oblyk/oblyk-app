@@ -14,7 +14,7 @@
       <!-- If not administered -->
       <v-col v-if="!gym.administered">
         <!-- If not connected -->
-        <div v-if="!isLoggedIn">
+        <div v-if="!$auth.loggedIn">
           <p class="text-center">
             {{ $t('components.gymAdministrationRequest.needAccount') }}
           </p>
@@ -40,32 +40,33 @@
         </div>
 
         <!-- If connected -->
-        <div v-if="isLoggedIn">
-          <p>
-            <strong>
-              {{ $t('components.gymAdministrationRequest.helloName', { name: loggedInUser.name }) }}
-            </strong>
-          </p>
-          <p>
-            {{ $t('components.gymAdministrationRequest.explainJustification') }}
-          </p>
+        <client-only>
+          <div v-if="$auth.loggedIn">
+            <p>
+              <strong>
+                {{ $t('components.gymAdministrationRequest.helloName', { name: $auth.user.first_name }) }}
+              </strong>
+            </p>
+            <p>
+              {{ $t('components.gymAdministrationRequest.explainJustification') }}
+            </p>
 
-          <gym-administrator-request-form :gym="gym" />
-        </div>
+            <gym-administrator-request-form :gym="gym" />
+          </div>
+        </client-only>
       </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script>
-import { SessionConcern } from '~/concerns/SessionConcern'
 import { GymConcern } from '~/concerns/GymConcern'
 import GymAdministratorRequestForm from '~/components/gyms/forms/GymAdministratorRequestForm'
 
 export default {
   meta: { orphanRoute: true },
   components: { GymAdministratorRequestForm },
-  mixins: [SessionConcern, GymConcern],
+  mixins: [GymConcern],
   middleware: ['auth'],
 
   i18n: {

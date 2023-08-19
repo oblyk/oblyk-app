@@ -125,7 +125,6 @@
 
 <script>
 import { mdiMenuDown, mdiPlus } from '@mdi/js'
-import { SessionConcern } from '@/concerns/SessionConcern'
 import AppDrawerUser from '~/components/layouts/AppDrawerPartial/AppDrawerUser'
 import AppDrawerAccount from '~/components/layouts/AppDrawerPartial/AppDrawerAccount'
 import AppToolBar from '~/components/layouts/AppDrawerPartial/AppToolBar'
@@ -145,7 +144,6 @@ export default {
     MyOrganizations,
     MyGyms
   },
-  mixins: [SessionConcern],
 
   data () {
     return {

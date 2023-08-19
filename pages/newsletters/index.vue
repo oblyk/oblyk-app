@@ -20,7 +20,7 @@
         >
           <v-card
             class="mt-3"
-            :to="newsletter.path()"
+            :to="newsletter.path"
           >
             <v-card-title>
               {{ newsletter.name }}
@@ -50,9 +50,10 @@ export default {
 
   data () {
     return {
-      mdiEmailPlus,
       newsletters: [],
-      loadingNewsletter: true
+      loadingNewsletter: true,
+
+      mdiEmailPlus
     }
   },
 
@@ -72,7 +73,7 @@ export default {
         .all()
         .then((resp) => {
           for (const newsletter of resp.data) {
-            this.newsletters.push(new Newsletter(newsletter))
+            this.newsletters.push(new Newsletter({ attributes: newsletter }))
           }
         })
         .finally(() => {

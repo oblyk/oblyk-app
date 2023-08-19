@@ -27,14 +27,13 @@
 </template>
 
 <script>
-import { SessionConcern } from '@/concerns/SessionConcern'
 import UserPrivacyForm from '@/components/users/forms/PrivacyForm'
 import { CurrentUserConcern } from '@/concerns/CurrentUserConcern'
 import AppFooter from '@/components/layouts/AppFooter'
 
 export default {
   components: { AppFooter, UserPrivacyForm },
-  mixins: [SessionConcern, CurrentUserConcern],
+  mixins: [CurrentUserConcern],
 
   i18n: {
     messages: {

@@ -9,7 +9,7 @@
       </v-card-title>
 
       <v-card-text>
-        <div v-if="!isLoggedIn || userNotSearch">
+        <div v-if="!$auth.loggedIn || userNotSearch">
           <p>
             {{ $t('common.pages.partner.explain') }}
           </p>
@@ -52,19 +52,18 @@
 
 <script>
 import { mdiMap } from '@mdi/js'
-import { SessionConcern } from '@/concerns/SessionConcern'
 import PartnerFigures from '@/components/partners/PartnerFigures'
 
 export default {
   name: 'PartnerModal',
   components: { PartnerFigures },
-  mixins: [SessionConcern],
 
   data () {
     return {
-      mdiMap,
       dialog: false,
-      userNotSearch: false
+      userNotSearch: false,
+
+      mdiMap
     }
   },
 
@@ -74,17 +73,11 @@ export default {
 
   methods: {
     showModal () {
-      if (!this.isLoggedIn) {
+      if (!this.$auth.loggedIn) {
         this.dialog = true
-      } else {
-        this
-          .getLoggedInUser()
-          .then((user) => {
-            if (user.partner_search === false) {
-              this.dialog = true
-              this.userNotSearch = true
-            }
-          })
+      } else if (!this.$auth.user.partner_search) {
+        this.dialog = true
+        this.userNotSearch = true
       }
     }
   }

@@ -16,14 +16,13 @@
 
 <script>
 import { GymConcern } from '~/concerns/GymConcern'
-import { SessionConcern } from '~/concerns/SessionConcern'
 import { ProtectedGymConcern } from '~/concerns/ProtectedGymConcern'
 import GymImageForm from '~/components/gyms/forms/GymImageForm'
 
 export default {
   meta: { orphanRoute: true },
   components: { GymImageForm },
-  mixins: [GymConcern, SessionConcern, ProtectedGymConcern],
+  mixins: [GymConcern, ProtectedGymConcern],
   middleware: ['auth'],
 
   i18n: {

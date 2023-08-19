@@ -50,12 +50,12 @@
 
 <script>
 import { mdiMapLegend } from '@mdi/js'
-import { SessionConcern } from '@/concerns/SessionConcern'
 import { GymConcern } from '@/concerns/GymConcern'
+import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
 
 export default {
   meta: { orphanRoute: true },
-  mixins: [SessionConcern, GymConcern],
+  mixins: [GymConcern, GymRolesHelpers],
 
   data () {
     return {
@@ -99,12 +99,6 @@ export default {
 
     firstSpaceMetaUrl () {
       return `${process.env.VUE_APP_OBLYK_APP_URL}${this.gym?.path}/first-space`
-    }
-  },
-
-  methods: {
-    userCanTouch () {
-      return this.isLoggedIn && (!this.gym.administered || this.currentUserIsGymAdmin())
     }
   }
 }

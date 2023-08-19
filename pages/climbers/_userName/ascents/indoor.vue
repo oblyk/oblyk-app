@@ -123,9 +123,11 @@ import UserApi from '~/services/oblyk-api/UserApi'
 import LogBookClimbingTypeChart from '~/components/logBooks/outdoors/LogBookClimbingTypeChart.vue'
 import LogBookGradeChart from '~/components/logBooks/outdoors/LogBookGradeChart.vue'
 import IndoorLevelChart from '~/components/logBooks/indoors/IndoorLevelChart.vue'
+import { SubscribeConcern } from '~/concerns/SubscribeConcern'
 
 export default {
   components: { IndoorLevelChart, LogBookGradeChart, LogBookClimbingTypeChart, Spinner, LogBookIndoorFigures },
+  mixins: [SubscribeConcern],
   props: {
     user: {
       type: Object,

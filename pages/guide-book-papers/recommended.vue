@@ -4,55 +4,40 @@
       <h1 class="text-center mb-5">
         {{ $t('components.guideBookPaper.recommended.title') }}
       </h1>
-      <div v-if="isLoggedIn">
-        <div v-if="!loadingGuide">
-          <div v-if="guides.length > 0">
-            <p class="text-center mb-10">
-              {{ $tc('components.guideBookPaper.recommended.guidesFound', guides.length, { count: guides.length }) }}
-              <cite>{{ $t('components.guideBookPaper.recommended.relationToAscents') }}</cite>
-            </p>
-            <v-row>
-              <v-col
-                v-for="(guide, index) in guides"
-                :key="`guide-${index}-${guide.id}`"
-                cols="12"
-                md="6"
-                lg="3"
-              >
-                <guide-book-paper-cover-card
-                  :subscribe-btn="true"
-                  :guide-book-paper="guide"
-                />
-              </v-col>
-            </v-row>
-          </div>
-          <div v-if="guides.length === 0">
-            <p>
-              {{ $t('components.guideBookPaper.recommended.completYouAscent') }}
-            </p>
-          </div>
+      <div v-if="!loadingGuide">
+        <div v-if="guides.length > 0">
+          <p class="text-center mb-10">
+            {{ $tc('components.guideBookPaper.recommended.guidesFound', guides.length, { count: guides.length }) }}
+            <cite>{{ $t('components.guideBookPaper.recommended.relationToAscents') }}</cite>
+          </p>
+          <v-row>
+            <v-col
+              v-for="(guide, index) in guides"
+              :key="`guide-${index}-${guide.id}`"
+              cols="12"
+              md="6"
+              lg="3"
+            >
+              <guide-book-paper-cover-card
+                :subscribe-btn="true"
+                :guide-book-paper="guide"
+              />
+            </v-col>
+          </v-row>
         </div>
-        <spinner v-if="loadingGuide" />
+        <div v-if="guides.length === 0">
+          <p>
+            {{ $t('components.guideBookPaper.recommended.completYouAscent') }}
+          </p>
+        </div>
       </div>
-
-      <!-- If not login -->
-      <div v-if="!isLoggedIn">
-        <p class="text-center mt-16 text--disabled">
-          {{ $t('components.guideBookPaper.recommended.thisPageFind') }}<cite>{{ $t('components.guideBookPaper.recommended.relationToAscents') }}</cite><br>
-          <nuxt-link
-            to="/sign-in"
-          >
-            {{ $t('components.guideBookPaper.recommended.connectYou') }}
-          </nuxt-link>
-        </p>
-      </div>
+      <spinner v-if="loadingGuide" />
     </v-container>
     <app-footer />
   </div>
 </template>
 
 <script>
-import { SessionConcern } from '~/concerns/SessionConcern'
 import { LoadingMoreHelpers } from '~/mixins/LoadingMoreHelpers'
 import CurrentUserApi from '~/services/oblyk-api/CurrentUserApi'
 import GuideBookPaper from '~/models/GuideBookPaper'
@@ -62,7 +47,8 @@ import AppFooter from '~/components/layouts/AppFooter'
 
 export default {
   components: { Spinner, GuideBookPaperCoverCard, AppFooter },
-  mixins: [SessionConcern, LoadingMoreHelpers],
+  mixins: [LoadingMoreHelpers],
+  middleware: ['auth'],
 
   data () {
     return {
@@ -102,8 +88,6 @@ export default {
 
   methods: {
     getGuides () {
-      if (!this.isLoggedIn) { return false }
-
       this.loadingGuide = true
       new CurrentUserApi(this.$axios, this.$auth)
         .ascentsWithoutGuides()

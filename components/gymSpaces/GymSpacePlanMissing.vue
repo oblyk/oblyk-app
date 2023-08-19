@@ -29,11 +29,11 @@
 
 <script>
 import { mdiMap } from '@mdi/js'
-import { SessionConcern } from '~/concerns/SessionConcern'
+import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
 
 export default {
   name: 'GymSpacePlanMissing',
-  mixins: [SessionConcern],
+  mixins: [GymRolesHelpers],
   props: {
     gymSpace: {
       type: Object,

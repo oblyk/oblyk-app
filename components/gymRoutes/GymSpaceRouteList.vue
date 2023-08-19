@@ -124,13 +124,12 @@
 
 <script>
 import { mdiSourceBranchPlus } from '@mdi/js'
-import { SessionConcern } from '@/concerns/SessionConcern'
+import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
 import GymSpaceRouteSort from '@/components/gymRoutes/partial/GymSpaceRouteSort'
 import GymRouteApi from '~/services/oblyk-api/GymRouteApi'
 import GymSectorApi from '~/services/oblyk-api/GymSectorApi'
 import GymRoute from '@/models/GymRoute'
 import GymSector from '@/models/GymSector'
-import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
 const GymRoutesBySector = () => import('@/components/gymRoutes/listByGroup/GymRoutesBySector')
 const GymRoutesByOpenedAt = () => import('@/components/gymRoutes/listByGroup/GymRoutesByOpenedAt')
 const GymRoutesByGrade = () => import('@/components/gymRoutes/listByGroup/GymRoutesByGrade')
@@ -147,7 +146,7 @@ export default {
     GymRoutesBySector,
     GymSpaceRouteSort
   },
-  mixins: [SessionConcern, GymRolesHelpers],
+  mixins: [GymRolesHelpers],
   props: {
     gym: {
       type: Object,

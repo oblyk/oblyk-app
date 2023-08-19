@@ -23,14 +23,12 @@
 
 <script>
 import { mdiMap } from '@mdi/js'
-import { SessionConcern } from '@/concerns/SessionConcern'
 import AreaApi from '@/services/oblyk-api/AreaApi'
 const LeafletMap = () => import('@/components/maps/LeafletMap')
 
 export default {
   name: 'AreaMap',
   components: { LeafletMap },
-  mixins: [SessionConcern],
   props: {
     area: {
       type: Object,

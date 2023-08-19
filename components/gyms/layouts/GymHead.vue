@@ -108,15 +108,14 @@
 
 <script>
 import { mdiPencil, mdiAlphaLCircle, mdiPanorama, mdiDotsVertical } from '@mdi/js'
-import { SessionConcern } from '@/concerns/SessionConcern'
-import SubscribeBtn from '@/components/forms/SubscribeBtn'
 import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
-import ShareBtn from '~/components/ui/ShareBtn.vue'
+import SubscribeBtn from '@/components/forms/SubscribeBtn'
+import ShareBtn from '~/components/ui/ShareBtn'
 
 export default {
   name: 'GymHead',
   components: { ShareBtn, SubscribeBtn },
-  mixins: [SessionConcern, GymRolesHelpers],
+  mixins: [GymRolesHelpers],
   props: {
     gym: {
       type: Object,
@@ -130,12 +129,6 @@ export default {
       mdiAlphaLCircle,
       mdiPanorama,
       mdiDotsVertical
-    }
-  },
-
-  methods: {
-    userCanTouch () {
-      return this.isLoggedIn && (!this.gym.administered || (this.currentUserIsGymAdmin() && this.gymAuthCan(this.gym, 'manage_gym')))
     }
   }
 }

@@ -36,14 +36,13 @@
 </template>
 
 <script>
-import { SessionConcern } from '@/concerns/SessionConcern'
 import { DateHelpers } from '@/mixins/DateHelpers'
 const MarkdownText = () => import('@/components/ui/MarkdownText')
 
 export default {
   name: 'ConversationMessageItemList',
   components: { MarkdownText },
-  mixins: [SessionConcern, DateHelpers],
+  mixins: [DateHelpers],
   props: {
     previousMessage: {
       type: Object,

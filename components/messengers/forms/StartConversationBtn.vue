@@ -19,12 +19,10 @@
 
 <script>
 import { mdiMessageReplyText } from '@mdi/js'
-import { SessionConcern } from '@/concerns/SessionConcern'
 import ConversationApi from '~/services/oblyk-api/ConversationApi'
 
 export default {
   name: 'StartConversationBtn',
-  mixins: [SessionConcern],
   props: {
     user: {
       type: Object,
@@ -54,7 +52,7 @@ export default {
           },
           {
             id: null,
-            user_id: this.loggedInUser.id
+            user_id: this.$auth.user.id
           }
         ]
       }

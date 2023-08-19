@@ -31,7 +31,6 @@
 
 <script>
 import { FormHelpers } from '@/mixins/FormHelpers'
-import { SessionConcern } from '@/concerns/SessionConcern'
 import SubmitForm from '@/components/forms/SubmitForm'
 import UserSearchForm from '@/components/users/forms/UserSearchForm'
 import ConversationApi from '~/services/oblyk-api/ConversationApi'
@@ -39,7 +38,7 @@ import ConversationApi from '~/services/oblyk-api/ConversationApi'
 export default {
   name: 'ConversationForm',
   components: { UserSearchForm, SubmitForm },
-  mixins: [FormHelpers, SessionConcern],
+  mixins: [FormHelpers],
 
   data () {
     return {
@@ -52,7 +51,7 @@ export default {
     addUser (user) {
       this.query = null
 
-      if (this.loggedInUser.id === user.id) { return }
+      if (this.$auth.user.id === user.id) { return }
       for (const selectedUser of this.selectedUsers) {
         if (user.id === selectedUser.id) { return }
       }
@@ -77,7 +76,7 @@ export default {
         conversation_users_attributes: [
           {
             id: null,
-            user_id: this.loggedInUser.id
+            user_id: this.$auth.user.id
           }
         ]
       }

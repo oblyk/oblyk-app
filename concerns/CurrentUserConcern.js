@@ -1,9 +1,6 @@
-import { SessionConcern } from '@/concerns/SessionConcern'
 import User from '~/models/User'
 
 export const CurrentUserConcern = {
-  mixins: [SessionConcern],
-
   data () {
     return {
       currentUser: null,
@@ -12,7 +9,7 @@ export const CurrentUserConcern = {
   },
 
   created () {
-    if (this.isLoggedIn) { this.getCurrentUser() }
+    if (this.$auth.loggedIn) { this.getCurrentUser() }
   },
 
   methods: {

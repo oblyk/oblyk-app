@@ -21,7 +21,6 @@
 
 <script>
 import { AppConcern } from '@/concerns/AppConcern'
-import { SessionConcern } from '@/concerns/SessionConcern'
 import Gym from '@/models/Gym'
 import SubmitForm from '@/components/forms/SubmitForm'
 import CloseForm from '@/components/forms/CloseForm'
@@ -29,7 +28,7 @@ import CloseForm from '@/components/forms/CloseForm'
 export default {
   name: 'GymImageForm',
   components: { CloseForm, SubmitForm },
-  mixins: [AppConcern, SessionConcern],
+  mixins: [AppConcern],
   props: {
     gym: {
       type: Object,
@@ -67,7 +66,7 @@ export default {
         method: 'POST',
         url,
         headers: {
-          Authorization: this.getToken,
+          Authorization: this.$auth.$storage.getUniversal('_token.local'),
           HttpApiAccessToken: this.apiAccessToken,
           'Content-Type': 'multipart/form-data'
         },

@@ -58,7 +58,6 @@
 <script>
 import { FormHelpers } from '@/mixins/FormHelpers'
 import { AppConcern } from '@/concerns/AppConcern'
-import { SessionConcern } from '@/concerns/SessionConcern'
 import SubmitForm from '@/components/forms/SubmitForm'
 import GymRoute from '@/models/GymRoute'
 import GymSectorApi from '~/services/oblyk-api/GymSectorApi'
@@ -67,7 +66,7 @@ import { DateHelpers } from '~/mixins/DateHelpers'
 export default {
   name: 'GymRoutePictureForm',
   components: { SubmitForm },
-  mixins: [FormHelpers, AppConcern, SessionConcern, DateHelpers],
+  mixins: [FormHelpers, AppConcern, DateHelpers],
   props: {
     gymRoute: {
       type: Object,
@@ -118,7 +117,7 @@ export default {
         method: 'POST',
         url: `${this.baseUrl}/gyms/${this.gymRoute.gym.id}/gym_routes/${this.gymRoute.id}/add_picture.json`,
         headers: {
-          Authorization: this.getToken,
+          Authorization: this.$auth.$storage.getUniversal('_token.local'),
           HttpApiAccessToken: this.apiAccessToken,
           'Content-Type': 'multipart/form-data'
         },

@@ -352,7 +352,6 @@ import {
   mdiGauge,
   mdiArrowRight
 } from '@mdi/js'
-import { SessionConcern } from '@/concerns/SessionConcern'
 import { DateHelpers } from '@/mixins/DateHelpers'
 import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
 import GymRouteTagAndHold from '@/components/gymRoutes/partial/GymRouteTagAndHold'
@@ -380,7 +379,7 @@ export default {
     GymRouteGradeAndPoint,
     GymRouteTagAndHold
   },
-  mixins: [SessionConcern, DateHelpers, GymRolesHelpers],
+  mixins: [DateHelpers, GymRolesHelpers],
   props: {
     gymRoute: {
       type: Object,

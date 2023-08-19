@@ -84,7 +84,6 @@
 <script>
 import { mdiArrowLeft } from '@mdi/js'
 import { ConversationConcern } from '~/concerns/ConversationConcern'
-import { SessionConcern } from '~/concerns/SessionConcern'
 import Spinner from '~/components/layouts/Spiner.vue'
 import ConversationMessageForm from '~/components/messengers/forms/ConversationMessageForm.vue'
 import ConversationMessageApi from '~/services/oblyk-api/ConversationMessageApi'
@@ -100,7 +99,6 @@ export default {
   },
   mixins: [
     ConversationConcern,
-    SessionConcern,
     DateHelpers
   ],
   props: {
@@ -145,7 +143,7 @@ export default {
     conversationTitle () {
       const title = []
       for (const user of (this.conversation || {}).conversation_users || []) {
-        if (this.loggedInUser.uuid !== user.uuid) {
+        if (this.$auth.user.uuid !== user.uuid) {
           title.push(user.first_name)
         }
       }

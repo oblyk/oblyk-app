@@ -1,11 +1,16 @@
 <template>
   <div>
-    <h2 class="mb-3">
-      <v-icon left>
-        {{ mdiFountainPenTip }}
-      </v-icon>
-      {{ $t('components.article.aboutAuthor') }}
-      <span v-if="isLoggedIn && loggedInUser.id === article.author.user_id">
+    <div class="d-flex">
+      <h2 class="mb-3">
+        <v-icon left>
+          {{ mdiFountainPenTip }}
+        </v-icon>
+        {{ $t('components.article.aboutAuthor') }}
+      </h2>
+      <div
+        v-if="$auth.loggedIn && $auth.user.id === article.author.user_id"
+        class="ml-auto"
+      >
         <v-btn
           :to="`${article.Author.path}/edit?redirect_to=${$route.fullPath}`"
           icon
@@ -22,8 +27,8 @@
             {{ mdiImageEdit }}
           </v-icon>
         </v-btn>
-      </span>
-    </h2>
+      </div>
+    </div>
 
     <!-- About card -->
     <v-card flat>
@@ -35,10 +40,12 @@
       >
         <v-img :alt="article.author.name" :src="article.Author.coverUrl" />
       </v-avatar>
-      <markdown-text
-        v-if="article.author.description"
-        :text="article.author.description"
-      />
+      <div class="px-3 py-3">
+        <markdown-text
+          v-if="article.author.description"
+          :text="article.author.description"
+        />
+      </div>
       <div class="clear-both" />
     </v-card>
   </div>
@@ -46,13 +53,11 @@
 
 <script>
 import { mdiPencil, mdiImageEdit, mdiFountainPenTip } from '@mdi/js'
-import { SessionConcern } from '@/concerns/SessionConcern'
 const MarkdownText = () => import('@/components/ui/MarkdownText')
 
 export default {
   name: 'AboutAuthorCard',
   components: { MarkdownText },
-  mixins: [SessionConcern],
   props: {
     article: {
       type: Object,

@@ -74,7 +74,7 @@ export default {
       new CurrentUserApi(this.$axios, this.$auth)
         .delete()
         .then(() => {
-          this.$auth.logout().then(() => {
+          this.$auth.logout('local').then(() => {
             this.$router.push('/success-account-deleting')
           })
         })

@@ -1,5 +1,5 @@
 <template>
-  <div v-if="isLoggedIn && gyms.length > 0">
+  <div v-if="$auth.loggedIn && gyms.length > 0">
     <v-subheader>
       {{ $t('components.layout.appDrawer.subHeaders.myGyms') }}
     </v-subheader>
@@ -33,17 +33,15 @@
 </template>
 
 <script>
-import { SessionConcern } from '@/concerns/SessionConcern'
 import Gym from '@/models/Gym'
 
 export default {
   name: 'MyGyms',
-  mixins: [SessionConcern],
 
   computed: {
     gyms () {
       const gymList = []
-      for (const gym of this.administeredGyms) {
+      for (const gym of this.$auth.user.administered_gyms) {
         gymList.push(new Gym({ attributes: gym }))
       }
       return gymList

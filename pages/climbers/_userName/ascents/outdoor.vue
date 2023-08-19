@@ -93,15 +93,15 @@
 
 <script>
 import { mdiLock } from '@mdi/js'
-import LogBookFigures from '~/components/logBooks/outdoors/LogBookFigures.vue'
+import { SubscribeConcern } from '~/concerns/SubscribeConcern'
+import LogBookFigures from '~/components/logBooks/outdoors/LogBookFigures'
 import UserApi from '~/services/oblyk-api/UserApi'
-import Spinner from '~/components/layouts/Spiner.vue'
-import LogBookClimbingTypeChart from '~/components/logBooks/outdoors/LogBookClimbingTypeChart.vue'
-import LogBookGradeChart from '~/components/logBooks/outdoors/LogBookGradeChart.vue'
-import LogBookList from '~/components/logBooks/outdoors/LogBookList.vue'
-import ClimbingTypeLegend from '~/components/ui/ClimbingTypeLegend.vue'
-import { SessionConcern } from '~/concerns/SessionConcern'
-const CragRouteDrawer = () => import('~/components/cragRoutes/CragRouteDrawer.vue')
+import Spinner from '~/components/layouts/Spiner'
+import LogBookClimbingTypeChart from '~/components/logBooks/outdoors/LogBookClimbingTypeChart'
+import LogBookGradeChart from '~/components/logBooks/outdoors/LogBookGradeChart'
+import LogBookList from '~/components/logBooks/outdoors/LogBookList'
+import ClimbingTypeLegend from '~/components/ui/ClimbingTypeLegend'
+const CragRouteDrawer = () => import('~/components/cragRoutes/CragRouteDrawer')
 
 export default {
   components: {
@@ -113,7 +113,7 @@ export default {
     Spinner,
     LogBookFigures
   },
-  mixins: [SessionConcern],
+  mixins: [SubscribeConcern],
   props: {
     user: {
       type: Object,

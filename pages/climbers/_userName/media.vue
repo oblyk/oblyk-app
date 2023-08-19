@@ -25,12 +25,12 @@
 
 <script>
 import { mdiLock } from '@mdi/js'
-import { SessionConcern } from '~/concerns/SessionConcern'
-import UserMediaTabs from '~/components/users/layouts/UserMediaTabs.vue'
+import { SubscribeConcern } from '~/concerns/SubscribeConcern'
+import UserMediaTabs from '~/components/users/layouts/UserMediaTabs'
 
 export default {
   components: { UserMediaTabs },
-  mixins: [SessionConcern],
+  mixins: [SubscribeConcern],
   props: {
     user: {
       type: Object,
@@ -50,7 +50,7 @@ export default {
       if (this.user.public_profile) { return true }
 
       // If current user is subscribed to user
-      return (this.isLoggedIn && this.iAmSubscribedToThis('User', this.user.id) === 'subscribe')
+      return (this.$auth.loggedIn && this.iAmSubscribedToThis('User', this.user.id) === 'subscribe')
     }
   }
 }

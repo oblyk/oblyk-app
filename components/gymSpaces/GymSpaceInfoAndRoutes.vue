@@ -111,12 +111,11 @@
 </template>
 
 <script>
-import { SessionConcern } from '@/concerns/SessionConcern'
 import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
 import GymSpaceSelector from '@/components/gymSpaces/GymSpaceSelector'
 import GymSpaceActionMenu from '@/components/gymSpaces/GymSpaceActionMenu'
 import GymSpaceRouteList from '@/components/gymRoutes/GymSpaceRouteList'
-import GymGoToRanking from '~/components/gyms/GymGoToRanking.vue'
+import GymGoToRanking from '~/components/gyms/GymGoToRanking'
 const GymSectorEditingPlan = () => import('@/components/gymSectors/GymSectorEditingPlan')
 const GymSpaceEditingSectorsColor = () => import('~/components/gymSpaces/GymSpaceEditingSectorsColor')
 const MarkdownText = () => import('@/components/ui/MarkdownText')
@@ -132,7 +131,7 @@ export default {
     GymSpaceActionMenu,
     GymSpaceSelector
   },
-  mixins: [SessionConcern, GymRolesHelpers],
+  mixins: [GymRolesHelpers],
 
   props: {
     gymSpace: {

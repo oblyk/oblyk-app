@@ -14,14 +14,13 @@
 </template>
 
 <script>
-import { SessionConcern } from '~/concerns/SessionConcern'
 import { AuthorConcern } from '~/concerns/AuthorConcern'
 import AuthorCoverForm from '~/components/authors/forms/AuthorCoverForm'
 
 export default {
   meta: { orphanRoute: true },
   components: { AuthorCoverForm },
-  mixins: [AuthorConcern, SessionConcern],
+  mixins: [AuthorConcern],
   middleware: ['auth'],
 
   i18n: {

@@ -24,30 +24,30 @@
         version-type="word"
       />
     </v-card-text>
-    <v-card-actions
-      v-if="!presentation && isLoggedIn"
-    >
-      <v-spacer />
-      <v-btn
-        :to="`${word.path}/edit`"
-        right
-        text
-        color="primary"
+    <client-only>
+      <v-card-actions
+        v-if="!presentation && $auth.loggedIn"
       >
-        {{ $t('actions.edit') }}
-      </v-btn>
-    </v-card-actions>
+        <v-spacer />
+        <v-btn
+          :to="`${word.path}/edit`"
+          right
+          text
+          color="primary"
+        >
+          {{ $t('actions.edit') }}
+        </v-btn>
+      </v-card-actions>
+    </client-only>
   </v-card>
 </template>
 <script>
-import { SessionConcern } from '@/concerns/SessionConcern'
 import ContributionsLabel from '@/components/globals/ContributionsLable'
 const MarkdownText = () => import('@/components/ui/MarkdownText')
 
 export default {
   name: 'WordCard',
   components: { MarkdownText, ContributionsLabel },
-  mixins: [SessionConcern],
   props: {
     word: {
       type: Object,

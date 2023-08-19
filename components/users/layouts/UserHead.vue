@@ -114,12 +114,11 @@
 
 <script>
 import { mdiAccountOutline, mdiAccount, mdiPencil, mdiAccountCircle, mdiPanorama } from '@mdi/js'
-import { SessionConcern } from '@/concerns/SessionConcern'
 import { DateHelpers } from '@/mixins/DateHelpers'
 
 export default {
   name: 'UserHead',
-  mixins: [SessionConcern, DateHelpers],
+  mixins: [DateHelpers],
   props: {
     user: {
       type: Object,

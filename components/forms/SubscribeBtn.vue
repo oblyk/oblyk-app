@@ -1,36 +1,36 @@
 <template>
-  <v-btn
-    v-if="isLoggedIn"
-    class="subscribe-btn"
-    :block="block"
-    :outlined="large || outlined"
-    :icon="!large"
-    :loading="requesting"
-    :title="label()"
-    :text="typeText"
-    :color="textColor"
-    @click.prevent="changeSubscription()"
-  >
-    <v-icon
-      :left="large"
-      :color="color()"
+  <client-only>
+    <v-btn
+      v-if="$auth.loggedIn"
+      class="subscribe-btn"
+      :block="block"
+      :outlined="large || outlined"
+      :icon="!large"
+      :loading="requesting"
+      :title="label()"
+      :text="typeText"
+      :color="textColor"
+      @click.prevent="changeSubscription()"
     >
-      {{ icon() }}
-    </v-icon>
-    <span v-if="large">
-      {{ label() }}
-    </span>
-  </v-btn>
+      <v-icon
+        :left="large"
+        :color="color()"
+      >
+        {{ icon() }}
+      </v-icon>
+      <span v-if="large">
+        {{ label() }}
+      </span>
+    </v-btn>
+  </client-only>
 </template>
 
 <script>
 import { mdiStar, mdiStarOutline } from '@mdi/js'
-import { SessionConcern } from '@/concerns/SessionConcern'
 import FollowApi from '~/services/oblyk-api/FollowApi'
 
 export default {
   name: 'SubscribeBtn',
-  mixins: [SessionConcern],
   props: {
     subscribeType: {
       type: String,
@@ -96,13 +96,14 @@ export default {
 
   data () {
     return {
+      requesting: false,
+
       mdiStar,
-      mdiStarOutline,
-      requesting: false
+      mdiStarOutline
     }
   },
 
-  created () {
+  mounted () {
     if (this.subscribed() && this.incrementable) {
       new FollowApi(this.$axios, this.$auth).increment(this.subscribeType, this.subscribeId)
     }
@@ -114,7 +115,13 @@ export default {
     },
 
     subscribedStatus () {
-      return this.iAmSubscribedToThis(this.subscribeType, this.subscribeId)
+      let IAmSubscribed = 'unsubscribe'
+      for (const subscribe of this.$auth.user.subscribes) {
+        if (subscribe.followable_type === this.subscribeType && subscribe.followable_id === this.subscribeId) {
+          IAmSubscribed = subscribe.accepted ? 'subscribe' : 'subscribeRequestMade'
+        }
+      }
+      return IAmSubscribed
     },
 
     icon () {
@@ -134,6 +141,12 @@ export default {
     },
 
     changeSubscription () {
+      if (this.subscribed()) {
+        if (!confirm(this.$t('actions.areYouSur').toString())) {
+          return false
+        }
+      }
+
       this.requesting = true
 
       const data = {

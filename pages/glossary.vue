@@ -27,17 +27,19 @@
           />
 
           <!-- add new word -->
-          <div class="text-right">
-            <v-btn
-              v-if="isLoggedIn"
-              text
-              small
-              color="primary"
-              to="/words/new"
-            >
-              {{ $t('components.word.addNew') }}
-            </v-btn>
-          </div>
+          <client-only>
+            <div class="text-right">
+              <v-btn
+                v-if="$auth.loggedIn"
+                text
+                small
+                color="primary"
+                to="/words/new"
+              >
+                {{ $t('components.word.addNew') }}
+              </v-btn>
+            </div>
+          </client-only>
 
           <!-- Glossary list -->
           <div v-if="!onSearch">
@@ -84,7 +86,6 @@
   </div>
 </template>
 <script>
-import { SessionConcern } from '@/concerns/SessionConcern'
 import { LoadingMoreHelpers } from '@/mixins/LoadingMoreHelpers'
 import WordApi from '@/services/oblyk-api/WordApi'
 import Word from '@/models/Word'
@@ -94,7 +95,7 @@ import AppFooter from '@/components/layouts/AppFooter'
 
 export default {
   components: { AppFooter, LoadingMore, WordCard },
-  mixins: [SessionConcern, LoadingMoreHelpers],
+  mixins: [LoadingMoreHelpers],
 
   data () {
     return {

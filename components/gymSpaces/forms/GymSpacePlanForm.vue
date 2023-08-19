@@ -22,7 +22,6 @@
 <script>
 import { FormHelpers } from '@/mixins/FormHelpers'
 import { AppConcern } from '@/concerns/AppConcern'
-import { SessionConcern } from '@/concerns/SessionConcern'
 import GymSpace from '@/models/GymSpace'
 import SubmitForm from '@/components/forms/SubmitForm'
 import CloseForm from '@/components/forms/CloseForm'
@@ -30,7 +29,7 @@ import CloseForm from '@/components/forms/CloseForm'
 export default {
   name: 'GymSpacePlanForm',
   components: { CloseForm, SubmitForm },
-  mixins: [FormHelpers, AppConcern, SessionConcern],
+  mixins: [FormHelpers, AppConcern],
   props: {
     gymSpace: {
       type: Object,
@@ -55,7 +54,7 @@ export default {
         method: 'POST',
         url: `${this.baseUrl}/gyms/${this.gymSpace.gym.id}/gym_spaces/${this.gymSpace.id}/add_plan.json`,
         headers: {
-          Authorization: this.getToken,
+          Authorization: this.$auth.$storage.getUniversal('_token.local'),
           HttpApiAccessToken: this.apiAccessToken,
           'Content-Type': 'multipart/form-data'
         },

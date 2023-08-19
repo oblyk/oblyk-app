@@ -7,38 +7,41 @@
       v-if="alert.description"
       :text="alert.description"
     />
-    <div v-if="isSuperAdmin" class="text-right">
-      <v-btn
-        icon
-        @click="deleteAlert()"
+    <client-only>
+      <div
+        v-if="$auth.loggedIn && $auth.user.super_admin"
+        class="text-right"
       >
-        <v-icon small>
-          {{ mdiDelete }}
-        </v-icon>
-      </v-btn>
+        <v-btn
+          icon
+          @click="deleteAlert()"
+        >
+          <v-icon small>
+            {{ mdiDelete }}
+          </v-icon>
+        </v-btn>
 
-      <v-btn
-        icon
-        :to="`${alert.path}/edit?redirect_to=${$route.fullPath}`"
-      >
-        <v-icon small>
-          {{ mdiPencil }}
-        </v-icon>
-      </v-btn>
-    </div>
+        <v-btn
+          icon
+          :to="`${alert.path}/edit?redirect_to=${$route.fullPath}`"
+        >
+          <v-icon small>
+            {{ mdiPencil }}
+          </v-icon>
+        </v-btn>
+      </div>
+    </client-only>
   </div>
 </template>
 
 <script>
 import { mdiDelete, mdiPencil } from '@mdi/js'
-import { SessionConcern } from '@/concerns/SessionConcern'
 import AlertApi from '~/services/oblyk-api/AlertApi'
 const MarkdownText = () => import('@/components/ui/MarkdownText')
 
 export default {
   name: 'AlertCard',
   components: { MarkdownText },
-  mixins: [SessionConcern],
   props: {
     alert: {
       type: Object,

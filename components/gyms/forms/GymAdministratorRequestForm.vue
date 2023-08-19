@@ -59,7 +59,6 @@
 </template>
 <script>
 import { FormHelpers } from '@/mixins/FormHelpers'
-import { SessionConcern } from '@/concerns/SessionConcern'
 import { CurrentUserConcern } from '@/concerns/CurrentUserConcern'
 import GymAdministratorRequestApi from '~/services/oblyk-api/GymAdministratorRequestApi'
 import SubmitForm from '@/components/forms/SubmitForm'
@@ -69,14 +68,10 @@ import Spinner from '@/components/layouts/Spiner'
 export default {
   name: 'GymAdministratorRequestForm',
   components: { Spinner, CloseForm, SubmitForm },
-  mixins: [FormHelpers, SessionConcern, CurrentUserConcern],
+  mixins: [FormHelpers, CurrentUserConcern],
   props: {
     gym: {
       type: Object,
-      required: true
-    },
-    method: {
-      type: String,
       required: true
     },
     callback: {

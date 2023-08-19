@@ -9,7 +9,7 @@
 
       <!-- Newsletter admin card -->
       <v-card
-        v-if="isLoggedIn && isSuperAdmin"
+        v-if="$auth.loggedIn && $auth.user.super_admin"
         class="mt-16"
       >
         <v-card-title>
@@ -80,7 +80,6 @@
 import { mdiEmailEdit, mdiImageMultiple, mdiDelete, mdiSend } from '@mdi/js'
 import { DateHelpers } from '@/mixins/DateHelpers'
 import { NewsletterConcern } from '@/concerns/NewsletterConcern'
-import { SessionConcern } from '@/concerns/SessionConcern'
 import NewsletterApi from '@/services/oblyk-api/NewsletterApi'
 import AppFooter from '@/components/layouts/AppFooter'
 
@@ -88,8 +87,7 @@ export default {
   components: { AppFooter },
   mixins: [
     DateHelpers,
-    NewsletterConcern,
-    SessionConcern
+    NewsletterConcern
   ],
 
   data () {

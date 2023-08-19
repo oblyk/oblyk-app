@@ -1,17 +1,22 @@
 <template>
   <div>
     <v-container class="article-feed-container">
-      <p v-if="isLoggedIn && isSuperAdmin" class="text-right mt-3">
-        <v-btn
-          to="/articles/new"
-          color="primary"
+      <client-only>
+        <div
+          v-if="$auth.loggedIn && $auth.user.super_admin"
+          class="text-right mt-3"
         >
-          <v-icon left>
-            {{ mdiFountainPenTip }}
-          </v-icon>
-          {{ $t('actions.writeAnArticle') }}
-        </v-btn>
-      </p>
+          <v-btn
+            to="/articles/new"
+            color="primary"
+          >
+            <v-icon left>
+              {{ mdiFountainPenTip }}
+            </v-icon>
+            {{ $t('actions.writeAnArticle') }}
+          </v-btn>
+        </div>
+      </client-only>
       <feed feed-api="Article" />
     </v-container>
     <app-footer />
@@ -20,13 +25,11 @@
 
 <script>
 import { mdiFountainPenTip } from '@mdi/js'
-import { SessionConcern } from '@/concerns/SessionConcern'
 import Feed from '@/components/feeds/Feed'
 import AppFooter from '@/components/layouts/AppFooter'
 
 export default {
   components: { AppFooter, Feed },
-  mixins: [SessionConcern],
 
   data () {
     return {

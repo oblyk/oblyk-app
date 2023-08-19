@@ -31,11 +31,11 @@
   </v-tabs>
 </template>
 <script>
-import { SessionConcern } from '@/concerns/SessionConcern'
+import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
 
 export default {
   name: 'GymTabs',
-  mixins: [SessionConcern],
+  mixins: [GymRolesHelpers],
   props: {
     gym: {
       type: Object,

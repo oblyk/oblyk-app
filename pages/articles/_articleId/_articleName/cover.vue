@@ -14,14 +14,13 @@
 </template>
 
 <script>
-import { SessionConcern } from '@/concerns/SessionConcern'
 import { ArticleConcern } from '@/concerns/ArticleConcern'
 import ArticleCoverForm from '@/components/articles/forms/ArticleCoverForm'
 
 export default {
   meta: { orphanRoute: true },
   components: { ArticleCoverForm },
-  mixins: [ArticleConcern, SessionConcern],
+  mixins: [ArticleConcern],
 
   head () {
     return {

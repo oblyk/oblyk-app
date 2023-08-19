@@ -9,12 +9,10 @@
 </template>
 
 <script>
-import { SessionConcern } from '@/concerns/SessionConcern'
 import PhotoGallery from '@/components/photos/PhotoGallery'
 
 export default {
   components: { PhotoGallery },
-  mixins: [SessionConcern],
   props: {
     area: {
       type: Object,

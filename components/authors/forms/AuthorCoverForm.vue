@@ -21,14 +21,13 @@
 import axios from 'axios'
 import { FormHelpers } from '@/mixins/FormHelpers'
 import { AppConcern } from '@/concerns/AppConcern'
-import { SessionConcern } from '@/concerns/SessionConcern'
 import SubmitForm from '@/components/forms/SubmitForm'
 import CloseForm from '@/components/forms/CloseForm'
 
 export default {
   name: 'AuthorCoverForm',
   components: { CloseForm, SubmitForm },
-  mixins: [FormHelpers, AppConcern, SessionConcern],
+  mixins: [FormHelpers, AppConcern],
 
   props: {
     author: Object
@@ -58,7 +57,7 @@ export default {
         method: 'POST',
         url: `${this.baseUrl}/authors/${this.author.id}/add_cover.json`,
         headers: {
-          Authorization: this.getToken,
+          Authorization: this.$auth.$storage.getUniversal('_token.local'),
           HttpApiAccessToken: this.apiAccessToken,
           'Content-Type': 'multipart/form-data'
         },

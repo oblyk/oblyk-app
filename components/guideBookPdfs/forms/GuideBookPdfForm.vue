@@ -46,16 +46,15 @@
 
 <script>
 import { FormHelpers } from '@/mixins/FormHelpers'
+import { AppConcern } from '@/concerns/AppConcern'
 import SubmitForm from '@/components/forms/SubmitForm'
 import CloseForm from '@/components/forms/CloseForm'
 import GuideBookPdfApi from '~/services/oblyk-api/GuideBookPdfApi'
-import { AppConcern } from '@/concerns/AppConcern'
-import { SessionConcern } from '@/concerns/SessionConcern'
 
 export default {
   name: 'GuideBookPdfForm',
   components: { CloseForm, SubmitForm },
-  mixins: [FormHelpers, AppConcern, SessionConcern],
+  mixins: [FormHelpers, AppConcern],
   props: {
     guideBookPdf: {
       type: Object,
@@ -117,7 +116,7 @@ export default {
           method: 'POST',
           url,
           headers: {
-            Authorization: this.getToken,
+            Authorization: this.$auth.$storage.getUniversal('_token.local'),
             HttpApiAccessToken: this.apiAccessToken,
             'Content-Type': 'multipart/form-data'
           },

@@ -1,6 +1,5 @@
 import { DateHelpers } from '@/mixins/DateHelpers'
 import { GradeMixin } from '@/mixins/GradeMixin'
-import { SessionConcern } from '@/concerns/SessionConcern'
 import Crag from '@/models/Crag'
 import Gym from '@/models/Gym'
 import PlaceOfSale from '@/models/PlaceOfSale'
@@ -11,7 +10,7 @@ import User from '@/models/User'
 import RockBar from '~/models/RockBar'
 
 export const MapPopupHelpers = {
-  mixins: [DateHelpers, GradeMixin, SessionConcern],
+  mixins: [DateHelpers, GradeMixin],
   methods: {
     getHtmlPopup (type, data) {
       if (type === 'Crag') {
@@ -347,7 +346,7 @@ export const MapPopupHelpers = {
         </div>
       `
 
-      if (this.isLoggedIn) {
+      if (this.$auth.loggedIn) {
         popup.querySelector('button').addEventListener('click', () => { this.$router.push(user.userPath) })
       } else {
         popup.querySelector('button').addEventListener('click', () => { this.$router.push(`/sign-up?redirect_to=${user.userPath}&partner_request=true&partner_name=${user.full_name}`) })

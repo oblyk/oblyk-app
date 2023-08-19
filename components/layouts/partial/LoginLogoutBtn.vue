@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-list-item
-      v-if="isLoggedIn"
+      v-if="$auth.loggedIn"
       link
       @click="disconnected()"
     >
@@ -13,32 +13,33 @@
       </v-list-item-title>
     </v-list-item>
 
-    <v-list-item v-if="!isLoggedIn" link to="/sign-in">
-      <v-list-item-icon>
-        <v-icon>{{ mdiLogin }}</v-icon>
-      </v-list-item-icon>
-      <v-list-item-title>
-        {{ $t("components.layout.appBar.login") }}
-      </v-list-item-title>
-    </v-list-item>
+    <client-only>
+      <v-list-item v-if="!$auth.loggedIn" link to="/sign-in">
+        <v-list-item-icon>
+          <v-icon>{{ mdiLogin }}</v-icon>
+        </v-list-item-icon>
+        <v-list-item-title>
+          {{ $t("components.layout.appBar.login") }}
+        </v-list-item-title>
+      </v-list-item>
 
-    <v-list-item v-if="!isLoggedIn" link to="/sign-up">
-      <v-list-item-icon>
-        <v-icon>{{ mdiAccountPlus }}</v-icon>
-      </v-list-item-icon>
-      <v-list-item-title>
-        {{ $t("actions.signUp") }}
-      </v-list-item-title>
-    </v-list-item>
+      <v-list-item v-if="!$auth.loggedIn" link to="/sign-up">
+        <v-list-item-icon>
+          <v-icon>{{ mdiAccountPlus }}</v-icon>
+        </v-list-item-icon>
+        <v-list-item-title>
+          {{ $t("actions.signUp") }}
+        </v-list-item-title>
+      </v-list-item>
+    </client-only>
   </div>
 </template>
+
 <script>
 import { mdiAccountPlus, mdiLogin, mdiLogout } from '@mdi/js'
-import { SessionConcern } from '@/concerns/SessionConcern'
 
 export default {
   name: 'LoginLogoutBtn',
-  mixins: [SessionConcern],
 
   data () {
     return {
@@ -49,10 +50,10 @@ export default {
   },
 
   methods: {
-    disconnected () {
+    async disconnected () {
       this.$cable.unsubscribe('NotificationChannel')
       this.$cable.unsubscribe('FetchUserChannel')
-      this.logout()
+      await this.$auth.logout('local')
     }
   }
 }

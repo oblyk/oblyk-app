@@ -74,10 +74,9 @@
 
 <script>
 import { mdiTextureBox, mdiImageFilterCenterFocusStrong, mdiSourceBranchPlus } from '@mdi/js'
-import { SessionConcern } from '@/concerns/SessionConcern'
-import GymRouteListItem from '~/components/gymRoutes/GymRouteListItem.vue'
-import GymSectorAdminMenu from '~/components/gymSectors/GymSectorAdminMenu.vue'
 import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
+import GymRouteListItem from '~/components/gymRoutes/GymRouteListItem'
+import GymSectorAdminMenu from '~/components/gymSectors/GymSectorAdminMenu'
 
 export default {
   name: 'GymRoutesBySector',
@@ -85,7 +84,7 @@ export default {
     GymSectorAdminMenu,
     GymRouteListItem
   },
-  mixins: [SessionConcern, GymRolesHelpers],
+  mixins: [GymRolesHelpers],
 
   props: {
     sectors: {

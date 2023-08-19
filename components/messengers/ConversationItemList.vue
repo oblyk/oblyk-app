@@ -35,13 +35,12 @@
 
 <script>
 import User from '@/models/User'
-import { SessionConcern } from '@/concerns/SessionConcern'
 import { DateHelpers } from '@/mixins/DateHelpers'
 import ConversationApi from '~/services/oblyk-api/ConversationApi'
 
 export default {
   name: 'ConversationItemList',
-  mixins: [SessionConcern, DateHelpers],
+  mixins: [DateHelpers],
   props: {
     conversation: {
       type: Object,
@@ -59,7 +58,7 @@ export default {
     conversationTitle () {
       const title = []
       for (const user of (this.conversation || {}).conversation_users || []) {
-        if (this.loggedInUser.uuid !== user.uuid) {
+        if (this.$auth.user.uuid !== user.uuid) {
           title.push(user.first_name)
         }
       }
@@ -80,7 +79,7 @@ export default {
       const avatarSources = []
       for (const conversationUser of this.conversation.conversation_users) {
         const user = new User({ attributes: conversationUser })
-        if (user.uuid !== this.loggedInUser.uuid) { avatarSources.push(user.thumbnailAvatarUrl) }
+        if (user.uuid !== this.$auth.user.uuid) { avatarSources.push(user.thumbnailAvatarUrl) }
         if (avatarSources.length === 2) { break }
       }
       return avatarSources
@@ -96,7 +95,7 @@ export default {
 
     lastMessageUser () {
       if (this.conversation.last_message.user_uuid) {
-        if (this.conversation.last_message.user_uuid === this.loggedInUser.uuid) {
+        if (this.conversation.last_message.user_uuid === this.$auth.user.uuid) {
           return `${this.$t('common.me')} :`
         } else if (this.conversation.conversation_users.length > 2) {
           return `${this.conversation.last_message.user_name} :`
@@ -108,7 +107,7 @@ export default {
 
     haveNewMessage () {
       for (const conversationUser of this.conversation.conversation_users) {
-        if (conversationUser.uuid === this.loggedInUser.uuid) {
+        if (conversationUser.uuid === this.$auth.user.uuid) {
           if (conversationUser.last_read_at === null) {
             this.newMessage = true
             return

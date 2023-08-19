@@ -35,9 +35,17 @@
             :title="article.name"
             :url="article.path"
           />
-          <span v-if="isLoggedIn && isSuperAdmin">
-            <article-action-menu :article="article" />
-          </span>
+          <client-only>
+            <div
+              v-if="$auth.loggedIn && $auth.user.super_admin"
+              class="d-inline-block"
+            >
+              <article-action-menu
+                v-if="$auth.loggedIn && $auth.user.super_admin"
+                :article="article"
+              />
+            </div>
+          </client-only>
         </div>
       </div>
     </v-img>
@@ -47,15 +55,14 @@
 <script>
 import { mdiComment } from '@mdi/js'
 import { DateHelpers } from '@/mixins/DateHelpers'
-import { SessionConcern } from '@/concerns/SessionConcern'
-import ArticleActionMenu from '@/components/articles/forms/ArticleActionMenu'
-import ShareBtn from '~/components/ui/ShareBtn.vue'
-import LikeBtn from '~/components/forms/LikeBtn.vue'
+import ShareBtn from '~/components/ui/ShareBtn'
+import LikeBtn from '~/components/forms/LikeBtn'
+const ArticleActionMenu = () => import('@/components/articles/forms/ArticleActionMenu')
 
 export default {
   name: 'ArticleHead',
   components: { LikeBtn, ShareBtn, ArticleActionMenu },
-  mixins: [DateHelpers, SessionConcern],
+  mixins: [DateHelpers],
   props: {
     article: {
       type: Object,

@@ -120,13 +120,11 @@
 
 <script>
 import { mdiMapOutline, mdiAsterisk } from '@mdi/js'
-import { SessionConcern } from '@/concerns/SessionConcern'
 import GymSpaceApi from '~/services/oblyk-api/GymSpaceApi'
 import GymSpace from '~/models/GymSpace'
 
 export default {
   name: 'GymSpaceSelector',
-  mixins: [SessionConcern],
   props: {
     gymSpace: {
       type: Object,

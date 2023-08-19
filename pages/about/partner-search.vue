@@ -12,7 +12,7 @@
       </p>
 
       <div
-        v-if="!isLoggedIn"
+        v-if="!$auth.loggedIn"
         class="mb-10"
       >
         <p class="text-center font-weight-bold">
@@ -38,14 +38,16 @@
             {{ $t('common.pages.partner.steps.configuration.title') }}
           </p>
           <p v-html="$t('common.pages.partner.steps.configuration.body')" />
-          <p v-if="isLoggedIn" class="text-right">
-            <v-btn outlined color="primary" to="/home/settings/partner">
-              <v-icon left>
-                {{ mdiHuman }}
-              </v-icon>
-              {{ $t('common.pages.partner.steps.configuration.action') }}
-            </v-btn>
-          </p>
+          <client-only>
+            <div v-if="$auth.loggedIn" class="text-right">
+              <v-btn outlined color="primary" to="/home/settings/partner">
+                <v-icon left>
+                  {{ mdiHuman }}
+                </v-icon>
+                {{ $t('common.pages.partner.steps.configuration.action') }}
+              </v-btn>
+            </div>
+          </client-only>
         </v-col>
         <v-col class="col-12 col-md-6">
           <v-img src="/svg/partner-configuration.svg" />
@@ -59,14 +61,16 @@
             {{ $t('common.pages.partner.steps.location.title') }}
           </p>
           <p v-html="$t('common.pages.partner.steps.location.body')" />
-          <p v-if="isLoggedIn" class="text-right">
-            <v-btn outlined color="primary" to="/home/settings/partner">
-              <v-icon left>
-                {{ mdiMapMarkerRadius }}
-              </v-icon>
-              {{ $t('common.pages.partner.steps.location.action') }}
-            </v-btn>
-          </p>
+          <client-only>
+            <div v-if="$auth.loggedIn" class="text-right">
+              <v-btn outlined color="primary" to="/home/settings/partner">
+                <v-icon left>
+                  {{ mdiMapMarkerRadius }}
+                </v-icon>
+                {{ $t('common.pages.partner.steps.location.action') }}
+              </v-btn>
+            </div>
+          </client-only>
         </v-col>
         <v-col class="col-12 col-md-6">
           <v-img src="/svg/partner-location.svg" />
@@ -101,14 +105,16 @@
             {{ $t('common.pages.partner.steps.contact.title') }}
           </p>
           <p v-html="$t('common.pages.partner.steps.contact.body')" />
-          <p v-if="isLoggedIn" class="text-right">
-            <v-btn outlined color="primary" to="/home/messenger">
-              <v-icon left>
-                {{ mdiForum }}
-              </v-icon>
-              {{ $t('common.pages.partner.steps.contact.action') }}
-            </v-btn>
-          </p>
+          <client-only>
+            <div v-if="$auth.loggedIn" class="text-right">
+              <v-btn outlined color="primary" to="/home/messenger">
+                <v-icon left>
+                  {{ mdiForum }}
+                </v-icon>
+                {{ $t('common.pages.partner.steps.contact.action') }}
+              </v-btn>
+            </div>
+          </client-only>
         </v-col>
         <v-col class="col-12 col-md-6">
           <v-img src="/svg/partner-contact.svg" />
@@ -123,14 +129,12 @@
 
 <script>
 import { mdiHuman, mdiMapMarkerRadius, mdiMap, mdiForum } from '@mdi/js'
-import { SessionConcern } from '@/concerns/SessionConcern'
 import PartnerFigures from '@/components/partners/PartnerFigures'
 import AppFooter from '@/components/layouts/AppFooter'
 import OtherFeatures from '~/components/globals/OtherFeatures'
 
 export default {
   components: { OtherFeatures, PartnerFigures, AppFooter },
-  mixins: [SessionConcern],
 
   data () {
     return {

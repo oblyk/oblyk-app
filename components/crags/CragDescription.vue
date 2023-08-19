@@ -285,7 +285,6 @@ import {
   mdiWalk,
   mdiWeatherPouring
 } from '@mdi/js'
-import { SessionConcern } from '@/concerns/SessionConcern'
 import QrCodeBtn from '@/components/forms/QrCodeBtn'
 import AlertList from '@/components/alerts/AlertList'
 import GoToCragModal from '@/components/crags/GoToCragModal'
@@ -305,7 +304,6 @@ export default {
     AlertList,
     QrCodeBtn
   },
-  mixins: [SessionConcern],
   props: {
     crag: {
       type: Object,

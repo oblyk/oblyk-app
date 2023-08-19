@@ -1,5 +1,5 @@
 <template>
-  <div v-if="isLoggedIn && organizations.length > 0">
+  <div v-if="$auth.loggedIn && organizations.length > 0">
     <v-subheader>
       {{ $t('components.layout.appDrawer.subHeaders.myOrganizations') }}
     </v-subheader>
@@ -29,12 +29,10 @@
 
 <script>
 import { mdiCodeBrackets } from '@mdi/js'
-import { SessionConcern } from '@/concerns/SessionConcern'
 import Organization from '@/models/Organization'
 
 export default {
   name: 'MyOrganizations',
-  mixins: [SessionConcern],
 
   data () {
     return {
@@ -45,7 +43,7 @@ export default {
   computed: {
     organizations () {
       const organizations = []
-      for (const organization of this.myOrganizations) {
+      for (const organization of this.$auth.user.organizations) {
         organizations.push(new Organization({ attributes: organization }))
       }
       return organizations
