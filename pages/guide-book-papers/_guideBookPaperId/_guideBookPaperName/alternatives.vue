@@ -12,16 +12,10 @@
       />
       <div class="row mt-2">
         <div class="col-12 col-md-2">
-          <v-skeleton-loader
-            v-bind="attrs"
-            type="image"
-          />
+          <v-skeleton-loader type="image" />
         </div>
         <div class="col-12 col-md-2">
-          <v-skeleton-loader
-            v-bind="attrs"
-            type="image"
-          />
+          <v-skeleton-loader type="image" />
         </div>
       </div>
     </div>
