@@ -1,6 +1,6 @@
 <template>
   <div>
-    <spinner v-if="loadingCurrentUser" />
+    <spinner v-if="!currentUser" />
 
     <div v-else>
       <v-container class-name="dashboard-container">

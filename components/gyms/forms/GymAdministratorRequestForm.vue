@@ -17,10 +17,8 @@
       </p>
     </div>
 
-    <spinner v-if="loadingCurrentUser" />
-
     <v-form
-      v-if="!submitted && !loadingCurrentUser"
+      v-if="!submitted && $auth.loggedIn"
       class="mt-7"
       @submit.prevent="submit()"
     >
@@ -59,16 +57,14 @@
 </template>
 <script>
 import { FormHelpers } from '@/mixins/FormHelpers'
-import { CurrentUserConcern } from '@/concerns/CurrentUserConcern'
 import GymAdministratorRequestApi from '~/services/oblyk-api/GymAdministratorRequestApi'
 import SubmitForm from '@/components/forms/SubmitForm'
 import CloseForm from '@/components/forms/CloseForm'
-import Spinner from '@/components/layouts/Spiner'
 
 export default {
   name: 'GymAdministratorRequestForm',
-  components: { Spinner, CloseForm, SubmitForm },
-  mixins: [FormHelpers, CurrentUserConcern],
+  components: { CloseForm, SubmitForm },
+  mixins: [FormHelpers],
   props: {
     gym: {
       type: Object,
@@ -83,29 +79,14 @@ export default {
   data () {
     return {
       submitted: false,
-      loadingCurrentUser: true,
       data: {
-        last_name: null,
-        first_name: null,
+        last_name: this.$auth.loggedIn ? this.$auth.user.last_name : null,
+        first_name: this.$auth.loggedIn ? this.$auth.user.first_name : null,
         justification: null,
-        email: null,
+        email: this.$auth.loggedIn ? this.$auth.user.email : null,
         gym_id: this.gym.id
       }
     }
-  },
-
-  watch: {
-    currentUser () {
-      if (this.currentUser) {
-        this.data.first_name = this.currentUser.first_name
-        this.data.last_name = this.currentUser.last_name
-        this.data.email = this.currentUser.email
-      }
-    }
-  },
-
-  created () {
-    this.getCurrentUser()
   },
 
   methods: {

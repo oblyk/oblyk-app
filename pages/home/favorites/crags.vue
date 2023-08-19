@@ -30,7 +30,6 @@
 </template>
 
 <script>
-import { CurrentUserConcern } from '~/concerns/CurrentUserConcern'
 import { LoadingMoreHelpers } from '~/mixins/LoadingMoreHelpers'
 import Spinner from '~/components/layouts/Spiner.vue'
 import CurrentUserApi from '~/services/oblyk-api/CurrentUserApi'
@@ -45,7 +44,6 @@ export default {
     Spinner
   },
   mixins: [
-    CurrentUserConcern,
     LoadingMoreHelpers
   ],
 

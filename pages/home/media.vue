@@ -1,8 +1,8 @@
 <template>
   <div>
-    <spinner v-if="loadingCurrentUser" />
+    <spinner v-if="!currentUser" />
 
-    <div v-if="!loadingCurrentUser">
+    <div v-else>
       <current-user-media-tabs :user="currentUser" />
       <v-container>
         <nuxt-child :user="currentUser" />

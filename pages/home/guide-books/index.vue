@@ -1,8 +1,8 @@
 <template>
   <div>
-    <spinner v-if="loadingCurrentUser" />
+    <spinner v-if="!currentUser" />
 
-    <div v-if="!loadingCurrentUser">
+    <div v-else>
       <spinner v-if="loadingSubscribes" />
 
       <v-container v-if="!loadingSubscribes">

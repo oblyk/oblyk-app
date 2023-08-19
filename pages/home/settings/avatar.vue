@@ -1,8 +1,8 @@
 <template>
   <div>
-    <spinner v-if="loadingCurrentUser" />
+    <spinner v-if="!currentUser" />
 
-    <v-container v-if="!loadingCurrentUser">
+    <v-container v-else>
       <v-row justify="center">
         <v-col class="global-form-width">
           <h2 class="mb-4">

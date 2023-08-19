@@ -1,8 +1,8 @@
 <template>
   <div>
-    <spinner v-if="loadingCurrentUser" />
+    <spinner v-if="!currentUser" />
 
-    <div v-if="!loadingCurrentUser">
+    <div v-else>
       <user-favorite-tabs :user="currentUser" />
       <v-container>
         <router-view :user="currentUser" />

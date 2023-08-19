@@ -1,8 +1,8 @@
 <template>
   <div>
-    <spinner v-if="loadingCurrentUser" />
+    <spinner v-if="!currentUser" />
 
-    <div v-if="!loadingCurrentUser">
+    <div v-else>
       <user-accents-tabs :user="currentUser" />
       <nuxt-child :user="currentUser" />
     </div>

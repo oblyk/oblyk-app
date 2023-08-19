@@ -34,7 +34,6 @@
 </template>
 
 <script>
-import { CurrentUserConcern } from '~/concerns/CurrentUserConcern'
 import CurrentUserApi from '~/services/oblyk-api/CurrentUserApi'
 import User from '~/models/User'
 import UserSmallCard from '~/components/users/UserSmallCard.vue'
@@ -48,7 +47,7 @@ export default {
     Spinner,
     UserSmallCard
   },
-  mixins: [CurrentUserConcern, LoadingMoreHelpers],
+  mixins: [LoadingMoreHelpers],
   props: {
     user: {
       type: Object,

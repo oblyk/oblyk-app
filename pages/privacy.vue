@@ -46,18 +46,18 @@ export default {
     }
   },
 
+  data () {
+    return {
+      redirectTo: null
+    }
+  },
+
   head () {
     return {
       title: this.$t('metaTitle'),
       meta: [
         { hid: 'robots', name: 'robots', content: 'noindex' }
       ]
-    }
-  },
-
-  data () {
-    return {
-      redirectTo: null
     }
   },
 
