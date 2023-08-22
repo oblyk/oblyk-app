@@ -136,7 +136,7 @@ export default {
         ascent_status: (this.ascentCragRoute || {}).ascent_status,
         roping_status: (this.ascentCragRoute || {}).roping_status || 'lead_climb',
         attempt: (this.ascentCragRoute || {}).attempt,
-        released_at: (this.ascentCragRoute || {}).released_at || this.today().format('YYYY-MM-DD'),
+        released_at: (this.ascentCragRoute || {}).released_at || this.ISODateToday(),
         note: (this.ascentCragRoute || {}).note,
         hardness_status: (this.ascentCragRoute || {}).hardness_status,
         comment: (this.ascentCragRoute || {}).comment,
