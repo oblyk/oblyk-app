@@ -507,7 +507,7 @@ export default {
         grade: this.gymRoute?.grade,
         tag_colors: this.gymRoute?.tag_colors || [],
         hold_colors: this.gymRoute?.hold_colors || [],
-        opened_at: this.gymRoute?.opened_at || this.today().format('YYYY-MM-DD'),
+        opened_at: this.gymRoute?.opened_at || this.ISODateToday(),
         climbing_type: this.gymRoute?.climbing_type || this.gymSector.climbing_type,
         anchor_number: this.gymRoute?.anchor_number,
         gym_grade_line_id: this.gymRoute?.gym_grade_line_id,

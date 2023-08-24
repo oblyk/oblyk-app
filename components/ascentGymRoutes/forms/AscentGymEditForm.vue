@@ -116,7 +116,7 @@ export default {
       data: {
         id: this.ascentGymRoute?.id,
         ascent_status: this.ascentGymRoute?.ascent_status,
-        released_at: this.ascentGymRoute?.released_at || this.today().format('YYYY-MM-DD'),
+        released_at: this.ascentGymRoute?.released_at || this.ISODateToday(),
         color_system_line_id: this.ascentGymRoute?.color_system_line?.id,
         sections: this.ascentGymRoute?.sections,
         quantity: this.ascentGymRoute?.quantity,
