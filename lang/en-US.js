@@ -27,6 +27,9 @@ export default {
     createFreeAccount: 'Create my free account',
     changeBanner: 'Change banner',
     uploadBanner: 'Upload banner',
+    uploadIllustration: 'Change illustration',
+    exclude: 'Exclude',
+    reInclude: 'Re-include',
     dontAskMeAgain: "Don't ask me again",
     changeLogo: 'Change logo',
     changePlan: 'Change plan',
@@ -142,7 +145,8 @@ export default {
     deleteNote: 'Delete note',
     addNote: 'Add note',
     editNote: 'Edit note',
-    next: 'Next'
+    next: 'Next',
+    back: 'Back'
   },
   colors: {
     noColor: 'All',
@@ -179,6 +183,7 @@ export default {
   date: {
     yearsOld: ' years old',
     format_dd_mm_yyyy: 'dd/mm/yyyy',
+    format_hhmm: '00:00',
     lastActivity: 'last activity %{date} ago',
     sentAt: 'sent at %{date}'
   },
@@ -579,6 +584,9 @@ export default {
       gymOpener: 'Openers',
       gymRoles: 'Can manage',
       gymAddOpener: 'Add an opener',
+      contestRankingTypes: 'Ranking type',
+      contestCategoryTypes: 'Categorization type',
+      contestCategoryObligation: 'Type of registration restriction',
       colorSystem: {
         chooseOrder: 'Choose a colour order',
         usage: 'Already used %{count} times here',
@@ -1155,6 +1163,7 @@ export default {
       various: 'Various',
       openers: 'Openers',
       home: 'Dashboard',
+      contests: 'Contests',
       parameters: 'Parameters',
       difficultySystem: 'Difficulty system',
       difficultySystemExplain: 'Difficulty system settings, points system, level rating, etc.',
@@ -1300,6 +1309,12 @@ export default {
         grade: 'Example: 6a, 7a, 7c+, etc.',
         points: 'Example: 500, 50, 200, etc.'
       }
+    },
+    contest: {
+      toleranceExplain: 'How many minutes do you want your climbers to have to finish filling in their work after the end of the contest?',
+      capacityExplain: 'Indicate the maximum number of competitors.<br>Leave blank if there is no maximum.<br>You can then choose a total capacity per category.',
+      subscriptionOpenExplain: 'Date from which the contest is public and competitors can register',
+      startDateExplain: 'Date of the first stage of the contest'
     },
     climbingSession: {
       list: 'My sessions',
@@ -1854,7 +1869,9 @@ export default {
       confirm: 'must be identical',
       un_destroyable: 'Item cannot be deleted',
       cannot_be_changed: 'cannot be changed',
-      you_must_be_major: 'you must be over 18'
+      you_must_be_major: 'you must be over 18',
+      before_start_date: 'must be after start date',
+      before_end_date: 'must be after end date'
     }
   },
   models: {
@@ -2196,6 +2213,89 @@ export default {
       manage_gym: 'Gym',
       manage_opener: 'Openers'
     },
+    contest: {
+      name: 'Title',
+      description: 'Presentation',
+      start_date: 'Contest start date',
+      end_date: 'Contest end date',
+      start_time: 'Contest start time',
+      end_time: 'Contest end time',
+      subscription_start_date: 'Registration opens',
+      total_capacity: 'Max total capacity',
+      ascent_log_tolerance: 'Time to enter achievements',
+      ranking_type: 'Raking type',
+      categorization_type: 'Categorization type'
+    },
+    contestCategoryType: {
+      official_under_age: 'Official age categorization (U14, U18, senior, etc.)',
+      custom: 'Custom categorization (hobby, expert, etc.)'
+    },
+    contestCategoryObligationType: {
+      no: 'No restriction',
+      u10: 'U10',
+      u12: 'U12',
+      u14: 'U14',
+      u16: 'U16',
+      u18: 'U18',
+      u20: 'U20',
+      senior: 'Senior',
+      veteran_1: 'Veteran 1',
+      veteran_2: 'Veteran 2',
+      between_age: 'Custom minium / maximum age'
+    },
+    contestRankingType: {
+      division: '1000pt divided by the number of ascents',
+      attempts_to_top: '10pt - 1pt per attempt',
+      zone_and_top_realised: 'Zone and top realised',
+      attempts_to_one_zone_and_top: 'Number of attempts to make the zone and the top',
+      attempts_to_two_zones_and_top: 'Number of attempts to do the 1st zone, 2nd zone and the top',
+      highest_hold: 'Highest hold reached'
+    },
+    contestCategory: {
+      name: 'Nam',
+      description: 'Description',
+      descriptionPlaceholder: 'Help your future participants choose their categories with a short description (optional)',
+      unisex: 'Unisex',
+      capacity: 'Max capacity',
+      registrationObligation: 'Type of age limit',
+      minAge: 'Minimum age',
+      maxAge: 'Maximum age',
+      auto_distribute: 'Self-distribution of participants in waves',
+      waveable: 'Divide this category into several waves',
+      order: 'Display order'
+    },
+    contestStage: {
+      name: 'Name',
+      stage_order: 'Order'
+    },
+    contestStageStep: {
+      name: 'Name',
+      step_order: 'Order',
+      ranking_type: 'Ranking type',
+      self_reporting: 'Participants fill in the details of their projects themselves',
+      default_participants_for_next_step: 'Default number of participants moving on to the next stage'
+    },
+    contestRouteGroup: {
+      genre_type: 'These lines are for?',
+      waveable: 'Divide this step into waves',
+      step_date: 'Step date',
+      start_time: 'Step start time',
+      end_time: 'Step end time',
+      number_participants_for_next_step: 'Number of participants moving on to the next stage',
+      number_of_routes: 'Number of %{style}s'
+    },
+    contestRoute: {
+      number: 'Number'
+    },
+    contestParticipant: {
+      first_name: 'First name',
+      last_name: 'Last name',
+      affiliation: 'Club or climbing gym',
+      email: 'Email'
+    },
+    contestWave: {
+      name: 'Name'
+    },
     climbs: {
       sport_climbing: 'Sport Climbing',
       bouldering: 'Bouldering',
@@ -2206,7 +2306,8 @@ export default {
       via_ferrata: 'Via ferrata',
       fun_climbing: 'Fun Climbing',
       training_space: 'Training space',
-      pan: 'Pan'
+      pan: 'Pan',
+      speed_climbing: 'Speed Climbing'
     },
     climbsShort: {
       sport_climbing: 'SC',
@@ -2264,6 +2365,7 @@ export default {
       url: 'Link of the video'
     },
     genres: {
+      unisex: 'Unisex',
       undefined: 'Undefined',
       male: 'Male',
       female: 'Female',

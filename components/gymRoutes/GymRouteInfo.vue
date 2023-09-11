@@ -283,7 +283,10 @@
       />
 
       <!-- Edit and add to logbook -->
-      <div class="text-right mt-2 mb-3">
+      <div
+        v-if="!hideAscentBtn"
+        class="text-right mt-2 mb-3"
+      >
         <like-btn
           class="vertical-align-bottom"
           :likeable-id="gymRoute.id"
@@ -295,6 +298,8 @@
           :gym-route="gymRoute"
         />
       </div>
+
+      <!-- Administration -->
       <div
         v-if="$auth.loggedIn && currentUserIsGymAdmin() && gymAuthCan(gymRoute.gym, 'manage_opening')"
         class="border-bottom border-top py-2 mb-2"
@@ -389,8 +394,16 @@ export default {
       type: Boolean,
       default: false
     },
+    hideAscentBtn: {
+      type: Boolean,
+      default: false
+    },
     gym: {
       type: Object,
+      default: null
+    },
+    closeCallback: {
+      type: Function,
       default: null
     }
   },
@@ -478,11 +491,15 @@ export default {
 
   methods: {
     closeGymRouteCard () {
-      this.$router.push(
-        {
-          path: this.$route.path
-        }
-      )
+      if (this.closeCallback) {
+        this.closeCallback()
+      } else {
+        this.$router.push(
+          {
+            path: this.$route.path
+          }
+        )
+      }
     },
 
     getAscents () {

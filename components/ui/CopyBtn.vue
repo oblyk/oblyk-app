@@ -1,43 +1,55 @@
 <template>
   <v-btn
-    v-clipboard:copy="message"
-    v-clipboard:success="onCopy"
-    v-clipboard:error="onError"
     icon
     :small="small"
+    :color="copyIconColors[iconStatus]"
+    @click="copyToken"
   >
     <v-icon small>
-      {{ mdiContentCopy }}
+      {{ copyIcons[iconStatus] }}
     </v-icon>
   </v-btn>
 </template>
 
 <script>
-import { mdiContentCopy } from '@mdi/js'
+import { mdiAlertOutline, mdiCheck, mdiContentCopy } from '@mdi/js'
 
 export default {
   name: 'CopyBtn',
   props: {
-    message: String,
+    message: {
+      type: String,
+      required: true
+    },
     small: {
       type: Boolean,
-      default: true
+      default: false
     }
   },
 
   data () {
     return {
-      mdiContentCopy
+      iconStatus: 'default',
+      copyIconColors: {
+        default: null,
+        success: 'green',
+        failed: 'red'
+      },
+      copyIcons: {
+        default: mdiContentCopy,
+        success: mdiCheck,
+        failed: mdiAlertOutline
+      }
     }
   },
 
   methods: {
-    onCopy () {
-      this.$root.$emit('alertSimpleSuccess', this.$t('actions.valueCopied', { value: this.message }))
-    },
-
-    onError () {
-      this.$root.$emit('alertSimpleError', this.$t('actions.errorHasOccurred'))
+    copyToken () {
+      navigator.clipboard.writeText(this.message).then(
+        () => { this.iconStatus = 'success' },
+        () => { this.iconStatus = 'failed' }
+      )
+      setTimeout(() => { this.iconStatus = 'default' }, 3000)
     }
   }
 }

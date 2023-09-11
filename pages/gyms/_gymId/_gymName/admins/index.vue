@@ -68,6 +68,9 @@
         <v-col cols="12" md="6" lg="4" class="pa-2">
           <gym-admin-openers-figures :gym="gym" />
         </v-col>
+        <v-col cols="12" md="6" lg="4" class="pa-2">
+          <gym-admin-contests-figures :gym="gym" />
+        </v-col>
       </v-row>
 
       <h4 class="mb-1 mt-8">
@@ -100,10 +103,12 @@ import GymAdminSpaceFigures from '~/components/gyms/admin/GymAdminSpaceFigures'
 import GymAdminRouteFigures from '~/components/gyms/admin/GymAdminRouteFigures'
 import GymAdminOpenersFigures from '~/components/gyms/admin/GymAdminOpenersFigures.vue'
 import GymAdminInteractiveGuideParameters from '~/components/gyms/admin/GymAdminInteractiveGuideParameters.vue'
+import GymAdminContestsFigures from '~/components/gyms/admin/GymAdminContestFigures.vue'
 
 export default {
   meta: { orphanRoute: true },
   components: {
+    GymAdminContestsFigures,
     GymAdminInteractiveGuideParameters,
     GymAdminOpenersFigures,
     GymAdminRouteFigures,

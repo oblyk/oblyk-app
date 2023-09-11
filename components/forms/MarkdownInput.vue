@@ -5,6 +5,7 @@
       outlined
       :label="label"
       hide-details
+      :placeholder="placeholder"
       :auto-grow="autoGrow"
       :rows="rows"
       @focus="showTips = true"
@@ -49,6 +50,10 @@ export default {
       default: null
     },
     label: {
+      type: String,
+      default: null
+    },
+    placeholder: {
       type: String,
       default: null
     },

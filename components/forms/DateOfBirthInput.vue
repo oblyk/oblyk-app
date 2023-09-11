@@ -14,6 +14,7 @@
         outlined
         :hide-details="hideDetails"
         v-bind="attrs"
+        :class="required ? 'required-field' : ''"
         @blur="date = parseDate(dateFormatted)"
         v-on="on"
       />
@@ -49,11 +50,12 @@
 export default {
   name: 'DateOfBirthInput',
   props: {
-    value: {
-      type: String,
-      required: true
-    },
+    value: String,
     hideDetails: {
+      type: Boolean,
+      default: false
+    },
+    required: {
       type: Boolean,
       default: false
     }

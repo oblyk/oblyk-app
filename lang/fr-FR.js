@@ -27,6 +27,9 @@ export default {
     createFreeAccount: 'Créer mon compte gratuit',
     changeBanner: 'Changer le bandeau',
     uploadBanner: 'Uploader un bandeau',
+    uploadIllustration: "Changer l'illustration",
+    exclude: 'Exclure',
+    reInclude: 'Re-inclure',
     dontAskMeAgain: 'Ne plus me demander',
     changeLogo: 'Changer le logo',
     changePlan: 'Changer le plan',
@@ -142,7 +145,8 @@ export default {
     deleteNote: 'Supprimer la note',
     addNote: 'Ajouter une note',
     editNote: 'Modifier la note',
-    next: 'Suivant'
+    next: 'Suivant',
+    back: 'Retour'
   },
   colors: {
     noColor: 'Toutes',
@@ -179,6 +183,7 @@ export default {
   date: {
     yearsOld: 'ans',
     format_dd_mm_yyyy: 'jj/mm/aaaa',
+    format_hhmm: '00h00',
     lastActivity: 'dernière activité %{date}',
     sentAt: 'envoyé le %{date}'
   },
@@ -579,6 +584,9 @@ export default {
       gymOpener: 'Ouvreurs, Ouvreuses',
       gymRoles: 'Peut gérer',
       gymAddOpener: 'Ajouter un·e ouvreur·euse',
+      contestRankingTypes: 'Type de classement',
+      contestCategoryTypes: 'Type de catégorisation',
+      contestCategoryObligation: "Type de restriction à l'inscription",
       colorSystem: {
         chooseOrder: 'Choisissez un ordre de couleur',
         usage: 'Déjà utilisé %{count} fois ici',
@@ -1154,6 +1162,7 @@ export default {
       various: 'Divers',
       team: "L'équipe",
       openers: 'Les ouvreurs et ouvreuses',
+      contests: 'Contests',
       home: 'Dashboard',
       parameters: 'Paramètres',
       difficultySystem: 'Système de difficulté',
@@ -1300,6 +1309,12 @@ export default {
         grade: 'Exemple: 6a, 7a, 7c+, etc.',
         points: 'Exemple: 500, 50, 200, etc.'
       }
+    },
+    contest: {
+      toleranceExplain: 'Combien de minute voulez-vous laisser à vos grimpeurs et grimpeuses pour finir de renseigner leur réalisation après la fin du contest',
+      capacityExplain: "Indiquez le nombre maximum de compétiteurs et compétitrices.<br>Laissez vide s'il n'y a pas de maximum.<br>Vous pourrez choisir une capacité total par catégorie ensuite.",
+      subscriptionOpenExplain: "Date à partir de laquelle le contest est publique et que les compétiteurs peuvent s'inscrire",
+      startDateExplain: 'Date de la premier étape du contest'
     },
     climbingSession: {
       list: 'Mes sessions',
@@ -1854,7 +1869,9 @@ export default {
       confirm: 'doit être identique',
       un_destroyable: "L'élément ne peut être supprimé",
       cannot_be_changed: 'ne peut pas être changé(e)',
-      you_must_be_major: 'Vous devez être majeur'
+      you_must_be_major: 'Vous devez être majeur',
+      before_start_date: 'doit être avant la date de début',
+      before_end_date: 'doit être avant la date de fin'
     }
   },
   models: {
@@ -2196,6 +2213,87 @@ export default {
       manage_gym: 'La salle',
       manage_opener: 'Les ouvreurs·euses'
     },
+    contest: {
+      name: 'Titre',
+      description: 'Présentation',
+      start_date: 'Date de début du contest',
+      end_date: 'Date de fin du contest',
+      subscription_start_date: 'Ouverture des inscriptions',
+      subscription_end_date: 'Fermeture des inscriptions',
+      total_capacity: 'Capacité total max',
+      ranking_type: 'Type de classement',
+      categorization_type: 'Type de catégorisation'
+    },
+    contestCategoryType: {
+      official_under_age: "Catégorisation officielle par l'âge (U14, U18, senior, etc.)",
+      custom: 'Catégorisation personnalisée (loisir, expert, etc.)'
+    },
+    contestCategoryObligationType: {
+      no: 'Pas de restriction',
+      u10: 'U10',
+      u12: 'U12',
+      u14: 'U14',
+      u16: 'U16',
+      u18: 'U18',
+      u20: 'U20',
+      senior: 'Sénior',
+      veteran_1: 'Véteran 1',
+      veteran_2: 'Véteran 2',
+      between_age: 'Age minium / maximum personalisé'
+    },
+    contestRankingType: {
+      division: "1000pt divisés par le nombre d'ascension",
+      attempts_to_top: '10pt - 1pt par essais',
+      zone_and_top_realised: 'Zone et top fait',
+      attempts_to_one_zone_and_top: "Nombre d'essais pour faire la zone et le top",
+      attempts_to_two_zones_and_top: "Nombre d'essais pour faire la 1er zone, 2ème zones et le top",
+      highest_hold: 'Prise la plus haute atteinte'
+    },
+    contestCategory: {
+      name: 'Nom',
+      description: 'Description',
+      descriptionPlaceholder: 'Aidez vos futures participants à choisir leur catégorie avec une courte description (optionnel)',
+      unisex: 'Mixte',
+      capacity: 'Capacité max',
+      registrationObligation: "Type de limitation par l'âge",
+      minAge: 'Âge minimum',
+      maxAge: 'Âge maximum',
+      auto_distribute: 'Auto-répartir les participants dans les vagues',
+      waveable: 'Répartir cette catégorie en plusieurs vague',
+      order: "Ordre d'affichage"
+    },
+    contestStage: {
+      name: 'Nom',
+      stage_order: 'Ordre'
+    },
+    contestStageStep: {
+      name: 'Nom',
+      step_order: 'Ordre',
+      ranking_type: 'Type de classement',
+      self_reporting: 'Les participants renseignent eux-même leur réalisation',
+      default_participants_for_next_step: 'Nombre de participant par défaut à passer à la prochaine étape'
+    },
+    contestRouteGroup: {
+      genre_type: 'Ces lignes sont pour ?',
+      waveable: 'Diviser cette étape en vague',
+      route_group_date: "Date de l'étape",
+      start_time: "Début de l'étape",
+      end_time: "Fin de l'étape",
+      number_participants_for_next_step: 'Nombre de participant à passer à la prochaine étape',
+      number_of_routes: 'Nombre de %{style}s à faire'
+    },
+    contestRoute: {
+      number: 'Numéro'
+    },
+    contestParticipant: {
+      first_name: 'Prénom',
+      last_name: 'Nom de famille',
+      affiliation: "Club ou salle d'escalade",
+      email: 'Email'
+    },
+    contestWave: {
+      name: 'Nom'
+    },
     climbs: {
       sport_climbing: 'Voie',
       bouldering: 'Bloc',
@@ -2206,7 +2304,8 @@ export default {
       via_ferrata: 'Via ferrata',
       fun_climbing: 'Fun Climbing',
       training_space: 'Espace entrainement',
-      pan: 'Pan'
+      pan: 'Pan',
+      speed_climbing: 'Vitesse'
     },
     climbsShort: {
       sport_climbing: 'V',
@@ -2264,6 +2363,7 @@ export default {
       url: 'Lien de la vidéo'
     },
     genres: {
+      unisex: 'Mixte',
       undefined: 'Indéfini',
       male: 'Homme',
       female: 'Femme',

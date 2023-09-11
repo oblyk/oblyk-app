@@ -60,6 +60,12 @@ export const DateHelpers = {
 
     isoDate (date) {
       return DateTime.fromISO(date).toISO()
+    },
+
+    ageAt (dateOfBirth, ageAt) {
+      ageAt = ageAt || new Date()
+      const diff = ageAt.getTime() - dateOfBirth.getTime()
+      return Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25))
     }
   }
 }
