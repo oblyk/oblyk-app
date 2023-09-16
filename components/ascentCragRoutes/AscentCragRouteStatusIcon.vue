@@ -63,13 +63,15 @@ export default {
 
   methods: {
     findAscentInLogBook () {
+      this.ascentInLogBook = null
       for (const ascent of (this.cragRouteAscents || [])) {
         if (this.cragRoute.id === ascent.crag_route_id) {
           this.ascentInLogBook = ascent
-          return
+          if (!(ascent.ascent_status === 'project') && !(ascent.ascent_status === 'tick_list')) {
+            return
+          }
         }
       }
-      this.ascentInLogBook = null
     },
 
     status () {
