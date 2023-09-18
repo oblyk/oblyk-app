@@ -304,7 +304,11 @@
 
         <!-- Layer Selector -->
         <l-control position="topright">
-          <leaflet-layer-selector v-model="layerIndex" map-style="outdoor" />
+          <leaflet-layer-selector
+            ref="leafletLayerSelector"
+            v-model="layerIndex"
+            :layers="layers"
+          />
         </l-control>
 
         <l-tile-layer
@@ -403,16 +407,19 @@ export default {
       currentEditableObject: null,
       layers: [
         {
+          title: 'reliefMapbox',
           name: 'Mapbox Outdoor',
           url: `https://api.mapbox.com/styles/v1/${process.env.VUE_APP_MAPBOX_TERRAIN_STYLE}/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.VUE_APP_MAPBOX_TOKEN}`,
           attribution: '&copy; <a href="https://www.mapbox.com/about/maps/">Mapbox</a> &copy; <a href="https://www.openstreetmap.org/about/">Open Street Map</a> contributors'
         },
         {
+          title: 'satellite',
           name: 'Eseri Satelite',
           url: `https://api.mapbox.com/styles/v1/${process.env.VUE_APP_MAPBOX_SATELLITE_STYLE}/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.VUE_APP_MAPBOX_TOKEN}`,
           attribution: '&copy; <a href="https://www.mapbox.com/about/maps/">Mapbox</a> &copy; <a href="https://www.openstreetmap.org/about/">Open Street Map</a> contributors'
         },
         {
+          title: 'detailedRelief',
           name: 'CyclOSM',
           url: 'https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png',
           attribution: '&copy; <a href="https://www.cyclosm.org">CyclOSM</a> &copy; <a href="https://www.openstreetmap.org/about/">Open Street Map</a> contributors'
