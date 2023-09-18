@@ -902,6 +902,7 @@ export default {
       lines: 'Lignes',
       orientations: 'Orientations',
       approachTimeTitle: "Minutes de marche d'approche",
+      favorableSeasonsTitle: 'Saisons favorables',
       distanceTitle: 'Distance du lieux cherché',
       season: 'Saison favorables'
     },
