@@ -22,6 +22,12 @@
           outlined
         />
       </v-col>
+      <v-col>
+        <v-checkbox
+          v-model="onlyLeadClimbs"
+          :label="$t('models.ascentCragRoute.only_lead_climbs')"
+        />
+      </v-col>
     </v-row>
 
     <!-- Send list -->
@@ -161,7 +167,9 @@ export default {
       promise
         .then((resp) => {
           for (const route of resp.data) {
-            this.cragRoutes.push(new CragRoute({ attributes: route }))
+            if (this.onlyLeadClimbs && (route.ropingStatus === 'lead_climb')) {
+              this.cragRoutes.push(new CragRoute({ attributes: route }))
+            }
           }
           this.successLoadingMore(resp)
         })
