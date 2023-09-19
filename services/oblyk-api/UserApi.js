@@ -116,16 +116,20 @@ class UserApi extends BaseApi {
     })
   }
 
-  outdoorClimbTypesChart (userName) {
+  outdoorClimbTypesChart (userName, onlyLeadClimbs = true) {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/users/${userName}/outdoor_climb_types_chart.json`,
       headers: {
         Authorization: this.authToken(),
         HttpApiAccessToken: this.apiAccessToken
+      },
+      params: {
+        onlyLeadClimbs
       }
     })
   }
+  // TODO modifier le back mais je ne maitrise pas le Ruby
 
   ascendedCragRoutes (userName, order = 'difficulty', climbingType = 'all', page = 1) {
     return this.axios.request({

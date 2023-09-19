@@ -64,6 +64,10 @@
                 :figures="figures"
                 :user="user"
               />
+              <v-checkbox
+                v-model="onlyLeadClimbs"
+                :label="$t('models.ascentCragRoute.only_lead_climbs')"
+              />
               <div
                 v-if="!loadingFigures && figures.ascents === 0"
                 class="py-5"
@@ -81,7 +85,7 @@
         class="mt-3"
       >
         <v-card-text>
-          <log-book-list :user="user" />
+          <log-book-list :user="user" :only-lead-climbs="onlyLeadClimbs" />
         </v-card-text>
         <client-only>
           <crag-route-drawer />
@@ -125,6 +129,7 @@ export default {
     return {
       loadingFigures: true,
       figures: {},
+      onlyLeadClimbs: true,
 
       chartsPart: false,
 
@@ -220,7 +225,7 @@ export default {
     getClimbingTypeChart () {
       this.loadingClimbingTypeChart = true
       new UserApi(this.$axios, this.$auth)
-        .outdoorClimbTypesChart(this.user.uuid)
+        .outdoorClimbTypesChart(this.user.uuid, this.onlyLeadClimbs)
         .then((resp) => {
           this.climbingTypeData = resp.data
         })

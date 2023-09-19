@@ -22,12 +22,6 @@
           outlined
         />
       </v-col>
-      <v-col>
-        <v-checkbox
-          v-model="onlyLeadClimbs"
-          :label="$t('models.ascentCragRoute.only_lead_climbs')"
-        />
-      </v-col>
     </v-row>
 
     <!-- Send list -->
@@ -88,6 +82,10 @@ export default {
     user: {
       type: Object,
       default: null
+    },
+    onlyLeadClimbs: {
+      type: Boolean,
+      default: true
     }
   },
 
