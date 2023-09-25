@@ -4,13 +4,23 @@
     <v-row class="mb-10">
       <v-col>
         <client-only>
+          <v-sheet class="pt-2 pb-1 pr-3 pl-2 rounded mb-2">
+            <v-text-field
+              v-model="search"
+              :label="$t('actions.search')"
+              hide-details
+              dense
+              :prepend-icon="mdiMagnify()"
+            />
+          </v-sheet>
           <v-data-table
             v-model="routeSelected"
             :headers="tableHeaders"
             :items="tableRoutes"
-            :items-per-page="-1"
+            :items-per-page="15"
             :loading="loadingRoutes"
             item-key="id"
+            :search="search"
             :show-select="canManageOpening"
           >
             <!-- Header slot -->
@@ -76,7 +86,7 @@
                 @click="routesBulkSelector(item.id, 'openedAt')"
               >
                 <v-icon small>
-                  {{ mdiCheckAll() }}
+                  {{ mdiCheckboxMultipleOutline() }}
                 </v-icon>
               </v-btn>
               {{ humanizeDate(item.openedAt, 'd LLL yy') }}
@@ -94,7 +104,7 @@
                 @click="routesBulkSelector(item.id, 'anchorNumber')"
               >
                 <v-icon small>
-                  {{ mdiCheckAll() }}
+                  {{ mdiCheckboxMultipleOutline() }}
                 </v-icon>
               </v-btn>
               {{ item.anchorNumber }}
@@ -112,7 +122,7 @@
                 @click="routesBulkSelector(item.id, 'sector')"
               >
                 <v-icon small>
-                  {{ mdiCheckAll() }}
+                  {{ mdiCheckboxMultipleOutline() }}
                 </v-icon>
               </v-btn>
               {{ item.sector }}
@@ -287,12 +297,13 @@ import {
   mdiForwardburger,
   mdiPencil,
   mdiPrinter,
-  mdiCheckAll,
+  mdiCheckboxMultipleOutline,
   mdiTableArrowRight,
   mdiBookCheckOutline,
   mdiHeartOutline,
   mdiGauge,
-  mdiArrowRightThin
+  mdiArrowRightThin,
+  mdiMagnify
 } from '@mdi/js'
 import { DateHelpers } from '@/mixins/DateHelpers'
 import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
@@ -327,7 +338,8 @@ export default {
       ascentsDialog: false,
       loadingAscents: true,
       routeAscents: [],
-      tableRoutes: []
+      tableRoutes: [],
+      search: null
     }
   },
 
@@ -675,12 +687,13 @@ export default {
     mdiPencil () { return mdiPencil },
     mdiPrinter () { return mdiPrinter },
     mdiDotsVertical () { return mdiDotsVertical },
-    mdiCheckAll () { return mdiCheckAll },
+    mdiCheckboxMultipleOutline () { return mdiCheckboxMultipleOutline },
     mdiTableArrowRight () { return mdiTableArrowRight },
     mdiBookCheckOutline () { return mdiBookCheckOutline },
     mdiHeartOutline () { return mdiHeartOutline },
     mdiGauge () { return mdiGauge },
-    mdiArrowRightThin () { return mdiArrowRightThin }
+    mdiArrowRightThin () { return mdiArrowRightThin },
+    mdiMagnify () { return mdiMagnify }
   }
 }
 </script>
