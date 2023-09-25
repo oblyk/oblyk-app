@@ -305,9 +305,9 @@
         <!-- Layer Selector -->
         <l-control position="topright">
           <leaflet-layer-selector
-            ref="leafletLayerSelector"
             v-model="layerIndex"
             :layers="layers"
+            map-style="outdoor"
           />
         </l-control>
 
