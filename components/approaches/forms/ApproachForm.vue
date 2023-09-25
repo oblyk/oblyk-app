@@ -42,7 +42,11 @@
 
             <!-- Layer Selector -->
             <l-control position="topright">
-              <leaflet-layer-selector v-model="layerIndex" map-style="outdoor" />
+              <leaflet-layer-selector
+                ref="leafletLayerSelector"
+                v-model="layerIndex"
+                :layers="layers"
+              />
             </l-control>
 
             <l-tile-layer
@@ -147,16 +151,19 @@ export default {
       layerIndex: 0,
       layers: [
         {
+          title: 'relief',
           name: 'Eseri Topo',
           url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}',
           attribution: '&copy; <a href="https://www.esrifrance.fr/">Esri</a> &copy; <a href="https://www.openstreetmap.org/about/">Open Street Map</a> contributors'
         },
         {
+          title: 'satellite',
           name: 'Eseri Satelite',
           url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
           attribution: '&copy; <a href="https://www.esrifrance.fr/">Esri</a> &copy; <a href="https://www.openstreetmap.org/about/">Open Street Map</a> contributors'
         },
         {
+          title: 'detailedRelief',
           name: 'CyclOSM',
           url: 'https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png',
           attribution: '&copy; <a href="https://www.cyclosm.org">CyclOSM</a> &copy; <a href="https://www.openstreetmap.org/about/">Open Street Map</a> contributors'
