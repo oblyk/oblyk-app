@@ -161,7 +161,7 @@ export default {
     },
 
     guideBookObject (guideBook) {
-      return GuideBookPaper({ attributes: guideBook })
+      return new GuideBookPaper({ attributes: guideBook })
     }
   }
 }
