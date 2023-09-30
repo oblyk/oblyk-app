@@ -67,7 +67,7 @@ class LogBookOutdoorApi extends BaseApi {
     })
   }
 
-  ascendedCragRoutes (order = 'difficulty', climbingType = 'all', page = 1) {
+  ascendedCragRoutes (order = 'difficulty', climbingType = 'all', page = 1, only_lead_climbs = false) {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/current_users/ascended_crag_routes.json`,
@@ -76,6 +76,7 @@ class LogBookOutdoorApi extends BaseApi {
         HttpApiAccessToken: this.apiAccessToken
       },
       params: {
+        only_lead_climbs,
         climbing_type: climbingType,
         order,
         page

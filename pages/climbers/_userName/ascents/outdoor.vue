@@ -64,10 +64,6 @@
                 :figures="figures"
                 :user="user"
               />
-              <v-checkbox
-                v-model="onlyLeadClimbs"
-                :label="$t('models.ascentCragRoute.only_lead_climbs')"
-              />
               <div
                 v-if="!loadingFigures && figures.ascents === 0"
                 class="py-5"
@@ -78,6 +74,8 @@
               </div>
             </v-col>
           </v-row>
+          <v-row>
+          </v-row>
         </v-card-text>
       </v-card>
       <v-card
@@ -85,7 +83,7 @@
         class="mt-3"
       >
         <v-card-text>
-          <log-book-list :user="user" :only-lead-climbs="onlyLeadClimbs" />
+          <log-book-list :user="user" :only-lead-climbs="true" />
         </v-card-text>
         <client-only>
           <crag-route-drawer />

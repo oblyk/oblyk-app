@@ -38,6 +38,12 @@
             />
           </v-col>
         </v-row>
+        <v-row>
+          <v-checkbox
+            v-model="onlyLeadClimbs"
+            :label="$t('models.ascentCragRoute.only_lead_climbs')"
+          />
+        </v-row>
       </v-card-text>
     </v-card>
     <v-card
@@ -46,7 +52,7 @@
     >
       <v-card-text>
         <!-- Send list -->
-        <log-book-list />
+        <log-book-list :only-lead-climbs="onlyLeadClimbs" />
       </v-card-text>
     </v-card>
     <client-only>
@@ -86,6 +92,7 @@ export default {
   data () {
     return {
       loadTheRest: false,
+      onlyLeadClimbs: false,
 
       loadingFigures: true,
       figures: {},
@@ -117,6 +124,14 @@ export default {
 
   mounted () {
     this.getFigures()
+    this.onlyLeadClimbs = JSON.parse(localStorage.getItem('onlyLeadClimbs')) || 'false'
+  },
+
+  watch: {
+    onlyLeadClimbs () {
+      localStorage.setItem('onlyLeadClimbs', JSON.stringify(this.onlyLeadClimbs))
+      this.getFigures()
+    }
   },
 
   methods: {

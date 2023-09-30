@@ -85,7 +85,7 @@ export default {
     },
     onlyLeadClimbs: {
       type: Boolean,
-      default: true
+      default: false
     }
   },
 
@@ -124,7 +124,12 @@ export default {
         this.ascendedCragRoutes()
       }
     },
-
+    onlyLeadClimbs () {
+      if (!this.firstLoading) {
+        this.resetAscents()
+        this.ascendedCragRoutes()
+      }
+    },
     climbingType () {
       if (!this.firstLoading) {
         this.resetAscents()
@@ -157,7 +162,8 @@ export default {
         promise = new LogBookOutdoorApi(this.$axios, this.$auth).ascendedCragRoutes(
           this.order,
           this.climbingType,
-          this.page
+          this.page,
+          this.onlyLeadClimbs
         )
       }
 
@@ -165,9 +171,7 @@ export default {
       promise
         .then((resp) => {
           for (const route of resp.data) {
-            if (this.onlyLeadClimbs && (route.ropingStatus === 'lead_climb')) {
-              this.cragRoutes.push(new CragRoute({ attributes: route }))
-            }
+            this.cragRoutes.push(new CragRoute({ attributes: route }))
           }
           this.successLoadingMore(resp)
         })
