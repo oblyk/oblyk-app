@@ -74,8 +74,6 @@
               </div>
             </v-col>
           </v-row>
-          <v-row>
-          </v-row>
         </v-card-text>
       </v-card>
       <v-card
@@ -83,7 +81,7 @@
         class="mt-3"
       >
         <v-card-text>
-          <log-book-list :user="user" :only-lead-climbs="true" />
+          <log-book-list :user="user" />
         </v-card-text>
         <client-only>
           <crag-route-drawer />
@@ -127,7 +125,6 @@ export default {
     return {
       loadingFigures: true,
       figures: {},
-      onlyLeadClimbs: true,
 
       chartsPart: false,
 
@@ -223,7 +220,7 @@ export default {
     getClimbingTypeChart () {
       this.loadingClimbingTypeChart = true
       new UserApi(this.$axios, this.$auth)
-        .outdoorClimbTypesChart(this.user.uuid, this.onlyLeadClimbs)
+        .outdoorClimbTypesChart(this.user.uuid)
         .then((resp) => {
           this.climbingTypeData = resp.data
         })

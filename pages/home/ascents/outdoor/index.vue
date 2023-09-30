@@ -38,12 +38,6 @@
             />
           </v-col>
         </v-row>
-        <v-row>
-          <v-checkbox
-            v-model="onlyLeadClimbs"
-            :label="$t('models.ascentCragRoute.only_lead_climbs')"
-          />
-        </v-row>
       </v-card-text>
     </v-card>
     <v-card
@@ -51,6 +45,12 @@
       class="mt-3"
     >
       <v-card-text>
+        <v-row>
+          <v-checkbox
+              v-model="onlyLeadClimbs"
+              :label="$t('models.ascentCragRoute.only_lead_climbs')"
+          />
+        </v-row>
         <!-- Send list -->
         <log-book-list :only-lead-climbs="onlyLeadClimbs" />
       </v-card-text>
@@ -122,11 +122,6 @@ export default {
     }
   },
 
-  mounted () {
-    this.getFigures()
-    this.onlyLeadClimbs = JSON.parse(localStorage.getItem('onlyLeadClimbs')) || 'false'
-  },
-
   watch: {
     onlyLeadClimbs () {
       localStorage.setItem('onlyLeadClimbs', JSON.stringify(this.onlyLeadClimbs))
@@ -134,11 +129,16 @@ export default {
     }
   },
 
+  mounted () {
+    this.onlyLeadClimbs = JSON.parse(localStorage.getItem('onlyLeadClimbs')) || false
+    this.getFigures()
+  },
+
   methods: {
     getFigures () {
       this.loadingFigures = true
       new LogBookOutdoorApi(this.$axios, this.$auth)
-        .figures()
+        .figures(this.onlyLeadClimbs)
         .then((resp) => {
           this.figures = resp.data
           if (this.figures.ascents > 0) {
@@ -159,7 +159,7 @@ export default {
     getClimbingTypeChart () {
       this.loadingClimbingTypeChart = true
       new LogBookOutdoorApi(this.$axios, this.$auth)
-        .climbingTypeChart()
+        .climbingTypeChart(this.onlyLeadClimbs)
         .then((resp) => {
           this.climbingTypeData = resp.data
         })
@@ -171,7 +171,7 @@ export default {
     getGradeChart () {
       this.loadingGradeChart = true
       new LogBookOutdoorApi(this.$axios, this.$auth)
-        .gradeChart()
+        .gradeChart(this.onlyLeadClimbs)
         .then((resp) => {
           this.gradeData = resp.data
         })
