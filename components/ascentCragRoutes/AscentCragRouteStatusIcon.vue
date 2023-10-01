@@ -3,7 +3,7 @@
     v-if="ascentInLogBook || inMyTickList"
     small
     :title="title()"
-    color="amber darken-1"
+    :color="color()"
   >
     {{ icon() }}
   </v-icon>
@@ -22,6 +22,10 @@ export default {
       required: true
     },
     ascentStatus: {
+      type: String,
+      default: null
+    },
+    ascentRopeStatus: {
       type: String,
       default: null
     }
@@ -67,7 +71,8 @@ export default {
       for (const ascent of (this.cragRouteAscents || [])) {
         if (this.cragRoute.id === ascent.crag_route_id) {
           this.ascentInLogBook = ascent
-          if (!(ascent.ascent_status === 'project') && !(ascent.ascent_status === 'tick_list')) {
+          if (!(ascent.ascent_status === 'project') && !(ascent.ascent_status === 'tick_list') &&
+            (ascent.roping_status.includes('lead'))) {
             return
           }
         }
@@ -77,6 +82,10 @@ export default {
     status () {
       const tickStatus = this.inMyTickList ? 'tick_list' : null
       return this.ascentStatus || (this.ascentInLogBook || {}).ascent_status || tickStatus
+    },
+
+    ropingStatus () {
+      return this.ascentRopeStatus || (this.ascentInLogBook || {}).roping_status
     },
 
     icon () {
@@ -94,6 +103,14 @@ export default {
         return mdiAutorenew
       } else if (this.status() === 'tick_list') {
         return mdiCropFree
+      }
+    },
+
+    color () {
+      if (this.ropingStatus() != null && this.ropingStatus().includes('lead')) {
+        return 'amber darken-1'
+      } else {
+        return 'brown darken-1'
       }
     },
 
