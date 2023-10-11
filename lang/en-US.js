@@ -1871,7 +1871,8 @@ export default {
       cannot_be_changed: 'cannot be changed',
       you_must_be_major: 'you must be over 18',
       before_start_date: 'must be after start date',
-      before_end_date: 'must be after end date'
+      before_end_date: 'must be after end date',
+      you_must_choose_one: 'you must choose one'
     }
   },
   models: {
@@ -2282,7 +2283,8 @@ export default {
       start_time: 'Step start time',
       end_time: 'Step end time',
       number_participants_for_next_step: 'Number of participants moving on to the next stage',
-      number_of_routes: 'Number of %{style}s'
+      number_of_routes: 'Number of %{style}s',
+      contest_categories: 'Categories'
     },
     contestRoute: {
       number: 'Number'
