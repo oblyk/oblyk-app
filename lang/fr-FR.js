@@ -1872,7 +1872,8 @@ export default {
       you_must_be_major: 'Vous devez être majeur',
       before_start_date: 'doit être avant la date de début',
       before_end_date: 'doit être avant la date de fin',
-      you_must_choose_one: 'vous devez en choisir au moins une'
+      you_must_choose_one: 'vous devez en choisir au moins une',
+      category_is_taken_in_this_step: "Une catégorie peut être présente qu'une fois par étape"
     }
   },
   models: {

@@ -1,8 +1,5 @@
 <template>
-  <div
-    class="text-right"
-    @click="addModal = true"
-  >
+  <div class="text-right">
     <v-btn
       text
       @click="addModal = true"

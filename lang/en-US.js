@@ -1872,7 +1872,8 @@ export default {
       you_must_be_major: 'you must be over 18',
       before_start_date: 'must be after start date',
       before_end_date: 'must be after end date',
-      you_must_choose_one: 'you must choose one'
+      you_must_choose_one: 'you must choose one',
+      category_is_taken_in_this_step: 'A category can only be present once per stage'
     }
   },
   models: {
