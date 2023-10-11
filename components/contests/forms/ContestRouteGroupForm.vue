@@ -47,17 +47,31 @@
         <v-checkbox
           v-model="data.contest_category_ids"
           hide-details
-          :label="category.name"
           :value="category.id"
           class="mr-2"
           type="time"
-        />
+          @change="checkDivisibleByWave"
+        >
+          <template #label>
+            {{ category.name }}
+            <v-icon
+              v-if="category.waveable"
+              right
+              small
+              color="blue darken-2"
+              title="Cette catégorie peut être divisé en vague"
+            >
+              {{ mdiWaves }}
+            </v-icon>
+          </template>
+        </v-checkbox>
       </div>
     </div>
 
     <v-checkbox
       v-if="waveableCategories"
       v-model="data.waveable"
+      :disabled="!waveDivisionEnabled"
       hide-details
       :label="$t('models.contestRouteGroup.waveable')"
     />
@@ -158,7 +172,9 @@
     />
   </v-form>
 </template>
+
 <script>
+import { mdiWaves } from '@mdi/js'
 import { FormHelpers } from '~/mixins/FormHelpers'
 import { DateHelpers } from '~/mixins/DateHelpers'
 import SubmitForm from '~/components/forms/SubmitForm'
@@ -205,6 +221,7 @@ export default {
     return {
       waves: [],
       categories: [],
+      waveDivisionEnabled: true,
       data: {
         id: this.contestRouteGroup?.id,
         number_of_routes: null,
@@ -221,7 +238,9 @@ export default {
         contest_stage_step_id: this.contestStageStep.id,
         contest_category_ids: this.contestRouteGroup?.contest_category_ids || [],
         contest_time_blocks_attributes: []
-      }
+      },
+
+      mdiWaves
     }
   },
 
@@ -271,6 +290,7 @@ export default {
     if (this.data.end_time) {
       this.data.end_time = this.humanizeDate(this.data.end_time, 'TIME_SIMPLE')
     }
+    this.checkDivisibleByWave()
   },
 
   methods: {
@@ -313,6 +333,21 @@ export default {
             this.categories.push(new ContestCategory({ attributes: category }))
           }
         })
+    },
+
+    checkDivisibleByWave () {
+      this.data.waveable = false
+      this.waveDivisionEnabled = false
+      let isWaveable = true
+      for (const category of this.categories) {
+        if (this.data.contest_category_ids.includes(category.id) && !category.waveable) {
+          isWaveable = false
+        }
+      }
+      if (!isWaveable) {
+        this.data.waveable = false
+      }
+      this.waveDivisionEnabled = isWaveable
     }
   }
 }
