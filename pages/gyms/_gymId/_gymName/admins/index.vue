@@ -68,7 +68,13 @@
         <v-col cols="12" md="6" lg="4" class="pa-2">
           <gym-admin-openers-figures :gym="gym" />
         </v-col>
-        <v-col cols="12" md="6" lg="4" class="pa-2">
+        <v-col
+          v-if="gym.gym_options.find((option) => { return option.option_type === 'contest' && option.usable } )"
+          cols="12"
+          md="6"
+          lg="4"
+          class="pa-2"
+        >
           <gym-admin-contests-figures :gym="gym" />
         </v-col>
       </v-row>
