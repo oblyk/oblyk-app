@@ -76,8 +76,8 @@ export default {
       },
       climbs: [
         { text: this.$t('models.climbs.sport_climbing'), value: 'sport_climbing' },
-        { text: this.$t('models.climbs.bouldering'), value: 'bouldering' },
-        { text: this.$t('models.climbs.speed_climbing'), value: 'speed_climbing' }
+        { text: this.$t('models.climbs.bouldering'), value: 'bouldering' }
+        // { text: this.$t('models.climbs.speed_climbing'), value: 'speed_climbing' }
       ]
     }
   },
