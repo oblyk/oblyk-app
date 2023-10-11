@@ -86,6 +86,31 @@ export default {
       .finally(() => {
         this.loadingContest = false
       })
+  },
+
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: 'Les contests',
+        metaDescription: "Trouver et participer à un contest organiser par une salles d'escalade"
+      },
+      en: {
+        metaTitle: 'Opens',
+        metaDescription: 'Find and take part in a competition organised by a climbing gym'
+      }
+    }
+  },
+
+  head () {
+    return {
+      title: this.$t('metaTitle'),
+      meta: [
+        { hid: 'description', name: 'description', content: this.$t('metaDescription') },
+        { hid: 'og:title', property: 'og:title', content: this.$t('metaTitle') },
+        { hid: 'og:description', property: 'og:description', content: this.$t('metaDescription') },
+        { hid: 'og:image', property: 'og:image', content: `${process.env.VUE_APP_OBLYK_APP_URL}/img/images/oblyk-og-image.jpg` }
+      ]
+    }
   }
 }
 </script>
