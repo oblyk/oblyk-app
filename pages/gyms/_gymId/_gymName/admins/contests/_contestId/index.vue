@@ -94,12 +94,6 @@
         <h2>
           Les épreuves
         </h2>
-        <v-spacer />
-        <v-btn icon>
-          <v-icon>
-            {{ mdiHelp }}
-          </v-icon>
-        </v-btn>
       </div>
       <div class="d-flex mt-2">
         <v-tabs
@@ -136,7 +130,7 @@
 </template>
 
 <script>
-import { mdiRefresh, mdiHelp } from '@mdi/js'
+import { mdiRefresh } from '@mdi/js'
 import { DateHelpers } from '~/mixins/DateHelpers'
 import ContestCategoryApi from '~/services/oblyk-api/ContestCategoryApi'
 import ContestCategory from '~/models/ContestCategory'
@@ -191,8 +185,7 @@ export default {
       routes: [],
       loadingRoutes: true,
 
-      mdiRefresh,
-      mdiHelp
+      mdiRefresh
     }
   },
 
