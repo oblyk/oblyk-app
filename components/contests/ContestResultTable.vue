@@ -7,6 +7,7 @@
       <div
         v-for="(category, categoryIndex) in results"
         :key="`category-${categoryIndex}`"
+        :style="printer ? 'page-break-after: always;' : null"
       >
         <p class="font-weight-bold mb-1 pl-1">
           {{ category.category_name }} <span v-if="!category.unisex"> - {{ $t(`models.genres.${category.genre}`).toLowerCase() }}</span>
@@ -104,6 +105,10 @@ export default {
     admin: {
       type: Boolean,
       required: false
+    },
+    printer: {
+      type: Boolean,
+      default: false
     }
   },
 
@@ -128,6 +133,11 @@ export default {
         )
         .then((resp) => {
           this.results = resp.data
+          if (this.printer) {
+            setTimeout(() => {
+              window.print()
+            }, 300)
+          }
         })
         .finally(() => {
           this.loadingResult = false
@@ -146,7 +156,7 @@ export default {
 
     classForNextStep (step) {
       const color = this.$vuetify.theme.dark ? 'darken-4' : 'lighten-5'
-      return step.rank && step.participant_for_next_step && step.index <= step.participant_for_next_step ? `blue-grey ${color} d-inline py-1 px-2 rounded-sm` : null
+      return step.rank && step.participant_for_next_step && step.index <= step.participant_for_next_step && !this.printer ? `blue-grey ${color} d-inline py-1 px-2 rounded-sm` : null
     }
   }
 }
