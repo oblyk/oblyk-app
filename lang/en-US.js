@@ -2220,11 +2220,9 @@ export default {
       description: 'Presentation',
       start_date: 'Contest start date',
       end_date: 'Contest end date',
-      start_time: 'Contest start time',
-      end_time: 'Contest end time',
       subscription_start_date: 'Registration opens',
+      subscription_end_date: 'Registration end',
       total_capacity: 'Max total capacity',
-      ascent_log_tolerance: 'Time to enter achievements',
       ranking_type: 'Raking type',
       categorization_type: 'Categorization type'
     },
