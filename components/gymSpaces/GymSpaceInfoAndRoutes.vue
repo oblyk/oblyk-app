@@ -72,6 +72,16 @@
         class="mt-4"
       />
 
+      <div
+        v-if="gym.upcoming_contests.length > 0"
+        class="mt-4"
+      >
+        <contest-up-coming
+          :gym="gym"
+          class="mt-2 mb-3"
+        />
+      </div>
+
       <!-- Route list -->
       <v-sheet
         class="pa-4 mt-4 blur-card"
@@ -116,6 +126,7 @@ import GymSpaceSelector from '@/components/gymSpaces/GymSpaceSelector'
 import GymSpaceActionMenu from '@/components/gymSpaces/GymSpaceActionMenu'
 import GymSpaceRouteList from '@/components/gymRoutes/GymSpaceRouteList'
 import GymGoToRanking from '~/components/gyms/GymGoToRanking'
+import ContestUpComing from '~/components/gyms/ContestUpComing.vue'
 const GymSectorEditingPlan = () => import('@/components/gymSectors/GymSectorEditingPlan')
 const GymSpaceEditingSectorsColor = () => import('~/components/gymSpaces/GymSpaceEditingSectorsColor')
 const MarkdownText = () => import('@/components/ui/MarkdownText')
@@ -123,6 +134,7 @@ const MarkdownText = () => import('@/components/ui/MarkdownText')
 export default {
   name: 'GymSpaceInfoAndRoutes',
   components: {
+    ContestUpComing,
     GymSpaceEditingSectorsColor,
     GymGoToRanking,
     MarkdownText,

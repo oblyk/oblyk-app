@@ -77,11 +77,6 @@
           </v-img>
         </v-card>
 
-        <gym-go-to-ranking
-          :gym="gym"
-          class="mb-4"
-        />
-
         <!-- Space selector in mobile interface -->
         <v-sheet
           v-if="$vuetify.breakpoint.mobile"
@@ -92,6 +87,18 @@
             :gym="gym"
           />
         </v-sheet>
+
+        <gym-go-to-ranking
+          :gym="gym"
+          class="mb-4"
+        />
+
+        <div v-if="$vuetify.breakpoint.mobile && gym.upcoming_contests.length > 0">
+          <contest-up-coming
+            :gym="gym"
+            class="mt-2 mb-3"
+          />
+        </div>
 
         <!-- Route list -->
         <v-sheet class="rounded px-4 pt-2 pb-4 mt-2">
@@ -145,6 +152,11 @@
           v-show="!(loadingGymRoute || gymRoute)"
         >
           <gym-space-list :gym="gym" />
+          <contest-up-coming
+            v-if="gym.upcoming_contests.length > 0"
+            :gym="gym"
+            class="mt-5"
+          />
         </div>
       </v-col>
 
@@ -189,9 +201,11 @@ import GymRoute from '~/models/GymRoute'
 import GymRouteInfo from '~/components/gymRoutes/GymRouteInfo.vue'
 import SubscribeBtn from '~/components/forms/SubscribeBtn.vue'
 import GymGoToRanking from '~/components/gyms/GymGoToRanking.vue'
+import ContestUpComing from '~/components/gyms/ContestUpComing.vue'
 
 export default {
   components: {
+    ContestUpComing,
     GymGoToRanking,
     SubscribeBtn,
     GymRouteInfo,

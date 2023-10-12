@@ -4,7 +4,7 @@
       <v-icon left>
         {{ mdiText }}
       </v-icon>
-      Description
+      {{ $t('models.gym.description') }}
     </v-card-title>
     <v-card-text>
       <markdown-text
@@ -12,6 +12,28 @@
         :text="gym.description"
       />
     </v-card-text>
+    <div
+      v-if="gym.upcoming_contests.length > 0"
+      class="px-4"
+    >
+      <p class="font-weight-bold mb-0">
+        <v-icon
+          left
+          color="amber"
+        >
+          {{ mdiTrophy }}
+        </v-icon>
+        {{ $tc('components.gym.upcomingContests', gym.upcoming_contests.length, { count: gym.upcoming_contests.length }) }}
+      </p>
+      <v-list>
+        <contest-item-list
+          v-for="(contest, contestIndex) in gym.upcoming_contests"
+          :key="`contest-index-${contestIndex}`"
+          :contest="contestToObject(contest)"
+          class="rounded-sm border"
+        />
+      </v-list>
+    </div>
     <v-card-text>
       <v-chip
         v-for="climb in gym.climbingTypes"
@@ -52,13 +74,15 @@
 </template>
 
 <script>
-import { mdiText, mdiFlask } from '@mdi/js'
+import { mdiText, mdiFlask, mdiTrophy } from '@mdi/js'
+import ContestItemList from '~/components/contests/ContestItemList.vue'
+import Contest from '~/models/Contest'
 
 const MarkdownText = () => import('@/components/ui/MarkdownText')
 
 export default {
   name: 'GymDescription',
-  components: { MarkdownText },
+  components: { ContestItemList, MarkdownText },
   props: {
     gym: {
       type: Object,
@@ -69,7 +93,14 @@ export default {
   data () {
     return {
       mdiText,
-      mdiFlask
+      mdiFlask,
+      mdiTrophy
+    }
+  },
+
+  methods: {
+    contestToObject (contest) {
+      return new Contest({ attributes: contest })
     }
   }
 }

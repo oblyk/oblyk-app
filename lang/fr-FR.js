@@ -1142,7 +1142,8 @@ export default {
       gymAroundInCreate: 'Il y a une salle à moins de 1 km : | Il y a %{count} salles à moins de 1km :',
       doNotCreateADuplicate: 'Ne créer pas un doublon si un·e autre grimpeur·euse a déjà référencé cette salle !',
       spaces: 'Les espaces',
-      guidebook: 'Le topo'
+      guidebook: 'Le topo',
+      upcomingContests: 'Un contest est à venir ! | %{count} contests sont à venir'
     },
     gymRanking: {
       rank: 'Le classement',

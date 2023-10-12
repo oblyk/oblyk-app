@@ -1142,7 +1142,8 @@ export default {
       cragAroundInCreate: 'There are one gym within 1km: | There are %{count} gyms within 1km:',
       doNotCreateADuplicate: 'Do not create a duplicate if another climber has already referenced this gym!',
       spaces: 'Spaces',
-      guidebook: 'Routes list'
+      guidebook: 'Routes list',
+      upcomingContests: 'One contest coming soon ! | %{count} contests coming soon !'
     },
     gymRanking: {
       rank: 'Ranking',
