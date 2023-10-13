@@ -5,6 +5,17 @@
     </div>
     <div v-else>
       <div
+        v-if="admin"
+        class="text-right"
+      >
+        <v-btn
+          outlined
+          text
+        >
+          Afficher les cases à cocher d'inscriptions
+        </v-btn>
+      </div>
+      <div
         v-for="(category, categoryIndex) in results"
         :key="`category-${categoryIndex}`"
         :style="printer ? 'page-break-after: always;' : null"
@@ -68,6 +79,15 @@
                   :key="`step-${stepIndex}`"
                   class="text-center border-right"
                 >
+                  <v-checkbox
+                    v-if="showSubscribeCheckbox && step.step_order > 1"
+                    v-model="participantsStep[participant.participant_id][step.step_id]"
+                    color="primary"
+                    hide-details
+                    dense
+                    class="d-inline-block vertical-align-middle mt-n1"
+                    @click="subscribeParticipantOnStep(participant, step)"
+                  />
                   <div
                     :class="classForNextStep(step)"
                   >
@@ -93,6 +113,7 @@
 
 <script>
 import ContestApi from '~/services/oblyk-api/ContestApi'
+import ContestParticipantStepApi from '~/services/oblyk-api/ContestParticipantStepApi'
 
 export default {
   name: 'ContestResultTable',
@@ -109,13 +130,19 @@ export default {
     printer: {
       type: Boolean,
       default: false
+    },
+    showSubscribeCheckbox: {
+      type: Boolean,
+      default: false
     }
   },
 
   data () {
     return {
       loadingResult: true,
-      results: null
+      results: null,
+      participantsStep: null,
+      loadingSubscribe: false
     }
   },
 
@@ -133,6 +160,7 @@ export default {
         )
         .then((resp) => {
           this.results = resp.data
+          this.buildParticipantsStep()
           if (this.printer) {
             setTimeout(() => {
               window.print()
@@ -142,6 +170,20 @@ export default {
         .finally(() => {
           this.loadingResult = false
         })
+    },
+
+    buildParticipantsStep () {
+      this.participantsStep = {}
+      for (const category of this.results) {
+        for (const participant of category.participants) {
+          this.participantsStep[participant.participant_id] = {}
+          for (const stage of participant.stages) {
+            for (const step of stage.steps) {
+              this.participantsStep[participant.participant_id][step.step_id] = step.subscribe
+            }
+          }
+        }
+      }
     },
 
     details (step) {
@@ -156,7 +198,24 @@ export default {
 
     classForNextStep (step) {
       const color = this.$vuetify.theme.dark ? 'darken-4' : 'lighten-5'
-      return step.rank && step.participant_for_next_step && step.index <= step.participant_for_next_step && !this.printer ? `blue-grey ${color} d-inline py-1 px-2 rounded-sm` : null
+      return step.rank && step.participant_for_next_step && step.index <= step.participant_for_next_step && !this.printer ? `blue-grey ${color} d-inline py-1 px-2 rounded-sm` : 'd-inline'
+    },
+
+    subscribeParticipantOnStep (participant, step) {
+      const participantId = participant.participant_id
+      const stepId = step.step_id
+      this.loadingSubscribe = true
+      new ContestParticipantStepApi(this.$axios, this.$auth)
+        .subscribe({
+          gymId: this.contest.gym_id,
+          contestId: this.contest.id,
+          participantId,
+          stepId,
+          subscribe: this.participantsStep[participantId][stepId]
+        })
+        .finally(() => {
+          this.loadingSubscribe = false
+        })
     }
   }
 }

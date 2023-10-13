@@ -68,7 +68,7 @@
               <v-btn
                 outlined
                 text
-                @click="editModal = true"
+                @click="openEditModal()"
               >
                 {{ $t('actions.edit') }}
               </v-btn>
@@ -157,7 +157,10 @@
           </v-sheet>
         </v-col>
       </v-row>
-      <v-tabs class="rounded mt-2">
+      <v-tabs
+        id="contest-tabs"
+        class="rounded mt-2"
+      >
         <v-tab
           exact-path
           :to="contest.adminPath"
@@ -198,6 +201,7 @@
       <nuxt-child
         :key="$route.params.contestId"
         :contest="contest"
+        :edit-contest-modal="openEditModal"
       />
     </div>
   </v-container>
@@ -267,6 +271,10 @@ export default {
   methods: {
     successEdit () {
       window.location.reload()
+    },
+
+    openEditModal () {
+      this.editModal = true
     }
   }
 }

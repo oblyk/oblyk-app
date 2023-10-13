@@ -1,13 +1,16 @@
 <template>
   <v-btn
-    icon
+    :icon="!label"
     :small="small"
     :color="copyIconColors[iconStatus]"
+    :outline="outline"
+    :text="text"
     @click="copyToken"
   >
     <v-icon small>
       {{ copyIcons[iconStatus] }}
     </v-icon>
+    <span v-if="label" v-text="label" />
   </v-btn>
 </template>
 
@@ -22,6 +25,18 @@ export default {
       required: true
     },
     small: {
+      type: Boolean,
+      default: false
+    },
+    label: {
+      type: String,
+      default: null
+    },
+    outline: {
+      type: Boolean,
+      default: false
+    },
+    text: {
       type: Boolean,
       default: false
     }

@@ -1,60 +1,161 @@
 <template>
   <div class="mt-2">
     <spinner v-if="loadingTimeLine" />
-    <v-sheet
+    <v-timeline
       v-else
-      class="rounded pa-4"
+      dense
+      clipped
     >
-      <div
+      <v-timeline-item
         v-for="(time, timeIndex) in timeLine"
         :key="`time-index-${timeIndex}`"
-        class="mb-4"
+        small
       >
-        <p class="mb-0 font-weight-bold">
-          Le {{ humanizeDate(time.start_date) }} à {{ humanizeDate(time.start_time, 'TIME_SIMPLE') }}
-        </p>
-        <div
-          v-for="(event, eventIndex) in time.events"
-          :key="`event-index-${eventIndex}`"
-          class="pl-2"
-        >
-          <u>{{ event.step.name }}</u>
-          {{ $t(`models.climbs.${event.stage.climbing_type}`).toLowerCase() }} :
-          {{ event.categories.map((category) => category.name).join(', ') }}
-          <v-chip small>
-            <gender-icon :gender="event.genre_type" />
-            {{ $t(`models.genres.${event.genre_type}`) }}
-          </v-chip>
-          <v-chip
-            v-if="event.wave"
-            small
-            class="font-weight-bold"
-          >
-            <v-icon
-              small
-              left
+        <v-row>
+          <v-col cols="auto">
+            <p class="mb-0 font-weight-bold">
+              Le {{ humanizeDate(time.start_date) }}
+            </p>
+            <p
+              v-if="time.start_time"
+              class="mb-0"
             >
-              {{ mdiWaves }}
-            </v-icon>
-            {{ event.wave.name }}
-          </v-chip>
-          <cite class="ml-2">
-            fin <span v-if="event.end_date !== time.start_date">le {{ humanizeDate(event.end_date) }}</span> à {{ humanizeDate(event.end_time, 'TIME_SIMPLE') }}
-          </cite>
-        </div>
-      </div>
-    </v-sheet>
+              À {{ humanizeDate(time.start_time, 'TIME_SIMPLE').replace(':', 'h') }}
+            </p>
+          </v-col>
+          <v-col>
+            <v-sheet
+              v-for="(event, eventIndex) in time.events"
+              :key="`event-index-${eventIndex}`"
+              class="px-4 py-3 rounded-sm"
+            >
+              <!-- Subscription start -->
+              <div v-if="event.event_type === 'SubscriptionOpen'">
+                <p class="mb-0 font-weight-bold">
+                  Ouverture des inscriptions
+                </p>
+                <p class="mb-2">
+                  Fin des inscriptions le {{ humanizeDate(event.end_date) }}
+                </p>
+                <p class="mb-2">
+                  Vous pouvez partager le lien publique du contest à vos grimpeurs et grimpeuses.
+                </p>
+                <share-btn
+                  title="Partager la page publique"
+                  :url="contest.path"
+                  :icon="false"
+                />
+                <v-btn
+                  outlined
+                  text
+                  @click="editContestModal"
+                >
+                  Modifier
+                </v-btn>
+              </div>
+
+              <!-- Subscription start -->
+              <div v-if="event.event_type === 'ContestStart'">
+                <p class="font-weight-bold mb-0">
+                  Début du contest
+                </p>
+                <v-btn
+                  outlined
+                  text
+                  @click="editContestModal"
+                >
+                  {{ $t('actions.edit') }}
+                </v-btn>
+              </div>
+
+              <!-- Contest Step event -->
+              <div v-if="event.event_type === 'ContestStep'">
+                <p class="font-weight-bold mb-0">
+                  {{ event.step.name }} {{ $t(`models.climbs.${event.stage.climbing_type}`).toLowerCase() }}
+                </p>
+                <p class="mb-1">
+                  Catégorie(s) : {{ event.categories.map((category) => category.name).join(', ') }}
+                  <v-chip small>
+                    <gender-icon :gender="event.genre_type" />
+                    {{ $t(`models.genres.${event.genre_type}`) }}
+                  </v-chip>
+                  <v-chip
+                    v-if="event.wave"
+                    small
+                    class="font-weight-bold"
+                  >
+                    <v-icon
+                      color="blue darken-2"
+                      small
+                      left
+                    >
+                      {{ mdiWaves }}
+                    </v-icon>
+                    {{ event.wave.name }}
+                  </v-chip>
+                </p>
+                <p class="mb-0">
+                  Fin <span v-if="event.end_date !== time.start_date">le {{ humanizeDate(event.end_date) }}</span> à {{ humanizeDate(event.end_time, 'TIME_SIMPLE').replace(':', 'h') }}
+                </p>
+                <div
+                  v-if="event.step.step_order > 1"
+                  class="pt-2"
+                >
+                  <v-btn
+                    outlined
+                    text
+                    to="results?subscribe_mode=true"
+                  >
+                    <v-icon left>
+                      {{ mdiCheckboxMultipleOutline }}
+                    </v-icon>
+                    Gérer les participants aux {{ event.step.name }}
+                  </v-btn>
+                </div>
+              </div>
+
+              <!-- Subscription start -->
+              <div v-if="event.event_type === 'ContestEnd'">
+                <p class="font-weight-bold mb-0">
+                  Fin du contest
+                </p>
+                <v-btn
+                  outlined
+                  text
+                  :to="`/contests/${contest.gym_id}/${contest.id}/print-results`"
+                  target="_blank"
+                >
+                  <v-icon left>
+                    {{ mdiPrinter }}
+                  </v-icon>
+                  Imprimer les résultats
+                </v-btn>
+                <v-btn
+                  outlined
+                  text
+                  @click="editContestModal"
+                >
+                  {{ $t('actions.edit') }}
+                </v-btn>
+              </div>
+            </v-sheet>
+          </v-col>
+        </v-row>
+      </v-timeline-item>
+    </v-timeline>
   </div>
 </template>
+
 <script>
-import { mdiWaves } from '@mdi/js'
+import { mdiWaves, mdiPrinter, mdiCheckboxMultipleOutline } from '@mdi/js'
 import { DateHelpers } from '~/mixins/DateHelpers'
 import Spinner from '~/components/layouts/Spiner'
 import ContestApi from '~/services/oblyk-api/ContestApi'
 import GenderIcon from '~/components/ui/GenderIcon'
+import ShareBtn from '~/components/ui/ShareBtn'
 
 export default {
-  components: { GenderIcon, Spinner },
+  components: { ShareBtn, GenderIcon, Spinner },
   meta: { orphanRoute: true },
   mixins: [DateHelpers],
 
@@ -62,6 +163,10 @@ export default {
     contest: {
       type: Object,
       required: true
+    },
+    editContestModal: {
+      type: Function,
+      default: null
     }
   },
 
@@ -70,7 +175,9 @@ export default {
       loadingTimeLine: true,
       timeLine: null,
 
-      mdiWaves
+      mdiWaves,
+      mdiPrinter,
+      mdiCheckboxMultipleOutline
     }
   },
 
