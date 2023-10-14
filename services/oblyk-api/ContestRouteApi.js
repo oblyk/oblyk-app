@@ -116,5 +116,16 @@ class ContestRouteApi extends BaseApi {
       }
     })
   }
+
+  deletePicture (gymId, contestId, routeId) {
+    return this.axios.request({
+      method: 'DELETE',
+      url: `${this.baseUrl}/gyms/${gymId}/contests/${contestId}/contest_routes/${routeId}/delete_picture.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
+    })
+  }
 }
 export default ContestRouteApi

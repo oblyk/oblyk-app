@@ -65,6 +65,7 @@
             </v-list-item-title>
           </v-list-item>
           <v-list-item
+            v-if="!route.picture"
             @click="addPictureModal = true"
           >
             <v-list-item-icon>
@@ -90,6 +91,19 @@
             </v-list-item-title>
           </v-list-item>
           <v-divider />
+          <v-list-item
+            v-if="route.picture"
+            @click="deletePicture()"
+          >
+            <v-list-item-icon>
+              <v-icon>
+                {{ mdiCameraOff }}
+              </v-icon>
+            </v-list-item-icon>
+            <v-list-item-title class="red--text">
+              Supprimer la photo
+            </v-list-item-title>
+          </v-list-item>
           <v-list-item
             v-if="route.disabled_at === null"
             @click="deactivateRoute()"
@@ -192,7 +206,8 @@ import {
   mdiArrowUpBoldBoxOutline,
   mdiLinkVariant,
   mdiLinkVariantOff,
-  mdiCamera
+  mdiCamera,
+  mdiCameraOff
 } from '@mdi/js'
 import ContestRouteApi from '~/services/oblyk-api/ContestRouteApi'
 import ContestRouteForm from '~/components/contests/forms/ContestRouteForm.vue'
@@ -245,7 +260,8 @@ export default {
       mdiArrowUpBoldBoxOutline,
       mdiLinkVariant,
       mdiLinkVariantOff,
-      mdiCamera
+      mdiCamera,
+      mdiCameraOff
     }
   },
 
@@ -274,6 +290,22 @@ export default {
       this.loadingAction = true
       new ContestRouteApi(this.$axios, this.$auth)
         .delete(
+          this.contest.gym_id,
+          this.contest.id,
+          this.route.id
+        )
+        .then(() => {
+          this.getRouteGroup()
+        })
+        .finally(() => {
+          this.loadingAction = false
+        })
+    },
+
+    deletePicture () {
+      this.loadingAction = true
+      new ContestRouteApi(this.$axios, this.$auth)
+        .deletePicture(
           this.contest.gym_id,
           this.contest.id,
           this.route.id
