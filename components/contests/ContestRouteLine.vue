@@ -8,6 +8,15 @@
       :gym-route="route.gym_route"
       class="ml-3"
     />
+    <v-avatar
+      v-if="route.picture"
+      size="32"
+      rounded
+      class="flex-grow-0 ml-2"
+      @click="pictureModal = true"
+    >
+      <v-img :src="route.pictureUrl" />
+    </v-avatar>
     <div
       v-if="route.disabled_at !== null"
       class="text--disabled ml-3 align-self-center"
@@ -53,6 +62,18 @@
             </v-list-item-icon>
             <v-list-item-title>
               Lié à une ligne du topo
+            </v-list-item-title>
+          </v-list-item>
+          <v-list-item
+            @click="addPictureModal = true"
+          >
+            <v-list-item-icon>
+              <v-icon>
+                {{ mdiCamera }}
+              </v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>
+              Ajouter une photo
             </v-list-item-title>
           </v-list-item>
           <v-list-item
@@ -108,6 +129,8 @@
         </v-list>
       </v-menu>
     </div>
+
+    <!-- Edit dialog -->
     <v-dialog
       v-model="editModal"
       width="600"
@@ -127,6 +150,36 @@
         </div>
       </v-card>
     </v-dialog>
+
+    <!-- Add picture -->
+    <v-dialog
+      v-model="addPictureModal"
+      width="600"
+    >
+      <v-card>
+        <v-card-title>
+          Ajouter une photo sur {{ route.number }}
+        </v-card-title>
+        <div class="pa-4">
+          <contest-route-picture-form
+            :contest="contest"
+            :contest-route="route"
+            :callback="getRoute"
+          />
+        </div>
+      </v-card>
+    </v-dialog>
+
+    <!-- Open picture -->
+    <v-dialog
+      v-model="pictureModal"
+      width="700"
+    >
+      <v-img
+        :src="route.pictureLargeUrl"
+        :lazy-src="route.pictureUrl"
+      />
+    </v-dialog>
   </div>
 </template>
 
@@ -138,16 +191,18 @@ import {
   mdiCloseBoxOutline,
   mdiArrowUpBoldBoxOutline,
   mdiLinkVariant,
-  mdiLinkVariantOff
+  mdiLinkVariantOff,
+  mdiCamera
 } from '@mdi/js'
 import ContestRouteApi from '~/services/oblyk-api/ContestRouteApi'
 import ContestRouteForm from '~/components/contests/forms/ContestRouteForm.vue'
 import ContestRoute from '~/models/ContestRoute'
 import GymRouteSimpleItem from '~/components/gymRoutes/GymRouteItem.vue'
+import ContestRoutePictureForm from '~/components/contests/forms/ContestRoutePictureForm.vue'
 
 export default {
   name: 'ContestRouteLine',
-  components: { GymRouteSimpleItem, ContestRouteForm },
+  components: { ContestRoutePictureForm, GymRouteSimpleItem, ContestRouteForm },
   props: {
     contest: {
       type: Object,
@@ -178,6 +233,8 @@ export default {
   data () {
     return {
       editModal: false,
+      addPictureModal: false,
+      pictureModal: false,
       loadingAction: false,
       route: new ContestRoute({ attributes: this.contestRoute }),
 
@@ -187,7 +244,8 @@ export default {
       mdiCloseBoxOutline,
       mdiArrowUpBoldBoxOutline,
       mdiLinkVariant,
-      mdiLinkVariantOff
+      mdiLinkVariantOff,
+      mdiCamera
     }
   },
 
@@ -201,6 +259,7 @@ export default {
     getRoute () {
       this.loadingAction = true
       this.editModal = false
+      this.addPictureModal = false
       new ContestRouteApi(this.$axios, this.$auth)
         .find(this.contest.gym_id, this.contest.id, this.route.id)
         .then((resp) => {

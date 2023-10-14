@@ -14,9 +14,17 @@ export default class ContestRoute extends ActiveData {
     return 'ContestRoute'
   }
 
-  get thumbnailUrl () {
-    if (this.thumbnail) {
-      return `${process.env.VUE_APP_OBLYK_API_URL}${this.thumbnail}`
+  get pictureUrl () {
+    if (this.picture) {
+      return `${process.env.VUE_APP_OBLYK_API_URL}${this.picture}`
+    } else {
+      return null
+    }
+  }
+
+  get pictureLargeUrl () {
+    if (this.picture_large) {
+      return `${process.env.VUE_APP_OBLYK_API_URL}${this.picture_large}`
     } else {
       return null
     }

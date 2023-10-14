@@ -3,8 +3,6 @@
     :icon="!label"
     :small="small"
     :color="copyIconColors[iconStatus]"
-    :outline="outline"
-    :text="text"
     @click="copyToken"
   >
     <v-icon small>
@@ -31,14 +29,6 @@ export default {
     label: {
       type: String,
       default: null
-    },
-    outline: {
-      type: Boolean,
-      default: false
-    },
-    text: {
-      type: Boolean,
-      default: false
     }
   },
 

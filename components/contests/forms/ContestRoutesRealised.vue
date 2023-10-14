@@ -10,7 +10,7 @@
             >
               {{ $t(`models.climbs.${contestStep.climbing_type}`) }} n°
             </th>
-            <th v-if="haveGymRoutes">
+            <th v-if="haveGymRoutes || havePictures">
               Détail
             </th>
             <th class="text-left">
@@ -32,7 +32,7 @@
               </v-chip>
             </td>
             <td
-              v-if="haveGymRoutes"
+              v-if="haveGymRoutes || havePictures"
               style="width: 10px"
               class="text-no-wrap"
             >
@@ -41,6 +41,15 @@
                 :gym-route="route.gym_route"
                 :callback="routeSelected"
               />
+              <v-avatar
+                v-if="route.picture"
+                size="32"
+                rounded
+                class="flex-grow-0"
+                @click="openPictureModal(route)"
+              >
+                <v-img :src="contestRouteObject(route).pictureUrl" />
+              </v-avatar>
             </td>
             <td class="py-2">
               <contest-route-ascent-form
@@ -54,6 +63,8 @@
         </tbody>
       </template>
     </v-simple-table>
+
+    <!-- Route modal -->
     <v-dialog
       v-model="routeModal"
       width="750"
@@ -75,6 +86,18 @@
         />
       </v-card>
     </v-dialog>
+
+    <!-- Picture modale -->
+    <v-dialog
+      v-model="pictureModal"
+      width="700"
+    >
+      <v-img
+        v-if="contestRoute"
+        :src="contestRoute.pictureLargeUrl"
+        :lazy-src="contestRoute.pictureUrl"
+      />
+    </v-dialog>
   </div>
 </template>
 
@@ -86,6 +109,7 @@ import GymRoute from '~/models/GymRoute'
 import GymRouteInfo from '~/components/gymRoutes/GymRouteInfo.vue'
 import Gym from '~/models/Gym'
 import GymApi from '~/services/oblyk-api/GymApi'
+import ContestRoute from '~/models/ContestRoute'
 
 export default {
   name: 'ContestRoutesRealised',
@@ -108,7 +132,9 @@ export default {
   data () {
     return {
       routeModal: false,
+      pictureModal: false,
       gymRoute: null,
+      contestRoute: null,
       loadingGymRoute: true,
       gym: null
     }
@@ -133,6 +159,15 @@ export default {
         }
       }
       return false
+    },
+
+    havePictures () {
+      for (const route of this.contestStep.routes) {
+        if (route.picture !== null) {
+          return true
+        }
+      }
+      return false
     }
   },
 
@@ -151,6 +186,15 @@ export default {
         .finally(() => {
           this.loadingGymRoute = false
         })
+    },
+
+    openPictureModal (route) {
+      this.contestRoute = this.contestRouteObject(route)
+      this.pictureModal = true
+    },
+
+    contestRouteObject (route) {
+      return new ContestRoute({ attributes: route })
     },
 
     getGym (gymId) {
