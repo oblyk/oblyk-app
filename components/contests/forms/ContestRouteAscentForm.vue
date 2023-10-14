@@ -1,5 +1,6 @@
 <template>
   <div class="remove-btn-active-before">
+    <!-- Division -->
     <div v-if="contestStep.ranking_type === 'division'">
       <v-btn-toggle
         v-model="ascent"
@@ -36,6 +37,8 @@
         </v-btn>
       </v-btn-toggle>
     </div>
+
+    <!-- Attempts to top -->
     <div v-if="contestStep.ranking_type === 'attempts_to_top'">
       <v-radio-group
         v-model="ascent"
@@ -57,6 +60,8 @@
         </div>
       </v-radio-group>
     </div>
+
+    <!-- Zone and top realised -->
     <div
       v-if="contestStep.ranking_type === 'zone_and_top_realised'"
       class="d-flex"
@@ -76,6 +81,8 @@
         @change="submit"
       />
     </div>
+
+    <!-- Attempts to one zone and top -->
     <div
       v-if="contestStep.ranking_type === 'attempts_to_one_zone_and_top'"
       class="d-flex"
@@ -97,6 +104,29 @@
         type="number"
         class="ml-1"
         @input="submit"
+      />
+    </div>
+
+    <!-- Highest hold -->
+    <div
+      v-if="contestStep.ranking_type === 'highest_hold'"
+      class="d-flex"
+    >
+      <v-text-field
+        v-model="ascent.hold_number"
+        :label="`Prise atteinte / ${contestRoute.number_of_holds} prises`"
+        outlined
+        hide-details
+        type="number"
+        class="mr-4 flex-grow-0"
+        @blur="submit"
+      />
+      <v-checkbox
+        v-model="ascent.hold_number_plus"
+        label="+"
+        hide-details
+        class="mt-3"
+        @change="submit"
       />
     </div>
   </div>
@@ -132,6 +162,7 @@ export default {
     return {
       ascent: this.setAscentValue(),
       loading: false,
+      previousNumberOfHold: null,
 
       mdiCheck,
       mdiClose
@@ -155,6 +186,11 @@ export default {
             top_attempt: this.contestRoute.ascent.top_attempt === 1,
             zone_1_attempt: this.contestRoute.ascent.zone_1_attempt === 1
           }
+        } else if (this.contestStep.ranking_type === 'highest_hold') {
+          return {
+            hold_number: this.contestRoute.ascent.hold_number,
+            hold_number_plus: this.contestRoute.ascent.hold_number_plus
+          }
         } else {
           return null
         }
@@ -167,6 +203,11 @@ export default {
         return {
           top_attempt: false,
           zone_1_attempt: false
+        }
+      } else if (this.contestStep.ranking_type === 'highest_hold') {
+        return {
+          hold_number: null,
+          hold_number_plus: false
         }
       } else {
         return null
@@ -198,6 +239,16 @@ export default {
       if (this.contestStep.ranking_type === 'zone_and_top_realised') {
         data.top_attempt = this.ascent.top_attempt ? 1 : null
         data.zone_1_attempt = this.ascent.zone_1_attempt ? 1 : null
+      }
+
+      if (this.contestStep.ranking_type === 'highest_hold') {
+        data.hold_number = this.ascent.hold_number
+        data.hold_number_plus = this.ascent.hold_number_plus
+        if (this.previousNumberOfHold === this.ascent.hold_number) {
+          return false
+        } else {
+          this.previousNumberOfHold = this.ascent.hold_number
+        }
       }
 
       new ContestParticipantAscentApi(this.$auth, this.$axios)

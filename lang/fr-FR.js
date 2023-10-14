@@ -2287,7 +2287,8 @@ export default {
       contest_categories: 'Catégories'
     },
     contestRoute: {
-      number: 'Numéro'
+      number: 'Numéro',
+      number_of_holds: 'Nombre de prise'
     },
     contestParticipant: {
       first_name: 'Prénom',

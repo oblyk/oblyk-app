@@ -10,6 +10,17 @@
       :label="$t('models.contestRoute.number')"
     />
 
+    <v-text-field
+      v-if="contestRoute.ranking_type === 'highest_hold'"
+      v-model="data.number_of_holds"
+      outlined
+      required
+      hide-details
+      type="number"
+      class="required-field mt-5"
+      :label="$t('models.contestRoute.number_of_holds')"
+    />
+
     <submit-form
       class="mt-4"
       :go-back-btn="false"
@@ -54,6 +65,7 @@ export default {
       data: {
         id: this.contestRoute?.id,
         number: this.contestRoute?.number,
+        number_of_holds: this.contestRoute?.number_of_holds,
         gym_id: this.gym.id,
         contest_id: this.contest.id
       }

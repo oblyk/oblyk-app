@@ -1,7 +1,9 @@
 <template>
   <div class="border-top pa-1 pb-0 pl-2 d-flex">
     <div>
-      <v-chip>{{ route.number }}</v-chip>
+      <v-chip @click="editModal = true">
+        {{ route.number }}
+      </v-chip>
     </div>
     <gym-route-simple-item
       v-if="route.gym_route_id"
@@ -22,6 +24,23 @@
       class="text--disabled ml-3 align-self-center"
     >
       [exclue du contest]
+    </div>
+    <div
+      v-if="route.ranking_type === 'highest_hold'"
+      class="ml-2"
+    >
+      <v-chip
+        v-if="!route.number_of_holds"
+        @click="editModal = true"
+      >
+        Nombre de prise ?
+      </v-chip>
+      <v-chip
+        v-else
+        @click="editModal = true"
+      >
+        {{ route.number_of_holds }} prises
+      </v-chip>
     </div>
     <v-spacer />
     <div>
