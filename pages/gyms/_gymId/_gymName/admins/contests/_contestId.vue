@@ -10,6 +10,7 @@
         <v-col
           cols="12"
           lg="7"
+          class="pr-lg-1"
         >
           <v-sheet class="pa-2 rounded full-height d-flex flex-column">
             <div>
@@ -96,6 +97,7 @@
         <v-col
           cols="12"
           lg="5"
+          class="pl-lg-1"
         >
           <v-sheet class="pa-2 rounded full-height d-flex flex-column">
             <div>
