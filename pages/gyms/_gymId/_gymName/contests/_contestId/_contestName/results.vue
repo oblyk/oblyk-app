@@ -1,7 +1,8 @@
 <template>
-  <v-sheet class="pa-4 rounded mt-4">
-    <contest-result-table :contest="contest" />
-  </v-sheet>
+  <contest-result-table
+    class="mt-4"
+    :contest="contest"
+  />
 </template>
 
 <script>

@@ -1,28 +1,30 @@
 <template>
   <div>
-    <div v-if="loadingResult">
+    <div v-if="firstLoad">
       <v-skeleton-loader type="table-heading" />
     </div>
     <div v-else>
-      <div
-        v-if="admin"
-        class="text-right"
-      >
-        <v-btn
-          outlined
-          text
-        >
-          Afficher les cases à cocher d'inscriptions
-        </v-btn>
-      </div>
-      <div
+      <v-sheet
         v-for="(category, categoryIndex) in results"
         :key="`category-${categoryIndex}`"
+        class="rounded px-4 py-1 mb-4"
         :style="printer ? 'page-break-after: always;' : null"
       >
-        <p class="font-weight-bold mb-1 pl-1">
-          {{ category.category_name }} <span v-if="!category.unisex"> - {{ $t(`models.genres.${category.genre}`).toLowerCase() }}</span>
-        </p>
+        <div class="d-flex">
+          <p class="font-weight-bold mb-1 pl-1 pt-2">
+            {{ category.category_name }} <span v-if="!category.unisex"> - {{ $t(`models.genres.${category.genre}`).toLowerCase() }}</span>
+          </p>
+          <v-spacer />
+          <v-btn
+            icon
+            :loading="loadingResult"
+            @click="getResults"
+          >
+            <v-icon>
+              {{ mdiRefresh }}
+            </v-icon>
+          </v-btn>
+        </div>
         <v-simple-table
           dense
           class="border mb-4"
@@ -71,7 +73,16 @@
                 {{ participant.global_rank }}
               </td>
               <td class="border-right">
-                {{ participant.first_name }} {{ participant.last_name }}
+                <v-chip
+                  v-if="admin"
+                  @click="openParticipantModal(participant)"
+                >
+                  {{ participant.first_name }} {{ participant.last_name }}
+                </v-chip>
+                <span
+                  v-else
+                  v-text="`${participant.first_name} ${participant.last_name}`"
+                />
               </td>
               <template v-for="stage in participant.stages">
                 <td
@@ -106,17 +117,38 @@
             </tr>
           </tbody>
         </v-simple-table>
-      </div>
+      </v-sheet>
+
+      <!-- Participant modal -->
+      <v-dialog
+        v-model="showParticipantModal"
+        width="800"
+      >
+        <v-card>
+          <div class="pa-4">
+            <contest-participant-card
+              v-if="showParticipantModal && participantId"
+              :ref="`participant-card-${participantId}`"
+              :contest-participant-id="participantId"
+              :contest="contest"
+              :close-modal="closeParticipantModal"
+            />
+          </div>
+        </v-card>
+      </v-dialog>
     </div>
   </div>
 </template>
 
 <script>
+import { mdiRefresh } from '@mdi/js'
 import ContestApi from '~/services/oblyk-api/ContestApi'
 import ContestParticipantStepApi from '~/services/oblyk-api/ContestParticipantStepApi'
+const ContestParticipantCard = () => import('~/components/contests/ContestParticipantCard')
 
 export default {
   name: 'ContestResultTable',
+  components: { ContestParticipantCard },
 
   props: {
     contest: {
@@ -142,7 +174,12 @@ export default {
       loadingResult: true,
       results: null,
       participantsStep: null,
-      loadingSubscribe: false
+      loadingSubscribe: false,
+      showParticipantModal: false,
+      participantId: null,
+      firstLoad: true,
+
+      mdiRefresh
     }
   },
 
@@ -168,6 +205,7 @@ export default {
           }
         })
         .finally(() => {
+          this.firstLoad = false
           this.loadingResult = false
         })
     },
@@ -216,6 +254,16 @@ export default {
         .finally(() => {
           this.loadingSubscribe = false
         })
+    },
+
+    openParticipantModal (participant) {
+      this.participantId = participant.participant_id
+      this.showParticipantModal = true
+    },
+
+    closeParticipantModal () {
+      this.participantId = null
+      this.showParticipantModal = false
     }
   }
 }

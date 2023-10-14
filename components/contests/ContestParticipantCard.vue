@@ -101,6 +101,7 @@ export default {
         .find(this.contest.gym_id, this.contest.id, this.contestParticipantId)
         .then((resp) => {
           this.participant = new ContestParticipant({ attributes: resp.data })
+          this.tabIndex = this.participant.steps.length - 1
         })
         .finally(() => {
           this.loadingParticipant = false

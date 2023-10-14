@@ -98,10 +98,11 @@
                   Fin <span v-if="event.end_date !== time.start_date">le {{ humanizeDate(event.end_date) }}</span> à {{ humanizeDate(event.end_time, 'TIME_SIMPLE').replace(':', 'h') }}
                 </p>
                 <div
-                  v-if="event.step.step_order > 1"
+                  v-if="event.step.step_order > 1 || !event.step.self_reporting"
                   class="pt-2"
                 >
                   <v-btn
+                    v-if="event.step.step_order > 1"
                     outlined
                     text
                     to="results?subscribe_mode=true"
@@ -109,7 +110,18 @@
                     <v-icon left>
                       {{ mdiCheckboxMultipleOutline }}
                     </v-icon>
-                    Gérer les participants aux {{ event.step.name }}
+                    Gérer le passage aux {{ event.step.name }}
+                  </v-btn>
+                  <v-btn
+                    v-if="!event.step.self_reporting"
+                    outlined
+                    text
+                    to="results?show_self_reporting_alert=true"
+                  >
+                    <v-icon left>
+                      {{ mdiScaleBalance }}
+                    </v-icon>
+                    Juger
                   </v-btn>
                 </div>
               </div>
@@ -147,7 +159,7 @@
 </template>
 
 <script>
-import { mdiWaves, mdiPrinter, mdiCheckboxMultipleOutline } from '@mdi/js'
+import { mdiWaves, mdiPrinter, mdiCheckboxMultipleOutline, mdiScaleBalance } from '@mdi/js'
 import { DateHelpers } from '~/mixins/DateHelpers'
 import Spinner from '~/components/layouts/Spiner'
 import ContestApi from '~/services/oblyk-api/ContestApi'
@@ -177,7 +189,8 @@ export default {
 
       mdiWaves,
       mdiPrinter,
-      mdiCheckboxMultipleOutline
+      mdiCheckboxMultipleOutline,
+      mdiScaleBalance
     }
   },
 
