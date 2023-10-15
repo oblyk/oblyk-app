@@ -14,6 +14,7 @@
         <gym-space-plan-missing
           v-if="gymSpace && !gymSpace.plan"
           :gym-space="gymSpace"
+          :gym="gymSpace.gym"
         />
         <p
           v-if="!gymSpace"

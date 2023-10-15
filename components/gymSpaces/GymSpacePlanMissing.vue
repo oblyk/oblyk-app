@@ -35,6 +35,10 @@ export default {
   name: 'GymSpacePlanMissing',
   mixins: [GymRolesHelpers],
   props: {
+    gym: {
+      type: Object,
+      required: true
+    },
     gymSpace: {
       type: Object,
       required: true
