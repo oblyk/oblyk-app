@@ -31,11 +31,17 @@
             >
               <!-- Subscription start -->
               <div v-if="event.event_type === 'SubscriptionOpen'">
-                <p class="mb-0 font-weight-bold">
+                <p class="mb-2 font-weight-bold">
+                  <v-icon
+                    left
+                    class="vertical-align-top"
+                  >
+                    {{ mdiPen }}
+                  </v-icon>
                   Ouverture des inscriptions
                 </p>
-                <p class="mb-2">
-                  Fin des inscriptions le {{ humanizeDate(event.end_date) }}
+                <p class="mb-0">
+                  Fin des inscriptions le {{ humanizeDate(event.end_date) }}.
                 </p>
                 <p class="mb-2">
                   Vous pouvez partager le lien publique du contest à vos grimpeurs et grimpeuses.
@@ -54,26 +60,52 @@
                 </v-btn>
               </div>
 
-              <!-- Subscription start -->
+              <!-- Contest start -->
               <div v-if="event.event_type === 'ContestStart'">
-                <p class="font-weight-bold mb-0">
+                <p class="font-weight-bold mb-2">
+                  <v-icon
+                    left
+                    class="vertical-align-top"
+                  >
+                    {{ mdiDoorOpen }}
+                  </v-icon>
                   Début du contest
                 </p>
+                <p class="mb-2">
+                  Vous pouvez inscrire de nouveau participant·e manuellement depuis l'onglet 'Participant·e·s'.<br>
+                  Sur ce même onglet vous pouvez chercher un·e participant·e pour vérifier ou modifier son inscription.
+                </p>
+                <v-btn
+                  outlined
+                  text
+                  to="participants"
+                >
+                  <v-icon left>
+                    {{ mdiAccountMultiple }}
+                  </v-icon>
+                  Participant·e·s
+                </v-btn>
                 <v-btn
                   outlined
                   text
                   @click="editContestModal"
                 >
-                  {{ $t('actions.edit') }}
+                  {{ $t('actions.edit') }} la date de début
                 </v-btn>
               </div>
 
               <!-- Contest Step event -->
               <div v-if="event.event_type === 'ContestStep'">
-                <p class="font-weight-bold mb-0">
+                <p class="font-weight-bold mb-2">
+                  <v-icon
+                    left
+                    class="vertical-align-top"
+                  >
+                    {{ mdiFormatListChecks }}
+                  </v-icon>
                   {{ event.step.name }} {{ $t(`models.climbs.${event.stage.climbing_type}`).toLowerCase() }}
                 </p>
-                <p class="mb-1">
+                <p class="mb-0">
                   Catégorie(s) : {{ event.categories.map((category) => category.name).join(', ') }}
                   <v-chip small>
                     <gender-icon :gender="event.genre_type" />
@@ -128,7 +160,13 @@
 
               <!-- Subscription start -->
               <div v-if="event.event_type === 'ContestEnd'">
-                <p class="font-weight-bold mb-0">
+                <p class="font-weight-bold mb-2">
+                  <v-icon
+                    left
+                    class="vertical-align-top"
+                  >
+                    {{ mdiClose }}
+                  </v-icon>
                   Fin du contest
                 </p>
                 <v-btn
@@ -147,7 +185,7 @@
                   text
                   @click="editContestModal"
                 >
-                  {{ $t('actions.edit') }}
+                  {{ $t('actions.edit') }} la fin du contest
                 </v-btn>
               </div>
             </v-sheet>
@@ -159,7 +197,17 @@
 </template>
 
 <script>
-import { mdiWaves, mdiPrinter, mdiCheckboxMultipleOutline, mdiScaleBalance } from '@mdi/js'
+import {
+  mdiWaves,
+  mdiPrinter,
+  mdiCheckboxMultipleOutline,
+  mdiScaleBalance,
+  mdiAccountMultiple,
+  mdiPen,
+  mdiDoorOpen,
+  mdiFormatListChecks,
+  mdiClose
+} from '@mdi/js'
 import { DateHelpers } from '~/mixins/DateHelpers'
 import Spinner from '~/components/layouts/Spiner'
 import ContestApi from '~/services/oblyk-api/ContestApi'
@@ -190,7 +238,12 @@ export default {
       mdiWaves,
       mdiPrinter,
       mdiCheckboxMultipleOutline,
-      mdiScaleBalance
+      mdiScaleBalance,
+      mdiAccountMultiple,
+      mdiPen,
+      mdiDoorOpen,
+      mdiFormatListChecks,
+      mdiClose
     }
   },
 
