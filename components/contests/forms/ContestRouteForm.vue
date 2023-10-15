@@ -21,6 +21,23 @@
       :label="$t('models.contestRoute.number_of_holds')"
     />
 
+    <v-text-field
+      v-if="contestRoute.ranking_type === 'fixed_points'"
+      v-model="data.fixed_points"
+      outlined
+      required
+      hide-details
+      type="number"
+      class="required-field mt-5"
+      :label="$t('models.contestRoute.fixed_points')"
+    />
+
+    <v-checkbox
+      v-if="contestRoute.ranking_type === 'division_and_zone'"
+      v-model="data.additional_zone"
+      :label="$t('models.contestRoute.additional_zone')"
+    />
+
     <submit-form
       class="mt-4"
       :go-back-btn="false"
@@ -66,6 +83,8 @@ export default {
         id: this.contestRoute?.id,
         number: this.contestRoute?.number,
         number_of_holds: this.contestRoute?.number_of_holds,
+        fixed_points: this.contestRoute?.fixed_points,
+        additional_zone: this.contestRoute?.additional_zone,
         gym_id: this.gym.id,
         contest_id: this.contest.id
       }

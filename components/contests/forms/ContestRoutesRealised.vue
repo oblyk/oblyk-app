@@ -30,6 +30,12 @@
               <v-chip>
                 {{ route.number }}
               </v-chip>
+              <span
+                v-if="contestStep.ranking_type === 'fixed_points' && route.fixed_points"
+                class="ml-2"
+              >
+                {{ route.fixed_points }} pts
+              </span>
             </td>
             <td
               v-if="haveGymRoutes || havePictures"

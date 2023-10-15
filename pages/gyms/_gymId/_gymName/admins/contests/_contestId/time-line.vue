@@ -56,7 +56,7 @@
                   text
                   @click="editContestModal"
                 >
-                  Modifier
+                  {{ $t('actions.edit') }} l'ouverture des inscriptions
                 </v-btn>
               </div>
 
@@ -127,7 +127,10 @@
                   </v-chip>
                 </p>
                 <p class="mb-0">
-                  Fin <span v-if="event.end_date !== time.start_date">le {{ humanizeDate(event.end_date) }}</span> à {{ humanizeDate(event.end_time, 'TIME_SIMPLE').replace(':', 'h') }}
+                  Fin <span v-if="event.end_date !== time.start_date">le {{ humanizeDate(event.end_date) }}</span> à {{ humanizeDate(event.end_time, 'TIME_SIMPLE').replace(':', 'h') }}.
+                </p>
+                <p v-if="event.step.self_reporting">
+                  Les participants ont 20 minutes après la fin des {{ event.step.name }} pour renseigner leur performances avant la fermeture du formulaire.
                 </p>
                 <div
                   v-if="event.step.step_order > 1 || !event.step.self_reporting"

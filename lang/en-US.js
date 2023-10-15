@@ -2246,11 +2246,13 @@ export default {
     },
     contestRankingType: {
       division: '1000pt divided by the number of ascents',
+      division_and_zone: '1000pt divided by the number of ascents + zone',
       attempts_to_top: '10pt - 1pt per attempt',
       zone_and_top_realised: 'Zone and top realised',
       attempts_to_one_zone_and_top: 'Number of attempts to make the zone and the top',
       attempts_to_two_zones_and_top: 'Number of attempts to do the 1st zone, 2nd zone and the top',
-      highest_hold: 'Highest hold reached'
+      highest_hold: 'Highest hold reached',
+      fixed_points: 'Fixed points'
     },
     contestCategory: {
       name: 'Nam',
@@ -2288,7 +2290,9 @@ export default {
     },
     contestRoute: {
       number: 'Number',
-      number_of_holds: 'Number of holds'
+      number_of_holds: 'Number of holds',
+      fixed_points: 'Points',
+      additional_zone: 'To a zone'
     },
     contestParticipant: {
       first_name: 'First name',

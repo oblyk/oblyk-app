@@ -1,7 +1,7 @@
 <template>
   <div class="remove-btn-active-before">
     <!-- Division -->
-    <div v-if="contestStep.ranking_type === 'division'">
+    <div v-if="contestStep.ranking_type === 'division' || contestStep.ranking_type === 'fixed_points'">
       <v-btn-toggle
         v-model="ascent"
         @change="submit"
@@ -46,16 +46,16 @@
         @change="submit"
       >
         <div
-          v-for="attempt in 10"
+          v-for="attempt in 11"
           :key="`attempt-${attempt}`"
           class="pa-1"
         >
           <v-radio :value="attempt" />
           <div
-            :style="`width: ${attempt === 10 ? 'auto' : 24}px;`"
+            :style="`width: ${attempt === 11 ? 'auto' : 24}px;`"
             class="text-center"
           >
-            {{ attempt === 10 ? '10 et +' : attempt }}
+            {{ attempt === 11 ? '+ de 10' : attempt }}
           </div>
         </div>
       </v-radio-group>
@@ -76,6 +76,27 @@
       <v-checkbox
         v-model="ascent.top_attempt"
         label="Top fait"
+        hide-details
+        class="mt-0"
+        @change="submit"
+      />
+    </div>
+
+    <div
+      v-if="contestStep.ranking_type === 'division_and_zone'"
+      class="d-flex"
+    >
+      <v-checkbox
+        v-if="contestRoute.additional_zone"
+        v-model="ascent.zone_1_attempt"
+        label="Zone faite"
+        hide-details
+        class="mr-7 mt-0"
+        @change="submit"
+      />
+      <v-checkbox
+        v-model="ascent.top_attempt"
+        :label="contestRoute.additional_zone ? 'Top fait !' : 'Fait !'"
         hide-details
         class="mt-0"
         @change="submit"
@@ -172,7 +193,7 @@ export default {
   methods: {
     setAscentValue () {
       if (this.contestRoute.ascent) {
-        if (this.contestStep.ranking_type === 'division') {
+        if (['division', 'fixed_points'].includes(this.contestStep.ranking_type)) {
           return this.contestRoute.ascent.realised
         } else if (this.contestStep.ranking_type === 'attempts_to_top') {
           return this.contestRoute.ascent.top_attempt
@@ -181,7 +202,7 @@ export default {
             top_attempt: this.contestRoute.ascent.top_attempt,
             zone_1_attempt: this.contestRoute.ascent.zone_1_attempt
           }
-        } else if (this.contestStep.ranking_type === 'zone_and_top_realised') {
+        } else if (['zone_and_top_realised', 'division_and_zone'].includes(this.contestStep.ranking_type)) {
           return {
             top_attempt: this.contestRoute.ascent.top_attempt === 1,
             zone_1_attempt: this.contestRoute.ascent.zone_1_attempt === 1
@@ -199,7 +220,7 @@ export default {
           top_attempt: null,
           zone_1_attempt: null
         }
-      } else if (this.contestStep.ranking_type === 'zone_and_top_realised') {
+      } else if (['zone_and_top_realised', 'division_and_zone'].includes(this.contestStep.ranking_type)) {
         return {
           top_attempt: false,
           zone_1_attempt: false
@@ -223,7 +244,7 @@ export default {
         contest_participant_token: this.participantToken
       }
 
-      if (this.contestStep.ranking_type === 'division') {
+      if (['division', 'fixed_points'].includes(this.contestStep.ranking_type)) {
         data.realised = this.ascent
       }
 
@@ -236,7 +257,7 @@ export default {
         data.zone_1_attempt = this.ascent.zone_1_attempt
       }
 
-      if (this.contestStep.ranking_type === 'zone_and_top_realised') {
+      if (['zone_and_top_realised', 'division_and_zone'].includes(this.contestStep.ranking_type)) {
         data.top_attempt = this.ascent.top_attempt ? 1 : null
         data.zone_1_attempt = this.ascent.zone_1_attempt ? 1 : null
       }

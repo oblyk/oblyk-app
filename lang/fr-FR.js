@@ -2246,11 +2246,13 @@ export default {
     },
     contestRankingType: {
       division: "1000pt divisés par le nombre d'ascension",
+      division_and_zone: "1000pt divisés par le nombre d'ascension + zone",
       attempts_to_top: '10pt - 1pt par essais',
       zone_and_top_realised: 'Zone et top fait',
       attempts_to_one_zone_and_top: "Nombre d'essais pour faire la zone et le top",
       attempts_to_two_zones_and_top: "Nombre d'essais pour faire la 1er zone, 2ème zones et le top",
-      highest_hold: 'Prise la plus haute atteinte'
+      highest_hold: 'Prise la plus haute atteinte',
+      fixed_points: 'Points fixe'
     },
     contestCategory: {
       name: 'Nom',
@@ -2288,7 +2290,9 @@ export default {
     },
     contestRoute: {
       number: 'Numéro',
-      number_of_holds: 'Nombre de prise'
+      number_of_holds: 'Nombre de prise',
+      fixed_points: 'Points',
+      additional_zone: 'À une zone'
     },
     contestParticipant: {
       first_name: 'Prénom',

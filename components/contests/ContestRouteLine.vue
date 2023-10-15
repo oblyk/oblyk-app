@@ -42,6 +42,40 @@
         {{ route.number_of_holds }} prises
       </v-chip>
     </div>
+    <div
+      v-if="route.ranking_type === 'fixed_points'"
+      class="ml-2"
+    >
+      <v-chip
+        v-if="!route.fixed_points"
+        @click="editModal = true"
+      >
+        Points ?
+      </v-chip>
+      <v-chip
+        v-else
+        @click="editModal = true"
+      >
+        {{ route.fixed_points }} pts
+      </v-chip>
+    </div>
+    <div
+      v-if="route.ranking_type === 'division_and_zone'"
+      class="ml-2"
+    >
+      <v-chip
+        v-if="route.additional_zone"
+        @click="editModal = true"
+      >
+        À une zone
+      </v-chip>
+      <v-chip
+        v-else
+        @click="editModal = true"
+      >
+        Pas de zone
+      </v-chip>
+    </div>
     <v-spacer />
     <div>
       <v-menu>

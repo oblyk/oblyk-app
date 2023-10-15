@@ -79,7 +79,10 @@
             Résultat
           </v-tab>
         </v-tabs>
-        <nuxt-child :contest="contest" />
+        <nuxt-child
+          :contest="contest"
+          :update-token="updateToken"
+        />
       </div>
     </v-container>
     <app-footer />
@@ -144,6 +147,10 @@ export default {
         .catch(() => {
           this.$store.dispatch('contestToken/resetToken', this.$route.params.contestId)
         })
+    },
+
+    updateToken (token) {
+      this.token = token
     }
   }
 }

@@ -221,6 +221,10 @@ export default {
     contest: {
       type: Object,
       required: true
+    },
+    updateToken: {
+      type: Function,
+      required: true
     }
   },
 
@@ -242,6 +246,7 @@ export default {
   methods: {
     successCallback (token, goToExplain = true) {
       this.token = token
+      this.updateToken(token)
       this.subscribeDialog = false
       this.$store.dispatch('contestToken/setContestToken', { contestId: this.contest.id, token })
       if (goToExplain) {
