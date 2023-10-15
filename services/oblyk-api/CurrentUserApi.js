@@ -82,6 +82,17 @@ class CurrentUserApi extends BaseApi {
     })
   }
 
+  upcomingContests () {
+    return this.axios.request({
+      method: 'GET',
+      url: `${this.baseUrl}/current_users/upcoming_contests.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
+    })
+  }
+
   subscribesAscents (page = 1) {
     return this.axios.request({
       method: 'GET',

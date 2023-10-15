@@ -1428,6 +1428,7 @@ export default {
       changePassword: 'Changer mon mot de passe',
       privacyParameters: 'Paramètres de confidentialité',
       partnerSearch: 'Recherche de partenaire',
+      upcomingContests: 'Mes contests à venir',
       notificationSetting: 'Paramètre des notifications',
       otherSetting: 'Autres paramètres',
       successfulEditMessage: 'Votre profile à été mis à jour',

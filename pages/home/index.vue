@@ -50,6 +50,10 @@
             </v-col>
           </v-row>
 
+          <my-upcoming-contests
+            class="mt-7"
+          />
+
           <my-partner-figures
             v-if="currentUser.partner_search"
             class="mt-7"
@@ -115,10 +119,12 @@ import DailyAscents from '~/components/logBooks/outdoors/DailyAscents.vue'
 import SubscribesAscentsCard from '~/components/users/SubscribesAscentsCard.vue'
 import AddSubscribesCard from '~/components/users/AddSubscribesCard.vue'
 import MyPartnerFigures from '~/components/users/MyPartnerFigures.vue'
+import MyUpcomingContests from '~/components/users/MyUpcomingContests.vue'
 const CragRouteDrawer = () => import('~/components/cragRoutes/CragRouteDrawer.vue')
 
 export default {
   components: {
+    MyUpcomingContests,
     MyPartnerFigures,
     AddSubscribesCard,
     SubscribesAscentsCard,

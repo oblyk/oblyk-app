@@ -1,6 +1,6 @@
 <template>
   <v-list-item
-    :to="publicPath ? contest.path : contest.adminPath"
+    :to="contestPath()"
   >
     <v-list-item-avatar
       tile
@@ -50,12 +50,24 @@ export default {
     publicPath: {
       type: Boolean,
       default: true
+    },
+    withToken: {
+      type: String,
+      default: null
     }
   },
 
   data () {
     return {
       mdiTrophy
+    }
+  },
+
+  methods: {
+    contestPath () {
+      const path = this.publicPath ? this.contest.path : this.contest.adminPath
+      const token = this.withToken ? `?token=${this.withToken}` : ''
+      return `${path}${token}`
     }
   }
 }
