@@ -19,7 +19,7 @@
                   <div class="border pa-2 px-3 mb-3 rounded">
                     <h3>Compétiteurs, Compétitrices</h3>
                     <p class="text-h4 text-lg-h2 my-4 font-weight-bold">
-                      {{ contest.contest_participants_count || 0 }} <small class="font-weight-regular"> / {{ contest.total_capacity }}</small>
+                      {{ contest.contest_participants_count || 0 }} <small class="font-weight-regular"> / {{ contest.total_capacity || '∞' }}</small>
                     </p>
                   </div>
                 </v-col>

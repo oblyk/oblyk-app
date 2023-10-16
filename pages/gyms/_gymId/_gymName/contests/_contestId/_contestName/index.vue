@@ -28,11 +28,23 @@
           En bref
         </p>
         <div class="border pa-2 rounded-sm">
-          <p class="mb-1">
+          <p
+            v-if="contest.total_capacity"
+            class="mb-1"
+          >
             <strong class="font-weight-black text-h5">{{ contest.remaining_places }}</strong> place(s) restantes.
           </p>
-          <p class="mb-2">
+          <p
+            v-if="contest.coming"
+            class="mb-0"
+          >
             Commence <strong class="font-weight-black text-h6">{{ dateFromNow(contest.start_date) }}</strong>
+          </p>
+          <p
+            v-else
+            class="mb-0"
+          >
+            Le {{ humanizeDate(contest.start_date) }}
           </p>
         </div>
         <p class="font-weight-bold mb-1 mt-4">
@@ -56,7 +68,7 @@
             v-if="!token"
             class="text-center mt-4"
           >
-            <div v-if="contest.subscription_opened">
+            <div v-if="contest.subscription_opened && (!contest.total_capacity || contest.remaining_places > 0)">
               <v-btn
                 class="rounded-sm"
                 color="primary"
