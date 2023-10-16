@@ -260,8 +260,10 @@ export default {
         .requested()
         .then((resp) => {
           this.requestedGyms = []
-          for (const gym of resp.data) {
-            this.requestedGyms.push(new Gym({ attributes: gym }))
+          for (const request of resp.data) {
+            const requestAndGym = request
+            requestAndGym.gym = new Gym({ attributes: request.gym })
+            this.requestedGyms.push(requestAndGym)
           }
         })
         .finally(() => {
