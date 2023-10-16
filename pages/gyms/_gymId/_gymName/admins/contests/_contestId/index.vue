@@ -9,7 +9,7 @@
       <add-contest-category-btn
         ref="add-category-btn"
         :contest="contest"
-        :callback="getCategories"
+        :callback="successSaveCategory"
       />
       <v-btn
         :loading="loadingCategories"
@@ -32,7 +32,7 @@
         <contest-category-card
           :contest="contest"
           :contest-category="category"
-          :get-categories="getCategories"
+          :get-categories="successSaveCategory"
         />
       </v-col>
     </v-row>
@@ -254,6 +254,13 @@ export default {
         })
     },
 
+    successSaveCategory () {
+      this.getCategories()
+      if (this.stage) {
+        this.getStage(this.stage.id)
+      }
+    },
+
     getCategories () {
       this.loadingCategories = true
       new ContestCategoryApi(this.$axios, this.$auth)
@@ -285,7 +292,6 @@ export default {
           for (const category of resp.data) {
             this.waves.push(new ContestWave({ attributes: category }))
           }
-          // this.getRoutes()
         })
         .finally(() => {
           this.loadingWaves = false
