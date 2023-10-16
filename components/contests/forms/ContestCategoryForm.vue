@@ -25,6 +25,15 @@
       </v-col>
     </v-row>
 
+    <v-alert
+      v-if="showNameAlert"
+      text
+      type="info"
+      class="mt-n4 mb-7"
+    >
+      Ne faite pas une catégorie "Homme" ou "Femme", vous aurez deux classements suivant le genre des participant·e·s.
+    </v-alert>
+
     <v-textarea
       v-model="data.description"
       outlined
@@ -166,6 +175,13 @@ export default {
       } else {
         return `👉 Le participant doit avoir <strong>entre ${this.data.min_age} et ${this.data.max_age} ans</strong> pour s'inscrire en ${this.data.name}`
       }
+    },
+
+    showNameAlert () {
+      if (!this.data.name) {
+        return false
+      }
+      return this.data.name.toLowerCase().includes('homme') || this.data.name.toLowerCase().includes('femme')
     }
   },
 
