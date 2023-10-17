@@ -87,7 +87,12 @@
                     {{ wave.name }}
                   </div>
                   <ul class="pl-3">
-                    <li>{{ wave.remaining_places }} place restantes</li>
+                    <li v-if="wave.remaining_places">
+                      {{ wave.remaining_places }} places restantes
+                    </li>
+                    <li v-else>
+                      {{ wave.participants_count }} places prises
+                    </li>
                     <li>
                       Commence à {{ humanizeDate(wave.time_blocks[0].start_time, 'TIME_SIMPLE') }}
                     </li>

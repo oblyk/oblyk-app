@@ -134,7 +134,12 @@
                         {{ wave.name }}
                       </div>
                       <ul class="pl-3">
-                        <li>{{ wave.remaining_places }} place restantes</li>
+                        <li v-if="wave.remaining_places">
+                          {{ wave.remaining_places }} place restantes
+                        </li>
+                        <li v-else>
+                          {{ wave.participants_count }} participants
+                        </li>
                         <li v-if="contest.one_day_event">
                           Commence à {{ humanizeDate(wave.time_blocks[0].start_time, 'TIME_SIMPLE') }}
                         </li>
@@ -318,7 +323,6 @@ export default {
           this.callback(resp.data.token)
         })
         .catch((err) => {
-          console.log(err)
           this.$root.$emit('alertFromApiError', err, 'contestParticipant')
         })
         .finally(() => {
