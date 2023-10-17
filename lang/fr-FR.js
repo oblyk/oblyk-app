@@ -1875,7 +1875,10 @@ export default {
       before_start_date: 'doit être avant la date de début',
       before_end_date: 'doit être avant la date de fin',
       you_must_choose_one: 'vous devez en choisir au moins une',
-      category_is_taken_in_this_step: "Une catégorie peut être présente qu'une fois par étape"
+      category_is_taken_in_this_step: "Une catégorie peut être présente qu'une fois par étape",
+      participant_is_already_registered: 'Un participant est déjà inscrit à ce nom',
+      contest_is_complete: 'Le contest est complet',
+      category_is_complete: 'La catégorie est complete'
     }
   },
   models: {

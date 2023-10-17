@@ -79,6 +79,7 @@
         Exporter
       </v-btn>
       <v-btn
+        v-if="contestCategories"
         elevation="0"
         color="primary"
         @click="addModal = true"
@@ -116,15 +117,17 @@
         </v-card-title>
         <div class="px-4 pb-4">
           <p
-            v-if="loadingParticipant"
+            v-if="loadingParticipant || !contestCategories"
             class="text-center my-4"
           >
             {{ $t('common.loading') }}
           </p>
           <contest-participant-form
             v-else
+            :ref="`edit-participant-form-${participant.id}`"
             :contest="contest"
             :contest-participant="participant"
+            :contest-categories="contestCategories"
             :callback="editCallback"
             submit-methode="put"
           />
@@ -145,6 +148,7 @@
           <contest-participant-form
             :contest="contest"
             :callback="addCallback"
+            :contest-categories="contestCategories"
             submit-methode="post"
           />
         </div>
@@ -159,6 +163,8 @@ import ContestParticipantApi from '~/services/oblyk-api/ContestParticipantApi'
 import ContestParticipant from '~/models/ContestParticipant'
 import ContestParticipantForm from '~/components/contests/forms/ContestParticipantForm.vue'
 import ContestParticipantCard from '~/components/contests/ContestParticipantCard.vue'
+import ContestCategoryApi from '~/services/oblyk-api/ContestCategoryApi'
+import ContestCategory from '~/models/ContestCategory'
 
 export default {
   components: { ContestParticipantCard, ContestParticipantForm },
@@ -182,6 +188,7 @@ export default {
       refreshKey: 0,
       participants: [],
       search: null,
+      contestCategories: null,
       participantHeaders: [
         {
           text: 'Référence',
@@ -252,7 +259,7 @@ export default {
           last_name: participant.last_name,
           token: participant.token,
           affiliation: participant.affiliation,
-          wave: participant.contest_wave.name,
+          wave: participant.contest_wave?.name,
           category: participant.contest_category.name,
           genre: this.$t(`models.genres.${participant.genre}`),
           refreshKey
@@ -264,6 +271,7 @@ export default {
 
   mounted () {
     this.getParticipants()
+    this.getCategories()
   },
 
   methods: {
@@ -300,6 +308,17 @@ export default {
         })
         .finally(() => {
           this.loadingParticipant = false
+        })
+    },
+
+    getCategories () {
+      new ContestCategoryApi(this.$axios, this.$auth)
+        .all(this.contest.gym_id, this.contest.id)
+        .then((resp) => {
+          this.contestCategories = []
+          for (const category of resp.data) {
+            this.contestCategories.push(new ContestCategory({ attributes: category }))
+          }
         })
     },
 

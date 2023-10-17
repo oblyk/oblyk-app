@@ -41,7 +41,7 @@
       Catégories :
     </p>
     <v-card
-      v-for="(category, categoryIndex) in contest.contest_categories"
+      v-for="(category, categoryIndex) in contestCategories"
       :key="`category-index-${categoryIndex}`"
       class="border mt-2 mb-4"
       :color="category.id === data.contest_category_id ? 'green lighten-5' : null"
@@ -125,6 +125,10 @@ export default {
       type: Object,
       required: true
     },
+    contestCategories: {
+      type: Array,
+      required: true
+    },
     contestParticipant: {
       type: Object,
       default: null
@@ -185,9 +189,6 @@ export default {
       promise
         .then((resp) => {
           this.callback(resp.data)
-        })
-        .finally(() => {
-          this.submitOverlay = false
           this.data = {
             id: null,
             first_name: null,
@@ -199,6 +200,12 @@ export default {
             contest_category_id: null,
             contest_wave_id: null
           }
+        })
+        .catch((err) => {
+          this.$root.$emit('alertFromApiError', err, 'contestParticipant')
+        })
+        .finally(() => {
+          this.submitOverlay = false
         })
     }
   }

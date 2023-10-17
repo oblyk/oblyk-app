@@ -1875,7 +1875,10 @@ export default {
       before_start_date: 'must be after start date',
       before_end_date: 'must be after end date',
       you_must_choose_one: 'you must choose one',
-      category_is_taken_in_this_step: 'A category can only be present once per stage'
+      category_is_taken_in_this_step: 'A category can only be present once per stage',
+      participant_is_already_registered: 'A participant is already registered under this name',
+      contest_is_complete: 'The contest is complete',
+      category_is_complete: 'The category is complete'
     }
   },
   models: {
