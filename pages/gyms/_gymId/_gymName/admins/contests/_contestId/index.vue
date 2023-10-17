@@ -10,6 +10,7 @@
         ref="add-category-btn"
         :contest="contest"
         :callback="successSaveCategory"
+        :show-category-name-tips="categories.length === 0"
       />
       <v-btn
         :loading="loadingCategories"

@@ -78,7 +78,7 @@
       </v-stepper-content>
       <v-stepper-content step="2">
         <p class="font-weight-bold text-decoration-underline mb-0">
-          Dans quel catégorie voulez-vous vous inscrire ?
+          Dans quelle catégorie voulez-vous vous inscrire ?
         </p>
         <p
           v-if="participantAge"
@@ -94,10 +94,18 @@
           :color="category.id === data.contest_category_id ? `green ${$vuetify.theme.dark ? 'darken' : 'lighten'}-5` : null"
           @click="chooseCategory(category.id, category)"
         >
-          <v-card-title class="px-3 pt-1 pb-0">
+          <v-card-title class="px-3 pt-2 pb-0">
             {{ category.name }}
           </v-card-title>
           <v-card-text class="px-3 pb-2">
+            <v-alert
+              v-if="!canSubscribe(category)"
+              type="warning"
+              text
+              class="my-1"
+            >
+              Vous n'avez pas l'âge requis pour vous inscrire <span v-if="contest.contest_categories.length > 1">dans cette catégorie</span>
+            </v-alert>
             <p
               v-if="category.description"
               class="mb-0"

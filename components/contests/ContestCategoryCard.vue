@@ -114,6 +114,10 @@ export default {
     getCategories: {
       type: Function,
       required: true
+    },
+    showCategoryNameTips: {
+      type: Boolean,
+      default: false
     }
   },
 

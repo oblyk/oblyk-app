@@ -25,6 +25,7 @@
           :gym="contest.Gym"
           submit-methode="post"
           :callback="addCallback"
+          :show-category-name-tips="showCategoryNameTips"
         />
       </div>
     </v-card>
@@ -42,6 +43,10 @@ export default {
     contest: {
       type: Object,
       required: true
+    },
+    showCategoryNameTips: {
+      type: Boolean,
+      default: false
     },
     callback: {
       type: Function,

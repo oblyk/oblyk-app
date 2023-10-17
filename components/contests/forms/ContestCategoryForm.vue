@@ -19,9 +19,16 @@
           v-model="data.name"
           outlined
           required
+          :hide-details="showCategoryNameTips"
           class="required-field"
           :label="$t('models.contestCategory.name')"
         />
+        <p
+          v-if="showCategoryNameTips"
+          class="mt-2"
+        >
+          <strong>Astuce :</strong> Vous avez qu'une catégorie ? Appelez la : <v-chip outlined @click="data.name = 'Toutes catégories'">Toutes catégories</v-chip>
+        </p>
       </v-col>
     </v-row>
 
@@ -139,6 +146,10 @@ export default {
     contestCategory: {
       type: Object,
       default: null
+    },
+    showCategoryNameTips: {
+      type: Boolean,
+      default: false
     },
     callback: {
       type: Function,
