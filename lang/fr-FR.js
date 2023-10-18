@@ -2120,6 +2120,7 @@ export default {
       last_name: 'Nom'
     },
     gymAdministrator: {
+      requested_email: 'Email',
       user: 'Un compte Oblyk associé à ce mail',
       roles: 'Peut gérer'
     },

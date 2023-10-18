@@ -2120,7 +2120,8 @@ export default {
       last_name: 'Last name'
     },
     gymAdministrator: {
-      email: 'Email',
+      requested_email: 'Email',
+      user: 'An Oblyk account associated with this email',
       roles: 'Can manage'
     },
     gymOpener: {
