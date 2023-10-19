@@ -3,6 +3,14 @@
     rounded
     class="pa-4 mt-4"
   >
+    <v-alert
+      v-if="contest.draft"
+      text
+      type="warning"
+      class="mt-4"
+    >
+      Ce contest est visible uniquement par vous et les membres de l'équipe de {{ contest.gym.name }}. Publiez-le quand vous aurez fini de le paramétrer.
+    </v-alert>
     <v-row>
       <v-col>
         <v-sheet class="rounded pa-4 back-app-color full-height">

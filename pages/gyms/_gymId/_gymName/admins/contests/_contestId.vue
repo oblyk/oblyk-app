@@ -54,8 +54,28 @@
               >
                 <markdown-text :text="contest.description" />
               </div>
+              <v-alert
+                v-if="contest.draft"
+                text
+                type="warning"
+                class="mt-4"
+              >
+                Ce contest n'est pas publié. Publiez-le quand vous aurez fini de le paramétrer.
+              </v-alert>
             </div>
             <div class="text-right mt-auto pt-2">
+              <v-btn
+                v-if="contest.draft"
+                outlined
+                text
+                color="amber darken-1"
+                @click="draft(false)"
+              >
+                <v-icon left>
+                  {{ mdiPublish }}
+                </v-icon>
+                {{ $t('actions.publish') }}
+              </v-btn>
               <v-btn
                 outlined
                 text
@@ -66,13 +86,59 @@
                 </v-icon>
                 Page publique
               </v-btn>
-              <v-btn
-                outlined
-                text
-                @click="openEditModal()"
-              >
-                {{ $t('actions.edit') }}
-              </v-btn>
+              <v-menu>
+                <template #activator="{ on, attrs }">
+                  <v-btn
+                    outlined
+                    text
+                    v-bind="attrs"
+                    v-on="on"
+                  >
+                    <v-icon left>
+                      {{ mdiDotsVertical }}
+                    </v-icon>
+                    {{ $t('actions.edit') }}
+                  </v-btn>
+                </template>
+                <v-list>
+                  <v-list-item @click="openEditModal()">
+                    <v-list-item-icon>
+                      <v-icon>
+                        {{ mdiPencil }}
+                      </v-icon>
+                    </v-list-item-icon>
+                    <v-list-item-title>
+                      {{ $t('actions.edit') }}
+                    </v-list-item-title>
+                  </v-list-item>
+                  <v-list-item
+                    v-if="contest.draft"
+                    @click="draft(false)"
+                  >
+                    <v-list-item-icon>
+                      <v-icon>
+                        {{ mdiPublish }}
+                      </v-icon>
+                    </v-list-item-icon>
+                    <v-list-item-title>
+                      {{ $t('actions.publish') }}
+                    </v-list-item-title>
+                  </v-list-item>
+                  <v-list-item
+                    v-else
+                    @click="draft(true)"
+                  >
+                    <v-list-item-icon>
+                      <v-icon>
+                        {{ mdiPublishOff }}
+                      </v-icon>
+                    </v-list-item-icon>
+                    <v-list-item-title>
+                      {{ $t('actions.unPublish') }}
+                    </v-list-item-title>
+                  </v-list-item>
+                </v-list>
+              </v-menu>
               <v-dialog
                 v-model="editModal"
                 width="700"
@@ -210,7 +276,18 @@
 </template>
 
 <script>
-import { mdiTrophy, mdiEarth, mdiTimelineClock, mdiDatabase, mdiAccountMultiple, mdiPodium } from '@mdi/js'
+import {
+  mdiTrophy,
+  mdiEarth,
+  mdiTimelineClock,
+  mdiDatabase,
+  mdiAccountMultiple,
+  mdiPodium,
+  mdiPublish,
+  mdiPublishOff,
+  mdiDotsVertical,
+  mdiPencil
+} from '@mdi/js'
 import { ContestConcern } from '~/concerns/ContestConcern'
 import { DateHelpers } from '~/mixins/DateHelpers'
 import Spinner from '~/components/layouts/Spiner'
@@ -218,6 +295,7 @@ import DescriptionLine from '~/components/ui/DescriptionLine'
 import MarkdownText from '~/components/ui/MarkdownText'
 import ContestForm from '~/components/contests/forms/ContestForm.vue'
 import ContestBannerForm from '~/components/contests/forms/ContestBannerForm.vue'
+import ContestApi from '~/services/oblyk-api/ContestApi'
 
 export default {
   components: {
@@ -234,13 +312,18 @@ export default {
     return {
       editModal: false,
       coverModal: false,
+      loadingPublish: false,
 
       mdiTrophy,
       mdiEarth,
       mdiTimelineClock,
       mdiDatabase,
       mdiAccountMultiple,
-      mdiPodium
+      mdiPodium,
+      mdiPublish,
+      mdiPublishOff,
+      mdiDotsVertical,
+      mdiPencil
     }
   },
 
@@ -277,6 +360,18 @@ export default {
 
     openEditModal () {
       this.editModal = true
+    },
+
+    draft (draft) {
+      this.loadingPublish = true
+      new ContestApi(this.$axios, this.$auth)
+        .draft(this.contest.gym_id, this.contest.id, draft)
+        .then(() => {
+          window.location.reload()
+        })
+        .catch(() => {
+          this.loadingPublish = false
+        })
     }
   }
 }

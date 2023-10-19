@@ -18,6 +18,14 @@
     <v-list-item-content>
       <v-list-item-title>
         <strong>{{ contest.name }}</strong> · {{ contest.gym.name }}
+        <v-chip
+          v-if="contest.draft"
+          outlined
+          color="amber"
+          class="ml-1"
+        >
+          Brouillon
+        </v-chip>
       </v-list-item-title>
       <v-list-item-subtitle>
         {{ contest.contest_participants_count || 0 }} participant·es |

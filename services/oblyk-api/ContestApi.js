@@ -79,5 +79,19 @@ class ContestApi extends BaseApi {
       }
     })
   }
+
+  draft (gymId, contestId, draft) {
+    return this.axios.request({
+      method: 'PUT',
+      url: `${this.baseUrl}/gyms/${gymId}/contests/${contestId}/draft.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
+      data: {
+        contest: { draft }
+      }
+    })
+  }
 }
 export default ContestApi

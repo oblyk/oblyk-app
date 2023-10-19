@@ -7,82 +7,90 @@
         type="card-avatar"
       />
       <div v-else>
-        <v-img
-          dark
-          height="400px"
-          max-height="400px"
-          gradient="to bottom, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.8) 100%"
-          :lazy-src="contest.thumbnailBannerUrl"
-          :src="contest.bannerUrl"
-          class="rounded"
-        >
-          <template #placeholder>
+        <div v-if="readable">
+          <v-img
+            dark
+            height="400px"
+            max-height="400px"
+            gradient="to bottom, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.8) 100%"
+            :lazy-src="contest.thumbnailBannerUrl"
+            :src="contest.bannerUrl"
+            class="rounded"
+          >
+            <template #placeholder>
+              <v-row
+                class="fill-height ma-0"
+                align="center"
+                justify="center"
+              >
+                <v-progress-circular
+                  indeterminate
+                  color="grey lighten-5"
+                />
+              </v-row>
+            </template>
             <v-row
-              class="fill-height ma-0"
-              align="center"
+              class="fill-height ma-0 py-4"
+              align="end"
               justify="center"
             >
-              <v-progress-circular
-                indeterminate
-                color="grey lighten-5"
-              />
+              <div class="text-center">
+                <h1 class="mb-n1">
+                  {{ contest.name }}
+                </h1>
+                <p
+                  v-if="contest.start_date === contest.end_date"
+                  class="subtitle-1 mb-0"
+                >
+                  {{ humanizeDate(contest.start_date) }}
+                </p>
+                <p v-else>
+                  Du {{ humanizeDate(contest.start_date) }} au {{ humanizeDate(contest.end_date) }}
+                </p>
+              </div>
             </v-row>
-          </template>
-          <v-row
-            class="fill-height ma-0 py-4"
-            align="end"
-            justify="center"
-          >
-            <div class="text-center">
-              <h1 class="mb-n1">
-                {{ contest.name }}
-              </h1>
-              <p
-                v-if="contest.start_date === contest.end_date"
-                class="subtitle-1 mb-0"
-              >
-                {{ humanizeDate(contest.start_date) }}
-              </p>
-              <p v-else>
-                Du {{ humanizeDate(contest.start_date) }} au {{ humanizeDate(contest.end_date) }}
-              </p>
-            </div>
-          </v-row>
-        </v-img>
-        <v-tabs class="rounded mt-3">
-          <v-tab
-            exact-path
-            :to="contest.path"
-          >
-            <v-icon left>
-              {{ mdiInformation }}
-            </v-icon>
-            Information
-          </v-tab>
-          <v-tab
-            v-if="token"
-            exact-path
-            :to="`${contest.path}/my-contest`"
-          >
-            <v-icon left>
-              {{ mdiHumanGreeting }}
-            </v-icon>
-            Mon contest
-          </v-tab>
-          <v-tab
-            exact-path
-            :to="`${contest.path}/results`"
-          >
-            <v-icon left>
-              {{ mdiPodium }}
-            </v-icon>
-            Résultat
-          </v-tab>
-        </v-tabs>
-        <nuxt-child
-          :contest="contest"
-          :update-token="updateToken"
-        />
+          </v-img>
+          <v-tabs class="rounded mt-3">
+            <v-tab
+              exact-path
+              :to="contest.path"
+            >
+              <v-icon left>
+                {{ mdiInformation }}
+              </v-icon>
+              Information
+            </v-tab>
+            <v-tab
+              v-if="token"
+              exact-path
+              :to="`${contest.path}/my-contest`"
+            >
+              <v-icon left>
+                {{ mdiHumanGreeting }}
+              </v-icon>
+              Mon contest
+            </v-tab>
+            <v-tab
+              exact-path
+              :to="`${contest.path}/results`"
+            >
+              <v-icon left>
+                {{ mdiPodium }}
+              </v-icon>
+              Résultat
+            </v-tab>
+          </v-tabs>
+          <nuxt-child
+            :contest="contest"
+            :update-token="updateToken"
+          />
+        </div>
+        <div
+          v-else
+          class="text-center text--disabled mt-10"
+        >
+          Ce contest n'est pas encore disponible au publique. Revenez plus tard.
+        </div>
       </div>
     </v-container>
     <app-footer />
@@ -109,6 +117,18 @@ export default {
       mdiInformation,
       mdiHumanGreeting,
       mdiPodium
+    }
+  },
+
+  computed: {
+    readable () {
+      if (this.contest && !this.contest.draft) {
+        return true
+      } else if (this.contest && this.contest.draft) {
+        return (this.$auth.loggedIn && this.$auth.user.administered_gyms.map(gym => gym.id).includes(this.contest.gym_id))
+      } else {
+        return false
+      }
     }
   },
 
