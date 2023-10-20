@@ -55,7 +55,10 @@
     </v-list-item>
 
     <!-- Find a contest -->
-    <v-list-item to="/contests">
+    <v-list-item
+      v-if="false"
+      to="/contests"
+    >
       <v-list-item-icon>
         <v-icon>
           {{ mdiTrophy }}
