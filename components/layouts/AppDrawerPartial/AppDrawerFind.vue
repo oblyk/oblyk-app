@@ -53,6 +53,18 @@
         {{ $t('components.layout.appDrawer.find.guideBook.title') }}
       </v-list-item-title>
     </v-list-item>
+
+    <!-- Find a contest -->
+    <v-list-item to="/contests">
+      <v-list-item-icon>
+        <v-icon>
+          {{ mdiTrophy }}
+        </v-icon>
+      </v-list-item-icon>
+      <v-list-item-title>
+        {{ $t('components.layout.appDrawer.find.contests') }}
+      </v-list-item-title>
+    </v-list-item>
   </v-list>
 </template>
 
@@ -62,7 +74,8 @@ import {
   mdiOfficeBuildingMarkerOutline,
   mdiBookshelf,
   mdiAccountGroupOutline,
-  mdiMap
+  mdiMap,
+  mdiTrophy
 } from '@mdi/js'
 
 export default {
@@ -74,7 +87,8 @@ export default {
       mdiOfficeBuildingMarkerOutline,
       mdiBookshelf,
       mdiAccountGroupOutline,
-      mdiMap
+      mdiMap,
+      mdiTrophy
     }
   }
 }

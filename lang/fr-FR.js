@@ -1731,7 +1731,8 @@ export default {
             title: 'Un·e grimpeur·euse',
             map: 'Carte des grimpeurs·euses',
             how: 'Comment ça marche ?'
-          }
+          },
+          contests: 'Un contest'
         }
       },
       footer: {

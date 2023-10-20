@@ -1731,7 +1731,8 @@ export default {
             title: 'A climber',
             map: 'Climbers map',
             how: 'How it works?'
-          }
+          },
+          contests: 'A contest'
         }
       },
       footer: {
