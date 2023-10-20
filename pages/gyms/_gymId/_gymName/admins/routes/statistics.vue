@@ -101,6 +101,7 @@ export default {
   },
   meta: { orphanRoute: true },
   mixins: [GymFetchConcern, DateHelpers],
+  middleware: ['auth', 'gymAdmin'],
 
   data () {
     return {

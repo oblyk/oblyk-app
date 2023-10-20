@@ -22,6 +22,7 @@ export default {
   meta: { orphanRoute: true },
   components: { GymAdminRoutesTabs, GymRoutesTable },
   mixins: [GymFetchConcern],
+  middleware: ['auth', 'gymAdmin'],
 
   i18n: {
     messages: {

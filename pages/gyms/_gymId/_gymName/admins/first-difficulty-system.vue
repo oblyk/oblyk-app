@@ -37,6 +37,7 @@ import { GymConcern } from '@/concerns/GymConcern'
 export default {
   meta: { orphanRoute: true },
   mixins: [GymConcern],
+  middleware: ['auth', 'gymAdmin'],
 
   data () {
     return {

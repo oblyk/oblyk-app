@@ -45,6 +45,7 @@ export default {
   components: { ContestItemList, Spinner },
   meta: { orphanRoute: true },
   mixins: [GymFetchConcern, GymRolesHelpers],
+  middleware: ['auth', 'gymAdmin'],
 
   data () {
     return {

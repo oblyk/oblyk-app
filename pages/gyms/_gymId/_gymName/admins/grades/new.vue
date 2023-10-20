@@ -36,7 +36,7 @@ export default {
   meta: { orphanRoute: true },
   components: { GymGradeForm },
   mixins: [GymFetchConcern],
-  middleware: ['auth'],
+  middleware: ['auth', 'gymAdmin'],
 
   i18n: {
     messages: {

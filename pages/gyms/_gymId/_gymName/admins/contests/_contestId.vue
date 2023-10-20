@@ -307,6 +307,7 @@ export default {
   },
   meta: { orphanRoute: true },
   mixins: [ContestConcern, DateHelpers],
+  middleware: ['auth', 'gymAdmin'],
 
   data () {
     return {

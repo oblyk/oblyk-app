@@ -158,6 +158,7 @@ export default {
   },
   meta: { orphanRoute: true },
   mixins: [DateHelpers],
+  middleware: ['auth', 'gymAdmin'],
 
   props: {
     contest: {

@@ -140,6 +140,7 @@ export default {
   components: { GymSpaceTreeDetail },
   meta: { orphanRoute: true },
   mixins: [GymFetchConcern],
+  middleware: ['auth', 'gymAdmin'],
 
   data () {
     return {

@@ -108,6 +108,7 @@ export default {
   meta: { orphanRoute: true },
   components: { Spinner },
   mixins: [GymFetchConcern, GymRolesHelpers],
+  middleware: ['auth', 'gymAdmin'],
 
   data () {
     return {

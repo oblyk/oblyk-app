@@ -168,6 +168,8 @@ import ContestCategory from '~/models/ContestCategory'
 
 export default {
   components: { ContestParticipantCard, ContestParticipantForm },
+  middleware: ['auth', 'gymAdmin'],
+
   props: {
     contest: {
       type: Object,

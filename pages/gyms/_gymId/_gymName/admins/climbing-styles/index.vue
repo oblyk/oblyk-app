@@ -42,6 +42,7 @@ export default {
   components: { GymClimbingStylesForm, Spinner },
   meta: { orphanRoute: true },
   mixins: [GymFetchConcern],
+  middleware: ['auth', 'gymAdmin'],
 
   data () {
     return {

@@ -124,6 +124,7 @@ export default {
   },
 
   mixins: [GymConcern],
+  middleware: ['auth', 'gymAdmin'],
 
   data () {
     return {

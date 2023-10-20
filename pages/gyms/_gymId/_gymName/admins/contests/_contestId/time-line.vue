@@ -221,6 +221,7 @@ export default {
   components: { ShareBtn, GenderIcon, Spinner },
   meta: { orphanRoute: true },
   mixins: [DateHelpers],
+  middleware: ['auth', 'gymAdmin'],
 
   props: {
     contest: {

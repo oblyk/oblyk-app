@@ -56,6 +56,8 @@ import ContestResultTable from '~/components/contests/ContestResultTable.vue'
 
 export default {
   components: { ContestResultTable },
+  middleware: ['auth', 'gymAdmin'],
+
   props: {
     contest: {
       type: Object,

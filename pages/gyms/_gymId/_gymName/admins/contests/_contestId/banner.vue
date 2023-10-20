@@ -23,7 +23,7 @@ export default {
   meta: { orphanRoute: true },
   components: { ContestBannerForm },
   mixins: [ContestConcern, ProtectedGymConcern],
-  middleware: ['auth'],
+  middleware: ['auth', 'gymAdmin'],
 
   i18n: {
     messages: {

@@ -56,6 +56,7 @@ import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
 export default {
   meta: { orphanRoute: true },
   mixins: [GymConcern, GymRolesHelpers],
+  middleware: ['auth', 'gymAdmin'],
 
   data () {
     return {

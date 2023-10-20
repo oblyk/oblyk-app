@@ -18,7 +18,7 @@ export default {
   components: { ContestForm },
   meta: { orphanRoute: true },
   mixins: [GymFetchConcern, ContestConcern],
-  middleware: ['auth'],
+  middleware: ['auth', 'gymAdmin'],
 
   i18n: {
     messages: {
