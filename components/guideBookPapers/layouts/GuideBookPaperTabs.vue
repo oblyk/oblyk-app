@@ -10,7 +10,14 @@
 
     <!-- Point of sales -->
     <v-tab :to="`${guideBookPaper.path}/points-of-sale`">
-      {{ $t('components.guideBookPaper.tabs.pointsOfSale') }}
+      <v-badge
+        color="primary"
+        inline
+        :value="guideBookPaper.place_of_sales_count > 0"
+        :content="guideBookPaper.place_of_sales_count"
+      >
+        {{ $t('components.guideBookPaper.tabs.pointsOfSale') }}
+      </v-badge>
     </v-tab>
 
     <!-- Photos tabs -->
@@ -18,7 +25,7 @@
       <v-badge
         color="primary"
         inline
-        value="guideBookPaper.photos_count > 0"
+        :value="guideBookPaper.photos_count > 0"
         :content="guideBookPaper.photos_count"
       >
         {{ $t('components.guideBookPaper.tabs.photos') }}
