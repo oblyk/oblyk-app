@@ -1,6 +1,6 @@
 <template>
   <div :class="inputStyle === 'button' ? 'd-inline-block' : ''">
-    <div @click="colorModal = true">
+    <div @click="focusInput">
       <v-select
         v-if="inputStyle === 'Select'"
         v-model="selectedColors"
@@ -10,7 +10,7 @@
         :items="colors"
         :label="label"
         chips
-        @focus="colorModal = !colorModal"
+        @focus="focusInput"
       >
         <template #selection="{ attrs, item, selected }">
           <v-chip
@@ -93,7 +93,7 @@
           <v-btn
             text
             color="primary"
-            @click="colorModal = false"
+            @click.prevent="closeModal"
           >
             {{ $t('actions.ok') }}
           </v-btn>
@@ -156,6 +156,7 @@ export default {
   data () {
     return {
       colorModal: false,
+      delayClose: false,
       selectedColors: this.value,
 
       mdiCircle,
@@ -216,6 +217,19 @@ export default {
     btnClass (color) {
       const hoverable = this.disableAllColor && color.value === '#00000000' ? '' : 'activable-v-sheet'
       return this.selectedColors && this.selectedColors.includes(color.value) ? `${hoverable} --active` : `${hoverable} --inactive`
+    },
+
+    focusInput () {
+      if (!this.delayClose && !this.colorModal) {
+        this.colorModal = true
+      } else {
+        this.delayClose = false
+      }
+    },
+
+    closeModal () {
+      this.delayClose = true
+      this.colorModal = false
     }
   }
 }
