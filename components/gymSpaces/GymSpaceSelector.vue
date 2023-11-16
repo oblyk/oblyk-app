@@ -34,7 +34,7 @@
             >
               <v-img
                 v-if="space.plan"
-                :src="space.planThumbnailUrl"
+                :src="space.planTinyThumbnailUrl"
                 height="62"
                 width="62"
                 contain
@@ -71,7 +71,7 @@
           >
             <v-img
               v-if="space.plan"
-              :src="space.planThumbnailUrl"
+              :src="space.planTinyThumbnailUrl"
               height="62"
               width="62"
               contain

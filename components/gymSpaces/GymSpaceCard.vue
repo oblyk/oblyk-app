@@ -12,8 +12,8 @@
         <v-img
           contain
           height="150"
-          :src="gymSpace.planUrl"
-          :lazy-src="gymSpace.planThumbnailUrl"
+          :src="gymSpace.planThumbnailUrl"
+          :lazy-src="gymSpace.planTinyThumbnailUrl"
         >
           <template #placeholder>
             <v-row

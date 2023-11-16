@@ -39,9 +39,13 @@
               class="mt-15 pt-3"
             >
               <v-list-item-avatar
+                tile
                 size="52"
               >
-                <v-img :src="gym.logoUrl" />
+                <v-img
+                  :src="gym.logoUrl"
+                  class="rounded-sm"
+                />
               </v-list-item-avatar>
               <v-list-item-content>
                 <v-list-item-title>

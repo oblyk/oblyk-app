@@ -11,8 +11,9 @@
       <div class="gym-header-title">
         <div class="d-flex flex-row gym-header-title-and-logo">
           <v-avatar
+            tile
             size="80"
-            class="mr-3 align-self-center"
+            class="mr-3 align-self-center rounded-sm"
           >
             <v-img
               :src="gym.logoUrl"

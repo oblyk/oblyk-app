@@ -9,11 +9,15 @@
         <v-card-title class="py-1">
           <v-list class="py-0">
             <v-list-item class="pl-0">
-              <v-list-item-avatar>
-                <v-avatar>
+              <v-list-item-avatar
+                tile
+                size="48"
+              >
+                <v-avatar tile>
                   <v-img
                     :src="gym.logoUrl"
                     :alt="`logo ${gym.name}`"
+                    class="rounded-sm"
                   />
                 </v-avatar>
               </v-list-item-avatar>

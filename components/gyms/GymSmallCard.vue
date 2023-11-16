@@ -10,12 +10,14 @@
         :two-line="!small"
       >
         <v-list-item-avatar
+          tile
           :size="small ? 45 : 70"
           :class="small ? 'mt-1 mb-1' : ''"
         >
           <v-avatar
             color="grey"
             :size="small ? 45 : 70"
+            class="rounded-sm"
             tile
           >
             <v-img :src="gym.logoUrl" />

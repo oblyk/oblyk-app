@@ -1,9 +1,14 @@
 <template>
   <div>
     <v-list-item>
-      <v-list-item-avatar>
-        <v-avatar>
-          <v-img :src="gymSpace.planThumbnailUrl" />
+      <v-list-item-avatar tile>
+        <v-avatar
+          tile
+        >
+          <v-img
+            contain
+            :src="gymSpace.planTinyThumbnailUrl"
+          />
         </v-avatar>
       </v-list-item-avatar>
       <v-list-item-content>

@@ -22,10 +22,15 @@
           color="rgba(0,0,0,0)"
         >
           <v-list-item class="pl-0">
-            <v-list-item-avatar v-if="gym.logo">
+            <v-list-item-avatar
+              v-if="gym.logo"
+              tile
+              size="40"
+            >
               <v-avatar
                 size="40"
-                class="mr-2 vertical-align-top"
+                tile
+                class="vertical-align-top rounded-sm"
               >
                 <v-img :src="gym.logoUrl" alt="gym logo" />
               </v-avatar>
