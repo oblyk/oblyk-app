@@ -52,7 +52,7 @@
     <div v-if="!loadingRoutes">
       <!-- If sort by sector -->
       <gym-routes-by-sector
-        v-if="sort === 'sector'"
+        v-if="sort.column === 'sector'"
         :sectors="filteredSectors"
         :get-routes="getRoutes"
         :show-plan-options="showPlanOptions"
@@ -60,9 +60,9 @@
       />
 
       <!-- If sort by opened_at -->
-      <div v-if="sort === 'opened_at'">
+      <div v-if="sort.column === 'opened_at'">
         <gym-routes-by-opened-at
-          v-if="sort === 'opened_at'"
+          v-if="sort.column === 'opened_at'"
           :opened-ats="filteredOpenedAts"
           :get-routes="getRoutes"
         />
@@ -75,9 +75,9 @@
       </div>
 
       <!-- If sort by grade -->
-      <div v-if="sort === 'grade'">
+      <div v-if="sort.column === 'grade'">
         <gym-routes-by-grade
-          v-if="sort === 'grade'"
+          v-if="sort.column === 'grade'"
           :grades="filteredGrades"
           :get-routes="getRoutes"
         />
@@ -90,9 +90,9 @@
       </div>
 
       <!-- If sort by level -->
-      <div v-if="sort === 'level'">
+      <div v-if="sort.column === 'level'">
         <gym-routes-by-level
-          v-if="sort === 'level'"
+          v-if="sort.column === 'level'"
           :levels="filteredLevels"
           :get-routes="getRoutes"
         />
@@ -105,9 +105,9 @@
       </div>
 
       <!-- If sort by points -->
-      <div v-if="sort === 'point'">
+      <div v-if="sort.column === 'point'">
         <gym-routes-by-point
-          v-if="sort === 'point'"
+          v-if="sort.column === 'point'"
           :routes="filteredPoints"
           :get-routes="getRoutes"
         />
@@ -168,7 +168,7 @@ export default {
 
   data () {
     return {
-      sort: 'opened_at',
+      sort: { column: 'opened_at', direction: 'asc' },
       routes: [],
       sectors: [],
       openedAts: [],
@@ -191,6 +191,7 @@ export default {
     },
 
     filteredSectors () {
+      if (this.sort.column !== 'sector') { return [] }
       const sectors = []
       for (const sector of this.sectors) {
         if (!this.showSectorId || sector.sector.id === this.showSectorId) {
@@ -201,6 +202,7 @@ export default {
     },
 
     filteredGrades () {
+      if (this.sort.column !== 'grade') { return [] }
       const grades = []
       for (const grade of this.grades) {
         const routes = []
@@ -217,6 +219,7 @@ export default {
     },
 
     filteredOpenedAts () {
+      if (this.sort.column !== 'opened_at') { return [] }
       const openedAts = []
       for (const openedAt of this.openedAts) {
         const routes = []
@@ -233,6 +236,7 @@ export default {
     },
 
     filteredLevels () {
+      if (this.sort.column !== 'level') { return [] }
       const levels = []
       for (const level of this.levels) {
         const routes = []
@@ -255,6 +259,7 @@ export default {
     },
 
     filteredPoints () {
+      if (this.sort.column !== 'point') { return [] }
       const points = []
       for (const route of this.points) {
         if (!this.showSectorId || route.gym_sector_id === this.showSectorId) {
@@ -289,7 +294,8 @@ export default {
       this.getRoutes()
     })
 
-    this.sort = localStorage.getItem('gym_route_sort') || 'sector'
+    this.sort.column = localStorage.getItem('gym_route_sort_column') || 'sector'
+    this.sort.direction = localStorage.getItem('gym_route_sort_direction') || 'asc'
     this.getRoutes()
   },
 
@@ -310,15 +316,17 @@ export default {
           .allInSpace(
             this.gymSpace.gym.id,
             this.gymSpace.id,
-            this.sort,
-            this.sort
+            this.sort.column,
+            this.sort.column,
+            this.sort.direction
           )
       } else {
         promise = gymRouteApi
           .allInGym(
             this.gym.id,
-            this.sort,
-            this.sort
+            this.sort.column,
+            this.sort.column,
+            this.sort.direction
           )
       }
 
@@ -328,9 +336,11 @@ export default {
           this.sectors = []
           this.grades = []
           this.openedAts = []
+          this.levels = []
+          this.points = []
 
           // If by sector
-          if (this.sort === 'sector') {
+          if (this.sort.column === 'sector') {
             const sectors = resp.data.sectors
             for (const sector of sectors) {
               // Next if filter sector and not good sector
@@ -345,7 +355,7 @@ export default {
                 routes
               })
             }
-          } else if (this.sort === 'opened_at') {
+          } else if (this.sort.column === 'opened_at') {
             // If by opened_at
             const openedAts = resp.data.opened_at
             for (const openedAt of openedAts) {
@@ -358,7 +368,7 @@ export default {
                 routes
               })
             }
-          } else if (this.sort === 'grade') {
+          } else if (this.sort.column === 'grade') {
             // If by grade
             const grades = resp.data.grade
             for (const grade of grades) {
@@ -371,7 +381,7 @@ export default {
                 routes
               })
             }
-          } else if (this.sort === 'level') {
+          } else if (this.sort.column === 'level') {
             // If by level
             const levels = resp.data.level
             for (const level of levels) {
@@ -387,13 +397,14 @@ export default {
                 routes
               })
             }
-          } else if (this.sort === 'point') {
+          } else if (this.sort.column === 'point') {
             this.points = []
             for (const route of resp.data) {
               this.points.push(new GymRoute({ attributes: route }))
             }
           }
-          localStorage.setItem('gym_route_sort', this.sort)
+          localStorage.setItem('gym_route_sort_column', this.sort.column)
+          localStorage.setItem('gym_route_sort_direction', this.sort.direction)
         })
         .catch((err) => {
           this.$root.$emit('alertFromApiError', err, 'gymRoute')
