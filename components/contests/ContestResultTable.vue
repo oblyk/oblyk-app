@@ -106,11 +106,61 @@
                       {{ step.rank || '-' }}
                     </strong>
                     <small
-                      v-if="step.points && step.subscribe"
+                      v-if="step.points && step.subscribe && step.unit_details !== 'zone_and_top_blocks'"
                       class="text--disabled"
                     >
                       {{ details(step) }}
                     </small>
+                    <div
+                      v-if="step.points && step.subscribe && step.unit_details === 'zone_and_top_blocks'"
+                      class="d-inline-block ml-2"
+                    >
+                      <div
+                        v-for="(detail, detailIndex) in step.score_details"
+                        :key="`detail-index-${detailIndex}`"
+                        class="d-inline-block border vertical-align-middle black--text text-center font-weight-bold"
+                        style="border-radius: 2px; margin-right: 2px; width: 16px"
+                      >
+                        <div
+                          style="font-size: 8px; border-radius: 2px 2px 0 0; height: 14px"
+                          :style="detail.top > 0 ? `background-color: #ffc107` : null"
+                        >
+                          <v-icon
+                            v-if="detail.top === 1"
+                            size="9"
+                            color="black"
+                          >
+                            {{ mdiFlash }}
+                          </v-icon>
+                          <span
+                            v-else
+                            style="padding-top: 2px"
+                            class="vertical-align-text-bottom d-inline-block"
+                          >
+                            {{ detail.top > 0 ? detail.top : '-' }}
+                          </span>
+                        </div>
+                        <div
+                          style="font-size: 8px; border-radius: 0 0 2px 2px; height: 14px"
+                          :style="detail.zone > 0 ? `background-color: #ffc107` : null"
+                        >
+                          <v-icon
+                            v-if="detail.zone === 1"
+                            size="9"
+                            color="black"
+                          >
+                            {{ mdiFlash }}
+                          </v-icon>
+                          <span
+                            v-else
+                            style="padding-top: 2px"
+                            class="vertical-align-text-bottom d-inline-block"
+                          >
+                            {{ detail.zone > 0 ? detail.zone : '-' }}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </td>
               </template>
@@ -141,7 +191,7 @@
 </template>
 
 <script>
-import { mdiRefresh } from '@mdi/js'
+import { mdiRefresh, mdiFlash } from '@mdi/js'
 import ContestApi from '~/services/oblyk-api/ContestApi'
 import ContestParticipantStepApi from '~/services/oblyk-api/ContestParticipantStepApi'
 const ContestParticipantCard = () => import('~/components/contests/ContestParticipantCard')
@@ -179,7 +229,8 @@ export default {
       participantId: null,
       firstLoad: true,
 
-      mdiRefresh
+      mdiRefresh,
+      mdiFlash
     }
   },
 

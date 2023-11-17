@@ -31,7 +31,7 @@ export default {
         { text: this.$t('models.contestRankingType.division_and_zone'), value: 'division_and_zone' },
         { text: this.$t('models.contestRankingType.attempts_to_top'), value: 'attempts_to_top' },
         { text: this.$t('models.contestRankingType.zone_and_top_realised'), value: 'zone_and_top_realised' },
-        // { text: this.$t('models.contestRankingType.attempts_to_one_zone_and_top'), value: 'attempts_to_one_zone_and_top' },
+        { text: this.$t('models.contestRankingType.attempts_to_one_zone_and_top'), value: 'attempts_to_one_zone_and_top' },
         // { text: this.$t('models.contestRankingType.attempts_to_two_zones_and_top'), value: 'attempts_to_two_zones_and_top' },
         { text: this.$t('models.contestRankingType.highest_hold'), value: 'highest_hold' },
         { text: this.$t('models.contestRankingType.fixed_points'), value: 'fixed_points' }
