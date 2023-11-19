@@ -336,7 +336,7 @@ export default {
     },
 
     checkDivisibleByWave () {
-      this.data.waveable = false
+      this.data.waveable ||= false
       this.waveDivisionEnabled = false
       let isWaveable = true
       for (const category of this.categories) {
