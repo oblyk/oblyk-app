@@ -2290,6 +2290,7 @@ export default {
       step_date: 'Step date',
       start_time: 'Step start time',
       end_time: 'Step end time',
+      additional_time: 'Additionnel minutes',
       number_participants_for_next_step: 'Number of participants moving on to the next stage',
       number_of_routes: 'Number of %{style}s',
       contest_categories: 'Categories'

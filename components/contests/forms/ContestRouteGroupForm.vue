@@ -101,15 +101,20 @@
           <date-picker-menu-input
             v-if="!contest.one_day_event"
             v-model="data.end_date"
-            class="mr-2"
             :label="$t('models.contestRouteGroup.end_time')"
           />
           <v-text-field
             v-model="data.end_time"
             outlined
-            class="ml-1"
             :label="$t('models.contestRouteGroup.end_time')"
             type="time"
+          />
+          <v-text-field
+            v-model="data.additional_time"
+            outlined
+            class="ml-3"
+            :label="`${$t('models.contestRouteGroup.additional_time')} (1)`"
+            type="number"
           />
         </div>
       </v-col>
@@ -157,13 +162,25 @@
             dense
             hide-details
             clearable
-            class="ml-2"
+            class="mx-2"
             :label="$t('models.contestRouteGroup.end_time')"
             type="time"
+          />
+          <v-text-field
+            v-model="data.contest_time_blocks_attributes[waveIndex].additional_time"
+            outlined
+            dense
+            hide-details
+            class="ml-2"
+            :label="`${$t('models.contestRouteGroup.additional_time')} (1)`"
+            type="number"
           />
         </div>
       </div>
     </div>
+    <p>
+      <strong>(1) {{ $t('models.contestRouteGroup.additional_time') }} :</strong> Temps après la fin de l'étape pendant lequel les participants peuvent renseigner leur réalisations avant la fermeture des formulaires.
+    </p>
 
     <submit-form
       :go-back-btn="false"
@@ -231,6 +248,7 @@ export default {
         end_time: this.contestRouteGroup?.end_time,
         start_date: this.contestRouteGroup?.start_date || this.contest?.start_date,
         end_date: this.contestRouteGroup?.end_date || this.contest?.end_date,
+        additional_time: this.contestRouteGroup?.additional_time || 20,
         number_participants_for_next_step: this.contestRouteGroup?.number_participants_for_next_step || this.contestStageStep?.default_participants_for_next_step,
         gym_id: this.gym.id,
         contest_id: this.contest.id,
@@ -267,7 +285,8 @@ export default {
           start_time: contestTimeBlock?.start_time,
           end_time: contestTimeBlock?.end_time,
           start_date: contestTimeBlock?.start_date || this.contest.start_date,
-          end_date: contestTimeBlock?.end_date || this.contest.end_date
+          end_date: contestTimeBlock?.end_date || this.contest.end_date,
+          additional_time: contestTimeBlock?.additional_time || this.contest.additional_time
         })
       }
     } else {
@@ -279,7 +298,8 @@ export default {
           start_time: this.humanizeDate(timeBlock.start_time, 'TIME_SIMPLE'),
           end_time: this.humanizeDate(timeBlock.end_time, 'TIME_SIMPLE'),
           start_date: timeBlock.start_date,
-          end_date: timeBlock.end_date
+          end_date: timeBlock.end_date,
+          additional_time: timeBlock.additional_time || 20
         })
       }
     }

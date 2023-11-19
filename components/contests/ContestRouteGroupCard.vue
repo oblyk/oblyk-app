@@ -115,6 +115,9 @@
           >
             {{ !contest.one_day_event ? humanizeDate(time.end_date) : null }}
             {{ humanizeDate(time.end_time, 'TIME_SIMPLE') }}
+            <small class="ml-1">
+              +{{ time.additional_time }} minutes
+            </small>
           </v-chip>
         </div>
       </div>
@@ -135,6 +138,9 @@
         >
           {{ !contest.one_day_event ? humanizeDate(routeGroup.end_date) : null }}
           {{ humanizeDate(routeGroup.end_time, 'TIME_SIMPLE') }}
+          <small class="ml-1">
+            +{{ routeGroup.additional_time }} minutes
+          </small>
         </v-chip>
       </div>
     </div>

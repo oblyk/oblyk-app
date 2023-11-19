@@ -2290,6 +2290,7 @@ export default {
       route_group_date: "Date de l'étape",
       start_time: "Début de l'étape",
       end_time: "Fin de l'étape",
+      additional_time: 'Minutes additionnelles',
       number_participants_for_next_step: 'Nombre de participant à passer à la prochaine étape',
       number_of_routes: 'Nombre de %{style}s à faire',
       contest_categories: 'Catégories'

@@ -130,7 +130,7 @@
                   Fin <span v-if="event.end_date !== time.start_date">le {{ humanizeDate(event.end_date) }}</span> à {{ humanizeDate(event.end_time, 'TIME_SIMPLE').replace(':', 'h') }}.
                 </p>
                 <p v-if="event.step.self_reporting">
-                  Les participants ont 20 minutes après la fin des {{ event.step.name }} pour renseigner leur performances avant la fermeture du formulaire.
+                  Les participants ont <strong>{{ event.additional_time }} minutes</strong> après la fin des {{ event.step.name }} pour renseigner leur performances avant la fermeture du formulaire.
                 </p>
                 <div
                   v-if="event.step.step_order > 1 || !event.step.self_reporting"
