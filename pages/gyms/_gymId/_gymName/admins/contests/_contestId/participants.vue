@@ -74,8 +74,22 @@
         outlined
         color="primary"
         :loading="loadingExport"
+        @click="importModal = true"
+      >
+        <v-icon left>
+          {{ mdiImport }}
+        </v-icon>
+        Importer
+      </v-btn>
+      <v-btn
+        outlined
+        color="primary"
+        :loading="loadingExport"
         @click="exportParticipants()"
       >
+        <v-icon left>
+          {{ mdiExport }}
+        </v-icon>
         Exporter
       </v-btn>
       <v-btn
@@ -154,20 +168,150 @@
         </div>
       </v-card>
     </v-dialog>
+
+    <v-dialog
+      v-model="importModal"
+      width="600"
+    >
+      <v-card>
+        <v-card-title>
+          Importer des participants
+        </v-card-title>
+        <div class="px-6 pb-4">
+          <p class="font-weight-bold">
+            Pour importer des participants depuis un fichier merci de prendre connaissance des points suivants :
+          </p>
+          <p>
+            <strong>1.</strong> Le fichier doit être au format .csv
+          </p>
+          <p>
+            <strong>2.</strong> Les colonnes doivent être séparées par des points virgules (;)
+          </p>
+          <p class="mb-1">
+            <strong>3.</strong> Le fichier doit comporter les éléments suivants <strong>strictement dans cet ordre</strong> :
+          </p>
+          <ul class="mb-3">
+            <li>Prénom</li>
+            <li>Nom de famille</li>
+            <li>Date de naissance</li>
+            <li>Email</li>
+            <li>Genre. Valeur possible : homme, femme</li>
+            <li v-if="contestCategories && contestCategories.length > 0">
+              Catégorie. Valeur possible : {{ contestCategories.map(cat => cat.name).join(', ') }}
+            </li>
+            <li v-if="contestWaves && contestWaves.length > 0">
+              Vague. Valeur possible : {{ contestWaves.map(wave => wave.name).join(', ') }}
+            </li>
+          </ul>
+          <p>
+            <strong>4.</strong> La première ligne est dédiée aux entêtes donc elle n'est pas prise en compte dans l'import.<br>
+            <strong>Autrement dit :</strong> le premier participant se trouve à la ligne 2 de votre fichier.
+          </p>
+          <p>
+            <strong>Aussi</strong>, vous pouvez importer plusieurs fois le même fichier, les participants ne seront pas créé en doublon
+          </p>
+          <v-form
+            class="border rounded-sm pa-4"
+            enctype="multipart/form-data"
+          >
+            <v-file-input
+              v-model="importFile"
+              outlined
+              truncate-length="15"
+              hide-details
+              placeholder="Fichier .csv à importer ..."
+            />
+            <v-checkbox
+              v-model="sendEmail"
+              label="Envoyer l'email de bienvenue aux nouveaux participants"
+              class="mt-2"
+              hide-details
+            />
+            <div class="text-right mt-3">
+              <v-btn
+                outlined
+                text
+                :loading="loadingImport"
+                @click="submitImport"
+              >
+                <v-icon left>
+                  {{ mdiImport }}
+                </v-icon>
+                Importer
+              </v-btn>
+            </div>
+          </v-form>
+          <div
+            v-if="importResults"
+            class="mt-2"
+          >
+            <p class="font-weight-bold mb-2 text-decoration-underline">
+              Résultat de l'import :
+            </p>
+            <p class="mb-1">
+              Participants dans le fichier : <strong>{{ importResults.file_row_count }}</strong>
+            </p>
+            <p class="mb-1">
+              Participants importé : <strong class="green--text">{{ importResults.created_count }}</strong>
+            </p>
+            <p>
+              Participants déjà inscrit au contest : <strong class="blue--text">{{ importResults.already_imported_count }}</strong>
+            </p>
+            <div v-if="importResults.errors_count > 0">
+              <p class="font-weight-bold mb-1 red--text">
+                {{ importResults.errors_count }} erreurs de validation :
+              </p>
+              <ul>
+                <li
+                  v-for="(error, errorIndex) in importResults.errors"
+                  :key="`error-index-${errorIndex}`"
+                >
+                  {{ error }}
+                </li>
+              </ul>
+            </div>
+            <div v-else>
+              Aucune erreurs de d'import
+            </div>
+            <div class="text-right mt-3">
+              <v-btn
+                outlined
+                text
+                @click="importModal = false"
+              >
+                Fermer
+              </v-btn>
+            </div>
+          </div>
+        </div>
+      </v-card>
+    </v-dialog>
   </v-sheet>
 </template>
 
 <script>
-import { mdiDotsVertical, mdiPencil, mdiTrashCan, mdiMagnify, mdiWindowRestore } from '@mdi/js'
+import {
+  mdiDotsVertical,
+  mdiPencil,
+  mdiTrashCan,
+  mdiMagnify,
+  mdiWindowRestore,
+  mdiExport,
+  mdiImport
+} from '@mdi/js'
 import ContestParticipantApi from '~/services/oblyk-api/ContestParticipantApi'
 import ContestParticipant from '~/models/ContestParticipant'
 import ContestParticipantForm from '~/components/contests/forms/ContestParticipantForm.vue'
 import ContestParticipantCard from '~/components/contests/ContestParticipantCard.vue'
 import ContestCategoryApi from '~/services/oblyk-api/ContestCategoryApi'
 import ContestCategory from '~/models/ContestCategory'
+import ContestWaveApi from '~/services/oblyk-api/ContestWaveApi'
+import ContestWave from '~/models/ContestWave'
+import { AppConcern } from '~/concerns/AppConcern'
 
 export default {
   components: { ContestParticipantCard, ContestParticipantForm },
+  mixins: [AppConcern],
   middleware: ['auth', 'gymAdmin'],
 
   props: {
@@ -182,6 +326,7 @@ export default {
       editModal: false,
       showModal: false,
       addModal: false,
+      importModal: false,
       loadingParticipant: true,
       loadingExport: false,
       participant: null,
@@ -191,6 +336,11 @@ export default {
       participants: [],
       search: null,
       contestCategories: null,
+      contestWaves: null,
+      loadingImport: false,
+      importFile: null,
+      importResults: null,
+      sendEmail: true,
       participantHeaders: [
         {
           text: 'Référence',
@@ -246,7 +396,9 @@ export default {
       mdiPencil,
       mdiTrashCan,
       mdiMagnify,
-      mdiWindowRestore
+      mdiWindowRestore,
+      mdiExport,
+      mdiImport
     }
   },
 
@@ -274,6 +426,7 @@ export default {
   mounted () {
     this.getParticipants()
     this.getCategories()
+    this.getWaves()
   },
 
   methods: {
@@ -324,6 +477,17 @@ export default {
         })
     },
 
+    getWaves () {
+      new ContestWaveApi(this.$axios, this.$auth)
+        .all(this.contest.gym_id, this.contest.id)
+        .then((resp) => {
+          this.contestWaves = []
+          for (const wave of resp.data) {
+            this.contestWaves.push(new ContestWave({ attributes: wave }))
+          }
+        })
+    },
+
     editCallback (participant) {
       this.editModal = false
       for (const participantIndex in this.participants) {
@@ -365,6 +529,36 @@ export default {
         })
         .finally(() => {
           this.loadingExport = false
+        })
+    },
+
+    submitImport () {
+      this.loadingImport = true
+      this.importResults = null
+      const formData = new FormData()
+
+      formData.append('contest_participant[file]', this.importFile)
+      formData.append('contest_participant[send_email]', this.sendEmail)
+
+      this.$axios.$request({
+        method: 'POST',
+        url: `${this.baseUrl}/gyms/${this.contest.gym.id}/contests/${this.contest.id}/contest_participants/import.json`,
+        headers: {
+          Authorization: this.$auth.$storage.getUniversal('_token.local'),
+          HttpApiAccessToken: this.apiAccessToken,
+          'Content-Type': 'multipart/form-data'
+        },
+        data: formData
+      })
+        .then((resp) => {
+          this.importResults = resp
+          this.getParticipants()
+        })
+        .catch((err) => {
+          this.$root.$emit('alertFromApiError', err, 'gym')
+        })
+        .finally(() => {
+          this.loadingImport = false
         })
     },
 

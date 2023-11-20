@@ -27,7 +27,7 @@ import CloseForm from '@/components/forms/CloseForm'
 export default {
   name: 'ContestBannerForm',
   components: { CloseForm, SubmitForm },
-  mixins: [AppConcern, AppConcern],
+  mixins: [AppConcern],
   props: {
     contest: {
       type: Object,
