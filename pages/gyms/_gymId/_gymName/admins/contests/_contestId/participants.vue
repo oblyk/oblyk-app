@@ -190,7 +190,7 @@
           <p class="mb-1">
             <strong>3.</strong> Le fichier doit comporter les éléments suivants <strong>strictement dans cet ordre</strong> :
           </p>
-          <ul class="mb-3">
+          <ul class="mb-1">
             <li>Prénom</li>
             <li>Nom de famille</li>
             <li>Date de naissance</li>
@@ -203,6 +203,15 @@
               Vague. Valeur possible : {{ contestWaves.map(wave => wave.name).join(', ') }}
             </li>
           </ul>
+          <v-btn
+            text
+            outlined
+            :loading="loadingImportTemplate"
+            class="mb-3"
+            @click="importTemplate"
+          >
+            Télécharger le modèle
+          </v-btn>
           <p>
             <strong>4.</strong> La première ligne est dédiée aux entêtes donc elle n'est pas prise en compte dans l'import.<br>
             <strong>Autrement dit :</strong> le premier participant se trouve à la ligne 2 de votre fichier.
@@ -341,6 +350,7 @@ export default {
       importFile: null,
       importResults: null,
       sendEmail: true,
+      loadingImportTemplate: false,
       participantHeaders: [
         {
           text: 'Référence',
@@ -529,6 +539,23 @@ export default {
         })
         .finally(() => {
           this.loadingExport = false
+        })
+    },
+
+    importTemplate () {
+      this.loadingImportTemplate = true
+      new ContestParticipantApi(this.$axios, this.$auth)
+        .importTemplate(this.contest.gym_id, this.contest.id)
+        .then((resp) => {
+          const url = window.URL.createObjectURL(new Blob([resp.data]))
+          const link = document.createElement('a')
+          link.href = url
+          link.setAttribute('download', `template-import-participant-${this.contest.slug_name}.csv`)
+          document.body.appendChild(link)
+          link.click()
+        })
+        .finally(() => {
+          this.loadingImportTemplate = false
         })
     },
 

@@ -24,6 +24,18 @@ class ContestParticipantApi extends BaseApi {
     })
   }
 
+  importTemplate (gymId, contestId) {
+    return this.axios.request({
+      method: 'GET',
+      url: `${this.baseUrl}/gyms/${gymId}/contests/${contestId}/contest_participants/import_template.json`,
+      responseType: 'blob',
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
+    })
+  }
+
   find (gymId, contestId, participantId) {
     return this.axios.request({
       method: 'GET',
