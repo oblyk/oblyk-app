@@ -2231,7 +2231,9 @@ export default {
       subscription_end_date: 'Fermeture des inscriptions',
       total_capacity: 'Capacité total max',
       ranking_type: 'Type de classement',
-      categorization_type: 'Type de catégorisation'
+      categorization_type: 'Type de catégorisation',
+      authorise_public_subscription: 'Autoriser les inscriptions depuis la page publique',
+      private: 'Contest privé'
     },
     contestCategoryType: {
       official_under_age: "Catégorisation officielle par l'âge (U14, U18, senior, etc.)",

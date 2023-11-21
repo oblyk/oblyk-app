@@ -54,6 +54,22 @@
               >
                 <markdown-text :text="contest.description" />
               </div>
+              <div class="rounded-sm border pa-2 mt-2">
+                <v-row>
+                  <v-col cols="12" md="6" lg="8">
+                    <p class="mb-0">
+                      {{ $t('models.contest.authorise_public_subscription') }} :
+                      <strong>{{ contest.authorise_public_subscription ? 'oui' : 'non' }}</strong>
+                    </p>
+                  </v-col>
+                  <v-col>
+                    <p class="mb-0">
+                      {{ $t('models.contest.private') }} :
+                      <strong>{{ contest.private ? 'oui' : 'non' }}</strong>
+                    </p>
+                  </v-col>
+                </v-row>
+              </div>
               <v-alert
                 v-if="contest.draft"
                 text

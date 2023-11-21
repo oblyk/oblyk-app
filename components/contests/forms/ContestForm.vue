@@ -78,6 +78,26 @@
       v-html="$t('components.contest.capacityExplain')"
     />
 
+    <div class="pa-2 border rounded-sm">
+      <v-checkbox
+        v-model="data.authorise_public_subscription"
+        :label="$t('models.contest.authorise_public_subscription')"
+        hint="Les participants pourrons être inscrit uniquement par vous via l'administration ou l'import d'un fichier de participant."
+        class="mt-n1"
+        persistent-hint
+      />
+    </div>
+
+    <div class="pa-2 my-4 border rounded-sm">
+      <v-checkbox
+        v-model="data.private"
+        :label="$t('models.contest.private')"
+        hint="Le contest ne sera pas mis en évidence sur Oblyk. Seul les grimpeurs ayant le lien pourront aller sur la page du contest."
+        class="mt-n1"
+        persistent-hint
+      />
+    </div>
+
     <close-form />
     <submit-form
       :overlay="submitOverlay"
@@ -139,6 +159,8 @@ export default {
         subscription_end_date: this.contest?.subscription_end_date,
         total_capacity: this.contest?.total_capacity,
         categorization_type: this.contest?.categorization_type,
+        authorise_public_subscription: this.contest?.authorise_public_subscription,
+        private: this.contest?.private,
         gym_id: this.gym.id
       },
 

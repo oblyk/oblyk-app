@@ -76,7 +76,7 @@
             v-if="!token"
             class="text-center mt-4"
           >
-            <div v-if="contest.subscription_opened && (!contest.total_capacity || contest.remaining_places > 0)">
+            <div v-if="contest.authorise_public_subscription && contest.subscription_opened && (!contest.total_capacity || contest.remaining_places > 0)">
               <v-btn
                 class="rounded-sm"
                 color="primary"
