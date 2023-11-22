@@ -241,6 +241,20 @@ export default {
     setting: 'Réglage',
     new: '%{count} nouveau | %{count} nouveaux',
     group: 'Groupe',
+    months: {
+      '01': '01 - Janvier',
+      '02': '02 - Février',
+      '03': '03 - Mars',
+      '04': '04 - Avril',
+      '05': '05 - Mai',
+      '06': '06 - Juin',
+      '07': '07 - Juillet',
+      '08': '08 - Août',
+      '09': '09 - Septembre',
+      10: '10 - Octobre',
+      11: '11 - Novembre',
+      12: '12 - Décembre'
+    },
     climbers: {
       long: '%{count} grimpeur ou grimpeuse | %{count} grimpeurs et grimpeuses',
       longWithoutCount: 'grimpeur ou grimpeuse | grimpeurs et grimpeuses',
@@ -2307,7 +2321,8 @@ export default {
       first_name: 'Prénom',
       last_name: 'Nom de famille',
       affiliation: "Club ou salle d'escalade",
-      email: 'Email'
+      email: 'Email',
+      date_of_birth: 'Date de naissance'
     },
     contestWave: {
       name: 'Nom'

@@ -27,7 +27,10 @@
       </v-stepper-step>
     </v-stepper-header>
     <v-stepper-items>
-      <v-stepper-content step="1">
+      <v-stepper-content
+        step="1"
+        :class="$vuetify.breakpoint.mobile ? 'pa-2 pt-3' : null"
+      >
         <p class="font-weight-bold text-decoration-underline">
           Mes informations principales :
         </p>
@@ -45,7 +48,7 @@
           class="required-field"
           :label="$t('models.contestParticipant.last_name')"
         />
-        <date-of-birth-input
+        <date-of-birth-select-input
           v-model="data.date_of_birth"
           required
         />
@@ -226,15 +229,15 @@
 
 <script>
 import { mdiArrowRight, mdiEyeOff, mdiEye, mdiCheck } from '@mdi/js'
-import DateOfBirthInput from '~/components/forms/DateOfBirthInput.vue'
 import GenreInput from '~/components/forms/GenreInput.vue'
 import { FormHelpers } from '~/mixins/FormHelpers'
 import ContestParticipantApi from '~/services/oblyk-api/ContestParticipantApi'
 import { DateHelpers } from '~/mixins/DateHelpers'
+import DateOfBirthSelectInput from '~/components/forms/DateOfBirthSelectInput'
 
 export default {
   name: 'ContestSubscribeForm',
-  components: { GenreInput, DateOfBirthInput },
+  components: { DateOfBirthSelectInput, GenreInput },
   mixins: [FormHelpers, DateHelpers],
 
   props: {

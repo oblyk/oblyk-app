@@ -14,7 +14,7 @@
       class="required-field"
       :label="$t('models.contestParticipant.last_name')"
     />
-    <date-of-birth-input
+    <date-of-birth-select-input
       v-model="data.date_of_birth"
       required
     />
@@ -115,14 +115,14 @@
 import { mdiArrowRight, mdiEyeOff, mdiEye, mdiCheck } from '@mdi/js'
 import { FormHelpers } from '~/mixins/FormHelpers'
 import { DateHelpers } from '~/mixins/DateHelpers'
-import DateOfBirthInput from '~/components/forms/DateOfBirthInput'
 import GenreInput from '~/components/forms/GenreInput'
 import ContestParticipantApi from '~/services/oblyk-api/ContestParticipantApi'
 import SubmitForm from '~/components/forms/SubmitForm'
+import DateOfBirthSelectInput from '~/components/forms/DateOfBirthSelectInput'
 
 export default {
   name: 'ContestParticipantForm',
-  components: { SubmitForm, GenreInput, DateOfBirthInput },
+  components: { DateOfBirthSelectInput, SubmitForm, GenreInput },
   mixins: [FormHelpers, DateHelpers],
 
   props: {
