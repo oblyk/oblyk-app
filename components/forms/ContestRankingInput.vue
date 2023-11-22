@@ -29,6 +29,7 @@ export default {
       categories: [
         { text: this.$t('models.contestRankingType.division'), value: 'division' },
         { text: this.$t('models.contestRankingType.division_and_zone'), value: 'division_and_zone' },
+        { text: this.$t('models.contestRankingType.division_and_attempt'), value: 'division_and_attempt' },
         { text: this.$t('models.contestRankingType.attempts_to_top'), value: 'attempts_to_top' },
         { text: this.$t('models.contestRankingType.zone_and_top_realised'), value: 'zone_and_top_realised' },
         { text: this.$t('models.contestRankingType.attempts_to_one_zone_and_top'), value: 'attempts_to_one_zone_and_top' },

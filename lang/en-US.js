@@ -2267,6 +2267,7 @@ export default {
     contestRankingType: {
       division: '1000pt divided by the number of ascents',
       division_and_zone: '1000pt divided by the number of ascents + zone',
+      division_and_attempt: '1000pt divided by the number of ascents + number of attempts',
       attempts_to_top: '10pt - 1pt per attempt',
       zone_and_top_realised: 'Zone and top realised',
       attempts_to_one_zone_and_top: 'Number of attempts to make the zone and the top',

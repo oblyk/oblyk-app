@@ -2269,6 +2269,7 @@ export default {
     contestRankingType: {
       division: "1000pt divisés par le nombre d'ascension",
       division_and_zone: "1000pt divisés par le nombre d'ascension + zone",
+      division_and_attempt: "1000pt divisés par le nombre d'ascension + nombre d'essais",
       attempts_to_top: '10pt - 1pt par essais',
       zone_and_top_realised: 'Zone et top fait',
       attempts_to_one_zone_and_top: "Nombre d'essais pour faire la zone et le top",

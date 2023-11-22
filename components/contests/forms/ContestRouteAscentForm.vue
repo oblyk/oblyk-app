@@ -82,6 +82,7 @@
       />
     </div>
 
+    <!-- Division and zone -->
     <div
       v-if="contestStep.ranking_type === 'division_and_zone'"
       class="d-flex"
@@ -100,6 +101,31 @@
         hide-details
         class="mt-0"
         @change="submit"
+      />
+    </div>
+
+    <!-- Division and attempts -->
+    <div
+      v-if="contestStep.ranking_type === 'division_and_attempt'"
+      class="d-flex"
+    >
+      <v-checkbox
+        v-model="ascent.realised"
+        label="Fait !"
+        hide-details
+        class="mr-7 mt-0 align-self-center"
+        @change="submit"
+      />
+      <v-text-field
+        v-if="ascent.realised"
+        v-model="ascent.top_attempt"
+        label="Nombre d'essais fait"
+        outlined
+        hide-details
+        type="number"
+        class="ml-1"
+        :rules="[rules.greatThanZero]"
+        @input="submit"
       />
     </div>
 
@@ -184,6 +210,9 @@ export default {
       ascent: this.setAscentValue(),
       loading: false,
       previousNumberOfHold: null,
+      rules: {
+        greatThanZero: value => value >= 1 || 'Doit être supérieur à 1'
+      },
 
       mdiCheck,
       mdiClose
@@ -193,6 +222,7 @@ export default {
   methods: {
     setAscentValue () {
       if (this.contestRoute.ascent) {
+        // If contest route is registered
         if (['division', 'fixed_points'].includes(this.contestStep.ranking_type)) {
           return this.contestRoute.ascent.realised
         } else if (this.contestStep.ranking_type === 'attempts_to_top') {
@@ -207,6 +237,11 @@ export default {
             top_attempt: this.contestRoute.ascent.top_attempt === 1,
             zone_1_attempt: this.contestRoute.ascent.zone_1_attempt === 1
           }
+        } else if (['division_and_attempt'].includes(this.contestStep.ranking_type)) {
+          return {
+            realised: this.contestRoute.ascent.realised,
+            top_attempt: this.contestRoute.ascent.realised ? this.contestRoute.ascent.top_attempt : 1
+          }
         } else if (this.contestStep.ranking_type === 'highest_hold') {
           return {
             hold_number: this.contestRoute.ascent.hold_number,
@@ -216,6 +251,7 @@ export default {
           return null
         }
       } else if (this.contestStep.ranking_type === 'attempts_to_one_zone_and_top') {
+        // If contest route is not registered
         return {
           top_attempt: null,
           zone_1_attempt: null
@@ -224,6 +260,11 @@ export default {
         return {
           top_attempt: false,
           zone_1_attempt: false
+        }
+      } else if (['division_and_attempt'].includes(this.contestStep.ranking_type)) {
+        return {
+          realised: false,
+          top_attempt: 1
         }
       } else if (this.contestStep.ranking_type === 'highest_hold') {
         return {
@@ -250,6 +291,11 @@ export default {
 
       if (this.contestStep.ranking_type === 'attempts_to_top') {
         data.top_attempt = this.ascent
+      }
+
+      if (this.contestStep.ranking_type === 'division_and_attempt') {
+        data.realised = this.ascent.realised
+        data.top_attempt = this.ascent.realised ? this.ascent.top_attempt : null
       }
 
       if (this.contestStep.ranking_type === 'attempts_to_one_zone_and_top') {
