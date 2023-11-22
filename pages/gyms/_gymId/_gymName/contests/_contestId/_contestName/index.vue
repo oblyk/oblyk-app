@@ -211,6 +211,19 @@
                 </v-btn>
               </div>
             </div>
+
+            <div class="text-right mt-3">
+              <v-btn
+                v-if="token"
+                text
+                outlined
+                block
+                color="primary"
+                @click="goToMyContest()"
+              >
+                Renseigner mes résultats
+              </v-btn>
+            </div>
           </div>
         </client-only>
       </v-col>
@@ -301,6 +314,14 @@ export default {
         .finally(() => {
           this.loadingAuthenticate = false
         })
+    },
+
+    goToMyContest () {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      })
+      this.$router.push(`${this.contest.path}/my-contest`)
     }
   }
 }
