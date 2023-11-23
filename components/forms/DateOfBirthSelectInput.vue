@@ -132,13 +132,20 @@ export default {
     splitDate () {
       if (!this.value) { return null }
       const dateValue = new Date(this.value)
-      this.day = dateValue.getDate()
+      this.day = `0${parseInt(dateValue.getDate())}`.slice(-2)
       this.month = dateValue.getMonth() + 1
       this.year = dateValue.getFullYear()
     },
 
     selectDate () {
-      if (this.day !== null && this.month !== null && this.year !== null) {
+      const year = new Date().getFullYear()
+      if (
+        this.day !== null &&
+        this.month !== null &&
+        this.year !== null &&
+        this.year <= year &&
+        this.year >= year - 100
+      ) {
         this.isValidDate = true
         const month = `0${parseInt(this.month)}`.slice(-2)
         const day = `0${parseInt(this.day)}`.slice(-2)
