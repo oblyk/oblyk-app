@@ -7,6 +7,55 @@
       <p class="mb-12 text-center text--disabled" v-html="$t('common.pages.find.guideBooks.intro')" />
 
       <v-row>
+        <!-- Guide book maps -->
+        <v-col cols="12" md="6" lg="4">
+          <v-hover>
+            <template #default="{ hover }">
+              <v-card
+                class="rounded-lg smooth-elevation"
+                to="/maps/guide-book-papers"
+                :elevation="hover ? 20 : 0"
+              >
+                <v-img
+                  src="/images/guide-book-map.jpg"
+                  alt="Carte avec des couvertures de topos"
+                  max-height="300"
+                >
+                  <v-row
+                    class="fill-height ma-0"
+                    align="center"
+                    justify="center"
+                  >
+                    <v-btn
+                      class="mx-2"
+                      fab
+                      x-large
+                      elevation="24"
+                      color="rgba(255,255,255,0.3)"
+                      dark
+                    >
+                      <v-icon
+                        color="rgba(0,0,0,0.65)"
+                        x-large
+                      >
+                        {{ mdiMapMarkerRadius }}
+                      </v-icon>
+                    </v-btn>
+                  </v-row>
+                </v-img>
+                <h2 class="text-center mt-2 pb-0 text-h6">
+                  {{ $t('common.pages.find.guideBooks.map.title') }}
+                </h2>
+                <v-card-text class="pt-1">
+                  <p class="text-center">
+                    {{ $t('common.pages.find.guideBooks.map.explain') }}
+                  </p>
+                </v-card-text>
+              </v-card>
+            </template>
+          </v-hover>
+        </v-col>
+
         <!-- Around city -->
         <v-col cols="12" md="6" lg="4">
           <v-hover>

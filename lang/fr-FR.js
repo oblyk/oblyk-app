@@ -504,6 +504,10 @@ export default {
         guideBooks: {
           title: 'Trouve le topo que tu cherches',
           intro: "Nous avons tous les outils imaginables pour les topos : trouver un topos autour d'une ville, voir les derniers topos sorties, les nouvelles versions, constituer sa topothèque, etc.",
+          map: {
+            title: 'Carte des topos',
+            explain: "La carte de tous les topos, localisés au mieux suivant les sites d'escalades qu'ils contiennent"
+          },
           aroundCity: {
             title: "Topos autour d'une ville",
             explain: "Donne nous le nom d'une ville, on te donne les topos des sites aux alentours"
@@ -2092,7 +2096,8 @@ export default {
       pages: 'Pages',
       weight: 'Poids',
       weight_in_gram: 'Poids en gramme',
-      crag: "Site d'escalade"
+      crag: "Site d'escalade",
+      number_of_crags: 'Nombre de falaises'
     },
     guideBookWeb: {
       name: 'Nom du topo',

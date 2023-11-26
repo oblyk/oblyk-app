@@ -87,6 +87,14 @@ class GuideBookPaperApi extends BaseApi {
     })
   }
 
+  geoIndex () {
+    return this.axios.request({
+      method: 'GET',
+      url: `${this.baseUrl}/public/guide_book_papers/geo_index.json`,
+      headers: { HttpApiAccessToken: this.apiAccessToken }
+    })
+  }
+
   photos (id, page = 1) {
     return this.axios.request({
       method: 'GET',

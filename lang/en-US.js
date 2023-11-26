@@ -504,6 +504,10 @@ export default {
         guideBooks: {
           title: 'Find the guidebook you are looking for',
           intro: 'We have all the tools imaginable for guidebooks: find a topos around a city, see the latest guidebook released, the new versions, build up your guidebook library, etc.',
+          map: {
+            title: 'Climbing guide book map',
+            explain: 'A map of all the topos, pinpointed according to the climbing sites they contain'
+          },
           aroundCity: {
             title: 'Guidebooks around a city',
             explain: "Give us the name of a town, we'll give you the guidebooks of the surrounding sites"
@@ -2092,7 +2096,8 @@ export default {
       pages: 'Pages',
       weight: 'Weight',
       weight_in_gram: 'Weight in gram',
-      crag: 'Crag'
+      crag: 'Crag',
+      number_of_crags: 'Number of crags'
     },
     guideBookWeb: {
       name: 'Guide name',
