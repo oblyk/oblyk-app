@@ -159,7 +159,7 @@ export default {
         subscription_end_date: this.contest?.subscription_end_date,
         total_capacity: this.contest?.total_capacity,
         categorization_type: this.contest?.categorization_type,
-        authorise_public_subscription: this.contest?.authorise_public_subscription,
+        authorise_public_subscription: this.contest?.authorise_public_subscription || true,
         private: this.contest?.private,
         gym_id: this.gym.id
       },

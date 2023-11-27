@@ -10,11 +10,6 @@
       outlined
     />
 
-    <contest-ranking-input
-      v-model="data.default_ranking_type"
-      required
-    />
-
     <v-text-field
       v-if="isEditingForm()"
       v-model="data.stage_order"
@@ -34,15 +29,11 @@
 import { FormHelpers } from '~/mixins/FormHelpers'
 import SubmitForm from '~/components/forms/SubmitForm'
 import ContestStageApi from '~/services/oblyk-api/ContestStageApi'
-import ContestRankingInput from '~/components/forms/ContestRankingInput'
 import ContestStage from '~/models/ContestStage'
 
 export default {
   name: 'ContestStageForm',
-  components: {
-    ContestRankingInput,
-    SubmitForm
-  },
+  components: { SubmitForm },
   mixins: [FormHelpers],
   props: {
     gym: {

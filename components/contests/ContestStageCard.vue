@@ -1,10 +1,6 @@
 <template>
   <div>
     <v-card class="pa-4 rounded-sm">
-      <description-line
-        item-title="Type de classement par défaut :"
-        :item-value="$t(`models.contestRankingType.${contestStage.default_ranking_type}`)"
-      />
       <div class="text-right">
         <v-menu>
           <template #activator="{ on, attrs }">
@@ -117,14 +113,12 @@ import ContestStageApi from '~/services/oblyk-api/ContestStageApi'
 import ContestStageForm from '~/components/contests/forms/ContestStageForm'
 import ContestStageStepApi from '~/services/oblyk-api/ContestStageStepApi'
 import ContestStageStep from '~/models/ContestStageStep'
-import AddContestStageStepBtn from '~/components/contests/btns/AddContestStageStepBtn.vue'
-import ContestStageStepCard from '~/components/contests/ContestStageStepCard.vue'
-import DescriptionLine from '~/components/ui/DescriptionLine.vue'
+import AddContestStageStepBtn from '~/components/contests/btns/AddContestStageStepBtn'
+import ContestStageStepCard from '~/components/contests/ContestStageStepCard'
 
 export default {
   name: 'ContestStageCard',
   components: {
-    DescriptionLine,
     ContestStageStepCard,
     AddContestStageStepBtn,
     ContestStageForm

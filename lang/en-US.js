@@ -2286,7 +2286,7 @@ export default {
       name: 'Nam',
       description: 'Description',
       descriptionPlaceholder: 'Help your future participants choose their categories with a short description (optional)',
-      unisex: 'Unisex',
+      unisex: 'Unisex (no gender distinction)',
       capacity: 'Max capacity',
       registrationObligation: 'Type of age limit',
       minAge: 'Minimum age',
@@ -2410,6 +2410,11 @@ export default {
         undefined: 'Undefined',
         male: 'He climber',
         female: 'She climber'
+      },
+      competitors: {
+        unisex: 'Competitor',
+        male: 'Competitor',
+        female: 'Competitor'
       }
     },
     tags: {

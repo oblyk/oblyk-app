@@ -186,7 +186,7 @@
         <v-checkbox
           v-if="!$auth.loggedIn"
           v-model="data.create_account"
-          label="Créer un compte sur Oblyk pour gérer votre inscription ainsi que renseigner et consulter vos résultats plus facilement"
+          label="Me créer un compte sur Oblyk pour renseigner et consulter mes résultats plus facilement (facultatif)"
         />
         <div v-if="data.create_account">
           <v-text-field

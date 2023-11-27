@@ -2288,7 +2288,7 @@ export default {
       name: 'Nom',
       description: 'Description',
       descriptionPlaceholder: 'Aidez vos futures participants à choisir leur catégorie avec une courte description (optionnel)',
-      unisex: 'Mixte',
+      unisex: 'Mixte (aucune distinction de genre)',
       capacity: 'Capacité max',
       registrationObligation: "Type de limitation par l'âge",
       minAge: 'Âge minimum',
@@ -2412,6 +2412,11 @@ export default {
         undefined: 'Indéfini',
         male: 'Grimpeur',
         female: 'Grimpeuse'
+      },
+      competitors: {
+        unisex: 'Compétiteur·ice',
+        male: 'Compétiteur',
+        female: 'Compétitrice'
       }
     },
     tags: {

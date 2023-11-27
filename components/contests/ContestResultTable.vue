@@ -41,7 +41,7 @@
                 rowspan="2"
                 class="border-bottom vertical-align-bottom pb-2 border-right"
               >
-                Compétiteur
+                {{ competitorLabel(category) }}
               </th>
               <th
                 v-for="(stage, stageIndex) in category.participants[0].stages"
@@ -259,6 +259,14 @@ export default {
           this.firstLoad = false
           this.loadingResult = false
         })
+    },
+
+    competitorLabel (category) {
+      if (category.unisex) {
+        return this.$t('models.genres.competitors.unisex')
+      } else {
+        return this.$t(`models.genres.competitors.${category.genre}`)
+      }
     },
 
     buildParticipantsStep () {
