@@ -1897,7 +1897,9 @@ export default {
       category_is_taken_in_this_step: 'A category can only be present once per stage',
       participant_is_already_registered: 'A participant is already registered under this name',
       contest_is_complete: 'The contest is complete',
-      category_is_complete: 'The category is complete'
+      category_is_complete: 'The category is complete',
+      no_file: 'A file must be transmitted',
+      file_wrong_format: 'The file is in the wrong format'
     }
   },
   models: {

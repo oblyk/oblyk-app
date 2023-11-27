@@ -1897,7 +1897,9 @@ export default {
       category_is_taken_in_this_step: "Une catégorie peut être présente qu'une fois par étape",
       participant_is_already_registered: 'Un participant est déjà inscrit à ce nom',
       contest_is_complete: 'Le contest est complet',
-      category_is_complete: 'La catégorie est complete'
+      category_is_complete: 'La catégorie est complete',
+      no_file: 'Un fichier doit être transmit',
+      file_wrong_format: "Le fichier n'est pas au bon format"
     }
   },
   models: {
