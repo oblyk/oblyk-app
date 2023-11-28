@@ -15,6 +15,7 @@
       :overlay="overlay"
       :progressable="true"
       :progress-value="uploadPercentage"
+      :go-back-btn="false"
     />
   </v-form>
 </template>
