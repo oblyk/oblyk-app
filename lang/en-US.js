@@ -1418,7 +1418,7 @@ export default {
       }
     },
     photo: {
-      imageOptimization: 'Image optimization ...',
+      imageOptimization: 'File optimization ...',
       photos: 'Photos',
       photoOf: 'Photo of',
       postedBy: 'Posted by',
