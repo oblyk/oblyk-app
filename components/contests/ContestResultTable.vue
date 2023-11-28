@@ -113,7 +113,7 @@
                     </small>
                     <div
                       v-if="step.points && step.subscribe && step.unit_details === 'zone_and_top_blocks'"
-                      class="d-inline-block ml-2"
+                      class="d-inline-block ml-2 text-no-wrap"
                     >
                       <div
                         v-for="(detail, detailIndex) in step.score_details"
