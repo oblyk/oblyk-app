@@ -126,15 +126,7 @@
                           style="font-size: 11px; border-radius: 3px 3px 0 0; height: 17px"
                           :style="detail.top > 0 ? `background-color: #ffc107` : null"
                         >
-                          <v-icon
-                            v-if="detail.top === 1"
-                            size="9"
-                            color="black"
-                          >
-                            {{ mdiFlash }}
-                          </v-icon>
                           <span
-                            v-else
                             style="padding-top: 0"
                             class="vertical-align-text-bottom d-inline-block"
                           >
@@ -145,15 +137,7 @@
                           style="font-size: 11px; border-radius: 0 0 3px 3px; height: 17px"
                           :style="detail.zone > 0 ? `background-color: #ffc107` : null"
                         >
-                          <v-icon
-                            v-if="detail.zone === 1"
-                            size="9"
-                            color="black"
-                          >
-                            {{ mdiFlash }}
-                          </v-icon>
                           <span
-                            v-else
                             style="padding-top: 0"
                             class="vertical-align-text-bottom d-inline-block"
                           >
@@ -192,7 +176,7 @@
 </template>
 
 <script>
-import { mdiRefresh, mdiFlash } from '@mdi/js'
+import { mdiRefresh } from '@mdi/js'
 import ContestApi from '~/services/oblyk-api/ContestApi'
 import ContestParticipantStepApi from '~/services/oblyk-api/ContestParticipantStepApi'
 const ContestParticipantCard = () => import('~/components/contests/ContestParticipantCard')
@@ -230,8 +214,7 @@ export default {
       participantId: null,
       firstLoad: true,
 
-      mdiRefresh,
-      mdiFlash
+      mdiRefresh
     }
   },
 
