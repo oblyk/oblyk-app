@@ -15,7 +15,10 @@
       <v-col>
         <v-sheet class="rounded pa-4 back-app-color full-height">
           <client-only>
-            <markdown-text :text="contest.description" />
+            <markdown-text
+              v-if="contest.description"
+              :text="contest.description"
+            />
           </client-only>
         </v-sheet>
       </v-col>
