@@ -23,6 +23,8 @@ export const ContestConcern = {
     contestMetaImage () {
       if (this.contest && this.contest.banner) {
         return this.contest.bannerUrl
+      } else if (this.contest && this.contest?.gym && this.contest?.gym?.banner) {
+        return this.contest.Gym.bannerUrl
       } else {
         return `${process.env.VUE_APP_OBLYK_APP_URL}/images/oblyk-og-image.jpg`
       }

@@ -26,6 +26,8 @@ export default class Contest extends ActiveData {
   get bannerUrl () {
     if (this.banner) {
       return `${process.env.VUE_APP_OBLYK_API_URL}${this.banner}`
+    } else if (this.gym.banner) {
+      return `${process.env.VUE_APP_OBLYK_API_URL}${this.gym.banner}`
     } else {
       return '/images/gym-default-banner.jpg'
     }
