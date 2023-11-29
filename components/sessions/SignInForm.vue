@@ -37,6 +37,7 @@
     <submit-form
       submit-local-key="actions.signIn"
       :overlay="overlay"
+      :go-back-btn="goBackBtn"
     >
       <v-btn
         text
@@ -70,6 +71,22 @@ export default {
     redirectTo: {
       type: String,
       default: null
+    },
+    callback: {
+      type: Function,
+      default: null
+    },
+    suggestEmail: {
+      type: String,
+      default: null
+    },
+    suggestPassword: {
+      type: String,
+      default: null
+    },
+    goBackBtn: {
+      type: Boolean,
+      default: true
     }
   },
 
@@ -77,8 +94,8 @@ export default {
     return {
       overlay: false,
       oblyk_full_name: null,
-      email: null,
-      password: null,
+      email: this.suggestEmail,
+      password: this.suggestPassword,
       showPassword: false,
       rememberMe: true,
 
@@ -117,7 +134,9 @@ export default {
             this.$store.dispatch('likes/storeLikes', resp.data)
           })
 
-        if (this.redirectTo) {
+        if (this.callback) {
+          this.callback(true)
+        } else if (this.redirectTo) {
           await this.$router.push(this.redirectTo)
         } else {
           await this.$router.push('/home')

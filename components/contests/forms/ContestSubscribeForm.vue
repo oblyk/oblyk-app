@@ -184,11 +184,69 @@
           label="Enregistrer mon inscription sur mon compte Oblyk"
         />
         <v-checkbox
-          v-if="!$auth.loggedIn"
+          v-if="!$auth.loggedIn && !needAuthentification"
           v-model="data.create_account"
           label="Me créer un compte sur Oblyk pour renseigner et consulter mes résultats plus facilement (facultatif)"
         />
-        <div v-if="data.create_account">
+        <div
+          v-if="needAuthentification"
+          class="border rounded pa-4 mt-5"
+        >
+          <p>
+            <span class="red--text">Vous avez déjà un compte Oblyk à l'adresse <strong>{{ data.email }}</strong></span><br>
+            👉 Connectez-vous pour lié votre participation à votre compte
+          </p>
+          <div class="text-center">
+            <v-btn
+              color="primary"
+              elevation="0"
+              @click="signInModal = true"
+            >
+              Me Connecter
+            </v-btn>
+          </div>
+          <div class="text-center mt-4">
+            <v-btn
+              text
+              outlined
+              @click="noLinkedAccount"
+            >
+              <v-icon left>
+                {{ mdiArrowLeft }}
+              </v-icon>
+              Retour
+            </v-btn>
+          </div>
+          <v-dialog
+            v-model="signInModal"
+            width="500"
+          >
+            <v-card>
+              <v-card-title>
+                Me connecter
+              </v-card-title>
+              <div class="pa-4">
+                <sign-in-form
+                  :callback="successSignIn"
+                  :suggest-email="data.email"
+                  :suggest-password="data.password"
+                  :go-back-btn="false"
+                />
+              </div>
+            </v-card>
+          </v-dialog>
+        </div>
+
+        <v-alert
+          v-if="successAuthentification"
+          text
+          type="success"
+        >
+          Connexion réussi !<br>
+          Cliquer sur <strong>M'INSCRIRE</strong> pour finaliser votre inscription au contest
+        </v-alert>
+
+        <div v-if="data.create_account && !needAuthentification && !$auth.loggedIn">
           <v-text-field
             v-model="data.password"
             outlined
@@ -212,7 +270,10 @@
             @click:append="showPasswordConfirmation = !showPasswordConfirmation"
           />
         </div>
-        <div class="text-right mt-2">
+        <div
+          v-if="!needAuthentification"
+          class="text-right mt-2"
+        >
           <v-btn
             color="primary"
             elevation="0"
@@ -228,16 +289,17 @@
 </template>
 
 <script>
-import { mdiArrowRight, mdiEyeOff, mdiEye, mdiCheck } from '@mdi/js'
-import GenreInput from '~/components/forms/GenreInput.vue'
+import { mdiArrowRight, mdiArrowLeft, mdiEyeOff, mdiEye, mdiCheck } from '@mdi/js'
+import GenreInput from '~/components/forms/GenreInput'
 import { FormHelpers } from '~/mixins/FormHelpers'
 import ContestParticipantApi from '~/services/oblyk-api/ContestParticipantApi'
 import { DateHelpers } from '~/mixins/DateHelpers'
 import DateOfBirthSelectInput from '~/components/forms/DateOfBirthSelectInput'
+import SignInForm from '~/components/sessions/SignInForm'
 
 export default {
   name: 'ContestSubscribeForm',
-  components: { DateOfBirthSelectInput, GenreInput },
+  components: { SignInForm, DateOfBirthSelectInput, GenreInput },
   mixins: [FormHelpers, DateHelpers],
 
   props: {
@@ -261,6 +323,9 @@ export default {
       showPassword: false,
       showPasswordConfirmation: false,
       subscribing: false,
+      needAuthentification: false,
+      signInModal: false,
+      successAuthentification: false,
       data: {
         id: this.contestParticipant?.id,
         first_name: this.contestParticipant?.first_name,
@@ -280,6 +345,7 @@ export default {
       },
 
       mdiArrowRight,
+      mdiArrowLeft,
       mdiEyeOff,
       mdiEye,
       mdiCheck
@@ -334,7 +400,11 @@ export default {
           this.callback(resp.data.token)
         })
         .catch((err) => {
-          this.$root.$emit('alertFromApiError', err, 'contestParticipant')
+          if (err.response?.data?.error === 'need_authentification') {
+            this.needAuthentification = true
+          } else {
+            this.$root.$emit('alertFromApiError', err, 'contestParticipant')
+          }
         })
         .finally(() => {
           this.subscribing = false
@@ -378,6 +448,19 @@ export default {
         }
       }
       return false
+    },
+
+    noLinkedAccount () {
+      this.needAuthentification = false
+      this.data.create_account = false
+      this.data.save_user = false
+    },
+
+    successSignIn () {
+      this.needAuthentification = false
+      this.successAuthentification = true
+      this.data.create_account = false
+      this.data.save_user = true
     }
   }
 }
