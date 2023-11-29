@@ -100,6 +100,7 @@
                     @click="subscribeParticipantOnStep(participant, step)"
                   />
                   <div
+                    class="text-no-wrap"
                     :class="classForNextStep(step)"
                   >
                     <strong v-if="step.subscribe">
@@ -113,16 +114,16 @@
                     </small>
                     <div
                       v-if="step.points && step.subscribe && step.unit_details === 'zone_and_top_blocks'"
-                      class="d-inline-block ml-2 text-no-wrap"
+                      class="d-inline-block ml-2"
                     >
                       <div
                         v-for="(detail, detailIndex) in step.score_details"
                         :key="`detail-index-${detailIndex}`"
                         class="d-inline-block border vertical-align-middle black--text text-center font-weight-bold"
-                        style="border-radius: 2px; margin-right: 2px; width: 16px"
+                        style="border-radius: 3px; margin-right: 3px; margin-top: 2px; margin-bottom: 2px; width: 18px"
                       >
                         <div
-                          style="font-size: 8px; border-radius: 2px 2px 0 0; height: 14px"
+                          style="font-size: 11px; border-radius: 3px 3px 0 0; height: 17px"
                           :style="detail.top > 0 ? `background-color: #ffc107` : null"
                         >
                           <v-icon
@@ -134,14 +135,14 @@
                           </v-icon>
                           <span
                             v-else
-                            style="padding-top: 2px"
+                            style="padding-top: 0"
                             class="vertical-align-text-bottom d-inline-block"
                           >
                             {{ detail.top > 0 ? detail.top : '-' }}
                           </span>
                         </div>
                         <div
-                          style="font-size: 8px; border-radius: 0 0 2px 2px; height: 14px"
+                          style="font-size: 11px; border-radius: 0 0 3px 3px; height: 17px"
                           :style="detail.zone > 0 ? `background-color: #ffc107` : null"
                         >
                           <v-icon
@@ -153,7 +154,7 @@
                           </v-icon>
                           <span
                             v-else
-                            style="padding-top: 2px"
+                            style="padding-top: 0"
                             class="vertical-align-text-bottom d-inline-block"
                           >
                             {{ detail.zone > 0 ? detail.zone : '-' }}
