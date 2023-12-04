@@ -2328,7 +2328,8 @@ export default {
       last_name: 'Last name',
       affiliation: 'Club or climbing gym',
       email: 'Email',
-      date_of_birth: 'Date of birth'
+      date_of_birth: 'Date of birth',
+      contest_category: 'Category'
     },
     contestWave: {
       name: 'Name'

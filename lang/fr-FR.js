@@ -2330,7 +2330,8 @@ export default {
       last_name: 'Nom de famille',
       affiliation: "Club ou salle d'escalade",
       email: 'Email',
-      date_of_birth: 'Date de naissance'
+      date_of_birth: 'Date de naissance',
+      contest_category: 'Catégorie'
     },
     contestWave: {
       name: 'Nom'
