@@ -63,12 +63,24 @@
                 :contest-route="route"
                 :contest="contest"
                 :participant-token="participantToken"
+                @input="storeChange"
               />
             </td>
           </tr>
         </tbody>
       </template>
     </v-simple-table>
+
+    <v-btn
+      :disabled="!changed"
+      color="primary"
+      style="position: sticky; bottom: 5px; margin-left: auto; display: block"
+      elevation="0"
+      :loading="saving"
+      @click="save"
+    >
+      {{ $t('actions.save') }}
+    </v-btn>
 
     <!-- Route modal -->
     <v-dialog
@@ -116,6 +128,7 @@ import GymRouteInfo from '~/components/gymRoutes/GymRouteInfo.vue'
 import Gym from '~/models/Gym'
 import GymApi from '~/services/oblyk-api/GymApi'
 import ContestRoute from '~/models/ContestRoute'
+import ContestParticipantAscentApi from '~/services/oblyk-api/ContestParticipantAscentApi'
 
 export default {
   name: 'ContestRoutesRealised',
@@ -142,7 +155,10 @@ export default {
       gymRoute: null,
       contestRoute: null,
       loadingGymRoute: true,
-      gym: null
+      saving: false,
+      gym: null,
+      ascents: {},
+      changed: false
     }
   },
 
@@ -214,6 +230,38 @@ export default {
             resolve()
           })
       })
+    },
+
+    storeChange (data) {
+      this.ascents[data.contest_route_id] = data
+      this.changed = true
+    },
+
+    save () {
+      this.saving = true
+      const ascents = []
+      for (const ascent in this.ascents) {
+        ascents.push(this.ascents[ascent])
+      }
+      const data = {
+        gym_id: this.contest.gym_id,
+        contest_id: this.contest.id,
+        contest_participant_token: this.participantToken,
+        ascents
+      }
+      new ContestParticipantAscentApi(this.$axios, this.$auth)
+        .bulk(data)
+        .then(() => {
+          this.ascents = {}
+          this.changed = false
+          this.$root.$emit('alertSimpleSuccess', 'Progression sauvegardée avec succès !')
+        })
+        .catch(() => {
+          this.$root.$emit('alertSimpleError', "Une erreur s'est produite...")
+        })
+        .finally(() => {
+          this.saving = false
+        })
     },
 
     closeModal () {

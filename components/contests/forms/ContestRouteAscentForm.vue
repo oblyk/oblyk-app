@@ -181,12 +181,15 @@
 
 <script>
 import { mdiCheck, mdiClose } from '@mdi/js'
-import ContestParticipantAscentApi from '~/services/oblyk-api/ContestParticipantAscentApi'
 
 export default {
   name: 'ContestRouteAscentForm',
 
   props: {
+    value: {
+      type: Object,
+      default: null
+    },
     contest: {
       type: Object,
       required: true
@@ -318,11 +321,7 @@ export default {
         }
       }
 
-      new ContestParticipantAscentApi(this.$auth, this.$axios)
-        .create(data)
-        .finally(() => {
-          this.loading = false
-        })
+      this.$emit('input', data)
     }
   }
 }

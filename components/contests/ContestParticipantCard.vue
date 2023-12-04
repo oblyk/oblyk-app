@@ -44,11 +44,13 @@
           v-for="(step, stepIndex) in participant.steps"
           :key="`step-index-${stepIndex}`"
         >
-          <contest-routes-realised
-            :contest-step="step"
-            :contest="contest"
-            :participant-token="participant.token"
-          />
+          <div style="overflow-x: auto; height: calc(100vh - 310px)">
+            <contest-routes-realised
+              :contest-step="step"
+              :contest="contest"
+              :participant-token="participant.token"
+            />
+          </div>
         </v-tab-item>
       </v-tabs-items>
     </div>
