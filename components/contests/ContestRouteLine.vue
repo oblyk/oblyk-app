@@ -340,35 +340,39 @@ export default {
     },
 
     deleteRoute () {
-      this.loadingAction = true
-      new ContestRouteApi(this.$axios, this.$auth)
-        .delete(
-          this.contest.gym_id,
-          this.contest.id,
-          this.route.id
-        )
-        .then(() => {
-          this.getRouteGroup()
-        })
-        .finally(() => {
-          this.loadingAction = false
-        })
+      if (confirm('Êtes-vous sûr de supprimer cette ligne ?')) {
+        this.loadingAction = true
+        new ContestRouteApi(this.$axios, this.$auth)
+          .delete(
+            this.contest.gym_id,
+            this.contest.id,
+            this.route.id
+          )
+          .then(() => {
+            this.getRouteGroup()
+          })
+          .finally(() => {
+            this.loadingAction = false
+          })
+      }
     },
 
     deletePicture () {
-      this.loadingAction = true
-      new ContestRouteApi(this.$axios, this.$auth)
-        .deletePicture(
-          this.contest.gym_id,
-          this.contest.id,
-          this.route.id
-        )
-        .then(() => {
-          this.getRouteGroup()
-        })
-        .finally(() => {
-          this.loadingAction = false
-        })
+      if (confirm('Êtes-vous sûr de supprimer la photo ?')) {
+        this.loadingAction = true
+        new ContestRouteApi(this.$axios, this.$auth)
+          .deletePicture(
+            this.contest.gym_id,
+            this.contest.id,
+            this.route.id
+          )
+          .then(() => {
+            this.getRouteGroup()
+          })
+          .finally(() => {
+            this.loadingAction = false
+          })
+      }
     },
 
     deactivateRoute () {
