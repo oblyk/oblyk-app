@@ -7,7 +7,6 @@
         @change="submit"
       >
         <v-btn
-          :disabled="loading"
           :value="true"
           class="px-5"
           active-class="green lighten-4"
@@ -21,7 +20,6 @@
           Fait !
         </v-btn>
         <v-btn
-          :disabled="loading"
           :value="false"
           class="px-5"
           :ripple="false"
@@ -211,7 +209,6 @@ export default {
   data () {
     return {
       ascent: this.setAscentValue(),
-      loading: false,
       previousNumberOfHold: null,
       rules: {
         greatThanZero: value => value >= 1 || 'Doit être supérieur à 1'
@@ -280,7 +277,6 @@ export default {
     },
 
     submit () {
-      this.loading = true
       const data = {
         gym_id: this.contest.gym_id,
         contest_id: this.contest.id,
