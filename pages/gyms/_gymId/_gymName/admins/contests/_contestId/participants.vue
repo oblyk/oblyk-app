@@ -160,6 +160,7 @@
         </v-card-title>
         <div class="px-4 pb-4">
           <contest-participant-form
+            :key="`add-participant-form-index-${participantFormKey}`"
             :contest="contest"
             :callback="addCallback"
             :contest-categories="contestCategories"
@@ -342,6 +343,7 @@ export default {
       participantId: null,
       loadingParticipants: true,
       refreshKey: 0,
+      participantFormKey: 0,
       participants: [],
       search: null,
       contestCategories: null,
@@ -512,6 +514,7 @@ export default {
     addCallback (participant) {
       this.addModal = false
       this.participants.push(participant)
+      this.participantFormKey += 1
     },
 
     deleteParticipant (participantId) {
