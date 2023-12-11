@@ -67,6 +67,9 @@
         v-if="route.additional_zone"
         @click="editModal = true"
       >
+        <v-icon left>
+          {{ mdiAlphaZBoxOutline }}
+        </v-icon>
         À une zone
       </v-chip>
       <v-chip
@@ -260,7 +263,8 @@ import {
   mdiLinkVariant,
   mdiLinkVariantOff,
   mdiCamera,
-  mdiCameraOff
+  mdiCameraOff,
+  mdiAlphaZBoxOutline
 } from '@mdi/js'
 import ContestRouteApi from '~/services/oblyk-api/ContestRouteApi'
 import ContestRouteForm from '~/components/contests/forms/ContestRouteForm.vue'
@@ -314,7 +318,8 @@ export default {
       mdiLinkVariant,
       mdiLinkVariantOff,
       mdiCamera,
-      mdiCameraOff
+      mdiCameraOff,
+      mdiAlphaZBoxOutline
     }
   },
 
