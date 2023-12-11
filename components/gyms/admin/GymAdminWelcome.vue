@@ -15,7 +15,7 @@
               >
                 <v-avatar tile>
                   <v-img
-                    :src="gym.logoUrl"
+                    :src="gym.thumbnailLogoUrl"
                     :alt="`logo ${gym.name}`"
                     class="rounded-sm"
                   />

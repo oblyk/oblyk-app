@@ -32,7 +32,7 @@
                 tile
                 class="vertical-align-top rounded-sm"
               >
-                <v-img :src="gym.logoUrl" alt="gym logo" />
+                <v-img :src="gym.thumbnailLogoUrl" alt="gym logo" />
               </v-avatar>
             </v-list-item-avatar>
             <v-list-item-title class="font-weight-bold">

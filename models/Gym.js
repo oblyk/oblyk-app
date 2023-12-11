@@ -63,6 +63,14 @@ export default class Gym extends ActiveData {
     }
   }
 
+  get thumbnailLogoUrl () {
+    if (this.logo) {
+      return `${process.env.VUE_APP_OBLYK_API_URL}${this.logo_thumbnail_url}`
+    } else {
+      return '/svg/gym-default-logo.svg'
+    }
+  }
+
   get climbingTypes () {
     const list = []
     if (this.bouldering) { list.push('bouldering') }

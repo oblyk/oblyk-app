@@ -43,7 +43,7 @@
                 size="52"
               >
                 <v-img
-                  :src="gym.logoUrl"
+                  :src="gym.thumbnailLogoUrl"
                   class="rounded-sm"
                 />
               </v-list-item-avatar>

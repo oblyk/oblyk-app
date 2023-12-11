@@ -20,7 +20,7 @@
             size="28"
           >
             <img
-              :src="gym.logoUrl"
+              :src="gym.thumbnailLogoUrl"
               :alt="`logo ${gym.name}`"
               class="rounded-sm"
             >

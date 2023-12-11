@@ -20,7 +20,7 @@
             class="rounded-sm"
             tile
           >
-            <v-img :src="gym.logoUrl" />
+            <v-img :src="gym.thumbnailLogoUrl" />
           </v-avatar>
         </v-list-item-avatar>
         <v-list-item-content

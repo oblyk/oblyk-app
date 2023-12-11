@@ -17,7 +17,7 @@
         v-if="gym.logoUrl"
         class="mr-1"
       >
-        <v-img :src="gym.logoUrl" />
+        <v-img :src="gym.thumbnailLogoUrl" />
       </v-avatar>
       {{ gym.name }} - {{ $t('components.gymRanking.rank') }}
     </h1>

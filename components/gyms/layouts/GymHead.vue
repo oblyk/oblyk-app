@@ -16,7 +16,7 @@
             class="mr-3 align-self-center rounded-sm"
           >
             <v-img
-              :src="gym.logoUrl"
+              :src="gym.thumbnailLogoUrl"
               :alt="`logo ${gym.name}`"
             />
           </v-avatar>
