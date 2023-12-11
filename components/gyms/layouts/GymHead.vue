@@ -8,6 +8,14 @@
       :srcset="`${gym.croppedBannerUrl} 500w, ${gym.bannerUrl} 600w`"
       class="gym-header-banner"
     >
+      <template #placeholder>
+        <div class="gym-header-banner-spinner">
+          <v-progress-circular
+            indeterminate
+            color="white"
+          />
+        </div>
+      </template>
       <div class="gym-header-title">
         <div class="d-flex flex-row gym-header-title-and-logo">
           <v-avatar
@@ -142,6 +150,11 @@ export default {
       float: right;
       margin-right: 5px;
       margin-top: 5px;
+    }
+    .gym-header-banner-spinner {
+      position: absolute;
+      top: 10px;
+      right: 10px;
     }
   }
   .gym-header-title {
