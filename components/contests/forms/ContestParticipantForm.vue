@@ -33,12 +33,11 @@
       outlined
       required
       hide-details
-      class="required-field"
-      :label="$t('models.contestParticipant.email')"
+      :label="`${$t('models.contestParticipant.email')} (conseillé)`"
     />
 
     <p class="font-weight-bold mb-1 mt-4">
-      Catégories :
+      Catégories : <strong class="red--text">*</strong>
     </p>
     <v-card
       v-for="(category, categoryIndex) in contestCategories"
