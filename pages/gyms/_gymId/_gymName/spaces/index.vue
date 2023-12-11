@@ -120,10 +120,12 @@
               {{ $t('components.gym.guidebook') }}
             </small>
           </p>
-          <gym-space-route-list
-            :gym="gym"
-            :show-plan-options="false"
-          />
+          <client-only>
+            <gym-space-route-list
+              :gym="gym"
+              :show-plan-options="false"
+            />
+          </client-only>
         </v-sheet>
       </v-col>
 
