@@ -80,6 +80,24 @@
       </v-chip>
     </div>
     <v-spacer />
+    <v-tooltip
+      top
+      open-delay="500"
+    >
+      <template #activator="{ on, attrs }">
+        <v-btn
+          v-bind="attrs"
+          icon
+          v-on="on"
+          @click="addPictureModal = true"
+        >
+          <v-icon>
+            {{ route.picture ? mdiCameraFlip : mdiCameraPlus }}
+          </v-icon>
+        </v-btn>
+      </template>
+      <span v-text="route.picture ? 'Changer la photo' : 'Ajouter une photo'" />
+    </v-tooltip>
     <div>
       <v-menu>
         <template #activator="{ on, attrs }">
@@ -120,18 +138,15 @@
               Lié à une ligne du topo
             </v-list-item-title>
           </v-list-item>
-          <v-list-item
-            v-if="!route.picture"
-            @click="addPictureModal = true"
-          >
+          <v-list-item @click="addPictureModal = true">
             <v-list-item-icon>
               <v-icon>
-                {{ mdiCamera }}
+                {{ route.picture ? mdiCameraFlip : mdiCameraPlus }}
               </v-icon>
             </v-list-item-icon>
-            <v-list-item-title>
-              Ajouter une photo
-            </v-list-item-title>
+            <v-list-item-title
+              v-text="route.picture ? 'Changer la photo' : 'Ajouter une photo'"
+            />
           </v-list-item>
           <v-list-item
             v-if="route.disabled_at !== null"
@@ -262,7 +277,8 @@ import {
   mdiArrowUpBoldBoxOutline,
   mdiLinkVariant,
   mdiLinkVariantOff,
-  mdiCamera,
+  mdiCameraPlus,
+  mdiCameraFlip,
   mdiCameraOff,
   mdiAlphaZBoxOutline
 } from '@mdi/js'
@@ -317,7 +333,8 @@ export default {
       mdiArrowUpBoldBoxOutline,
       mdiLinkVariant,
       mdiLinkVariantOff,
-      mdiCamera,
+      mdiCameraPlus,
+      mdiCameraFlip,
       mdiCameraOff,
       mdiAlphaZBoxOutline
     }
