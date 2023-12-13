@@ -19,6 +19,10 @@ export default class Contest extends ActiveData {
     return `/gyms/${this.gym.id}/${this.gym.slug_name}/contests/${this.id}/${this.slug_name}`
   }
 
+  get rankersPath () {
+    return `/gyms/${this.gym.id}/${this.gym.slug_name}/contests/rankers/${this.id}/${this.slug_name}`
+  }
+
   get adminPath () {
     return `/gyms/${this.gym.id}/${this.gym.slug_name}/admins/contests/${this.id}`
   }

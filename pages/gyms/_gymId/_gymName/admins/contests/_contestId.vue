@@ -95,6 +95,16 @@
               <v-btn
                 outlined
                 text
+                :to="contest.rankersPath"
+              >
+                <v-icon left>
+                  {{ mdiMonitorShimmer }}
+                </v-icon>
+                Présentation
+              </v-btn>
+              <v-btn
+                outlined
+                text
                 :to="contest.path"
               >
                 <v-icon left>
@@ -302,7 +312,8 @@ import {
   mdiPublish,
   mdiPublishOff,
   mdiDotsVertical,
-  mdiPencil
+  mdiPencil,
+  mdiMonitorShimmer
 } from '@mdi/js'
 import { ContestConcern } from '~/concerns/ContestConcern'
 import { DateHelpers } from '~/mixins/DateHelpers'
@@ -340,7 +351,8 @@ export default {
       mdiPublish,
       mdiPublishOff,
       mdiDotsVertical,
-      mdiPencil
+      mdiPencil,
+      mdiMonitorShimmer
     }
   },
 
