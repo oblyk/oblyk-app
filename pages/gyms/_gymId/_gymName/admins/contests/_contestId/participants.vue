@@ -20,6 +20,14 @@
         </v-chip>
       </template>
       <template #[`item.actions`]="{ item }">
+        <v-btn
+          icon
+          @click="openQrCodeModal(item)"
+        >
+          <v-icon>
+            {{ mdiQrcode }}
+          </v-icon>
+        </v-btn>
         <v-menu offset-y>
           <template #activator="{ on, attrs }">
             <v-btn
@@ -170,6 +178,46 @@
       </v-card>
     </v-dialog>
 
+    <!-- Participant QrCodeModal -->
+    <v-dialog
+      v-model="qrCodeModal"
+      width="400"
+    >
+      <v-card>
+        <v-card-title
+          v-if="selectedParticipantQrCode"
+          class="pb-0"
+        >
+          {{ selectedParticipantQrCode.first_name }} {{ selectedParticipantQrCode.last_name }}
+        </v-card-title>
+        <v-card-subtitle class="mt-0">
+          <v-icon
+            small
+            left
+            class="vertical-align-sub"
+          >
+            {{ mdiAutoFix }}
+          </v-icon>
+          QrCode Magique de connexion
+        </v-card-subtitle>
+        <div class="px-4 pb-4">
+          <v-skeleton-loader
+            v-if="loadingQrCode"
+            type="image"
+          />
+          <div v-else>
+            <div
+              class="participant-qr-code-svg-container"
+              v-html="participantQrCode"
+            />
+            <p class="mt-3 mb-0">
+              <strong>Note : </strong> scanner ce QrCode avec le téléphone du participant pour lui permettre de renseigner ses résultats.
+            </p>
+          </div>
+        </div>
+      </v-card>
+    </v-dialog>
+
     <v-dialog
       v-model="importModal"
       width="600"
@@ -307,7 +355,9 @@ import {
   mdiMagnify,
   mdiWindowRestore,
   mdiExport,
-  mdiImport
+  mdiImport,
+  mdiQrcode,
+  mdiAutoFix
 } from '@mdi/js'
 import ContestParticipantApi from '~/services/oblyk-api/ContestParticipantApi'
 import ContestParticipant from '~/models/ContestParticipant'
@@ -318,6 +368,7 @@ import ContestCategory from '~/models/ContestCategory'
 import ContestWaveApi from '~/services/oblyk-api/ContestWaveApi'
 import ContestWave from '~/models/ContestWave'
 import { AppConcern } from '~/concerns/AppConcern'
+import ToolApi from '~/services/oblyk-api/ToolApi'
 
 export default {
   components: { ContestParticipantCard, ContestParticipantForm },
@@ -336,8 +387,12 @@ export default {
       editModal: false,
       showModal: false,
       addModal: false,
+      qrCodeModal: false,
       importModal: false,
       loadingParticipant: true,
+      loadingQrCode: true,
+      participantQrCode: null,
+      selectedParticipantQrCode: null,
       loadingExport: false,
       participant: null,
       participantId: null,
@@ -410,7 +465,9 @@ export default {
       mdiMagnify,
       mdiWindowRestore,
       mdiExport,
-      mdiImport
+      mdiImport,
+      mdiQrcode,
+      mdiAutoFix
     }
   },
 
@@ -596,7 +653,34 @@ export default {
       this.editModal = false
       this.showModal = false
       this.addModal = false
+      this.qrCodeModal = false
+    },
+
+    openQrCodeModal (participant) {
+      this.selectedParticipantQrCode = participant
+      this.qrCodeModal = true
+      new ToolApi(this.$axios, this.$auth)
+        .qrCoder({
+          message: `${process.env.VUE_APP_OBLYK_APP_URL}${this.contest.path}?token=${participant.token}`
+        })
+        .then((resp) => {
+          this.participantQrCode = resp.data
+        })
+        .finally(() => {
+          this.loadingQrCode = false
+        })
     }
   }
 }
 </script>
+
+<style lang="scss">
+.participant-qr-code-svg-container {
+  width: 100%;
+  overflow: hidden;
+  svg {
+    height: 100%;
+    width: 100%;
+  }
+}
+</style>

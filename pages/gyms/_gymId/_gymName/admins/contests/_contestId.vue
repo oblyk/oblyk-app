@@ -120,10 +120,10 @@
                     v-bind="attrs"
                     v-on="on"
                   >
-                    <v-icon left>
+                    Plus
+                    <v-icon right>
                       {{ mdiDotsVertical }}
                     </v-icon>
-                    {{ $t('actions.edit') }}
                   </v-btn>
                 </template>
                 <v-list>
@@ -163,6 +163,18 @@
                       {{ $t('actions.unPublish') }}
                     </v-list-item-title>
                   </v-list-item>
+                  <v-list-item
+                    @click="contestQrCode()"
+                  >
+                    <v-list-item-icon>
+                      <v-icon>
+                        {{ mdiQrcode }}
+                      </v-icon>
+                    </v-list-item-icon>
+                    <v-list-item-title>
+                      Télécharger le QrCode du contest
+                    </v-list-item-title>
+                  </v-list-item>
                 </v-list>
               </v-menu>
               <v-dialog
@@ -186,6 +198,8 @@
             </div>
           </v-sheet>
         </v-col>
+
+        <!-- Cover part -->
         <v-col
           cols="12"
           lg="5"
@@ -251,6 +265,8 @@
           </v-sheet>
         </v-col>
       </v-row>
+
+      <!-- Tabs -->
       <v-tabs
         id="contest-tabs"
         class="rounded mt-2"
@@ -313,7 +329,8 @@ import {
   mdiPublishOff,
   mdiDotsVertical,
   mdiPencil,
-  mdiMonitorShimmer
+  mdiMonitorShimmer,
+  mdiQrcode
 } from '@mdi/js'
 import { ContestConcern } from '~/concerns/ContestConcern'
 import { DateHelpers } from '~/mixins/DateHelpers'
@@ -323,6 +340,7 @@ import MarkdownText from '~/components/ui/MarkdownText'
 import ContestForm from '~/components/contests/forms/ContestForm.vue'
 import ContestBannerForm from '~/components/contests/forms/ContestBannerForm.vue'
 import ContestApi from '~/services/oblyk-api/ContestApi'
+import ToolApi from '~/services/oblyk-api/ToolApi'
 
 export default {
   components: {
@@ -352,7 +370,8 @@ export default {
       mdiPublishOff,
       mdiDotsVertical,
       mdiPencil,
-      mdiMonitorShimmer
+      mdiMonitorShimmer,
+      mdiQrcode
     }
   },
 
@@ -400,6 +419,19 @@ export default {
         })
         .catch(() => {
           this.loadingPublish = false
+        })
+    },
+
+    contestQrCode () {
+      new ToolApi(this.$axios, this.$auth)
+        .qrCoder({ message: `${process.env.VUE_APP_OBLYK_APP_URL}${this.contest.path}` })
+        .then((resp) => {
+          const url = window.URL.createObjectURL(new Blob([resp.data]))
+          const link = document.createElement('a')
+          link.href = url
+          link.setAttribute('download', `qr-code-${this.contest.slug_name}.svg`)
+          document.body.appendChild(link)
+          link.click()
         })
     }
   }
