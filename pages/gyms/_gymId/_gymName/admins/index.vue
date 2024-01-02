@@ -43,13 +43,13 @@
         {{ $t('components.gymAdmin.GuideBookSettings') }}
       </h4>
       <v-row>
-        <v-col cols="12" md="6" lg="4" class="pa-2">
+        <v-col cols="12" md="6" lg="3" class="pa-2">
           <gym-admin-route-figures :gym="gym" />
         </v-col>
-        <v-col cols="12" md="6" lg="4" class="pa-2">
+        <v-col cols="12" md="6" lg="3" class="pa-2">
           <gym-admin-space-figures :gym="gym" />
         </v-col>
-        <v-col cols="12" md="6" lg="4" class="pa-2">
+        <v-col cols="12" md="6" lg="6" class="pa-2">
           <gym-admin-interactive-guide-parameters :gym="gym" />
         </v-col>
       </v-row>
@@ -87,7 +87,7 @@
       </h4>
       <v-btn
         text
-        color="primary"
+        outlined
         href="https://oblyk.github.io/app-user-doc/docs/indoor/"
         target="_blank"
       >

@@ -27,6 +27,20 @@ class GymRouteApi extends BaseApi {
     })
   }
 
+  all (gymId, routeIds, orderBy, direction, qrcodeLink = false) {
+    return this.axios.request({
+      method: 'GET',
+      url: `${this.baseUrl}/gyms/${gymId}/gym_routes.json`,
+      headers: { HttpApiAccessToken: this.apiAccessToken },
+      params: {
+        order_by: orderBy,
+        route_ids: routeIds,
+        qrcode_link: qrcodeLink,
+        direction
+      }
+    })
+  }
+
   find (gymId, spaceId, routeId) {
     const url = spaceId ? `${this.baseUrl}/gyms/${gymId}/gym_spaces/${spaceId}/gym_routes/${routeId}.json` : `${this.baseUrl}/gyms/${gymId}/gym_routes/${routeId}.json`
     return this.axios.request({

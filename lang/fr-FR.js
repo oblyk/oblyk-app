@@ -119,6 +119,8 @@ export default {
     removeFromMyTickList: 'Supprimer de ma tick list',
     save: 'Sauvegarder',
     requestMade: 'Demande faite',
+    print: 'Imprimer',
+    use: 'Utiliser',
     cancelRequest: 'Annuler la demande',
     writeMessage: 'Écrire un message',
     newConversation: 'Nouvelle conversation',
@@ -573,6 +575,7 @@ export default {
     },
     input: {
       climbing_type: "Type d'escalade",
+      fontFamily: 'Police',
       tags: 'Tags',
       climbingStyle: "Styles d'escalade",
       rocks: 'Type de roche',
@@ -1203,7 +1206,9 @@ export default {
       addYourLogo: 'Ajouter votre logo',
       updateYourLogo: 'Changer votre logo',
       addYourBanner: 'Ajouter votre bandeau',
-      updateYourBanner: 'Changer votre bandeau'
+      updateYourBanner: 'Changer votre bandeau',
+      labelTemplate: 'Les étiquettes',
+      labelTemplateExplain: 'Paramètre des étiquettes à imprimer aux pieds de vos voies et blocs.'
     },
     gymClimbingStyles: {
       title: "Les styles d'escalade de ma salle",
@@ -2152,6 +2157,55 @@ export default {
       last_name: 'Nom de famille',
       email: 'email',
       email_explain: "Renseigner l'e-mail de l'ouvreur ou l'ouvreuse pour le·a lier à son compte Oblyk"
+    },
+    gymLabelTemplate: {
+      name: 'Nom',
+      label_direction: 'Disposition des étiquettes',
+      layout_options: 'Options de disposition',
+      border_style: 'Style de bordure',
+      font_family: 'Police',
+      qr_code_position: 'Emplacement du QrCode',
+      label_arrangement: "Arrangement de l'étiquette",
+      grade_style: 'Visualisation du niveau',
+      display_points: 'Afficher les points',
+      display_openers: 'Afficher les ouvreurs',
+      display_opened_at: "Afficher la date d'ouverture",
+      display_name: 'Afficher le nom',
+      display_description: 'Afficher la description',
+      display_anchor: 'Afficher le relais',
+      display_climbing_style: "Afficher les styles d'escalades",
+      page_format: 'Format de la page',
+      page_direction: 'Orientation de la page',
+      label_direction_list: {
+        one_by_row: 'Une étiquette par largeur',
+        two_by_row: 'Deux étiquettes par largeur',
+        three_by_row: 'Trois étiquettes par largeur',
+        four_by_row: 'Quatre étiquettes par largeur',
+        circular: 'Circulairement'
+      },
+      qr_code_position_list: {
+        in_label: "Dans l'étiquette",
+        footer: 'Dans le pied de page',
+        none: 'Pas de QrCode'
+      },
+      page_direction_list: {
+        portrait: 'Portrait',
+        landscape: 'Paysage'
+      },
+      label_arrangement_list: {
+        rectangular_horizontal: 'Rectangulaire horizontal',
+        rectangular_vertical: 'Rectangulaire vertical'
+      },
+      grade_style_list: {
+        none: 'Pas de visuel',
+        tag_and_hold: 'Couleur prise et/ou étiquette',
+        diagonal_label: 'Étiquette de couleur penchée'
+      },
+      border_styles: {
+        none: 'Pas de bordure',
+        solid: 'Continue',
+        dashed: 'Pointillé'
+      }
     },
     gymSpace: {
       loading: "Chargement de l'espace ...",

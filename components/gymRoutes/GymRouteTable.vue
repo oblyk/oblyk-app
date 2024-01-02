@@ -10,7 +10,7 @@
               :label="$t('actions.search')"
               hide-details
               dense
-              :prepend-icon="mdiMagnify()"
+              :prepend-icon="mdiMagnify"
             />
           </v-sheet>
           <v-data-table
@@ -32,7 +32,7 @@
                 small
                 :title="header.text"
               >
-                {{ mdiBookCheckOutline() }}
+                {{ mdiBookCheckOutline }}
               </v-icon>
             </template>
             <template
@@ -43,7 +43,7 @@
                 small
                 :title="header.text"
               >
-                {{ mdiHeartOutline() }}
+                {{ mdiHeartOutline }}
               </v-icon>
             </template>
             <template
@@ -54,7 +54,7 @@
                 small
                 :title="header.text"
               >
-                {{ mdiGauge() }}
+                {{ mdiGauge }}
               </v-icon>
             </template>
 
@@ -86,7 +86,7 @@
                 @click="routesBulkSelector(item.id, 'openedAt')"
               >
                 <v-icon small>
-                  {{ mdiCheckboxMultipleOutline() }}
+                  {{ mdiCheckboxMultipleOutline }}
                 </v-icon>
               </v-btn>
               {{ humanizeDate(item.openedAt, 'd LLL yy') }}
@@ -104,7 +104,7 @@
                 @click="routesBulkSelector(item.id, 'anchorNumber')"
               >
                 <v-icon small>
-                  {{ mdiCheckboxMultipleOutline() }}
+                  {{ mdiCheckboxMultipleOutline }}
                 </v-icon>
               </v-btn>
               {{ item.anchorNumber }}
@@ -122,7 +122,7 @@
                 @click="routesBulkSelector(item.id, 'sector')"
               >
                 <v-icon small>
-                  {{ mdiCheckboxMultipleOutline() }}
+                  {{ mdiCheckboxMultipleOutline }}
                 </v-icon>
               </v-btn>
               {{ item.sector }}
@@ -150,7 +150,7 @@
                 :title="difficultyAppreciationStatus(item.difficultyAppreciation)"
                 :color="difficultyColor(item.difficultyAppreciation)"
               >
-                {{ mdiArrowRightThin() }}
+                {{ mdiArrowRightThin }}
               </v-icon>
             </template>
             <template
@@ -159,7 +159,7 @@
             >
               <nuxt-link :to="`${item.edit.path}/edit?redirect_to=${$route.fullPath}`">
                 <v-icon small>
-                  {{ mdiPencil() }}
+                  {{ mdiPencil }}
                 </v-icon>
               </nuxt-link>
             </template>
@@ -184,7 +184,7 @@
               v-on="on"
             >
               <v-icon left>
-                {{ mdiDotsVertical() }}
+                {{ mdiDotsVertical }}
               </v-icon>
               {{ $t('actions.actions') }}
             </v-btn>
@@ -192,7 +192,7 @@
           <v-list>
             <v-list-item @click="dismountCollection()">
               <v-list-item-icon>
-                <v-icon>{{ mdiBackburger() }}</v-icon>
+                <v-icon>{{ mdiBackburger }}</v-icon>
               </v-list-item-icon>
               <v-list-item-title>
                 {{ $tc('components.gymAdmin.dismountRoutes', routeSelected.length, { count: routeSelected.length }) }}
@@ -200,7 +200,7 @@
             </v-list-item>
             <v-list-item @click="mountCollection()">
               <v-list-item-icon>
-                <v-icon>{{ mdiForwardburger() }}</v-icon>
+                <v-icon>{{ mdiForwardburger }}</v-icon>
               </v-list-item-icon>
               <v-list-item-title>
                 {{ $tc('components.gymAdmin.mountRoutes', routeSelected.length, { count: routeSelected.length }) }}
@@ -208,7 +208,7 @@
             </v-list-item>
             <v-list-item @click="printCollection()">
               <v-list-item-icon>
-                <v-icon>{{ mdiPrinter() }}</v-icon>
+                <v-icon>{{ mdiPrinter }}</v-icon>
               </v-list-item-icon>
               <v-list-item-title>
                 {{ $tc('components.gymAdmin.printRoutes', routeSelected.length, { count: routeSelected.length }) }}
@@ -216,7 +216,7 @@
             </v-list-item>
             <v-list-item @click="exportCollection()">
               <v-list-item-icon>
-                <v-icon>{{ mdiTableArrowRight() }}</v-icon>
+                <v-icon>{{ mdiTableArrowRight }}</v-icon>
               </v-list-item-icon>
               <v-list-item-title>
                 {{ $tc('components.gymAdmin.exportRoutes', routeSelected.length, { count: routeSelected.length }) }}
@@ -287,6 +287,12 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
+
+    <!-- Print dialog -->
+    <print-label-dialog
+      ref="printLabelDialog"
+      :gym="gym"
+    />
   </div>
 </template>
 
@@ -314,10 +320,12 @@ import GymRouteApi from '~/services/oblyk-api/GymRouteApi'
 import AscentGymRoute from '~/models/AscentGymRoute'
 import Note from '~/components/notes/Note.vue'
 import AscentGymRouteStatusIcon from '~/components/ascentGymRoutes/AscentGymRouteStatusIcon.vue'
+import PrintLabelDialog from '~/components/gymLabelTemplates/PrintLabelDialog.vue'
 
 export default {
   name: 'GymRoutesTable',
   components: {
+    PrintLabelDialog,
     AscentGymRouteStatusIcon,
     Note,
     GymRouteTagAndHold
@@ -339,7 +347,20 @@ export default {
       loadingAscents: true,
       routeAscents: [],
       tableRoutes: [],
-      search: null
+      search: null,
+
+      mdiBackburger,
+      mdiForwardburger,
+      mdiPencil,
+      mdiPrinter,
+      mdiDotsVertical,
+      mdiCheckboxMultipleOutline,
+      mdiTableArrowRight,
+      mdiBookCheckOutline,
+      mdiHeartOutline,
+      mdiGauge,
+      mdiArrowRightThin,
+      mdiMagnify
     }
   },
 
@@ -578,33 +599,47 @@ export default {
       if (this.routeSelected.length === 0) { return false }
 
       const routeIds = []
+      let sectors = []
+      let anchors = []
       for (const route of this.routeSelected) {
         routeIds.push(route.id)
+        sectors.push(route.sector)
+        if (route.anchorNumber !== null) {
+          anchors.push(`Relais n°${route.anchorNumber}`)
+        }
       }
-      this.loadingRoutes = true
-      new GymRouteApi(this.$axios, this.$auth)
-        .printCollection(this.gym.id, routeIds)
-        .then((resp) => {
-          const newBlob = new Blob([resp.data], { type: 'application/pdf' })
-          if (window.navigator && window.navigator.msSaveOrOpenBlob) {
-            window.navigator.msSaveOrOpenBlob(newBlob)
-            return
-          }
-
-          const data = window.URL.createObjectURL(newBlob)
-          const link = document.createElement('a')
-          link.href = data
-          link.setAttribute(
-            'download',
-            this.$t('components.gymRoute.printedFileName', { date: this.ISODateToday(), name: this.gym.name })
-          )
-          link.click()
-          setTimeout(() => { window.URL.revokeObjectURL(data) }, 100)
-          this.routeSelected = []
-        })
-        .finally(() => {
-          this.loadingRoutes = false
-        })
+      sectors = [...new Set(sectors)]
+      anchors = [...new Set(anchors)]
+      this.$refs.printLabelDialog.openDialog(
+        {
+          referencesSuggestion: sectors.concat(anchors),
+          routeIds
+        }
+      )
+      // this.loadingRoutes = true
+      // new GymRouteApi(this.$axios, this.$auth)
+      //   .printCollection(this.gym.id, routeIds)
+      //   .then((resp) => {
+      //     const newBlob = new Blob([resp.data], { type: 'application/pdf' })
+      //     if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+      //       window.navigator.msSaveOrOpenBlob(newBlob)
+      //       return
+      //     }
+      //
+      //     const data = window.URL.createObjectURL(newBlob)
+      //     const link = document.createElement('a')
+      //     link.href = data
+      //     link.setAttribute(
+      //       'download',
+      //       this.$t('components.gymRoute.printedFileName', { date: this.ISODateToday(), name: this.gym.name })
+      //     )
+      //     link.click()
+      //     setTimeout(() => { window.URL.revokeObjectURL(data) }, 100)
+      //     this.routeSelected = []
+      //   })
+      //   .finally(() => {
+      //     this.loadingRoutes = false
+      //   })
     },
 
     exportCollection () {
@@ -680,20 +715,7 @@ export default {
       } else {
         return this.$t('components.difficulty.soft')
       }
-    },
-
-    mdiBackburger () { return mdiBackburger },
-    mdiForwardburger () { return mdiForwardburger },
-    mdiPencil () { return mdiPencil },
-    mdiPrinter () { return mdiPrinter },
-    mdiDotsVertical () { return mdiDotsVertical },
-    mdiCheckboxMultipleOutline () { return mdiCheckboxMultipleOutline },
-    mdiTableArrowRight () { return mdiTableArrowRight },
-    mdiBookCheckOutline () { return mdiBookCheckOutline },
-    mdiHeartOutline () { return mdiHeartOutline },
-    mdiGauge () { return mdiGauge },
-    mdiArrowRightThin () { return mdiArrowRightThin },
-    mdiMagnify () { return mdiMagnify }
+    }
   }
 }
 </script>

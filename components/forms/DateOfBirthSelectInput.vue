@@ -1,10 +1,10 @@
 <template>
   <fieldset
-    class="custom-date-of-birth border rounded mt-n1"
+    class="custom-fieldset border rounded mt-n1"
     :class="hideDetails ? '' : 'mb-8'"
   >
     <legend
-      class="v-label custom-date-of-birth-label"
+      class="v-label custom-fieldset-label"
       :class="!isValidDate ? 'red--text' : null"
     >
       {{ $t('components.input.dateOfBirth') }}

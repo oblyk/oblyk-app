@@ -119,6 +119,8 @@ export default {
     removeFromMyTickList: 'Remove from my tick list',
     save: 'Save',
     requestMade: 'Request made',
+    print: 'Print',
+    use: 'Use',
     cancelRequest: 'Cancel request',
     writeMessage: 'Write a message',
     newConversation: 'New conversation',
@@ -573,6 +575,7 @@ export default {
     },
     input: {
       climbing_type: 'Climbing type',
+      fontFamily: 'Font',
       tags: 'Tags',
       climbingStyle: 'Climbing styles',
       rocks: 'Rock type',
@@ -1203,7 +1206,9 @@ export default {
       addYourLogo: 'Add your logo',
       updateYourLogo: 'Change your logo',
       addYourBanner: 'Add your banner',
-      updateYourBanner: 'Change your banner'
+      updateYourBanner: 'Change your banner',
+      labelTemplate: 'Labels',
+      labelTemplateExplain: 'Set the labels to be printed at the foot of your routes and boulders.'
     },
     gymClimbingStyles: {
       title: 'Climbing styles in my gym',
@@ -2152,6 +2157,9 @@ export default {
       last_name: 'Last name',
       email: 'e-mail',
       email_explain: "Enter the opener's email address to link it to their Oblyk account"
+    },
+    gymLabelTemplate: {
+      name: 'Name'
     },
     gymSpace: {
       loading: 'Loading space ...',

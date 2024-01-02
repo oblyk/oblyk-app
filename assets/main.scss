@@ -34,6 +34,14 @@ strong {
   font-weight: 500;
 }
 
+.svg-container {
+  &.--full-height {
+    svg {
+      height: 100%;
+    }
+  }
+}
+
 .h2-title-in-card-title {
   font-weight: 500;
   font-size: 1.25rem;
@@ -337,8 +345,8 @@ strong {
   border-right-width: 1px;
 }
 
-.custom-date-of-birth {
-  .custom-date-of-birth-label {
+.custom-fieldset {
+  .custom-fieldset-label {
     font-size: 13px;
     padding-left: 5px;
     padding-right: 5px;
@@ -368,9 +376,9 @@ strong {
   .sheet-background-color {
     background-color: rgb(22, 22, 22);
   }
-  .custom-date-of-birth {
+  .custom-fieldset {
     border-color: rgba(255, 255, 255, 0.24) !important;
-    .custom-date-of-birth-label {
+    .custom-fieldset-label {
      color: rgba(255, 255, 255, 0.7)
     }
   }
@@ -390,9 +398,9 @@ strong {
   .sheet-background-color {
     background-color: rgb(255, 255, 255);
   }
-  .custom-date-of-birth {
+  .custom-fieldset {
     border-color: rgba(0, 0, 0, 0.38) !important;
-    .custom-date-of-birth-label {
+    .custom-fieldset-label {
       color: rgba(0, 0, 0, 0.7)
     }
   }

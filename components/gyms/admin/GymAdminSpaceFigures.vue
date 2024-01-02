@@ -1,5 +1,5 @@
 <template>
-  <v-card class="full-height">
+  <v-card class="full-height d-flex flex-column justify-space-between">
     <v-card-title>
       <v-icon left>
         {{ mdiMap }}
@@ -27,12 +27,12 @@
         v-if="gymAuthCan(gym, 'manage_space')"
         :to="newSpacePath"
         text
-        color="primary"
+        outlined
       >
         <v-icon left>
           {{ mdiPlus }}
         </v-icon>
-        {{ $t('components.gymSpace.create') }}
+        {{ $t('actions.add') }}
       </v-btn>
       <v-btn
         v-if="gym.gym_spaces.length > 0"

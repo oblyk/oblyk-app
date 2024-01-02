@@ -20,7 +20,7 @@
       <v-spacer />
       <v-btn
         text
-        color="primary"
+        outlined
         :to="`${gym.adminPath}/openers`"
       >
         {{ $t('components.gymAdmin.openers') }}

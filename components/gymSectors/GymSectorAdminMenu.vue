@@ -1,95 +1,114 @@
 <template>
-  <v-menu offset-y right>
-    <template #activator="{ on, attrs }">
-      <v-btn
-        icon
-        v-bind="attrs"
-        v-on="on"
-      >
-        <v-icon>
-          {{ mdiDotsVertical }}
-        </v-icon>
-      </v-btn>
-    </template>
-    <v-list>
-      <!-- Edit Sector -->
-      <v-list-item
-        v-if="gymAuthCan(gym, 'manage_space')"
-        link
-        :to="`${gymSector.path}/edit`"
-      >
-        <v-list-item-icon>
-          <v-icon>{{ mdiPencil }}</v-icon>
-        </v-list-item-icon>
-        <v-list-item-title>
-          {{ $t('actions.editSector') }}
-        </v-list-item-title>
-      </v-list-item>
-
-      <!-- Edit polyline -->
-      <v-list-item
-        v-if="showPlanOptions && gymAuthCan(gym, 'manage_space')"
-        link
-        @click="startEditSectorPolygon()"
-      >
-        <v-list-item-icon>
-          <v-icon>{{ mdiVectorPolygon }}</v-icon>
-        </v-list-item-icon>
-        <v-list-item-title
-          v-text="gymSector.hasPolygon ? $t('components.gymSector.editSectorPolygon') : $t('components.gymSector.createSectorPolygon')"
-        />
-      </v-list-item>
-
-      <v-divider />
-
-      <!-- Add new route in sector -->
-      <v-list-item
-        v-if="gymAuthCan(gym, 'manage_opening')"
-        link
-        :to="`${gymSector.path}/routes/new`"
-      >
-        <v-list-item-icon>
-          <v-icon>{{ mdiSourceBranchPlus }}</v-icon>
-        </v-list-item-icon>
-        <v-list-item-title>
-          {{ $t('actions.addLine') }}
-        </v-list-item-title>
-      </v-list-item>
-
-      <!-- Dismount all routes in sector -->
-      <v-list-item
-        v-if="gymAuthCan(gym, 'manage_opening')"
-        link
-        @click="dismountRoutes()"
-      >
-        <v-list-item-icon>
-          <v-icon>{{ mdiCollapseAllOutline }}</v-icon>
-        </v-list-item-icon>
-        <v-list-item-title>
-          {{ $t('actions.dismountAllRoutes') }}
-        </v-list-item-title>
-      </v-list-item>
-
-      <!-- Remove sector polygone -->
-      <v-divider
-        v-if="gymSector.hasPolygon && showPlanOptions && gymAuthCan(gym, 'manage_space')"
-      />
-      <v-list-item
-        v-if="gymSector.hasPolygon && showPlanOptions && gymAuthCan(gym, 'manage_space')"
-        link
-        @click="removeSectorPolygon()"
-      >
-        <v-list-item-icon>
+  <div>
+    <v-menu offset-y right>
+      <template #activator="{ on, attrs }">
+        <v-btn
+          icon
+          v-bind="attrs"
+          v-on="on"
+        >
           <v-icon>
-            {{ mdiVectorSquareRemove }}
+            {{ mdiDotsVertical }}
           </v-icon>
-        </v-list-item-icon>
-        <v-list-item-title class="red--text">
-          {{ $t('components.gymSector.removeSectorPolygon') }}
-        </v-list-item-title>
-      </v-list-item>
-    </v-list>
-  </v-menu>
+        </v-btn>
+      </template>
+      <v-list>
+        <!-- Edit Sector -->
+        <v-list-item
+          v-if="gymAuthCan(gym, 'manage_space')"
+          link
+          :to="`${gymSector.path}/edit`"
+        >
+          <v-list-item-icon>
+            <v-icon>{{ mdiPencil }}</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title>
+            {{ $t('actions.editSector') }}
+          </v-list-item-title>
+        </v-list-item>
+
+        <!-- Edit polyline -->
+        <v-list-item
+          v-if="showPlanOptions && gymAuthCan(gym, 'manage_space')"
+          link
+          @click="startEditSectorPolygon()"
+        >
+          <v-list-item-icon>
+            <v-icon>{{ mdiVectorPolygon }}</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title
+            v-text="gymSector.hasPolygon ? $t('components.gymSector.editSectorPolygon') : $t('components.gymSector.createSectorPolygon')"
+          />
+        </v-list-item>
+
+        <!-- Print label -->
+        <v-list-item
+          @click="printDialog()"
+        >
+          <v-list-item-icon>
+            <v-icon>{{ mdiPrinter }}</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title>
+            {{ $t('actions.print') }}
+          </v-list-item-title>
+        </v-list-item>
+
+        <v-divider />
+
+        <!-- Add new route in sector -->
+        <v-list-item
+          v-if="gymAuthCan(gym, 'manage_opening')"
+          link
+          :to="`${gymSector.path}/routes/new`"
+        >
+          <v-list-item-icon>
+            <v-icon>{{ mdiSourceBranchPlus }}</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title>
+            {{ $t('actions.addLine') }}
+          </v-list-item-title>
+        </v-list-item>
+
+        <!-- Dismount all routes in sector -->
+        <v-list-item
+          v-if="gymAuthCan(gym, 'manage_opening')"
+          link
+          @click="dismountRoutes()"
+        >
+          <v-list-item-icon>
+            <v-icon>{{ mdiCollapseAllOutline }}</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title>
+            {{ $t('actions.dismountAllRoutes') }}
+          </v-list-item-title>
+        </v-list-item>
+
+        <!-- Remove sector polygone -->
+        <v-divider
+          v-if="gymSector.hasPolygon && showPlanOptions && gymAuthCan(gym, 'manage_space')"
+        />
+        <v-list-item
+          v-if="gymSector.hasPolygon && showPlanOptions && gymAuthCan(gym, 'manage_space')"
+          link
+          @click="removeSectorPolygon()"
+        >
+          <v-list-item-icon>
+            <v-icon>
+              {{ mdiVectorSquareRemove }}
+            </v-icon>
+          </v-list-item-icon>
+          <v-list-item-title class="red--text">
+            {{ $t('components.gymSector.removeSectorPolygon') }}
+          </v-list-item-title>
+        </v-list-item>
+      </v-list>
+    </v-menu>
+    <print-label-dialog
+      ref="printLabelDialog"
+      :gym="gym"
+      fast-printing
+    />
+  </div>
 </template>
 
 <script>
@@ -100,13 +119,16 @@ import {
   mdiCollapseAllOutline,
   mdiVectorPolygon,
   mdiVectorSquareRemove,
-  mdiSourceBranchPlus
+  mdiSourceBranchPlus,
+  mdiPrinter
 } from '@mdi/js'
-import GymSectorApi from '~/services/oblyk-api/GymSectorApi'
 import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
+import GymSectorApi from '~/services/oblyk-api/GymSectorApi'
+import PrintLabelDialog from '~/components/gymLabelTemplates/PrintLabelDialog'
 
 export default {
   name: 'GymSectorAdminMenu',
+  components: { PrintLabelDialog },
   mixins: [GymRolesHelpers],
   props: {
     gymSector: {
@@ -131,7 +153,8 @@ export default {
       mdiCollapseAllOutline,
       mdiVectorPolygon,
       mdiVectorSquareRemove,
-      mdiSourceBranchPlus
+      mdiSourceBranchPlus,
+      mdiPrinter
     }
   },
 
@@ -163,6 +186,13 @@ export default {
             window.location.reload()
           })
       }
+    },
+
+    printDialog () {
+      this.$refs.printLabelDialog.openDialog({
+        reference: this.gymSector.name,
+        sector: this.gymSector
+      })
     }
   }
 }

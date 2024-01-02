@@ -1,5 +1,5 @@
 <template>
-  <v-card class="full-height">
+  <v-card class="full-height d-flex flex-column justify-space-between">
     <v-card-title>
       <v-icon left>
         {{ mdiSourceBranch }}
@@ -15,6 +15,7 @@
       <v-spacer />
       <v-btn
         text
+        outlined
         color="primary"
         :to="`${gym.adminPath}/routes/tables`"
       >
@@ -25,6 +26,7 @@
       </v-btn>
       <v-btn
         text
+        outlined
         color="primary"
         :to="`${gym.adminPath}/routes/statistics`"
       >

@@ -19,7 +19,7 @@
     <v-card-actions>
       <v-spacer />
       <v-btn
-        text
+        elevation="0"
         color="primary"
         :to="`${gym.adminPath}/contests`"
       >

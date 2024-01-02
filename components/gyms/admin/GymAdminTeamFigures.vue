@@ -22,7 +22,7 @@
       <v-spacer />
       <v-btn
         text
-        color="primary"
+        outlined
         :to="`${gym.adminPath}/administrators`"
       >
         {{ $t('components.gymAdmin.team') }}

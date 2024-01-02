@@ -9,17 +9,20 @@
     <v-card-text>
       <v-row>
         <v-col>
-          <v-sheet class="rounded back-app-color px-3 pt-2 pb-1">
-            <p class="font-weight-bold mb-1">
-              {{ $t('components.gymAdmin.difficultySystem') }}
-            </p>
-            <p class="mb-0">
-              {{ $t('components.gymAdmin.difficultySystemExplain') }}
-            </p>
-            <div class="text-center">
+          <v-sheet class="rounded back-app-color px-3 pt-2 pb-2 full-height d-flex flex-column">
+            <div>
+              <p class="font-weight-bold mb-1">
+                {{ $t('components.gymAdmin.difficultySystem') }}
+              </p>
+              <p class="mb-2">
+                {{ $t('components.gymAdmin.difficultySystemExplain') }}
+              </p>
+            </div>
+            <div class="text-center mt-auto">
               <v-btn
                 text
-                color="primary"
+                outlined
+                block
                 :to="gym.gym_grades_count > 0 ? `${gym.adminPath}/grades` : `${gym.adminPath}/first-difficulty-system`"
               >
                 {{ $t('components.gymAdmin.difficultySystemShort') }}
@@ -28,20 +31,45 @@
           </v-sheet>
         </v-col>
         <v-col>
-          <v-sheet class="rounded back-app-color px-3 pt-2 pb-1">
-            <p class="font-weight-bold mb-1">
-              {{ $t('components.gymAdmin.climbingStyle') }}
-            </p>
-            <p class="mb-0">
-              {{ $t('components.gymAdmin.climbingStyleExplain') }}
-            </p>
-            <div class="text-center">
+          <v-sheet class="rounded back-app-color px-3 pt-2 pb-2 full-height d-flex flex-column">
+            <div>
+              <p class="font-weight-bold mb-1">
+                {{ $t('components.gymAdmin.climbingStyle') }}
+              </p>
+              <p class="mb-2">
+                {{ $t('components.gymAdmin.climbingStyleExplain') }}
+              </p>
+            </div>
+            <div class="text-center mt-auto">
               <v-btn
                 text
-                color="primary"
+                outlined
+                block
                 :to="`${gym.adminPath}/climbing-styles`"
               >
                 {{ $t('components.gymAdmin.styles') }}
+              </v-btn>
+            </div>
+          </v-sheet>
+        </v-col>
+        <v-col>
+          <v-sheet class="rounded back-app-color px-3 pt-2 pb-2 full-height d-flex flex-column">
+            <div>
+              <p class="font-weight-bold mb-1">
+                {{ $t('components.gymAdmin.labelTemplate') }}
+              </p>
+              <p class="mb-2">
+                {{ $t('components.gymAdmin.labelTemplateExplain') }}
+              </p>
+            </div>
+            <div class="text-center mt-auto">
+              <v-btn
+                text
+                outlined
+                block
+                :to="`${gym.adminPath}/label-templates`"
+              >
+                {{ $t('components.gymAdmin.labelTemplate') }}
               </v-btn>
             </div>
           </v-sheet>
