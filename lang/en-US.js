@@ -238,6 +238,7 @@ export default {
     since: 'since %{date}',
     count: 'one | %{count}',
     areYouSurToDelete: 'Are you sure you want to delete?',
+    areYouSurArchived: 'Are you sure you want to archived ?',
     filters: 'Filters',
     map: 'Map',
     setting: 'Setting',

@@ -175,7 +175,7 @@ export default {
         name: this.gymLabelTemplate?.name,
         label_direction: this.gymLabelTemplate?.label_direction || 'one_by_row',
         layout_options: this.gymLabelTemplate?.layout_options,
-        border_style: this.gymLabelTemplate?.border_style || { 'border-color': '#000000', 'border-width': '1px', 'borde-solid': 'solid', 'border-radius': '5px' },
+        border_style: this.gymLabelTemplate?.border_style || { 'border-color': '#000000', 'border-width': '1px', 'border-style': 'solid', 'border-radius': '5px' },
         font_family: this.gymLabelTemplate?.font_family || 'lato',
         qr_code_position: this.gymLabelTemplate?.qr_code_position || 'in_label',
         label_arrangement: this.gymLabelTemplate?.label_arrangement || 'rectangular_horizontal',
@@ -187,6 +187,8 @@ export default {
         display_description: this.gymLabelTemplate?.display_description,
         display_anchor: this.gymLabelTemplate?.display_anchor,
         display_climbing_style: this.gymLabelTemplate?.display_climbing_style,
+        display_grade: this.gymLabelTemplate?.display_grade,
+        display_tag_and_hold: this.gymLabelTemplate?.display_tag_and_hold,
         page_format: this.gymLabelTemplate?.page_format || 'A4',
         page_direction: this.gymLabelTemplate?.page_direction || 'portrait',
         gym_id: this.gym.id
@@ -198,7 +200,9 @@ export default {
         'display_name',
         'display_description',
         'display_anchor',
-        'display_climbing_style'
+        'display_climbing_style',
+        'display_grade',
+        'display_tag_and_hold'
       ],
       direction_items: [
         { value: 'one_by_row', text: this.$t('models.gymLabelTemplate.label_direction_list.one_by_row') },
@@ -260,6 +264,8 @@ export default {
       this.data.display_description = false
       this.data.display_anchor = false
       this.data.display_climbing_style = true
+      this.data.display_grade = true
+      this.data.display_tag_and_hold = true
     }
   },
 

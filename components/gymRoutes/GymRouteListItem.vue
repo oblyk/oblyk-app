@@ -93,6 +93,10 @@ export default {
     relativePath: {
       type: Boolean,
       default: true
+    },
+    clickCallback: {
+      type: Function,
+      default: null
     }
   },
 
@@ -126,15 +130,19 @@ export default {
 
   methods: {
     openGymRoute () {
-      const query = {}
-      if (!this.activeRoute) { query.route = this.gymRoute.id }
-      const path = this.relativePath ? this.$route.path : this.gymRoute.gymSpacePath
-      this.$router.push(
-        {
-          path,
-          query
-        }
-      )
+      if (this.clickCallback) {
+        this.clickCallback(this.gymRoute)
+      } else {
+        const query = {}
+        if (!this.activeRoute) { query.route = this.gymRoute.id }
+        const path = this.relativePath ? this.$route.path : this.gymRoute.gymSpacePath
+        this.$router.push(
+          {
+            path,
+            query
+          }
+        )
+      }
     }
   }
 }

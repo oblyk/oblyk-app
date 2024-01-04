@@ -15,10 +15,26 @@
           v-for="(labelTemplate, labelTemplateIndex) in labelTemplates"
           :key="`label-template-index-${labelTemplateIndex}`"
           :to="labelTemplate.path"
+          class="rounded border mb-2"
         >
-          <v-list-item-title>
-            {{ labelTemplate.name }}
-          </v-list-item-title>
+          <v-list-item-icon>
+            <v-icon size="30">
+              {{ mdiFileDocumentOutline }}
+            </v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title :class="labelTemplate.archived_at ? 'text--disabled' : 'font-weight-bold'">
+              <strong v-if="labelTemplate.archived_at">
+                [Archivé]
+              </strong>
+              {{ labelTemplate.name }}
+            </v-list-item-title>
+            <v-list-item-subtitle :class="labelTemplate.archived_at ? 'text--disabled' : ''">
+              {{ labelTemplate.page_format }} ·
+              {{ $t(`models.gymLabelTemplate.page_direction_list.${labelTemplate.page_direction}`) }} ·
+              {{ labelTemplate.font.name }}
+            </v-list-item-subtitle>
+          </v-list-item-content>
         </v-list-item>
         <p
           v-if="labelTemplates.length === 0"
@@ -44,7 +60,7 @@
 </template>
 
 <script>
-import { mdiPlus } from '@mdi/js'
+import { mdiPlus, mdiFileDocumentOutline } from '@mdi/js'
 import { GymFetchConcern } from '~/concerns/GymFetchConcern'
 import GymLabelTemplateApi from '~/services/oblyk-api/GymLabelTemplateApi'
 import GymLabelTemplate from '~/models/GymLabelTemplate'
@@ -61,7 +77,8 @@ export default {
       loadingLabelTemplates: true,
       labelTemplates: [],
 
-      mdiPlus
+      mdiPlus,
+      mdiFileDocumentOutline
     }
   },
 
@@ -111,7 +128,7 @@ export default {
     getLabelTemplates () {
       this.loadingLabelTemplates = true
       new GymLabelTemplateApi(this.$axios, this.$auth)
-        .all(this.$route.params.gymId)
+        .all(this.$route.params.gymId, true)
         .then((resp) => {
           this.labelTemplates = []
           for (const labelTemplate of resp.data) {

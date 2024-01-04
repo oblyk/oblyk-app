@@ -20,16 +20,26 @@
     >
       <div>
         <p>
-          Suis ta progression sur Oblyk.org
+          Suis ta progression et découvre le topo<br>de <b>{{ gym.name }}</b> sur Oblyk.org !
         </p>
-        <p v-if="reference">
-          {{ reference }}
-        </p>
+        <div v-if="reference">
+          <small>
+            {{ reference }}
+          </small>
+        </div>
       </div>
       <div
         class="footer-qr-code"
         v-html="footerQrcode"
       />
+    </div>
+    <div
+      v-if="gymLabelTemplate && gymLabelTemplate.qr_code_position !== 'footer' && reference"
+      class="footer-reference-only"
+    >
+      <small>
+        {{ reference }}
+      </small>
     </div>
   </div>
 </template>
@@ -51,7 +61,7 @@ export default {
       gymLabelTemplate: null,
       loadingLabelTemplate: true,
       footerQrcode: null,
-      reference: 'réference',
+      reference: 'Réference',
       sectorId: null,
       routeIds: null,
       previewRoutesSet: null,
@@ -65,7 +75,7 @@ export default {
   head () {
     const date = new Date()
     return {
-      title: `Fiche d'étiquette ${date.toISOString().split('T')[0]}`
+      title: `Étiquette ${this.reference ? `- ${this.reference} ` : ''}- ${date.toISOString().split('T')[0]}`
     }
   },
 
@@ -126,8 +136,10 @@ export default {
         font-family: ${this.gymLabelTemplate.font.name};
         font-size: ${this.gymLabelTemplate.font.size};
         line-height: ${this.gymLabelTemplate.font.line_height};
-        border-width: 1px;
-        border-color: ${this.gymLabelTemplate.border_style['border-color']};
+      }
+      .footer {
+        border-top-width: ${this.gymLabelTemplate.border_style['border-width']};
+        border-top-color: ${this.gymLabelTemplate.border_style['border-color']};
       }
       @page {
         size: ${this.gymLabelTemplate.page_format} ${this.gymLabelTemplate.page_direction};
@@ -178,7 +190,7 @@ export default {
   bottom: 0;
   width: 100%;
   text-align: right;
-  border-top: solid;
+  border-top-style: solid;
   padding-top: 5px;
   display: flex;
   flex-direction: row;
@@ -192,5 +204,11 @@ export default {
       width: 100%;
     }
   }
-  }
+}
+.footer-reference-only {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: right;
+}
 </style>

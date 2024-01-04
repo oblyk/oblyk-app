@@ -51,7 +51,7 @@
           <v-list-item
             v-for="(label, labelIndex) in gymLabelTemplates"
             :key="`label-index-${labelIndex}`"
-            class="border rounded-pill pr-2"
+            class="border rounded-pill pr-2 mb-2"
             @click="print(label)"
           >
             <v-list-item-title class="d-flex">

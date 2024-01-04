@@ -2,8 +2,14 @@
   <div class="grade-style-none">
     <div class="grade-style-container">
       <div class="grade-style-grade">
-        <grade-style-grade :gym-route="gymRoute" />
-        <div class="points-part">
+        <grade-style-grade
+          v-if="gymLabelTemplate.display_grade"
+          :gym-route="gymRoute"
+        />
+        <div
+          v-if="gymLabelTemplate.display_points"
+          class="points-part"
+        >
           {{ gymRoute.points }} Pts
         </div>
       </div>
@@ -34,7 +40,7 @@ export default {
 .grade-style-none {
   white-space: nowrap;
   height: 100%;
-  width: 110px;
+  width: 90px;
   padding-left: 20px;
   font-weight: bold;
   display: flex;
@@ -46,7 +52,9 @@ export default {
     align-content: center;
   }
   .grade-style-grade {
-    display: inline-block;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     .grade-part {
       &.mono-section {
         &.nd-characters-1, &.nd-characters-2 {

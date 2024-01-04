@@ -48,6 +48,9 @@
         class="route-description"
         :text="gymRoute.description"
       />
+      <p v-if="gymLabelTemplate.display_anchor && gymRoute.anchor_number">
+        Relais n°{{ gymRoute.anchor_number }}
+      </p>
       <p
         v-if="gymLabelTemplate.display_climbing_style"
         class="climbing-styles"

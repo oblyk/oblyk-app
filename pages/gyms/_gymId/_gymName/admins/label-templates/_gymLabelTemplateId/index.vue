@@ -18,144 +18,212 @@
             <div class="py-4 attributes-list flex-grow-1 flex-shrink-0 overflow-y-auto">
               <div
                 v-if="!editing"
-                class="px-4"
+                class="d-flex flex-column full-height"
               >
-                <description-line
-                  :icon="mdiAlphaA"
-                  :item-title="$t('models.gymLabelTemplate.name')"
-                  :item-value="gymLabelTemplate.name"
-                  class="mb-3"
-                />
-                <description-line
-                  :icon="mdiViewList"
-                  :item-title="$t('models.gymLabelTemplate.label_direction')"
-                  :item-value="$t(`models.gymLabelTemplate.label_direction_list.${gymLabelTemplate.label_direction}`)"
-                  class="mb-3"
-                />
-                <description-line
-                  :icon="mdiFormatLetterCase"
-                  :item-title="$t('models.gymLabelTemplate.font_family')"
-                  :item-value="gymLabelTemplate.font.name"
-                  class="mb-5"
-                >
-                  <template #content>
-                    <div
-                      class="svg-container --full-height"
-                      style="height: 15px"
-                      :style="$vuetify.theme.dark ? 'fill: white' : 'fill: black'"
-                      v-html="gymLabelTemplate.font.svg_preview"
-                    />
-                  </template>
-                </description-line>
-                <description-line
-                  :icon="mdiBorderAll"
-                  :item-title="$t('models.gymLabelTemplate.border_style')"
-                  class="mb-5"
-                >
-                  <template #content>
-                    <v-chip
-                      outlined
-                      title="Style de bordure"
-                    >
-                      <v-icon left>
-                        {{ mdiFormatLineStyle }}
-                      </v-icon>
-                      {{ $t(`models.gymLabelTemplate.border_styles.${gymLabelTemplate.border_style['border-style']}`) }}
-                    </v-chip>
-                    <v-chip
-                      v-if="gymLabelTemplate.border_style['border-style'] !== 'none'"
-                      outlined
-                      title="Couleur des bordures"
-                    >
-                      <v-icon
-                        left
-                        :color="gymLabelTemplate.border_style['border-color']"
+                <div class="px-4 overflow-y-auto">
+                  <description-line
+                    :icon="mdiAlphaA"
+                    :item-title="$t('models.gymLabelTemplate.name')"
+                    :item-value="gymLabelTemplate.name"
+                    class="mb-3"
+                  />
+                  <description-line
+                    :icon="mdiViewList"
+                    :item-title="$t('models.gymLabelTemplate.label_direction')"
+                    :item-value="$t(`models.gymLabelTemplate.label_direction_list.${gymLabelTemplate.label_direction}`)"
+                    class="mb-3"
+                  />
+                  <description-line
+                    :icon="mdiFormatLetterCase"
+                    :item-title="$t('models.gymLabelTemplate.font_family')"
+                    :item-value="gymLabelTemplate.font.name"
+                    class="mb-5"
+                  >
+                    <template #content>
+                      <div
+                        class="svg-container --full-height"
+                        style="height: 15px"
+                        :style="$vuetify.theme.dark ? 'fill: white' : 'fill: black'"
+                        v-html="gymLabelTemplate.font.svg_preview"
+                      />
+                    </template>
+                  </description-line>
+                  <description-line
+                    :icon="mdiBorderAll"
+                    :item-title="$t('models.gymLabelTemplate.border_style')"
+                    class="mb-5"
+                  >
+                    <template #content>
+                      <v-chip
+                        outlined
+                        title="Style de bordure"
                       >
-                        {{ mdiCircle }}
-                      </v-icon>
-                      Couleur
-                    </v-chip>
-                    <v-chip
-                      v-if="gymLabelTemplate.border_style['border-style'] !== 'none'"
-                      outlined
-                      title="Épaisseur des bordures"
-                    >
-                      <v-icon left>
-                        {{ mdiFormatLineWeight }}
-                      </v-icon>
-                      {{ gymLabelTemplate.border_style['border-width'] }}
-                    </v-chip>
-                    <v-chip
-                      v-if="gymLabelTemplate.border_style['border-style'] !== 'none'"
-                      outlined
-                      title="Arrondi des bordures"
-                    >
-                      <v-icon left>
-                        {{ mdiSquareRoundedOutline }}
-                      </v-icon>
-                      {{ gymLabelTemplate.border_style['border-radius'] }}
-                    </v-chip>
-                  </template>
-                </description-line>
-                <description-line
-                  :icon="mdiQrcode"
-                  :item-title="$t('models.gymLabelTemplate.qr_code_position')"
-                  :item-value="$t(`models.gymLabelTemplate.qr_code_position_list.${gymLabelTemplate.qr_code_position}`)"
-                  class="mb-3"
-                />
-                <description-line
-                  :icon="mdiFormatListText"
-                  :item-title="$t('models.gymLabelTemplate.label_arrangement')"
-                  :item-value="$t(`models.gymLabelTemplate.label_arrangement_list.${gymLabelTemplate.label_arrangement}`)"
-                  class="mb-3"
-                />
-                <description-line
-                  :icon="mdiExponent"
-                  :item-title="$t('models.gymLabelTemplate.grade_style')"
-                  :item-value="$t(`models.gymLabelTemplate.grade_style_list.${gymLabelTemplate.grade_style}`)"
-                  class="mb-3"
-                />
-                <description-line
-                  :icon="mdiFileExportOutline"
-                  :item-title="$t('models.gymLabelTemplate.page_format')"
-                  :item-value="gymLabelTemplate.page_format"
-                  class="mb-3"
-                />
-                <description-line
-                  :icon="mdiPhoneRotateLandscape"
-                  :item-title="$t('models.gymLabelTemplate.page_direction')"
-                  :item-value="$t(`models.gymLabelTemplate.page_direction_list.${gymLabelTemplate.page_direction}`)"
-                  class="mb-3"
-                />
-                <description-line
-                  :icon="mdiEyeSettings"
-                  item-title="Options d'affichage"
-                  class="mb-3"
-                >
-                  <template #content>
-                    <p
-                      v-for="(displayType, displayTypeIndex) in displayList"
-                      :key="`display-type-index-${displayTypeIndex}`"
-                      class="mb-0"
-                    >
-                      <v-icon
-                        left
-                        small
+                        <v-icon left>
+                          {{ mdiFormatLineStyle }}
+                        </v-icon>
+                        {{ $t(`models.gymLabelTemplate.border_styles.${gymLabelTemplate.border_style['border-style']}`) }}
+                      </v-chip>
+                      <v-chip
+                        v-if="gymLabelTemplate.border_style['border-style'] !== 'none'"
+                        outlined
+                        title="Couleur des bordures"
                       >
-                        {{ gymLabelTemplate[displayType] ? mdiCheckboxMarked : mdiCheckboxBlankOutline }}
-                      </v-icon>
-                      {{ $t(`models.gymLabelTemplate.${displayType}`) }}
-                    </p>
-                  </template>
-                </description-line>
-                <div class="text-right">
+                        <v-icon
+                          left
+                          :color="gymLabelTemplate.border_style['border-color']"
+                        >
+                          {{ mdiCircle }}
+                        </v-icon>
+                        Couleur
+                      </v-chip>
+                      <v-chip
+                        v-if="gymLabelTemplate.border_style['border-style'] !== 'none'"
+                        outlined
+                        title="Épaisseur des bordures"
+                      >
+                        <v-icon left>
+                          {{ mdiFormatLineWeight }}
+                        </v-icon>
+                        {{ gymLabelTemplate.border_style['border-width'] }}
+                      </v-chip>
+                      <v-chip
+                        v-if="gymLabelTemplate.border_style['border-style'] !== 'none'"
+                        outlined
+                        title="Arrondi des bordures"
+                      >
+                        <v-icon left>
+                          {{ mdiSquareRoundedOutline }}
+                        </v-icon>
+                        {{ gymLabelTemplate.border_style['border-radius'] }}
+                      </v-chip>
+                    </template>
+                  </description-line>
+                  <description-line
+                    :icon="mdiQrcode"
+                    :item-title="$t('models.gymLabelTemplate.qr_code_position')"
+                    :item-value="$t(`models.gymLabelTemplate.qr_code_position_list.${gymLabelTemplate.qr_code_position}`)"
+                    class="mb-3"
+                  />
+                  <description-line
+                    :icon="mdiFormatListText"
+                    :item-title="$t('models.gymLabelTemplate.label_arrangement')"
+                    :item-value="$t(`models.gymLabelTemplate.label_arrangement_list.${gymLabelTemplate.label_arrangement}`)"
+                    class="mb-3"
+                  />
+                  <description-line
+                    :icon="mdiExponent"
+                    :item-title="$t('models.gymLabelTemplate.grade_style')"
+                    :item-value="$t(`models.gymLabelTemplate.grade_style_list.${gymLabelTemplate.grade_style}`)"
+                    class="mb-3"
+                  />
+                  <description-line
+                    :icon="mdiFileExportOutline"
+                    :item-title="$t('models.gymLabelTemplate.page_format')"
+                    :item-value="gymLabelTemplate.page_format"
+                    class="mb-3"
+                  />
+                  <description-line
+                    :icon="mdiPhoneRotateLandscape"
+                    :item-title="$t('models.gymLabelTemplate.page_direction')"
+                    :item-value="$t(`models.gymLabelTemplate.page_direction_list.${gymLabelTemplate.page_direction}`)"
+                    class="mb-3"
+                  />
+                  <description-line
+                    :icon="mdiEyeSettings"
+                    item-title="Options d'affichage"
+                    class="mb-3"
+                  >
+                    <template #content>
+                      <p
+                        v-for="(displayType, displayTypeIndex) in displayList"
+                        :key="`display-type-index-${displayTypeIndex}`"
+                        class="mb-0"
+                      >
+                        <v-icon
+                          left
+                          small
+                        >
+                          {{ gymLabelTemplate[displayType] ? mdiCheckboxMarked : mdiCheckboxBlankOutline }}
+                        </v-icon>
+                        {{ $t(`models.gymLabelTemplate.${displayType}`) }}
+                      </p>
+                    </template>
+                  </description-line>
+                </div>
+                <div class="px-4 pt-4 text-right mt-auto">
                   <v-btn
                     outlined
                     text
                     @click="editing = true"
                   >
+                    <v-icon left>
+                      {{ mdiPencil }}
+                    </v-icon>
                     {{ $t('actions.edit') }}
                   </v-btn>
+                  <v-btn
+                    v-if="gymLabelTemplate.archived_at !== null"
+                    outlined
+                    text
+                    @click="unarchived"
+                  >
+                    <v-icon left>
+                      {{ mdiPower }}
+                    </v-icon>
+                    {{ $t('actions.activate') }}
+                  </v-btn>
+                  <v-menu>
+                    <template #activator="{ on, attrs }">
+                      <v-btn
+                        :loading="loadingAction"
+                        icon
+                        text
+                        outlined
+                        v-bind="attrs"
+                        v-on="on"
+                      >
+                        <v-icon>
+                          {{ mdiDotsVertical }}
+                        </v-icon>
+                      </v-btn>
+                    </template>
+                    <v-list>
+                      <v-list-item @click="editing = true">
+                        <v-list-item-icon>
+                          <v-icon>
+                            {{ mdiPencil }}
+                          </v-icon>
+                        </v-list-item-icon>
+                        <v-list-item-title>
+                          {{ $t('actions.edit') }}
+                        </v-list-item-title>
+                      </v-list-item>
+                      <v-divider />
+                      <v-list-item
+                        v-if="gymLabelTemplate.archived_at === null"
+                        @click="archived()"
+                      >
+                        <v-list-item-icon>
+                          <v-icon color="red">
+                            {{ mdiPower }}
+                          </v-icon>
+                        </v-list-item-icon>
+                        <v-list-item-title class="red--text">
+                          {{ $t('actions.deactivate') }}
+                        </v-list-item-title>
+                      </v-list-item>
+                      <v-list-item @click="deleteGymLabel()">
+                        <v-list-item-icon>
+                          <v-icon color="red">
+                            {{ mdiDelete }}
+                          </v-icon>
+                        </v-list-item-icon>
+                        <v-list-item-title class="red--text">
+                          {{ $t('actions.delete') }}
+                        </v-list-item-title>
+                      </v-list-item>
+                    </v-list>
+                  </v-menu>
                 </div>
               </div>
               <div
@@ -188,7 +256,7 @@
               <div class="ml-auto d-flex">
                 <v-btn
                   target="_blank"
-                  :to="`${gymLabelTemplate.path}/print?preview_routes_set=${previewRouteSet}`"
+                  :to="`${gymLabelTemplate.path}/print?preview_routes_set=${previewRouteSet}&reference=Prévisualisation`"
                   icon
                 >
                   <v-icon>
@@ -220,7 +288,7 @@
             </v-card-title>
             <iframe
               :ref="`preview-refresh-${iframeRefreshKey}`"
-              :src="`${gymLabelTemplate.path}/print?preview=true&preview_index=${iframeRefreshKey}&preview_routes_set=${previewRouteSet}`"
+              :src="`${gymLabelTemplate.path}/print?preview=true&preview_index=${iframeRefreshKey}&preview_routes_set=${previewRouteSet}&reference=Prévisualisation`"
               class="label-template-viewer"
             />
           </v-card>
@@ -251,13 +319,19 @@ import {
   mdiCircle,
   mdiFormatLineWeight,
   mdiFormatLineStyle,
-  mdiSquareRoundedOutline
+  mdiSquareRoundedOutline,
+  mdiPencil,
+  mdiDotsVertical,
+  mdiDelete,
+  mdiPower
 } from '@mdi/js'
 import { GymLabelTemplateConcern } from '~/concerns/GymLabelTemplateConcern'
 import { GymFetchConcern } from '~/concerns/GymFetchConcern'
 import Spinner from '~/components/layouts/Spiner'
 import DescriptionLine from '~/components/ui/DescriptionLine'
 import GymLabelTemplateForm from '~/components/gymLabelTemplates/forms/GymLabelTemplateForm'
+import GymLabelTemplateApi from '~/services/oblyk-api/GymLabelTemplateApi'
+import GymLabelTemplate from '~/models/GymLabelTemplate'
 
 export default {
   components: { GymLabelTemplateForm, DescriptionLine, Spinner },
@@ -268,6 +342,7 @@ export default {
   data () {
     return {
       loadingPreview: false,
+      loadingAction: false,
       pdfPreview: null,
       displayList: [
         'display_points',
@@ -276,7 +351,9 @@ export default {
         'display_name',
         'display_description',
         'display_anchor',
-        'display_climbing_style'
+        'display_climbing_style',
+        'display_grade',
+        'display_tag_and_hold'
       ],
       previewSets: [
         { value: 'simple', text: 'Voies simple' },
@@ -305,7 +382,11 @@ export default {
       mdiCircle,
       mdiFormatLineWeight,
       mdiFormatLineStyle,
-      mdiSquareRoundedOutline
+      mdiSquareRoundedOutline,
+      mdiPencil,
+      mdiDotsVertical,
+      mdiDelete,
+      mdiPower
     }
   },
 
@@ -369,6 +450,49 @@ export default {
 
     preview () {
       this.iframeRefreshKey += 1
+    },
+
+    archived () {
+      if (confirm(this.$t('common.areYouSurArchived'))) {
+        this.loadingAction = true
+        new GymLabelTemplateApi(this.$axios, this.$auth)
+          .archived(this.gym.id, this.gymLabelTemplate.id)
+          .then((resp) => {
+            this.gymLabelTemplate = new GymLabelTemplate({ attributes: resp.data })
+          })
+          .finally(() => {
+            this.loadingAction = false
+          })
+      }
+    },
+
+    unarchived () {
+      this.loadingAction = true
+      new GymLabelTemplateApi(this.$axios, this.$auth)
+        .unarchived(this.gym.id, this.gymLabelTemplate.id)
+        .then((resp) => {
+          this.gymLabelTemplate = new GymLabelTemplate({ attributes: resp.data })
+        })
+        .finally(() => {
+          this.loadingAction = false
+        })
+    },
+
+    deleteGymLabel () {
+      if (confirm(this.$t('common.areYouSurToDelete'))) {
+        this.loadingAction = true
+        new GymLabelTemplateApi(this.$axios, this.$auth)
+          .delete({
+            gym_id: this.gym.id,
+            id: this.gymLabelTemplate.id
+          })
+          .then(() => {
+            this.$router.push(`${this.gym.adminPath}/label-templates`)
+          })
+          .finally(() => {
+            this.loadingAction = false
+          })
+      }
     }
   }
 }
