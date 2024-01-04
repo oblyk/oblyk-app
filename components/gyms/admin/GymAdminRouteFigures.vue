@@ -12,21 +12,19 @@
       </strong>
     </v-card-text>
     <v-card-actions>
-      <v-spacer />
       <v-btn
-        text
-        outlined
+        elevation="0"
         color="primary"
+        class="ml-auto"
         :to="`${gym.adminPath}/routes/tables`"
       >
         <v-icon left>
           {{ mdiTable }}
         </v-icon>
-        {{ $t('components.gymAdmin.gestionSettings') }}
+        {{ $t('components.gymAdmin.table') }}
       </v-btn>
       <v-btn
-        text
-        outlined
+        elevation="0"
         color="primary"
         :to="`${gym.adminPath}/routes/statistics`"
       >

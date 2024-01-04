@@ -35,24 +35,33 @@
 
       <v-breadcrumbs :items="breadcrumbs" />
 
-      <!-- Guide book settings -->
+      <!-- Main function -->
       <h4 class="mb-3 mt-8">
         <v-icon class="mb-1" left>
           {{ mdiMapLegend }}
         </v-icon>
-        {{ $t('components.gymAdmin.GuideBookSettings') }}
+        {{ $t('components.gymAdmin.GuideBookAndContest') }}
       </h4>
       <v-row>
-        <v-col cols="12" md="6" lg="3" class="pa-2">
+        <v-col cols="12" md="6" lg="4" class="pa-2">
           <gym-admin-route-figures :gym="gym" />
         </v-col>
-        <v-col cols="12" md="6" lg="3" class="pa-2">
+        <v-col cols="12" md="6" lg="4" class="pa-2">
           <gym-admin-space-figures :gym="gym" />
         </v-col>
-        <v-col cols="12" md="6" lg="6" class="pa-2">
-          <gym-admin-interactive-guide-parameters :gym="gym" />
+        <v-col cols="12" md="6" lg="4" class="pa-2">
+          <gym-admin-contests-figures :gym="gym" />
         </v-col>
       </v-row>
+
+      <!-- Guide book settings -->
+      <h4 class="mb-3 mt-8">
+        <v-icon class="mb-1" left>
+          {{ mdiCog }}
+        </v-icon>
+        {{ $t('components.gymAdmin.GuideBookSettings') }}
+      </h4>
+      <gym-admin-interactive-guide-parameters :gym="gym" />
 
       <!-- Gestion settings -->
       <h4 class="mb-3 mt-8">
@@ -67,15 +76,6 @@
         </v-col>
         <v-col cols="12" md="6" lg="4" class="pa-2">
           <gym-admin-openers-figures :gym="gym" />
-        </v-col>
-        <v-col
-          v-if="gym.gym_options.find((option) => { return option.option_type === 'contest' && option.usable } )"
-          cols="12"
-          md="6"
-          lg="4"
-          class="pa-2"
-        >
-          <gym-admin-contests-figures :gym="gym" />
         </v-col>
       </v-row>
 
@@ -101,7 +101,7 @@
 </template>
 
 <script>
-import { mdiMapLegend, mdiTune, mdiFolder, mdiHelpCircleOutline } from '@mdi/js'
+import { mdiMapLegend, mdiTune, mdiFolder, mdiHelpCircleOutline, mdiCog } from '@mdi/js'
 import { GymConcern } from '~/concerns/GymConcern'
 import GymAdminTeamFigures from '~/components/gyms/admin/GymAdminTeamFigures'
 import GymAdminWelcome from '~/components/gyms/admin/GymAdminWelcome'
@@ -131,7 +131,8 @@ export default {
       mdiMapLegend,
       mdiTune,
       mdiFolder,
-      mdiHelpCircleOutline
+      mdiHelpCircleOutline,
+      mdiCog
     }
   },
 

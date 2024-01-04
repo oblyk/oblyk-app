@@ -19,10 +19,17 @@
     <v-card-actions>
       <v-spacer />
       <v-btn
+        :disabled="!contestOptionAuthorised"
         elevation="0"
         color="primary"
         :to="`${gym.adminPath}/contests`"
       >
+        <v-icon
+          v-if="!contestOptionAuthorised"
+          left
+        >
+          {{ mdiLock }}
+        </v-icon>
         {{ $t('components.gymAdmin.contests') }}
       </v-btn>
     </v-card-actions>
@@ -30,7 +37,7 @@
 </template>
 
 <script>
-import { mdiTrophy } from '@mdi/js'
+import { mdiTrophy, mdiLock } from '@mdi/js'
 import ContestApi from '~/services/oblyk-api/ContestApi'
 import Contest from '~/models/Contest'
 
@@ -48,7 +55,14 @@ export default {
       loadingContests: true,
       contests: [],
 
-      mdiTrophy
+      mdiTrophy,
+      mdiLock
+    }
+  },
+
+  computed: {
+    contestOptionAuthorised () {
+      return this.gym.gym_options.find((option) => { return option.option_type === 'contest' && option.usable })
     }
   },
 

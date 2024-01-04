@@ -68,6 +68,21 @@
             </v-list-item-title>
           </v-list-item>
         </v-list>
+        <div
+          v-if="gymLabelTemplates.length === 0"
+          class="text-center"
+        >
+          <div class="text--disabled mb-1">
+            Créez un modèle d'étiquette pour lancer l'impression
+          </div>
+          <v-btn
+            elevation="0"
+            color="primary"
+            :to="`${gym.adminPath}/label-templates`"
+          >
+            Créer une étiquette
+          </v-btn>
+        </div>
       </div>
     </v-card>
   </v-dialog>
