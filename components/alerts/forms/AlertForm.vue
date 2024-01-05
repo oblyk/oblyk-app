@@ -54,7 +54,8 @@ export default {
         { value: 'good', text: this.$t('components.alert.types.good') },
         { value: 'warning', text: this.$t('components.alert.types.warning') },
         { value: 'info', text: this.$t('components.alert.types.info') },
-        { value: 'bad', text: this.$t('components.alert.types.bad') }
+        { value: 'bad', text: this.$t('components.alert.types.bad') },
+        { value: 'omega_roc', text: this.$t('components.alert.types.omega_roc') }
       ]
     }
   },

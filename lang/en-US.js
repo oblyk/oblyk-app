@@ -839,7 +839,8 @@ export default {
         good: 'Good (green)',
         warning: 'Warning (yellow)',
         info: 'Info (blue)',
-        bad: 'Bad (red)'
+        bad: 'Bad (red)',
+        omega_roc: 'OmegaRoc'
       }
     },
     navigation: {
