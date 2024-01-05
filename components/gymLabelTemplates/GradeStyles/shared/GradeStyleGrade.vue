@@ -44,6 +44,6 @@ export default {
 <style lang="scss">
 .grade-anchors {
   font-family: monospace;
-  font-size: 0.8em;
+  font-size: 10pt;
 }
 </style>

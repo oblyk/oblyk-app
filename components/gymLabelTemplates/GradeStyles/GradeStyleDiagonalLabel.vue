@@ -6,12 +6,12 @@
     <div
       v-if="gymLabelTemplate.display_tag_and_hold"
       class="grade-style-label"
-      :style="`background-color: ${gymRoute.hold_colors[0]}; left: ${gymLabelTemplate.display_points || gymLabelTemplate.display_grade ? '25px' : '30px'}`"
+      :style="`background-color: ${gymRoute.hold_colors[0]}; left: ${gymLabelTemplate.display_points || gymLabelTemplate.display_grade ? '6.5mm' : '8mm'}`"
     />
     <div
       v-if="gymLabelTemplate.display_points || gymLabelTemplate.display_grade"
       class="grade-style-grade"
-      :style="gymLabelTemplate.display_tag_and_hold ? 'padding-left: 70px' : 'padding-left: 15px'"
+      :style="gymLabelTemplate.display_tag_and_hold ? 'padding-left: 1.9cm' : 'padding-left: 4mm'"
     >
       <grade-style-grade
         v-if="gymLabelTemplate.display_grade"
@@ -47,9 +47,9 @@ export default {
   computed: {
     width () {
       if (this.gymLabelTemplate.display_tag_and_hold && (this.gymLabelTemplate.display_points || this.gymLabelTemplate.display_grade)) {
-        return '150px'
+        return '4cm'
       } else {
-        return '90px'
+        return '2.4cm'
       }
     }
   }
@@ -72,36 +72,36 @@ export default {
       font-weight: 900;
       &.mono-section {
         &.nd-characters-1, &.nd-characters-2 {
-          font-size: 50px;
+          font-size: 36pt;
         }
         &.nd-characters-3 {
-          font-size: 37px;
+          font-size: 28pt;
         }
         &.nd-characters-4 {
-          font-size: 30px;
+          font-size: 22pt;
         }
         &.nd-characters-5 {
-          font-size: 21px;
-          padding-bottom: 5px;
-          padding-left: 5px;
+          font-size: 16pt;
+          padding-bottom: 1mm;
+          padding-left: 1mm;
         }
       }
       &.multi-sections {
-        font-size: 20px;
-        padding-bottom: 8px;
-        padding-left: 5px;
+        font-size: 15pt;
+        padding-bottom: 2mm;
+        padding-left: 1mm;
       }
     }
     .points-part {
-      margin-top: -8px;
+      margin-top: -2mm;
     }
   }
   .grade-style-label {
     z-index: -1;
     position: absolute;
-    top: 18px;
-    height: 60px;
-    width: 40px;
+    top: 5mm;
+    height: 16mm;
+    width: 11mm;
     transform: rotate(45deg);
   }
 }

@@ -50,9 +50,9 @@ export default {
   computed: {
     width () {
       if (this.gymLabelTemplate.display_tag_and_hold && (this.gymLabelTemplate.display_points || this.gymLabelTemplate.display_grade)) {
-        return '130px'
+        return '35mm'
       } else {
-        return '80px'
+        return '20mm'
       }
     }
   }
@@ -63,7 +63,7 @@ export default {
 .grade-style-tag-and-hold {
   white-space: nowrap;
   height: 100%;
-  padding-left: 10px;
+  padding-left: 3mm;
   font-weight: bold;
   display: flex;
   flex-direction: column;
@@ -74,7 +74,7 @@ export default {
     align-content: center;
   }
   .hold-and-tag {
-    padding-top: 5px;
+    padding-top: 1mm;
     vertical-align: bottom;
   }
   .grade-style-grade {
@@ -84,30 +84,30 @@ export default {
     .grade-part {
       &.mono-section {
         &.nd-characters-1, &.nd-characters-2 {
-          font-size: 2.5em;
-          margin-top: -6px;
+          font-size: 30pt;
+          margin-top: -2mm;
         }
         &.nd-characters-3 {
-          font-size: 1.8em;
-          padding-bottom: 5px;
+          font-size: 21pt;
+          padding-bottom: 1mm;
         }
         &.nd-characters-4 {
-          font-size: 1.5em;
+          font-size: 18pt;
         }
         &.nd-characters-5 {
-          font-size: 1.3em;
-          padding-top: 3px;
-          padding-bottom: 7px;
+          font-size: 15pt;
+          padding-top: 1mm;
+          padding-bottom: 2mm;
         }
       }
       &.multi-sections {
-        font-size: 1.4em;
-        padding-bottom: 5px;
+        font-size: 16pt;
+        padding-bottom: 1mm;
       }
     }
     .points-part {
-      font-size: 0.85em;
-      margin-top: -5px;
+      font-size: 10pt;
+      margin-top: -1mm;
     }
   }
 }

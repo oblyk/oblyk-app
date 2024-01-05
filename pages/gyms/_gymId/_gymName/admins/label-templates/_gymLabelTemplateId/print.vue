@@ -143,6 +143,7 @@ export default {
       }
       @page {
         size: ${this.gymLabelTemplate.page_format} ${this.gymLabelTemplate.page_direction};
+        margin: ${this.gymLabelTemplate.layout_options['page-margin']};
       }`
       document.head.appendChild(newStyle)
     },
@@ -169,20 +170,20 @@ export default {
 .label-row {
   display: flex;
   flex-wrap: wrap;
-  row-gap: 12px;
-  column-gap: 12px;
+  row-gap: 3mm;
+  column-gap: 3mm;
   .one_by_row {
     flex: 0 0 100%;
     max-width: 100%;
   }
   .two_by_row {
-    width: calc(1 / 2 * 100% - (1 - 1 / 2) * 12px);
+    width: calc(1 / 2 * 100% - (1 - 1 / 2) * 3mm);
   }
   .three_by_row {
-    width: calc(1 / 3 * 100% - (1 - 1 / 3) * 12px);
+    width: calc(1 / 3 * 100% - (1 - 1 / 3) * 3mm);
   }
   .four_by_row {
-    width: calc(1 / 4 * 100% - (1 - 1 / 4) * 12px);
+    width: calc(1 / 4 * 100% - (1 - 1 / 4) * 3mm);
   }
 }
 .footer {
@@ -191,14 +192,14 @@ export default {
   width: 100%;
   text-align: right;
   border-top-style: solid;
-  padding-top: 5px;
+  padding-top: 1.5mm;
   display: flex;
   flex-direction: row;
   justify-content: right;
   .footer-qr-code {
-    height: 80px;
-    width: 80px;
-    padding-left: 10px;
+    height: 2.3cm;
+    width: 2.3cm;
+    padding-left: 5mm;
     svg {
       height: 100%;
       width: 100%;

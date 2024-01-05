@@ -40,8 +40,8 @@ export default {
 .grade-style-none {
   white-space: nowrap;
   height: 100%;
-  width: 90px;
-  padding-left: 20px;
+  width: 24mm;
+  padding-left: 5mm;
   font-weight: bold;
   display: flex;
   flex-direction: column;
@@ -58,30 +58,30 @@ export default {
     .grade-part {
       &.mono-section {
         &.nd-characters-1, &.nd-characters-2 {
-          font-size: 2.5em;
-          margin-top: -6px;
+          font-size: 31pt;
+          margin-top: -2mm;
         }
         &.nd-characters-3 {
-          font-size: 1.8em;
-          padding-bottom: 5px;
+          font-size: 21pt;
+          padding-bottom: 2mm;
         }
         &.nd-characters-4 {
-          font-size: 1.5em;
+          font-size: 18pt;
         }
         &.nd-characters-5 {
-          font-size: 1.3em;
-          padding-top: 3px;
-          padding-bottom: 7px;
+          font-size: 16pt;
+          padding-top: 1mm;
+          padding-bottom: 2mm;
         }
       }
       &.multi-sections {
-        font-size: 1.4em;
-        padding-bottom: 5px;
+        font-size: 16pt;
+        padding-bottom: 1mm;
       }
     }
     .points-part {
-      font-size: 0.85em;
-      margin-top: -5px;
+      font-size: 10pt;
+      margin-top: -1mm;
     }
   }
 }

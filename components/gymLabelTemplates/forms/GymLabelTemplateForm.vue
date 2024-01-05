@@ -41,9 +41,8 @@
           :prepend-icon="mdiFormatLetterCase"
           dense
         />
-        <border-input
-          v-model="data.border_style"
-        />
+        <border-input v-model="data.border_style" />
+        <label-layout-option-input v-model="data.layout_options" />
         <v-select
           v-model="data.qr_code_position"
           :prepend-icon="mdiQrcode"
@@ -140,10 +139,12 @@ import GymLabelTemplateApi from '~/services/oblyk-api/GymLabelTemplateApi'
 import GymLabelTemplate from '~/models/GymLabelTemplate'
 import GymLabelFontInput from '~/components/forms/GymLabelFontInput.vue'
 import BorderInput from '~/components/forms/BorderInput.vue'
+import LabelLayoutOptionInput from '~/components/forms/LabelLayoutOptionInput.vue'
 
 export default {
   name: 'GymLabelTemplateForm',
   components: {
+    LabelLayoutOptionInput,
     BorderInput,
     GymLabelFontInput,
     SubmitForm
@@ -174,8 +175,8 @@ export default {
         id: this.gymLabelTemplate?.id,
         name: this.gymLabelTemplate?.name,
         label_direction: this.gymLabelTemplate?.label_direction || 'one_by_row',
-        layout_options: this.gymLabelTemplate?.layout_options,
-        border_style: this.gymLabelTemplate?.border_style || { 'border-color': '#000000', 'border-width': '1px', 'border-style': 'solid', 'border-radius': '5px' },
+        layout_options: this.gymLabelTemplate?.layout_options || { 'page-margin': '10mm' },
+        border_style: this.gymLabelTemplate?.border_style || { 'border-color': '#000000', 'border-width': '0.3mm', 'border-style': 'solid', 'border-radius': '3mm' },
         font_family: this.gymLabelTemplate?.font_family || 'lato',
         qr_code_position: this.gymLabelTemplate?.qr_code_position || 'in_label',
         label_arrangement: this.gymLabelTemplate?.label_arrangement || 'rectangular_horizontal',

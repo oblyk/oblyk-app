@@ -53,13 +53,9 @@
           title="Couleur des bordures"
           @click="colorDialog = true"
         >
-          <v-icon
-            :color="bordeColor"
-            left
-          >
-            {{ mdiCircle }}
+          <v-icon :color="bordeColor">
+            {{ mdiFormatColorFill }}
           </v-icon>
-          Couleur
         </v-chip>
         <v-dialog
           v-model="colorDialog"
@@ -100,7 +96,7 @@
           <v-icon left>
             {{ mdiFormatLineWeight }}
           </v-icon>
-          {{ borderWidth }}px
+          {{ borderWidth }}mm
         </v-chip>
         <v-dialog
           v-model="borderWidthDialog"
@@ -114,7 +110,8 @@
               <v-text-field
                 v-model="borderWidth"
                 type="number"
-                suffix="px"
+                suffix="mm"
+                step="0.1"
                 outlined
                 hide-details
                 @input="onChange"
@@ -142,7 +139,7 @@
           <v-icon left>
             {{ mdiSquareRoundedOutline }}
           </v-icon>
-          {{ borderRadius }}px
+          {{ borderRadius }}mm
         </v-chip>
         <v-dialog
           v-model="borderRadiusDialog"
@@ -156,7 +153,7 @@
               <v-text-field
                 v-model="borderRadius"
                 type="number"
-                suffix="px"
+                suffix="mm"
                 outlined
                 hide-details
                 @input="onChange"
@@ -181,7 +178,7 @@
 <script>
 import {
   mdiBorderAll,
-  mdiCircle,
+  mdiFormatColorFill,
   mdiFormatLineWeight,
   mdiFormatLineStyle,
   mdiSquareRoundedOutline
@@ -203,9 +200,9 @@ export default {
       borderStyleDialog: false,
       borderRadiusDialog: false,
       bordeColor: this.value['border-color'] || '#000000',
-      borderWidth: this.value['border-width'].replace('px', '') || 1,
+      borderWidth: this.value['border-width'].replace('mm', '') || 0.3,
       borderStyle: this.value['border-style'] || 'solid',
-      borderRadius: this.value['border-radius'].replace('px', '') || 5,
+      borderRadius: this.value['border-radius'].replace('mm', '') || 3,
       styles: [
         { value: 'none', text: this.$t('models.gymLabelTemplate.border_styles.none') },
         { value: 'solid', text: this.$t('models.gymLabelTemplate.border_styles.solid') },
@@ -213,7 +210,7 @@ export default {
       ],
 
       mdiBorderAll,
-      mdiCircle,
+      mdiFormatColorFill,
       mdiFormatLineWeight,
       mdiFormatLineStyle,
       mdiSquareRoundedOutline
@@ -224,9 +221,9 @@ export default {
     onChange () {
       this.$emit('input', {
         'border-color': this.bordeColor,
-        'border-width': `${this.borderWidth}px`,
+        'border-width': `${this.borderWidth}mm`,
         'border-style': this.borderStyle,
-        'border-radius': `${this.borderRadius}px`
+        'border-radius': `${this.borderRadius}mm`
       })
     }
   }

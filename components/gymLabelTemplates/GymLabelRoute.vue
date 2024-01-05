@@ -147,13 +147,13 @@ export default {
   display: flex;
   &.rectangular_horizontal {
     flex-direction: row;
-    height: 100px;
+    height: 2.7cm;
     .grade {}
   }
   &.rectangular_vertical {
     flex-direction: column-reverse;
-    height: 200px;
-    width: 100px;
+    height: 5.4cm;
+    width: 2.7cm;
   }
   .grade {
     flex: initial;
@@ -164,8 +164,8 @@ export default {
     }
   }
   .information {
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 3mm;
+    padding-right: 3mm;
     flex: auto;
     display: flex;
     flex-direction: column;
@@ -173,15 +173,15 @@ export default {
     height: 100%;
     .route-description {
       font-style: italic;
-      margin-top: 3px;
+      margin-top: 0.6mm;
     }
   }
   .climbing-styles {
-    margin-top: 3px;
-    margin-left: -6px;
+    margin-top: 0.6mm;
+    margin-left: -1.2mm;
     .climbing-style {
-      padding-left: 5px;
-      font-size: 0.85em;
+      padding-left: 1.5mm;
+      font-size: 10pt;
     }
   }
   .qrcode {
@@ -189,14 +189,13 @@ export default {
     text-align: center;
     display: flex;
     flex-direction: column;
-    padding: 4px;
+    padding: 1.4mm;
     justify-content: center;
     svg {
-      margin-bottom: -3px;
-      margin-left: 3px;
-      margin-right: 3px;
-      height: 85px !important;
-      width: 85px !important;
+      margin-bottom: -0.6mm;
+      margin-left: 0.6mm;
+      height: 2.3cm !important;
+      width: 2.3cm !important;
     }
   }
 }
