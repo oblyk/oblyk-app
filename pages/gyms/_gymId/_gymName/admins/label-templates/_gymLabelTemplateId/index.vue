@@ -167,6 +167,8 @@
                     </template>
                   </description-line>
                 </div>
+
+                <!-- Edit and more options -->
                 <div class="px-4 pt-4 text-right mt-auto">
                   <v-btn
                     outlined

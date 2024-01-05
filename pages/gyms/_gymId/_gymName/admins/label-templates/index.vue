@@ -54,6 +54,14 @@
             {{ $t('actions.new') }}
           </v-btn>
         </div>
+        <v-alert
+          class="mt-4"
+          type="info"
+          text
+        >
+          Vous avez besoin options particulières pour vos étiquettes ? D'une police spécifique ? Contactez-nous :
+          <a href="mailto:ekip@oblyk.org" style="color: inherit">ekip@oblyk.org</a>
+        </v-alert>
       </div>
     </div>
   </v-container>
