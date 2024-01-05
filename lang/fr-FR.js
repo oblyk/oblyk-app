@@ -2164,7 +2164,7 @@ export default {
     gymLabelTemplate: {
       name: 'Nom',
       label_direction: 'Disposition des étiquettes',
-      layout_options: 'Options de disposition',
+      layout_options: 'Options de page',
       border_style: 'Style de bordure',
       font_family: 'Police',
       qr_code_position: 'Emplacement du QrCode',

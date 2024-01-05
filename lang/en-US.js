@@ -2162,7 +2162,55 @@ export default {
       email_explain: "Enter the opener's email address to link it to their Oblyk account"
     },
     gymLabelTemplate: {
-      name: 'Name'
+      name: 'Name',
+      label_direction: 'Label layout',
+      layout_options: 'Page options',
+      border_style: 'Border style',
+      font_family: 'Font',
+      qr_code_position: 'Location of the QrCode',
+      label_arrangement: 'Arrangement of the label',
+      grade_style: 'Level and grade display',
+      display_points: 'Display points',
+      display_openers: 'Display openers',
+      display_opened_at: 'Display opened at',
+      display_name: 'Display name',
+      display_description: 'Display description',
+      display_anchor: 'Display anchor',
+      display_climbing_style: 'Display climbing style',
+      display_grade: 'Display grade',
+      display_tag_and_hold: 'Display tag and hold',
+      page_format: 'Page format',
+      page_direction: 'Page direction',
+      label_direction_list: {
+        one_by_row: 'One label per width',
+        two_by_row: 'Two label per width',
+        three_by_row: 'Three label per width',
+        four_by_row: 'Four label per width',
+        circular: 'Circular'
+      },
+      qr_code_position_list: {
+        in_label: 'In label',
+        footer: 'In footer',
+        none: 'No QrCode'
+      },
+      page_direction_list: {
+        portrait: 'Portrait',
+        landscape: 'landscape'
+      },
+      label_arrangement_list: {
+        rectangular_horizontal: 'Rectangular horizontal',
+        rectangular_vertical: 'Rectangular vertical'
+      },
+      grade_style_list: {
+        none: 'No visual',
+        tag_and_hold: 'Label and/or label colour',
+        diagonal_label: 'Tilted colour label'
+      },
+      border_styles: {
+        none: 'No border',
+        solid: 'Solid',
+        dashed: 'Dashed'
+      }
     },
     gymSpace: {
       loading: 'Loading space ...',

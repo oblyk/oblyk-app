@@ -99,6 +99,23 @@
                     </template>
                   </description-line>
                   <description-line
+                    :icon="mdiTune"
+                    :item-title="$t('models.gymLabelTemplate.layout_options')"
+                    class="mb-5"
+                  >
+                    <template #content>
+                      <v-chip
+                        outlined
+                        title="Marge d'impression"
+                      >
+                        <v-icon left>
+                          {{ mdiCropFree }}
+                        </v-icon>
+                        {{ gymLabelTemplate.layout_options['page-margin'] }}
+                      </v-chip>
+                    </template>
+                  </description-line>
+                  <description-line
                     :icon="mdiQrcode"
                     :item-title="$t('models.gymLabelTemplate.qr_code_position')"
                     :item-value="$t(`models.gymLabelTemplate.qr_code_position_list.${gymLabelTemplate.qr_code_position}`)"
@@ -323,7 +340,8 @@ import {
   mdiPencil,
   mdiDotsVertical,
   mdiDelete,
-  mdiPower
+  mdiPower,
+  mdiCropFree
 } from '@mdi/js'
 import { GymLabelTemplateConcern } from '~/concerns/GymLabelTemplateConcern'
 import { GymFetchConcern } from '~/concerns/GymFetchConcern'
@@ -386,7 +404,8 @@ export default {
       mdiPencil,
       mdiDotsVertical,
       mdiDelete,
-      mdiPower
+      mdiPower,
+      mdiCropFree
     }
   },
 
