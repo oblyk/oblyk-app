@@ -47,7 +47,7 @@ export default {
   computed: {
     width () {
       if (this.gymLabelTemplate.display_tag_and_hold && (this.gymLabelTemplate.display_points || this.gymLabelTemplate.display_grade)) {
-        return '4cm'
+        return '4.5cm'
       } else {
         return '2.4cm'
       }
