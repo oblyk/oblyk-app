@@ -656,6 +656,7 @@ export default {
     search: {
       title: 'Chercher',
       searchLabel: 'Chercher une falaise, une voie, une salle, etc.',
+      noResultsFor: 'Pas de résultats pour <strong>%{query}</strong>',
       count: {
         area: '1 groupe de sites | {count} groupes de sites',
         crag: '1 site | {count} sites',
@@ -672,6 +673,12 @@ export default {
         user: 'Grimpeur·euse',
         guideBookPaper: 'Topo',
         word: 'Mot'
+      },
+      map: {
+        find: 'Trouver sur une carte',
+        crag: 'Carte des falaises',
+        gym: 'Carte des salles',
+        climber: 'Carte des grimpeurs·euses'
       }
     },
     notification: {

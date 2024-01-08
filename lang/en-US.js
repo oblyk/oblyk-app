@@ -656,6 +656,7 @@ export default {
     search: {
       title: 'Search',
       searchLabel: 'Look for a crag, a route, a gym, etc.',
+      noResultsFor: 'No results for <strong>%{query}</strong>',
       count: {
         area: '1 crags group | {count} crags groups',
         crag: '1 crag | {count} crags',
@@ -672,6 +673,12 @@ export default {
         user: 'Climber',
         guideBookPaper: 'Guide',
         word: 'Word'
+      },
+      map: {
+        find: 'Fin on map',
+        crag: 'Crags map',
+        gym: 'Gym map',
+        climber: 'Climber map'
       }
     },
     notification: {
