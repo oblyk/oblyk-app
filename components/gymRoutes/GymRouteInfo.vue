@@ -278,37 +278,60 @@
 
       <!-- Cross list and add in logbook btn -->
       <client-only>
-        <gym-route-ascent
-          v-if="$auth.loggedIn"
-          :gym-route="gymRoute"
-        />
+        <div v-if="$auth.loggedIn">
+          <gym-route-ascent :gym-route="gymRoute" />
 
-        <!-- Edit and add to logbook -->
-        <div
-          v-if="!hideAscentBtn"
-          class="text-right mt-2 mb-3"
-        >
-          <like-btn
-            class="vertical-align-bottom"
-            :likeable-id="gymRoute.id"
-            likeable-type="GymRoute"
-            :small="false"
-          />
-          <add-gym-ascent-btn
-            v-if="$auth.loggedIn"
-            :gym-route="gymRoute"
-          />
+          <!-- Edit and add to logbook -->
+          <div
+            v-if="!hideAscentBtn"
+            class="text-right mt-2 mb-3"
+          >
+            <like-btn
+              class="vertical-align-bottom"
+              :likeable-id="gymRoute.id"
+              likeable-type="GymRoute"
+              :small="false"
+            />
+            <add-gym-ascent-btn :gym-route="gymRoute" />
+          </div>
+
+          <!-- Administration -->
+          <div
+            v-if="currentUserIsGymAdmin() && gymAuthCan(gymRoute.gym, 'manage_opening')"
+            class="border-bottom border-top py-2 mb-2"
+          >
+            <small class="mr-2">
+              {{ $t('components.gymAdmin.administration') }} :
+            </small>
+            <gym-route-action-btn :gym-route="gymRoute" />
+          </div>
         </div>
-
-        <!-- Administration -->
         <div
-          v-if="$auth.loggedIn && currentUserIsGymAdmin() && gymAuthCan(gymRoute.gym, 'manage_opening')"
-          class="border-bottom border-top py-2 mb-2"
+          v-else
+          class="pa-4 border rounded-sm mt-2 mb-3 text-center"
         >
-          <small class="mr-2">
-            {{ $t('components.gymAdmin.administration') }} :
-          </small>
-          <gym-route-action-btn :gym-route="gymRoute" />
+          <p class="font-weight-bold">
+            {{ $t('components.gymRoute.createCount') }}
+          </p>
+          <div class="text-center mt-2">
+            <v-btn
+              elevation="0"
+              color="primary"
+              :to="`/sign-up?redirect_to=${$route.fullPath}`"
+            >
+              {{ $t('actions.createMyAccount') }}
+            </v-btn>
+            <div>
+              <v-btn
+                small
+                elevation="0"
+                link
+                :to="`/sign-in?redirect_to=${$route.fullPath}`"
+              >
+                {{ $t('actions.signIn') }}
+              </v-btn>
+            </div>
+          </div>
         </div>
       </client-only>
 

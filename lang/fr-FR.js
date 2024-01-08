@@ -1315,6 +1315,7 @@ export default {
       thumbnailPicture: 'Détail représentatif',
       thumbnailPictureExplain: 'Cadrer un detail comme la prise de départ',
       reusePicture: 'Réutiliser une photo',
+      createCount: 'Créer ton compte sur Oblyk, suis ta progression et bien plus !',
       sorts: {
         opened_at: "Trier par date d'ouverture",
         sector: 'Trier par secteur',
