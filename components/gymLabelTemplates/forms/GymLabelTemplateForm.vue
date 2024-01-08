@@ -218,16 +218,16 @@ export default {
         { value: 'none', text: this.$t('models.gymLabelTemplate.qr_code_position_list.none') }
       ],
       page_format_items: [
-        { value: 'A1', text: 'A1' },
-        { value: 'A2', text: 'A2' },
-        { value: 'A3', text: 'A3' },
-        { value: 'A4', text: 'A4' },
-        { value: 'A5', text: 'A5' },
-        { value: 'A6', text: 'A6' }
+        { value: 'A3', text: this.$t('models.gymLabelTemplate.page_format_list.A3') },
+        { value: 'A4', text: this.$t('models.gymLabelTemplate.page_format_list.A4') },
+        { value: 'A5', text: this.$t('models.gymLabelTemplate.page_format_list.A5') },
+        { value: 'A6', text: this.$t('models.gymLabelTemplate.page_format_list.A6') },
+        { value: 'free', text: this.$t('models.gymLabelTemplate.page_format_list.free') }
       ],
       page_direction_items: [
         { value: 'portrait', text: this.$t('models.gymLabelTemplate.page_direction_list.portrait') },
-        { value: 'landscape', text: this.$t('models.gymLabelTemplate.page_direction_list.landscape') }
+        { value: 'landscape', text: this.$t('models.gymLabelTemplate.page_direction_list.landscape') },
+        { value: 'free', text: this.$t('models.gymLabelTemplate.page_direction_list.free') }
       ],
       label_arrangement_items: [
         { value: 'rectangular_horizontal', text: this.$t('models.gymLabelTemplate.label_arrangement_list.rectangular_horizontal') },

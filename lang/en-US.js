@@ -2203,7 +2203,15 @@ export default {
       },
       page_direction_list: {
         portrait: 'Portrait',
-        landscape: 'landscape'
+        landscape: 'landscape',
+        free: 'Choice when printing'
+      },
+      page_format_list: {
+        A3: 'A3',
+        A4: 'A4',
+        A5: 'A5',
+        A6: 'A6',
+        free: 'Choice when printing'
       },
       label_arrangement_list: {
         rectangular_horizontal: 'Rectangular horizontal',
