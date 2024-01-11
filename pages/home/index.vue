@@ -54,6 +54,11 @@
             class="mt-7"
           />
 
+          <my-followed-gyms
+            v-if="haveFollowedGyms"
+            class="mt-7"
+          />
+
           <my-partner-figures
             v-if="currentUser.partner_search"
             class="mt-7"
@@ -120,10 +125,12 @@ import SubscribesAscentsCard from '~/components/users/SubscribesAscentsCard.vue'
 import AddSubscribesCard from '~/components/users/AddSubscribesCard.vue'
 import MyPartnerFigures from '~/components/users/MyPartnerFigures.vue'
 import MyUpcomingContests from '~/components/users/MyUpcomingContests.vue'
+import MyFollowedGyms from '~/components/users/MyFollowedGyms.vue'
 const CragRouteDrawer = () => import('~/components/cragRoutes/CragRouteDrawer.vue')
 
 export default {
   components: {
+    MyFollowedGyms,
     MyUpcomingContests,
     MyPartnerFigures,
     AddSubscribesCard,
@@ -147,6 +154,16 @@ export default {
       mdiBullhornOutline,
       mdiAccountMultipleCheckOutline,
       mdiBookCheck
+    }
+  },
+
+  computed: {
+    haveFollowedGyms () {
+      if (this.$auth.loggedIn) {
+        return this.$auth.user.subscribes.filter(subscribe => subscribe.followable_type === 'Gym').length > 0
+      } else {
+        return true
+      }
     }
   },
 

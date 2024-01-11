@@ -40,7 +40,7 @@
             >
               <v-list-item-avatar
                 tile
-                size="52"
+                size="60"
               >
                 <v-img
                   :src="gym.thumbnailLogoUrl"
@@ -57,25 +57,26 @@
                   </h1>
                 </v-list-item-title>
                 <v-list-item-subtitle>
-                  <v-btn
-                    small
-                    icon
-                    :to="gym.path"
-                    class="mr-1 mt-n1"
-                  >
-                    <v-icon>
-                      {{ mdiInformationOutline }}
-                    </v-icon>
-                  </v-btn>
-                  <strong>{{ gym.city }}</strong>, {{ gym.address }}
+                  <subscribe-btn
+                    :subscribe-id="gym.id"
+                    subscribe-type="Gym"
+                    outlined
+                    type-text
+                    :small="true"
+                  />
                 </v-list-item-subtitle>
               </v-list-item-content>
               <v-list-item-action>
-                <subscribe-btn
-                  :subscribe-id="gym.id"
-                  subscribe-type="Gym"
-                  :large="false"
-                />
+                <v-btn
+                  icon
+                  :to="gym.path"
+                  large
+                  exact-path
+                >
+                  <v-icon>
+                    {{ mdiInformationOutline }}
+                  </v-icon>
+                </v-btn>
               </v-list-item-action>
             </v-list-item>
           </v-img>

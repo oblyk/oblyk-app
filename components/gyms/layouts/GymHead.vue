@@ -31,83 +31,26 @@
           <div class="align-self-center">
             <h1 class="font-weight-medium">
               {{ gym.name }}
-              <client-only>
-                <subscribe-btn
-                  subscribe-type="Gym"
-                  :subscribe-id="gym.id"
-                  :incrementable="true"
-                  :type-text="true"
-                  :large="false"
-                  :outlined="true"
-                  class="vertical-align-text-bottom ml-1"
-                />
-              </client-only>
             </h1>
-            <div
-              v-if="!$vuetify.breakpoint.mobile"
-              class="mb-2"
-            >
+            <div class="mb-2">
               {{ gym.country }}, {{ gym.city }}
             </div>
           </div>
         </div>
-        <div
-          v-if="$vuetify.breakpoint.mobile"
-          class="mb-2"
-        >
-          {{ gym.country }}, {{ gym.city }}
-        </div>
-        <div>
+        <div class="text-no-wrap">
           <client-only>
+            <subscribe-btn
+              subscribe-type="Gym"
+              :subscribe-id="gym.id"
+              :incrementable="true"
+              :type-text="true"
+              :outlined="true"
+            />
             <share-btn
               :title="gym.name"
               :url="gym.path"
               :icon="false"
             />
-            <v-menu
-              v-if="userCanTouch()"
-              offset-y
-            >
-              <template #activator="{ on, attrs }">
-                <v-btn
-                  icon
-                  text
-                  outlined
-                  v-bind="attrs"
-                  v-on="on"
-                >
-                  <v-icon>
-                    {{ mdiDotsVertical }}
-                  </v-icon>
-                </v-btn>
-              </template>
-              <v-list>
-                <v-list-item :to="`${gym.path}/edit`">
-                  <v-list-item-icon>
-                    <v-icon>{{ mdiPencil }}</v-icon>
-                  </v-list-item-icon>
-                  <v-list-item-title>
-                    {{ $t('actions.edit') }}
-                  </v-list-item-title>
-                </v-list-item>
-                <v-list-item :to="`${gym.path}/logo`">
-                  <v-list-item-icon>
-                    <v-icon>{{ mdiAlphaLCircle }}</v-icon>
-                  </v-list-item-icon>
-                  <v-list-item-title>
-                    {{ $t('actions.changeLogo') }}
-                  </v-list-item-title>
-                </v-list-item>
-                <v-list-item :to="`${gym.path}/banner`">
-                  <v-list-item-icon>
-                    <v-icon>{{ mdiPanorama }}</v-icon>
-                  </v-list-item-icon>
-                  <v-list-item-title>
-                    {{ $t('actions.changeBanner') }}
-                  </v-list-item-title>
-                </v-list-item>
-              </v-list>
-            </v-menu>
           </client-only>
         </div>
       </div>
@@ -116,28 +59,16 @@
 </template>
 
 <script>
-import { mdiPencil, mdiAlphaLCircle, mdiPanorama, mdiDotsVertical } from '@mdi/js'
-import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
 import SubscribeBtn from '@/components/forms/SubscribeBtn'
 import ShareBtn from '~/components/ui/ShareBtn'
 
 export default {
   name: 'GymHead',
   components: { ShareBtn, SubscribeBtn },
-  mixins: [GymRolesHelpers],
   props: {
     gym: {
       type: Object,
       required: true
-    }
-  },
-
-  data () {
-    return {
-      mdiPencil,
-      mdiAlphaLCircle,
-      mdiPanorama,
-      mdiDotsVertical
     }
   }
 }
@@ -179,6 +110,7 @@ export default {
   .gym-header {
     .gym-header-title {
       width: 100%;
+      padding:5px;
       border-radius: 0;
       bottom: 0;
       left: 0;

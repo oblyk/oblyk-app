@@ -86,15 +86,75 @@
           </v-list-item-content>
         </v-list-item>
       </v-list>
+      <client-only>
+        <div class="text-right">
+          <v-menu
+            v-if="userCanTouch()"
+            offset-y
+          >
+            <template #activator="{ on, attrs }">
+              <v-btn
+                text
+                outlined
+                v-bind="attrs"
+                v-on="on"
+              >
+                <v-icon left>
+                  {{ mdiDotsVertical }}
+                </v-icon>
+                {{ $t('actions.edit') }}
+              </v-btn>
+            </template>
+            <v-list>
+              <v-list-item :to="`${gym.path}/edit`">
+                <v-list-item-icon>
+                  <v-icon>{{ mdiPencil }}</v-icon>
+                </v-list-item-icon>
+                <v-list-item-title>
+                  {{ $t('actions.edit') }}
+                </v-list-item-title>
+              </v-list-item>
+              <v-list-item :to="`${gym.path}/logo`">
+                <v-list-item-icon>
+                  <v-icon>{{ mdiAlphaLCircle }}</v-icon>
+                </v-list-item-icon>
+                <v-list-item-title>
+                  {{ $t('actions.changeLogo') }}
+                </v-list-item-title>
+              </v-list-item>
+              <v-list-item :to="`${gym.path}/banner`">
+                <v-list-item-icon>
+                  <v-icon>{{ mdiPanorama }}</v-icon>
+                </v-list-item-icon>
+                <v-list-item-title>
+                  {{ $t('actions.changeBanner') }}
+                </v-list-item-title>
+              </v-list-item>
+            </v-list>
+          </v-menu>
+        </div>
+      </client-only>
     </v-card-text>
   </v-card>
 </template>
 
 <script>
-import { mdiMap, mdiWeb, mdiPhone, mdiEmail, mdiMapMarkerCircle } from '@mdi/js'
+import {
+  mdiMap,
+  mdiWeb,
+  mdiPhone,
+  mdiEmail,
+  mdiMapMarkerCircle,
+  mdiDotsVertical,
+  mdiPanorama,
+  mdiAlphaLCircle,
+  mdiPencil
+} from '@mdi/js'
+import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
 
 export default {
   name: 'GymContact',
+  mixins: [GymRolesHelpers],
   props: {
     gym: {
       type: Object,
@@ -111,7 +171,11 @@ export default {
       mdiWeb,
       mdiPhone,
       mdiEmail,
-      mdiMapMarkerCircle
+      mdiMapMarkerCircle,
+      mdiDotsVertical,
+      mdiPanorama,
+      mdiAlphaLCircle,
+      mdiPencil
     }
   }
 }

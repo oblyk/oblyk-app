@@ -25,19 +25,30 @@
             <v-list-item-avatar
               v-if="gym.logo"
               tile
-              size="40"
+              size="50"
             >
               <v-avatar
-                size="40"
+                size="50"
                 tile
                 class="vertical-align-top rounded-sm"
               >
                 <v-img :src="gym.thumbnailLogoUrl" alt="gym logo" />
               </v-avatar>
             </v-list-item-avatar>
-            <v-list-item-title class="font-weight-bold">
-              {{ gym.name }}<span class="font-weight-regular">, {{ gymSpace.name }}</span>
-            </v-list-item-title>
+            <v-list-item-content>
+              <v-list-item-title class="font-weight-bold">
+                {{ gym.name }}<span class="font-weight-regular">, {{ gymSpace.name }}</span>
+              </v-list-item-title>
+              <v-list-item-subtitle>
+                <subscribe-btn
+                  subscribe-type="Gym"
+                  :subscribe-id="gym.id"
+                  outlined
+                  type-text
+                  :small="true"
+                />
+              </v-list-item-subtitle>
+            </v-list-item-content>
             <v-list-item-action
               v-if="currentUserIsGymAdmin() && (gymAuthCan(gym, 'manage_space') || gymAuthCan(gym, 'manage_opening'))"
             >
@@ -132,6 +143,7 @@ import GymSpaceActionMenu from '@/components/gymSpaces/GymSpaceActionMenu'
 import GymSpaceRouteList from '@/components/gymRoutes/GymSpaceRouteList'
 import GymGoToRanking from '~/components/gyms/GymGoToRanking'
 import ContestUpComing from '~/components/gyms/ContestUpComing.vue'
+import SubscribeBtn from '~/components/forms/SubscribeBtn.vue'
 const GymSectorEditingPlan = () => import('@/components/gymSectors/GymSectorEditingPlan')
 const GymSpaceEditingSectorsColor = () => import('~/components/gymSpaces/GymSpaceEditingSectorsColor')
 const MarkdownText = () => import('@/components/ui/MarkdownText')
@@ -139,6 +151,7 @@ const MarkdownText = () => import('@/components/ui/MarkdownText')
 export default {
   name: 'GymSpaceInfoAndRoutes',
   components: {
+    SubscribeBtn,
     ContestUpComing,
     GymSpaceEditingSectorsColor,
     GymGoToRanking,

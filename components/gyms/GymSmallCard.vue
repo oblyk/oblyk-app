@@ -3,7 +3,7 @@
     <v-card
       :link="linkable"
       :class="bindClass"
-      :to="linkable ? gym.path : null"
+      :to="path"
     >
       <v-list-item
         :three-line="!small"
@@ -81,6 +81,10 @@ export default {
     bordered: {
       type: Boolean,
       default: false
+    },
+    goToSpaces: {
+      type: Boolean,
+      default: false
     }
   },
 
@@ -109,6 +113,18 @@ export default {
         classList.push('hoverable-card')
       }
       return classList.join(' ')
+    },
+
+    path () {
+      if (this.linkable) {
+        if (this.goToSpaces && this.gym.gym_spaces_count > 0) {
+          return `${this.gym.path}/spaces`
+        } else {
+          return this.gym.path
+        }
+      } else {
+        return null
+      }
     }
   }
 }
