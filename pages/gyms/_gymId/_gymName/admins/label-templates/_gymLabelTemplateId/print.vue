@@ -168,7 +168,9 @@ export default {
           }
           this.initCss()
           if (!this.preview) {
-            if (this.gymLabelTemplate.page_direction === 'free' || this.gymLabelTemplate.page_format === 'free') {
+            if (this.gymLabelTemplate.page_direction === 'free' && this.gymLabelTemplate.page_format === 'free') {
+              this.print()
+            } else if (this.gymLabelTemplate.page_direction === 'free' || this.gymLabelTemplate.page_format === 'free') {
               this.pageOrientation = this.gymLabelTemplate.page_direction !== 'free' ? this.gymLabelTemplate.page_direction : null
               this.pageFormat = this.gymLabelTemplate.page_format !== 'free' ? this.gymLabelTemplate.page_format : null
               this.orientationFormatDialog = true

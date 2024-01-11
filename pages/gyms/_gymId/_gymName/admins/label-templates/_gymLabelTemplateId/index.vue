@@ -136,7 +136,7 @@
                   <description-line
                     :icon="mdiFileExportOutline"
                     :item-title="$t('models.gymLabelTemplate.page_format')"
-                    :item-value="gymLabelTemplate.page_format"
+                    :item-value="$t(`models.gymLabelTemplate.page_format_list.${gymLabelTemplate.page_format}`)"
                     class="mb-3"
                   />
                   <description-line

@@ -30,7 +30,7 @@
               {{ labelTemplate.name }}
             </v-list-item-title>
             <v-list-item-subtitle :class="labelTemplate.archived_at ? 'text--disabled' : ''">
-              {{ labelTemplate.page_format }} ·
+              direction : {{ $t(`models.gymLabelTemplate.page_format_list.${labelTemplate.page_format}`) }} ·
               format : {{ $t(`models.gymLabelTemplate.page_direction_list.${labelTemplate.page_direction}`) }} ·
               {{ labelTemplate.font.name }}
             </v-list-item-subtitle>
