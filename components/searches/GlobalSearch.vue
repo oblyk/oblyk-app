@@ -95,7 +95,7 @@
             v-if="!searching"
             :key="`loading-more-${resultChangeKey}`"
             :get-function="searchNextPage"
-            :loading-more="loadingMore"
+            :loading-more="loadingMoreText"
             :no-more-data="currentResults.noMoreData"
             skeleton-type="list-item-avatar"
           />
@@ -106,53 +106,113 @@
           />
         </div>
         <div
-          v-if="!loadingMore"
+          v-if="!loadingMoreText"
           class="mt-8 px-4"
         >
-          <p class="font-weight-bold text-decoration-underline text-center">
-            {{ $t('components.search.map.find') }}
+          <div v-if="!openSearchAround">
+            <p class="font-weight-bold text-decoration-underline text-center">
+              {{ $t('components.search.map.find') }}
+            </p>
+            <v-row class="justify-center">
+              <v-col cols="12" md="4" lg="2" class="pb-0">
+                <v-card
+                  class="text-center pa-4 border"
+                  @click="mapClick('/maps/crags')"
+                >
+                  <div class="mb-2">
+                    <v-icon>
+                      {{ mdiTerrain }}
+                    </v-icon>
+                  </div>
+                  {{ $t('components.search.map.crag') }}
+                </v-card>
+              </v-col>
+              <v-col cols="12" md="4" lg="2" class="pb-0">
+                <v-card
+                  class="text-center pa-4 border"
+                  @click="mapClick('/maps/gyms')"
+                >
+                  <div class="mb-2">
+                    <v-icon>
+                      {{ mdiOfficeBuildingMarker }}
+                    </v-icon>
+                  </div>
+                  {{ $t('components.search.map.gym') }}
+                </v-card>
+              </v-col>
+              <v-col cols="12" md="4" lg="2" class="pb-0">
+                <v-card
+                  class="text-center pa-4 border"
+                  @click="mapClick('/maps/climbers')"
+                >
+                  <div class="mb-2">
+                    <v-icon>
+                      {{ mdiAccountCircleOutline }}
+                    </v-icon>
+                  </div>
+                  {{ $t('components.search.map.climber') }}
+                </v-card>
+              </v-col>
+            </v-row>
+          </div>
+
+          <p class="font-weight-bold text-decoration-underline text-center mt-8">
+            {{ $t('components.search.searchAroundTitle') }}
           </p>
-          <v-row class="justify-center">
-            <v-col cols="12" md="4" lg="2">
-              <v-card
-                class="text-center pa-4 border"
-                @click="mapClick('/maps/crags')"
+          <div>
+            <div class="text-center">
+              <v-btn
+                v-if="$store.getters['geolocation/IAmGeolocated']"
+                outlined
+                text
+                :loading="loadingAround"
+                @click="launchSearchAround"
               >
-                <div class="mb-2">
-                  <v-icon>
-                    {{ mdiTerrain }}
-                  </v-icon>
-                </div>
-                {{ $t('components.search.map.crag') }}
-              </v-card>
-            </v-col>
-            <v-col cols="12" md="4" lg="2">
-              <v-card
-                class="text-center pa-4 border"
-                @click="mapClick('/maps/gyms')"
+                <v-icon left>
+                  {{ openSearchAround ? mdiClose : mdiMapMarkerRadius }}
+                </v-icon>
+                {{ $t('actions.aroundMe') }}
+              </v-btn>
+              <v-row v-else>
+                <v-col cols="12" lg="6" offset-lg="3">
+                  <v-card
+                    class="border rounded-sm pa-4"
+                    @click="openGeoLocalizationModal"
+                  >
+                    <div class="mb-2">
+                      <v-icon left>
+                        {{ mdiMapMarkerRadius }}
+                      </v-icon>
+                    </div>
+                    {{ $t('components.search.activeLocalization') }}
+                  </v-card>
+                </v-col>
+              </v-row>
+            </div>
+            <div v-if="openSearchAround">
+              <div
+                v-for="(aroundResult, aroundResultIndex) in aroundResults"
+                :key="`around-result-index-${aroundResultIndex}`"
               >
-                <div class="mb-2">
-                  <v-icon>
-                    {{ mdiOfficeBuildingMarker }}
-                  </v-icon>
-                </div>
-                {{ $t('components.search.map.gym') }}
-              </v-card>
-            </v-col>
-            <v-col cols="12" md="4" lg="2">
-              <v-card
-                class="text-center pa-4 border"
-                @click="mapClick('/maps/climbers')"
-              >
-                <div class="mb-2">
-                  <v-icon>
-                    {{ mdiAccountCircleOutline }}
-                  </v-icon>
-                </div>
-                {{ $t('components.search.map.climber') }}
-              </v-card>
-            </v-col>
-          </v-row>
+                <gym-small-card
+                  v-if="aroundResult.className === 'Gym'"
+                  :gym="aroundResult"
+                  small
+                />
+                <crag-small-card
+                  v-if="aroundResult.className === 'Crag'"
+                  :crag="aroundResult"
+                  small
+                />
+              </div>
+              <loading-more
+                v-if="aroundResults.length > 0"
+                :no-more-data="noMoreDataToLoad"
+                :loading-more="loadingMoreData"
+                :get-function="searchAround"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -169,8 +229,10 @@ import {
   mdiSourceBranch,
   mdiFormatLetterCase,
   mdiOfficeBuildingMarker,
-  mdiAsterisk
+  mdiAsterisk,
+  mdiMapMarkerRadius
 } from '@mdi/js'
+import { LoadingMoreHelpers } from '~/mixins/LoadingMoreHelpers'
 import Crag from '@/models/Crag'
 import Area from '@/models/Area'
 import Gym from '@/models/Gym'
@@ -202,6 +264,7 @@ export default {
     GymSmallCard,
     CragSmallCard
   },
+  mixins: [LoadingMoreHelpers],
 
   props: {
     globalSearchDialog: Boolean,
@@ -222,11 +285,15 @@ export default {
       searching: false,
       onSearch: false,
       loadingExternalSearch: false,
-      loadingMore: false,
+      loadingMoreText: false,
       noMoreResults: {},
       collections: ['Crag', 'Gym', 'GuideBookPaper', 'CragRoute', 'Area'],
 
       results: {},
+
+      aroundResults: [],
+      loadingAround: false,
+      openSearchAround: false,
 
       searchApi: null,
       resultChangeKey: 0,
@@ -239,7 +306,8 @@ export default {
       mdiSourceBranch,
       mdiFormatLetterCase,
       mdiOfficeBuildingMarker,
-      mdiAsterisk
+      mdiAsterisk,
+      mdiMapMarkerRadius
     }
   },
 
@@ -326,7 +394,8 @@ export default {
         results: []
       }
       this.results[query].page += 1
-      this.loadingMore = true
+      this.loadingMoreText = true
+      this.openSearchAround = false
 
       this.searchApi
         .searchAll(query, this.collections, this.results[query].page)
@@ -352,7 +421,49 @@ export default {
           this.resultChangeKey += 1
           this.searching = false
           this.loadingExternalSearch = false
-          this.loadingMore = false
+          this.loadingMoreText = false
+        })
+    },
+
+    openGeoLocalizationModal () {
+      this.$root.$emit('ShowLocalizationPopup', true)
+    },
+
+    launchSearchAround () {
+      if (this.openSearchAround) {
+        this.openSearchAround = false
+        this.aroundResults = []
+        this.resetLoadMorePageNumber()
+      } else {
+        this.searchAround()
+      }
+    },
+
+    searchAround () {
+      this.loadingAround = true
+      this.openSearchAround = true
+      this.results = {}
+      this.query = null
+      this.moreIsBeingLoaded()
+      new SearchApi(this.$axios, this.$auth)
+        .searchAround(
+          this.$store.state.geolocation.latitude,
+          this.$store.state.geolocation.longitude,
+          this.page
+        )
+        .then((resp) => {
+          for (const data of resp.data) {
+            if (data.type === 'Gym') { this.aroundResults.push(new Gym({ attributes: data.data })) }
+            if (data.type === 'Crag') { this.aroundResults.push(new Crag({ attributes: data.data })) }
+          }
+          this.successLoadingMore(resp)
+        })
+        .catch(() => {
+          this.failureToLoadingMore()
+        })
+        .finally(() => {
+          this.loadingAround = false
+          this.finallyMoreIsLoaded()
         })
     }
   }

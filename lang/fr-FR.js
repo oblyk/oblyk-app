@@ -657,6 +657,8 @@ export default {
       title: 'Chercher',
       searchLabel: 'Chercher une falaise, une voie, une salle, etc.',
       noResultsFor: 'Pas de résultats pour <strong>%{query}</strong>',
+      searchAroundTitle: 'Trouver les sites et salles autour de moi',
+      activeLocalization: 'Activez la localization pour chercher autour de moi !',
       count: {
         area: '1 groupe de sites | {count} groupes de sites',
         crag: '1 site | {count} sites',

@@ -657,6 +657,8 @@ export default {
       title: 'Search',
       searchLabel: 'Look for a crag, a route, a gym, etc.',
       noResultsFor: 'No results for <strong>%{query}</strong>',
+      searchAroundTitle: 'Find crags and climbing gyms around me',
+      activeLocalization: 'Activate localization to search around me!',
       count: {
         area: '1 crags group | {count} crags groups',
         crag: '1 crag | {count} crags',

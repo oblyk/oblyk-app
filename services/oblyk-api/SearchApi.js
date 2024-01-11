@@ -26,5 +26,14 @@ class SearchApi extends BaseApi {
       params: { query, collections, page }
     })
   }
+
+  searchAround (latitude, longitude, page = 1) {
+    return this.axios.request({
+      method: 'GET',
+      url: `${this.baseUrl}/search_around.json`,
+      headers: { HttpApiAccessToken: this.apiAccessToken },
+      params: { latitude, longitude, page }
+    })
+  }
 }
 export default SearchApi
