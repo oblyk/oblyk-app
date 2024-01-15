@@ -18,12 +18,12 @@
               class="mb-0"
               :class="ascentIndex !== 0 ? 'mt-5' : ''"
             >
-              <nuxt-link
-                class="text-decoration-none"
-                :to="userToObject(ascent.user).path"
+              <strong
+                class="hoverable primary--text"
+                @click="getClimber(ascent.user)"
               >
                 {{ ascent.user.first_name }}
-              </nuxt-link>
+              </strong>
               <span :title="humanizeDate(ascent.history.created_at)">
                 {{ dateFromNow(ascent.history.created_at) }}
               </span>
@@ -66,6 +66,16 @@
             {{ $t('actions.see') }}
           </v-btn>
         </div>
+        <down-to-close-dialog
+          ref="climberDialog"
+          v-model="climberDialog"
+          wait-signal
+        >
+          <user-card
+            v-if="!loadingClimber"
+            :user="climber"
+          />
+        </down-to-close-dialog>
       </div>
       <div v-else>
         <p class="text-center font-italic mb-0">
@@ -83,10 +93,13 @@ import CragRouteSmallLine from '~/components/cragRoutes/CragRouteSmallLine'
 import { DateHelpers } from '~/mixins/DateHelpers'
 import User from '~/models/User'
 import Note from '~/components/notes/Note'
+import DownToCloseDialog from '~/components/ui/DownToCloseDialog'
+import UserApi from '~/services/oblyk-api/UserApi'
+import UserCard from '~/components/users/UserCard'
 
 export default {
   name: 'SubscribesAscentsCard',
-  components: { Note, CragRouteSmallLine },
+  components: { UserCard, DownToCloseDialog, Note, CragRouteSmallLine },
   mixins: [DateHelpers],
   props: {
     user: {
@@ -102,7 +115,10 @@ export default {
       noMoreAscents: false,
       page: 1,
       ascents: [],
-      collapse: true
+      collapse: true,
+      climber: null,
+      loadingClimber: false,
+      climberDialog: false
     }
   },
 
@@ -135,6 +151,20 @@ export default {
 
     userToObject (user) {
       return new User({ attributes: user })
+    },
+
+    getClimber (user) {
+      this.loadingClimber = true
+      this.climberDialog = true
+      new UserApi(this.$axios, this.$auth)
+        .find(user.slug_name)
+        .then((resp) => {
+          this.climber = this.userToObject(resp.data)
+          this.$refs.climberDialog.signal()
+        })
+        .finally(() => {
+          this.loadingClimber = false
+        })
     }
   }
 }
