@@ -1,5 +1,5 @@
 <template>
-  <v-autocomplete
+  <v-select
     v-model="climbingStyles"
     :items="favoriteClimbingStyles || climbingStyleList"
     outlined
@@ -49,7 +49,7 @@
         </v-list-item-content>
       </template>
     </template>
-  </v-autocomplete>
+  </v-select>
 </template>
 
 <script>
