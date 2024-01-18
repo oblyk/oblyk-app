@@ -185,7 +185,11 @@ export default {
     },
 
     gymFormSearch (gym) {
-      this.selectedGym = gym
+      if (gym.gym_spaces_count > 0) {
+        this.$router.push(`${gym.path}/spaces`)
+      } else {
+        this.selectedGym = gym
+      }
     },
 
     addCallback () {
