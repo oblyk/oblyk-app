@@ -3,7 +3,8 @@
     <v-card
       :link="linkable"
       :class="bindClass"
-      :to="path"
+      :to="!callback ? path : null"
+      @click="callback ? callback(gym) : null"
     >
       <v-list-item
         :three-line="!small"
@@ -85,6 +86,10 @@ export default {
     goToSpaces: {
       type: Boolean,
       default: false
+    },
+    callback: {
+      type: Function,
+      default: null
     }
   },
 

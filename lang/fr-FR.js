@@ -1489,6 +1489,7 @@ export default {
       myCities: 'Mes villes',
       myPartnerSearch: 'Ma recherche de partenaire',
       myFollowedGym: 'Ma salle | Mes salles',
+      myFollowedCrag: 'Mon site | Mes sites',
       myDateOfBirth: 'Ma date de naissance',
       dateOfBirthExplain: 'Vous devez avoir <strong>plus de 18 ans</strong> pour faire partie de la recherche de partenaire.',
       climbersActiveRecently: 'Grimpeurs et grimpeuses actives récemment',

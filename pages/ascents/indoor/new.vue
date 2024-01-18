@@ -59,6 +59,7 @@
     <!-- My Gyms -->
     <my-followed-gyms
       v-if="!selectedGym"
+      :callback="selectFollowedGym"
       class="mt-7"
     />
 
@@ -196,6 +197,14 @@ export default {
         .finally(() => {
           this.loadingGymFromQuery = false
         })
+    },
+
+    selectFollowedGym (gym) {
+      if (gym.gym_spaces_count > 0) {
+        this.$router.push(`${gym.path}/spaces`)
+      } else {
+        this.selectedGym = gym
+      }
     },
 
     searchUsed (query) {

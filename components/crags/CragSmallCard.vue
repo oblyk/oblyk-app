@@ -4,7 +4,8 @@
       :link="linkable"
       flat
       :class="bindClass"
-      :to="linkable ? crag.path : null"
+      :to="linkable && !callback ? crag.path : null"
+      @click="callback ? callback(crag) : null"
     >
       <v-list-item
         :three-line="!small"
@@ -78,6 +79,10 @@ export default {
     bordered: {
       type: Boolean,
       default: false
+    },
+    callback: {
+      type: Function,
+      default: null
     }
   },
 

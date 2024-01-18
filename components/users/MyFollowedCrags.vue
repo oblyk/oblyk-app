@@ -4,36 +4,35 @@
       <v-icon
         class="mr-2 mb-2"
       >
-        {{ mdiOfficeBuilding }}
+        {{ mdiTerrain }}
       </v-icon>
-      {{ $tc('components.user.myFollowedGym', gyms.length) }}
+      {{ $tc('components.user.myFollowedCrag', crags.length) }}
     </h3>
     <v-sheet class="rounded pa-1">
       <div class="row">
         <div
-          v-for="(gym, index) in gyms"
-          :key="`gym-${index}`"
+          v-for="(crag, index) in crags"
+          :key="`crag-${index}`"
           class="col-12 col-md-6 col-lg-4 py-0 py-lg-3"
         >
-          <gym-small-card
-            :gym="gym"
-            :callback="callback ? callback : null"
+          <crag-small-card
+            :crag="crag"
+            :callback="callback"
             small
-            go-to-spaces
           />
         </div>
 
         <loading-more
           :loading-more="loadingMoreData"
           :no-more-data="noMoreDataToLoad"
-          :get-function="getGyms"
+          :get-function="getCrags"
         />
 
         <p
-          v-if="gyms.length === 0 && loadingGyms === false"
+          v-if="crags.length === 0 && loadingCrags === false"
           class="text-center text--disabled mt-5 mb-5"
         >
-          {{ $t('components.user.myFavoriteGymsEmpty') }}
+          {{ $t('components.user.myFavoriteCragsEmpty') }}
         </p>
       </div>
     </v-sheet>
@@ -41,16 +40,16 @@
 </template>
 
 <script>
-import { mdiOfficeBuilding } from '@mdi/js'
+import { mdiTerrain } from '@mdi/js'
 import CurrentUserApi from '~/services/oblyk-api/CurrentUserApi'
-import GymSmallCard from '~/components/gyms/GymSmallCard.vue'
-import Gym from '~/models/Gym'
-import LoadingMore from '~/components/layouts/LoadingMore.vue'
+import LoadingMore from '~/components/layouts/LoadingMore'
 import { LoadingMoreHelpers } from '~/mixins/LoadingMoreHelpers'
+import CragSmallCard from '~/components/crags/CragSmallCard'
+import Crag from '~/models/Crag'
 
 export default {
-  name: 'MyFollowedGyms',
-  components: { LoadingMore, GymSmallCard },
+  name: 'MyFollowedCrags',
+  components: { CragSmallCard, LoadingMore },
   mixins: [LoadingMoreHelpers],
 
   props: {
@@ -62,25 +61,25 @@ export default {
 
   data () {
     return {
-      gyms: [],
-      loadingGyms: true,
+      crags: [],
+      loadingCrags: true,
 
-      mdiOfficeBuilding
+      mdiTerrain
     }
   },
 
   mounted () {
-    this.getGyms()
+    this.getCrags()
   },
 
   methods: {
-    getGyms () {
-      this.loadingGyms = true
+    getCrags () {
+      this.loadingCrags = true
       new CurrentUserApi(this.$axios, this.$auth)
-        .favoriteGyms(this.page)
+        .favoriteCrags(this.page)
         .then((resp) => {
           for (const follow of resp.data) {
-            this.gyms.push(new Gym({ attributes: follow.followable_object }))
+            this.crags.push(new Crag({ attributes: follow.followable_object }))
           }
           this.successLoadingMore(resp)
         })
@@ -89,7 +88,7 @@ export default {
           this.failureToLoadingMore()
         })
         .finally(() => {
-          this.loadingGyms = false
+          this.loadingCrags = false
           this.finallyMoreIsLoaded()
         })
     }

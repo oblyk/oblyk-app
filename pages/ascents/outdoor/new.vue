@@ -57,6 +57,13 @@
       </v-card-text>
     </v-card>
 
+    <!-- My crag -->
+    <my-followed-crags
+      v-if="!crag"
+      :callback="selectFollowedCrag"
+      class="mt-7"
+    />
+
     <!-- Crag selected -->
     <div v-if="crag">
       <!-- Selected alert -->
@@ -242,10 +249,12 @@ import CragRouteApi from '~/services/oblyk-api/CragRouteApi'
 import CragRoute from '~/models/CragRoute'
 import AscentCragRouteForm from '~/components/ascentCragRoutes/forms/AscentCragRouteForm.vue'
 import CragRoutes from '~/components/cragRoutes/CragRoutes.vue'
+import MyFollowedCrags from '~/components/users/MyFollowedCrags.vue'
 
 export default {
   meta: { orphanRoute: true },
   components: {
+    MyFollowedCrags,
     CragRoutes,
     AscentCragRouteForm,
     CragSearchForm
@@ -318,6 +327,10 @@ export default {
     searchUsed (query) {
       this.addCragBtn = true
       this.query = query
+    },
+
+    selectFollowedCrag (crag) {
+      this.crag = crag
     },
 
     resetCrag () {

@@ -1488,6 +1488,8 @@ export default {
       partnerLocalitiesTitle: 'Add the cities I climb in',
       myCities: 'My cities',
       myPartnerSearch: 'My partner search',
+      myFollowedGym: 'My climbing gym | My climbing gyms',
+      myFollowedCrag: 'My crag | My crags',
       myDateOfBirth: 'My date of birth',
       dateOfBirthExplain: 'You must be <strong>over 18</strong> to be part of the partner search.',
       climbersActiveRecently: 'Climbers active recently',
