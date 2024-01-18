@@ -1,6 +1,16 @@
 <template>
   <v-container>
     <h1 class="text-h5 mt-4 mb-4">
+      <v-btn
+        icon
+        left
+        exact-path
+        to="/ascents/new"
+      >
+        <v-icon>
+          {{ mdiArrowLeft }}
+        </v-icon>
+      </v-btn>
       {{ $t('components.ascentCragRoute.addedAscentToLogbook') }}
     </h1>
 
@@ -215,7 +225,16 @@
 </template>
 
 <script>
-import { mdiTerrain, mdiPlus, mdiSourceBranchPlus, mdiMagnify, mdiCheckAll, mdiClose, mdiBookOutline } from '@mdi/js'
+import {
+  mdiTerrain,
+  mdiPlus,
+  mdiSourceBranchPlus,
+  mdiMagnify,
+  mdiCheckAll,
+  mdiClose,
+  mdiBookOutline,
+  mdiArrowLeft
+} from '@mdi/js'
 import CragSearchForm from '~/components/crags/forms/CragSearchForm.vue'
 import CragApi from '~/services/oblyk-api/CragApi'
 import Crag from '~/models/Crag'
@@ -254,7 +273,8 @@ export default {
       mdiSourceBranchPlus,
       mdiCheckAll,
       mdiClose,
-      mdiBookOutline
+      mdiBookOutline,
+      mdiArrowLeft
     }
   },
 
