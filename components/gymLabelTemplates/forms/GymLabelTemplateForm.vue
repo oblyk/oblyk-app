@@ -221,7 +221,6 @@ export default {
         { value: 'A3', text: this.$t('models.gymLabelTemplate.page_format_list.A3') },
         { value: 'A4', text: this.$t('models.gymLabelTemplate.page_format_list.A4') },
         { value: 'A5', text: this.$t('models.gymLabelTemplate.page_format_list.A5') },
-        { value: 'A6', text: this.$t('models.gymLabelTemplate.page_format_list.A6') },
         { value: 'free', text: this.$t('models.gymLabelTemplate.page_format_list.free') }
       ],
       page_direction_items: [

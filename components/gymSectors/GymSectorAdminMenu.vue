@@ -106,7 +106,6 @@
     <print-label-dialog
       ref="printLabelDialog"
       :gym="gym"
-      fast-printing
     />
   </div>
 </template>
@@ -137,6 +136,10 @@ export default {
     },
     gym: {
       type: Object,
+      required: true
+    },
+    gymRoutes: {
+      type: Array,
       required: true
     },
     showPlanOptions: {
@@ -191,7 +194,7 @@ export default {
     printDialog () {
       this.$refs.printLabelDialog.openDialog({
         reference: this.gymSector.name,
-        sector: this.gymSector
+        routeIds: this.gymRoutes.map(route => route.id)
       })
     }
   }

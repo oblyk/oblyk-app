@@ -32,6 +32,7 @@
           <gym-sector-admin-menu
             v-if="currentUserIsGymAdmin() && (gymAuthCan(gym, 'manage_space') || gymAuthCan(gym, 'manage_opening'))"
             :gym-sector="item.sector"
+            :gym-routes="item.routes"
             :gym="gym"
             :show-plan-options="showPlanOptions"
           />

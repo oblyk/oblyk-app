@@ -5,8 +5,10 @@
       <v-breadcrumbs :items="breadcrumbs" />
       <v-row class="gym-label-container">
         <v-col
-          cols="4"
-          class="full-height"
+          cols="12"
+          md="6"
+          lg="4"
+          :class="$vuetify.breakpoint.mobile ? 'label-form-screen-height' : 'full-height'"
         >
           <v-card class="full-height d-flex flex-column">
             <v-card-title class="py-2 border-bottom">
@@ -260,10 +262,7 @@
             </div>
           </v-card>
         </v-col>
-        <v-col
-          cols="8"
-          class="full-height"
-        >
+        <v-col :class="$vuetify.breakpoint.mobile ? 'label-form-screen-height' : 'full-height'">
           <v-card class="full-height d-flex flex-column">
             <v-card-title class="d-flex py-2 border-bottom">
               <div>
@@ -529,6 +528,14 @@ export default {
   }
   .attributes-list {
     max-height: calc(100% - 45px);
+  }
+  .label-form-screen-height {
+    height: calc(100vh - 165px);
+  }
+}
+@media only screen and (max-width: 900px) {
+  .gym-label-container {
+    height: auto;
   }
 }
 </style>

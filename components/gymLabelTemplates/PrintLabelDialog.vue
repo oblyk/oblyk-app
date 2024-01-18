@@ -21,28 +21,47 @@
           </v-icon>
         </v-btn>
       </v-card-title>
-      <div class="pa-4">
-        <v-text-field
-          v-model="reference"
-          label="Référence de l'impression"
-          hide-details
-          clearable
-          outlined
-        />
-        <div
-          v-if="referencesSuggestion.length > 1"
-          class="mt-2"
-        >
-          Suggestion :
-          <v-chip
-            v-for="(suggestion, suggestionIndex) in referencesSuggestion"
-            :key="`suggestion-index-${suggestionIndex}`"
-            class="mr-1"
+      <div class="pa-2">
+        <p>Grouper les lignes par :</p>
+        <v-radio-group v-model="groupBy">
+          <v-radio value="anchor">
+            <template #label>
+              Une page par <strong class="ml-1 text-decoration-underline">relais</strong>
+            </template>
+          </v-radio>
+          <v-radio value="sector">
+            <template #label>
+              Une page par <strong class="ml-1 text-decoration-underline">secteur</strong>
+            </template>
+          </v-radio>
+          <v-radio
+            label="Un maximum de ligne par page"
+            value="ungroup"
+          />
+        </v-radio-group>
+        <div v-if="groupBy === 'ungroup'">
+          <v-text-field
+            v-model="reference"
+            label="Référence de l'impression"
+            hide-details
+            clearable
             outlined
-            @click="reference = suggestion"
+          />
+          <div
+            v-if="referencesSuggestion.length > 1"
+            class="mt-2"
           >
-            {{ suggestion }}
-          </v-chip>
+            Suggestion :
+            <v-chip
+              v-for="(suggestion, suggestionIndex) in referencesSuggestion"
+              :key="`suggestion-index-${suggestionIndex}`"
+              class="mr-1"
+              outlined
+              @click="reference = suggestion"
+            >
+              {{ suggestion }}
+            </v-chip>
+          </div>
         </div>
         <p class="text-decoration-underline mt-3 mb-0">
           Choisissez votre modèle d'étiquette :
@@ -112,6 +131,7 @@ export default {
       referencesSuggestion: [],
       sectorId: null,
       routeIds: [],
+      groupBy: 'sector',
 
       mdiPrinter,
       mdiClose
@@ -131,6 +151,10 @@ export default {
 
   methods: {
     openDialog (labelOptions) {
+      const previousGroupBy = localStorage.getItem('printGymLabelBy')
+      if (previousGroupBy) {
+        this.groupBy = previousGroupBy
+      }
       if (labelOptions.sector) {
         this.reference = labelOptions.sector.name
         this.sectorId = labelOptions.sector.id
@@ -141,6 +165,9 @@ export default {
       }
       if (labelOptions.routeIds) {
         this.routeIds = labelOptions.routeIds
+      }
+      if (labelOptions.reference) {
+        this.reference = labelOptions.reference
       }
       if (this.fastPrinting && this.gym.gym_label_templates.length === 1) {
         this.print(new GymLabelTemplate({ attributes: this.gym.gym_label_templates[0] }))
@@ -154,6 +181,8 @@ export default {
       if (this.routeIds.length > 0) { query['route_ids[]'] = this.routeIds }
       if (this.sectorId) { query.sector_id = this.sectorId }
       query.reference = this.reference
+      query.group_by = this.groupBy
+      localStorage.setItem('printGymLabelBy', this.groupBy)
 
       const route = this.$router.resolve({ path: `${label.path}/print`, query })
       window.open(route.href, '_blank')

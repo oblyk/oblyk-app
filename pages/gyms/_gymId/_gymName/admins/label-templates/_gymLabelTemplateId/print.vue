@@ -1,46 +1,52 @@
 <template>
-  <div
-    class="page"
-    :class="preview ? 'preview' : ''"
-  >
-    <div class="label-row">
-      <gym-label-route
-        v-for="(gymRoute, gymRouteIndex) in gymRoutes"
-        :key="`gym-route-index-${gymRouteIndex}`"
-        class="label-column"
-        :class="gymLabelTemplate.label_direction"
-        :gym="gym"
-        :gym-route="gymRoute"
-        :gym-label-template="gymLabelTemplate"
-      />
-    </div>
+  <div class="labels-document">
     <div
-      v-if="gymLabelTemplate && gymLabelTemplate.qr_code_position === 'footer'"
-      class="footer"
+      v-for="(page, pageIndex) in pages"
+      :key="`page-index-${pageIndex}`"
+      class="page"
+      :class="preview ? 'preview' : ''"
     >
-      <div>
-        <p>
-          Suis ta progression et découvre le topo<br>de <b>{{ gym.name }}</b> sur Oblyk.org !
-        </p>
-        <div v-if="reference">
-          <small>
-            {{ reference }}
-          </small>
-        </div>
+      <div class="label-row">
+        <gym-label-route
+          v-for="(gymRoute, gymRouteIndex) in page.routes"
+          :key="`gym-route-index-${gymRouteIndex}`"
+          class="label-column"
+          :class="gymLabelTemplate.label_direction"
+          :gym="gym"
+          :gym-route="gymRouteToObject(gymRoute)"
+          :gym-label-template="gymLabelTemplate"
+        />
       </div>
       <div
-        class="footer-qr-code"
-        v-html="footerQrcode"
-      />
+        v-if="gymLabelTemplate && gymLabelTemplate.qr_code_position === 'footer'"
+        class="footer"
+      >
+        <div>
+          <p>
+            Suis ta progression et découvre le topo<br>de <b>{{ gym.name }}</b> sur Oblyk.org !
+          </p>
+          <div v-if="page.reference">
+            <small>
+              {{ page.reference }}
+            </small>
+          </div>
+        </div>
+        <div
+          class="footer-qr-code"
+          v-html="page.footer_qrcode"
+        />
+      </div>
+      <div
+        v-if="gymLabelTemplate && gymLabelTemplate.qr_code_position !== 'footer' && page.reference"
+        class="footer-reference-only"
+      >
+        <small>
+          {{ page.reference }}
+        </small>
+      </div>
     </div>
-    <div
-      v-if="gymLabelTemplate && gymLabelTemplate.qr_code_position !== 'footer' && reference"
-      class="footer-reference-only"
-    >
-      <small>
-        {{ reference }}
-      </small>
-    </div>
+
+    <!-- Print Modal -->
     <div
       class="print-modal"
       :class="orientationFormatDialog ? '--open' : '--close'"
@@ -76,10 +82,6 @@
           <label :class="pageFormat === 'A5' ? '--active' : ''">
             <input v-model="pageFormat" type="radio" value="A5" />
             {{ $t('models.gymLabelTemplate.page_format_list.A5') }}
-          </label>
-          <label :class="pageFormat === 'A6' ? '--active' : ''">
-            <input v-model="pageFormat" type="radio" value="A6" />
-            {{ $t('models.gymLabelTemplate.page_format_list.A6') }}
           </label>
         </div>
         <div class="card-actions">
@@ -119,6 +121,8 @@ export default {
       orientationFormatDialog: false,
       pageFormat: null,
       pageOrientation: null,
+      groupBy: null,
+      pages: [],
 
       gymRoutes: [],
       gym: [],
@@ -140,6 +144,7 @@ export default {
     this.sectorId = urlParams.get('sector_id')
     this.routeIds = [...urlParams.getAll('route_ids[]')]
     this.previewRoutesSet = urlParams.get('preview_routes_set')
+    this.groupBy = urlParams.get('group_by')
 
     this.getLabelTemplate()
   },
@@ -151,6 +156,8 @@ export default {
       if (this.routeIds.length > 0) { params.route_ids = this.routeIds }
       if (this.sectorId) { params.sector_id = this.sectorId }
       if (this.previewRoutesSet) { params.preview_routes_set = this.previewRoutesSet }
+      if (this.groupBy) { params.group_by = this.groupBy }
+      if (this.reference) { params.reference = this.reference }
 
       new GymLabelTemplateApi(this.$axios, this.$auth)
         .print(
@@ -161,16 +168,10 @@ export default {
         .then((resp) => {
           this.gymLabelTemplate = new GymLabelTemplate({ attributes: resp.data.gym_label_template })
           this.gym = new Gym({ attributes: resp.data.gym })
-          this.gymRoutes = []
-          this.footerQrcode = resp.data.footer_qrcode
-          for (const route of resp.data.gym_routes) {
-            this.gymRoutes.push(new GymRoute({ attributes: route }))
-          }
+          this.pages = resp.data.pages
           this.initCss()
           if (!this.preview) {
-            if (this.gymLabelTemplate.page_direction === 'free' && this.gymLabelTemplate.page_format === 'free') {
-              this.print()
-            } else if (this.gymLabelTemplate.page_direction === 'free' || this.gymLabelTemplate.page_format === 'free') {
+            if (this.gymLabelTemplate.page_direction === 'free' || this.gymLabelTemplate.page_format === 'free') {
               this.pageOrientation = this.gymLabelTemplate.page_direction !== 'free' ? this.gymLabelTemplate.page_direction : null
               this.pageFormat = this.gymLabelTemplate.page_format !== 'free' ? this.gymLabelTemplate.page_format : null
               this.orientationFormatDialog = true
@@ -185,6 +186,10 @@ export default {
         .finally(() => {
           this.loadingLabelTemplate = false
         })
+    },
+
+    gymRouteToObject (route) {
+      return new GymRoute({ attributes: route })
     },
 
     initCss () {
@@ -206,17 +211,48 @@ export default {
         border-top-width: ${this.gymLabelTemplate.border_style['border-width']};
         border-top-color: ${this.gymLabelTemplate.border_style['border-color']};
       }
+      .footer-reference-only, .footer {
+        padding-left: ${this.gymLabelTemplate.layout_options['page-margin']};
+        padding-right: ${this.gymLabelTemplate.layout_options['page-margin']};
+        padding-bottom: ${this.gymLabelTemplate.layout_options['page-margin']};
+      }
       @page {
-        margin: ${this.gymLabelTemplate.layout_options['page-margin']};
+        margin: 0mm;
+      }
+      .page {
+        padding: ${this.gymLabelTemplate.layout_options['page-margin']};
       }`
       document.head.appendChild(newStyle)
     },
 
     initPageOrientation () {
       const newStyle = document.createElement('style')
+      let pageHeight = null
+      if (this.pageFormat === 'A3' && this.pageOrientation === 'portrait') {
+        pageHeight = '420mm'
+      } else if (
+        (this.pageFormat === 'A3' && this.pageOrientation === 'landscape') ||
+        (this.pageFormat === 'A4' && this.pageOrientation === 'portrait')
+      ) {
+        pageHeight = '297mm'
+      } else if (
+        (this.pageFormat === 'A4' && this.pageOrientation === 'landscape') ||
+        (this.pageFormat === 'A5' && this.pageOrientation === 'portrait')
+      ) {
+        pageHeight = '210mm'
+      } else if (
+        this.pageFormat === 'A5' && this.pageOrientation === 'landscape'
+      ) {
+        pageHeight = '148mm'
+      } else {
+        pageHeight = '100vh'
+      }
       newStyle.textContent = `
       @page {
         size: ${this.pageFormat} ${this.pageOrientation};
+      }
+      .page {
+        height: ${pageHeight};
       }
       `
       document.head.appendChild(newStyle)
@@ -238,6 +274,14 @@ export default {
 </script>
 
 <style lang="scss">
+.page {
+  break-after: page;
+  page-break-after: always;
+  position: relative;
+  width: 100%;
+  margin: auto;
+  box-sizing: border-box;
+}
 .preview {
   padding: 3mm;
 }
@@ -246,6 +290,10 @@ export default {
   &:before {
     clear: both;
   }
+}
+.page-break {
+  break-after: page;
+  page-break-after: always;
 }
 .label-row {
   display: flex;
@@ -267,8 +315,9 @@ export default {
   }
 }
 .footer {
-  position: fixed;
+  position: absolute;
   bottom: 0;
+  left: 0;
   width: 100%;
   text-align: right;
   border-top-style: solid;
@@ -277,9 +326,10 @@ export default {
   flex-direction: row;
   justify-content: right;
   .footer-qr-code {
-    height: 2.3cm;
-    width: 2.3cm;
-    padding-left: 5mm;
+    box-sizing: border-box;
+    height: 2cm;
+    width: 2cm;
+    margin-left: 5mm;
     svg {
       height: 100%;
       width: 100%;
@@ -287,8 +337,9 @@ export default {
   }
 }
 .footer-reference-only {
-  position: fixed;
+  position: absolute;
   bottom: 0;
+  left: 0;
   width: 100%;
   text-align: right;
 }
