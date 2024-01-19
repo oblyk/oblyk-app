@@ -18,7 +18,28 @@
         required
         :menu-props="{ maxHeight: 500 }"
         @change="onChangeDifficulty()"
-      />
+      >
+        <template #item="data">
+          <template v-if="typeof data.item !== 'object'">
+            <v-list-item-content v-text="data.item" />
+          </template>
+          <template v-else>
+            <v-list-item-content>
+              <v-list-item-title>
+                <v-icon
+                  v-for="(color, colorIndex) in data.item.colors"
+                  :key="`color-index-${colorIndex}`"
+                  :color="color"
+                  left
+                >
+                  {{ mdiCircle }}
+                </v-icon>
+                {{ data.item.text }}
+              </v-list-item-title>
+            </v-list-item-content>
+          </template>
+        </template>
+      </v-select>
 
       <!-- Route name -->
       <v-row :class="cragRoute.name ? 'mb-0' : 'mb-4'">
@@ -433,7 +454,8 @@ import {
   mdiCameraPlus,
   mdiArrowLeft,
   mdiArrowRightBoldBoxOutline,
-  mdiSourceBranchPlus
+  mdiSourceBranchPlus,
+  mdiCircle
 } from '@mdi/js'
 import { FormHelpers } from '@/mixins/FormHelpers'
 import { HoldColorsHelpers } from '@/mixins/HoldColorsHelpers'
@@ -534,7 +556,8 @@ export default {
       mdiCameraPlus,
       mdiArrowLeft,
       mdiArrowRightBoldBoxOutline,
-      mdiSourceBranchPlus
+      mdiSourceBranchPlus,
+      mdiCircle
     }
   },
 
@@ -672,7 +695,8 @@ export default {
             this.gymGradeLines.push(
               {
                 text: `${gradeLine.name} ${gradeLine.gradeValue}`,
-                value: gradeLine.id
+                value: gradeLine.id,
+                colors: gradeLine.colors
               }
             )
           }
