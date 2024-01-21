@@ -16,7 +16,8 @@
           v-if="dialog"
           :light="!$vuetify.theme.dark"
           rounded
-          class="px-4 pb-4 rounded-bl-0 rounded-br-0 mx-auto down-to-close-sheet"
+          class="pb-4 rounded-bl-0 rounded-br-0 mx-auto down-to-close-sheet"
+          :class="paddingX"
           :style="`max-width: ${width}px;`"
           @click.stop
         >
@@ -51,6 +52,14 @@ export default {
     waitSignal: {
       type: Boolean,
       default: false
+    },
+    paddingX: {
+      type: String,
+      default: 'px-4'
+    },
+    closeCallback: {
+      type: Function,
+      default: null
     }
   },
 
@@ -81,7 +90,7 @@ export default {
   },
 
   methods: {
-    animation (type, callback = null) {
+    animation (type, callback = null, timeToClose = 100) {
       if (
         (type === 'close' && !this.dialog) ||
         (type === 'open' && this.dialog)
@@ -103,7 +112,7 @@ export default {
           this.overlay = false
           this.readyToClose = false
           if (typeof callback === 'function') { callback() }
-        }, 100)
+        }, timeToClose)
       }
     },
 
@@ -117,7 +126,7 @@ export default {
 
     topClose () {
       if (this.readyToClose) {
-        this.animation('close', this.emitClose)
+        this.animation('close', this.emitClose, 10)
       }
     },
 
@@ -126,12 +135,13 @@ export default {
     },
 
     emitClose () {
+      if (this.closeCallback) { this.closeCallback() }
       this.$emit('input', false)
     },
 
     scroll (el) {
       setTimeout(() => {
-        el.querySelector('.v-overlay__content').scrollTo({ behavior: 'smooth', top: el.offsetHeight / 4 })
+        el.querySelector('.v-overlay__content').scrollTo({ behavior: 'smooth', top: window.visualViewport.height - 150 })
         setTimeout(() => {
           this.readyToClose = true
         }, 100)
@@ -149,6 +159,7 @@ export default {
     overflow-y: auto;
     overscroll-behavior: none;
     .down-to-close-sheet {
+      box-shadow: 0 7px 60px 20px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12);
       margin-top: calc(100vh - 77px);
       width: 100vw;
     }

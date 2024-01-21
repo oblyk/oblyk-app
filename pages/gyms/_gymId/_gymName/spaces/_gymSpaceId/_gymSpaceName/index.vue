@@ -65,29 +65,21 @@
     </div>
 
     <!-- Open gym route in full screen on mobile -->
-    <div
-      v-if="(gymRoute || loadingGymRoute) && $vuetify.breakpoint.mobile"
-      class="gym-route-modal-on-mobile"
+    <down-to-close-dialog
+      v-if="$vuetify.breakpoint.mobile"
+      ref="GymRouteDialog"
+      v-model="gymRouteDialog"
+      padding-x="px-2"
+      :close-callback="closeGymRouteModal"
+      wait-signal
     >
-      <v-dialog
-        :value="true"
-        transition="dialog-bottom-transition"
-        content-class="gym-route-dialog"
-        persistent
-      >
-        <v-card
-          @touchstart="touchEvent('start', $event)"
-          @touchend="touchEvent('end', $event)"
-        >
-          <spinner v-if="loadingGymRoute" />
-          <gym-route-info
-            v-if="gymRoute"
-            :gym-route="gymRoute"
-            :gym="gym"
-          />
-        </v-card>
-      </v-dialog>
-    </div>
+      <gym-route-info
+        v-if="!loadingGymRoute && gymRoute"
+        :close-callback="closeGymRouteModal"
+        :gym-route="gymRoute"
+        :gym="gym"
+      />
+    </down-to-close-dialog>
   </div>
 </template>
 
@@ -100,6 +92,7 @@ import GymApi from '~/services/oblyk-api/GymApi'
 import GymRouteApi from '~/services/oblyk-api/GymRouteApi'
 import GymRoute from '~/models/GymRoute'
 import Spinner from '~/components/layouts/Spiner'
+import DownToCloseDialog from '~/components/ui/DownToCloseDialog'
 const GymRouteInfo = () => import('~/components/gymRoutes/GymRouteInfo')
 const GymSpacePlan = () => import('@/components/gymSpaces/GymSpacePlan')
 const GymSpacePlanMissing = () => import('@/components/gymSpaces/GymSpacePlanMissing')
@@ -107,11 +100,12 @@ const GymSpacePlanMissing = () => import('@/components/gymSpaces/GymSpacePlanMis
 export default {
   meta: { orphanRoute: true },
   components: {
+    DownToCloseDialog,
     Spinner,
+    GymSpaceInfoAndRoutes,
     GymRouteInfo,
     GymSpacePlanMissing,
-    GymSpacePlan,
-    GymSpaceInfoAndRoutes
+    GymSpacePlan
   },
   mixins: [GymSpaceConcern],
 
@@ -119,6 +113,7 @@ export default {
     return {
       gym: null,
       gymRoute: null,
+      gymRouteDialog: false,
       loadingGymRoute: false,
       closeDragStart: null,
       toucheClientY: 0,
@@ -151,6 +146,8 @@ export default {
     activeGymRouteId () {
       if (this.activeGymRouteId) {
         this.getGymRoute()
+      } else if (this.$refs.GymRouteDialog) {
+        this.$refs.GymRouteDialog.close()
       } else {
         this.gymRoute = null
       }
@@ -176,6 +173,7 @@ export default {
     getGymRoute () {
       this.loadingGymRoute = true
       this.gymRoute = null
+      this.gymRouteDialog = true
       new GymRouteApi(this.$axios, this.$auth)
         .find(
           this.$route.params.gymId,
@@ -183,30 +181,16 @@ export default {
           this.activeGymRouteId
         ).then((resp) => {
           this.gymRoute = new GymRoute({ attributes: resp.data })
+          this.$refs.GymRouteDialog?.signal()
         }).finally(() => {
           this.loadingGymRoute = false
         })
     },
 
     closeGymRouteModal () {
+      this.gymRoute = null
+      this.gymRouteDialog = false
       this.$router.push({ path: this.$route.path })
-    },
-
-    touchEvent (touchStatus, event) {
-      const dialogue = document.querySelector('.gym-route-dialog')
-      if (dialogue.scrollTop === 0 && touchStatus === 'start') {
-        this.closeDragStart = true
-        this.toucheClientY = event.changedTouches[0].clientY
-      }
-      if (touchStatus === 'end' && this.closeDragStart === true) {
-        if (event.changedTouches[0].clientY - this.toucheClientY > 50) {
-          this.closeGymRouteModal()
-        }
-      }
-      if (touchStatus === 'end') {
-        this.closeDragStart = null
-        this.toucheClientY = null
-      }
     }
   }
 }

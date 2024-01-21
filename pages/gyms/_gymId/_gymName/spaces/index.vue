@@ -168,30 +168,21 @@
       </v-col>
 
       <!-- Open gym route in full screen on mobile -->
-      <div
-        v-if="(gymRoute || loadingGymRoute) && $vuetify.breakpoint.mobile"
-        class="gym-route-modal-on-mobile"
+      <down-to-close-dialog
+        v-if="$vuetify.breakpoint.mobile"
+        ref="GymRouteDialog"
+        v-model="gymRouteDialog"
+        padding-x="px-2"
+        :close-callback="closeGymRouteModal"
+        wait-signal
       >
-        <v-dialog
-          :value="true"
-          transition="dialog-bottom-transition"
-          content-class="gym-route-dialog"
-          persistent
-        >
-          <v-card
-            @touchstart="touchEvent('start', $event)"
-            @touchend="touchEvent('end', $event)"
-          >
-            <spinner v-if="loadingGymRoute" />
-            <gym-route-info
-              v-if="gymRoute"
-              :gym-route="gymRoute"
-              :show-space="true"
-              :gym="gym"
-            />
-          </v-card>
-        </v-dialog>
-      </div>
+        <gym-route-info
+          v-if="!loadingGymRoute && gymRoute"
+          :gym-route="gymRoute"
+          :show-space="true"
+          :gym="gym"
+        />
+      </down-to-close-dialog>
     </v-row>
   </v-container>
 </template>
@@ -199,19 +190,21 @@
 <script>
 import { mdiInformationOutline } from '@mdi/js'
 import { GymConcern } from '~/concerns/GymConcern'
-import Spinner from '~/components/layouts/Spiner.vue'
-import GymSpaceSelector from '~/components/gymSpaces/GymSpaceSelector.vue'
-import GymSpaceRouteList from '~/components/gymRoutes/GymSpaceRouteList.vue'
-import GymSpaceList from '~/components/gymSpaces/GymSpaceList.vue'
+import Spinner from '~/components/layouts/Spiner'
+import GymSpaceSelector from '~/components/gymSpaces/GymSpaceSelector'
+import GymSpaceRouteList from '~/components/gymRoutes/GymSpaceRouteList'
+import GymSpaceList from '~/components/gymSpaces/GymSpaceList'
 import GymRouteApi from '~/services/oblyk-api/GymRouteApi'
 import GymRoute from '~/models/GymRoute'
-import GymRouteInfo from '~/components/gymRoutes/GymRouteInfo.vue'
-import SubscribeBtn from '~/components/forms/SubscribeBtn.vue'
-import GymGoToRanking from '~/components/gyms/GymGoToRanking.vue'
-import ContestUpComing from '~/components/gyms/ContestUpComing.vue'
+import GymRouteInfo from '~/components/gymRoutes/GymRouteInfo'
+import SubscribeBtn from '~/components/forms/SubscribeBtn'
+import GymGoToRanking from '~/components/gyms/GymGoToRanking'
+import ContestUpComing from '~/components/gyms/ContestUpComing'
+import DownToCloseDialog from '~/components/ui/DownToCloseDialog'
 
 export default {
   components: {
+    DownToCloseDialog,
     ContestUpComing,
     GymGoToRanking,
     SubscribeBtn,
@@ -227,6 +220,7 @@ export default {
   data () {
     return {
       gymRoute: null,
+      gymRouteDialog: false,
       loadingGymRoute: false,
       closeDragStart: null,
       toucheClientY: 0,
@@ -245,6 +239,8 @@ export default {
     activeGymRouteId () {
       if (this.activeGymRouteId) {
         this.getGymRoute()
+      } else if (this.$refs.GymRouteDialog) {
+        this.$refs.GymRouteDialog.close()
       } else {
         this.gymRoute = null
       }
@@ -261,6 +257,7 @@ export default {
     getGymRoute () {
       this.loadingGymRoute = true
       this.gymRoute = null
+      this.gymRouteDialog = true
       new GymRouteApi(this.$axios, this.$auth)
         .find(
           this.$route.params.gymId,
@@ -268,30 +265,16 @@ export default {
           this.activeGymRouteId
         ).then((resp) => {
           this.gymRoute = new GymRoute({ attributes: resp.data })
+          this.$refs.GymRouteDialog?.signal()
         }).finally(() => {
           this.loadingGymRoute = false
         })
     },
 
     closeGymRouteModal () {
+      this.gymRoute = null
+      this.gymRouteDialog = false
       this.$router.push({ path: this.$route.path })
-    },
-
-    touchEvent (touchStatus, event) {
-      const dialogue = document.querySelector('.gym-route-dialog')
-      if (dialogue.scrollTop === 0 && touchStatus === 'start') {
-        this.closeDragStart = true
-        this.toucheClientY = event.changedTouches[0].clientY
-      }
-      if (touchStatus === 'end' && this.closeDragStart === true) {
-        if (event.changedTouches[0].clientY - this.toucheClientY > 50) {
-          this.closeGymRouteModal()
-        }
-      }
-      if (touchStatus === 'end') {
-        this.closeDragStart = null
-        this.toucheClientY = null
-      }
     }
   }
 }
