@@ -23,7 +23,7 @@
       >
         <div>
           <p>
-            Suis ta progression et découvre le topo<br>de <b>{{ gym.name }}</b> sur Oblyk.org !
+            Découvre le topo de <b>{{ gym.name }}</b><br> et suis ta progression sur Oblyk.org !
           </p>
           <div v-if="page.reference">
             <small>
