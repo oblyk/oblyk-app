@@ -258,7 +258,7 @@
         </div>
         <div
           v-else
-          class="pa-4 border rounded-sm mt-2 mb-3 text-center"
+          class="pa-4 border rounded-sm mt-2 mb-7 text-center"
         >
           <p class="font-weight-bold">
             {{ $t('components.gymRoute.createCount') }}

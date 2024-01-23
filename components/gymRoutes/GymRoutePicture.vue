@@ -112,7 +112,15 @@ export default {
   mounted () {
     const image = document.querySelector('#panzoom')
     this.panzoom = panzoom(image, {
-      minZoom: 1
+      minZoom: 1,
+      onTouch: (e) => {
+        if (e.touches.length !== 2) {
+          return false
+        } else {
+          e.stopPropagation()
+          e.preventDefault()
+        }
+      }
     })
     this.panzoom.on('transform', this.recenterImage)
     image.addEventListener('touchend', this.resteZoom)
@@ -126,7 +134,7 @@ export default {
   methods: {
     recenterImage () {
       const transform = { ...this.panzoom.getTransform() }
-      if (transform.scale === 1) {
+      if (transform.scale <= 1.1) {
         this.panzoom.moveTo(0, 0)
       }
     },
