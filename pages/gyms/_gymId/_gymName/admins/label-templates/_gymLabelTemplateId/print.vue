@@ -217,7 +217,7 @@ export default {
         padding-bottom: ${this.gymLabelTemplate.layout_options['page-margin']};
       }
       @page {
-        margin: 0mm;
+        margin: 0mm !important;
       }
       .page {
         padding: ${this.gymLabelTemplate.layout_options['page-margin']};
