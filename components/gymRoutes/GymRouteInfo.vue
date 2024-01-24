@@ -1,7 +1,10 @@
 <template>
   <div>
     <!-- Gym route picture -->
-    <gym-route-picture :gym-route="gymRoute" />
+    <gym-route-picture
+      v-if="gymRoute.hasPicture"
+      :gym-route="gymRoute"
+    />
 
     <!-- Information, ascents, etc. -->
     <div class="pa-2">
@@ -160,7 +163,7 @@
 
         <!-- Difficulty appreciation -->
         <v-col
-          v-if="gymRoute.votes"
+          v-if="gymRoute.difficulty_appreciations"
           cols="12"
           class="my-1 px-1"
         >

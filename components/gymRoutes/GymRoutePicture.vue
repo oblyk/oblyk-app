@@ -3,49 +3,72 @@
     class="gym-route-picture-container"
     :class="$vuetify.breakpoint.mobile ? 'mobile-interface' : 'desktop-interface'"
   >
-    <div id="panzoom">
-      <v-img
+    <div
+      class="panzoom-container rounded"
+      :class="panzoomContainerClass"
+      @click="switchCrop"
+    >
+      <div
         v-if="gymRoute.hasPicture"
-        ref="gymRoutePicture"
-        class="rounded gym-route-picture --full-height"
-        :height="height"
-        :src="gymRoute.pictureUrl"
+        id="panzoom"
       >
-        <div
-          v-if="gymRoute.thumbnail_position"
-          class="gym-route-thumbnail-position"
-          :style="`height: ${thbPos.h}%; width: ${thbPos.w}%; top: calc(50% - ${thbPos.dy}%); left: calc(50% - ${thbPos.dx}%)`"
+        <v-img
+          ref="gymRoutePicture"
+          class="rounded gym-route-picture"
+          :min-height="height"
+          :src="gymRoute.pictureUrl"
         >
-          <svg xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="GymRouteGradient" x1="0" x2="100%" y1="0" y2="0">
-                <stop
-                  v-for="(gradiant, gradiantIndex) in thumbnailGradiant"
-                  :key="`gradiant-index-${gradiantIndex}`"
-                  :stop-color="gradiant.color"
-                  :offset="`${gradiant.offset}%`"
-                />
-              </linearGradient>
-            </defs>
-            <rect
-              x="4"
-              y="4"
-              height="100%"
-              width="100%"
-              style="width:calc(100% - 8px);height:calc(100% - 8px)"
-              rx="50%"
-              ry="50%"
-              stroke-width="8"
-              fill="transparent"
-              stroke="url(#GymRouteGradient)"
-            />
-          </svg>
-        </div>
-      </v-img>
+          <div
+            v-if="gymRoute.thumbnail_position"
+            class="gym-route-thumbnail-position"
+            :style="`height: ${thbPos.h}%; width: ${thbPos.w}%; top: calc(50% - ${thbPos.dy}%); left: calc(50% - ${thbPos.dx}%)`"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="GymRouteGradient" x1="0" x2="100%" y1="0" y2="0">
+                  <stop
+                    v-for="(gradiant, gradiantIndex) in thumbnailGradiant"
+                    :key="`gradiant-index-${gradiantIndex}`"
+                    :stop-color="gradiant.color"
+                    :offset="`${gradiant.offset}%`"
+                  />
+                </linearGradient>
+              </defs>
+              <rect
+                x="4"
+                y="4"
+                height="100%"
+                width="100%"
+                style="width:calc(100% - 8px);height:calc(100% - 8px)"
+                rx="50%"
+                ry="50%"
+                stroke-width="8"
+                fill="transparent"
+                stroke="url(#GymRouteGradient)"
+              />
+            </svg>
+          </div>
+        </v-img>
+      </div>
+      <div
+        v-if="orientation === 'portrait'"
+        class="cropper-switch-banner"
+      >
+        <v-btn
+          class="btn-copper-switch-banner"
+          icon
+        >
+          <v-icon color="black">
+            {{ fullPicture ? mdiArrowCollapse : mdiArrowExpand }}
+          </v-icon>
+        </v-btn>
+      </div>
     </div>
   </div>
 </template>
+
 <script>
+import { mdiArrowExpand, mdiArrowCollapse } from '@mdi/js'
 import * as panzoom from 'panzoom'
 
 export default {
@@ -59,7 +82,11 @@ export default {
 
   data () {
     return {
-      height: null
+      height: null,
+      fullPicture: false,
+
+      mdiArrowExpand,
+      mdiArrowCollapse
     }
   },
 
@@ -76,6 +103,24 @@ export default {
         dx: thbP.delta_x,
         dy: thbP.delta_y
       }
+    },
+
+    orientation () {
+      if (this.gymRoute.cover_metadata.height >= this.gymRoute.cover_metadata.width) {
+        return 'portrait'
+      } else {
+        return 'landscape'
+      }
+    },
+
+    panzoomContainerClass () {
+      let cropAlign = '--cropped-center'
+      if (this.gymRoute.thumbnail_position && this.thbPos.dy < -10) {
+        cropAlign = '--cropped-end'
+      } else if (this.gymRoute.thumbnail_position && this.thbPos.dy > 20) {
+        cropAlign = '--cropped-start'
+      }
+      return this.fullPicture || this.orientation === 'landscape' ? '--full' : `${cropAlign} --cropped`
     },
 
     thumbnailGradiant () {
@@ -126,7 +171,10 @@ export default {
     image.addEventListener('touchend', this.resteZoom)
     image.addEventListener('pointerleave', this.resteZoom)
     this.initialTransform = { ...this.panzoom.getTransform() }
-    if (this.gymRoute.hasPicture) {
+    if (this.orientation === 'portrait') {
+      this.height = 350
+      this.panzoom.pause()
+    } else {
       this.height = image.offsetWidth * (this.gymRoute.cover_metadata.height / this.gymRoute.cover_metadata.width)
     }
   },
@@ -150,6 +198,20 @@ export default {
         this.panzoom.moveBy(-xys.x, -xys.y, true)
         this.panzoom.smoothZoomAbs(xys.x, xys.y, 1)
       }
+    },
+
+    switchCrop () {
+      if (this.orientation === 'landscape') {
+        return false
+      }
+
+      if (this.fullPicture) {
+        this.panzoom.pause()
+        this.fullPicture = false
+      } else {
+        this.panzoom.resume()
+        this.fullPicture = true
+      }
     }
   }
 }
@@ -158,6 +220,35 @@ export default {
 .gym-route-picture-container {
   position: relative;
   z-index: 1;
+  .gym-route-picture {
+    background-color: rgba(150, 150, 150, 0.5);
+  }
+  .btn-copper-switch-banner {
+    background-color: white;
+  }
+  .panzoom-container {
+    position: relative;
+    &.--cropped {
+      max-height: 350px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      &.--cropped-start {
+        justify-content: start;
+      }
+      &.--cropped-center {
+        justify-content: center;
+      }
+      &.--cropped-end {
+        justify-content: end;
+      }
+    }
+    .cropper-switch-banner {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+    }
+  }
   .gym-route-thumbnail-position {
     box-sizing: border-box;
     position: absolute;
