@@ -239,6 +239,7 @@ export default {
     count: 'one | %{count}',
     areYouSurToDelete: 'Are you sure you want to delete?',
     areYouSurArchived: 'Are you sure you want to archived ?',
+    areYouSurDismountedRoute: 'Are you sure you want to dismounted route(s) ?',
     filters: 'Filters',
     map: 'Map',
     setting: 'Setting',

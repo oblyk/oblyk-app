@@ -138,6 +138,18 @@
                     </v-list-item-title>
                   </v-list-item>
                   <v-list-item
+                    @click="contestQrCode()"
+                  >
+                    <v-list-item-icon>
+                      <v-icon>
+                        {{ mdiQrcode }}
+                      </v-icon>
+                    </v-list-item-icon>
+                    <v-list-item-title>
+                      Télécharger le QrCode du contest
+                    </v-list-item-title>
+                  </v-list-item>
+                  <v-list-item
                     v-if="contest.draft"
                     @click="draft(false)"
                   >
@@ -159,20 +171,8 @@
                         {{ mdiPublishOff }}
                       </v-icon>
                     </v-list-item-icon>
-                    <v-list-item-title>
+                    <v-list-item-title class="red--text">
                       {{ $t('actions.unPublish') }}
-                    </v-list-item-title>
-                  </v-list-item>
-                  <v-list-item
-                    @click="contestQrCode()"
-                  >
-                    <v-list-item-icon>
-                      <v-icon>
-                        {{ mdiQrcode }}
-                      </v-icon>
-                    </v-list-item-icon>
-                    <v-list-item-title>
-                      Télécharger le QrCode du contest
                     </v-list-item-title>
                   </v-list-item>
                 </v-list>

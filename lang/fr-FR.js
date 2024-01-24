@@ -239,6 +239,7 @@ export default {
     count: 'un | %{count}',
     areYouSurToDelete: 'Êtes vous sur de vouloir supprimer ?',
     areYouSurArchived: 'Êtes vous sur de vouloir archiver ?',
+    areYouSurDismountedRoute: 'Êtes vous sur de démonter la/les ligne(s) ?',
     filters: 'Filtres',
     map: 'Carte',
     setting: 'Réglage',

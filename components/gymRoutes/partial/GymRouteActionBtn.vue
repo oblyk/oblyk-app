@@ -72,7 +72,7 @@
           <v-icon>{{ mdiBackburger }}</v-icon>
         </v-list-item-icon>
         <v-list-item-content>
-          <v-list-item-title>
+          <v-list-item-title class="red--text">
             {{ $t('actions.dismountRoute') }}
           </v-list-item-title>
         </v-list-item-content>
@@ -104,15 +104,17 @@ export default {
 
   methods: {
     dismount () {
-      new GymRouteApi(this.$axios, this.$auth)
-        .dismount(
-          this.gymRoute.gym.id,
-          this.gymRoute.id
-        ).then(() => {
-          this.$root.$emit('reloadSpaceRoutes')
-        }).catch((err) => {
-          this.$root.$emit('alertFromApiError', err, 'gymRoute')
-        })
+      if (confirm(this.$t('common.areYouSurDismountedRoute'))) {
+        new GymRouteApi(this.$axios, this.$auth)
+          .dismount(
+            this.gymRoute.gym.id,
+            this.gymRoute.id
+          ).then(() => {
+            this.$root.$emit('reloadSpaceRoutes')
+          }).catch((err) => {
+            this.$root.$emit('alertFromApiError', err, 'gymRoute')
+          })
+      }
     }
   }
 }

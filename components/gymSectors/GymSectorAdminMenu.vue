@@ -27,34 +27,6 @@
           </v-list-item-title>
         </v-list-item>
 
-        <!-- Edit polyline -->
-        <v-list-item
-          v-if="showPlanOptions && gymAuthCan(gym, 'manage_space')"
-          link
-          @click="startEditSectorPolygon()"
-        >
-          <v-list-item-icon>
-            <v-icon>{{ mdiVectorPolygon }}</v-icon>
-          </v-list-item-icon>
-          <v-list-item-title
-            v-text="gymSector.hasPolygon ? $t('components.gymSector.editSectorPolygon') : $t('components.gymSector.createSectorPolygon')"
-          />
-        </v-list-item>
-
-        <!-- Print label -->
-        <v-list-item
-          @click="printDialog()"
-        >
-          <v-list-item-icon>
-            <v-icon>{{ mdiPrinter }}</v-icon>
-          </v-list-item-icon>
-          <v-list-item-title>
-            {{ $t('actions.print') }}
-          </v-list-item-title>
-        </v-list-item>
-
-        <v-divider />
-
         <!-- Add new route in sector -->
         <v-list-item
           v-if="gymAuthCan(gym, 'manage_opening')"
@@ -69,6 +41,36 @@
           </v-list-item-title>
         </v-list-item>
 
+        <!-- Print label -->
+        <v-list-item
+          @click="printDialog()"
+        >
+          <v-list-item-icon>
+            <v-icon>{{ mdiPrinter }}</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title>
+            {{ $t('actions.print') }}
+          </v-list-item-title>
+        </v-list-item>
+
+        <!-- Edit polyline -->
+        <v-list-item
+          v-if="showPlanOptions && gymAuthCan(gym, 'manage_space')"
+          link
+          @click="startEditSectorPolygon()"
+        >
+          <v-list-item-icon>
+            <v-icon>{{ mdiVectorPolygon }}</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title
+            v-text="gymSector.hasPolygon ? $t('components.gymSector.editSectorPolygon') : $t('components.gymSector.createSectorPolygon')"
+          />
+        </v-list-item>
+
+        <v-divider
+          v-if="gymSector.hasPolygon && showPlanOptions && gymAuthCan(gym, 'manage_space')"
+        />
+
         <!-- Dismount all routes in sector -->
         <v-list-item
           v-if="gymAuthCan(gym, 'manage_opening')"
@@ -78,15 +80,12 @@
           <v-list-item-icon>
             <v-icon>{{ mdiCollapseAllOutline }}</v-icon>
           </v-list-item-icon>
-          <v-list-item-title>
+          <v-list-item-title class="red--text">
             {{ $t('actions.dismountAllRoutes') }}
           </v-list-item-title>
         </v-list-item>
 
         <!-- Remove sector polygone -->
-        <v-divider
-          v-if="gymSector.hasPolygon && showPlanOptions && gymAuthCan(gym, 'manage_space')"
-        />
         <v-list-item
           v-if="gymSector.hasPolygon && showPlanOptions && gymAuthCan(gym, 'manage_space')"
           link
@@ -168,12 +167,14 @@ export default {
     },
 
     dismountRoutes () {
-      this.$root.$emit(
-        'dismountGymRoutesInSector',
-        this.gymSector.gym.id,
-        this.gymSector.gym_space.id,
-        this.gymSector.id
-      )
+      if (confirm(this.$t('common.areYouSurDismountedRoute'))) {
+        this.$root.$emit(
+          'dismountGymRoutesInSector',
+          this.gymSector.gym.id,
+          this.gymSector.gym_space.id,
+          this.gymSector.id
+        )
+      }
     },
 
     removeSectorPolygon () {
