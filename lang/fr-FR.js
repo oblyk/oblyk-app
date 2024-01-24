@@ -1318,6 +1318,7 @@ export default {
       thumbnailPictureExplain: 'Cadrer un detail comme la prise de départ',
       reusePicture: 'Réutiliser une photo',
       createCount: 'Créer ton compte sur Oblyk, suis ta progression et bien plus !',
+      anchorSuggestion: 'Suggestion de relais',
       sorts: {
         opened_at: "Trier par date d'ouverture",
         sector: 'Trier par secteur',
@@ -2251,6 +2252,9 @@ export default {
     gymSector: {
       name: 'Nom du secteur',
       order: 'Ordre',
+      min_anchor_number: 'N° premier relais',
+      max_anchor_number: 'N° dernier relais',
+      anchor_number_explain: 'Numéros de relais dans ce secteur',
       description: 'Description',
       group_sector_name: 'Nom du regroupement',
       climbing_type: "Type d'escalade",

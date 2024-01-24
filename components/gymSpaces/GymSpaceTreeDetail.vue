@@ -140,6 +140,9 @@
             <span v-if="sector.can_be_more_than_one_pitch">
               , {{ $t('models.gymSector.can_be_more_than_one_pitch') }}
             </span>
+            <span v-if="sector.anchor && sector.anchor_ranges.length > 0">
+              , {{ $t('models.cragRoute.anchor') }} n°{{ sector.min_anchor_number }} à {{ sector.max_anchor_number }}
+            </span>
           </v-list-item-title>
         </v-list-item-content>
         <v-list-item-action>

@@ -1318,6 +1318,7 @@ export default {
       thumbnailPictureExplain: 'Framing a detail like the starting shot',
       reusePicture: 'Reusing a photo',
       createCount: 'Create your Oblyk account, track your progress and much more!',
+      anchorSuggestion: 'Anchor suggestion',
       sorts: {
         opened_at: 'Sort by opening date',
         sector: 'Sort by sector',
@@ -2251,6 +2252,9 @@ export default {
     gymSector: {
       name: 'Secteur name',
       order: 'Order',
+      min_anchor_number: 'N° first anchor',
+      max_anchor_number: 'N° last anchor',
+      anchor_number_explain: 'Anchor numbers in this sector',
       description: 'Description',
       group_sector_name: 'Name of the grouping',
       climbing_type: 'Climbing type',

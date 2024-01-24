@@ -86,6 +86,23 @@
         </v-col>
       </v-row>
 
+      <!-- Anchors number suggestion -->
+      <div
+        v-if="gymSector.anchor && gymSector.anchor_ranges !== null && gymSector.anchor_ranges.length > 1"
+        class="mt-n6 mb-4"
+      >
+        {{ $t('components.gymRoute.anchorSuggestion') }} :
+        <v-chip
+          v-for="(anchorNumber, anchorIndex) in gymSector.anchor_ranges"
+          :key="`anchor-index-${anchorIndex}`"
+          outlined
+          class="vertical-align-middle"
+          @click="data.anchor_number = anchorNumber"
+        >
+          {{ $t('models.cragRoute.anchor') }} n°{{ anchorNumber }}
+        </v-chip>
+      </div>
+
       <!-- Random crag route name and information -->
       <p
         v-if="cragRoute.name"
@@ -571,6 +588,8 @@ export default {
     this.data.gym_sector_id ||= this.gymSector.id
     if (this.isEditingForm()) {
       this.getSimilarSectors()
+    } else if (this.gymSector.anchor && this.gymSector.anchor_ranges?.length === 1) {
+      this.data.anchor_number = this.gymSector.anchor_ranges[0]
     }
   },
 

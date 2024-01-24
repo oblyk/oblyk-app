@@ -33,6 +33,34 @@
         required
       />
 
+      <div v-if="gymSpace.anchor">
+        <p class="mb-1 text--disabled pl-1">
+          {{ $t('models.gymSector.anchor_number_explain') }} :
+        </p>
+        <v-row>
+          <v-col>
+            <v-text-field
+              v-model="data.min_anchor_number"
+              outlined
+              type="number"
+              min="0"
+              :label="$t('models.gymSector.min_anchor_number')"
+              required
+            />
+          </v-col>
+          <v-col>
+            <v-text-field
+              v-model="data.max_anchor_number"
+              outlined
+              type="number"
+              min="0"
+              :label="$t('models.gymSector.max_anchor_number')"
+              required
+            />
+          </v-col>
+        </v-row>
+      </div>
+
       <markdown-input
         v-model="data.description"
         :label="$t('models.gymSector.description')"
@@ -106,6 +134,8 @@ export default {
         id: this.gymSector?.id,
         name: this.gymSector?.name,
         order: this.gymSector?.order || (this.gymSpace.last_sector_order + 1),
+        min_anchor_number: this.gymSector?.min_anchor_number,
+        max_anchor_number: this.gymSector?.max_anchor_number,
         height: this.gymSector?.height,
         description: this.gymSector?.description,
         can_be_more_than_one_pitch: this.gymSector?.can_be_more_than_one_pitch,
