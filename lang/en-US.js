@@ -19,6 +19,7 @@ export default {
     ok: 'ok',
     like: 'Like',
     reply: 'Reply',
+    export: 'Export',
     selectOrUnselect: 'select / unselect',
     search: 'Search',
     addFilters: 'Add filters',

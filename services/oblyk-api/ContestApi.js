@@ -52,6 +52,18 @@ class ContestApi extends BaseApi {
     })
   }
 
+  exportResults (gymId, contestId) {
+    return this.axios.request({
+      method: 'GET',
+      url: `${this.baseUrl}/gyms/${gymId}/contests/${contestId}/export_results.json`,
+      responseType: 'blob',
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
+    })
+  }
+
   update (data) {
     return this.axios.request({
       method: 'PUT',

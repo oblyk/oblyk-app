@@ -7,6 +7,17 @@
       <v-btn
         outlined
         text
+        :loading="loadingExport"
+        @click="exportResult"
+      >
+        <v-icon left>
+          {{ mdiExport }}
+        </v-icon>
+        {{ $t('actions.export') }}
+      </v-btn>
+      <v-btn
+        outlined
+        text
         :to="`/contests/${contest.gym_id}/${contest.id}/print-results`"
         target="_blank"
       >
@@ -50,9 +61,11 @@
     />
   </div>
 </template>
+
 <script>
-import { mdiPrinterOutline, mdiCheckboxMultipleOutline } from '@mdi/js'
-import ContestResultTable from '~/components/contests/ContestResultTable.vue'
+import { mdiPrinterOutline, mdiCheckboxMultipleOutline, mdiExport } from '@mdi/js'
+import ContestResultTable from '~/components/contests/ContestResultTable'
+import ContestApi from '~/services/oblyk-api/ContestApi'
 
 export default {
   components: { ContestResultTable },
@@ -69,9 +82,11 @@ export default {
     return {
       showSubscribeCheckbox: false,
       showSelfReportingAlert: false,
+      loadingExport: false,
 
       mdiPrinterOutline,
-      mdiCheckboxMultipleOutline
+      mdiCheckboxMultipleOutline,
+      mdiExport
     }
   },
 
@@ -94,6 +109,23 @@ export default {
       document.querySelector('#contest-tabs').scrollIntoView(
         { behavior: 'smooth', block: 'start' }
       )
+    },
+
+    exportResult () {
+      this.loadingExport = true
+      new ContestApi(this.$axios, this.$auth)
+        .exportResults(this.contest.gym_id, this.contest.id)
+        .then((resp) => {
+          const url = window.URL.createObjectURL(new Blob([resp.data]))
+          const link = document.createElement('a')
+          link.href = url
+          link.setAttribute('download', `export-results-${this.contest.slug_name}.csv`)
+          document.body.appendChild(link)
+          link.click()
+        })
+        .finally(() => {
+          this.loadingExport = false
+        })
     }
   }
 }
