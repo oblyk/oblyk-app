@@ -6,13 +6,15 @@
           <tr>
             <th
               style="width: 10px"
-              class="text-left text-no-wrap"
+              class="text-left text-no-wrap pl-2 pr-0"
             >
               {{ $t(`models.climbs.${contestStep.climbing_type}`) }} n°
             </th>
-            <th v-if="haveGymRoutes || havePictures">
-              Détail
-            </th>
+            <th
+              v-if="haveGymRoutes || havePictures"
+              style="width: 10px"
+              class="text-no-wrap px-0"
+            ></th>
             <th class="text-left">
               {{ resultsTitle }}
             </th>
@@ -25,7 +27,7 @@
           >
             <td
               style="width: 10px"
-              class="text-left text-no-wrap"
+              class="text-left text-no-wrap pl-2 pr-0"
             >
               <v-chip>
                 {{ route.number }}
@@ -40,7 +42,7 @@
             <td
               v-if="haveGymRoutes || havePictures"
               style="width: 10px"
-              class="text-no-wrap"
+              class="text-no-wrap px-0"
             >
               <gym-route-simple-item
                 v-if="route.gym_route_id"
@@ -57,7 +59,7 @@
                 <v-img :src="contestRouteObject(route).pictureUrl" />
               </v-avatar>
             </td>
-            <td class="py-2">
+            <td class="py-2 pl-3 pr-0">
               <contest-route-ascent-form
                 :contest-step="contestStep"
                 :contest-route="route"

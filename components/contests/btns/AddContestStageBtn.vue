@@ -65,7 +65,7 @@ export default {
   methods: {
     addCallback () {
       this.addModal = false
-      this.callback()
+      this.callback('latest')
     }
   }
 }

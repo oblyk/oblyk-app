@@ -2,6 +2,9 @@
   <div>
     <h4>
       {{ contestStep.name }}
+      <span v-if="contest.contest_stages.length > 1">
+        {{ $t(`models.climbs.${contestStep.climbing_type}`).toLowerCase() }}
+      </span>
     </h4>
     <p class="subtitle-2 mb-0 pb-1 border-bottom">
       Du {{ humanizeDate(contestStep.start_date) }} à {{ humanizeDate(contestStep.start_time, 'TIME_SIMPLE') }} au {{ humanizeDate(contestStep.end_date) }} à {{ humanizeDate(contestStep.end_time, 'TIME_SIMPLE') }}
@@ -64,6 +67,7 @@
         :contest="contest"
         :participant-token="participantToken"
         :admin="false"
+        class="mx-n4"
       />
       <div
         v-else

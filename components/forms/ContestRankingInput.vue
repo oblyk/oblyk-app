@@ -7,6 +7,7 @@
     :label="$t('components.input.contestRankingTypes')"
     outlined
     :class="required ? 'required-field' : ''"
+    :menu-props="{ maxHeight: 500 }"
     @change="onChange()"
   />
 </template>

@@ -46,13 +46,19 @@
             <strong class="font-weight-black text-h5">{{ contest.remaining_places }}</strong> place(s) restantes.
           </p>
           <p
-            v-if="contest.coming"
+            v-if="contest.coming && !contest.ongoing"
             class="mb-0"
           >
             Commence <strong class="font-weight-black text-h6">{{ dateFromNow(contest.start_date) }}</strong>
           </p>
           <p
-            v-else
+            v-if="contest.ongoing"
+            class="mb-0"
+          >
+            En cours
+          </p>
+          <p
+            v-if="contest.finished"
             class="mb-0"
           >
             Le {{ humanizeDate(contest.start_date) }}

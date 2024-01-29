@@ -90,7 +90,7 @@
         v-model="ascent.zone_1_attempt"
         label="Zone faite"
         hide-details
-        class="mr-7 mt-0"
+        class="mr-5 mt-0"
         @change="submit"
       />
       <v-checkbox

@@ -96,6 +96,89 @@
           Les épreuves
         </h2>
       </div>
+
+      <!-- If combined -->
+      <v-sheet
+        v-if="stages.length > 1"
+        class="pa-4 rounded mb-4"
+      >
+        <div class="mb-2">
+          <strong>
+            Type de classement du combiné :
+          </strong>
+          <v-menu>
+            <template #activator="{ on, attrs }">
+              <v-btn
+                text
+                outlined
+                small
+                :loading="loadingRankingType"
+                v-bind="attrs"
+                v-on="on"
+              >
+                {{ $t(`models.contestCombinedRanking.type.${contest.combined_ranking_type}`) }}
+              </v-btn>
+            </template>
+            <v-list>
+              <v-list-item @click="updateCombinedRankingType('addition')">
+                <v-list-item-content>
+                  <v-list-item-title>
+                    <v-icon
+                      class="vertical-align-text-bottom ml-1"
+                      :color="contest.combined_ranking_type === 'addition' ? 'primary' : null"
+                    >
+                      {{ contest.combined_ranking_type === 'addition' ? mdiRadioboxMarked : mdiRadioboxBlank }}
+                    </v-icon>
+                    {{ $t('models.contestCombinedRanking.type.addition') }}
+                  </v-list-item-title>
+                  <v-list-item-subtitle
+                    class="--full-subtitle"
+                    v-html="$t('models.contestCombinedRanking.explain.addition')"
+                  />
+                </v-list-item-content>
+              </v-list-item>
+              <v-list-item @click="updateCombinedRankingType('multiplication')">
+                <v-list-item-content>
+                  <v-list-item-title>
+                    <v-icon
+                      class="vertical-align-text-bottom ml-1"
+                      :color="contest.combined_ranking_type === 'multiplication' ? 'primary' : null"
+                    >
+                      {{ contest.combined_ranking_type === 'multiplication' ? mdiRadioboxMarked : mdiRadioboxBlank }}
+                    </v-icon>
+                    {{ $t('models.contestCombinedRanking.type.multiplication') }}
+                  </v-list-item-title>
+                  <v-list-item-subtitle
+                    class="--full-subtitle"
+                    v-html="$t('models.contestCombinedRanking.explain.multiplication')"
+                  />
+                </v-list-item-content>
+              </v-list-item>
+              <v-list-item @click="updateCombinedRankingType('decrement_points')">
+                <v-list-item-content>
+                  <v-list-item-title>
+                    <v-icon
+                      class="vertical-align-text-bottom ml-1"
+                      :color="contest.combined_ranking_type === 'decrement_points' ? 'primary' : null"
+                    >
+                      {{ contest.combined_ranking_type === 'decrement_points' ? mdiRadioboxMarked : mdiRadioboxBlank }}
+                    </v-icon>
+                    {{ $t('models.contestCombinedRanking.type.decrement_points') }}
+                  </v-list-item-title>
+                  <v-list-item-subtitle
+                    class="--full-subtitle"
+                    v-html="$t('models.contestCombinedRanking.explain.decrement_points')"
+                  />
+                </v-list-item-content>
+              </v-list-item>
+            </v-list>
+          </v-menu>
+          <p
+            class="text--disabled mt-2 mb-0"
+            v-html="$t(`models.contestCombinedRanking.explain.${contest.combined_ranking_type}`)"
+          />
+        </div>
+      </v-sheet>
       <div class="d-flex mt-2">
         <v-tabs
           v-if="stages.length > 0"
@@ -114,7 +197,7 @@
           <add-contest-stage-btn
             :contest="contest"
             :callback="getStages"
-            :disabled="stages.length > 0"
+            :disabled="stages.length > 1"
           />
         </div>
       </div>
@@ -131,13 +214,12 @@
 </template>
 
 <script>
-import { mdiRefresh } from '@mdi/js'
+import { mdiRefresh, mdiRadioboxBlank, mdiRadioboxMarked } from '@mdi/js'
 import { DateHelpers } from '~/mixins/DateHelpers'
 import ContestCategoryApi from '~/services/oblyk-api/ContestCategoryApi'
 import ContestCategory from '~/models/ContestCategory'
 import AddContestCategoryBtn from '~/components/contests/btns/AddContestCategoryBtn'
 import ContestCategoryCard from '~/components/contests/ContestCategoryCard'
-import ContestRouteApi from '~/services/oblyk-api/ContestRouteApi'
 import ContestStageApi from '~/services/oblyk-api/ContestStageApi'
 import ContestStage from '~/models/ContestStage'
 import AddContestStageBtn from '~/components/contests/btns/AddContestStageBtn'
@@ -146,6 +228,7 @@ import ContestWaveApi from '~/services/oblyk-api/ContestWaveApi'
 import ContestWave from '~/models/ContestWave'
 import ContestWaveCard from '~/components/contests/ContestWaveCard'
 import AddContestWaveBtn from '~/components/contests/btns/AddContestWaveBtn'
+import ContestApi from '~/services/oblyk-api/ContestApi'
 
 export default {
   components: {
@@ -187,7 +270,11 @@ export default {
       routes: [],
       loadingRoutes: true,
 
-      mdiRefresh
+      loadingRankingType: false,
+
+      mdiRefresh,
+      mdiRadioboxBlank,
+      mdiRadioboxMarked
     }
   },
 
@@ -217,7 +304,7 @@ export default {
   },
 
   methods: {
-    getStages () {
+    getStages (latest = false) {
       this.loadingStages = true
       new ContestStageApi(this.$axios, this.$auth)
         .all(
@@ -233,6 +320,10 @@ export default {
           if (this.firstLoad && this.stages.length > 0) {
             this.getStage(this.stages[0].id)
             this.firstLoad = false
+          }
+          if (latest) {
+            this.getStage(this.stages[this.stages.length - 1].id)
+            this.stageTab = this.stages.length - 1
           }
         })
         .finally(() => {
@@ -275,7 +366,6 @@ export default {
           for (const category of resp.data) {
             this.categories.push(new ContestCategory({ attributes: category }))
           }
-          // this.getRoutes()
         })
         .finally(() => {
           this.loadingCategories = false
@@ -300,18 +390,16 @@ export default {
         })
     },
 
-    getRoutes () {
-      this.loadingRoutes = true
-      new ContestRouteApi(this.$axios, this.$auth)
-        .tables(
-          this.$route.params.gymId,
-          this.$route.params.contestId
-        )
-        .then((resp) => {
-          this.routes = resp.data
+    updateCombinedRankingType (combinedRankingType) {
+      this.loadingRankingType = true
+      new ContestApi(this.$axios, this.$auth)
+        .update({
+          id: this.contest.id,
+          gym_id: this.contest.gym_id,
+          combined_ranking_type: combinedRankingType
         })
         .finally(() => {
-          this.loadingRoutes = false
+          location.reload()
         })
     }
   }

@@ -2342,6 +2342,18 @@ export default {
       authorise_public_subscription: 'Autoriser les inscriptions depuis la page publique',
       private: 'Contest privé'
     },
+    contestCombinedRanking: {
+      type: {
+        addition: 'Addition des classements',
+        multiplication: 'Multiplication des classements',
+        decrement_points: 'Points pas rang (100, 80, 65, etc.)'
+      },
+      explain: {
+        addition: 'On additionne le classement de chaque épreuve, exemple : (bloc 2ème + voie 3ème) = 5 points<br>On classe par le plus petit nombre de points',
+        multiplication: 'On multiplie le classement de chaque épreuve, exemple : (bloc 2ème * voie 3ème) = 6 points<br>On classe par le plus petit nombre de points',
+        decrement_points: "Le(s) premier(s) d'une épreuve à 100pts, le 2ème 80pts, troisième 65pts, etc.<br>On classe par le plus grand nombre de points."
+      }
+    },
     contestCategoryType: {
       official_under_age: "Catégorisation officielle par l'âge (U14, U18, senior, etc.)",
       custom: 'Catégorisation personnalisée (loisir, expert, etc.)'

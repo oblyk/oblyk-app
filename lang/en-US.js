@@ -2340,6 +2340,18 @@ export default {
       ranking_type: 'Raking type',
       categorization_type: 'Categorization type'
     },
+    contestCombinedRanking: {
+      type: {
+        addition: 'Adding up the rankings',
+        multiplication: 'A growing number of rankings',
+        decrement_points: 'Points per rank (100, 80, 65, etc.)'
+      },
+      explain: {
+        addition: 'The ranking for each event is added together, e.g.: (boulder 2nd + route 3rd) = 5 points<br>Ranked by the lowest number of points',
+        multiplication: 'The ranking for each event is multiplied, e.g.: (boulder 2nd * route 3rd) = 6 points<br>Ranked by the lowest number of points',
+        decrement_points: 'First place in an event is awarded 100pts, 2nd 80pts, third 65pts, etc.<br>We rank by the highest number of points.'
+      }
+    },
     contestCategoryType: {
       official_under_age: 'Official age categorization (U14, U18, senior, etc.)',
       custom: 'Custom categorization (hobby, expert, etc.)'

@@ -45,19 +45,21 @@
               </th>
               <th
                 v-for="(stage, stageIndex) in category.participants[0].stages"
-                :key="`stage-${stageIndex}`"
+                :key="`stage-header-index-${stageIndex}`"
                 :colspan="stage.steps.length"
                 class="text-center border-bottom"
+                :class="stage.steps.length > stageIndex ? 'border-right' : ''"
               >
                 {{ $t(`models.climbs.${stage.climbing_type}`) }}
               </th>
             </tr>
             <tr>
-              <template v-for="stage in category.participants[0].stages">
+              <template v-for="(stage, stageIndex) in category.participants[0].stages">
                 <th
                   v-for="(step, thStepIndex) in stage.steps"
-                  :key="`step-${thStepIndex}`"
+                  :key="`step-header-index-${thStepIndex}-${stageIndex}`"
                   class="text-center"
+                  :class="stage.steps.length === thStepIndex + 1 && category.participants[0].stages.length !== stageIndex + 1 ? 'border-right' : ''"
                 >
                   {{ step.name }}
                 </th>
@@ -69,8 +71,19 @@
               v-for="(participant, participantIndex) in category.participants"
               :key="`participant-${participantIndex}`"
             >
-              <td class="border-right">
-                {{ participant.global_rank }}
+              <td
+                class="border-right"
+                :title="participant.global_rank_point"
+              >
+                <strong>
+                  {{ participant.global_rank }}
+                </strong>
+                <small
+                  v-if="category.participants[0].stages.length > 1"
+                  class="text--disabled ml-1"
+                >
+                  {{ Math.round(participant.global_rank_point) }} pts
+                </small>
               </td>
               <td class="border-right">
                 <v-chip
@@ -84,10 +97,10 @@
                   v-text="`${participant.first_name} ${participant.last_name}`"
                 />
               </td>
-              <template v-for="stage in participant.stages">
+              <template v-for="(stage, stageIndex) in participant.stages">
                 <td
                   v-for="(step, stepIndex) in stage.steps"
-                  :key="`step-${stepIndex}`"
+                  :key="`step-${participantIndex}-${stepIndex}-${stageIndex}`"
                   class="text-center border-right"
                 >
                   <v-checkbox
