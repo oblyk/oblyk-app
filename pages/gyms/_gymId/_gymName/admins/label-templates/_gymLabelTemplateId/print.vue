@@ -25,10 +25,11 @@
           <p>
             Découvre le topo de <b>{{ gym.name }}</b><br> et suis ta progression sur Oblyk.org !
           </p>
-          <div v-if="page.reference">
-            <small>
-              {{ page.reference }}
-            </small>
+          <div
+            v-if="page.reference"
+            class="footer-reference"
+          >
+            {{ page.reference }}
           </div>
         </div>
         <div
@@ -40,9 +41,7 @@
         v-if="gymLabelTemplate && gymLabelTemplate.qr_code_position !== 'footer' && page.reference"
         class="footer-reference-only"
       >
-        <small>
-          {{ page.reference }}
-        </small>
+        {{ page.reference }}
       </div>
     </div>
 
@@ -335,8 +334,13 @@ export default {
       width: 100%;
     }
   }
+  .footer-reference {
+    font-size: 1.2em;
+    margin-top: 2mm;
+  }
 }
 .footer-reference-only {
+  font-size: 1.2em;
   position: absolute;
   bottom: 0;
   left: 0;
