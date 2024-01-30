@@ -72,10 +72,10 @@ export default {
       font-weight: 900;
       &.mono-section {
         &.nd-characters-1, &.nd-characters-2 {
-          font-size: 36pt;
+          font-size: 32pt;
         }
         &.nd-characters-3 {
-          font-size: 28pt;
+          font-size: 32pt;
         }
         &.nd-characters-4 {
           font-size: 22pt;

@@ -84,11 +84,11 @@ export default {
     .grade-part {
       &.mono-section {
         &.nd-characters-1, &.nd-characters-2 {
-          font-size: 30pt;
+          font-size: 25pt;
           margin-top: -2mm;
         }
         &.nd-characters-3 {
-          font-size: 21pt;
+          font-size: 25pt;
           padding-bottom: 1mm;
         }
         &.nd-characters-4 {
