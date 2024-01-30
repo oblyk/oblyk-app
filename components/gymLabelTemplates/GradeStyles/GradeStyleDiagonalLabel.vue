@@ -6,6 +6,7 @@
     <div
       v-if="gymLabelTemplate.display_tag_and_hold"
       class="grade-style-label"
+      :class="haveWithColor ? '--dark-border' : ''"
       :style="`background-color: ${gymRoute.hold_colors[0]}; left: ${gymLabelTemplate.display_points || gymLabelTemplate.display_grade ? '6.5mm' : '8mm'}`"
     />
     <div
@@ -45,6 +46,10 @@ export default {
   },
 
   computed: {
+    haveWithColor () {
+      return this.gymRoute.hold_colors && this.gymRoute.hold_colors.includes('#f2f2f2')
+    },
+
     width () {
       if (this.gymLabelTemplate.display_tag_and_hold && (this.gymLabelTemplate.display_points || this.gymLabelTemplate.display_grade)) {
         return '4.5cm'
@@ -103,6 +108,12 @@ export default {
     height: 16mm;
     width: 11mm;
     transform: rotate(45deg);
+    box-sizing: border-box;
+    &.--dark-border {
+      border-style: solid;
+      border-color: #777;
+      border-width: 1px;
+    }
   }
 }
 </style>
