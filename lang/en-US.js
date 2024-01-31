@@ -1303,6 +1303,7 @@ export default {
       removePitch: 'Remove pitch',
       multiPitchRoute: 'Route with more than one pitch',
       noRoute: 'No route found',
+      noMoreToLoad: 'End of route list',
       noRouteInSector: 'No route in this sector',
       findRandomName: 'Find a random name',
       refTo: 'In reference to',

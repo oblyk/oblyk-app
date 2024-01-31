@@ -122,6 +122,7 @@ export default {
       this.stopEditingSectorPolygon()
     })
     this.$root.$on('setMapViewOnSector', (gymSectorId) => {
+      this.activeSector(gymSectorId)
       this.setMapViewOnSector(gymSectorId)
     })
     this.$root.$on('setMapView', () => {
@@ -167,7 +168,7 @@ export default {
       )
     },
 
-    setMapViewOnSector (gymSectorId) {
+    setMapViewOnSector (gymSectorId, maintainZoom = true) {
       const polygonSector = this.$refs[`polygon-sector-${gymSectorId}`]
       const paddingLeft = this.$vuetify.breakpoint.mobile ? 0 : 455
       const paddingBottom = this.$vuetify.breakpoint.mobile ? 240 : 0
@@ -175,7 +176,9 @@ export default {
         polygonSector[0].mapObject.getBounds(),
         {
           paddingTopLeft: [paddingLeft, 0],
-          paddingBottomRight: [0, paddingBottom]
+          paddingBottomRight: [0, paddingBottom],
+          animate: true,
+          maxZoom: maintainZoom ? this.map.getZoom() : null
         }
       )
     },
@@ -188,7 +191,7 @@ export default {
         polygonSector[0].enableEdit()
         this.drawingSectorPolygon = polygonSector[0].mapObject
         this.isNewPolygon = false
-        this.setMapViewOnSector(gymSectorId)
+        this.setMapViewOnSector(gymSectorId, false)
       } else {
         this.drawingSectorPolygon = this.map.editTools.startPolygon()
         this.isNewPolygon = true

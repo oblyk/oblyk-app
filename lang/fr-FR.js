@@ -1303,6 +1303,7 @@ export default {
       removePitch: 'Supprimer une longueur',
       multiPitchRoute: 'Ligne de plusieur longeur',
       noRoute: 'Aucune ligne trouvée',
+      noMoreToLoad: 'Fin de la liste des lignes',
       noRouteInSector: 'Aucune ligne dans ce secteur',
       findRandomName: 'Trouver un nom aléatoire',
       refTo: 'En référence à',

@@ -139,7 +139,7 @@ export default {
     },
     gymRoutes: {
       type: Array,
-      required: true
+      default: null
     },
     showPlanOptions: {
       type: Boolean,
@@ -170,7 +170,7 @@ export default {
       if (confirm(this.$t('common.areYouSurDismountedRoute'))) {
         this.$root.$emit(
           'dismountGymRoutesInSector',
-          this.gymSector.gym.id,
+          this.gym.id,
           this.gymSector.gym_space.id,
           this.gymSector.id
         )
@@ -181,7 +181,7 @@ export default {
       if (confirm(this.$t('components.gymSector.removeSectorPolygonConfirm'))) {
         new GymSectorApi(this.$axios, this.$auth)
           .update({
-            gym_id: this.gymSector.gym.id,
+            gym_id: this.gym.id,
             gym_space_id: this.gymSector.gym_space.id,
             id: this.gymSector.id,
             polygon: null
@@ -195,7 +195,10 @@ export default {
     printDialog () {
       this.$refs.printLabelDialog.openDialog({
         reference: this.gymSector.name,
-        routeIds: this.gymRoutes.map(route => route.id)
+        sector: {
+          id: this.gymSector.id,
+          name: this.gymSector.name
+        }
       })
     }
   }

@@ -5,6 +5,7 @@
     class="rounded-list-item gym-route-list-item"
     :class="itemListClass"
     @click="openGymRoute"
+    @mouseenter="onMouseEnter"
   >
     <v-list-item-avatar
       v-if="gymRoute.thumbnail"
@@ -97,6 +98,10 @@ export default {
     clickCallback: {
       type: Function,
       default: null
+    },
+    highlightSectors: {
+      type: Boolean,
+      default: false
     }
   },
 
@@ -142,6 +147,12 @@ export default {
             query
           }
         )
+      }
+    },
+
+    onMouseEnter () {
+      if (this.highlightSectors) {
+        this.$root.$emit('activeSector', this.gymRoute.gym_sector.id)
       }
     }
   }

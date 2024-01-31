@@ -1,6 +1,24 @@
 import BaseApi from '~/services/oblyk-api/BaseApi'
 
 class GymRouteApi extends BaseApi {
+  paginatedRoutesInGym (gymId, sectorId, orderBy, direction, page) {
+    return this.axios.request({
+      method: 'GET',
+      url: `${this.baseUrl}/gyms/${gymId}/gym_routes/paginated.json`,
+      headers: { HttpApiAccessToken: this.apiAccessToken },
+      params: { order_by: orderBy, direction, page, gym_sector_id: sectorId }
+    })
+  }
+
+  paginatedRoutesInSpace (gymId, spaceId, sectorId, orderBy, direction, page) {
+    return this.axios.request({
+      method: 'GET',
+      url: `${this.baseUrl}/gyms/${gymId}/gym_spaces/${spaceId}/gym_routes/paginated.json`,
+      headers: { HttpApiAccessToken: this.apiAccessToken },
+      params: { order_by: orderBy, direction, page, gym_sector_id: sectorId }
+    })
+  }
+
   allInGym (gymId, groupBy, orderBy, direction = 'asc') {
     return this.axios.request({
       method: 'GET',
@@ -16,14 +34,6 @@ class GymRouteApi extends BaseApi {
       url: `${this.baseUrl}/gyms/${gymId}/gym_spaces/${spaceId}/gym_routes.json`,
       headers: { HttpApiAccessToken: this.apiAccessToken },
       params: { group_by: groupBy, order_by: orderBy, direction }
-    })
-  }
-
-  allInSector (gymId, spaceId, sectorId) {
-    return this.axios.request({
-      method: 'GET',
-      url: `${this.baseUrl}/gyms/${gymId}/gym_spaces/${spaceId}/gym_sectors/${sectorId}/gym_routes.json`,
-      headers: { HttpApiAccessToken: this.apiAccessToken }
     })
   }
 

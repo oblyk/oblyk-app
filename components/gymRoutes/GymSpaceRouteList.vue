@@ -19,7 +19,6 @@
         <v-btn
           text
           icon
-          large
           color="primary"
           :to="gymSpace ? `${gymSpace.path}/select-sector` : `${gym.path}/select-space`"
           :title="$t('actions.addLine')"
@@ -49,75 +48,88 @@
     </div>
 
     <!-- Routes list -->
-    <div v-if="!loadingRoutes">
-      <!-- If sort by sector -->
-      <gym-routes-by-sector
-        v-if="sort.column === 'sector'"
-        :sectors="filteredSectors"
-        :get-routes="getRoutes"
-        :show-plan-options="showPlanOptions"
+    <div
+      v-if="!loadingRoutes"
+      id="gym-routes-list"
+    >
+      <gym-sector-separator
+        v-if="showSectorsToast && sort.column === 'sector'"
+        :gym-sector="{ id: showSectorId, name: showSectorName }"
         :gym="gym"
+        :gym-space="gymSpace"
+        :show-plan-options="gymSpace !== null"
       />
 
-      <!-- If sort by opened_at -->
-      <div v-if="sort.column === 'opened_at'">
-        <gym-routes-by-opened-at
-          v-if="sort.column === 'opened_at'"
-          :opened-ats="filteredOpenedAts"
-          :get-routes="getRoutes"
+      <!-- If I have no routes -->
+      <div v-if="!showSectorsToast && gymSpace && sort.column === 'sector' && gymRoutes.length === 0 && currentUserIsGymAdmin()">
+        <gym-sector-separator
+          v-for="(allSector, allSectorIndex) in gymSpace.gym_sectors"
+          :key="`space-sector-index-${allSectorIndex}`"
+          :gym-space="gymSpace"
+          :gym="gym"
+          :gym-sector="allSector"
         />
-        <!-- if no routes in opened_ats -->
-        <div v-if="openedAts.length === 0">
-          <p class="text-center text--disabled">
-            {{ $t('components.gymRoute.noRoute') }}
-          </p>
-        </div>
       </div>
 
-      <!-- If sort by grade -->
-      <div v-if="sort.column === 'grade'">
-        <gym-routes-by-grade
-          v-if="sort.column === 'grade'"
-          :grades="filteredGrades"
-          :get-routes="getRoutes"
-        />
-        <!-- if no routes in grade -->
-        <div v-if="grades.length === 0">
-          <p class="text-center text--disabled">
-            {{ $t('components.gymRoute.noRoute') }}
-          </p>
+      <!-- Route list -->
+      <div
+        v-for="(route, routeIndex) in gymRoutes"
+        :key="`gym-route-card-${routeIndex}`"
+      >
+        <!-- Gym Sector separator -->
+        <div
+          v-if="!showSectorsToast && sort.column === 'sector' && (routeIndex === 0 || route.gym_sector_id !== gymRoutes[routeIndex - 1].gym_sector_id)"
+        >
+          <gym-sector-separator
+            v-for="(spaceSector, spaceSectorIndex) in sectorsBetween(routeIndex)"
+            :key="`space-sector-index${spaceSectorIndex}`"
+            :gym-sector="spaceSector"
+            :gym="gym"
+            :gym-space="route.gym_space"
+            :class="routeIndex !== 0 ? 'mt-5' : ''"
+            :show-plan-options="gymSpace !== null"
+          />
         </div>
+
+        <!-- Open at Separator -->
+        <opened-at-separator
+          v-if="sort.column === 'opened_at' && (routeIndex === 0 || route.opened_at !== gymRoutes[routeIndex - 1].opened_at)"
+          :opened-at="route.opened_at"
+          :class="routeIndex !== 0 ? 'mt-5' : ''"
+        />
+
+        <!-- Paginate route liste -->
+        <gym-route-list-item
+          :highlight-sectors="showPlanOptions"
+          :gym-route="route"
+          :gym="gym"
+          class="mb-1"
+        />
       </div>
 
-      <!-- If sort by level -->
-      <div v-if="sort.column === 'level'">
-        <gym-routes-by-level
-          v-if="sort.column === 'level'"
-          :levels="filteredLevels"
-          :get-routes="getRoutes"
+      <!-- Load last sector on space after last route -->
+      <div v-if="!showSectorsToast && noMoreDataToLoad && gymSpace && sort.column === 'sector' && gymRoutes.length > 0 && currentUserIsGymAdmin()">
+        <gym-sector-separator
+          v-for="(allSector, allSectorIndex) in lastSectors()"
+          :key="`space-sector-index-${allSectorIndex}`"
+          :gym-space="gymSpace"
+          :gym="gym"
+          :gym-sector="allSector"
         />
-        <!-- if no routes in level -->
-        <div v-if="levels.length === 0">
-          <p class="text-center text--disabled">
-            {{ $t('components.gymRoute.noRoute') }}
-          </p>
-        </div>
       </div>
 
-      <!-- If sort by points -->
-      <div v-if="sort.column === 'point'">
-        <gym-routes-by-point
-          v-if="sort.column === 'point'"
-          :routes="filteredPoints"
-          :get-routes="getRoutes"
-        />
-        <!-- if no routes in point -->
-        <div v-if="points.length === 0">
-          <p class="text-center text--disabled">
-            {{ $t('components.gymRoute.noRoute') }}
-          </p>
-        </div>
-      </div>
+      <loading-more
+        :get-function="getRoutes"
+        :loading-more="loadingMoreData"
+        :no-more-data="noMoreDataToLoad"
+      />
+
+      <p
+        v-if="noMoreDataToLoad"
+        class="text-center text--disabled"
+      >
+        {{ $t('components.gymRoute.noMoreToLoad') }}
+      </p>
     </div>
   </div>
 </template>
@@ -125,28 +137,27 @@
 <script>
 import { mdiSourceBranchPlus } from '@mdi/js'
 import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
+import { LoadingMoreHelpers } from '~/mixins/LoadingMoreHelpers'
 import GymSpaceRouteSort from '@/components/gymRoutes/partial/GymSpaceRouteSort'
 import GymRouteApi from '~/services/oblyk-api/GymRouteApi'
 import GymSectorApi from '~/services/oblyk-api/GymSectorApi'
 import GymRoute from '@/models/GymRoute'
 import GymSector from '@/models/GymSector'
-const GymRoutesBySector = () => import('@/components/gymRoutes/listByGroup/GymRoutesBySector')
-const GymRoutesByOpenedAt = () => import('@/components/gymRoutes/listByGroup/GymRoutesByOpenedAt')
-const GymRoutesByGrade = () => import('@/components/gymRoutes/listByGroup/GymRoutesByGrade')
-const GymRoutesByLevel = () => import('~/components/gymRoutes/listByGroup/GymRoutesByLevel')
-const GymRoutesByPoint = () => import('~/components/gymRoutes/listByGroup/GymRoutesByPoint.vue')
+import GymRouteListItem from '~/components/gymRoutes/GymRouteListItem'
+import LoadingMore from '~/components/layouts/LoadingMore'
+import GymSectorSeparator from '~/components/gymRoutes/listByGroup/GymSectorSeparator'
+import OpenedAtSeparator from '~/components/gymRoutes/listByGroup/OpenedAtSeparator'
 
 export default {
   name: 'GymSpaceRouteList',
   components: {
-    GymRoutesByPoint,
-    GymRoutesByLevel,
-    GymRoutesByGrade,
-    GymRoutesByOpenedAt,
-    GymRoutesBySector,
+    OpenedAtSeparator,
+    GymSectorSeparator,
+    LoadingMore,
+    GymRouteListItem,
     GymSpaceRouteSort
   },
-  mixins: [GymRolesHelpers],
+  mixins: [GymRolesHelpers, LoadingMoreHelpers],
   props: {
     gym: {
       type: Object,
@@ -169,12 +180,6 @@ export default {
   data () {
     return {
       sort: { column: 'opened_at', direction: 'asc' },
-      routes: [],
-      sectors: [],
-      openedAts: [],
-      grades: [],
-      levels: [],
-      points: [],
       gymRoutes: [],
       loadingRoutes: true,
       firstLoaded: false,
@@ -186,96 +191,22 @@ export default {
   },
 
   computed: {
+    GymSector () {
+      return GymSector
+    },
     showSectorsToast () {
       return this.showSectorId !== null
-    },
-
-    filteredSectors () {
-      if (this.sort.column !== 'sector') { return [] }
-      const sectors = []
-      for (const sector of this.sectors) {
-        if (!this.showSectorId || sector.sector.id === this.showSectorId) {
-          sectors.push(sector)
-        }
-      }
-      return sectors
-    },
-
-    filteredGrades () {
-      if (this.sort.column !== 'grade') { return [] }
-      const grades = []
-      for (const grade of this.grades) {
-        const routes = []
-        for (const route of grade.routes) {
-          if (!this.showSectorId || route.gym_sector_id === this.showSectorId) {
-            routes.push(route)
-          }
-        }
-        if (routes.length > 0) {
-          grades.push({ grade: grade.grade, routes })
-        }
-      }
-      return grades
-    },
-
-    filteredOpenedAts () {
-      if (this.sort.column !== 'opened_at') { return [] }
-      const openedAts = []
-      for (const openedAt of this.openedAts) {
-        const routes = []
-        for (const route of openedAt.routes) {
-          if (!this.showSectorId || route.gym_sector_id === this.showSectorId) {
-            routes.push(route)
-          }
-        }
-        if (routes.length > 0) {
-          openedAts.push({ openedAt: openedAt.openedAt, routes })
-        }
-      }
-      return openedAts
-    },
-
-    filteredLevels () {
-      if (this.sort.column !== 'level') { return [] }
-      const levels = []
-      for (const level of this.levels) {
-        const routes = []
-        for (const route of level.routes) {
-          if (!this.showSectorId || route.gym_sector_id === this.showSectorId) {
-            routes.push(route)
-          }
-        }
-        if (routes.length > 0) {
-          levels.push({
-            name: level.name,
-            colors: level.colors,
-            tag_color: level.tag_color,
-            hold_color: level.hold_color,
-            routes
-          })
-        }
-      }
-      return levels
-    },
-
-    filteredPoints () {
-      if (this.sort.column !== 'point') { return [] }
-      const points = []
-      for (const route of this.points) {
-        if (!this.showSectorId || route.gym_sector_id === this.showSectorId) {
-          points.push(route)
-        }
-      }
-      return points
     }
   },
 
   watch: {
     sort () {
-      if (this.firstLoaded) {
-        this.getRoutes()
-      }
+      this.loadingRoutes = true
+      this.gymRoutes = []
+      this.resetLoadMorePageNumber()
+      this.getRoutes()
     },
+
     gymSpace () {
       this.getRoutes()
     }
@@ -306,128 +237,76 @@ export default {
   },
 
   methods: {
-    getRoutes (sectorFilter = null) {
-      this.loadingRoutes = true
+    getRoutes (sectorId = null, scrollToRouteListe = false) {
       const gymRouteApi = new GymRouteApi(this.$axios, this.$auth)
       let promise
+      this.moreIsBeingLoaded()
 
       if (this.gymSpace) {
         promise = gymRouteApi
-          .allInSpace(
+          .paginatedRoutesInSpace(
             this.gymSpace.gym.id,
             this.gymSpace.id,
+            sectorId,
             this.sort.column,
-            this.sort.column,
-            this.sort.direction
+            this.sort.direction,
+            this.page
           )
       } else {
         promise = gymRouteApi
-          .allInGym(
+          .paginatedRoutesInGym(
             this.gym.id,
+            sectorId,
             this.sort.column,
-            this.sort.column,
-            this.sort.direction
+            this.sort.direction,
+            this.page
           )
       }
 
       promise
         .then((resp) => {
-          this.gymRoutes = []
-          this.sectors = []
-          this.grades = []
-          this.openedAts = []
-          this.levels = []
-          this.points = []
-
-          // If by sector
-          if (this.sort.column === 'sector') {
-            const sectors = resp.data.sectors
-            for (const sector of sectors) {
-              // Next if filter sector and not good sector
-              if (sectorFilter && sector.sector.id !== sectorFilter) { continue }
-
-              const routes = []
-              for (const route of sector.routes) {
-                routes.push(new GymRoute({ attributes: route }))
-              }
-              this.sectors.push({
-                sector: new GymSector({ attributes: sector.sector }),
-                routes
-              })
-            }
-          } else if (this.sort.column === 'opened_at') {
-            // If by opened_at
-            const openedAts = resp.data.opened_at
-            for (const openedAt of openedAts) {
-              const routes = []
-              for (const route of openedAt.routes) {
-                routes.push(new GymRoute({ attributes: route }))
-              }
-              this.openedAts.push({
-                openedAt: openedAt.opened_at,
-                routes
-              })
-            }
-          } else if (this.sort.column === 'grade') {
-            // If by grade
-            const grades = resp.data.grade
-            for (const grade of grades) {
-              const routes = []
-              for (const route of grade.routes) {
-                routes.push(new GymRoute({ attributes: route }))
-              }
-              this.grades.push({
-                grade: grade.grade,
-                routes
-              })
-            }
-          } else if (this.sort.column === 'level') {
-            // If by level
-            const levels = resp.data.level
-            for (const level of levels) {
-              const routes = []
-              for (const route of level.routes) {
-                routes.push(new GymRoute({ attributes: route }))
-              }
-              this.levels.push({
-                name: level.name,
-                colors: level.colors,
-                tag_color: level.tag_color,
-                hold_color: level.hold_color,
-                routes
-              })
-            }
-          } else if (this.sort.column === 'point') {
-            this.points = []
-            for (const route of resp.data) {
-              this.points.push(new GymRoute({ attributes: route }))
-            }
+          for (const route of resp.data) {
+            this.gymRoutes.push(new GymRoute({ attributes: route }))
           }
+
+          if (scrollToRouteListe) {
+            setTimeout(() => {
+              const gymRouteList = document.querySelector('#gym-routes-list')
+              gymRouteList.scrollIntoView({ behavior: 'smooth' })
+            }, 300)
+          }
+
+          this.successLoadingMore(resp)
           localStorage.setItem('gym_route_sort_column', this.sort.column)
           localStorage.setItem('gym_route_sort_direction', this.sort.direction)
         })
         .catch((err) => {
           this.$root.$emit('alertFromApiError', err, 'gymRoute')
+          this.failureToLoadingMore()
         })
         .finally(() => {
           this.loadingRoutes = false
           this.firstLoaded = true
+          this.finallyMoreIsLoaded()
         })
     },
 
     filterBySector (sectorId, sectorName) {
+      this.loadingRoutes = true
       this.showSectorId = sectorId
       this.showSectorName = sectorName
-      setTimeout(() => {
-        const firstGymRouteSectorName = document.querySelector('.gym-route-list-item')
-        firstGymRouteSectorName.scrollIntoView({ behavior: 'smooth' })
-      }, 300)
+      this.gymRoutes = []
+      this.resetLoadMorePageNumber()
+      this.getRoutes(sectorId, true)
     },
 
     closeSectorFilter () {
       this.$root.$emit('setMapView')
       this.showSectorId = null
       this.showSectorName = null
+      this.gymRoutes = []
+      this.resetLoadMorePageNumber()
+      this.getRoutes()
     },
 
     dismountRoutes (gymId, spaceId, sectorId) {
@@ -449,6 +328,42 @@ export default {
         .finally(() => {
           this.loadingRoutes = false
         })
+    },
+
+    sectorsBetween (routeIndex) {
+      if (this.gymSpace === null) {
+        return [this.gymRoutes[routeIndex].gym_sector]
+      }
+
+      const sectors = []
+      const currentSector = { ...this.gymSpace.gym_sectors.find((sector) => { return this.gymRoutes[routeIndex].gym_sector.id === sector.id }) }
+      if (routeIndex !== 0) {
+        const previousSector = { ...this.gymSpace.gym_sectors.find((sector) => { return this.gymRoutes[routeIndex - 1].gym_sector.id === sector.id }) }
+        for (const sector of this.gymSpace.gym_sectors) {
+          if (sector.order < currentSector.order && sector.order > previousSector.order) {
+            sectors.push(sector)
+          }
+        }
+      } else if (this.gymRoutes.length === 1) {
+        for (const sector of this.gymSpace.gym_sectors) {
+          if (sector.order < currentSector.order) {
+            sectors.push(sector)
+          }
+        }
+      }
+      sectors.push(currentSector)
+      return sectors
+    },
+
+    lastSectors () {
+      const lastSector = { ...this.gymSpace.gym_sectors.find((sector) => { return this.gymRoutes[this.gymRoutes.length - 1].gym_sector.id === sector.id }) }
+      const sectors = []
+      for (const sector of this.gymSpace.gym_sectors) {
+        if (sector.order > lastSector.order) {
+          sectors.push(sector)
+        }
+      }
+      return sectors
     }
   }
 }
