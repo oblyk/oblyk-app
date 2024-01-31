@@ -109,9 +109,9 @@ export default {
       if (this.gymRoute.openers.length === 1) {
         return this.gymRoute.openers[0].name
       } else {
-        const openers = this.gymRoute.openers
+        const openers = this.gymRoute.openers.map((opener) => { return opener.name })
         const lastOpener = openers.pop()
-        return `${openers.map(opener => opener.name).join(', ')} et ${lastOpener.name}`
+        return `${openers.join(', ')} et ${lastOpener}`
       }
     }
   },
