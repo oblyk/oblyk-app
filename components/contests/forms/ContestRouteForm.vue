@@ -4,10 +4,18 @@
       v-model="data.number"
       outlined
       required
-      hide-details
       type="number"
       class="required-field"
       :label="$t('models.contestRoute.number')"
+    />
+
+    <v-text-field
+      v-model="data.name"
+      outlined
+      required
+      persistent-hint
+      hint="Nom : Permet d'ajouter un nom ou une petite description (optionnel)"
+      :label="$t('models.contestRoute.name')"
     />
 
     <v-text-field
@@ -82,6 +90,7 @@ export default {
       data: {
         id: this.contestRoute?.id,
         number: this.contestRoute?.number,
+        name: this.contestRoute?.name,
         number_of_holds: this.contestRoute?.number_of_holds,
         fixed_points: this.contestRoute?.fixed_points,
         additional_zone: this.contestRoute?.additional_zone,

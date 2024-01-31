@@ -79,6 +79,15 @@
         Pas de zone
       </v-chip>
     </div>
+    <div
+      v-if="route.name"
+      class="ml-2"
+      @click="editModal = true"
+    >
+      <v-chip outlined>
+        {{ route.name }}
+      </v-chip>
+    </div>
     <v-spacer />
     <v-tooltip
       top

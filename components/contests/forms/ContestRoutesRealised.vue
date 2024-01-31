@@ -60,6 +60,12 @@
               </v-avatar>
             </td>
             <td class="py-2 pl-3 pr-0">
+              <div
+                v-if="route.name"
+                class="font-weight-bold"
+              >
+                {{ route.name }}
+              </div>
               <contest-route-ascent-form
                 :contest-step="contestStep"
                 :contest-route="route"

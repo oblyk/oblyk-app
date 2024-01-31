@@ -2420,6 +2420,7 @@ export default {
     },
     contestRoute: {
       number: 'Numéro',
+      name: 'Nom',
       number_of_holds: 'Nombre de prise',
       fixed_points: 'Points',
       additional_zone: 'À une zone'
