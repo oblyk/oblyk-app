@@ -1194,6 +1194,8 @@ export default {
       GuideBookAndContest: 'My guide book & Contests',
       gestionSettings: 'Gestion',
       table: 'Table',
+      searchInXRoutes: 'Search in %{count} routes',
+      selectedCount: 'One selection | %{count} selected',
       team: 'Team',
       statistic: 'Statistic',
       structure: 'Structure',

@@ -6,7 +6,7 @@
       <client-only>
         <gym-routes-table
           :gym="gym"
-          class="mt-4"
+          class="mt-2"
         />
       </client-only>
     </div>

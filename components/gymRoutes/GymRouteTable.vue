@@ -4,20 +4,47 @@
     <v-row class="mb-10">
       <v-col>
         <client-only>
+          <v-tabs
+            v-if="gym.gym_spaces.length > 1"
+            v-model="spaceTab"
+            class="rounded mb-2"
+          >
+            <v-tab disabled>
+              {{ $t('components.gymAdmin.spaces') }} :
+            </v-tab>
+            <v-tab
+              v-for="(space, spaceIndex) in gym.gym_spaces"
+              :key="`space-index-${spaceIndex}`"
+              @click="getRoutes(space.id)"
+            >
+              <v-img
+                contain
+                height="40"
+                width="40"
+                class="mr-3"
+                :src="spaceToObject(space).planTinyThumbnailUrl"
+              />
+              {{ space.name }}
+            </v-tab>
+            <v-tab @click="getRoutes()">
+              {{ $t('common.all') }}
+            </v-tab>
+          </v-tabs>
           <v-sheet class="pt-2 pb-1 pr-3 pl-2 rounded mb-2">
             <v-text-field
               v-model="search"
-              :label="$t('actions.search')"
+              :label="$t('components.gymAdmin.searchInXRoutes', { count: routes.length })"
               hide-details
               dense
-              :prepend-icon="mdiMagnify"
+              outlined
+              :prepend-inner-icon="mdiMagnify"
             />
           </v-sheet>
           <v-data-table
             v-model="routeSelected"
             :headers="tableHeaders"
             :items="tableRoutes"
-            :items-per-page="15"
+            :items-per-page="50"
             :loading="loadingRoutes"
             item-key="id"
             :search="search"
@@ -157,7 +184,7 @@
               v-once
               #[`item.edit`]="{ item }"
             >
-              <nuxt-link :to="`${item.edit.path}/edit?redirect_to=${$route.fullPath}`">
+              <nuxt-link :to="`${item.edit.path}/edit?redirect_to=${$route.path}?space_id=${item.space.gym_space.id}`">
                 <v-icon small>
                   {{ mdiPencil }}
                 </v-icon>
@@ -186,7 +213,7 @@
               <v-icon left>
                 {{ mdiDotsVertical }}
               </v-icon>
-              {{ $t('actions.actions') }}
+              {{ $tc('components.gymAdmin.selectedCount', routeSelected.length, { count: routeSelected.length }) }}
             </v-btn>
           </template>
           <v-list>
@@ -321,6 +348,7 @@ import AscentGymRoute from '~/models/AscentGymRoute'
 import Note from '~/components/notes/Note.vue'
 import AscentGymRouteStatusIcon from '~/components/ascentGymRoutes/AscentGymRouteStatusIcon.vue'
 import PrintLabelDialog from '~/components/gymLabelTemplates/PrintLabelDialog.vue'
+import GymSpace from '~/models/GymSpace'
 
 export default {
   name: 'GymRoutesTable',
@@ -348,6 +376,7 @@ export default {
       routeAscents: [],
       tableRoutes: [],
       search: null,
+      spaceTab: 1,
 
       mdiBackburger,
       mdiForwardburger,
@@ -498,16 +527,30 @@ export default {
   },
 
   mounted () {
-    this.getRoutes()
+    const urlParams = new URLSearchParams(window.location.search)
+    const querySpace = urlParams.get('space_id')
+    if (querySpace) {
+      let index = 1
+      for (const space of this.gym.gym_spaces) {
+        if (space.id === parseInt(querySpace)) {
+          this.spaceTab = index
+          break
+        }
+        index += 1
+      }
+      this.getRoutes(querySpace)
+    } else {
+      this.getRoutes(this.gym.gym_spaces[0].id)
+    }
   },
 
   methods: {
-    getRoutes () {
+    getRoutes (gymSpaceId) {
       this.loadingRoutes = true
       this.routes = []
       this.tableRoutes = []
       new GymApi(this.$axios, this.$auth)
-        .routes(this.gym.id)
+        .routes(this.gym.id, gymSpaceId)
         .then((resp) => {
           for (const route of resp.data) {
             this.routes.push(new GymRoute({ attributes: route }))
@@ -616,30 +659,6 @@ export default {
           routeIds
         }
       )
-      // this.loadingRoutes = true
-      // new GymRouteApi(this.$axios, this.$auth)
-      //   .printCollection(this.gym.id, routeIds)
-      //   .then((resp) => {
-      //     const newBlob = new Blob([resp.data], { type: 'application/pdf' })
-      //     if (window.navigator && window.navigator.msSaveOrOpenBlob) {
-      //       window.navigator.msSaveOrOpenBlob(newBlob)
-      //       return
-      //     }
-      //
-      //     const data = window.URL.createObjectURL(newBlob)
-      //     const link = document.createElement('a')
-      //     link.href = data
-      //     link.setAttribute(
-      //       'download',
-      //       this.$t('components.gymRoute.printedFileName', { date: this.ISODateToday(), name: this.gym.name })
-      //     )
-      //     link.click()
-      //     setTimeout(() => { window.URL.revokeObjectURL(data) }, 100)
-      //     this.routeSelected = []
-      //   })
-      //   .finally(() => {
-      //     this.loadingRoutes = false
-      //   })
     },
 
     exportCollection () {
@@ -715,6 +734,10 @@ export default {
       } else {
         return this.$t('components.difficulty.soft')
       }
+    },
+
+    spaceToObject (space) {
+      return new GymSpace({ attributes: space })
     }
   }
 }

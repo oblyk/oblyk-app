@@ -31,7 +31,7 @@ class GymApi extends BaseApi {
     })
   }
 
-  routes (gymId, dismounted = false) {
+  routes (gymId, gymSpaceId = null, dismounted = false) {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/gyms/${gymId}/routes.json`,
@@ -40,7 +40,8 @@ class GymApi extends BaseApi {
         HttpApiAccessToken: this.apiAccessToken
       },
       params: {
-        dismounted
+        dismounted,
+        gym_space_id: gymSpaceId
       }
     })
   }
