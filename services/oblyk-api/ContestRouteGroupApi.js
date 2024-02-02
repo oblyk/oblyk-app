@@ -48,6 +48,17 @@ class ContestRouteGroupApi extends BaseApi {
     })
   }
 
+  addRoute (data) {
+    return this.axios.request({
+      method: 'POST',
+      url: `${this.baseUrl}/gyms/${data.gym_id}/contests/${data.contest_id}/contest_stages/${data.contest_stage_id}/contest_stage_steps/${data.contest_stage_step_id}/contest_route_groups/${data.id}/add_route.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
+    })
+  }
+
   delete (gymId, contestId, stageId, stepId, groupId) {
     return this.axios.request({
       method: 'DELETE',

@@ -52,6 +52,16 @@
                 {{ $t('actions.edit') }}
               </v-list-item-title>
             </v-list-item>
+            <v-list-item @click="addRoute()">
+              <v-list-item-icon>
+                <v-icon>
+                  {{ mdiPlus }}
+                </v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>
+                {{ $t('actions.addRoute') }}
+              </v-list-item-title>
+            </v-list-item>
             <v-list-item @click="deleteGroup()">
               <v-list-item-icon>
                 <v-icon>
@@ -187,7 +197,8 @@ import {
   mdiTrashCan,
   mdiClockStart,
   mdiClockEnd,
-  mdiArrowRightThin
+  mdiArrowRightThin,
+  mdiPlus
 } from '@mdi/js'
 import { DateHelpers } from '~/mixins/DateHelpers'
 import ContestRouteLine from '~/components/contests/ContestRouteLine.vue'
@@ -240,7 +251,8 @@ export default {
       mdiTrashCan,
       mdiClockStart,
       mdiClockEnd,
-      mdiArrowRightThin
+      mdiArrowRightThin,
+      mdiPlus
     }
   },
 
@@ -259,6 +271,7 @@ export default {
           this.routeGroup = new ContestRouteGroup({ attributes: resp.data })
         })
         .finally(() => {
+          this.loadingAction = false
           this.refreshing = false
         })
     },
@@ -278,6 +291,21 @@ export default {
         })
         .finally(() => {
           this.loadingAction = false
+        })
+    },
+
+    addRoute () {
+      this.loadingAction = true
+      new ContestRouteGroupApi(this.$axios, this.$auth)
+        .addRoute({
+          gym_id: this.contest.gym_id,
+          contest_id: this.contest.id,
+          contest_stage_id: this.contestStage.id,
+          contest_stage_step_id: this.contestStageStep.id,
+          id: this.contestRouteGroup.id
+        })
+        .then(() => {
+          this.getRouteGroup()
         })
     },
 
