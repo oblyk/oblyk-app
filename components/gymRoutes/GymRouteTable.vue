@@ -88,16 +88,29 @@
             <!-- Row slot -->
             <template
               v-once
+              #[`item.see`]="{ item }"
+            >
+              <v-btn
+                icon
+                @click="getGymRoute(item)"
+              >
+                <v-icon>
+                  {{ mdiEyeOutline }}
+                </v-icon>
+              </v-btn>
+            </template>
+            <template
+              v-once
               #[`item.color`]="{ item }"
             >
               <gym-route-tag-and-hold :gym-route="item.color" />
             </template>
             <template
               v-once
-              #[`item.space`]="{ item }"
+              #[`item.gym_space`]="{ item }"
             >
-              <nuxt-link :to="item.space.gymSpacePath">
-                {{ item.space.gym_space.name }}
+              <nuxt-link :to="`/gyms/${item.gym.id}/${item.gym.slug_name}/spaces/${item.gym_space.id}/${item.gym_space.slug_name}`">
+                {{ item.gym_space.name }}
               </nuxt-link>
             </template>
             <template
@@ -184,7 +197,7 @@
               v-once
               #[`item.edit`]="{ item }"
             >
-              <nuxt-link :to="`${item.edit.path}/edit?redirect_to=${$route.path}?space_id=${item.space.gym_space.id}`">
+              <nuxt-link :to="`${`/gyms/${item.gym.id}/${item.gym.slug_name}/spaces/${item.gym_space.id}/${item.gym_space.slug_name}/routes/${item.id}`}/edit?redirect_to=${$route.path}?space_id=${item.gym_space.id}`">
                 <v-icon small>
                   {{ mdiPencil }}
                 </v-icon>
@@ -320,6 +333,22 @@
       ref="printLabelDialog"
       :gym="gym"
     />
+
+    <!-- Popup for gym route -->
+    <down-to-close-dialog
+      ref="GymRouteDialog"
+      v-model="gymRouteDialog"
+      padding-x="px-2"
+      :close-callback="closeGymRouteModal"
+      wait-signal
+    >
+      <gym-route-info
+        v-if="!loadingGymRoute && gymRoute"
+        :close-callback="closeGymRouteModal"
+        :gym-route="gymRoute"
+        :gym="gym"
+      />
+    </down-to-close-dialog>
   </div>
 </template>
 
@@ -336,7 +365,8 @@ import {
   mdiHeartOutline,
   mdiGauge,
   mdiArrowRightThin,
-  mdiMagnify
+  mdiMagnify,
+  mdiEyeOutline
 } from '@mdi/js'
 import { DateHelpers } from '@/mixins/DateHelpers'
 import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
@@ -349,10 +379,14 @@ import Note from '~/components/notes/Note.vue'
 import AscentGymRouteStatusIcon from '~/components/ascentGymRoutes/AscentGymRouteStatusIcon.vue'
 import PrintLabelDialog from '~/components/gymLabelTemplates/PrintLabelDialog.vue'
 import GymSpace from '~/models/GymSpace'
+import DownToCloseDialog from '~/components/ui/DownToCloseDialog.vue'
+import GymRouteInfo from '~/components/gymRoutes/GymRouteInfo.vue'
 
 export default {
   name: 'GymRoutesTable',
   components: {
+    GymRouteInfo,
+    DownToCloseDialog,
     PrintLabelDialog,
     AscentGymRouteStatusIcon,
     Note,
@@ -377,6 +411,9 @@ export default {
       tableRoutes: [],
       search: null,
       spaceTab: 1,
+      gymRouteDialog: false,
+      loadingGymRoute: false,
+      gymRoute: null,
 
       mdiBackburger,
       mdiForwardburger,
@@ -389,7 +426,8 @@ export default {
       mdiHeartOutline,
       mdiGauge,
       mdiArrowRightThin,
-      mdiMagnify
+      mdiMagnify,
+      mdiEyeOutline
     }
   },
 
@@ -398,55 +436,62 @@ export default {
       const headers = [
         {
           order: 1,
+          text: '',
+          align: 'start',
+          sortable: false,
+          value: 'see'
+        },
+        {
+          order: 2,
           text: this.$t('models.gymRoute.colors'),
           align: 'start',
           sortable: false,
           value: 'color'
         },
         {
-          order: 5,
+          order: 6,
           text: this.$t('models.gymRoute.openers'),
           align: 'start',
           sortable: true,
           value: 'opener'
         },
         {
-          order: 6,
+          order: 7,
           text: this.$t('models.gymRoute.opened_at'),
           align: 'start',
           sortable: true,
           value: 'openedAt'
         },
         {
-          order: 8,
+          order: 9,
           text: this.$t('models.gymRoute.gym_sector_id'),
           align: 'start',
           sortable: true,
           value: 'sector'
         },
         {
-          order: 9,
+          order: 10,
           text: this.$t('models.gymRoute.gym_space_id'),
           align: 'start',
           sortable: true,
-          value: 'space'
+          value: 'gym_space'
         },
         {
-          order: 10,
+          order: 11,
           text: this.$t('models.gymRoute.ascents'),
           align: 'start',
           sortable: true,
           value: 'ascentsCount'
         },
         {
-          order: 11,
+          order: 12,
           text: this.$t('models.gymRoute.likes_count'),
           align: 'start',
           sortable: true,
           value: 'likesCount'
         },
         {
-          order: 12,
+          order: 13,
           text: this.$t('models.gymRoute.difficulty_appreciation'),
           align: 'start',
           sortable: true,
@@ -462,7 +507,7 @@ export default {
         // Add anchor column
         if (!haveAnchor && route.anchor_number !== null) {
           headers.push({
-            order: 7,
+            order: 8,
             text: this.$t('models.gymRoute.anchor_number'),
             align: 'start',
             sortable: true,
@@ -473,7 +518,7 @@ export default {
         // Add name column
         if (!haveName && route.name !== null) {
           headers.push({
-            order: 4,
+            order: 5,
             text: this.$t('models.gymRoute.short_name'),
             align: 'start',
             sortable: true,
@@ -484,7 +529,7 @@ export default {
         // Add point column
         if (!havePoint && route.points_to_s !== null) {
           headers.push({
-            order: 3,
+            order: 4,
             text: this.$t('models.gymRoute.points'),
             align: 'start',
             sortable: true,
@@ -495,7 +540,7 @@ export default {
         // Add grade column
         if (!haveGrade && route.grade_to_s !== null) {
           headers.push({
-            order: 2,
+            order: 3,
             text: this.$t('models.gymRoute.grade'),
             align: 'start',
             sortable: true,
@@ -509,7 +554,7 @@ export default {
       if (this.canManageOpening) {
         headers.push(
           {
-            order: 13,
+            order: 14,
             text: '',
             align: 'center',
             sortable: false,
@@ -588,19 +633,32 @@ export default {
         this.tableRoutes.push(
           {
             id: route.id,
-            color: route,
+            color: {
+              id: route.id,
+              hold_colors: route.hold_colors,
+              tag_colors: route.tag_colors
+            },
             name: route.name,
             grade: route.grade_to_s,
             points: route.points_to_s,
             anchorNumber: route.anchor_number,
             sector: route.gym_sector.name,
-            space: route,
+            gym_space: {
+              id: route.gym_space.id,
+              name: route.gym_space.name,
+              slug_name: route.gym_space.slug_name
+            },
+            gym: {
+              id: route.gym.id,
+              name: route.gym.name,
+              slug_name: route.gym.slug_name
+            },
             opener: route.openers.map(opener => opener.name).join(', '),
             openedAt: route.opened_at,
             ascentsCount: route.ascents_count,
             likesCount: route.likes_count,
             difficultyAppreciation: route.difficulty_appreciation,
-            edit: route
+            edit: null
           }
         )
       }
@@ -738,6 +796,24 @@ export default {
 
     spaceToObject (space) {
       return new GymSpace({ attributes: space })
+    },
+
+    getGymRoute (route) {
+      this.loadingGymRoute = true
+      this.gymRouteDialog = true
+      new GymRouteApi(this.$axios, this.$auth)
+        .find(this.gym.id, route.gym_space.id, route.id)
+        .then((resp) => {
+          this.gymRoute = new GymRoute({ attributes: resp.data })
+          this.$refs.GymRouteDialog?.signal()
+        })
+        .finally(() => {
+          this.loadingGymRoute = false
+        })
+    },
+
+    closeGymRouteModal () {
+      this.gymRouteDialog = false
     }
   }
 }
