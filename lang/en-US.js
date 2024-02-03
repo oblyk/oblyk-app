@@ -1147,6 +1147,10 @@ export default {
       surToRefresh: 'Are you sure you want to regenerate the api key? this action is irreversible.',
       surToDelete: 'Are you sure you want to delete your organization? this action is irreversible.'
     },
+    gymChain: {
+      title: 'Chain',
+      map: 'Gyms map'
+    },
     gym: {
       type: 'Gym',
       addNew: 'Add a new climbing gym',
@@ -2140,6 +2144,10 @@ export default {
       publication_year: 'Publication year',
       crag: 'Crag',
       pdf_file: 'PDF file'
+    },
+    gymChain: {
+      name: 'Chain name',
+      description: 'Description'
     },
     gym: {
       name: 'Gym name',

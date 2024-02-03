@@ -1147,6 +1147,10 @@ export default {
       surToRefresh: "Êtes vous sur de vouloir régénérer la clé d'api ? cette action est irréversible.",
       surToDelete: 'Êtes vous sur de vouloir supprimer votre organisation ? cette action est irréversible.'
     },
+    gymChain: {
+      title: 'Réseau',
+      map: 'Carte des salles'
+    },
     gym: {
       type: 'Salle',
       addNew: 'Ajouter une nouvelle salle',
@@ -2140,6 +2144,10 @@ export default {
       publication_year: 'Année de publication',
       crag: "Site d'escalade",
       pdf_file: 'Fichier PDF'
+    },
+    gymChain: {
+      name: 'Nom du réseau',
+      description: 'Description'
     },
     gym: {
       name: 'Nom de la salle',
