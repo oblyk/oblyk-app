@@ -35,7 +35,7 @@
     <v-alert
       v-if="showNameAlert"
       text
-      type="info"
+      type="error"
       class="mt-n4 mb-7"
     >
       Ne faite pas une catégorie "Homme" ou "Femme", vous aurez deux classements suivant le genre des participant·e·s.
