@@ -201,7 +201,7 @@ export default {
       // Add style
       const newStyle = document.createElement('style')
       newStyle.textContent = `
-      body {
+      .label-row .grade {
         font-family: ${this.gymLabelTemplate.font.name};
         font-size: ${this.gymLabelTemplate.font.size};
         line-height: ${this.gymLabelTemplate.font.line_height};
@@ -214,9 +214,6 @@ export default {
         padding-left: ${this.gymLabelTemplate.layout_options['page-margin']};
         padding-right: ${this.gymLabelTemplate.layout_options['page-margin']};
         padding-bottom: ${this.gymLabelTemplate.layout_options['page-margin']};
-      }
-      @page {
-        margin: 0mm !important;
       }
       .page {
         padding: ${this.gymLabelTemplate.layout_options['page-margin']};
@@ -273,6 +270,10 @@ export default {
 </script>
 
 <style lang="scss">
+body {
+  font-size: 14pt;
+  font-family: sans-serif;
+}
 .page {
   break-after: page;
   page-break-after: always;
@@ -281,8 +282,12 @@ export default {
   margin: auto;
   box-sizing: border-box;
 }
+@page {
+  margin: 0 !important;
+}
 .preview {
   padding: 3mm;
+  height: 100vh;
 }
 .no-break {
   page-break-inside: avoid;
@@ -324,6 +329,7 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: right;
+  font-size: 12pt;
   .footer-qr-code {
     box-sizing: border-box;
     height: 2cm;

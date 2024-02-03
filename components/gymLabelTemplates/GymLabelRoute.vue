@@ -35,12 +35,12 @@
         <b>{{ gymRoute.name }}</b>
       </p>
       <p v-if="(gymLabelTemplate.display_openers && gymRoute.openers.length > 0) || gymLabelTemplate.display_opened_at">
-        Ouvert
-        <span v-if="gymLabelTemplate.display_openers && gymRoute.openers.length > 0">
-          par {{ openersToS }}
-        </span>
+        <span
+          v-if="gymLabelTemplate.display_openers && gymRoute.openers.length > 0"
+          v-text="openersToS"
+        />
         <span v-if="gymLabelTemplate.display_opened_at">
-          le {{ humanizeDate(gymRoute.opened_at) }}
+          le {{ humanizeDate(gymRoute.opened_at, 'DATE_MED') }}
         </span>
       </p>
       <markdown-text
