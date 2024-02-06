@@ -1,6 +1,7 @@
 <template>
   <v-list-item
-    :to="contestPath()"
+    :to="callback ? null : contestPath()"
+    @click="callback ? callback(contest) : null"
   >
     <v-list-item-avatar
       tile
@@ -61,6 +62,10 @@ export default {
     },
     withToken: {
       type: String,
+      default: null
+    },
+    callback: {
+      type: Function,
       default: null
     }
   },

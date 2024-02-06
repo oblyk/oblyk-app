@@ -8,7 +8,7 @@
     </v-card-title>
     <v-card-text class="text-center pt-5 pb-7">
       <strong class="big-font-size">
-        {{ routesCount }}
+        {{ figures.mounted_gym_routes_count !== null ? figures.mounted_gym_routes_count : '...' }}
       </strong>
     </v-card-text>
     <v-card-actions>
@@ -52,7 +52,7 @@ export default {
 
   data () {
     return {
-      routesCount: '...',
+      figures: {},
 
       mdiSourceBranch,
       mdiTable,
@@ -61,16 +61,14 @@ export default {
   },
 
   mounted () {
-    this.getRoutesCount()
+    this.getFigures()
   },
 
   methods: {
-    getRoutesCount () {
+    getFigures () {
       new GymApi(this.$axios, this.$auth)
-        .routesCount(this.gym.id)
-        .then((resp) => {
-          this.routesCount = resp.data
-        })
+        .figures(this.gym.id, ['mounted_gym_routes_count'])
+        .then((resp) => { this.figures = resp.data })
     }
   }
 }

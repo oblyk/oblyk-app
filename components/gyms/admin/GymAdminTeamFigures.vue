@@ -10,12 +10,7 @@
     </v-card-title>
     <v-card-text class="text-center pt-5 pb-7">
       <strong class="big-font-size">
-        <span v-if="loadingGymAdministrators">
-          ...
-        </span>
-        <span v-else>
-          {{ gymAdministrators.length }}
-        </span>
+        {{ figures.gym_administrators_count || '...' }}
       </strong>
     </v-card-text>
     <v-card-actions>
@@ -33,7 +28,7 @@
 
 <script>
 import { mdiAccountGroup } from '@mdi/js'
-import GymAdministratorApi from '~/services/oblyk-api/GymAdministratorApi'
+import GymApi from '~/services/oblyk-api/GymApi'
 
 export default {
   name: 'GymAdminTeamFigures',
@@ -46,29 +41,21 @@ export default {
 
   data () {
     return {
-      mdiAccountGroup,
-      loadingGymAdministrators: true,
-      gymAdministrators: []
+      figures: {},
+
+      mdiAccountGroup
     }
   },
 
   created () {
-    this.getGymAdministrators()
+    this.getFigures()
   },
 
   methods: {
-    getGymAdministrators () {
-      new GymAdministratorApi(this.$axios, this.$auth)
-        .all(this.gym.id)
-        .then((resp) => {
-          this.gymAdministrators = resp.data
-        })
-        .catch((err) => {
-          this.$root.$emit('alertFromApiError', err, 'gymAdministrator')
-        })
-        .finally(() => {
-          this.loadingGymAdministrators = false
-        })
+    getFigures () {
+      new GymApi(this.$axios, this.$auth)
+        .figures(this.gym.id, ['gym_administrators_count'])
+        .then((resp) => { this.figures = resp.data })
     }
   }
 }

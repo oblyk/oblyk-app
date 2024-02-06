@@ -14,6 +14,7 @@ export default {
     printSector: 'Imprimer le secteur',
     create: 'Créer',
     delete: 'Supprimer',
+    remove: 'Retirer',
     close: 'Fermer',
     valid: 'Valider',
     ok: 'ok',
@@ -1206,6 +1207,7 @@ export default {
       team: "L'équipe",
       openers: 'Les ouvreurs et ouvreuses',
       contests: 'Contests',
+      championships: 'Championnats',
       home: 'Dashboard',
       parameters: 'Paramètres',
       difficultySystem: 'Système de difficulté',
@@ -2340,6 +2342,11 @@ export default {
       manage_gym: 'La salle',
       manage_opener: 'Les ouvreurs·euses'
     },
+    championship: {
+      name: 'Nom',
+      description: 'Description',
+      combined_ranking_type: 'Type de classement'
+    },
     contest: {
       name: 'Titre',
       description: 'Présentation',
@@ -2354,6 +2361,7 @@ export default {
       private: 'Contest privé'
     },
     contestCombinedRanking: {
+      title: 'Type de classement',
       type: {
         addition: 'Addition des classements',
         multiplication: 'Multiplication des classements',

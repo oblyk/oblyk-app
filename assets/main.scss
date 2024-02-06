@@ -353,6 +353,11 @@ strong {
   border-right-width: 1px;
 }
 
+.border-left {
+  border-left-style: solid;
+  border-left-width: 1px;
+}
+
 .custom-fieldset {
   .custom-fieldset-label {
     font-size: 13px;
@@ -370,7 +375,7 @@ strong {
 }
 
 .theme--dark {
-  .border-bottom, .border-top, .border, .border-right {
+  .border-bottom, .border-top, .border, .border-right, .border-left {
     border-color: rgb(50, 50, 50);
   }
   .back-app-color {
@@ -392,7 +397,7 @@ strong {
   }
 }
 .theme--light {
-  .border-bottom, .border-top, .border, .border-right {
+  .border-bottom, .border-top, .border, .border-right, .border-left {
     border-color: rgb(230, 230, 230);
   }
   .back-app-color {

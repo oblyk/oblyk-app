@@ -14,6 +14,7 @@ export default {
     printSector: 'Print sector',
     create: 'Create',
     delete: 'Delete',
+    remove: 'Remove',
     close: 'Close',
     valid: 'Valid',
     ok: 'ok',
@@ -1207,6 +1208,7 @@ export default {
       openers: 'Openers',
       home: 'Dashboard',
       contests: 'Contests',
+      championships: 'Championships',
       parameters: 'Parameters',
       difficultySystem: 'Difficulty system',
       difficultySystemExplain: 'Difficulty system settings, points system, level rating, etc.',
@@ -2340,6 +2342,11 @@ export default {
       manage_gym: 'Gym',
       manage_opener: 'Openers'
     },
+    championship: {
+      name: 'Name',
+      description: 'Description',
+      combined_ranking_type: 'Type of ranking'
+    },
     contest: {
       name: 'Title',
       description: 'Presentation',
@@ -2352,6 +2359,7 @@ export default {
       categorization_type: 'Categorization type'
     },
     contestCombinedRanking: {
+      title: 'Ranking type',
       type: {
         addition: 'Adding up the rankings',
         multiplication: 'A growing number of rankings',
