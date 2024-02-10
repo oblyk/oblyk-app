@@ -3,7 +3,7 @@
     <v-row justify="center">
       <v-col class="global-form-width">
         <h2 class="mb-4">
-          {{ $t('actions.changeBanner') }}
+          {{ $t('actions.changeLogo') }}
         </h2>
         <gym-chain-image-form
           :gym-chain="gymChain"
