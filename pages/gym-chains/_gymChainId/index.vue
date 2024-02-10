@@ -71,8 +71,8 @@
 <script>
 import { mdiDotsVertical, mdiPencil, mdiAlphaLCircle, mdiPanorama } from '@mdi/js'
 import { GymChainsHelpers } from '~/mixins/GymChainsHelpers'
-import MarkdownText from '~/components/ui/MarkdownText'
 import GymChainMap from '~/components/gymChains/GymChainMap'
+const MarkdownText = () => import('~/components/ui/MarkdownText')
 
 export default {
   components: { GymChainMap, MarkdownText },

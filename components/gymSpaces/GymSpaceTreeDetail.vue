@@ -74,11 +74,13 @@
         </v-menu>
       </v-list-item-action>
     </v-list-item>
-    <markdown-text
-      v-if="gymSpace.description"
-      :text="gymSpace.description"
-      class="border rounded-sm pt-4 px-4 mb-4"
-    />
+    <client-only>
+      <markdown-text
+        v-if="gymSpace.description"
+        :text="gymSpace.description"
+        class="border rounded-sm pt-4 px-4 mb-4"
+      />
+    </client-only>
     <v-row>
       <v-col>
         <description-line
@@ -193,11 +195,11 @@
 
 <script>
 import { mdiDotsVertical, mdiDelete, mdiPencil, mdiCircle, mdiSortBoolAscending, mdiCheck } from '@mdi/js'
-import MarkdownText from '~/components/ui/MarkdownText.vue'
+import { ClimbingTypeMixin } from '~/mixins/ClimbingTypeMixin'
 import GymSpaceApi from '~/services/oblyk-api/GymSpaceApi'
 import GymSectorApi from '~/services/oblyk-api/GymSectorApi'
 import DescriptionLine from '~/components/ui/DescriptionLine.vue'
-import { ClimbingTypeMixin } from '~/mixins/ClimbingTypeMixin'
+const MarkdownText = () => import('~/components/ui/MarkdownText.vue')
 
 export default {
   name: 'GymSpaceTreeDetail',

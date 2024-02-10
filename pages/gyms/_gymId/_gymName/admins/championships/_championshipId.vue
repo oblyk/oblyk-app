@@ -207,9 +207,9 @@ import {
 } from '@mdi/js'
 import { ChampionshipConcern } from '~/concerns/ChampionshipConcern'
 import Spinner from '~/components/layouts/Spiner'
-import MarkdownText from '~/components/ui/MarkdownText'
 import ChampionshipBannerForm from '~/components/championships/forms/ChampionshipBannerForm'
 import ChampionshipForm from '~/components/championships/forms/ChampionshipForm.vue'
+const MarkdownText = () => import('~/components/ui/MarkdownText')
 
 export default {
   components: {
