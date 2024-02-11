@@ -16,7 +16,11 @@
         <gym-route-tag-and-hold :gym-route="route" />
         {{ route.name }}
       </div>
-      <div v-if="route.grade_to_s">
+      <div
+        v-if="route.grade_to_s"
+        class="ml-1 font-weight-bold"
+        style="padding-top: 2px"
+      >
         {{ route.grade_to_s }}
       </div>
     </div>

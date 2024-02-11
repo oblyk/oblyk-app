@@ -11,7 +11,7 @@
               {{ $t(`models.climbs.${contestStep.climbing_type}`) }} n°
             </th>
             <th
-              v-if="haveGymRoutes || havePictures"
+              v-if="havePictures"
               style="width: 10px"
               class="text-no-wrap px-0"
             ></th>
@@ -40,15 +40,10 @@
               </span>
             </td>
             <td
-              v-if="haveGymRoutes || havePictures"
+              v-if="havePictures"
               style="width: 10px"
               class="text-no-wrap px-0"
             >
-              <gym-route-simple-item
-                v-if="route.gym_route_id"
-                :gym-route="route.gym_route"
-                :callback="routeSelected"
-              />
               <v-avatar
                 v-if="route.picture"
                 size="32"
@@ -60,11 +55,19 @@
               </v-avatar>
             </td>
             <td class="py-2 pl-3 pr-0">
-              <div
-                v-if="route.name"
-                class="font-weight-bold"
-              >
-                {{ route.name }}
+              <div v-if="route.name || route.gym_route_id">
+                <div
+                  v-if="route.name"
+                  class="font-weight-bold mb-1"
+                >
+                  {{ route.name }}
+                </div>
+                <gym-route-simple-item
+                  v-if="route.gym_route_id"
+                  :gym-route="route.gym_route"
+                  :callback="routeSelected"
+                  class="my-1"
+                />
               </div>
               <contest-route-ascent-form
                 :contest-step="contestStep"
