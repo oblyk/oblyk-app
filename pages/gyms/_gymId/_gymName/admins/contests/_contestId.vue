@@ -92,6 +92,7 @@
                 </v-icon>
                 {{ $t('actions.publish') }}
               </v-btn>
+              <contest-tombola :contest="contest" />
               <v-btn
                 outlined
                 text
@@ -341,9 +342,11 @@ import ContestForm from '~/components/contests/forms/ContestForm.vue'
 import ContestBannerForm from '~/components/contests/forms/ContestBannerForm.vue'
 import ContestApi from '~/services/oblyk-api/ContestApi'
 import ToolApi from '~/services/oblyk-api/ToolApi'
+import ContestTombola from '~/components/contests/ContestTombola.vue'
 
 export default {
   components: {
+    ContestTombola,
     ContestBannerForm,
     ContestForm,
     MarkdownText,
