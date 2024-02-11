@@ -1364,7 +1364,8 @@ export default {
       toleranceExplain: 'Combien de minute voulez-vous laisser à vos grimpeurs et grimpeuses pour finir de renseigner leur réalisation après la fin du contest',
       capacityExplain: "Indiquez le nombre maximum de compétiteurs et compétitrices.<br>Laissez vide s'il n'y a pas de maximum.<br>Vous pourrez choisir une capacité total par catégorie ensuite.",
       subscriptionOpenExplain: "Date à partir de laquelle le contest est publique et que les compétiteurs peuvent s'inscrire",
-      startDateExplain: 'Date de la premier étape du contest'
+      startDateExplain: 'Date de la premier étape du contest',
+      newResultsCount: '<strong>Un</strong> nouveau résultat ! | <strong>%{count}</strong> nouveaux résultats !'
     },
     climbingSession: {
       list: 'Mes sessions',

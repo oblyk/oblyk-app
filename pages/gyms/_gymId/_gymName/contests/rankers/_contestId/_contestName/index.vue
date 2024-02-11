@@ -34,29 +34,68 @@
             :cols="colsDivision * categoriesCount"
             class="pb-0"
           >
-            <v-list-item class="pl-0">
-              <v-list-item-avatar
-                tile
-                size="60"
+            <div class="d-flex">
+              <div class="flex-grow-1">
+                <v-list-item class="pl-0">
+                  <v-list-item-avatar
+                    tile
+                    size="60"
+                  >
+                    <v-img
+                      v-if="contest.banner"
+                      :src="contest.thumbnailBannerUrl"
+                      class="rounded-sm"
+                    />
+                    <v-icon v-else>
+                      {{ mdiTrophy }}
+                    </v-icon>
+                  </v-list-item-avatar>
+                  <v-list-item-content>
+                    <v-list-item-title>
+                      <strong>{{ contest.name }}</strong>
+                    </v-list-item-title>
+                    <v-list-item-subtitle>
+                      {{ contest.gym.name }}
+                    </v-list-item-subtitle>
+                  </v-list-item-content>
+                </v-list-item>
+              </div>
+              <v-scale-transition>
+                <div
+                  v-if="newResultsToLoad"
+                  class="ml-auto rounded px-2 pb-0 pt-2 ranker-countdown"
+                >
+                  <v-icon
+                    size="40"
+                    color="#ffc107"
+                    class="ranker-countdown-spark"
+                  >
+                    {{ mdiShimmer }}
+                  </v-icon>
+                  <div
+                    class="text-center"
+                    v-html="$tc('components.contest.newResultsCount', newResultCount, { count: newResultCount } )"
+                  />
+                  <div class="d-flex align-start">
+                    <p class="text-right mr-2 mb-0 mt-1">
+                      <small>Mise à jour dans</small>
+                    </p>
+                    <div class="text-center">
+                      <span class="text-h4">{{ remainingTime }}"</span>
+                    </div>
+                  </div>
+                </div>
+              </v-scale-transition>
+              <div
+                v-if="reloading"
+                class="ml-auto align-self-center mr-2"
               >
-                <v-img
-                  v-if="contest.banner"
-                  :src="contest.thumbnailBannerUrl"
-                  class="rounded-sm"
+                <v-progress-circular
+                  indeterminate
+                  color="deep-purple accent-4"
                 />
-                <v-icon v-else>
-                  {{ mdiTrophy }}
-                </v-icon>
-              </v-list-item-avatar>
-              <v-list-item-content>
-                <v-list-item-title>
-                  <strong>{{ contest.name }}</strong>
-                </v-list-item-title>
-                <v-list-item-subtitle>
-                  {{ contest.gym.name }}
-                </v-list-item-subtitle>
-              </v-list-item-content>
-            </v-list-item>
+              </div>
+            </div>
           </v-col>
         </v-row>
 
@@ -254,7 +293,8 @@ import {
   mdiLinkVariant,
   mdiLinkVariantOff,
   mdiCreation,
-  mdiPen
+  mdiPen,
+  mdiShimmer
 } from '@mdi/js'
 import ContestApi from '~/services/oblyk-api/ContestApi'
 import Contest from '~/models/Contest'
@@ -273,12 +313,10 @@ export default {
       contest: null,
       inFullscreen: false,
       hiderTimeout: null,
-      updateTimeout: null,
       scrollTimeout: null,
       showToolbar: true,
       reloading: false,
       newResultsToLoad: false,
-      waitingBeforeReGet: false,
       autoScroll: false,
       scrollPart: 1,
       maxScrollParts: 1,
@@ -286,6 +324,9 @@ export default {
       stepTimeInterval: null,
       notifications: [],
       clearNotificationTimeout: null,
+      newResultCount: 0,
+      remainingTime: 31,
+      reRankTimeout: null,
 
       mdiArrowLeft,
       mdiWeatherSunny,
@@ -295,7 +336,8 @@ export default {
       mdiRefresh,
       mdiMouse,
       mdiMouseOff,
-      mdiTrophy
+      mdiTrophy,
+      mdiShimmer
     }
   },
 
@@ -364,10 +406,10 @@ export default {
 
   beforeDestroy () {
     clearTimeout(this.hiderTimeout)
-    clearTimeout(this.updateTimeout)
     clearTimeout(this.scrollTimeout)
     clearTimeout(this.clearNotificationTimeout)
     clearInterval(this.stepTimeInterval)
+    clearInterval(this.reRankTimeout)
     this.cableContestUnsubscribe()
   },
 
@@ -404,23 +446,27 @@ export default {
     },
 
     newResultsFromChanel (data) {
-      this.newResultsToLoad = true
+      if (!this.newResultsToLoad) {
+        this.newResultsToLoad = true
+        this.rankTimer()
+      }
+      this.newResultCount += 1
       if (data.type === 'AscentsUpdate') {
         this.pushNotification({ message: `${data.first_name}, nouveaux résultats !`, icon: mdiCreation, color: 'amber' })
       } else if (data.type === 'UpdateParticipant') {
         this.pushNotification({ message: `${data.first_name}, profil mise à jour`, icon: mdiPen, color: 'grey darken-2' })
       }
-      if (!this.waitingBeforeReGet) {
-        this.refreshResults()
-        this.waitingBeforeReGet = true
-        this.updateTimeout = setTimeout(() => {
-          if (this.newResultsToLoad) {
-            this.refreshResults()
-            this.newResultsToLoad = false
-          }
-          this.waitingBeforeReGet = false
-        }, 30000)
+    },
+
+    rankTimer () {
+      if (this.remainingTime <= 1) {
         this.newResultsToLoad = false
+        this.remainingTime = 31
+        this.newResultCount = 0
+        this.refreshResults()
+      } else {
+        this.remainingTime -= 1
+        this.reRankTimeout = setTimeout(() => { this.rankTimer() }, 1000)
       }
     },
 
@@ -542,6 +588,17 @@ export default {
 .contest-rankers {
   min-height: calc(100vh - 140px);
   padding-bottom: 15px;
+  .ranker-countdown {
+    border-color: #ffc107;
+    border-style: solid;
+    border-width: 2px;
+    position: relative;
+    .ranker-countdown-spark {
+      position: absolute;
+      right: -21px;
+      top: -22px;
+    }
+  }
   .rankers-tools {
     position: fixed;
     bottom: 10px;

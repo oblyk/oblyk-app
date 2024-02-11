@@ -1364,7 +1364,8 @@ export default {
       toleranceExplain: 'How many minutes do you want your climbers to have to finish filling in their work after the end of the contest?',
       capacityExplain: 'Indicate the maximum number of competitors.<br>Leave blank if there is no maximum.<br>You can then choose a total capacity per category.',
       subscriptionOpenExplain: 'Date from which the contest is public and competitors can register',
-      startDateExplain: 'Date of the first stage of the contest'
+      startDateExplain: 'Date of the first stage of the contest',
+      newResultsCount: '<strong>One</strong> new result ! | <strong>%{count}</strong> new results !'
     },
     climbingSession: {
       list: 'My sessions',
