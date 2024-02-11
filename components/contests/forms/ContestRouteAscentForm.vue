@@ -2,38 +2,13 @@
   <div class="remove-btn-active-before">
     <!-- Division -->
     <div v-if="contestStep.ranking_type === 'division' || contestStep.ranking_type === 'fixed_points'">
-      <v-btn-toggle
+      <v-checkbox
         v-model="ascent"
+        label="Fait !"
+        hide-details
+        class="mt-0"
         @change="submit"
-      >
-        <v-btn
-          :value="true"
-          class="px-5"
-          active-class="green lighten-4"
-        >
-          <v-icon
-            left
-            color="green"
-          >
-            {{ mdiCheck }}
-          </v-icon>
-          Fait !
-        </v-btn>
-        <v-btn
-          :value="false"
-          class="px-5"
-          :ripple="false"
-          active-class="red lighten-4"
-        >
-          <v-icon
-            left
-            color="red"
-          >
-            {{ mdiClose }}
-          </v-icon>
-          Pas fait
-        </v-btn>
-      </v-btn-toggle>
+      />
     </div>
 
     <!-- Attempts to top -->
@@ -178,8 +153,6 @@
 </template>
 
 <script>
-import { mdiCheck, mdiClose } from '@mdi/js'
-
 export default {
   name: 'ContestRouteAscentForm',
 
@@ -212,10 +185,7 @@ export default {
       previousNumberOfHold: null,
       rules: {
         greatThanZero: value => value >= 1 || 'Doit être supérieur à 1'
-      },
-
-      mdiCheck,
-      mdiClose
+      }
     }
   },
 
