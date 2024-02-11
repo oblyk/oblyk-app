@@ -86,23 +86,6 @@
         </v-col>
       </v-row>
 
-      <!-- Anchors number suggestion -->
-      <div
-        v-if="gymSector.anchor && gymSector.anchor_ranges !== null && gymSector.anchor_ranges.length > 1"
-        class="mt-n6 mb-4"
-      >
-        {{ $t('components.gymRoute.anchorSuggestion') }} :
-        <v-chip
-          v-for="(anchorNumber, anchorIndex) in gymSector.anchor_ranges"
-          :key="`anchor-index-${anchorIndex}`"
-          outlined
-          class="vertical-align-middle"
-          @click="data.anchor_number = anchorNumber"
-        >
-          {{ $t('models.cragRoute.anchor') }} n°{{ anchorNumber }}
-        </v-chip>
-      </div>
-
       <!-- Random crag route name and information -->
       <p
         v-if="cragRoute.name"
@@ -115,6 +98,23 @@
         </nuxt-link>
         <cite>({{ cragRoute.Crag.city }})</cite>
       </p>
+
+      <!-- Anchors number suggestion -->
+      <div
+        v-if="gymSector.anchor && gymSector.anchor_ranges !== null && gymSector.anchor_ranges.length > 1"
+        class="mt-n4 mb-4"
+      >
+        {{ $t('components.gymRoute.anchorSuggestion') }} :
+        <v-chip
+          v-for="(anchorNumber, anchorIndex) in gymSector.anchor_ranges"
+          :key="`anchor-index-${anchorIndex}`"
+          outlined
+          class="vertical-align-middle"
+          @click="data.anchor_number = anchorNumber"
+        >
+          {{ $t('models.cragRoute.anchor') }} n°{{ anchorNumber }}
+        </v-chip>
+      </div>
 
       <!-- Openers -->
       <gym-opener-input
