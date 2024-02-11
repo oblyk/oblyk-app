@@ -269,6 +269,29 @@
           </div>
         </v-slide-x-transition>
       </div>
+
+      <v-dialog
+        v-model="tombolaDialog"
+        width="500"
+      >
+        <v-card>
+          <v-card-title>
+            <div class="ml-auto mr-auto">
+              🎲 Tombola !! 🎲
+            </div>
+          </v-card-title>
+          <div class="px-4 pb-4 pt-0">
+            <p class="mb-0">Le ou la gagnant·e est ...</p>
+            <v-sheet
+              rounded
+              class="text-center text-h4 back-app-color pa-4"
+              :class="tombolaLaunched ? 'text--disabled' : null"
+            >
+              {{ tombolaWinner === null ? '...' : tombolaWinner }}
+            </v-sheet>
+          </div>
+        </v-card>
+      </v-dialog>
     </div>
     <p
       v-if="categoriesCount === 0 && !loadingResult"
@@ -327,6 +350,11 @@ export default {
       newResultCount: 0,
       remainingTime: 31,
       reRankTimeout: null,
+      tombolaDialog: false,
+      tombolaWinner: null,
+      tombolaTimeInterval: null,
+      tombolaTimeout: null,
+      tombolaLaunched: false,
 
       mdiArrowLeft,
       mdiWeatherSunny,
@@ -446,15 +474,24 @@ export default {
     },
 
     newResultsFromChanel (data) {
-      if (!this.newResultsToLoad) {
-        this.newResultsToLoad = true
-        this.rankTimer()
-      }
-      this.newResultCount += 1
-      if (data.type === 'AscentsUpdate') {
-        this.pushNotification({ message: `${data.first_name}, nouveaux résultats !`, icon: mdiCreation, color: 'amber' })
-      } else if (data.type === 'UpdateParticipant') {
-        this.pushNotification({ message: `${data.first_name}, profil mise à jour`, icon: mdiPen, color: 'grey darken-2' })
+      if (data.type === 'AscentsUpdate' || data.type === 'UpdateParticipant') {
+        if (!this.newResultsToLoad) {
+          this.newResultsToLoad = true
+          this.rankTimer()
+        }
+        this.newResultCount += 1
+        if (data.type === 'AscentsUpdate') {
+          this.pushNotification({ message: `${data.first_name}, nouveaux résultats !`, icon: mdiCreation, color: 'amber' })
+        } else if (data.type === 'UpdateParticipant') {
+          this.pushNotification({ message: `${data.first_name}, profil mise à jour`, icon: mdiPen, color: 'grey darken-2' })
+        }
+      } else if (data.type === 'OpenTombolaModal') {
+        this.tombolaWinner = null
+        this.tombolaDialog = true
+      } else if (data.type === 'CloseTombolaModal') {
+        this.tombolaDialog = false
+      } else if (data.type === 'LaunchTombola') {
+        this.randomizeParticipants(data.winner)
       }
     },
 
@@ -579,6 +616,25 @@ export default {
       this.clearNotificationTimeout = setTimeout(() => {
         this.notifications = []
       }, 5000)
+    },
+
+    randomizeParticipants (winner) {
+      const participants = []
+      this.tombolaLaunched = true
+      for (const category of this.results) {
+        for (const participant of category.participants) {
+          participants.push(`${participant.first_name} ${participant.last_name}`)
+        }
+      }
+      this.tombolaTimeInterval = setInterval(() => {
+        const randomIndex = Math.floor(Math.random() * participants.length)
+        this.tombolaWinner = participants[randomIndex]
+      }, 50)
+      this.tombolaTimeout = setTimeout(() => {
+        this.tombolaLaunched = false
+        clearInterval(this.tombolaTimeInterval)
+        this.tombolaWinner = `${winner} !`
+      }, 2000)
     }
   }
 }

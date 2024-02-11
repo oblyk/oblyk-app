@@ -111,5 +111,30 @@ class ContestParticipantApi extends BaseApi {
       }
     })
   }
+
+  tombola (gymId, contestId, type) {
+    return this.axios.request({
+      method: 'GET',
+      url: `${this.baseUrl}/gyms/${gymId}/contests/${contestId}/contest_participants/tombola.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
+      params: {
+        type
+      }
+    })
+  }
+
+  tombolaWinners (gymId, contestId) {
+    return this.axios.request({
+      method: 'GET',
+      url: `${this.baseUrl}/gyms/${gymId}/contests/${contestId}/contest_participants/tombola_winners.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
+    })
+  }
 }
 export default ContestParticipantApi
