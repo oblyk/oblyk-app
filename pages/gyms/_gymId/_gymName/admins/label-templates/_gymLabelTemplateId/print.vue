@@ -243,21 +243,21 @@ export default {
       const newStyle = document.createElement('style')
       let pageHeight = null
       if (this.pageFormat === 'A3' && this.pageOrientation === 'portrait') {
-        pageHeight = '420mm'
+        pageHeight = '419mm'
       } else if (
         (this.pageFormat === 'A3' && this.pageOrientation === 'landscape') ||
         (this.pageFormat === 'A4' && this.pageOrientation === 'portrait')
       ) {
-        pageHeight = '297mm'
+        pageHeight = '296mm'
       } else if (
         (this.pageFormat === 'A4' && this.pageOrientation === 'landscape') ||
         (this.pageFormat === 'A5' && this.pageOrientation === 'portrait')
       ) {
-        pageHeight = '210mm'
+        pageHeight = '209mm'
       } else if (
         this.pageFormat === 'A5' && this.pageOrientation === 'landscape'
       ) {
-        pageHeight = '148mm'
+        pageHeight = '147mm'
       } else {
         pageHeight = '100vh'
       }
