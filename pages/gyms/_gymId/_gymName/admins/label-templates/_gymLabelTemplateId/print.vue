@@ -7,15 +7,17 @@
       :class="preview ? 'preview' : ''"
     >
       <div class="label-row">
-        <gym-label-route
-          v-for="(gymRoute, gymRouteIndex) in page.routes"
-          :key="`gym-route-index-${gymRouteIndex}`"
-          class="label-column"
-          :class="gymLabelTemplate.label_direction"
-          :gym="gym"
-          :gym-route="gymRouteToObject(gymRoute)"
-          :gym-label-template="gymLabelTemplate"
-        />
+        <div class="label-grid">
+          <gym-label-route
+            v-for="(gymRoute, gymRouteIndex) in page.routes"
+            :key="`gym-route-index-${gymRouteIndex}`"
+            class="label-column"
+            :class="gymLabelTemplate.label_direction"
+            :gym="gym"
+            :gym-route="gymRouteToObject(gymRoute)"
+            :gym-label-template="gymLabelTemplate"
+          />
+        </div>
       </div>
       <div
         v-if="gymLabelTemplate && gymLabelTemplate.qr_code_position === 'footer'"
@@ -210,15 +212,31 @@ export default {
         border-top-width: ${this.gymLabelTemplate.border_style['border-width']};
         border-top-color: ${this.gymLabelTemplate.border_style['border-color']};
       }
-      .footer-reference-only, .footer {
-        padding-left: ${this.gymLabelTemplate.layout_options['page-margin']};
-        padding-right: ${this.gymLabelTemplate.layout_options['page-margin']};
-        padding-bottom: ${this.gymLabelTemplate.layout_options['page-margin']};
-      }
       .page {
         padding: ${this.gymLabelTemplate.layout_options['page-margin']};
+      }
+      .label-row {
+        align-items: ${this.gymLabelTemplate.layout_options['align-items'] || 'start'};
       }`
       document.head.appendChild(newStyle)
+
+      // Set max height label row
+      setTimeout(() => {
+        const colNumber = {
+          one_by_row: 1,
+          two_by_row: 2,
+          three_by_row: 3,
+          four_by_row: 4
+        }
+        const pages = document.querySelectorAll('.page .label-row')
+        for (const page of pages) {
+          const labelRow = page.offsetHeight
+          const rows = page.querySelectorAll('.label-column')
+          for (const row of page.querySelectorAll('.label-column')) {
+            row.style.maxHeight = `${labelRow / (rows.length / colNumber[this.gymLabelTemplate.label_direction]) - 11}px`
+          }
+        }
+      }, 250)
     },
 
     initPageOrientation () {
@@ -281,6 +299,8 @@ body {
   width: 100%;
   margin: auto;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
 }
 @page {
   margin: 0 !important;
@@ -300,10 +320,22 @@ body {
   page-break-after: always;
 }
 .label-row {
+  overflow: hidden;
+  flex-grow: 1;
   display: flex;
   flex-wrap: wrap;
-  row-gap: 3mm;
-  column-gap: 3mm;
+  .label-grid {
+    max-height: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    row-gap: 3mm;
+    column-gap: 3mm;
+  }
+  .label-column {
+    height: 102px;
+  }
   .one_by_row {
     flex: 0 0 100%;
     max-width: 100%;
@@ -319,9 +351,6 @@ body {
   }
 }
 .footer {
-  position: absolute;
-  bottom: 0;
-  left: 0;
   width: 100%;
   text-align: right;
   border-top-style: solid;
@@ -347,9 +376,6 @@ body {
 }
 .footer-reference-only {
   font-size: 1.2em;
-  position: absolute;
-  bottom: 0;
-  left: 0;
   width: 100%;
   text-align: right;
 }

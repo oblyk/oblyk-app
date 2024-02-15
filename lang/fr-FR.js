@@ -2248,6 +2248,11 @@ export default {
         none: 'Pas de bordure',
         solid: 'Continue',
         dashed: 'Pointillé'
+      },
+      alignItems: {
+        start: 'Top',
+        center: 'Centré',
+        end: 'En bas'
       }
     },
     gymSpace: {

@@ -175,7 +175,7 @@ export default {
         id: this.gymLabelTemplate?.id,
         name: this.gymLabelTemplate?.name,
         label_direction: this.gymLabelTemplate?.label_direction || 'one_by_row',
-        layout_options: this.gymLabelTemplate?.layout_options || { 'page-margin': '10mm' },
+        layout_options: this.gymLabelTemplate?.layout_options || { 'page-margin': '10mm', 'align-items': 'start' },
         border_style: this.gymLabelTemplate?.border_style || { 'border-color': '#000000', 'border-width': '0.3mm', 'border-style': 'solid', 'border-radius': '3mm' },
         font_family: this.gymLabelTemplate?.font_family || 'lato',
         qr_code_position: this.gymLabelTemplate?.qr_code_position || 'in_label',

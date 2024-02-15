@@ -3,26 +3,27 @@
     class="grade-style-diagonal-label"
     :style="`width: ${width};`"
   >
-    <div
-      v-if="gymLabelTemplate.display_tag_and_hold"
-      class="grade-style-label"
-      :class="haveWithColor ? '--dark-border' : ''"
-      :style="`background-color: ${gymRoute.hold_colors[0]}; left: ${gymLabelTemplate.display_points || gymLabelTemplate.display_grade ? '6.5mm' : '8mm'}`"
-    />
-    <div
-      v-if="gymLabelTemplate.display_points || gymLabelTemplate.display_grade"
-      class="grade-style-grade"
-      :style="gymLabelTemplate.display_tag_and_hold ? 'padding-left: 1.9cm' : 'padding-left: 4mm'"
-    >
-      <grade-style-grade
-        v-if="gymLabelTemplate.display_grade"
-        :gym-route="gymRoute"
+    <div class="grade-style-container">
+      <div
+        v-if="gymLabelTemplate.display_tag_and_hold"
+        class="grade-style-label"
+        :class="haveWithColor ? '--dark-border' : ''"
+        :style="`background-color: ${gymRoute.hold_colors[0]}; left: ${gymLabelTemplate.display_points || gymLabelTemplate.display_grade ? '6.5mm' : '8mm'}`"
       />
       <div
-        v-if="gymLabelTemplate.display_points"
-        class="points-part"
+        v-if="gymLabelTemplate.display_points || gymLabelTemplate.display_grade"
+        class="grade-style-grade"
       >
-        {{ gymRoute.points }} Pts
+        <grade-style-grade
+          v-if="gymLabelTemplate.display_grade"
+          :gym-route="gymRoute"
+        />
+        <div
+          v-if="gymLabelTemplate.display_points"
+          class="points-part"
+        >
+          {{ gymRoute.points }} Pts
+        </div>
       </div>
     </div>
   </div>
@@ -101,10 +102,15 @@ export default {
       margin-top: -2mm;
     }
   }
+  .grade-style-container {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+  }
   .grade-style-label {
     z-index: -1;
-    position: absolute;
-    top: 5mm;
+    margin-left: 4.5mm;
+    margin-right: 2mm;
     height: 16mm;
     width: 11mm;
     transform: rotate(45deg);

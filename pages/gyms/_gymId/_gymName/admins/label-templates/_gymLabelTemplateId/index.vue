@@ -115,6 +115,15 @@
                         </v-icon>
                         {{ gymLabelTemplate.layout_options['page-margin'] }}
                       </v-chip>
+                      <v-chip
+                        outlined
+                        title="Alignement vertical des étiquettes"
+                      >
+                        <v-icon left>
+                          {{ mdiArrowExpandVertical }}
+                        </v-icon>
+                        {{ $t(`models.gymLabelTemplate.alignItems.${gymLabelTemplate.layout_options['align-items'] || 'start'}`) }}
+                      </v-chip>
                     </template>
                   </description-line>
                   <description-line
@@ -342,7 +351,8 @@ import {
   mdiDotsVertical,
   mdiDelete,
   mdiPower,
-  mdiCropFree
+  mdiCropFree,
+  mdiArrowExpandVertical
 } from '@mdi/js'
 import { GymLabelTemplateConcern } from '~/concerns/GymLabelTemplateConcern'
 import { GymFetchConcern } from '~/concerns/GymFetchConcern'
@@ -406,7 +416,8 @@ export default {
       mdiDotsVertical,
       mdiDelete,
       mdiPower,
-      mdiCropFree
+      mdiCropFree,
+      mdiArrowExpandVertical
     }
   },
 

@@ -2248,6 +2248,11 @@ export default {
         none: 'No border',
         solid: 'Solid',
         dashed: 'Dashed'
+      },
+      alignItems: {
+        start: 'Start',
+        center: 'Center',
+        end: 'End'
       }
     },
     gymSpace: {
