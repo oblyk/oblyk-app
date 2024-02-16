@@ -6,44 +6,46 @@
       class="page"
       :class="preview ? 'preview' : ''"
     >
-      <div class="label-row">
-        <div class="label-grid">
-          <gym-label-route
-            v-for="(gymRoute, gymRouteIndex) in page.routes"
-            :key="`gym-route-index-${gymRouteIndex}`"
-            class="label-column"
-            :class="gymLabelTemplate.label_direction"
-            :gym="gym"
-            :gym-route="gymRouteToObject(gymRoute)"
-            :gym-label-template="gymLabelTemplate"
-          />
-        </div>
-      </div>
-      <div
-        v-if="gymLabelTemplate && gymLabelTemplate.qr_code_position === 'footer'"
-        class="footer"
-      >
-        <div>
-          <p>
-            Découvre le topo de <b>{{ gym.name }}</b><br> et suis ta progression sur Oblyk.org !
-          </p>
-          <div
-            v-if="page.reference"
-            class="footer-reference"
-          >
-            {{ page.reference }}
+      <div class="page-container">
+        <div class="label-row">
+          <div class="label-grid">
+            <gym-label-route
+              v-for="(gymRoute, gymRouteIndex) in page.routes"
+              :key="`gym-route-index-${gymRouteIndex}`"
+              class="label-column"
+              :class="gymLabelTemplate.label_direction"
+              :gym="gym"
+              :gym-route="gymRouteToObject(gymRoute)"
+              :gym-label-template="gymLabelTemplate"
+            />
           </div>
         </div>
         <div
-          class="footer-qr-code"
-          v-html="page.footer_qrcode"
-        />
-      </div>
-      <div
-        v-if="gymLabelTemplate && gymLabelTemplate.qr_code_position !== 'footer' && page.reference"
-        class="footer-reference-only"
-      >
-        {{ page.reference }}
+          v-if="gymLabelTemplate && gymLabelTemplate.qr_code_position === 'footer'"
+          class="footer"
+        >
+          <div>
+            <p>
+              Découvre le topo de <b>{{ gym.name }}</b><br> et suis ta progression sur Oblyk.org !
+            </p>
+            <div
+              v-if="page.reference"
+              class="footer-reference"
+            >
+              {{ page.reference }}
+            </div>
+          </div>
+          <div
+            class="footer-qr-code"
+            v-html="page.footer_qrcode"
+          />
+        </div>
+        <div
+          v-if="gymLabelTemplate && gymLabelTemplate.qr_code_position !== 'footer' && page.reference"
+          class="footer-reference-only"
+        >
+          {{ page.reference }}
+        </div>
       </div>
     </div>
 
@@ -212,8 +214,8 @@ export default {
         border-top-width: ${this.gymLabelTemplate.border_style['border-width']};
         border-top-color: ${this.gymLabelTemplate.border_style['border-color']};
       }
-      .page {
-        padding: ${this.gymLabelTemplate.layout_options['page-margin']};
+      @page {
+        margin: ${this.gymLabelTemplate.layout_options['page-margin']} !important;
       }
       .label-row {
         align-items: ${this.gymLabelTemplate.layout_options['align-items'] || 'start'};
@@ -266,7 +268,7 @@ export default {
         size: ${this.pageFormat} ${this.pageOrientation};
       }
       .page {
-        height: ${pageHeight};
+        height: calc(${pageHeight} - (${this.gymLabelTemplate.layout_options['page-margin']} * 2 + 2mm));
       }
       `
       document.head.appendChild(newStyle)
@@ -295,15 +297,15 @@ body {
 .page {
   break-after: page;
   page-break-after: always;
-  position: relative;
   width: 100%;
-  margin: auto;
+  display: block;
+  margin: 0 !important;
+}
+.page-container {
+  height: 100%;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-}
-@page {
-  margin: 0 !important;
 }
 .preview {
   padding: 3mm;
@@ -357,7 +359,7 @@ body {
   padding-top: 1.5mm;
   display: flex;
   flex-direction: row;
-  justify-content: right;
+  justify-content: flex-end;
   font-size: 12pt;
   .footer-qr-code {
     box-sizing: border-box;
