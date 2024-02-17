@@ -2411,7 +2411,7 @@ export default {
       name: 'Nom',
       description: 'Description',
       descriptionPlaceholder: 'Aidez vos futur·es participant·es à choisir leur catégorie avec une courte description (optionnel)',
-      unisex: 'Mixte (aucune distinction de genre)',
+      unisex: 'Aucune distinction de genre dans cette catégorie',
       capacity: 'Capacité max',
       registrationObligation: "Type de limitation par l'âge",
       minAge: 'Âge minimum',

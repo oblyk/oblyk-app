@@ -35,6 +35,7 @@ export default {
     return {
       obligations: [
         { text: this.$t('models.contestCategoryObligationType.no'), value: null },
+        { text: this.$t('models.contestCategoryObligationType.between_age'), value: 'between_age' },
         { text: this.$t('models.contestCategoryObligationType.u10'), value: 'u10' },
         { text: this.$t('models.contestCategoryObligationType.u12'), value: 'u12' },
         { text: this.$t('models.contestCategoryObligationType.u14'), value: 'u14' },
@@ -43,8 +44,7 @@ export default {
         { text: this.$t('models.contestCategoryObligationType.u20'), value: 'u20' },
         { text: this.$t('models.contestCategoryObligationType.senior'), value: 'senior' },
         { text: this.$t('models.contestCategoryObligationType.veteran_1'), value: 'veteran_1' },
-        { text: this.$t('models.contestCategoryObligationType.veteran_2'), value: 'veteran_2' },
-        { text: this.$t('models.contestCategoryObligationType.between_age'), value: 'between_age' }
+        { text: this.$t('models.contestCategoryObligationType.veteran_2'), value: 'veteran_2' }
       ],
       obligation: this.value
     }
