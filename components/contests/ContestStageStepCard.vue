@@ -68,7 +68,7 @@
     </ul>
     <div class="d-flex mt-4">
       <h3>
-        Les <span class="text-decoration-underline">{{ $t(`models.climbs.${contestStage.climbing_type}`).toLowerCase() }}s</span> de <span class="text-decoration-underline">{{ stageStep.name.toLowerCase() }}</span> par catégories :
+        Les <span class="text-decoration-underline">{{ $t(`models.climbsContest.${contestStage.climbing_type}`) }}</span> de <span class="text-decoration-underline">{{ stageStep.name.toLowerCase() }}</span> par catégories :
       </h3>
       <v-spacer />
       <add-contest-route-group-btn
@@ -97,7 +97,7 @@
     </v-row>
     <div v-else>
       <p class="text-center py-4 text--disabled">
-        Ajouter les {{ $t(`models.climbs.${contestStage.climbing_type}`) }}s à faire par catégorie
+        Ajouter les {{ $t(`models.climbsContest.${contestStage.climbing_type}`) }} à faire par catégorie
       </p>
     </div>
 

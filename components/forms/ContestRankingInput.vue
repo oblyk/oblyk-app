@@ -36,7 +36,8 @@ export default {
         { text: this.$t('models.contestRankingType.attempts_to_one_zone_and_top'), value: 'attempts_to_one_zone_and_top' },
         // { text: this.$t('models.contestRankingType.attempts_to_two_zones_and_top'), value: 'attempts_to_two_zones_and_top' },
         { text: this.$t('models.contestRankingType.highest_hold'), value: 'highest_hold' },
-        { text: this.$t('models.contestRankingType.fixed_points'), value: 'fixed_points' }
+        { text: this.$t('models.contestRankingType.fixed_points'), value: 'fixed_points' },
+        { text: this.$t('models.contestRankingType.best_times'), value: 'best_times' }
       ],
       category: this.value
     }

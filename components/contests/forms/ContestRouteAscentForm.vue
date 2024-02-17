@@ -149,6 +149,46 @@
         @change="submit"
       />
     </div>
+
+    <!-- Times -->
+    <div
+      v-if="contestStep.ranking_type === 'best_times'"
+      class="d-flex"
+    >
+      <v-text-field
+        v-model="ascent.minutes"
+        label="Minute"
+        filled
+        hide-details
+        dense
+        class="rounded-tr-0 rounded-tl"
+        type="number"
+        :rules="[rules.minutesOrHours]"
+        @input="submit"
+      />
+      <v-text-field
+        v-model="ascent.secondes"
+        label="Seconde"
+        filled
+        hide-details
+        dense
+        class="rounded-0"
+        type="number"
+        :rules="[rules.minutesOrHours]"
+        @input="submit"
+      />
+      <v-text-field
+        v-model="ascent.milliseconds"
+        label="Millisecond"
+        filled
+        hide-details
+        dense
+        class="rounded-tr rounded-tl-0"
+        type="number"
+        :rules="[rules.milliseconds]"
+        @input="submit"
+      />
+    </div>
   </div>
 </template>
 
@@ -184,7 +224,9 @@ export default {
       ascent: this.setAscentValue(),
       previousNumberOfHold: null,
       rules: {
-        greatThanZero: value => value >= 1 || 'Doit être supérieur à 1'
+        greatThanZero: value => value >= 1 || 'Doit être supérieur à 1',
+        minutesOrHours: value => (value >= 0 && value <= 59) || 'Doit être compris entre 0 et 59',
+        milliseconds: value => (value >= 0 && value <= 999) || 'Doit être compris entre 0 et 999'
       }
     }
   },
@@ -217,6 +259,13 @@ export default {
             hold_number: this.contestRoute.ascent.hold_number,
             hold_number_plus: this.contestRoute.ascent.hold_number_plus
           }
+        } else if (this.contestStep.ranking_type === 'best_times') {
+          const time = new Date(this.contestRoute.ascent.ascent_time)
+          return {
+            minutes: time.getMinutes(),
+            secondes: time.getSeconds(),
+            milliseconds: time.getMilliseconds()
+          }
         } else {
           return null
         }
@@ -240,6 +289,12 @@ export default {
         return {
           hold_number: null,
           hold_number_plus: false
+        }
+      } else if (this.contestStep.ranking_type === 'best_times') {
+        return {
+          minutes: 0,
+          secondes: 0,
+          milliseconds: 0
         }
       } else {
         return null
@@ -285,6 +340,12 @@ export default {
         } else {
           this.previousNumberOfHold = this.ascent.hold_number
         }
+      }
+
+      if (this.contestStep.ranking_type === 'best_times') {
+        const minutes = `0${parseInt(this.ascent.minutes)}`.slice(-2)
+        const secondes = `0${parseInt(this.ascent.secondes)}`.slice(-2)
+        data.ascent_time = `00:${minutes}:${secondes}.${this.ascent.milliseconds}`
       }
 
       this.$emit('input', data)

@@ -7,7 +7,7 @@
       <v-icon left>
         {{ mdiPlus }}
       </v-icon>
-      Ajouter des {{ $t(`models.climbs.${contestStage.climbing_type}`) }}s
+      Ajouter des {{ $t(`models.climbsContest.${contestStage.climbing_type}`) }}
     </v-btn>
     <v-dialog
       v-model="addModal"
@@ -15,7 +15,7 @@
     >
       <v-card>
         <v-card-title>
-          Ajouter des {{ $t(`models.climbs.${contestStage.climbing_type}`) }}s
+          Ajouter des {{ $t(`models.climbsContest.${contestStage.climbing_type}`) }}
         </v-card-title>
         <div class="pa-4">
           <contest-route-group-form

@@ -2405,7 +2405,8 @@ export default {
       attempts_to_one_zone_and_top: "Nombre d'essais pour faire la zone et le top",
       attempts_to_two_zones_and_top: "Nombre d'essais pour faire la 1er zone, 2ème zones et le top",
       highest_hold: 'Prise la plus haute atteinte',
-      fixed_points: 'Points fixes'
+      fixed_points: 'Points fixes',
+      best_times: 'Meilleurs temps'
     },
     contestCategory: {
       name: 'Nom',
@@ -2472,6 +2473,11 @@ export default {
       training_space: 'Espace entrainement',
       pan: 'Pan',
       speed_climbing: 'Vitesse'
+    },
+    climbsContest: {
+      sport_climbing: 'voies',
+      bouldering: 'blocs',
+      speed_climbing: 'voies de vitesse'
     },
     climbsShort: {
       sport_climbing: 'V',

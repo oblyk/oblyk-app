@@ -156,7 +156,7 @@
     </div>
 
     <p class="text-decoration-underline px-3 mb-1">
-      Les {{ $t(`models.climbs.${contestStage.climbing_type}`) }}s
+      Les {{ $t(`models.climbsContest.${contestStage.climbing_type}`) }}
     </p>
     <!-- List of routes -->
     <contest-route-line

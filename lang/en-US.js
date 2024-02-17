@@ -2403,7 +2403,8 @@ export default {
       attempts_to_one_zone_and_top: 'Number of attempts to make the zone and the top',
       attempts_to_two_zones_and_top: 'Number of attempts to do the 1st zone, 2nd zone and the top',
       highest_hold: 'Highest hold reached',
-      fixed_points: 'Fixed points'
+      fixed_points: 'Fixed points',
+      best_times: 'Best times'
     },
     contestCategory: {
       name: 'Nam',
@@ -2470,6 +2471,11 @@ export default {
       training_space: 'Training space',
       pan: 'Pan',
       speed_climbing: 'Speed Climbing'
+    },
+    climbsContest: {
+      sport_climbing: 'routes',
+      bouldering: 'boulders',
+      speed_climbing: 'speed routes'
     },
     climbsShort: {
       sport_climbing: 'SC',
