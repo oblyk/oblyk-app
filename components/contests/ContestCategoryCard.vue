@@ -57,8 +57,8 @@
         {{ contestCategory.description }}
       </div>
       <ul class="pl-3">
-        <li>
-          {{ contestCategory.unisex ? 'Mixte' : 'Non mixte' }}
+        <li v-if="contestCategory.unisex">
+          Aucune distinction de genre
         </li>
         <li v-if="contestCategory.waveable">
           Divisé en vague

@@ -2409,7 +2409,7 @@ export default {
       name: 'Nam',
       description: 'Description',
       descriptionPlaceholder: 'Help your future participants choose their categories with a short description (optional)',
-      unisex: 'Unisex (no gender distinction)',
+      unisex: 'No gender distinction in this category',
       capacity: 'Max capacity',
       registrationObligation: 'Type of age limit',
       minAge: 'Minimum age',
