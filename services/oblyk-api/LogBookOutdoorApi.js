@@ -1,73 +1,91 @@
 import BaseApi from '~/services/oblyk-api/BaseApi'
 
 class LogBookOutdoorApi extends BaseApi {
-  figures () {
+  figures (only_lead_climbs = false) {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/current_users/log_books/outdoors/figures.json`,
       headers: {
         Authorization: this.authToken(),
         HttpApiAccessToken: this.apiAccessToken
+      },
+      params: {
+        only_lead_climbs
       }
     })
   }
 
-  climbingTypeChart () {
+  climbingTypeChart (only_lead_climbs = false) {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/current_users/log_books/outdoors/climb_types_chart.json`,
       headers: {
         Authorization: this.authToken(),
         HttpApiAccessToken: this.apiAccessToken
+      },
+      params: {
+        only_lead_climbs
       }
     })
   }
 
-  gradeChart () {
+  gradeChart (only_lead_climbs = false) {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/current_users/log_books/outdoors/grades_chart.json`,
       headers: {
         Authorization: this.authToken(),
         HttpApiAccessToken: this.apiAccessToken
+      },
+      params: {
+        only_lead_climbs
       }
     })
   }
 
-  yearChart () {
+  yearChart (only_lead_climbs = false) {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/current_users/log_books/outdoors/years_chart.json`,
       headers: {
         Authorization: this.authToken(),
         HttpApiAccessToken: this.apiAccessToken
+      },
+      params: {
+        only_lead_climbs
       }
     })
   }
 
-  monthChart () {
+  monthChart (only_lead_climbs = false) {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/current_users/log_books/outdoors/months_chart.json`,
       headers: {
         Authorization: this.authToken(),
         HttpApiAccessToken: this.apiAccessToken
+      },
+      params: {
+        only_lead_climbs
       }
     })
   }
 
-  evolutionChart () {
+  evolutionChart (only_lead_climbs = false) {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/current_users/log_books/outdoors/evolutions_chart.json`,
       headers: {
         Authorization: this.authToken(),
         HttpApiAccessToken: this.apiAccessToken
+      },
+      params: {
+        only_lead_climbs
       }
     })
   }
 
-  ascendedCragRoutes (order = 'difficulty', climbingType = 'all', page = 1) {
+  ascendedCragRoutes (order = 'difficulty', climbingType = 'all', page = 1, only_lead_climbs = false) {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/current_users/ascended_crag_routes.json`,
@@ -76,6 +94,7 @@ class LogBookOutdoorApi extends BaseApi {
         HttpApiAccessToken: this.apiAccessToken
       },
       params: {
+        only_lead_climbs,
         climbing_type: climbingType,
         order,
         page
