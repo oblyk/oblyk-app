@@ -11,7 +11,7 @@
 
     <div class="mb-3 mt-3 border rounded-sm pa-2">
       <p class="mb-2">
-        À qui sont destiné ces {{ data.number_of_routes }} {{ $t(`models.climbs.${contestStage.climbing_type}`).toLowerCase() }}s ?
+        À qui sont destiné ces {{ data.number_of_routes }} {{ $t(`models.climbsContest.${contestStage.climbing_type}`) }} ?
       </p>
       <v-radio-group
         v-model="data.genre_type"
@@ -19,17 +19,17 @@
       >
         <v-radio value="unisex">
           <template #label>
-            {{ $t(`models.climbs.${contestStage.climbing_type}`).toLowerCase() }}s <strong class="mx-1">hommes et femmes</strong>
+            {{ $t(`models.climbsContest.${contestStage.climbing_type}`) }} <strong class="mx-1">hommes et femmes</strong>
           </template>
         </v-radio>
         <v-radio value="male">
           <template #label>
-            {{ $t(`models.climbs.${contestStage.climbing_type}`).toLowerCase() }}s <strong class="mx-1">hommes</strong>
+            {{ $t(`models.climbsContest.${contestStage.climbing_type}`) }} <strong class="mx-1">hommes</strong>
           </template>
         </v-radio>
         <v-radio value="female">
           <template #label>
-            {{ $t(`models.climbs.${contestStage.climbing_type}`).toLowerCase() }}s <strong class="mx-1">femmes</strong>
+            {{ $t(`models.climbsContest.${contestStage.climbing_type}`) }} <strong class="mx-1">femmes</strong>
           </template>
         </v-radio>
       </v-radio-group>
@@ -37,7 +37,7 @@
 
     <div class="mb-3 border rounded-sm pa-2">
       <p class="mb-1">
-        Ces {{ data.number_of_routes }} {{ $t(`models.climbs.${contestStage.climbing_type}`).toLowerCase() }}s sont commun(e)s à qu'elles catégories ?
+        Ces {{ data.number_of_routes }} {{ $t(`models.climbsContest.${contestStage.climbing_type}`) }} sont commun(e)s à qu'elles catégories ?
       </p>
       <div
         v-for="(category, categoryIndex) in categories"

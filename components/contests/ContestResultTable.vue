@@ -284,7 +284,8 @@ export default {
       let index = 0
       const details = []
       for (const detail of step.score_details) {
-        details.push(`${detail} ${step.unit_details[index]}`)
+        const unitDetail = step.unit_details[index] ? step.unit_details[index] : ''
+        details.push(`${detail} ${unitDetail}`)
         index += 1
       }
       return details.join(', ')

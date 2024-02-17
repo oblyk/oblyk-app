@@ -6,15 +6,15 @@
           <tr>
             <th
               style="width: 10px"
-              class="text-left text-no-wrap pl-2 pr-0"
+              class="text-no-wrap pl-5 pr-0"
             >
-              {{ $t(`models.climbs.${contestStep.climbing_type}`) }} n°
+              N°
             </th>
             <th
               v-if="havePictures"
               style="width: 10px"
               class="text-no-wrap px-0"
-            ></th>
+            />
             <th class="text-left">
               {{ resultsTitle }}
             </th>
