@@ -7,7 +7,7 @@
           {{ cragSector.name }}
         </h2>
         <crag-sector-form
-          :crag="crag"
+          :crag="cragSector.crag"
           :crag-sector="cragSector"
           submit-methode="put"
         />
@@ -18,13 +18,12 @@
 
 <script>
 import CragSectorForm from '~/components/cragSectors/forms/CragSectorForm'
-import { CragConcern } from '~/concerns/CragConcern'
 import { CragSectorConcern } from '~/concerns/CragSectorConcern'
 
 export default {
   meta: { orphanRoute: true },
   components: { CragSectorForm },
-  mixins: [CragConcern, CragSectorConcern],
+  mixins: [CragSectorConcern],
   middleware: ['auth'],
 
   head () {

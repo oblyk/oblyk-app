@@ -22,8 +22,8 @@
         <map-input
           v-if="setLocalization"
           v-model="localization"
-          :default-latitude="data.latitude"
-          :default-longitude="data.longitude"
+          :default-latitude="data.latitude || crag.latitude"
+          :default-longitude="data.longitude || crag.longitude"
           :geo-jsons="geoJsons"
           :default-zoom="15"
           style-map="outdoor"
