@@ -112,6 +112,22 @@
           </v-list-item-title>
         </v-list-item-content>
       </v-list-item>
+
+      <v-divider />
+
+      <v-list-item
+        link
+        :to="gym.adminPath"
+      >
+        <v-list-item-icon>
+          <v-icon>{{ mdiViewDashboard }}</v-icon>
+        </v-list-item-icon>
+        <v-list-item-content>
+          <v-list-item-title>
+            Dashboard
+          </v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
     </v-list>
   </v-menu>
 </template>
@@ -124,7 +140,8 @@ import {
   mdiSourceBranchPlus,
   mdiShapeSquarePlus,
   mdiMapPlus,
-  mdiFormatColorFill
+  mdiFormatColorFill,
+  mdiViewDashboard
 } from '@mdi/js'
 import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
 
@@ -150,7 +167,8 @@ export default {
       mdiSourceBranchPlus,
       mdiShapeSquarePlus,
       mdiMapPlus,
-      mdiFormatColorFill
+      mdiFormatColorFill,
+      mdiViewDashboard
     }
   }
 }
