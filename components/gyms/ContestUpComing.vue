@@ -1,6 +1,9 @@
 <template>
-  <div>
-    <p class="font-weight-bold mb-2">
+  <v-sheet
+    class="py-1 px-3 rounded"
+    :class="`elevation-${elevation}`"
+  >
+    <p class="font-weight-bold mb-0 mt-1">
       <v-icon
         left
         color="amber"
@@ -9,17 +12,15 @@
       </v-icon>
       {{ $tc('components.gym.upcomingContests', gym.upcoming_contests.length, { count: gym.upcoming_contests.length }) }}
     </p>
-    <v-sheet class="py-1 px-3 rounded">
-      <v-list>
-        <contest-item-list
-          v-for="(contest, contestIndex) in gym.upcoming_contests"
-          :key="`contest-index-${contestIndex}`"
-          :contest="contestToObject(contest)"
-          class="rounded-sm border"
-        />
-      </v-list>
-    </v-sheet>
-  </div>
+    <v-list>
+      <contest-item-list
+        v-for="(contest, contestIndex) in gym.upcoming_contests"
+        :key="`contest-index-${contestIndex}`"
+        :contest="contestToObject(contest)"
+        class="rounded-sm border"
+      />
+    </v-list>
+  </v-sheet>
 </template>
 <script>
 import { mdiTrophy } from '@mdi/js'
@@ -33,6 +34,10 @@ export default {
     gym: {
       type: Object,
       required: true
+    },
+    elevation: {
+      type: Number,
+      default: 0
     }
   },
 

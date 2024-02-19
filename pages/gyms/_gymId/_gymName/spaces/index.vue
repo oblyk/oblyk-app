@@ -93,9 +93,9 @@
           />
         </v-sheet>
 
-        <gym-go-to-ranking
+        <gym-ranking-and-logbook
+          class="my-3"
           :gym="gym"
-          class="mb-4"
         />
 
         <div v-if="$vuetify.breakpoint.mobile && gym.upcoming_contests.length > 0">
@@ -198,15 +198,15 @@ import GymRouteApi from '~/services/oblyk-api/GymRouteApi'
 import GymRoute from '~/models/GymRoute'
 import GymRouteInfo from '~/components/gymRoutes/GymRouteInfo'
 import SubscribeBtn from '~/components/forms/SubscribeBtn'
-import GymGoToRanking from '~/components/gyms/GymGoToRanking'
 import ContestUpComing from '~/components/gyms/ContestUpComing'
 import DownToCloseDialog from '~/components/ui/DownToCloseDialog'
+import GymRankingAndLogbook from '~/components/gyms/GymRankingAndLogbook.vue'
 
 export default {
   components: {
+    GymRankingAndLogbook,
     DownToCloseDialog,
     ContestUpComing,
-    GymGoToRanking,
     SubscribeBtn,
     GymRouteInfo,
     GymSpaceList,

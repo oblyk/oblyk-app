@@ -80,13 +80,12 @@
             :text="gymSpace.description"
           />
         </div>
-      </v-sheet>
 
-      <gym-go-to-ranking
-        :gym="gym"
-        additional-class="blur-card"
-        class="mt-4"
-      />
+        <gym-ranking-and-logbook
+          class="mt-3"
+          :gym="gym"
+        />
+      </v-sheet>
 
       <div
         v-if="gym.upcoming_contests.length > 0"
@@ -95,6 +94,7 @@
         <contest-up-coming
           :gym="gym"
           class="mt-2 mb-3"
+          :elevation="$vuetify.breakpoint.mobile ? 3 : 0"
         />
       </div>
 
@@ -141,9 +141,9 @@ import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
 import GymSpaceSelector from '@/components/gymSpaces/GymSpaceSelector'
 import GymSpaceActionMenu from '@/components/gymSpaces/GymSpaceActionMenu'
 import GymSpaceRouteList from '@/components/gymRoutes/GymSpaceRouteList'
-import GymGoToRanking from '~/components/gyms/GymGoToRanking'
-import ContestUpComing from '~/components/gyms/ContestUpComing.vue'
-import SubscribeBtn from '~/components/forms/SubscribeBtn.vue'
+import ContestUpComing from '~/components/gyms/ContestUpComing'
+import SubscribeBtn from '~/components/forms/SubscribeBtn'
+import GymRankingAndLogbook from '~/components/gyms/GymRankingAndLogbook'
 const GymSectorEditingPlan = () => import('@/components/gymSectors/GymSectorEditingPlan')
 const GymSpaceEditingSectorsColor = () => import('~/components/gymSpaces/GymSpaceEditingSectorsColor')
 const MarkdownText = () => import('@/components/ui/MarkdownText')
@@ -151,10 +151,10 @@ const MarkdownText = () => import('@/components/ui/MarkdownText')
 export default {
   name: 'GymSpaceInfoAndRoutes',
   components: {
+    GymRankingAndLogbook,
     SubscribeBtn,
     ContestUpComing,
     GymSpaceEditingSectorsColor,
-    GymGoToRanking,
     MarkdownText,
     GymSectorEditingPlan,
     GymSpaceRouteList,
