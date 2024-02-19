@@ -41,6 +41,12 @@
         </v-radio-group>
         <div v-if="groupBy === 'ungroup'">
           <v-text-field
+            v-model="routesByPage"
+            label="Nombre de lignes par page"
+            clearable
+            outlined
+          />
+          <v-text-field
             v-model="reference"
             label="Référence de l'impression"
             hide-details
@@ -132,6 +138,7 @@ export default {
       sectorId: null,
       routeIds: [],
       groupBy: 'sector',
+      routesByPage: 7,
 
       mdiPrinter,
       mdiClose
@@ -152,8 +159,12 @@ export default {
   methods: {
     openDialog (labelOptions) {
       const previousGroupBy = localStorage.getItem('printGymLabelBy')
+      const previousRouteByPage = localStorage.getItem('printGymLabelRoutesByPage')
       if (previousGroupBy) {
         this.groupBy = previousGroupBy
+      }
+      if (previousRouteByPage) {
+        this.routesByPage = previousRouteByPage
       }
       if (labelOptions.sector) {
         this.reference = labelOptions.sector.name
@@ -182,7 +193,9 @@ export default {
       if (this.sectorId) { query.sector_id = this.sectorId }
       query.reference = this.reference
       query.group_by = this.groupBy
+      query.routes_by_page = this.routesByPage
       localStorage.setItem('printGymLabelBy', this.groupBy)
+      localStorage.setItem('printGymLabelRoutesByPage', this.routesByPage)
 
       const route = this.$router.resolve({ path: `${label.path}/print`, query })
       window.open(route.href, '_blank')
