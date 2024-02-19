@@ -52,40 +52,39 @@
         <markdown-text :text="gymRoute.description" />
       </v-sheet>
 
-      <!-- Global information -->
       <v-row
-        class="mb-2"
+        v-if="(gymRoute.likes_count && gymRoute.likes_count > 0) || (gymRoute.ascents_count || 0 > 0)"
+        class="my-1"
         no-gutters
       >
         <!-- Route real favorite -->
         <v-col
           v-if="gymRoute.likes_count && gymRoute.likes_count > 0"
           cols="6"
-          class="my-1 px-1"
+          class="my-1 font-weight-bold text-no-wrap"
         >
-          <description-line
-            :icon="mdiHeart"
-            icon-color="red"
-            :item-title="$t('common.realFavorite')"
-            :item-value="`${gymRoute.likes_count} ${$t('common.realFavorite')}`"
-            class="back-app-color rounded-sm px-2 py-1"
-          />
+          <v-icon small color="red">
+            {{ mdiHeart }}
+          </v-icon>
+          {{ $tc('common.realFavoriteCount', gymRoute.likes_count, { count: gymRoute.likes_count }) }}
         </v-col>
-
-        <!-- Route ascent count -->
         <v-col
           v-if="gymRoute.ascents_count || 0 > 0"
           cols="6"
-          class="my-1 px-1"
+          class="my-1 font-weight-bold text-no-wrap"
         >
-          <description-line
-            :icon="mdiCheckAll"
-            :item-title="$t('models.gymRoute.ascents')"
-            :item-value="$tc('components.gymRoute.ascents', gymRoute.ascents_count, { count: gymRoute.ascents_count })"
-            class="back-app-color rounded-sm px-2 py-1"
-          />
+          <v-icon small>
+            {{ mdiCheckAll }}
+          </v-icon>
+          {{ $tc('components.gymRoute.ascents', gymRoute.ascents_count, { count: gymRoute.ascents_count }) }}
         </v-col>
+      </v-row>
 
+      <!-- Global information -->
+      <v-row
+        class="mb-2"
+        no-gutters
+      >
         <!-- Route opened_at -->
         <v-col
           v-if="gymRoute.opened_at"
