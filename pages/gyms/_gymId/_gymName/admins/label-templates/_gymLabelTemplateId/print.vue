@@ -125,6 +125,8 @@ export default {
       pageFormat: null,
       pageOrientation: null,
       groupBy: null,
+      sortBy: 'grade',
+      sortDirection: 'asc',
       routesByPage: 7,
       pages: [],
 
@@ -149,6 +151,8 @@ export default {
     this.routeIds = [...urlParams.getAll('route_ids[]')]
     this.previewRoutesSet = urlParams.get('preview_routes_set')
     this.groupBy = urlParams.get('group_by')
+    this.sortBy = urlParams.get('sort_by')
+    this.sortDirection = urlParams.get('sort_direction')
     this.routesByPage = urlParams.get('routes_by_page')
 
     this.getLabelTemplate()
@@ -162,6 +166,8 @@ export default {
       if (this.sectorId) { params.sector_id = this.sectorId }
       if (this.previewRoutesSet) { params.preview_routes_set = this.previewRoutesSet }
       if (this.groupBy) { params.group_by = this.groupBy }
+      if (this.sortBy) { params.sort_by = this.sortBy }
+      if (this.sortDirection) { params.sort_direction = this.sortDirection }
       if (this.routesByPage) { params.routes_by_page = this.routesByPage }
       if (this.reference) { params.reference = this.reference }
 

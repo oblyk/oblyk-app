@@ -1,7 +1,7 @@
 <template>
   <v-dialog
     v-model="dialog"
-    width="400"
+    width="450"
   >
     <v-card>
       <v-card-title class="d-flex">
@@ -40,12 +40,24 @@
           />
         </v-radio-group>
         <div v-if="groupBy === 'ungroup'">
-          <v-text-field
-            v-model="routesByPage"
-            label="Nombre de lignes par page"
-            clearable
-            outlined
-          />
+          <div class="d-flex">
+            <v-text-field
+              v-model="routesByPage"
+              label="Voies par page"
+              class="rounded-tr-0 rounded-br-0"
+              clearable
+              outlined
+            />
+            <v-select
+              v-model="sortBy"
+              outlined
+              label="Ordonner par"
+              class="rounded-tl-0 rounded-bl-0"
+              :items="sortItems"
+              item-text="text"
+              item-value="value"
+            />
+          </div>
           <v-text-field
             v-model="reference"
             label="Référence de l'impression"
@@ -138,7 +150,17 @@ export default {
       sectorId: null,
       routeIds: [],
       groupBy: 'sector',
+      sortBy: 'grade.asc',
       routesByPage: 7,
+
+      sortItems: [
+        { text: 'Du plus facile au plus dure', value: 'grade.asc' },
+        { text: 'Du plus dure au plus facile', value: 'grade.desc' },
+        { text: 'Par relais', value: 'anchor.asc' },
+        { text: 'Par secteur', value: 'sector.asc' },
+        { text: 'Ouverture les plus récentes', value: 'opened_at.desc' },
+        { text: 'Ouverture les plus vielles', value: 'opened_at.asc' }
+      ],
 
       mdiPrinter,
       mdiClose
@@ -160,11 +182,15 @@ export default {
     openDialog (labelOptions) {
       const previousGroupBy = localStorage.getItem('printGymLabelBy')
       const previousRouteByPage = localStorage.getItem('printGymLabelRoutesByPage')
+      const previousSortBy = localStorage.getItem('printGymLabelSortBy')
       if (previousGroupBy) {
         this.groupBy = previousGroupBy
       }
       if (previousRouteByPage) {
         this.routesByPage = previousRouteByPage
+      }
+      if (previousSortBy) {
+        this.sortBy = previousSortBy
       }
       if (labelOptions.sector) {
         this.reference = labelOptions.sector.name
@@ -194,8 +220,11 @@ export default {
       query.reference = this.reference
       query.group_by = this.groupBy
       query.routes_by_page = this.routesByPage
+      query.sort_by = this.sortBy.split('.')[0]
+      query.sort_direction = this.sortBy.split('.')[1]
       localStorage.setItem('printGymLabelBy', this.groupBy)
       localStorage.setItem('printGymLabelRoutesByPage', this.routesByPage)
+      localStorage.setItem('printGymLabelSortBy', this.sortBy)
 
       const route = this.$router.resolve({ path: `${label.path}/print`, query })
       window.open(route.href, '_blank')
