@@ -175,5 +175,16 @@ class GymRouteApi extends BaseApi {
       }
     })
   }
+
+  deletePicture (gymId, gymRouteId) {
+    return this.axios.request({
+      method: 'DELETE',
+      url: `${this.baseUrl}/gyms/${gymId}/gym_routes/${gymRouteId}/delete_picture.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
+    })
+  }
 }
 export default GymRouteApi

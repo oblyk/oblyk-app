@@ -223,6 +223,9 @@ export default {
     })
 
     this.$root.$on('reloadSpaceRoutes', () => {
+      this.loadingRoutes = true
+      this.gymRoutes = []
+      this.resetLoadMorePageNumber()
       this.getRoutes()
     })
 
