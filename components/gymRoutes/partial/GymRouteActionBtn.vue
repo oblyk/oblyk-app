@@ -140,7 +140,7 @@ export default {
             this.gymRoute.gym.id,
             this.gymRoute.id
           ).then(() => {
-            this.$root.$emit('reloadSpaceRoutes')
+            window.location.reload()
           }).catch((err) => {
             this.$root.$emit('alertFromApiError', err, 'gymRoute')
           })
