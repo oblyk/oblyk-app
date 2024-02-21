@@ -4,7 +4,7 @@
       {{ mdiCalendar }}
     </v-icon>
     <div class="font-weight-bold mr-auto">
-      {{ humanizeDate(openedAt) }}
+      {{ date }}
     </div>
   </div>
 </template>
@@ -26,6 +26,12 @@ export default {
   data () {
     return {
       mdiCalendar
+    }
+  },
+
+  computed: {
+    date () {
+      return this.weekDayAndFromNow(this.openedAt)
     }
   }
 }

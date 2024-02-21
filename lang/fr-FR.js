@@ -224,6 +224,7 @@ export default {
     made: 'fait',
     all: 'Tous',
     today: "aujourd'hui",
+    yesterday: 'hier',
     open: 'Ouvert',
     close: 'Fermé',
     field: 'Champ',

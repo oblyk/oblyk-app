@@ -224,6 +224,7 @@ export default {
     made: 'made',
     all: 'All',
     today: 'today',
+    yesterday: 'yesterday',
     open: 'Open',
     close: 'Close',
     field: 'Field',

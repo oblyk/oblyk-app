@@ -93,7 +93,7 @@
 
         <!-- Open at Separator -->
         <opened-at-separator
-          v-if="sort.column === 'opened_at' && (routeIndex === 0 || route.opened_at !== gymRoutes[routeIndex - 1].opened_at)"
+          v-if="sort.column === 'opened_at' && (routeIndex === 0 || openedAtDateDif(route.opened_at) !== openedAtDateDif(gymRoutes[routeIndex - 1].opened_at))"
           :opened-at="route.opened_at"
           :class="routeIndex !== 0 ? 'mt-5' : ''"
         />
@@ -138,6 +138,7 @@
 import { mdiSourceBranchPlus } from '@mdi/js'
 import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
 import { LoadingMoreHelpers } from '~/mixins/LoadingMoreHelpers'
+import { DateHelpers } from '~/mixins/DateHelpers'
 import GymSpaceRouteSort from '@/components/gymRoutes/partial/GymSpaceRouteSort'
 import GymRouteApi from '~/services/oblyk-api/GymRouteApi'
 import GymSectorApi from '~/services/oblyk-api/GymSectorApi'
@@ -157,7 +158,7 @@ export default {
     GymRouteListItem,
     GymSpaceRouteSort
   },
-  mixins: [GymRolesHelpers, LoadingMoreHelpers],
+  mixins: [GymRolesHelpers, LoadingMoreHelpers, DateHelpers],
   props: {
     gym: {
       type: Object,
@@ -364,6 +365,10 @@ export default {
         }
       }
       return sectors
+    },
+
+    openedAtDateDif (date) {
+      return this.weekDayAndFromNow(date)
     }
   }
 }
