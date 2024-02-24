@@ -414,6 +414,7 @@ export default {
       gymRouteDialog: false,
       loadingGymRoute: false,
       gymRoute: null,
+      showSpaceColumn: true,
 
       mdiBackburger,
       mdiForwardburger,
@@ -471,14 +472,8 @@ export default {
           text: this.$t('models.gymRoute.gym_sector_id'),
           align: 'start',
           sortable: true,
+          cellClass: 'text-no-wrap',
           value: 'sector'
-        },
-        {
-          order: 10,
-          text: this.$t('models.gymRoute.gym_space_id'),
-          align: 'start',
-          sortable: true,
-          value: 'gym_space'
         },
         {
           order: 11,
@@ -573,6 +568,18 @@ export default {
         )
       }
 
+      if (this.showSpaceColumn) {
+        headers.push(
+          {
+            order: 10,
+            text: this.$t('models.gymRoute.gym_space_id'),
+            align: 'start',
+            sortable: true,
+            value: 'gym_space'
+          }
+        )
+      }
+
       return headers.sort((a, b) => a.order - b.order)
     },
 
@@ -610,6 +617,7 @@ export default {
           for (const route of resp.data) {
             this.routes.push(new GymRoute({ attributes: route }))
           }
+          this.showSpaceColumn = !gymSpaceId
           this.formatRoutes()
         })
         .finally(() => {
