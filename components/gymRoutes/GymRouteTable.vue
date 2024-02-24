@@ -439,6 +439,7 @@ export default {
           text: '',
           align: 'start',
           sortable: false,
+          filterable: false,
           value: 'see'
         },
         {
@@ -446,6 +447,7 @@ export default {
           text: this.$t('models.gymRoute.colors'),
           align: 'start',
           sortable: false,
+          filterable: false,
           value: 'color'
         },
         {
@@ -460,6 +462,8 @@ export default {
           text: this.$t('models.gymRoute.opened_at'),
           align: 'start',
           sortable: true,
+          filterable: false,
+          cellClass: 'text-no-wrap',
           value: 'openedAt'
         },
         {
@@ -481,6 +485,7 @@ export default {
           text: this.$t('models.gymRoute.ascents'),
           align: 'start',
           sortable: true,
+          filterable: false,
           value: 'ascentsCount'
         },
         {
@@ -488,6 +493,7 @@ export default {
           text: this.$t('models.gymRoute.likes_count'),
           align: 'start',
           sortable: true,
+          filterable: false,
           value: 'likesCount'
         },
         {
@@ -495,6 +501,7 @@ export default {
           text: this.$t('models.gymRoute.difficulty_appreciation'),
           align: 'start',
           sortable: true,
+          filterable: false,
           value: 'difficultyAppreciation'
         }
       ]
@@ -511,6 +518,7 @@ export default {
             text: this.$t('models.gymRoute.anchor_number'),
             align: 'start',
             sortable: true,
+            cellClass: 'text-no-wrap',
             value: 'anchorNumber'
           })
           haveAnchor = true
@@ -533,6 +541,7 @@ export default {
             text: this.$t('models.gymRoute.points'),
             align: 'start',
             sortable: true,
+            filterable: false,
             value: 'points'
           })
           havePoint = true
@@ -558,6 +567,7 @@ export default {
             text: '',
             align: 'center',
             sortable: false,
+            filterable: false,
             value: 'edit'
           }
         )
