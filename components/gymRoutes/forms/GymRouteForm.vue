@@ -601,6 +601,9 @@ export default {
       promise
         .then((resp) => {
           this.newGymRoute = new GymRoute({ attributes: resp.data })
+          if (this.isEditingForm()) {
+            this.$localforage.gymRoutes.removeItem(this.data.id)
+          }
           if (this.redirectTo) {
             this.$router.push(this.redirectTo)
           } else if (!this.isEditingForm()) {

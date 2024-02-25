@@ -61,6 +61,8 @@ export default {
     '@nuxtjs/auth-next',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
+    // https://github.com/nuxt-community/localforage-module
+    '@nuxtjs/localforage',
     // https://github.com/pimlie/nuxt-matomo
     ['nuxt-matomo', {
       matomoUrl: process.env.VUE_APP_MATOMO_URL,
@@ -202,6 +204,12 @@ export default {
       skipNuxtState: true
     },
     langDir: 'lang/'
+  },
+
+  localforage: {
+    instances: [
+      { name: 'OblykDatabase', storeName: 'gymRoutes' }
+    ]
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

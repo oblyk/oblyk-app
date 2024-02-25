@@ -26,9 +26,9 @@
           </div>
           <div
             v-if="loading"
-            class="text-center"
+            class="text-center pb-10"
           >
-            <v-progress-circular indeterminate />
+            {{ $t('common.loading') }}
           </div>
           <slot v-else />
         </v-sheet>
@@ -103,7 +103,7 @@ export default {
         this.overlay = true
         this.dialog = true
         if (!this.waitSignal) {
-          this.ready(callback)
+          this.signal(callback)
         }
       } else {
         this.$refs['down-to-close-overlay'].$el.querySelector('.v-overlay__content').scrollTo({ behavior: 'smooth', top: 0 })
@@ -121,7 +121,7 @@ export default {
         this.loading = false
         this.scroll(this.$refs['down-to-close-overlay'].$el)
         if (typeof callback === 'function') { callback() }
-      }, 300)
+      }, 100)
     },
 
     topClose () {
@@ -160,7 +160,7 @@ export default {
     overscroll-behavior: none;
     .down-to-close-sheet {
       box-shadow: 0 7px 60px 20px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12);
-      margin-top: calc(100vh - 77px);
+      margin-top: calc(100vh - 105px);
       width: 100vw;
     }
   }

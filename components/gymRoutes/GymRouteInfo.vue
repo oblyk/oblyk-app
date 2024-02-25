@@ -287,9 +287,9 @@
         </div>
       </client-only>
 
-      <!-- Climber ascent part -->
+      <!-- Climber comments part -->
       <v-sheet
-        v-if="ascents.length > 0"
+        v-if="comments.length > 0"
         class="back-app-color rounded-sm px-2 pb-2 pt-1"
       >
         <description-line
@@ -298,7 +298,7 @@
         >
           <template #content>
             <v-sheet
-              v-for="(ascent, index) in ascents"
+              v-for="(ascent, index) in comments"
               :key="`gym-route-ascent-${index}`"
               class="rounded-sm px-2 py-1 mt-2"
             >
@@ -389,10 +389,9 @@ export default {
   data () {
     return {
       loadingAscents: true,
-      ascents: [],
+      comments: [],
       fullHeightPicture: false,
       panzoom: null,
-      initialTransform: null,
 
       mdiComment,
       mdiClose,
@@ -426,7 +425,9 @@ export default {
   },
 
   mounted () {
-    this.getAscents()
+    if (this.gymRoute.ascents_count > 0) {
+      this.getAscents()
+    }
   },
 
   methods: {
@@ -449,7 +450,7 @@ export default {
         .then((resp) => {
           for (const ascent of resp.data) {
             if (ascent.note || ascent.comment) {
-              this.ascents.push(new AscentGymRoute({ attributes: ascent }))
+              this.comments.push(new AscentGymRoute({ attributes: ascent }))
             }
           }
         })

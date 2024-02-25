@@ -185,15 +185,6 @@ export default {
       }
     },
 
-    haveGymRoutes () {
-      for (const route of this.contestStep.routes) {
-        if (route.gym_route_id !== null) {
-          return true
-        }
-      }
-      return false
-    },
-
     havePictures () {
       for (const route of this.contestStep.routes) {
         if (route.picture !== null) {

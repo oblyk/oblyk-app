@@ -115,8 +115,6 @@ export default {
       gymRoute: null,
       gymRouteDialog: false,
       loadingGymRoute: false,
-      closeDragStart: null,
-      toucheClientY: 0,
 
       mdiChevronDown
     }
@@ -170,21 +168,30 @@ export default {
         })
     },
 
-    getGymRoute () {
+    async getGymRoute () {
       this.loadingGymRoute = true
       this.gymRoute = null
       this.gymRouteDialog = true
-      new GymRouteApi(this.$axios, this.$auth)
-        .find(
-          this.$route.params.gymId,
-          this.$route.params.gymSpaceId,
-          this.activeGymRouteId
-        ).then((resp) => {
-          this.gymRoute = new GymRoute({ attributes: resp.data })
-          this.$refs.GymRouteDialog?.signal()
-        }).finally(() => {
-          this.loadingGymRoute = false
-        })
+
+      // Get route in indexDb first and get in API if it does not exist
+      const localRoute = await this.$localforage.gymRoutes.getItem(this.activeGymRouteId)
+      if (localRoute) {
+        this.gymRoute = new GymRoute({ attributes: localRoute })
+        this.$refs.GymRouteDialog?.signal()
+        this.loadingGymRoute = false
+      } else {
+        new GymRouteApi(this.$axios, this.$auth)
+          .find(
+            this.$route.params.gymId,
+            this.$route.params.gymSpaceId,
+            this.activeGymRouteId
+          ).then((resp) => {
+            this.gymRoute = new GymRoute({ attributes: resp.data })
+            this.$refs.GymRouteDialog?.signal()
+          }).finally(() => {
+            this.loadingGymRoute = false
+          })
+      }
     },
 
     closeGymRouteModal () {

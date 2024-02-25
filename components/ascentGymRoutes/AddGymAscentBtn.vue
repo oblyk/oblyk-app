@@ -82,7 +82,6 @@ export default {
 
   methods: {
     successCallback () {
-      this.$root.$emit('reloadAscentGymRoute')
       this.ascentModal = false
     }
   }

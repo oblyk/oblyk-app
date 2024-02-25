@@ -140,6 +140,7 @@ export default {
             this.gymRoute.gym.id,
             this.gymRoute.id
           ).then(() => {
+            this.$localforage.gymRoutes.removeItem(this.gymRoute.id)
             window.location.reload()
           }).catch((err) => {
             this.$root.$emit('alertFromApiError', err, 'gymRoute')

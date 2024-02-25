@@ -149,7 +149,7 @@ export default {
     submit () {
       this.submitOverlay = true
       const promise = (this.isEditingForm()) ? new AscentGymRouteApi(this.$axios, this.$auth).update(this.data) : new AscentGymRouteApi(this.$axios, this.$auth).create(this.data)
-
+      this.$localforage.gymRoutes.removeItem(this.data.gym_route_id)
       promise
         .then(() => {
           this.$auth.fetchUser().then(() => {

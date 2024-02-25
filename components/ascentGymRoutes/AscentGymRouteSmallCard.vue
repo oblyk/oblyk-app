@@ -97,9 +97,8 @@ export default {
         new AscentGymRouteApi(this.$axios, this.$auth)
           .delete(this.ascentGymRoute.id)
           .then(() => {
-            this.$auth.fetchUser().then(() => {
-              this.$root.$emit('reloadAscentGymRoute')
-            })
+            this.$localforage.gymRoutes.removeItem(this.gymRoute.id)
+            this.$auth.fetchUser()
           })
           .catch((err) => {
             this.$root.$emit('alertFromApiError', err, 'ascentGymRoute')

@@ -48,28 +48,30 @@ export default {
     }
   },
 
+  computed: {
+    gymRouteAscents () {
+      return this.$auth.user.ascent_gym_routes
+    }
+  },
+
   watch: {
-    gymRoute () {
-      this.ascents = []
+    gymRouteAscents () {
       this.getAscents()
     }
   },
 
   mounted () {
-    this.$root.$on('reloadAscentGymRoute', () => {
-      this.getAscents()
-    })
     this.getAscents()
-  },
-
-  beforeDestroy () {
-    this.$root.$off('reloadAscentGymRoute')
   },
 
   methods: {
     getAscents () {
-      this.loadingAscents = true
       this.ascents = []
+
+      const inLogbookAscents = this.gymRouteAscents.filter(gymRouteAscent => gymRouteAscent.gym_route_id === this.gymRoute.id)
+      if (!inLogbookAscents || inLogbookAscents.length === 0) { return }
+
+      this.loadingAscents = true
       new AscentGymRouteApi(this.$axios, this.$auth)
         .all({ gym_route_id: this.gymRoute.id })
         .then((resp) => {

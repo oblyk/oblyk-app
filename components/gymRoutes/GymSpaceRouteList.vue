@@ -100,6 +100,7 @@
 
         <!-- Paginate route liste -->
         <gym-route-list-item
+          v-once
           :highlight-sectors="showPlanOptions"
           :gym-route="route"
           :gym="gym"
@@ -238,6 +239,7 @@ export default {
     this.$root.$off('filterBySector')
     this.$root.$off('dismountGymRoutesInSector')
     this.$root.$off('reloadSpaceRoutes')
+    this.$localforage.gymRoutes.clear()
   },
 
   methods: {
@@ -270,6 +272,7 @@ export default {
       promise
         .then((resp) => {
           for (const route of resp.data) {
+            this.$localforage.gymRoutes.setItem(route.id, route)
             this.gymRoutes.push(new GymRoute({ attributes: route }))
           }
 
