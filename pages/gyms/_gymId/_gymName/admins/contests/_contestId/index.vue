@@ -197,7 +197,7 @@
           <add-contest-stage-btn
             :contest="contest"
             :callback="getStages"
-            :disabled="stages.length > 1"
+            :disabled="stages.length > 2"
           />
         </div>
       </div>
