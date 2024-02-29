@@ -88,6 +88,17 @@
             <!-- Row slot -->
             <template
               v-once
+              #[`item.points`]="{ item }"
+            >
+              <span
+                :class="item.points ? '' : 'font-italic'"
+                :style="item.points ? '' : 'opacity: 0.60'"
+              >
+                {{ item.point_to_s }}
+              </span>
+            </template>
+            <template
+              v-once
               #[`item.see`]="{ item }"
             >
               <v-btn
@@ -441,6 +452,7 @@ export default {
           align: 'start',
           sortable: false,
           filterable: false,
+          class: 'text-no-wrap',
           value: 'see'
         },
         {
@@ -449,13 +461,24 @@ export default {
           align: 'start',
           sortable: false,
           filterable: false,
+          class: 'text-no-wrap',
           value: 'color'
+        },
+        {
+          order: 4,
+          text: this.$t('models.gymRoute.points'),
+          align: 'start',
+          sortable: true,
+          filterable: false,
+          class: 'text-no-wrap',
+          value: 'points'
         },
         {
           order: 6,
           text: this.$t('models.gymRoute.openers'),
           align: 'start',
           sortable: true,
+          class: 'text-no-wrap',
           value: 'opener'
         },
         {
@@ -464,6 +487,7 @@ export default {
           align: 'start',
           sortable: true,
           filterable: false,
+          class: 'text-no-wrap',
           cellClass: 'text-no-wrap',
           value: 'openedAt'
         },
@@ -472,6 +496,7 @@ export default {
           text: this.$t('models.gymRoute.gym_sector_id'),
           align: 'start',
           sortable: true,
+          class: 'text-no-wrap',
           cellClass: 'text-no-wrap',
           value: 'sector'
         },
@@ -481,6 +506,7 @@ export default {
           align: 'start',
           sortable: true,
           filterable: false,
+          class: 'text-no-wrap',
           value: 'ascentsCount'
         },
         {
@@ -489,6 +515,7 @@ export default {
           align: 'start',
           sortable: true,
           filterable: false,
+          class: 'text-no-wrap',
           value: 'likesCount'
         },
         {
@@ -497,13 +524,13 @@ export default {
           align: 'start',
           sortable: true,
           filterable: false,
+          class: 'text-no-wrap',
           value: 'difficultyAppreciation'
         }
       ]
 
       let haveAnchor = false
       let haveName = false
-      let havePoint = false
       let haveGrade = false
       for (const route of this.routes) {
         // Add anchor column
@@ -514,6 +541,7 @@ export default {
             align: 'start',
             sortable: true,
             cellClass: 'text-no-wrap',
+            class: 'text-no-wrap',
             value: 'anchorNumber'
           })
           haveAnchor = true
@@ -525,21 +553,10 @@ export default {
             text: this.$t('models.gymRoute.short_name'),
             align: 'start',
             sortable: true,
+            class: 'text-no-wrap',
             value: 'name'
           })
           haveName = true
-        }
-        // Add point column
-        if (!havePoint && route.points_to_s !== null) {
-          headers.push({
-            order: 4,
-            text: this.$t('models.gymRoute.points'),
-            align: 'start',
-            sortable: true,
-            filterable: false,
-            value: 'points'
-          })
-          havePoint = true
         }
         // Add grade column
         if (!haveGrade && route.grade_to_s !== null) {
@@ -548,6 +565,7 @@ export default {
             text: this.$t('models.gymRoute.grade'),
             align: 'start',
             sortable: true,
+            class: 'text-no-wrap',
             value: 'grade'
           })
           haveGrade = true
@@ -556,16 +574,15 @@ export default {
 
       // Is user can be manage route
       if (this.canManageOpening) {
-        headers.push(
-          {
-            order: 14,
-            text: '',
-            align: 'center',
-            sortable: false,
-            filterable: false,
-            value: 'edit'
-          }
-        )
+        headers.push({
+          order: 14,
+          text: '',
+          align: 'center',
+          sortable: false,
+          filterable: false,
+          class: 'text-no-wrap',
+          value: 'edit'
+        })
       }
 
       if (this.showSpaceColumn) {
@@ -575,6 +592,7 @@ export default {
             text: this.$t('models.gymRoute.gym_space_id'),
             align: 'start',
             sortable: true,
+            class: 'text-no-wrap',
             value: 'gym_space'
           }
         )
@@ -658,7 +676,8 @@ export default {
             },
             name: route.name,
             grade: route.grade_to_s,
-            points: route.points_to_s,
+            point_to_s: route.points_to_s,
+            points: route.points,
             anchorNumber: route.anchor_number,
             sector: route.gym_sector.name,
             gym_space: {

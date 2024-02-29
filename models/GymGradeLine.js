@@ -22,8 +22,7 @@ export default class GymGradeLine extends ActiveData {
     let gradeText = ''
     let points = ''
     if (this.gym_grade.difficulty_by_grade && this.grade_text) { gradeText = `~${this.grade_text}` }
-    if (this.gym_grade.point_system_type === 'fix' && this.points) { points = `${this.points}pts` }
-    if (this.gym_grade.point_system_type === 'divisible') { points = '1000 pts / n' }
+    if (this.points) { points = `${this.points}pts` }
 
     return `${gradeText} ${points}`.trim()
   }

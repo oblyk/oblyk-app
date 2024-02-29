@@ -205,6 +205,7 @@ export default {
     noResultFor: 'No result for : "%{query}"',
     votes: 'Votes',
     minutes: 'minutes',
+    month: 'Month',
     number: 'number',
     documentation: 'Documentation',
     seeDocumentation: 'See the documentation for more information :',
@@ -224,6 +225,7 @@ export default {
     on: 'on',
     made: 'made',
     all: 'All',
+    allTypes: 'All types',
     today: 'today',
     yesterday: 'yesterday',
     open: 'Open',
@@ -616,6 +618,8 @@ export default {
       contestRankingTypes: 'Ranking type',
       contestCategoryTypes: 'Categorization type',
       contestCategoryObligation: 'Type of registration restriction',
+      rankingSystem: 'Ranking system',
+      age: 'Age',
       colorSystem: {
         chooseOrder: 'Choose a colour order',
         usage: 'Already used %{count} times here',
@@ -1189,11 +1193,13 @@ export default {
       upcomingContests: 'One contest coming soon ! | %{count} contests coming soon !'
     },
     gymRanking: {
+      rankingType: 'Ranking type',
       rank: 'Ranking',
       allRank: 'Overall ranking for all periods',
       rankOf: 'The %{date} ranking',
       seeRankOf: 'See the %{date} ranking',
-      rankNumber: '%{number}st | %{number}nd'
+      rankNumber: '%{number}st | %{number}nd',
+      noRank: 'There is no ranking for %{date} with the selected filters.'
     },
     gymAdmin: {
       administration: 'Administration',
@@ -1214,8 +1220,10 @@ export default {
       contests: 'Contests',
       championships: 'Championships',
       parameters: 'Parameters',
+      rakingSystem: 'Ranking system',
+      rakingExplain: 'Parameter for monthly ranking by climbing style',
       difficultySystem: 'Difficulty system',
-      difficultySystemExplain: 'Difficulty system settings, points system, level rating, etc.',
+      difficultySystemExplain: 'Settings for difficulty systems, level rating, etc.',
       difficultySystemShort: 'Systems',
       climbingStyle: 'Climbing styles',
       climbingStyleExplain: 'Select the list of climbing styles you use most.',
@@ -1242,6 +1250,10 @@ export default {
       explain: 'Choose the climbing styles you want to use most often. When adding routes, these styles will be given priority, saving you time when adding your routes<br><cite>(you can always choose other styles even if they are not ticked)</cite>.',
       noColor: 'No color',
       favorites: 'Favorites'
+    },
+    gymRankingSystems: {
+      title: 'Rankings by type of climbing',
+      explain: 'Choose how Oblyk calculates points for each type of climb.'
     },
     gymStatistic: {
       figuresTitle: 'In a few figures',
@@ -1284,7 +1296,7 @@ export default {
       create: 'New space',
       addNew: 'Add a new space',
       chooseSpace: 'Choose a space',
-      explain: 'A <cite>"space"</cite> and a large area of a room that can contain several sectors. example: "Lane space", "Block space", "Pan", etc.<br> It is up to you to find the best division for your room.',
+      explain: 'A <cite>"space"</cite> and a large area of a room that can contain several sectors. Example: "Lane space", "Block space", "Pan", etc.<br> It is up to you to find the best division for your room.',
       explainMissingPlan: 'Upload a plan of <cite>"%{name}"</cite> on which you can draw the sectors.',
       uploadPlanFor: 'Upload a plan for : %{name}',
       routes: 'Routes',
@@ -2323,7 +2335,8 @@ export default {
       tags: 'Tags',
       styles: 'Styles',
       grade_by_section: 'Grade L.%{index}',
-      anchor_number: 'Anchor n°'
+      anchor_number: 'Anchor n°',
+      fixedPoints: 'Give a fixed number of points'
     },
     gymGrade: {
       name: 'System name',
@@ -2343,7 +2356,9 @@ export default {
       colors: 'Colors',
       order: 'Order',
       grade_text: 'Average rating of this level',
-      points: 'Points for this level'
+      points: 'Points for this level',
+      fixedPoints: 'Do you want to impose a fixed number of points for this level?',
+      fixedPointsExplain: 'Recommended only if you use a fixed-point grading system (1)'
     },
     roles: {
       manage_team_member: 'Team member',
@@ -2366,7 +2381,9 @@ export default {
       subscription_end_date: 'Registration end',
       total_capacity: 'Max total capacity',
       ranking_type: 'Raking type',
-      categorization_type: 'Categorization type'
+      categorization_type: 'Categorization type',
+      authorise_public_subscription: 'Allow entries from the public page',
+      private: 'Private contest'
     },
     contestCombinedRanking: {
       title: 'Ranking type',
@@ -2463,6 +2480,20 @@ export default {
     contestWave: {
       name: 'Name'
     },
+    ages: {
+      all: 'All ages',
+      U8: 'Under 8',
+      U10: 'Under 10',
+      U12: 'Under 12',
+      U14: 'Under 14',
+      U16: 'Under 16',
+      U18: 'Under 18',
+      U20: 'Under 20',
+      senior: 'Senior (20 - 39 years old)',
+      A40: 'Veteran 1 (40 et +)',
+      A50: 'Veteran 2 (50 et +)',
+      A60: 'Veteran 3 (60 et +)'
+    },
     climbs: {
       sport_climbing: 'Sport Climbing',
       bouldering: 'Bouldering',
@@ -2491,7 +2522,8 @@ export default {
       via_ferrata: 'VF',
       fun_climbing: 'FC',
       training_space: 'T',
-      pan: 'P'
+      pan: 'P',
+      speed_climbing: 'S'
     },
     climbingStyle: {
       boulder: 'Bolder',
@@ -2541,6 +2573,7 @@ export default {
       undefined: 'Undefined',
       male: 'Male',
       female: 'Female',
+      males_and_females: 'Males and females',
       climbers: {
         undefined: 'Undefined',
         male: 'He climber',
@@ -2704,6 +2737,16 @@ export default {
       multi_pitch_leader: 'Lead (multi pitch)',
       multi_pitch_second: 'Second (multi pitch)',
       multi_pitch_alternate_lead: 'Alternate lead (multi pitch)'
+    },
+    rankingSystem: {
+      division: '1000 points divided by the number of ascents',
+      fixed_points: 'fixed points',
+      point_by_grade: 'Point by grade'
+    },
+    rankingSystemExplain: {
+      division: "Each route or boulder is worth 1000 points, and the more climbers do the route or boulder, the fewer points it's worth.",
+      fixed_points: 'For each route or block you assign a fixed number of points.',
+      point_by_grade: 'Each grade (4a, 6a, etc.) has a number of points given by its difficulty.<br>See the documentation : <a href="https://oblyk.github.io/app-user-doc/docs/indoor/systeme-de-classement" target="_blank">Point by grade</a>'
     },
     hardnessStatus: {
       easy_for_the_grade: '😎 Easy for the grade',

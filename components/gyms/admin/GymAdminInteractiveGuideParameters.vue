@@ -37,6 +37,34 @@
               small
               class="mb-1"
             >
+              {{ mdiPodium }}
+            </v-icon>
+            {{ $t('components.gymAdmin.rakingSystem') }}
+          </p>
+          <p class="mb-2">
+            {{ $t('components.gymAdmin.rakingExplain') }}
+          </p>
+        </div>
+        <div class="text-right mt-auto">
+          <v-btn
+            text
+            outlined
+            :to="`${gym.adminPath}/ranking-systems`"
+          >
+            {{ $t('components.gymAdmin.rakingSystem') }}
+          </v-btn>
+        </div>
+      </v-sheet>
+    </v-col>
+    <v-col>
+      <v-sheet class="rounded px-3 pt-3 pb-2 full-height d-flex flex-column">
+        <div class="back-app-color pa-2 mb-2 rounded-sm">
+          <p class="font-weight-bold mb-1">
+            <v-icon
+              left
+              small
+              class="mb-1"
+            >
               {{ mdiHumanGreeting }}
             </v-icon>
             {{ $t('components.gymAdmin.climbingStyle') }}
@@ -88,7 +116,7 @@
 </template>
 
 <script>
-import { mdiFormatListBulletedSquare, mdiFileDocumentOutline, mdiHumanGreeting } from '@mdi/js'
+import { mdiFormatListBulletedSquare, mdiFileDocumentOutline, mdiHumanGreeting, mdiPodium } from '@mdi/js'
 
 export default {
   name: 'GymAdminInteractiveGuideParameters',
@@ -103,7 +131,8 @@ export default {
     return {
       mdiFormatListBulletedSquare,
       mdiFileDocumentOutline,
-      mdiHumanGreeting
+      mdiHumanGreeting,
+      mdiPodium
     }
   }
 }
