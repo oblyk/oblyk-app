@@ -130,7 +130,7 @@ export default {
 
   computed: {
     holdColors () {
-      return this.buildGradiantStop(this.gymRoute.hold_colors)
+      return this.buildGradiantStop(this.gymRoute.hold_colors, this.fullColors)
     },
 
     tagColors () {
