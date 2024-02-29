@@ -6,34 +6,32 @@
     class="down-to-close-overlay align-start"
     @click="close"
   >
-    <v-fab-transition>
-      <div>
+    <div>
+      <div
+        v-intersect="topClose"
+        class="down-to-close-intersect"
+      />
+      <v-sheet
+        v-if="dialog"
+        :light="!$vuetify.theme.dark"
+        rounded
+        class="pb-4 rounded-bl-0 rounded-br-0 mx-auto down-to-close-sheet"
+        :class="paddingX"
+        :style="`max-width: ${width}px;`"
+        @click.stop
+      >
+        <div class="close-indicator text-center">
+          <div />
+        </div>
         <div
-          v-intersect="topClose"
-          class="down-to-close-intersect"
-        />
-        <v-sheet
-          v-if="dialog"
-          :light="!$vuetify.theme.dark"
-          rounded
-          class="pb-4 rounded-bl-0 rounded-br-0 mx-auto down-to-close-sheet"
-          :class="paddingX"
-          :style="`max-width: ${width}px;`"
-          @click.stop
+          v-if="loading"
+          class="text-center pb-10"
         >
-          <div class="close-indicator text-center">
-            <div />
-          </div>
-          <div
-            v-if="loading"
-            class="text-center pb-10"
-          >
-            {{ $t('common.loading') }}
-          </div>
-          <slot v-else />
-        </v-sheet>
-      </div>
-    </v-fab-transition>
+          {{ $t('common.loading') }}
+        </div>
+        <slot v-else />
+      </v-sheet>
+    </div>
   </v-overlay>
 </template>
 
@@ -99,9 +97,13 @@ export default {
       }
 
       if (type === 'open') {
+        this.readyToClose = false
         this.loading = true
         this.overlay = true
         this.dialog = true
+        setTimeout(() => {
+          this.$refs['down-to-close-overlay'].$el.querySelector('.v-overlay__content').scrollTo({ behavior: 'smooth', top: 150 })
+        }, 25)
         if (!this.waitSignal) {
           this.signal(callback)
         }
@@ -141,7 +143,7 @@ export default {
 
     scroll (el) {
       setTimeout(() => {
-        el.querySelector('.v-overlay__content').scrollTo({ behavior: 'smooth', top: window.visualViewport.height - 150 })
+        el.querySelector('.v-overlay__content').scrollTo({ behavior: 'smooth', top: window.visualViewport.height - 50 })
         setTimeout(() => {
           this.readyToClose = true
         }, 100)
@@ -160,12 +162,12 @@ export default {
     overscroll-behavior: none;
     .down-to-close-sheet {
       box-shadow: 0 7px 60px 20px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12);
-      margin-top: calc(100vh - 105px);
+      margin-top: 100vh;
       width: 100vw;
     }
   }
   .down-to-close-intersect {
-    height: 5px;
+    height: 1px;
     width: 100%;
   }
   .close-indicator {
