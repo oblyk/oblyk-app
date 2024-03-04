@@ -13,7 +13,7 @@
               v-for="(gymRoute, gymRouteIndex) in page.routes"
               :key="`gym-route-index-${gymRouteIndex}`"
               class="label-column"
-              :class="gymLabelTemplate.label_direction"
+              :class="`${gymLabelTemplate.label_direction} qr_code_${gymLabelTemplate.qr_code_position}`"
               :gym="gym"
               :gym-route="gymRouteToObject(gymRoute)"
               :gym-label-template="gymLabelTemplate"
@@ -345,7 +345,17 @@ body {
     column-gap: 3mm;
   }
   .label-column {
-    height: 102px;
+    &.rectangular_vertical {
+      &.qr_code_in_label {
+        height: 200px;
+      }
+      &.qr_code_footer, &.qr_code_none {
+        height: 155px;
+      }
+    }
+    &.rectangular_horizontal {
+      height: 102px;
+    }
   }
   .one_by_row {
     flex: 0 0 100%;
