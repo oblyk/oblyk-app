@@ -17,6 +17,12 @@
               class="mt-4"
               v-html="$t(`models.rankingSystemExplain.${data.sport_climbing_ranking}`)"
             />
+            <p
+              v-else
+              class="text--disabled text-center mt-5"
+            >
+              {{ $t('components.gymRankingSystems.chooseSystem') }}
+            </p>
           </v-card-text>
         </v-card>
       </v-col>
@@ -36,6 +42,12 @@
               class="mt-4"
               v-html="$t(`models.rankingSystemExplain.${data.boulder_ranking}`)"
             />
+            <p
+              v-else
+              class="text--disabled text-center mt-5"
+            >
+              {{ $t('components.gymRankingSystems.chooseSystem') }}
+            </p>
           </v-card-text>
         </v-card>
       </v-col>
@@ -55,11 +67,24 @@
               class="mt-4"
               v-html="$t(`models.rankingSystemExplain.${data.pan_ranking}`)"
             />
+            <p
+              v-else
+              class="text--disabled text-center mt-5"
+            >
+              {{ $t('components.gymRankingSystems.chooseSystem') }}
+            </p>
           </v-card-text>
         </v-card>
       </v-col>
     </v-row>
     <div class="text-right mt-4">
+      <v-btn
+        text
+        small
+        @click="deleteRanking()"
+      >
+        {{ $t('components.gymRankingSystems.deleteSystem') }}
+      </v-btn>
       <v-btn
         elevation="0"
         color="primary"
@@ -101,6 +126,19 @@ export default {
 
   methods: {
     submit () {
+      this.saving = true
+      new GymApi(this.$axios, this.$auth)
+        .update(this.data)
+        .finally(() => {
+          this.saving = false
+          this.changes = false
+        })
+    },
+
+    deleteRanking () {
+      this.data.boulder_ranking = null
+      this.data.pan_ranking = null
+      this.data.sport_climbing_ranking = null
       this.saving = true
       new GymApi(this.$axios, this.$auth)
         .update(this.data)

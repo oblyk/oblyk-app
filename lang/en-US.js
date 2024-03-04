@@ -1253,7 +1253,9 @@ export default {
     },
     gymRankingSystems: {
       title: 'Rankings by type of climbing',
-      explain: 'Choose how Oblyk calculates points for each type of climb.'
+      explain: 'Choose how Oblyk calculates points for each type of climb.',
+      chooseSystem: 'Choose a classification type',
+      deleteSystem: 'Do not rank'
     },
     gymStatistic: {
       figuresTitle: 'In a few figures',

@@ -40,6 +40,12 @@ export default {
     }
   },
 
+  watch: {
+    value () {
+      this.rankingSystem = this.value
+    }
+  },
+
   methods: {
     onChange () {
       this.$emit('input', this.rankingSystem)

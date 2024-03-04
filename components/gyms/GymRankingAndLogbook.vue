@@ -18,11 +18,11 @@
         <v-icon left>
           {{ mdiChartBoxOutline }}
         </v-icon>
-        Mon carnet
+        {{ $t('components.user.cardsTitle.myLogbook') }}
       </v-btn>
     </div>
     <div
-      v-if="gym.sorts_available.difficulty_by_point"
+      v-if="gym.display_ranking"
       class="ml-1 w-50"
     >
       <v-btn

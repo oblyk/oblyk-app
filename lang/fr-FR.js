@@ -1253,7 +1253,9 @@ export default {
     },
     gymRankingSystems: {
       title: "Les classements par type d'escalade",
-      explain: "Choisissez comment Oblyk calculera les points par type d'escalade."
+      explain: "Choisissez comment Oblyk calculera les points par type d'escalade.",
+      chooseSystem: 'Choisissez un type de classement',
+      deleteSystem: 'Ne pas faire de classement'
     },
     gymStatistic: {
       figuresTitle: 'En quelques chiffres',
