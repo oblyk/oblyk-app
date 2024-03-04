@@ -697,6 +697,7 @@ export default {
         }
       }
       this.data.points = selectedGradeLine.points
+      this.showPoint = !!this.data.points
       for (const section of this.data.sections) {
         section.grade = selectedGradeLine.grade_text
       }
