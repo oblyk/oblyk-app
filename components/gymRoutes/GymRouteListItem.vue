@@ -33,6 +33,12 @@
       </v-list-item-title>
       <v-list-item-subtitle class="d-flex">
         <div class="mr-auto">
+          <small
+            v-if="gymRoute.dismounted_at !== null"
+            class="font-weight-bold red--text"
+          >
+            {{ $t('components.gymRoute.dismounted') }}
+          </small>
           <ascent-gym-route-status-icon
             v-if="$auth.loggedIn"
             :gym-route="gymRoute"

@@ -1346,12 +1346,14 @@ export default {
       reusePicture: 'Reusing a photo',
       createCount: 'Create your Oblyk account, track your progress and much more!',
       anchorSuggestion: 'Anchor suggestion',
+      dismounted: 'Dismounted',
       sorts: {
         opened_at: 'Sort by opening date',
         sector: 'Sort by sector',
         grade: 'Sort by grade',
         level: 'Sort by level',
-        point: 'Sort by point'
+        point: 'Sort by point',
+        opened_at_dismounted: 'Dismounted routes'
       }
     },
     gymGrade: {

@@ -1346,12 +1346,15 @@ export default {
       reusePicture: 'Réutiliser une photo',
       createCount: 'Créer ton compte sur Oblyk, suis ta progression et bien plus !',
       anchorSuggestion: 'Suggestion de relais',
+      dismountedAt: 'Ligne démonté le %{date}',
+      dismounted: 'Démonté',
       sorts: {
         opened_at: "Trier par date d'ouverture",
         sector: 'Trier par secteur',
         grade: 'Trier par cotation',
         level: 'Trier par niveau',
-        point: 'Trier par point'
+        point: 'Trier par point',
+        opened_at_dismounted: 'Les lignes démontées'
       }
     },
     gymGrade: {

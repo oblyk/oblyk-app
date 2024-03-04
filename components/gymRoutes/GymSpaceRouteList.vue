@@ -181,7 +181,7 @@ export default {
 
   data () {
     return {
-      sort: { column: 'opened_at', direction: 'asc' },
+      sort: { column: 'opened_at', direction: 'asc', dismounted: false },
       gymRoutes: [],
       loadingRoutes: true,
       firstLoaded: false,
@@ -256,7 +256,8 @@ export default {
             sectorId,
             this.sort.column,
             this.sort.direction,
-            this.page
+            this.page,
+            this.sort.dismounted
           )
       } else {
         promise = gymRouteApi
@@ -265,7 +266,8 @@ export default {
             sectorId,
             this.sort.column,
             this.sort.direction,
-            this.page
+            this.page,
+            this.sort.dismounted
           )
       }
 
