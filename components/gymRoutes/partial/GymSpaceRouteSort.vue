@@ -9,7 +9,7 @@
             v-on="on"
           >
             <div>
-              {{ $t(`components.gymRoute.sorts.${column}`) }}
+              {{ dismounted ? $t(`components.gymRoute.sorts.opened_at_dismounted`) : $t(`components.gymRoute.sorts.${column}`) }}
             </div>
             <div class="ml-auto">
               <v-icon>
@@ -21,7 +21,7 @@
         <v-sheet class="rounded">
           <v-list>
             <v-list-item
-              :class="column === 'opened_at' ? 'v-list-item--active' : null"
+              :class="column === 'opened_at' && !dismounted ? 'v-list-item--active' : null"
               @click="sorting('opened_at')"
             >
               <v-list-item-icon class="mr-1">
@@ -34,7 +34,7 @@
               </v-list-item>
             </v-list-item>
             <v-list-item
-              :class="column === 'sector' ? 'v-list-item--active' : null"
+              :class="column === 'sector' && !dismounted ? 'v-list-item--active' : null"
               @click="sorting('sector')"
             >
               <v-list-item-icon class="mr-1">
@@ -48,7 +48,7 @@
             </v-list-item>
             <v-list-item
               v-if="sortsAvailable.difficulty_by_level"
-              :class="column === 'level' ? 'v-list-item--active' : null"
+              :class="column === 'level' && !dismounted ? 'v-list-item--active' : null"
               @click="sorting('level')"
             >
               <v-list-item-icon class="mr-1">
@@ -62,7 +62,7 @@
             </v-list-item>
             <v-list-item
               v-if="sortsAvailable.difficulty_by_grade"
-              :class="column === 'grade' ? 'v-list-item--active' : null"
+              :class="column === 'grade' && !dismounted ? 'v-list-item--active' : null"
               @click="sorting('grade')"
             >
               <v-list-item-icon class="mr-1">
@@ -72,6 +72,20 @@
               </v-list-item-icon>
               <v-list-item>
                 {{ $t('components.gymRoute.sorts.grade') }}
+              </v-list-item>
+            </v-list-item>
+            <v-divider />
+            <v-list-item
+              :class="column === 'opened_at' && dismounted ? 'v-list-item--active' : null"
+              @click="sorting('opened_at', true)"
+            >
+              <v-list-item-icon class="mr-1">
+                <v-icon>
+                  {{ sortIcon.opened_at_dismounted }}
+                </v-icon>
+              </v-list-item-icon>
+              <v-list-item>
+                {{ $t('components.gymRoute.sorts.opened_at_dismounted') }}
               </v-list-item>
             </v-list-item>
           </v-list>
@@ -101,7 +115,8 @@ import {
   mdiTag,
   mdiTextureBox,
   mdiSortNumericAscending,
-  mdiMenuDown
+  mdiMenuDown,
+  mdiEyeOff
 } from '@mdi/js'
 
 export default {
@@ -125,12 +140,14 @@ export default {
     return {
       column: this.value.column,
       direction: this.value.direction,
+      dismounted: false,
 
       sortIcon: {
         sector: mdiTextureBox,
         opened_at: mdiCalendar,
         grade: mdiSortNumericAscending,
-        level: mdiTag
+        level: mdiTag,
+        opened_at_dismounted: mdiEyeOff
       },
 
       mdiSortAscending,
@@ -157,19 +174,20 @@ export default {
   },
 
   methods: {
-    sorting (column) {
+    sorting (column, dismounted = false) {
       if (this.column === column) {
         this.direction = this.direction === 'asc' ? 'desc' : 'asc'
       } else {
         this.direction = column === 'sector' ? 'asc' : 'desc'
       }
       this.column = column
-      this.$emit('input', { column: this.column, direction: this.direction })
+      this.dismounted = dismounted
+      this.$emit('input', { column: this.column, direction: this.direction, dismounted: this.dismounted })
     },
 
     switchDirection () {
       this.direction = this.direction === 'asc' ? 'desc' : 'asc'
-      this.$emit('input', { column: this.column, direction: this.direction })
+      this.$emit('input', { column: this.column, direction: this.direction, dismounted: this.dismounted })
     }
   }
 }

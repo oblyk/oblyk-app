@@ -205,6 +205,7 @@ export default {
     noResultFor: 'Pas de résultat pour : "%{query}"',
     votes: 'Votes',
     minutes: 'minutes',
+    month: 'Mois',
     number: 'nombre',
     documentation: 'Documentation',
     seeDocumentation: "Consultez la documentation pour en connaître d'avantage :",
@@ -224,6 +225,7 @@ export default {
     on: 'sur',
     made: 'fait',
     all: 'Tous',
+    allTypes: 'Tous les types',
     today: "aujourd'hui",
     yesterday: 'hier',
     open: 'Ouvert',
@@ -616,6 +618,8 @@ export default {
       contestRankingTypes: 'Type de classement',
       contestCategoryTypes: 'Type de catégorisation',
       contestCategoryObligation: "Type de restriction à l'inscription",
+      rankingSystem: 'Type de classement',
+      age: 'Age',
       colorSystem: {
         chooseOrder: 'Choisissez un ordre de couleur',
         usage: 'Déjà utilisé %{count} fois ici',
@@ -1189,11 +1193,13 @@ export default {
       upcomingContests: 'Un contest est à venir ! | %{count} contests sont à venir'
     },
     gymRanking: {
+      rankingType: 'Les types de classements',
       rank: 'Le classement',
       allRank: 'Classement général toutes périodes confondues',
       rankOf: 'Le classement de %{date}',
       seeRankOf: 'Voir le classement de %{date}',
-      rankNumber: '%{number}er | %{number}ème'
+      rankNumber: '%{number}er | %{number}ème',
+      noRank: "Il n'y as pas de classement pour %{date} avec les filtres sélectionnés."
     },
     gymAdmin: {
       administration: 'Administration',
@@ -1214,8 +1220,10 @@ export default {
       championships: 'Championnats',
       home: 'Dashboard',
       parameters: 'Paramètres',
+      rakingSystem: 'Les classements',
+      rakingExplain: "Paramètre du classement mensuel par style d'escalade",
       difficultySystem: 'Système de difficulté',
-      difficultySystemExplain: 'Paramètre des systèmes de difficulté, système de points, cotation par niveau, etc.',
+      difficultySystemExplain: 'Paramètre des systèmes de difficulté, cotation par niveau, etc.',
       difficultySystemShort: 'Les systèmes',
       climbingStyle: "Styles d'escalade",
       climbingStyleExplain: "Sélectionnez la liste de styles d'escalade que vous utilisez majoritairement.",
@@ -1242,6 +1250,12 @@ export default {
       explain: "Choisissez les styles d'escalades que vous souhaitez utiliser couramment. Lors de l'ajout des voies/blocs/pans ces styles vous seront proposés en priorité, vous gagnerez ainsi du temps à l'ajout de vos lignes.<br><cite>(Vous pourrez toujours choisir les autres styles même s'ils ne sont pas cochés)</cite>",
       noColor: 'Pas de couleur',
       favorites: 'Favoris'
+    },
+    gymRankingSystems: {
+      title: "Les classements par type d'escalade",
+      explain: "Choisissez comment Oblyk calculera les points par type d'escalade.",
+      chooseSystem: 'Choisissez un type de classement',
+      deleteSystem: 'Ne pas faire de classement'
     },
     gymStatistic: {
       figuresTitle: 'En quelques chiffres',
@@ -1284,8 +1298,8 @@ export default {
       create: 'Nouvel espace',
       addNew: 'Ajouter un nouvel espace',
       chooseSpace: 'Choisissez un espace',
-      explain: "Un <cite>\"espace\"</cite> est une grande zone d'une salle qui peut contenir plusieurs secteurs. exemple : \"Espace de voie\", \"Espace de bloc\", \"Pan\", etc.<br>À vous de trouver la meilleure division pour votre salle.",
-      explainMissingPlan: 'Uploader une plan de <cite>"%{name}"</cite> sur lequel vous pourrez tracer les secteurs',
+      explain: "Un <cite>\"espace\"</cite> est une grande zone d'une salle qui peut contenir plusieurs secteurs. Exemple : \"Espace de voie\", \"Espace de bloc\", \"Pan\", etc.<br>À vous de trouver la meilleure division pour votre salle.",
+      explainMissingPlan: 'Uploader un plan de <cite>"%{name}"</cite> sur lequel vous pourrez tracer les secteurs',
       uploadPlanFor: 'Télécharger un plan pour : %{name}',
       routes: 'Ouvertures',
       plan: 'Plan',
@@ -1334,12 +1348,15 @@ export default {
       reusePicture: 'Réutiliser une photo',
       createCount: 'Créer ton compte sur Oblyk, suis ta progression et bien plus !',
       anchorSuggestion: 'Suggestion de relais',
+      dismountedAt: 'Ligne démonté le %{date}',
+      dismounted: 'Démonté',
       sorts: {
         opened_at: "Trier par date d'ouverture",
         sector: 'Trier par secteur',
         grade: 'Trier par cotation',
         level: 'Trier par niveau',
-        point: 'Trier par point'
+        point: 'Trier par point',
+        opened_at_dismounted: 'Les lignes démontées'
       }
     },
     gymGrade: {
@@ -2323,7 +2340,8 @@ export default {
       tags: 'Tags',
       styles: 'Styles',
       grade_by_section: 'Cotation L.%{index}',
-      anchor_number: 'Relais n°'
+      anchor_number: 'Relais n°',
+      fixedPoints: 'Donner un nombre de point fixe'
     },
     gymGrade: {
       name: 'Nom du système',
@@ -2343,7 +2361,9 @@ export default {
       colors: 'Couleurs',
       order: 'Ordre',
       grade_text: 'Cotation moyenne de ce niveau',
-      points: 'Points pour ce niveau'
+      points: 'Points pour ce niveau',
+      fixedPoints: 'Voulez vous imposer un nombre de points fixes pour ce niveau ?',
+      fixedPointsExplain: 'Recommandé uniquement si vous utilisez un système de classement par points fixes (1)'
     },
     roles: {
       manage_team_member: "Les membres de l'équipe",
@@ -2465,6 +2485,20 @@ export default {
     contestWave: {
       name: 'Nom'
     },
+    ages: {
+      all: 'Tous les ages',
+      U8: 'Moins de 8 ans',
+      U10: 'Moins de 10 ans',
+      U12: 'Moins de 12 ans',
+      U14: 'Moins de 14 ans',
+      U16: 'Moins de 16 ans',
+      U18: 'Moins de 18 ans',
+      U20: 'Moins de 20 ans',
+      senior: 'Senior (20 - 39 ans)',
+      A40: 'Vétéran 1 (40 et +)',
+      A50: 'Vétéran 2 (50 et +)',
+      A60: 'Vétéran 3 (60 et +)'
+    },
     climbs: {
       sport_climbing: 'Voie',
       bouldering: 'Bloc',
@@ -2544,6 +2578,7 @@ export default {
       undefined: 'Indéfini',
       male: 'Homme',
       female: 'Femme',
+      males_and_females: 'Hommes et femmes',
       climbers: {
         undefined: 'Indéfini',
         male: 'Grimpeur',
@@ -2707,6 +2742,16 @@ export default {
       multi_pitch_leader: 'Tête (Grande voie)',
       multi_pitch_second: 'Second (Grande voie)',
       multi_pitch_alternate_lead: 'Réversible (Grande voie)'
+    },
+    rankingSystem: {
+      division: "1000 points divisés par le nombre d'ascension",
+      fixed_points: 'Points fixe',
+      point_by_grade: 'Point par cotation'
+    },
+    rankingSystemExplain: {
+      division: 'Chaque voie ou bloc vaut 1000 points, plus les grimpeurs et grimpeuses font le bloc/voie moins il vaut de point.',
+      fixed_points: 'Pour chaque voie ou bloc vous attribuez un nombre de point fixe.',
+      point_by_grade: 'Chaque cotation (4a, 6a, etc.) à un nombre de points donné par sa difficulté.<br>Voir la documentation : <a href="https://oblyk.github.io/app-user-doc/docs/indoor/systeme-de-classement" target="_blank">Point par cotation</a>'
     },
     hardnessStatus: {
       easy_for_the_grade: '😎 Facile pour la cotation',

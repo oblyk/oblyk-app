@@ -177,17 +177,6 @@
           :label="$t('components.gymRoute.multiPitchRoute')"
         />
 
-        <!-- Points if fix -->
-        <v-text-field
-          v-if="(gymGrade.point_system_type === 'fix')"
-          v-model="data.points"
-          outlined
-          type="number"
-          suffix="points"
-          :required="(gymGrade.point_system_type === 'fix')"
-          :label="$t('models.gymRoute.points')"
-        />
-
         <!-- Grade + (height and tags by pitch in multi pitches) -->
         <div
           v-for="(section, sectionIndex) in data.sections"
@@ -282,6 +271,21 @@
             :colors-limit="2"
           />
         </div>
+
+        <!-- Points -->
+        <v-checkbox
+          v-model="showPoint"
+          :label="$t('models.gymRoute.fixedPoints')"
+          @change="changePoint"
+        />
+        <v-text-field
+          v-if="showPoint"
+          v-model="data.points"
+          outlined
+          type="number"
+          suffix="points"
+          :label="$t('models.gymRoute.points')"
+        />
       </div>
 
       <!-- Params form sector (height and climbing type) -->
@@ -536,6 +540,7 @@ export default {
       newGymRoute: null,
       pictureStep: 'main',
       hidePictureBtn: false,
+      showPoint: this.gymRoute?.points,
       data: {
         id: this.gymRoute?.id,
         name: this.gymRoute?.name,
@@ -692,6 +697,7 @@ export default {
         }
       }
       this.data.points = selectedGradeLine.points
+      this.showPoint = !!this.data.points
       for (const section of this.data.sections) {
         section.grade = selectedGradeLine.grade_text
       }
@@ -725,6 +731,12 @@ export default {
         }).finally(() => {
           this.loadingGymGrade = false
         })
+    },
+
+    changePoint () {
+      if (this.showPoint === false) {
+        this.data.points = null
+      }
     }
   }
 }

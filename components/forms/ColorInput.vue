@@ -9,6 +9,7 @@
         :multiple="!onlySimpleColor"
         :items="colors"
         :label="label"
+        :hide-details="hideDetails"
         chips
         @focus="focusInput"
       >
@@ -148,6 +149,10 @@ export default {
       default: 1
     },
     disableAllColor: {
+      type: Boolean,
+      default: false
+    },
+    hideDetails: {
       type: Boolean,
       default: false
     }

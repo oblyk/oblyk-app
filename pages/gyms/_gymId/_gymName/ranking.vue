@@ -1,9 +1,25 @@
 <template>
   <v-container v-if="gym">
-    <div>
+    <v-img
+      dark
+      height="300px"
+      :lazy-src="gym.thumbnailBannerUrl"
+      :src="gym.bannerUrl"
+      gradient="to bottom, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.6) 100%"
+      class="rounded align-end"
+    >
+      <template #placeholder>
+        <div class="gym-header-banner-spinner">
+          <v-progress-circular
+            indeterminate
+            color="white"
+          />
+        </div>
+      </template>
       <v-btn
-        outlined
-        text
+        elevation="0"
+        color="black"
+        style="position: absolute; top: 5px; left: 5px"
         @click="$router.go(-1)"
       >
         <v-icon left>
@@ -11,76 +27,81 @@
         </v-icon>
         {{ gym.name }}
       </v-btn>
-    </div>
-    <h1 class="text-center mt-5">
-      <v-avatar
-        v-if="gym.logoUrl"
-        class="mr-1"
-      >
-        <v-img :src="gym.thumbnailLogoUrl" />
-      </v-avatar>
-      {{ gym.name }} - {{ $t('components.gymRanking.rank') }}
-    </h1>
-    <div class="text-center mb-15">
-      <p
-        v-if="startDate === null"
-        class="subtitle-2"
-      >
-        {{ $t('components.gymRanking.allRank') }}
-      </p>
-      <p
-        v-if="startDate !== null"
-        class="subtitle-2"
-      >
-        {{ $t('components.gymRanking.rankOf', { date: startDate.setLocale($vuetify.lang.current).toFormat('LLLL') }) }}
-      </p>
-      <v-btn
-        v-if="startDate !== null"
-        outlined
-        text
-        small
-        color="primary"
-        @click="changeDate('previous')"
-      >
-        <v-icon left>
-          {{ mdiArrowLeft }}
-        </v-icon>
-        {{ previousMonth.setLocale($vuetify.lang.current).toFormat('LLLL') }}
-      </v-btn>
-      <v-btn
-        v-if="startDate === null"
-        outlined
-        text
-        small
-        color="primary"
-        @click="changeDate('current')"
-      >
-        {{ $t('components.gymRanking.seeRankOf', { date: humanizeDate(isoToday(), 'LLLL') }) }}
-      </v-btn>
-      <v-btn
-        v-if="startDate !== null"
-        outlined
-        text
-        small
-        color="primary"
-        @click="changeDate('all')"
-      >
-        {{ $t('common.all') }}
-      </v-btn>
-      <v-btn
-        v-if="startDate !== null && haveNextMonth"
-        outlined
-        text
-        small
-        color="primary"
-        @click="changeDate('next')"
-      >
-        {{ nextMonth.setLocale($vuetify.lang.current).toFormat('LLLL') }}
-        <v-icon right>
-          {{ mdiArrowRight }}
-        </v-icon>
-      </v-btn>
-    </div>
+      <div class="pb-2 text-center">
+        <h1>
+          <v-avatar
+            v-if="gym.logoUrl"
+            class="mr-1"
+          >
+            <v-img :src="gym.thumbnailLogoUrl" />
+          </v-avatar>
+          {{ gym.name }}
+        </h1>
+        <p class="subtitle-2 mt-n3" style="padding-left: 48px">
+          {{ $t('components.gymRanking.rank') }}
+        </p>
+      </div>
+    </v-img>
+
+    <v-sheet
+      class="rounded pa-3 mb-7 mt-2"
+      style="position: relative"
+    >
+      <v-row>
+        <v-col>
+          <v-select
+            v-model="query.date"
+            :items="dates"
+            item-text="text"
+            item-value="value"
+            :label="$t('common.month')"
+            outlined
+            hide-details
+            dense
+            @input="getRank()"
+          />
+        </v-col>
+        <v-col>
+          <v-select
+            v-model="query.age"
+            :items="ages"
+            item-text="text"
+            item-value="value"
+            :label="$t('components.input.age')"
+            outlined
+            hide-details
+            dense
+            @input="getRank()"
+          />
+        </v-col>
+        <v-col>
+          <v-select
+            v-model="query.gender"
+            :items="genders"
+            item-text="text"
+            item-value="value"
+            :label="$t('components.input.genre')"
+            outlined
+            hide-details
+            dense
+            @input="getRank()"
+          />
+        </v-col>
+        <v-col>
+          <v-select
+            v-model="query.climbingType"
+            :items="climbingTypes"
+            item-text="text"
+            item-value="value"
+            :label="$t('components.input.climbing_type')"
+            outlined
+            hide-details
+            dense
+            @input="getRank()"
+          />
+        </v-col>
+      </v-row>
+    </v-sheet>
 
     <!-- Load ranking -->
     <v-row v-if="loadingScore">
@@ -126,182 +147,195 @@
       </v-col>
     </v-row>
 
-    <v-row v-else>
-      <!-- First -->
-      <v-col
-        cols="6"
-        md="4"
-        align-self="end"
-        order="1"
-        order-md="2"
-      >
-        <div
-          v-if="!loadingScore && podiums.length >= 1"
-          class="text-center"
-        >
-          <v-avatar>
-            <v-img
-              :src="podiums[0].user.thumbnailAvatarUrl"
-              :alt="`avatar ${podiums[0].user.first_name}`"
+    <div v-else>
+      <div v-if="podiums.length > 0">
+        <!-- Podiums -->
+        <v-row>
+          <!-- First -->
+          <v-col
+            cols="6"
+            md="4"
+            align-self="end"
+            order="1"
+            order-md="2"
+          >
+            <gym-ranking-podium
+              v-if="!loadingScore && podiums.length >= 1"
+              :rank="1"
+              :points="podiums[0].points"
+              :user="podiums[0].user"
+              :click="getClimber"
             />
-          </v-avatar>
-          <h3>{{ podiums[0].user.first_name }}</h3>
-          <p style="font-size: 1.2em">
-            <span class="amber--text">
-              {{ $tc('components.gymRanking.rankNumber', 1, { number: 1 }) }}
-            </span> ·
-            <strong>{{ podiums[0].points }}</strong>
-            <small class="vertical-align-top">pts</small>
-          </p>
-        </div>
-        <v-sheet
-          class="text-center rounded pa-4 d-flex"
-          style="height: 150px"
-        >
-          <div class="align-self-end text-center full-width">
-            <v-icon color="amber" x-large>
-              {{ mdiTrophy }}
-            </v-icon>
-          </div>
-        </v-sheet>
-      </v-col>
+          </v-col>
 
-      <!-- Second -->
-      <v-col
-        cols="6"
-        md="4"
-        align-self="end"
-        order="2"
-        order-md="1"
-      >
-        <div
-          v-if="!loadingScore && podiums.length >= 2"
-          class="text-center"
-        >
-          <v-avatar>
-            <v-img
-              :src="podiums[1].user.thumbnailAvatarUrl"
-              :alt="`avatar ${podiums[1].user.first_name}`"
+          <!-- Second -->
+          <v-col
+            cols="6"
+            md="4"
+            align-self="end"
+            order="2"
+            order-md="1"
+          >
+            <gym-ranking-podium
+              v-if="!loadingScore && podiums.length >= 2"
+              :rank="2"
+              :points="podiums[1].points"
+              :user="podiums[1].user"
+              :click="getClimber"
             />
-          </v-avatar>
-          <h3>
-            {{ podiums[1].user.first_name }}
-          </h3>
-          <p style="font-size: 1.2em">
-            <span class="blue-grey--text">
-              {{ $tc('components.gymRanking.rankNumber', 2, { number: 2 }) }}
-            </span> ·
-            <strong>{{ podiums[1].points }}</strong>
-            <small class="vertical-align-top">pts</small>
-          </p>
-        </div>
-        <v-sheet
-          class="rounded text-center pa-4 d-flex"
-          style="height: 100px"
-        >
-          <div class="align-self-end text-center full-width">
-            <v-icon color="blue-grey" x-large>
-              {{ mdiTrophy }}
-            </v-icon>
-          </div>
-        </v-sheet>
-      </v-col>
+          </v-col>
 
-      <!-- Third -->
-      <v-col
-        cols="12"
-        md="4"
-        align-self="end"
-        order="3"
-      >
-        <div
-          v-if="!loadingScore && podiums.length >= 3"
-          class="text-center"
-        >
-          <v-avatar>
-            <v-img
-              :src="podiums[2].user.thumbnailAvatarUrl"
-              :alt="`avatar ${podiums[2].user.first_name}`"
+          <!-- Third -->
+          <v-col
+            cols="12"
+            md="4"
+            align-self="end"
+            order="3"
+          >
+            <gym-ranking-podium
+              v-if="!loadingScore && podiums.length >= 3"
+              :rank="3"
+              :points="podiums[2].points"
+              :user="podiums[2].user"
+              :click="getClimber"
             />
-          </v-avatar>
-          <h3>{{ podiums[2].user.first_name }}</h3>
-          <p style="font-size: 1.2em">
-            <span class="brown--text">
-              {{ $tc('components.gymRanking.rankNumber', 3, { number: 3 }) }}
-            </span> ·
-            <strong>{{ podiums[2].points }}</strong>
-            <small class="vertical-align-top">pts</small>
-          </p>
-        </div>
-        <v-sheet
-          class="rounded pa-4 text-center d-flex"
-          style="height: 70px"
-        >
-          <div class="align-self-end text-center full-width">
-            <v-icon color="brown" x-large>
-              {{ mdiTrophy }}
-            </v-icon>
-          </div>
-        </v-sheet>
-      </v-col>
-    </v-row>
+          </v-col>
+        </v-row>
 
-    <!-- Other -->
-    <v-list
-      v-if="!loadingScore && scores.length >= 1"
-      class="rounded mt-5"
+        <!-- Other climbers -->
+        <v-list
+          v-if="!loadingScore && scores.length >= 1"
+          class="rounded mt-5"
+        >
+          <v-list-item
+            v-for="(score, scoreIndex) in scores"
+            :key="`score-index-${scoreIndex}`"
+            @click="getClimber(score.user)"
+          >
+            <v-list-item-avatar>
+              <v-img
+                :src="score.user.thumbnailAvatarUrl"
+                :alt="`avatar ${score.user.first_name}`"
+              />
+            </v-list-item-avatar>
+            <v-list-item-content>
+              <v-list-item-title>
+                <strong>{{ score.rank }}</strong> - {{ score.user.first_name }}
+              </v-list-item-title>
+            </v-list-item-content>
+            <v-list-item-action>
+              <strong>
+                {{ score.points }}
+              </strong>
+              <small class="vertical-align-text-top">pts</small>
+            </v-list-item-action>
+          </v-list-item>
+        </v-list>
+      </div>
+      <p
+        v-else
+        class="text-center text--disabled my-7"
+      >
+        {{ $t('components.gymRanking.noRank', { date: humanizeDate(query.date, 'LLLL y') }) }}
+      </p>
+    </div>
+    <down-to-close-dialog
+      ref="climberDialog"
+      v-model="climberDialog"
+      wait-signal
     >
-      <v-list-item
-        v-for="(score, scoreIndex) in scores"
-        :key="`score-index-${scoreIndex}`"
-      >
-        <v-list-item-avatar>
-          <v-img
-            :src="score.user.thumbnailAvatarUrl"
-            :alt="`avatar ${score.user.first_name}`"
-          />
-        </v-list-item-avatar>
-        <v-list-item-content>
-          <v-list-item-title>
-            <strong>{{ score.rank }}</strong> - {{ score.user.first_name }}
-          </v-list-item-title>
-        </v-list-item-content>
-        <v-list-item-action>
-          <strong>
-            {{ score.points }}
-          </strong>
-          <small class="vertical-align-text-top">pts</small>
-        </v-list-item-action>
-      </v-list-item>
-    </v-list>
+      <user-card
+        v-if="!loadingClimber"
+        :user="climber"
+      />
+    </down-to-close-dialog>
   </v-container>
 </template>
 
 <script>
-import { mdiTrophy, mdiArrowLeft, mdiArrowRight } from '@mdi/js'
+import { mdiArrowLeft } from '@mdi/js'
 import { GymConcern } from '~/concerns/GymConcern'
+import { DateHelpers } from '~/mixins/DateHelpers'
+import { TextHelpers } from '~/mixins/TextHelpers'
 import GymApi from '~/services/oblyk-api/GymApi'
 import User from '~/models/User'
-import { DateHelpers } from '~/mixins/DateHelpers'
+import DownToCloseDialog from '~/components/ui/DownToCloseDialog'
+import UserCard from '~/components/users/UserCard'
+import UserApi from '~/services/oblyk-api/UserApi'
+import GymRankingPodium from '~/components/gyms/GymRankingPodium'
 
 export default {
+  components: { GymRankingPodium, UserCard, DownToCloseDialog },
   meta: { orphanRoute: true },
-  mixins: [GymConcern, DateHelpers],
+  mixins: [GymConcern, DateHelpers, TextHelpers],
 
   data () {
     return {
       loadingScore: true,
       scores: [],
       podiums: [],
-      startDate: null,
-      endDate: null,
-      haveNextMonth: false,
-      nextMonth: null,
-      previousMonth: null,
+      climberDialog: false,
+      loadingClimber: true,
+      climber: null,
+      query: {
+        climbingType: 'all',
+        gender: 'all',
+        age: 'all',
+        date: this.today().startOf('month').toISO()
+      },
+      genders: [
+        { text: this.$t('models.genres.males_and_females'), value: 'all' },
+        { text: this.$t('models.genres.male'), value: 'male' },
+        { text: this.$t('models.genres.female'), value: 'female' }
+      ],
+      climbingTypes: [
+        { text: this.$t('common.allTypes'), value: 'all' },
+        { text: this.$t('models.climbs.sport_climbing'), value: 'sport_climbing' },
+        { text: this.$t('models.climbs.bouldering'), value: 'bouldering' },
+        { text: this.$t('models.climbs.pan'), value: 'pan' }
+      ],
+      ages: [
+        { text: this.$t('models.ages.all'), value: 'all' },
+        { text: this.$t('models.ages.U8'), value: 'U8' },
+        { text: this.$t('models.ages.U10'), value: 'U10' },
+        { text: this.$t('models.ages.U12'), value: 'U12' },
+        { text: this.$t('models.ages.U14'), value: 'U14' },
+        { text: this.$t('models.ages.U16'), value: 'U16' },
+        { text: this.$t('models.ages.U18'), value: 'U18' },
+        { text: this.$t('models.ages.U20'), value: 'U20' },
+        { text: this.$t('models.ages.senior'), value: 'senior' },
+        { text: this.$t('models.ages.A40'), value: 'A40' },
+        { text: this.$t('models.ages.A50'), value: 'A50' },
+        { text: this.$t('models.ages.A60'), value: 'A60' }
+      ],
 
-      mdiTrophy,
-      mdiArrowLeft,
-      mdiArrowRight
+      mdiArrowLeft
+    }
+  },
+
+  head () {
+    return {
+      title: this.$t('metaTitle', { name: this.gym?.name }),
+      meta: [
+        { hid: 'description', name: 'description', content: this.$t('metaDescription', { name: this.gym?.name }) },
+        { hid: 'og:title', property: 'og:title', content: this.$t('metaTitle', { name: this.gym?.name }) },
+        { hid: 'og:description', property: 'og:description', content: this.$t('metaDescription', { name: this.gym?.name }) }
+      ]
+    }
+  },
+
+  computed: {
+    dates () {
+      const dates = []
+      const date = this.today().startOf('month')
+      dates.push({ value: date.toISO(), text: this.capitalize(this.humanizeDate(date, 'LLLL y')) })
+      for (let i = 0; i < 5; i++) {
+        const loopDate = date.minus({ months: i + 1 })
+        dates.push({
+          value: loopDate.toISO(), text: this.capitalize(this.humanizeDate(loopDate, 'LLLL y'))
+        })
+      }
+      return dates
     }
   },
 
@@ -318,57 +352,21 @@ export default {
     }
   },
 
-  head () {
-    return {
-      title: this.$t('metaTitle', { name: this.gym?.name }),
-      meta: [
-        { hid: 'description', name: 'description', content: this.$t('metaDescription', { name: this.gym?.name }) },
-        { hid: 'og:title', property: 'og:title', content: this.$t('metaTitle', { name: this.gym?.name }) },
-        { hid: 'og:description', property: 'og:description', content: this.$t('metaDescription', { name: this.gym?.name }) }
-      ]
-    }
-  },
-
   mounted () {
     this.getRank()
   },
 
   methods: {
-    changeDate (type) {
-      if (type === 'previous' || type === 'next') {
-        this.startDate ||= this.today().startOf('month')
-        this.endDate ||= this.today().endOf('month')
-      }
-
-      if (type === 'all') {
-        this.startDate = null
-        this.endDate = null
-      } else if (type === 'current') {
-        this.startDate = this.today().startOf('months')
-        this.endDate = this.today().endOf('month')
-      } else if (type === 'previous') {
-        this.startDate = this.startDate.minus({ months: 1 })
-        this.endDate = this.toDateTime(this.startDate.toISO()).endOf('month')
-      } else if (type === 'next') {
-        this.startDate = this.startDate.minus({ months: 1 })
-        this.endDate = this.toDateTime(this.startDate.toISO()).endOf('month')
-      }
-
-      if (this.startDate) {
-        this.haveNextMonth = this.dateIsBeforeDate(this.ISODateToday(), this.startDate.plus({ months: 1 }).toISO())
-        this.nextMonth = this.toDateTime(this.startDate.toISO()).plus({ months: 1 })
-        this.previousMonth = this.toDateTime(this.startDate.toISO()).minus({ months: 1 })
-      }
-      this.getRank()
-    },
-
     getRank () {
       this.scores = []
       this.podiums = []
       this.loadingScore = true
-      let params = null
-      if (this.startDate) {
-        params = { start_date: this.startDate.toISO(), end_date: this.endDate.toISO() }
+      const params = {
+        start_date: this.toDateTime(this.query.date).startOf('month'),
+        end_date: this.toDateTime(this.query.date).endOf('month'),
+        climbing_type: this.query.climbingType,
+        gender: this.query.gender,
+        age: this.query.age
       }
       new GymApi(this.$axios, this.$auth)
         .rank(this.$route.params.gymId, params)
@@ -390,6 +388,20 @@ export default {
         })
         .finally(() => {
           this.loadingScore = false
+        })
+    },
+
+    getClimber (user) {
+      this.loadingClimber = true
+      this.climberDialog = true
+      new UserApi(this.$axios, this.$auth)
+        .find(user.slug_name)
+        .then((resp) => {
+          this.climber = new User({ attributes: resp.data })
+          this.$refs.climberDialog.signal()
+        })
+        .finally(() => {
+          this.loadingClimber = false
         })
     }
   }

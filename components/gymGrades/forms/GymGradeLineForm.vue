@@ -17,15 +17,6 @@
     />
 
     <v-text-field
-      v-show="(gymGrade.point_system_type === 'fix')"
-      v-model="data.points"
-      outlined
-      :label="$t('models.gymGradeLine.points')"
-      :required="(gymGrade.point_system_type === 'fix')"
-      :hint="$t('components.gymGradeLine.hints.points')"
-    />
-
-    <v-text-field
       v-model="data.order"
       outlined
       type="number"
@@ -43,7 +34,28 @@
       :colors-limit="2"
       :icon="gymGrade.tag_color ? 'bookmark' : 'circle'"
       :disable-all-color="true"
+      hide-details
     />
+
+    <v-checkbox
+      v-model="fixPoint"
+      :label="$t('models.gymGradeLine.fixedPoints')"
+      persistent-hint
+      :hint="$t('models.gymGradeLine.fixedPointsExplain')"
+      @change="clearPoint"
+    />
+    <div class="mb-7">
+      <v-text-field
+        v-if="fixPoint"
+        v-model="data.points"
+        outlined
+        hide-details
+        :label="$t('models.gymGradeLine.points')"
+        :required="(gymGrade.point_system_type === 'fix')"
+        :hint="$t('components.gymGradeLine.hints.points')"
+        class="mt-4"
+      />
+    </div>
 
     <close-form />
     <submit-form
@@ -60,6 +72,13 @@
         {{ $t('actions.delete') }}
       </v-btn>
     </submit-form>
+
+    <p class="mt-5">
+      <strong>(1)</strong>
+      <a href="https://oblyk.github.io/app-user-doc/docs/indoor/systeme-de-classement" target="_blank">
+        {{ $t('components.gymRanking.rankingType') }}
+      </a>
+    </p>
   </v-form>
 </template>
 
@@ -87,6 +106,7 @@ export default {
 
   data () {
     return {
+      fixPoint: this.gymGradeLine?.points,
       data: {
         id: this.gymGradeLine?.id,
         name: this.gymGradeLine?.name,
@@ -130,6 +150,12 @@ export default {
           .then(() => {
             this.submitOverlay = false
           })
+      }
+    },
+
+    clearPoint () {
+      if (this.fixPoint === false) {
+        this.data.points = null
       }
     }
   }

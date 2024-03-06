@@ -44,6 +44,15 @@
         </v-col>
       </v-row>
 
+      <v-alert
+        v-if="gymRoute.dismounted_at"
+        text
+        type="error"
+        class="mx-1 mt-2"
+      >
+        {{ $t('components.gymRoute.dismountedAt', { date: humanizeDate(gymRoute.dismounted_at) }) }}
+      </v-alert>
+
       <!-- Route description -->
       <v-sheet
         v-if="gymRoute.description"
