@@ -253,6 +253,9 @@ export default {
     setting: 'Setting',
     new: '%{count} new | %{count} new',
     group: 'Group',
+    coming: 'Coming soon',
+    ongoing: 'Ongoing',
+    past: 'Past',
     months: {
       '01': '01 - January',
       '02': '02 - February',
@@ -1381,6 +1384,7 @@ export default {
       }
     },
     contest: {
+      title: 'Contests',
       toleranceExplain: 'How many minutes do you want your climbers to have to finish filling in their work after the end of the contest?',
       capacityExplain: 'Indicate the maximum number of competitors.<br>Leave blank if there is no maximum.<br>You can then choose a total capacity per category.',
       subscriptionOpenExplain: 'Date from which the contest is public and competitors can register',

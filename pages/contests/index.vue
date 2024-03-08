@@ -1,11 +1,13 @@
 <template>
   <v-container>
-    <h1>Les contests</h1>
+    <h1>
+      {{ $t('components.contest.title') }}
+    </h1>
 
     <!-- Coming contest -->
     <div v-if="isComingContests.length > 0">
       <p class="font-weight-bold mb-1 mt-6">
-        À venir
+        {{ $t('common.coming') }}
       </p>
       <v-list class="rounded-sm">
         <contest-item-list
@@ -20,7 +22,7 @@
     <!-- Ongoing contest -->
     <div v-if="ongoingContests.length > 0">
       <p class="font-weight-bold mb-1 mt-6">
-        En cours
+        {{ $t('common.ongoing') }}
       </p>
       <v-list class="rounded-sm">
         <contest-item-list
@@ -35,7 +37,7 @@
     <!-- Pasts contest -->
     <div v-if="pastContests.length > 0">
       <p class="font-weight-bold mb-1 mt-6">
-        Passé
+        {{ $t('common.past') }}
       </p>
       <v-list class="rounded-sm">
         <contest-item-list

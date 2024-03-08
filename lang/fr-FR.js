@@ -253,6 +253,9 @@ export default {
     setting: 'Réglage',
     new: '%{count} nouveau | %{count} nouveaux',
     group: 'Groupe',
+    coming: 'À venir',
+    ongoing: 'En cours',
+    past: 'Passé',
     months: {
       '01': '01 - Janvier',
       '02': '02 - Février',
@@ -1382,6 +1385,7 @@ export default {
       }
     },
     contest: {
+      title: 'Les contests',
       toleranceExplain: 'Combien de minutes voulez-vous laisser à vos grimpeurs et grimpeuses pour finir de renseigner leur réalisation après la fin du contest.',
       capacityExplain: "Indiquez le nombre maximum de compétiteurs et compétitrices.<br>Laissez vide s'il n'y a pas de maximum.<br>Vous pourrez choisir une capacité totale par catégorie ensuite.",
       subscriptionOpenExplain: "Date à partir de laquelle le contest est public et que les compétiteurs et compétitrices peuvent s'inscrire",
