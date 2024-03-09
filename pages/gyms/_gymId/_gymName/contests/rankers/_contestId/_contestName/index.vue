@@ -25,6 +25,20 @@
         id="rankers-header"
         class="back-app-color px-4"
       >
+        <v-chip
+          small
+          outlined
+          class="font-weight-bold live-chip"
+        >
+          <v-icon
+            left
+            small
+            :color="liveOn ? 'red darken-4' : 'grey darken-3'"
+          >
+            {{ mdiRecord }}
+          </v-icon>
+          {{ liveOn ? 'DIRECT' : 'DÉCONNECTÉ' }}
+        </v-chip>
         <!-- Contest card -->
         <v-row
           v-if="contest"
@@ -317,7 +331,8 @@ import {
   mdiLinkVariantOff,
   mdiCreation,
   mdiPen,
-  mdiShimmer
+  mdiShimmer,
+  mdiRecord
 } from '@mdi/js'
 import ContestApi from '~/services/oblyk-api/ContestApi'
 import Contest from '~/models/Contest'
@@ -355,6 +370,7 @@ export default {
       tombolaTimeInterval: null,
       tombolaTimeout: null,
       tombolaLaunched: false,
+      liveOn: false,
 
       mdiArrowLeft,
       mdiWeatherSunny,
@@ -365,7 +381,8 @@ export default {
       mdiMouse,
       mdiMouseOff,
       mdiTrophy,
-      mdiShimmer
+      mdiShimmer,
+      mdiRecord
     }
   },
 
@@ -408,12 +425,14 @@ export default {
     ContestRankersChannel: {
       connected () {
         this.pushNotification({ message: 'Connecté au contest', icon: mdiLinkVariant, color: 'deep-purple accent-4' })
+        this.liveOn = true
       },
       received (data) {
         this.newResultsFromChanel(data)
       },
       disconnected () {
         this.pushNotification({ message: 'Déconnecté du contest', icon: mdiLinkVariantOff, color: 'red' })
+        this.liveOn = false
       }
     }
   },
@@ -641,6 +660,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.live-chip {
+  position: absolute;
+  right: 5px;
+  top: 5px
+}
 .contest-rankers {
   min-height: calc(100vh - 140px);
   padding-bottom: 15px;

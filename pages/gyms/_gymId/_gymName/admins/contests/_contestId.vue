@@ -81,6 +81,16 @@
             </div>
             <div class="text-right mt-auto pt-2">
               <v-btn
+                outlined
+                text
+                :to="contest.path"
+              >
+                <v-icon left>
+                  {{ mdiEarth }}
+                </v-icon>
+                Page publique
+              </v-btn>
+              <v-btn
                 v-if="contest.draft"
                 outlined
                 text
@@ -98,20 +108,13 @@
                 text
                 :to="contest.rankersPath"
               >
-                <v-icon left>
-                  {{ mdiMonitorShimmer }}
+                <v-icon
+                  left
+                  color="red"
+                >
+                  {{ mdiRecord }}
                 </v-icon>
-                Présentation
-              </v-btn>
-              <v-btn
-                outlined
-                text
-                :to="contest.path"
-              >
-                <v-icon left>
-                  {{ mdiEarth }}
-                </v-icon>
-                Page publique
+                Résultat en direct
               </v-btn>
               <v-menu>
                 <template #activator="{ on, attrs }">
@@ -330,7 +333,7 @@ import {
   mdiPublishOff,
   mdiDotsVertical,
   mdiPencil,
-  mdiMonitorShimmer,
+  mdiRecord,
   mdiQrcode
 } from '@mdi/js'
 import { ContestConcern } from '~/concerns/ContestConcern'
@@ -373,7 +376,7 @@ export default {
       mdiPublishOff,
       mdiDotsVertical,
       mdiPencil,
-      mdiMonitorShimmer,
+      mdiRecord,
       mdiQrcode
     }
   },
