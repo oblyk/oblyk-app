@@ -45,7 +45,7 @@
                   {{ humanizeDate(contest.start_date) }}
                 </p>
                 <p v-else>
-                  Du {{ humanizeDate(contest.start_date) }} au {{ humanizeDate(contest.end_date) }}
+                  {{ $t('common.from_2') }} {{ humanizeDate(contest.start_date) }} {{ $t('common.to_2') }} {{ humanizeDate(contest.end_date) }}
                 </p>
               </div>
             </v-row>
@@ -58,7 +58,7 @@
               <v-icon left>
                 {{ mdiInformation }}
               </v-icon>
-              Information
+              {{ $t('components.contest.information') }}
             </v-tab>
             <v-tab
               v-if="token"
@@ -68,7 +68,7 @@
               <v-icon left>
                 {{ mdiHumanGreeting }}
               </v-icon>
-              Mon contest
+              {{ $t('components.contest.myContest') }}
             </v-tab>
             <v-tab
               exact-path
@@ -77,7 +77,7 @@
               <v-icon left>
                 {{ mdiPodium }}
               </v-icon>
-              Résultat
+              {{ $t('components.contest.results') }}
             </v-tab>
           </v-tabs>
           <nuxt-child
@@ -89,7 +89,7 @@
           v-else
           class="text-center text--disabled mt-10"
         >
-          Ce contest n'est pas encore disponible au publique. Revenez plus tard.
+          {{ $t('components.contest.notPublic') }}
         </div>
       </div>
     </v-container>

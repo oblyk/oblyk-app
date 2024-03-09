@@ -9,7 +9,7 @@
       type="warning"
       class="mt-4"
     >
-      Ce contest est visible uniquement par vous et les membres de l'équipe de {{ contest.gym.name }}. Publiez-le quand vous aurez fini de le paramétrer.
+      {{ $t('components.contest.unPublish', { name: contest.gym.name }) }}
     </v-alert>
     <v-row>
       <v-col>
@@ -36,32 +36,31 @@
           >
             {{ mdiInformationOutline }}
           </v-icon>
-          En bref
+          {{ $t('common.inBrief') }}
         </p>
         <div class="border pa-2 rounded-sm">
           <p
             v-if="contest.total_capacity"
             class="mb-1"
-          >
-            <strong class="font-weight-black text-h5">{{ contest.remaining_places }}</strong> place(s) restantes.
-          </p>
+            v-html="$tc('components.contest.remainingPlaces', contest.remaining_places, { count: contest.remaining_places })"
+          />
           <p
             v-if="contest.coming && !contest.ongoing"
             class="mb-0"
           >
-            Commence <strong class="font-weight-black text-h6">{{ dateFromNow(contest.start_date) }}</strong>
+            {{ $t('common.start') }} <strong class="font-weight-black text-h6">{{ dateFromNow(contest.start_date) }}</strong>
           </p>
           <p
             v-if="contest.ongoing"
             class="mb-0"
           >
-            En cours
+            {{ $t('common.ongoing') }}
           </p>
           <p
             v-if="contest.finished"
             class="mb-0"
           >
-            Le {{ humanizeDate(contest.start_date) }}
+            {{ $t('common.at') }} {{ humanizeDate(contest.start_date) }}
           </p>
         </div>
         <p class="font-weight-bold mb-1 mt-4">
@@ -73,7 +72,7 @@
           >
             {{ mdiMapMarker }}
           </v-icon>
-          Ça se passe où ?
+          {{ $t('components.contest.where') }}
         </p>
         <gym-small-card
           :gym="contest.Gym"
@@ -93,7 +92,7 @@
                 large
                 @click="subscribeDialog = true"
               >
-                Je m'inscris maintenant !
+                {{ $t('components.contest.registerNow') }}
               </v-btn>
             </div>
             <div
@@ -104,7 +103,7 @@
                 text
                 @click="haveCodeDialog = true"
               >
-                Déjà inscrit ?
+                {{ $t('components.contest.alreadyRegistered') }}
               </v-btn>
             </div>
             <div
@@ -112,10 +111,10 @@
               class="mt-1"
             >
               <p class="mb-0 font-weight-bold">
-                Les inscriptions ne sont pas encore ouverte.
+                {{ $t('components.contest.notOpenYet') }}
               </p>
               <p>
-                Revenez le {{ humanizeDate(contest.subscription_start_date) }} !
+                {{ $t('default.components.contest.comeBackOn', { date: humanizeDate(contest.subscription_start_date) }) }}
               </p>
             </div>
 
@@ -142,19 +141,15 @@
             >
               <v-card>
                 <v-card-title>
-                  Je suis déjà inscrit
+                  {{ $t('components.contest.iAmRegistered') }}
                 </v-card-title>
                 <div class="px-5 pb-4">
-                  <p>
-                    Lors de votre inscription nous vous avons donné un code <cite>(votre prénom + quelques lettres au hasard)</cite><br>
-                    Renseigner ce code pour vous identifier.
-                  </p>
+                  <p v-html="$t('components.contest.registeredPart1')" />
                   <p
                     v-if="authenticateFailed"
                     class="red--text"
-                  >
-                    Nous ne trouvons pas de participant(e) inscrit avec ce code sur ce contest. Vérifiez que vous avez correctement tapé votre code et ressayez.
-                  </p>
+                    v-html="$t('components.contest.registeredPart2')"
+                  />
                   <v-form @submit.prevent="authenticate">
                     <v-text-field
                       v-model="authentificationToken"
@@ -168,7 +163,7 @@
                         :loading="loadingAuthenticate"
                         @click.prevent="authenticate"
                       >
-                        M'authentifier
+                        {{ $t('actions.authenticateMe') }}
                       </v-btn>
                     </div>
                   </v-form>
@@ -189,11 +184,11 @@
               >
                 {{ mdiCheckboxMarkedOutline }}
               </v-icon>
-              Vous êtes inscrit à : {{ contest.name }} !
+              {{ $t('components.contest.youAreRegisteredAt', { name: contest.name }) }}
             </p>
             <div class="border rounded pa-3 pt-2">
               <p>
-                Utilisez le code ci-dessous pour noter vos résultats et suivre votre classement pendant le contest :
+                {{ $t('components.contest.useTheCode') }}
               </p>
               <div
                 class="border rounded pa-4 text-center d-flex mb-3"
@@ -208,7 +203,7 @@
                 </div>
               </div>
               <p class="text--disabled">
-                Ce code est sauvegardé sur cet appareil. Vous pouvez le copier-coller pour noter vos résultats sur un autre appareil. Vous avez aussi reçu ce code par email.
+                {{ $t('components.contest.codeIsSaved') }}
               </p>
               <div class="text-right">
                 <v-btn
@@ -216,7 +211,7 @@
                   outlined
                   @click="resetToken"
                 >
-                  Autre inscription
+                  {{ $t('actions.otherRegistration') }}
                 </v-btn>
               </div>
             </div>
@@ -230,7 +225,7 @@
                 color="primary"
                 @click="goToMyContest()"
               >
-                Renseigner mes résultats
+                {{ $t('actions.entryResult') }}
               </v-btn>
             </div>
           </div>
