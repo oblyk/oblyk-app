@@ -17,7 +17,9 @@
       </v-icon>
     </v-list-item-avatar>
     <v-list-item-content>
-      <v-list-item-title>
+      <v-list-item-title
+        :class="archived ? 'text--disabled' : ''"
+      >
         <strong>{{ contest.name }}</strong> · {{ contest.gym.name }}
         <v-chip
           v-if="contest.draft"
@@ -28,7 +30,9 @@
           Brouillon
         </v-chip>
       </v-list-item-title>
-      <v-list-item-subtitle>
+      <v-list-item-subtitle
+        :class="archived ? 'text--disabled' : ''"
+      >
         {{ contest.contest_participants_count || 0 }} participant·es |
         <span v-if="contest.finished">
           Terminé le {{ humanizeDate(contest.end_date) }}
@@ -67,6 +71,10 @@ export default {
     callback: {
       type: Function,
       default: null
+    },
+    archived: {
+      type: Boolean,
+      default: false
     }
   },
 

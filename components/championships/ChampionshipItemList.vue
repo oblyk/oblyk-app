@@ -16,10 +16,10 @@
       </v-icon>
     </v-list-item-avatar>
     <v-list-item-content>
-      <v-list-item-title>
+      <v-list-item-title :class="archived ? 'text--disabled' : ''">
         <strong>{{ championship.name }}</strong>
       </v-list-item-title>
-      <v-list-item-subtitle>
+      <v-list-item-subtitle :class="archived ? 'text--disabled' : ''">
         {{ championship.contests_count || 0 }} contests
       </v-list-item-subtitle>
     </v-list-item-content>
@@ -41,6 +41,10 @@ export default {
     publicPath: {
       type: Boolean,
       default: true
+    },
+    archived: {
+      type: Boolean,
+      default: false
     }
   },
 

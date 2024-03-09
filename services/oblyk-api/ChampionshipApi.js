@@ -83,5 +83,27 @@ class ChampionshipApi extends BaseApi {
       }
     })
   }
+
+  archived (gymId, championshipId, archived) {
+    return this.axios.request({
+      method: 'PUT',
+      url: `${this.baseUrl}/gyms/${gymId}/championships/${championshipId}/${archived ? 'archived' : 'unarchived'}.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
+    })
+  }
+
+  delete (gymId, championshipId) {
+    return this.axios.request({
+      method: 'DELETE',
+      url: `${this.baseUrl}/gyms/${gymId}/championships/${championshipId}.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
+    })
+  }
 }
 export default ChampionshipApi

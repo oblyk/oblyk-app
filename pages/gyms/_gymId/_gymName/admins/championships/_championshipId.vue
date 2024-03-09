@@ -37,6 +37,29 @@
                 </div>
               </div>
             </div>
+            <v-alert
+              v-if="championship.archived_at !== null"
+              text
+              type="info"
+              class="mt-3"
+            >
+              <div class="d-flex">
+                <div>Championnats archivé.</div>
+                <v-btn
+                  :loading="loadingArchive"
+                  outlined
+                  small
+                  light
+                  class="ml-auto"
+                  @click="archived(false)"
+                >
+                  <v-icon left>
+                    {{ mdiBookshelf }}
+                  </v-icon>
+                  {{ $t('actions.unArchive') }}
+                </v-btn>
+              </div>
+            </v-alert>
             <div class="text-right mt-auto pt-2">
               <v-btn
                 outlined
@@ -53,6 +76,7 @@
                   <v-btn
                     outlined
                     text
+                    :loading="loadingAction"
                     v-bind="attrs"
                     v-on="on"
                   >
@@ -73,8 +97,36 @@
                       {{ $t('actions.edit') }}
                     </v-list-item-title>
                   </v-list-item>
+                  <v-divider />
+                  <v-list-item
+                    v-if="championship.archived_at === null"
+                    @click="archived(championship.archived_at === null)"
+                  >
+                    <v-list-item-icon>
+                      <v-icon>
+                        {{ mdiBookshelf }}
+                      </v-icon>
+                    </v-list-item-icon>
+                    <v-list-item-title class="red--text">
+                      {{ championship.archived_at === null ? $t('actions.archive') : $t('actions.unArchive') }}
+                    </v-list-item-title>
+                  </v-list-item>
+                  <v-list-item
+                    @click="deleteModal = true"
+                  >
+                    <v-list-item-icon>
+                      <v-icon>
+                        {{ mdiDelete }}
+                      </v-icon>
+                    </v-list-item-icon>
+                    <v-list-item-title class="red--text">
+                      {{ $t('actions.delete') }}
+                    </v-list-item-title>
+                  </v-list-item>
                 </v-list>
               </v-menu>
+
+              <!-- Edit modal -->
               <v-dialog
                 v-model="editModal"
                 width="700"
@@ -90,6 +142,44 @@
                       :callback="successEdit"
                       submit-methode="put"
                     />
+                  </div>
+                </v-card>
+              </v-dialog>
+
+              <!-- Delete modal -->
+              <v-dialog
+                v-model="deleteModal"
+                width="700"
+              >
+                <v-card>
+                  <v-card-title>
+                    Supprimer - {{ championship.name }}
+                  </v-card-title>
+                  <div class="px-4 pb-4">
+                    <p>
+                      Vous êtes sur le point de supprimer <strong>{{ championship.name }}</strong>.<br>
+                      Votre championnat ne sera plus accéssible ni par vous, ni par les participant·e·s.
+                    </p>
+                    <p class="red--text font-weight-bold text-center">
+                      Aucun retour n'est possible !
+                    </p>
+                    <v-text-field
+                      v-model="unlockWord"
+                      outlined
+                      class="mt-4"
+                      :label="`Tapez : '${championship.slug_name}' pour déverrouiller la suppression`"
+                    />
+                    <div class="text-right">
+                      <v-btn
+                        elevation="0"
+                        :disabled="championship.slug_name !== unlockWord"
+                        color="red"
+                        class="white--text"
+                        @click="deleteChampionship()"
+                      >
+                        {{ $t('actions.delete') }}
+                      </v-btn>
+                    </div>
                   </div>
                 </v-card>
               </v-dialog>
@@ -203,12 +293,15 @@ import {
   mdiDatabase,
   mdiPodium,
   mdiDotsVertical,
-  mdiPencil
+  mdiPencil,
+  mdiBookshelf,
+  mdiDelete
 } from '@mdi/js'
 import { ChampionshipConcern } from '~/concerns/ChampionshipConcern'
 import Spinner from '~/components/layouts/Spiner'
 import ChampionshipBannerForm from '~/components/championships/forms/ChampionshipBannerForm'
 import ChampionshipForm from '~/components/championships/forms/ChampionshipForm.vue'
+import ChampionshipApi from '~/services/oblyk-api/ChampionshipApi'
 const MarkdownText = () => import('~/components/ui/MarkdownText')
 
 export default {
@@ -226,13 +319,19 @@ export default {
     return {
       coverModal: false,
       editModal: false,
+      deleteModal: false,
+      loadingArchive: false,
+      loadingAction: false,
+      unlockWord: null,
 
       mdiTrophy,
       mdiEarth,
       mdiDatabase,
       mdiPodium,
       mdiDotsVertical,
-      mdiPencil
+      mdiPencil,
+      mdiBookshelf,
+      mdiDelete
     }
   },
 
@@ -265,6 +364,45 @@ export default {
   methods: {
     successEdit () {
       window.location.reload()
+    },
+
+    archived (archived) {
+      if (!archived || confirm('Êtes vous sûr de vouloir archiver ce championnat ?')) {
+        if (archived) {
+          this.loadingAction = true
+        } else {
+          this.loadingArchive = true
+        }
+        new ChampionshipApi(this.$axios, this.$auth)
+          .archived(this.championship.gym_id, this.championship.id, archived)
+          .then(() => {
+            if (archived) {
+              this.$router.push(`${this.championship.Gym.adminPath}/championships`)
+            } else {
+              window.location.reload()
+            }
+          })
+          .catch(() => {
+            if (archived) {
+              this.loadingAction = false
+            } else {
+              this.loadingArchive = false
+            }
+          })
+      }
+    },
+
+    deleteChampionship () {
+      this.loadingAction = true
+      this.deleteModal = false
+      new ChampionshipApi(this.$axios, this.$auth)
+        .delete(this.championship.gym_id, this.championship.id)
+        .then(() => {
+          this.$router.push(`${this.championship.Gym.adminPath}/championships`)
+        })
+        .catch(() => {
+          this.loadingAction = false
+        })
     }
   }
 }

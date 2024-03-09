@@ -154,7 +154,9 @@ export default {
     back: 'Back',
     authenticateMe: 'Authenticate me',
     otherRegistration: 'Other registration',
-    entryResult: 'Enter my results'
+    entryResult: 'Enter my results',
+    archive: 'Archive',
+    unArchive: 'Un archive'
   },
   colors: {
     noColor: 'All',

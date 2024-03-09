@@ -7,18 +7,31 @@
         v-if="contests.length > 0"
         class="mb-4"
       >
-        <contest-item-list
+        <div
           v-for="(contest, contestIndex) in contests"
           :key="`contest-index-${contestIndex}`"
-          :contest="contest"
-          :public-path="false"
-        />
+        >
+          <p
+            v-if="archiveSeparator(contest, contestIndex)"
+            class="mt-4 pb-2 border-bottom pl-3 font-weight-bold"
+          >
+            <v-icon left>
+              {{ mdiBookshelf }}
+            </v-icon>
+            Contests archivés
+          </p>
+          <contest-item-list
+            :contest="contest"
+            :public-path="false"
+            :archived="contest.archived_at !== null"
+          />
+        </div>
       </v-list>
       <p
         v-else
         class="text-center text--disabled py-5"
       >
-        Pas de contest en cours
+        Aucun contest trouvé
       </p>
       <div class="text-right">
         <v-btn
@@ -34,6 +47,7 @@
 </template>
 
 <script>
+import { mdiBookshelf } from '@mdi/js'
 import { GymFetchConcern } from '~/concerns/GymFetchConcern'
 import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
 import Spinner from '~/components/layouts/Spiner'
@@ -50,7 +64,9 @@ export default {
   data () {
     return {
       loadingContests: true,
-      contests: []
+      contests: [],
+
+      mdiBookshelf
     }
   },
 
@@ -113,6 +129,10 @@ export default {
         .finally(() => {
           this.loadingContests = false
         })
+    },
+
+    archiveSeparator (contest, contestIndex) {
+      return (contestIndex === 0 && contest.archived_at !== null) || (contestIndex > 0 && contest.archived_at !== null && this.contests[contestIndex - 1].archived_at === null)
     }
   }
 }

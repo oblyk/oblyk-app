@@ -105,5 +105,27 @@ class ContestApi extends BaseApi {
       }
     })
   }
+
+  archived (gymId, contestId, archived) {
+    return this.axios.request({
+      method: 'PUT',
+      url: `${this.baseUrl}/gyms/${gymId}/contests/${contestId}/${archived ? 'archived' : 'unarchived'}.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
+    })
+  }
+
+  delete (gymId, contestId) {
+    return this.axios.request({
+      method: 'DELETE',
+      url: `${this.baseUrl}/gyms/${gymId}/contests/${contestId}.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
+    })
+  }
 }
 export default ContestApi

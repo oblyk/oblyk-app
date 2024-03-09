@@ -7,12 +7,25 @@
         v-if="championships.length > 0"
         class="mb-4"
       >
-        <championship-item-list
+        <div
           v-for="(championship, championshipIndex) in championships"
           :key="`championship-index-${championshipIndex}`"
-          :championship="championship"
-          :public-path="false"
-        />
+        >
+          <p
+            v-if="archiveSeparator(championship, championshipIndex)"
+            class="mt-4 pb-2 border-bottom pl-3 font-weight-bold"
+          >
+            <v-icon left>
+              {{ mdiBookshelf }}
+            </v-icon>
+            Championnats archivés
+          </p>
+          <championship-item-list
+            :championship="championship"
+            :public-path="false"
+            :archived="championship.archived_at !== null"
+          />
+        </div>
       </v-list>
       <p
         v-else
@@ -34,6 +47,7 @@
 </template>
 
 <script>
+import { mdiBookshelf } from '@mdi/js'
 import { GymFetchConcern } from '~/concerns/GymFetchConcern'
 import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
 import Spinner from '~/components/layouts/Spiner'
@@ -50,7 +64,9 @@ export default {
   data () {
     return {
       loadingChampionships: true,
-      championships: []
+      championships: [],
+
+      mdiBookshelf
     }
   },
 
@@ -113,6 +129,10 @@ export default {
         .finally(() => {
           this.loadingChampionships = false
         })
+    },
+
+    archiveSeparator (championship, championshipIndex) {
+      return (championshipIndex === 0 && championship.archived_at !== null) || (championshipIndex > 0 && championship.archived_at !== null && this.championships[championshipIndex - 1].archived_at === null)
     }
   }
 }
