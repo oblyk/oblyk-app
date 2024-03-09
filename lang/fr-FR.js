@@ -1589,9 +1589,6 @@ export default {
       exportProjects: 'Exporter mes projets',
       explainGradeValue: "La colonne <cite>'Grade value'</cite> vous permet de trier par difficulté même sur des systèmes de cotation différents.",
       gradeMoreInformation: "Plus d'information sur le système de cotation ici",
-      areYouSureToDeleteYourAccount: 'Êtes-vous sûr·e de vouloir supprimer votre compte ?',
-      IUnderstoodTheScopeOfMyAction: "J'ai compris la portée de mon action",
-      deleteExplain: "Supprimer son compte est une action <strong>irréversible</strong> et <strong>immédiate</strong>.Nous allons supprimer <strong>l'intégralité des données</strong> qui vous concernent et nous seront dans <strong>l'incapacité de retrouver vos données</strong> si vous changez d'avis par la suite.",
       privateLogBook: 'Le carnet de croix de %{name} est privé.',
       privateMedia: 'Les photos & videos de %{name} sont privées.',
       subscribeToSee: 'Abonnez-vous pour pouvoir le voir !',
@@ -1656,6 +1653,15 @@ export default {
         guides: 'Topos',
         comments: 'Commentaires'
       }
+    },
+    deleteAccount: {
+      title: 'Supprimer mon compte',
+      paragraph1: 'La suppression de votre compte est <strong class="red--text">irreversible</strong> et <strong class="red--text">immediate</strong>.',
+      paragraph2: 'Toutes vos croix indoor et outdoor<strong>(1)</strong>, vos messages, favoris, abonnements, etc. seront <strong>irréversiblement supprimés</strong>.',
+      unlock: 'Rentrer <strong>"supprimer"</strong> ci-dessous pour supprimer votre compte.',
+      label: "tapez 'supprimer' pour supprimer votre compte",
+      tips: 'Vous pouvez exporter vos croix avant de supprimer votre compte.',
+      connectToDelete: 'Connectez vous pour supprimer votre compte.'
     },
     subscribesAscents: {
       nextAscents: 'croix suivantes',

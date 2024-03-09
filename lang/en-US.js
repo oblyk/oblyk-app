@@ -1588,9 +1588,6 @@ export default {
       exportProjects: 'Exporter my projects',
       explainGradeValue: "The <cite>'Grade value'</cite> column allows you to sort by difficulty even on different grading systems.",
       gradeMoreInformation: 'More information on the rating system here',
-      areYouSureToDeleteYourAccount: 'Are you sure to delete your account ?',
-      IUnderstoodTheScopeOfMyAction: 'I understood the scope of my action',
-      deleteExplain: 'Deleting your account is an <strong>irreversible</strong> and <strong>immediate</strong> action, we will delete <strong>all your data</strong> and we will be <strong>unable to retrieve your data</strong> if you change your mind afterwards.',
       privateLogBook: 'The log book of %{name} is private.',
       privateMedia: 'Photos & videos of %{name} is private.',
       subscribeToSee: 'Subscribe to see it!',
@@ -1655,6 +1652,15 @@ export default {
         guide: 'Guide books',
         comments: 'Comments'
       }
+    },
+    deleteAccount: {
+      title: 'Delete my account',
+      paragraph1: 'Deletion of your account is <strong class="red--text">irreversible</strong> and <strong class="red--text">immediate</strong>.',
+      paragraph2: 'All your indoor and outdoor crosses<strong>(1)</strong>, your messages, favorites, subscriptions, etc. will be <strong>irreversibly eliminated</strong>.',
+      unlock: 'Enter <strong>"delete"</strong> below to delete your account.',
+      label: "type 'delete' to delete your account",
+      tips: 'You can export your crosses before deleting your account.',
+      connectToDelete: 'Login to delete your account.'
     },
     subscribesAscents: {
       nextAscents: 'next ascents',
