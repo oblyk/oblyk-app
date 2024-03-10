@@ -1,12 +1,16 @@
 <template>
   <v-row>
     <v-col align-self="center" cols="12" md="6">
-      <h3 class="text-h5 mb-3 font-weight-bold">
+      <h2 class="text-h5 mb-3 font-weight-bold">
         {{ $t('home.partner.title') }}
-      </h3>
+      </h2>
       <p v-html="$t('home.partner.body')" />
       <p class="text-right">
-        <v-btn outlined color="primary" to="/about/partner-search">
+        <v-btn
+          outlined
+          class="black-btn-icon"
+          to="/about/partner-search"
+        >
           {{ $t('home.partner.action') }}
         </v-btn>
       </p>

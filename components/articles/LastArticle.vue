@@ -1,8 +1,8 @@
 <template>
   <div class="mb-16">
-    <h3 class="text-h5 font-weight-bold text-center mb-5">
+    <h2 class="text-h5 font-weight-bold text-center mb-5">
       {{ $t('components.article.whatsNew') }}
-    </h3>
+    </h2>
     <div v-if="loadingLastArticles">
       <div
         v-for="index in 3"

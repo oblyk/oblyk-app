@@ -2,20 +2,23 @@
   <div>
     <home-header />
     <v-container class="home-container">
+      <client-only>
+        <home-box-create-account v-if="!$auth.loggedIn" />
+      </client-only>
       <lazy-hydrate when-visible>
-        <home-box-crag-info class="home-boxes" />
+        <home-box-crag-info id="crag-information" class="home-boxes" />
       </lazy-hydrate>
       <lazy-hydrate when-visible>
-        <home-box-ascents-log class="home-boxes" />
+        <home-box-ascents-log id="logbook" class="home-boxes" />
       </lazy-hydrate>
       <lazy-hydrate when-visible>
-        <home-box-partner class="home-boxes" />
+        <home-box-partner id="find-partner" class="home-boxes" />
       </lazy-hydrate>
       <lazy-hydrate when-visible>
         <home-box-guide-book class="home-boxes" />
       </lazy-hydrate>
       <lazy-hydrate when-visible>
-        <home-box-indoor class="home-boxes" />
+        <home-box-indoor id="indoor" class="home-boxes" />
       </lazy-hydrate>
       <lazy-hydrate when-visible>
         <last-article />
@@ -40,6 +43,7 @@
 <script>
 import LazyHydrate from 'vue-lazy-hydration'
 import HomeHeader from '~/components/homes/HomeHeader'
+const HomeBoxCreateAccount = () => import('~/components/homes/HomeBoxCreateAccount')
 const HomeBoxIndoor = () => import('~/components/homes/HomeBoxIndoor')
 const HomeLastAdded = () => import('~/components/homes/HomeLastAdded')
 const HomeBoxCragInfo = () => import('@/components/homes/HomeBoxCragInfo')
@@ -54,6 +58,7 @@ const LastArticle = () => import('@/components/articles/LastArticle')
 export default {
   name: 'Home',
   components: {
+    HomeBoxCreateAccount,
     HomeBoxIndoor,
     HomeHeader,
     LazyHydrate,

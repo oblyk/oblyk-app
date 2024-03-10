@@ -1876,22 +1876,17 @@ export default {
   home: {
     header: {
       title: {
-        intro: 'Community and open source platform dedicated to climbing.'
-      },
-      crags: {
-        title: 'Crags, Routes & Guidebooks of the world',
-        intro: 'Oblyk is tens of thousands of routes referenced on thousands of climbing sites.<br>Find where to climb around you!',
-        find: 'Find a natural site'
-      },
-      ascents: {
-        title: 'Keep a ascents logbook',
-        intro: 'Keep track of the routes, boulders and multi pitches you do as you go along in your climbing life.'
-      },
-      climbers: {
-        title: 'Find a climbing partner',
-        intro: "Sign up for the climber's map, find climbers around you.<br>Get in touch and organise your first outing!",
-        find: 'Find a climber'
+        intro: 'Participatory & open source platform dedicated to climbing.',
+        introNext: 'Find information on cliffs and climbing partners, keep a cross-country notebook, create a topo for your climbing gym, and much more!',
+        crag: 'Crags',
+        logbook: 'Logbook',
+        partner: 'Climbing partner',
+        indoorGuidebook: 'Topo indoor'
       }
+    },
+    createAccount: {
+      title: 'Join us !',
+      body: 'Create an account and join a community of over <strong>%{count} climbers</strong> with a passion for climbing!'
     },
     crags: {
       title: 'Check crags information',

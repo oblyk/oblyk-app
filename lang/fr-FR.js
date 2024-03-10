@@ -1877,22 +1877,17 @@ export default {
   home: {
     header: {
       title: {
-        intro: "Plateforme communautaire et open source dédiée à l'escalade."
-      },
-      crags: {
-        title: 'Les falaises, Voies & Topos du monde',
-        intro: "Oblyk c'est des dizaines de milliers de voies référencées sur des milliers de sites d'escalade.<br>Trouvez où grimper autour de chez vous !",
-        find: 'Trouver un site naturel'
-      },
-      ascents: {
-        title: 'Tiens un carnet de croix',
-        intro: 'Note tes voies, blocs, grande-voies que tu fais au fur et à mesure de ta vie de grimpeur.<br>Suis tes performances et souviens-toi de ce que tu as fait.'
-      },
-      climbers: {
-        title: 'Trouve un·e partenaire de grimpe',
-        intro: 'Inscris-toi à la carte des grimpeurs, trouve des grimpeurs ou grimpeuses autour de toi.<br>Prenez contact et organisez votre première sortie !',
-        find: 'Trouve un·e grimpeur·euse'
+        intro: "Plateforme participative & open source dédiée à l'escalade.",
+        introNext: "Trouvez des infos sur les falaises et des partenaires de grimpe, tenez un carnet de croix, créez le topo de votre salle d'escalade, et bien plus !",
+        crag: 'Falaises',
+        logbook: 'Carnet de croix',
+        partner: 'Partenaire de grimpe',
+        indoorGuidebook: 'Topo indoor'
       }
+    },
+    createAccount: {
+      title: 'Rejoins-nous !',
+      body: "Crée-toi un compte et rejoint une communauté de plus de <strong>%{count} grimpeurs et grimpeuses</strong> passionné·es d'escalade !"
     },
     crags: {
       title: 'Check les infos des falaises',
@@ -1904,7 +1899,7 @@ export default {
       body: "Bon pour la mémoire, la progression et la motivation, tenir un <strong>carnet de croix</strong> a beaucoup d'avantages.<br> Oblyk te permet de le faire facilement, tu pourras ensuite <strong>visualiser ta progression</strong> grâce à de nombreuses façons d'analyser et d'afficher ton carnet de croix."
     },
     partner: {
-      title: 'Trouve un·e partenaire de grimpe',
+      title: 'Trouve un ou une partenaire de grimpe',
       body: "Tu arrives dans une nouvelle région, tu aimerais trouver quelqu'un avec qui <strong>grimper en falaise ou en salle</strong> ?<br>Regarde du côté de notre <strong>carte des grimpeuses et grimpeurs</strong>, peut-être que tu trouveras quelqu'un avec qui grimper.",
       action: 'Comment ça marche ?'
     },
@@ -1942,7 +1937,7 @@ export default {
     figures: {
       title: 'Oblyk en quelques chiffres',
       crags: 'Falaises',
-      climbers: 'Grimpeur·euse·s',
+      climbers: 'Grimpeurs & Grimpeuses',
       gyms: 'Salles',
       routes: 'Lignes',
       ascents: 'Croix',

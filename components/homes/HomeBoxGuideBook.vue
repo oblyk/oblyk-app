@@ -1,13 +1,17 @@
 <template>
   <v-row>
     <v-col align-self="center" cols="12" md="6" order-md="last">
-      <h3 class="text-h5 mb-3 font-weight-bold">
+      <h2 class="text-h5 mb-3 font-weight-bold">
         {{ $t('home.oblykAndGuide.title') }}
-      </h3>
+      </h2>
       <p v-html="$t('home.oblykAndGuide.body1')" />
       <p v-html="$t('home.oblykAndGuide.body2')" />
       <p class="text-right">
-        <v-btn outlined color="primary" to="/guide-books/features">
+        <v-btn
+          outlined
+          class="black-btn-icon"
+          to="/guide-books/features"
+        >
           {{ $t('home.oblykAndGuide.action') }}
         </v-btn>
       </p>

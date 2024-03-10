@@ -9,6 +9,17 @@ class CommonApi extends BaseApi {
     })
   }
 
+  microStats (figures) {
+    return this.axios.request({
+      method: 'GET',
+      url: `${this.baseUrl}/micro_stats.json`,
+      headers: { HttpApiAccessToken: this.apiAccessToken },
+      params: {
+        figures
+      }
+    })
+  }
+
   lastAdded () {
     return this.axios.request({
       method: 'GET',

@@ -1,12 +1,12 @@
 <template>
   <div class="mb-15">
     <!-- Last crags -->
-    <h3 class="mb-2 text-h5 font-weight-bold">
+    <h2 class="mb-2 text-h5 font-weight-bold">
       <v-icon left>
         {{ mdiTerrain }}
       </v-icon>
       {{ $t('home.lastObjects.crags') }}
-    </h3>
+    </h2>
 
     <div v-if="loadingLastAdded">
       <v-skeleton-loader
