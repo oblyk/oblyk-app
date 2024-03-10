@@ -1856,6 +1856,7 @@ export default {
         helps: 'Aides',
         termsOfUse: 'Mentions légales',
         facebook: 'Facebook',
+        instagram: 'Instagram',
         github: 'github',
         newsletter: 'Newsletter',
         apiAndDevelopers: 'API & Développeurs',

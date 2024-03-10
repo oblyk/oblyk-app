@@ -82,6 +82,12 @@
         <p class="font-weight-bold">
           {{ $t('components.layout.footer.followUs') }}
         </p>
+        <a class="d-block" href="https://www.instagram.com/oblyk.climbing/">
+          <v-icon small left dark>
+            {{ mdiInstagram }}
+          </v-icon>
+          {{ $t('components.layout.footer.instagram') }}
+        </a>
         <a class="d-block" href="https://www.facebook.com/pageoblyk/">
           <v-icon small left dark>
             {{ mdiFacebook }}
@@ -141,7 +147,8 @@ import {
   mdiGithub,
   mdiEmail,
   mdiDatabase,
-  mdiOpenInNew
+  mdiOpenInNew,
+  mdiInstagram
 } from '@mdi/js'
 
 export default {
@@ -155,7 +162,8 @@ export default {
       mdiGithub,
       mdiEmail,
       mdiDatabase,
-      mdiOpenInNew
+      mdiOpenInNew,
+      mdiInstagram
     }
   },
 

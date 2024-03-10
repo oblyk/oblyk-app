@@ -1855,6 +1855,7 @@ export default {
         helps: 'Helps',
         termsOfUse: 'Terms of use',
         facebook: 'Facebook',
+        instagram: 'Instagram',
         github: 'github',
         newsletter: 'Newsletter',
         apiAndDevelopers: 'API & Developers',
