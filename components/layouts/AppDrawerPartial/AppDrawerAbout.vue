@@ -132,24 +132,11 @@
         {{ $t('components.layout.appDrawer.news') }}
       </v-list-item-title>
     </v-list-item>
-
-    <!-- Support us -->
-    <v-list-item to="/support-us">
-      <v-list-item-icon>
-        <v-icon color="red">
-          {{ mdiCardsHeart }}
-        </v-icon>
-      </v-list-item-icon>
-      <v-list-item-title>
-        {{ $t('components.layout.appDrawer.donation') }}
-      </v-list-item-title>
-    </v-list-item>
   </v-list>
 </template>
 
 <script>
 import {
-  mdiCardsHeart,
   mdiBullhornOutline,
   mdiTerrain,
   mdiInformationOutline,
@@ -168,7 +155,6 @@ export default {
 
   data () {
     return {
-      mdiCardsHeart,
       mdiBullhornOutline,
       mdiTerrain,
       mdiInformationOutline,

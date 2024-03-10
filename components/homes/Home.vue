@@ -26,9 +26,6 @@
       <lazy-hydrate when-visible>
         <home-box-figures />
       </lazy-hydrate>
-      <lazy-hydrate when-visible>
-        <home-box-help class="home-boxes" />
-      </lazy-hydrate>
       <lazy-hydrate
         v-if="false"
         when-visible
@@ -50,7 +47,6 @@ const HomeBoxAscentsLog = () => import('@/components/homes/HomeBoxAscentsLog')
 const HomeBoxDeveloper = () => import('@/components/homes/HomeBoxDeveloper')
 const AppFooter = () => import('@/components/layouts/AppFooter')
 const HomeBoxPartner = () => import('@/components/homes/HomeBoxPartner')
-const HomeBoxHelp = () => import('@/components/homes/HomeBoxHelp')
 const HomeBoxGuideBook = () => import('@/components/homes/HomeBoxGuideBook')
 const HomeBoxFigures = () => import('@/components/homes/HomeBoxFigures')
 const LastArticle = () => import('@/components/articles/LastArticle')
@@ -66,7 +62,6 @@ export default {
     LastArticle,
     HomeBoxFigures,
     HomeBoxGuideBook,
-    HomeBoxHelp,
     HomeBoxPartner,
     HomeBoxAscentsLog,
     HomeBoxCragInfo,

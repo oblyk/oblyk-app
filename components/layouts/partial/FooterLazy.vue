@@ -63,12 +63,6 @@
         >
           {{ $t('components.layout.footer.apiAndDevelopers') }}
         </nuxt-link>
-        <nuxt-link class="d-block" to="/support-us">
-          <v-icon small color="red" left>
-            {{ mdiHeart }}
-          </v-icon>
-          {{ $t('components.layout.footer.donation') }}
-        </nuxt-link>
         <nuxt-link
           class="d-block"
           :to="`/report-problem?redirect_to=${$route.fullPath}`"
@@ -142,7 +136,6 @@
 <script>
 import {
   mdiCopyright,
-  mdiHeart,
   mdiFlag,
   mdiFacebook,
   mdiGithub,
@@ -157,7 +150,6 @@ export default {
   data () {
     return {
       mdiCopyright,
-      mdiHeart,
       mdiFlag,
       mdiFacebook,
       mdiGithub,
