@@ -295,12 +295,12 @@
                         v-model="unlockWord"
                         outlined
                         class="mt-4"
-                        :label="`Tapez : '${contest.slug_name}' pour déverrouiller la suppression`"
+                        :label="`Tapez : '${$t('actions.delete').toLowerCase()}' pour déverrouiller la suppression`"
                       />
                       <div class="text-right">
                         <v-btn
                           elevation="0"
-                          :disabled="contest.slug_name !== unlockWord"
+                          :disabled="unlockWord === null || $t('actions.delete').toLowerCase() !== unlockWord.toLowerCase()"
                           color="red"
                           class="white--text"
                           @click="deleteContest()"
