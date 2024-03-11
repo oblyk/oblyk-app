@@ -20,7 +20,7 @@ export default class GuideBookPaper extends ActiveData {
 
   get coverUrl () {
     if (this.cover) {
-      return `${process.env.VUE_APP_OBLYK_API_URL}${this.cover}`
+      return this.cover
     } else {
       return '/svg/paper-guide-book-default.svg'
     }
@@ -28,7 +28,7 @@ export default class GuideBookPaper extends ActiveData {
 
   get thumbnailCoverUrl () {
     if (this.thumbnail_url) {
-      return `${process.env.VUE_APP_OBLYK_API_URL}${this.thumbnail_url}`
+      return this.thumbnail_url
     } else {
       return '/svg/paper-guide-book-default.svg'
     }

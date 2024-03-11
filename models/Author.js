@@ -20,7 +20,7 @@ export default class Author extends ActiveData {
 
   get coverUrl () {
     if (this.cover_url) {
-      return `${process.env.VUE_APP_OBLYK_API_URL}${this.cover_url}`
+      return this.cover_url
     } else {
       return '/images/default-crag-banner.jpg'
     }
@@ -28,7 +28,7 @@ export default class Author extends ActiveData {
 
   get thumbnailCoverUrl () {
     if (this.thumbnail_url) {
-      return `${process.env.VUE_APP_OBLYK_API_URL}${this.thumbnail_url}`
+      return this.thumbnail_url
     } else {
       return '/images/default-crag-banner.jpg'
     }

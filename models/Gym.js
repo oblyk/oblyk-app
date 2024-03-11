@@ -33,7 +33,7 @@ export default class Gym extends ActiveData {
 
   get bannerUrl () {
     if (this.banner) {
-      return `${process.env.VUE_APP_OBLYK_API_URL}${this.banner}`
+      return this.banner
     } else {
       return '/images/gym-default-banner.jpg'
     }
@@ -41,7 +41,7 @@ export default class Gym extends ActiveData {
 
   get croppedBannerUrl () {
     if (this.banner_cropped_url) {
-      return `${process.env.VUE_APP_OBLYK_API_URL}${this.banner_cropped_url}`
+      return this.banner_cropped_url
     } else {
       return '/images/gym-default-banner.jpg'
     }
@@ -49,7 +49,7 @@ export default class Gym extends ActiveData {
 
   get thumbnailBannerUrl () {
     if (this.banner_thumbnail_url) {
-      return `${process.env.VUE_APP_OBLYK_API_URL}${this.banner_thumbnail_url}`
+      return this.banner_thumbnail_url
     } else {
       return '/images/gym-default-banner.jpg'
     }
@@ -57,7 +57,7 @@ export default class Gym extends ActiveData {
 
   get logoUrl () {
     if (this.logo) {
-      return `${process.env.VUE_APP_OBLYK_API_URL}${this.logo}`
+      return this.logo
     } else {
       return '/svg/gym-default-logo.svg'
     }
@@ -65,7 +65,7 @@ export default class Gym extends ActiveData {
 
   get thumbnailLogoUrl () {
     if (this.logo) {
-      return `${process.env.VUE_APP_OBLYK_API_URL}${this.logo_thumbnail_url}`
+      return this.logo_thumbnail_url
     } else {
       return '/svg/gym-default-logo.svg'
     }
