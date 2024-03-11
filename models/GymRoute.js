@@ -31,7 +31,7 @@ export default class GymRoute extends ActiveData {
 
   get pictureUrl () {
     if (this.hasPicture) {
-      return `${process.env.VUE_APP_OBLYK_API_URL}${this.picture}`
+      return this.picture
     } else {
       return '/svg/missing-picture.svg'
     }
@@ -59,7 +59,7 @@ export default class GymRoute extends ActiveData {
 
   get thumbnailUrl () {
     if (this.thumbnail) {
-      return `${process.env.VUE_APP_OBLYK_API_URL}${this.thumbnail}`
+      return this.thumbnail
     } else {
       return '/svg/gym-route-default-picture.svg'
     }

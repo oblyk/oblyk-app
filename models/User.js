@@ -28,7 +28,7 @@ export default class User extends ActiveData {
 
   get avatarUrl () {
     if (this.avatar) {
-      return `${process.env.VUE_APP_OBLYK_API_URL}${this.avatar}`
+      return this.avatar
     } else {
       return '/svg/user-default-avatar.svg'
     }
@@ -36,7 +36,7 @@ export default class User extends ActiveData {
 
   get bannerUrl () {
     if (this.banner) {
-      return `${process.env.VUE_APP_OBLYK_API_URL}${this.banner}`
+      return this.banner
     } else {
       return '/images/user-default-banner.jpg'
     }
@@ -44,7 +44,7 @@ export default class User extends ActiveData {
 
   get croppedBannerUrl () {
     if (this.banner_cropped_url) {
-      return `${process.env.VUE_APP_OBLYK_API_URL}${this.banner_cropped_url}`
+      return this.banner_cropped_url
     } else {
       return '/images/user-default-banner.jpg'
     }
@@ -52,7 +52,7 @@ export default class User extends ActiveData {
 
   get thumbnailBannerUrl () {
     if (this.banner_thumbnail_url) {
-      return `${process.env.VUE_APP_OBLYK_API_URL}${this.banner_thumbnail_url}`
+      return this.banner_thumbnail_url
     } else {
       return '/images/user-default-banner.jpg'
     }
@@ -60,7 +60,7 @@ export default class User extends ActiveData {
 
   get thumbnailAvatarUrl () {
     if (this.avatar_thumbnail_url) {
-      return `${process.env.VUE_APP_OBLYK_API_URL}${this.avatar_thumbnail_url}`
+      return this.avatar_thumbnail_url
     } else {
       return '/markers/user-marker-avatar.svg'
     }

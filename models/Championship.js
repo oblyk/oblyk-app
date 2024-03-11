@@ -25,9 +25,9 @@ export default class Championship extends ActiveData {
 
   get bannerUrl () {
     if (this.banner) {
-      return `${process.env.VUE_APP_OBLYK_API_URL}${this.banner}`
+      return this.banner
     } else if (this.gym.banner) {
-      return `${process.env.VUE_APP_OBLYK_API_URL}${this.gym.banner}`
+      return this.gym.banner
     } else {
       return '/images/gym-default-banner.jpg'
     }
@@ -35,7 +35,7 @@ export default class Championship extends ActiveData {
 
   get thumbnailBannerUrl () {
     if (this.banner_thumbnail_url) {
-      return `${process.env.VUE_APP_OBLYK_API_URL}${this.banner_thumbnail_url}`
+      return this.banner_thumbnail_url
     } else {
       return '/images/gym-default-banner.jpg'
     }

@@ -20,11 +20,11 @@ export default class Photo extends ActiveData {
   }
 
   get pictureUrl () {
-    return `${process.env.VUE_APP_OBLYK_API_URL}${this.picture}`
+    return this.picture
   }
 
   get thumbnailUrl () {
-    return `${process.env.VUE_APP_OBLYK_API_URL}${this.thumbnail}`
+    return this.thumbnail
   }
 
   get copy () {

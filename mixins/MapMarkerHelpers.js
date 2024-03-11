@@ -203,7 +203,7 @@ export const MapMarkerHelpers = {
     },
 
     guideBookPaperMarker (properties) {
-      const src = properties.thumbnail_url ? `${process.env.VUE_APP_OBLYK_API_URL}${properties.thumbnail_url}` : '/svg/paper-guide-book-default.svg'
+      const src = properties.thumbnail_url ? properties.thumbnail_url : '/svg/paper-guide-book-default.svg'
       return {
         iconSize: [60, 60],
         iconAnchor: [30, 30],
