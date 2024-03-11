@@ -1651,7 +1651,7 @@ export default {
         routes: 'Routes',
         photos: 'Pictures',
         videos: 'Videos',
-        guide: 'Guide books',
+        guides: 'Guide books',
         comments: 'Comments'
       }
     },
