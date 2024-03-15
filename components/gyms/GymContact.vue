@@ -40,7 +40,10 @@
                 {{ gym.web_site }}
               </a>
             </v-list-item-title>
-            <v-list-item-title v-else>
+            <v-list-item-title
+              v-else
+              class="text--disabled font-italic"
+            >
               {{ $t('common.noInformation') }}
             </v-list-item-title>
           </v-list-item-content>
@@ -56,11 +59,18 @@
               <span v-if="showPhoneNumber">
                 {{ gym.phone_number }}
               </span>
-              <span v-else>
+              <v-btn
+                v-else
+                small
+                elevation="0"
+              >
                 {{ $t('components.gym.seePhoneNumber') }}
-              </span>
+              </v-btn>
             </v-list-item-title>
-            <v-list-item-title v-else>
+            <v-list-item-title
+              v-else
+              class="text--disabled font-italic"
+            >
               {{ $t('common.noInformation') }}
             </v-list-item-title>
           </v-list-item-content>
@@ -76,11 +86,18 @@
               <span v-if="showEmail">
                 {{ gym.email }}
               </span>
-              <span v-else>
+              <v-btn
+                v-else
+                small
+                elevation="0"
+              >
                 {{ $t('components.gym.seeEmail') }}
-              </span>
+              </v-btn>
             </v-list-item-title>
-            <v-list-item-title v-else>
+            <v-list-item-title
+              v-else
+              class="text--disabled font-italic"
+            >
               {{ $t('common.noInformation') }}
             </v-list-item-title>
           </v-list-item-content>
