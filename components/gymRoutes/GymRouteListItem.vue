@@ -42,6 +42,7 @@
           <ascent-gym-route-status-icon
             v-if="$auth.loggedIn"
             :gym-route="gymRoute"
+            :size="22"
           />
           <small v-if="gymRoute.anchor_number">
             {{ $t('models.gymRoute.anchor_number') }}{{ gymRoute.anchor_number }}

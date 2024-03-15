@@ -1,7 +1,8 @@
 <template>
   <v-icon
     v-if="ascentInLogBook || ascentStatus"
-    small
+    :small="size === null"
+    :size="size"
     :title="title()"
     color="amber darken-1"
   >
@@ -23,6 +24,10 @@ export default {
     },
     ascentStatus: {
       type: String,
+      default: null
+    },
+    size: {
+      type: Number,
       default: null
     }
   },
