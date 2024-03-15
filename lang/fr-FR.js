@@ -1202,7 +1202,8 @@ export default {
       doNotCreateADuplicate: 'Ne créer pas un doublon si un·e autre grimpeur·euse a déjà référencé cette salle !',
       spaces: 'Les espaces',
       guidebook: 'Le topo',
-      upcomingContests: 'Un contest est à venir ! | %{count} contests sont à venir'
+      upcomingContests: 'Un contest est à venir ! | %{count} contests sont à venir',
+      createYourGuidebook: 'Créez le topo de votre salle !'
     },
     gymRanking: {
       rankingType: 'Les types de classements',

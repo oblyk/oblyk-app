@@ -64,11 +64,21 @@
         <v-btn
           outlined
           :to="`${gym.path}/administration-request`"
-          color="primary"
+          color="deep-purple accent-3"
         >
           {{ $t('components.gym.IAmManager') }}
         </v-btn>
       </v-badge>
+      <div>
+        <v-btn
+          text
+          color="deep-purple accent-4"
+          link
+          to="/about/indoor"
+        >
+          {{ $t('components.gym.createYourGuidebook') }}
+        </v-btn>
+      </div>
     </v-card-text>
   </v-card>
 </template>

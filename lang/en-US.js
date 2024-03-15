@@ -1202,7 +1202,8 @@ export default {
       doNotCreateADuplicate: 'Do not create a duplicate if another climber has already referenced this gym!',
       spaces: 'Spaces',
       guidebook: 'Routes list',
-      upcomingContests: 'One contest coming soon ! | %{count} contests coming soon !'
+      upcomingContests: 'One contest coming soon ! | %{count} contests coming soon !',
+      createYourGuidebook: 'Create the guidebook of your room!'
     },
     gymRanking: {
       rankingType: 'Ranking type',

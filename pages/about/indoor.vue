@@ -20,7 +20,7 @@
 
       <div class="px-lg-15">
         <p class="text-center introduction-text">
-          Créez le <strong class="primary--text">topo indoor</strong> de votre <strong class="primary--text">salle d'escalade</strong>. Gérez facilement la rotation de vos <strong class="primary--text">ouvertures</strong>. Connectez-vous à votre <strong class="primary--text">communauté de grimpeurs et grimpeuses</strong>. Aidez-les à progresser en leur permettant de <strong class="primary--text">noter leurs croix indoor</strong>.<br>
+          Créez le <strong class="deep-purple--text text--accent-4">topo indoor</strong> de votre <strong class="deep-purple--text text--accent-4">salle d'escalade</strong>. Gérez facilement la rotation de vos <strong class="deep-purple--text text--accent-4">ouvertures</strong>. Connectez-vous à votre <strong class="deep-purple--text text--accent-4">communauté de grimpeurs et grimpeuses</strong>. Aidez-les à progresser en leur permettant de <strong class="deep-purple--text text--accent-4">noter leurs croix indoor</strong>.<br>
           Et plein d'autres fonctionnalités !
         </p>
       </div>
@@ -51,7 +51,7 @@
         <v-col cols="12" md="6" class="d-flex">
           <div class="px-5 align-self-center">
             <h3 class="mb-3 presentation-box-title">
-              <span class="primary--text">Organisez votre topo</span> librement
+              <span class="deep-purple--text text--accent-4">Organisez votre topo</span> librement
             </h3>
             <p>
               Votre salle est unique, on vous donne les outils pour la représenter telle qu’elle est. Divisez votre salle en espaces et en secteurs logiques pour vous.
@@ -83,7 +83,7 @@
         >
           <div class="px-5 align-self-center">
             <h3 class="mb-3 presentation-box-title">
-              Peut importe le type d'escalade ou vos niveaux de difficulté, <span class="primary--text">on s'adapte à votre salle</span>
+              Peut importe le type d'escalade ou vos niveaux de difficulté, <span class="deep-purple--text text--accent-4">on s'adapte à votre salle</span>
             </h3>
             <p>
               Que vous soyez une salle de voie, de bloc, de pan, que vous utilisiez des étiquettes pour noter la difficulté, ou des cotations (ou les deux), vous pouvez créer le topo de votre salle sur Oblyk.
@@ -167,7 +167,7 @@
         >
           <div class="px-5 align-self-center">
             <h3 class="mb-3 presentation-box-title">
-              <span class="primary--text">Supervisez vos ouvertures</span> en un clic
+              <span class="deep-purple--text text--accent-4">Supervisez vos ouvertures</span> en un clic
             </h3>
             <p>
               Faites un état des lieux de vos ouvertures : depuis quand elles sont montées, quelles sont les plus grimpées, comment est réparti le niveau d'escalade dans votre salle, etc.
@@ -199,7 +199,7 @@
         >
           <div class="px-5  align-self-center">
             <h3 class="mb-3 presentation-box-title">
-              <span class="primary--text">Un outil numérique</span> pour vos grimpeurs et grimpeuses
+              <span class="deep-purple--text text--accent-4">Un outil numérique</span> pour vos grimpeurs et grimpeuses
             </h3>
             <p>
               Créer le topo intérieur de votre salle d'escalade vous permet de mieux maîtriser vos ouvertures,
@@ -258,7 +258,7 @@
         >
           <div class="px-5 align-self-center">
             <h3 class="mb-3 presentation-box-title">
-              Vous <span class="primary--text">imprimez des étiquettes</span> pour vos pieds de voie ? on vous mâche le travail
+              Vous <span class="deep-purple--text text--accent-4">imprimez des étiquettes</span> pour vos pieds de voie ? on vous mâche le travail
             </h3>
             <p>
               Sélectionnez un secteur, une journée d'ouverture ou des voies en particulier, cliquez sur <strong>"imprimer"</strong> ! Vos étiquettes sont prêtes à être posées au pied de leurs voies.
@@ -288,7 +288,7 @@
         >
           <div class="px-5 align-self-center">
             <h3 class="mb-3 presentation-box-title">
-              <span class="primary--text">Organisez des contests</span> n'a jamais été aussi simple !
+              <span class="deep-purple--text text--accent-4">Organisez des contests</span> n'a jamais été aussi simple !
             </h3>
             <p>
               Organiser un contest via Oblyk vous permet de vous affranchir de l'inscription des participants et du dépouillement des résultats.
@@ -329,7 +329,7 @@
         >
           <div class="px-5">
             <h3 class="mb-3 presentation-box-title">
-              Nos reportings ne vous suffisent pas ? <span class="primary--text">Utilisez notre API en toute liberté</span>
+              Nos reportings ne vous suffisent pas ? <span class="deep-purple--text text--accent-4">Utilisez notre API en toute liberté</span>
             </h3>
             <p>
               Oblyk est entièrement conçu sur une API, l'application étant complètement décorrélée du serveur de données.<br>
@@ -339,7 +339,8 @@
               <v-btn
                 dark
                 large
-                color="primary"
+                elevation="0"
+                color="deep-purple accent-4"
                 to="/contact"
               >
                 <v-icon left>
@@ -371,7 +372,7 @@
         class="my-15"
       >
         <h3 class="text-center mb-4 presentation-box-title">
-          <span class="primary--text">Ils/elles ont choisi Oblyk</span> pour gérer les ouvertures de voies dans leur salle !
+          <span class="deep-purple--text text--accent-4">Ils/elles ont choisi Oblyk</span> pour gérer les ouvertures de voies dans leur salle !
         </h3>
         <v-row v-if="loadingGyms">
           <v-col
@@ -420,7 +421,7 @@
 
       <div class="mt-16 mb-7">
         <h3 class="text-center mb-3 presentation-box-title">
-          <span class="primary--text">À chaque salle d’escalade</span> ses besoins !
+          <span class="deep-purple--text text--accent-4">À chaque salle d’escalade</span> ses besoins !
         </h3>
       </div>
 
@@ -584,7 +585,7 @@
       </v-row>
       <v-sheet rounded class="mt-4 pa-4">
         <span class="vertical-align-middle">
-          <strong class="primary--text">Vous êtes un club ?</strong> Bénéficiez de <strong>-50%</strong> sur tous nos plans
+          <strong class="deep-purple--text text--accent-4">Vous êtes un club ?</strong> Bénéficiez de <strong>-50%</strong> sur tous nos plans
         </span>
         <v-chip color="with" class="ml-2">
           <v-switch
@@ -597,7 +598,9 @@
       <div class="text-center my-16">
         <v-btn
           x-large
-          color="primary"
+          elevation="0"
+          dark
+          color="deep-purple accent-4"
           to="/gyms/starter"
         >
           Créer le topo de ma salle <span class="d-none d-lg-inline ml-1">maintenant</span> !
@@ -632,7 +635,16 @@ export default {
       loadingGyms: true,
       intersectGyms: false,
       gyms: [],
-      iAmAClub: false
+      iAmAClub: false,
+
+      mdiFlask,
+      mdiEmail,
+      mdiCheckboxOutline,
+      mdiHeartHalfFull,
+      mdiRefreshCircle,
+      mdiTerrain,
+      mdiCheckBold,
+      mdiCheckAll
     }
   },
 
@@ -665,17 +677,6 @@ export default {
     priceDiviser () {
       return this.iAmAClub ? 2 : 1
     }
-  },
-
-  created () {
-    this.mdiFlask = mdiFlask
-    this.mdiEmail = mdiEmail
-    this.mdiCheckboxOutline = mdiCheckboxOutline
-    this.mdiHeartHalfFull = mdiHeartHalfFull
-    this.mdiRefreshCircle = mdiRefreshCircle
-    this.mdiTerrain = mdiTerrain
-    this.mdiCheckBold = mdiCheckBold
-    this.mdiCheckAll = mdiCheckAll
   },
 
   methods: {
