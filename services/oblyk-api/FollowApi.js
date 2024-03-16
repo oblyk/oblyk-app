@@ -39,5 +39,21 @@ class FollowApi extends BaseApi {
       data
     })
   }
+
+  followers (followType, followId, page = 1) {
+    return this.axios.request({
+      method: 'GET',
+      url: `${this.baseUrl}/follows/followers.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
+      params: {
+        followable_type: followType,
+        followable_id: followId,
+        page
+      }
+    })
+  }
 }
 export default FollowApi

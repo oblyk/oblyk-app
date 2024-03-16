@@ -156,7 +156,9 @@ export default {
     otherRegistration: 'Autre inscription',
     entryResult: 'Renseigner mes résultats',
     archive: 'Archiver',
-    unArchive: 'Dés-archiver'
+    unArchive: 'Dés-archiver',
+    follow: 'Suivre',
+    followed: 'Suivie'
   },
   colors: {
     noColor: 'Toutes',
@@ -247,6 +249,7 @@ export default {
     posted: 'Posté',
     crosses: 'croix',
     linesCount: 'une ligne | %{count} lignes',
+    followerCount: 'Abonné·es | 1 Abonné·es | %{count} Abonné·es',
     seeMore: 'voir plus',
     seeAll: 'Tout voir',
     ascents: 'Croix',
@@ -1182,7 +1185,8 @@ export default {
         guideBook: 'Topo',
         admin: 'Admin',
         tables: 'Tables',
-        statistics: 'Statistiques'
+        statistics: 'Statistiques',
+        followers: 'Abonné·es'
       },
       firstSpaceExplain: 'Les espaces vous permettent de renseigner vos voies et blocs pour que vos grimpeur·euse·s puissent les consulter et tenir un carnet de croix !',
       createFirstSpace: 'Créer mon premier Espace',
@@ -1203,7 +1207,8 @@ export default {
       spaces: 'Les espaces',
       guidebook: 'Le topo',
       upcomingContests: 'Un contest est à venir ! | %{count} contests sont à venir',
-      createYourGuidebook: 'Créez le topo de votre salle !'
+      createYourGuidebook: 'Créez le topo de votre salle !',
+      followersEmpty: "%{name} n'a pas encore de follower pour l'instant"
     },
     gymRanking: {
       rankingType: 'Les types de classements',

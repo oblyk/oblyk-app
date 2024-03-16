@@ -156,7 +156,9 @@ export default {
     otherRegistration: 'Other registration',
     entryResult: 'Enter my results',
     archive: 'Archive',
-    unArchive: 'Un archive'
+    unArchive: 'Un archive',
+    follow: 'Follow',
+    followed: 'Follower'
   },
   colors: {
     noColor: 'All',
@@ -247,6 +249,7 @@ export default {
     posted: 'Posted',
     crosses: 'crosses',
     linesCount: 'one line | %{count} lines',
+    followerCount: 'Followers | 1 Follower | %{count} Followers',
     seeMore: 'see more',
     seeAll: 'See all',
     ascents: 'Ascents',
@@ -1182,7 +1185,8 @@ export default {
         guideBook: 'Guide book',
         admin: 'Admin',
         tables: 'Tables',
-        statistics: 'Statistics'
+        statistics: 'Statistics',
+        followers: 'Followers'
       },
       firstSpaceExplain: 'The spaces allow you to fill in your routes and boulders so that your climbers can consult them and keep a notebook of ascents!',
       createFirstSpace: 'Create my first Space',
@@ -1203,7 +1207,8 @@ export default {
       spaces: 'Spaces',
       guidebook: 'Routes list',
       upcomingContests: 'One contest coming soon ! | %{count} contests coming soon !',
-      createYourGuidebook: 'Create the guidebook of your room!'
+      createYourGuidebook: 'Create the guidebook of your room!',
+      followersEmpty: '%{name} has no followers yet'
     },
     gymRanking: {
       rankingType: 'Ranking type',

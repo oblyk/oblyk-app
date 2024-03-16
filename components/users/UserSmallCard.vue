@@ -30,18 +30,6 @@
               {{ user.full_name }}
             </span>
           </v-list-item-title>
-          <v-list-item-subtitle
-            v-if="!small"
-            class="mt-n3 mb-4"
-          >
-            <v-alert
-              dense
-              text
-              class="d-inline-block mr-1 mb-0 pl-2 pr-2 pt-0 pb-0"
-            >
-              {{ $t('components.user.type') }}
-            </v-alert>
-          </v-list-item-subtitle>
         </v-list-item-content>
         <v-list-item-action
           v-if="subscribable"
@@ -52,7 +40,10 @@
             :unfollowed-icon="mdiAccountOutline"
             :followed-icon="mdiAccount"
             followed-color="primary"
-            :large="false"
+            :subscribe-label="$t('actions.follow')"
+            :unsubscribe-label="$t('actions.followed')"
+            small
+            large
           />
         </v-list-item-action>
       </v-list-item>
