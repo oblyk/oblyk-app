@@ -60,6 +60,19 @@
             </v-icon>
             {{ gymRoute.likes_count }}
           </strong>
+          <!-- comments -->
+          <strong
+            v-if="gymRoute.all_comments_count || 0 !== 0"
+            class="text--disabled"
+          >
+            <v-icon
+              small
+              class="ml-2 text--disabled"
+            >
+              {{ mdiComment }}
+            </v-icon>
+            {{ gymRoute.all_comments_count || 0 }}
+          </strong>
           <!-- Ascents -->
           <strong
             v-if="gymRoute.ascents_count || 0 !== 0"
@@ -80,7 +93,7 @@
 </template>
 
 <script>
-import { mdiCheckAll, mdiHeart } from '@mdi/js'
+import { mdiCheckAll, mdiHeart, mdiComment } from '@mdi/js'
 import GymRouteTagAndHold from '~/components/gymRoutes/partial/GymRouteTagAndHold.vue'
 import GymRouteGradeAndPoint from '~/components/gymRoutes/partial/GymRouteGradeAndPoint.vue'
 import AscentGymRouteStatusIcon from '~/components/ascentGymRoutes/AscentGymRouteStatusIcon.vue'
@@ -115,7 +128,8 @@ export default {
   data () {
     return {
       mdiCheckAll,
-      mdiHeart
+      mdiHeart,
+      mdiComment
     }
   },
 

@@ -19,24 +19,6 @@ class GymRouteApi extends BaseApi {
     })
   }
 
-  allInGym (gymId, groupBy, orderBy, direction = 'asc') {
-    return this.axios.request({
-      method: 'GET',
-      url: `${this.baseUrl}/gyms/${gymId}/gym_routes.json`,
-      headers: { HttpApiAccessToken: this.apiAccessToken },
-      params: { group_by: groupBy, order_by: orderBy, direction }
-    })
-  }
-
-  allInSpace (gymId, spaceId, groupBy, orderBy, direction = 'asc') {
-    return this.axios.request({
-      method: 'GET',
-      url: `${this.baseUrl}/gyms/${gymId}/gym_spaces/${spaceId}/gym_routes.json`,
-      headers: { HttpApiAccessToken: this.apiAccessToken },
-      params: { group_by: groupBy, order_by: orderBy, direction }
-    })
-  }
-
   all (gymId, routeIds, orderBy, direction, qrcodeLink = false) {
     return this.axios.request({
       method: 'GET',
@@ -65,6 +47,17 @@ class GymRouteApi extends BaseApi {
       method: 'GET',
       url: `${this.baseUrl}/gyms/${gymId}/gym_routes/${routeId}/ascents.json`,
       headers: { HttpApiAccessToken: this.apiAccessToken }
+    })
+  }
+
+  comments (gymId, routeId) {
+    return this.axios.request({
+      method: 'GET',
+      url: `${this.baseUrl}/gyms/${gymId}/gym_routes/${routeId}/comments.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
     })
   }
 
@@ -114,21 +107,6 @@ class GymRouteApi extends BaseApi {
       },
       params: {
         route_ids: gymRouteIds
-      }
-    })
-  }
-
-  printCollection (gymId, gymRouteIds) {
-    return this.axios.request({
-      method: 'GET',
-      url: `${this.baseUrl}/gyms/${gymId}/gym_routes/print.pdf`,
-      headers: {
-        Authorization: this.authToken(),
-        HttpApiAccessToken: this.apiAccessToken
-      },
-      responseType: 'blob',
-      params: {
-        ids: gymRouteIds
       }
     })
   }

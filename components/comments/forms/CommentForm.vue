@@ -68,7 +68,7 @@ export default {
           if (this.callback) {
             this.callback()
           } else {
-            this.$router.push(this.redirectTo)
+            location.href = this.redirectTo
           }
         })
         .catch((err) => {

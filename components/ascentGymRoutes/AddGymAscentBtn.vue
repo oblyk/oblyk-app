@@ -34,7 +34,7 @@
           :gym-route="gymRoute"
           submit-methode="post"
           :callback="successCallback"
-          :default-ascent-status="inMyLogBook ? 'repetition' : 'sent'"
+          :default-ascent-status="inMyLogBook ? 'repetition' : 'red_point'"
         />
       </v-card-text>
     </v-card>

@@ -296,33 +296,22 @@
         </div>
       </client-only>
 
-      <!-- Climber comments part -->
-      <v-sheet
-        v-if="comments.length > 0"
-        class="back-app-color rounded-sm px-2 pb-2 pt-1"
-      >
-        <description-line
-          :item-title="$t('components.gymRoute.climbersComments')"
-          :icon="mdiComment"
+      <!-- Comments -->
+      <div v-intersect="loadCommentsList">
+        <comment-list
+          v-if="commentList"
+          commentable-type="GymRoute"
+          :commentable-id="gymRoute.id"
+          :gym-route-options="{ gymId: gym.id, gymRouteId: gymRoute.id }"
+          :comments-count="gymRoute.all_comments_count"
+        />
+        <p
+          v-else
+          class="text-center text--disabled my-5"
         >
-          <template #content>
-            <v-sheet
-              v-for="(ascent, index) in comments"
-              :key="`gym-route-ascent-${index}`"
-              class="rounded-sm px-2 py-1 mt-2"
-            >
-              <div>{{ ascent.comment }}</div>
-              <small class="text--disabled">
-                {{ $t('common.by') }}
-                <nuxt-link :to="`/climbers/${ascent.user.slug_name}`">
-                  {{ ascent.user.first_name }}
-                </nuxt-link>
-                le {{ humanizeDate(ascent.released_at) }}
-              </small>
-            </v-sheet>
-          </template>
-        </description-line>
-      </v-sheet>
+          {{ $t('common.loadingCommentModule') }}
+        </p>
+      </div>
     </div>
   </div>
 </template>
@@ -330,7 +319,6 @@
 <script>
 import {
   mdiClose,
-  mdiComment,
   mdiHeart,
   mdiCheckAll,
   mdiCalendar,
@@ -346,20 +334,20 @@ import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
 import GymRouteTagAndHold from '@/components/gymRoutes/partial/GymRouteTagAndHold'
 import GymRouteGradeAndPoint from '@/components/gymRoutes/partial/GymRouteGradeAndPoint'
 import GymRouteAscent from '@/components/gymRoutes/GymRouteAscent'
-import GymRouteApi from '~/services/oblyk-api/GymRouteApi'
-import AscentGymRoute from '@/models/AscentGymRoute'
 import DescriptionLine from '~/components/ui/DescriptionLine'
 import GymRouteActionBtn from '~/components/gymRoutes/partial/GymRouteActionBtn'
 import AddGymAscentBtn from '~/components/ascentGymRoutes/AddGymAscentBtn'
 import GymRouteClimbingStyles from '~/components/gymRoutes/partial/GymRouteClimbingStyles'
 import LikeBtn from '~/components/forms/LikeBtn'
 import GymRoutePicture from '~/components/gymRoutes/GymRoutePicture'
+const CommentList = () => import('~/components/comments/CommentList')
 
 const MarkdownText = () => import('@/components/ui/MarkdownText')
 
 export default {
   name: 'GymRouteInfo',
   components: {
+    CommentList,
     GymRoutePicture,
     LikeBtn,
     GymRouteClimbingStyles,
@@ -397,12 +385,8 @@ export default {
 
   data () {
     return {
-      loadingAscents: true,
-      comments: [],
-      fullHeightPicture: false,
-      panzoom: null,
+      commentList: false,
 
-      mdiComment,
       mdiClose,
       mdiHeart,
       mdiCheckAll,
@@ -433,12 +417,6 @@ export default {
     }
   },
 
-  mounted () {
-    if (this.gymRoute.ascents_count > 0) {
-      this.getAscents()
-    }
-  },
-
   methods: {
     closeGymRouteCard () {
       if (this.closeCallback) {
@@ -452,26 +430,16 @@ export default {
       }
     },
 
-    getAscents () {
-      this.loadingAscents = true
-      new GymRouteApi(this.$axios, this.$auth)
-        .routeAscents(this.gymRoute.gym.id, this.gymRoute.id)
-        .then((resp) => {
-          for (const ascent of resp.data) {
-            if (ascent.note || ascent.comment) {
-              this.comments.push(new AscentGymRoute({ attributes: ascent }))
-            }
-          }
-        })
-        .finally(() => {
-          this.loadingAscents = false
-        })
-    },
-
     showSector () {
       this.closeGymRouteCard()
       this.$root.$emit('setMapViewOnSector', this.gymRoute.gym_sector_id)
       this.$root.$emit('filterBySector', this.gymRoute.gym_sector_id, this.gymRoute.gym_sector.name)
+    },
+
+    loadCommentsList (entries, observer) {
+      if (entries[0].isIntersecting) {
+        this.commentList = true
+      }
     }
   }
 }

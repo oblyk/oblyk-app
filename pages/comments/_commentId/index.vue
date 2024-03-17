@@ -39,6 +39,11 @@
           v-if="comment.commentable_type === 'Gym'"
           :gym="commentableObject"
         />
+        <gym-route-list-item
+          v-if="comment.commentable_type === 'GymRoute' || (comment.commentable_type === 'Ascent' && comment.commentable.gym_route_id !== null)"
+          :gym-route="commentableObject"
+          :relative-path="false"
+        />
         <comment-card
           v-if="comment.commentable_type === 'Comment'"
           :comment="commentableObject"
@@ -63,6 +68,8 @@ import GuideBookPaper from '~/models/GuideBookPaper'
 import Area from '~/models/Area'
 import Gym from '~/models/Gym'
 import Comment from '~/models/Comment'
+import GymRoute from '~/models/GymRoute'
+const GymRouteListItem = () => import('~/components/gymRoutes/GymRouteListItem')
 const GymSmallCard = () => import('~/components/gyms/GymSmallCard')
 const AreaSmallCard = () => import('~/components/areas/AreaSmallCard')
 const GuideBookPaperSmallCard = () => import('~/components/guideBookPapers/GuideBookPaperSmallCard')
@@ -73,6 +80,7 @@ const CragSmallCard = () => import('~/components/crags/CragSmallCard')
 
 export default {
   components: {
+    GymRouteListItem,
     CommentCard,
     GymSmallCard,
     AreaSmallCard,
@@ -119,6 +127,10 @@ export default {
         return new Gym({ attributes: this.comment.commentable })
       } else if (this.comment.commentable_type === 'Comment') {
         return new Comment({ attributes: this.comment.commentable })
+      } else if (this.comment.commentable_type === 'GymRoute') {
+        return new GymRoute({ attributes: this.comment.commentable })
+      } else if (this.comment.commentable_type === 'Ascent' && this.comment.commentable.gym_route_id !== null) {
+        return new GymRoute({ attributes: this.comment.commentable.gym_route })
       } else {
         return null
       }

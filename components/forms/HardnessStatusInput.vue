@@ -8,7 +8,7 @@
     item-value="value"
     :label="$t(labelKey)"
     outlined
-    :prepend-inner-icon="mdiNumeric7BoxMultipleOutline"
+    :prepend-inner-icon="mdiScaleBalance"
     clearable
     @change="onChange"
     @focus="onFocus"
@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { mdiNumeric7BoxMultipleOutline } from '@mdi/js'
+import { mdiScaleBalance } from '@mdi/js'
 import { InputHelpers } from '@/mixins/InputHelpers'
 
 export default {
@@ -39,7 +39,7 @@ export default {
       ],
       hardnessStatus: this.value,
 
-      mdiNumeric7BoxMultipleOutline
+      mdiScaleBalance
     }
   },
 

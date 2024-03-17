@@ -383,7 +383,7 @@ strong {
     border-color: rgb(50, 50, 50);
   }
   .back-app-color {
-    background-color: rgb(18, 18, 18);
+    background-color: rgb(18, 18, 18) !important;
   }
   .hoverable-card {
     &:hover {
@@ -405,7 +405,7 @@ strong {
     border-color: rgb(230, 230, 230);
   }
   .back-app-color {
-    background-color: rgb(240, 240, 245);
+    background-color: rgb(240, 240, 245) !important;
   }
   .hoverable-card {
     &:hover {

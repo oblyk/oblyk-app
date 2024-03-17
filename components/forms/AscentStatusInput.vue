@@ -60,20 +60,37 @@ export default {
     value: {
       type: String,
       default: null
+    },
+    withProject: {
+      type: Boolean,
+      default: true
+    },
+    withSent: {
+      type: Boolean,
+      default: true
     }
   },
 
   data () {
     return {
-      ascentStatuses: [
-        { text: this.$t('models.ascentStatus.project'), value: 'project', icon: mdiCropSquare },
-        { text: this.$t('models.ascentStatus.sent'), value: 'sent', icon: mdiCheckboxMarkedCircle },
-        { text: this.$t('models.ascentStatus.red_point'), value: 'red_point', icon: mdiRecordCircle },
-        { text: this.$t('models.ascentStatus.flash'), value: 'flash', icon: mdiFlash },
-        { text: this.$t('models.ascentStatus.onsight'), value: 'onsight', icon: mdiEye },
-        { text: this.$t('models.ascentStatus.repetition'), value: 'repetition', icon: mdiAutorenew }
-      ],
       ascentStatus: this.value
+    }
+  },
+
+  computed: {
+    ascentStatuses () {
+      const statuses = []
+      if (this.withProject) {
+        statuses.push({ text: this.$t('models.ascentStatus.project'), value: 'project', icon: mdiCropSquare })
+      }
+      if (this.withSent) {
+        statuses.push({ text: this.$t('models.ascentStatus.sent'), value: 'sent', icon: mdiCheckboxMarkedCircle })
+      }
+      statuses.push({ text: this.$t('models.ascentStatus.red_point'), value: 'red_point', icon: mdiRecordCircle })
+      statuses.push({ text: this.$t('models.ascentStatus.flash'), value: 'flash', icon: mdiFlash })
+      statuses.push({ text: this.$t('models.ascentStatus.onsight'), value: 'onsight', icon: mdiEye })
+      statuses.push({ text: this.$t('models.ascentStatus.repetition'), value: 'repetition', icon: mdiAutorenew })
+      return statuses
     }
   },
 
