@@ -21,6 +21,16 @@ export const GymRolesHelpers = {
         }
       }
       return false
+    },
+
+    subscribeToCommentFeed (gymId) {
+      const administeredGym = this.$auth.user.gym_roles.find(administeredGym => administeredGym.gym_id === parseInt(gymId))
+      return administeredGym?.subscribe_to_comment_feed
+    },
+
+    subscribeToVideoFeed (gymId) {
+      const administeredGym = this.$auth.user.gym_roles.find(administeredGym => administeredGym.gym_id === parseInt(gymId))
+      return administeredGym?.subscribe_to_video_feed
     }
   }
 }

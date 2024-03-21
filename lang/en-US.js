@@ -261,6 +261,7 @@ export default {
     areYouSurArchived: 'Are you sure you want to archived ?',
     areYouSurDismountedRoute: 'Are you sure you want to dismounted route(s) ?',
     areYouSurDeletePicture: 'Are you sure you want to delete the photo?',
+    areYouSurDeleteComment: 'Are you sure you want to delete this comment ?',
     filters: 'Filters',
     map: 'Map',
     setting: 'Setting',
@@ -1263,7 +1264,11 @@ export default {
       addYourBanner: 'Add your banner',
       updateYourBanner: 'Change your banner',
       labelTemplate: 'Labels',
-      labelTemplateExplain: 'Set the labels to be printed at the foot of your routes and boulders.'
+      labelTemplateExplain: 'Set the labels to be printed at the foot of your routes and boulders.',
+      commentAndVideo: 'Comments & Videos',
+      comments: 'Comments',
+      videos: 'Videos',
+      myCommunity: 'My community'
     },
     gymClimbingStyles: {
       title: 'Climbing styles in my gym',
@@ -1488,7 +1493,8 @@ export default {
       countInfos: 'One comment posted | %{count} comments posted',
       noComment: 'There is no comment here for the moment',
       climbersComments: 'Comments from climbers',
-      seeReplies: 'See a reply | See %{count} replies'
+      seeReplies: 'See a reply | See %{count} replies',
+      moderate: 'This comment has been removed by the moderation team'
     },
     report: {
       aProblem: 'Oh a problem ...',
@@ -2243,7 +2249,9 @@ export default {
     gymAdministrator: {
       requested_email: 'Email',
       user: 'An Oblyk account associated with this email',
-      roles: 'Can manage'
+      roles: 'Can manage',
+      subscribe_to_comment_feed: 'Notify me of new comments',
+      subscribe_to_video_feed: 'Notify me of new videos'
     },
     gymOpener: {
       name: 'Name / Alias',

@@ -261,6 +261,7 @@ export default {
     areYouSurArchived: 'Êtes vous sûr·e de vouloir archiver ?',
     areYouSurDismountedRoute: 'Êtes vous sûr·e de démonter la/les ligne(s) ?',
     areYouSurDeletePicture: 'Êtes vous sûr·e de supprimer la photo ?',
+    areYouSurDeleteComment: 'Êtes-vous sûr·e de supprimer ce commentaire ?',
     filters: 'Filtres',
     map: 'Carte',
     setting: 'Réglage',
@@ -1263,7 +1264,11 @@ export default {
       addYourBanner: 'Ajouter votre bandeau',
       updateYourBanner: 'Changer votre bandeau',
       labelTemplate: 'Les étiquettes',
-      labelTemplateExplain: 'Paramètres des étiquettes à imprimer aux pieds de vos voies et blocs.'
+      labelTemplateExplain: 'Paramètres des étiquettes à imprimer aux pieds de vos voies et blocs.',
+      commentAndVideo: 'Commentaires & Vidéos',
+      comments: 'Commentaires',
+      videos: 'Vidéos',
+      myCommunity: 'Ma communauté'
     },
     gymClimbingStyles: {
       title: "Les styles d'escalade de ma salle",
@@ -1489,7 +1494,8 @@ export default {
       countInfos: 'Un commentaire posté | %{count} commentaires postés',
       noComment: "Il n'y a pas de commentaire ici pour l'instant",
       climbersComments: 'Commentaires des grimpeur·euse·s',
-      seeReplies: 'Voir une réponse | Voir %{count} réponses'
+      seeReplies: 'Voir une réponse | Voir %{count} réponses',
+      moderate: "Ce commentaire a été supprimé par l'équipe de modération"
     },
     report: {
       aProblem: 'Ah, un problème…',
@@ -2244,7 +2250,9 @@ export default {
     gymAdministrator: {
       requested_email: 'Email',
       user: 'Un compte Oblyk associé à ce mail',
-      roles: 'Peut gérer'
+      roles: 'Peut gérer',
+      subscribe_to_comment_feed: "M'avertir des nouveaux commentaires",
+      subscribe_to_video_feed: "M'avertir des nouvelles vidéos"
     },
     gymOpener: {
       name: 'Nom / Pseudonyme',

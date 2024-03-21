@@ -54,6 +54,19 @@
         </v-col>
       </v-row>
 
+      <!-- Community -->
+      <h4 class="mb-3 mt-8">
+        <v-icon class="mb-1" left>
+          {{ mdiAccountMultiple }}
+        </v-icon>
+        {{ $t('components.gymAdmin.myCommunity') }}
+      </h4>
+      <v-row>
+        <v-col cols="12" md="6" lg="4" class="pa-2">
+          <gym-admin-comment-and-video-figures :gym="gym" />
+        </v-col>
+      </v-row>
+
       <!-- Guide book settings -->
       <h4 class="mb-3 mt-8">
         <v-icon class="mb-1" left>
@@ -101,7 +114,7 @@
 </template>
 
 <script>
-import { mdiMapLegend, mdiTune, mdiFolder, mdiHelpCircleOutline, mdiCog } from '@mdi/js'
+import { mdiMapLegend, mdiTune, mdiFolder, mdiHelpCircleOutline, mdiCog, mdiAccountMultiple } from '@mdi/js'
 import { GymConcern } from '~/concerns/GymConcern'
 import GymAdminTeamFigures from '~/components/gyms/admin/GymAdminTeamFigures'
 import GymAdminWelcome from '~/components/gyms/admin/GymAdminWelcome'
@@ -110,10 +123,12 @@ import GymAdminRouteFigures from '~/components/gyms/admin/GymAdminRouteFigures'
 import GymAdminOpenersFigures from '~/components/gyms/admin/GymAdminOpenersFigures.vue'
 import GymAdminInteractiveGuideParameters from '~/components/gyms/admin/GymAdminInteractiveGuideParameters.vue'
 import GymAdminContestsFigures from '~/components/gyms/admin/GymAdminContestFigures.vue'
+import GymAdminCommentAndVideoFigures from '~/components/gyms/admin/GymAdminCommentAndVideoFigures.vue'
 
 export default {
   meta: { orphanRoute: true },
   components: {
+    GymAdminCommentAndVideoFigures,
     GymAdminContestsFigures,
     GymAdminInteractiveGuideParameters,
     GymAdminOpenersFigures,
@@ -132,7 +147,8 @@ export default {
       mdiTune,
       mdiFolder,
       mdiHelpCircleOutline,
-      mdiCog
+      mdiCog,
+      mdiAccountMultiple
     }
   },
 

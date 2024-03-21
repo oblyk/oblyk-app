@@ -162,5 +162,19 @@ class GymApi extends BaseApi {
       }
     })
   }
+
+  comments (gymId, page) {
+    return this.axios.request({
+      method: 'GET',
+      url: `${this.baseUrl}/gyms/${gymId}/comments.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
+      params: {
+        page
+      }
+    })
+  }
 }
 export default GymApi

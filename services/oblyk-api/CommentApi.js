@@ -68,5 +68,16 @@ class CommentApi extends BaseApi {
       }
     })
   }
+
+  moderateByGymAdministrator (commentId) {
+    return this.axios.request({
+      method: 'DELETE',
+      url: `${this.baseUrl}/comments/${commentId}/moderate_by_gym_administrator.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
+    })
+  }
 }
 export default CommentApi

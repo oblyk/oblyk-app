@@ -4,21 +4,46 @@
     :class="isMainReply ? 'sheet-background-color' : ' back-app-color'"
   >
     <markdown-text
-      v-if="comment.body"
-      :text="comment.body"
+      v-if="dataComment.body && !dataComment.moderated"
+      :text="dataComment.body"
     />
+    <p
+      v-if="dataComment.moderated"
+      class="text-center text--disabled my-3"
+    >
+      {{ $t('components.comment.moderate') }}
+    </p>
+    <v-chip
+      v-if="newComment"
+      color="red"
+      dark
+      x-small
+    >
+      New
+    </v-chip>
     <div class="comment-owner d-flex justify-space-between">
       <owner-label
-        :history="comment.history"
-        :owner="comment.creator"
-        :edit-path="`${comment.path}/edit?redirect_to=${redirectTo}`"
-        :reports="{ type: 'Comment', id: comment.id }"
+        :history="dataComment.history"
+        :owner="dataComment.creator"
+        :edit-path="`${dataComment.path}/edit?redirect_to=${redirectTo}`"
+        :reports="{ type: 'Comment', id: dataComment.id }"
         :delete-function="deleteComment"
       />
       <client-only>
         <div>
           <v-btn
-            v-if="$auth.loggedIn && (isMainComment || isMainReply)"
+            v-if="moderable && !dataComment.moderated"
+            text
+            outlined
+            small
+            color="red"
+            :loading="loadingModerate"
+            @click="moderate()"
+          >
+            {{ $t('actions.delete') }}
+          </v-btn>
+          <v-btn
+            v-if="$auth.loggedIn && (isMainComment || isMainReply) && !dataComment.moderated"
             v-model="showReply"
             text
             :icon="!isMainComment"
@@ -32,9 +57,10 @@
             </v-icon>
           </v-btn>
           <like-btn
+            v-if="!dataComment.moderated"
             class="align-end"
-            :initial-like-count="comment.likes_count"
-            :likeable-id="comment.id"
+            :initial-like-count="dataComment.likes_count"
+            :likeable-id="dataComment.id"
             likeable-type="Comment"
           />
         </div>
@@ -49,6 +75,8 @@
           :key="`comment-index${commentIndex}`"
           :comment="replyComment"
           class="mt-2"
+          :moderable="moderable"
+          :last-read="lastRead"
         />
       </div>
 
@@ -56,14 +84,17 @@
       <client-only>
         <div v-if="$auth.loggedIn">
           <div
-            v-if="comment.comments_count && comment.comments_count - comments.length > 0 && !noMoreReplyComments && !loadingComments"
+            v-if="dataComment.comments_count && dataComment.comments_count - comments.length > 0 && !noMoreReplyComments && !loadingComments"
           >
             <v-btn
               small
               text
+              outlined
+              color="blue darken-2"
+              class="text-lowercase"
               @click="getReplyComments"
             >
-              {{ $tc('components.comment.seeReplies', comment.comments_count - comments.length, { count: comment.comments_count - comments.length }) }}
+              {{ $tc('components.comment.seeReplies', dataComment.comments_count - dataComment.length, { count: dataComment.comments_count - comments.length }) }}
             </v-btn>
           </div>
 
@@ -97,11 +128,13 @@ import OwnerLabel from '@/components/users/OwnerLabel'
 import CommentApi from '~/services/oblyk-api/CommentApi'
 import LikeBtn from '~/components/forms/LikeBtn'
 import Comment from '~/models/Comment'
+import { DateHelpers } from '~/mixins/DateHelpers'
 const MarkdownText = () => import('@/components/ui/MarkdownText')
 
 export default {
   name: 'CommentCard',
   components: { LikeBtn, MarkdownText, OwnerLabel },
+  mixins: [DateHelpers],
   props: {
     comment: {
       type: Object,
@@ -110,11 +143,20 @@ export default {
     getComments: {
       type: Function,
       default: null
+    },
+    moderable: {
+      type: Boolean,
+      default: false
+    },
+    lastRead: {
+      type: String,
+      default: null
     }
   },
 
   data () {
     return {
+      dataComment: this.comment,
       redirectTo: this.$route.fullPath,
       showReply: false,
       loadingReply: false,
@@ -122,6 +164,7 @@ export default {
       loadingComments: false,
       replyCommentsPage: 1,
       noMoreReplyComments: false,
+      loadingModerate: false,
       replyData: {
         body: null,
         commentable_type: 'Comment',
@@ -137,15 +180,19 @@ export default {
 
   computed: {
     isMainComment () {
-      return this.comment.commentable_type !== 'Comment'
+      return this.dataComment.commentable_type !== 'Comment'
     },
 
     isMainReply () {
-      return this.comment.commentable_type === 'Comment' && this.comment.reply_to_comment_id === null
+      return this.dataComment.commentable_type === 'Comment' && this.dataComment.reply_to_comment_id === null
     },
 
-    isSecondaryReply () {
-      return this.comment.commentable_type === 'Comment' && this.comment.reply_to_comment_id !== null
+    newComment () {
+      if (this.lastRead === null) {
+        return false
+      } else {
+        return this.dateIsBeforeDate(this.comment.history.created_at, this.lastRead)
+      }
     }
   },
 
@@ -163,11 +210,13 @@ export default {
     },
 
     deleteComment () {
-      if (confirm(this.$t('actions.areYouSur'))) {
+      if (confirm(this.$t('common.areYouSurDeleteComment'))) {
         new CommentApi(this.$axios, this.$auth)
-          .delete(this.comment.id)
+          .delete(this.dataComment.id)
           .then(() => {
-            this.getComments()
+            if (this.getComments) {
+              this.getComments()
+            }
           })
           .catch((err) => {
             this.$root.$emit('alertFromApiError', err, 'comment')
@@ -177,8 +226,8 @@ export default {
 
     sendReply () {
       this.loadingReply = true
-      if (this.comment.commentable_type === 'Comment') {
-        this.replyData.reply_to_comment_id = this.comment.commentable_id
+      if (this.dataComment.commentable_type === 'Comment') {
+        this.replyData.reply_to_comment_id = this.dataComment.commentable_id
       }
       new CommentApi(this.$axios, this.$auth)
         .create(this.replyData)
@@ -194,7 +243,7 @@ export default {
     getReplyComments () {
       this.loadingComments = true
       new CommentApi(this.$axios, this.$auth)
-        .comments(this.comment.id, this.replyCommentsPage)
+        .comments(this.dataComment.id, this.replyCommentsPage)
         .then((resp) => {
           if (resp.data.length < 5) {
             this.noMoreReplyComments = true
@@ -210,6 +259,31 @@ export default {
           this.replyCommentsPage += 1
           this.loadingComments = false
         })
+    },
+
+    getComment () {
+      new CommentApi(this.$axios, this.$auth)
+        .find(this.dataComment.id)
+        .then((resp) => {
+          this.dataComment = new Comment({ attributes: resp.data })
+        })
+        .finally(() => {
+          this.loadingModerate = false
+        })
+    },
+
+    moderate () {
+      if (confirm(this.$t('common.areYouSurDeleteComment'))) {
+        this.loadingModerate = true
+        new CommentApi(this.$axios, this.$auth)
+          .moderateByGymAdministrator(this.dataComment.id)
+          .then(() => {
+            this.getComment()
+          })
+          .catch(() => {
+            this.loadingModerate = false
+          })
+      }
     }
   }
 }
