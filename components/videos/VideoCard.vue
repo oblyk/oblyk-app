@@ -1,7 +1,10 @@
 <template>
   <div>
-    <div v-html="video.iframe" />
-    <div class="caption mb-2">
+    <div v-html="video.embedded_code"/>
+    <div
+      v-if="video.description"
+      class="caption mb-2"
+    >
       {{ video.description }}
     </div>
     <div class="d-flex justify-space-between">
@@ -19,17 +22,29 @@
         :initial-like-count="video.likes_count"
       />
     </div>
+    <div v-if="newVideo">
+      <v-chip
+        v-once
+        color="red"
+        dark
+        x-small
+      >
+        New
+      </v-chip>
+    </div>
   </div>
 </template>
 
 <script>
+import { DateHelpers } from '~/mixins/DateHelpers'
 import OwnerLabel from '@/components/users/OwnerLabel'
 import VideoApi from '~/services/oblyk-api/VideoApi'
-import LikeBtn from '~/components/forms/LikeBtn.vue'
+import LikeBtn from '~/components/forms/LikeBtn'
 
 export default {
   name: 'VideoCard',
   components: { LikeBtn, OwnerLabel },
+  mixins: [DateHelpers],
   props: {
     video: {
       type: Object,
@@ -38,6 +53,28 @@ export default {
     getVideos: {
       type: Function,
       default: null
+    },
+    lastRead: {
+      type: String,
+      default: null
+    }
+  },
+
+  head () {
+    return {
+      script: [
+        { src: 'https://cdn.iframe.ly/embed.js' }
+      ]
+    }
+  },
+
+  computed: {
+    newVideo () {
+      if (this.lastRead === null) {
+        return false
+      } else {
+        return this.dateIsBeforeDate(this.video.history.created_at, this.lastRead)
+      }
     }
   },
 

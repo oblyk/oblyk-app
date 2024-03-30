@@ -208,8 +208,12 @@ export default {
     moreInformation: 'More information',
     moreInformationShort: 'more info',
     comments: 'Comments',
+    videos: 'videos',
+    commentsCount: 'Comment | One comment | %{count} comments',
+    videosCount: 'Video | One video | %{count} videos',
     loading: 'Loading ...',
     loadingCommentModule: 'Loading the comment module ...',
+    loadingVideoModule: 'Loading the video module ...',
     meters: 'meters',
     noResultFor: 'No result for : "%{query}"',
     votes: 'Votes',
@@ -262,6 +266,7 @@ export default {
     areYouSurDismountedRoute: 'Are you sure you want to dismounted route(s) ?',
     areYouSurDeletePicture: 'Are you sure you want to delete the photo?',
     areYouSurDeleteComment: 'Are you sure you want to delete this comment ?',
+    areYouSurDeleteVideo: 'Are you sure you want to delete this video ?',
     filters: 'Filters',
     map: 'Map',
     setting: 'Setting',
@@ -1268,7 +1273,9 @@ export default {
       commentAndVideo: 'Comments & Videos',
       comments: 'Comments',
       videos: 'Videos',
-      myCommunity: 'My community'
+      myCommunity: 'My community',
+      noComments: "You'll see your climbers' comments here when they've posted some!",
+      noVideos: "You'll see your climbers' videos here when they post one!"
     },
     gymClimbingStyles: {
       title: 'Climbing styles in my gym',
@@ -1999,7 +2006,8 @@ export default {
       contest_is_complete: 'The contest is complete',
       category_is_complete: 'The category is complete',
       no_file: 'A file must be transmitted',
-      file_wrong_format: 'The file is in the wrong format'
+      file_wrong_format: 'The file is in the wrong format',
+      must_be_valid_video_service: 'must be a valid url of a public video among the supported services'
     }
   },
   models: {
@@ -2619,7 +2627,8 @@ export default {
     },
     video: {
       description: 'Description',
-      url: 'Link of the video'
+      url: 'Link of the video',
+      explainUrl: 'Copy and paste a video link from one of the following services'
     },
     genres: {
       unisex: 'Unisex',

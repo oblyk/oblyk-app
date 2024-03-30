@@ -11,7 +11,7 @@
       <div
         v-for="(comment, commentIndex) in comments"
         :key="`comment-index-${commentIndex}`"
-        class="mt-3"
+        class="mt-4"
       >
         <comment-card
           :get-comments="getComments"
@@ -33,7 +33,7 @@
     <client-only>
       <div
         v-if="$auth.loggedIn"
-        class="text-right mt-4"
+        class="text-center mt-4"
       >
         <v-dialog
           v-model="commentFormDialog"
@@ -44,7 +44,7 @@
               v-bind="attrs"
               text
               outlined
-              color="primary"
+              class="black-btn-icon"
               v-on="on"
             >
               <v-icon left small>

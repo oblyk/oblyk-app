@@ -70,7 +70,7 @@
         <v-col
           v-if="gymRoute.likes_count && gymRoute.likes_count > 0"
           cols="6"
-          class="my-1 font-weight-bold text-no-wrap"
+          class="my-1 font-weight-bold text-no-wrap pl-2"
         >
           <v-icon small color="red">
             {{ mdiHeart }}
@@ -80,7 +80,7 @@
         <v-col
           v-if="gymRoute.ascents_count || 0 > 0"
           cols="6"
-          class="my-1 font-weight-bold text-no-wrap"
+          class="my-1 font-weight-bold text-no-wrap pl-2"
         >
           <v-icon small>
             {{ mdiCheckAll }}
@@ -104,7 +104,7 @@
             :icon="mdiCalendar"
             :item-title="$t('models.gymRoute.opened_at')"
             :item-value="humanizeDate(gymRoute.opened_at, 'DATE_MED')"
-            class="back-app-color rounded-sm px-2 py-1"
+            class="rounded-sm px-2 py-1"
           />
         </v-col>
 
@@ -116,7 +116,7 @@
           <description-line
             :icon="mdiTextureBox"
             :item-title="$t('models.gymRoute.gym_sector_id')"
-            class="back-app-color rounded-sm px-2 py-1"
+            class="rounded-sm px-2 py-1"
           >
             <template #content>
               <a
@@ -145,7 +145,7 @@
           <description-line
             :icon="mdiMap"
             :item-title="$t('models.gymRoute.gym_space_id')"
-            class="back-app-color rounded-sm px-2 py-1"
+            class="rounded-sm px-2 py-1"
           >
             <template #content>
               <nuxt-link :to="gymRoute.gymSpacePath">
@@ -165,7 +165,7 @@
             :icon="mdiBolt"
             :item-title="$t('models.gymRoute.openers')"
             :item-value="gymRoute.openers.map(opener => opener.name).join(', ')"
-            class="back-app-color rounded-sm px-2 py-1"
+            class="rounded-sm px-2 py-1"
           />
         </v-col>
 
@@ -178,7 +178,7 @@
           <description-line
             :icon="mdiGauge"
             :item-title="$t('models.gymRoute.difficulty_appreciation')"
-            class="back-app-color rounded-sm px-2 py-1"
+            class="rounded-sm px-2 py-1"
           >
             <template #content>
               <v-chip
@@ -224,7 +224,7 @@
           <description-line
             :icon="mdiPound"
             :item-title="$t('models.gymRoute.styles')"
-            class="back-app-color rounded-sm px-2 pb-2 pt-1"
+            class="rounded-sm px-2 pb-2 pt-1"
           >
             <template #content>
               <gym-route-climbing-styles
@@ -296,22 +296,58 @@
         </div>
       </client-only>
 
-      <!-- Comments -->
-      <div v-intersect="loadCommentsList">
-        <comment-list
-          v-if="commentList"
-          commentable-type="GymRoute"
-          :commentable-id="gymRoute.id"
-          :gym-route-options="{ gymId: gym.id, gymRouteId: gymRoute.id }"
-          :comments-count="gymRoute.all_comments_count"
-        />
-        <p
-          v-else
-          class="text-center text--disabled my-5"
-        >
-          {{ $t('common.loadingCommentModule') }}
-        </p>
-      </div>
+      <!-- Comments and videos -->
+      <v-tabs v-model="tab">
+        <v-tab>
+          <v-badge
+            :value="gymRoute.all_comments_count > 0"
+            :content="gymRoute.all_comments_count"
+          >
+            {{ $t('common.comments') }}
+          </v-badge>
+        </v-tab>
+        <v-tab>
+          <v-badge
+            :value="gymRoute.videos_count > 0"
+            :content="gymRoute.videos_count"
+          >
+            {{ $t('common.videos') }}
+          </v-badge>
+        </v-tab>
+      </v-tabs>
+      <v-tabs-items v-model="tab">
+        <v-tab-item class="pb-3">
+          <div v-intersect="loadCommentsList">
+            <comment-list
+              v-if="commentList"
+              commentable-type="GymRoute"
+              :commentable-id="gymRoute.id"
+              :gym-route-options="{ gymId: gym.id, gymRouteId: gymRoute.id }"
+              :comments-count="gymRoute.all_comments_count"
+            />
+            <p
+              v-else
+              class="text-center text--disabled my-5"
+            >
+              {{ $t('common.loadingCommentModule') }}
+            </p>
+          </div>
+        </v-tab-item>
+        <v-tab-item class="pb-3">
+          <div v-intersect="loadVideosList">
+            <gym-route-video-list
+              v-if="videoList"
+              :gym-route="gymRoute"
+            />
+            <p
+              v-else
+              class="text-center text--disabled my-5"
+            >
+              {{ $t('common.loadingVideoModule') }}
+            </p>
+          </div>
+        </v-tab-item>
+      </v-tabs-items>
     </div>
   </div>
 </template>
@@ -340,6 +376,7 @@ import AddGymAscentBtn from '~/components/ascentGymRoutes/AddGymAscentBtn'
 import GymRouteClimbingStyles from '~/components/gymRoutes/partial/GymRouteClimbingStyles'
 import LikeBtn from '~/components/forms/LikeBtn'
 import GymRoutePicture from '~/components/gymRoutes/GymRoutePicture'
+const GymRouteVideoList = () => import('~/components/gymRoutes/GymRouteVideoList')
 const CommentList = () => import('~/components/comments/CommentList')
 
 const MarkdownText = () => import('@/components/ui/MarkdownText')
@@ -347,6 +384,7 @@ const MarkdownText = () => import('@/components/ui/MarkdownText')
 export default {
   name: 'GymRouteInfo',
   components: {
+    GymRouteVideoList,
     CommentList,
     GymRoutePicture,
     LikeBtn,
@@ -386,6 +424,8 @@ export default {
   data () {
     return {
       commentList: false,
+      videoList: false,
+      tab: 0,
 
       mdiClose,
       mdiHeart,
@@ -439,6 +479,12 @@ export default {
     loadCommentsList (entries, observer) {
       if (entries[0].isIntersecting) {
         this.commentList = true
+      }
+    },
+
+    loadVideosList (entries, observer) {
+      if (entries[0].isIntersecting) {
+        this.videoList = true
       }
     }
   }

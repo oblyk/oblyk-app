@@ -208,8 +208,12 @@ export default {
     moreInformation: "Plus d'information",
     moreInformationShort: "Plus d'info",
     comments: 'Commentaires',
+    videos: 'vidéos',
+    commentsCount: 'Commentaire | Un commentaire | %{count} commentaires',
+    videosCount: 'Vidéo | Une vidéo | %{count} vidéos',
     loading: 'Chargement ...',
     loadingCommentModule: 'Chargement du module de commentaire ...',
+    loadingVideoModule: 'Chargement du module de vidéo ...',
     meters: 'mètres',
     noResultFor: 'Pas de résultat pour : "%{query}"',
     votes: 'Votes',
@@ -262,6 +266,7 @@ export default {
     areYouSurDismountedRoute: 'Êtes vous sûr·e de démonter la/les ligne(s) ?',
     areYouSurDeletePicture: 'Êtes vous sûr·e de supprimer la photo ?',
     areYouSurDeleteComment: 'Êtes-vous sûr·e de supprimer ce commentaire ?',
+    areYouSurDeleteVideo: 'Êtes-vous sûr·e de supprimer cette vidéo ?',
     filters: 'Filtres',
     map: 'Carte',
     setting: 'Réglage',
@@ -1268,7 +1273,9 @@ export default {
       commentAndVideo: 'Commentaires & Vidéos',
       comments: 'Commentaires',
       videos: 'Vidéos',
-      myCommunity: 'Ma communauté'
+      myCommunity: 'Ma communauté',
+      noComments: 'Vous verrez les commentaires de vos grimpeurs et grimpeuses ici quand ils/elles en auront posté !',
+      noVideos: 'Vous verrez les vidéos de vos grimpeurs et grimpeuses ici quand ils/elles en auront posté !'
     },
     gymClimbingStyles: {
       title: "Les styles d'escalade de ma salle",
@@ -2000,7 +2007,8 @@ export default {
       contest_is_complete: 'Le contest est complet',
       category_is_complete: 'La catégorie est complète',
       no_file: 'Un fichier doit être transmis',
-      file_wrong_format: "Le fichier n'est pas au bon format"
+      file_wrong_format: "Le fichier n'est pas au bon format",
+      must_be_valid_video_service: "doit être un url valide d'une vidéo publique parmi les services pris en charge"
     }
   },
   models: {
@@ -2620,7 +2628,8 @@ export default {
     },
     video: {
       description: 'Description',
-      url: 'Lien de la vidéo'
+      url: 'Lien de la vidéo',
+      explainUrl: "Copier coller le lien d'une vidéo de l'un des services suivants"
     },
     genres: {
       unisex: 'Mixte',

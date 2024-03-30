@@ -176,5 +176,19 @@ class GymApi extends BaseApi {
       }
     })
   }
+
+  videos (gymId, page) {
+    return this.axios.request({
+      method: 'GET',
+      url: `${this.baseUrl}/gyms/${gymId}/videos.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
+      params: {
+        page
+      }
+    })
+  }
 }
 export default GymApi

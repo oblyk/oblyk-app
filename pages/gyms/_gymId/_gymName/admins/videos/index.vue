@@ -1,53 +1,67 @@
 <template>
   <v-container>
-    <spinner v-if="loadingComments && !gym" />
-    <div v-if="!loadingComments && gym">
+    <spinner v-if="loadingVideos && !gym" />
+    <div v-if="!loadingVideos && gym">
       <v-breadcrumbs :items="breadcrumbs" />
-      <div>
+      <div
+        style="max-width: 550px"
+        class="mx-auto"
+      >
         <v-switch
           v-model="iMSubscribe"
           :loading="loadingUpdateSubscribe"
-          :label="$t('models.gymAdministrator.subscribe_to_comment_feed')"
+          :label="$t('models.gymAdministrator.subscribe_to_video_feed')"
           @change="switchSubscribe"
         />
         <v-sheet
-          v-for="(comment, commentIndex) in comments"
-          :key="`comment-index-${commentIndex}`"
+          v-for="(video, videoIndex) in videos"
+          :key="`video-index-${videoIndex}`"
           class="rounded pa-2 mb-4"
         >
           <gym-route-list-item
-            :gym-route="comment.commentable_type === 'GymRoute' ? gymRouteToObject(comment.commentable) : gymRouteToObject(comment.commentable.gym_route)"
+            :gym-route="gymRouteToObject(video.viewable)"
             :click-callback="getGymRoute"
             class="mb-1 border pl-1"
           />
-          <comment-card
+          <video-card
             v-once
-            :comment="comment"
+            :video="video"
             :last-read="lastReadAt()"
             moderable
           />
+          <div class="d-flex">
+            <v-btn
+              text
+              outlined
+              small
+              color="red"
+              class="ml-auto"
+              @click="deleteVideo(video)"
+            >
+              {{ $t('actions.delete') }}
+            </v-btn>
+          </div>
+        </v-sheet>
+        <v-sheet
+          v-if="videos.length === 0"
+          class="pa-5 rounded text-center"
+        >
+          <p>
+            {{ $t('components.gymAdmin.noVideos') }}
+          </p>
+          <v-icon
+            large
+            color="deep-purple accent-4"
+          >
+            {{ mdiMovieOpen }}
+          </v-icon>
         </v-sheet>
         <loading-more
-          :get-function="getComments"
+          :get-function="getVideos"
           :no-more-data="noMoreDataToLoad"
           :loading-more="loadingMoreData"
         />
       </div>
-
-      <v-sheet
-        v-if="comments.length === 0"
-        class="pa-5 rounded text-center"
-      >
-        <p>
-          {{ $t('components.gymAdmin.noComments') }}
-        </p>
-        <v-icon
-          large
-          color="deep-purple accent-4"
-        >
-          {{ mdiCommentMultipleOutline }}
-        </v-icon>
-      </v-sheet>
 
       <!-- Popup for gym route -->
       <down-to-close-dialog
@@ -69,29 +83,30 @@
 </template>
 
 <script>
-import { mdiCommentMultipleOutline } from '@mdi/js'
+import { mdiMovieOpen } from '@mdi/js'
 import { GymFetchConcern } from '~/concerns/GymFetchConcern'
 import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
 import { LoadingMoreHelpers } from '~/mixins/LoadingMoreHelpers'
 import GymApi from '~/services/oblyk-api/GymApi'
-import Comment from '~/models/Comment'
 import GymRoute from '~/models/GymRoute'
 import GymRouteApi from '~/services/oblyk-api/GymRouteApi'
+import GymAdministratorApi from '~/services/oblyk-api/GymAdministratorApi'
+import Video from '~/models/Video'
 import Spinner from '~/components/layouts/Spiner'
-import CommentCard from '~/components/comments/CommentCard'
 import GymRouteListItem from '~/components/gymRoutes/GymRouteListItem'
 import LoadingMore from '~/components/layouts/LoadingMore'
 import DownToCloseDialog from '~/components/ui/DownToCloseDialog'
 import GymRouteInfo from '~/components/gymRoutes/GymRouteInfo'
-import GymAdministratorApi from '~/services/oblyk-api/GymAdministratorApi'
+import VideoCard from '~/components/videos/VideoCard'
+import VideoApi from '~/services/oblyk-api/VideoApi'
 
 export default {
   components: {
+    VideoCard,
     GymRouteInfo,
     DownToCloseDialog,
     LoadingMore,
     GymRouteListItem,
-    CommentCard,
     Spinner
   },
   meta: { orphanRoute: true },
@@ -100,25 +115,25 @@ export default {
 
   data () {
     return {
-      loadingComments: true,
-      comments: [],
+      loadingVideos: true,
+      videos: [],
       gymRouteDialog: false,
       loadingGymRoute: true,
       gymRoute: null,
       iMSubscribe: false,
       loadingUpdateSubscribe: false,
 
-      mdiCommentMultipleOutline
+      mdiMovieOpen
     }
   },
 
   i18n: {
     messages: {
       fr: {
-        metaTitle: 'Les commentaires'
+        metaTitle: 'Les vidéos'
       },
       en: {
-        metaTitle: 'Comments'
+        metaTitle: 'Videos'
       }
     }
   },
@@ -142,8 +157,8 @@ export default {
           exact: true
         },
         {
-          text: this.$t('components.gymAdmin.comments'),
-          to: `${this.gym?.adminPath}/comments`,
+          text: this.$t('components.gymAdmin.videos'),
+          to: `${this.gym?.adminPath}/videos`,
           exact: true
         }
       ]
@@ -151,25 +166,25 @@ export default {
   },
 
   mounted () {
-    this.getComments()
-    this.updateLastReadComment()
-    this.iMSubscribe = this.subscribeToCommentFeed(this.$route.params.gymId)
+    this.getVideos()
+    this.updateLastReadVideo()
+    this.iMSubscribe = this.subscribeToVideoFeed(this.$route.params.gymId)
   },
 
   methods: {
-    getComments () {
+    getVideos () {
       this.moreIsBeingLoaded()
       new GymApi(this.$axios, this.$auth)
-        .comments(this.$route.params.gymId, this.page)
+        .videos(this.$route.params.gymId, this.page)
         .then((resp) => {
-          this.comments = []
-          for (const comment of resp.data) {
-            this.comments.push(new Comment({ attributes: comment }))
+          this.videos = []
+          for (const video of resp.data) {
+            this.videos.push(new Video({ attributes: video }))
           }
           this.successLoadingMore(resp)
         })
         .finally(() => {
-          this.loadingComments = false
+          this.loadingVideos = false
           this.finallyMoreIsLoaded()
         })
     },
@@ -196,10 +211,10 @@ export default {
         })
     },
 
-    updateLastReadComment () {
+    updateLastReadVideo () {
       setTimeout(() => {
         new GymAdministratorApi(this.$axios, this.$auth)
-          .updateFeedLastRead(this.$route.params.gymId, 'comment')
+          .updateFeedLastRead(this.$route.params.gymId, 'video')
           .then(() => {
             this.$auth.fetchUser()
           })
@@ -209,7 +224,7 @@ export default {
     lastReadAt () {
       const gymId = parseInt(this.$route.params.gymId)
       const administeredGym = this.$auth.user.gym_roles.find(administeredGym => administeredGym.gym_id === gymId)
-      return administeredGym.last_comment_feed_read_at
+      return administeredGym.last_video_feed_read_at
     },
 
     switchSubscribe () {
@@ -220,7 +235,7 @@ export default {
         .update({
           gym_id: gymId,
           id: administeredGym.id,
-          subscribe_to_comment_feed: this.iMSubscribe
+          subscribe_to_video_feed: this.iMSubscribe
         })
         .then(() => {
           this.$auth.fetchUser()
@@ -228,6 +243,18 @@ export default {
         .finally(() => {
           this.loadingUpdateSubscribe = false
         })
+    },
+
+    deleteVideo (video) {
+      this.loadingVideos = true
+      if (confirm(this.$t('common.areYouSurDeleteVideo'))) {
+        new VideoApi(this.$axios, this.$auth)
+          .moderateByGymAdministrator(video.id)
+          .then(() => {
+            this.page = 1
+            this.getVideos()
+          })
+      }
     }
   }
 }

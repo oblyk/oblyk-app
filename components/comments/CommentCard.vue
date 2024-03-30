@@ -1,8 +1,15 @@
 <template>
   <div
-    class="rounded-sm pa-2"
-    :class="isMainReply ? 'sheet-background-color' : ' back-app-color'"
+    class="pa-2"
+    :class="!isMainComment ? 'border-left pl-5 py-0' : null"
   >
+    <owner-label
+      :history="dataComment.history"
+      :owner="dataComment.creator"
+      :edit-path="`${dataComment.path}/edit?redirect_to=${redirectTo}`"
+      :reports="{ type: 'Comment', id: dataComment.id }"
+      :delete-function="deleteComment"
+    />
     <markdown-text
       v-if="dataComment.body && !dataComment.moderated"
       :text="dataComment.body"
@@ -21,16 +28,20 @@
     >
       New
     </v-chip>
-    <div class="comment-owner d-flex justify-space-between">
-      <owner-label
-        :history="dataComment.history"
-        :owner="dataComment.creator"
-        :edit-path="`${dataComment.path}/edit?redirect_to=${redirectTo}`"
-        :reports="{ type: 'Comment', id: dataComment.id }"
-        :delete-function="deleteComment"
-      />
-      <client-only>
-        <div>
+    <client-only>
+      <div class="d-flex">
+        <div
+          v-if="dataComment.comments_count && dataComment.comments_count - comments.length > 0 && !noMoreReplyComments && !loadingComments"
+        >
+          <v-btn
+            text
+            outlined
+            @click="getReplyComments"
+          >
+            {{ $tc('components.comment.seeReplies', dataComment.comments_count, { count: dataComment.comments_count - comments.length }) }}
+          </v-btn>
+        </div>
+        <div class="ml-auto">
           <v-btn
             v-if="moderable && !dataComment.moderated"
             text
@@ -64,8 +75,8 @@
             likeable-type="Comment"
           />
         </div>
-      </client-only>
-    </div>
+      </div>
+    </client-only>
 
     <div v-if="isMainComment || isMainReply">
       <!-- Reply comments list -->
@@ -83,21 +94,6 @@
       <!-- Load more reply comments -->
       <client-only>
         <div v-if="$auth.loggedIn">
-          <div
-            v-if="dataComment.comments_count && dataComment.comments_count - comments.length > 0 && !noMoreReplyComments && !loadingComments"
-          >
-            <v-btn
-              small
-              text
-              outlined
-              color="blue darken-2"
-              class="text-lowercase"
-              @click="getReplyComments"
-            >
-              {{ $tc('components.comment.seeReplies', dataComment.comments_count - dataComment.length, { count: dataComment.comments_count - comments.length }) }}
-            </v-btn>
-          </div>
-
           <!-- Reply form -->
           <v-text-field
             v-if="showReply"
