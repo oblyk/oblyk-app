@@ -148,11 +148,6 @@
           <a href="https://github.com/lucien-chastan/oblyk-api">Le back</a> est en Ruby on Rails, <a href="https://github.com/oblyk/oblyk-app">le front</a> en Vuejs.
           tout est dans le readme. La stack est toute neuve. on vous attends 😎
         </li>
-        <li class="pb-7">
-          <strong>Vous avez trop d'argent ?</strong><br>
-          Sur oblyk il n'y a pas de pub, pas de lien sponsorisé, pas d'accès payant. Nous sommes uniquement financé par les dons.<br>
-          Si vous appréciez notre travail et que vous avez quelques euros en trop, nous serons ravie que vous en <a href="/support-us">débarrasser</a> 😁
-        </li>
       </ul>
       <p>
         Peut import la contribution que vous apporterez à Oblyk, on vous en remercie !
