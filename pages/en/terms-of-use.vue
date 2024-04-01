@@ -79,19 +79,21 @@
         According to article 6 of the law of confidence in the digital economy n°2004-575 of June 21st 2004, it is
         stated to <strong>Oblyk.org</strong> users the identity of the website's owners, and of the hosting provider.
       </p>
+      <p class="mb-0">
+        <strong>Oblyk.org</strong> was published by Oblyk SAS.
+      </p>
       <p>
-        <strong>Oblyk.org</strong> was published by Lucien Chastan. The editing director of <strong>Oblyk.org</strong>
-        are Lucien Chastan.
+        Simplified joint stock company with capital of €1,000. Domiciled at 139 Avenue Maréchal de Saxe 69003, LYON<br>
+        SIRET : 98515257800011
+      </p>
+      <p>
+        The editing director of <strong>Oblyk.org</strong> are Lucien Chastan.
       </p>
       <p>
         Contact : <a href="mailto:ekip@oblyk.org">ekip@oblyk.org</a>
       </p>
       <p>
-        <u><strong>Oblyk.org</strong> API hosting :</u><br>
-        The API part of <strong>Oblyk.org</strong>, which stores photos, documents and all data, is hosted by the association <a href="https://onetsolutions.net/">FELINN</a> (Force d'Émancipation Locale pour l'Indépendance et la Neutralité du Net) based in Lyon.
-      </p>
-      <p>
-        <u><strong>Oblyk.org</strong> App hosting :</u><br>
+        <u><strong>Oblyk.org</strong> App and API hosting :</u><br>
         The <strong>Oblyk.org</strong> web application is hosted by <a href="https://onetsolutions.net/">ONETSOLUTIONS</a> - Société par action simplifiée. 1 Allée de l'Ecluse, 33370 YVRAC
       </p>
       <p>

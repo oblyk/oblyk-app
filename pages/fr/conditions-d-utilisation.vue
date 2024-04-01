@@ -84,20 +84,25 @@
         précisé aux utilisateurs d'<strong>Oblyk.org</strong> l'identité des propriétaires du site internet, et de
         l'organisme hébergeur du site.
       </p>
+      <p class="mb-0">
+        <strong>Oblyk.org</strong> est édité par Oblyk SAS.
+      </p>
       <p>
-        <strong>Oblyk.org</strong> est édité par Lucien Chastan. Le directeur de rédaction
-        d'<strong>Oblyk.org</strong> est Lucien Chastan.
+        Société par Action Simplifiée au capital de 1000 €. Domicilé au 139 Avenue Maréchal de Saxe 69003, LYON<br>
+        SIRET : 98515257800011
+      </p>
+      <p>
+        Le directeur de rédaction d'<strong>Oblyk.org</strong> est Lucien Chastan.
       </p>
       <p>
         Contact : <a href="mailto:ekip@oblyk.org">ekip@oblyk.org</a>
       </p>
-      <p>
-        <u>Hébergement de l’API de <strong>Oblyk.org</strong> :</u><br>
-        La partie API d’<strong>Oblyk.org</strong>, qui stock les photos, documents et l’intégralité des données est hébergée par l’association la <a href="https://www.felinn.org/">FELINN</a> (Force d'Émancipation Locale pour l'Indépendance et la Neutralité du Net) domiciliée à Lyon.
+      <p class="mb-0">
+        <u>Hébergement de l’application et l'API de <strong>Oblyk.org</strong> :</u><br>
+        L’application Web de <strong>Oblyk.org</strong> est hébergée par <a href="https://onetsolutions.net/">ONETSOLUTIONS</a>
       </p>
       <p>
-        <u>Hébergement de l’application de <strong>Oblyk.org</strong> :</u><br>
-        L’application Web de <strong>Oblyk.org</strong> est hébergée par <a href="https://onetsolutions.net/">ONETSOLUTIONS</a> - Société par action simplifiée. 1 Allée de l'Ecluse, 33370 YVRAC
+        Société par action simplifiée. 1 Allée de l'Ecluse, 33370 YVRAC
       </p>
       <p>
         <u>Hébergement de la documentation de <strong>Oblyk.org</strong> :</u><br>
