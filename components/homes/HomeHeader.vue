@@ -19,7 +19,7 @@
           >
             <v-img
               alt="Oblyk - Climbing Community"
-              src="/svg/logo-title-slogan-reverse.svg"
+              src="/svg/logo-title-slogan-reverse-v2.svg"
             >
               <h1 class="d-none">
                 Oblyk - Climbing Community
