@@ -397,13 +397,13 @@
             <v-skeleton-loader type="list-item-avatar-two-line" />
           </v-col>
         </v-row>
-        <div class="mt-2">
-          <v-row
-            v-if="!loadingGyms"
-            justify="center"
-          >
+        <div
+          v-else
+          class="mt-2"
+        >
+          <v-row justify="center">
             <v-col
-              v-for="(gym, gymIndex) in gyms"
+              v-for="(gym, gymIndex) in limitedGyms"
               :key="`gym-index-${gymIndex}`"
               cols="12"
               md="6"
@@ -416,6 +416,19 @@
               />
             </v-col>
           </v-row>
+          <div
+            v-if="gyms.length - gymLimit > 0 && gymLimit !== null"
+            class="text-center mt-4"
+          >
+            <v-btn
+              dark
+              elevation="0"
+              color="deep-purple accent-4"
+              @click="gymLimit = null"
+            >
+              Voir {{ gyms.length - gymLimit }} autres salles
+            </v-btn>
+          </div>
         </div>
       </div>
 
@@ -622,10 +635,10 @@ import {
   mdiCheckBold,
   mdiCheckAll
 } from '@mdi/js'
-import GymApi from '~/services/oblyk-api/GymApi'
 import Gym from '~/models/Gym'
-import GymSmallCard from '~/components/gyms/GymSmallCard.vue'
-import AppFooter from '~/components/layouts/AppFooter.vue'
+import GymSmallCard from '~/components/gyms/GymSmallCard'
+import AppFooter from '~/components/layouts/AppFooter'
+import CommonApi from '~/services/oblyk-api/CommonApi'
 
 export default {
   components: { AppFooter, GymSmallCard },
@@ -636,6 +649,7 @@ export default {
       intersectGyms: false,
       gyms: [],
       iAmAClub: false,
+      gymLimit: 6,
 
       mdiFlask,
       mdiEmail,
@@ -676,6 +690,14 @@ export default {
   computed: {
     priceDiviser () {
       return this.iAmAClub ? 2 : 1
+    },
+
+    limitedGyms () {
+      if (this.gymLimit === null) {
+        return this.gyms
+      } else {
+        return this.gyms.slice(0, this.gymLimit)
+      }
     }
   },
 
@@ -689,12 +711,9 @@ export default {
 
     getExhibitionGyms () {
       this.loadingGyms = true
-      const exhibitionGyms = process.env.VUE_APP_EXHIBITION_GYM.split(',') || []
 
-      if (exhibitionGyms.length < 1) { return }
-
-      new GymApi(this.$axios, this.$auth)
-        .all(exhibitionGyms)
+      new CommonApi(this.$axios, this.$auth)
+        .activeGyms()
         .then((resp) => {
           for (const gym of resp.data) {
             this.gyms.push(new Gym({ attributes: gym }))

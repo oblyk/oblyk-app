@@ -27,5 +27,13 @@ class CommonApi extends BaseApi {
       headers: { HttpApiAccessToken: this.apiAccessToken }
     })
   }
+
+  activeGyms () {
+    return this.axios.request({
+      method: 'GET',
+      url: `${this.baseUrl}/active_gyms.json`,
+      headers: { HttpApiAccessToken: this.apiAccessToken }
+    })
+  }
 }
 export default CommonApi
