@@ -90,7 +90,7 @@
                   dark
                   rounded
                   large
-                  color="rgba(0,0,0,0.5)"
+                  class="black-btn-icon"
                   :to="`/maps/crags?lat=${crag.latitude}&lng=${crag.longitude}&zoom=16&crag_id=${crag.id}`"
                 >
                   {{ $t('actions.seeMap') }}
