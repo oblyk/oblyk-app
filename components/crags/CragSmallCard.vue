@@ -16,7 +16,6 @@
           :class="small ? 'mt-1 mb-1' : ''"
         >
           <v-avatar
-            color="grey"
             :size="small ? 45 : 70"
             tile
           >
