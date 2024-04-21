@@ -643,6 +643,8 @@ export default {
       contestCategoryObligation: "Type de restriction à l'inscription",
       rankingSystem: 'Type de classement',
       age: 'Age',
+      textAlign: 'Alignement du text',
+      colorPickerInput: 'Couleur',
       colorSystem: {
         chooseOrder: 'Choisissez un ordre de couleur',
         usage: 'Déjà utilisé %{count} fois ici',
@@ -2176,6 +2178,11 @@ export default {
       commercial: 'Utilisation commercial',
       institutional: 'Institution public / Projet open source'
     },
+    textAlignes: {
+      left: 'Gauche',
+      right: 'Droite',
+      center: 'Centré'
+    },
     park: {
       names: 'Parkings',
       title: 'Parking',
@@ -2276,7 +2283,7 @@ export default {
       border_style: 'Style de bordure',
       font_family: 'Police',
       qr_code_position: 'Emplacement du QrCode',
-      label_arrangement: "Arrangement de l'étiquette",
+      label_arrangement: "Forme de l'étiquette",
       grade_style: 'Visualisation du niveau et de la cotation',
       display_points: 'Afficher les points',
       display_openers: 'Afficher les ouvreurs',
@@ -2286,9 +2293,14 @@ export default {
       display_anchor: 'Afficher le relais',
       display_climbing_style: "Afficher les styles d'escalade",
       display_grade: 'Afficher la cotation',
-      display_tag_and_hold: 'Afficher la prise et/ou le niveau',
+      display_tag_and_hold: 'Afficher le visuel de la prise ou du niveau',
       page_format: 'Format de la page',
       page_direction: 'Orientation de la page',
+      font_color: 'Couleur de la police',
+      layout_option_properties: {
+        align_items: 'Alignement vertical des étiquettes sur la page.',
+        page_margin: "Marge d'impression de la page"
+      },
       label_direction_list: {
         one_by_row: 'Une étiquette par largeur',
         two_by_row: 'Deux étiquettes par largeur',

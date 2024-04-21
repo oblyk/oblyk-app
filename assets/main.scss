@@ -340,26 +340,50 @@ strong {
   &.--current-color-border {
     border-color: currentColor !important;
   }
+  &.--border-bold {
+    border-width: 2px;
+  }
+}
+
+.border-x {
+  border-left-style: solid;
+  border-right-style: solid;
+  border-width: 1px;
+  &.--border-bold {
+    border-width: 2px;
+  }
 }
 
 .border-bottom {
   border-bottom-style: solid;
   border-bottom-width: 1px;
+  &.--border-bold {
+    border-width: 2px;
+  }
 }
 
 .border-top {
   border-top-style: solid;
   border-top-width: 1px;
+  &.--border-bold {
+    border-width: 2px;
+  }
 }
 
 .border-right {
   border-right-style: solid;
   border-right-width: 1px;
+  &.--border-bold {
+    border-width: 2px;
+  }
 }
 
 .border-left {
   border-left-style: solid;
   border-left-width: 1px;
+  &.--border-bold {
+    border-width: 2px;
+  }
 }
 
 .custom-fieldset {
@@ -379,8 +403,11 @@ strong {
 }
 
 .theme--dark {
-  .border-bottom, .border-top, .border, .border-right, .border-left {
+  .border-bottom, .border-top, .border, .border-right, .border-left, .border-x {
     border-color: rgb(50, 50, 50);
+    &.--border-bold {
+      border-color: white;
+    }
   }
   .back-app-color {
     background-color: rgb(18, 18, 18) !important;
@@ -400,9 +427,13 @@ strong {
     }
   }
 }
+
 .theme--light {
-  .border-bottom, .border-top, .border, .border-right, .border-left {
+  .border-bottom, .border-top, .border, .border-right, .border-left, .border-x {
     border-color: rgb(230, 230, 230);
+    &.--border-bold {
+      border-color: rgb(50, 50, 50);
+    }
   }
   .back-app-color {
     background-color: rgb(240, 240, 245) !important;

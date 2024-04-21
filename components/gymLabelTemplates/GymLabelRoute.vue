@@ -4,25 +4,45 @@
     :style="borderStyle()"
     :class="gymLabelTemplate.label_arrangement"
   >
+    <!-- Grade (and QrCode in vertical label) -->
     <div
       class="grade"
       :class="gymLabelTemplate.qr_code_position === 'in_label' && gymLabelTemplate.label_arrangement === 'rectangular_vertical' ? '--with-qrcode' : ''"
     >
-      <grade-style-tag-and-hold
-        v-if="gymLabelTemplate.grade_style === 'tag_and_hold'"
-        :gym-route="gymRoute"
-        :gym-label-template="gymLabelTemplate"
-      />
-      <grade-style-diagonal-label
-        v-if="gymLabelTemplate.grade_style === 'diagonal_label'"
-        :gym-route="gymRoute"
-        :gym-label-template="gymLabelTemplate"
-      />
-      <grade-style-none
-        v-if="gymLabelTemplate.grade_style === 'none'"
-        :gym-route="gymRoute"
-        :gym-label-template="gymLabelTemplate"
-      />
+      <div class="grade-and-visual-part">
+        <div
+          v-if="gymLabelTemplate.grade_style !== 'none'"
+          class="visual-part"
+          :style="`width: ${gymLabelTemplate.label_options.visual.width}`"
+        >
+          <grade-style-tag-and-hold
+            v-if="gymLabelTemplate.grade_style === 'tag_and_hold'"
+            :gym-route="gymRoute"
+            :gym-label-template="gymLabelTemplate"
+          />
+          <grade-style-diagonal-label
+            v-if="gymLabelTemplate.grade_style === 'diagonal_label'"
+            :gym-route="gymRoute"
+            :gym-label-template="gymLabelTemplate"
+          />
+          <grade-style-circle-label
+            v-if="gymLabelTemplate.grade_style === 'circle'"
+            :gym-route="gymRoute"
+            :gym-label-template="gymLabelTemplate"
+          />
+        </div>
+        <div
+          class="grade-part"
+          :style="`width: ${gymLabelTemplate.label_options.grade.width}`"
+        >
+          <gym-label-grade
+            :gym-route="gymRoute"
+            :gym-label-template="gymLabelTemplate"
+          />
+        </div>
+      </div>
+
+      <!-- QrCode in vertical label -->
       <div
         v-if="gymLabelTemplate.qr_code_position === 'in_label' && gymLabelTemplate.label_arrangement === 'rectangular_vertical'"
         class="qrcode"
@@ -30,24 +50,35 @@
         <div v-html="gymRoute.qrcode" />
       </div>
     </div>
-    <div class="information">
-      <p v-if="gymLabelTemplate.display_name">
-        <b>{{ gymRoute.name }}</b>
-      </p>
-      <p v-if="(gymLabelTemplate.display_openers && gymRoute.openers.length > 0) || gymLabelTemplate.display_opened_at">
+
+    <!-- Information -->
+    <div
+      class="information"
+      :style="`${fontFamilyStyle()} ${justifyInformation()} font-size: ${gymLabelTemplate.label_options.information.font_size}`"
+    >
+      <div
+        v-if="gymLabelTemplate.display_name && gymRoute.name"
+        class="gym-route-name ellipsis-text"
+      >
+        {{ gymRoute.name }}
+      </div>
+      <div
+        v-if="gymLabelTemplate.display_description && gymRoute.description"
+        class="route-description"
+        v-html="gymRoute.description"
+      />
+      <p
+        v-if="(gymLabelTemplate.display_openers && gymRoute.openers.length > 0) || gymLabelTemplate.display_opened_at"
+        class="openers-and-opened-at ellipsis-text"
+      >
+        <span v-if="gymLabelTemplate.display_opened_at">
+          {{ humanizeDate(gymRoute.opened_at, 'DATE_SHORT') }}
+        </span>
         <span
           v-if="gymLabelTemplate.display_openers && gymRoute.openers.length > 0"
           v-text="openersToS"
         />
-        <span v-if="gymLabelTemplate.display_opened_at">
-          le {{ humanizeDate(gymRoute.opened_at, 'DATE_MED') }}
-        </span>
       </p>
-      <markdown-text
-        v-if="gymLabelTemplate.display_description && gymRoute.description"
-        class="route-description"
-        :text="gymRoute.description"
-      />
       <p v-if="gymLabelTemplate.display_anchor && gymRoute.anchor_number">
         Relais n°{{ gymRoute.anchor_number }}
       </p>
@@ -67,6 +98,8 @@
         </span>
       </p>
     </div>
+
+    <!-- QrCode (in horizontal label) -->
     <div
       v-if="gymLabelTemplate.qr_code_position === 'in_label' && gymLabelTemplate.label_arrangement === 'rectangular_horizontal'"
       class="qrcode"
@@ -79,15 +112,20 @@
 <script>
 
 import { DateHelpers } from '~/mixins/DateHelpers'
-import MarkdownText from '~/components/ui/MarkdownText'
 import { ClimbingStylesHelpers } from '~/mixins/ClimbingStylesHelpers'
-import GradeStyleNone from '~/components/gymLabelTemplates/GradeStyles/GradeStyleNone'
 import GradeStyleTagAndHold from '~/components/gymLabelTemplates/GradeStyles/GradeStyleTagAndHold'
 import GradeStyleDiagonalLabel from '~/components/gymLabelTemplates/GradeStyles/GradeStyleDiagonalLabel'
+import GradeStyleCircleLabel from '~/components/gymLabelTemplates/GradeStyles/GradeStyleCircleLabel'
+import GymLabelGrade from '~/components/gymLabelTemplates/GymLabelGrade'
 
 export default {
   name: 'GymLabelRoute',
-  components: { GradeStyleDiagonalLabel, GradeStyleTagAndHold, GradeStyleNone, MarkdownText },
+  components: {
+    GradeStyleCircleLabel,
+    GymLabelGrade,
+    GradeStyleDiagonalLabel,
+    GradeStyleTagAndHold
+  },
   mixins: [DateHelpers, ClimbingStylesHelpers],
   props: {
     gymLabelTemplate: {
@@ -138,6 +176,22 @@ export default {
       const style = this.gymLabelTemplate.border_style['border-style']
       const radius = this.gymLabelTemplate.border_style['border-radius']
       return `border-color: ${color}; border-width: ${width}; border-style: ${style}; border-radius: ${radius};`
+    },
+
+    fontFamilyStyle () {
+      for (const font of this.gymLabelTemplate.fonts) {
+        if (font.ref === this.gymLabelTemplate.label_options.information.font_family) {
+          return `font-family: ${font.name}; line-height: ${font.line_height};`
+        }
+      }
+    },
+
+    justifyInformation () {
+      if (this.gymLabelTemplate.label_arrangement === 'rectangular_vertical') {
+        return `justify-content: ${this.gymLabelTemplate.label_options.rectangular_vertical.top.vertical_align};`
+      } else {
+        return ';'
+      }
     }
   }
 }
@@ -145,19 +199,24 @@ export default {
 <style lang="scss">
 .gym-route-row {
   display: flex;
+  .gym-route-name {
+    font-weight: bold;
+    margin-bottom: 1mm;
+  }
+  .openers-and-opened-at {
+    font-size: 0.9em;
+  }
   &.rectangular_horizontal {
     flex-direction: row;
-    height: 2.7cm;
-    .grade {}
   }
   &.rectangular_vertical {
     flex-direction: column-reverse;
-    height: 5.4cm;
-    width: 2.7cm;
+    .information {
+      width: 100%;
+    }
   }
   .grade {
     flex: initial;
-    height: 100%;
     &.--with-qrcode {
       display: flex;
       justify-content: space-between;
@@ -170,7 +229,6 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 100%;
     .route-description {
       font-style: italic;
       margin-top: 0.6mm;
@@ -192,11 +250,13 @@ export default {
     padding: 1.4mm;
     justify-content: center;
     svg {
-      margin-bottom: -0.6mm;
-      margin-left: 0.6mm;
-      height: 2.3cm !important;
-      width: 2.3cm !important;
+      margin-top: 1.4mm;
+      height: calc(100% - 2.8mm) !important;
     }
+  }
+  .grade-and-visual-part {
+    height: 100%;
+    display: flex;
   }
 }
 </style>

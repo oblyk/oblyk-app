@@ -1,5 +1,5 @@
 <template>
-  <div class="grade-style-diagonal-label">
+  <div class="grade-style-circle-label">
     <div class="grade-style-container">
       <div
         class="grade-style-label"
@@ -12,7 +12,7 @@
 
 <script>
 export default {
-  name: 'GradeStyleDiagonalLabel',
+  name: 'GradeStyleCircleLabel',
   props: {
     gymLabelTemplate: {
       type: Object,
@@ -41,7 +41,7 @@ export default {
 </script>
 
 <style lang="scss">
-.grade-style-diagonal-label {
+.grade-style-circle-label {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -54,12 +54,9 @@ export default {
     justify-content: center;
   }
   .grade-style-label {
-    margin-left: 2mm;
-    margin-right: 2mm;
     height: 14mm;
-    width: 11mm;
-    transform: rotate(45deg);
-    box-sizing: border-box;
+    width: 14mm;
+    border-radius: 50%;
     &.--dark-border {
       border-style: solid;
       border-color: #777;

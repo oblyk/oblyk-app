@@ -30,121 +30,6 @@
                     class="mb-3"
                   />
                   <description-line
-                    :icon="mdiViewList"
-                    :item-title="$t('models.gymLabelTemplate.label_direction')"
-                    :item-value="$t(`models.gymLabelTemplate.label_direction_list.${gymLabelTemplate.label_direction}`)"
-                    class="mb-3"
-                  />
-                  <description-line
-                    :icon="mdiFormatLetterCase"
-                    :item-title="$t('models.gymLabelTemplate.font_family')"
-                    :item-value="gymLabelTemplate.font.name"
-                    class="mb-5"
-                  >
-                    <template #content>
-                      <div
-                        class="svg-container --full-height"
-                        style="height: 15px"
-                        :style="$vuetify.theme.dark ? 'fill: white' : 'fill: black'"
-                        v-html="gymLabelTemplate.font.svg_preview"
-                      />
-                    </template>
-                  </description-line>
-                  <description-line
-                    :icon="mdiBorderAll"
-                    :item-title="$t('models.gymLabelTemplate.border_style')"
-                    class="mb-5"
-                  >
-                    <template #content>
-                      <v-chip
-                        outlined
-                        title="Style de bordure"
-                      >
-                        <v-icon left>
-                          {{ mdiFormatLineStyle }}
-                        </v-icon>
-                        {{ $t(`models.gymLabelTemplate.border_styles.${gymLabelTemplate.border_style['border-style']}`) }}
-                      </v-chip>
-                      <v-chip
-                        v-if="gymLabelTemplate.border_style['border-style'] !== 'none'"
-                        outlined
-                        title="Couleur des bordures"
-                      >
-                        <v-icon
-                          left
-                          :color="gymLabelTemplate.border_style['border-color']"
-                        >
-                          {{ mdiCircle }}
-                        </v-icon>
-                        Couleur
-                      </v-chip>
-                      <v-chip
-                        v-if="gymLabelTemplate.border_style['border-style'] !== 'none'"
-                        outlined
-                        title="Épaisseur des bordures"
-                      >
-                        <v-icon left>
-                          {{ mdiFormatLineWeight }}
-                        </v-icon>
-                        {{ gymLabelTemplate.border_style['border-width'] }}
-                      </v-chip>
-                      <v-chip
-                        v-if="gymLabelTemplate.border_style['border-style'] !== 'none'"
-                        outlined
-                        title="Arrondi des bordures"
-                      >
-                        <v-icon left>
-                          {{ mdiSquareRoundedOutline }}
-                        </v-icon>
-                        {{ gymLabelTemplate.border_style['border-radius'] }}
-                      </v-chip>
-                    </template>
-                  </description-line>
-                  <description-line
-                    :icon="mdiTune"
-                    :item-title="$t('models.gymLabelTemplate.layout_options')"
-                    class="mb-5"
-                  >
-                    <template #content>
-                      <v-chip
-                        outlined
-                        title="Marge d'impression"
-                      >
-                        <v-icon left>
-                          {{ mdiCropFree }}
-                        </v-icon>
-                        {{ gymLabelTemplate.layout_options['page-margin'] }}
-                      </v-chip>
-                      <v-chip
-                        outlined
-                        title="Alignement vertical des étiquettes"
-                      >
-                        <v-icon left>
-                          {{ mdiArrowExpandVertical }}
-                        </v-icon>
-                        {{ $t(`models.gymLabelTemplate.alignItems.${gymLabelTemplate.layout_options['align-items'] || 'start'}`) }}
-                      </v-chip>
-                    </template>
-                  </description-line>
-                  <description-line
-                    :icon="mdiQrcode"
-                    :item-title="$t('models.gymLabelTemplate.qr_code_position')"
-                    :item-value="$t(`models.gymLabelTemplate.qr_code_position_list.${gymLabelTemplate.qr_code_position}`)"
-                    class="mb-3"
-                  />
-                  <description-line
-                    :icon="mdiFormatListText"
-                    :item-title="$t('models.gymLabelTemplate.label_arrangement')"
-                    :item-value="$t(`models.gymLabelTemplate.label_arrangement_list.${gymLabelTemplate.label_arrangement}`)"
-                    class="mb-3"
-                  />
-                  <description-line
-                    :icon="mdiExponent"
-                    :item-title="$t('models.gymLabelTemplate.grade_style')"
-                    :item-value="$t(`models.gymLabelTemplate.grade_style_list.${gymLabelTemplate.grade_style}`)"
-                    class="mb-3"
-                  />
-                  <description-line
                     :icon="mdiFileExportOutline"
                     :item-title="$t('models.gymLabelTemplate.page_format')"
                     :item-value="$t(`models.gymLabelTemplate.page_format_list.${gymLabelTemplate.page_format}`)"
@@ -177,6 +62,13 @@
                       </p>
                     </template>
                   </description-line>
+                  <v-alert
+                    class="mt-4"
+                    type="info"
+                    text
+                  >
+                    Cliquez sur modifier pour voir et modifier tous les paramètres de votre étiquette
+                  </v-alert>
                 </div>
 
                 <!-- Edit and more options -->
@@ -272,8 +164,8 @@
           </v-card>
         </v-col>
         <v-col :class="$vuetify.breakpoint.mobile ? 'label-form-screen-height' : 'full-height'">
-          <v-card class="full-height d-flex flex-column">
-            <v-card-title class="d-flex py-2 border-bottom">
+          <v-card class="full-height d-flex flex-column back-app-color">
+            <v-card-title class="d-flex py-2 border-bottom rounded sheet-background-color">
               <div>
                 <v-icon left>
                   {{ mdiEyeOutline }}
@@ -283,6 +175,17 @@
               <div class="ml-auto d-flex">
                 <v-btn
                   target="_blank"
+                  title="Voir en plein page"
+                  :to="`${gymLabelTemplate.path}/print?preview_routes_set=${previewRouteSet}&reference=Prévisualisation&preview=true`"
+                  icon
+                >
+                  <v-icon>
+                    {{ mdiFullscreen }}
+                  </v-icon>
+                </v-btn>
+                <v-btn
+                  target="_blank"
+                  title="Faire un test d'impression"
                   :to="`${gymLabelTemplate.path}/print?preview_routes_set=${previewRouteSet}&reference=Prévisualisation`"
                   icon
                 >
@@ -328,11 +231,6 @@
 <script>
 import {
   mdiAlphaA,
-  mdiViewList,
-  mdiFormatLetterCase,
-  mdiQrcode,
-  mdiFormatListText,
-  mdiExponent,
   mdiEyeSettings,
   mdiCheckboxMarked,
   mdiCheckboxBlankOutline,
@@ -342,17 +240,11 @@ import {
   mdiTune,
   mdiEyeOutline,
   mdiPrinter,
-  mdiBorderAll,
-  mdiCircle,
-  mdiFormatLineWeight,
-  mdiFormatLineStyle,
-  mdiSquareRoundedOutline,
   mdiPencil,
   mdiDotsVertical,
   mdiDelete,
   mdiPower,
-  mdiCropFree,
-  mdiArrowExpandVertical
+  mdiFullscreen
 } from '@mdi/js'
 import { GymLabelTemplateConcern } from '~/concerns/GymLabelTemplateConcern'
 import { GymFetchConcern } from '~/concerns/GymFetchConcern'
@@ -393,11 +285,6 @@ export default {
       iframeRefreshKey: 0,
 
       mdiAlphaA,
-      mdiViewList,
-      mdiFormatLetterCase,
-      mdiQrcode,
-      mdiFormatListText,
-      mdiExponent,
       mdiEyeSettings,
       mdiCheckboxMarked,
       mdiCheckboxBlankOutline,
@@ -407,17 +294,11 @@ export default {
       mdiTune,
       mdiEyeOutline,
       mdiPrinter,
-      mdiBorderAll,
-      mdiCircle,
-      mdiFormatLineWeight,
-      mdiFormatLineStyle,
-      mdiSquareRoundedOutline,
       mdiPencil,
       mdiDotsVertical,
       mdiDelete,
       mdiPower,
-      mdiCropFree,
-      mdiArrowExpandVertical
+      mdiFullscreen
     }
   },
 

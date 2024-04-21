@@ -1,5 +1,8 @@
 <template>
-  <div class="labels-document">
+  <div
+    class="labels-document"
+    :class="preview ? 'labels-document-preview' : null"
+  >
     <div
       v-for="(page, pageIndex) in pages"
       :key="`page-index-${pageIndex}`"
@@ -20,31 +23,60 @@
             />
           </div>
         </div>
+
+        <!-- Footer -->
         <div
-          v-if="gymLabelTemplate && gymLabelTemplate.qr_code_position === 'footer'"
+          v-if="gymLabelTemplate && gymLabelTemplate.footer_options.display"
           class="footer"
+          :style="`height: ${gymLabelTemplate.footer_options.height}`"
         >
-          <div>
-            <p>
-              Découvre le topo de <b>{{ gym.name }}</b><br> et suis ta progression sur Oblyk.org !
-            </p>
+          <div
+            v-if="gymLabelTemplate.footer_options.left.display"
+            class="footer-side-part"
+            :style="`width: ${gymLabelTemplate.footer_options.height}`"
+          >
+            <div
+              v-if="gymLabelTemplate.footer_options.left.type === 'QrCode'"
+              v-html="page.footer_qrcode"
+            />
+            <img
+              v-if="gymLabelTemplate.footer_options.left.type === 'logo'"
+              alt="logo"
+              class="logo"
+              :style="logoStyle()"
+              :src="gym.logo_thumbnail_url"
+            >
+          </div>
+          <div class="footer-center">
+            <div
+              v-if="page.footer_body"
+              :style="footerPartsStyle('center_top')"
+              v-html="page.footer_body"
+            />
             <div
               v-if="page.reference"
+              :style="footerPartsStyle('center_bottom')"
               class="footer-reference"
-            >
-              {{ page.reference }}
-            </div>
+              v-html="page.reference"
+            />
           </div>
           <div
-            class="footer-qr-code"
-            v-html="page.footer_qrcode"
-          />
-        </div>
-        <div
-          v-if="gymLabelTemplate && gymLabelTemplate.qr_code_position !== 'footer' && page.reference"
-          class="footer-reference-only"
-        >
-          {{ page.reference }}
+            v-if="gymLabelTemplate.footer_options.right.display"
+            class="footer-side-part"
+            :style="`width: ${gymLabelTemplate.footer_options.height}`"
+          >
+            <div
+              v-if="gymLabelTemplate.footer_options.right.type === 'QrCode'"
+              v-html="page.footer_qrcode"
+            />
+            <img
+              v-if="gymLabelTemplate.footer_options.right.type === 'logo'"
+              alt="logo"
+              class="logo"
+              :style="logoStyle()"
+              :src="gym.logo_thumbnail_url"
+            >
+          </div>
         </div>
       </div>
     </div>
@@ -187,12 +219,13 @@ export default {
               this.pageOrientation = this.gymLabelTemplate.page_direction !== 'free' ? this.gymLabelTemplate.page_direction : null
               this.pageFormat = this.gymLabelTemplate.page_format !== 'free' ? this.gymLabelTemplate.page_format : null
               this.orientationFormatDialog = true
+              this.initPageOrientation()
             } else {
-              this.pageOrientation = this.gymLabelTemplate.page_direction
-              this.pageFormat = this.gymLabelTemplate.page_format
               this.initPageOrientation()
               this.print()
             }
+          } else {
+            this.initPageOrientation()
           }
         })
         .finally(() => {
@@ -205,11 +238,13 @@ export default {
     },
 
     initCss () {
-      // Add font
-      const newLink = document.createElement('link')
-      newLink.href = `https://fonts.googleapis.com/css2?family=${this.gymLabelTemplate.font.query}`
-      newLink.rel = 'stylesheet'
-      document.head.appendChild(newLink)
+      // Add fonts
+      for (const font of this.gymLabelTemplate.fonts) {
+        const newLink = document.createElement('link')
+        newLink.href = `https://fonts.googleapis.com/css2?family=${font.query}`
+        newLink.rel = 'stylesheet'
+        document.head.appendChild(newLink)
+      }
 
       // Add style
       const newStyle = document.createElement('style')
@@ -219,16 +254,57 @@ export default {
         font-size: ${this.gymLabelTemplate.font.size};
         line-height: ${this.gymLabelTemplate.font.line_height};
       }
-      .footer {
-        border-top-width: ${this.gymLabelTemplate.border_style['border-width']};
-        border-top-color: ${this.gymLabelTemplate.border_style['border-color']};
-      }
       @page {
-        margin: ${this.gymLabelTemplate.layout_options['page-margin']} !important;
+        margin: ${this.gymLabelTemplate.layout_options.page_margin} !important;
       }
       .label-row {
-        align-items: ${this.gymLabelTemplate.layout_options['align-items'] || 'start'};
-      }`
+        align-items: ${this.gymLabelTemplate.layout_options.align_items || 'start'};
+      }
+      .label-grid {
+        row-gap: ${this.gymLabelTemplate.layout_options.row_gap || '3mm'};
+        column-gap: ${this.gymLabelTemplate.layout_options.column_gap || '3mm'};
+      }
+      .rectangular_horizontal {
+        height: ${this.gymLabelTemplate.label_options.rectangular_horizontal.height || '27mm'};
+      }
+      .rectangular_horizontal .qrcode, .rectangular_vertical .qrcode {
+        width: ${this.gymLabelTemplate.label_options.rectangular_horizontal.height || '27mm'};
+      }
+      .rectangular_vertical .qrcode {
+        width: ${this.gymLabelTemplate.label_options.rectangular_vertical.bottom.height || '27mm'};
+      }
+      .rectangular_vertical .information {
+        height: ${this.gymLabelTemplate.label_options.rectangular_vertical.top.height || '27mm'};
+      }
+      .rectangular_vertical .grade {
+        height: ${this.gymLabelTemplate.label_options.rectangular_vertical.bottom.height || '27mm'};
+      }
+      .label-row .two_by_row {
+        width: calc(1 / 2 * 100% - (1 - 1 / 2) * ${this.gymLabelTemplate.layout_options.column_gap});
+      }
+      .label-row .three_by_row {
+        width: calc(1 / 3 * 100% - (1 - 1 / 3) * ${this.gymLabelTemplate.layout_options.column_gap});
+      }
+      .label-row .four_by_row {
+        width: calc(1 / 4 * 100% - (1 - 1 / 4) * ${this.gymLabelTemplate.layout_options.column_gap});
+      }
+      .label-row .label-grid {
+         column-gap: calc(${this.gymLabelTemplate.layout_options.column_gap} - 1px);
+      }
+      `
+      if (this.gymLabelTemplate.layout_options.align_items === 'end') {
+        newStyle.textContent += `
+        .footer {
+          margin-top: ${this.gymLabelTemplate.layout_options.row_gap};
+        }
+        `
+      }
+      if (this.preview) {
+        newStyle.textContent += `
+        .preview.page {
+          padding: ${this.gymLabelTemplate.layout_options.page_margin} !important;
+        }`
+      }
       document.head.appendChild(newStyle)
 
       // Set max height label row
@@ -251,8 +327,13 @@ export default {
     },
 
     initPageOrientation () {
+      this.pageOrientation = this.gymLabelTemplate.page_direction
+      this.pageFormat = this.gymLabelTemplate.page_format
       const newStyle = document.createElement('style')
       let pageHeight = null
+      let pageWidth = null
+
+      // Page height
       if (this.pageFormat === 'A3' && this.pageOrientation === 'portrait') {
         pageHeight = '419mm'
       } else if (
@@ -272,14 +353,46 @@ export default {
       } else {
         pageHeight = '100vh'
       }
-      newStyle.textContent = `
-      @page {
-        size: ${this.pageFormat} ${this.pageOrientation};
+
+      // Page width for preview
+      if ((this.pageFormat === 'A3' && this.pageOrientation === 'landscape')) {
+        pageWidth = '419mm'
+      } else if (
+        (this.pageFormat === 'A3' && this.pageOrientation === 'portrait') ||
+        (this.pageFormat === 'A4' && this.pageOrientation === 'landscape')
+      ) {
+        pageWidth = '296mm'
+      } else if (
+        (this.pageFormat === 'A4' && this.pageOrientation === 'portrait') ||
+        (this.pageFormat === 'A5' && this.pageOrientation === 'landscape')
+      ) {
+        pageWidth = '209mm'
+      } else if (
+        (this.pageFormat === 'A5' && this.pageOrientation === 'portrait')
+      ) {
+        pageWidth = '147mm'
+      } else {
+        pageWidth = '100vw'
       }
-      .page {
-        height: calc(${pageHeight} - (${this.gymLabelTemplate.layout_options['page-margin']} * 2 + 2mm));
+
+      const pageMarginBottom = this.gymLabelTemplate.layout_options.page_margin.split(' ')[2]
+      if (this.preview) {
+        newStyle.textContent = `
+        .page {
+          height: ${pageHeight};
+          width: ${pageWidth} !important;
+        }
+        `
+      } else {
+        newStyle.textContent = `
+        @page {
+          size: ${this.pageFormat} ${this.pageOrientation};
+        }
+        .page {
+          height: calc(${pageHeight} - (${pageMarginBottom} * 2 + 2mm));
+        }
+        `
       }
-      `
       document.head.appendChild(newStyle)
     },
 
@@ -293,6 +406,16 @@ export default {
       setTimeout(() => {
         window.print()
       }, 500)
+    },
+
+    footerPartsStyle (part) {
+      const style = this.gymLabelTemplate.footer_options[part]
+      return `font-size: ${style.font_size}; color: ${style.color}; text-align: ${style.text_align}`
+    },
+
+    logoStyle () {
+      const size = this.gymLabelTemplate.footer_options.height
+      return `height: ${size}; width: ${size};`
     }
   }
 }
@@ -302,6 +425,11 @@ export default {
 body {
   font-size: 14pt;
   font-family: sans-serif;
+}
+.ellipsis-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .page {
   break-after: page;
@@ -316,9 +444,24 @@ body {
   display: flex;
   flex-direction: column;
 }
+.labels-document-preview {
+  padding: 0.5em;
+  background-color: #f0f0f5;
+  min-height: 100vh;
+  overflow: auto;
+}
 .preview {
-  padding: 3mm;
-  height: 100vh;
+  .page-container {
+    border-width: 1px;
+    border-color: blue;
+    border-style: solid;
+  }
+  &.page {
+    background-color: white;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    border: 1px solid #c7c7c7;
+  }
 }
 .no-break {
   page-break-inside: avoid;
@@ -336,55 +479,38 @@ body {
   display: flex;
   flex-wrap: wrap;
   .label-grid {
+    width: 100%;
+    max-width: 100%;
     max-height: 100%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
-    row-gap: 3mm;
-    column-gap: 3mm;
-  }
-  .label-column {
-    &.rectangular_vertical {
-      &.qr_code_in_label {
-        height: 200px;
-      }
-      &.qr_code_footer, &.qr_code_none {
-        height: 155px;
-      }
-    }
-    &.rectangular_horizontal {
-      height: 102px;
-    }
   }
   .one_by_row {
     flex: 0 0 100%;
     max-width: 100%;
   }
-  .two_by_row {
-    width: calc(1 / 2 * 100% - (1 - 1 / 2) * 3mm);
-  }
-  .three_by_row {
-    width: calc(1 / 3 * 100% - (1 - 1 / 3) * 3mm);
-  }
-  .four_by_row {
-    width: calc(1 / 4 * 100% - (1 - 1 / 4) * 3mm);
-  }
 }
 .footer {
   width: 100%;
-  text-align: right;
-  border-top-style: solid;
-  padding-top: 1.5mm;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  font-size: 12pt;
-  .footer-qr-code {
+  strong {
+    font-weight: bold;
+  }
+  .footer-center {
+    flex-grow: 1;
+    padding-right: 2mm;
+    padding-left: 2mm;
+  }
+  .logo {
+    object-fit: contain;
+    border-radius: 5px;
+  }
+  .footer-side-part {
     box-sizing: border-box;
-    height: 2cm;
-    width: 2cm;
-    margin-left: 5mm;
     svg {
       height: 100%;
       width: 100%;

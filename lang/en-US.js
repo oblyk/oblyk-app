@@ -643,6 +643,7 @@ export default {
       contestCategoryObligation: 'Type of registration restriction',
       rankingSystem: 'Ranking system',
       age: 'Age',
+      textAlign: 'Text alignment',
       colorSystem: {
         chooseOrder: 'Choose a colour order',
         usage: 'Already used %{count} times here',
@@ -2175,6 +2176,11 @@ export default {
       commercial: 'Commercial use',
       institutional: 'Public institution / Open source project'
     },
+    textAlignes: {
+      left: 'Left',
+      right: 'Right',
+      center: 'Center'
+    },
     park: {
       names: 'Parks',
       title: 'Car park',
@@ -2275,7 +2281,7 @@ export default {
       border_style: 'Border style',
       font_family: 'Font',
       qr_code_position: 'Location of the QrCode',
-      label_arrangement: 'Arrangement of the label',
+      label_arrangement: 'Form of the label',
       grade_style: 'Level and grade display',
       display_points: 'Display points',
       display_openers: 'Display openers',
@@ -2288,6 +2294,11 @@ export default {
       display_tag_and_hold: 'Display tag and hold',
       page_format: 'Page format',
       page_direction: 'Page direction',
+      font_color: 'Font color',
+      layout_option_properties: {
+        align_items: 'Vertical alignment of labels on the page.',
+        page_margin: 'Page print margin'
+      },
       label_direction_list: {
         one_by_row: 'One label per width',
         two_by_row: 'Two label per width',

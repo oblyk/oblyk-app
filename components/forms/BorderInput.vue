@@ -2,7 +2,7 @@
   <v-input :prepend-icon="mdiBorderAll">
     <fieldset class="full-width custom-fieldset border rounded mt-n1 pb-2 px-2">
       <legend class="v-label custom-fieldset-label">
-        Bordures
+        Bordures des étiquettes
       </legend>
       <div>
         <!-- border style -->
