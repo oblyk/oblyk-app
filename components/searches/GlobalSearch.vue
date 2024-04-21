@@ -29,7 +29,7 @@
         height="35"
         show-arrows
       >
-        <v-tab @click="changeCollection(['Crag', 'Gym', 'GuideBookPaper', 'CragRoute', 'Area'])">
+        <v-tab @click="changeCollection(['Crag', 'Gym', 'GuideBookPaper', 'Area'])">
           <v-icon>
             {{ mdiAsterisk }}
           </v-icon>
@@ -287,7 +287,7 @@ export default {
       loadingExternalSearch: false,
       loadingMoreText: false,
       noMoreResults: {},
-      collections: ['Crag', 'Gym', 'GuideBookPaper', 'CragRoute', 'Area'],
+      collections: ['Crag', 'Gym', 'GuideBookPaper', 'Area'],
 
       results: {},
 
