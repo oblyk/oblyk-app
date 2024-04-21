@@ -174,9 +174,19 @@
               </div>
               <div class="ml-auto d-flex">
                 <v-btn
+                  title="Afficher les lignes de constructions"
+                  icon
+                  :color="construction_line ? 'primary' : null"
+                  @click="switchConstructionLine()"
+                >
+                  <v-icon>
+                    {{ mdiVectorSquareEdit }}
+                  </v-icon>
+                </v-btn>
+                <v-btn
                   target="_blank"
                   title="Voir en plein page"
-                  :to="`${gymLabelTemplate.path}/print?preview_routes_set=${previewRouteSet}&reference=Prévisualisation&preview=true`"
+                  :to="`${gymLabelTemplate.path}/print?preview_routes_set=${previewRouteSet}&reference=Prévisualisation&preview=true&construction_line=${construction_line ? 'true' : 'false'}`"
                   icon
                 >
                   <v-icon>
@@ -186,7 +196,7 @@
                 <v-btn
                   target="_blank"
                   title="Faire un test d'impression"
-                  :to="`${gymLabelTemplate.path}/print?preview_routes_set=${previewRouteSet}&reference=Prévisualisation`"
+                  :to="`${gymLabelTemplate.path}/print?preview_routes_set=${previewRouteSet}&reference=Prévisualisation&construction_line=${construction_line ? 'true' : 'false'}`"
                   icon
                 >
                   <v-icon>
@@ -196,6 +206,7 @@
                 <v-btn
                   :loading="loadingPreview"
                   icon
+                  title="Rafraichir la prévisualisation"
                   @click="preview"
                 >
                   <v-icon>
@@ -218,7 +229,7 @@
             </v-card-title>
             <iframe
               :ref="`preview-refresh-${iframeRefreshKey}`"
-              :src="`${gymLabelTemplate.path}/print?preview=true&preview_index=${iframeRefreshKey}&preview_routes_set=${previewRouteSet}&reference=Prévisualisation`"
+              :src="`${gymLabelTemplate.path}/print?preview=true&preview_index=${iframeRefreshKey}&preview_routes_set=${previewRouteSet}&reference=Prévisualisation&construction_line=${construction_line ? 'true' : 'false'}`"
               class="label-template-viewer"
             />
           </v-card>
@@ -244,7 +255,8 @@ import {
   mdiDotsVertical,
   mdiDelete,
   mdiPower,
-  mdiFullscreen
+  mdiFullscreen,
+  mdiVectorSquareEdit
 } from '@mdi/js'
 import { GymLabelTemplateConcern } from '~/concerns/GymLabelTemplateConcern'
 import { GymFetchConcern } from '~/concerns/GymFetchConcern'
@@ -265,6 +277,7 @@ export default {
       loadingPreview: false,
       loadingAction: false,
       pdfPreview: null,
+      construction_line: false,
       displayList: [
         'display_points',
         'display_openers',
@@ -298,7 +311,8 @@ export default {
       mdiDotsVertical,
       mdiDelete,
       mdiPower,
-      mdiFullscreen
+      mdiFullscreen,
+      mdiVectorSquareEdit
     }
   },
 
@@ -362,6 +376,11 @@ export default {
 
     preview () {
       this.iframeRefreshKey += 1
+    },
+
+    switchConstructionLine () {
+      this.construction_line = !this.construction_line
+      this.preview()
     },
 
     archived () {

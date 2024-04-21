@@ -1,7 +1,7 @@
 <template>
   <div
     class="labels-document"
-    :class="preview ? 'labels-document-preview' : null"
+    :class="previewClass"
   >
     <div
       v-for="(page, pageIndex) in pages"
@@ -10,6 +10,52 @@
       :class="preview ? 'preview' : ''"
     >
       <div class="page-container">
+        <!-- Header -->
+        <div
+          v-if="gymLabelTemplate && gymLabelTemplate.header_options.display"
+          class="header"
+          :style="`height: ${gymLabelTemplate.header_options.height}`"
+        >
+          <!-- Header Left Part -->
+          <div
+            v-if="gymLabelTemplate.header_options.left.display || gymLabelTemplate.header_options.right.display"
+            class="header-side-part"
+            :style="`width: ${gymLabelTemplate.header_options.height}`"
+          >
+            <footer-header-side-part
+              v-if="gymLabelTemplate.header_options.left.display"
+              :logo-height="gymLabelTemplate.header_options.height"
+              :qr-code="page.footer_qrcode"
+              :gym="gym"
+              :type="gymLabelTemplate.header_options.left.type"
+            />
+          </div>
+
+          <!-- Header Center Part -->
+          <div class="header-center">
+            <div
+              v-if="page.header_body"
+              :style="headerStyle()"
+              v-html="page.header_body"
+            />
+          </div>
+
+          <!-- Header Right Part -->
+          <div
+            v-if="gymLabelTemplate.header_options.left.display || gymLabelTemplate.header_options.right.display"
+            class="header-side-part"
+            :style="`width: ${gymLabelTemplate.header_options.height}`"
+          >
+            <footer-header-side-part
+              v-if="gymLabelTemplate.header_options.right.display"
+              :logo-height="gymLabelTemplate.header_options.height"
+              :qr-code="page.footer_qrcode"
+              :gym="gym"
+              :type="gymLabelTemplate.header_options.right.type"
+            />
+          </div>
+        </div>
+
         <div class="label-row">
           <div class="label-grid">
             <gym-label-route
@@ -30,23 +76,22 @@
           class="footer"
           :style="`height: ${gymLabelTemplate.footer_options.height}`"
         >
+          <!-- Footer Left Part -->
           <div
-            v-if="gymLabelTemplate.footer_options.left.display"
+            v-if="gymLabelTemplate.footer_options.left.display || gymLabelTemplate.footer_options.right.display"
             class="footer-side-part"
             :style="`width: ${gymLabelTemplate.footer_options.height}`"
           >
-            <div
-              v-if="gymLabelTemplate.footer_options.left.type === 'QrCode'"
-              v-html="page.footer_qrcode"
+            <footer-header-side-part
+              v-if="gymLabelTemplate.footer_options.left.display"
+              :logo-height="gymLabelTemplate.footer_options.height"
+              :qr-code="page.footer_qrcode"
+              :gym="gym"
+              :type="gymLabelTemplate.footer_options.left.type"
             />
-            <img
-              v-if="gymLabelTemplate.footer_options.left.type === 'logo'"
-              alt="logo"
-              class="logo"
-              :style="logoStyle()"
-              :src="gym.logo_thumbnail_url"
-            >
           </div>
+
+          <!-- Footer Center Part -->
           <div class="footer-center">
             <div
               v-if="page.footer_body"
@@ -60,22 +105,20 @@
               v-html="page.reference"
             />
           </div>
+
+          <!-- Footer Right Part -->
           <div
-            v-if="gymLabelTemplate.footer_options.right.display"
+            v-if="gymLabelTemplate.footer_options.left.display || gymLabelTemplate.footer_options.right.display"
             class="footer-side-part"
             :style="`width: ${gymLabelTemplate.footer_options.height}`"
           >
-            <div
-              v-if="gymLabelTemplate.footer_options.right.type === 'QrCode'"
-              v-html="page.footer_qrcode"
+            <footer-header-side-part
+              v-if="gymLabelTemplate.footer_options.right.display"
+              :logo-height="gymLabelTemplate.footer_options.height"
+              :qr-code="page.footer_qrcode"
+              :gym="gym"
+              :type="gymLabelTemplate.footer_options.right.type"
             />
-            <img
-              v-if="gymLabelTemplate.footer_options.right.type === 'logo'"
-              alt="logo"
-              class="logo"
-              :style="logoStyle()"
-              :src="gym.logo_thumbnail_url"
-            >
           </div>
         </div>
       </div>
@@ -138,9 +181,10 @@ import GymLabelTemplate from '~/models/GymLabelTemplate'
 import GymRoute from '~/models/GymRoute'
 import GymLabelRoute from '~/components/gymLabelTemplates/GymLabelRoute'
 import Gym from '~/models/Gym'
+import FooterHeaderSidePart from '~/components/gymLabelTemplates/FooterHeaderSidePart.vue'
 
 export default {
-  components: { GymLabelRoute },
+  components: { FooterHeaderSidePart, GymLabelRoute },
   meta: { orphanRoute: true },
   layout: 'print',
 
@@ -161,6 +205,7 @@ export default {
       sortDirection: 'asc',
       routesByPage: 7,
       pages: [],
+      previewClass: '',
 
       gymRoutes: [],
       gym: [],
@@ -178,6 +223,7 @@ export default {
   mounted () {
     const urlParams = new URLSearchParams(window.location.search)
     this.preview = urlParams.get('preview') === 'true'
+    this.construction_line = urlParams.get('construction_line') === 'true'
     this.reference = urlParams.get('reference')
     this.sectorId = urlParams.get('sector_id')
     this.routeIds = [...urlParams.getAll('route_ids[]')]
@@ -186,6 +232,11 @@ export default {
     this.sortBy = urlParams.get('sort_by')
     this.sortDirection = urlParams.get('sort_direction')
     this.routesByPage = urlParams.get('routes_by_page')
+
+    const previews = []
+    if (this.construction_line) { previews.push('construction-line') }
+    if (this.preview) { previews.push('labels-document-preview') }
+    this.previewClass = previews.join(' ')
 
     this.getLabelTemplate()
   },
@@ -299,6 +350,13 @@ export default {
         }
         `
       }
+      if (this.gymLabelTemplate.layout_options.align_items === 'start') {
+        newStyle.textContent += `
+        .header {
+          margin-bottom: ${this.gymLabelTemplate.layout_options.row_gap};
+        }
+        `
+      }
       if (this.preview) {
         newStyle.textContent += `
         .preview.page {
@@ -319,8 +377,9 @@ export default {
         for (const page of pages) {
           const labelRow = page.offsetHeight
           const rows = page.querySelectorAll('.label-column')
+          const maxHeight = `${labelRow / (rows.length / colNumber[this.gymLabelTemplate.label_direction]) - 11}px`
           for (const row of page.querySelectorAll('.label-column')) {
-            row.style.maxHeight = `${labelRow / (rows.length / colNumber[this.gymLabelTemplate.label_direction]) - 11}px`
+            row.style.maxHeight = maxHeight
           }
         }
       }, 250)
@@ -413,9 +472,9 @@ export default {
       return `font-size: ${style.font_size}; color: ${style.color}; text-align: ${style.text_align}`
     },
 
-    logoStyle () {
-      const size = this.gymLabelTemplate.footer_options.height
-      return `height: ${size}; width: ${size};`
+    headerStyle () {
+      const style = this.gymLabelTemplate.header_options.center
+      return `font-size: ${style.font_size}; color: ${style.color}; text-align: ${style.text_align}`
     }
   }
 }
@@ -450,12 +509,42 @@ body {
   min-height: 100vh;
   overflow: auto;
 }
-.preview {
+.construction-line {
   .page-container {
     border-width: 1px;
     border-color: blue;
     border-style: solid;
   }
+  .footer, .footer-reference {
+    border-top-width: 1px;
+    border-top-color: blue;
+    border-top-style: solid;
+  }
+  .header {
+    border-bottom-width: 1px;
+    border-bottom-color: blue;
+    border-bottom-style: solid;
+  }
+  .footer-center, .header-center {
+    border-left-width: 1px;
+    border-left-color: blue;
+    border-right-width: 1px;
+    border-right-color: blue;
+    border-left-style: solid;
+    border-right-style: solid;
+  }
+  .visual-part {
+    border-right-width: 1px;
+    border-right-color: blue;
+    border-right-style: solid;
+  }
+  .information, .qrcode {
+    border-left-width: 1px;
+    border-left-color: blue;
+    border-left-style: solid;
+  }
+}
+.preview {
   &.page {
     background-color: white;
     margin-left: auto !important;
@@ -492,7 +581,7 @@ body {
     max-width: 100%;
   }
 }
-.footer {
+.footer, .header {
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -500,16 +589,21 @@ body {
   strong {
     font-weight: bold;
   }
-  .footer-center {
+  .footer-center, .header-center {
     flex-grow: 1;
     padding-right: 2mm;
     padding-left: 2mm;
+  }
+  .header-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
   .logo {
     object-fit: contain;
     border-radius: 5px;
   }
-  .footer-side-part {
+  .footer-side-part, .header-side-part {
     box-sizing: border-box;
     svg {
       height: 100%;

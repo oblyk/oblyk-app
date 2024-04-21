@@ -289,6 +289,10 @@
             <div class="border rounded pa-2 mb-6">
               Dans la section <strong>"Page"</strong> on paramètre les settings globaux de la page.
             </div>
+
+            <p class="text-decoration-underline mb-2 mt-3">
+              Paramètres globaux :
+            </p>
             <gym-label-font-input
               v-model="data.font_family"
               :label="$t('models.gymLabelTemplate.font_family')"
@@ -326,6 +330,110 @@
                 />
               </v-col>
             </v-row>
+
+            <!-- Header setting -->
+            <p class="text-decoration-underline mb-1 mt-5">
+              Entête de page :
+            </p>
+            <div class="border rounded pa-2">
+              <v-checkbox
+                v-model="data.header_options.display"
+                label="Afficher une entête"
+                class="mt-0"
+                hide-details
+              />
+              <div
+                v-if="data.header_options.display"
+                class="pt-4"
+              >
+                <suffix-input
+                  v-model="data.header_options.height"
+                  suffix="mm"
+                  label="Hauteur de l'entête"
+                  dense
+                />
+                <p class="text--disabled mb-1">
+                  Cliquez sur une section de l'entête pour la personnaliser
+                </p>
+                <label-header-model
+                  :callback="activeHeadPart"
+                  class="mb-4"
+                />
+
+                <!-- header left -->
+                <div v-if="headPart === 'left'">
+                  <v-checkbox
+                    key="data.header_options.left.display"
+                    v-model="data.header_options.left.display"
+                    label="Afficher la section de gauche"
+                    class="mt-0"
+                  />
+                  <v-select
+                    v-if="data.header_options.left.display"
+                    v-model="data.header_options.left.type"
+                    label="Type d'élément"
+                    :items="qrCodeOrLogo"
+                    item-text="text"
+                    item-value="value"
+                    hide-details
+                    outlined
+                    dense
+                  />
+                </div>
+
+                <!-- header center -->
+                <div v-if="headPart === 'center'">
+                  <div class="d-flex">
+                    <suffix-input
+                      key="header_options.center.font_size"
+                      v-model="data.header_options.center.font_size"
+                      suffix="pt"
+                      label="Taille de la police"
+                      dense
+                    />
+                    <text-align-input
+                      key="header_options.center.text_align"
+                      v-model="data.header_options.center.text_align"
+                      dense
+                      class="mx-1"
+                    />
+                    <div class="mt-1">
+                      <color-picker-input
+                        key="header_options.center.color"
+                        v-model="data.header_options.center.color"
+                        label="models.gymLabelTemplate.font_color"
+                      />
+                    </div>
+                  </div>
+                  <markdown-input
+                    v-model="data.header_options.center.body"
+                    label="Text du pied de page"
+                    :rows="2"
+                  />
+                </div>
+
+                <!-- header right -->
+                <div v-if="headPart === 'right'">
+                  <v-checkbox
+                    key="data.header_options.right.display"
+                    v-model="data.header_options.right.display"
+                    label="Afficher la section de droite"
+                    class="mt-0"
+                  />
+                  <v-select
+                    v-if="data.header_options.right.display"
+                    v-model="data.header_options.right.type"
+                    label="Type d'élément"
+                    :items="qrCodeOrLogo"
+                    item-text="text"
+                    item-value="value"
+                    hide-details
+                    outlined
+                    dense
+                  />
+                </div>
+              </div>
+            </div>
 
             <!-- Footer setting -->
             <p class="text-decoration-underline mb-1 mt-5">
@@ -522,10 +630,12 @@ import LabelTagModel from '~/components/gymLabelTemplates/LabelTagModel'
 import GradeStyleInput from '~/components/forms/GradeStyleInput.vue'
 import LabelVerticalAlignInput from '~/components/forms/LabelVerticalAlignInput.vue'
 import LabelByRowInput from '~/components/forms/LabelByRowInput.vue'
+import LabelHeaderModel from '~/components/gymLabelTemplates/LabelHeaderModel.vue'
 
 export default {
   name: 'GymLabelTemplateForm',
   components: {
+    LabelHeaderModel,
     LabelByRowInput,
     LabelVerticalAlignInput,
     GradeStyleInput,
@@ -565,6 +675,7 @@ export default {
       step: 0,
       footerPart: null,
       labelPart: null,
+      headPart: null,
       labelArrangementDialog: false,
       data: {
         id: this.gymLabelTemplate?.id,
@@ -646,7 +757,8 @@ export default {
       ],
       qrCodeOrLogo: [
         { text: 'QrCode des voies de la fiche', value: 'QrCode' },
-        { text: 'Logo de la salle', value: 'logo' }
+        { text: 'Logo de la salle', value: 'logo' },
+        { text: "Logo d'Oblyk", value: 'logo_oblyk' }
       ],
 
       mdiAlphaA,
@@ -698,6 +810,10 @@ export default {
 
     activeFooterPart (part) {
       this.footerPart = part
+    },
+
+    activeHeadPart (part) {
+      this.headPart = part
     },
 
     activeLabelPart (part) {
