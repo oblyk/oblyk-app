@@ -24,6 +24,17 @@ class GymLabelTemplateApi extends BaseApi {
     })
   }
 
+  copy (gymId, gymLabelTemplate) {
+    return this.axios.request({
+      method: 'POST',
+      url: `${this.baseUrl}/gyms/${gymId}/gym_label_templates/${gymLabelTemplate}/copy.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
+    })
+  }
+
   model (gymId) {
     return this.axios.request({
       method: 'GET',

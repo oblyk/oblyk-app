@@ -18,6 +18,7 @@ export default {
     close: 'Fermer',
     valid: 'Valider',
     ok: 'ok',
+    create_copy: 'Créer une copie',
     like: 'Aimer',
     reply: 'Répondre',
     export: 'Exporter',

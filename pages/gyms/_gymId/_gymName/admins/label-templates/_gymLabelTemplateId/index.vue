@@ -76,6 +76,17 @@
                   <v-btn
                     outlined
                     text
+                    :loading="loadingCopy"
+                    @click="copy()"
+                  >
+                    <v-icon left>
+                      {{ mdiContentCopy }}
+                    </v-icon>
+                    {{ $t('actions.create_copy') }}
+                  </v-btn>
+                  <v-btn
+                    outlined
+                    text
                     @click="editing = true"
                   >
                     <v-icon left>
@@ -256,7 +267,8 @@ import {
   mdiDelete,
   mdiPower,
   mdiFullscreen,
-  mdiVectorSquareEdit
+  mdiVectorSquareEdit,
+  mdiContentCopy
 } from '@mdi/js'
 import { GymLabelTemplateConcern } from '~/concerns/GymLabelTemplateConcern'
 import { GymFetchConcern } from '~/concerns/GymFetchConcern'
@@ -276,6 +288,7 @@ export default {
     return {
       loadingPreview: false,
       loadingAction: false,
+      loadingCopy: false,
       pdfPreview: null,
       construction_line: false,
       displayList: [
@@ -312,7 +325,8 @@ export default {
       mdiDelete,
       mdiPower,
       mdiFullscreen,
-      mdiVectorSquareEdit
+      mdiVectorSquareEdit,
+      mdiContentCopy
     }
   },
 
@@ -424,6 +438,19 @@ export default {
             this.loadingAction = false
           })
       }
+    },
+
+    copy () {
+      this.loadingCopy = true
+      new GymLabelTemplateApi(this.$axios, this.$auth)
+        .copy(this.gym.id, this.gymLabelTemplate.id)
+        .then((resp) => {
+          const gymLabelTemplate = new GymLabelTemplate({ attributes: resp.data })
+          this.$router.push(gymLabelTemplate.path)
+        })
+        .finally(() => {
+          this.loadingCopy = false
+        })
     }
   }
 }

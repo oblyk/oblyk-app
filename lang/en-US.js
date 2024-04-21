@@ -18,6 +18,7 @@ export default {
     close: 'Close',
     valid: 'Valid',
     ok: 'ok',
+    create_copy: 'Create copy',
     like: 'Like',
     reply: 'Reply',
     export: 'Export',
