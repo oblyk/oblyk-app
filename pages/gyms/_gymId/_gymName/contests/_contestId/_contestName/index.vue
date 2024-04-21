@@ -114,7 +114,7 @@
                 {{ $t('components.contest.notOpenYet') }}
               </p>
               <p>
-                {{ $t('default.components.contest.comeBackOn', { date: humanizeDate(contest.subscription_start_date) }) }}
+                {{ $t('components.contest.comeBackOn', { date: humanizeDate(contest.subscription_start_date) }) }}
               </p>
             </div>
 
