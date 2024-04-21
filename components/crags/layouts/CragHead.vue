@@ -16,7 +16,7 @@
         </div>
       </template>
       <v-btn
-        class="seeOnMapBtn"
+        class="seeOnMapBtn black-btn-icon"
         text
         small
         outlined
@@ -156,9 +156,8 @@ export default {
 .crag-header {
   .seeOnMapBtn {
     position: absolute;
-    right: 7px;
-    top: 7px;
-    background-color: rgba(255, 255, 255, 0.2)
+    right: 5px;
+    top: 5px;
   }
   .crag-header-banner {
     border-radius: 15px 15px 0 0;
