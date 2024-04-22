@@ -23,6 +23,15 @@
           {{ mdiDiceMultiple }}
         </v-icon>
         Tombola
+        <v-spacer />
+        <v-btn
+          icon
+          @click="tombola('close')"
+        >
+          <v-icon>
+            {{ mdiClose }}
+          </v-icon>
+        </v-btn>
       </v-card-title>
       <div class="px-4 pb-4">
         <v-alert
@@ -72,6 +81,41 @@
           </v-col>
         </v-row>
 
+        <v-row
+          v-if="contest.contest_waves.length > 1 || contest.contest_categories.length > 1"
+          class="my-2"
+          no-gutters
+        >
+          <v-col v-if="contest.contest_waves.length > 1">
+            <p class="font-weight-bold text-decoration-underline mb-0">
+              Les vagues :
+            </p>
+            <v-checkbox
+              v-for="(wave, waveIndex) in contest.contest_waves"
+              :key="`wave-index-${waveIndex}`"
+              v-model="data.contest_wave_ids"
+              :value="wave.id"
+              :label="wave.name"
+              hide-details
+              class="mt-2"
+            />
+          </v-col>
+          <v-col v-if="contest.contest_categories.length > 1">
+            <p class="font-weight-bold text-decoration-underline mb-0">
+              Les catégories :
+            </p>
+            <v-checkbox
+              v-for="(category, categoryIndex) in contest.contest_categories"
+              :key="`category-index-${categoryIndex}`"
+              v-model="data.contest_category_ids"
+              :value="category.id"
+              :label="category.name"
+              hide-details
+              class="mt-2"
+            />
+          </v-col>
+        </v-row>
+
         <div class="text-center">
           <v-btn
             x-large
@@ -112,7 +156,7 @@
                 v-for="(winner, winnerIndex) in tombolaWinners"
                 :key="`winner-${winnerIndex}`"
               >
-                {{ winner.first_name }} {{ winner.last_name }}
+                {{ winnerName(winner) }}
                 <v-btn
                   small
                   icon
@@ -132,7 +176,13 @@
   </v-dialog>
 </template>
 <script>
-import { mdiTrashCan, mdiDiceMultiple, mdiOpenInApp, mdiCloseBoxOutline } from '@mdi/js'
+import {
+  mdiTrashCan,
+  mdiDiceMultiple,
+  mdiOpenInApp,
+  mdiCloseBoxOutline,
+  mdiClose
+} from '@mdi/js'
 import ContestParticipantApi from '~/services/oblyk-api/ContestParticipantApi'
 
 export default {
@@ -154,11 +204,16 @@ export default {
       tombolaShowWinner: false,
       tombolaWinner: null,
       tombolaDeleting: false,
+      data: {
+        contest_wave_ids: this.contest.contest_waves.map(wave => wave.id),
+        contest_category_ids: this.contest.contest_categories.map(category => category.id)
+      },
 
       mdiDiceMultiple,
       mdiTrashCan,
       mdiOpenInApp,
-      mdiCloseBoxOutline
+      mdiCloseBoxOutline,
+      mdiClose
     }
   },
 
@@ -178,7 +233,7 @@ export default {
         this.tombolaLaunchLoading = true
       }
       new ContestParticipantApi(this.$axios, this.$auth)
-        .tombola(this.contest.gym_id, this.contest.id, type)
+        .tombola(this.contest.gym_id, this.contest.id, type, this.data)
         .then((resp) => {
           if (type === 'launch') {
             setTimeout(() => {
@@ -235,6 +290,22 @@ export default {
         .finally(() => {
           this.getTombolaWinners()
         })
+    },
+
+    winnerName (winner) {
+      const name = `${winner.first_name} ${winner.last_name.toUpperCase()}`
+      const names = [name]
+      const additionalInformation = []
+      if (this.contest.contest_categories.length > 1) {
+        additionalInformation.push(winner.contest_category.name)
+      }
+      if (winner.contest_wave.id !== null && this.contest.contest_waves.length > 1) {
+        additionalInformation.push(winner.contest_wave.name)
+      }
+      if (additionalInformation.length > 0) {
+        names.push(additionalInformation.join(' - '))
+      }
+      return names.join(' · ')
     }
   }
 }

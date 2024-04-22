@@ -112,16 +112,17 @@ class ContestParticipantApi extends BaseApi {
     })
   }
 
-  tombola (gymId, contestId, type) {
+  tombola (gymId, contestId, type, filters) {
     return this.axios.request({
-      method: 'GET',
+      method: 'POST',
       url: `${this.baseUrl}/gyms/${gymId}/contests/${contestId}/contest_participants/tombola.json`,
       headers: {
         Authorization: this.authToken(),
         HttpApiAccessToken: this.apiAccessToken
       },
-      params: {
-        type
+      data: {
+        type,
+        filters
       }
     })
   }
