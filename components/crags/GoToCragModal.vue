@@ -5,7 +5,7 @@
   >
     <template #activator="{ on, attrs }">
       <v-btn
-        class="mb-3 black-btn-icon"
+        class="mb-3 black-btn-icon --with-border"
         dark
         elevation="0"
         v-bind="attrs"

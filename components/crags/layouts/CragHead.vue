@@ -16,10 +16,9 @@
         </div>
       </template>
       <v-btn
-        class="seeOnMapBtn black-btn-icon"
+        class="seeOnMapBtn black-btn-icon --with-border"
         text
         small
-        outlined
         :to="`/maps/crags?lat=${crag.latitude}&lng=${crag.longitude}&zoom=16&crag_id=${crag.id}`"
       >
         {{ $t('actions.seeOnTheMap') }}
