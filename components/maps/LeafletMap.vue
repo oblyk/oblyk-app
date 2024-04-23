@@ -1140,9 +1140,9 @@ export default {
       return (feature, layer) => {
         if (feature.properties.type === 'RockBar') {
           layer.options.bubblingMouseEvents = false
-          layer.options.color = '#616161'
+          layer.options.color = '#212121'
           layer.options.weight = 7
-          layer.setText('• ', { repeat: true, offset: 12, attributes: { fill: '#616161' }, below: true })
+          layer.setText('• ', { repeat: true, offset: 12, attributes: { fill: '#212121' }, below: true })
         }
         if (feature.properties.type === 'Approach') {
           layer.options.bubblingMouseEvents = false
