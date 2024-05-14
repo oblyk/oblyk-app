@@ -2352,6 +2352,7 @@ export default {
       climbing_type: 'Majority climbing type',
       sectors_color: 'Sectors color',
       gym_grade_id: 'Difficulty system',
+      gym_grade: 'Difficulty system',
       gym_space_group_id: 'Group',
       anchor: 'Display routes anchor numbers'
     },

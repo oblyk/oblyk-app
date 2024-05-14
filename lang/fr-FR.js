@@ -2354,6 +2354,7 @@ export default {
       sectors_color: 'Couleur des secteurs',
       climbing_type: "Type d'escalade majoritaire",
       gym_grade_id: 'Système de difficulté',
+      gym_grade: 'Système de difficulté',
       gym_space_group_id: 'Groupe',
       anchor: 'Afficher les numéros de relais des voies'
     },
