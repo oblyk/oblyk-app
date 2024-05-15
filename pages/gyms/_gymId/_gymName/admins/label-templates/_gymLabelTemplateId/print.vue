@@ -14,7 +14,7 @@
         <div
           v-if="gymLabelTemplate && gymLabelTemplate.header_options.display"
           class="header"
-          :style="`height: ${gymLabelTemplate.header_options.height}`"
+          :style="headerStyle()"
         >
           <!-- Header Left Part -->
           <div
@@ -35,7 +35,7 @@
           <div class="header-center">
             <div
               v-if="page.header_body"
-              :style="headerStyle()"
+              :style="headerCenterStyle()"
               v-html="page.header_body"
             />
           </div>
@@ -74,7 +74,7 @@
         <div
           v-if="gymLabelTemplate && gymLabelTemplate.footer_options.display"
           class="footer"
-          :style="`height: ${gymLabelTemplate.footer_options.height}`"
+          :style="footerStyle()"
         >
           <!-- Footer Left Part -->
           <div
@@ -95,6 +95,7 @@
           <div class="footer-center">
             <div
               v-if="page.footer_body"
+              class="footer-center-top-part"
               :style="footerPartsStyle('center_top')"
               v-html="page.footer_body"
             />
@@ -472,9 +473,29 @@ export default {
       return `font-size: ${style.font_size}; color: ${style.color}; text-align: ${style.text_align}`
     },
 
-    headerStyle () {
+    footerStyle () {
+      let marginX
+      if (this.gymLabelTemplate.footer_options.margin_x) {
+        marginX = `padding-left: ${this.gymLabelTemplate.footer_options.margin_x}; padding-right: ${this.gymLabelTemplate.footer_options.margin_x};`
+      }
+      return `height: ${this.gymLabelTemplate.footer_options.height}; ${marginX}`
+    },
+
+    headerCenterStyle () {
       const style = this.gymLabelTemplate.header_options.center
-      return `font-size: ${style.font_size}; color: ${style.color}; text-align: ${style.text_align}`
+      let marginX
+      if (this.gymLabelTemplate.header_options.margin_x) {
+        marginX = `padding-left: ${this.gymLabelTemplate.header_options.margin_x}; padding-right: ${this.gymLabelTemplate.header_options.margin_x};`
+      }
+      return `font-size: ${style.font_size}; color: ${style.color}; text-align: ${style.text_align}; ${marginX}`
+    },
+
+    headerStyle () {
+      let marginX
+      if (this.gymLabelTemplate.header_options.margin_x) {
+        marginX = `padding-left: ${this.gymLabelTemplate.header_options.margin_x}; padding-right: ${this.gymLabelTemplate.header_options.margin_x};`
+      }
+      return `height: ${this.gymLabelTemplate.header_options.height}; ${marginX}`
     }
   }
 }
@@ -525,7 +546,7 @@ body {
     border-bottom-color: blue;
     border-bottom-style: solid;
   }
-  .footer-center, .header-center {
+  .footer-side-part, .header-side-part {
     border-left-width: 1px;
     border-left-color: blue;
     border-right-width: 1px;
@@ -591,8 +612,12 @@ body {
   }
   .footer-center, .header-center {
     flex-grow: 1;
-    padding-right: 2mm;
-    padding-left: 2mm;
+  }
+  .footer-center {
+    .footer-center-top-part, .footer-reference {
+      padding-left: 2mm;
+      padding-right: 2mm;
+    }
   }
   .header-center {
     display: flex;

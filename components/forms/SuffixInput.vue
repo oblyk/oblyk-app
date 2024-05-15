@@ -1,11 +1,12 @@
 <template>
   <v-text-field
-    :prepend-icon="prependIcon"
     v-model="unPrefixedValue"
+    :prepend-icon="prependIcon"
     :label="label"
     type="number"
     :suffix="suffix"
     outlined
+    :hide-details="hideDetails"
     :dense="dense"
     @input="onChange"
   />
@@ -34,6 +35,10 @@ export default {
     prependIcon: {
       type: String,
       default: null
+    },
+    hideDetails: {
+      type: Boolean,
+      default: false
     }
   },
 

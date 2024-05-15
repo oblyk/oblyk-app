@@ -55,7 +55,7 @@ export default {
   methods: {
     clickPart (part) {
       this.activePart = part === this.activePart ? null : part
-      this.callback(part)
+      this.callback(this.activePart)
     }
   }
 }

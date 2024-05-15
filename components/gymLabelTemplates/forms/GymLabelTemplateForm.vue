@@ -290,52 +290,54 @@
               Dans la section <strong>"Page"</strong> on paramètre les settings globaux de la page.
             </div>
 
-            <p class="text-decoration-underline mb-2 mt-3">
+            <p class="text-decoration-underline mb-2 mt-3 font-weight-bold">
               Paramètres globaux :
             </p>
-            <gym-label-font-input
-              v-model="data.font_family"
-              :label="$t('models.gymLabelTemplate.font_family')"
-              :prepend-icon="mdiFormatLetterCase"
-              dense
-            />
-            <layout-page-margin-input
-              v-model="data.layout_options.page_margin"
-            />
-            <v-row>
-              <v-col>
-                <v-select
-                  v-model="data.page_format"
-                  :prepend-icon="mdiFileExportOutline"
-                  :label="$t('models.gymLabelTemplate.page_format')"
-                  :items="page_format_items"
-                  item-text="text"
-                  item-value="value"
-                  hide-details
-                  outlined
-                  dense
-                />
-              </v-col>
-              <v-col>
-                <v-select
-                  v-model="data.page_direction"
-                  :prepend-icon="mdiPhoneRotateLandscape"
-                  :label="$t('models.gymLabelTemplate.page_direction')"
-                  :items="page_direction_items"
-                  item-text="text"
-                  item-value="value"
-                  hide-details
-                  outlined
-                  dense
-                />
-              </v-col>
-            </v-row>
+            <div class="border rounded pa-2 back-app-color">
+              <gym-label-font-input
+                v-model="data.font_family"
+                :label="$t('models.gymLabelTemplate.font_family')"
+                :prepend-icon="mdiFormatLetterCase"
+                dense
+              />
+              <layout-page-margin-input
+                v-model="data.layout_options.page_margin"
+              />
+              <v-row>
+                <v-col>
+                  <v-select
+                    v-model="data.page_format"
+                    :prepend-icon="mdiFileExportOutline"
+                    :label="$t('models.gymLabelTemplate.page_format')"
+                    :items="page_format_items"
+                    item-text="text"
+                    item-value="value"
+                    hide-details
+                    outlined
+                    dense
+                  />
+                </v-col>
+                <v-col>
+                  <v-select
+                    v-model="data.page_direction"
+                    :prepend-icon="mdiPhoneRotateLandscape"
+                    :label="$t('models.gymLabelTemplate.page_direction')"
+                    :items="page_direction_items"
+                    item-text="text"
+                    item-value="value"
+                    hide-details
+                    outlined
+                    dense
+                  />
+                </v-col>
+              </v-row>
+            </div>
 
             <!-- Header setting -->
-            <p class="text-decoration-underline mb-1 mt-5">
+            <p class="text-decoration-underline mb-1 mt-5 font-weight-bold">
               Entête de page :
             </p>
-            <div class="border rounded pa-2">
+            <div class="border rounded pa-2 back-app-color">
               <v-checkbox
                 v-model="data.header_options.display"
                 label="Afficher une entête"
@@ -352,16 +354,48 @@
                   label="Hauteur de l'entête"
                   dense
                 />
-                <p class="text--disabled mb-1">
-                  Cliquez sur une section de l'entête pour la personnaliser
-                </p>
+
+                <div class="d-flex mb-6">
+                  <div class="flex-shrink-0">
+                    <v-img
+                      contain
+                      src="/svg/footer_header_margin/header_margin_x.svg"
+                      height="90"
+                      width="65"
+                    />
+                  </div>
+                  <div class="flex-grow-1 pl-3">
+                    <suffix-input
+                      key="header_options.margin_x"
+                      v-model="data.header_options.margin_x"
+                      suffix="mm"
+                      label="Marge droite / gauche *"
+                      dense
+                      hide-details
+                    />
+                    <p class="mb-0 mt-1">
+                      * Réduit la largeur de l'entête par rapport au corps de la fiche.
+                    </p>
+                  </div>
+                </div>
+
                 <label-header-model
                   :callback="activeHeadPart"
-                  class="mb-4"
+                  class="mb-2"
                 />
 
+                <p
+                  v-if="headPart === null"
+                  class="text--disabled"
+                >
+                  Cliquez sur une section de l'entête pour la personnaliser
+                </p>
+
                 <!-- header left -->
-                <div v-if="headPart === 'left'">
+                <v-sheet
+                  v-if="headPart === 'left'"
+                  class="pa-2 rounded"
+                >
                   <v-checkbox
                     key="data.header_options.left.display"
                     v-model="data.header_options.left.display"
@@ -379,10 +413,13 @@
                     outlined
                     dense
                   />
-                </div>
+                </v-sheet>
 
                 <!-- header center -->
-                <div v-if="headPart === 'center'">
+                <v-sheet
+                  v-if="headPart === 'center'"
+                  class="pa-2 rounded"
+                >
                   <div class="d-flex">
                     <suffix-input
                       key="header_options.center.font_size"
@@ -410,10 +447,13 @@
                     label="Text du pied de page"
                     :rows="2"
                   />
-                </div>
+                </v-sheet>
 
                 <!-- header right -->
-                <div v-if="headPart === 'right'">
+                <v-sheet
+                  v-if="headPart === 'right'"
+                  class="pa-2 rounded"
+                >
                   <v-checkbox
                     key="data.header_options.right.display"
                     v-model="data.header_options.right.display"
@@ -431,15 +471,15 @@
                     outlined
                     dense
                   />
-                </div>
+                </v-sheet>
               </div>
             </div>
 
             <!-- Footer setting -->
-            <p class="text-decoration-underline mb-1 mt-5">
+            <p class="text-decoration-underline mb-1 mt-5 font-weight-bold">
               Pied de page :
             </p>
-            <div class="border rounded pa-2">
+            <div class="border rounded pa-2 back-app-color">
               <v-checkbox
                 v-model="data.footer_options.display"
                 label="Afficher un pied de page"
@@ -456,16 +496,46 @@
                   label="Hauteur du pied de page"
                   dense
                 />
-                <p class="text--disabled mb-1 text-center">
-                  Cliquez sur une section du pied de page pour la personnaliser
-                </p>
+                <div class="d-flex mb-6">
+                  <div class="flex-shrink-0">
+                    <v-img
+                      contain
+                      src="/svg/footer_header_margin/footer_margin_x.svg"
+                      height="90"
+                      width="65"
+                    />
+                  </div>
+                  <div class="flex-grow-1 pl-3">
+                    <suffix-input
+                      key="footer_options.margin_x"
+                      v-model="data.footer_options.margin_x"
+                      suffix="mm"
+                      label="Marge droite / gauche *"
+                      dense
+                      hide-details
+                    />
+                    <p class="mb-0 mt-1">
+                      * Réduit la largeur du pied de page par rapport au corps de la fiche.
+                    </p>
+                  </div>
+                </div>
                 <label-footer-model
                   :callback="activeFooterPart"
-                  class="mb-4"
+                  class="mb-2"
                 />
 
+                <p
+                  v-if="footerPart === null"
+                  class="text--disabled text-center"
+                >
+                  Cliquez sur une section du pied de page pour la personnaliser
+                </p>
+
                 <!-- Footer top -->
-                <div v-if="footerPart === 'top'">
+                <v-sheet
+                  v-if="footerPart === 'top'"
+                  class="pa-2 rounded"
+                >
                   <div class="d-flex">
                     <suffix-input
                       key="footer_options.center_top.font_size"
@@ -493,10 +563,13 @@
                     label="Text du pied de page"
                     :rows="2"
                   />
-                </div>
+                </v-sheet>
 
                 <!-- Footer bottom -->
-                <div v-if="footerPart === 'bottom'">
+                <v-sheet
+                  v-if="footerPart === 'bottom'"
+                  class="pa-2 rounded"
+                >
                   <div class="d-flex">
                     <suffix-input
                       key="footer_options.center_bottom.font_size"
@@ -524,10 +597,13 @@
                     label="Text de la partie référence"
                     :rows="1"
                   />
-                </div>
+                </v-sheet>
 
                 <!-- Footer right -->
-                <div v-if="footerPart === 'right'">
+                <v-sheet
+                  v-if="footerPart === 'right'"
+                  class="pa-2 rounded"
+                >
                   <v-checkbox
                     key="data.footer_options.right.display"
                     v-model="data.footer_options.right.display"
@@ -545,10 +621,13 @@
                     outlined
                     dense
                   />
-                </div>
+                </v-sheet>
 
                 <!-- Footer left -->
-                <div v-if="footerPart === 'left'">
+                <v-sheet
+                  v-if="footerPart === 'left'"
+                  class="pa-2 rounded"
+                >
                   <v-checkbox
                     key="data.footer_options.left.display"
                     v-model="data.footer_options.left.display"
@@ -566,7 +645,7 @@
                     outlined
                     dense
                   />
-                </div>
+                </v-sheet>
               </div>
             </div>
           </v-tab-item>
