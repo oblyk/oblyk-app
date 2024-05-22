@@ -171,7 +171,7 @@
 
         <!-- Difficulty appreciation -->
         <v-col
-          v-if="gymRoute.difficulty_appreciations"
+          v-if="gymRoute.votes && gymRoute.votes.difficulty_appreciations"
           cols="12"
           class="my-1 px-1"
         >
