@@ -19,8 +19,11 @@
           <span v-if="section.bolt_type">
             {{ $t(`models.boltType.${section.bolt_type}`) }}
           </span>
+          <span v-if="section.bolt_count">
+            {{ $tc('components.cragRoute.pointCount', section.bolt_count, { count: section.bolt_count }) }}
+          </span>
           <span v-if="section.anchor_type">
-            {{ $t('models.cragRoute.anchor') }} :
+            <strong>{{ $t('models.cragRoute.anchor') }} :</strong>
             {{ $t(`models.anchorType.${section.anchor_type}`) }}
           </span>
         </span>
@@ -30,8 +33,8 @@
       </v-list-item-subtitle>
       <v-list-item-subtitle>
         <small
-          v-for="(tag, index) in section.tags"
-          :key="`route-section-tag-${index}`"
+          v-for="(tag, tagIndex) in section.tags"
+          :key="`route-section-tag-${tagIndex}`"
         >
           #{{ $t(`models.tags.${tag}`) }}
         </small>
