@@ -94,5 +94,3 @@ sw.*
 # Deployment
 config/deploy/next.rb
 config/deploy/production.rb
-/.env.local
-/report.20230930.165140.41253.0.001.json
