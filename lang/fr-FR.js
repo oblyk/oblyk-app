@@ -8,9 +8,11 @@ export default {
     edit: 'Modifier',
     editName: 'Modifier %{name}',
     new: 'Nouveau',
+    move: 'Déplacer',
     add: 'Ajouter',
     apply: 'Appliquer',
     editSector: 'Modifier le secteur',
+    editSpace: "Modifier l'espace",
     printSector: 'Imprimer le secteur',
     create: 'Créer',
     delete: 'Supprimer',
@@ -36,6 +38,8 @@ export default {
     dontAskMeAgain: 'Ne plus me demander',
     changeLogo: 'Changer le logo',
     changePlan: 'Changer le plan',
+    change3dPlan: 'Changer le 3D',
+    edit3d: 'Éditer le 3D',
     createNewSpace: 'Créer un nouvel espace',
     addSector: 'Ajouter un secteur',
     newSector: 'Nouveau secteur',
@@ -50,6 +54,7 @@ export default {
     areYouSur: 'Êtes-vous sûr·e ?',
     addSystem: 'Ajouter un système',
     uploadMap: 'Uploader un plan',
+    upload3D: 'Uploader un 3D',
     browse: 'Parcourir ...',
     addPicture: 'Ajouter une photo',
     editPicture: 'Modifier la photo',
@@ -117,6 +122,7 @@ export default {
     continueToAdd: "Continuer d'ajouter",
     addArea: 'Ajouter un nouveau groupe',
     createGroup: 'Créer un groupe',
+    importAsset: 'Importer une décoration',
     addRepetition: 'Ajouter une répétition',
     addInMyLogbook: 'Ajouter à mon carnet',
     addInMyTickList: 'Ajouter à ma tick list',
@@ -160,7 +166,8 @@ export default {
     archive: 'Archiver',
     unArchive: 'Dés-archiver',
     follow: 'Suivre',
-    followed: 'Suivie'
+    followed: 'Suivie',
+    takeCapture: 'Faire la miniature'
   },
   colors: {
     noColor: 'Toutes',
@@ -213,6 +220,7 @@ export default {
     commentsCount: 'Commentaire | Un commentaire | %{count} commentaires',
     videosCount: 'Vidéo | Une vidéo | %{count} vidéos',
     loading: 'Chargement ...',
+    loading3D: 'Chargement du 3D ...',
     loadingCommentModule: 'Chargement du module de commentaire ...',
     loadingVideoModule: 'Chargement du module de vidéo ...',
     meters: 'mètres',
@@ -1279,7 +1287,8 @@ export default {
       videos: 'Vidéos',
       myCommunity: 'Ma communauté',
       noComments: 'Vous verrez les commentaires de vos grimpeurs et grimpeuses ici quand ils/elles en auront posté !',
-      noVideos: 'Vous verrez les vidéos de vos grimpeurs et grimpeuses ici quand ils/elles en auront posté !'
+      noVideos: 'Vous verrez les vidéos de vos grimpeurs et grimpeuses ici quand ils/elles en auront posté !',
+      assets: 'Decorations'
     },
     gymClimbingStyles: {
       title: "Les styles d'escalade de ma salle",
@@ -1336,6 +1345,7 @@ export default {
       chooseSpace: 'Choisissez un espace',
       explain: "Un <cite>\"espace\"</cite> est une grande zone d'une salle qui peut contenir plusieurs secteurs. Exemple : \"Espace de voie\", \"Espace de bloc\", \"Pan\", etc.<br>À vous de trouver la meilleure division pour votre salle.",
       explainMissingPlan: 'Uploader un plan de <cite>"%{name}"</cite> sur lequel vous pourrez tracer les secteurs',
+      explainMissingThreeD: 'Uploader le fichier 3D de <cite>"%{name}"</cite> sur lequel vous pourrez tracer les secteurs',
       uploadPlanFor: 'Télécharger un plan pour : %{name}',
       routes: 'Ouvertures',
       plan: 'Plan',
@@ -2357,7 +2367,8 @@ export default {
       gym_grade_id: 'Système de difficulté',
       gym_grade: 'Système de difficulté',
       gym_space_group_id: 'Groupe',
-      anchor: 'Afficher les numéros de relais des voies'
+      anchor: 'Afficher les numéros de relais des voies',
+      representation_type: "Type de représentation de l'espace"
     },
     gymSpaceGroup: {
       name: 'Nom du groupe',
@@ -2570,6 +2581,10 @@ export default {
       A40: 'Vétéran 1 (40 et +)',
       A50: 'Vétéran 2 (50 et +)',
       A60: 'Vétéran 3 (60 et +)'
+    },
+    representationTypes: {
+      '2d_picture': 'Image 2D',
+      '3d': '3D'
     },
     climbs: {
       sport_climbing: 'Voie',

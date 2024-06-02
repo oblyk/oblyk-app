@@ -42,7 +42,6 @@
         :items="gymGrades"
         item-text="text"
         item-value="value"
-        hide-details
         :label="$t('models.gymSpace.gym_grade_id')"
         outlined
       />
@@ -53,8 +52,17 @@
         :items="gym.gym_space_groups"
         item-text="name"
         item-value="id"
-        hide-details
         :label="$t('models.gymSpace.gym_space_group_id')"
+        outlined
+      />
+
+      <v-select
+        v-model="data.representation_type"
+        :items="representationTypes"
+        item-text="text"
+        item-value="value"
+        hide-details
+        :label="$t('models.gymSpace.representation_type')"
         outlined
       />
 
@@ -116,6 +124,7 @@ export default {
         gym_grade_id: this.gymSpace?.gym_grade_id,
         gym_space_group_id: this.gymSpace?.gym_space_group_id,
         anchor: this.gymSpace?.anchor,
+        representation_type: this.gymSpace?.representation_type,
         gym_id: this.gymSpace?.gym_id || this.gymId
       },
       climbingGymList: [
@@ -124,6 +133,10 @@ export default {
         { text: this.$t('models.climbs.fun_climbing'), value: 'fun_climbing' },
         { text: this.$t('models.climbs.training_space'), value: 'training_space' },
         { text: this.$t('models.climbs.pan'), value: 'pan' }
+      ],
+      representationTypes: [
+        { text: this.$t('models.representationTypes.2d_picture'), value: '2d_picture' },
+        { text: this.$t('models.representationTypes.3d'), value: '3d' }
       ],
       gymGrades: []
     }

@@ -21,7 +21,7 @@
         v-if="$auth.loggedIn && sector && currentUserIsGymAdmin() && (gymAuthCan(gym, 'manage_space') || gymAuthCan(gym, 'manage_opening'))"
         :gym-sector="sector"
         :gym="gym"
-        :show-plan-options="showPlanOptions"
+        :show-plan-options="showPlanOptions && gymSpace.representation_type === '2d_picture'"
       />
     </div>
     <div

@@ -157,12 +157,11 @@ export default {
     },
 
     setMapView () {
-      const paddingLeft = this.$vuetify.breakpoint.mobile ? 0 : 455
       const paddingBottom = this.$vuetify.breakpoint.mobile ? 240 : 0
       this.map.fitBounds(
         this.bounds,
         {
-          paddingTopLeft: [paddingLeft, 0],
+          paddingTopLeft: [0, 0],
           paddingBottomRight: [0, paddingBottom]
         }
       )
@@ -170,12 +169,11 @@ export default {
 
     setMapViewOnSector (gymSectorId, maintainZoom = true) {
       const polygonSector = this.$refs[`polygon-sector-${gymSectorId}`]
-      const paddingLeft = this.$vuetify.breakpoint.mobile ? 0 : 455
       const paddingBottom = this.$vuetify.breakpoint.mobile ? 240 : 0
       this.map.fitBounds(
         polygonSector[0].mapObject.getBounds(),
         {
-          paddingTopLeft: [paddingLeft, 0],
+          paddingTopLeft: [0, 0],
           paddingBottomRight: [0, paddingBottom],
           animate: true,
           maxZoom: maintainZoom ? this.map.getZoom() : null
@@ -287,9 +285,6 @@ export default {
   top: 64px;
   width: 100%;
   height: 100%;
-  .leaflet-container {
-    background-color: #1e1e1e;
-  }
 
   .leaflet-pane {
     z-index: 4;
@@ -308,11 +303,10 @@ export default {
     }
   }
 }
-
 .theme--dark {
   .gym-space-map {
     .leaflet-container {
-      background-color: #1e1e1e;
+      background-color: rgb(18, 18, 18);
     }
   }
 }

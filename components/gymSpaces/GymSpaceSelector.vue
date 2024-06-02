@@ -6,9 +6,6 @@
       <v-skeleton-loader class="d-inline-block" type="avatar" />
     </div>
     <div v-if="!loadingGymSpaces && (groups.length > 0 || ungroupedSpaces.length > 0)">
-      <p class="mb-2">
-        <small class="text--disabled">Les espaces de {{ gym.name }} :</small>
-      </p>
       <div class="text-no-wrap overflow-x-auto">
         <!-- Grouped spaces -->
         <div
@@ -33,8 +30,8 @@
               class="gym-space-avatar"
             >
               <v-img
-                v-if="space.plan"
-                :src="space.planTinyThumbnailUrl"
+                v-if="space.pictureTinyUrl"
+                :src="space.pictureTinyUrl"
                 height="62"
                 width="62"
                 contain
@@ -70,8 +67,8 @@
             class="gym-space-avatar"
           >
             <v-img
-              v-if="space.plan"
-              :src="space.planTinyThumbnailUrl"
+              v-if="space.pictureTinyUrl"
+              :src="space.pictureTinyUrl"
               height="62"
               width="62"
               contain
@@ -228,14 +225,14 @@ export default {
     border-width: 4px;
     transition: background-color 0.3s, border-color 0.3s;
     &:hover {
-      background: rgba(49, 153, 78, 0.2) !important;
-      border-color: rgba(49, 153, 78, 0.3) !important;
+      background: rgba(98, 0, 234, 0.2) !important;
+      border-color: rgba(98, 0, 234, 0.3) !important;
     }
   }
   .active {
     .gym-space-avatar {
-      border-color: rgb(49, 153, 78);
-      background: rgba(49, 153, 78, 0.2);
+      border-color: rgb(98, 0, 234);
+      background: rgba(98, 0, 234, 0.2);
     }
   }
 }

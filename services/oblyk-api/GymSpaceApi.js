@@ -9,6 +9,14 @@ class GymSpaceApi extends BaseApi {
     })
   }
 
+  assets (gymId) {
+    return this.axios.request({
+      method: 'GET',
+      url: `${this.baseUrl}/gyms/${gymId}/gym_spaces/assets.json`,
+      headers: { HttpApiAccessToken: this.apiAccessToken }
+    })
+  }
+
   groups (gymId) {
     return this.axios.request({
       method: 'GET',
@@ -21,6 +29,14 @@ class GymSpaceApi extends BaseApi {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/gyms/${gymId}/gym_spaces/${spaceId}.json`,
+      headers: { HttpApiAccessToken: this.apiAccessToken }
+    })
+  }
+
+  threeDElements (gymId, spaceId) {
+    return this.axios.request({
+      method: 'GET',
+      url: `${this.baseUrl}/gyms/${gymId}/gym_spaces/${spaceId}/three_d_elements.json`,
       headers: { HttpApiAccessToken: this.apiAccessToken }
     })
   }

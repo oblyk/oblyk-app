@@ -33,10 +33,10 @@
         {{ $t('actions.cancel') }}
       </v-btn>
       <v-btn
-        text
-        outlined
+        elevation="0"
         class="ml-2"
-        color="primary"
+        color="#6200ea"
+        dark
         :loading="updatingColor"
         @click="valid()"
       >
@@ -50,7 +50,7 @@
 import { mdiFormatColorFill } from '@mdi/js'
 import GymSpaceApi from '~/services/oblyk-api/GymSpaceApi'
 import GymSpace from '~/models/GymSpace'
-const defaultColor = 'rgb(49,153,78)'
+const defaultColor = 'rgb(98,0,234)'
 
 export default {
   name: 'GymSpaceEditingSectorsColor',

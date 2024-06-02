@@ -49,6 +49,26 @@ export default class GymSpace extends ActiveData {
     }
   }
 
+  get pictureTinyUrl () {
+    if (this.representation_type === '3d' && this.three_d_picture_tiny_thumbnail_url) {
+      return this.three_d_picture_tiny_thumbnail_url
+    } else if (this.representation_type === '2d_picture' && this.plan_tiny_thumbnail_url) {
+      return this.plan_tiny_thumbnail_url
+    } else {
+      return null
+    }
+  }
+
+  get pictureThumbnailUrl () {
+    if (this.representation_type === '3d' && this.three_d_picture_thumbnail_url) {
+      return this.three_d_picture_thumbnail_url
+    } else if (this.representation_type === '2d_picture' && this.plan_thumbnail_url) {
+      return this.plan_thumbnail_url
+    } else {
+      return null
+    }
+  }
+
   get Gym () {
     return new Gym({ attributes: this.gym })
   }

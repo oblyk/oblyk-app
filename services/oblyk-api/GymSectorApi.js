@@ -53,6 +53,17 @@ class GymSectorApi extends BaseApi {
     })
   }
 
+  deleteThreeDPath (gymId, spaceId, sectorId) {
+    return this.axios.request({
+      method: 'DELETE',
+      url: `${this.baseUrl}/gyms/${gymId}/gym_spaces/${spaceId}/gym_sectors/${sectorId}/delete_three_d_path.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
+    })
+  }
+
   create (data) {
     return this.axios.request({
       method: 'POST',

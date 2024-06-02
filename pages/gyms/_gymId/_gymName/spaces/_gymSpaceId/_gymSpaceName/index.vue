@@ -1,21 +1,46 @@
 <template>
   <!-- Gym space -->
-  <div class="gym-space-interface">
+  <div
+    class="gym-space-interface"
+    :class="$vuetify.breakpoint.mobile ? '--mobile-interface' : '--desktop-interface'"
+  >
     <!-- Plan area -->
     <div
       class="gym-space-plan"
-      :class="$vuetify.breakpoint.mobile ? 'mobile-interface' : 'desktop-interface'"
+      :class="$vuetify.breakpoint.mobile ? '--mobile-interface' : '--desktop-interface'"
     >
       <client-only>
-        <gym-space-plan
-          v-if="gymSpace && gymSpace.plan"
-          :gym-space="gymSpace"
-        />
-        <gym-space-plan-missing
-          v-if="gymSpace && !gymSpace.plan"
-          :gym-space="gymSpace"
-          :gym="gymSpace.gym"
-        />
+        <!-- 2D plan -->
+        <div
+          v-if="gymSpace && gymSpace.representation_type === '2d_picture'"
+          class="full-height"
+        >
+          <gym-space-plan
+            v-if="gymSpace.plan"
+            :gym-space="gymSpace"
+          />
+          <gym-space-plan-missing
+            v-if="!gymSpace.plan"
+            :gym-space="gymSpace"
+            :gym="gymSpace.gym"
+          />
+        </div>
+
+        <!-- 3D plan -->
+        <div
+          v-if="gymSpace && gymSpace.representation_type === '3d'"
+          class="full-height"
+        >
+          <gym-space-three-d
+            v-if="gymSpace && gymSpace.have_three_d"
+            :gym-space="gymSpace"
+          />
+          <gym-space-three-d-missing
+            v-if="!gymSpace.have_three_d"
+            :gym-space="gymSpace"
+            :gym="gymSpace.gym"
+          />
+        </div>
         <p
           v-if="!gymSpace"
           class="text-center text--disabled mt-5"
@@ -35,7 +60,6 @@
         <v-sheet
           v-if="!gymSpace"
           class="rounded pa-4 ma-4"
-          style="height: calc(100vh - 100px)"
         >
           <v-skeleton-loader type="sentences, avatar" />
         </v-sheet>
@@ -49,9 +73,9 @@
       <!-- Open gym route in right side of info in desktop interface -->
       <div
         v-if="!$vuetify.breakpoint.mobile && (loadingGymRoute || gymRoute)"
-        class="gym-route-on-desktop-container py-3"
+        class="gym-route-on-desktop-container"
       >
-        <div class="gym-route-on-desktop-card">
+        <div class="gym-route-on-desktop-card py-1 pl-1">
           <v-card class="gym-route-card">
             <spinner v-if="loadingGymRoute" />
             <gym-route-info
@@ -93,6 +117,8 @@ import GymRouteApi from '~/services/oblyk-api/GymRouteApi'
 import GymRoute from '~/models/GymRoute'
 import Spinner from '~/components/layouts/Spiner'
 import DownToCloseDialog from '~/components/ui/DownToCloseDialog'
+const GymSpaceThreeDMissing = () => import('~/components/gymSpaces/GymSpaceThreeDMissing')
+const GymSpaceThreeD = () => import('~/components/gymSpaces/GymSpaceThreeD')
 const GymRouteInfo = () => import('~/components/gymRoutes/GymRouteInfo')
 const GymSpacePlan = () => import('@/components/gymSpaces/GymSpacePlan')
 const GymSpacePlanMissing = () => import('@/components/gymSpaces/GymSpacePlanMissing')
@@ -100,6 +126,8 @@ const GymSpacePlanMissing = () => import('@/components/gymSpaces/GymSpacePlanMis
 export default {
   meta: { orphanRoute: true },
   components: {
+    GymSpaceThreeDMissing,
+    GymSpaceThreeD,
     DownToCloseDialog,
     Spinner,
     GymSpaceInfoAndRoutes,
@@ -128,9 +156,9 @@ export default {
     leftSideClass () {
       const leftClass = []
       if (this.$vuetify.breakpoint.mobile) {
-        leftClass.push('mobile-interface')
+        leftClass.push('--mobile-interface')
       } else {
-        leftClass.push('desktop-interface')
+        leftClass.push('--desktop-interface')
       }
 
       if (this.gymRoute !== null || this.loadingGymRoute) {
@@ -205,11 +233,18 @@ export default {
 
 <style lang="scss">
 .gym-space-interface {
+  position: relative;
+  width: 100%;
+  &.--desktop-interface { height: calc(100vh - 64px); }
+  &.--mobile-interface { height: calc(100vh - 43px); }
+
   .gym-space-left-side {
-    z-index: 1;
+    z-index: 5;
     position: relative;
-    &.desktop-interface {
+    &.--desktop-interface {
       width: 450px;
+      height: calc(100vh - 64px);
+      overflow-y: auto;
       margin-top: 0;
       &.--with-active-gym-route {
         width: 900px;
@@ -218,7 +253,7 @@ export default {
         width: 450px;
       }
     }
-    &.mobile-interface {
+    &.--mobile-interface {
       width: 100%;
       margin-top: calc(100vh - 260px);
       .gym-space-info-and-routes {
@@ -230,37 +265,38 @@ export default {
       position: absolute;
       top: 0;
       right: 0;
-      height: calc(100vh - 64px);
+      height: 100%;
       width: 450px;
       overflow: hidden;
       .gym-route-on-desktop-card {
         position: fixed;
-        height: calc(100vh - 85px);
-        top: 75px;
+        height: 100%;
         width: 450px;
         overflow-y: auto;
         overflow-x: hidden;
         .gym-route-card {
           min-height: 100%;
-          backdrop-filter: blur(10px);
         }
       }
     }
   }
 
   .gym-space-plan {
-    position: fixed;
-    top: 0;
-    right: 0;
     width: 100%;
-    height: calc(100vh - 45px);
-    &.desktop-interface {
-      top: 64px;
-      width: calc(100vw - 300px);
-      height: calc(100vh - 64px);
+    &.--desktop-interface {
+      height: 100%;
+      position: absolute;
+      padding-left: 440px;
+    }
+    &.--mobile-interface {
+      height: calc(100vh - 260px);
+      position: fixed;
+      top: 0;
+      right: 0;
     }
   }
 }
+
 .gym-route-dialog {
   width: 100%;
   height: 100%;
@@ -269,16 +305,6 @@ export default {
   overflow-x: hidden;
   .v-card {
     min-height: 100%;
-  }
-}
-.theme--dark {
-  .gym-route-card {
-    background-color: rgba(17, 17, 17, 0.9) !important;
-  }
-}
-.theme--light {
-  .gym-route-card {
-    background-color: rgba(255, 255, 255, 0.8) !important;
   }
 }
 </style>

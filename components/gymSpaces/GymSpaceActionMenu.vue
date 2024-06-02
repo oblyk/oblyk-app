@@ -30,7 +30,7 @@
 
       <!-- Change space plan -->
       <v-list-item
-        v-if="gymAuthCan(gym, 'manage_space')"
+        v-if="gymAuthCan(gym, 'manage_space') && gymSpace.representation_type === '2d_picture'"
         link
         :to="`${gymSpace.path}/upload-plan`"
       >
@@ -40,6 +40,22 @@
         <v-list-item-content>
           <v-list-item-title>
             {{ $t('actions.changePlan') }}
+          </v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+
+      <!-- Change space 3D -->
+      <v-list-item
+        v-if="gymAuthCan(gym, 'manage_space')"
+        link
+        :to="`${gym.adminPath}/spaces/${gymSpace.id}/edit-three-d`"
+      >
+        <v-list-item-icon>
+          <v-icon>{{ mdiCube }}</v-icon>
+        </v-list-item-icon>
+        <v-list-item-content>
+          <v-list-item-title>
+            {{ $t('actions.edit3d') }}
           </v-list-item-title>
         </v-list-item-content>
       </v-list-item>
@@ -54,7 +70,7 @@
             <v-icon
               left
               class="mr-7"
-              :color="gymSpace.sectors_color || 'rgb(49, 153, 78)'"
+              :color="gymSpace.sectors_color || 'rgb(98, 0, 234)'"
             >
               {{ mdiFormatColorFill }}
             </v-icon>
@@ -141,7 +157,8 @@ import {
   mdiShapeSquarePlus,
   mdiMapPlus,
   mdiFormatColorFill,
-  mdiViewDashboard
+  mdiViewDashboard,
+  mdiCube
 } from '@mdi/js'
 import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
 
@@ -168,7 +185,8 @@ export default {
       mdiShapeSquarePlus,
       mdiMapPlus,
       mdiFormatColorFill,
-      mdiViewDashboard
+      mdiViewDashboard,
+      mdiCube
     }
   }
 }

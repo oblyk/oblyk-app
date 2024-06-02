@@ -6,8 +6,9 @@
           tile
         >
           <v-img
+            v-if="gymSpace.pictureTinyUrl"
             contain
-            :src="gymSpace.planTinyThumbnailUrl"
+            :src="gymSpace.pictureTinyUrl"
           />
         </v-avatar>
       </v-list-item-avatar>
@@ -22,9 +23,8 @@
           {{ gymSpace.name }}
           <v-btn
             text
-            x-small
+            small
             outlined
-            color="primary"
             class="ml-1"
             :to="gymSpace.path"
           >
@@ -101,6 +101,17 @@
             <nuxt-link :to="`${gymSpace.Gym.adminPath}/grades/${gymSpace.gym_grade.id}`">
               {{ gymSpace.gym_grade.name }}
             </nuxt-link>
+          </template>
+        </description-line>
+      </v-col>
+      <v-col>
+        <description-line
+          :icon="gymSpace.representation_type === '2d_picture' ? mdiImageArea : mdiCubeOutline"
+          class="border rounded-sm pa-1"
+          :item-title="$t('models.gymSpace.representation_type')"
+        >
+          <template #content>
+            {{ $t(`models.representationTypes.${gymSpace.representation_type}`) }}
           </template>
         </description-line>
       </v-col>
@@ -194,7 +205,16 @@
 </template>
 
 <script>
-import { mdiDotsVertical, mdiDelete, mdiPencil, mdiCircle, mdiSortBoolAscending, mdiCheck } from '@mdi/js'
+import {
+  mdiDotsVertical,
+  mdiDelete,
+  mdiPencil,
+  mdiCircle,
+  mdiSortBoolAscending,
+  mdiCheck,
+  mdiImageArea,
+  mdiCubeOutline
+} from '@mdi/js'
 import { ClimbingTypeMixin } from '~/mixins/ClimbingTypeMixin'
 import GymSpaceApi from '~/services/oblyk-api/GymSpaceApi'
 import GymSectorApi from '~/services/oblyk-api/GymSectorApi'
@@ -227,7 +247,9 @@ export default {
       mdiPencil,
       mdiCircle,
       mdiSortBoolAscending,
-      mdiCheck
+      mdiCheck,
+      mdiCubeOutline,
+      mdiImageArea
     }
   },
 

@@ -8,25 +8,6 @@
     </v-card-title>
     <v-card-text>
       <v-list dense>
-        <!-- Address -->
-        <v-list-item :to="`/maps/gyms?lat=${gym.latitude}&lng=${gym.longitude}`">
-          <v-list-item-icon>
-            <v-icon>{{ mdiMap }}</v-icon>
-          </v-list-item-icon>
-          <v-list-item-content>
-            <v-list-item-title>
-              {{ gym.country }}, {{ gym.city }}
-              <v-btn
-                small
-                class="ml-2"
-                elevation="0"
-              >
-                {{ $t('actions.seeOnTheMap') }}
-              </v-btn>
-            </v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-
         <!-- Web site -->
         <v-list-item>
           <v-list-item-icon>
@@ -49,6 +30,31 @@
           </v-list-item-content>
         </v-list-item>
 
+        <!-- Address -->
+        <v-list-item>
+          <v-list-item-icon>
+            <v-icon>{{ mdiMap }}</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>
+              {{ gym.city }} <cite>({{ gym.country }})</cite>
+              <v-btn
+                small
+                dark
+                outlined
+                class="ml-2 black-btn-icon"
+                elevation="0"
+                :to="`/maps/gyms?lat=${gym.latitude}&lng=${gym.longitude}`"
+              >
+                {{ $t('actions.seeOnTheMap') }}
+              </v-btn>
+            </v-list-item-title>
+            <v-list-item-subtitle>
+              {{ gym.postal_code }}, {{ gym.address }}
+            </v-list-item-subtitle>
+          </v-list-item-content>
+        </v-list-item>
+
         <!-- Phone number -->
         <v-list-item>
           <v-list-item-icon>
@@ -62,6 +68,9 @@
               <v-btn
                 v-else
                 small
+                dark
+                outlined
+                class="black-btn-icon"
                 elevation="0"
               >
                 {{ $t('components.gym.seePhoneNumber') }}
@@ -89,6 +98,9 @@
               <v-btn
                 v-else
                 small
+                dark
+                outlined
+                class="black-btn-icon"
                 elevation="0"
               >
                 {{ $t('components.gym.seeEmail') }}

@@ -1,25 +1,21 @@
 <template>
   <div>
     <!-- Sort sector select -->
-    <v-row class="mb-2">
-      <v-col
-        :cols="currentUserIsGymAdmin() && gymAuthCan(gym, 'manage_opening') ? '10' : '12'"
-      >
-        <gym-space-route-sort
-          v-model="sort"
-          :gym="gym"
-          :gym-space="gymSpace"
-        />
-      </v-col>
-      <v-col
+    <div class="d-flex mb-2">
+      <gym-space-route-sort
+        v-model="sort"
+        class="flex-grow-1"
+        :gym="gym"
+        :gym-space="gymSpace"
+      />
+      <div
         v-if="currentUserIsGymAdmin() && gymAuthCan(gym, 'manage_opening')"
-        cols="2"
-        class="text-right"
+        class="ml-auto"
       >
         <v-btn
           text
           icon
-          color="primary"
+          color="rgb(98, 0, 234)"
           :to="gymSpace ? `${gymSpace.path}/select-sector` : `${gym.path}/select-space`"
           :title="$t('actions.addLine')"
         >
@@ -27,15 +23,15 @@
             {{ mdiSourceBranchPlus }}
           </v-icon>
         </v-btn>
-      </v-col>
-    </v-row>
+      </div>
+    </div>
 
     <!-- Show highlighted sector -->
     <v-alert
       v-if="showSectorsToast"
       text
       dense
-      color="primary"
+      color="#6200ea"
       dismissible
       @input="closeSectorFilter"
     >
@@ -85,7 +81,7 @@
             :key="`space-sector-index${spaceSectorIndex}`"
             :gym-sector="spaceSector"
             :gym="gym"
-            :gym-space="route.gym_space"
+            :gym-space="gymSpace || route.gym_space"
             :class="routeIndex !== 0 ? 'mt-5' : ''"
             :show-plan-options="gymSpace !== null"
           />

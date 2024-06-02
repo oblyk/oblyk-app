@@ -190,5 +190,16 @@ class GymApi extends BaseApi {
       }
     })
   }
+
+  threeD (gymId) {
+    return this.axios.request({
+      method: 'GET',
+      url: `${this.baseUrl}/gyms/${gymId}/three_d.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
+    })
+  }
 }
 export default GymApi

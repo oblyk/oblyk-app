@@ -8,9 +8,11 @@ export default {
     edit: 'Edit',
     editName: 'Edit %{name}',
     new: 'New',
+    move: 'Move',
     add: 'Add',
     apply: 'Apply',
     editSector: 'Edit sector',
+    editSpace: 'Edit space',
     printSector: 'Print sector',
     create: 'Create',
     delete: 'Delete',
@@ -36,6 +38,8 @@ export default {
     dontAskMeAgain: "Don't ask me again",
     changeLogo: 'Change logo',
     changePlan: 'Change plan',
+    change3dPlan: 'Change 3D',
+    edit3d: 'Edit le 3D',
     createNewSpace: 'Create a new space',
     addSector: 'Add sector',
     newSector: 'New sector',
@@ -50,6 +54,7 @@ export default {
     areYouSur: 'Are you sure ?',
     addSystem: 'Add system',
     uploadMap: 'Upload map',
+    upload3D: 'Upload 3D',
     browse: 'Browse ...',
     addPicture: 'Add picture',
     editPicture: 'Edit picture',
@@ -118,6 +123,7 @@ export default {
     addArea: 'Add new crags group',
     createGroup: 'Create group',
     addRepetition: 'Add a repetition',
+    importAsset: 'Import asset',
     addInMyLogbook: 'Add on my logbook',
     addInMyTickList: 'Add on my tick list',
     removeFromMyTickList: 'Remove from my tick list',
@@ -160,7 +166,8 @@ export default {
     archive: 'Archive',
     unArchive: 'Un archive',
     follow: 'Follow',
-    followed: 'Follower'
+    followed: 'Follower',
+    takeCapture: 'Take thumbnail'
   },
   colors: {
     noColor: 'All',
@@ -213,6 +220,7 @@ export default {
     commentsCount: 'Comment | One comment | %{count} comments',
     videosCount: 'Video | One video | %{count} videos',
     loading: 'Loading ...',
+    loading3D: 'Loading 3D ...',
     loadingCommentModule: 'Loading the comment module ...',
     loadingVideoModule: 'Loading the video module ...',
     meters: 'meters',
@@ -1278,7 +1286,8 @@ export default {
       videos: 'Videos',
       myCommunity: 'My community',
       noComments: "You'll see your climbers' comments here when they've posted some!",
-      noVideos: "You'll see your climbers' videos here when they post one!"
+      noVideos: "You'll see your climbers' videos here when they post one!",
+      assets: 'Assets'
     },
     gymClimbingStyles: {
       title: 'Climbing styles in my gym',
@@ -1335,6 +1344,7 @@ export default {
       chooseSpace: 'Choose a space',
       explain: 'A <cite>"space"</cite> and a large area of a room that can contain several sectors. Example: "Lane space", "Block space", "Pan", etc.<br> It is up to you to find the best division for your room.',
       explainMissingPlan: 'Upload a plan of <cite>"%{name}"</cite> on which you can draw the sectors.',
+      explainMissingThreeD: 'Upload a 3D file of <cite>"%{name}"</cite> on which you can draw the sectors.',
       uploadPlanFor: 'Upload a plan for : %{name}',
       routes: 'Routes',
       plan: 'Plan',
@@ -2355,7 +2365,8 @@ export default {
       gym_grade_id: 'Difficulty system',
       gym_grade: 'Difficulty system',
       gym_space_group_id: 'Group',
-      anchor: 'Display routes anchor numbers'
+      anchor: 'Display routes anchor numbers',
+      representation_type: 'Space representation type'
     },
     gymSpaceGroup: {
       name: 'Group name',
@@ -2568,6 +2579,10 @@ export default {
       A40: 'Veteran 1 (40 et +)',
       A50: 'Veteran 2 (50 et +)',
       A60: 'Veteran 3 (60 et +)'
+    },
+    representationTypes: {
+      '2d_picture': '2D image',
+      '3d': '3D'
     },
     climbs: {
       sport_climbing: 'Sport Climbing',

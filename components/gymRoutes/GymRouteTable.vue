@@ -18,11 +18,12 @@
               @click="getRoutes(space.id)"
             >
               <v-img
+                v-if="spaceToObject(space).pictureTinyUrl"
                 contain
                 height="40"
                 width="40"
                 class="mr-3"
-                :src="spaceToObject(space).planTinyThumbnailUrl"
+                :src="spaceToObject(space).pictureTinyUrl"
               />
               {{ space.name }}
             </v-tab>
