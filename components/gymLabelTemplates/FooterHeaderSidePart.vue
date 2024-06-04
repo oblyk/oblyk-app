@@ -37,7 +37,7 @@ export default {
     },
     qrCode: {
       type: String,
-      required: true
+      default: null
     },
     logoHeight: {
       type: String,
