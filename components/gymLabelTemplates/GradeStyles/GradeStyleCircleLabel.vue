@@ -4,7 +4,7 @@
       <div
         class="grade-style-label"
         :class="haveWithColor ? '--dark-border' : ''"
-        :style="`background-color: ${gymRoute.hold_colors[0]}`"
+        :style="`background: ${buildGradiantStop(colors)}`"
       />
     </div>
   </div>
@@ -25,8 +25,16 @@ export default {
   },
 
   computed: {
+    colors () {
+      if (this.gymRoute.hold_colors.length > 0) {
+        return this.gymRoute.hold_colors
+      } else {
+        return this.gymRoute.tag_colors
+      }
+    },
+
     haveWithColor () {
-      return this.gymRoute.hold_colors && this.gymRoute.hold_colors.includes('#f2f2f2')
+      return this.colors && this.colors.includes('#f2f2f2')
     },
 
     width () {
@@ -35,6 +43,33 @@ export default {
       } else {
         return '2.4cm'
       }
+    }
+  },
+
+  methods: {
+    buildGradiantStop (colors) {
+      if (this.colors.length === 1 && this.colors[0] === '#00000000') {
+        return 'linear-gradient(to right, red 0%, #ff0 17%, lime 33%, cyan 50%, blue 66%, #f0f 83%, red 100%);'
+      }
+
+      const numberOfColor = colors.length
+      const gradiant = []
+      if (numberOfColor === 1) {
+        gradiant.push({ color: colors[0], offset: 0 })
+        gradiant.push({ color: colors[0], offset: 100 })
+      } else {
+        let index = 0
+        for (const color of colors) {
+          gradiant.push({ color, offset: 100 / numberOfColor * index })
+          gradiant.push({ color, offset: 100 / numberOfColor * (index + 1) })
+          index++
+        }
+      }
+      const gradiantColors = []
+      for (const colorAndOffset of gradiant) {
+        gradiantColors.push(`${colorAndOffset.color} ${colorAndOffset.offset}%`)
+      }
+      return `linear-gradient(90deg, ${gradiantColors.join(', ')});`
     }
   }
 }
