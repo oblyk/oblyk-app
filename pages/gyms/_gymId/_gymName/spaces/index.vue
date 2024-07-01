@@ -113,7 +113,10 @@
             {{ $t('components.gym.guidebook') }} !
           </h3>
           <v-spacer />
-          <gym-spaces-action-menu :gym="gym" />
+          <gym-spaces-action-menu
+            v-if="gym && $auth.loggedIn && (currentUserIsGymAdmin() && (gymAuthCan(gym, 'manage_space') || gymAuthCan(gym, 'manage_opening')))"
+            :gym="gym"
+          />
         </div>
 
         <div class="px-2">
@@ -175,8 +178,9 @@ import GymRouteInfo from '~/components/gymRoutes/GymRouteInfo'
 import SubscribeBtn from '~/components/forms/SubscribeBtn'
 import DownToCloseDialog from '~/components/ui/DownToCloseDialog'
 import GymRankingAndLogbook from '~/components/gyms/GymRankingAndLogbook'
-import GymSpacesActionMenu from '~/components/gymSpaces/GymSpacesActionMenu'
 import GymSpaceSelector from '~/components/gymSpaces/GymSpaceSelector.vue'
+import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
+const GymSpacesActionMenu = () => import('~/components/gymSpaces/GymSpacesActionMenu')
 const ContestUpComing = () => import('~/components/gyms/ContestUpComing')
 const GymSpaceList = () => import('~/components/gymSpaces/GymSpaceList')
 const GymThreeD = () => import('~/components/gyms/GymThreeD')
@@ -196,7 +200,7 @@ export default {
     Spinner
   },
   meta: { orphanRoute: true },
-  mixins: [GymConcern],
+  mixins: [GymConcern, GymRolesHelpers],
 
   data () {
     return {

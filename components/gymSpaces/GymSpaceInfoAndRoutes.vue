@@ -49,7 +49,7 @@
             </v-list-item-subtitle>
           </v-list-item-content>
           <v-list-item-action
-            v-if="currentUserIsGymAdmin() && (gymAuthCan(gym, 'manage_space') || gymAuthCan(gym, 'manage_opening'))"
+            v-if="gym && $auth.loggedIn && (currentUserIsGymAdmin() && (gymAuthCan(gym, 'manage_space') || gymAuthCan(gym, 'manage_opening')))"
           >
             <gym-space-action-menu
               :gym-space="gymSpace"
@@ -139,11 +139,11 @@
 <script>
 import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
 import GymSpaceSelector from '@/components/gymSpaces/GymSpaceSelector'
-import GymSpaceActionMenu from '@/components/gymSpaces/GymSpaceActionMenu'
 import GymSpaceRouteList from '@/components/gymRoutes/GymSpaceRouteList'
 import ContestUpComing from '~/components/gyms/ContestUpComing'
 import SubscribeBtn from '~/components/forms/SubscribeBtn'
 import GymRankingAndLogbook from '~/components/gyms/GymRankingAndLogbook'
+const GymSpaceActionMenu = () => import('@/components/gymSpaces/GymSpaceActionMenu')
 const GymSectorEditingPlan = () => import('@/components/gymSectors/GymSectorEditingPlan')
 const GymSpaceEditingSectorsColor = () => import('~/components/gymSpaces/GymSpaceEditingSectorsColor')
 const MarkdownText = () => import('@/components/ui/MarkdownText')
