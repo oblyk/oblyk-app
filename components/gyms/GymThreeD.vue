@@ -256,6 +256,7 @@ export default {
 
       // Turns the scene on its head
       this.initTDAResizer()
+      this.renderScene()
     },
 
     highlightSpace (event) {

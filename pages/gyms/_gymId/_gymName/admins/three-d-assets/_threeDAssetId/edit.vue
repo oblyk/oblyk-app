@@ -17,8 +17,8 @@
       <v-col>
         <client-only>
           <div
-            class="border rounded"
-            style="height: 600px; width: 600px"
+            class="border rounded sheet-background-color"
+            style="height: 500px; width: 500px"
           >
             <gym-asset-three-d
               v-if="threeDAsset"

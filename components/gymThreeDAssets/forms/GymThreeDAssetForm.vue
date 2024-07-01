@@ -26,6 +26,8 @@
       :overlay="submitOverlay"
       :progressable="true"
       :progress-value="uploadPercentage"
+      submit-btn-color="#6200ea"
+      submit-btn-dark
     >
       <v-btn
         v-if="gymThreeDAsset !== null"

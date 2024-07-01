@@ -305,8 +305,8 @@ export default {
       this.dragControls.transformGroup = true
 
       // Turns the scene on its head
-      this.renderScene()
       this.initTDAResizer()
+      this.renderScene()
     },
 
     pointerMouveEvent (event) {

@@ -3,11 +3,11 @@
     <v-btn
       style="position: absolute; right: 0; bottom: 0;"
       icon
-      large
+      x-large
       :loading="loadingCapture"
       @click="takeCapture"
     >
-      <v-icon>
+      <v-icon color="#6200ea">
         {{ mdiCamera }}
       </v-icon>
     </v-btn>
@@ -156,6 +156,7 @@ export default {
       this.TDArea.addEventListener('mouseup', this.pointerUpEvent, false)
 
       this.initTDAResizer()
+      this.renderScene()
     },
 
     async takeCapture () {

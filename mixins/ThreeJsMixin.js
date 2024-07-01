@@ -75,10 +75,10 @@ export const ThreeJsMixin = {
     },
 
     renderScene () {
+      this.renderer.render(this.scene, this.camera)
       if (this.labelPositionUpdatable) {
         this.updateLabelsPosition()
       }
-      this.renderer.render(this.scene, this.camera)
     },
 
     calculatePointerPosition (event) {

@@ -7,6 +7,8 @@
           block
           elevation="0"
           class="mb-3"
+          text
+          outlined
           :to="`${gymSpace.Gym.adminPath}/spaces/edit-three-d`"
         >
           <v-icon left>
@@ -14,7 +16,7 @@
           </v-icon>
           Retour à l'éditeur 3D
         </v-btn>
-        <v-list-item class="border rounded mb-3">
+        <v-list-item class="border rounded mb-3 sheet-background-color">
           <v-list-item-avatar
             v-if="gymSpace.three_d_picture_tiny_thumbnail_url"
           >
@@ -59,8 +61,8 @@
       <v-col>
         <client-only>
           <div
-            class="border rounded"
-            style="height: 600px; width: 600px"
+            class="border rounded sheet-background-color"
+            style="height: 500px; width: 500px"
           >
             <gym-space-three-d-picture
               v-if="gymSpace"
