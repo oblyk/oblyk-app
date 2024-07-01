@@ -165,7 +165,9 @@ export default {
         this.orbitControls.update()
 
         this.loadingSpace = false
-        this.renderScene()
+        setTimeout(() => {
+          this.fitCameraToObjects([this.spaceObject])
+        }, 100)
       })
 
       this.TDArea.innerHTML = null
@@ -192,7 +194,6 @@ export default {
 
       this.sectorsBuilder()
       this.initTDAResizer()
-      this.renderScene()
     },
 
     sectorsBuilder () {

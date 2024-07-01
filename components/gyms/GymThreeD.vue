@@ -175,10 +175,10 @@ export default {
             this.orbitControls.target.copy(center)
             this.orbitControls.update()
             this.loadingSpaces = false
-            this.renderScene()
+            setTimeout(() => {
+              this.fitCameraToObjects(this.spaces)
+            }, 100)
           }
-
-          this.renderScene()
         })
       }
 
