@@ -109,11 +109,8 @@ export default {
       // Camera
       this.camera = new THREE.PerspectiveCamera(45, this.TDArea.offsetWidth / this.TDArea.offsetHeight, 1, 200)
       this.camera.position.z = this.gymSpace.three_d_camera_position?.z || 25
-      // this.camera.position.z = 25
       this.camera.position.y = this.gymSpace.three_d_camera_position?.y || 25
-      // this.camera.position.y = 25
       this.camera.position.x = this.gymSpace.three_d_camera_position?.x || 25
-      // this.camera.position.x = 25
 
       // Scene
       this.scene = new THREE.Scene()

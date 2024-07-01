@@ -99,11 +99,7 @@
       v-show="!loadingSpace"
       id="three-d-area"
       class="full-height"
-    >
-      <p class="text-center mt-10">
-        {{ $t('common.loading') }}
-      </p>
-    </div>
+    />
   </div>
 </template>
 
@@ -184,6 +180,7 @@ export default {
   methods: {
     initThreeJs () {
       if (this.gymSpace.three_d_gltf_url === null) {
+        this.loadingSpace = false
         return
       }
 

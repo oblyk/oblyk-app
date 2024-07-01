@@ -217,6 +217,10 @@ export default {
         })
       }
 
+      if (this.threeDs.spaces.length === 0) {
+        this.loadingSpaces = false
+      }
+
       // Load Assets
       for (const element of this.threeDs.assets) {
         loader.load(element.gym_three_d_asset.three_d_gltf_url, (gltf) => {
