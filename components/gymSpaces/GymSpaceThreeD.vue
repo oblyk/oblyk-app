@@ -176,9 +176,6 @@ export default {
       this.orbitControls.minDistance = 1
       this.orbitControls.maxDistance = 100
       this.orbitControls.maxPolarAngle = Math.PI / 2
-      this.orbitControls.autoRotate = false
-      this.orbitControls.autoRotateSpeed = 0.2
-      this.orbitControls.enableDamping = false
       this.orbitControls.addEventListener('change', this.renderScene)
 
       // Raycaster and mouse setup
