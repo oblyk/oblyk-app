@@ -198,6 +198,7 @@ export default {
 
       this.sectorsBuilder()
       this.initTDAResizer()
+      this.renderScene()
     },
 
     sectorsBuilder () {
@@ -254,6 +255,7 @@ export default {
       lineSegments.userData = { sector }
       this.sectorLineSegments.push(lineSegments)
       this.scene.add(lineSegments)
+      this.renderScene()
     },
 
     clearSectors () {

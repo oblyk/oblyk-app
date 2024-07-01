@@ -684,6 +684,7 @@ export default {
         )
       }
       this.orbitControls.enabled = true
+      this.orbitControls.update()
       this.renderScene()
     },
 
