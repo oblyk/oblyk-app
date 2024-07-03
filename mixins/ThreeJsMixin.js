@@ -16,7 +16,9 @@ export const ThreeJsMixin = {
       animationId: null,
       TDAreaResizeObserver: null,
       edgeColor: 'rgb(120, 120, 120)',
-      labelPositionUpdatable: false
+      labelPositionUpdatable: false,
+      labelDisableEvent: false,
+      labelDisableTimeout: null
     }
   },
 
@@ -35,6 +37,7 @@ export const ThreeJsMixin = {
       this.TDArea.removeEventListener('mousedown', this.onMouseDown)
       this.cleanupThreeJS()
     }
+    document.removeEventListener('wheel', this.addPointerInsensitiveClass)
   },
 
   methods: {
@@ -221,6 +224,22 @@ export const ThreeJsMixin = {
 
       this.orbitControls.update()
       this.renderScene()
+    },
+
+    initLabelInsensitiveEvent () {
+      document.addEventListener('scroll', this.addPointerInsensitiveClass)
+      document.addEventListener('wheel', this.addPointerInsensitiveClass)
+    },
+
+    addPointerInsensitiveClass () {
+      if (this.labelDisableTimeout) {
+        clearTimeout(this.labelDisableTimeout)
+      }
+      this.labelDisableEvent = true
+      this.labelDisableTimeout = setTimeout(() => {
+        this.labelDisableEvent = false
+        this.labelDisableTimeout = null
+      }, 300)
     }
   }
 }

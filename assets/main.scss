@@ -398,6 +398,10 @@ strong {
   }
 }
 
+.pointer-event-insensitive {
+  pointer-events: none;
+}
+
 .v-data-table tbody tr.v-data-table__selected {
   background-color: rgba(49, 153, 78, 0.2) !important;
 }

@@ -3,7 +3,7 @@
     <v-row justify="center">
       <v-col class="global-form-width">
         <h2 class="mb-4">
-          {{ $t('components.gymSpace.uploadPlanFor', { name: gymSpace.name }) }}
+          {{ $t('components.gymSpace.uploadThreeDFor', { name: gymSpace.name }) }}
         </h2>
         <client-only>
           <gym-space-three-d-plan-form

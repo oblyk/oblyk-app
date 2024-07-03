@@ -32,16 +32,17 @@
     <div
       v-if="gymSpace"
       v-show="!loadingSpace"
-      class="sectors-list"
-      style="position: absolute; top: 0; left: 0;"
+      class="sectors-list full-width"
+      :style="isDraggingScene ? 'opacity: 0.2' : 'opacity: 1'"
     >
       <div
         v-for="(sector, sectorIndex) in gymSpace.gym_sectors"
         v-show="sector.three_d_path"
         :id="`sector-label-${sector.id}`"
         :key="`sector-${sectorIndex}`"
-        class="rounded font-weight-bold discrete-link sector-label-in-space"
-        :class="highlightSectorId === sector.id ? '--active-sector-in-space' : ''"
+        class="rounded font-weight-bold sector-label-in-space"
+        :class="labelDisableEvent ? 'pointer-event-insensitive' : null"
+        :style="highlightSectorId === sector.id ? `background-color: ${gymSpace.sectors_color || 'rgb(98,0,234)'}; color: ${gymSpace.text_contrast_color}` : 'color: black'"
         @mousemove="highlightSector(sector)"
         @click="$root.$emit('filterBySector', sector.id, sector.name)"
       >
@@ -193,6 +194,7 @@ export default {
       this.TDArea.addEventListener('mouseup', this.pointerUpEvent, false)
 
       this.sectorsBuilder()
+      this.initLabelInsensitiveEvent()
       this.initTDAResizer()
     },
 
@@ -336,19 +338,21 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.sector-label-in-space {
+.sectors-list {
   position: absolute;
   top: 0;
   left: 0;
-  white-space: nowrap;
-  background-color: rgba(255, 255, 255, 0.5);
-  color: black !important;
-  font-size: 0.6em;
-  padding: 2px 3px;
-  cursor: pointer;
-  &.--active-sector-in-space {
-    color: white !important;
-    background-color: rgba(98, 0, 234, 0.6);
+  will-change: opacity;
+  transition: opacity 0.2s;
+  .sector-label-in-space {
+    position: absolute;
+    top: 0;
+    left: 0;
+    white-space: nowrap;
+    background-color: rgba(255, 255, 255, 0.8);
+    font-size: 0.6em;
+    padding: 2px 3px;
+    cursor: pointer;
   }
 }
 </style>

@@ -1347,6 +1347,7 @@ export default {
       explainMissingPlan: 'Uploader un plan de <cite>"%{name}"</cite> sur lequel vous pourrez tracer les secteurs',
       explainMissingThreeD: 'Uploader le fichier 3D de <cite>"%{name}"</cite> sur lequel vous pourrez tracer les secteurs',
       uploadPlanFor: 'Télécharger un plan pour : %{name}',
+      uploadThreeDFor: 'Télécharger le fichier 3D pour : %{name}',
       routes: 'Ouvertures',
       plan: 'Plan',
       showSector: 'Lignes du secteur <strong>%{name}</strong>.',

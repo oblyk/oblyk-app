@@ -20,6 +20,7 @@
       :tabindex="tabindex"
       :dark="submitBtnDark"
       class="float-right"
+      type="submit"
     >
       {{ $t(submitLocalKey) }}
     </v-btn>

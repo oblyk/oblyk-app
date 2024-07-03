@@ -1346,6 +1346,7 @@ export default {
       explainMissingPlan: 'Upload a plan of <cite>"%{name}"</cite> on which you can draw the sectors.',
       explainMissingThreeD: 'Upload a 3D file of <cite>"%{name}"</cite> on which you can draw the sectors.',
       uploadPlanFor: 'Upload a plan for : %{name}',
+      uploadThreeDFor: 'Upload a 3D file for : %{name}',
       routes: 'Routes',
       plan: 'Plan',
       showSector: 'Lines in <strong>%{name}</strong> sector.',

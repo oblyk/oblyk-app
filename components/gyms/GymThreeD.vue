@@ -33,14 +33,15 @@
       v-if="threeDs"
       v-show="!loadingSpaces"
       class="spaces-list"
-      style="position: absolute; top: 0; left: 0;"
+      :style="isDraggingScene ? 'opacity: 0.2' : 'opacity: 1'"
     >
       <div
         v-for="(space, spaceIndex) in threeDs.spaces"
         :id="`space-label-${space.id}`"
         :key="`space-${spaceIndex}`"
         class="rounded font-weight-bold sector-label-in-spaces"
-        :class="activeSpaceId === space.id ? '--active-space-in-spaces' : null"
+        :class="labelDisableEvent ? 'pointer-event-insensitive' : null"
+        :style="activeSpaceId === space.id ? `background-color: ${space.color}; color: ${space.text_contrast_color}` : 'color: black'"
         @mousemove.stop="glossySpace(space.id)"
       >
         <nuxt-link
@@ -256,6 +257,7 @@ export default {
 
       // Turns the scene on its head
       this.initTDAResizer()
+      this.initLabelInsensitiveEvent()
       this.renderScene()
     },
 
@@ -364,19 +366,22 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.sector-label-in-spaces {
+.spaces-list {
   position: absolute;
   top: 0;
   left: 0;
-  white-space: nowrap;
-  padding: 1px;
-  box-sizing: border-box;
-  background-color: rgba(255, 255, 255, 0.5);
-  color: black !important;
-  font-size: 0.6em;
-  &.--active-space-in-spaces {
-    color: white !important;
-    background-color: rgba(98, 0, 234, 0.6);
+  will-change: opacity;
+  transition: opacity 0.2s;
+  .sector-label-in-spaces {
+    position: absolute;
+    top: 0;
+    left: 0;
+    white-space: nowrap;
+    padding: 1px;
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0.8);
+    font-size: 0.6em;
+    transition: background-color 0.2s;
   }
 }
 </style>
