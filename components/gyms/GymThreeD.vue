@@ -33,7 +33,7 @@
       v-if="threeDs"
       v-show="!loadingSpaces"
       class="spaces-list"
-      :style="isDraggingScene ? 'opacity: 0.2' : 'opacity: 1'"
+      :class="isDraggingScene ? '--in-dragging-scene' : ''"
     >
       <div
         v-for="(space, spaceIndex) in threeDs.spaces"
@@ -372,6 +372,7 @@ export default {
   left: 0;
   will-change: opacity;
   transition: opacity 0.2s;
+  opacity: 1;
   .sector-label-in-spaces {
     position: absolute;
     top: 0;
@@ -382,6 +383,12 @@ export default {
     background-color: rgba(255, 255, 255, 0.8);
     font-size: 0.6em;
     transition: background-color 0.2s;
+  }
+  &.--in-dragging-scene {
+    opacity: 0.3;
+    .sector-label-in-spaces {
+      background-color: rgba(255, 255, 255, 0);
+    }
   }
 }
 </style>

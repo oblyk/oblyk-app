@@ -33,7 +33,7 @@
       v-if="gymSpace"
       v-show="!loadingSpace"
       class="sectors-list full-width"
-      :style="isDraggingScene ? 'opacity: 0.2' : 'opacity: 1'"
+      :class="isDraggingScene ? '--in-dragging-scene' : null"
     >
       <div
         v-for="(sector, sectorIndex) in gymSpace.gym_sectors"
@@ -344,6 +344,7 @@ export default {
   left: 0;
   will-change: opacity;
   transition: opacity 0.2s;
+  opacity: 1;
   .sector-label-in-space {
     position: absolute;
     top: 0;
@@ -353,6 +354,12 @@ export default {
     font-size: 0.6em;
     padding: 2px 3px;
     cursor: pointer;
+  }
+  &.--in-dragging-scene {
+    opacity: 0.3;
+    .sector-label-in-space {
+      background-color: rgba(255, 255, 255, 0);
+    }
   }
 }
 </style>
