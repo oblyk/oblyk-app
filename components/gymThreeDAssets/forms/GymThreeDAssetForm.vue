@@ -21,6 +21,30 @@
       placeholder="Fichier .obj.zip ou .gltf"
     />
 
+    <div class="mb-6">
+      <p class="mb-0">
+        <span @click="advancedOptions = !advancedOptions">
+          <v-icon left>
+            {{ advancedOptions ? mdiMenuDown : mdiMenuRight }}
+          </v-icon>
+          {{ $t('common.advancedOptions') }}
+        </span>
+      </p>
+      <div
+        v-if="advancedOptions"
+      >
+        <v-checkbox
+          v-model="data.three_d_parameters.color_correction_sketchup_exports"
+          label="Corriger les couleurs des exports Sketchup"
+          hide-details
+        />
+        <v-checkbox
+          v-model="data.three_d_parameters.highlight_edges"
+          label="Marquer les arrêtes pour améliorer la lisibilité des structures"
+        />
+      </div>
+    </div>
+
     <close-form />
     <submit-form
       :overlay="submitOverlay"
@@ -46,7 +70,7 @@
 </template>
 
 <script>
-import { mdiTrashCan } from '@mdi/js'
+import { mdiMenuRight, mdiMenuDown, mdiTrashCan } from '@mdi/js'
 import { FormHelpers } from '@/mixins/FormHelpers'
 import { AppConcern } from '@/concerns/AppConcern'
 import SubmitForm from '@/components/forms/SubmitForm'
@@ -73,13 +97,20 @@ export default {
       data: {
         name: this.gymThreeDAsset?.name,
         description: this.gymThreeDAsset?.description,
-        file: null
+        file: null,
+        three_d_parameters: {
+          color_correction_sketchup_exports: this.gymThreeDAsset?.three_d_parameters?.color_correction_sketchup_exports,
+          highlight_edges: this.gymThreeDAsset?.three_d_parameters?.highlight_edges
+        }
       },
       loadingDelete: false,
       redirectTo: null,
       uploadPercentage: 0,
+      advancedOptions: false,
 
-      mdiTrashCan
+      mdiTrashCan,
+      mdiMenuRight,
+      mdiMenuDown
     }
   },
 
@@ -97,6 +128,8 @@ export default {
       }
       formData.append('gym_three_d_asset[name]', this.data.name)
       formData.append('gym_three_d_asset[description]', this.data.description)
+      formData.append('gym_three_d_asset[three_d_parameters][color_correction_sketchup_exports]', this.data.three_d_parameters.color_correction_sketchup_exports)
+      formData.append('gym_three_d_asset[three_d_parameters][highlight_edges]', this.data.three_d_parameters.highlight_edges)
 
       const submitMethod = this.submitMethode
       const submitUrl = this.submitMethode === 'post' ? `${this.baseUrl}/gyms/${this.gym.id}/gym_three_d_assets.json` : `${this.baseUrl}/gyms/${this.gym.id}/gym_three_d_assets/${this.gymThreeDAsset.id}.json`

@@ -190,12 +190,14 @@ export default {
           object.traverse((child) => {
             if (child.isMesh) {
               // Add Edges
-              const edges = new THREE.EdgesGeometry(child.geometry)
-              const line = new THREE.LineSegments(edges, edgeLine)
-              child.add(line)
+              if (asset.gym_three_d_asset.three_d_parameters.highlight_edges) {
+                const edges = new THREE.EdgesGeometry(child.geometry)
+                const line = new THREE.LineSegments(edges, edgeLine)
+                child.add(line)
+              }
 
               // color correction
-              if (!treatedColors.includes(child.material.uuid)) {
+              if (asset.gym_three_d_asset.three_d_parameters.color_correction_sketchup_exports && !treatedColors.includes(child.material.uuid)) {
                 const color = child.material.color
                 const rgbColor = `rgb(${Math.round(255 * color.r)}, ${Math.round(255 * color.g)}, ${Math.round(255 * color.b)})`
                 child.material.color = new THREE.Color(rgbColor)

@@ -229,6 +229,7 @@ export default {
     minutes: 'minutes',
     month: 'Month',
     number: 'number',
+    advancedOptions: 'Advanced options',
     documentation: 'Documentation',
     seeDocumentation: 'See the documentation for more information :',
     whatDoYouWantToDo: 'What do you want to do?',
