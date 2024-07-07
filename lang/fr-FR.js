@@ -2023,7 +2023,8 @@ export default {
       category_is_complete: 'La catégorie est complète',
       no_file: 'Un fichier doit être transmis',
       file_wrong_format: "Le fichier n'est pas au bon format",
-      must_be_valid_video_service: "doit être un url valide d'une vidéo publique parmi les services pris en charge"
+      must_be_valid_video_service: "doit être un url valide d'une vidéo publique parmi les services pris en charge",
+      three_d_import_error: "Une erreur s'est produite lors de l'import ou la conversion de votre modèle 3D"
     }
   },
   models: {

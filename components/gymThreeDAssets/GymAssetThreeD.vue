@@ -7,7 +7,7 @@
       :loading="loadingCapture"
       @click="takeCapture"
     >
-      <v-icon color="#6200ea">
+      <v-icon>
         {{ mdiCamera }}
       </v-icon>
     </v-btn>

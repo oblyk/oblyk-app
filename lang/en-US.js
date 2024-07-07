@@ -2021,7 +2021,8 @@ export default {
       category_is_complete: 'The category is complete',
       no_file: 'A file must be transmitted',
       file_wrong_format: 'The file is in the wrong format',
-      must_be_valid_video_service: 'must be a valid url of a public video among the supported services'
+      must_be_valid_video_service: 'must be a valid url of a public video among the supported services',
+      three_d_import_error: 'An error occurred while importing or converting your 3D model'
     }
   },
   models: {
