@@ -192,7 +192,7 @@ export const ThreeJsMixin = {
       localStorage.setItem(`cameraPosition-${this.threeDEnvironment}`, JSON.stringify(cameraParams))
     },
 
-    fitCameraToObjects (objects) {
+    fitCameraToObjects (objects, offset = 1.2) {
       const size = new THREE.Vector3()
       const center = new THREE.Vector3()
       const box = new THREE.Box3()
@@ -206,14 +206,14 @@ export const ThreeJsMixin = {
       const maxSize = Math.max(size.x, size.y, size.z)
       const fitHeightDistance = maxSize / (2 * Math.atan(Math.PI * this.camera.fov / 360))
       const fitWidthDistance = fitHeightDistance / this.camera.aspect
-      const distance = 1.2 * Math.max(fitHeightDistance, fitWidthDistance)
+      const distance = offset * Math.max(fitHeightDistance, fitWidthDistance)
 
       const direction = this.orbitControls.target.clone()
         .sub(this.camera.position)
         .normalize()
         .multiplyScalar(distance)
 
-      this.orbitControls.maxDistance = distance * 1.2
+      this.orbitControls.maxDistance = distance * offset
       this.orbitControls.target.copy(center)
 
       this.camera.near = distance / 100
