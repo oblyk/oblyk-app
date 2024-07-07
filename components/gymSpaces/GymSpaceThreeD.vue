@@ -10,7 +10,6 @@
       <div class="text-center">
         <animate-oblyk-logo
           :animate="loadingSpace"
-          color="#6200ea"
           stroke-linejoin="round"
         />
         <p>
@@ -42,7 +41,7 @@
         :key="`sector-${sectorIndex}`"
         class="rounded font-weight-bold sector-label-in-space"
         :class="labelDisableEvent ? 'pointer-event-insensitive' : null"
-        :style="highlightSectorId === sector.id ? `background-color: ${gymSpace.sectors_color || 'rgb(98,0,234)'}; color: ${gymSpace.text_contrast_color}` : 'color: black'"
+        :style="highlightSectorId === sector.id ? `background-color: ${gymSpace.sectors_color || 'rgb(49,153,78)'}; color: ${gymSpace.text_contrast_color}` : 'color: black'"
         @mousemove="highlightSector(sector)"
         @click="$root.$emit('filterBySector', sector.id, sector.name)"
       >
@@ -242,7 +241,7 @@ export default {
       // Create edge sector
       const edges = new THREE.EdgesGeometry(extrudeGeometry)
       const lineMaterial = new THREE.LineBasicMaterial({
-        color: this.gymSpace.sectors_color || '#6200ea',
+        color: this.gymSpace.sectors_color || 'rgb(49, 153, 78)',
         linewidth: 3
       })
       const lineSegments = new THREE.LineSegments(edges, lineMaterial)

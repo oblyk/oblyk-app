@@ -10,7 +10,6 @@
       <div class="text-center">
         <animate-oblyk-logo
           :animate="loadingSpaces"
-          color="#6200ea"
           stroke-linejoin="round"
         />
         <p>
@@ -41,7 +40,7 @@
         :key="`space-${spaceIndex}`"
         class="rounded font-weight-bold sector-label-in-spaces"
         :class="labelDisableEvent ? 'pointer-event-insensitive' : null"
-        :style="activeSpaceId === space.id ? `background-color: ${space.color}; color: ${space.text_contrast_color}` : 'color: black'"
+        :style="activeSpaceId === space.id ? `background-color: ${space.color || 'rgb(49, 153, 78)'}; color: ${space.text_contrast_color}` : 'color: black'"
         @mousemove.stop="glossySpace(space.id)"
       >
         <nuxt-link

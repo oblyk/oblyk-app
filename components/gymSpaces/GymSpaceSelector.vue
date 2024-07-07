@@ -7,6 +7,27 @@
     </div>
     <div v-if="!loadingGymSpaces && (groups.length > 0 || ungroupedSpaces.length > 0)">
       <div class="text-no-wrap overflow-x-auto">
+        <!-- All spaces -->
+        <nuxt-link
+          v-if="gymSpace"
+          :to="`/gyms/${gym.id}/${gym.slug_name}/spaces`"
+          class="gym-space-block text-center discrete-link inactive"
+        >
+          <v-avatar
+            size="70"
+            class="gym-space-avatar"
+          >
+            <v-icon size="25">
+              {{ mdiAsterisk }}
+            </v-icon>
+          </v-avatar>
+          <p class="text-truncate text-center mb-0">
+            <small>
+              Tous
+            </small>
+          </p>
+        </nuxt-link>
+
         <!-- Grouped spaces -->
         <div
           v-for="(group, groupIndex) in groups"
@@ -86,27 +107,6 @@
           >
             <small>
               {{ space.name }}
-            </small>
-          </p>
-        </nuxt-link>
-
-        <!-- All spaces -->
-        <nuxt-link
-          v-if="gymSpace"
-          :to="`/gyms/${gym.id}/${gym.slug_name}/spaces`"
-          class="gym-space-block text-center discrete-link inactive"
-        >
-          <v-avatar
-            size="70"
-            class="gym-space-avatar"
-          >
-            <v-icon size="25">
-              {{ mdiAsterisk }}
-            </v-icon>
-          </v-avatar>
-          <p class="text-truncate text-center mb-0">
-            <small>
-              Tous
             </small>
           </p>
         </nuxt-link>
@@ -225,14 +225,14 @@ export default {
     border-width: 4px;
     transition: background-color 0.3s, border-color 0.3s;
     &:hover {
-      background: rgba(98, 0, 234, 0.2) !important;
-      border-color: rgba(98, 0, 234, 0.3) !important;
+      background: rgba(49, 153, 78, 0.2) !important;
+      border-color: rgba(49, 153, 78, 0.3) !important;
     }
   }
   .active {
     .gym-space-avatar {
-      border-color: rgb(98, 0, 234);
-      background: rgba(98, 0, 234, 0.2);
+      border-color: rgb(49, 153, 78);
+      background: rgba(49, 153, 78, 0.2);
     }
   }
 }

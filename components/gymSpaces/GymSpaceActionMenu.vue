@@ -70,7 +70,7 @@
             <v-icon
               left
               class="mr-7"
-              :color="gymSpace.sectors_color || 'rgb(98, 0, 234)'"
+              :color="gymSpace.sectors_color || 'primary'"
             >
               {{ mdiFormatColorFill }}
             </v-icon>

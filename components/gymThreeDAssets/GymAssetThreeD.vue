@@ -18,7 +18,6 @@
       <div class="text-center">
         <animate-oblyk-logo
           :animate="loadingAsset"
-          color="#6200ea"
           stroke-linejoin="round"
         />
         <p>

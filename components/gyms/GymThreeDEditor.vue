@@ -22,7 +22,6 @@
       <div class="text-center">
         <animate-oblyk-logo
           :animate="loadingSpaces"
-          color="#6200ea"
           stroke-linejoin="round"
         />
         <p>

@@ -43,7 +43,6 @@
             v-model="tab"
             height="32"
             fixed-tabs
-            color="#6200ea"
             class="mb-2"
           >
             <v-tab>

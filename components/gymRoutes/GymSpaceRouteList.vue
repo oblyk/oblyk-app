@@ -10,12 +10,12 @@
       />
       <div
         v-if="currentUserIsGymAdmin() && gymAuthCan(gym, 'manage_opening')"
-        class="ml-auto"
+        class="ml-auto px-2"
       >
         <v-btn
           text
           icon
-          color="rgb(98, 0, 234)"
+          color="primary"
           :to="gymSpace ? `${gymSpace.path}/select-sector` : `${gym.path}/select-space`"
           :title="$t('actions.addLine')"
         >
@@ -31,7 +31,7 @@
       v-if="showSectorsToast"
       text
       dense
-      color="#6200ea"
+      color="primary"
       dismissible
       @input="closeSectorFilter"
     >
