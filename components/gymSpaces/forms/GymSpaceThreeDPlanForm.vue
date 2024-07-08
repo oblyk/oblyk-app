@@ -20,6 +20,7 @@
 </template>
 
 <script>
+import { mdiMenuDown, mdiMenuRight } from '@mdi/js'
 import { FormHelpers } from '@/mixins/FormHelpers'
 import { AppConcern } from '@/concerns/AppConcern'
 import GymSpace from '@/models/GymSpace'
@@ -41,7 +42,10 @@ export default {
     return {
       file: null,
       redirectTo: null,
-      uploadPercentage: 0
+      uploadPercentage: 0,
+
+      mdiMenuDown,
+      mdiMenuRight
     }
   },
 

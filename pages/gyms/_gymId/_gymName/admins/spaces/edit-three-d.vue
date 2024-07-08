@@ -38,7 +38,7 @@
         </div>
 
         <!-- Tabs Spaces & Assets-->
-        <div v-if="startEditingSpace === false && startEditingAsset === false">
+        <div v-if="startEditingSpace === false && startEditingAsset === false && advancedOptions === false">
           <v-tabs
             v-model="tab"
             height="32"
@@ -184,6 +184,17 @@
                           </v-list-item-icon>
                           <v-list-item-title>
                             {{ $t('actions.edit') }}
+                          </v-list-item-title>
+                        </v-list-item>
+                        <v-list-item
+                          v-if="space.have_three_d"
+                          @click="startAdvancedOptions(space)"
+                        >
+                          <v-list-item-icon>
+                            <v-icon>{{ mdiTune }}</v-icon>
+                          </v-list-item-icon>
+                          <v-list-item-title>
+                            {{ $t('common.advancedOptions') }}
                           </v-list-item-title>
                         </v-list-item>
                       </v-list>
@@ -473,6 +484,41 @@
           </div>
         </div>
 
+        <!-- ADVANCED OPTIONS -->
+        <div v-if="advancedOptions">
+          <p class="text-decoration-underline mt-2">
+            Options avancées de : <strong>{{ editAdvancedOptionSpace.name }}</strong>
+          </p>
+          <v-checkbox
+            v-model="three_d_parameters.color_correction_sketchup_exports"
+            label="Corriger les couleurs des exports Sketchup"
+            hide-details
+          />
+          <v-checkbox
+            v-model="three_d_parameters.highlight_edges"
+            label="Marquer les arrêtes pour améliorer la lisibilité des structures"
+          />
+          <div class="text-right">
+            <v-btn
+              text
+              outlined
+              small
+              @click="cancelEditingAdvancedOptions"
+            >
+              {{ $t('actions.cancel') }}
+            </v-btn>
+            <v-btn
+              small
+              color="primary"
+              elevation="0"
+              :loading="editSpaceLoading"
+              @click="saveAdvancedOptions"
+            >
+              {{ $t('actions.save') }}
+            </v-btn>
+          </div>
+        </div>
+
         <!-- ASSET EDIT -->
         <div v-if="editAsset !== null">
           <p>
@@ -558,7 +604,8 @@ import {
   mdiCursorMove,
   mdiCamera,
   mdiMenuRight,
-  mdiMenuDown
+  mdiMenuDown,
+  mdiTune
 } from '@mdi/js'
 import { GymFetchConcern } from '~/concerns/GymFetchConcern'
 import GymSpaceApi from '~/services/oblyk-api/GymSpaceApi'
@@ -604,6 +651,13 @@ export default {
       },
       threeDAssets: [],
 
+      editAdvancedOptionSpace: null,
+      advancedOptions: false,
+      three_d_parameters: {
+        color_correction_sketchup_exports: null,
+        highlight_edges: null
+      },
+
       loadingSwitch: false,
       showMoreOption: false,
 
@@ -620,7 +674,8 @@ export default {
       mdiCursorMove,
       mdiCamera,
       mdiMenuRight,
-      mdiMenuDown
+      mdiMenuDown,
+      mdiTune
     }
   },
 
@@ -837,6 +892,35 @@ export default {
         .finally(() => {
           location.reload()
         })
+    },
+
+    startAdvancedOptions (space) {
+      this.advancedOptions = true
+      this.editAdvancedOptionSpace = space
+      const sketchup = space.three_d_parameters?.color_correction_sketchup_exports === undefined ? true : space.three_d_parameters?.color_correction_sketchup_exports
+      const edges = space.three_d_parameters?.highlight_edges === undefined ? true : space.three_d_parameters?.highlight_edges
+      this.three_d_parameters.color_correction_sketchup_exports = sketchup
+      this.three_d_parameters.highlight_edges = edges
+    },
+
+    saveAdvancedOptions () {
+      this.editSpaceLoading = true
+      new GymSpaceApi(this.$axios, this.$auth)
+        .update({
+          gym_id: this.gym.id,
+          id: this.editAdvancedOptionSpace.id,
+          three_d_parameters: this.three_d_parameters
+        })
+        .finally(() => {
+          this.editSpaceLoading = false
+          this.editAdvancedOptionSpace = null
+          this.advancedOptions = false
+        })
+    },
+
+    cancelEditingAdvancedOptions () {
+      this.advancedOptions = false
+      this.editAdvancedOptionSpace = null
     }
   }
 }
