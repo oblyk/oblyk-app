@@ -107,6 +107,10 @@ export default {
       type: Function,
       default: null
     },
+    initSectorHeightCallback: {
+      type: Function,
+      default: null
+    },
     editingSectorHeight: {
       type: [Number, String],
       default: null
@@ -455,6 +459,7 @@ export default {
       if (this.buildingBox) { this.removeObject(this.buildingBox) }
       this.constructionPoints = []
       this.interPoints = []
+      this.renderScene()
     },
 
     getSectorPoints () {
@@ -475,6 +480,7 @@ export default {
       this.pointerIndicator.position.set(0, 0, 0)
       this.pointerIndicator.visible = false
       this.scene.add(this.pointerIndicator)
+      this.renderScene()
     },
 
     sectorsBuilder () {
@@ -506,6 +512,7 @@ export default {
         this.constructionPoints.push(pointMesh)
       }
       this.scene.add(pointMesh)
+      this.renderScene()
     },
 
     sectorBuilder (sector) {
@@ -572,8 +579,10 @@ export default {
           point.position.setY(this.editingSectorHeight)
         })
         this.setSectorBuilderBox()
-        this.renderScene()
+      } else if (this.isEditing && this.drawingPad !== null && this.editingSectorHeight === null) {
+        this.initSectorHeightCallback(Math.round(this.drawingPad.position.y))
       }
+      this.renderScene()
     },
 
     setInterPoints () {

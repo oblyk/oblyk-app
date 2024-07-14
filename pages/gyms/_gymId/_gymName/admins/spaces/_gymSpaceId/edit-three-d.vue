@@ -222,6 +222,7 @@
           :gym-space="gymSpace"
           :sector-click-callback="clickOnSector"
           :editing-sector-height="sectorHeight"
+          :init-sector-height-callback="initSectorHeight"
         />
         <gym-space-three-d-missing
           v-if="gymSpace && gymSpace.three_d_gltf_url === null"
@@ -324,6 +325,10 @@ export default {
       setTimeout(() => {
         this.$refs.gymSpaceThreeDEditor.startEditingSector(sector)
       }, 100)
+    },
+
+    initSectorHeight (height) {
+      this.sectorHeight = height
     },
 
     cancel () {
