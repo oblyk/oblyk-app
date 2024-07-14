@@ -214,14 +214,14 @@ export default {
 .theme--dark {
   .scroll-encourage {
     div {
-      background-color: rgba(98, 0, 234, 0.5);
+      background-color: rgb(255, 255, 255, 0.3);
     }
   }
 }
 .theme--light {
   .scroll-encourage {
     div {
-      background-color: rgba(98, 0, 234, 0.5);
+      background-color: rgb(0, 0, 0, 0.2);
     }
   }
 }

@@ -18,7 +18,8 @@ export const ThreeJsMixin = {
       edgeColor: 'rgb(120, 120, 120)',
       labelPositionUpdatable: false,
       labelDisableEvent: false,
-      labelDisableTimeout: null
+      labelDisableTimeout: null,
+      objectsSceneSize: null
     }
   },
 
@@ -30,6 +31,7 @@ export const ThreeJsMixin = {
     }
     if (this.TDAreaResizeObserver && this.TDArea) {
       this.TDAreaResizeObserver.unobserve(this.TDArea)
+      this.TDAreaResizeObserver = null
     }
     if (this.TDArea) {
       this.TDArea.removeEventListener('mousemove', this.highlightSpace)
@@ -120,6 +122,7 @@ export const ThreeJsMixin = {
 
       if (this.orbitControls !== null) {
         this.orbitControls.dispose()
+        this.orbitControls = null
       }
 
       if (this.scene !== null) {
@@ -149,6 +152,14 @@ export const ThreeJsMixin = {
       this.renderer = null
       this.raycaster = null
       this.pointer = null
+      this.disableClick = false
+      this.isDraggingScene = false
+      this.labelPositionUpdatable = false
+      this.labelDisableEvent = false
+      this.objectsSceneSize = null
+      if (this.labelDisableTimeout) {
+        clearTimeout(this.labelDisableTimeout)
+      }
     },
 
     cleanMaterial (material) {
@@ -221,7 +232,18 @@ export const ThreeJsMixin = {
       this.camera.updateProjectionMatrix()
 
       this.camera.position.copy(this.orbitControls.target).sub(direction)
+      this.orbitControls.update()
+      this.renderScene()
+    },
 
+    setView (view) {
+      const target = this.orbitControls.target.clone()
+      if (view === 'top') {
+        const max = Math.max(this.objectsSceneSize.x, this.objectsSceneSize.y, this.objectsSceneSize.z)
+        this.orbitControls.target.y = 0
+
+        this.camera.position.set(target.x, target.y + max, target.z)
+      }
       this.orbitControls.update()
       this.renderScene()
     },

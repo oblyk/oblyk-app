@@ -49,32 +49,15 @@
     <div style="position: absolute; top: 5px; right: 5px;">
       <div>
         <v-btn
-          x-small
+          small
           outlined
           text
           @click="setView('top')"
         >
+          <v-icon left>
+            {{ mdiArrowCollapseDown }}
+          </v-icon>
           Vue de dessus
-        </v-btn>
-      </div>
-      <div>
-        <v-btn
-          x-small
-          outlined
-          text
-          @click="fitCamera()"
-        >
-          Adjuste
-        </v-btn>
-      </div>
-      <div>
-        <v-btn
-          x-small
-          outlined
-          text
-          @click="capture"
-        >
-          Capture
         </v-btn>
       </div>
     </div>
@@ -103,7 +86,7 @@
 </template>
 
 <script>
-import { mdiChevronRight, mdiChevronUp } from '@mdi/js'
+import { mdiChevronRight, mdiChevronUp, mdiArrowCollapseDown } from '@mdi/js'
 import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
@@ -149,10 +132,11 @@ export default {
       interPoints: [],
       loadingSpace: true,
 
-      threeDEnvironment: `GymSpaceThreeD-${this.gymSpace.id}`,
+      threeDEnvironment: `GymSpaceThreeDEditor-${this.gymSpace.id}`,
 
       mdiChevronRight,
-      mdiChevronUp
+      mdiChevronUp,
+      mdiArrowCollapseDown
     }
   },
 
@@ -187,6 +171,9 @@ export default {
       this.camera = new THREE.OrthographicCamera(
         -aspect * 5, aspect * 5, 5, -5, 1, 200
       )
+      this.camera.position.z = 50
+      this.camera.position.y = 50
+      this.camera.position.x = 50
       const savedCameraPosition = localStorage.getItem(`cameraPosition-${this.threeDEnvironment}`)
 
       // Scene
@@ -234,13 +221,23 @@ export default {
 
         const box = new THREE.Box3().setFromObject(object)
         const center = new THREE.Vector3()
+        const size = new THREE.Vector3()
+        box.getSize(size)
         box.getCenter(center)
+        this.objectsSceneSize = size
         this.scene.add(object)
 
-        this.orbitControls.target.copy(center)
+        if (savedCameraPosition) {
+          const cameraPosition = JSON.parse(savedCameraPosition)
+          this.camera.position.copy(cameraPosition.position)
+          this.camera.zoom = cameraPosition.zoom
+          this.orbitControls.target.copy(cameraPosition.target)
+        } else {
+          this.orbitControls.target.copy(center)
+        }
+
         this.orbitControls.update()
         this.loadingSpace = false
-        this.renderScene()
       })
 
       this.TDArea.innerHTML = null
@@ -258,23 +255,13 @@ export default {
       this.raycaster = new THREE.Raycaster()
       this.pointer = new THREE.Vector2()
 
-      if (savedCameraPosition) {
-        const cameraPosition = JSON.parse(savedCameraPosition)
-        this.camera.position.copy(cameraPosition.position)
-        this.camera.zoom = cameraPosition.zoom
-        this.orbitControls.target.copy(cameraPosition.target)
-      } else {
-        this.camera.position.z = 50
-        this.camera.position.y = 50
-        this.camera.position.x = 50
-      }
-
       this.TDArea.addEventListener('mousemove', this.pointerMouveEvent, false)
       this.TDArea.addEventListener('mouseup', this.pointerUpEvent, false)
       this.TDArea.addEventListener('mousemove', this.disableClickOnDragging, false)
       this.TDArea.addEventListener('mousedown', this.pointerDownEvent, false)
       this.orbitControls.addEventListener('start', this.startDragging)
       this.orbitControls.addEventListener('end', this.endDragging)
+      this.orbitControls.addEventListener('end', this.saveCameraPosition)
 
       this.sectorsBuilder()
       this.initTDAResizer()
@@ -668,50 +655,6 @@ export default {
       this.sectorLineSegments.forEach((object) => { this.removeObject(object) })
       this.sectorBoundingBoxes = []
       this.sectorLineSegments = []
-    },
-
-    setView (view) {
-      this.orbitControls.enabled = false
-      this.orbitControls.autoRotate = false
-      if (view === 'top') {
-        this.camera.position.set(
-          this.orbitControls.target.x,
-          this.camera.position.y,
-          this.orbitControls.target.z
-        )
-      }
-      this.orbitControls.enabled = true
-      this.orbitControls.update()
-      this.renderScene()
-    },
-
-    fitCamera () {
-      const box = new THREE.Box3().setFromObject(this.spaceObject)
-      const size = box.getSize(new THREE.Vector3())
-
-      const aspectRatio = this.TDArea.offsetWidth / this.TDArea.offsetHeight
-      const maxDim = Math.max(size.x, size.y, size.z)
-      const cameraHeight = maxDim / aspectRatio
-
-      const cameraBox = maxDim + 5
-      this.camera.left = -cameraBox / 2
-      this.camera.right = cameraBox / 2
-      this.camera.top = cameraHeight / 2
-      this.camera.bottom = -cameraHeight / 2
-
-      this.camera.updateProjectionMatrix()
-    },
-
-    capture () {
-      this.renderScene()
-      const a = document.createElement('a')
-      document.body.appendChild(a)
-      a.style.display = 'none'
-      this.TDArea.querySelector('canvas').toBlob((blob) => {
-        a.href = window.URL.createObjectURL(blob)
-        a.download = 'test-capture.png'
-        a.click()
-      })
     }
   }
 }

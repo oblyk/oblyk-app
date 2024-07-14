@@ -39,7 +39,7 @@
         v-show="sector.three_d_path"
         :id="`sector-label-${sector.id}`"
         :key="`sector-${sectorIndex}`"
-        class="rounded font-weight-bold sector-label-in-space"
+        class="rounded font-weight-bold sector-label-in-space text-truncate"
         :class="labelDisableEvent ? 'pointer-event-insensitive' : null"
         :style="highlightSectorId === sector.id ? `background-color: ${gymSpace.sectors_color || 'rgb(49,153,78)'}; color: ${gymSpace.text_contrast_color}` : 'color: black'"
         @mousemove="highlightSector(sector)"
@@ -360,6 +360,14 @@ export default {
     opacity: 0.3;
     .sector-label-in-space {
       background-color: rgba(255, 255, 255, 0);
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .sectors-list {
+    .sector-label-in-space {
+      max-width: 80px;
     }
   }
 }

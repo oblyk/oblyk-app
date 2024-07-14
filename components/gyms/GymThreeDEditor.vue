@@ -6,11 +6,14 @@
     <div style="position: absolute; top: 5px; right: 5px;">
       <div>
         <v-btn
-          x-small
+          small
           outlined
           text
           @click="setView('top')"
         >
+          <v-icon left>
+            {{ mdiArrowCollapseDown }}
+          </v-icon>
           Vue de dessus
         </v-btn>
       </div>
@@ -44,6 +47,7 @@
 </template>
 
 <script>
+import { mdiArrowCollapseDown } from '@mdi/js'
 import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
@@ -102,7 +106,9 @@ export default {
 
       threeDEnvironment: `GymThreeDEditor-${this.gym.id}`,
 
-      loadingSpaces: true
+      loadingSpaces: true,
+
+      mdiArrowCollapseDown
     }
   },
 
@@ -140,7 +146,7 @@ export default {
       // Camera
       const aspect = this.TDArea.offsetWidth / this.TDArea.offsetHeight
       this.camera = new THREE.OrthographicCamera(
-        -aspect * 5, aspect * 5, 5, -5, 1, 200
+        -aspect * 5, aspect * 5, 5, -5, 1, 1000
       )
       const savedCameraPosition = localStorage.getItem(`cameraPosition-${this.threeDEnvironment}`)
 
@@ -153,7 +159,7 @@ export default {
       this.scene.add(ambientLight)
 
       // Renderer
-      this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true })
+      this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, logarithmicDepthBuffer: true })
       this.renderer.setPixelRatio(window.devicePixelRatio)
       this.renderer.setSize(this.TDArea.offsetWidth, this.TDArea.offsetHeight)
 
@@ -209,11 +215,16 @@ export default {
               allBoxes.expandByObject(space)
             })
             const center = new THREE.Vector3()
+            const size = new THREE.Vector3()
             allBoxes.getCenter(center)
-            if (!savedCameraPosition) { this.orbitControls.target.copy(center) }
+            allBoxes.getSize(size)
+            this.objectsSceneSize = size
+            if (!savedCameraPosition) {
+              this.orbitControls.target.copy(center)
+              this.orbitControls.target.y = 0
+            }
             this.orbitControls.update()
             this.loadingSpaces = false
-            this.renderScene()
           }
         })
       }
@@ -230,14 +241,14 @@ export default {
           const treatedColors = []
           object.traverse((child) => {
             if (child.isMesh) {
-              if (element.gym_three_d_asset.three_d_parameters.highlight_edges) {
+              if (element.gym_three_d_asset.three_d_parameters?.highlight_edges) {
                 const edges = new THREE.EdgesGeometry(child.geometry)
                 const line = new THREE.LineSegments(edges, edgeLine)
                 child.add(line)
               }
 
               // color correction
-              if (element.gym_three_d_asset.three_d_parameters.color_correction_sketchup_exports && !treatedColors.includes(child.material.uuid)) {
+              if (element.gym_three_d_asset.three_d_parameters?.color_correction_sketchup_exports && !treatedColors.includes(child.material.uuid)) {
                 const color = child.material.color
                 const rgbColor = `rgb(${Math.round(255 * color.r)}, ${Math.round(255 * color.g)}, ${Math.round(255 * color.b)})`
                 child.material.color = new THREE.Color(rgbColor)
@@ -290,6 +301,7 @@ export default {
         this.camera.position.copy(cameraPosition.position)
         this.camera.zoom = cameraPosition.zoom
         this.orbitControls.target.copy(cameraPosition.target)
+        this.orbitControls.update()
       } else {
         this.camera.position.z = 50
         this.camera.position.y = 50
@@ -353,20 +365,6 @@ export default {
           }
         }
       }
-    },
-
-    setView (view) {
-      this.orbitControls.enabled = false
-      this.orbitControls.autoRotate = false
-      if (view === 'top') {
-        this.camera.position.set(
-          this.orbitControls.target.x,
-          this.camera.position.y,
-          this.orbitControls.target.z
-        )
-      }
-      this.orbitControls.enabled = true
-      this.renderScene()
     },
 
     unGlossyInteractiveElements () {

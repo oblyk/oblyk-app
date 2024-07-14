@@ -912,9 +912,7 @@ export default {
           three_d_parameters: this.three_d_parameters
         })
         .finally(() => {
-          this.editSpaceLoading = false
-          this.editAdvancedOptionSpace = null
-          this.advancedOptions = false
+          location.reload()
         })
     },
 
