@@ -505,7 +505,7 @@ export default {
       const pointMesh = new THREE.Mesh(pointGeometry, pointMaterial)
       pointMesh.position.copy(position)
       pointMesh.userData.index = this.constructionPoints.length
-      if (index) {
+      if (index !== null) {
         this.constructionPoints.splice(index + 1, 0, pointMesh)
         this.reBuildConstructPontIndex()
       } else {
@@ -608,6 +608,7 @@ export default {
         this.interPoints.push(pointMesh)
         this.scene.add(pointMesh)
       }
+      this.renderScene()
     },
 
     reBuildConstructPontIndex () {
