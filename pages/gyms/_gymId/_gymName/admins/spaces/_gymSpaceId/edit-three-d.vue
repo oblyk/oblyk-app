@@ -57,6 +57,16 @@
                   {{ $t('actions.takeCapture') }}
                 </v-list-item-content>
               </v-list-item>
+              <v-list-item :to="`${gymSpace.path}/upload-3d`">
+                <v-list-item-icon>
+                  <v-icon>
+                    {{ mdiCube }}
+                  </v-icon>
+                </v-list-item-icon>
+                <v-list-item-content>
+                  <span v-text="gymSpace.have_three_d ? 'Réimporter le 3D' : 'Importer un 3D'" />
+                </v-list-item-content>
+              </v-list-item>
             </v-list>
           </v-menu>
         </div>
@@ -207,11 +217,16 @@
     <v-col cols="8" class="pb-0 pl-0">
       <client-only>
         <gym-space-three-d-editor
-          v-if="gymSpace"
+          v-if="gymSpace && gymSpace.three_d_gltf_url"
           ref="gymSpaceThreeDEditor"
           :gym-space="gymSpace"
           :sector-click-callback="clickOnSector"
           :editing-sector-height="sectorHeight"
+        />
+        <gym-space-three-d-missing
+          v-if="gymSpace && gymSpace.three_d_gltf_url === null"
+          :gym-space="gymSpace"
+          :gym="gymSpace.Gym"
         />
       </client-only>
     </v-col>
@@ -226,16 +241,18 @@ import {
   mdiDotsVertical,
   mdiTrashCan,
   mdiPencil,
-  mdiCamera
+  mdiCamera,
+  mdiCube
 } from '@mdi/js'
 import { GymSpaceConcern } from '~/concerns/GymSpaceConcern'
 import { GymFetchConcern } from '~/concerns/GymFetchConcern'
 import GymSectorApi from '~/services/oblyk-api/GymSectorApi'
 import GymSector from '~/models/GymSector'
+import GymSpaceThreeDMissing from '~/components/gymSpaces/GymSpaceThreeDMissing.vue'
 const GymSpaceThreeDEditor = () => import('~/components/gymSpaces/GymSpaceThreeDEditor')
 
 export default {
-  components: { GymSpaceThreeDEditor },
+  components: { GymSpaceThreeDMissing, GymSpaceThreeDEditor },
   meta: { orphanRoute: true },
   mixins: [GymFetchConcern, GymSpaceConcern],
   middleware: ['auth', 'gymAdmin'],
@@ -256,7 +273,8 @@ export default {
       mdiDotsVertical,
       mdiTrashCan,
       mdiPencil,
-      mdiCamera
+      mdiCamera,
+      mdiCube
     }
   },
 

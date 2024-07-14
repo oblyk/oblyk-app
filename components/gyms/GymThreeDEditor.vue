@@ -54,7 +54,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { DragControls } from 'three/examples/jsm/controls/DragControls.js'
 import { ThreeJsMixin } from '~/mixins/ThreeJsMixin'
 import GymApi from '~/services/oblyk-api/GymApi'
-import AnimateOblykLogo from '~/components/layouts/AnimateOblykLogo.vue'
+import AnimateOblykLogo from '~/components/layouts/AnimateOblykLogo'
 
 export default {
   name: 'GymThreeDEditor',

@@ -92,7 +92,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { ThreeJsMixin } from '~/mixins/ThreeJsMixin'
 import GymSpaceApi from '~/services/oblyk-api/GymSpaceApi'
-import AnimateOblykLogo from '~/components/layouts/AnimateOblykLogo.vue'
+import AnimateOblykLogo from '~/components/layouts/AnimateOblykLogo'
 
 export default {
   name: 'GymSpaceThreeDEditor',
