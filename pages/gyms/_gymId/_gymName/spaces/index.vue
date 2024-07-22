@@ -71,13 +71,16 @@
                     {{ mdiInformationOutline }}
                   </v-icon>
                 </v-btn>
-                <subscribe-btn
-                  :subscribe-id="gym.id"
-                  subscribe-type="Gym"
-                  outlined
-                  type-text
-                  :small="true"
-                />
+                <client-only>
+                  <subscribe-btn
+                    v-if="$auth.loggedIn"
+                    :subscribe-id="gym.id"
+                    subscribe-type="Gym"
+                    outlined
+                    type-text
+                    :small="true"
+                  />
+                </client-only>
               </v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
@@ -96,10 +99,13 @@
         />
 
         <div class="px-2">
-          <gym-ranking-and-logbook
-            class="mt-0 mb-2"
-            :gym="gym"
-          />
+          <client-only>
+            <gym-ranking-and-logbook
+              v-if="$auth.loggedIn"
+              class="mt-0 mb-2"
+              :gym="gym"
+            />
+          </client-only>
 
           <contest-up-coming
             v-if="gym.upcoming_contests.length > 0"
@@ -113,10 +119,12 @@
             {{ $t('components.gym.guidebook') }} !
           </h3>
           <v-spacer />
-          <gym-spaces-action-menu
-            v-if="gym && $auth.loggedIn && (currentUserIsGymAdmin() && (gymAuthCan(gym, 'manage_space') || gymAuthCan(gym, 'manage_opening')))"
-            :gym="gym"
-          />
+          <client-only>
+            <gym-spaces-action-menu
+              v-if="gym && $auth.loggedIn && (currentUserIsGymAdmin() && (gymAuthCan(gym, 'manage_space') || gymAuthCan(gym, 'manage_opening')))"
+              :gym="gym"
+            />
+          </client-only>
         </div>
 
         <div class="px-2">
@@ -175,11 +183,11 @@ import GymSpaceRouteList from '~/components/gymRoutes/GymSpaceRouteList'
 import GymRouteApi from '~/services/oblyk-api/GymRouteApi'
 import GymRoute from '~/models/GymRoute'
 import GymRouteInfo from '~/components/gymRoutes/GymRouteInfo'
-import SubscribeBtn from '~/components/forms/SubscribeBtn'
 import DownToCloseDialog from '~/components/ui/DownToCloseDialog'
-import GymRankingAndLogbook from '~/components/gyms/GymRankingAndLogbook'
 import GymSpaceSelector from '~/components/gymSpaces/GymSpaceSelector.vue'
 import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
+const GymRankingAndLogbook = () => import('~/components/gyms/GymRankingAndLogbook')
+const SubscribeBtn = () => import('~/components/forms/SubscribeBtn')
 const GymSpacesActionMenu = () => import('~/components/gymSpaces/GymSpacesActionMenu')
 const ContestUpComing = () => import('~/components/gyms/ContestUpComing')
 const GymSpaceList = () => import('~/components/gymSpaces/GymSpaceList')

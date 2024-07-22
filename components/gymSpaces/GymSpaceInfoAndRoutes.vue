@@ -39,23 +39,27 @@
               {{ gym.name }}<span class="font-weight-regular">, {{ gymSpace.name }}</span>
             </v-list-item-title>
             <v-list-item-subtitle>
-              <subscribe-btn
-                subscribe-type="Gym"
-                :subscribe-id="gym.id"
-                outlined
-                type-text
-                :small="true"
-              />
+              <client-only>
+                <subscribe-btn
+                  subscribe-type="Gym"
+                  :subscribe-id="gym.id"
+                  outlined
+                  type-text
+                  :small="true"
+                />
+              </client-only>
             </v-list-item-subtitle>
           </v-list-item-content>
-          <v-list-item-action
-            v-if="gym && $auth.loggedIn && (currentUserIsGymAdmin() && (gymAuthCan(gym, 'manage_space') || gymAuthCan(gym, 'manage_opening')))"
-          >
-            <gym-space-action-menu
-              :gym-space="gymSpace"
-              :gym="gym"
-            />
-          </v-list-item-action>
+          <client-only>
+            <v-list-item-action
+              v-if="gym && $auth.loggedIn && (currentUserIsGymAdmin() && (gymAuthCan(gym, 'manage_space') || gymAuthCan(gym, 'manage_opening')))"
+            >
+              <gym-space-action-menu
+                :gym-space="gymSpace"
+                :gym="gym"
+              />
+            </v-list-item-action>
+          </client-only>
         </v-list-item>
       </v-list>
 
