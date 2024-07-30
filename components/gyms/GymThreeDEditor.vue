@@ -5,17 +5,37 @@
   >
     <div style="position: absolute; top: 5px; right: 5px;">
       <div>
-        <v-btn
-          small
-          outlined
-          text
-          @click="setView('top')"
-        >
-          <v-icon left>
-            {{ mdiArrowCollapseDown }}
-          </v-icon>
-          Vue de dessus
-        </v-btn>
+        Vue de :
+        <v-tooltip bottom>
+          <template #activator="{ on, attrs }">
+            <v-btn
+              icon
+              v-bind="attrs"
+              v-on="on"
+              @click="setView('top')"
+            >
+              <v-icon>
+                {{ mdiArrowCollapseDown }}
+              </v-icon>
+            </v-btn>
+          </template>
+          <span>Dessus</span>
+        </v-tooltip>
+        <v-tooltip bottom>
+          <template #activator="{ on, attrs }">
+            <v-btn
+              icon
+              v-bind="attrs"
+              v-on="on"
+              @click="setView('bottom')"
+            >
+              <v-icon>
+                {{ mdiArrowCollapseUp }}
+              </v-icon>
+            </v-btn>
+          </template>
+          <span>Dessous</span>
+        </v-tooltip>
       </div>
     </div>
     <div
@@ -47,7 +67,7 @@
 </template>
 
 <script>
-import { mdiArrowCollapseDown } from '@mdi/js'
+import { mdiArrowCollapseDown, mdiArrowCollapseUp } from '@mdi/js'
 import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
@@ -108,7 +128,8 @@ export default {
 
       loadingSpaces: true,
 
-      mdiArrowCollapseDown
+      mdiArrowCollapseDown,
+      mdiArrowCollapseUp
     }
   },
 

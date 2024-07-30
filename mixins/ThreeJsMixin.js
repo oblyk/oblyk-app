@@ -244,6 +244,12 @@ export const ThreeJsMixin = {
 
         this.camera.position.set(target.x, target.y + max, target.z)
       }
+      if (view === 'bottom') {
+        const max = Math.max(this.objectsSceneSize.x, this.objectsSceneSize.y, this.objectsSceneSize.z)
+        this.orbitControls.target.y = 0
+
+        this.camera.position.set(target.x, (target.y + max) * -1, target.z)
+      }
       this.orbitControls.update()
       this.renderScene()
     },
