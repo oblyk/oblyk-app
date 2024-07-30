@@ -9,16 +9,48 @@
           v-if="!startEditing"
           class="d-flex border-bottom pb-2 mb-3"
         >
-          <v-btn
+          <v-menu
             v-if="gymSpace"
-            :to="gymSpace.path"
-            large
-            icon
           >
-            <v-icon>
-              {{ mdiArrowLeft }}
-            </v-icon>
-          </v-btn>
+            <template #activator="{ on, attrs }">
+              <v-btn
+                large
+                icon
+                v-bind="attrs"
+                v-on="on"
+              >
+                <v-icon>
+                  {{ mdiArrowLeft }}
+                </v-icon>
+              </v-btn>
+            </template>
+            <v-list>
+              <v-list-item
+                :to="`${gymSpace.Gym.adminPath}/spaces/edit-three-d`"
+              >
+                <v-list-item-icon>
+                  <v-icon>
+                    {{ mdiArrowUpLeft }}
+                  </v-icon>
+                </v-list-item-icon>
+                <v-list-item-title>
+                  Éditeur 3D de la salle
+                </v-list-item-title>
+              </v-list-item>
+              <v-list-item
+                :to="gymSpace.path"
+              >
+                <v-list-item-icon>
+                  <v-icon>
+                    {{ mdiArrowLeft }}
+                  </v-icon>
+                </v-list-item-icon>
+                <v-list-item-title>
+                  {{ gymSpace.name }}
+                </v-list-item-title>
+              </v-list-item>
+            </v-list>
+          </v-menu>
           <h2 class="text-center flex-grow-1 pt-1">
             Éditeur 3D
           </h2>
@@ -297,7 +329,8 @@ import {
   mdiCamera,
   mdiCube,
   mdiMenuDown,
-  mdiMenuRight
+  mdiMenuRight,
+  mdiArrowUpLeft
 } from '@mdi/js'
 import { GymSpaceConcern } from '~/concerns/GymSpaceConcern'
 import { GymFetchConcern } from '~/concerns/GymFetchConcern'
@@ -334,7 +367,8 @@ export default {
       mdiCamera,
       mdiCube,
       mdiMenuDown,
-      mdiMenuRight
+      mdiMenuRight,
+      mdiArrowUpLeft
     }
   },
 
