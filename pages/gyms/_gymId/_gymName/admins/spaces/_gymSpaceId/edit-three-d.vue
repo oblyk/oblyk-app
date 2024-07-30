@@ -160,6 +160,57 @@
                 </v-icon>
                 Ajouter un secteur
               </v-btn>
+              <div class="border-top mt-3 pt-3">
+                <span @click="showMoreOption = !showMoreOption">
+                  <v-icon left>
+                    {{ showMoreOption ? mdiMenuDown : mdiMenuRight }}
+                  </v-icon>
+                  plus d'options
+                </span>
+              </div>
+              <div
+                v-if="showMoreOption"
+                class="pt-2"
+              >
+                <v-alert
+                  v-if="gymSpace.representation_type === '2d_picture'"
+                  class="border mb-0"
+                >
+                  <p class="font-weight-bold mb-1">
+                    Note :
+                  </p>
+                  <p class="mb-1">
+                    Votre espace est paramétré pour utiliser la représentation 2D.
+                  </p>
+                  <p>
+                    Quand vous aurez fini de tracer vos secteurs, cliquer sur <strong>[passer en 3D]</strong>.
+                  </p>
+                  <v-btn
+                    elevation="0"
+                    block
+                    :loading="loadingSwitch"
+                    @click="switchRepresentationTo('3d')"
+                  >
+                    Passer en 3D
+                  </v-btn>
+                </v-alert>
+                <v-alert
+                  v-if="gymSpace.representation_type === '3d'"
+                  class="border mb-0"
+                >
+                  <p class="mb-2">
+                    Passer la représentation de votre espace en 2D.
+                  </p>
+                  <v-btn
+                    elevation="0"
+                    block
+                    :loading="loadingSwitch"
+                    @click="switchRepresentationTo('2d_picture')"
+                  >
+                    Passer en 2D
+                  </v-btn>
+                </v-alert>
+              </div>
             </div>
           </div>
         </div>
@@ -243,13 +294,16 @@ import {
   mdiTrashCan,
   mdiPencil,
   mdiCamera,
-  mdiCube
+  mdiCube,
+  mdiMenuDown,
+  mdiMenuRight
 } from '@mdi/js'
 import { GymSpaceConcern } from '~/concerns/GymSpaceConcern'
 import { GymFetchConcern } from '~/concerns/GymFetchConcern'
 import GymSectorApi from '~/services/oblyk-api/GymSectorApi'
 import GymSector from '~/models/GymSector'
 import GymSpaceThreeDMissing from '~/components/gymSpaces/GymSpaceThreeDMissing.vue'
+import GymSpaceApi from '~/services/oblyk-api/GymSpaceApi'
 const GymSpaceThreeDEditor = () => import('~/components/gymSpaces/GymSpaceThreeDEditor')
 
 export default {
@@ -267,6 +321,8 @@ export default {
       loadingSectors: true,
       showSectorId: null,
       sectorHeight: null,
+      showMoreOption: false,
+      loadingSwitch: false,
 
       mdiArrowLeft,
       mdiVectorSquarePlus,
@@ -275,7 +331,17 @@ export default {
       mdiTrashCan,
       mdiPencil,
       mdiCamera,
-      mdiCube
+      mdiCube,
+      mdiMenuDown,
+      mdiMenuRight
+    }
+  },
+
+  watch: {
+    gymSpace () {
+      if (this.gymSpace && this.gymSpace.representation_type === '2d_picture') {
+        this.showMoreOption = true
+      }
     }
   },
 
@@ -356,6 +422,19 @@ export default {
           this.editLoading = false
           this.editSector = null
           this.startEditing = false
+        })
+    },
+
+    switchRepresentationTo (representationType) {
+      this.loadingSwitch = true
+      new GymSpaceApi(this.$axios, this.$auth)
+        .update({
+          gym_id: this.gymSpace.gym.id,
+          id: this.gymSpace.id,
+          representation_type: representationType
+        })
+        .finally(() => {
+          location.reload()
         })
     },
 
