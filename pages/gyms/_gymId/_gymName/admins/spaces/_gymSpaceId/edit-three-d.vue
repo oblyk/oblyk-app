@@ -150,16 +150,17 @@
               v-if="gymSpace"
               class="mt-4"
             >
-              <v-btn
-                text
-                block
-                :to="`${gymSpace.path}/sectors/new?redirect_to=${$route.fullPath}`"
-              >
-                <v-icon left>
-                  {{ mdiVectorSquarePlus }}
-                </v-icon>
-                Ajouter un secteur
-              </v-btn>
+              <div class="text-center">
+                <v-btn
+                  text
+                  :to="`${gymSpace.path}/sectors/new?redirect_to=${$route.fullPath}`"
+                >
+                  <v-icon left>
+                    {{ mdiVectorSquarePlus }}
+                  </v-icon>
+                  Ajouter un secteur
+                </v-btn>
+              </div>
               <div class="border-top mt-3 pt-3">
                 <span @click="showMoreOption = !showMoreOption">
                   <v-icon left>

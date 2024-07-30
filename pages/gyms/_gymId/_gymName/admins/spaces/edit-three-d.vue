@@ -22,7 +22,10 @@
         class="rounded pa-4 ma-1"
         style="position: absolute; left: 5px; top: 5px; max-height: calc(100vh - 65px); overflow-y: auto; width: 300px"
       >
-        <div class="d-flex border-bottom pb-2">
+        <div
+          v-if="startEditingSpace === false && startEditingAsset === false && advancedOptions === false"
+          class="d-flex border-bottom pb-2"
+        >
           <v-btn
             large
             icon
