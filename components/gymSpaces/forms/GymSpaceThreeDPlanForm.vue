@@ -23,7 +23,6 @@
 import { mdiMenuDown, mdiMenuRight } from '@mdi/js'
 import { FormHelpers } from '@/mixins/FormHelpers'
 import { AppConcern } from '@/concerns/AppConcern'
-import GymSpace from '@/models/GymSpace'
 import SubmitForm from '@/components/forms/SubmitForm'
 import CloseForm from '@/components/forms/CloseForm'
 
@@ -75,12 +74,11 @@ export default {
         },
         data: formData
       })
-        .then((resp) => {
+        .then(() => {
           if (this.redirectTo) {
             this.$router.push(this.redirectTo)
           } else {
-            const gymSpace = new GymSpace({ attributes: resp.data })
-            this.$router.push(gymSpace.path)
+            this.$router.push(`${this.gymSpace.Gym.adminPath}/spaces/${this.gymSpace.id}/edit-three-d`)
           }
         })
         .catch((err) => {
