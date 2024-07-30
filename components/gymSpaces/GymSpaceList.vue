@@ -100,6 +100,8 @@ export default {
 
 <style lang="scss" scoped>
 .gym-space-list {
+  height: 100%;
+  overflow-y: auto;
   .gym-space-list-groups {
     vertical-align: top;
     border-width: 3px;
