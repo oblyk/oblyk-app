@@ -6,7 +6,7 @@
   >
     <div class="d-flex flex-column" style="height: 100%">
       <div
-        v-if="gymSpace.plan"
+        v-if="gymSpace.pictureThumbnailUrl"
         class="pa-4"
       >
         <v-img
