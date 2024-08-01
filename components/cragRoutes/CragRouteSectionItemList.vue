@@ -28,7 +28,7 @@
           </span>
         </span>
       </v-list-item-title>
-      <v-list-item-subtitle>
+      <v-list-item-subtitle class="text-wrap">
         {{ section.description }}
       </v-list-item-subtitle>
       <v-list-item-subtitle>
