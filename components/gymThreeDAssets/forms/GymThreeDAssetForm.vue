@@ -14,14 +14,76 @@
       label="Description"
     />
 
-    <v-file-input
-      v-model="data.file"
-      outlined
-      truncate-length="15"
-      placeholder="Fichier .obj.zip ou .gltf"
-    />
+    <p>
+      Suivant le type de fichier 3D que vous voulez importer, choisissez l'une des options ci-dessous :
+    </p>
+    <v-expansion-panels v-model="importTypeIndex">
+      <v-expansion-panel>
+        <v-expansion-panel-header>
+          <p class="mb-0">
+            Je souhaite importer un fichier <code class="font-weight-bold">.obj.zip</code>
+          </p>
+        </v-expansion-panel-header>
+        <v-expansion-panel-content>
+          <p>Exemple : Lors de l'export en OBJ sur la version web de SketchUp, un fichier .obj.zip est à télécharger</p>
+          <v-file-input
+            v-model="data.objZipFile"
+            outlined
+            truncate-length="30"
+            placeholder="Fichier .obj.zip"
+          />
+        </v-expansion-panel-content>
+      </v-expansion-panel>
+      <v-expansion-panel>
+        <v-expansion-panel-header>
+          <p class="mb-0">
+            Je souhaite importer deux fichiers, un <code class="font-weight-bold">.obj</code> et un <code class="font-weight-bold">.mtl</code>
+          </p>
+        </v-expansion-panel-header>
+        <v-expansion-panel-content>
+          <p>
+            Exemple : Lors de l'export en OBJ sur SketchUp Desktop, deux fichiers sont produits, un .obj et un .mtl.<br>
+            Les deux doivent être fournis.
+          </p>
+          <v-file-input
+            v-model="data.objFile"
+            outlined
+            accept=".obj,*"
+            truncate-length="30"
+            placeholder="Fichier .obj"
+          />
+          <v-file-input
+            v-model="data.mtlFile"
+            outlined
+            accept=".mtl,*"
+            truncate-length="30"
+            placeholder="Fichier .mtl"
+          />
+        </v-expansion-panel-content>
+      </v-expansion-panel>
 
-    <div class="mb-6">
+      <v-expansion-panel>
+        <v-expansion-panel-header>
+          <p class="mb-0">
+            Je souhaite importer un fichier <code class="font-weight-bold">.gltf</code>
+          </p>
+        </v-expansion-panel-header>
+        <v-expansion-panel-content>
+          <p>
+            D'autres logiciels comme Blender, Revit ou FreeCad, peuvent exporter leur modèle 3D au format .gltf
+          </p>
+          <v-file-input
+            v-model="data.gltfFile"
+            outlined
+            accept=".gltf,*"
+            truncate-length="30"
+            placeholder="Fichier .gltf"
+          />
+        </v-expansion-panel-content>
+      </v-expansion-panel>
+    </v-expansion-panels>
+
+    <div class="mb-6 mt-5">
       <p class="mb-0">
         <span @click="advancedOptions = !advancedOptions">
           <v-icon left>
@@ -97,16 +159,21 @@ export default {
       data: {
         name: this.gymThreeDAsset?.name,
         description: this.gymThreeDAsset?.description,
-        file: null,
+        objZipFile: null,
+        objFile: null,
+        mtlFile: null,
+        gltfFile: null,
         three_d_parameters: {
           color_correction_sketchup_exports: this.gymThreeDAsset?.three_d_parameters?.color_correction_sketchup_exports,
           highlight_edges: this.gymThreeDAsset?.three_d_parameters?.highlight_edges
         }
       },
+      importTypeIndex: null,
       loadingDelete: false,
       redirectTo: null,
       uploadPercentage: 0,
       advancedOptions: false,
+      importTypes: ['obj_zip', 'obj_mtl', 'gltf'],
 
       mdiTrashCan,
       mdiMenuRight,
@@ -123,8 +190,17 @@ export default {
     submit () {
       this.submitOverlay = true
       const formData = new FormData()
-      if (this.data.file) {
-        formData.append('gym_three_d_asset[three_d_file]', this.data.file)
+      if (this.importTypeIndex !== null) {
+        const importType = this.importTypes[this.importTypeIndex]
+        formData.append('gym_three_d_asset[import_type]', importType)
+        if (importType === 'obj_zip') {
+          formData.append('gym_three_d_asset[three_d_file]', this.data.objZipFile)
+        } else if (importType === 'gltf') {
+          formData.append('gym_three_d_asset[three_d_file]', this.data.gltfFile)
+        } else if (importType === 'obj_mtl') {
+          formData.append('gym_three_d_asset[three_d_file_obj]', this.data.objFile)
+          formData.append('gym_three_d_asset[three_d_file_mtl]', this.data.mtlFile)
+        }
       }
       formData.append('gym_three_d_asset[name]', this.data.name)
       formData.append('gym_three_d_asset[description]', this.data.description)

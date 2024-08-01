@@ -9,6 +9,16 @@
           <gym-space-three-d-plan-form
             :gym-space="gymSpace"
           />
+          <v-btn
+            class="mt-4"
+            text
+            @click="goBackClick"
+          >
+            <v-icon left>
+              {{ mdiArrowLeft }}
+            </v-icon>
+            {{ $t('actions.back') }}
+          </v-btn>
         </client-only>
       </v-col>
     </v-row>
@@ -16,6 +26,7 @@
 </template>
 
 <script>
+import { mdiArrowLeft } from '@mdi/js'
 import { GymSpaceConcern } from '@/concerns/GymSpaceConcern'
 import GymSpaceThreeDPlanForm from '~/components/gymSpaces/forms/GymSpaceThreeDPlanForm'
 
@@ -23,6 +34,12 @@ export default {
   meta: { orphanRoute: true },
   components: { GymSpaceThreeDPlanForm },
   mixins: [GymSpaceConcern],
+
+  data () {
+    return {
+      mdiArrowLeft
+    }
+  },
 
   i18n: {
     messages: {
@@ -38,6 +55,12 @@ export default {
   head () {
     return {
       title: this.$t('metaTitle')
+    }
+  },
+
+  methods: {
+    goBackClick () {
+      this.$router.go(-1)
     }
   }
 }

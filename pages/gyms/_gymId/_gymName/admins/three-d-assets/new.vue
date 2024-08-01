@@ -28,10 +28,10 @@ export default {
   i18n: {
     messages: {
       fr: {
-        metaTitle: 'Créer un group'
+        metaTitle: 'Importer une décoration'
       },
       en: {
-        metaTitle: 'Create group'
+        metaTitle: 'Import asset'
       }
     }
   },
