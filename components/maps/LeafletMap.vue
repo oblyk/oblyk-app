@@ -1560,7 +1560,7 @@ export default {
 .leaflet-popup {
   .map-popup-cover {
     background-color: rgb(240, 240, 240);
-    border-radius: 4px 4px 0 0;
+    border-radius: 16px 16px 0 0;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -1608,7 +1608,10 @@ export default {
     border-top-color: rgb(230,230,230);
     border-width: 1px;
     button {
-      color: #1e88e5;
+      color: white;
+      background-color: black;
+      border-radius: 30px;
+      padding: 5px 10px;
       font-weight: bold;
       text-transform: uppercase;
       text-decoration: none;
@@ -1616,7 +1619,7 @@ export default {
   }
 
   .leaflet-popup-content-wrapper {
-    border-radius: 4px;
+    border-radius: 16px;
     padding: 0;
   }
 
@@ -1693,9 +1696,17 @@ export default {
   }
 }
 .leaflet-container a.leaflet-popup-close-button {
-  padding-top: 7px;
-  width: 30px;
-  height: 30px;
+  padding-top: 6px;
+  padding-right: 0;
+  padding-left: 0;
+  text-align: center;
+  width: 26px;
+  height: 26px;
+  background-color: white;
+  border-radius: 50%;
+  color: black;
+  margin-top: 3px;
+  margin-right: 4px;
 }
 .leaflet-customer-control {
   background-color: white;
