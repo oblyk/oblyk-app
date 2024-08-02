@@ -91,7 +91,7 @@
               text
               @click="cragsDialog = false"
             >
-              {{ $t('common.close') }}
+              {{ $t('actions.close') }}
             </v-btn>
           </v-card-actions>
         </v-card>
