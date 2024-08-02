@@ -1885,6 +1885,7 @@ export default {
         clickToTop: 'Cliquez pour retourner en haut de la page',
         itIsTimeToGoBackUp: 'Il est temps de remonter !',
         moreAboutOblyk: 'Plus sur Oblyk',
+        ourApp: 'Notre App !',
         followUs: 'Nous suivre',
         news: 'Actualités',
         contact: 'Contact',
