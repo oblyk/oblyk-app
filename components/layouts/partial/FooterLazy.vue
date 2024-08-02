@@ -79,6 +79,17 @@
       <v-col
         class="col-12 col-md-4 order-1 order-md-3"
       >
+        <p class="font-weight-bold mb-3">
+          {{ $t('components.layout.footer.ourApp') }}
+        </p>
+        <div class="mb-4 pl-3">
+          <a class="py-4 px-0" href="https://play.google.com/store/apps/details?id=org.oblyk.twa">
+            <img class="vertical-align-middle" height="50" src="/svg/google-store-white.svg" alt="logo Google Play Store">
+          </a>
+          <a class="py-4 px-0 ml-2" href="https://apps.apple.com/fr/app/oblyk/id6569245391">
+            <img class="vertical-align-middle" height="50" src="/svg/apple-store-white.svg" alt="logo Apple App Store">
+          </a>
+        </div>
         <p class="font-weight-bold">
           {{ $t('components.layout.footer.followUs') }}
         </p>

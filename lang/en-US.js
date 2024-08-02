@@ -1883,6 +1883,7 @@ export default {
         clickToTop: 'Click to return to the top of the page',
         itIsTimeToGoBackUp: "It's time to go back up !",
         moreAboutOblyk: 'More about Oblyk',
+        ourApp: 'Our App !',
         followUs: 'Follow us',
         news: 'News',
         contact: 'Contact',
