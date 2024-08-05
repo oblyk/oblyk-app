@@ -132,21 +132,26 @@
       </v-col>
     </v-row>
     <v-divider class="mt-2 mb-2" />
-    <v-row class="font-weight-light">
-      <v-col>
+    <div class="font-weight-light d-flex">
+      <div class="text-no-wrap">
         <nuxt-link to="/">
           <v-icon small left dark>
             {{ mdiCopyright }}
           </v-icon>
           2022 — Oblyk
         </nuxt-link>
-      </v-col>
-      <v-col class="text-right">
+      </div>
+      <div class="ml-auto">
+        <nuxt-link to="/fr/cookie-et-mesure-d-audience" rel="nofollow">
+          Cookies
+        </nuxt-link>
+      </div>
+      <div>
         <nuxt-link to="/fr/conditions-d-utilisation" rel="nofollow">
           {{ $t('components.layout.footer.termsOfUse') }}
         </nuxt-link>
-      </v-col>
-    </v-row>
+      </div>
+    </div>
   </v-container>
 </template>
 
@@ -159,7 +164,8 @@ import {
   mdiEmail,
   mdiDatabase,
   mdiOpenInNew,
-  mdiInstagram
+  mdiInstagram,
+  mdiCookie
 } from '@mdi/js'
 
 export default {
@@ -174,7 +180,8 @@ export default {
       mdiEmail,
       mdiDatabase,
       mdiOpenInNew,
-      mdiInstagram
+      mdiInstagram,
+      mdiCookie
     }
   },
 

@@ -691,6 +691,9 @@ export default {
         right: 'Right'
       }
     },
+    matomoConsent: {
+      label: 'I do not want Matomo to collect data about my browsing habits'
+    },
     gallery: {
       title: 'Pictures',
       defineCragRouteBanner: 'Define as route banner',

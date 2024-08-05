@@ -38,30 +38,6 @@
       <localization-popup />
     </client-only>
 
-    <!-- About cookies -->
-    <v-snackbar
-      v-model="cookiesMessage"
-      timeout="-1"
-    >
-      <v-icon
-        left
-        color="#b77121"
-      >
-        {{ mdiCookie }}
-      </v-icon>
-      {{ $t('common.pages.cookies') }}
-      <template #action="{ attrs }">
-        <v-btn
-          color="white"
-          text
-          v-bind="attrs"
-          @click="acceptedCookies()"
-        >
-          {{ $t('actions.ok') }}
-        </v-btn>
-      </template>
-    </v-snackbar>
-
     <!-- Update Pwa-->
     <v-snackbar
       v-model="readyToUpdatePwa"
@@ -95,7 +71,7 @@
 </template>
 
 <script>
-import { mdiCookie, mdiGift } from '@mdi/js'
+import { mdiGift } from '@mdi/js'
 import LazyHydrate from 'vue-lazy-hydration'
 import { Cable } from '~/channels/Cable'
 import { Channels } from '~/channels/Channels'
@@ -124,12 +100,10 @@ export default {
   data () {
     return {
       drawer: false,
-      cookiesMessage: false,
       readyToUpdatePwa: false,
 
       watchLocationId: null,
 
-      mdiCookie,
       mdiGift
     }
   },
@@ -141,10 +115,6 @@ export default {
   },
 
   watch: {
-    '$store.state.cookie.okCookie' () {
-      this.cookiesMessage = this.$store.getters['cookie/showCookiePopup']
-    },
-
     '$store.state.theme.theme' () {
       this.$vuetify.theme.dark = this.$store.getters['theme/getTheme'] === 'dark'
     },
@@ -166,7 +136,6 @@ export default {
 
   mounted () {
     this.$vuetify.theme.dark = this.$store.getters['theme/getTheme'] === 'dark'
-    this.cookiesMessage = this.$store.getters['cookie/showCookiePopup']
     this.updateWorkbox()
     if (this.$store.state.geolocation.status === 'activate') {
       this.activateWatchGeolocation()
@@ -184,10 +153,6 @@ export default {
   },
 
   methods: {
-    acceptedCookies () {
-      this.$store.dispatch('cookie/acceptCookies')
-    },
-
     inverseDrawer () {
       this.drawer = !this.drawer
     },

@@ -692,6 +692,9 @@ export default {
         right: 'Droite'
       }
     },
+    matomoConsent: {
+      label: 'Je ne souhaite pas que Matomo collecte des données sur ma navigation'
+    },
     gallery: {
       title: 'Photos',
       defineCragRouteBanner: 'Définir comme bandeau de la ligne',

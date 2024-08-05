@@ -174,16 +174,17 @@
       <h4>4.3 Cookies</h4>
       <p>
         <strong>Oblyk.org</strong> uses cookies, which are markers allowing a better experience on the website ( backup
-        of some settings in memory on the web browser, to fasten the website's browsing). Cookies are harmless for the
-        user's computer and personal data.
-      </p>
-      <p>
-        The user can choose to accept or decline the use of cookies on <strong>Oblyk.org</strong> through his web
-        browser.
+        of some settings in memory on the web browser, to fasten the website's browsing).
       </p>
       <p>
         Cookies are anonymous and can't be used to collect personal data. None of this anonymous data will be
         transmitted to business partners, or third parties : their remain in the ownership of <strong>Oblyk.org</strong>.
+      </p>
+      <p>
+        For more information, please consult the :
+        <nuxt-link to="/en/cookie-and-audience-measurement">
+          Cookie & Audience measurement
+        </nuxt-link>
       </p>
 
       <h3>Article 5 : Intellectual property</h3>

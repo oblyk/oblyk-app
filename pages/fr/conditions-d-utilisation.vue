@@ -181,17 +181,18 @@
       <p>
         <strong>Oblyk.org</strong> utilise des cookies, qui sont des marqueurs permettant d'améliorer l'expérience de
         navigation sur le site (sauvegarde de certains paramètres en mémoire sur le navigateur, pour plus de rapidité
-        lors de l'utilisation). Les cookies sont sans dommage pour l'ordinateur et les données personnelles de
-        l'utilisateur.
-      </p>
-      <p>
-        L'utilisateur a le choix d'accepter ou de refuser l'utilisation des cookies sur <strong>Oblyk.org</strong> par
-        le biais de son navigateur internet.
+        lors de l'utilisation).
       </p>
       <p>
         Les cookies sont anonymes, et ne sont pas utilisés à des fins de collecte d'information à caractère personnel.
         Aucune de ces données anonymes ne pourra être transmise à des partenaires commerciaux, ou organismes tiers :
         elle resteront en possession d'<strong>Oblyk.org</strong>.
+      </p>
+      <p>
+        Pour plus de précision, veuillez consulter la page :
+        <nuxt-link to="/fr/cookie-et-mesure-d-audience">
+          Cookie & Mesure d'audience
+        </nuxt-link>
       </p>
 
       <h3>Article 5 : Propriété intellectuelle</h3>
