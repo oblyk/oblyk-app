@@ -2,7 +2,7 @@
   <!-- Gym space -->
   <div
     class="gym-space-interface"
-    :class="$vuetify.breakpoint.mobile ? '--mobile-interface' : '--desktop-interface'"
+    :class="$vuetify.breakpoint.mobile ? '--mobile-interface sheet-background-color' : '--desktop-interface'"
   >
     <!-- Plan area -->
     <div
@@ -29,7 +29,7 @@
         <!-- 3D plan -->
         <div
           v-if="gymSpace && gymSpace.representation_type === '3d'"
-          class="full-height"
+          class="full-height sheet-background-color"
         >
           <gym-space-three-d
             v-if="gymSpace && gymSpace.have_three_d"

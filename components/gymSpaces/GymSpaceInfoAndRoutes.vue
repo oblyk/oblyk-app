@@ -3,8 +3,8 @@
     <v-sheet
       v-if="!editingSectorPolygon && !editingSectorColor"
       class="pb-4 border-right gym-space-card"
-      :elevation="$vuetify.breakpoint.mobile ? 3 : 0"
-      :class="$vuetify.breakpoint.mobile ? '--mobile-interface rounded' : '--desktop-interface'"
+      :elevation="$vuetify.breakpoint.mobile ? 24 : 0"
+      :class="$vuetify.breakpoint.mobile ? '--mobile-interface rounded border-top' : '--desktop-interface'"
     >
       <!-- Visual indication that encourages scrolling -->
       <div

@@ -17,7 +17,7 @@
         />
         <gym-three-d
           v-if="gym && gym.representation_type === '3d'"
-          class="full-height"
+          class="full-height sheet-background-color"
           :gym="gym"
         />
       </client-only>
@@ -26,12 +26,12 @@
     <!-- Gym is loaded -->
     <div
       v-if="gym"
-      class="gym-spaces-left-side"
+      class="gym-spaces-left-side border-right"
       :class="gymSpacesLeftSideClass"
     >
       <!-- Spaces informations and routes -->
       <v-sheet
-        :elevation="$vuetify.breakpoint.mobile ? 4 : 0"
+        :elevation="$vuetify.breakpoint.mobile ? 24 : 0"
         class="gym-spaces-card"
         :class="$vuetify.breakpoint.mobile ? 'rounded' : ''"
       >
@@ -228,7 +228,7 @@ export default {
     gymSpacesLeftSideClass () {
       const classes = []
       if (this.$vuetify.breakpoint.mobile) {
-        classes.push('--mobile-interface')
+        classes.push('--mobile-interface sheet-background-color')
       } else {
         classes.push('--desktop-interface')
       }
