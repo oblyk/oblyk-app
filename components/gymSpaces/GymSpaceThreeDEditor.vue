@@ -206,8 +206,12 @@ export default {
       this.scene.background = null
 
       // Ambient Light
-      const ambientLight = new THREE.AmbientLight('rgb(255,255,255)', 3)
+      const ambientLight = new THREE.AmbientLight('rgb(255,255,255)', 0.7)
       this.scene.add(ambientLight)
+
+      // Hemisphere Light
+      const light = new THREE.HemisphereLight('rgb(255,255,255)', 'rgb(0,0,0)', 4)
+      this.scene.add(light)
 
       // Renderer
       this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true })
