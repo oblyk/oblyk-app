@@ -32,8 +32,9 @@
           class="full-height sheet-background-color"
         >
           <gym-space-three-d
-            v-if="gymSpace && gymSpace.have_three_d"
+            v-if="gym && gymSpace && gymSpace.have_three_d"
             :gym-space="gymSpace"
+            :gym="gym"
           />
           <gym-space-three-d-missing
             v-if="!gymSpace.have_three_d"

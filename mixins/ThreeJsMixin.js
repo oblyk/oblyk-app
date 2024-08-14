@@ -19,7 +19,8 @@ export const ThreeJsMixin = {
       labelPositionUpdatable: false,
       labelDisableEvent: false,
       labelDisableTimeout: null,
-      objectsSceneSize: null
+      objectsSceneSize: null,
+      autoRotate: false
     }
   },
 
@@ -192,6 +193,29 @@ export const ThreeJsMixin = {
           resolve(file)
         }, 'image/png', 1)
       })
+    },
+
+    autoRotateScene () {
+      if (!this.autoRotate) {
+        this.orbitControls.autoRotate = true
+        this.orbitControls.autoRotateSpeed = -1
+        this.animate()
+      } else if (this.animationId !== null) {
+        cancelAnimationFrame(this.animationId)
+      }
+      this.autoRotate = !this.autoRotate
+    },
+
+    animate () {
+      this.animationId = requestAnimationFrame(this.animate)
+
+      // Update controls
+      if (this.orbitControls) {
+        this.orbitControls.update()
+      }
+
+      // Render the scene
+      this.renderScene()
     },
 
     saveCameraPosition () {

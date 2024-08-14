@@ -4,6 +4,43 @@
     style="position: relative; overflow: hidden"
   >
     <div
+      v-if="currentUserIsGymAdmin() && !loadingSpaces"
+      style="position: absolute; top: 5px; right: 5px;"
+    >
+      <div>
+        <v-tooltip bottom>
+          <template #activator="{ on, attrs }">
+            <v-btn
+              icon
+              v-bind="attrs"
+              v-on="on"
+              @click="canvasToPng(`capture-${gym.name}`)"
+            >
+              <v-icon>
+                {{ mdiCamera }}
+              </v-icon>
+            </v-btn>
+          </template>
+          <span>Prendre une capture</span>
+        </v-tooltip>
+        <v-tooltip bottom>
+          <template #activator="{ on, attrs }">
+            <v-btn
+              icon
+              v-bind="attrs"
+              v-on="on"
+              @click="autoRotateScene()"
+            >
+              <v-icon>
+                {{ mdiAxisZRotateCounterclockwise }}
+              </v-icon>
+            </v-btn>
+          </template>
+          <span>Rotation automatique</span>
+        </v-tooltip>
+      </div>
+    </div>
+    <div
       v-if="loadingSpaces"
       class="full-height d-flex flex-column justify-center"
     >
@@ -55,18 +92,20 @@
 </template>
 
 <script>
+import { mdiCamera, mdiAxisZRotateCounterclockwise } from '@mdi/js'
 import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { ThreeJsMixin } from '~/mixins/ThreeJsMixin'
 import GymApi from '~/services/oblyk-api/GymApi'
 import GymSpace from '~/models/GymSpace'
-import AnimateOblykLogo from '~/components/layouts/AnimateOblykLogo.vue'
+import AnimateOblykLogo from '~/components/layouts/AnimateOblykLogo'
+import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
 
 export default {
   name: 'GymThreeD',
   components: { AnimateOblykLogo },
-  mixins: [ThreeJsMixin],
+  mixins: [ThreeJsMixin, GymRolesHelpers],
   props: {
     gym: {
       type: Object,
@@ -82,7 +121,10 @@ export default {
       loadingSpaces: true,
       activeSpaceId: null,
 
-      threeDEnvironment: `GymThreeD-${this.gym.id}`
+      threeDEnvironment: `GymThreeD-${this.gym.id}`,
+
+      mdiCamera,
+      mdiAxisZRotateCounterclockwise
     }
   },
 
