@@ -164,6 +164,11 @@ export default {
           object.position.y = space.three_d_position?.y || 0
           object.position.x = space.three_d_position?.x || 0
           object.position.z = space.three_d_position?.z || 0
+
+          object.rotation.y = (space.three_d_rotation?.y || 0) * (Math.PI / 180)
+          object.rotation.x = (space.three_d_rotation?.x || 0) * (Math.PI / 180)
+          object.rotation.z = (space.three_d_rotation?.z || 0) * (Math.PI / 180)
+
           object.scale.setScalar(space.three_d_scale || 1)
           object.userData = { space }
 

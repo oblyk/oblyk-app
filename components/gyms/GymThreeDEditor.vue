@@ -97,6 +97,10 @@ export default {
       type: [String, Number],
       default: null
     },
+    editingSpaceRotation: {
+      type: Object,
+      default: null
+    },
     editingAssetElevation: {
       type: [String, Number],
       default: null
@@ -117,6 +121,7 @@ export default {
       isHighlightSpace: false,
       editingSpace: null,
       originalSpacePosition: null,
+      originalSpaceRotation: null,
       spacesGroup: {},
 
       assets: [],
@@ -136,6 +141,11 @@ export default {
   watch: {
     editingSpaceElevation () {
       this.setSpaceElevation()
+    },
+
+    editingSpaceRotation: {
+      handler () { this.setSpaceRotation() },
+      deep: true
     },
 
     editingAssetElevation () {
@@ -227,6 +237,11 @@ export default {
           object.position.y = space.three_d_position?.y || 0
           object.position.x = space.three_d_position?.x || 0
           object.position.z = space.three_d_position?.z || 0
+
+          object.rotation.y = (space.three_d_rotation?.y || 0) * (Math.PI / 180)
+          object.rotation.x = (space.three_d_rotation?.x || 0) * (Math.PI / 180)
+          object.rotation.z = (space.three_d_rotation?.z || 0) * (Math.PI / 180)
+
           object.scale.setScalar(space.three_d_scale || 1)
           object.userData.space = space
 
@@ -430,12 +445,22 @@ export default {
       }
     },
 
+    setSpaceRotation () {
+      if (this.editingSpace) {
+        this.editingSpace.rotation.x = parseFloat(this.editingSpaceRotation.x || '0') * (Math.PI / 180)
+        this.editingSpace.rotation.y = parseFloat(this.editingSpaceRotation.y || '0') * (Math.PI / 180)
+        this.editingSpace.rotation.z = parseFloat(this.editingSpaceRotation.z || '0') * (Math.PI / 180)
+        this.renderScene()
+      }
+    },
+
     startEditingSpace (space) {
       this.unGlossyInteractiveElements()
       this.glossySpace(space.id)
       this.isEditing = true
       this.editingSpace = this.spaces.find(gymSpace => gymSpace.userData.space.id === space.id)
       this.originalSpacePosition = { ...this.editingSpace.position }
+      this.originalSpaceRotation = { ...this.editingSpace.rotation }
       this.dragControls.enable = true
       this.dragControls.setObjects([this.editingSpace])
       this.dragControls.addEventListener('drag', this.spaceDrag)
@@ -445,6 +470,7 @@ export default {
 
     cancelEditingSpace () {
       this.editingSpace.position.copy(this.originalSpacePosition)
+      this.editingSpace.rotation.copy(this.originalSpaceRotation)
       this.endEditingSpace()
     },
 

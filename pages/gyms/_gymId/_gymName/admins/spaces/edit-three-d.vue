@@ -14,6 +14,7 @@
           :space-click-callback="startEditSpace"
           :asset-click-callback="startEditAsset"
           :editing-space-elevation="spaceElevation"
+          :editing-space-rotation="spaceRotation"
           :editing-asset-elevation="assetElevation"
           :editing-asset-rotation="assetRotation"
         />
@@ -466,6 +467,14 @@
             type="number"
             outlined
           />
+          <v-text-field
+            v-model="spaceRotation.y"
+            label="Rotation de l'espace"
+            suffix="deg"
+            type="number"
+            outlined
+            dense
+          />
           <div class="text-right">
             <v-btn
               text
@@ -635,6 +644,11 @@ export default {
       loadingSpaces: true,
       showSpaceId: null,
       spaceElevation: 0,
+      spaceRotation: {
+        x: 0,
+        y: 0,
+        z: 0
+      },
       tab: 0,
 
       loadingThreeDElement: true,
@@ -741,6 +755,11 @@ export default {
       if (space.three_d_position?.y) {
         this.spaceElevation = space.three_d_position.y
       }
+      if (space.three_d_rotation) {
+        this.spaceRotation = space.three_d_rotation
+      } else {
+        this.spaceRotation = { x: 0, y: 0, z: 0 }
+      }
       this.startEditingSpace = true
       setTimeout(() => {
         this.$refs.gymThreeDEditor.startEditingSpace(space)
@@ -755,12 +774,18 @@ export default {
         y: position.y,
         z: position.z
       }
+      const rotation = {
+        x: this.spaceRotation.x,
+        y: this.spaceRotation.y,
+        z: this.spaceRotation.z
+      }
       this.$refs.gymThreeDEditor.endEditingSpace()
       new GymSpaceApi(this.$axios, this.$auth)
         .update({
           gym_id: this.gym.id,
           id: this.editSpace.id,
-          three_d_position: xyz
+          three_d_position: xyz,
+          three_d_rotation: rotation
         })
         .finally(() => {
           this.editSpaceLoading = false
