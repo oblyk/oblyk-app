@@ -224,7 +224,7 @@ export const ThreeJsMixin = {
         .normalize()
         .multiplyScalar(distance)
 
-      this.orbitControls.maxDistance = distance * offset
+      this.orbitControls.maxDistance = distance * offset * 1.5
       this.orbitControls.target.copy(center)
 
       this.camera.near = distance / 100
