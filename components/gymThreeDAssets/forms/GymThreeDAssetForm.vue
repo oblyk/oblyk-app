@@ -17,7 +17,10 @@
     <p>
       Suivant le type de fichier 3D que vous voulez importer, choisissez l'une des options ci-dessous :
     </p>
-    <v-expansion-panels v-model="importTypeIndex">
+    <v-expansion-panels
+      v-model="importTypeIndex"
+      class="mb-6"
+    >
       <v-expansion-panel>
         <v-expansion-panel-header>
           <p class="mb-0">
@@ -83,7 +86,10 @@
       </v-expansion-panel>
     </v-expansion-panels>
 
-    <div class="mb-6 mt-5">
+    <div
+      v-if="submitMethode === 'put'"
+      class="mb-6 mt-5"
+    >
       <p class="mb-0">
         <span @click="advancedOptions = !advancedOptions">
           <v-icon left>
@@ -203,7 +209,9 @@ export default {
         }
       }
       formData.append('gym_three_d_asset[name]', this.data.name)
-      formData.append('gym_three_d_asset[description]', this.data.description)
+      if (this.data.description) {
+        formData.append('gym_three_d_asset[description]', this.data.description)
+      }
       formData.append('gym_three_d_asset[three_d_parameters][color_correction_sketchup_exports]', this.data.three_d_parameters.color_correction_sketchup_exports)
       formData.append('gym_three_d_asset[three_d_parameters][highlight_edges]', this.data.three_d_parameters.highlight_edges)
 
