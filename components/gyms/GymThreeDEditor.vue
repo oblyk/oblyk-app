@@ -439,14 +439,14 @@ export default {
     },
 
     setSpaceElevation () {
-      if (this.editingSpace) {
+      if (this.editingSpace && this.isEditing) {
         this.editingSpace.position.y = this.editingSpaceElevation
         this.renderScene()
       }
     },
 
     setSpaceRotation () {
-      if (this.editingSpace) {
+      if (this.editingSpace && this.isEditing) {
         this.editingSpace.rotation.x = parseFloat(this.editingSpaceRotation.x || '0') * (Math.PI / 180)
         this.editingSpace.rotation.y = parseFloat(this.editingSpaceRotation.y || '0') * (Math.PI / 180)
         this.editingSpace.rotation.z = parseFloat(this.editingSpaceRotation.z || '0') * (Math.PI / 180)
@@ -476,6 +476,8 @@ export default {
 
     endEditingSpace () {
       this.isEditing = false
+      const spaceInData = this.threeDs.spaces.find(space => space.id === this.editingSpace.userData.space.id)
+      spaceInData.three_d_position = { ...this.editingSpace.position }
       this.editingSpace = null
       this.dragControls.setObjects([])
       this.dragControls.removeEventListener('drag')
@@ -534,14 +536,14 @@ export default {
     },
 
     setAssetElevation () {
-      if (this.editingAsset) {
+      if (this.editingAsset && this.isEditing) {
         this.editingAsset.position.y = this.editingAssetElevation
         this.renderScene()
       }
     },
 
     setAssetRotation () {
-      if (this.editingAsset) {
+      if (this.editingAsset && this.isEditing) {
         this.editingAsset.rotation.x = parseFloat(this.editingAssetRotation.x || '0') * (Math.PI / 180)
         this.editingAsset.rotation.y = parseFloat(this.editingAssetRotation.y || '0') * (Math.PI / 180)
         this.editingAsset.rotation.z = parseFloat(this.editingAssetRotation.z || '0') * (Math.PI / 180)
@@ -557,6 +559,8 @@ export default {
 
     endEditingAsset () {
       this.isEditing = false
+      const assetInData = this.threeDs.assets.find(asset => asset.id === this.editingAsset.userData.asset.id)
+      assetInData.three_d_position = { ...this.editingAsset.position }
       this.editingAsset = null
       this.dragControls.setObjects([])
       this.dragControls.removeEventListener('drag')

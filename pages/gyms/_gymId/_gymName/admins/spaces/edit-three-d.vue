@@ -846,7 +846,7 @@ export default {
 
     startEditAsset (asset) {
       this.editAsset = asset
-      if (asset.three_d_position?.y) {
+      if (asset.three_d_position?.y !== null) {
         this.assetElevation = asset.three_d_position.y
       }
       this.assetRotation = asset.three_d_rotation
@@ -884,7 +884,7 @@ export default {
         y: this.assetRotation.y,
         z: this.assetRotation.z
       }
-      this.$refs.gymThreeDEditor.endEditingSpace()
+      this.$refs.gymThreeDEditor.endEditingAsset()
       new GymThreeDElementApi(this.$axios, this.$auth)
         .update({
           gym_id: this.gym.id,
