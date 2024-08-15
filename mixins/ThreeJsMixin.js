@@ -292,6 +292,54 @@ export const ThreeJsMixin = {
         this.labelDisableEvent = false
         this.labelDisableTimeout = null
       }, 300)
+    },
+
+    addShadowLight (objects) {
+      const size = new THREE.Vector3()
+      const center = new THREE.Vector3()
+      const box = new THREE.Box3()
+      for (const object of objects) {
+        box.expandByObject(object)
+      }
+
+      box.getSize(size)
+      box.getCenter(center)
+
+      const dirLight = new THREE.DirectionalLight('rgb(255, 255, 255)', 0.8)
+      dirLight.position.set(0, size.z + 2, 0)
+      dirLight.castShadow = true
+      dirLight.shadow.mapSize.width = 100
+      dirLight.shadow.mapSize.height = 100
+      dirLight.shadow.bias = -0.0005
+      dirLight.shadow.camera.left = -size.x / 2 + center.x - 0.5
+      dirLight.shadow.camera.right = size.x / 2 + center.x + 0.5
+      dirLight.shadow.camera.top = size.z / 2 - center.z + 0.5
+      dirLight.shadow.camera.bottom = -size.z / 2 - center.z - 0.5
+      dirLight.shadow.camera.near = 1
+      dirLight.shadow.camera.far = 100
+      this.scene.add(dirLight)
+    },
+
+    buildGroundPlan (objects) {
+      const size = new THREE.Vector3()
+      const center = new THREE.Vector3()
+      const box = new THREE.Box3()
+      for (const object of objects) {
+        box.expandByObject(object)
+      }
+
+      box.getSize(size)
+      box.getCenter(center)
+
+      const planeGeometry = new THREE.PlaneGeometry(size.x + 5, size.z + 5)
+      const planeMaterial = new THREE.ShadowMaterial({ color: 'rgb(0, 0, 0)', opacity: 0.07 })
+      const plane = new THREE.Mesh(planeGeometry, planeMaterial)
+
+      plane.rotation.x = -Math.PI / 2
+      plane.position.set(center.x, box.min.y, center.z)
+      plane.receiveShadow = true
+
+      this.scene.add(plane)
     }
   }
 }

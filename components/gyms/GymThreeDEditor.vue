@@ -190,7 +190,7 @@ export default {
       this.scene.add(ambientLight)
 
       // Hemisphere Light
-      const light = new THREE.HemisphereLight('rgb(255,255,255)', 'rgb(0,0,0)', 4)
+      const light = new THREE.HemisphereLight('rgb(255,255,255)', 'rgb(0,0,0)', 3)
       this.scene.add(light)
 
       // Renderer

@@ -167,12 +167,13 @@ export default {
       this.scene.add(ambientLight)
 
       // Hemisphere Light
-      const light = new THREE.HemisphereLight('rgb(255,255,255)', 'rgb(0,0,0)', 4)
+      const light = new THREE.HemisphereLight('rgb(255,255,255)', 'rgb(0,0,0)', 3)
       this.scene.add(light)
 
       // Renderer
       this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true })
       this.renderer.shadowMap.enabled = true
+      this.renderer.shadowMap.type = THREE.PCFSoftShadowMap
       this.renderer.setPixelRatio(window.devicePixelRatio)
       this.renderer.setSize(this.TDArea.offsetWidth, this.TDArea.offsetHeight)
 
@@ -187,6 +188,8 @@ export default {
         const treatedColors = []
         object.traverse((child) => {
           if (child.isMesh) {
+            child.castShadow = true
+            child.receiveShadow = true
             // Add Edges
             if (this.gymSpace.three_d_parameters?.highlight_edges) {
               const edges = new THREE.EdgesGeometry(child.geometry)
@@ -214,6 +217,8 @@ export default {
         const center = new THREE.Vector3()
         box.getCenter(center)
         this.orbitControls.target.copy(center)
+        this.buildGroundPlan([object])
+        this.addShadowLight([object])
         this.orbitControls.update()
 
         this.loadingSpace = false
