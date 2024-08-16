@@ -31,6 +31,14 @@
       </div>
       <v-card-title class="pb-1">
         {{ gymSpace.name }}
+        <v-chip
+          v-if="gymSpace.draft"
+          color="amber"
+          small
+          class="ml-1"
+        >
+          {{ $t('models.gymSpace.draft') }}
+        </v-chip>
       </v-card-title>
       <v-card-text :class="gymSpace.figures.routes_count > 0 ? 'pb-0' : ''">
         {{ gymSpace.description }}

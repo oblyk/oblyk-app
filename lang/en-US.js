@@ -1355,7 +1355,8 @@ export default {
       plan: 'Plan',
       showSector: 'Lines in <strong>%{name}</strong> sector.',
       colorExplain: 'Choose a colour for the sectors on the map.',
-      anchorExplain: 'If ticked: you can enter the anchor number for each route.'
+      anchorExplain: 'If ticked: you can enter the anchor number for each route.',
+      draftExplain: 'Only team members can see this area'
     },
     gymSector: {
       addNew: 'Create a new sector',
@@ -2373,7 +2374,8 @@ export default {
       gym_grade: 'Difficulty system',
       gym_space_group_id: 'Group',
       anchor: 'Display routes anchor numbers',
-      representation_type: 'Space representation type'
+      representation_type: 'Space representation type',
+      draft: 'Draft'
     },
     gymSpaceGroup: {
       name: 'Group name',

@@ -77,6 +77,21 @@
         :gym="gymSpace.gym"
       />
 
+      <v-alert
+        v-if="gymSpace.draft"
+        dense
+        text
+        color="amber"
+        class="mx-3"
+      >
+        <div class="font-weight-bold">
+          {{ $t('models.gymSpace.draft') }}
+        </div>
+        <div>
+          {{ $t('components.gymSpace.draftExplain') }}
+        </div>
+      </v-alert>
+
       <!-- Space description -->
       <div class="gym-space-description mt-2 px-3">
         <markdown-text

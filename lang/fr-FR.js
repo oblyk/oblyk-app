@@ -1356,7 +1356,8 @@ export default {
       plan: 'Plan',
       showSector: 'Lignes du secteur <strong>%{name}</strong>.',
       colorExplain: 'Choisissez une couleur pour le tracé des secteurs sur le plan.',
-      anchorExplain: 'Si coché : vous pourrez renseigner le numéro de relais sur chaque voie'
+      anchorExplain: 'Si coché : vous pourrez renseigner le numéro de relais sur chaque voie',
+      draftExplain: "Seul les membres de l'équipe peuvent voir cet espace"
     },
     gymSector: {
       addNew: 'Créer un nouveau secteur',
@@ -2375,7 +2376,8 @@ export default {
       gym_grade: 'Système de difficulté',
       gym_space_group_id: 'Groupe',
       anchor: 'Afficher les numéros de relais des voies',
-      representation_type: "Type de représentation de l'espace"
+      representation_type: "Type de représentation de l'espace",
+      draft: 'Brouillon'
     },
     gymSpaceGroup: {
       name: 'Nom du groupe',

@@ -1,5 +1,18 @@
 <template>
   <div>
+    <v-alert
+      v-if="gymSpace.draft"
+      dense
+      text
+      color="amber"
+    >
+      <div class="font-weight-bold">
+        {{ $t('models.gymSpace.draft') }}
+      </div>
+      <div>
+        {{ $t('components.gymSpace.draftExplain') }}
+      </div>
+    </v-alert>
     <v-list-item>
       <v-list-item-avatar tile>
         <v-avatar

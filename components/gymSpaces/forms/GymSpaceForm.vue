@@ -74,6 +74,14 @@
         persistent-hint
       />
 
+      <v-checkbox
+        v-model="data.draft"
+        class="mb-5"
+        :label="$t('models.gymSpace.draft')"
+        :hint="$t('components.gymSpace.draftExplain')"
+        persistent-hint
+      />
+
       <close-form />
       <submit-form
         :overlay="submitOverlay"
@@ -124,6 +132,7 @@ export default {
         gym_grade_id: this.gymSpace?.gym_grade_id,
         gym_space_group_id: this.gymSpace?.gym_space_group_id,
         anchor: this.gymSpace?.anchor,
+        draft: this.gymSpace?.draft,
         representation_type: this.gymSpace?.representation_type,
         gym_id: this.gymSpace?.gym_id || this.gymId
       },

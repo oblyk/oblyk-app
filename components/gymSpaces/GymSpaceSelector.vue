@@ -105,6 +105,14 @@
             class="text-truncate text-center mb-0"
             :class="selectedGymSpaceId === space.id ? 'font-weight-bold' : ''"
           >
+            <v-chip
+              v-if="space.draft"
+              color="amber"
+              x-small
+              class="px-1"
+            >
+              B
+            </v-chip>
             <small>
               {{ space.name }}
             </small>

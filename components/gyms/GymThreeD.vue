@@ -86,6 +86,13 @@
         >
           {{ space.name }}
         </nuxt-link>
+        <v-chip
+          v-if="space.draft"
+          color="amber"
+          small
+        >
+          {{ $t('models.gymSpace.draft') }}
+        </v-chip>
       </div>
     </div>
   </div>
