@@ -122,6 +122,25 @@
           :start-loading-structures="startLoading"
         />
       </v-sheet>
+
+      <!-- Archived gym space -->
+      <p
+        v-if="archivedSpaces && archivedSpaces.length > 0"
+        class="font-weight-bold mt-8 mb-2"
+      >
+        {{ $t('components.gymSpace.archived') }}
+      </p>
+      <v-sheet
+        v-for="(space, spaceIndex) in archivedSpaces"
+        :key="`archived-space-index-${spaceIndex}`"
+        class="pa-4 rounded mb-6"
+      >
+        <gym-space-tree-detail
+          :gym-space="space"
+          :get-structures="getStructures"
+          :start-loading-structures="startLoading"
+        />
+      </v-sheet>
     </div>
   </v-container>
 </template>
@@ -146,6 +165,7 @@ export default {
     return {
       loadingStructure: true,
       spaces: null,
+      archivedSpaces: null,
       spaceGroups: null,
 
       mdiCardPlusOutline,
@@ -204,6 +224,8 @@ export default {
         .then((resp) => {
           this.spaces = []
           this.spaceGroups = []
+          this.archivedSpaces = []
+
           // Space group
           for (const spaceGroup of resp.data.gym.gym_space_groups) {
             const spaces = []
@@ -230,6 +252,17 @@ export default {
             const space = new GymSpace({ attributes: gymSpace })
             space.sectors = sectors
             this.spaces.push(space)
+          }
+
+          // Archived spaces
+          for (const gymSpace of resp.data.gym.archived_gym_spaces) {
+            const sectors = []
+            for (const gymSector of gymSpace.gym_sectors) {
+              sectors.push(new GymSector({ attributes: gymSector }))
+            }
+            const space = new GymSpace({ attributes: gymSpace })
+            space.sectors = sectors
+            this.archivedSpaces.push(space)
           }
         })
         .finally(() => {

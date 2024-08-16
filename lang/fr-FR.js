@@ -1357,7 +1357,8 @@ export default {
       showSector: 'Lignes du secteur <strong>%{name}</strong>.',
       colorExplain: 'Choisissez une couleur pour le tracé des secteurs sur le plan.',
       anchorExplain: 'Si coché : vous pourrez renseigner le numéro de relais sur chaque voie',
-      draftExplain: "Seul les membres de l'équipe peuvent voir cet espace"
+      draftExplain: "Seul les membres de l'équipe peuvent voir cet espace",
+      archived: 'Espaces archivés'
     },
     gymSector: {
       addNew: 'Créer un nouveau secteur',

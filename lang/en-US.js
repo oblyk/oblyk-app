@@ -1356,7 +1356,8 @@ export default {
       showSector: 'Lines in <strong>%{name}</strong> sector.',
       colorExplain: 'Choose a colour for the sectors on the map.',
       anchorExplain: 'If ticked: you can enter the anchor number for each route.',
-      draftExplain: 'Only team members can see this area'
+      draftExplain: 'Only team members can see this area',
+      archived: 'Archived spaces'
     },
     gymSector: {
       addNew: 'Create a new sector',
