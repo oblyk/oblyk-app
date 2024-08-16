@@ -211,6 +211,8 @@ export default {
       formData.append('gym_three_d_asset[name]', this.data.name)
       if (this.data.description) {
         formData.append('gym_three_d_asset[description]', this.data.description)
+      } else {
+        formData.append('gym_three_d_asset[description]', '')
       }
       formData.append('gym_three_d_asset[three_d_parameters][color_correction_sketchup_exports]', this.data.three_d_parameters.color_correction_sketchup_exports)
       formData.append('gym_three_d_asset[three_d_parameters][highlight_edges]', this.data.three_d_parameters.highlight_edges)
