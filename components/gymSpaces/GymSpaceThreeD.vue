@@ -373,7 +373,19 @@ export default {
         const center = new THREE.Vector3()
         box.getSize(size)
         box.getCenter(center)
-        center.y = center.y * 2 + 0.5
+        let centerX, centerZ, gapY
+        if (sector.userData.sector.three_d_label_options) {
+          centerX = sector.userData.sector.three_d_label_options.x === null ? 50 : sector.userData.sector.three_d_label_options.x
+          centerZ = sector.userData.sector.three_d_label_options.z === null ? 50 : sector.userData.sector.three_d_label_options.z
+          gapY = sector.userData.sector.three_d_label_options.y === null ? 0.2 : sector.userData.sector.three_d_label_options.y
+        } else {
+          centerX = 50
+          centerZ = 50
+          gapY = 0.2
+        }
+        center.y = center.y * 2 + gapY
+        center.x = center.x + size.x * (centerX - 50) / 100
+        center.z = center.z + size.z * (centerZ - 50) / 100
         tempV.copy(center)
         tempV.project(this.camera)
 

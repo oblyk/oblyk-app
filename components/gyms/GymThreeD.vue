@@ -413,6 +413,19 @@ export default {
         const center = new THREE.Vector3()
         box.getSize(size)
         box.getCenter(center)
+        let centerX, centerZ, centerY
+        if (space.userData.space.three_d_label_options) {
+          centerX = space.userData.space.three_d_label_options.x === null ? 50 : space.userData.space.three_d_label_options.x
+          centerZ = space.userData.space.three_d_label_options.z === null ? 50 : space.userData.space.three_d_label_options.z
+          centerY = space.userData.space.three_d_label_options.y === null ? 50 : space.userData.space.three_d_label_options.y
+        } else {
+          centerX = 50
+          centerZ = 50
+          centerY = 50
+        }
+        center.x = center.x + size.x * (centerX - 50) / 100
+        center.z = center.z + size.z * (centerZ - 50) / 100
+        center.y = center.y * 2 + size.y * (centerY - 100) / 100
         tempV.copy(center)
         tempV.project(this.camera)
 

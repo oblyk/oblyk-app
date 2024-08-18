@@ -3,6 +3,22 @@
     style="position: relative"
     class="full-height"
   >
+    <div
+      v-if="gymSpace"
+      v-show="!loadingSpace && !isEditing"
+      class="sectors-list-three-d full-width"
+      :class="isDraggingScene ? '--in-dragging-scene' : null"
+    >
+      <div
+        v-for="(sector, sectorIndex) in gymSpace.gym_sectors"
+        :id="`sector-label-${sector.id}`"
+        :key="`sector-${sectorIndex}`"
+        style="display: none"
+        class="rounded font-weight-bold sector-label-in-space text-truncate"
+      >
+        {{ sector.name }}
+      </div>
+    </div>
     <div style="position: absolute; bottom: 5px; left: 0;">
       <div v-if="debug">
         <p class="mb-0 text-caption">
@@ -134,6 +150,10 @@ export default {
     editingSectorHeight: {
       type: [Number, String],
       default: null
+    },
+    editLabelPosition: {
+      type: Object,
+      default: null
     }
   },
 
@@ -155,6 +175,7 @@ export default {
       debug: false,
       interPoints: [],
       loadingSpace: true,
+      labelPositionUpdatable: true,
 
       threeDEnvironment: `GymSpaceThreeDEditor-${this.gymSpace.id}`,
 
@@ -168,6 +189,18 @@ export default {
   watch: {
     editingSectorHeight () {
       this.setDrawingPadHeight()
+    },
+
+    editLabelPosition () {
+      const labelBox = this.sectorBoundingBoxes.find(sectorBox => sectorBox.userData.sector.id === this.editLabelPosition.id)
+      if (labelBox) {
+        labelBox.userData.sector.three_d_label_options = {
+          x: this.editLabelPosition.x,
+          y: this.editLabelPosition.y,
+          z: this.editLabelPosition.z
+        }
+        this.updateLabelsPosition()
+      }
     }
   },
 
@@ -560,7 +593,7 @@ export default {
       const boundingBox = new THREE.Mesh(extrudeGeometry, new THREE.MeshBasicMaterial({ color: 'white', transparent: true, opacity: 0.3, side: THREE.DoubleSide }))
       boundingBox.visible = false
       boundingBox.rotateX(THREE.MathUtils.degToRad(90))
-      boundingBox.userData = { sector: { id: sector.id } }
+      boundingBox.userData = { sector: { id: sector.id, three_d_label_options: sector.three_d_label_options } }
       this.sectorBoundingBoxes.push(boundingBox)
       this.scene.add(boundingBox)
 
@@ -685,10 +718,52 @@ export default {
     },
 
     clearSectors () {
+      for (const sector of this.gymSpace.gym_sectors) {
+        const domSector = document.querySelector(`#sector-label-${sector.id}`)
+        domSector.style.display = 'none'
+      }
       this.sectorBoundingBoxes.forEach((object) => { this.removeObject(object) })
       this.sectorLineSegments.forEach((object) => { this.removeObject(object) })
       this.sectorBoundingBoxes = []
       this.sectorLineSegments = []
+    },
+
+    updateLabelsPosition () {
+      const tempV = new THREE.Vector3()
+      this.sectorBoundingBoxes.forEach((sector) => {
+        const box = new THREE.Box3().setFromObject(sector)
+        const size = new THREE.Vector3()
+        const center = new THREE.Vector3()
+        box.getSize(size)
+        box.getCenter(center)
+        let centerX, centerZ, gapY
+        if (sector.userData.sector.three_d_label_options) {
+          centerX = sector.userData.sector.three_d_label_options.x === null ? 50 : sector.userData.sector.three_d_label_options.x
+          centerZ = sector.userData.sector.three_d_label_options.z === null ? 50 : sector.userData.sector.three_d_label_options.z
+          gapY = sector.userData.sector.three_d_label_options.y === null ? 0.2 : sector.userData.sector.three_d_label_options.y
+        } else {
+          centerX = 50
+          centerZ = 50
+          gapY = 0.2
+        }
+        center.y = center.y * 2 + gapY
+        center.x = center.x + size.x * (centerX - 50) / 100
+        center.z = center.z + size.z * (centerZ - 50) / 100
+        tempV.copy(center)
+        tempV.project(this.camera)
+
+        // convert the normalized position to CSS coordinates
+        const x = (tempV.x * 0.5 + 0.5) * this.TDArea.offsetWidth
+        const y = (tempV.y * -0.5 + 0.5) * this.TDArea.offsetHeight
+
+        if (!sector.userData.sector.domElement) {
+          sector.userData.sector.domElement = document.querySelector(`#sector-label-${sector.userData.sector.id}`)
+        }
+
+        sector.userData.sector.domElement.style.transform = `translate(-50%, -50%) translate(${x}px,${y}px)`
+        sector.userData.sector.domElement.style.zIndex = (-tempV.z * 0.5 + 0.5) | 0
+        sector.userData.sector.domElement.style.display = 'block'
+      })
     }
   }
 }

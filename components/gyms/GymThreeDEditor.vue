@@ -3,6 +3,21 @@
     style="position: relative"
     class="full-height"
   >
+    <div
+      v-if="spaces"
+      v-show="!loadingSpaces"
+      class="spaces-list-three-d full-width"
+      :class="isDraggingScene ? '--in-dragging-scene' : null"
+    >
+      <div
+        v-for="(space, spaceIndex) in spaces"
+        :id="`space-label-${space.userData.space.id}`"
+        :key="`space-${spaceIndex}`"
+        class="rounded font-weight-bold space-label-in-space text-truncate"
+      >
+        {{ space.userData.space.name }}
+      </div>
+    </div>
     <div style="position: absolute; top: 5px; right: 5px;">
       <div>
         Vue de :
@@ -108,6 +123,10 @@ export default {
     editingAssetRotation: {
       type: Object,
       default: null
+    },
+    editLabelPosition: {
+      type: Object,
+      default: null
     }
   },
 
@@ -116,6 +135,7 @@ export default {
       threeDs: null,
       isEditing: false,
       interactiveElements: [],
+      labelPositionUpdatable: true,
 
       spaces: [],
       isHighlightSpace: false,
@@ -155,6 +175,18 @@ export default {
     editingAssetRotation: {
       handler () { this.setAssetRotation() },
       deep: true
+    },
+
+    editLabelPosition () {
+      const labelBox = this.spaces.find(spaceBox => spaceBox.userData.space.id === this.editLabelPosition.id)
+      if (labelBox) {
+        labelBox.userData.space.three_d_label_options = {
+          x: this.editLabelPosition.x,
+          y: this.editLabelPosition.y,
+          z: this.editLabelPosition.z
+        }
+        this.updateLabelsPosition()
+      }
     }
   },
 
@@ -580,6 +612,43 @@ export default {
 
     getAssetPosition () {
       return this.editingAsset.position
+    },
+
+    updateLabelsPosition () {
+      const tempV = new THREE.Vector3()
+      this.spaces.forEach((space) => {
+        const box = new THREE.Box3().setFromObject(space)
+        const size = new THREE.Vector3()
+        const center = new THREE.Vector3()
+        box.getSize(size)
+        box.getCenter(center)
+        let centerX, centerZ, centerY
+        if (space.userData.space.three_d_label_options) {
+          centerX = space.userData.space.three_d_label_options.x === null ? 50 : space.userData.space.three_d_label_options.x
+          centerZ = space.userData.space.three_d_label_options.z === null ? 50 : space.userData.space.three_d_label_options.z
+          centerY = space.userData.space.three_d_label_options.y === null ? 50 : space.userData.space.three_d_label_options.y
+        } else {
+          centerX = 50
+          centerZ = 50
+          centerY = 50
+        }
+        center.x = center.x + size.x * (centerX - 50) / 100
+        center.z = center.z + size.z * (centerZ - 50) / 100
+        center.y = center.y * 2 + size.y * (centerY - 100) / 100
+        tempV.copy(center)
+        tempV.project(this.camera)
+
+        // convert the normalized position to CSS coordinates
+        const x = (tempV.x * 0.5 + 0.5) * this.TDArea.offsetWidth
+        const y = (tempV.y * -0.5 + 0.5) * this.TDArea.offsetHeight
+
+        if (!space.userData.space.domElement) {
+          space.userData.space.domElement = document.querySelector(`#space-label-${space.userData.space.id}`)
+        }
+
+        space.userData.space.domElement.style.transform = `translate(-50%, -50%) translate(${x}px,${y}px)`
+        space.userData.space.domElement.style.zIndex = (-tempV.z * 0.5 + 0.5) | 0
+      })
     }
   }
 }

@@ -17,6 +17,7 @@
           :editing-space-rotation="spaceRotation"
           :editing-asset-elevation="assetElevation"
           :editing-asset-rotation="assetRotation"
+          :edit-label-position="labelPositionProps"
         />
       </client-only>
       <v-sheet
@@ -454,17 +455,21 @@
 
         <!-- SPACE EDIT -->
         <div v-if="editSpace !== null">
-          <p>
+          <p class="border-bottom pb-2">
             Edition de : <strong class="text-decoration-underline">{{ editSpace.name }}</strong>
           </p>
-          <p>
-            Déplacer l'espace pour le placer par rapport a votre espace 3D
+          <p class="font-weight-bold mb-1">
+            Position de l'espace
+          </p>
+          <p class="text--disabled">
+            Glissez déposez l'espace pour le positionner par rapport aux autres. Vous pouvez le surélever par rapport au sol ou le faire tourner.
           </p>
           <v-text-field
             v-model="spaceElevation"
             label="Hauteur par rapport au sol"
             suffix="mètre"
             type="number"
+            dense
             outlined
           />
           <v-text-field
@@ -474,6 +479,40 @@
             type="number"
             outlined
             dense
+          />
+          <p class="font-weight-bold mb-1">
+            Position du label
+          </p>
+          <p class="text--disabled">
+            Par défaut le label de l'espace est centre sur l'espace, soit :
+            50% de la dimension de l'espace sur X, Y et Z.
+          </p>
+          <v-text-field
+            v-model="labelX"
+            label="Centrage X"
+            suffix="%"
+            type="number"
+            outlined
+            dense
+            @input="emitLabelPosition"
+          />
+          <v-text-field
+            v-model="labelZ"
+            label="Centrage Z"
+            suffix="%"
+            type="number"
+            outlined
+            dense
+            @input="emitLabelPosition"
+          />
+          <v-text-field
+            v-model="labelY"
+            label="Centrage haut / bas"
+            suffix="%"
+            type="number"
+            outlined
+            dense
+            @input="emitLabelPosition"
           />
           <div class="text-right">
             <v-btn
@@ -650,6 +689,11 @@ export default {
         z: 0
       },
       tab: 0,
+      labelX: null,
+      labelZ: null,
+      labelY: null,
+      labelPositionProps: null,
+      saveLabelPosition: null,
 
       loadingThreeDElement: true,
       threeDElements: [],
@@ -760,10 +804,34 @@ export default {
       } else {
         this.spaceRotation = { x: 0, y: 0, z: 0 }
       }
+      if (space.three_d_label_options) {
+        const labelOptions = { ...space.three_d_label_options }
+        this.labelX = labelOptions?.x === null ? 50 : labelOptions.x
+        this.labelY = labelOptions?.y === null ? 50 : labelOptions.y
+        this.labelZ = labelOptions?.z === null ? 50 : labelOptions.z
+      } else {
+        this.labelX = 50
+        this.labelY = 50
+        this.labelZ = 50
+      }
+      this.saveLabelPosition = {
+        x: this.labelX,
+        y: this.labelY,
+        z: this.labelZ
+      }
       this.startEditingSpace = true
       setTimeout(() => {
         this.$refs.gymThreeDEditor.startEditingSpace(space)
       }, 100)
+    },
+
+    emitLabelPosition () {
+      this.labelPositionProps = {
+        x: parseInt(this.labelX),
+        y: parseInt(this.labelY),
+        z: parseInt(this.labelZ),
+        id: this.editSpace.id
+      }
     },
 
     saveSpace () {
@@ -779,13 +847,19 @@ export default {
         y: this.spaceRotation.y,
         z: this.spaceRotation.z
       }
+      const threeDLabelOptions = {
+        x: parseInt(this.labelX),
+        y: parseInt(this.labelY),
+        z: parseInt(this.labelZ)
+      }
       this.$refs.gymThreeDEditor.endEditingSpace()
       new GymSpaceApi(this.$axios, this.$auth)
         .update({
           gym_id: this.gym.id,
           id: this.editSpace.id,
           three_d_position: xyz,
-          three_d_rotation: rotation
+          three_d_rotation: rotation,
+          three_d_label_options: threeDLabelOptions
         })
         .finally(() => {
           this.editSpaceLoading = false
@@ -796,6 +870,15 @@ export default {
 
     cancelEditingSpace () {
       this.$refs.gymThreeDEditor.cancelEditingSpace()
+      this.labelPositionProps = {
+        x: parseInt(this.saveLabelPosition.x),
+        y: parseInt(this.saveLabelPosition.y),
+        z: parseInt(this.saveLabelPosition.z),
+        id: this.editSpace.id
+      }
+      this.labelX = null
+      this.labelZ = null
+      this.labelY = null
       this.editSpace = null
       this.startEditingSpace = false
     },
@@ -951,3 +1034,29 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.spaces-list-three-d {
+  position: absolute;
+  top: 0;
+  left: 0;
+  will-change: opacity;
+  transition: opacity 0.2s;
+  opacity: 1;
+  .space-label-in-space {
+    position: absolute;
+    top: 0;
+    left: 0;
+    white-space: nowrap;
+    background-color: rgba(255, 255, 255, 0.8);
+    font-size: 0.6em;
+    padding: 2px 3px;
+  }
+  &.--in-dragging-scene {
+    opacity: 0.3;
+    .space-label-in-space {
+      background-color: rgba(255, 255, 255, 0);
+    }
+  }
+}
+</style>

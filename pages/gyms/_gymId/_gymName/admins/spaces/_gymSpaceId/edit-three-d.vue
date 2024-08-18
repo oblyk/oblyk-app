@@ -159,6 +159,16 @@
                           {{ $t('actions.edit') }}
                         </v-list-item-title>
                       </v-list-item>
+                      <v-list-item
+                        @click="editLabelPosition(sector)"
+                      >
+                        <v-list-item-icon>
+                          <v-icon>{{ mdiAlphaLCircleOutline }}</v-icon>
+                        </v-list-item-icon>
+                        <v-list-item-title>
+                          Modifier la position du label
+                        </v-list-item-title>
+                      </v-list-item>
                       <v-divider v-if="sector.three_d_height" />
                       <v-list-item
                         v-if="sector.three_d_height"
@@ -296,6 +306,69 @@
             </v-btn>
           </div>
         </div>
+        <div v-if="editLabelPositionSector !== null">
+          <v-btn
+            text
+            block
+            small
+            class="justify-start"
+            @click="cancel"
+          >
+            <v-icon left>
+              {{ mdiArrowLeft }}
+            </v-icon>
+            Liste des secteurs
+          </v-btn>
+          <p class="mt-2 mb-1">
+            Position du label de : <strong class="text-decoration-underline">{{ editLabelPositionSector.name }}</strong>
+          </p>
+          <p class="text--disabled mb-5">
+            Par défaut le label au dessus d'un secteur est centré sur le plan horizontal (50% sur X et 50 % sur Z) et est placé à 0,2 mètre au dessus du secteur.<br>
+          </p>
+          <v-text-field
+            v-model="labelX"
+            label="Centrage X"
+            suffix="%"
+            type="number"
+            outlined
+            @input="emitLabelPosition"
+          />
+          <v-text-field
+            v-model="labelZ"
+            label="Centrage Z"
+            suffix="%"
+            type="number"
+            outlined
+            @input="emitLabelPosition"
+          />
+          <v-text-field
+            v-model="labelY"
+            label="Élevation Y"
+            suffix="mètre"
+            type="number"
+            outlined
+            @input="emitLabelPosition"
+          />
+          <div class="text-right">
+            <v-btn
+              text
+              outlined
+              small
+              @click="cancel"
+            >
+              {{ $t('actions.cancel') }}
+            </v-btn>
+            <v-btn
+              small
+              color="primary"
+              elevation="0"
+              :loading="savingLabelPosition"
+              @click="saveLabelPosition"
+            >
+              {{ $t('actions.save') }}
+            </v-btn>
+          </div>
+        </div>
       </v-sheet>
     </v-col>
     <v-col cols="8" class="pb-0 pl-0">
@@ -307,6 +380,7 @@
           :sector-click-callback="clickOnSector"
           :editing-sector-height="sectorHeight"
           :init-sector-height-callback="initSectorHeight"
+          :edit-label-position="labelPositionProps"
         />
         <gym-space-three-d-missing
           v-if="gymSpace && gymSpace.three_d_gltf_url === null"
@@ -330,7 +404,8 @@ import {
   mdiCube,
   mdiMenuDown,
   mdiMenuRight,
-  mdiArrowUpLeft
+  mdiArrowUpLeft,
+  mdiAlphaLCircleOutline
 } from '@mdi/js'
 import { GymSpaceConcern } from '~/concerns/GymSpaceConcern'
 import { GymFetchConcern } from '~/concerns/GymFetchConcern'
@@ -357,6 +432,13 @@ export default {
       sectorHeight: null,
       showMoreOption: false,
       loadingSwitch: false,
+      editLabelPositionSector: null,
+      savingLabelPosition: false,
+      labelPositionProps: null,
+
+      labelX: null,
+      labelY: null,
+      labelZ: null,
 
       mdiArrowLeft,
       mdiVectorSquarePlus,
@@ -368,7 +450,8 @@ export default {
       mdiCube,
       mdiMenuDown,
       mdiMenuRight,
-      mdiArrowUpLeft
+      mdiArrowUpLeft,
+      mdiAlphaLCircleOutline
     }
   },
 
@@ -403,14 +486,6 @@ export default {
         })
     },
 
-    showSector (sector) {
-      if (this.showSectorId === sector.id) {
-        this.showSectorId = null
-      } else {
-        this.showSectorId = sector.id
-      }
-    },
-
     clickOnSector (sector) {
       const gymSector = this.gymSectors.find(gSector => gSector.id === sector.id)
       this.sectorHeight = gymSector.three_d_height
@@ -428,6 +503,29 @@ export default {
       }, 100)
     },
 
+    emitLabelPosition () {
+      this.labelPositionProps = {
+        x: parseInt(this.labelX),
+        y: parseFloat(this.labelY.toString().replace(',', '.')),
+        z: parseInt(this.labelZ),
+        id: this.editLabelPositionSector.id
+      }
+    },
+
+    editLabelPosition (sector) {
+      this.editLabelPositionSector = sector
+      if (sector.three_d_label_options) {
+        this.labelX = sector.three_d_label_options?.x === null ? 50 : sector.three_d_label_options.x
+        this.labelZ = sector.three_d_label_options?.z === null ? 50 : sector.three_d_label_options.z
+        this.labelY = sector.three_d_label_options?.y === null ? 0.2 : sector.three_d_label_options.y
+      } else {
+        this.labelX = 50
+        this.labelZ = 50
+        this.labelY = 0.2
+      }
+      this.startEditing = true
+    },
+
     initSectorHeight (height) {
       this.sectorHeight = height
     },
@@ -435,6 +533,24 @@ export default {
     cancel () {
       this.$refs.gymSpaceThreeDEditor.endEditingSector()
       this.editSector = null
+      if (this.editLabelPositionSector !== null) {
+        if (this.editLabelPositionSector.three_d_label_options) {
+          this.labelX = this.editLabelPositionSector.three_d_label_options?.x === null ? 50 : this.editLabelPositionSector.three_d_label_options.x
+          this.labelZ = this.editLabelPositionSector.three_d_label_options?.z === null ? 50 : this.editLabelPositionSector.three_d_label_options.z
+          this.labelY = this.editLabelPositionSector.three_d_label_options?.y === null ? 0.2 : this.editLabelPositionSector.three_d_label_options.y
+        } else {
+          this.labelX = 50
+          this.labelZ = 50
+          this.labelY = 0.2
+        }
+        this.labelPositionProps = {
+          x: parseInt(this.labelX),
+          y: parseFloat(this.labelY.toString().replace(',', '.')),
+          z: parseInt(this.labelZ),
+          id: this.editLabelPositionSector.id
+        }
+      }
+      this.editLabelPositionSector = null
       this.startEditing = false
     },
 
@@ -456,6 +572,30 @@ export default {
         .finally(() => {
           this.editLoading = false
           this.editSector = null
+          this.startEditing = false
+        })
+    },
+
+    saveLabelPosition () {
+      this.savingLabelPosition = true
+      new GymSectorApi(this.$axios, this.$auth).update(
+        {
+          gym_id: this.gymSpace.gym.id,
+          gym_space_id: this.gymSpace.id,
+          id: this.editLabelPositionSector.id,
+          three_d_label_options: {
+            x: parseInt(this.labelX),
+            y: parseFloat(this.labelY.toString().replace(',', '.')),
+            z: parseInt(this.labelZ)
+          }
+        })
+        .then(() => {
+          this.getSectors()
+          this.$refs.gymSpaceThreeDEditor.sectorsBuilder()
+        })
+        .finally(() => {
+          this.savingLabelPosition = false
+          this.editLabelPositionSector = null
           this.startEditing = false
         })
     },
@@ -491,3 +631,28 @@ export default {
   }
 }
 </script>
+<style lang="scss">
+.sectors-list-three-d {
+  position: absolute;
+  top: 0;
+  left: 0;
+  will-change: opacity;
+  transition: opacity 0.2s;
+  opacity: 1;
+  .sector-label-in-space {
+    position: absolute;
+    top: 0;
+    left: 0;
+    white-space: nowrap;
+    background-color: rgba(255, 255, 255, 0.8);
+    font-size: 0.6em;
+    padding: 2px 3px;
+  }
+  &.--in-dragging-scene {
+    opacity: 0.3;
+    .sector-label-in-space {
+      background-color: rgba(255, 255, 255, 0);
+    }
+  }
+}
+</style>
