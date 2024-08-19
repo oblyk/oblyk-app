@@ -437,8 +437,10 @@ export default {
           space.userData.space.domElement = document.querySelector(`#space-label-${space.userData.space.id}`)
         }
 
-        space.userData.space.domElement.style.transform = `translate(-50%, -50%) translate(${x}px,${y}px)`
-        space.userData.space.domElement.style.zIndex = (-tempV.z * 0.5 + 0.5) | 0
+        if (space.userData.space.domElement) {
+          space.userData.space.domElement.style.transform = `translate(-50%, -50%) translate(${x}px,${y}px)`
+          space.userData.space.domElement.style.zIndex = (-tempV.z * 0.5 + 0.5) | 0
+        }
       })
     },
 

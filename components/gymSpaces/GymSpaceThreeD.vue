@@ -397,8 +397,10 @@ export default {
           sector.userData.sector.domElement = document.querySelector(`#sector-label-${sector.userData.sector.id}`)
         }
 
-        sector.userData.sector.domElement.style.transform = `translate(-50%, -50%) translate(${x}px,${y}px)`
-        sector.userData.sector.domElement.style.zIndex = (-tempV.z * 0.5 + 0.5) | 0
+        if (sector.userData.sector.domElement) {
+          sector.userData.sector.domElement.style.transform = `translate(-50%, -50%) translate(${x}px,${y}px)`
+          sector.userData.sector.domElement.style.zIndex = (-tempV.z * 0.5 + 0.5) | 0
+        }
       })
     }
   }
