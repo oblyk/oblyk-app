@@ -80,7 +80,7 @@
           <div
             v-if="gymLabelTemplate.footer_options.left.display || gymLabelTemplate.footer_options.right.display"
             class="footer-side-part"
-            :style="`width: ${gymLabelTemplate.footer_options.height}`"
+            :style="`min-width: ${gymLabelTemplate.footer_options.height}; max-width: ${gymLabelTemplate.footer_options.height}`"
           >
             <footer-header-side-part
               v-if="gymLabelTemplate.footer_options.left.display"
@@ -111,7 +111,7 @@
           <div
             v-if="gymLabelTemplate.footer_options.left.display || gymLabelTemplate.footer_options.right.display"
             class="footer-side-part"
-            :style="`width: ${gymLabelTemplate.footer_options.height}`"
+            :style="`min-width: ${gymLabelTemplate.footer_options.height}; max-width: ${gymLabelTemplate.footer_options.height}`"
           >
             <footer-header-side-part
               v-if="gymLabelTemplate.footer_options.right.display"

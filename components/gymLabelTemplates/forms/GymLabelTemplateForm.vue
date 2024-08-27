@@ -287,7 +287,17 @@
           <!-- Page part -->
           <v-tab-item>
             <div class="border rounded pa-2 mb-6">
-              Dans la section <strong>"Page"</strong> on paramètre les settings globaux de la page.
+              <p>
+                Dans la section <strong>"Page"</strong> vous pouvez paramétrer les paramètres globaux de votre fiche.
+              </p>
+              <p>
+                Dans les champs de texte, vous pouvez utiliser les codes suivants pour qu'ils soient remplacés par les valeurs correspondantes lors de l'impression.
+              </p>
+              <ul class="pl-4">
+                <li><strong>%type_de_groupe%</strong> : sera égale à "secteur" si vous imprimez par secteur, ou "relais" si vous imprimez pas relais.</li>
+                <li><strong>%reference%</strong> : prendra le nom du secteur ou numéro du relais.</li>
+                <li><strong>%salle%</strong> : prendra le nom de votre salle.</li>
+              </ul>
             </div>
 
             <p class="text-decoration-underline mb-2 mt-3 font-weight-bold">

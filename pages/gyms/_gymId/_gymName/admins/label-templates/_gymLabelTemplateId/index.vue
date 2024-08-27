@@ -197,7 +197,7 @@
                 <v-btn
                   target="_blank"
                   title="Voir en plein page"
-                  :to="`${gymLabelTemplate.path}/print?preview_routes_set=${previewRouteSet}&reference=Prévisualisation&preview=true&construction_line=${construction_line ? 'true' : 'false'}`"
+                  :to="`${gymLabelTemplate.path}/print?preview_routes_set=${previewRouteSet}&reference=[Réf]&preview=true&construction_line=${construction_line ? 'true' : 'false'}`"
                   icon
                 >
                   <v-icon>
@@ -207,7 +207,7 @@
                 <v-btn
                   target="_blank"
                   title="Faire un test d'impression"
-                  :to="`${gymLabelTemplate.path}/print?preview_routes_set=${previewRouteSet}&reference=Prévisualisation&construction_line=${construction_line ? 'true' : 'false'}`"
+                  :to="`${gymLabelTemplate.path}/print?preview_routes_set=${previewRouteSet}&reference=[Réf]&construction_line=${construction_line ? 'true' : 'false'}`"
                   icon
                 >
                   <v-icon>
@@ -240,7 +240,7 @@
             </v-card-title>
             <iframe
               :ref="`preview-refresh-${iframeRefreshKey}`"
-              :src="`${gymLabelTemplate.path}/print?preview=true&preview_index=${iframeRefreshKey}&preview_routes_set=${previewRouteSet}&reference=Prévisualisation&construction_line=${construction_line ? 'true' : 'false'}`"
+              :src="`${gymLabelTemplate.path}/print?preview=true&preview_index=${iframeRefreshKey}&preview_routes_set=${previewRouteSet}&reference=[Réf]&construction_line=${construction_line ? 'true' : 'false'}`"
               class="label-template-viewer"
             />
           </v-card>
