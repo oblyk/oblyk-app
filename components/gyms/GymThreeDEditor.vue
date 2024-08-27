@@ -244,11 +244,9 @@ export default {
 
           object.traverse((child) => {
             if (child.isMesh) {
-              if (space.three_d_parameters?.highlight_edges) {
-                const edges = new THREE.EdgesGeometry(child.geometry)
-                const line = new THREE.LineSegments(edges, edgeLine)
-                child.add(line)
-              }
+              const edges = new THREE.EdgesGeometry(child.geometry)
+              const line = new THREE.LineSegments(edges, edgeLine)
+              child.add(line)
 
               // color correction
               if (space.three_d_parameters?.color_correction_sketchup_exports && !treatedColors.includes(child.material.uuid)) {
@@ -313,11 +311,9 @@ export default {
           const treatedColors = []
           object.traverse((child) => {
             if (child.isMesh) {
-              if (element.gym_three_d_asset.three_d_parameters?.highlight_edges) {
-                const edges = new THREE.EdgesGeometry(child.geometry)
-                const line = new THREE.LineSegments(edges, edgeLine)
-                child.add(line)
-              }
+              const edges = new THREE.EdgesGeometry(child.geometry)
+              const line = new THREE.LineSegments(edges, edgeLine)
+              child.add(line)
 
               // color correction
               if (element.gym_three_d_asset.three_d_parameters?.color_correction_sketchup_exports && !treatedColors.includes(child.material.uuid)) {

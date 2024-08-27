@@ -192,13 +192,6 @@ export default {
               child.castShadow = true
               child.receiveShadow = true
 
-              // Add Edges
-              if (space.three_d_parameters?.highlight_edges) {
-                const edges = new THREE.EdgesGeometry(child.geometry)
-                const line = new THREE.LineSegments(edges, edgeLine)
-                child.add(line)
-              }
-
               // color correction
               if (space.three_d_parameters?.color_correction_sketchup_exports && !treatedColors.includes(child.material.uuid)) {
                 const color = child.material.color

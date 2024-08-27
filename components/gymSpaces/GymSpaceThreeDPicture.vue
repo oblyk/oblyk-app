@@ -102,13 +102,6 @@ export default {
             child.castShadow = true
             child.receiveShadow = true
 
-            // Add Edges
-            if (this.gymSpace.three_d_parameters?.highlight_edges) {
-              const edges = new THREE.EdgesGeometry(child.geometry)
-              const line = new THREE.LineSegments(edges, edgeLine)
-              child.add(line)
-            }
-
             // color correction
             if (!treatedColors.includes(child.material.uuid)) {
               const color = child.material.color

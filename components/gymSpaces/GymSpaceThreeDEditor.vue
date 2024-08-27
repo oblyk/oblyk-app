@@ -265,11 +265,9 @@ export default {
         object.traverse((child) => {
           if (child.isMesh) {
             // Add Edges
-            if (this.gymSpace.three_d_parameters?.highlight_edges) {
-              const edges = new THREE.EdgesGeometry(child.geometry)
-              const line = new THREE.LineSegments(edges, edgeLine)
-              child.add(line)
-            }
+            const edges = new THREE.EdgesGeometry(child.geometry)
+            const line = new THREE.LineSegments(edges, edgeLine)
+            child.add(line)
 
             // color correction
             if (this.gymSpace.three_d_parameters?.color_correction_sketchup_exports && !treatedColors.includes(child.material.uuid)) {
