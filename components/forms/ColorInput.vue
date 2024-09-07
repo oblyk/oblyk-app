@@ -11,6 +11,7 @@
         :label="label"
         :hide-details="hideDetails"
         chips
+        :prepend-inner-icon="prependInnerIcon"
         @focus="focusInput"
       >
         <template #selection="{ attrs, item, selected }">
@@ -123,6 +124,10 @@ export default {
     icon: {
       type: String,
       default: 'Circle'
+    },
+    prependInnerIcon: {
+      type: String,
+      default: null
     },
     label: {
       type: String,

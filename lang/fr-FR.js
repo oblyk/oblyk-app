@@ -10,6 +10,7 @@ export default {
     new: 'Nouveau',
     move: 'Déplacer',
     add: 'Ajouter',
+    addSpace: 'Ajouter un espace',
     apply: 'Appliquer',
     editSector: 'Modifier le secteur',
     editSpace: "Modifier l'espace",
@@ -20,6 +21,7 @@ export default {
     close: 'Fermer',
     valid: 'Valider',
     ok: 'ok',
+    okIChose: "Ok j'ai choisi",
     create_copy: 'Créer une copie',
     like: 'Aimer',
     reply: 'Répondre',
@@ -259,7 +261,7 @@ export default {
     field: 'Champ',
     practice: 'pratique',
     between: 'entre',
-    level: 'niveau',
+    level: 'Niveau',
     example: 'exemple',
     me: 'Moi',
     posted: 'Posté',
@@ -652,6 +654,8 @@ export default {
       contestCategoryTypes: 'Type de catégorisation',
       contestCategoryObligation: "Type de restriction à l'inscription",
       rankingSystem: 'Type de classement',
+      gradeSystem: 'Type de cotation',
+      levelRepresentation: 'Représentation du niveau',
       age: 'Age',
       textAlign: 'Alignement du text',
       colorPickerInput: 'Couleur',
@@ -1212,13 +1216,13 @@ export default {
         statistics: 'Statistiques',
         followers: 'Abonné·es'
       },
-      firstSpaceExplain: 'Les espaces vous permettent de renseigner vos voies et blocs pour que vos grimpeur·euse·s puissent les consulter et tenir un carnet de croix !',
-      createFirstSpace: 'Créer mon premier Espace',
-      createDifficultyFirst: 'Mais avant de créer vos espaces, il faut que vous renseignez vos systèmes de difficulté',
+      firstSpaceTitle: 'Avant de créer votre premier espace ...',
+      firstSpaceExplain1: 'Avant de créer votre premier espace et vos premières voies et blocs, <strong>il est important que vous choisissez</strong> comment fonctionne <strong>la difficulté de votre salle</strong> <cite>(ordre des couleurs, type des cotations, etc.)</cite>',
+      firstSpaceExplain2: 'Choisissez votre système de difficulté, puis passez cette étape quand vous revenez.',
       firstDifficultySystemExplain: 'Les systèmes de difficulté vous permettent de définir comment fonctionnent vos cotations dans votre salle.',
       firstDifficultySystemExplainTow: "Ils vous permettent aussi d'aller plus vite dans le renseignement vos lignes.",
       createDifficultySystemSpace: 'Créer mon premier système de difficulté',
-      difficultySystem: 'Système de difficulté ?',
+      difficultySystem: 'Système de difficulté',
       administratorRequired: 'Vous devez être administrateur de la salle pour avoir accès à cette page.',
       IAmManager: 'Je suis le·a gérant·e',
       contactAndLocalization: 'Contact & Localisation',
@@ -1241,7 +1245,8 @@ export default {
       rankOf: 'Le classement de %{date}',
       seeRankOf: 'Voir le classement de %{date}',
       rankNumber: '%{number}er | %{number}ème',
-      noRank: "Il n'y as pas de classement pour %{date} avec les filtres sélectionnés."
+      noRank: "Il n'y as pas de classement pour %{date} avec les filtres sélectionnés.",
+      giveDefaultPoints: 'Vous pouvez donner un nombre de points par défaut pour vos différents niveau.'
     },
     gymAdmin: {
       administration: 'Administration',
@@ -1265,6 +1270,8 @@ export default {
       rakingSystem: 'Les classements',
       rakingExplain: "Paramètre du classement mensuel par style d'escalade",
       difficultySystem: 'Système de difficulté',
+      levelsAndGardes: 'Niveaux & Cotations',
+      levelsAndGardesExplain: "Paramètre de l'ordre des couleurs et les cotations",
       difficultySystemExplain: 'Paramètre des systèmes de difficulté, cotation par niveau, etc.',
       difficultySystemShort: 'Les systèmes',
       climbingStyle: "Styles d'escalade",
@@ -1305,6 +1312,10 @@ export default {
       explain: "Choisissez comment Oblyk calculera les points par type d'escalade.",
       chooseSystem: 'Choisissez un type de classement',
       deleteSystem: 'Ne pas faire de classement'
+    },
+    levelAndGrades: {
+      title: 'Niveau par couleur & système de cotation',
+      explain: "Choisissez dans quel ordre sont organisé vos couleurs et quel genre de cotation vous utilisé pour chaque type d'escalade."
     },
     gymStatistic: {
       figuresTitle: 'En quelques chiffres',
@@ -2850,6 +2861,13 @@ export default {
       division: 'Chaque voie ou bloc vaut 1000 points, plus les grimpeurs et grimpeuses font le bloc/voie moins il vaut de point.',
       fixed_points: 'Pour chaque voie ou bloc vous attribuez un nombre de point fixe.',
       point_by_grade: 'Chaque cotation (4a, 6a, etc.) à un nombre de points donné par sa difficulté.<br>Voir la documentation : <a href="https://oblyk.github.io/app-user-doc/docs/indoor/systeme-de-classement" target="_blank">Point par cotation</a>'
+    },
+    grade: {
+      none: 'Pas de cotation',
+      french: 'Cotation Française (5c+, 6a, 7b, etc.)',
+      usa_lead: 'Voie US (5.4, 5.12a, etc.)',
+      usa_bouldering: 'Bloc US (V5, V10, etc.)',
+      pick_district: 'Peak District (B3, B9, etc.)'
     },
     hardnessStatus: {
       easy_for_the_grade: '😎 Facile pour la cotation',

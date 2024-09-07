@@ -32,7 +32,7 @@
         <v-icon left>
           {{ mdiPlus }}
         </v-icon>
-        {{ $t('actions.add') }}
+        {{ $t('actions.addSpace') }}
       </v-btn>
       <v-btn
         v-if="gym.gym_spaces.length > 0"

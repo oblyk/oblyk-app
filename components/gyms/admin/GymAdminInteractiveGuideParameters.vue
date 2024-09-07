@@ -11,19 +11,19 @@
             >
               {{ mdiFormatListBulletedSquare }}
             </v-icon>
-            {{ $t('components.gymAdmin.difficultySystem') }}
+            {{ $t('components.gymAdmin.levelsAndGardes') }}
           </p>
           <p class="mb-2">
-            {{ $t('components.gymAdmin.difficultySystemExplain') }}
+            {{ $t('components.gymAdmin.levelsAndGardesExplain') }}
           </p>
         </div>
         <div class="text-right mt-auto">
           <v-btn
             text
             outlined
-            :to="gym.gym_grades_count > 0 ? `${gym.adminPath}/grades` : `${gym.adminPath}/first-difficulty-system`"
+            :to="`${gym.adminPath}/levels`"
           >
-            {{ $t('components.gymAdmin.difficultySystemShort') }}
+            {{ $t('components.gymAdmin.levelsAndGardes') }}
           </v-btn>
         </div>
       </v-sheet>

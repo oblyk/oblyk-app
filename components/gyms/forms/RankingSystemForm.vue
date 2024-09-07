@@ -23,6 +23,37 @@
             >
               {{ $t('components.gymRankingSystems.chooseSystem') }}
             </p>
+            <div
+              v-if="levels.sport_climbing && levels.sport_climbing.levels && data.sport_climbing_ranking === 'fixed_points'"
+              class="mt-5 border-top pt-4"
+            >
+              <p>
+                {{ $t('components.gymRanking.giveDefaultPoints') }}
+              </p>
+              <div
+                v-for="(level, levelIndex) in levels.sport_climbing.levels"
+                :key="`level-index-bouldering-${levelIndex}`"
+                class="d-flex mb-2"
+              >
+                <v-icon
+                  large
+                  left
+                  class="mt-1"
+                  :color="level.color"
+                >
+                  {{ mdiCircle }}
+                </v-icon>
+                <v-text-field
+                  v-model="level.default_point"
+                  outlined
+                  label="point par defaut"
+                  hide-details
+                  dense
+                  type="number"
+                  @input="changes = true"
+                />
+              </div>
+            </div>
           </v-card-text>
         </v-card>
       </v-col>
@@ -48,6 +79,37 @@
             >
               {{ $t('components.gymRankingSystems.chooseSystem') }}
             </p>
+            <div
+              v-if="levels.bouldering && levels.bouldering.levels && data.boulder_ranking === 'fixed_points'"
+              class="mt-5 border-top pt-4"
+            >
+              <p>
+                {{ $t('components.gymRanking.giveDefaultPoints') }}
+              </p>
+              <div
+                v-for="(level, levelIndex) in levels.bouldering.levels"
+                :key="`level-index-bouldering-${levelIndex}`"
+                class="d-flex mb-2"
+              >
+                <v-icon
+                  large
+                  left
+                  class="mt-1"
+                  :color="level.color"
+                >
+                  {{ mdiCircle }}
+                </v-icon>
+                <v-text-field
+                  v-model="level.default_point"
+                  outlined
+                  label="point par defaut"
+                  hide-details
+                  dense
+                  type="number"
+                  @input="changes = true"
+                />
+              </div>
+            </div>
           </v-card-text>
         </v-card>
       </v-col>
@@ -73,6 +135,37 @@
             >
               {{ $t('components.gymRankingSystems.chooseSystem') }}
             </p>
+            <div
+              v-if="levels.pan && levels.pan.levels && data.pan_ranking === 'fixed_points'"
+              class="mt-5 border-top pt-4"
+            >
+              <p>
+                {{ $t('components.gymRanking.giveDefaultPoints') }}
+              </p>
+              <div
+                v-for="(level, levelIndex) in levels.pan.levels"
+                :key="`level-index-bouldering-${levelIndex}`"
+                class="d-flex mb-2"
+              >
+                <v-icon
+                  large
+                  left
+                  class="mt-1"
+                  :color="level.color"
+                >
+                  {{ mdiCircle }}
+                </v-icon>
+                <v-text-field
+                  v-model="level.default_point"
+                  outlined
+                  label="point par defaut"
+                  hide-details
+                  dense
+                  type="number"
+                  @input="changes = true"
+                />
+              </div>
+            </div>
           </v-card-text>
         </v-card>
       </v-col>
@@ -97,9 +190,13 @@
     </div>
   </div>
 </template>
+
 <script>
+import { mdiCircle } from '@mdi/js'
 import RankingSystemInput from '~/components/forms/RankingSystemInput'
 import GymApi from '~/services/oblyk-api/GymApi'
+import GymLevelApi from '~/services/oblyk-api/GymLevelApi'
+import GymLevel from '~/models/GymLevel'
 
 export default {
   name: 'RankingSystemForm',
@@ -115,13 +212,22 @@ export default {
     return {
       saving: false,
       changes: false,
+      levelChanges: false,
+      loadingLevel: true,
+      levels: {},
       data: {
         id: this.gym?.id,
         boulder_ranking: this.gym?.boulder_ranking,
         pan_ranking: this.gym?.pan_ranking,
         sport_climbing_ranking: this.gym?.sport_climbing_ranking
-      }
+      },
+
+      mdiCircle
     }
+  },
+
+  mounted () {
+    this.getLevels()
   },
 
   methods: {
@@ -129,9 +235,20 @@ export default {
       this.saving = true
       new GymApi(this.$axios, this.$auth)
         .update(this.data)
-        .finally(() => {
-          this.saving = false
-          this.changes = false
+        .then(() => {
+          new GymLevelApi(this.$axios, this.$auth)
+            .updateAll(
+              {
+                gym_id: this.gym.id,
+                sport_climbing: this.levels.sport_climbing,
+                bouldering: this.levels.bouldering,
+                pan: this.levels.pan
+              }
+            )
+            .finally(() => {
+              this.saving = false
+              this.changes = false
+            })
         })
     },
 
@@ -145,6 +262,25 @@ export default {
         .finally(() => {
           this.saving = false
           this.changes = false
+        })
+    },
+
+    getLevels () {
+      this.loadingLevel = false
+      new GymLevelApi(this.$axios, this.$auth)
+        .all(this.gym.id)
+        .then((resp) => {
+          this.levels = {
+            bouldering: null,
+            pan: null,
+            sport_climbing: null
+          }
+          for (const level of resp.data) {
+            this.levels[level.climbing_type] = new GymLevel({ attributes: level })
+          }
+        })
+        .finally(() => {
+          this.loadingLevel = false
         })
     }
   }

@@ -1,45 +1,18 @@
 <template>
   <div>
-    <spinner v-if="loadingGymGrade" :full-height="false" />
+    <spinner v-if="loadingLevels" :full-height="false" />
 
     <v-form
-      v-if="!loadingGymGrade"
+      v-if="!loadingLevels"
       @submit.prevent="submit()"
     >
-      <!-- Choose pre-recorded difficulty -->
-      <v-select
-        v-if="gymGrade.need_grade_line"
-        v-model="data.gym_grade_line_id"
-        :items="gymGradeLines"
-        item-text="text"
-        item-value="value"
-        :label="$t('models.gymRoute.gym_grade_line_id')"
-        outlined
-        required
-        :menu-props="{ maxHeight: 500 }"
-        @change="onChangeDifficulty()"
-      >
-        <template #item="data">
-          <template v-if="typeof data.item !== 'object'">
-            <v-list-item-content v-text="data.item" />
-          </template>
-          <template v-else>
-            <v-list-item-content>
-              <v-list-item-title>
-                <v-icon
-                  v-for="(color, colorIndex) in data.item.colors"
-                  :key="`color-index-${colorIndex}`"
-                  :color="color"
-                  left
-                >
-                  {{ mdiCircle }}
-                </v-icon>
-                {{ data.item.text }}
-              </v-list-item-title>
-            </v-list-item-content>
-          </template>
-        </template>
-      </v-select>
+      <!-- Difficulty preset -->
+      <gym-route-level-input
+        v-model="data.level_index"
+        :levels="gymLevels[data.climbing_type]"
+        :icon="mdiOrderBoolDescending"
+        :change-callback="onChangeLevelPreset"
+      />
 
       <!-- Route name -->
       <v-row :class="cragRoute.name ? 'mb-0' : 'mb-4'">
@@ -60,6 +33,7 @@
             v-model="data.name"
             outlined
             hide-details
+            :prepend-inner-icon="mdiFormatLetterCase"
             :label="$t('models.gymRoute.name')"
           >
             <template #append-outer>
@@ -104,7 +78,10 @@
         v-if="gymSector.anchor && gymSector.anchor_ranges !== null && gymSector.anchor_ranges.length > 1"
         class="mt-n4 mb-4"
       >
-        {{ $t('components.gymRoute.anchorSuggestion') }} :
+        <v-icon color="amber">
+          {{ mdiCreation }}
+        </v-icon>
+        {{ $t('models.cragRoute.anchor') }} :
         <v-chip
           v-for="(anchorNumber, anchorIndex) in gymSector.anchor_ranges"
           :key="`anchor-index-${anchorIndex}`"
@@ -116,60 +93,7 @@
         </v-chip>
       </div>
 
-      <!-- Openers -->
-      <gym-opener-input
-        v-model="data.gym_opener_ids"
-        :gym="gymSector.gym"
-        :with-deactivated-opener="isEditingForm()"
-      />
-
-      <!-- Open at -->
-      <date-picker-menu-input
-        v-model="data.opened_at"
-        :label="$t('models.gymRoute.opened_at')"
-      />
-
-      <!-- Tags -->
-      <div v-if="!multiPitch">
-        <indoor-climbing-styles-input
-          v-for="(value, index) in data.sections"
-          :key="`style-index-${index}`"
-          v-model="value.styles"
-          :gym="gymSector.gym"
-          :climbing-type="data.climbing_type"
-          :label="multiPitch ? $t('models.gymRoute.styles_by_section', { index: index + 1 }) : $t('models.gymRoute.styles')"
-        />
-      </div>
-
-      <!-- Description -->
-      <markdown-input
-        v-model="data.description"
-        :label="$t('models.gymRoute.description')"
-      />
-
-      <!-- Sector -->
-      <v-select
-        v-if="isEditingForm()"
-        v-model="data.gym_sector_id"
-        :items="similarSectors"
-        item-text="name"
-        item-value="id"
-        :label="$t('models.gymRoute.gym_sector_id')"
-        outlined
-        required
-        :loading="loadingSimilarSector"
-      />
-
-      <p class="subtitle-2">
-        <span @click="showAutomaticParameters = !showAutomaticParameters">
-          <v-icon left>
-            {{ showAutomaticParameters ? mdiChevronDown : mdiChevronRight }}
-          </v-icon>
-          {{ $t('components.gymRoute.automaticParameters') }}
-        </span>
-      </p>
-
-      <div v-show="showAutomaticParameters">
+      <div>
         <!-- Multi pitch route if sector accept this -->
         <v-checkbox
           v-show="(gymSector.can_be_more_than_one_pitch)"
@@ -178,43 +102,62 @@
         />
 
         <!-- Grade + (height and tags by pitch in multi pitches) -->
-        <div
+        <v-row
           v-for="(section, sectionIndex) in data.sections"
           :key="`section-index-${sectionIndex}`"
-          class="row"
         >
           <!-- If route use grade like 7a, 6b, etc. -->
-          <div v-show="(gymGrade.difficulty_by_grade)" class="col">
+          <v-col v-show="(gymLevels[data.climbing_type].grade_system !== null)">
             <v-text-field
               v-model="section.grade"
               outlined
               hide-details
-              :required="(gymGrade.difficulty_by_grade)"
+              :prepend-inner-icon="mdiExponent"
+              :required="gymLevels[data.climbing_type].grade_system !== null"
               :label="multiPitch ? $t('models.gymRoute.grade_by_section', { index: sectionIndex + 1 }) : $t('models.gymRoute.grade')"
             />
-          </div>
+            <p
+              v-if="gradeSuggestions.length > 0"
+              class="mb-1 mt-1"
+            >
+              <v-icon color="amber">
+                {{ mdiCreation }}
+              </v-icon>
+              {{ $t('models.gymRoute.grade') }} :
+              <v-chip
+                v-for="(gradeSuggestion, gradeSuggestionIndex) in gradeSuggestions"
+                :key="`grade-suggestion-index-${gradeSuggestionIndex}`"
+                outlined
+                @click="section.grade = gradeSuggestion"
+              >
+                {{ gradeSuggestion }}
+              </v-chip>
+            </p>
+          </v-col>
 
           <!-- height by section if more than one pitch -->
-          <div v-if="multiPitch" class="col">
+          <v-col v-if="multiPitch" cols="4">
             <v-text-field
               v-model="section.height"
               outlined
               hide-details
               type="number"
+              :prepend-inner-icon="mdiArrowExpandVertical"
               :label="$t('models.gymRoute.height_by_section', { index: sectionIndex + 1 })"
             />
-          </div>
+          </v-col>
 
           <!-- Tags by section if more than one pitch -->
-          <div v-if="multiPitch" class="col">
+          <v-col v-if="multiPitch" cols="12">
             <indoor-climbing-styles-input
               v-model="section.styles"
               :gym="gymSector.gym"
               :climbing-type="data.climbing_type"
+              :icon="mdiPaletteSwatchOutline"
               :label="$t('models.gymRoute.styles_by_section', { index: sectionIndex + 1 })"
             />
-          </div>
-        </div>
+          </v-col>
+        </v-row>
 
         <!-- Button for add pitch-->
         <div
@@ -252,41 +195,91 @@
         <div class="mt-5">
           <!-- Tag colors -->
           <color-input
-            v-show="gymGrade.tag_color || (data.tag_colors && data.tag_colors.length > 0)"
+            v-show="['tag', 'hold_and_tag'].includes(gymLevels[data.climbing_type].level_representation)"
             v-model="data.tag_colors"
             :label="$t('models.gymRoute.tag_colors')"
             icon="Bookmark"
             :multiple="true"
             :colors-limit="2"
+            :prepend-inner-icon="mdiTag"
             :disable-all-color="true"
           />
 
           <!-- Hold colors -->
           <color-input
-            v-show="gymGrade.hold_color || (data.hold_colors && data.hold_colors.length > 0)"
+            v-show="['hold', 'hold_and_tag'].includes(gymLevels[data.climbing_type].level_representation)"
             v-model="data.hold_colors"
             :label="$t('models.gymRoute.hold_colors')"
             icon="Circle"
             :multiple="true"
+            :prepend-inner-icon="mdiPalette"
             :colors-limit="2"
           />
         </div>
+      </div>
 
-        <!-- Points -->
-        <v-checkbox
-          v-model="showPoint"
-          :label="$t('models.gymRoute.fixedPoints')"
-          @change="changePoint"
-        />
-        <v-text-field
-          v-if="showPoint"
-          v-model="data.points"
-          outlined
-          type="number"
-          suffix="points"
-          :label="$t('models.gymRoute.points')"
+      <!-- Openers -->
+      <gym-opener-input
+        v-model="data.gym_opener_ids"
+        :gym="gymSector.gym"
+        :icon="mdiScrewdriver"
+        :with-deactivated-opener="isEditingForm()"
+      />
+
+      <!-- Tags -->
+      <div v-if="!multiPitch">
+        <indoor-climbing-styles-input
+          v-for="(value, index) in data.sections"
+          :key="`style-index-${index}`"
+          v-model="value.styles"
+          :gym="gymSector.gym"
+          :climbing-type="data.climbing_type"
+          :icon="mdiPaletteSwatchOutline"
+          :label="multiPitch ? $t('models.gymRoute.styles_by_section', { index: index + 1 }) : $t('models.gymRoute.styles')"
         />
       </div>
+
+      <!-- Description -->
+      <markdown-input
+        v-model="data.description"
+        :label="$t('models.gymRoute.description')"
+      />
+
+      <!-- Open at -->
+      <date-picker-menu-input
+        v-model="data.opened_at"
+        :icon="mdiCalendarToday"
+        :label="$t('models.gymRoute.opened_at')"
+      />
+
+      <!-- Sector -->
+      <v-select
+        v-if="isEditingForm()"
+        v-model="data.gym_sector_id"
+        :items="similarSectors"
+        item-text="name"
+        item-value="id"
+        :label="$t('models.gymRoute.gym_sector_id')"
+        outlined
+        required
+        :loading="loadingSimilarSector"
+      />
+
+      <!-- Points -->
+      <v-checkbox
+        v-model="showPoint"
+        :label="$t('models.gymRoute.fixedPoints')"
+        class="mt-n2"
+        @change="changePoint"
+      />
+      <v-text-field
+        v-if="showPoint"
+        v-model="data.points"
+        outlined
+        type="number"
+        suffix="points"
+        :label="$t('models.gymRoute.points')"
+      />
 
       <!-- Params form sector (height and climbing type) -->
       <p class="subtitle-2">
@@ -476,15 +469,23 @@ import {
   mdiArrowLeft,
   mdiArrowRightBoldBoxOutline,
   mdiSourceBranchPlus,
-  mdiCircle
+  mdiCircle,
+  mdiCreation,
+  mdiOrderBoolDescending,
+  mdiFormatLetterCase,
+  mdiExponent,
+  mdiArrowExpandVertical,
+  mdiPaletteSwatchOutline,
+  mdiPalette,
+  mdiTag,
+  mdiScrewdriver,
+  mdiCalendarToday
 } from '@mdi/js'
 import { FormHelpers } from '@/mixins/FormHelpers'
 import { HoldColorsHelpers } from '@/mixins/HoldColorsHelpers'
 import { DateHelpers } from '@/mixins/DateHelpers'
 import Spinner from '@/components/layouts/Spiner'
-import GymGradeApi from '~/services/oblyk-api/GymGradeApi'
 import GymRouteApi from '~/services/oblyk-api/GymRouteApi'
-import GymGrade from '@/models/GymGrade'
 import ColorInput from '@/components/forms/ColorInput'
 import GymRoute from '@/models/GymRoute'
 import CragRouteApi from '~/services/oblyk-api/CragRouteApi'
@@ -494,12 +495,17 @@ import GymOpenerInput from '~/components/forms/GymOpenerInput'
 import DatePickerMenuInput from '~/components/forms/DatePickerMenuInput.vue'
 import IndoorClimbingStylesInput from '~/components/forms/IndoorClimbingStyleInput.vue'
 import GymRouteTagAndHold from '~/components/gymRoutes/partial/GymRouteTagAndHold.vue'
+import GymLevelApi from '~/services/oblyk-api/GymLevelApi'
+import GymLevel from '~/models/GymLevel'
+import GymRouteLevelInput from '~/components/forms/GymRouteLevelInput.vue'
+import { GradeMixin } from '~/mixins/GradeMixin'
 const GymRouteThumbnailForm = () => import('~/components/gymRoutes/forms/GymRouteThumbnailForm.vue')
 const GymRoutePictureForm = () => import('~/components/gymRoutes/forms/GymRoutePictureForm.vue')
 
 export default {
   name: 'GymRouteForm',
   components: {
+    GymRouteLevelInput,
     GymRouteTagAndHold,
     IndoorClimbingStylesInput,
     GymRouteThumbnailForm,
@@ -510,7 +516,7 @@ export default {
     ColorInput,
     Spinner
   },
-  mixins: [FormHelpers, HoldColorsHelpers, DateHelpers],
+  mixins: [FormHelpers, HoldColorsHelpers, DateHelpers, GradeMixin],
   props: {
     gymSector: {
       type: Object,
@@ -529,9 +535,8 @@ export default {
       redirectTo: null,
       nextAction: 'goToSpace',
       multiPitch: false,
-      showAutomaticParameters: true,
       showResultingParameters: false,
-      loadingGymGrade: true,
+      loadingLevels: true,
       loadingSimilarSector: true,
       similarSectors: [],
       afterAddDialog: false,
@@ -547,14 +552,16 @@ export default {
         gym_opener_ids: this.gymRoute?.gym_opener_ids || [],
         description: this.gymRoute?.description,
         height: this.gymRoute?.height || this.gymSector.height,
-        points: this.gymRoute?.points,
+        points: this.gymRoute?.points || null,
         grade: this.gymRoute?.grade,
+        level_index: this.gymRoute?.level_index,
+        level_color: this.gymRoute?.level_color,
+        level_length: this.gymRoute?.level_length,
         tag_colors: this.gymRoute?.tag_colors || [],
         hold_colors: this.gymRoute?.hold_colors || [],
         opened_at: this.gymRoute?.opened_at || this.ISODateToday(),
-        climbing_type: this.gymRoute?.climbing_type || this.gymSector.climbing_type,
+        climbing_type: this.gymRoute?.climbing_type || this.gymSector.climbing_type || 'sport_climbing',
         anchor_number: this.gymRoute?.anchor_number,
-        gym_grade_line_id: this.gymRoute?.gym_grade_line_id,
         gym_space_id: this.gymSector.gym_space.id,
         gym_sector_id: null,
         gym_id: this.gymSector.gym.id,
@@ -565,8 +572,12 @@ export default {
         { text: this.$t('models.climbs.bouldering'), value: 'bouldering' },
         { text: this.$t('models.climbs.pan'), value: 'pan' }
       ],
-      gymGradeLines: [],
-      gymGrade: null,
+      gymLevels: {
+        sport_climbing: null,
+        bouldering: null,
+        pan: null
+      },
+      gradeSuggestions: [],
 
       mdiShuffleVariant,
       mdiChevronDown,
@@ -579,12 +590,22 @@ export default {
       mdiArrowLeft,
       mdiArrowRightBoldBoxOutline,
       mdiSourceBranchPlus,
-      mdiCircle
+      mdiCircle,
+      mdiCreation,
+      mdiOrderBoolDescending,
+      mdiFormatLetterCase,
+      mdiExponent,
+      mdiArrowExpandVertical,
+      mdiPaletteSwatchOutline,
+      mdiPalette,
+      mdiTag,
+      mdiScrewdriver,
+      mdiCalendarToday
     }
   },
 
   mounted () {
-    this.getGymGrade()
+    this.getGymLevels()
     this.multiPitch = this.data.sections.length > 1
     const urlParams = new URLSearchParams(window.location.search)
     this.redirectTo = urlParams.get('redirect_to')
@@ -689,47 +710,48 @@ export default {
       this.data.sections.pop()
     },
 
-    onChangeDifficulty () {
-      let selectedGradeLine = null
-      for (const gradeLine of this.gymGrade.gradeLines) {
-        if (gradeLine.id === this.data.gym_grade_line_id) {
-          selectedGradeLine = gradeLine
+    onChangeLevelPreset (level) {
+      const gymLevel = this.gymLevels[this.data.climbing_type]
+      this.gradeSuggestions = []
+      if (['hold_and_tag', 'hold'].includes(gymLevel.level_representation)) {
+        this.data.hold_colors = [level.color]
+      }
+      if (['hold_and_tag', 'tag'].includes(gymLevel.level_representation)) {
+        this.data.tag_colors = [level.color]
+      }
+      if (gymLevel.grade_system !== null && level.average_grade) {
+        for (let suggestionGrad = level.average_grade - 2; suggestionGrad <= level.average_grade + 2; suggestionGrad++) {
+          this.gradeSuggestions.push(this.gradeValueToText(suggestionGrad))
         }
       }
-      this.data.points = selectedGradeLine.points
-      this.showPoint = !!this.data.points
-      for (const section of this.data.sections) {
-        section.grade = selectedGradeLine.grade_text
+      this.data.level_color = level.color
+      this.data.level_lenght = gymLevel.levels.length
+      if (this.submitMethode === 'post') {
+        this.data.points = level.default_point
       }
-
-      const colors = selectedGradeLine.colors
-      if (this.gymGrade.hold_color) {
-        this.data.hold_colors = colors.map((color) => { return color })
-      }
-      if (this.gymGrade.tag_color) {
-        this.data.tag_colors = colors.map((color) => { return color })
-      }
+      this.showPoint = this.data.points !== undefined && this.data.points !== null
     },
 
-    getGymGrade () {
-      new GymGradeApi(this.$axios, this.$auth)
-        .find(
+    getGymLevels () {
+      this.loadingLevels = true
+      new GymLevelApi(this.$axios, this.$auth)
+        .all(
           this.gymSector.gym.id,
-          this.gymSector.gym_grade_id
+          {
+            average_for_sector_id: this.gymSector.id
+          }
         )
         .then((resp) => {
-          this.gymGrade = new GymGrade({ attributes: resp.data })
-          for (const gradeLine of this.gymGrade.gradeLines) {
-            this.gymGradeLines.push(
-              {
-                text: `${gradeLine.name} ${gradeLine.gradeValue}`,
-                value: gradeLine.id,
-                colors: gradeLine.colors
-              }
-            )
+          this.gymLevels = {
+            sport_climbing: null,
+            bouldering: null,
+            pan: null
+          }
+          for (const level of resp.data) {
+            this.gymLevels[level.climbing_type] = new GymLevel({ attributes: level })
           }
         }).finally(() => {
-          this.loadingGymGrade = false
+          this.loadingLevels = false
         })
     },
 

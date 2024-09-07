@@ -11,11 +11,33 @@
         v-html="$t('components.gymRankingSystems.explain')"
       />
       <ranking-system-form :gym="gym" />
+      <div class="border-top d-flex mt-4 pt-4">
+        <v-btn
+          text
+          :to="`${gym.adminPath}/levels`"
+        >
+          <v-icon left>
+            {{ mdiArrowLeft }}
+          </v-icon>
+          {{ $t('components.gymAdmin.levelsAndGardes') }}
+        </v-btn>
+        <v-btn
+          text
+          class="ml-auto"
+          :to="`${gym.adminPath}/climbing-styles`"
+        >
+          {{ $t('components.gymAdmin.styles') }}
+          <v-icon right>
+            {{ mdiArrowRight }}
+          </v-icon>
+        </v-btn>
+      </div>
     </div>
   </v-container>
 </template>
 
 <script>
+import { mdiArrowRight, mdiArrowLeft } from '@mdi/js'
 import { GymFetchConcern } from '~/concerns/GymFetchConcern'
 import Spinner from '~/components/layouts/Spiner'
 import RankingSystemForm from '~/components/gyms/forms/RankingSystemForm.vue'
@@ -34,6 +56,13 @@ export default {
       en: {
         metaTitle: 'Ranking system'
       }
+    }
+  },
+
+  data () {
+    return {
+      mdiArrowRight,
+      mdiArrowLeft
     }
   },
 

@@ -48,9 +48,7 @@ export default {
 
   computed: {
     spacesPath () {
-      if (this.gym.gym_spaces.length === 0) {
-        return `${this.gym.adminPath}/first-space`
-      } else if (this.gym.gym_spaces.length === 1) {
+      if (this.gym.gym_spaces.length === 1) {
         return this.gym.firstSpacePath
       } else {
         return `${this.gym.path}/spaces`

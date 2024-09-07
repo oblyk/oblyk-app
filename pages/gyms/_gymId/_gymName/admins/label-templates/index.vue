@@ -62,13 +62,24 @@
           Vous avez besoin options particulières pour vos étiquettes ? D'une police spécifique ? Contactez-nous :
           <a href="mailto:ekip@oblyk.org" style="color: inherit">ekip@oblyk.org</a>
         </v-alert>
+        <div class="border-top mt-6 pt-4">
+          <v-btn
+            text
+            :to="`${gym.adminPath}/climbing-styles`"
+          >
+            <v-icon left>
+              {{ mdiArrowLeft }}
+            </v-icon>
+            {{ $t('components.gymAdmin.styles') }}
+          </v-btn>
+        </div>
       </div>
     </div>
   </v-container>
 </template>
 
 <script>
-import { mdiPlus, mdiFileDocumentOutline } from '@mdi/js'
+import { mdiPlus, mdiFileDocumentOutline, mdiArrowLeft } from '@mdi/js'
 import { GymFetchConcern } from '~/concerns/GymFetchConcern'
 import GymLabelTemplateApi from '~/services/oblyk-api/GymLabelTemplateApi'
 import GymLabelTemplate from '~/models/GymLabelTemplate'
@@ -86,7 +97,8 @@ export default {
       labelTemplates: [],
 
       mdiPlus,
-      mdiFileDocumentOutline
+      mdiFileDocumentOutline,
+      mdiArrowLeft
     }
   },
 

@@ -10,6 +10,7 @@ export default {
     new: 'New',
     move: 'Move',
     add: 'Add',
+    addSpace: 'Add space',
     apply: 'Apply',
     editSector: 'Edit sector',
     editSpace: 'Edit space',
@@ -20,6 +21,7 @@ export default {
     close: 'Close',
     valid: 'Valid',
     ok: 'ok',
+    okIChose: 'Ok I chose',
     create_copy: 'Create copy',
     like: 'Like',
     reply: 'Reply',
@@ -652,6 +654,8 @@ export default {
       contestCategoryTypes: 'Categorization type',
       contestCategoryObligation: 'Type of registration restriction',
       rankingSystem: 'Ranking system',
+      gradeSystem: 'Grade system',
+      levelRepresentation: 'level representation',
       age: 'Age',
       textAlign: 'Text alignment',
       colorSystem: {
@@ -1211,13 +1215,13 @@ export default {
         statistics: 'Statistics',
         followers: 'Followers'
       },
-      firstSpaceExplain: 'The spaces allow you to fill in your routes and boulders so that your climbers can consult them and keep a notebook of ascents!',
-      createFirstSpace: 'Create my first Space',
-      createDifficultyFirst: 'But before creating your spaces, you have to fill in your difficulty systems',
+      firstSpaceTitle: 'Before creating your first space ...',
+      firstSpaceExplain1: 'Before creating your first space and your first routes and boulders, <strong>it is important that you decide how the difficulty</strong> of your room will work <cite>(order of colours, type of ratings, etc.)</cite>.',
+      firstSpaceExplain2: 'Choose your difficulty system, then skip this step when you return.',
       firstDifficultySystemExplain: 'Difficulty systems allow you to define how your quotations work in your climbing gym.',
       firstDifficultySystemExplainTow: 'They also allow you to go faster in the information your routes.',
       createDifficultySystemSpace: 'Creating my first difficulty system',
-      difficultySystem: 'Difficulty system ?',
+      difficultySystem: 'Difficulty system',
       administratorRequired: 'You must be a gym administrator to access this page.',
       IAmManager: 'I am the manger',
       contactAndLocalization: 'Contact & Localization',
@@ -1240,7 +1244,8 @@ export default {
       rankOf: 'The %{date} ranking',
       seeRankOf: 'See the %{date} ranking',
       rankNumber: '%{number}st | %{number}nd',
-      noRank: 'There is no ranking for %{date} with the selected filters.'
+      noRank: 'There is no ranking for %{date} with the selected filters.',
+      giveDefaultPoints: 'You can give a default number of points for your different levels'
     },
     gymAdmin: {
       administration: 'Administration',
@@ -1264,6 +1269,8 @@ export default {
       rakingSystem: 'Ranking system',
       rakingExplain: 'Parameter for monthly ranking by climbing style',
       difficultySystem: 'Difficulty system',
+      levelsAndGardes: 'Levels & Grades',
+      levelsAndGardesExplain: 'Colour order and grades settings',
       difficultySystemExplain: 'Settings for difficulty systems, level rating, etc.',
       difficultySystemShort: 'Systems',
       climbingStyle: 'Climbing styles',
@@ -1304,6 +1311,10 @@ export default {
       explain: 'Choose how Oblyk calculates points for each type of climb.',
       chooseSystem: 'Choose a classification type',
       deleteSystem: 'Do not rank'
+    },
+    levelAndGrades: {
+      title: 'Colour level & grade system',
+      explain: 'Choose the order in which your colours are organised and the type of quotation you use for each climbing type.'
     },
     gymStatistic: {
       figuresTitle: 'In a few figures',
@@ -2848,6 +2859,13 @@ export default {
       division: "Each route or boulder is worth 1000 points, and the more climbers do the route or boulder, the fewer points it's worth.",
       fixed_points: 'For each route or block you assign a fixed number of points.',
       point_by_grade: 'Each grade (4a, 6a, etc.) has a number of points given by its difficulty.<br>See the documentation : <a href="https://oblyk.github.io/app-user-doc/docs/indoor/systeme-de-classement" target="_blank">Point by grade</a>'
+    },
+    grade: {
+      none: 'No grade',
+      french: 'Route / boulder French (5c+, 6a, 7b, etc.)',
+      usa_lead: 'Route US (5.4, 5.12a, etc.)',
+      usa_bouldering: 'Boulder US (V5, V10, etc.)',
+      pick_district: 'Peak District (B3, B9, etc.)'
     },
     hardnessStatus: {
       easy_for_the_grade: '😎 Easy for the grade',

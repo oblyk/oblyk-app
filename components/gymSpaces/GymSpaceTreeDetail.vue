@@ -141,19 +141,6 @@
         </v-col>
         <v-col>
           <description-line
-            :icon="mdiSortBoolAscending"
-            class="border rounded-sm pa-1"
-            :item-title="$t('components.gymAdmin.difficultySystem')"
-          >
-            <template #content>
-              <nuxt-link :to="`${gymSpace.Gym.adminPath}/grades/${gymSpace.gym_grade.id}`">
-                {{ gymSpace.gym_grade.name }}
-              </nuxt-link>
-            </template>
-          </description-line>
-        </v-col>
-        <v-col>
-          <description-line
             :icon="gymSpace.representation_type === '2d_picture' ? mdiImageArea : mdiCubeOutline"
             class="border rounded-sm pa-1"
             :item-title="$t('models.gymSpace.representation_type')"
@@ -259,7 +246,6 @@ import {
   mdiDelete,
   mdiPencil,
   mdiCircle,
-  mdiSortBoolAscending,
   mdiCheck,
   mdiImageArea,
   mdiCubeOutline,
@@ -301,7 +287,6 @@ export default {
       mdiDelete,
       mdiPencil,
       mdiCircle,
-      mdiSortBoolAscending,
       mdiCheck,
       mdiCubeOutline,
       mdiImageArea,

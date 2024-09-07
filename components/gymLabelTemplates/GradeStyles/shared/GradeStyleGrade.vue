@@ -17,6 +17,7 @@
     </div>
   </div>
 </template>
+
 <script>
 export default {
   name: 'GradeStyleGrade',
@@ -33,7 +34,8 @@ export default {
     },
 
     gradeClass () {
-      const ndCharactersClass = `nd-characters-${this.gymRoute.grade_to_s.length}`
+      const gradeToS = this.gymRoute.grade_to_s || ''
+      const ndCharactersClass = `nd-characters-${gradeToS.length}`
       const nbSectionClass = this.gymRoute.sections.length === 1 ? 'mono-section' : 'multi-sections'
       return `${ndCharactersClass} ${nbSectionClass}`
     }

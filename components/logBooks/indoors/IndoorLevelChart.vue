@@ -35,11 +35,14 @@
 </template>
 
 <script>
+import { HoldColorsHelpers } from '~/mixins/HoldColorsHelpers'
+
 const BarChart = () => import('~/components/charts/BarChart')
 
 export default {
   name: 'IndoorLevelChart',
   components: { BarChart },
+  mixins: [HoldColorsHelpers],
   props: {
     data: {
       type: Object,
@@ -57,13 +60,17 @@ export default {
 
   computed: {
     chartData () {
+      const labels = []
+      for (const label of this.data.labels) {
+        labels.push(this.hexColorToName(label))
+      }
       return {
         datasets: [{
           data: this.data.datasets[0].data,
           backgroundColor: this.data.datasets[0].backgroundColor,
           label: this.$t('common.number')
         }],
-        labels: this.data.labels
+        labels
       }
     }
   }

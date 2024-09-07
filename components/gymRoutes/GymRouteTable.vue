@@ -620,8 +620,10 @@ export default {
         index += 1
       }
       this.getRoutes(querySpace)
-    } else {
+    } else if (this.gym.gym_spaces.length > 0) {
       this.getRoutes(this.gym.gym_spaces[0].id)
+    } else {
+      this.getRoutes()
     }
   },
 

@@ -1,7 +1,7 @@
 <template>
   <div>
     <spinner
-      v-if="loadingGymGrades || loadingGym"
+      v-if="loadingGym"
       :full-height="false"
     />
 
@@ -34,15 +34,6 @@
         item-text="text"
         item-value="value"
         :label="$t('models.gymSpace.climbing_type')"
-        outlined
-      />
-
-      <v-select
-        v-model="data.gym_grade_id"
-        :items="gymGrades"
-        item-text="text"
-        item-value="value"
-        :label="$t('models.gymSpace.gym_grade_id')"
         outlined
       />
 
@@ -96,7 +87,6 @@ import { FormHelpers } from '@/mixins/FormHelpers'
 import CloseForm from '@/components/forms/CloseForm'
 import SubmitForm from '@/components/forms/SubmitForm'
 import Spinner from '@/components/layouts/Spiner'
-import GymGradeApi from '~/services/oblyk-api/GymGradeApi'
 import GymSpaceApi from '~/services/oblyk-api/GymSpaceApi'
 import GymSpace from '@/models/GymSpace'
 import MarkdownInput from '@/components/forms/MarkdownInput'
@@ -119,7 +109,6 @@ export default {
 
   data () {
     return {
-      loadingGymGrades: true,
       loadingGym: true,
       redirectTo: null,
       gym: null,
@@ -129,7 +118,6 @@ export default {
         order: this.gymSpace?.order,
         description: this.gymSpace?.description,
         climbing_type: this.gymSpace?.climbing_type,
-        gym_grade_id: this.gymSpace?.gym_grade_id,
         gym_space_group_id: this.gymSpace?.gym_space_group_id,
         anchor: this.gymSpace?.anchor,
         draft: this.gymSpace?.draft,
@@ -146,15 +134,13 @@ export default {
       representationTypes: [
         { text: this.$t('models.representationTypes.2d_picture'), value: '2d_picture' },
         { text: this.$t('models.representationTypes.3d'), value: '3d' }
-      ],
-      gymGrades: []
+      ]
     }
   },
 
   mounted () {
     const urlParams = new URLSearchParams(window.location.search)
     this.redirectTo = urlParams.get('redirect_to')
-    this.getGymGrades()
     this.getGym()
   },
 
@@ -176,18 +162,6 @@ export default {
           this.$root.$emit('alertFromApiError', err, 'gymSpace')
         }).then(() => {
           this.overlay = false
-        })
-    },
-
-    getGymGrades () {
-      new GymGradeApi(this.$axios, this.$auth)
-        .all(this.gymId)
-        .then((resp) => {
-          for (const grade of resp.data) {
-            this.gymGrades.push({ text: grade.name, value: grade.id })
-          }
-        }).finally(() => {
-          this.loadingGymGrades = false
         })
     },
 

@@ -30,7 +30,7 @@
             class="mr-1"
             @click="chartIndex = levelIndex"
           >
-            {{ level.gym_grade.name }}
+            {{ $t(`models.climbs.${level.climbing_type}`) }}
           </v-chip>
         </div>
       </div>

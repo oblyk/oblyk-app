@@ -11,6 +11,7 @@
       :menu-props="{ maxHeight: 500 }"
       multiple
       outlined
+      :prepend-inner-icon="icon"
       :loadin="loadingOpener"
       @change="onChange()"
       @focus="onFocus"
@@ -75,6 +76,10 @@ export default {
     gym: {
       type: Object,
       required: true
+    },
+    icon: {
+      type: String,
+      default: null
     },
     withDeactivatedOpener: {
       type: Boolean,

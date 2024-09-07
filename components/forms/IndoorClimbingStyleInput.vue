@@ -8,6 +8,7 @@
     item-text="text"
     item-value="value"
     multiple
+    :prepend-inner-icon="icon"
     :disabled="loadingClimbingStyle"
     :loading="loadingClimbingStyle"
     @change="onChange"
@@ -97,6 +98,10 @@ export default {
     climbingType: {
       type: String,
       required: true
+    },
+    icon: {
+      type: String,
+      default: null
     }
   },
 

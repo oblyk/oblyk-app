@@ -3,53 +3,52 @@
     v-if="gym"
     class="global-form-width"
   >
-    <v-row>
-      <v-col v-if="currentUserIsGymAdmin()">
-        <p class="text-center mb-7">
-          <v-icon x-large>
-            {{ mdiMapLegend }}
+    <v-card>
+      <v-card-title>
+        <v-btn
+          icon
+          right
+          exact-path
+          class="mr-2"
+          :to="gym.adminPath"
+        >
+          <v-icon>
+            {{ mdiArrowLeft }}
           </v-icon>
+        </v-btn>
+        {{ $t('components.gym.firstSpaceTitle') }}
+      </v-card-title>
+      <v-card-text>
+        <p v-html="$t('components.gym.firstSpaceExplain1')" />
+        <p class="mb-0">
+          {{ $t('components.gym.firstSpaceExplain2') }}
         </p>
-        <p class="text-center">
-          {{ $t('components.gym.firstSpaceExplain') }}
-        </p>
-
-        <div v-if="gym.gym_grades_count === 0">
-          <p class="text-center">
-            {{ $t('components.gym.createDifficultyFirst') }}
-          </p>
-
-          <p class="text-center">
-            <v-btn
-              elevation="0"
-              color="primary"
-              :to="`${gym.adminPath}/first-difficulty-system`"
-            >
-              {{ $t('components.gym.difficultySystem') }}
-            </v-btn>
-          </p>
-        </div>
-        <p v-if="gym.gym_grades_count > 0" class="text-center mt-10">
-          <v-btn
-            color="primary"
-            :to="`${gym.spacePath}/new`"
-          >
-            {{ $t('components.gym.createFirstSpace') }}
-          </v-btn>
-        </p>
-      </v-col>
-
-      <v-col v-else>
-        <p class="text--disabled text-center">
-          {{ $t('components.gym.administratorRequired') }}
-        </p>
-      </v-col>
-    </v-row>
+      </v-card-text>
+      <v-card-actions>
+        <v-btn
+          text
+          outlined
+          elevation="0"
+          color="primary"
+          :to="`${gym.spacePath}/new`"
+        >
+          {{ $t('actions.okIChose') }}
+        </v-btn>
+        <v-btn
+          elevation="0"
+          color="primary"
+          class="ml-auto"
+          :to="`${gym.adminPath}/levels`"
+        >
+          {{ $t('components.gym.difficultySystem') }}
+        </v-btn>
+      </v-card-actions>
+    </v-card>
   </v-container>
 </template>
 
 <script>
-import { mdiMapLegend } from '@mdi/js'
+import { mdiArrowLeft } from '@mdi/js'
 import { GymConcern } from '@/concerns/GymConcern'
 import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
 
@@ -60,7 +59,7 @@ export default {
 
   data () {
     return {
-      mdiMapLegend
+      mdiArrowLeft
     }
   },
 
