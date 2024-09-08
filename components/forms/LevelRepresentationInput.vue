@@ -2,7 +2,7 @@
   <v-input :prepend-icon="prependIcon">
     <fieldset class="full-width custom-fieldset border rounded mt-n1 pb-1 px-1">
       <legend class="v-label custom-fieldset-label">
-        Quel représentation correspond le mieux ?
+        Quelle représentation correspond le mieux ?
       </legend>
       <div>
         <v-sheet
