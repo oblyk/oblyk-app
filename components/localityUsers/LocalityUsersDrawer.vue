@@ -5,6 +5,7 @@
     temporary
     absolute
     right
+    :touchless="!localityDrawer"
   >
     <v-skeleton-loader
       v-if="loadingLocality"

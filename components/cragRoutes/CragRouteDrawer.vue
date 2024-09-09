@@ -5,6 +5,7 @@
     temporary
     absolute
     right
+    :touchless="!cragRouteDrawer"
   >
     <spinner v-if="loadingCragRoute" />
     <div v-if="!loadingCragRoute">

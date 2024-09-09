@@ -11,6 +11,7 @@
       v-model="drawer"
       class="oblyk-navigation-drawer"
       app
+      :touchless="!drawer"
       width="300"
     >
       <lazy-hydrate
