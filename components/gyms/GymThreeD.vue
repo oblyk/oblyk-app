@@ -59,7 +59,7 @@
     <div
       v-show="!loadingSpaces"
       id="three-d-area"
-      class="full-height"
+      class="full-height --transparent"
     >
       <p class="text-center mt-10">
         {{ $t('common.loading') }}
@@ -237,6 +237,7 @@ export default {
             this.loadingSpaces = false
             setTimeout(() => {
               this.fitCameraToObjects(this.spaces)
+              this.TDArea.classList.remove('--transparent')
             }, 100)
           }
         })
@@ -445,6 +446,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+#three-d-area {
+  transition: opacity 0.1s;
+  &.--transparent {
+    opacity: 0;
+  }
+}
 .spaces-list {
   position: absolute;
   top: 0;
