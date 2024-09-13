@@ -1,27 +1,34 @@
 <template>
   <div
-    class="d-flex"
+    class="d-inline-flex rounded-pill border hoverable"
     @click="click"
   >
     <v-avatar
       v-if="route.thumbnail"
-      size="32"
-      rounded
-      class="flex-grow-0 mr-3"
+      size="44"
+      class="flex-grow-0"
     >
       <v-img :src="route.thumbnailUrl" />
     </v-avatar>
-    <div class="d-flex align-self-center">
-      <div class="mr-auto">
-        <gym-route-tag-and-hold :gym-route="route" />
-        {{ route.name }}
-      </div>
-      <div
-        v-if="route.grade_to_s"
-        class="ml-1 font-weight-bold"
-        style="padding-top: 2px"
-      >
-        {{ route.grade_to_s }}
+    <div class="align-self-center d-flex pr-4 ml-3">
+      <gym-route-tag-and-hold
+        :gym-route="route"
+        :size="35"
+        style="margin-top: 5px"
+      />
+      <div class="ml-1" style="padding-top: 1px">
+        <div>
+          <strong
+            v-if="route.grade_to_s"
+            class="font-weight-bold"
+          >
+            {{ route.grade_to_s }},
+          </strong>
+          {{ route.name }}
+        </div>
+        <div style="font-size: 0.75em">
+          {{ route.gym_space_name }}, {{ route.gym_sector_name }}
+        </div>
       </div>
     </div>
   </div>

@@ -2555,6 +2555,8 @@ export default {
       name: 'Name',
       step_order: 'Order',
       ranking_type: 'Ranking type',
+      ascents_limit: 'Take into account only the %{count} best ascents',
+      ascents_limit_explain: 'Explanation: If you enter 10, only the 10 hardest routes of each participant will be taken into account in the ranking. Leave blank if you want all routes to be taken into account.',
       self_reporting: 'Participants fill in the details of their projects themselves',
       default_participants_for_next_step: 'Default number of participants moving on to the next stage'
     },

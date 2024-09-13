@@ -5,108 +5,114 @@
         {{ route.number }}
       </v-chip>
     </div>
-    <gym-route-simple-item
-      v-if="route.gym_route_id"
-      :gym-route="route.gym_route"
-      class="ml-3"
-    />
-    <v-avatar
-      v-if="route.picture"
-      size="32"
-      rounded
-      class="flex-grow-0 ml-2"
-      @click="pictureModal = true"
-    >
-      <v-img :src="route.pictureUrl" />
-    </v-avatar>
-    <div
-      v-if="route.disabled_at !== null"
-      class="text--disabled ml-3 align-self-center"
-    >
-      [exclue du contest]
-    </div>
-    <div
-      v-if="route.ranking_type === 'highest_hold'"
-      class="ml-2"
-    >
-      <v-chip
-        v-if="!route.number_of_holds"
-        @click="editModal = true"
-      >
-        Nombre de prise ?
-      </v-chip>
-      <v-chip
-        v-else
-        @click="editModal = true"
-      >
-        {{ route.number_of_holds }} prises
-      </v-chip>
-    </div>
-    <div
-      v-if="route.ranking_type === 'fixed_points'"
-      class="ml-2"
-    >
-      <v-chip
-        v-if="!route.fixed_points"
-        @click="editModal = true"
-      >
-        Points ?
-      </v-chip>
-      <v-chip
-        v-else
-        @click="editModal = true"
-      >
-        {{ route.fixed_points }} pts
-      </v-chip>
-    </div>
-    <div
-      v-if="route.ranking_type === 'division_and_zone'"
-      class="ml-2"
-    >
-      <v-chip
-        v-if="route.additional_zone"
-        @click="editModal = true"
-      >
-        <v-icon left>
-          {{ mdiAlphaZBoxOutline }}
-        </v-icon>
-        À une zone
-      </v-chip>
-      <v-chip
-        v-else
-        @click="editModal = true"
-      >
-        Pas de zone
-      </v-chip>
-    </div>
-    <div
-      v-if="route.name"
-      class="ml-2"
-      @click="editModal = true"
-    >
-      <v-chip outlined>
-        {{ route.name }}
-      </v-chip>
-    </div>
-    <v-spacer />
-    <v-tooltip
-      top
-      open-delay="500"
-    >
-      <template #activator="{ on, attrs }">
-        <v-btn
-          v-bind="attrs"
-          icon
-          v-on="on"
-          @click="addPictureModal = true"
+    <div class="flex-grow-1">
+      <div class="d-flex">
+        <v-avatar
+          v-if="route.picture"
+          size="32"
+          rounded
+          class="flex-grow-0 ml-2"
+          @click="pictureModal = true"
         >
-          <v-icon>
-            {{ route.picture ? mdiCameraFlip : mdiCameraPlus }}
-          </v-icon>
-        </v-btn>
-      </template>
-      <span v-text="route.picture ? 'Changer la photo' : 'Ajouter une photo'" />
-    </v-tooltip>
+          <v-img :src="route.pictureUrl" />
+        </v-avatar>
+        <div
+          v-if="route.ranking_type === 'highest_hold'"
+          class="ml-2"
+        >
+          <v-chip
+            v-if="!route.number_of_holds"
+            @click="editModal = true"
+          >
+            Nombre de prise ?
+          </v-chip>
+          <v-chip
+            v-else
+            @click="editModal = true"
+          >
+            {{ route.number_of_holds }} prises
+          </v-chip>
+        </div>
+        <div
+          v-if="route.ranking_type === 'fixed_points'"
+          class="ml-2"
+        >
+          <v-chip
+            v-if="!route.fixed_points"
+            @click="editModal = true"
+          >
+            Points ?
+          </v-chip>
+          <v-chip
+            v-else
+            @click="editModal = true"
+          >
+            {{ route.fixed_points }} pts
+          </v-chip>
+        </div>
+        <div
+          v-if="route.ranking_type === 'division_and_zone'"
+          class="ml-2"
+        >
+          <v-chip
+            v-if="route.additional_zone"
+            @click="editModal = true"
+          >
+            <v-icon left>
+              {{ mdiAlphaZBoxOutline }}
+            </v-icon>
+            À une zone
+          </v-chip>
+          <v-chip
+            v-else
+            @click="editModal = true"
+          >
+            Pas de zone
+          </v-chip>
+        </div>
+        <div
+          v-if="route.name"
+          class="ml-2"
+          @click="editModal = true"
+        >
+          <v-chip outlined>
+            {{ route.name }}
+          </v-chip>
+        </div>
+        <div
+          v-if="route.disabled_at !== null"
+          class="red--text ml-3 align-self-center"
+        >
+          [exclue du contest]
+        </div>
+        <v-spacer />
+        <v-tooltip
+          top
+          open-delay="500"
+        >
+          <template #activator="{ on, attrs }">
+            <v-btn
+              v-bind="attrs"
+              icon
+              v-on="on"
+              @click="addPictureModal = true"
+            >
+              <v-icon>
+                {{ route.picture ? mdiCameraFlip : mdiCameraPlus }}
+              </v-icon>
+            </v-btn>
+          </template>
+          <span v-text="route.picture ? 'Changer la photo' : 'Ajouter une photo'" />
+        </v-tooltip>
+      </div>
+      <div v-if="route.gym_route_id">
+        <gym-route-simple-item
+          v-if="route.gym_route_id"
+          :gym-route="route.gym_route"
+          class="ml-2"
+        />
+      </div>
+    </div>
     <div>
       <v-menu>
         <template #activator="{ on, attrs }">
@@ -292,10 +298,10 @@ import {
   mdiAlphaZBoxOutline
 } from '@mdi/js'
 import ContestRouteApi from '~/services/oblyk-api/ContestRouteApi'
-import ContestRouteForm from '~/components/contests/forms/ContestRouteForm.vue'
+import ContestRouteForm from '~/components/contests/forms/ContestRouteForm'
 import ContestRoute from '~/models/ContestRoute'
-import GymRouteSimpleItem from '~/components/gymRoutes/GymRouteItem.vue'
-import ContestRoutePictureForm from '~/components/contests/forms/ContestRoutePictureForm.vue'
+import GymRouteSimpleItem from '~/components/gymRoutes/GymRouteItem'
+import ContestRoutePictureForm from '~/components/contests/forms/ContestRoutePictureForm'
 
 export default {
   name: 'ContestRouteLine',

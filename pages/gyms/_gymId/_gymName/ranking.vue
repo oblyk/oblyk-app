@@ -44,7 +44,7 @@
     </v-img>
 
     <v-sheet
-      class="rounded pa-3 mb-7 mt-2"
+      class="rounded pa-3 mt-2"
       style="position: relative"
     >
       <v-row>
@@ -103,8 +103,17 @@
       </v-row>
     </v-sheet>
 
+    <contest-up-coming
+      v-if="gym.upcoming_contests.length > 0"
+      :gym="gym"
+      class="mt-4"
+    />
+
     <!-- Load ranking -->
-    <v-row v-if="loadingScore">
+    <v-row
+      v-if="loadingScore"
+      class="mt-7"
+    >
       <!-- First -->
       <v-col
         cols="6"
@@ -147,7 +156,10 @@
       </v-col>
     </v-row>
 
-    <div v-else>
+    <div
+      v-else
+      class="mt-7"
+    >
       <div v-if="podiums.length > 0">
         <!-- Podiums -->
         <v-row>
@@ -263,9 +275,10 @@ import DownToCloseDialog from '~/components/ui/DownToCloseDialog'
 import UserCard from '~/components/users/UserCard'
 import UserApi from '~/services/oblyk-api/UserApi'
 import GymRankingPodium from '~/components/gyms/GymRankingPodium'
+import ContestUpComing from '~/components/gyms/ContestUpComing'
 
 export default {
-  components: { GymRankingPodium, UserCard, DownToCloseDialog },
+  components: { ContestUpComing, GymRankingPodium, UserCard, DownToCloseDialog },
   meta: { orphanRoute: true },
   mixins: [GymConcern, DateHelpers, TextHelpers],
 

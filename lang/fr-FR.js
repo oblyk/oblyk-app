@@ -2557,6 +2557,8 @@ export default {
       name: 'Nom',
       step_order: 'Ordre',
       ranking_type: 'Type de classement',
+      ascents_limit: 'Prendre en compte uniquement les %{count} meilleurs ascensions',
+      ascents_limit_explain: 'Explication : Si vous mettez 10, seule les 10 voies les plus dures de chacun participant seront prises en compte dans le classement. Laissez vide si voulez prendre en compte toutes les voies',
       self_reporting: 'Les participants renseignent eux-même leur réalisation',
       default_participants_for_next_step: 'Nombre de participant par défaut à passer à la prochaine étape'
     },

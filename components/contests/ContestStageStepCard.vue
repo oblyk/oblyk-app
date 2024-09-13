@@ -65,6 +65,9 @@
         Type de classement :
         <strong>{{ $t(`models.contestRankingType.${stageStep.ranking_type}`) }}</strong>
       </li>
+      <li v-if="stageStep.ascents_limit !== null && stageStep.ranking_type === 'fixed_points'">
+        {{ $t('models.contestStageStep.ascents_limit', { count: stageStep.ascents_limit }) }}
+      </li>
     </ul>
     <div class="d-flex mt-4">
       <h3>

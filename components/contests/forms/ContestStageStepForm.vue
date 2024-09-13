@@ -62,6 +62,17 @@
     />
 
     <v-text-field
+      v-if="data.ranking_type === 'fixed_points'"
+      v-model="data.ascents_limit"
+      class="mb-4"
+      type="number"
+      outlined
+      persistent-hint
+      :label="$t('models.contestStageStep.ascents_limit', { count: data.ascents_limit || '[x]' })"
+      :hint="$t('models.contestStageStep.ascents_limit_explain')"
+    />
+
+    <v-text-field
       v-model="data.default_participants_for_next_step"
       type="number"
       hide-details
@@ -126,6 +137,7 @@ export default {
         id: this.contestStageStep?.id,
         name: this.contestStageStep?.name,
         ranking_type: this.contestStageStep?.ranking_type || this.contestStage.default_ranking_type,
+        ascents_limit: this.contestStageStep?.ascents_limit,
         step_order: this.contestStageStep?.step_order,
         self_reporting: this.contestStageStep?.self_reporting || true,
         default_participants_for_next_step: this.contestStageStep?.default_participants_for_next_step,

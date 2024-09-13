@@ -13,9 +13,7 @@
         hoverable
         open-on-click
       >
-        <template
-          #prepend="{ item, open }"
-        >
+        <template #prepend="{ item, open }">
           <v-icon v-if="item.type !== 'GymRoute'">
             {{ open ? mdiFolderOpen : mdiFolder }}
           </v-icon>
@@ -25,6 +23,7 @@
             v-if="item.route"
             :gym-route="item.route"
             :callback="callback"
+            class="mb-1"
           />
           <div v-else>
             {{ item.name }}

@@ -40,6 +40,22 @@
       :label="$t('models.contestRoute.fixed_points')"
     />
 
+    <div
+      v-if="contestRoute.ranking_type === 'fixed_points' && contestRoute.gym_route && contestRoute.gym_route.grade_gap.min_grade_value"
+      class="mt-1"
+    >
+      <v-icon color="amber">
+        {{ mdiShimmer }}
+      </v-icon>
+      Suggestion :
+      <v-chip
+        outlined
+        @click="data.fixed_points = suggestPoint(contestRoute.gym_route)"
+      >
+        {{ suggestPoint(contestRoute.gym_route) }} points
+      </v-chip>
+    </div>
+
     <v-checkbox
       v-if="contestRoute.ranking_type === 'division_and_zone'"
       v-model="data.additional_zone"
@@ -54,7 +70,9 @@
     />
   </v-form>
 </template>
+
 <script>
+import { mdiShimmer } from '@mdi/js'
 import SubmitForm from '~/components/forms/SubmitForm'
 import { FormHelpers } from '~/mixins/FormHelpers'
 import ContestRouteApi from '~/services/oblyk-api/ContestRouteApi'
@@ -96,7 +114,9 @@ export default {
         additional_zone: this.contestRoute?.additional_zone,
         gym_id: this.gym.id,
         contest_id: this.contest.id
-      }
+      },
+
+      mdiShimmer
     }
   },
 
@@ -119,6 +139,10 @@ export default {
         }).then(() => {
           this.submitOverlay = false
         })
+    },
+
+    suggestPoint (gymRoute) {
+      return Math.round(2000 * Math.pow(0.85, (49 - gymRoute.grade_gap.min_grade_value)))
     }
   }
 }
