@@ -2,24 +2,6 @@
   <div>
     <v-simple-table>
       <template #default>
-        <thead>
-          <tr>
-            <th
-              style="width: 10px"
-              class="text-no-wrap pl-5 pr-0"
-            >
-              N°
-            </th>
-            <th
-              v-if="havePictures"
-              style="width: 10px"
-              class="text-no-wrap px-0"
-            />
-            <th class="text-left">
-              {{ resultsTitle }}
-            </th>
-          </tr>
-        </thead>
         <tbody>
           <tr
             v-for="(route, routeIndex) in contestStep.routes"
@@ -174,17 +156,6 @@ export default {
   },
 
   computed: {
-    resultsTitle () {
-      const climbType = this.$t(`models.climbs.${this.contestStep.climbing_type}`).toLowerCase()
-      if (this.contestStep.ranking_type === 'division') {
-        return `J'ai fait ou pas les ${climbType}s suivants :`
-      } else if (this.contestStep.ranking_type === 'attempts_to_top') {
-        return `Combien d'essais j'ai mis pour réaliser les ${climbType}s :`
-      } else {
-        return ''
-      }
-    },
-
     havePictures () {
       for (const route of this.contestStep.routes) {
         if (route.picture !== null) {
