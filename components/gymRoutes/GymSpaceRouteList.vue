@@ -119,6 +119,7 @@
         :get-function="getRoutes"
         :loading-more="loadingMoreData"
         :no-more-data="noMoreDataToLoad"
+        skeleton-type="list-item-avatar-two-line,list-item-avatar-two-line,list-item-avatar-two-line"
       />
 
       <p
