@@ -36,22 +36,24 @@
             <v-icon>{{ mdiMap }}</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
-            <v-list-item-title>
-              {{ gym.city }} <cite>({{ gym.country }})</cite>
+            <v-list-item-title class="text-wrap">
+              <div class="pb-2">
+                {{ gym.city }} <cite>({{ gym.country }})</cite><br>
+                <small>
+                  {{ gym.postal_code }}, {{ gym.address }}
+                </small>
+              </div>
               <v-btn
                 small
                 dark
                 outlined
-                class="ml-2 black-btn-icon"
+                class="black-btn-icon"
                 elevation="0"
                 :to="`/maps/gyms?lat=${gym.latitude}&lng=${gym.longitude}`"
               >
                 {{ $t('actions.seeOnTheMap') }}
               </v-btn>
             </v-list-item-title>
-            <v-list-item-subtitle>
-              {{ gym.postal_code }}, {{ gym.address }}
-            </v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
 
