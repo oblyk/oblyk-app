@@ -282,8 +282,6 @@ export default {
           }
 
           this.successLoadingMore(resp)
-          localStorage.setItem('gym_route_sort_column', this.sort.column)
-          localStorage.setItem('gym_route_sort_direction', this.sort.direction)
         })
         .catch((err) => {
           this.$root.$emit('alertFromApiError', err, 'gymRoute')
@@ -301,6 +299,8 @@ export default {
       this.showSectorId = sectorId
       this.showSectorName = sectorName
       this.gymRoutes = []
+      this.sort.column = 'sector'
+      this.sort.direction = 'asc'
       this.resetLoadMorePageNumber()
       this.getRoutes(sectorId, true)
     },
@@ -310,6 +310,8 @@ export default {
       this.showSectorId = null
       this.showSectorName = null
       this.gymRoutes = []
+      this.sort.column = localStorage.getItem('gym_route_sort_column') || 'sector'
+      this.sort.direction = localStorage.getItem('gym_route_sort_direction') || 'asc'
       this.resetLoadMorePageNumber()
       this.getRoutes()
     },

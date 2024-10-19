@@ -182,6 +182,8 @@ export default {
       }
       this.column = column
       this.dismounted = dismounted
+      localStorage.setItem('gym_route_sort_column', this.column)
+      localStorage.setItem('gym_route_sort_direction', this.direction)
       this.$emit('input', { column: this.column, direction: this.direction, dismounted: this.dismounted })
     },
 
