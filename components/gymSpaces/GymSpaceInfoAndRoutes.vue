@@ -39,6 +39,15 @@
               {{ gym.name }}<span class="font-weight-regular">, {{ gymSpace.name }}</span>
             </v-list-item-title>
             <v-list-item-subtitle>
+              <v-btn
+                icon
+                :to="gym.path"
+                exact-path
+              >
+                <v-icon>
+                  {{ mdiInformationOutline }}
+                </v-icon>
+              </v-btn>
               <client-only>
                 <subscribe-btn
                   subscribe-type="Gym"
@@ -156,6 +165,7 @@
 </template>
 
 <script>
+import { mdiInformationOutline } from '@mdi/js'
 import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
 import GymSpaceSelector from '@/components/gymSpaces/GymSpaceSelector'
 import GymSpaceRouteList from '@/components/gymRoutes/GymSpaceRouteList'
@@ -196,7 +206,9 @@ export default {
   data () {
     return {
       editingSectorPolygon: false,
-      editingSectorColor: false
+      editingSectorColor: false,
+
+      mdiInformationOutline
     }
   },
 
