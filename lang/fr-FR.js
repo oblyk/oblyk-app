@@ -1258,7 +1258,7 @@ export default {
       table: 'Tableau',
       searchInXRoutes: 'Chercher parmi les %{count} lignes',
       selectedCount: 'Une sélection | %{count} sélectionnés',
-      statistic: 'Statistiques',
+      statistic: 'Stats',
       structure: 'Structure',
       various: 'Divers',
       team: "L'équipe",
@@ -1286,6 +1286,7 @@ export default {
       mountRoutes: 'Monter la ligne | Monter les %{count} lignes',
       printRoutes: 'Imprimer la ligne | Imprimer les %{count} lignes',
       exportRoutes: 'Exporter la ligne | Exporter les %{count} lignes',
+      openingSheetForRoutes: "Créer une fiche d'ouverture",
       missingInformation: 'Il manque quelques informations sur votre salle, comme :',
       addYourLogo: 'Ajouter votre logo',
       updateYourLogo: 'Changer votre logo',
@@ -1299,7 +1300,8 @@ export default {
       myCommunity: 'Ma communauté',
       noComments: 'Vous verrez les commentaires de vos grimpeurs et grimpeuses ici quand ils/elles en auront posté !',
       noVideos: 'Vous verrez les vidéos de vos grimpeurs et grimpeuses ici quand ils/elles en auront posté !',
-      assets: 'Decorations'
+      assets: 'Decorations',
+      openingSheet: "Fiche d'ouvertures"
     },
     gymClimbingStyles: {
       title: "Les styles d'escalade de ma salle",
@@ -2394,6 +2396,11 @@ export default {
     gymSpaceGroup: {
       name: 'Nom du groupe',
       order: 'Ordre'
+    },
+    gymOpeningSheet: {
+      title: 'Titre',
+      description: 'Note',
+      number_of_columns: 'Nombre de voie max pas secteur'
     },
     gymSector: {
       name: 'Nom du secteur',

@@ -1258,7 +1258,7 @@ export default {
       searchInXRoutes: 'Search in %{count} routes',
       selectedCount: 'One selection | %{count} selected',
       team: 'Team',
-      statistic: 'Statistic',
+      statistic: 'Stats',
       structure: 'Structure',
       various: 'Various',
       openers: 'Openers',
@@ -1285,6 +1285,7 @@ export default {
       mountRoutes: 'Mount %{count} line | Mount %{count} lines',
       printRoutes: 'Print line | Print %{count} lines',
       exportRoutes: 'Export line | Export %{count} lines',
+      openingSheetForRoutes: 'Create opening sheet',
       missingInformation: 'Some information about your room is missing, like :',
       addYourLogo: 'Add your logo',
       updateYourLogo: 'Change your logo',
@@ -1298,7 +1299,8 @@ export default {
       myCommunity: 'My community',
       noComments: "You'll see your climbers' comments here when they've posted some!",
       noVideos: "You'll see your climbers' videos here when they post one!",
-      assets: 'Assets'
+      assets: 'Assets',
+      openingSheet: 'Opening sheets'
     },
     gymClimbingStyles: {
       title: 'Climbing styles in my gym',
@@ -2392,6 +2394,11 @@ export default {
     gymSpaceGroup: {
       name: 'Group name',
       order: 'Order'
+    },
+    gymOpeningSheet: {
+      title: 'Title',
+      description: 'Note',
+      number_of_columns: 'Maximum number of routes by sector'
     },
     gymSector: {
       name: 'Secteur name',

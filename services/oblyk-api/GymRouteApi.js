@@ -140,6 +140,20 @@ class GymRouteApi extends BaseApi {
     })
   }
 
+  openingSheetCollection (data) {
+    return this.axios.request({
+      method: 'POST',
+      url: `${this.baseUrl}/gyms/${data.gym_id}/gym_routes/opening_sheet_collection.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
+      data: {
+        gym_opening_sheet: data
+      }
+    })
+  }
+
   create (data) {
     return this.axios.request({
       method: 'POST',

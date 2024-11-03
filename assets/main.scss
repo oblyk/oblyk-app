@@ -386,6 +386,13 @@ strong {
   }
 }
 
+.hover-border {
+  &:hover {
+    border-style: solid;
+    border-width: 1px;
+  }
+}
+
 .custom-fieldset {
   .custom-fieldset-label {
     font-size: 13px;

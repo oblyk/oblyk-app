@@ -54,6 +54,37 @@ export const HoldColorsHelpers = {
         }
       }
       return null
+    },
+
+    blackOrWhiteColor (color) {
+      if (color === 'inherit') { return color }
+
+      let r, g, b
+
+      if (color.startsWith('#')) {
+        [r, g, b] = this.hexToRgb(color)
+      } else {
+        [r, g, b] = color.replace('rgb(', '').replace(')', '').split(',').map(rgb => parseInt(rgb.trim()))
+      }
+
+      const brightness = (r * 299 + g * 587 + b * 114) / 1000
+
+      return brightness > 128 ? 'rgb(0,0,0)' : 'rgb(255,255,255)'
+    },
+
+    hexToRgb (hex) {
+      hex = hex.replace(/^#/, '')
+
+      if (hex.length === 3) {
+        hex = hex.split('').map(char => char + char).join('')
+      }
+
+      const bigint = parseInt(hex, 16)
+      const r = (bigint >> 16) & 255
+      const g = (bigint >> 8) & 255
+      const b = bigint & 255
+
+      return [r, g, b]
     }
   }
 }

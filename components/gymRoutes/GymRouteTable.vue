@@ -274,6 +274,14 @@
                 {{ $tc('components.gymAdmin.exportRoutes', routeSelected.length, { count: routeSelected.length }) }}
               </v-list-item-title>
             </v-list-item>
+            <v-list-item @click="openingSheetCollection()">
+              <v-list-item-icon>
+                <v-icon>{{ mdiFileRefreshOutline }}</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>
+                {{ $t('components.gymAdmin.openingSheetForRoutes') }}
+              </v-list-item-title>
+            </v-list-item>
           </v-list>
         </v-menu>
       </div>
@@ -346,6 +354,12 @@
       :gym="gym"
     />
 
+    <!-- Opening Sheet Dialog -->
+    <opening-sheet-dialog
+      ref="openingSheetDialog"
+      :gym="gym"
+    />
+
     <!-- Popup for gym route -->
     <down-to-close-dialog
       ref="GymRouteDialog"
@@ -378,7 +392,8 @@ import {
   mdiGauge,
   mdiArrowRightThin,
   mdiMagnify,
-  mdiEyeOutline
+  mdiEyeOutline,
+  mdiFileRefreshOutline
 } from '@mdi/js'
 import { DateHelpers } from '@/mixins/DateHelpers'
 import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
@@ -387,16 +402,18 @@ import GymRoute from '@/models/GymRoute'
 import GymRouteTagAndHold from '@/components/gymRoutes/partial/GymRouteTagAndHold'
 import GymRouteApi from '~/services/oblyk-api/GymRouteApi'
 import AscentGymRoute from '~/models/AscentGymRoute'
-import Note from '~/components/notes/Note.vue'
-import AscentGymRouteStatusIcon from '~/components/ascentGymRoutes/AscentGymRouteStatusIcon.vue'
-import PrintLabelDialog from '~/components/gymLabelTemplates/PrintLabelDialog.vue'
+import Note from '~/components/notes/Note'
+import AscentGymRouteStatusIcon from '~/components/ascentGymRoutes/AscentGymRouteStatusIcon'
+import PrintLabelDialog from '~/components/gymLabelTemplates/PrintLabelDialog'
 import GymSpace from '~/models/GymSpace'
-import DownToCloseDialog from '~/components/ui/DownToCloseDialog.vue'
-import GymRouteInfo from '~/components/gymRoutes/GymRouteInfo.vue'
+import DownToCloseDialog from '~/components/ui/DownToCloseDialog'
+import GymRouteInfo from '~/components/gymRoutes/GymRouteInfo'
+import OpeningSheetDialog from '~/components/gymOpeningSheets/OpeningSheetDialog'
 
 export default {
   name: 'GymRoutesTable',
   components: {
+    OpeningSheetDialog,
     GymRouteInfo,
     DownToCloseDialog,
     PrintLabelDialog,
@@ -440,7 +457,8 @@ export default {
       mdiGauge,
       mdiArrowRightThin,
       mdiMagnify,
-      mdiEyeOutline
+      mdiEyeOutline,
+      mdiFileRefreshOutline
     }
   },
 
@@ -790,6 +808,16 @@ export default {
         .finally(() => {
           this.loadingRoutes = false
         })
+    },
+
+    openingSheetCollection () {
+      if (this.routeSelected.length === 0) { return false }
+
+      const routeIds = []
+      for (const route of this.routeSelected) {
+        routeIds.push(route.id)
+      }
+      this.$refs.openingSheetDialog.openDialog(routeIds)
     },
 
     getAscents (routeId) {
