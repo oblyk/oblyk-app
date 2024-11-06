@@ -190,14 +190,13 @@
             :key="`stage-index-${stageIndex}`"
             @click="getStage(contestStage.id)"
           >
-            {{ $t(`models.climbs.${contestStage.climbing_type}`) }}
+            {{ contestStage.name ? contestStage.name : $t(`models.climbs.${contestStage.climbing_type}`) }}
           </v-tab>
         </v-tabs>
         <div class="text-no-wrap pl-2">
           <add-contest-stage-btn
             :contest="contest"
             :callback="getStages"
-            :disabled="stages.length > 2"
           />
         </div>
       </div>

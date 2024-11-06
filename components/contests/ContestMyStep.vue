@@ -3,7 +3,7 @@
     <h4>
       {{ contestStep.name }}
       <span v-if="contest.contest_stages.length > 1">
-        {{ $t(`models.climbs.${contestStep.climbing_type}`).toLowerCase() }}
+        {{ contestStep.stage_name ? contestStep.stage_name : $t(`models.climbs.${contestStep.climbing_type}`).toLowerCase() }}
       </span>
     </h4>
     <p class="subtitle-2 mb-0 pb-1 border-bottom">

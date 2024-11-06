@@ -50,7 +50,7 @@
                 class="text-center border-bottom"
                 :class="stage.steps.length > stageIndex ? 'border-right' : ''"
               >
-                {{ $t(`models.climbs.${stage.climbing_type}`) }}
+                {{ stage.stage_name ? stage.stage_name : $t(`models.climbs.${stage.climbing_type}`) }}
               </th>
             </tr>
             <tr>

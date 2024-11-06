@@ -48,7 +48,7 @@
     <!-- Steps -->
     <div class="mt-4 mb-1 d-flex">
       <h2 class="pl-1">
-        {{ $t(`models.climbs.${contestStage.climbing_type}`) }} : Les étapes
+        {{ contestStage.name ? contestStage.name : $t(`models.climbs.${contestStage.climbing_type}`) }} : Les étapes
       </h2>
       <v-spacer />
       <add-contest-stage-step-btn

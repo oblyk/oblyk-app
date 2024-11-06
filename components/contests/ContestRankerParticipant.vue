@@ -33,7 +33,7 @@
                     v-if="step.subscribe"
                     :key="`step-index-${stepIndex}`"
                   >
-                    {{ step.name }} :
+                    {{ step.name }} {{ stage.stage_name }} :
                     <span v-if="step.rank">{{ step.rank }}{{ step.rank === 1 ? 'er' : 'ème' }}</span>
                     <span v-else>-</span>
                   </span>

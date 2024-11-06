@@ -36,7 +36,7 @@
           v-for="(tabStep, tabStepIndex) in participant.steps"
           :key="`tab-step-index-${tabStepIndex}`"
         >
-          {{ tabStep.name }} - {{ $t(`models.climbs.${tabStep.climbing_type}`) }}
+          {{ tabStep.name }} - {{ tabStep.stage_name ? tabStep.stage_name : $t(`models.climbs.${tabStep.climbing_type}`) }}
         </v-tab>
       </v-tabs>
       <v-tabs-items v-model="tabIndex">

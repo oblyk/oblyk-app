@@ -1,5 +1,11 @@
 <template>
   <v-form @submit.prevent="submit()">
+    <v-text-field
+      v-model="data.name"
+      outlined
+      :label="`${$t('models.contestStage.name')} (optionnel)`"
+    />
+
     <v-select
       v-model="data.climbing_type"
       :items="climbs"
@@ -59,6 +65,7 @@ export default {
       data: {
         id: this.contestStage?.id,
         climbing_type: this.contestStage?.climbing_type,
+        name: this.contestStage?.name,
         description: this.contestStage?.description,
         default_ranking_type: this.contestStage?.default_ranking_type,
         stage_order: this.contestStage?.stage_order,
