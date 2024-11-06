@@ -1821,7 +1821,7 @@ export default {
         }
       },
       appDrawer: {
-        home: 'Home',
+        home: 'My home',
         login: 'Login',
         signUp: 'Sign up',
         maps: 'Maps',

@@ -1861,7 +1861,7 @@ export default {
           about: "À propos d'Oblyk"
         },
         user: {
-          home: 'Home',
+          home: 'Mon accueil',
           feed: 'Fil',
           messenger: 'Messagerie',
           ascents: {
