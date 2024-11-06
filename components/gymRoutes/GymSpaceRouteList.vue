@@ -364,7 +364,8 @@ export default {
     },
 
     lastSectors () {
-      const lastSector = { ...this.gymSpace.gym_sectors.find((sector) => { return this.gymRoutes[this.gymRoutes.length - 1].gym_sector.id === sector.id }) }
+      const sectorId = this.sort.direction === 'asc' ? this.gymRoutes[this.gymRoutes.length - 1].gym_sector.id : this.gymRoutes[0].gym_sector.id
+      const lastSector = { ...this.gymSpace.gym_sectors.find((sector) => { return sectorId === sector.id }) }
       const sectors = []
       for (const sector of this.gymSpace.gym_sectors) {
         if (sector.order > lastSector.order) {
