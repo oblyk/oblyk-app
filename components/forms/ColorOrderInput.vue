@@ -19,7 +19,6 @@
                 v-model="level.color"
                 input-style="button"
                 :multiple="false"
-                only-simple-color
                 @input="change"
               />
               <div class="pt-2 pl-2">
