@@ -150,7 +150,7 @@
         </li>
       </ul>
       <p>
-        Peut import la contribution que vous apporterez à Oblyk, on vous en remercie !
+        Peu import la contribution que vous apporterez à Oblyk, on vous en remercie !
         <v-icon color="red">
           {{ mdiHeart }}
         </v-icon>
