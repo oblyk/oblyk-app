@@ -145,7 +145,7 @@
         </li>
         <li class="pb-3">
           <strong>Vous savez coder ?</strong><br>
-          <a href="https://github.com/lucien-chastan/oblyk-api">Le back</a> est en Ruby on Rails, <a href="https://github.com/oblyk/oblyk-app">le front</a> en Vuejs.
+          <a href="https://github.com/oblyk/oblyk-api">Le back</a> est en Ruby on Rails, <a href="https://github.com/oblyk/oblyk-app">le front</a> en Vuejs.
           tout est dans le readme. La stack est toute neuve. on vous attends 😎
         </li>
       </ul>
