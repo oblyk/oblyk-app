@@ -74,6 +74,7 @@
       :disabled="!waveDivisionEnabled"
       hide-details
       :label="$t('models.contestRouteGroup.waveable')"
+      @change="buildTimeBlocks"
     />
 
     <v-row
@@ -244,8 +245,8 @@ export default {
         number_of_routes: null,
         genre_type: this.contestRouteGroup?.genre_type,
         waveable: this.contestRouteGroup?.waveable,
-        start_time: this.contestRouteGroup?.start_time,
-        end_time: this.contestRouteGroup?.end_time,
+        start_time: this.contestRouteGroup?.start_time || '00:00',
+        end_time: this.contestRouteGroup?.end_time || '00:00',
         start_date: this.contestRouteGroup?.start_date || this.contest?.start_date,
         end_date: this.contestRouteGroup?.end_date || this.contest?.end_date,
         additional_time: this.contestRouteGroup?.additional_time || 20,
@@ -282,8 +283,8 @@ export default {
           id: contestTimeBlock?.id,
           name: wave.name,
           contest_wave_id: wave.id,
-          start_time: contestTimeBlock?.start_time,
-          end_time: contestTimeBlock?.end_time,
+          start_time: contestTimeBlock?.start_time || '00:00',
+          end_time: contestTimeBlock?.end_time || '00:00',
           start_date: contestTimeBlock?.start_date || this.contest.start_date,
           end_date: contestTimeBlock?.end_date || this.contest.end_date,
           additional_time: contestTimeBlock?.additional_time || this.contest.additional_time
@@ -368,6 +369,23 @@ export default {
         this.data.waveable = false
       }
       this.waveDivisionEnabled = isWaveable
+    },
+
+    buildTimeBlocks () {
+      if (this.data.contest_time_blocks_attributes.length === 0 && this.data.waveable && this.waves.length > 0) {
+        for (const wave of this.waves) {
+          this.data.contest_time_blocks_attributes.push({
+            id: null,
+            name: wave.name,
+            contest_wave_id: wave.id,
+            start_time: '00:00',
+            end_time: '00:00',
+            start_date: this.contest.start_date,
+            end_date: this.contest.end_date,
+            additional_time: this.contest.additional_time
+          })
+        }
+      }
     }
   }
 }
