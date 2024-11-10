@@ -35,13 +35,23 @@
           <p class="text-decoration-underline mb-1">
             Note :
           </p>
-          <span
+          <div
             v-if="!editDescription"
-            class="hover-border py-1 rounded-sm"
             @click="editDescription = !editDescription"
           >
-            {{ data.description }}
-          </span>
+            <span
+              v-if="data.description"
+              class="hover-border py-1 rounded-sm"
+            >
+              {{ data.description }}
+            </span>
+            <cite
+              v-else
+              class="text--disabled hover-border py-1 rounded-sm"
+            >
+              ajouter une note
+            </cite>
+          </div>
           <v-textarea
             v-else
             v-model="data.description"
