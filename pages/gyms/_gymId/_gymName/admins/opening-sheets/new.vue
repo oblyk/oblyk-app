@@ -6,8 +6,16 @@
         <h3 class="mb-3 mt-2">
           Nouvelle fiche
         </h3>
+        <p
+          v-if="loadingTreeRoutes"
+          class="text-center py-5 text--disabled"
+        >
+          {{ $t('common.loading') }}
+        </p>
         <gym-opening-sheet-form
+          v-else
           :gym="gym"
+          :tree-routes="treeRoutes"
           submit-methode="post"
         />
       </v-col>
@@ -18,6 +26,7 @@
 <script>
 import { GymFetchConcern } from '~/concerns/GymFetchConcern'
 import GymOpeningSheetForm from '~/components/gymOpeningSheets/forms/GymOpeningSheetForm'
+import GymSpaceApi from '~/services/oblyk-api/GymSpaceApi'
 
 export default {
   components: { GymOpeningSheetForm },
@@ -33,6 +42,13 @@ export default {
       en: {
         metaTitle: 'Create opening sheet'
       }
+    }
+  },
+
+  data () {
+    return {
+      loadingTreeRoutes: true,
+      treeRoutes: null
     }
   },
 
@@ -56,6 +72,7 @@ export default {
         },
         {
           text: this.$t('components.gymAdmin.openingSheet'),
+          to: `${this.gym?.adminPath}/opening-sheets`,
           exact: true
         },
         {
@@ -63,6 +80,24 @@ export default {
           exact: true
         }
       ]
+    }
+  },
+
+  mounted () {
+    this.getTreeRoutes()
+  },
+
+  methods: {
+    getTreeRoutes () {
+      this.loadingTreeRoutes = true
+      new GymSpaceApi(this.$axios, this.$auth)
+        .treeSectors(this.$route.params.gymId)
+        .then((resp) => {
+          this.treeRoutes = resp.data
+        })
+        .finally(() => {
+          this.loadingTreeRoutes = false
+        })
     }
   }
 }

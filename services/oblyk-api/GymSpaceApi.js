@@ -28,6 +28,17 @@ class GymSpaceApi extends BaseApi {
     })
   }
 
+  treeSectors (gymId) {
+    return this.axios.request({
+      method: 'GET',
+      url: `${this.baseUrl}/gyms/${gymId}/gym_spaces/tree_sectors.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
+    })
+  }
+
   find (gymId, spaceId) {
     return this.axios.request({
       method: 'GET',

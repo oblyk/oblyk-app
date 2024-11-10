@@ -23,14 +23,29 @@
       required
     />
 
-    <v-select
-      v-model="data.gym_space_id"
-      label="Fiche pour l'espace"
-      :items="gym.gym_spaces"
-      item-text="name"
-      item-value="id"
-      outlined
-    />
+    <div class="border rounded pt-3 px-3 mb-4">
+      <p class="mb-1">
+        Sélectionnez les secteurs pour votre fiche :
+      </p>
+      <v-treeview
+        v-model="data.gym_sector_ids"
+        :items="treeRoutes"
+        selectable
+        open-on-click
+        hoverable
+        rounded
+      >
+        <template #append="{ item }">
+          <span
+            v-if="item.last_opening_date"
+            class="text--disabled"
+            :title="humanizeDate(item.last_opening_date)"
+          >
+            Ouvert {{ dateFromNow(item.last_opening_date) }}
+          </span>
+        </template>
+      </v-treeview>
+    </div>
 
     <close-form />
     <submit-form
@@ -45,6 +60,7 @@ import { FormHelpers } from '@/mixins/FormHelpers'
 import GymOpeningSheetApi from '~/services/oblyk-api/GymOpeningSheetApi'
 import SubmitForm from '@/components/forms/SubmitForm'
 import CloseForm from '@/components/forms/CloseForm'
+import { DateHelpers } from '~/mixins/DateHelpers'
 
 export default {
   name: 'GymOpeningSheetForm',
@@ -52,11 +68,15 @@ export default {
     CloseForm,
     SubmitForm
   },
-  mixins: [FormHelpers],
+  mixins: [FormHelpers, DateHelpers],
   props: {
     gym: {
       type: Object,
       required: true
+    },
+    treeRoutes: {
+      type: Array,
+      default: null
     },
     gymOpeningSheet: {
       type: Object,
@@ -76,7 +96,8 @@ export default {
         description: this.gymOpeningSheet?.description,
         number_of_columns: this.gymOpeningSheet?.number_of_columns || 8,
         gym_id: this.gym.id,
-        gym_space_id: null
+        gym_space_id: null,
+        gym_sector_ids: []
       }
     }
   },
