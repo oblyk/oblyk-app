@@ -116,31 +116,49 @@
             </v-btn>
           </div>
         </v-sheet>
-        <v-sheet
-          class="rounded mb-2 py-1"
-          style="position: sticky; top: 60px; z-index: 1"
-        >
-          <v-icon
-            left
-            class="ml-4 mt-1"
-          >
-            {{ mdiFormatColorFill }}
-          </v-icon>
-          <v-btn
-            v-for="(color, colorIndex) in colors"
-            :key="`color-index-${colorIndex}`"
-            icon
-            :title="color.text"
-            :outlined="color.simple"
-            @click="colourCell(color.value)"
-          >
+
+        <!-- Color picker -->
+        <div style="position: sticky; top: 60px; z-index: 1">
+          <v-sheet class="rounded mb-2 py-1">
             <v-icon
-              :color="color.value === '#00000000' ? null : color.value"
+              left
+              class="ml-4 mt-1"
             >
-              {{ color.value === '#00000000' ? mdiCircleOffOutline : mdiCircle }}
+              {{ mdiFormatColorFill }}
             </v-icon>
-          </v-btn>
-        </v-sheet>
+            <v-btn
+              v-for="(color, colorIndex) in colors"
+              :key="`color-index-${colorIndex}`"
+              icon
+              :title="color.text"
+              :outlined="color.simple"
+              @click="colourCell(color.value)"
+            >
+              <v-icon
+                :color="color.value === '#00000000' ? null : color.value"
+              >
+                {{ color.value === '#00000000' ? mdiCircleOffOutline : mdiCircle }}
+              </v-icon>
+            </v-btn>
+          </v-sheet>
+
+          <v-sheet class="rounded mb-2 py-1 px-2">
+            Style :
+            <v-btn
+              v-for="(style, styleIndex) in styles"
+              :key="`style-index-${styleIndex}`"
+              :title="$t(`models.climbingStyle.${style.value}`)"
+              icon
+              @click="stylingCell(style.value)"
+            >
+              <v-icon>
+                {{ style.icon }}
+              </v-icon>
+            </v-btn>
+          </v-sheet>
+        </div>
+
+        <!-- Routes table -->
         <v-simple-table class="mb-10">
           <template #default>
             <thead>
@@ -188,19 +206,33 @@
                   >
                     {{ cell.label }}
                   </span>
-                  <v-text-field
+                  <div
                     v-if="cell.editable"
-                    :id="refBuild(rowIndex, cellIndex)"
-                    v-model="sheet.row_json[rowIndex].routes[cellIndex - 1].grade"
-                    :data-row-index="rowIndex"
-                    :data-cell-index="cellIndex"
-                    hide-details
-                    :dark="darkFieldColor(sheet.row_json[rowIndex].routes[cellIndex - 1] ? sheet.row_json[rowIndex].routes[cellIndex - 1].hold_color : null)"
-                    class="opening-sheet-edit-grade py-0 px-1 ma-0"
-                    @keydown="changeFocus"
-                    @blur="pushCellToUpdate({ rowIndex, cellIndex: cellIndex - 1})"
-                    @click="cellFocus(rowIndex, cellIndex)"
-                  />
+                    class="d-flex"
+                  >
+                    <v-text-field
+                      :id="refBuild(rowIndex, cellIndex)"
+                      v-model="sheet.row_json[rowIndex].routes[cellIndex - 1].grade"
+                      :data-row-index="rowIndex"
+                      :data-cell-index="cellIndex"
+                      hide-details
+                      :dark="darkFieldColor(sheet.row_json[rowIndex].routes[cellIndex - 1] ? sheet.row_json[rowIndex].routes[cellIndex - 1].hold_color : null)"
+                      class="opening-sheet-edit-grade py-0 px-1 ma-0"
+                      @keydown="changeFocus"
+                      @blur="pushCellToUpdate({ rowIndex, cellIndex: cellIndex - 1})"
+                      @click="cellFocus(rowIndex, cellIndex)"
+                    />
+                    <div class="d-flex flex-column justify-center">
+                      <v-icon
+                        v-for="(style, styleIndex) in sheet.row_json[rowIndex].routes[cellIndex - 1].climbing_styles"
+                        :key="`style-index-${styleIndex}`"
+                        :small="sheet.row_json[rowIndex].routes[cellIndex - 1].climbing_styles.length > 1"
+                        :dark="darkFieldColor(sheet.row_json[rowIndex].routes[cellIndex - 1] ? sheet.row_json[rowIndex].routes[cellIndex - 1].hold_color : null)"
+                      >
+                        {{ styles.filter((icon) => icon.value === style)[0].icon }}
+                      </v-icon>
+                    </div>
+                  </div>
                 </td>
               </tr>
             </tbody>
@@ -239,11 +271,12 @@ import GymOpeningSheetApi from '~/services/oblyk-api/GymOpeningSheetApi'
 import GymOpeningSheet from '~/models/GymOpeningSheet'
 import { HoldColorsHelpers } from '~/mixins/HoldColorsHelpers'
 import { DateHelpers } from '~/mixins/DateHelpers'
+import { ClimbingStylesMixin } from '~/mixins/ClimbingStylesMixin'
 
 export default {
   components: { Spinner },
   meta: { orphanRoute: true },
-  mixins: [GymFetchConcern, HoldColorsHelpers, DateHelpers],
+  mixins: [GymFetchConcern, HoldColorsHelpers, DateHelpers, ClimbingStylesMixin],
   middleware: ['auth', 'gymAdmin'],
 
   data () {
@@ -339,6 +372,7 @@ export default {
           cells.push({
             label: route.grade,
             style: styles.join(';'),
+            climbing_styles: route.climbing_styles,
             type: route.type,
             editable: route.type === 'to_open'
           })
@@ -419,7 +453,8 @@ export default {
         rowIndex: cell.rowIndex,
         cellIndex: cell.cellIndex,
         grade: this.sheet.row_json[cell.rowIndex].routes[cell.cellIndex].grade,
-        hold_color: this.sheet.row_json[cell.rowIndex].routes[cell.cellIndex].hold_color
+        hold_color: this.sheet.row_json[cell.rowIndex].routes[cell.cellIndex].hold_color,
+        climbing_styles: this.sheet.row_json[cell.rowIndex].routes[cell.cellIndex].climbing_styles
       }
     },
 
@@ -453,7 +488,33 @@ export default {
         rowIndex: this.rowFocusIndex,
         cellIndex: this.cellFocusIndex - 1,
         grade: this.sheet.row_json[this.rowFocusIndex].routes[this.cellFocusIndex - 1].grade,
-        hold_color: this.sheet.row_json[this.rowFocusIndex].routes[this.cellFocusIndex - 1].hold_color
+        hold_color: this.sheet.row_json[this.rowFocusIndex].routes[this.cellFocusIndex - 1].hold_color,
+        climbing_styles: this.sheet.row_json[this.rowFocusIndex].routes[this.cellFocusIndex - 1].climbing_styles
+      }
+      const currentCell = document.querySelector(`#row-${this.rowFocusIndex}-cell-${this.cellFocusIndex}`)
+      if (currentCell) {
+        currentCell.focus()
+      }
+    },
+
+    stylingCell (style) {
+      if (this.rowFocusIndex === null || this.cellFocusIndex === null) { return false }
+      if (this.cellsToUpdate === null) { this.cellsToUpdate = {} }
+
+      if (this.sheet.row_json[this.rowFocusIndex].routes[this.cellFocusIndex - 1].climbing_styles.includes(style)) {
+        this.sheet.row_json[this.rowFocusIndex].routes[this.cellFocusIndex - 1].climbing_styles.splice(
+          this.sheet.row_json[this.rowFocusIndex].routes[this.cellFocusIndex - 1].climbing_styles.indexOf(style),
+          1
+        )
+      } else {
+        this.sheet.row_json[this.rowFocusIndex].routes[this.cellFocusIndex - 1].climbing_styles.push(style)
+      }
+      this.cellsToUpdate[`${this.rowFocusIndex}-${this.cellFocusIndex - 1}`] = {
+        rowIndex: this.rowFocusIndex,
+        cellIndex: this.cellFocusIndex - 1,
+        grade: this.sheet.row_json[this.rowFocusIndex].routes[this.cellFocusIndex - 1].grade,
+        hold_color: this.sheet.row_json[this.rowFocusIndex].routes[this.cellFocusIndex - 1].hold_color,
+        climbing_styles: this.sheet.row_json[this.rowFocusIndex].routes[this.cellFocusIndex - 1].climbing_styles
       }
       const currentCell = document.querySelector(`#row-${this.rowFocusIndex}-cell-${this.cellFocusIndex}`)
       if (currentCell) {

@@ -107,22 +107,12 @@
 
 <script>
 import { mdiFormatColorFill } from '@mdi/js'
-import {
-  oblykClimbingStyleTechnical,
-  oblykClimbingStyleResistance,
-  oblykClimbingStyleBoulder,
-  oblykClimbingStyleEndurance,
-  oblykClimbingStylePhysics,
-  oblykClimbingStyleFinger,
-  oblykClimbingStyleGrip,
-  oblykClimbingStyleCoordination,
-  oblykClimbingStyleTallPeople,
-  oblykClimbingStyleSmallPeople
-} from '~/assets/oblyk-icons'
 import GymClimbingStyleApi from '~/services/oblyk-api/GymClimbingStyleApi'
+import { ClimbingStylesMixin } from '~/mixins/ClimbingStylesMixin'
 
 export default {
   name: 'GymClimbingStylesForm',
+  mixins: [ClimbingStylesMixin],
   props: {
     gym: {
       type: Object,
@@ -148,18 +138,6 @@ export default {
       colorModalStyle: null,
       rgba: { r: null, g: null, b: null, a: 1 },
       changingColor: false,
-      styles: [
-        { value: 'boulder', icon: oblykClimbingStyleBoulder },
-        { value: 'endurance', icon: oblykClimbingStyleEndurance },
-        { value: 'resistance', icon: oblykClimbingStyleResistance },
-        { value: 'technical', icon: oblykClimbingStyleTechnical },
-        { value: 'physics', icon: oblykClimbingStylePhysics },
-        { value: 'finger', icon: oblykClimbingStyleFinger },
-        { value: 'grip', icon: oblykClimbingStyleGrip },
-        { value: 'coordination', icon: oblykClimbingStyleCoordination },
-        { value: 'tall_people', icon: oblykClimbingStyleTallPeople },
-        { value: 'small_people', icon: oblykClimbingStyleSmallPeople }
-      ],
 
       mdiFormatColorFill
     }

@@ -62,10 +62,36 @@
               <span :style="cell.style">
                 {{ cell.label }}
               </span>
+              <v-icon
+                v-for="(style, styleIndex) in cell.climbing_styles"
+                :key="`style-index-${styleIndex}`"
+                :size="18"
+                :color="cell.icon_color"
+              >
+                {{ styles.filter((icon) => icon.value === style)[0].icon }}
+              </v-icon>
             </td>
           </tr>
         </tbody>
       </table>
+      <div
+        v-if="climbingStyles.length > 0"
+        class="climbing-style-legend"
+      >
+        <p
+          v-for="(style, styleIndex) in climbingStyles"
+          :key="`climbing-index-${styleIndex}`"
+        >
+          <v-icon
+            class="climbing-style-legend-icon"
+            color="rgb(0,0,0)"
+            :size="18"
+          >
+            {{ styles.filter((icon) => icon.value === style)[0].icon }}
+          </v-icon>
+          {{ $t(`models.climbingStyle.${style}`) }}
+        </p>
+      </div>
     </div>
   </div>
 </template>
@@ -75,10 +101,15 @@ import GymOpeningSheetApi from '~/services/oblyk-api/GymOpeningSheetApi'
 import GymOpeningSheet from '~/models/GymOpeningSheet'
 import { HoldColorsHelpers } from '~/mixins/HoldColorsHelpers'
 import { DateHelpers } from '~/mixins/DateHelpers'
+import { ClimbingStylesMixin } from '~/mixins/ClimbingStylesMixin'
 
 export default {
   meta: { orphanRoute: true },
-  mixins: [HoldColorsHelpers, DateHelpers],
+  mixins: [
+    HoldColorsHelpers,
+    DateHelpers,
+    ClimbingStylesMixin
+  ],
   layout: 'print',
 
   data () {
@@ -134,12 +165,30 @@ export default {
             label: route.grade,
             style: styles.join(';'),
             type: route.type,
+            climbing_styles: route.climbing_styles,
+            icon_color: this.blackOrWhiteColor(route.hold_color || 'rgb(0,0,0)'),
             editable: route.type === 'to_open'
           })
         }
         rows.push(cells)
       }
       return rows
+    },
+
+    climbingStyles () {
+      const styles = []
+      for (const scheduleRoute of this.sheet.row_json) {
+        for (const route of scheduleRoute.routes) {
+          if (route.climbing_styles) {
+            for (const style of route.climbing_styles) {
+              if (!styles.includes(style)) {
+                styles.push(style)
+              }
+            }
+          }
+        }
+      }
+      return styles
     }
   },
 
@@ -234,6 +283,12 @@ export default {
   }
   .grade-cell {
     font-weight: bold;
+  }
+}
+.climbing-style-legend {
+  margin-top: 5px;
+  .climbing-style-legend-icon {
+    margin-right: 4px;
   }
 }
 </style>
