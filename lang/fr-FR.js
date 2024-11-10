@@ -460,7 +460,7 @@ export default {
       },
       newsletterUnsubscribe: {
         title: 'Se désinscrire de la newsletter',
-        paragraphe: 'Pour vous désinscrire de la newsletter, renseiParamètresgnez votre adresse email ici :',
+        paragraphe: 'Pour vous désinscrire de la newsletter, renseignez votre adresse email ici :',
         successTitle: 'Vous êtes désormais désinscrit·e',
         successParagraphe: "Merci de nous avoir suivi·es jusqu'à présent :)"
       },
