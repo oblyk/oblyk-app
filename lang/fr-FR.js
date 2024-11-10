@@ -57,7 +57,7 @@ export default {
     addSystem: 'Ajouter un système',
     uploadMap: 'Uploader un plan',
     upload3D: 'Uploader un 3D',
-    browse: 'Parcourir ...',
+    browse: 'Parcourir…',
     addPicture: 'Ajouter une photo',
     editPicture: 'Modifier la photo',
     defineThumbnail: 'Définir la miniature',
@@ -215,16 +215,16 @@ export default {
     requiredFields: 'champs obligatoires',
     noInformation: 'Non renseigné',
     informations: 'Informations',
-    moreInformation: "Plus d'information",
+    moreInformation: "Plus d'informations",
     moreInformationShort: "Plus d'info",
     comments: 'Commentaires',
     videos: 'vidéos',
     commentsCount: 'Commentaire | Un commentaire | %{count} commentaires',
     videosCount: 'Vidéo | Une vidéo | %{count} vidéos',
-    loading: 'Chargement ...',
-    loading3D: 'Chargement du 3D ...',
-    loadingCommentModule: 'Chargement du module de commentaire ...',
-    loadingVideoModule: 'Chargement du module de vidéo ...',
+    loading: 'Chargement…',
+    loading3D: 'Chargement du 3D…',
+    loadingCommentModule: 'Chargement du module de commentaire…',
+    loadingVideoModule: 'Chargement du module de vidéo…',
     meters: 'mètres',
     noResultFor: 'Pas de résultat pour : "%{query}"',
     votes: 'Votes',
@@ -234,7 +234,7 @@ export default {
     advancedOptions: 'Options avancées',
     documentation: 'Documentation',
     seeDocumentation: "Consultez la documentation pour en connaître d'avantage :",
-    whatDoYouWantToDo: 'Que voulez vous faire ?',
+    whatDoYouWantToDo: 'Que voulez-vous faire ?',
     others: 'Autres',
     goTo: 'Aller à %{name}',
     realFavorite: 'Coup de cœur',
@@ -347,7 +347,7 @@ export default {
       },
       grade: {
         title: 'Les cotations',
-        intro: "Oblyk permet d'utiliser plusieurs formats pour les cotations (Française, Anglaise, Américaine, etc.). Pour chacune des cotations il est donné un code couleur pour se rendre compte rapidement du niveau de difficulté même si on n'est pas habitué au système de cotation affiché.",
+        intro: "Oblyk permet d'utiliser plusieurs formats pour les cotations (française, anglaise, américaine, etc.). Pour chacune des cotations il est donné un code couleur pour se rendre compte rapidement du niveau de difficulté même si on n'est pas habitué au système de cotation affiché.",
         equivalence: "Le tableau d'équivalence suivant est contestable, il a pour vocation de donner un ordre d'idée de la difficulté d'une cotation et non pas de donner exactement l'équivalence d'un système vers un autre.",
         weighting: 'Sur Oblyk, chaque cotation peut prendre les pondérations suivantes :',
         developerBonus: 'Petit bonus pour les développeur·euse·s :',
@@ -386,7 +386,7 @@ export default {
         steps: {
           configuration: {
             title: 'Étape 1 : Mon profil',
-            body: "Pour donner envie aux autres de te contacter il faut qu'ils aient un minimum d'informations sur toi, quel style d'escalade tu pratiques (bloc, voie, trad, ...), dans quelle cotation tu aimes grimper, avoir une photo de profil, etc.",
+            body: "Pour donner envie aux autres de te contacter il faut qu'ils aient un minimum d'informations sur toi, quel style d'escalade tu pratiques (bloc, voie, trad,…), dans quelle cotation tu aimes grimper, avoir une photo de profil, etc.",
             action: 'Qui je suis ?'
           },
           location: {
@@ -452,16 +452,16 @@ export default {
       },
       newsletterSubscribe: {
         title: "S'inscrire à la newsletter",
-        paragraphe: "Environ une fois par trimestre nous envoyons un mail relatant des acutalités d'Oblyk, de l'expansion de la communauté, des développements du mois et des projets à venir.",
+        paragraphe: "Environ une fois par trimestre nous envoyons un mail relatant des actualités d'Oblyk, de l'expansion de la communauté, des développements du mois et des projets à venir.",
         stayInformed: 'Tu veux être tenu·e au courant ? Renseigne ton adresse mail ici !',
-        successTitle: 'Vous être désormais inscrit·e à notre newsletter!',
-        successParagraphe: 'Nous espérons que vous apprécierez recevoir de nos nouvelles : )',
+        successTitle: 'Vous êtes désormais inscrit·e à notre newsletter !',
+        successParagraphe: 'Nous espérons que vous apprécierez recevoir de nos nouvelles :)',
         successUnsubscribeParagraphe: 'Vous pouvez vous désinscrire à tout moment en vous rendant sur cette page :'
       },
       newsletterUnsubscribe: {
         title: 'Se désinscrire de la newsletter',
-        paragraphe: 'Pour vous désinscrire de la newsletter, renseignez votre adresse email ici :',
-        successTitle: 'Vous être désormais désinscrit·e',
+        paragraphe: 'Pour vous désinscrire de la newsletter, renseiParamètresgnez votre adresse email ici :',
+        successTitle: 'Vous êtes désormais désinscrit·e',
         successParagraphe: "Merci de nous avoir suivi·es jusqu'à présent :)"
       },
       goFlyAKite: {
@@ -483,7 +483,7 @@ export default {
         createMyOrganisation: 'Créer mon organisation',
         readDoc: "Consulter la documentation de l'API.",
         oblykApiDocumentation: 'Oblyk API Documentation',
-        gitHub: "N'hésitez pas à suivre le projet <a href='https://github.com/oblyk' target='_blank'>GitHub d'Oblyk</a> pour connaitre les évolutions ou participer à l'amélioration l'API !"
+        gitHub: "N'hésitez pas à suivre le projet <a href='https://github.com/oblyk' target='_blank'>GitHub d'Oblyk</a> pour connaître les évolutions ou participer à l'amélioration l'API !"
       },
       find: {
         somethingElse: {
@@ -844,7 +844,7 @@ export default {
       private: "Ta localisation n'est pas enregistrée par Oblyk.",
       IAmHere: 'Je suis là',
       activateLocation: 'Activer ma localisation',
-      waitingLocalization: 'Récupération de votre position ...'
+      waitingLocalization: 'Récupération de votre position…'
     },
     session: {
       connectAlert: 'Vous devez être connecté·e pour accéder à cette page',
@@ -1040,10 +1040,10 @@ export default {
     },
     ascentGymBulk: {
       addMyAscents: 'Renseigner mes croix par :',
-      byGrade: 'Cotation <cite>(5b, 6a ...)</cite>',
-      byColor: 'Couleur <cite>(vert, bleu ...)</cite>',
+      byGrade: 'Cotation <cite>(5b, 6a…)</cite>',
+      byColor: 'Couleur <cite>(vert, bleu…)</cite>',
       colorOrder: 'Ordre des couleurs <cite>(cliquer pour changer)</cite>',
-      waiteColor: 'en attente des couleurs ...',
+      waiteColor: 'en attente des couleurs…',
       defaultHeight: 'Hauteur par défaut pour le %{climbingType} : %{height}m',
       pitchHeight: "Hauteur d'une longueur",
       ascentToday: "Croix réalisée(s) aujourd'hui",
@@ -1216,7 +1216,7 @@ export default {
         statistics: 'Statistiques',
         followers: 'Abonné·es'
       },
-      firstSpaceTitle: 'Avant de créer votre premier espace ...',
+      firstSpaceTitle: 'Avant de créer votre premier espace…',
       firstSpaceExplain1: 'Avant de créer votre premier espace et vos premières voies et blocs, <strong>il est important que vous choisissez</strong> comment fonctionne <strong>la difficulté de votre salle</strong> <cite>(ordre des couleurs, type des cotations, etc.)</cite>',
       firstSpaceExplain2: 'Choisissez votre système de difficulté, puis passez cette étape quand vous revenez.',
       firstDifficultySystemExplain: 'Les systèmes de difficulté vous permettent de définir comment fonctionnent vos cotations dans votre salle.',
@@ -1236,7 +1236,7 @@ export default {
       guidebook: 'Le topo',
       upcomingContests: 'Un contest est à venir ! | %{count} contests sont à venir',
       createYourGuidebook: 'Créez le topo de votre salle !',
-      followersEmpty: "%{name} n'a pas encore de follower pour l'instant"
+      followersEmpty: "%{name} n'a pas encore d'abonné·es pour l'instant"
     },
     gymRanking: {
       rankingType: 'Les types de classements',
@@ -1245,7 +1245,7 @@ export default {
       rankOf: 'Le classement de %{date}',
       seeRankOf: 'Voir le classement de %{date}',
       rankNumber: '%{number}er | %{number}ème',
-      noRank: "Il n'y as pas de classement pour %{date} avec les filtres sélectionnés.",
+      noRank: "Il n'y a pas de classement pour %{date} avec les filtres sélectionnés.",
       giveDefaultPoints: 'Vous pouvez donner un nombre de points par défaut pour vos différents niveau.'
     },
     gymAdmin: {
@@ -1265,7 +1265,7 @@ export default {
       openers: 'Les ouvreurs et ouvreuses',
       contests: 'Contests',
       championships: 'Championnats',
-      home: 'Dashboard',
+      home: 'Tableau de bord',
       parameters: 'Paramètres',
       rakingSystem: 'Les classements',
       rakingExplain: "Paramètre du classement mensuel par style d'escalade",
@@ -1293,14 +1293,14 @@ export default {
       addYourBanner: 'Ajouter votre bandeau',
       updateYourBanner: 'Changer votre bandeau',
       labelTemplate: 'Les étiquettes',
-      labelTemplateExplain: 'Paramètres des étiquettes à imprimer aux pieds de vos voies et blocs.',
+      labelTemplateExplain: 'Paramètres des étiquettes à impParamètresimer aux pieds de vos voies et blocs.',
       commentAndVideo: 'Commentaires & Vidéos',
       comments: 'Commentaires',
       videos: 'Vidéos',
       myCommunity: 'Ma communauté',
       noComments: 'Vous verrez les commentaires de vos grimpeurs et grimpeuses ici quand ils/elles en auront posté !',
       noVideos: 'Vous verrez les vidéos de vos grimpeurs et grimpeuses ici quand ils/elles en auront posté !',
-      assets: 'Decorations',
+      assets: 'Décorations',
       openingSheet: "Fiche d'ouvertures"
     },
     gymClimbingStyles: {
@@ -1323,7 +1323,7 @@ export default {
       figuresTitle: 'En quelques chiffres',
       mountedRoutes: 'Lignes montées',
       ascentsCount: 'Nombre de croix',
-      averageOpeningDayTitle: 'Age moyen des ouvertures',
+      averageOpeningDayTitle: 'Âge moyen des ouvertures',
       averageOpeningDay: 'Les ouvertures ont en moyenne %{age} jours',
       oldestOpeningDate: 'Ouverture la plus ancienne',
       youngestOpeningDate: 'Dernière ouverture',
@@ -1556,7 +1556,7 @@ export default {
       }
     },
     photo: {
-      imageOptimization: 'Optimisation du fichier ...',
+      imageOptimization: 'Optimisation du fichier…',
       photos: 'Photos',
       photoOf: 'Photo de',
       postedBy: 'Postée par',
@@ -1590,7 +1590,7 @@ export default {
       successfulEditMessage: 'Votre profil à été mis à jour',
       whatClimbingType: "Quel type d'escalade pratiquez-vous ?",
       whichLevel: 'Dans quel niveau aimez-vous grimper ?',
-      bePartPartner: 'Voulez vous faire partie de la carte des grimpeurs et grimpeuses ?',
+      bePartPartner: 'Voulez-vous faire partie de la carte des grimpeurs et grimpeuses ?',
       bePartPartnerExplain: 'Faire partie de la carte des grimpeurs et grimpeuses vous permet de trouver des gens avec qui grimper autour de chez vous !',
       localizationDeactivated: 'Localisation désactivée',
       localizationActivated: 'Localisation activée',
@@ -1645,7 +1645,7 @@ export default {
       exportAscents: 'Exporter mes croix',
       exportProjects: 'Exporter mes projets',
       explainGradeValue: "La colonne <cite>'Grade value'</cite> vous permet de trier par difficulté même sur des systèmes de cotation différents.",
-      gradeMoreInformation: "Plus d'information sur le système de cotation ici",
+      gradeMoreInformation: "Plus d'informations sur le système de cotation ici",
       privateLogBook: 'Le carnet de croix de %{name} est privé.',
       privateMedia: 'Les photos & videos de %{name} sont privées.',
       subscribeToSee: 'Abonnez-vous pour pouvoir le voir !',
@@ -1715,7 +1715,7 @@ export default {
       title: 'Supprimer mon compte',
       paragraph1: 'La suppression de votre compte est <strong class="red--text">irreversible</strong> et <strong class="red--text">immediate</strong>.',
       paragraph2: 'Toutes vos croix indoor et outdoor<strong>(1)</strong>, vos messages, favoris, abonnements, etc. seront <strong>irréversiblement supprimés</strong>.',
-      unlock: 'Rentrer <strong>"supprimer"</strong> ci-dessous pour supprimer votre compte.',
+      unlock: 'Rentrez <strong>"supprimer"</strong> ci-dessous pour supprimer votre compte.',
       label: "tapez 'supprimer' pour supprimer votre compte",
       tips: 'Vous pouvez exporter vos croix avant de supprimer votre compte.',
       connectToDelete: 'Connectez vous pour supprimer votre compte.'
@@ -2473,7 +2473,7 @@ export default {
       order: 'Ordre',
       grade_text: 'Cotation moyenne de ce niveau',
       points: 'Points pour ce niveau',
-      fixedPoints: 'Voulez vous imposer un nombre de points fixes pour ce niveau ?',
+      fixedPoints: 'Voulez-vous imposer un nombre de points fixes pour ce niveau ?',
       fixedPointsExplain: 'Recommandé uniquement si vous utilisez un système de classement par points fixes (1)'
     },
     roles: {
