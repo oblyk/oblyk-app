@@ -1293,7 +1293,7 @@ export default {
       addYourBanner: 'Ajouter votre bandeau',
       updateYourBanner: 'Changer votre bandeau',
       labelTemplate: 'Les étiquettes',
-      labelTemplateExplain: 'Paramètres des étiquettes à impParamètresimer aux pieds de vos voies et blocs.',
+      labelTemplateExplain: 'Paramètres des étiquettes à imprimer aux pieds de vos voies et blocs.',
       commentAndVideo: 'Commentaires & Vidéos',
       comments: 'Commentaires',
       videos: 'Vidéos',
