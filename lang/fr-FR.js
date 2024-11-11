@@ -454,7 +454,7 @@ export default {
         title: "S'inscrire à la newsletter",
         paragraphe: "Environ une fois par trimestre nous envoyons un mail relatant des actualités d'Oblyk, de l'expansion de la communauté, des développements du mois et des projets à venir.",
         stayInformed: 'Tu veux être tenu·e au courant ? Renseigne ton adresse mail ici !',
-        successTitle: 'Vous être désormais inscrit·e à notre newsletter !',
+        successTitle: 'Vous êtes désormais inscrit·e à notre newsletter !',
         successParagraphe: 'Nous espérons que vous apprécierez recevoir de nos nouvelles 🙂',
         successUnsubscribeParagraphe: 'Vous pouvez vous désinscrire à tout moment en vous rendant sur cette page :'
       },
