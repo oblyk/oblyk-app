@@ -325,10 +325,10 @@ export default {
       },
       supportUs: {
         title: 'Support us',
-        noLimite: 'In Oblyk there are no limits, no premium account, no adds, no sponsored link, everything free! ; )',
+        noLimite: 'In Oblyk there are no limits, no premium account, no adds, no sponsored link, everything free! 😉',
         freeBut: "If it is free and Oblyk doesn't get any money, does it mean it is a zero cost project?",
         unfortunately: 'Unfortunately no, as every website, Oblyk needs to be hosted in a data center and rent a domain name to exist.<br>And that is not free...',
-        extraEuro: "If you have a few money to spent, you like the work done and want to encourage Oblyk development, you can make a donation ; )<br>It is for us a priceless help! You will help us continue the development and ensure it's future ; )",
+        extraEuro: "If you have a few money to spent, you like the work done and want to encourage Oblyk development, you can make a donation 😉<br>It is for us a priceless help! You will help us continue the development and ensure it's future 😉",
         thanks: 'Thank you in advance for your generosity!'
       },
       thanks: {
@@ -455,14 +455,14 @@ export default {
         paragraphe: 'About once a quarter we send an email about Oblyk acutalities, community expansion, developments of the month and projects to come. ',
         stayInformed: 'You want to be kept in the loop? enter your e-mail address here!',
         successTitle: 'You are now registered to our newsletter!',
-        successParagraphe: 'We hope you enjoy hearing from us : )',
+        successParagraphe: 'We hope you enjoy hearing from us 🙂',
         successUnsubscribeParagraphe: 'You can unsubscribe at any time by going to this page :'
       },
       newsletterUnsubscribe: {
         title: 'Unsubscribe from the newsletter',
         paragraphe: 'To unsubscribe from the newsletter, enter your email address here :',
         successTitle: 'You are now unsubscribed',
-        successParagraphe: 'Thanks for following us so far :)'
+        successParagraphe: 'Thanks for following us so far 🙂'
       },
       goFlyAKite: {
         title: 'Are you a robot?',
@@ -1147,7 +1147,7 @@ export default {
         cragsCovered: 'crags covered',
         routesCount: 'Number of routes',
         routes: 'routes',
-        missingBook: 'One guide might interest you :) | %{count} guides might interest you :)',
+        missingBook: 'One guide might interest you 🙂 | %{count} guides might interest you 🙂',
         seeGuides: 'See guides',
         newGuides: 'There are new versions!',
         seeNewGuides: 'One new version | %{count} new versions'
@@ -1967,7 +1967,7 @@ export default {
     },
     supportUs: {
       title: 'Support Us',
-      body1: 'In Oblyk there are no limits, no premium account, no adds, no sponsored link, everything free ! ; )',
+      body1: 'In Oblyk there are no limits, no premium account, no adds, no sponsored link, everything free ! 😉',
       body2: "If it is free and Oblyk doesn't get any money, does it mean it is a zero cost project ?",
       body3: 'Unfortunately no, as every website, Oblyk needs to be hosted in a data center and rent a domain name to exist.<br>And that is not free... ',
       action: 'Support Us'
