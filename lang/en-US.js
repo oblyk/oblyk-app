@@ -658,6 +658,7 @@ export default {
       levelRepresentation: 'level representation',
       age: 'Age',
       textAlign: 'Text alignment',
+      colorPickerInput: 'Colour',
       colorSystem: {
         chooseOrder: 'Choose a colour ordering',
         usage: 'Already used %{count} times here',
@@ -1413,6 +1414,7 @@ export default {
       reusePicture: 'Reusing a picture',
       createCount: 'Create your Oblyk account, track your progress and much more!',
       anchorSuggestion: 'Anchor suggestion',
+      dismountedAt: 'Line taken down at %{date}',
       dismounted: 'Taken down',
       sorts: {
         opened_at: 'Sort by opening date',
