@@ -521,7 +521,7 @@ export default {
           },
           advancedSearch: {
             title: 'Advanced search',
-            explain: "Are you looking for a particular crag ? orientation ? specific grades ?"
+            explain: 'Are you looking for a particular crag ? orientation ? specific grades ?'
           }
         },
         gyms: {
@@ -1234,7 +1234,7 @@ export default {
       spaces: 'Spaces',
       guidebook: 'Routes list',
       upcomingContests: 'One contest coming soon ! | %{count} contests coming soon !',
-      createYourGuidebook: "Create your room's guidebook!",
+      createYourGuidebook: 'Create your climbing gym guidebook!',
       followersEmpty: '%{name} has no followers yet'
     },
     gymRanking: {
