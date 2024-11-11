@@ -325,10 +325,10 @@ export default {
       },
       supportUs: {
         title: 'Nous soutenir',
-        noLimite: "Sur Oblyk il n'y a aucune limitation, pas de compte premium, ni pub, ni lien ou article sponsorisé, tout est gratuit ! ; )",
+        noLimite: "Sur Oblyk il n'y a aucune limitation, pas de compte premium, ni pub, ni lien ou article sponsorisé, tout est gratuit ! 😉",
         freeBut: "Si tout est gratuit et qu'Oblyk ne perçoit aucun revenu, cela veut-il dire qu'Oblyk ne coûte rien à développer ?",
         unfortunately: "Malheureusement non, comme tout site internet, Oblyk doit être hébergé dans un datacenter et louer un nom de domaine pour pouvoir éxister sur la toile.<br>Et ça par contre, ce n'est pas gratuit…",
-        extraEuro: "Si vous avez quelques euros en trop, que vous appréciez le travail réalisé et que vous souhaitez encourager le développement d'Oblyk, vous pouvez nous faire un don ; )<br>C'est pour nous une aide inestimable ! Vous nous permettrez ainsi de continuer le développement de cette belle plateforme et d'assurer son avenir ; )",
+        extraEuro: "Si vous avez quelques euros en trop, que vous appréciez le travail réalisé et que vous souhaitez encourager le développement d'Oblyk, vous pouvez nous faire un don 😉<br>C'est pour nous une aide inestimable ! Vous nous permettrez ainsi de continuer le développement de cette belle plateforme et d'assurer son avenir 😉",
         thanks: "Merci d'avance de votre générosité !"
       },
       thanks: {
@@ -454,8 +454,8 @@ export default {
         title: "S'inscrire à la newsletter",
         paragraphe: "Environ une fois par trimestre nous envoyons un mail relatant des actualités d'Oblyk, de l'expansion de la communauté, des développements du mois et des projets à venir.",
         stayInformed: 'Tu veux être tenu·e au courant ? Renseigne ton adresse mail ici !',
-        successTitle: 'Vous êtes désormais inscrit·e à notre newsletter !',
-        successParagraphe: 'Nous espérons que vous apprécierez recevoir de nos nouvelles :)',
+        successTitle: 'Vous être désormais inscrit·e à notre newsletter !',
+        successParagraphe: 'Nous espérons que vous apprécierez recevoir de nos nouvelles 🙂',
         successUnsubscribeParagraphe: 'Vous pouvez vous désinscrire à tout moment en vous rendant sur cette page :'
       },
       newsletterUnsubscribe: {
@@ -1969,7 +1969,7 @@ export default {
     },
     supportUs: {
       title: 'Nous soutenir',
-      body1: "Sur Oblyk il n'y a aucune limitation, pas de compte premium, ni pub, ni lien ou article sponsorisé, tout est gratuit ! ; )",
+      body1: "Sur Oblyk il n'y a aucune limitation, pas de compte premium, ni pub, ni lien ou article sponsorisé, tout est gratuit ! 😉",
       body2: "Si tout est gratuit et qu'Oblyk ne perçoit aucun revenu, cela veut-il dire qu'Oblyk ne coûte rien à développer ?",
       body3: "Malheureusement non, comme tout site internet, Oblyk doit être hébergé dans un datacenter et louer un nom de domaine pour pouvoir exister sur la toile.<br>Et ça par contre, ce n'est pas gratuit… ",
       action: 'Nous soutenir'
