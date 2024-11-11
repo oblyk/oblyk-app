@@ -2400,7 +2400,7 @@ export default {
     gymOpeningSheet: {
       title: 'Titre',
       description: 'Note',
-      number_of_columns: 'Nombre de voie max pas secteur'
+      number_of_columns: 'Nombre de voie max par secteur'
     },
     gymSector: {
       name: 'Nom du secteur',
