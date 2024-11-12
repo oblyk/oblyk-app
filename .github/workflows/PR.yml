@@ -1,0 +1,70 @@
+name: PR check
+run-name: Running checks on pull requests
+on: [pull_request]
+jobs:
+  dependencies:
+    name: 'Install dependencies'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: 'package.json'
+          cache: 'npm'
+          cache-dependency-path: 'package-lock.json'
+
+      - uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}
+      
+      - name: 'Install dependencies in CI mode'
+        run: 'npm ci'
+    
+
+  build_prod:
+    name: 'Build production'
+    needs: ['dependencies']
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps: 
+      - uses: actions/checkout@v4
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: 'package.json'
+          cache: 'npm'
+          cache-dependency-path: 'package-lock.json'
+    
+      - uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}
+
+      - name: 'Build'
+        run: 'npm run build'
+
+  lint:
+    name: 'Build production'
+    needs: ['dependencies']
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps: 
+      - uses: actions/checkout@v4
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: 'package.json'
+          cache: 'npm'
+          cache-dependency-path: 'package-lock.json'
+    
+      - uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}
+
+      - name: 'Lint'
+        run: 'npm run lint'
+
