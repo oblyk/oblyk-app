@@ -47,7 +47,7 @@ jobs:
         run: 'npm run build'
 
   lint:
-    name: 'Build production'
+    name: 'Lint'
     needs: ['dependencies']
     runs-on: ubuntu-latest
     timeout-minutes: 10
