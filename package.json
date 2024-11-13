@@ -2,6 +2,9 @@
   "name": "oblyk",
   "version": "1.0.0",
   "private": true,
+  "engines": {
+    "node": "14.x.x"
+  },
   "scripts": {
     "dev": "nuxt",
     "build": "node --max-old-space-size=2000 node_modules/nuxt/bin/nuxt.js build",
