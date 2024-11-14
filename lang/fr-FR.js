@@ -1698,8 +1698,8 @@ export default {
       },
       private_explain: {
         profile: 'Votre profil est consultable <strong>uniquement par les grimpeur·euse·s connecté·e·s</strong> à Oblyk.<br>Vous devez <strong>accepter manuellement</strong> les grimpeur·euse·s qui veulent vous suivre.',
-        outdoor_ascents: 'Votre carnet de croix outdoor est <strong>consultable uniquement pas vos abonné·es.</strong>',
-        indoor_ascents: 'Votre carnet de croix indoor est <strong>consultable uniquement pas vos abonné·es.</strong>'
+        outdoor_ascents: 'Votre carnet de croix outdoor est <strong>consultable uniquement par vos abonné·es.</strong>',
+        indoor_ascents: 'Votre carnet de croix indoor est <strong>consultable uniquement par vos abonné·es.</strong>'
       },
       contribution: {
         crags: 'Sites',
