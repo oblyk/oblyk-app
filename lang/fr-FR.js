@@ -1945,7 +1945,7 @@ export default {
     },
     createAccount: {
       title: 'Rejoins-nous !',
-      body: "Crée-toi un compte et rejoint une communauté de plus de <strong>%{count} grimpeurs et grimpeuses</strong> passionné·es d'escalade !"
+      body: "Crée-toi un compte et rejoins une communauté de plus de <strong>%{count} grimpeurs et grimpeuses</strong> passionné·es d'escalade !"
     },
     crags: {
       title: 'Check les infos des falaises',
@@ -2182,7 +2182,7 @@ export default {
       grade: 'Cotation',
       level: 'Niveau',
       note: 'Note',
-      comment: 'Commentaire publique',
+      comment: 'Commentaire public',
       private_comment: 'Commentaire privé',
       climbing_type: "Type d'escalade",
       released_at: 'Réalisé le',
