@@ -18,7 +18,7 @@ jobs:
       - uses: actions/cache@v4
         with:
           path: node_modules
-          key: ${{ runner.os }}
+          key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
       
       - name: 'Install dependencies in CI mode'
         run: 'npm ci'
@@ -41,7 +41,7 @@ jobs:
       - uses: actions/cache@v4
         with:
           path: node_modules
-          key: ${{ runner.os }}
+          key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
 
       - name: 'Build'
         run: 'npm run build'
@@ -63,7 +63,7 @@ jobs:
       - uses: actions/cache@v4
         with:
           path: node_modules
-          key: ${{ runner.os }}
+          key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
 
       - name: 'Lint'
         run: 'npm run lint'
