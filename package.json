@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "engines": {
-    "node": "14.x.x"
+    "node": "16.x.x"
   },
   "scripts": {
     "dev": "nuxt",
@@ -47,6 +47,7 @@
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.14.7",
+    "@babel/plugin-proposal-logical-assignment-operators": "^7.20.7",
     "@mdi/js": "^6.5.95",
     "@nuxt/types": "~2.15.0",
     "@nuxtjs/eslint-config": "^6.0.1",
