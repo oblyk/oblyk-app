@@ -41,7 +41,7 @@
               :style="bottomHeader.borderLeft ? 'border-left-width: 3px; border-bottom-width: 3px' : 'border-bottom-width: 3px'"
             >
               <div class="table-bottom-header">
-                <span>
+                <span :class="bottomHeader.rotate ? 'rotate' : null">
                   {{ bottomHeader.label }}
                 </span>
               </div>
@@ -57,11 +57,12 @@
               v-for="(cell, cellIndex) in row"
               :key="`cell-index-${cellIndex}`"
               class="grade-cell"
-              :style="cellStyle(sheet.row_json[rowIndex].routes[cellIndex - 1] ? sheet.row_json[rowIndex].routes[cellIndex - 1].hold_color : null, cell)"
+              :style="cell.style"
             >
               <span :style="cell.style">
                 {{ cell.label }}
               </span>
+              {{ cell.darkIcon }}
               <v-icon
                 v-for="(style, styleIndex) in cell.climbing_styles"
                 :key="`style-index-${styleIndex}`"
@@ -134,15 +135,14 @@ export default {
     headers () {
       const headers = {
         top: [{ label: '', colspan: 1 }],
-        bottom: [{ label: 'Secteur', colspan: 1, borderLeft: false }]
+        bottom: [{ label: 'Secteur', colspan: 1, borderLeft: false, rotate: false }]
       }
       for (let i = 0; i < this.sheet.number_of_columns; i++) {
-        headers.top.push({ label: `Voie ${i + 1}`, colspan: 3, borderLeft: true })
+        headers.top.push({ label: `Voie ${i + 1}`, colspan: 2, borderLeft: true, rotate: false })
       }
       for (let i = 0; i < this.sheet.number_of_columns; i++) {
-        headers.bottom.push({ label: 'Actuelle', colspan: 1, borderLeft: true })
-        headers.bottom.push({ label: 'À ouvrir', colspan: 1, borderLeft: false })
-        headers.bottom.push({ label: 'Ouvert', colspan: 1, borderLeft: false })
+        headers.bottom.push({ label: 'À ouvrir', colspan: 1, borderLeft: true, rotate: true })
+        headers.bottom.push({ label: 'Ouvert', colspan: 1, borderLeft: false, rotate: false })
       }
       return headers
     },
@@ -156,17 +156,29 @@ export default {
           style: null
         })
         for (const route of scheduleRoute.routes) {
+          if (route.type === 'open') {
+            continue
+          }
+
           const styles = []
           if (route.hold_color) {
             styles.push(`background-color: ${route.hold_color}`)
             styles.push(`color: ${route.text_hold_color}`)
+          }
+          const contrastingColour = this.blackOrWhiteColor(route.hold_color || 'rgb(0,0,0)')
+          if (route.type === 'to_open') {
+            styles.push('width: 10px')
+            styles.push('white-space: nowrap')
+            styles.push('padding: 0 2px')
+            styles.push(`color: ${contrastingColour}`)
+            styles.push('border-left-width: 3px')
           }
           cells.push({
             label: route.grade,
             style: styles.join(';'),
             type: route.type,
             climbing_styles: route.climbing_styles,
-            icon_color: this.blackOrWhiteColor(route.hold_color || 'rgb(0,0,0)'),
+            icon_color: contrastingColour,
             editable: route.type === 'to_open'
           })
         }
@@ -213,18 +225,6 @@ export default {
         .finally(() => {
           this.loadingSheet = false
         })
-    },
-
-    cellStyle (color, cell) {
-      const styles = []
-      if (color) {
-        styles.push(`background-color: ${color}`)
-        styles.push(`color: ${this.blackOrWhiteColor(color)}`)
-      }
-      if (cell.type === 'open') {
-        styles.push('border-left-width: 3px')
-      }
-      return styles.join(';')
     }
   }
 }
@@ -275,7 +275,7 @@ export default {
     width: 50px;
     margin-left: auto;
     margin-right: auto;
-    span {
+    span.rotate {
       transform: rotate(-45deg);
       display: block;
       white-space: nowrap
