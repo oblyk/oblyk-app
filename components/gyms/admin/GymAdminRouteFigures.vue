@@ -15,7 +15,6 @@
       <v-menu>
         <template #activator="{ on, attrs }">
           <v-btn
-            large
             icon
             class="ml-auto"
             v-bind="attrs"
