@@ -3,7 +3,7 @@
     <v-icon
       small
     >
-      {{ cragRoute.difficultyAppreciationIcon }}
+      {{ difficultyAppreciationIcon() }}
     </v-icon>
   </span>
 </template>
@@ -32,15 +32,15 @@ export default {
 
   methods: {
     difficultyAppreciationIcon () {
-      if (this.difficultyAppreciationStatus === 'hard') {
+      if (this.difficultyAppreciationStatus() === 'hard') {
         return mdiArrowUp
-      } else if (this.difficultyAppreciationStatus === 'pretty_hard') {
+      } else if (this.difficultyAppreciationStatus() === 'pretty_hard') {
         return mdiArrowTopRight
-      } else if (this.difficultyAppreciationStatus === 'just') {
+      } else if (this.difficultyAppreciationStatus() === 'just') {
         return mdiArrowRight
-      } else if (this.difficultyAppreciationStatus === 'pretty_soft') {
+      } else if (this.difficultyAppreciationStatus() === 'pretty_soft') {
         return mdiArrowBottomRight
-      } else if (this.difficultyAppreciationStatus === 'soft') {
+      } else if (this.difficultyAppreciationStatus() === 'soft') {
         return mdiArrowDown
       }
     },

@@ -18,6 +18,10 @@
             v-if="$auth.loggedIn"
             :crag-route="route"
           />
+          <crag-route-difficulty-icon
+            class="mr-2"
+            :crag-route="route"
+          />
         </client-only>
         {{ route.name }}
         <grade-route-note :route="route" />
@@ -88,10 +92,11 @@ import { mdiCamera, mdiFilmstrip, mdiComment, mdiTextureBox, mdiCheckAll } from 
 import GradeRouteNote from '@/components/cragRoutes/partial/CragRouteNote'
 import CragRouteAvatar from '@/components/cragRoutes/partial/CragRouteAvatar'
 import AscentCragRouteStatusIcon from '@/components/ascentCragRoutes/AscentCragRouteStatusIcon'
+import CragRouteDifficultyIcon from '@/components/cragRoutes/partial/CragRouteDifficultyIcon'
 
 export default {
   name: 'CragRouteListItem',
-  components: { AscentCragRouteStatusIcon, CragRouteAvatar, GradeRouteNote },
+  components: { AscentCragRouteStatusIcon, CragRouteDifficultyIcon, CragRouteAvatar, GradeRouteNote },
   props: {
     route: { type: Object, required: true },
     callback: {

@@ -68,6 +68,7 @@
           v-if="$auth.loggedIn"
           :crag-route="route"
           :ascent-status="ascent.ascent_status"
+          :ascent-rope-status="ascent.roping_status"
         />
         {{ $t(`models.ascentStatus.${ascent.ascent_status}`) }},
         {{ $t('components.ascentCragRoute.madeOn', { date: humanizeDate(ascent.released_at) }) }}

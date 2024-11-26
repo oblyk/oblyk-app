@@ -26,6 +26,7 @@
         v-if="$auth.loggedIn"
         :crag-route="cragRoute"
         :ascent-status="ascentCragRoute.ascent_status"
+        :ascent-rope-status="ascentCragRoute.roping_status"
       />
       {{ $t(`models.ascentStatus.${ascentCragRoute.ascent_status}`) }}
       <span v-if="isRopable(cragRoute.climbing_type)">
