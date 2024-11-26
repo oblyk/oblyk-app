@@ -25,12 +25,15 @@
         v-if="gymAuthCan(gym, 'manage_space')"
         :to="newSpacePath"
         text
+        :icon="gym.gym_spaces.length > 0"
         outlined
       >
-        <v-icon left>
+        <v-icon :left="gym.gym_spaces.length === 0">
           {{ mdiPlus }}
         </v-icon>
-        {{ $t('actions.addSpace') }}
+        <span v-if="gym.gym_spaces.length === 0">
+          {{ $t('actions.addSpace') }}
+        </span>
       </v-btn>
       <v-btn
         v-if="gym.gym_spaces.length > 0"
