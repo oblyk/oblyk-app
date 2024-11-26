@@ -1,7 +1,7 @@
 <template>
   <v-list-item
     link
-    @click="$root.$emit('getCragRouteInDrawer', route.crag.id, route.id); callback ? callback(route) : null"
+    @click="cragRouteClick"
   >
     <crag-route-avatar
       :crag-route="route"
@@ -111,6 +111,16 @@ export default {
       mdiComment,
       mdiTextureBox,
       mdiCheckAll
+    }
+  },
+
+  methods: {
+    cragRouteClick () {
+      if (this.callback) {
+        this.callback(this.route)
+      } else {
+        this.$root.$emit('getCragRouteInDrawer', this.route.crag.id, this.route.id)
+      }
     }
   }
 }

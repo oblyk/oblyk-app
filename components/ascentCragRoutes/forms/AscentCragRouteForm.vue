@@ -73,7 +73,6 @@
         :label="$t('models.ascentCragRoute.private_comment')"
       />
 
-      <close-form />
       <submit-form
         :overlay="submitOverlay"
         :submit-local-key="isEditingForm() ? 'actions.edit' : 'actions.add'"
@@ -88,7 +87,6 @@ import { DateHelpers } from '@/mixins/DateHelpers'
 import { FormHelpers } from '@/mixins/FormHelpers'
 import SubmitForm from '@/components/forms/SubmitForm'
 import AscentCragRouteApi from '~/services/oblyk-api/AscentCragRouteApi'
-import CloseForm from '@/components/forms/CloseForm'
 import RopingStatusInput from '@/components/forms/RopingStatusInput'
 import AscentStatusInput from '@/components/forms/AscentStatusInput'
 import DatePickerInput from '@/components/forms/DatePickerInput'
@@ -106,7 +104,6 @@ export default {
     DatePickerInput,
     AscentStatusInput,
     RopingStatusInput,
-    CloseForm,
     SubmitForm
   },
   mixins: [
