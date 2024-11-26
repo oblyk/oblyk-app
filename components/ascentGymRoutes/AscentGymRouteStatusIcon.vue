@@ -109,7 +109,7 @@ export default {
       const status = this.$t(`models.ascentStatus.${this.status()}`)
       let date = ''
       if (this.ascentInLogBook?.released_at) {
-        date = `${this.humanizeDate(this.gymRouteAscents.released_at)} :`
+        date = `${this.humanizeDate(this.ascentInLogBook.released_at)} :`
       }
       return `${date} ${status}`
     }
