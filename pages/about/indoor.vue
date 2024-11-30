@@ -4,7 +4,7 @@
       <!-- Title and subtitle -->
       <v-img
         src="/images/indoor/indoor-presentation-banner.webp"
-        alt="bandeau de présentation d'Oblyk indoor"
+        alt="Bandeau de présentation d'Oblyk indoor"
         height="300"
         class="rounded align-end text-center mt-4 mb-10"
       >
@@ -13,7 +13,7 @@
             Oblyk pour votre salle
           </h1>
           <p class="subtitle-2 mb-2 text-center">
-            Créer <em>LE</em> topo de votre salle d'escalade
+            Créez <em>LE</em> topo de votre salle d'escalade
           </p>
         </v-sheet>
       </v-img>
@@ -21,7 +21,7 @@
       <div class="px-lg-15">
         <p class="text-center introduction-text">
           Créez le <strong class="deep-purple--text text--accent-4">topo indoor</strong> de votre <strong class="deep-purple--text text--accent-4">salle d'escalade</strong>. Gérez facilement la rotation de vos <strong class="deep-purple--text text--accent-4">ouvertures</strong>. Connectez-vous à votre <strong class="deep-purple--text text--accent-4">communauté de grimpeurs et grimpeuses</strong>. Aidez-les à progresser en leur permettant de <strong class="deep-purple--text text--accent-4">noter leurs croix indoor</strong>.<br>
-          Et plein d'autres fonctionnalités !
+          Et profitez de plein d'autres fonctionnalités !
         </p>
       </div>
 
@@ -35,15 +35,14 @@
           <v-icon left>
             {{ mdiFlask }}
           </v-icon>
-          Oblyk pour les salles est en version Beta
+          Oblyk pour les salles est en version bêta
         </h3>
         <p class="font-weight-bold">
-          <strong><u>Qu'est ce que ça signifie ?</u></strong><br>
-          Toutes les fonctionnalités prévues ne sont pas encore présentes et vous pouvez tomber sur des bugs.
-          Mais nous estimons que l'outil est suffisamment stable et fonctionnel pour être utilisé.
+          <strong><u>Qu'est-ce que ça signifie ?</u></strong><br>
+          Toutes les fonctionnalités prévues ne sont pas encore présentes, et vous pouvez rencontrer des bugs. Mais nous estimons que l'outil est suffisamment stable et fonctionnel pour être utilisé.
         </p>
         <p class="font-weight-bold">
-          N'hésitez pas à nous remonter vos suggestions ou problèmes que vous rencontrez !
+          N'hésitez pas à nous faire part de vos suggestions ou des problèmes que vous rencontrez !
         </p>
       </v-sheet>
 
@@ -54,7 +53,7 @@
               <span class="deep-purple--text text--accent-4">Organisez votre topo</span> librement
             </h3>
             <p>
-              Votre salle est unique, on vous donne les outils pour la représenter telle qu’elle est. Divisez votre salle en espaces et en secteurs logiques pour vous.
+              Votre salle est unique, et nous vous donnons les outils pour la représenter telle qu’elle est. Divisez votre salle en espaces et en secteurs logiques qui vous conviennent.
             </p>
             <p>
               Ajoutez ensuite vos voies et blocs en quelques clics grâce à une configuration de vos espaces simple et efficace.
@@ -76,17 +75,13 @@
       </v-row>
 
       <v-row class="my-15">
-        <v-col
-          cols="12"
-          md="6"
-          class="d-flex"
-        >
+        <v-col cols="12" md="6" class="d-flex">
           <div class="px-5 align-self-center">
             <h3 class="mb-3 presentation-box-title">
-              Peut importe le type d'escalade ou vos niveaux de difficulté, <span class="deep-purple--text text--accent-4">on s'adapte à votre salle</span>
+              Peu importe le type d'escalade ou vos niveaux de difficulté, <span class="deep-purple--text text--accent-4">on s'adapte à votre salle</span>
             </h3>
             <p>
-              Que vous soyez une salle de voie, de bloc, de pan, que vous utilisiez des étiquettes pour noter la difficulté, ou des cotations (ou les deux), vous pouvez créer le topo de votre salle sur Oblyk.
+              Que vous soyez une salle de voies, de blocs, de pan, que vous utilisiez des étiquettes pour noter la difficulté ou des cotations (ou les deux), vous pouvez créer le topo de votre salle sur Oblyk.
             </p>
             <p class="font-weight-bold mb-2">
               Oblyk indoor est conçu pour gérer :
@@ -170,10 +165,10 @@
               <span class="deep-purple--text text--accent-4">Supervisez vos ouvertures</span> en un clic
             </h3>
             <p>
-              Faites un état des lieux de vos ouvertures : depuis quand elles sont montées, quelles sont les plus grimpées, comment est réparti le niveau d'escalade dans votre salle, etc.
+              Faites un état des lieux de vos ouvertures&nbsp;: depuis quand elles sont montées, quelles sont les plus grimpées, comment est réparti le niveau d'escalade dans votre salle, etc.
             </p>
             <p>
-              Besoin de plus de finesse ? Vous pouvez simplement filtrer vos statistiques pour analyser une partie de vos ouvertures selon des critères comme l'espace ou les ouvreurs / ouvreuses.
+              Besoin de plus de finesse&nbsp;? Vous pouvez simplement filtrer vos statistiques pour analyser une partie de vos ouvertures selon des critères comme l'espace ou les ouvreurs / ouvreuses.
             </p>
           </div>
         </v-col>
@@ -206,7 +201,7 @@
               mais aussi d'offrir à vos grimpeurs et grimpeuses un nouveau service numérique lié à votre salle.
             </p>
             <p class="font-weight-bold mb-2">
-              Grâce à votre topo :
+              Grâce à votre topo&nbsp;:
             </p>
             <ul class="list-style-none">
               <li class="mb-4">
@@ -258,10 +253,10 @@
         >
           <div class="px-5 align-self-center">
             <h3 class="mb-3 presentation-box-title">
-              Vous <span class="deep-purple--text text--accent-4">imprimez des étiquettes</span> pour vos pieds de voie ? on vous mâche le travail
+              Vous <span class="deep-purple--text text--accent-4">imprimez des étiquettes</span> pour vos pieds de voie&nbsp;? On vous mâche le travail
             </h3>
             <p>
-              Sélectionnez un secteur, une journée d'ouverture ou des voies en particulier, cliquez sur <strong>"imprimer"</strong> ! Vos étiquettes sont prêtes à être posées au pied de leurs voies.
+              Sélectionnez un secteur, une journée d'ouverture ou des voies en particulier, cliquez sur <strong>"imprimer"</strong>&nbsp;! Vos étiquettes sont prêtes à être posées au pied de leurs voies.
             </p>
           </div>
         </v-col>
@@ -291,65 +286,65 @@
               <span class="deep-purple--text text--accent-4">Organisez des contests</span> n'a jamais été aussi simple !
             </h3>
             <p>
-              Organiser un contest via Oblyk vous permet notamment de vous affranchir de l'inscription des participants et du dépouillement des résultats. Mais vous pouvez faire bien plus !
+              Organiser un contest via Oblyk vous permet notamment de vous affranchir de l'inscription des participants et du dépouillement des résultats. Mais vous pouvez faire bien plus&nbsp;!
             </p>
             <p class="font-weight-bold">
-              Les contests sur oblyk vous permettent :
+              Les contests sur oblyk vous permettent&nbsp;:
             </p>
             <div class="pl-4">
               <p>
                 <v-icon color="purple lighten-4" left>
                   {{ mdiCalendarCheck }}
                 </v-icon>
-                Faite durer vos contest quelques heures comme plusieurs jours
+                Faites durer vos contest quelques heures comme plusieurs jours
               </p>
               <p>
                 <v-icon color="purple lighten-3" left>
                   {{ mdiWaves }}
                 </v-icon>
-                Divisez vos grimpeurs et grimpeuses en vague pour limiter le nombre de grimpeur sur les tapis
+                Divisez vos grimpeurs et grimpeuses en vagues pour limiter le nombre de personnes sur les tapis
               </p>
               <p>
                 <v-icon color="purple lighten-2" left>
                   {{ mdiShape }}
                 </v-icon>
-                Fait des catégories officiels (U12, U16, etc.) mais aussi des catégories personnalisées (loisir, confirmé, etc.)
+                Utilisez des catégories officielles (U12, U16, etc.) mais aussi des catégories personnalisées (loisir, confirmé, etc.)
               </p>
               <p>
                 <v-icon color="purple lighten-1" left>
                   {{ mdiFormatListNumbered }}
                 </v-icon>
-                Organisez votre contest en étape (qualif, demi, finale)
+                Organisez votre contest en étapes (qualif, demi, finale)
               </p>
               <p>
                 <v-icon color="purple" left>
                   {{ mdiCounter }}
                 </v-icon>
-                Choisissez parmi plus de 10 systèmes de compte de point pour classer vos participants
+                Choisissez parmi plus de 10 systèmes de décompte de points pour classer vos participants
               </p>
               <p>
                 <v-icon color="purple darken-1" left>
                   {{ mdiSetMerge }}
                 </v-icon>
-                Faite des combinés <cite>voie - bloc - vitesse</cite> mais aussi des combinés plus originaux
+                Faites des combinés <cite>voie - bloc - vitesse</cite> mais aussi des combinés plus originaux
               </p>
               <p>
                 <v-icon color="purple darken-2" left>
                   {{ mdiTrophy }}
                 </v-icon>
-                Liez tous vos contests annuel au sein d'un championnat
+                Liez tous vos contests annuels au sein d'un championnat
               </p>
               <p>
                 <v-icon color="purple darken-3" left>
                   {{ mdiCircleBoxOutline }}
                 </v-icon>
-                Affichez vos résultats en directe comme un pro !
+                Affichez vos résultats en direct comme un pro&nbsp;!
               </p>
               <p>
                 <v-icon color="purple darken-4" left>
                   {{ mdiDice5 }}
                 </v-icon>
-                Tirez au sort parmi vos participants et participantes pour une tombola clé en main !
+                Tirez au sort parmi vos participants et participantes pour une tombola clé en main&nbsp;!
               </p>
             </div>
           </div>
@@ -376,7 +371,7 @@
         >
           <div class="px-5">
             <h3 class="mb-3 presentation-box-title">
-              Nos reportings ne vous suffisent pas ? <span class="deep-purple--text text--accent-4">Utilisez notre API en toute liberté</span>
+              Nos reportings ne vous suffisent pas&nbsp;? <span class="deep-purple--text text--accent-4">Utilisez notre API en toute liberté</span>
             </h3>
             <p>
               Oblyk est entièrement conçu sur une API, l'application étant complètement décorrélée du serveur de données.<br>
@@ -419,7 +414,7 @@
         class="my-15"
       >
         <h3 class="text-center mb-4 presentation-box-title">
-          <span class="deep-purple--text text--accent-4">Ils/elles ont choisi Oblyk</span> pour gérer les ouvertures de voies dans leur salle !
+          <span class="deep-purple--text text--accent-4">Ils/elles ont choisi Oblyk</span> pour gérer les ouvertures de voies dans leur salle&nbsp;!
         </h3>
         <v-row v-if="loadingGyms">
           <v-col
@@ -504,8 +499,8 @@
         </p>
         <p class="font-weight-bold">
           Si les fonctionnalités ou les prix évoluent en votre défaveur le jour de la finalisation d'Oblyk Indoor,
-          nous vous offrirons une période de gratuité pour : <br>
-          <strong>1)</strong> vous remercier d'avoir essayé le système ;<br>
+          nous vous offrirons une période de gratuité pour&nbsp;: <br>
+          <strong>1)</strong> vous remercier d'avoir essayé le système&nbsp;;<br>
           <strong>2)</strong> vous laisser le temps de décider d'adhérer ou non à un plan payant si vous utilisiez des fonctionnalités payantes.
         </p>
       </v-sheet>
@@ -528,7 +523,7 @@
                 <v-icon left class="mt-n1" color="primary">
                   {{ mdiCheckBold }}
                 </v-icon>
-                Créer votre topo en 2D ou en 3D !
+                Créer votre topo en 2D ou en 3D&nbsp;!
               </p>
               <p class="mb-1">
                 <v-icon left class="mt-n1" color="primary">
@@ -546,7 +541,7 @@
             <div class="text-right pb-4 pr-6 mt-auto">
               <strong class="text-h4">0€</strong>
               <p class="mb-0">
-                <span class="text--disabled">alors lancez-vous !</span>
+                <span class="text--disabled">alors lancez-vous&nbsp;!</span>
               </p>
             </div>
           </v-card>
@@ -558,10 +553,10 @@
             class="full-height d-flex flex-column plan-box--full-package"
           >
             <v-card-title class="border-bottom">
-              Full Package !
+              Full Package&nbsp;!
             </v-card-title>
             <div class="pa-4 text-justify">
-              Débloquez tous les outils que peut vous proposer Oblyk : statistiques, impression d'étiquette, contest, et bien plus !
+              Débloquez tous les outils que peut vous proposer Oblyk&nbsp;: statistiques, impression d'étiquette, contest, et bien plus&nbsp;!
             </div>
             <div class="px-4 pb-4">
               <p class="mb-4">
@@ -619,7 +614,7 @@
 
       <v-sheet rounded class="mt-4 pa-4">
         <span class="vertical-align-middle">
-          <strong class="deep-purple--text text--accent-4">Vous êtes un club ?</strong> Bénéficiez d'un super tarif !
+          <strong class="deep-purple--text text--accent-4">Vous êtes un club&nbsp;?</strong> Bénéficiez d'un super tarif&nbsp;!
         </span>
         <v-chip color="with" class="ml-2">
           <v-switch
@@ -647,13 +642,13 @@
           color="deep-purple accent-4"
           to="/gyms/starter"
         >
-          Créer le topo de ma salle <span class="d-none d-lg-inline ml-1">maintenant</span> !
+          Créer le topo de ma salle <span class="d-none d-lg-inline ml-1">maintenant</span>&nbsp;!
         </v-btn>
       </div>
     </v-container>
-    <app-footer />
   </div>
 </template>
+
 
 <script>
 import {
