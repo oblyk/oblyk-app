@@ -110,6 +110,7 @@ export default {
     editComment: 'Éditer le commentaire',
     editInformation: 'Éditer les informations',
     reportProblem: 'Signaler un problème',
+    newSheet: 'Nouvelle fiche',
     addVideo: 'Ajouter une vidéo',
     editVideo: 'Éditer la vidéo',
     addPlaceOfSale: 'Ajouter un point de vente',
@@ -239,6 +240,8 @@ export default {
     goTo: 'Aller à %{name}',
     realFavorite: 'Coup de cœur',
     realFavoriteCount: 'Un coup de cœur | %{count} coups de cœur',
+    experimental: 'Expérimental',
+    archives: 'Archives',
     at: 'le',
     is: 'à',
     in: 'en',
@@ -288,6 +291,8 @@ export default {
     ongoing: 'En cours',
     past: 'Passé',
     inBrief: 'En bref',
+    createdOn: 'Créé le %{date}',
+    archivedOn: 'Archivé le %{date}',
     months: {
       '01': '01 - Janvier',
       '02': '02 - Février',
@@ -1354,6 +1359,15 @@ export default {
       explainJustification: 'Merci de remplir le formulaire ci-dessous en nous donnant des éléments qui nous permettraient de vérifier que vous êtes bien en droit de gérer cette salle.',
       requestIsSent: 'Nous avons bien enregistré votre demande !<br> Nous la traiterons le plus rapidement possible.'
     },
+    openingSheet: {
+      list: "Fiches d'ouvertures",
+      explain: "Les fiches d'ouvertures vous permettes de sélectionner un ou plusieurs secteurs de votre salle, et indiquer les ré-ouvertures à prévoir par vos ouvreurs et ouvreuses.",
+      noSheet: "Vous n'avez pas encore de fiches d'ouvertures.",
+      style: 'Style',
+      open: 'Actuelle',
+      toOpen: 'À ouvrir',
+      opened: 'Ouvert'
+    },
     gymSpace: {
       name: 'Espace',
       list: 'Les espaces',
@@ -1374,6 +1388,7 @@ export default {
       archived: 'Espaces archivés'
     },
     gymSector: {
+      name: 'Secteur',
       addNew: 'Créer un nouveau secteur',
       chooseSector: 'Choisissez un secteur',
       addNewExplain: "Un secteur est une petite division d'un espace, exemple : Grand devers droite, couloir 4, etc. C'est là que seront renseignées les lignes",

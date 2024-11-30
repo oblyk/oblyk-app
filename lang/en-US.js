@@ -110,6 +110,7 @@ export default {
     editComment: 'Edit comment',
     editInformation: 'Edit information',
     reportProblem: 'Report a problem',
+    newSheet: 'New sheet',
     addVideo: 'Add video',
     editVideo: 'Edit video',
     addPlaceOfSale: 'Add sale location',
@@ -239,6 +240,8 @@ export default {
     goTo: 'Go to %{name}',
     realFavorite: 'Real favorite',
     realFavoriteCount: 'One favourite | %{count} favourites',
+    experimental: 'Experimental',
+    archives: 'Archives',
     at: 'at',
     is: 'is',
     in: 'in',
@@ -288,6 +291,8 @@ export default {
     ongoing: 'Ongoing',
     past: 'Past',
     inBrief: 'In brief',
+    createdOn: 'Created on %{date}',
+    archivedOn: 'Archived on %{date}',
     months: {
       '01': '01 - January',
       '02': '02 - February',
@@ -1354,6 +1359,15 @@ export default {
       explainJustification: 'Please fill out the form below and give us some information that will allow us to verify that you are entitled to manage this climbing gym.',
       requestIsSent: 'We have registered your request !<br> We will process it as soon as possible.'
     },
+    openingSheet: {
+      list: 'Opening sheets',
+      explain: 'The opening sheets allow you to select one or more sectors of your climbing gym, and indicate the re-openings to be planned by your route setters.',
+      noSheet: "You don't have any opening sheets yet.",
+      style: 'Style',
+      open: 'Open',
+      toOpen: 'To open',
+      opened: 'Opened'
+    },
     gymSpace: {
       list: 'Spaces',
       name: 'Space',
@@ -1374,6 +1388,7 @@ export default {
       archived: 'Archived spaces'
     },
     gymSector: {
+      name: 'Sector',
       addNew: 'Create a new sector',
       chooseSector: 'Choose a sector',
       addNewExplain: 'A sector is a small division of a space, for example: The large slope, slabs, etc.. This is where the lines will be filled in.',
