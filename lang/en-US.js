@@ -2876,8 +2876,8 @@ export default {
       lead_climb: 'Lead climb',
       top_rope: 'Top rope',
       multi_pitch_leader: 'Lead (multi pitch)',
-      multi_pitch_second: 'Second (multi pitch)',
-      multi_pitch_alternate_lead: 'Alternate lead (multi pitch)'
+      multi_pitch_second: 'Second',
+      multi_pitch_alternate_lead: 'Alternate lead'
     },
     rankingSystem: {
       division: '1000 points divided by the number of ascents',

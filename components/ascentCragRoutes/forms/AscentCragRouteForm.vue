@@ -11,6 +11,8 @@
       <roping-status-input
         v-if="ropable()"
         v-model="data.roping_status"
+        :multi-pith-roping-statuses="multiPitchRopingStatus()"
+        :sport-climbing-roping-statuses="sportClimbingPitchRopingStatus()"
       />
 
       <!-- Released at -->
@@ -174,6 +176,16 @@ export default {
 
     ropable () {
       return this.isRopable(this.cragRoute.climbing_type)
+    },
+
+    multiPitchRopingStatus () {
+      if (this.isEditingForm()) { return true }
+      return this.ropable() && !['sport_climbing'].includes(this.cragRoute.climbing_type)
+    },
+
+    sportClimbingPitchRopingStatus () {
+      if (this.isEditingForm()) { return true }
+      return this.ropable() && !['multi_pitch'].includes(this.cragRoute.climbing_type)
     }
   }
 }

@@ -2875,9 +2875,9 @@ export default {
     ropingStatus: {
       lead_climb: 'Tête',
       top_rope: 'Moulinette',
-      multi_pitch_leader: 'Tête (grande voie)',
-      multi_pitch_second: 'Second (grande voie)',
-      multi_pitch_alternate_lead: 'Réversible (grande voie)'
+      multi_pitch_leader: 'Premier de cordée',
+      multi_pitch_second: 'Second',
+      multi_pitch_alternate_lead: 'Réversible'
     },
     rankingSystem: {
       division: "1000 points divisés par le nombre d'ascensions",
