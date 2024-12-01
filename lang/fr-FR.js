@@ -1069,7 +1069,7 @@ export default {
       addCragInArea: 'Ajouter un site',
       removeFromArea: 'Retirer le site',
       searchArea: 'Chercher un groupe de site',
-      explainNewTopo: "Si vous n'avez pas trouvé en cherchant, ou dans les groupes à proximité, vous pouvez ajouter un nouveau groupe :",
+      explainNewTopo: "Si vous n'avez pas trouvé en cherchant, ou dans les groupes à proximité, vous pouvez ajouter un nouveau groupe&nbsp;:",
       noAreaAround: 'Pas de groupe de sites trouvé à 50km au alentour',
       cragsMap: 'Carte des sites',
       tabs: {
@@ -1097,7 +1097,7 @@ export default {
     library: {
       title: "Topos d'escalade",
       intro: `Nous tenons à jour une base de données la plus exhaustive possible des topos d'escalade papiers de France et du monde.
-              Vous trouverez ici la liste de tout nos topos par année de parution ou par ordre alphabétique.
+              Vous trouverez ici la liste de tous nos topos par année de parution ou par ordre alphabétique.
               Vous serez sûrement aussi intéressé·e par notre page <a href="/guide-book-papers/find">"Trouver un topo"</a>
               qui vous permet de trouver les topos qui sont autour d'un lieu.`,
       orderBy: 'Trier par',
@@ -1610,7 +1610,7 @@ export default {
       localizationDeactivated: 'Localisation désactivée',
       localizationActivated: 'Localisation activée',
       activateLocalization: 'Activer la localisation',
-      activateLocalizationExplain: "Activer la localisation te permet d'avoir tout un panel de fonctionnalités pratiques (falaises aux alentours, infos local dans ton flux, centrer les cartes, recherche de partenaire, etc.)",
+      activateLocalizationExplain: "Activer la localisation te permet d'avoir tout un panel de fonctionnalités pratiques (falaises aux alentours, infos locales dans ton flux, centrer les cartes, recherche de partenaire, etc.)",
       youControlYourLocation: "Tu peux activer ou désactiver la localisation à tout moment via l'icône ",
       youControlYourLocationInAppDrawer: "dans le menu d'Oblyk",
       uploadBanner: "<strong>TIPS !</strong> Upload un bandeau pour personnaliser l'entête de cette page.",
@@ -2882,9 +2882,9 @@ export default {
       point_by_grade: 'Point par cotation'
     },
     rankingSystemExplain: {
-      division: 'Chaque voie ou bloc vaut 1000 points, plus les grimpeurs et grimpeuses font le bloc/voie moins il vaut de point.',
+      division: 'Chaque voie ou bloc vaut 1000 points, plus les grimpeurs et grimpeuses font le bloc/voie moins il vaut de points.',
       fixed_points: 'Pour chaque voie ou bloc vous attribuez un nombre de point fixe.',
-      point_by_grade: 'Chaque cotation (4a, 6a, etc.) à un nombre de points donné par sa difficulté.<br>Voir la documentation : <a href="https://oblyk.github.io/app-user-doc/docs/indoor/systeme-de-classement" target="_blank">Point par cotation</a>'
+      point_by_grade: 'Chaque cotation (4a, 6a, etc.) a un nombre de points donné par sa difficulté.<br>Voir la documentation : <a href="https://oblyk.github.io/app-user-doc/docs/indoor/systeme-de-classement" target="_blank">Point par cotation</a>'
     },
     grade: {
       none: 'Pas de cotation',
@@ -2895,7 +2895,7 @@ export default {
     },
     hardnessStatus: {
       easy_for_the_grade: '😎 Facile pour la cotation',
-      this_grade_is_accurate: '👌 Juste, bien côté',
+      this_grade_is_accurate: '👌 Juste, bien coté',
       sandbagged: '🥵 Dur pour la cotation !'
     },
     note: {
