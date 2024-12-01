@@ -2902,13 +2902,14 @@ export default {
       sandbagged: '🥵 Dur pour la cotation !'
     },
     note: {
-      terrible: '0/6 - Horrible !',
-      ugly: '1/6 - Moche',
-      not_outstanding: '2/6 - Bof',
-      decent: '3/6 - Normal',
-      nice: '4/6 - Beau',
-      very_nice: '5/6 - Très beau',
-      classic: '6/6 - Majeur !'
+      no_note: 'Pas de note',
+      terrible: 'Horrible !',
+      ugly: 'Moche',
+      not_outstanding: 'Bof',
+      decent: 'Normal',
+      nice: 'Beau',
+      very_nice: 'Très beau',
+      classic: 'Majeur !'
     },
     approachType: {
       steep_descent: 'Descente raide',

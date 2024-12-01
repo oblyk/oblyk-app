@@ -2902,13 +2902,13 @@ export default {
       sandbagged: '🥵 Sandbagged !'
     },
     note: {
-      terrible: '0/6 - Terrible!',
-      ugly: '1/6 - Ugly',
-      not_outstanding: '2/6 - Not outstanding',
-      decent: '3/6 - Decent',
-      nice: '4/6 - Nice',
-      very_nice: '5/6 - Very nice',
-      classic: '6/6 - Classic!'
+      terrible: 'Terrible!',
+      ugly: 'Ugly',
+      not_outstanding: 'Not outstanding',
+      decent: 'Decent',
+      nice: 'Nice',
+      very_nice: 'Very nice',
+      classic: 'Classic!'
     },
     approachType: {
       steep_descent: 'Steep descent',
