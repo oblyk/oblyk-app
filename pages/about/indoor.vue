@@ -646,9 +646,9 @@
         </v-btn>
       </div>
     </v-container>
+    <app-footer />
   </div>
 </template>
-
 
 <script>
 import {
