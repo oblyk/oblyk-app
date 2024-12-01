@@ -1,52 +1,35 @@
 <template>
-  <v-select
-    ref="ascentStatusInput"
-    v-model="ascentStatus"
-    v-disabled-icon-focus
-    :items="ascentStatuses"
-    item-text="text"
-    item-value="value"
-    class="required-field"
-    :label="$t('components.input.ascentStatus')"
-    outlined
-    @change="onChange"
-    @focus="onFocus"
-  >
-    <template #selection="data">
-      <v-chip
-        v-bind="data.attrs"
-        :input-value="data.selected"
-      >
-        <v-icon
-          color="amber darken-1"
-          left
-          small
+  <v-input class="required-field">
+    <fieldset class="full-width custom-fieldset border rounded mt-n1 pb-0 px-2">
+      <legend class="v-label custom-fieldset-label">
+        {{ $t('components.input.ascentStatus') }}
+      </legend>
+      <div>
+        <v-chip-group
+          v-model="ascentStatus"
+          active-class="primary--text"
+          column
+          @change="onChange"
         >
-          {{ data.item.icon }}
-        </v-icon>
-        {{ data.item.text }}
-      </v-chip>
-    </template>
-    <template #item="data">
-      <template v-if="typeof data.item !== 'object'">
-        <v-list-item-content v-text="data.item" />
-      </template>
-      <template v-else>
-        <v-list-item-content>
-          <v-list-item-title>
+          <v-chip
+            v-for="(item, itemIndex) in ascentStatuses"
+            :key="`item-index-${itemIndex}`"
+            :value="item.value"
+            outlined
+          >
             <v-icon
-              left
+              :color="ascentStatus === item.value ? 'green' : null"
               small
-              color="amber darken-1"
+              left
             >
-              {{ data.item.icon }}
+              {{ item.icon }}
             </v-icon>
-            {{ data.item.text }}
-          </v-list-item-title>
-        </v-list-item-content>
-      </template>
-    </template>
-  </v-select>
+            {{ item.text }}
+          </v-chip>
+        </v-chip-group>
+      </div>
+    </fieldset>
+  </v-input>
 </template>
 
 <script>
@@ -81,15 +64,15 @@ export default {
     ascentStatuses () {
       const statuses = []
       if (this.withProject) {
-        statuses.push({ text: this.$t('models.ascentStatus.project'), value: 'project', icon: mdiCropSquare })
+        statuses.push({ text: this.$t('models.ascentStatus.project'), value: 'project', icon: mdiCropSquare, color: 'pink lighten-3' })
       }
       if (this.withSent) {
-        statuses.push({ text: this.$t('models.ascentStatus.sent'), value: 'sent', icon: mdiCheckboxMarkedCircle })
+        statuses.push({ text: this.$t('models.ascentStatus.sent'), value: 'sent', icon: mdiCheckboxMarkedCircle, color: 'green' })
       }
-      statuses.push({ text: this.$t('models.ascentStatus.red_point'), value: 'red_point', icon: mdiRecordCircle })
-      statuses.push({ text: this.$t('models.ascentStatus.flash'), value: 'flash', icon: mdiFlash })
-      statuses.push({ text: this.$t('models.ascentStatus.onsight'), value: 'onsight', icon: mdiEye })
-      statuses.push({ text: this.$t('models.ascentStatus.repetition'), value: 'repetition', icon: mdiAutorenew })
+      statuses.push({ text: this.$t('models.ascentStatus.red_point'), value: 'red_point', icon: mdiRecordCircle, color: 'red darken-4' })
+      statuses.push({ text: this.$t('models.ascentStatus.flash'), value: 'flash', icon: mdiFlash, color: 'light-blue accent-4' })
+      statuses.push({ text: this.$t('models.ascentStatus.onsight'), value: 'onsight', icon: mdiEye, color: 'amber darken-1' })
+      statuses.push({ text: this.$t('models.ascentStatus.repetition'), value: 'repetition', icon: mdiAutorenew, color: 'blue-grey darken-3' })
       return statuses
     }
   },
@@ -97,10 +80,6 @@ export default {
   methods: {
     onChange () {
       this.$emit('input', this.ascentStatus)
-    },
-
-    onFocus () {
-      this.$refs.ascentStatusInput.isMenuActive = true
     }
   }
 }

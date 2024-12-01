@@ -2,7 +2,10 @@
   <div>
     <v-form @submit.prevent="submit()">
       <!-- Ascent status -->
-      <ascent-status-input v-model="data.ascent_status" />
+      <ascent-status-input
+        v-model="data.ascent_status"
+        :with-sent="isEditingForm()"
+      />
 
       <!-- Roping mode (lead, etc.) -->
       <roping-status-input
@@ -129,17 +132,17 @@ export default {
   data () {
     return {
       data: {
-        id: (this.ascentCragRoute || {}).id,
-        ascent_status: (this.ascentCragRoute || {}).ascent_status,
-        roping_status: (this.ascentCragRoute || {}).roping_status || 'lead_climb',
-        attempt: (this.ascentCragRoute || {}).attempt,
-        released_at: (this.ascentCragRoute || {}).released_at || this.ISODateToday(),
-        note: (this.ascentCragRoute || {}).note,
-        hardness_status: (this.ascentCragRoute || {}).hardness_status,
-        comment: (this.ascentCragRoute || {}).comment,
-        private_comment: (this.ascentCragRoute || {}).private_comment || false,
-        selected_sections: (this.ascentCragRoute || {}).sections_done || this.cragRoute.sections.map((section, index) => index),
-        crag_route_id: (this.ascentCragRoute || {}).crag_route_id || this.cragRoute.id
+        id: this.ascentCragRoute?.id,
+        ascent_status: this.ascentCragRoute?.ascent_status || 'red_point',
+        roping_status: this.ascentCragRoute?.roping_status || 'lead_climb',
+        attempt: this.ascentCragRoute?.attempt,
+        released_at: this.ascentCragRoute?.released_at || this.ISODateToday(),
+        note: this.ascentCragRoute?.note,
+        hardness_status: this.ascentCragRoute?.hardness_status,
+        comment: this.ascentCragRoute?.comment,
+        private_comment: this.ascentCragRoute?.private_comment || false,
+        selected_sections: this.ascentCragRoute?.sections_done || this.cragRoute.sections.map((section, index) => index),
+        crag_route_id: this.ascentCragRoute?.crag_route_id || this.cragRoute.id
       },
 
       mdiCalendar,
