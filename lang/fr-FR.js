@@ -1064,7 +1064,7 @@ export default {
       addCragInArea: 'Ajouter un site',
       removeFromArea: 'Retirer le site',
       searchArea: 'Chercher un groupe de site',
-      explainNewTopo: "Si vous n'avez pas trouvé en cherchant, ou dans les groupes à proximit��, vous pouvez ajouter un nouveau groupe :",
+      explainNewTopo: "Si vous n'avez pas trouvé en cherchant, ou dans les groupes à proximité, vous pouvez ajouter un nouveau groupe&nbsp;:",
       noAreaAround: 'Pas de groupe de sites trouvé à 50km au alentour',
       cragsMap: 'Carte des sites',
       tabs: {
