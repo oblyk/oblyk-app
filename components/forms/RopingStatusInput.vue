@@ -2,7 +2,7 @@
   <v-input class="required-field">
     <fieldset class="full-width custom-fieldset border rounded mt-n1 pb-0 px-2">
       <legend class="v-label custom-fieldset-label">
-        {{ $t('components.input.ropingStatus') }}
+        {{ $t('components.input.ropingStatusQuestion') }}
       </legend>
       <div>
         <v-chip-group

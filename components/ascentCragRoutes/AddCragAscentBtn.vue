@@ -13,12 +13,7 @@
         <v-icon left>
           {{ mdiPlusBoxOutline }}
         </v-icon>
-        <span v-if="isRepetition">
-          {{ $t('actions.addRepetition') }}
-        </span>
-        <span v-else>
-          {{ $t('actions.addInMyLogbook') }}
-        </span>
+        {{ isRepetition ? $t('actions.addRepetition') : $t('actions.addInMyLogbook') }}
       </v-btn>
     </template>
 
@@ -30,6 +25,7 @@
         <ascent-crag-route-form
           :crag-route="cragRoute"
           submit-methode="post"
+          :repetition="isRepetition"
           :callback="successCallback"
         />
       </v-card-text>

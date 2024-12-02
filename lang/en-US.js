@@ -26,6 +26,7 @@ export default {
     like: 'Like',
     reply: 'Reply',
     export: 'Export',
+    hide: 'Hide',
     selectOrUnselect: 'select / unselect',
     search: 'Search',
     addFilters: 'Add filters',
@@ -242,6 +243,7 @@ export default {
     realFavoriteCount: 'One favourite | %{count} favourites',
     experimental: 'Experimental',
     archives: 'Archives',
+    whatIsIt: 'What is it ?',
     at: 'at',
     is: 'is',
     in: 'in',
@@ -639,9 +641,10 @@ export default {
       receptionType: 'Reception type',
       startType: 'Start type',
       inclineType: 'Incline',
-      ascentStatus: 'Ascent status',
+      ascentStatus: 'I made the line ...',
       ropingStatus: 'Roping status',
-      hardnessStatus: 'Difficulty appreciation',
+      ropingStatusQuestion: "I've climbed on ...",
+      hardnessStatus: 'For the grade it was ...',
       howFindDifficulty: 'How did you find the difficulty?',
       note: 'Note',
       dateOfBirth: 'Date of birth',
@@ -2872,6 +2875,15 @@ export default {
       repetition: 'Repetition',
       tick_list: 'Tick list'
     },
+    ascentStatusExplain: {
+      project: "you haven't passed the route/boulder yet, but you intend to!",
+      sent: 'you had already tried the route/boulder before successfully making it to the top without a break.',
+      red_point: 'you had already tried the route/boulder before successfully making it to the top without a break.',
+      flash: "you passed the route/boulder on the first try! But you've seen someone climb it, or you've been given methods or tips to succeed.",
+      onsight: "you passed the route/boulder on the first try! And what's more, you didn't know the moves, the holds, nothing! It was a real discovery.",
+      repetition: "you'd already done the route/boulder before.",
+      tick_list: 'to try later'
+    },
     ropingStatus: {
       lead_climb: 'Lead climb',
       top_rope: 'Top rope',
@@ -2899,6 +2911,11 @@ export default {
     hardnessStatus: {
       easy_for_the_grade: '😎 Easy for the grade',
       this_grade_is_accurate: '👌 The grade is accurate',
+      sandbagged: '🥵 Sandbagged !'
+    },
+    hardnessStatusShort: {
+      easy_for_the_grade: '😎 Easy',
+      this_grade_is_accurate: '👌 accurate',
       sandbagged: '🥵 Sandbagged !'
     },
     note: {
