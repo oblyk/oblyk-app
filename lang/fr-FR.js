@@ -26,6 +26,7 @@ export default {
     like: 'Aimer',
     reply: 'Répondre',
     export: 'Exporter',
+    hide: 'Cacher',
     selectOrUnselect: 'sélectionner / désélectionner',
     search: 'Chercher',
     addFilters: 'Ajouter des filtres',
@@ -242,6 +243,7 @@ export default {
     realFavoriteCount: 'Un coup de cœur | %{count} coups de cœur',
     experimental: 'Expérimental',
     archives: 'Archives',
+    whatIsIt: "Qu'est ce que c'est ?",
     at: 'le',
     is: 'à',
     in: 'en',
@@ -639,9 +641,10 @@ export default {
       receptionType: 'Type de réception',
       startType: 'Type de départ',
       inclineType: 'Inclinaison',
-      ascentStatus: "Statut de l'ascension",
+      ascentStatus: "J'ai fait la ligne ...",
       ropingStatus: 'Mode',
-      hardnessStatus: 'Appréciation de la difficulté',
+      ropingStatusQuestion: "J'ai grimpé en ...",
+      hardnessStatus: "Pour la cotation c'était ...",
       howFindDifficulty: 'Comment avez-vous trouvé la difficulté ?',
       note: 'Note',
       dateOfBirth: 'Date de naissance',
@@ -2869,6 +2872,15 @@ export default {
       repetition: 'Répétition',
       tick_list: 'Tick list'
     },
+    ascentStatusExplain: {
+      project: "vous n'avez pas encore réussi la voie/bloc, mais vous comptez bien le/la faire !",
+      sent: "vous aviez déjà essayé le bloc/voie avant de réussir à l'enchainer sans pause.",
+      red_point: "vous aviez déjà essayé le bloc/voie avant de réussir à l'enchainer sans pause.",
+      flash: "vous avez réussi le bloc/voie du premier coup ! Mais vous avez vu quelqu'un grimper dedans avant, ou on vous a donné des méthodes, un tips pour réussir.",
+      onsight: "vous avez réussi le bloc/voie du premier coup ! Et en plus vous ne connaissiez pas les mouvements, les prises, rien ! C'était la découverte totale.",
+      repetition: 'vous aviez déjà enchainé la voie/bloc avant.',
+      tick_list: 'à essayer plus tard'
+    },
     ropingStatus: {
       lead_climb: 'Tête',
       top_rope: 'Moulinette',
@@ -2897,6 +2909,11 @@ export default {
       easy_for_the_grade: '😎 Facile pour la cotation',
       this_grade_is_accurate: '👌 Juste, bien coté',
       sandbagged: '🥵 Dur pour la cotation !'
+    },
+    hardnessStatusShort: {
+      easy_for_the_grade: '😎 Facile',
+      this_grade_is_accurate: '👌 Juste',
+      sandbagged: '🥵 Dur !'
     },
     note: {
       no_note: 'Pas de note',

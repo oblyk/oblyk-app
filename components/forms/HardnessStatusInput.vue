@@ -1,18 +1,28 @@
 <template>
-  <v-select
-    ref="hardnessStatusInput"
-    v-model="hardnessStatus"
-    v-disabled-icon-focus
-    :items="hardnessStatuses"
-    item-text="text"
-    item-value="value"
-    :label="$t(labelKey)"
-    outlined
-    :prepend-inner-icon="mdiScaleBalance"
-    clearable
-    @change="onChange"
-    @focus="onFocus"
-  />
+  <v-input>
+    <fieldset class="full-width custom-fieldset border rounded mt-n1 pb-0 px-2">
+      <legend class="v-label custom-fieldset-label">
+        {{ $t(labelKey) }}
+      </legend>
+      <div>
+        <v-chip-group
+          v-model="hardnessStatus"
+          active-class="primary--text"
+          column
+          @change="onChange"
+        >
+          <v-chip
+            v-for="(item, itemIndex) in hardnessStatuses"
+            :key="`item-index-${itemIndex}`"
+            :value="item.value"
+            outlined
+          >
+            {{ item.text }}
+          </v-chip>
+        </v-chip-group>
+      </div>
+    </fieldset>
+  </v-input>
 </template>
 
 <script>
@@ -23,7 +33,10 @@ export default {
   name: 'HardnessStatusInput',
   mixins: [InputHelpers],
   props: {
-    value: String,
+    value: {
+      type: String,
+      default: null
+    },
     labelKey: {
       type: String,
       default: 'components.input.hardnessStatus'
@@ -33,9 +46,9 @@ export default {
   data () {
     return {
       hardnessStatuses: [
-        { text: this.$t('models.hardnessStatus.easy_for_the_grade'), value: 'easy_for_the_grade' },
-        { text: this.$t('models.hardnessStatus.this_grade_is_accurate'), value: 'this_grade_is_accurate' },
-        { text: this.$t('models.hardnessStatus.sandbagged'), value: 'sandbagged' }
+        { text: this.$t('models.hardnessStatusShort.easy_for_the_grade'), value: 'easy_for_the_grade' },
+        { text: this.$t('models.hardnessStatusShort.this_grade_is_accurate'), value: 'this_grade_is_accurate' },
+        { text: this.$t('models.hardnessStatusShort.sandbagged'), value: 'sandbagged' }
       ],
       hardnessStatus: this.value,
 

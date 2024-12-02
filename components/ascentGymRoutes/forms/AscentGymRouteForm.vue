@@ -4,6 +4,7 @@
     <ascent-status-input
       v-model="data.ascent_status"
       :with-sent="isEditingForm()"
+      :with-repetition="repetition"
     />
 
     <!-- Released at -->
@@ -37,7 +38,6 @@
     <hardness-status-input
       v-if="gymRoute.sections.length === 1"
       v-model="data.hardness_status"
-      label-key="components.input.howFindDifficulty"
     />
 
     <v-textarea
@@ -137,6 +137,10 @@ export default {
     defaultAscentStatus: {
       type: String,
       default: 'red_point'
+    },
+    repetition: {
+      type: Boolean,
+      default: false
     }
   },
 
