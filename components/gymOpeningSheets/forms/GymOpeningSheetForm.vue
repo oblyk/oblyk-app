@@ -24,12 +24,28 @@
     />
 
     <div class="border rounded pt-3 px-3 mb-4">
-      <p class="mb-1">
-        Sélectionnez les secteurs pour votre fiche :
-      </p>
+      <div class="mb-1 d-flex">
+        <div>
+          Sélectionnez les secteurs pour votre fiche :
+        </div>
+        <div class="ml-auto">
+          <v-btn-toggle v-model="sectorSort">
+            <v-btn small value="name">
+              <v-icon>
+                {{ mdiSortAlphabeticalAscending }}
+              </v-icon>
+            </v-btn>
+            <v-btn small value="date">
+              <v-icon>
+                {{ mdiSortCalendarAscending }}
+              </v-icon>
+            </v-btn>
+          </v-btn-toggle>
+        </div>
+      </div>
       <v-treeview
         v-model="data.gym_sector_ids"
-        :items="treeRoutes"
+        :items="sortTreeRoutes"
         selectable
         open-on-click
         hoverable
@@ -56,6 +72,7 @@
 </template>
 
 <script>
+import { mdiSortCalendarAscending, mdiSortAlphabeticalAscending } from '@mdi/js'
 import { FormHelpers } from '@/mixins/FormHelpers'
 import GymOpeningSheetApi from '~/services/oblyk-api/GymOpeningSheetApi'
 import SubmitForm from '@/components/forms/SubmitForm'
@@ -90,6 +107,7 @@ export default {
 
   data () {
     return {
+      sectorSort: 'name',
       data: {
         id: this.gymOpeningSheet?.id,
         title: this.gymOpeningSheet?.title,
@@ -98,7 +116,25 @@ export default {
         gym_id: this.gym.id,
         gym_space_id: null,
         gym_sector_ids: []
+      },
+
+      mdiSortCalendarAscending,
+      mdiSortAlphabeticalAscending
+    }
+  },
+
+  computed: {
+    sortTreeRoutes () {
+      if (this.sectorSort === 'name') {
+        for (const child of this.treeRoutes) {
+          child.children.sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0))
+        }
+      } else if (this.sectorSort === 'date') {
+        for (const child of this.treeRoutes) {
+          child.children.sort((a, b) => (a.last_opening_date > b.last_opening_date) ? 1 : ((b.last_opening_date > a.last_opening_date) ? -1 : 0))
+        }
       }
+      return this.treeRoutes
     }
   },
 

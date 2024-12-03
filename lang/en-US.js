@@ -26,6 +26,7 @@ export default {
     like: 'Like',
     reply: 'Reply',
     export: 'Export',
+    hide: 'Hide',
     selectOrUnselect: 'select / unselect',
     search: 'Search',
     addFilters: 'Add filters',
@@ -110,6 +111,7 @@ export default {
     editComment: 'Edit comment',
     editInformation: 'Edit information',
     reportProblem: 'Report a problem',
+    newSheet: 'New sheet',
     addVideo: 'Add video',
     editVideo: 'Edit video',
     addPlaceOfSale: 'Add sale location',
@@ -239,6 +241,9 @@ export default {
     goTo: 'Go to %{name}',
     realFavorite: 'Real favorite',
     realFavoriteCount: 'One favourite | %{count} favourites',
+    experimental: 'Experimental',
+    archives: 'Archives',
+    whatIsIt: 'What is it ?',
     at: 'at',
     is: 'is',
     in: 'in',
@@ -288,6 +293,8 @@ export default {
     ongoing: 'Ongoing',
     past: 'Past',
     inBrief: 'In brief',
+    createdOn: 'Created on %{date}',
+    archivedOn: 'Archived on %{date}',
     months: {
       '01': '01 - January',
       '02': '02 - February',
@@ -634,9 +641,10 @@ export default {
       receptionType: 'Reception type',
       startType: 'Start type',
       inclineType: 'Incline',
-      ascentStatus: 'Ascent status',
+      ascentStatus: 'I made the line ...',
       ropingStatus: 'Roping status',
-      hardnessStatus: 'Difficulty appreciation',
+      ropingStatusQuestion: "I've climbed on ...",
+      hardnessStatus: 'For the grade it was ...',
       howFindDifficulty: 'How did you find the difficulty?',
       note: 'Note',
       dateOfBirth: 'Date of birth',
@@ -1354,6 +1362,15 @@ export default {
       explainJustification: 'Please fill out the form below and give us some information that will allow us to verify that you are entitled to manage this climbing gym.',
       requestIsSent: 'We have registered your request !<br> We will process it as soon as possible.'
     },
+    openingSheet: {
+      list: 'Opening sheets',
+      explain: 'The opening sheets allow you to select one or more sectors of your climbing gym, and indicate the re-openings to be planned by your route setters.',
+      noSheet: "You don't have any opening sheets yet.",
+      style: 'Style',
+      open: 'Open',
+      toOpen: 'To open',
+      opened: 'Opened'
+    },
     gymSpace: {
       list: 'Spaces',
       name: 'Space',
@@ -1374,6 +1391,7 @@ export default {
       archived: 'Archived spaces'
     },
     gymSector: {
+      name: 'Sector',
       addNew: 'Create a new sector',
       chooseSector: 'Choose a sector',
       addNewExplain: 'A sector is a small division of a space, for example: The large slope, slabs, etc.. This is where the lines will be filled in.',
@@ -2854,12 +2872,21 @@ export default {
       repetition: 'Repetition',
       tick_list: 'Tick list'
     },
+    ascentStatusExplain: {
+      project: "you haven't passed the route/boulder yet, but you intend to!",
+      sent: 'you had already tried the route/boulder before successfully making it to the top without a break.',
+      red_point: 'you had already tried the route/boulder before successfully making it to the top without a break.',
+      flash: "you passed the route/boulder on the first try! But you've seen someone climb it, or you've been given methods or tips to succeed.",
+      onsight: "you passed the route/boulder on the first try! And what's more, you didn't know the moves, the holds, nothing! It was a real discovery.",
+      repetition: "you'd already done the route/boulder before.",
+      tick_list: 'to try later'
+    },
     ropingStatus: {
       lead_climb: 'Lead climb',
       top_rope: 'Top rope',
       multi_pitch_leader: 'Lead (multi pitch)',
-      multi_pitch_second: 'Second (multi pitch)',
-      multi_pitch_alternate_lead: 'Alternate lead (multi pitch)'
+      multi_pitch_second: 'Second',
+      multi_pitch_alternate_lead: 'Alternate lead'
     },
     rankingSystem: {
       division: '1000 points divided by the number of ascents',
@@ -2883,14 +2910,19 @@ export default {
       this_grade_is_accurate: '👌 The grade is accurate',
       sandbagged: '🥵 Sandbagged !'
     },
+    hardnessStatusShort: {
+      easy_for_the_grade: '😎 Easy',
+      this_grade_is_accurate: '👌 accurate',
+      sandbagged: '🥵 Sandbagged !'
+    },
     note: {
-      terrible: '0/6 - Terrible!',
-      ugly: '1/6 - Ugly',
-      not_outstanding: '2/6 - Not outstanding',
-      decent: '3/6 - Decent',
-      nice: '4/6 - Nice',
-      very_nice: '5/6 - Very nice',
-      classic: '6/6 - Classic!'
+      terrible: 'Terrible!',
+      ugly: 'Ugly',
+      not_outstanding: 'Not outstanding',
+      decent: 'Decent',
+      nice: 'Nice',
+      very_nice: 'Very nice',
+      classic: 'Classic!'
     },
     approachType: {
       steep_descent: 'Steep descent',

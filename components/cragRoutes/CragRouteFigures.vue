@@ -22,14 +22,14 @@
       class="levels levels-color"
     >
       <div
-        v-for="(count, level) in figures.levels"
-        :key="level"
-        :class="`level-${level}`"
+        v-for="(count, levelIndex) in figures.levels"
+        :key="`level-index-${levelIndex}`"
+        :class="`level-${levelIndex}`"
         :style="`width: ${count / figures.section_count * 100}%`"
-        :title="`${level} : ${count} `"
-        @click="gradeFilter(level)"
+        :title="`${levelIndex} : ${count} `"
+        @click="gradeFilter(levelIndex)"
       >
-        {{ level }}
+        {{ levelIndex }}
       </div>
     </div>
     <div v-if="level !== null">

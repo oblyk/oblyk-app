@@ -27,7 +27,10 @@
           v-if="showCategoryNameTips"
           class="mt-2"
         >
-          <strong>Astuce :</strong> Vous avez qu'une catégorie ? Appelez la : <v-chip outlined @click="data.name = 'Toutes catégories'">Toutes catégories</v-chip>
+          <strong>Astuce :</strong> Vous avez qu'une catégorie ? Appelez la :
+          <v-chip outlined @click="data.name = 'Toutes catégories'">
+            Toutes catégories
+          </v-chip>
         </p>
       </v-col>
     </v-row>

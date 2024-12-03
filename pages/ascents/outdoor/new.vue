@@ -76,7 +76,16 @@
         <v-row align="center">
           <v-col class="grow">
             <u>{{ $t('components.crag.type') }} :</u><br>
-            <strong>{{ crag.name }}</strong>, {{ crag.city }}, {{ crag.region }} ({{ crag.country }})
+            <v-btn
+              link
+              outlined
+              color="primary"
+              small
+              :to="crag.path"
+            >
+              {{ crag.name }}
+            </v-btn>
+            {{ crag.city }}, {{ crag.region }} ({{ crag.country }})
           </v-col>
           <v-col class="shrink">
             <v-btn
@@ -132,8 +141,15 @@
           <v-row align="center">
             <v-col class="grow">
               <u>{{ $t('models.ascentCragRoute.crag_route_id') }} :</u><br>
-              <strong>{{ cragRoute.name }}</strong>
-              {{ cragRoute.grade_to_s }}
+              <v-btn
+                outlined
+                color="primary"
+                small
+                @click="openRouteInDrawer(cragRoute)"
+              >
+                {{ cragRoute.grade_to_s }},
+                {{ cragRoute.name }}
+              </v-btn>
               {{ $t(`models.climbs.${cragRoute.climbing_type}`) }}
             </v-col>
             <v-col class="shrink">
@@ -228,6 +244,10 @@
         </div>
       </div>
     </div>
+
+    <client-only>
+      <crag-route-drawer />
+    </client-only>
   </v-container>
 </template>
 
@@ -242,18 +262,20 @@ import {
   mdiBookOutline,
   mdiArrowLeft
 } from '@mdi/js'
-import CragSearchForm from '~/components/crags/forms/CragSearchForm.vue'
+import CragSearchForm from '~/components/crags/forms/CragSearchForm'
 import CragApi from '~/services/oblyk-api/CragApi'
 import Crag from '~/models/Crag'
 import CragRouteApi from '~/services/oblyk-api/CragRouteApi'
 import CragRoute from '~/models/CragRoute'
-import AscentCragRouteForm from '~/components/ascentCragRoutes/forms/AscentCragRouteForm.vue'
-import CragRoutes from '~/components/cragRoutes/CragRoutes.vue'
-import MyFollowedCrags from '~/components/users/MyFollowedCrags.vue'
+import AscentCragRouteForm from '~/components/ascentCragRoutes/forms/AscentCragRouteForm'
+import CragRoutes from '~/components/cragRoutes/CragRoutes'
+import MyFollowedCrags from '~/components/users/MyFollowedCrags'
+import CragRouteDrawer from '~/components/cragRoutes/CragRouteDrawer'
 
 export default {
   meta: { orphanRoute: true },
   components: {
+    CragRouteDrawer,
     MyFollowedCrags,
     CragRoutes,
     AscentCragRouteForm,
@@ -386,6 +408,10 @@ export default {
 
     ascentAdded () {
       this.successAdded = true
+    },
+
+    openRouteInDrawer (cragRoute) {
+      this.$root.$emit('getCragRouteInDrawer', cragRoute.crag.id, cragRoute.id)
     }
   }
 }

@@ -6,12 +6,6 @@
     <spinner v-if="!gym" />
     <div v-else>
       <v-breadcrumbs :items="breadcrumbs" />
-      <v-sheet class="beta-background white--text font-weight-bold rounded pa-3 mb-2">
-        <v-icon left color="white">
-          {{ mdiFlask }}
-        </v-icon>
-        Fonction en cours de développement
-      </v-sheet>
       <div v-if="!loadingSheet">
         <v-sheet class="rounded pa-4 mb-2">
           <h1
@@ -49,7 +43,7 @@
               v-else
               class="text--disabled hover-border py-1 rounded-sm"
             >
-              ajouter une note
+              {{ $t('actions.addNote') }}
             </cite>
           </div>
           <v-textarea
@@ -60,13 +54,13 @@
             @blur="updateMain"
           />
           <p class="text--disabled mt-2 mb-0">
-            Fiche créée le {{ humanizeDate(sheet.history.created_at) }}
+            {{ $t('common.createdOn', { date: humanizeDate(sheet.history.created_at) }) }}
           </p>
           <p
             v-if="sheet.archived_at"
             class="text--disabled mt-0 mb-0"
           >
-            Fiche archivée le {{ humanizeDate(sheet.archived_at) }}
+            {{ $t('common.archivedOn', { date: humanizeDate(sheet.archived_at) }) }}
           </p>
           <div class="text-right">
             <v-menu offset-y>
@@ -89,7 +83,7 @@
                     <v-icon>{{ mdiArchive }}</v-icon>
                   </v-list-item-icon>
                   <v-list-item-title class="red--text">
-                    {{ sheet.archived_at ? $t('actions.unArchive') : $t('actions.archive')  }}
+                    {{ sheet.archived_at ? $t('actions.unArchive') : $t('actions.archive') }}
                   </v-list-item-title>
                 </v-list-item>
                 <v-list-item @click="deleteSheet()">
@@ -143,7 +137,7 @@
           </v-sheet>
 
           <v-sheet class="rounded mb-2 py-1 px-2">
-            Style :
+            {{ $t('components.openingSheet.style') }} :
             <v-btn
               v-for="(style, styleIndex) in styles"
               :key="`style-index-${styleIndex}`"
@@ -256,7 +250,6 @@
 
 <script>
 import {
-  mdiFlask,
   mdiCircle,
   mdiCircleOffOutline,
   mdiFormatColorFill,
@@ -298,7 +291,6 @@ export default {
         description: null
       },
 
-      mdiFlask,
       mdiCircle,
       mdiCircleOffOutline,
       mdiFormatColorFill,
@@ -342,15 +334,15 @@ export default {
     headers () {
       const headers = {
         top: [{ label: '', colspan: 1 }],
-        bottom: [{ label: 'Secteur', colspan: 1, borderLeft: false }]
+        bottom: [{ label: this.$t('components.gymSector.name'), colspan: 1, borderLeft: false }]
       }
       for (let i = 0; i < this.sheet.number_of_columns; i++) {
         headers.top.push({ label: `Voie ${i + 1}`, colspan: 3, borderLeft: true })
       }
       for (let i = 0; i < this.sheet.number_of_columns; i++) {
-        headers.bottom.push({ label: 'Actuelle', colspan: 1, borderLeft: true })
-        headers.bottom.push({ label: 'À ouvrir', colspan: 1, borderLeft: false })
-        headers.bottom.push({ label: 'Ouvert', colspan: 1, borderLeft: false })
+        headers.bottom.push({ label: this.$t('components.openingSheet.open'), colspan: 1, borderLeft: true })
+        headers.bottom.push({ label: this.$t('components.openingSheet.toOpen'), colspan: 1, borderLeft: false })
+        headers.bottom.push({ label: this.$t('components.openingSheet.opened'), colspan: 1, borderLeft: false })
       }
       return headers
     },

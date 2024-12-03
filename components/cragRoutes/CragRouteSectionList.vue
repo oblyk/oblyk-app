@@ -15,13 +15,17 @@
     </div>
   </v-list>
 </template>
+
 <script>
 import CragRouteSectionItemList from '@/components/cragRoutes/CragRouteSectionItemList'
 export default {
   name: 'CragRouteSectionList',
   components: { CragRouteSectionItemList },
   props: {
-    cragRoute: Object
+    cragRoute: {
+      type: Object,
+      required: true
+    }
   }
 }
 </script>

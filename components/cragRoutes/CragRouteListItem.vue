@@ -1,7 +1,7 @@
 <template>
   <v-list-item
     link
-    @click="$root.$emit('getCragRouteInDrawer', route.crag.id, route.id); callback ? callback(route) : null"
+    @click="cragRouteClick"
   >
     <crag-route-avatar
       :crag-route="route"
@@ -17,10 +17,14 @@
           <ascent-crag-route-status-icon
             v-if="$auth.loggedIn"
             :crag-route="route"
+            class="mb-1"
           />
         </client-only>
         {{ route.name }}
-        <grade-route-note :route="route" />
+        <grade-route-note
+          :route="route"
+          class="mb-1"
+        />
         <v-icon
           v-if="route.photos_count > 0"
           :title="$tc('components.photo.countInfos', route.photos_count, { count: route.photos_count } )"
@@ -107,6 +111,16 @@ export default {
       mdiComment,
       mdiTextureBox,
       mdiCheckAll
+    }
+  },
+
+  methods: {
+    cragRouteClick () {
+      if (this.callback) {
+        this.callback(this.route)
+      } else {
+        this.$root.$emit('getCragRouteInDrawer', this.route.crag.id, this.route.id)
+      }
     }
   }
 }

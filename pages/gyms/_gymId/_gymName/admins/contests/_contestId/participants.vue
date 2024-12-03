@@ -233,10 +233,10 @@
                 Participants dans le fichier : <strong>{{ importResults.file_row_count }}</strong>
               </p>
               <p class="mb-1">
-                Participants importé : <strong class="green--text">{{ importResults.created_count }}</strong>
+                Participants importés : <strong class="green--text">{{ importResults.created_count }}</strong>
               </p>
               <p>
-                Participants déjà inscrit au contest : <strong class="blue--text">{{ importResults.already_imported_count }}</strong>
+                Participants déjà inscrits au contest : <strong class="blue--text">{{ importResults.already_imported_count }}</strong>
               </p>
               <div v-if="importResults.errors_count > 0">
                 <p class="font-weight-bold mb-1 red--text">

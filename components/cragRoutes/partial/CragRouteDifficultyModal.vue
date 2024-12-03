@@ -92,7 +92,10 @@ export default {
   components: { CragRouteDifficultyIcon },
   mixins: [GradeMixin],
   props: {
-    cragRoute: Object
+    cragRoute: {
+      type: Object,
+      required: true
+    }
   },
 
   data () {

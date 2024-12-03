@@ -42,13 +42,23 @@
     </v-list-item-content>
   </v-list-item>
 </template>
+
 <script>
 export default {
   name: 'CragRouteSectionItemList',
   props: {
-    cragRoute: Object,
-    section: Object,
-    index: Number
+    cragRoute: {
+      type: Object,
+      required: true
+    },
+    section: {
+      type: Object,
+      required: true
+    },
+    index: {
+      type: Number,
+      required: true
+    }
   }
 }
 </script>

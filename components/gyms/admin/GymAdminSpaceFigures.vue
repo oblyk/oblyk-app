@@ -1,6 +1,6 @@
 <template>
   <v-card class="full-height d-flex flex-column justify-space-between">
-    <v-card-title>
+    <v-card-title class="pb-1">
       <v-icon left>
         {{ mdiMap }}
       </v-icon>
@@ -16,10 +16,8 @@
         </v-icon>
       </v-btn>
     </v-card-title>
-    <v-card-text class="text-center pt-5 pb-7">
-      <strong class="big-font-size">
-        {{ gym.gym_spaces.length }}
-      </strong>
+    <v-card-text class="text-center pb-1">
+      <gym-space-selector :gym="gym" />
     </v-card-text>
     <v-card-actions>
       <v-spacer />
@@ -27,12 +25,15 @@
         v-if="gymAuthCan(gym, 'manage_space')"
         :to="newSpacePath"
         text
+        :icon="gym.gym_spaces.length > 0"
         outlined
       >
-        <v-icon left>
+        <v-icon :left="gym.gym_spaces.length === 0">
           {{ mdiPlus }}
         </v-icon>
-        {{ $t('actions.addSpace') }}
+        <span v-if="gym.gym_spaces.length === 0">
+          {{ $t('actions.addSpace') }}
+        </span>
       </v-btn>
       <v-btn
         v-if="gym.gym_spaces.length > 0"
@@ -52,9 +53,11 @@
 <script>
 import { mdiMap, mdiPlus, mdiCogOutline } from '@mdi/js'
 import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
+import GymSpaceSelector from '~/components/gymSpaces/GymSpaceSelector.vue'
 
 export default {
   name: 'GymAdminSpaceFigures',
+  components: { GymSpaceSelector },
   mixins: [GymRolesHelpers],
   props: {
     gym: {

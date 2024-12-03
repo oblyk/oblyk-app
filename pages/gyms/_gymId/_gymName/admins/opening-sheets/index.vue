@@ -3,15 +3,12 @@
     <spinner v-if="!gym" />
     <div v-else>
       <v-breadcrumbs :items="breadcrumbs" />
-      <v-sheet class="beta-background white--text font-weight-bold rounded pa-3 mb-2">
-        <v-icon left color="white">
-          {{ mdiFlask }}
-        </v-icon>
-        Fonction en cours de développement
-      </v-sheet>
-      <h1 class="mb-2">
-        Les fiches d'ouvertures
+      <h1 class="mb-0">
+        {{ $t('components.openingSheet.list') }}
       </h1>
+      <p class="subtitle-2 text--disabled">
+        {{ $t('components.openingSheet.explain') }}
+      </p>
       <div class="text-right mb-3">
         <v-btn
           v-if="!showArchive"
@@ -22,7 +19,7 @@
           <v-icon left>
             {{ mdiArchive }}
           </v-icon>
-          Archives
+          {{ $t('common.archives') }}
         </v-btn>
         <v-btn
           v-if="showArchive"
@@ -30,7 +27,7 @@
           text
           @click="closeArchives()"
         >
-          Archives
+          {{ $t('common.archives') }}
           <v-icon right>
             {{ mdiClose }}
           </v-icon>
@@ -44,7 +41,7 @@
           <v-icon left>
             {{ mdiFilePlusOutline }}
           </v-icon>
-          Nouvelle fiche
+          {{ $t('actions.newSheet') }}
         </v-btn>
       </div>
       <v-skeleton-loader
@@ -66,9 +63,9 @@
               </nuxt-link>
             </v-list-item-title>
             <v-list-item-subtitle>
-              <span v-if="sheet.archived_at">
-                Archivé le {{ humanizeDate(sheet.archived_at) }} -
-              </span>
+              <cite v-if="sheet.archived_at">
+                {{ $t('common.archivedOn', { date: humanizeDate(sheet.archived_at) }) }}
+              </cite>
               {{ sheet.description }}
             </v-list-item-subtitle>
           </v-list-item-content>
@@ -120,7 +117,7 @@
         v-if="sheets.length === 0 && !loadingSheets"
         class="my-5 text-center text--disabled"
       >
-        Vous n'avez pas encore de fiches d'ouvertures, cliquez sur (Nouvelle fiche) pour en créer une.
+        {{ $t('components.openingSheet.noSheet') }}
       </p>
     </div>
   </v-container>
@@ -128,7 +125,6 @@
 
 <script>
 import {
-  mdiFlask,
   mdiDotsVertical,
   mdiTrashCan,
   mdiPrinter,
@@ -154,7 +150,6 @@ export default {
       sheets: [],
       showArchive: false,
 
-      mdiFlask,
       mdiDotsVertical,
       mdiTrashCan,
       mdiPrinter,

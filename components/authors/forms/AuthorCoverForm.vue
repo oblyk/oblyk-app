@@ -30,7 +30,10 @@ export default {
   mixins: [FormHelpers, AppConcern],
 
   props: {
-    author: Object
+    author: {
+      type: Object,
+      required: true
+    }
   },
 
   data () {

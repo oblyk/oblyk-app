@@ -26,6 +26,7 @@ export default {
     like: 'Aimer',
     reply: 'Répondre',
     export: 'Exporter',
+    hide: 'Cacher',
     selectOrUnselect: 'sélectionner / désélectionner',
     search: 'Chercher',
     addFilters: 'Ajouter des filtres',
@@ -110,6 +111,7 @@ export default {
     editComment: 'Éditer le commentaire',
     editInformation: 'Éditer les informations',
     reportProblem: 'Signaler un problème',
+    newSheet: 'Nouvelle fiche',
     addVideo: 'Ajouter une vidéo',
     editVideo: 'Éditer la vidéo',
     addPlaceOfSale: 'Ajouter un point de vente',
@@ -239,6 +241,9 @@ export default {
     goTo: 'Aller à %{name}',
     realFavorite: 'Coup de cœur',
     realFavoriteCount: 'Un coup de cœur | %{count} coups de cœur',
+    experimental: 'Expérimental',
+    archives: 'Archives',
+    whatIsIt: "Qu'est ce que c'est ?",
     at: 'le',
     is: 'à',
     in: 'en',
@@ -288,6 +293,8 @@ export default {
     ongoing: 'En cours',
     past: 'Passé',
     inBrief: 'En bref',
+    createdOn: 'Créé le %{date}',
+    archivedOn: 'Archivé le %{date}',
     months: {
       '01': '01 - Janvier',
       '02': '02 - Février',
@@ -634,9 +641,10 @@ export default {
       receptionType: 'Type de réception',
       startType: 'Type de départ',
       inclineType: 'Inclinaison',
-      ascentStatus: "Statut de l'ascension",
+      ascentStatus: "J'ai fait la ligne ...",
       ropingStatus: 'Mode',
-      hardnessStatus: 'Appréciation de la difficulté',
+      ropingStatusQuestion: "J'ai grimpé en ...",
+      hardnessStatus: "Pour la cotation c'était ...",
       howFindDifficulty: 'Comment avez-vous trouvé la difficulté ?',
       note: 'Note',
       dateOfBirth: 'Date de naissance',
@@ -1064,7 +1072,7 @@ export default {
       addCragInArea: 'Ajouter un site',
       removeFromArea: 'Retirer le site',
       searchArea: 'Chercher un groupe de site',
-      explainNewTopo: "Si vous n'avez pas trouvé en cherchant, ou dans les groupes à proximité, vous pouvez ajouter un nouveau groupe :",
+      explainNewTopo: "Si vous n'avez pas trouvé en cherchant, ou dans les groupes à proximité, vous pouvez ajouter un nouveau groupe&nbsp;:",
       noAreaAround: 'Pas de groupe de sites trouvé à 50km au alentour',
       cragsMap: 'Carte des sites',
       tabs: {
@@ -1092,7 +1100,7 @@ export default {
     library: {
       title: "Topos d'escalade",
       intro: `Nous tenons à jour une base de données la plus exhaustive possible des topos d'escalade papiers de France et du monde.
-              Vous trouverez ici la liste de tout nos topos par année de parution ou par ordre alphabétique.
+              Vous trouverez ici la liste de tous nos topos par année de parution ou par ordre alphabétique.
               Vous serez sûrement aussi intéressé·e par notre page <a href="/guide-book-papers/find">"Trouver un topo"</a>
               qui vous permet de trouver les topos qui sont autour d'un lieu.`,
       orderBy: 'Trier par',
@@ -1354,6 +1362,15 @@ export default {
       explainJustification: 'Merci de remplir le formulaire ci-dessous en nous donnant des éléments qui nous permettraient de vérifier que vous êtes bien en droit de gérer cette salle.',
       requestIsSent: 'Nous avons bien enregistré votre demande !<br> Nous la traiterons le plus rapidement possible.'
     },
+    openingSheet: {
+      list: "Fiches d'ouvertures",
+      explain: "Les fiches d'ouvertures vous permettes de sélectionner un ou plusieurs secteurs de votre salle, et indiquer les ré-ouvertures à prévoir par vos ouvreurs et ouvreuses.",
+      noSheet: "Vous n'avez pas encore de fiches d'ouvertures.",
+      style: 'Style',
+      open: 'Actuelle',
+      toOpen: 'À ouvrir',
+      opened: 'Ouvert'
+    },
     gymSpace: {
       name: 'Espace',
       list: 'Les espaces',
@@ -1374,6 +1391,7 @@ export default {
       archived: 'Espaces archivés'
     },
     gymSector: {
+      name: 'Secteur',
       addNew: 'Créer un nouveau secteur',
       chooseSector: 'Choisissez un secteur',
       addNewExplain: "Un secteur est une petite division d'un espace, exemple : Grand devers droite, couloir 4, etc. C'est là que seront renseignées les lignes",
@@ -1595,7 +1613,7 @@ export default {
       localizationDeactivated: 'Localisation désactivée',
       localizationActivated: 'Localisation activée',
       activateLocalization: 'Activer la localisation',
-      activateLocalizationExplain: "Activer la localisation te permet d'avoir tout un panel de fonctionnalités pratiques (falaises aux alentours, infos local dans ton flux, centrer les cartes, recherche de partenaire, etc.)",
+      activateLocalizationExplain: "Activer la localisation te permet d'avoir tout un panel de fonctionnalités pratiques (falaises aux alentours, infos locales dans ton flux, centrer les cartes, recherche de partenaire, etc.)",
       youControlYourLocation: "Tu peux activer ou désactiver la localisation à tout moment via l'icône ",
       youControlYourLocationInAppDrawer: "dans le menu d'Oblyk",
       uploadBanner: "<strong>TIPS !</strong> Upload un bandeau pour personnaliser l'entête de cette page.",
@@ -2854,12 +2872,21 @@ export default {
       repetition: 'Répétition',
       tick_list: 'Tick list'
     },
+    ascentStatusExplain: {
+      project: "vous n'avez pas encore réussi la voie/bloc, mais vous comptez bien le/la faire !",
+      sent: "vous aviez déjà essayé le bloc/voie avant de réussir à l'enchainer sans pause.",
+      red_point: "vous aviez déjà essayé le bloc/voie avant de réussir à l'enchainer sans pause.",
+      flash: "vous avez réussi le bloc/voie du premier coup ! Mais vous avez vu quelqu'un grimper dedans avant, ou on vous a donné des méthodes, un tips pour réussir.",
+      onsight: "vous avez réussi le bloc/voie du premier coup ! Et en plus vous ne connaissiez pas les mouvements, les prises, rien ! C'était la découverte totale.",
+      repetition: 'vous aviez déjà enchainé la voie/bloc avant.',
+      tick_list: 'à essayer plus tard'
+    },
     ropingStatus: {
       lead_climb: 'Tête',
       top_rope: 'Moulinette',
-      multi_pitch_leader: 'Tête (Grande voie)',
-      multi_pitch_second: 'Second (Grande voie)',
-      multi_pitch_alternate_lead: 'Réversible (Grande voie)'
+      multi_pitch_leader: 'Premier de cordée',
+      multi_pitch_second: 'Second',
+      multi_pitch_alternate_lead: 'Réversible'
     },
     rankingSystem: {
       division: "1000 points divisés par le nombre d'ascension",
@@ -2867,9 +2894,9 @@ export default {
       point_by_grade: 'Point par cotation'
     },
     rankingSystemExplain: {
-      division: 'Chaque voie ou bloc vaut 1000 points, plus les grimpeurs et grimpeuses font le bloc/voie moins il vaut de point.',
+      division: 'Chaque voie ou bloc vaut 1000 points, plus les grimpeurs et grimpeuses font le bloc/voie moins il vaut de points.',
       fixed_points: 'Pour chaque voie ou bloc vous attribuez un nombre de point fixe.',
-      point_by_grade: 'Chaque cotation (4a, 6a, etc.) à un nombre de points donné par sa difficulté.<br>Voir la documentation : <a href="https://oblyk.github.io/app-user-doc/docs/indoor/systeme-de-classement" target="_blank">Point par cotation</a>'
+      point_by_grade: 'Chaque cotation (4a, 6a, etc.) a un nombre de points donné par sa difficulté.<br>Voir la documentation : <a href="https://oblyk.github.io/app-user-doc/docs/indoor/systeme-de-classement" target="_blank">Point par cotation</a>'
     },
     grade: {
       none: 'Pas de cotation',
@@ -2880,17 +2907,23 @@ export default {
     },
     hardnessStatus: {
       easy_for_the_grade: '😎 Facile pour la cotation',
-      this_grade_is_accurate: '👌 Juste, bien côté',
+      this_grade_is_accurate: '👌 Juste, bien coté',
       sandbagged: '🥵 Dur pour la cotation !'
     },
+    hardnessStatusShort: {
+      easy_for_the_grade: '😎 Facile',
+      this_grade_is_accurate: '👌 Juste',
+      sandbagged: '🥵 Dur !'
+    },
     note: {
-      terrible: '0/6 - Horrible !',
-      ugly: '1/6 - Moche',
-      not_outstanding: '2/6 - Bof',
-      decent: '3/6 - Normal',
-      nice: '4/6 - Beau',
-      very_nice: '5/6 - Très beau',
-      classic: '6/6 - Majeur !'
+      no_note: 'Pas de note',
+      terrible: 'Horrible !',
+      ugly: 'Moche',
+      not_outstanding: 'Bof',
+      decent: 'Normal',
+      nice: 'Beau',
+      very_nice: 'Très beau',
+      classic: 'Majeur !'
     },
     approachType: {
       steep_descent: 'Descente raide',

@@ -15,7 +15,6 @@
       <v-menu>
         <template #activator="{ on, attrs }">
           <v-btn
-            large
             icon
             class="ml-auto"
             v-bind="attrs"
@@ -37,20 +36,8 @@
             </v-list-item-icon>
             <v-list-item-content>
               <v-list-item-title>
-                Fiches d'ouvertures
+                {{ $t('components.openingSheet.list') }}
               </v-list-item-title>
-              <v-list-item-subtitle>
-                <v-chip
-                  small
-                  color="blue"
-                  class="white--text font-weight-bold"
-                >
-                  <v-icon small class="mr-2">
-                    {{ mdiFlask }}
-                  </v-icon>
-                  ÉXPÉRIMENTAL
-                </v-chip>
-              </v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
         </v-list>
@@ -80,7 +67,7 @@
 </template>
 
 <script>
-import { mdiSourceBranch, mdiTable, mdiChartBar, mdiDotsVertical, mdiFileRefreshOutline, mdiFlask } from '@mdi/js'
+import { mdiSourceBranch, mdiTable, mdiChartBar, mdiDotsVertical, mdiFileRefreshOutline } from '@mdi/js'
 import GymApi from '~/services/oblyk-api/GymApi'
 
 export default {
@@ -100,8 +87,7 @@ export default {
       mdiTable,
       mdiChartBar,
       mdiDotsVertical,
-      mdiFileRefreshOutline,
-      mdiFlask
+      mdiFileRefreshOutline
     }
   },
 
