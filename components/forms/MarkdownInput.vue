@@ -8,6 +8,7 @@
       :placeholder="placeholder"
       :auto-grow="autoGrow"
       :rows="rows"
+      :autofocus="autofocus"
       @focus="showTips = true"
       @blur="showTips = false"
       @input="onChange"
@@ -66,6 +67,10 @@ export default {
       default: 5
     },
     autoGrow: {
+      type: Boolean,
+      default: false
+    },
+    autofocus: {
       type: Boolean,
       default: false
     }
