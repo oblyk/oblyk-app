@@ -2600,7 +2600,7 @@ export default {
       name: 'Name',
       number_of_holds: 'Number of holds',
       fixed_points: 'Points',
-      additional_zone: 'To a zone'
+      additional_zone: 'With a zone hold'
     },
     contestParticipant: {
       first_name: 'First name',
