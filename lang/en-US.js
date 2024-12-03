@@ -1437,7 +1437,10 @@ export default {
         grade: 'Sort by grade',
         level: 'Sort by level',
         point: 'Sort by point',
-        opened_at_dismounted: 'Taken down routes'
+        opened_at_dismounted: 'Taken down routes',
+        ascents_count: 'Sort by number of ascents',
+        likes_count: 'Sort by number of likes',
+        comments_count: 'Sort by number of comments'
       }
     },
     gymGrade: {
