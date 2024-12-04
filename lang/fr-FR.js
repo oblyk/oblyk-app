@@ -476,7 +476,7 @@ export default {
       },
       successAccountDeleting: {
         title: 'Votre compte à été supprimé',
-        description: 'Votre compte et les données qui y sont associées ont été supprimées.',
+        description: 'Votre compte et les données qui y sont associées ont été supprimés.',
         goodContinuation: 'On vous souhaite une bonne continuation !'
       },
       apiAndDevelopers: {
@@ -510,10 +510,10 @@ export default {
             explain: "Déplacez-vous librement sur la carte de tous les sites d'escalade que nous avons.",
             filter: {
               btnTile: 'Filtrer les sites',
-              styleLabel: 'Voie ? Bloc ? Grande Voie ? etc.',
+              styleLabel: 'Voie ? Bloc ? Grande voie ? etc.',
               upOrDow: 'Au dessus / en dessous de',
-              elevation: 'Altitude (mètre)',
-              orientation: 'Quelle orientations ?',
+              elevation: 'Altitude (mètres)',
+              orientation: 'Quelle orientation ?',
               whatDifficulty: 'Quelle difficulté cherchez-vous ?',
               orMore: 'Des %{type} en %{grade} ou plus',
               orLess: 'Des %{type} en %{grade} ou moins',
@@ -566,7 +566,7 @@ export default {
           },
           new: {
             title: 'Les nouveautés',
-            explain: 'Les dernières sorties des topos de France et du Monde'
+            explain: 'Les dernières sorties des topos de France et du monde'
           },
           andMore: {
             title: "Et plus d'outils",
@@ -2580,9 +2580,9 @@ export default {
       step_order: 'Ordre',
       ranking_type: 'Type de classement',
       ascents_limit: 'Prendre en compte uniquement les %{count} meilleurs ascensions',
-      ascents_limit_explain: 'Explication : Si vous mettez 10, seule les 10 voies les plus dures de chacun participant seront prises en compte dans le classement. Laissez vide si voulez prendre en compte toutes les voies',
-      self_reporting: 'Les participants renseignent eux-même leur réalisation',
-      default_participants_for_next_step: 'Nombre de participant par défaut à passer à la prochaine étape'
+      ascents_limit_explain: 'Explication : Si vous mettez 10, seules les 10 voies les plus dures de chaque participant seront prises en compte dans le classement. Laissez vide si voulez prendre en compte toutes les voies',
+      self_reporting: 'Les participants renseignent eux-même leurs réalisations',
+      default_participants_for_next_step: 'Nombre de participants par défaut à passer à la prochaine étape'
     },
     contestRouteGroup: {
       genre_type: 'Ces lignes sont pour ?',
@@ -2600,7 +2600,7 @@ export default {
       name: 'Nom',
       number_of_holds: 'Nombre de prises',
       fixed_points: 'Points',
-      additional_zone: 'À une zone'
+      additional_zone: 'Avec une prise de zone'
     },
     contestParticipant: {
       first_name: 'Prénom',
@@ -2614,7 +2614,7 @@ export default {
       name: 'Nom'
     },
     ages: {
-      all: 'Tous les ages',
+      all: 'Tous les âges',
       U8: 'Moins de 8 ans',
       U10: 'Moins de 10 ans',
       U12: 'Moins de 12 ans',
@@ -2639,7 +2639,7 @@ export default {
       aid_climbing: 'Artif',
       deep_water: 'Deep water',
       via_ferrata: 'Via ferrata',
-      fun_climbing: 'Fun Climbing',
+      fun_climbing: 'Fun climbing',
       training_space: 'Espace entrainement',
       pan: 'Pan',
       speed_climbing: 'Vitesse'
@@ -2851,13 +2851,13 @@ export default {
     },
     orientations: {
       north: 'Nord',
-      north_east: 'Nord Est',
+      north_east: 'Nord-Est',
       east: 'Est',
-      south_east: 'Sud Est',
+      south_east: 'Sud-Est',
       south: 'Sud',
-      south_west: 'Sud Ouest',
+      south_west: 'Sud-Ouest',
       west: 'Ouest',
-      north_west: 'Nord Ouest',
+      north_west: 'Nord-Ouest',
       all: 'Toutes'
     },
     ascentStatus: {
@@ -2872,23 +2872,23 @@ export default {
     ropingStatus: {
       lead_climb: 'Tête',
       top_rope: 'Moulinette',
-      multi_pitch_leader: 'Tête (Grande voie)',
-      multi_pitch_second: 'Second (Grande voie)',
-      multi_pitch_alternate_lead: 'Réversible (Grande voie)'
+      multi_pitch_leader: 'Tête (grande voie)',
+      multi_pitch_second: 'Second (grande voie)',
+      multi_pitch_alternate_lead: 'Réversible (grande voie)'
     },
     rankingSystem: {
-      division: "1000 points divisés par le nombre d'ascension",
-      fixed_points: 'Points fixe',
-      point_by_grade: 'Point par cotation'
+      division: "1000 points divisés par le nombre d'ascensions",
+      fixed_points: 'Points fixes',
+      point_by_grade: 'Points par cotation'
     },
     rankingSystemExplain: {
       division: 'Chaque voie ou bloc vaut 1000 points, plus les grimpeurs et grimpeuses font le bloc/voie moins il vaut de points.',
-      fixed_points: 'Pour chaque voie ou bloc vous attribuez un nombre de point fixe.',
+      fixed_points: 'Pour chaque voie ou bloc vous attribuez un nombre fixe de points.',
       point_by_grade: 'Chaque cotation (4a, 6a, etc.) a un nombre de points donné par sa difficulté.<br>Voir la documentation : <a href="https://oblyk.github.io/app-user-doc/docs/indoor/systeme-de-classement" target="_blank">Point par cotation</a>'
     },
     grade: {
       none: 'Pas de cotation',
-      french: 'Cotation Française (5c+, 6a, 7b, etc.)',
+      french: 'Cotation française (5c+, 6a, 7b, etc.)',
       usa_lead: 'Voie US (5.4, 5.12a, etc.)',
       usa_bouldering: 'Bloc US (V5, V10, etc.)',
       pick_district: 'Peak District (B3, B9, etc.)'
