@@ -1472,7 +1472,7 @@ export default {
       results: 'Résultat',
       where: 'Ça se passe où ?',
       registerNow: "Je m'inscris maintenant !",
-      alreadyRegistered: 'Déjà inscrit ?',
+      alreadyRegistered: "J'ai déjà un code ?",
       iAmRegistered: 'Je suis déjà inscrit',
       registeredPart1: 'Lors de votre inscription nous vous avons donné un code <cite>(votre prénom + quelques lettres au hasard)</cite><br>Renseigner ce code pour vous identifier.',
       registeredPart2: 'Nous ne trouvons pas de participant(e) inscrit avec ce code sur ce contest. Vérifiez que vous avez correctement tapé votre code et ressayez.',
