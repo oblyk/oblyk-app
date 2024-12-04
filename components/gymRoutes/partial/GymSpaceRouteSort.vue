@@ -79,7 +79,7 @@
 
             <v-list-item
               v-if="sortsAvailable.ascents_count"
-              :class="column === 'grade' && !dismounted ? 'v-list-item--active' : null"
+              :class="column === 'ascents_count' && !dismounted ? 'v-list-item--active' : null"
               @click="sorting('ascents_count')"
             >
               <v-list-item-icon class="mr-1">
@@ -94,7 +94,7 @@
 
             <v-list-item
               v-if="sortsAvailable.likes_count"
-              :class="column === 'grade' && !dismounted ? 'v-list-item--active' : null"
+              :class="column === 'likes_count' && !dismounted ? 'v-list-item--active' : null"
               @click="sorting('likes_count')"
             >
               <v-list-item-icon class="mr-1">
@@ -109,7 +109,7 @@
 
             <v-list-item
               v-if="sortsAvailable.comments_count"
-              :class="column === 'grade' && !dismounted ? 'v-list-item--active' : null"
+              :class="column === 'comments_count' && !dismounted ? 'v-list-item--active' : null"
               @click="sorting('comments_count')"
             >
               <v-list-item-icon class="mr-1">
