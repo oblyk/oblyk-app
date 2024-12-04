@@ -75,12 +75,12 @@ export default {
       redirectTo: '/',
       uploadPercentage: 0,
       data: {
-        id: (this.photo || {}).id,
-        description: (this.photo || {}).description,
-        source: (this.photo || {}).source,
-        copyright_by: (this.photo || {}).copyright_by || true,
-        copyright_nc: (this.photo || {}).copyright_nc || true,
-        copyright_nd: (this.photo || {}).copyright_nd || true
+        id: this.photo?.id,
+        description: this.photo?.description,
+        source: this.photo?.source,
+        copyright_by: this.photo?.copyright_by === undefined ? true : this.photo?.copyright_by,
+        copyright_nc: this.photo?.copyright_nc === undefined ? true : this.photo?.copyright_nc,
+        copyright_nd: this.photo?.copyright_nd === undefined ? true : this.photo?.copyright_nd
       }
     }
   },
