@@ -1435,7 +1435,7 @@ export default {
         opened_at: "Trier par date d'ouverture",
         sector: 'Trier par secteur',
         grade: 'Trier par cotation',
-        level: 'Trier par niveau',
+        level: 'Trier par couleur',
         point: 'Trier par point',
         opened_at_dismounted: 'Les lignes démontées',
         ascents_count: 'Trier par nombre de réalisations',

@@ -1435,7 +1435,7 @@ export default {
         opened_at: 'Sort by opening date',
         sector: 'Sort by sector',
         grade: 'Sort by grade',
-        level: 'Sort by level',
+        level: 'Sort by colour',
         point: 'Sort by point',
         opened_at_dismounted: 'Taken down routes',
         ascents_count: 'Sort by number of ascents',
