@@ -2603,7 +2603,7 @@ export default {
       name: 'Nom',
       number_of_holds: 'Nombre de prises',
       fixed_points: 'Points',
-      additional_zone: 'Avec une prise de zone'
+      additional_zone: 'A une zone'
     },
     contestParticipant: {
       first_name: 'Prénom',
