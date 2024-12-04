@@ -2876,12 +2876,12 @@ export default {
       tick_list: 'Tick list'
     },
     ascentStatusExplain: {
-      project: "vous n'avez pas encore réussi la voie/bloc, mais vous comptez bien le/la faire !",
-      sent: "vous aviez déjà essayé le bloc/voie avant de réussir à l'enchainer sans pause.",
-      red_point: "vous aviez déjà essayé le bloc/voie avant de réussir à l'enchainer sans pause.",
-      flash: "vous avez réussi le bloc/voie du premier coup ! Mais vous avez vu quelqu'un grimper dedans avant, ou on vous a donné des méthodes, un tips pour réussir.",
-      onsight: "vous avez réussi le bloc/voie du premier coup ! Et en plus vous ne connaissiez pas les mouvements, les prises, rien ! C'était la découverte totale.",
-      repetition: 'vous aviez déjà enchainé la voie/bloc avant.',
+      project: "vous n'avez pas encore réussi ... mais vous comptez bien enchainer un jour !",
+      sent: "vous aviez déjà essayé avant de réussir l'enchainer sans pause.",
+      red_point: "vous aviez déjà essayé avant de réussir l'enchainer sans pause.",
+      flash: "vous l'avez réussi du premier coup ! Mais vous avez vu quelqu'un grimper dedans avant, ou on vous a donné des méthodes, un tips pour réussir.",
+      onsight: "vous l'avez réussi du premier coup ! Et en plus vous ne connaissiez pas les mouvements, les prises, rien ! C'était la découverte totale.",
+      repetition: "vous l'aviez déjà fait avant.",
       tick_list: 'à essayer plus tard'
     },
     ropingStatus: {

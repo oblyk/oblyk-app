@@ -2876,12 +2876,12 @@ export default {
       tick_list: 'Tick list'
     },
     ascentStatusExplain: {
-      project: "you haven't passed the route/boulder yet, but you intend to!",
-      sent: 'you had already tried the route/boulder before successfully making it to the top without a break.',
-      red_point: 'you had already tried the route/boulder before successfully making it to the top without a break.',
-      flash: "you passed the route/boulder on the first try! But you've seen someone climb it, or you've been given methods or tips to succeed.",
-      onsight: "you passed the route/boulder on the first try! And what's more, you didn't know the moves, the holds, nothing! It was a real discovery.",
-      repetition: "you'd already done the route/boulder before.",
+      project: "you haven't succeeded yet ... but you're counting on it one day!",
+      sent: "you'd already tried it before and succeeded in doing it without a break.",
+      red_point: "you'd already tried it before and succeeded in doing it without a break.",
+      flash: "you got it right the first time! But you've seen someone climb it before, or you've been given methods or tips on how to succeed.",
+      onsight: "you got it right the first time! And what's more, you didn't know the moves, the holds, nothing! It was a total discovery.",
+      repetition: "you've done it before.",
       tick_list: 'to try later'
     },
     ropingStatus: {
