@@ -26,6 +26,7 @@ export default {
     like: 'Aimer',
     reply: 'Répondre',
     export: 'Exporter',
+    hide: 'Cacher',
     selectOrUnselect: 'sélectionner / désélectionner',
     search: 'Chercher',
     addFilters: 'Ajouter des filtres',
@@ -242,6 +243,7 @@ export default {
     realFavoriteCount: 'Un coup de cœur | %{count} coups de cœur',
     experimental: 'Expérimental',
     archives: 'Archives',
+    whatIsIt: "Qu'est ce que c'est ?",
     at: 'le',
     is: 'à',
     in: 'en',
@@ -639,9 +641,10 @@ export default {
       receptionType: 'Type de réception',
       startType: 'Type de départ',
       inclineType: 'Inclinaison',
-      ascentStatus: "Statut de l'ascension",
+      ascentStatus: "J'ai fait la ligne ...",
       ropingStatus: 'Mode',
-      hardnessStatus: 'Appréciation de la difficulté',
+      ropingStatusQuestion: "J'ai grimpé en ...",
+      hardnessStatus: "Pour la cotation c'était ...",
       howFindDifficulty: 'Comment avez-vous trouvé la difficulté ?',
       note: 'Note',
       dateOfBirth: 'Date de naissance',
@@ -2872,12 +2875,21 @@ export default {
       repetition: 'Répétition',
       tick_list: 'Tick list'
     },
+    ascentStatusExplain: {
+      project: "vous n'avez pas encore réussi ... mais vous comptez bien enchainer un jour !",
+      sent: "vous aviez déjà essayé avant de réussir l'enchainer sans pause.",
+      red_point: "vous aviez déjà essayé avant de réussir l'enchainer sans pause.",
+      flash: "vous l'avez réussi du premier coup ! Mais vous avez vu quelqu'un grimper dedans avant, ou on vous a donné des méthodes, un tips pour réussir.",
+      onsight: "vous l'avez réussi du premier coup ! Et en plus vous ne connaissiez pas les mouvements, les prises, rien ! C'était la découverte totale.",
+      repetition: "vous l'aviez déjà fait avant.",
+      tick_list: 'à essayer plus tard'
+    },
     ropingStatus: {
       lead_climb: 'Tête',
       top_rope: 'Moulinette',
-      multi_pitch_leader: 'Tête (grande voie)',
-      multi_pitch_second: 'Second (grande voie)',
-      multi_pitch_alternate_lead: 'Réversible (grande voie)'
+      multi_pitch_leader: 'Premier de cordée',
+      multi_pitch_second: 'Second',
+      multi_pitch_alternate_lead: 'Réversible'
     },
     rankingSystem: {
       division: "1000 points divisés par le nombre d'ascensions",
@@ -2901,14 +2913,20 @@ export default {
       this_grade_is_accurate: '👌 Juste, bien coté',
       sandbagged: '🥵 Dur pour la cotation !'
     },
+    hardnessStatusShort: {
+      easy_for_the_grade: '😎 Facile',
+      this_grade_is_accurate: '👌 Juste',
+      sandbagged: '🥵 Dur !'
+    },
     note: {
-      terrible: '0/6 - Horrible !',
-      ugly: '1/6 - Moche',
-      not_outstanding: '2/6 - Bof',
-      decent: '3/6 - Normal',
-      nice: '4/6 - Beau',
-      very_nice: '5/6 - Très beau',
-      classic: '6/6 - Majeur !'
+      no_note: 'Pas de note',
+      terrible: 'Horrible !',
+      ugly: 'Moche',
+      not_outstanding: 'Bof',
+      decent: 'Normal',
+      nice: 'Beau',
+      very_nice: 'Très beau',
+      classic: 'Majeur !'
     },
     approachType: {
       steep_descent: 'Descente raide',

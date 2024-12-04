@@ -26,6 +26,7 @@ export default {
     like: 'Like',
     reply: 'Reply',
     export: 'Export',
+    hide: 'Hide',
     selectOrUnselect: 'select / unselect',
     search: 'Search',
     addFilters: 'Add filters',
@@ -242,6 +243,7 @@ export default {
     realFavoriteCount: 'One favourite | %{count} favourites',
     experimental: 'Experimental',
     archives: 'Archives',
+    whatIsIt: 'What is it ?',
     at: 'at',
     is: 'is',
     in: 'in',
@@ -639,9 +641,10 @@ export default {
       receptionType: 'Reception type',
       startType: 'Start type',
       inclineType: 'Incline',
-      ascentStatus: 'Ascent status',
+      ascentStatus: 'I made the line ...',
       ropingStatus: 'Roping status',
-      hardnessStatus: 'Difficulty appreciation',
+      ropingStatusQuestion: "I've climbed on ...",
+      hardnessStatus: 'For the grade it was ...',
       howFindDifficulty: 'How did you find the difficulty?',
       note: 'Note',
       dateOfBirth: 'Date of birth',
@@ -2872,12 +2875,21 @@ export default {
       repetition: 'Repetition',
       tick_list: 'Tick list'
     },
+    ascentStatusExplain: {
+      project: "you haven't succeeded yet ... but you're counting on it one day!",
+      sent: "you'd already tried it before and succeeded in doing it without a break.",
+      red_point: "you'd already tried it before and succeeded in doing it without a break.",
+      flash: "you got it right the first time! But you've seen someone climb it before, or you've been given methods or tips on how to succeed.",
+      onsight: "you got it right the first time! And what's more, you didn't know the moves, the holds, nothing! It was a total discovery.",
+      repetition: "you've done it before.",
+      tick_list: 'to try later'
+    },
     ropingStatus: {
       lead_climb: 'Lead climb',
       top_rope: 'Top rope',
       multi_pitch_leader: 'Lead (multi pitch)',
-      multi_pitch_second: 'Second (multi pitch)',
-      multi_pitch_alternate_lead: 'Alternate lead (multi pitch)'
+      multi_pitch_second: 'Second',
+      multi_pitch_alternate_lead: 'Alternate lead'
     },
     rankingSystem: {
       division: '1000 points divided by the number of ascents',
@@ -2901,14 +2913,19 @@ export default {
       this_grade_is_accurate: '👌 The grade is accurate',
       sandbagged: '🥵 Sandbagged !'
     },
+    hardnessStatusShort: {
+      easy_for_the_grade: '😎 Easy',
+      this_grade_is_accurate: '👌 accurate',
+      sandbagged: '🥵 Sandbagged !'
+    },
     note: {
-      terrible: '0/6 - Terrible!',
-      ugly: '1/6 - Ugly',
-      not_outstanding: '2/6 - Not outstanding',
-      decent: '3/6 - Decent',
-      nice: '4/6 - Nice',
-      very_nice: '5/6 - Very nice',
-      classic: '6/6 - Classic!'
+      terrible: 'Terrible!',
+      ugly: 'Ugly',
+      not_outstanding: 'Not outstanding',
+      decent: 'Decent',
+      nice: 'Nice',
+      very_nice: 'Very nice',
+      classic: 'Classic!'
     },
     approachType: {
       steep_descent: 'Steep descent',
