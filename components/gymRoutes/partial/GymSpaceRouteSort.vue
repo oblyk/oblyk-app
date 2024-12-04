@@ -74,7 +74,56 @@
                 {{ $t('components.gymRoute.sorts.grade') }}
               </v-list-item>
             </v-list-item>
+
+            <v-divider v-if="sortsAvailable.ascents_count || sortsAvailable.likes_count || sortsAvailable.comments_count" />
+
+            <v-list-item
+              v-if="sortsAvailable.ascents_count"
+              :class="column === 'grade' && !dismounted ? 'v-list-item--active' : null"
+              @click="sorting('ascents_count')"
+            >
+              <v-list-item-icon class="mr-1">
+                <v-icon>
+                  {{ sortIcon.ascents_count }}
+                </v-icon>
+              </v-list-item-icon>
+              <v-list-item>
+                {{ $t('components.gymRoute.sorts.ascents_count') }}
+              </v-list-item>
+            </v-list-item>
+
+            <v-list-item
+              v-if="sortsAvailable.likes_count"
+              :class="column === 'grade' && !dismounted ? 'v-list-item--active' : null"
+              @click="sorting('likes_count')"
+            >
+              <v-list-item-icon class="mr-1">
+                <v-icon>
+                  {{ sortIcon.likes_count }}
+                </v-icon>
+              </v-list-item-icon>
+              <v-list-item>
+                {{ $t('components.gymRoute.sorts.likes_count') }}
+              </v-list-item>
+            </v-list-item>
+
+            <v-list-item
+              v-if="sortsAvailable.comments_count"
+              :class="column === 'grade' && !dismounted ? 'v-list-item--active' : null"
+              @click="sorting('comments_count')"
+            >
+              <v-list-item-icon class="mr-1">
+                <v-icon>
+                  {{ sortIcon.comments_count }}
+                </v-icon>
+              </v-list-item-icon>
+              <v-list-item>
+                {{ $t('components.gymRoute.sorts.comments_count') }}
+              </v-list-item>
+            </v-list-item>
+
             <v-divider />
+
             <v-list-item
               :class="column === 'opened_at' && dismounted ? 'v-list-item--active' : null"
               @click="sorting('opened_at', true)"
@@ -116,7 +165,10 @@ import {
   mdiTextureBox,
   mdiSortNumericAscending,
   mdiMenuDown,
-  mdiEyeOff
+  mdiEyeOff,
+  mdiCheckAll,
+  mdiHeart,
+  mdiComment
 } from '@mdi/js'
 
 export default {
@@ -147,7 +199,10 @@ export default {
         opened_at: mdiCalendar,
         grade: mdiSortNumericAscending,
         level: mdiTag,
-        opened_at_dismounted: mdiEyeOff
+        opened_at_dismounted: mdiEyeOff,
+        ascents_count: mdiCheckAll,
+        likes_count: mdiHeart,
+        comments_count: mdiComment
       },
 
       mdiSortAscending,

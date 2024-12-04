@@ -1437,7 +1437,10 @@ export default {
         grade: 'Trier par cotation',
         level: 'Trier par niveau',
         point: 'Trier par point',
-        opened_at_dismounted: 'Les lignes démontées'
+        opened_at_dismounted: 'Les lignes démontées',
+        ascents_count: 'Trier par nombre de réalisations',
+        likes_count: 'Trier par nombre de likes',
+        comments_count: 'Trier par nombre de commentaires'
       }
     },
     gymGrade: {
@@ -2319,7 +2322,7 @@ export default {
       subscribe_to_video_feed: "M'avertir des nouvelles vidéos"
     },
     gymOpener: {
-      name: 'Nom / Pseudonyme',
+      name: 'Nom / pseudonyme',
       first_name: 'Prénom',
       last_name: 'Nom de famille',
       email: 'email',
@@ -2467,7 +2470,7 @@ export default {
       styles: 'Styles',
       grade_by_section: 'Cotation L.%{index}',
       anchor_number: 'Relais n°',
-      fixedPoints: 'Donner un nombre de point fixe'
+      fixedPoints: 'Donner un nombre de points fixe'
     },
     gymGrade: {
       name: 'Nom du système',
