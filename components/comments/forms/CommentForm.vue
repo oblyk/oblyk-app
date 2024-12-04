@@ -3,6 +3,7 @@
     <markdown-input
       v-model="data.body"
       :label="$t('models.comment.body')"
+      autofocus
     />
     <submit-form
       :overlay="submitOverlay"
