@@ -42,7 +42,7 @@
     "vue2-leaflet": "^2.7.1",
     "vue2-leaflet-editable": "^0.5.0",
     "vue2-leaflet-markercluster": "^3.1.0",
-    "vuetify": "^2.5.5",
+    "vuetify": "^2.7.2",
     "vuex-persistedstate": "^4.1.0"
   },
   "devDependencies": {
