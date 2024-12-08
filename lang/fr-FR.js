@@ -1589,7 +1589,11 @@ export default {
       title: 'Vidéos',
       videoOf: 'Vidéo de',
       postedBy: 'Postée par',
-      noVideo: "Il n'y a pas de vidéo ici pour l'instant"
+      noVideo: "Il n'y a pas de vidéo ici pour l'instant",
+      notSupportVideo: 'Votre navigateur ne prend pas en charge les vidéos HTML5',
+      addFromWeb: 'Ajouter une vidéo Youtube, Instagram, Tiktok, etc.',
+      addFromMobile: '<u>Ou</u>, ajouter une vidéo depuis mon téléphone',
+      addFromComputer: '<u>Ou</u>, ajouter une vidéo depuis mon ordinateur'
     },
     ascent: {
       countInfos: 'Une ascension | %{count} ascensions'
@@ -2710,6 +2714,7 @@ export default {
     video: {
       description: 'Description',
       url: 'Lien de la vidéo',
+      video_service: 'Service vidéo',
       explainUrl: "Copier coller le lien d'une vidéo de l'un des services suivants"
     },
     genres: {

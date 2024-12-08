@@ -1589,7 +1589,11 @@ export default {
       title: 'Videos',
       videoOf: 'Video of',
       postedBy: 'Posted by',
-      noVideo: 'There is no video here for the moment'
+      noVideo: 'There is no video here for the moment',
+      notSupportVideo: 'Your browser does not support HTML5 videos',
+      addFromWeb: 'Add a video from Youtube, Instagram, Tiktok, etc.',
+      addFromMobile: '<u>Or</u>, add a video from my phone',
+      addFromComputer: '<u>Or</u>, add a video from my computer'
     },
     ascent: {
       countInfos: 'One ascent | %{count} ascents'
@@ -2710,6 +2714,7 @@ export default {
     video: {
       description: 'Description',
       url: 'Link of the video',
+      video_service: 'Video service',
       explainUrl: 'Copy and paste a video link from one of the following services'
     },
     genres: {

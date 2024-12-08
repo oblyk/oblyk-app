@@ -338,6 +338,7 @@
             <gym-route-video-list
               v-if="videoList"
               :gym-route="gymRoute"
+              :gym="gym"
             />
             <p
               v-else

@@ -50,7 +50,8 @@
             <div class="px-4 pb-4">
               <video-form
                 :video="{ viewable_type: 'GymRoute', viewable_id: gymRoute.id }"
-                :show-description="false"
+                :show-description="currentUserIsGymAdmin()"
+                :enable-oblyk-video="currentUserIsGymAdmin()"
                 :callback="getVideos"
               />
             </div>
@@ -67,11 +68,17 @@ import VideoApi from '~/services/oblyk-api/VideoApi'
 import Video from '~/models/Video'
 import VideoCard from '~/components/videos/VideoCard.vue'
 import VideoForm from '~/components/videos/forms/VideoForm.vue'
+import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
 
 export default {
   name: 'GymRouteVideoList',
   components: { VideoForm, VideoCard },
+  mixins: [GymRolesHelpers],
   props: {
+    gym: {
+      type: Object,
+      required: true
+    },
     gymRoute: {
       type: Object,
       required: true
