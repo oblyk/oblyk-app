@@ -97,6 +97,8 @@ export default {
 
   data () {
     return {
+      onlyLeadClimbs: false,
+
       loadingClimbingTypeChart: true,
       climbingTypeData: [],
 
@@ -120,7 +122,19 @@ export default {
     }
   },
 
+  watch: {
+    onlyLeadClimbs () {
+      localStorage.setItem('onlyLeadClimbs', JSON.stringify(this.onlyLeadClimbs))
+      this.getClimbingTypeChart()
+      this.getGradeChart()
+      this.getYearChart()
+      this.getMonthChart()
+      this.getEvolutionChart()
+    }
+  },
+
   mounted () {
+    this.onlyLeadClimbs = JSON.parse(localStorage.getItem('onlyLeadClimbs')) || false
     this.getClimbingTypeChart()
     this.getGradeChart()
     this.getYearChart()
@@ -132,7 +146,7 @@ export default {
     getClimbingTypeChart () {
       this.loadingClimbingTypeChart = true
       new LogBookOutdoorApi(this.$axios, this.$auth)
-        .climbingTypeChart()
+        .climbingTypeChart(this.onlyLeadClimbs)
         .then((resp) => {
           this.climbingTypeData = resp.data
         })
@@ -144,7 +158,7 @@ export default {
     getGradeChart () {
       this.loadingGradeChart = true
       new LogBookOutdoorApi(this.$axios, this.$auth)
-        .gradeChart()
+        .gradeChart(this.onlyLeadClimbs)
         .then((resp) => {
           this.gradeData = resp.data
         })
@@ -156,7 +170,7 @@ export default {
     getYearChart () {
       this.loadingYearChart = true
       new LogBookOutdoorApi(this.$axios, this.$auth)
-        .yearChart()
+        .yearChart(this.onlyLeadClimbs)
         .then((resp) => {
           this.yearData = resp.data
         })
@@ -168,7 +182,7 @@ export default {
     getMonthChart () {
       this.loadingMonthChart = true
       new LogBookOutdoorApi(this.$axios, this.$auth)
-        .monthChart()
+        .monthChart(this.onlyLeadClimbs)
         .then((resp) => {
           this.monthData = resp.data
         })
@@ -180,7 +194,7 @@ export default {
     getEvolutionChart () {
       this.loadingEvolutionChart = true
       new LogBookOutdoorApi(this.$axios, this.$auth)
-        .evolutionChart()
+        .evolutionChart(this.onlyLeadClimbs)
         .then((resp) => {
           this.evolutionData = resp.data
         })
