@@ -27,8 +27,8 @@ export default {
   i18n: {
     messages: {
       fr: {
-        metaTitle: 'Mes sessions de grimpes',
-        metaDescription: 'La liste de toutes mes sessions de grimpes'
+        metaTitle: 'Mes sessions de grimpe',
+        metaDescription: 'La liste de toutes mes sessions de grimpe'
       },
       en: {
         metaTitle: 'My climbing sessions',

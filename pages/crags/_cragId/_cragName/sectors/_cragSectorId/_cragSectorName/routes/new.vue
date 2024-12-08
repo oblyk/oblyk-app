@@ -16,14 +16,15 @@
 </template>
 
 <script>
-import { CragConcern } from '~/concerns/CragConcern'
 import CragRouteForm from '~/components/cragRoutes/forms/CragRouteForm'
 import { CragSectorConcern } from '~/concerns/CragSectorConcern'
+import CragApi from '~/services/oblyk-api/CragApi'
+import Crag from '~/models/Crag'
 
 export default {
   meta: { orphanRoute: true },
   components: { CragRouteForm },
-  mixins: [CragConcern, CragSectorConcern],
+  mixins: [CragSectorConcern],
   middleware: ['auth'],
 
   i18n: {
@@ -37,9 +38,29 @@ export default {
     }
   },
 
+  data () {
+    return {
+      crag: null
+    }
+  },
+
   head () {
     return {
       title: this.$t('metaTitle')
+    }
+  },
+
+  mounted () {
+    this.getCrag()
+  },
+
+  methods: {
+    getCrag () {
+      new CragApi(this.$axios, this.$auth)
+        .find(this.$route.params.cragId)
+        .then((resp) => {
+          this.crag = new Crag({ attributes: resp.data })
+        })
     }
   }
 }

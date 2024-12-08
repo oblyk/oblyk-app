@@ -3,10 +3,11 @@
     <markdown-input
       v-model="data.body"
       :label="$t('models.comment.body')"
+      autofocus
     />
     <submit-form
       :overlay="submitOverlay"
-      :submit-local-key="submitText()"
+      :submit-local-key="isEditingForm() ? 'actions.edit' : 'actions.add'"
       :go-back-btn="false"
     />
   </v-form>
@@ -68,7 +69,7 @@ export default {
           if (this.callback) {
             this.callback()
           } else {
-            this.$router.push(this.redirectTo)
+            location.href = this.redirectTo
           }
         })
         .catch((err) => {

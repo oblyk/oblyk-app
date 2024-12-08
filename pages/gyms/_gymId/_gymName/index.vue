@@ -8,11 +8,13 @@
         <gym-contact :gym="gym" />
       </v-col>
     </v-row>
-    <v-row v-if="$auth.loggedIn">
-      <v-col cols="12">
-        <gym-user-ascents :gym="gym" />
-      </v-col>
-    </v-row>
+    <client-only>
+      <v-row v-if="$auth.loggedIn">
+        <v-col cols="12">
+          <gym-user-ascents :gym="gym" />
+        </v-col>
+      </v-row>
+    </client-only>
     <v-row>
       <v-col cols="12">
         <!-- Around climbers -->

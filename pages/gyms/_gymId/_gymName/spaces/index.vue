@@ -1,134 +1,148 @@
 <template>
-  <v-container fluid>
-    <!-- Loading gym -->
+  <div
+    class="gym-spaces-interface"
+    :class="$vuetify.breakpoint.mobile ? '--mobile-interface' : '--desktop-interface'"
+  >
+    <!-- Space List or 3D -->
     <div
-      v-if="!gym"
-      class="text-center mt-15"
+      v-if="!$vuetify.breakpoint.mobile || (gym && gym.representation_type === '3d')"
+      class="gym-spaces-plan"
+      :class="$vuetify.breakpoint.mobile ? '--mobile-interface' : '--desktop-interface'"
     >
-      <spinner :full-height="false" />
-      <p class="text-center text--disabled">
-        {{ $t('models.gymSpace.loading') }}
-      </p>
+      <client-only>
+        <gym-space-list
+          v-if="gym && gym.representation_type === '2d_picture'"
+          :gym="gym"
+          class="px-4 pb-4 pt-2"
+        />
+        <gym-three-d
+          v-if="gym && gym.representation_type === '3d'"
+          class="full-height sheet-background-color"
+          :gym="gym"
+        />
+      </client-only>
     </div>
 
     <!-- Gym is loaded -->
-    <v-row
-      v-else
-      class="gym-spaces-interface"
-      :class="$vuetify.breakpoint.mobile ? '--mobile-interface' : '--desktop-interface'"
+    <div
+      v-if="gym"
+      class="gym-spaces-left-side border-right"
+      :class="gymSpacesLeftSideClass"
     >
       <!-- Spaces informations and routes -->
-      <v-col
-        cols="12"
-        md="5"
-        lg="4"
-        class="gym-space-info-and-routes"
+      <v-sheet
+        :elevation="$vuetify.breakpoint.mobile ? 24 : 0"
+        class="gym-spaces-card"
+        :class="$vuetify.breakpoint.mobile ? 'rounded' : ''"
       >
-        <!-- Gym information -->
-        <v-card
+        <v-img
+          height="190px"
+          :src="gym.bannerUrl"
+          class="align-end mb-2 gym-picture-in-gym-spaces"
           dark
-          class="mb-4"
+          gradient="to bottom, rgba(0,0,0,0), rgba(0,0,0,.5)"
         >
-          <v-img
-            height="150px"
-            :src="gym.bannerUrl"
-            gradient="to bottom, rgba(0,0,0,0), rgba(0,0,0,.5)"
+          <v-list-item
+            dark
+            class="px-2"
           >
-            <v-list-item
-              dark
-              class="mt-15 pt-3"
+            <v-list-item-avatar
+              tile
+              size="60"
             >
-              <v-list-item-avatar
-                size="52"
-              >
-                <v-img :src="gym.logoUrl" />
-              </v-list-item-avatar>
-              <v-list-item-content>
-                <v-list-item-title>
-                  <h1
-                    class="mb-n1 text-truncate"
-                    style="color: white"
-                  >
-                    {{ gym.name }}
-                  </h1>
-                </v-list-item-title>
-                <v-list-item-subtitle>
-                  <v-btn
-                    small
-                    icon
-                    :to="gym.path"
-                    class="mr-1 mt-n1"
-                  >
-                    <v-icon>
-                      {{ mdiInformationOutline }}
-                    </v-icon>
-                  </v-btn>
-                  <strong>{{ gym.city }}</strong>, {{ gym.address }}
-                </v-list-item-subtitle>
-              </v-list-item-content>
-              <v-list-item-action>
-                <subscribe-btn
-                  :subscribe-id="gym.id"
-                  subscribe-type="Gym"
-                  :large="false"
-                />
-              </v-list-item-action>
-            </v-list-item>
-          </v-img>
-        </v-card>
+              <v-img
+                :src="gym.thumbnailLogoUrl"
+                class="rounded-sm"
+              />
+            </v-list-item-avatar>
+            <v-list-item-content class="py-0">
+              <v-list-item-title>
+                <h1 class="mb-n1 text-truncate white--text">
+                  {{ gym.name }}
+                </h1>
+              </v-list-item-title>
+              <v-list-item-subtitle>
+                <v-btn
+                  icon
+                  :to="gym.path"
+                  exact-path
+                >
+                  <v-icon>
+                    {{ mdiInformationOutline }}
+                  </v-icon>
+                </v-btn>
+                <client-only>
+                  <subscribe-btn
+                    v-if="$auth.loggedIn"
+                    :subscribe-id="gym.id"
+                    subscribe-type="Gym"
+                    outlined
+                    type-text
+                    :small="true"
+                  />
+                </client-only>
+              </v-list-item-subtitle>
+            </v-list-item-content>
+          </v-list-item>
+        </v-img>
 
-        <gym-go-to-ranking
+        <div
+          v-if="$vuetify.breakpoint.mobile && (gym && gym.representation_type === '3d')"
+          class="spaces-scroll-encourage"
+        >
+          <div />
+        </div>
+
+        <gym-space-selector
+          v-if="gym && $vuetify.breakpoint.mobile && gym.representation_type === '2d_picture'"
           :gym="gym"
-          class="mb-4"
         />
 
-        <!-- Space selector in mobile interface -->
-        <v-sheet
-          v-if="$vuetify.breakpoint.mobile"
-          class="rounded pa-4 mb-4"
-        >
-          <!-- Space list -->
-          <gym-space-selector
-            :gym="gym"
-          />
-        </v-sheet>
+        <div class="px-2">
+          <client-only>
+            <gym-ranking-and-logbook
+              v-if="$auth.loggedIn"
+              class="mt-0 mb-2"
+              :gym="gym"
+            />
+          </client-only>
 
-        <!-- Route list -->
-        <v-sheet class="rounded px-4 pt-2 pb-4 mt-2">
-          <h2
-            v-if="!$vuetify.breakpoint.mobile"
-            class="mb-2"
-          >
-            {{ $t('components.gym.guidebook') }}
-          </h2>
-          <p
-            v-else
-            class="mb-2"
-          >
-            <small class="text--disabled">
-              {{ $t('components.gym.guidebook') }}
-            </small>
-          </p>
-          <gym-space-route-list
+          <contest-up-coming
+            v-if="gym.upcoming_contests.length > 0"
             :gym="gym"
-            :show-plan-options="false"
+            class="my-2"
           />
-        </v-sheet>
-      </v-col>
+        </div>
 
-      <!-- Spaces list or selected route -->
-      <v-col
-        v-if="!$vuetify.breakpoint.mobile"
-        class="gym-spaces-list"
-        cols="12"
-        md="7"
-        lg="8"
+        <div class="d-flex border-top border-bottom px-4 mb-3">
+          <h3 class="pt-1">
+            {{ $t('components.gym.guidebook') }} !
+          </h3>
+          <v-spacer />
+          <client-only>
+            <gym-spaces-action-menu
+              v-if="gym && $auth.loggedIn && (currentUserIsGymAdmin() && (gymAuthCan(gym, 'manage_space') || gymAuthCan(gym, 'manage_opening')))"
+              :gym="gym"
+            />
+          </client-only>
+        </div>
+
+        <div class="px-2">
+          <!-- Route list -->
+          <client-only>
+            <gym-space-route-list
+              :gym="gym"
+              :show-plan-options="false"
+            />
+          </client-only>
+        </div>
+      </v-sheet>
+
+      <div
+        v-show="!$vuetify.breakpoint.mobile && (loadingGymRoute || gymRoute)"
+        class="gym-route-on-desktop-container"
       >
-        <!-- Open gym route in right side of info in desktop interface -->
-        <div
-          v-show="loadingGymRoute || gymRoute"
-          class="gym-route-on-desktop-container"
-        >
+        <div class="gym-route-on-desktop-card py-1 pl-1">
           <v-card class="gym-route-card">
             <spinner v-if="loadingGymRoute" />
             <gym-route-info
@@ -139,76 +153,68 @@
             />
           </v-card>
         </div>
-
-        <!-- Gym Space Liste -->
-        <div
-          v-show="!(loadingGymRoute || gymRoute)"
-        >
-          <gym-space-list :gym="gym" />
-        </div>
-      </v-col>
-
-      <!-- Open gym route in full screen on mobile -->
-      <div
-        v-if="(gymRoute || loadingGymRoute) && $vuetify.breakpoint.mobile"
-        class="gym-route-modal-on-mobile"
-      >
-        <v-dialog
-          :value="true"
-          transition="dialog-bottom-transition"
-          content-class="gym-route-dialog"
-          persistent
-        >
-          <v-card
-            @touchstart="touchEvent('start', $event)"
-            @touchend="touchEvent('end', $event)"
-          >
-            <spinner v-if="loadingGymRoute" />
-            <gym-route-info
-              v-if="gymRoute"
-              :gym-route="gymRoute"
-              :show-space="true"
-              :gym="gym"
-            />
-          </v-card>
-        </v-dialog>
       </div>
-    </v-row>
-  </v-container>
+    </div>
+
+    <!-- Open gym route in full screen on mobile -->
+    <down-to-close-dialog
+      v-if="$vuetify.breakpoint.mobile"
+      ref="GymRouteDialog"
+      v-model="gymRouteDialog"
+      padding-x="px-2"
+      :close-callback="closeGymRouteModal"
+      wait-signal
+    >
+      <gym-route-info
+        v-if="!loadingGymRoute && gymRoute"
+        :gym-route="gymRoute"
+        :show-space="true"
+        :gym="gym"
+      />
+    </down-to-close-dialog>
+  </div>
 </template>
 
 <script>
 import { mdiInformationOutline } from '@mdi/js'
 import { GymConcern } from '~/concerns/GymConcern'
-import Spinner from '~/components/layouts/Spiner.vue'
-import GymSpaceSelector from '~/components/gymSpaces/GymSpaceSelector.vue'
-import GymSpaceRouteList from '~/components/gymRoutes/GymSpaceRouteList.vue'
-import GymSpaceList from '~/components/gymSpaces/GymSpaceList.vue'
+import Spinner from '~/components/layouts/Spiner'
+import GymSpaceRouteList from '~/components/gymRoutes/GymSpaceRouteList'
 import GymRouteApi from '~/services/oblyk-api/GymRouteApi'
 import GymRoute from '~/models/GymRoute'
-import GymRouteInfo from '~/components/gymRoutes/GymRouteInfo.vue'
-import SubscribeBtn from '~/components/forms/SubscribeBtn.vue'
-import GymGoToRanking from '~/components/gyms/GymGoToRanking.vue'
+import GymRouteInfo from '~/components/gymRoutes/GymRouteInfo'
+import DownToCloseDialog from '~/components/ui/DownToCloseDialog'
+import GymSpaceSelector from '~/components/gymSpaces/GymSpaceSelector.vue'
+import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
+const GymRankingAndLogbook = () => import('~/components/gyms/GymRankingAndLogbook')
+const SubscribeBtn = () => import('~/components/forms/SubscribeBtn')
+const GymSpacesActionMenu = () => import('~/components/gymSpaces/GymSpacesActionMenu')
+const ContestUpComing = () => import('~/components/gyms/ContestUpComing')
+const GymSpaceList = () => import('~/components/gymSpaces/GymSpaceList')
+const GymThreeD = () => import('~/components/gyms/GymThreeD')
 
 export default {
   components: {
-    GymGoToRanking,
+    GymSpaceSelector,
+    GymSpacesActionMenu,
+    GymThreeD,
+    GymRankingAndLogbook,
+    DownToCloseDialog,
+    ContestUpComing,
     SubscribeBtn,
     GymRouteInfo,
     GymSpaceList,
     GymSpaceRouteList,
-    GymSpaceSelector,
     Spinner
   },
   meta: { orphanRoute: true },
-  mixins: [GymConcern],
+  mixins: [GymConcern, GymRolesHelpers],
 
   data () {
     return {
       gymRoute: null,
+      gymRouteDialog: false,
       loadingGymRoute: false,
-      closeDragStart: null,
-      toucheClientY: 0,
 
       mdiInformationOutline
     }
@@ -217,6 +223,20 @@ export default {
   computed: {
     activeGymRouteId () {
       return this.$route.query.route
+    },
+
+    gymSpacesLeftSideClass () {
+      const classes = []
+      if (this.$vuetify.breakpoint.mobile) {
+        classes.push('--mobile-interface sheet-background-color')
+      } else {
+        classes.push('--desktop-interface')
+      }
+      classes.push(`--${this.gym?.representation_type}`)
+      if (this.gymRoute !== null || this.loadingGymRoute) {
+        classes.push('--with-active-gym-route')
+      }
+      return classes.join(' ')
     }
   },
 
@@ -224,6 +244,8 @@ export default {
     activeGymRouteId () {
       if (this.activeGymRouteId) {
         this.getGymRoute()
+      } else if (this.$refs.GymRouteDialog) {
+        this.$refs.GymRouteDialog.close()
       } else {
         this.gymRoute = null
       }
@@ -237,40 +259,36 @@ export default {
   },
 
   methods: {
-    getGymRoute () {
+    async getGymRoute () {
       this.loadingGymRoute = true
       this.gymRoute = null
-      new GymRouteApi(this.$axios, this.$auth)
-        .find(
-          this.$route.params.gymId,
-          this.$route.params.gymSpaceId,
-          this.activeGymRouteId
-        ).then((resp) => {
-          this.gymRoute = new GymRoute({ attributes: resp.data })
-        }).finally(() => {
-          this.loadingGymRoute = false
-        })
+      this.gymRouteDialog = true
+
+      // Get route in indexDb first and get in API if it does not exist
+      const localRoute = await this.$localforage.gymRoutes.getItem(this.activeGymRouteId)
+      if (localRoute) {
+        this.gymRoute = new GymRoute({ attributes: localRoute })
+        this.$refs.GymRouteDialog?.signal()
+        this.loadingGymRoute = false
+      } else {
+        new GymRouteApi(this.$axios, this.$auth)
+          .find(
+            this.$route.params.gymId,
+            this.$route.params.gymSpaceId,
+            this.activeGymRouteId
+          ).then((resp) => {
+            this.gymRoute = new GymRoute({ attributes: resp.data })
+            this.$refs.GymRouteDialog?.signal()
+          }).finally(() => {
+            this.loadingGymRoute = false
+          })
+      }
     },
 
     closeGymRouteModal () {
+      this.gymRoute = null
+      this.gymRouteDialog = false
       this.$router.push({ path: this.$route.path })
-    },
-
-    touchEvent (touchStatus, event) {
-      const dialogue = document.querySelector('.gym-route-dialog')
-      if (dialogue.scrollTop === 0 && touchStatus === 'start') {
-        this.closeDragStart = true
-        this.toucheClientY = event.changedTouches[0].clientY
-      }
-      if (touchStatus === 'end' && this.closeDragStart === true) {
-        if (event.changedTouches[0].clientY - this.toucheClientY > 50) {
-          this.closeGymRouteModal()
-        }
-      }
-      if (touchStatus === 'end') {
-        this.closeDragStart = null
-        this.toucheClientY = null
-      }
     }
   }
 }
@@ -278,30 +296,99 @@ export default {
 
 <style lang="scss">
 .gym-spaces-interface {
-  &.--desktop-interface {
-    height: calc(100vh - 64px);
-  }
-  &.--mobile-interface {
-    height: calc(100vh - 43px);
-  }
+  position: relative;
+  width: 100%;
+  &.--desktop-interface { height: calc(100vh - 64px); }
+  &.--mobile-interface { height: calc(100vh - 43px); }
 
   .gym-space-info-and-routes {
     height: 100%;
     overflow-y: auto;
   }
 
-  .gym-spaces-list {
+  .gym-spaces-left-side {
     height: 100%;
-    overflow-y: auto;
-    .gym-route-on-desktop-container {
-      max-width: 450px;
-      height: 100%;
+    position: relative;
+    &.--desktop-interface {
+      width: 450px;
+      height: calc(100vh - 64px);
       overflow-y: auto;
-      overflow-x: hidden;
-      .gym-route-card {}
+      margin-top: 0;
+      &.--with-active-gym-route {
+        width: 900px;
+      }
+      .gym-spaces-card {
+        width: 450px;
+        min-height: calc(100vh - 64px);
+      }
+      .gym-spaces-info-and-routes {
+        width: 450px;
+      }
+    }
+    &.--mobile-interface {
+      width: 100%;
+      &.--3d { margin-top: calc(100vh - 260px); }
+      .gym-spaces-card { min-height: calc(100vh - 44px); }
+      .gym-spaces-info-and-routes { padding-bottom: 45px; }
+    }
+
+    &.--3d.--mobile-interface {
+      .gym-picture-in-gym-spaces {
+        border-radius: 15px 15px 0 0;
+      }
+    }
+
+    .gym-route-on-desktop-container {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+      width: 450px;
+      overflow: hidden;
+      .gym-route-on-desktop-card {
+        position: fixed;
+        height: 100%;
+        width: 450px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        .gym-route-card {
+          min-height: 100%;
+        }
+      }
+    }
+  }
+  .spaces-scroll-encourage {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    margin-bottom: 10px;
+    padding-top: 5px;
+    div {
+      margin-left: auto;
+      margin-right: auto;
+      width: 30px;
+      height: 5px;
+      border-radius: 3px;
+      background-color: rgba(255, 255, 255, 0.8);
     }
   }
 }
+
+.gym-spaces-plan {
+  width: 100%;
+  &.--desktop-interface {
+    height: 100%;
+    position: absolute;
+    padding-left: 440px;
+  }
+  &.--mobile-interface {
+    height: calc(100vh - 260px);
+    position: fixed;
+    top: 0;
+    right: 0;
+  }
+}
+
 .gym-route-dialog {
   width: 100%;
   height: 100%;
@@ -310,16 +397,6 @@ export default {
   overflow-x: hidden;
   .v-card {
     min-height: 100%;
-  }
-}
-.theme--dark {
-  .gym-route-card {
-    background-color: rgba(17, 17, 17, 0.9) !important;
-  }
-}
-.theme--light {
-  .gym-route-card {
-    background-color: rgba(255, 255, 255, 0.8) !important;
   }
 }
 </style>

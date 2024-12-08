@@ -8,19 +8,14 @@
     </v-card-title>
     <v-card-text class="text-center pt-5 pb-7">
       <strong class="big-font-size">
-        <span v-if="loadingOpeners">
-          ...
-        </span>
-        <span v-else>
-          {{ openers.length }}
-        </span>
+        {{ figures.gym_openers_count !== null ? figures.gym_openers_count : '...' }}
       </strong>
     </v-card-text>
     <v-card-actions>
       <v-spacer />
       <v-btn
         text
-        color="primary"
+        outlined
         :to="`${gym.adminPath}/openers`"
       >
         {{ $t('components.gymAdmin.openers') }}
@@ -31,7 +26,7 @@
 
 <script>
 import { mdiBolt } from '@mdi/js'
-import GymOpenerApi from '~/services/oblyk-api/GymOpenerApi'
+import GymApi from '~/services/oblyk-api/GymApi'
 
 export default {
   name: 'GymAdminOpenersFigures',
@@ -44,30 +39,21 @@ export default {
 
   data () {
     return {
-      loadingOpeners: true,
-      openers: [],
+      figures: {},
 
       mdiBolt
     }
   },
 
   created () {
-    this.getOpeners()
+    this.getFigures()
   },
 
   methods: {
-    getOpeners () {
-      new GymOpenerApi(this.$axios, this.$auth)
-        .all(this.gym.id)
-        .then((resp) => {
-          this.openers = resp.data
-        })
-        .catch((err) => {
-          this.$root.$emit('alertFromApiError', err, 'gymAdministrator')
-        })
-        .finally(() => {
-          this.loadingOpeners = false
-        })
+    getFigures () {
+      new GymApi(this.$axios, this.$auth)
+        .figures(this.gym.id, ['gym_openers_count'])
+        .then((resp) => { this.figures = resp.data })
     }
   }
 }

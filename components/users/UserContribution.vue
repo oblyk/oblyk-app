@@ -19,7 +19,7 @@
           v-if="contribution.crags_count !== 0"
           class="col-4 col-lg-3 figures"
         >
-          {{ contribution.crags_count }} <br>
+          {{ contribution.crags_count.toLocaleString() }}<br>
           <span>
             {{ $t('components.user.contribution.crags') }}
           </span>
@@ -30,7 +30,7 @@
           v-if="contribution.gyms_count !== 0"
           class="col-4 col-lg-3 figures"
         >
-          {{ contribution.gyms_count }} <br>
+          {{ contribution.gyms_count.toLocaleString() }}<br>
           <span>
             {{ $t('components.user.contribution.gyms') }}
           </span>
@@ -41,7 +41,7 @@
           v-if="contribution.routes_count !== 0"
           class="col-4 col-lg-3 figures"
         >
-          {{ contribution.routes_count }} <br>
+          {{ contribution.routes_count.toLocaleString() }}<br>
           <span>
             {{ $t('components.user.contribution.routes') }}
           </span>
@@ -52,7 +52,7 @@
           v-if="contribution.photos_count !== 0"
           class="col-4 col-lg-3 figures"
         >
-          {{ contribution.photos_count }} <br>
+          {{ contribution.photos_count.toLocaleString() }}<br>
           <span>
             {{ $t('components.user.contribution.photos') }}
           </span>
@@ -63,7 +63,7 @@
           v-if="contribution.videos_count !== 0"
           class="col-4 col-lg-3 figures"
         >
-          {{ contribution.videos_count }} <br>
+          {{ contribution.videos_count.toLocaleString() }}<br>
           <span>
             {{ $t('components.user.contribution.videos') }}
           </span>
@@ -74,7 +74,7 @@
           v-if="contribution.guides_count !== 0"
           class="col-4 col-lg-3 figures"
         >
-          {{ contribution.guides_count }} <br>
+          {{ contribution.guides_count.toLocaleString() }}<br>
           <span>
             {{ $t('components.user.contribution.guides') }}
           </span>
@@ -85,7 +85,7 @@
           v-if="contribution.comments_count !== 0"
           class="col-4 col-lg-3 figures"
         >
-          {{ contribution.comments_count }} <br>
+          {{ contribution.comments_count.toLocaleString() }}<br>
           <span>
             {{ $t('components.user.contribution.comments') }}
           </span>

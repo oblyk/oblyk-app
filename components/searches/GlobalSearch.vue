@@ -1,286 +1,217 @@
 <template>
   <v-card :loading="searching">
     <!-- Search filed and chips count result -->
-    <v-card-text class="global-search-fields-area pb-0">
-      <div class="row">
-        <div class="col pb-1">
-          <v-text-field
-            ref="globalSearchInput"
-            v-model="query"
-            :prepend-inner-icon="mdiMagnify"
-            :label="$t('components.search.searchLabel')"
-            filled
-            rounded
-            dense
-            hide-details
-            @keyup="search"
-            @click:clear="onSearch = false"
+    <div class="global-search-fields-area pt-4">
+      <div class="d-flex align-center">
+        <v-text-field
+          ref="globalSearchInput"
+          v-model="query"
+          :prepend-inner-icon="mdiMagnify"
+          :label="$t('components.search.searchLabel')"
+          filled
+          rounded
+          dense
+          hide-details
+          @keyup="search"
+          @click:clear="onSearch = false"
+        />
+        <v-btn
+          class="ml-auto"
+          icon
+          large
+          @click="closeDialogue()"
+        >
+          <v-icon>{{ mdiClose }}</v-icon>
+        </v-btn>
+      </div>
+
+      <v-tabs
+        height="35"
+        show-arrows
+      >
+        <v-tab @click="changeCollection(['Crag', 'Gym', 'GuideBookPaper', 'Area'])">
+          <v-icon>
+            {{ mdiAsterisk }}
+          </v-icon>
+        </v-tab>
+        <v-tab @click="changeCollection(['Crag', 'Area'])">
+          <v-icon left>
+            {{ mdiTerrain }}
+          </v-icon>
+          {{ $t('components.search.tabs.crag') }}
+        </v-tab>
+        <v-tab @click="changeCollection(['Gym'])">
+          <v-icon left>
+            {{ mdiOfficeBuildingMarker }}
+          </v-icon>
+          {{ $t('components.search.tabs.gym') }}
+        </v-tab>
+        <v-tab @click="changeCollection(['GuideBookPaper'])">
+          <v-icon left>
+            {{ mdiBookOpenPageVariant }}
+          </v-icon>
+          {{ $t('components.search.tabs.guideBookPaper') }}
+        </v-tab>
+        <v-tab @click="changeCollection(['CragRoute'])">
+          <v-icon left>
+            {{ mdiSourceBranch }}
+          </v-icon>
+          {{ $t('components.search.tabs.cragRoute') }}
+        </v-tab>
+        <v-tab @click="changeCollection(['User'])">
+          <v-icon left>
+            {{ mdiAccountCircleOutline }}
+          </v-icon>
+          {{ $t('components.search.tabs.user') }}
+        </v-tab>
+        <v-tab @click="changeCollection(['Word'])">
+          <v-icon left>
+            {{ mdiFormatLetterCase }}
+          </v-icon>
+          {{ $t('components.search.tabs.word') }}
+        </v-tab>
+      </v-tabs>
+    </div>
+
+    <div>
+      <spinner v-if="loadingExternalSearch" />
+      <div v-else>
+        <div v-if="currentResults && currentResults.results">
+          <div
+            v-for="(result, index) in currentResults.results"
+            :key="`result-${index}`"
+            class="mt-1"
+            @click="closeAndSaveSearch()"
+          >
+            <crag-small-card v-if="result.className === 'Crag'" :small="true" :crag="result" />
+            <area-small-card v-if="result.className === 'Area'" :area="result" />
+            <gym-small-card v-if="result.className === 'Gym'" :small="true" :gym="result" />
+            <guide-book-paper-small-card v-if="result.className === 'GuideBookPaper'" :guide-book-paper="result" />
+            <user-small-card v-if="result.className === 'User'" :user="result" :small="true" />
+            <crag-route-small-card v-if="result.className === 'CragRoute'" :crag-route="result" :small="true" />
+            <word-card v-if="result.className === 'Word'" :flat="true" :small="true" :word="result" />
+          </div>
+          <loading-more
+            v-if="!searching"
+            :key="`loading-more-${resultChangeKey}`"
+            :get-function="searchNextPage"
+            :loading-more="loadingMoreText"
+            :no-more-data="currentResults.noMoreData"
+            skeleton-type="list-item-avatar"
+          />
+          <p
+            v-if="!searching && currentResults && currentResults.results.length === 0 && normalizeQuery"
+            class="py-7 text--disabled text-center"
+            v-html="$t('components.search.noResultsFor', { query: normalizeQuery })"
           />
         </div>
-        <div class="col close-global-search-dialog-btn">
-          <v-btn
-            icon
-            large
-            @click="closeDialogue()"
-          >
-            <v-icon>{{ mdiClose }}</v-icon>
-          </v-btn>
-        </div>
-      </div>
-
-      <!-- Chips count result -->
-      <div class="global-search-chips">
-        <global-search-chip
-          :icon="mdiSelectGroup"
-          :array-results="areaResults"
-          title-key="area"
-          :callback="scrollTo"
-        />
-        <global-search-chip
-          :icon="mdiTerrain"
-          :array-results="cragResults"
-          title-key="crag"
-          :callback="scrollTo"
-        />
-        <global-search-chip
-          :icon="mdiHomeVariantOutline"
-          :array-results="gymResults"
-          title-key="gym"
-          :callback="scrollTo"
-        />
-        <global-search-chip
-          :icon="mdiBookOpenPageVariant"
-          :array-results="guideBookPaperResults"
-          title-key="guideBookPaper"
-          :callback="scrollTo"
-        />
-        <global-search-chip
-          :icon="mdiAccountCircleOutline"
-          :array-results="userResults"
-          title-key="user"
-          :callback="scrollTo"
-        />
-        <global-search-chip
-          :icon="mdiSourceBranch"
-          :array-results="cragRouteResults"
-          title-key="cragRoute"
-          :callback="scrollTo"
-        />
-        <global-search-chip
-          :icon="mdiFormatLetterCase"
-          :array-results="wordResults"
-          title-key="word"
-          :callback="scrollTo"
-        />
-      </div>
-    </v-card-text>
-
-    <!-- Result area -->
-    <div
-      id="global-search-results-area"
-      class="global-search-results-area pl-2 pr-2"
-    >
-      <spinner v-if="loadingExternalSearch" />
-
-      <!-- Previous research -->
-      <div
-        v-if="!loadingExternalSearch && !haveResult && previousSearch().length > 0"
-        class="pl-5"
-      >
-        <p
-          v-for="(storedQuery, index) in previousSearch()"
-          :key="`previous-query-${index}`"
-          class="mb-1"
+        <div
+          v-if="!loadingMoreText"
+          class="mt-8 px-4"
         >
-          <span
-            class="hoverable"
-            @click="research(storedQuery)"
-          >
-            <v-icon left>{{ mdiHistory }}</v-icon>
-            {{ storedQuery }}
-          </span>
-        </p>
-      </div>
-
-      <!-- Crag result -->
-      <div v-if="cragResults.length > 0">
-        <p
-          id="crag-result-title"
-          class="global-search-result-title"
-          :class="showCragResults ? 'result-is-expanded' : 'result-is-collapse'"
-          @click="showCragResults = !showCragResults"
-        >
-          <v-icon left>
-            {{ mdiChevronDown }}
-          </v-icon>
-          {{ $tc('components.search.count.crag', cragResults.length, { count: cragResults.length } ) }}
-        </p>
-        <div v-if="showCragResults">
-          <div
-            v-for="(crag, index) in cragResults"
-            :key="`crag-result-${index}`"
-            class="mt-1"
-            @click="closeAndSaveSearch()"
-          >
-            <crag-small-card :small="true" :crag="crag" />
+          <div v-if="!openSearchAround">
+            <p class="font-weight-bold text-decoration-underline text-center">
+              {{ $t('components.search.map.find') }}
+            </p>
+            <v-row class="justify-center">
+              <v-col cols="12" md="4" lg="2" class="pb-0">
+                <v-card
+                  class="text-center pa-4 border"
+                  @click="mapClick('/maps/crags')"
+                >
+                  <div class="mb-2">
+                    <v-icon>
+                      {{ mdiTerrain }}
+                    </v-icon>
+                  </div>
+                  {{ $t('components.search.map.crag') }}
+                </v-card>
+              </v-col>
+              <v-col cols="12" md="4" lg="2" class="pb-0">
+                <v-card
+                  class="text-center pa-4 border"
+                  @click="mapClick('/maps/gyms')"
+                >
+                  <div class="mb-2">
+                    <v-icon>
+                      {{ mdiOfficeBuildingMarker }}
+                    </v-icon>
+                  </div>
+                  {{ $t('components.search.map.gym') }}
+                </v-card>
+              </v-col>
+              <v-col cols="12" md="4" lg="2" class="pb-0">
+                <v-card
+                  class="text-center pa-4 border"
+                  @click="mapClick('/maps/climbers')"
+                >
+                  <div class="mb-2">
+                    <v-icon>
+                      {{ mdiAccountCircleOutline }}
+                    </v-icon>
+                  </div>
+                  {{ $t('components.search.map.climber') }}
+                </v-card>
+              </v-col>
+            </v-row>
           </div>
-        </div>
-      </div>
 
-      <!-- Area result -->
-      <div v-if="areaResults.length > 0">
-        <p
-          id="area-result-title"
-          class="global-search-result-title"
-          :class="showAreaResults ? 'result-is-expanded' : 'result-is-collapse'"
-          @click="showAreaResults = !showAreaResults"
-        >
-          <v-icon left>
-            {{ mdiChevronDown }}
-          </v-icon>
-          {{ $tc('components.search.count.area', areaResults.length, { count: areaResults.length } ) }}
-        </p>
-        <div v-if="showAreaResults">
-          <div
-            v-for="(area, index) in areaResults"
-            :key="`area-result-${index}`"
-            @click="closeAndSaveSearch()"
-          >
-            <area-small-card :area="area" />
-          </div>
-        </div>
-      </div>
-
-      <!-- Gym result -->
-      <div v-if="gymResults.length > 0">
-        <p
-          id="gym-result-title"
-          class="global-search-result-title"
-          :class="showGymResults ? 'result-is-expanded' : 'result-is-collapse'"
-          @click="showGymResults = !showGymResults"
-        >
-          <v-icon left>
-            {{ mdiChevronDown }}
-          </v-icon>
-          {{ $tc('components.search.count.gym', gymResults.length, { count: gymResults.length } ) }}
-        </p>
-        <div v-if="showGymResults">
-          <div
-            v-for="(gym, index) in gymResults"
-            :key="`gym-result-${index}`"
-            class="mt-1"
-            @click="closeAndSaveSearch()"
-          >
-            <gym-small-card
-              :gym="gym"
-              :small="true"
-            />
-          </div>
-        </div>
-      </div>
-
-      <!-- Guide book papers result -->
-      <div v-if="guideBookPaperResults.length > 0">
-        <p
-          id="guideBookPaper-result-title"
-          class="global-search-result-title"
-          :class="showGuideBookPaperResults ? 'result-is-expanded' : 'result-is-collapse'"
-          @click="showGuideBookPaperResults = !showGuideBookPaperResults"
-        >
-          <v-icon left>
-            {{ mdiChevronDown }}
-          </v-icon>
-          {{ $tc('components.search.count.guideBookPaper', guideBookPaperResults.length, { count: guideBookPaperResults.length } ) }}
-        </p>
-        <div v-if="showGuideBookPaperResults">
-          <div
-            v-for="(guideBookPaper, index) in guideBookPaperResults"
-            :key="`guide-book-paper-result-${index}`"
-            @click="closeAndSaveSearch()"
-          >
-            <guide-book-paper-small-card :guide-book-paper="guideBookPaper" />
-          </div>
-        </div>
-      </div>
-
-      <!-- Climbers result -->
-      <div v-if="userResults.length > 0">
-        <p
-          id="user-result-title"
-          class="global-search-result-title"
-          :class="showUserResults ? 'result-is-expanded' : 'result-is-collapse'"
-          @click="showUserResults = !showUserResults"
-        >
-          <v-icon left>
-            {{ mdiChevronDown }}
-          </v-icon>
-          {{ $tc('components.search.count.user', userResults.length, { count: userResults.length } ) }}
-        </p>
-        <div v-if="showUserResults">
-          <div
-            v-for="(user, index) in userResults"
-            :key="`climber-result-${index}`"
-            @click="closeAndSaveSearch()"
-          >
-            <user-small-card
-              :user="user"
-              :small="true"
-            />
-          </div>
-        </div>
-      </div>
-
-      <!-- Crag route result -->
-      <div v-if="cragRouteResults.length > 0">
-        <p
-          id="cragRoute-result-title"
-          class="global-search-result-title"
-          :class="showCragRouteResults ? 'result-is-expanded' : 'result-is-collapse'"
-          @click="showCragRouteResults = !showCragRouteResults"
-        >
-          <v-icon left>
-            {{ mdiChevronDown }}
-          </v-icon>
-          {{ $tc('components.search.count.cragRoute', cragRouteResults.length, { count: cragRouteResults.length } ) }}
-        </p>
-        <div v-if="showCragRouteResults">
-          <div
-            v-for="(cragRoute, index) in cragRouteResults"
-            :key="`crag-route-result-${index}`"
-            @click="closeAndSaveSearch()"
-          >
-            <crag-route-small-card
-              :crag-route="cragRoute"
-              :small="true"
-            />
-          </div>
-        </div>
-      </div>
-
-      <!-- Words result -->
-      <div v-if="wordResults.length > 0">
-        <p
-          id="word-result-title"
-          class="global-search-result-title"
-          :class="showWordResults ? 'result-is-expanded' : 'result-is-collapse'"
-          @click="showWordResults = !showWordResults"
-        >
-          <v-icon left>
-            {{ mdiChevronDown }}
-          </v-icon>
-          {{ $tc('components.search.count.word', wordResults.length, { count: wordResults.length } ) }}
-        </p>
-        <div v-if="showWordResults">
-          <div
-            v-for="(word, index) in wordResults"
-            :key="`word-result-${index}`"
-            @click="closeAndSaveSearch()"
-          >
-            <word-card
-              :flat="true"
-              :small="true"
-              :word="word"
-            />
+          <p class="font-weight-bold text-decoration-underline text-center mt-8">
+            {{ $t('components.search.searchAroundTitle') }}
+          </p>
+          <div>
+            <div class="text-center">
+              <v-btn
+                v-if="$store.getters['geolocation/IAmGeolocated']"
+                outlined
+                text
+                :loading="loadingAround"
+                @click="launchSearchAround"
+              >
+                <v-icon left>
+                  {{ openSearchAround ? mdiClose : mdiMapMarkerRadius }}
+                </v-icon>
+                {{ $t('actions.aroundMe') }}
+              </v-btn>
+              <v-row v-else>
+                <v-col cols="12" lg="6" offset-lg="3">
+                  <v-card
+                    class="border rounded-sm pa-4"
+                    @click="openGeoLocalizationModal"
+                  >
+                    <div class="mb-2">
+                      <v-icon left>
+                        {{ mdiMapMarkerRadius }}
+                      </v-icon>
+                    </div>
+                    {{ $t('components.search.activeLocalization') }}
+                  </v-card>
+                </v-col>
+              </v-row>
+            </div>
+            <div v-if="openSearchAround">
+              <div
+                v-for="(aroundResult, aroundResultIndex) in aroundResults"
+                :key="`around-result-index-${aroundResultIndex}`"
+              >
+                <gym-small-card
+                  v-if="aroundResult.className === 'Gym'"
+                  :gym="aroundResult"
+                  small
+                />
+                <crag-small-card
+                  v-if="aroundResult.className === 'Crag'"
+                  :crag="aroundResult"
+                  small
+                />
+              </div>
+              <loading-more
+                v-if="aroundResults.length > 0"
+                :no-more-data="noMoreDataToLoad"
+                :loading-more="loadingMoreData"
+                :get-function="searchAround"
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -290,18 +221,18 @@
 
 <script>
 import {
-  mdiChevronDown,
   mdiClose,
   mdiMagnify,
-  mdiSelectGroup,
   mdiTerrain,
-  mdiHomeVariantOutline,
   mdiBookOpenPageVariant,
   mdiAccountCircleOutline,
   mdiSourceBranch,
   mdiFormatLetterCase,
-  mdiHistory
+  mdiOfficeBuildingMarker,
+  mdiAsterisk,
+  mdiMapMarkerRadius
 } from '@mdi/js'
+import { LoadingMoreHelpers } from '~/mixins/LoadingMoreHelpers'
 import Crag from '@/models/Crag'
 import Area from '@/models/Area'
 import Gym from '@/models/Gym'
@@ -315,24 +246,25 @@ import GymSmallCard from '@/components/gyms/GymSmallCard'
 import UserSmallCard from '@/components/users/UserSmallCard'
 import GuideBookPaperSmallCard from '@/components/guideBookPapers/GuideBookPaperSmallCard'
 import WordCard from '@/components/words/WordCard'
-import GlobalSearchChip from '@/components/searches/GlobalSearchChip'
 import CragRouteSmallCard from '@/components/cragRoutes/CragRouteSmallCard'
 import AreaSmallCard from '@/components/areas/AreaSmallCard'
 import Spinner from '~/components/layouts/Spiner'
+import LoadingMore from '~/components/layouts/LoadingMore'
 
 export default {
   name: 'GlobalSearch',
   components: {
+    LoadingMore,
     Spinner,
     AreaSmallCard,
     CragRouteSmallCard,
-    GlobalSearchChip,
     WordCard,
     GuideBookPaperSmallCard,
     UserSmallCard,
     GymSmallCard,
     CragSmallCard
   },
+  mixins: [LoadingMoreHelpers],
 
   props: {
     globalSearchDialog: Boolean,
@@ -349,48 +281,49 @@ export default {
 
   data () {
     return {
-      tab: null,
       query: null,
       searching: false,
       onSearch: false,
-      previousQuery: null,
       loadingExternalSearch: false,
+      loadingMoreText: false,
+      noMoreResults: {},
+      collections: ['Crag', 'Gym', 'GuideBookPaper', 'Area'],
 
-      areaResults: [],
-      cragResults: [],
-      cragRouteResults: [],
-      gymResults: [],
-      guideBookPaperResults: [],
-      userResults: [],
-      wordResults: [],
+      results: {},
 
-      showAreaResults: true,
-      showCragResults: true,
-      showCragRouteResults: true,
-      showGymResults: true,
-      showGuideBookPaperResults: true,
-      showUserResults: true,
-      showWordResults: true,
+      aroundResults: [],
+      loadingAround: false,
+      openSearchAround: false,
 
       searchApi: null,
+      resultChangeKey: 0,
 
-      mdiChevronDown,
       mdiClose,
       mdiMagnify,
-      mdiSelectGroup,
       mdiTerrain,
-      mdiHomeVariantOutline,
       mdiBookOpenPageVariant,
       mdiAccountCircleOutline,
       mdiSourceBranch,
       mdiFormatLetterCase,
-      mdiHistory
+      mdiOfficeBuildingMarker,
+      mdiAsterisk,
+      mdiMapMarkerRadius
     }
   },
 
   computed: {
-    haveResult () {
-      return (this.areaResults.length + this.cragResults.length + this.cragRouteResults.length + this.gymResults.length + this.guideBookPaperResults.length + this.userResults.length + this.wordResults.length > 0)
+    normalizeQuery () {
+      return this.query?.trim() || null
+    },
+
+    currentResults () {
+      if (this.normalizeQuery === null || this.resultChangeKey < 0) {
+        return false
+      } else if (typeof this.results[this.normalizeQuery] === 'object') {
+        return this.results[this.normalizeQuery] || {}
+      } else {
+        return {}
+      }
     }
   },
 
@@ -407,137 +340,132 @@ export default {
   },
 
   methods: {
-    previousSearch () {
-      if (!process.client) { return [] }
-
-      if (localStorage.getItem('previous-search')) {
-        return (localStorage.getItem('previous-search') || '').split('||')
-      } else {
-        return []
-      }
-    },
-
     giveFocus () {
       this.$refs.globalSearchInput.focus()
       this.query = this.externalQuery
     },
 
-    research (query) {
-      this.query = query
+    changeCollection (collections) {
+      this.collections = collections
+      this.results = {}
+      if (this.query === null) { return false }
+      this.loadingExternalSearch = true
       this.search()
     },
 
     closeAndSaveSearch () {
-      const savedSearch = this.previousSearch()
-      const newSavedSearch = []
+      this.closeDialogue()
+    },
 
-      if (!this.query) {
-        this.closeDialogue()
-        return false
-      }
-
-      for (const query of savedSearch) {
-        if (query.toLowerCase() !== this.query.toLowerCase()) {
-          newSavedSearch.push(query)
-        }
-      }
-      newSavedSearch.unshift(this.query)
-      if (process.client) {
-        localStorage.setItem('previous-search', newSavedSearch.join('||'))
-      }
+    mapClick (route) {
+      this.$router.push(route)
       this.closeDialogue()
     },
 
     search () {
-      if (this.previousQuery === this.query) {
+      if (this.normalizeQuery === null || typeof this.results[this.normalizeQuery] === 'object') {
         this.searching = false
         return
       }
 
-      this.onSearch = true
       this.searching = true
+      this.onSearch = true
 
       if (this.searchTimeOut) {
         clearTimeout(this.searchTimeOut)
         this.searchTimeOut = null
       }
       this.searchTimeOut = setTimeout(() => {
-        this.apiSearch()
+        this.apiSearch(this.normalizeQuery)
       }, 500)
     },
 
-    apiSearch () {
+    searchNextPage () {
+      this.apiSearch(this.normalizeQuery)
+    },
+
+    apiSearch (query) {
       this.searchApi = this.searchApi || new SearchApi(this.$axios, this.$auth)
       this.searchApi.cancelSearch()
 
+      this.results[query] ||= {
+        page: 0,
+        noMoreData: false,
+        results: []
+      }
+      this.results[query].page += 1
+      this.loadingMoreText = true
+      this.openSearchAround = false
+
       this.searchApi
-        .search(this.query)
+        .searchAll(query, this.collections, this.results[query].page)
         .then((resp) => {
-          this.clearResults()
-          for (const result of resp.data.crags) { this.cragResults.push(new Crag({ attributes: result })) }
-          for (const result of resp.data.gyms) { this.gymResults.push(new Gym({ attributes: result })) }
-          for (const result of resp.data.guide_book_papers) { this.guideBookPaperResults.push(new GuideBookPaper({ attributes: result })) }
-          for (const result of resp.data.users) { this.userResults.push(new User({ attributes: result })) }
-          for (const result of resp.data.crag_routes) { this.cragRouteResults.push(new CragRoute({ attributes: result })) }
-          for (const result of resp.data.words) { this.wordResults.push(new Word({ attributes: result })) }
-          for (const result of resp.data.areas) { this.areaResults.push(new Area({ attributes: result })) }
-          this.previousQuery = this.query
+          const data = resp.data
+          for (const result of data.results) {
+            if (result.result_type === 'Crag') { this.results[data.query].results.push(new Crag({ attributes: result.result_object })) }
+            if (result.result_type === 'Gym') { this.results[data.query].results.push(new Gym({ attributes: result.result_object })) }
+            if (result.result_type === 'GuideBookPaper') { this.results[data.query].results.push(new GuideBookPaper({ attributes: result.result_object })) }
+            if (result.result_type === 'User') { this.results[data.query].results.push(new User({ attributes: result.result_object })) }
+            if (result.result_type === 'CragRoute') { this.results[data.query].results.push(new CragRoute({ attributes: result.result_object })) }
+            if (result.result_type === 'Word') { this.results[data.query].results.push(new Word({ attributes: result.result_object })) }
+            if (result.result_type === 'Area') { this.results[data.query].results.push(new Area({ attributes: result.result_object })) }
+          }
+          if (data.results.length < 25) {
+            this.results[data.query].noMoreData = true
+          }
+        })
+        .catch(() => {
+          this.results[query].noMoreData = true
         })
         .finally(() => {
+          this.resultChangeKey += 1
           this.searching = false
           this.loadingExternalSearch = false
+          this.loadingMoreText = false
         })
     },
 
-    clearResults () {
-      this.cragResults = []
-      this.cragRouteResults = []
-      this.gymResults = []
-      this.userResults = []
-      this.guideBookPaperResults = []
-      this.wordResults = []
-      this.areaResults = []
+    openGeoLocalizationModal () {
+      this.$root.$emit('ShowLocalizationPopup', true)
     },
 
-    scrollTo (target) {
-      const targetId = `#${target}-result-title`
-      this.$vuetify.goTo(targetId, { container: '#global-search-results-area' })
+    launchSearchAround () {
+      if (this.openSearchAround) {
+        this.openSearchAround = false
+        this.aroundResults = []
+        this.resetLoadMorePageNumber()
+      } else {
+        this.searchAround()
+      }
+    },
+
+    searchAround () {
+      this.loadingAround = true
+      this.openSearchAround = true
+      this.results = {}
+      this.query = null
+      this.moreIsBeingLoaded()
+      new SearchApi(this.$axios, this.$auth)
+        .searchAround(
+          this.$store.state.geolocation.latitude,
+          this.$store.state.geolocation.longitude,
+          this.page
+        )
+        .then((resp) => {
+          for (const data of resp.data) {
+            if (data.type === 'Gym') { this.aroundResults.push(new Gym({ attributes: data.data })) }
+            if (data.type === 'Crag') { this.aroundResults.push(new Crag({ attributes: data.data })) }
+          }
+          this.successLoadingMore(resp)
+        })
+        .catch(() => {
+          this.failureToLoadingMore()
+        })
+        .finally(() => {
+          this.loadingAround = false
+          this.finallyMoreIsLoaded()
+        })
     }
   }
 }
 </script>
-
-<style lang="scss">
-.global-search-fields-area {
-  margin-top: 12px;
-  height: 108px;
-  .global-search-chips {
-    margin-top: 12px;
-    white-space: nowrap;
-    overflow-y: auto;
-  }
-}
-.global-search-results-area {
-  height: calc(100vh - 110px);
-  overflow-y: auto;
-  .global-search-result-title {
-    cursor: pointer;
-    border-bottom-style: solid;
-    border-width: 1px;
-    border-color: rgba(125, 125, 125, 0.2);
-    margin: 10px 15px 0;
-    .v-icon {
-      transition: .3s;
-      vertical-align: sub;
-    }
-    &.result-is-expanded .v-icon { transform: rotate(0deg) }
-    &.result-is-collapse .v-icon { transform: rotate(-90deg) }
-  }
-}
-.close-global-search-dialog-btn {
-  max-width: 60px;
-  .v-btn {
-    vertical-align: text-top;
-  }
-}
-</style>

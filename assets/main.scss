@@ -34,6 +34,14 @@ strong {
   font-weight: 500;
 }
 
+.svg-container {
+  &.--full-height {
+    svg {
+      height: 100%;
+    }
+  }
+}
+
 .h2-title-in-card-title {
   font-weight: 500;
   font-size: 1.25rem;
@@ -134,6 +142,14 @@ strong {
   margin-top: 19px;
 }
 
+.v-list-item__subtitle {
+  &.--full-subtitle {
+    overflow-y: auto;
+    text-overflow: initial;
+    white-space: initial;
+  }
+}
+
 .v-breadcrumbs {
   overflow-x: auto;
   white-space: nowrap;
@@ -152,6 +168,10 @@ strong {
 
 .full-width {
   width: 100%;
+}
+
+.w-50 {
+  width: 50%;
 }
 
 .app-height {
@@ -300,6 +320,13 @@ strong {
     }
   }
 }
+.remove-btn-active-before {
+  .v-btn--active {
+    &:before {
+      opacity: 0;
+    }
+  }
+}
 
 .beta-background {
   background: linear-gradient(-45deg, #1E88E5 12.5%, #208be9 12.5%, #208be9 37.5%, #1E88E5 37.5%, #1E88E5 62.5%, #208be9 62.5%, #208be9 87.5%, #1E88E5 87.5%);
@@ -313,16 +340,73 @@ strong {
   &.--current-color-border {
     border-color: currentColor !important;
   }
+  &.--border-bold {
+    border-width: 2px;
+  }
+}
+
+.border-x {
+  border-left-style: solid;
+  border-right-style: solid;
+  border-width: 1px;
+  &.--border-bold {
+    border-width: 2px;
+  }
 }
 
 .border-bottom {
   border-bottom-style: solid;
   border-bottom-width: 1px;
+  &.--border-bold {
+    border-width: 2px;
+  }
 }
 
 .border-top {
   border-top-style: solid;
   border-top-width: 1px;
+  &.--border-bold {
+    border-width: 2px;
+  }
+}
+
+.border-right {
+  border-right-style: solid;
+  border-right-width: 1px;
+  &.--border-bold {
+    border-width: 2px;
+  }
+}
+
+.border-left {
+  border-left-style: solid;
+  border-left-width: 1px;
+  &.--border-bold {
+    border-width: 2px;
+  }
+}
+
+.hover-border {
+  &:hover {
+    border-style: solid;
+    border-width: 1px;
+  }
+}
+
+.custom-fieldset {
+  .custom-fieldset-label {
+    font-size: 13px;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-left: 6px;
+  }
+  .v-input__slot::before {
+    border-style: none !important;
+  }
+}
+
+.pointer-event-insensitive {
+  pointer-events: none;
 }
 
 .v-data-table tbody tr.v-data-table__selected {
@@ -330,11 +414,14 @@ strong {
 }
 
 .theme--dark {
-  .border-bottom, .border-top, .border {
+  .border-bottom, .border-top, .border, .border-right, .border-left, .border-x {
     border-color: rgb(50, 50, 50);
+    &.--border-bold {
+      border-color: white;
+    }
   }
   .back-app-color {
-    background-color: rgb(18, 18, 18);
+    background-color: rgb(18, 18, 18) !important;
   }
   .hoverable-card {
     &:hover {
@@ -344,13 +431,23 @@ strong {
   .sheet-background-color {
     background-color: rgb(22, 22, 22);
   }
+  .custom-fieldset {
+    border-color: rgba(255, 255, 255, 0.24) !important;
+    .custom-fieldset-label {
+     color: rgba(255, 255, 255, 0.7)
+    }
+  }
 }
+
 .theme--light {
-  .border-bottom, .border-top, .border {
+  .border-bottom, .border-top, .border, .border-right, .border-left, .border-x {
     border-color: rgb(230, 230, 230);
+    &.--border-bold {
+      border-color: rgb(50, 50, 50);
+    }
   }
   .back-app-color {
-    background-color: rgb(240, 240, 245);
+    background-color: rgb(240, 240, 245) !important;
   }
   .hoverable-card {
     &:hover {
@@ -359,5 +456,11 @@ strong {
   }
   .sheet-background-color {
     background-color: rgb(255, 255, 255);
+  }
+  .custom-fieldset {
+    border-color: rgba(0, 0, 0, 0.38) !important;
+    .custom-fieldset-label {
+      color: rgba(0, 0, 0, 0.7)
+    }
   }
 }

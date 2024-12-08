@@ -19,7 +19,7 @@ export default class GuideBookPdf extends ActiveData {
   }
 
   get url () {
-    return `${process.env.VUE_APP_OBLYK_API_URL}${this.pdf_file}`
+    return this.pdf_file
   }
 
   get coverUrl () {

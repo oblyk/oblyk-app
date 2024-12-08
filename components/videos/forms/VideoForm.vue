@@ -4,10 +4,21 @@
       v-model="data.url"
       outlined
       required
+      hide-details
       :label="$t('models.video.url')"
     />
 
+    <p class="mt-3">
+      {{ $t('models.video.explainUrl') }} :
+      <a target="_blank" class="font-weight-bold" href="https://www.youtube.com/">Youtube</a>,
+      <a target="_blank" class="font-weight-bold" href="https://www.dailymotion.com/">Dailymotion</a>,
+      <a target="_blank" class="font-weight-bold" href="https://vimeo.com">Vimeo</a>,
+      <a target="_blank" class="font-weight-bold" href="https://www.instagram.com/">Instagram</a>
+      ou <a target="_blank" class="font-weight-bold" href="https://www.tiktok.com">Tiktok</a>.
+    </p>
+
     <v-textarea
+      v-if="showDescription"
       v-model="data.description"
       outlined
       required
@@ -17,7 +28,8 @@
     <close-form />
     <submit-form
       :overlay="submitOverlay"
-      :submit-local-key="submitText()"
+      :submit-local-key="isEditingForm() ? 'actions.edit' : 'actions.add'"
+      :go-back-btn="false"
     />
   </v-form>
 </template>
@@ -35,6 +47,14 @@ export default {
     video: {
       type: Object,
       default: null
+    },
+    callback: {
+      type: Function,
+      default: null
+    },
+    showDescription: {
+      type: Boolean,
+      default: true
     }
   },
 
@@ -63,7 +83,11 @@ export default {
 
       promise
         .then(() => {
-          this.$router.push(this.redirectTo)
+          if (this.callback) {
+            this.callback()
+          } else {
+            this.$router.push(this.redirectTo)
+          }
         })
         .catch((err) => {
           this.$root.$emit('alertFromApiError', err, 'video')

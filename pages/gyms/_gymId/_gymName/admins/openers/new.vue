@@ -16,7 +16,7 @@ export default {
   components: { GymOpenerForm },
   meta: { orphanRoute: true },
   mixins: [GymFetchConcern],
-  middleware: ['auth'],
+  middleware: ['auth', 'gymAdmin'],
 
   i18n: {
     messages: {

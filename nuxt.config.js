@@ -12,9 +12,10 @@ export default {
     title: 'oblyk',
     meta: [
       { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no' },
       { hid: 'description', name: 'description', content: '' },
-      { name: 'format-detection', content: 'telephone=no' }
+      { name: 'format-detection', content: 'telephone=no' },
+      { name: 'apple-itunes-app', content: 'app-id=id6569245391' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
@@ -61,6 +62,8 @@ export default {
     '@nuxtjs/auth-next',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
+    // https://github.com/nuxt-community/localforage-module
+    '@nuxtjs/localforage',
     // https://github.com/pimlie/nuxt-matomo
     ['nuxt-matomo', {
       matomoUrl: process.env.VUE_APP_MATOMO_URL,
@@ -204,6 +207,12 @@ export default {
     langDir: 'lang/'
   },
 
+  localforage: {
+    instances: [
+      { name: 'OblykDatabase', storeName: 'gymRoutes' }
+    ]
+  },
+
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     extend (config, { isClient }) {
@@ -213,6 +222,12 @@ export default {
     },
     extractCSS: {
       ignoreOrder: true
+    },
+    babel: {
+      // Nuxt 2 uses @babel/core@7, as node 16 supports the logical assignment operators
+      // we need to add the plugin to the babel configuration to avoid the error
+      // at build time
+      plugins: ['@babel/plugin-proposal-logical-assignment-operators']
     }
   }
 }

@@ -18,10 +18,6 @@
         <span v-if="gymGrade.tag_color" v-html="$t('models.gymGrade.tag_color')" />
         <span v-if="gymGrade.hold_color" v-html="$t('models.gymGrade.hold_color')" />
       </p>
-      <p>
-        <strong>{{ $t('components.gymGrade.whichPointSystem') }} :</strong>
-        <span v-html="$t(`models.gymGrade.point_system_types.${gymGrade.point_system_type}`)" />
-      </p>
       <v-simple-table>
         <template #default>
           <tbody>

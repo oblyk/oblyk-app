@@ -14,7 +14,7 @@
         >
           <v-img
             v-if="space.plan"
-            :src="space.planThumbnailUrl"
+            :src="space.pictureThumbnailUrl"
             height="200"
             contain
           />

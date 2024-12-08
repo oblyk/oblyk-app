@@ -1,8 +1,5 @@
 <template>
-  <div
-    class="explain-plan-missing d-flex align-center justify-center"
-    :class="$vuetify.breakpoint.mobile ? 'mobile-interface' : 'desktop-interface'"
-  >
+  <div class="explain-plan-missing d-flex align-center justify-center">
     <div>
       <p class="text-center">
         <v-icon large>
@@ -35,6 +32,10 @@ export default {
   name: 'GymSpacePlanMissing',
   mixins: [GymRolesHelpers],
   props: {
+    gym: {
+      type: Object,
+      required: true
+    },
     gymSpace: {
       type: Object,
       required: true
@@ -52,8 +53,5 @@ export default {
 .explain-plan-missing {
   width: 100%;
   height: 100%;
-  &.desktop-interface {
-    padding-left: 450px;
-  }
 }
 </style>

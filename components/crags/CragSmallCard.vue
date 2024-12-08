@@ -4,7 +4,8 @@
       :link="linkable"
       flat
       :class="bindClass"
-      :to="linkable ? crag.path : null"
+      :to="linkable && !callback ? crag.path : null"
+      @click="callback ? callback(crag) : null"
     >
       <v-list-item
         :three-line="!small"
@@ -15,7 +16,6 @@
           :class="small ? 'mt-1 mb-1' : ''"
         >
           <v-avatar
-            color="grey"
             :size="small ? 45 : 70"
             tile
           >
@@ -78,6 +78,10 @@ export default {
     bordered: {
       type: Boolean,
       default: false
+    },
+    callback: {
+      type: Function,
+      default: null
     }
   },
 

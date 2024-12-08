@@ -28,11 +28,33 @@
           </v-card>
         </v-col>
       </v-row>
+      <div class="border-top d-flex mt-6 pt-4">
+        <v-btn
+          text
+          :to="`${gym.adminPath}/ranking-systems`"
+        >
+          <v-icon left>
+            {{ mdiArrowLeft }}
+          </v-icon>
+          {{ $t('components.gymAdmin.rakingSystem') }}
+        </v-btn>
+        <v-btn
+          text
+          class="ml-auto"
+          :to="`${gym.adminPath}/label-templates`"
+        >
+          {{ $t('components.gymAdmin.labelTemplate') }}
+          <v-icon right>
+            {{ mdiArrowRight }}
+          </v-icon>
+        </v-btn>
+      </div>
     </div>
   </v-container>
 </template>
 
 <script>
+import { mdiArrowRight, mdiArrowLeft } from '@mdi/js'
 import { GymFetchConcern } from '~/concerns/GymFetchConcern'
 import Spinner from '~/components/layouts/Spiner.vue'
 import GymClimbingStylesForm from '~/components/gymClimbingStyles/forms/GymClimbingStylesForm.vue'
@@ -42,6 +64,7 @@ export default {
   components: { GymClimbingStylesForm, Spinner },
   meta: { orphanRoute: true },
   mixins: [GymFetchConcern],
+  middleware: ['auth', 'gymAdmin'],
 
   data () {
     return {
@@ -51,7 +74,10 @@ export default {
         'bouldering',
         'sport_climbing',
         'pan'
-      ]
+      ],
+
+      mdiArrowRight,
+      mdiArrowLeft
     }
   },
 

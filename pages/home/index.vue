@@ -50,6 +50,15 @@
             </v-col>
           </v-row>
 
+          <my-upcoming-contests
+            class="mt-7"
+          />
+
+          <my-followed-gyms
+            v-if="haveFollowedGyms"
+            class="mt-7"
+          />
+
           <my-partner-figures
             v-if="currentUser.partner_search"
             class="mt-7"
@@ -88,7 +97,12 @@
                 {{ $t('components.user.cardsTitle.whatsNew') }}
               </h3>
               <!-- Feed -->
-              <feed feed-api="CurrentUserApi" />
+              <div v-intersect="loadFeed">
+                <feed
+                  v-if="feed"
+                  feed-api="CurrentUserApi"
+                />
+              </div>
             </v-col>
           </v-row>
 
@@ -103,22 +117,26 @@
 <script>
 import { mdiMapMarkerRadiusOutline, mdiBullhornOutline, mdiAccountMultipleCheckOutline, mdiBookCheck } from '@mdi/js'
 import { CurrentUserConcern } from '~/concerns/CurrentUserConcern'
-import Spinner from '~/components/layouts/Spiner.vue'
-import UserHead from '~/components/users/layouts/UserHead.vue'
-import EnablePartnerSearch from '~/components/users/notificationCard/EnablePartnerSearch.vue'
-import EnableLocalization from '~/components/users/notificationCard/EnableLocalization.vue'
-import BannerMissing from '~/components/users/notificationCard/BannerMissing.vue'
-import AvatarMissing from '~/components/users/notificationCard/AvatarMissing.vue'
-import AroundCard from '~/components/users/AroundCard.vue'
-import Feed from '~/components/feeds/Feed.vue'
-import DailyAscents from '~/components/logBooks/outdoors/DailyAscents.vue'
-import SubscribesAscentsCard from '~/components/users/SubscribesAscentsCard.vue'
-import AddSubscribesCard from '~/components/users/AddSubscribesCard.vue'
-import MyPartnerFigures from '~/components/users/MyPartnerFigures.vue'
-const CragRouteDrawer = () => import('~/components/cragRoutes/CragRouteDrawer.vue')
+import Spinner from '~/components/layouts/Spiner'
+import UserHead from '~/components/users/layouts/UserHead'
+import EnablePartnerSearch from '~/components/users/notificationCard/EnablePartnerSearch'
+import EnableLocalization from '~/components/users/notificationCard/EnableLocalization'
+import BannerMissing from '~/components/users/notificationCard/BannerMissing'
+import AvatarMissing from '~/components/users/notificationCard/AvatarMissing'
+import AroundCard from '~/components/users/AroundCard'
+import DailyAscents from '~/components/logBooks/outdoors/DailyAscents'
+import SubscribesAscentsCard from '~/components/users/SubscribesAscentsCard'
+import AddSubscribesCard from '~/components/users/AddSubscribesCard'
+import MyPartnerFigures from '~/components/users/MyPartnerFigures'
+import MyUpcomingContests from '~/components/users/MyUpcomingContests'
+import MyFollowedGyms from '~/components/users/MyFollowedGyms'
+const CragRouteDrawer = () => import('~/components/cragRoutes/CragRouteDrawer')
+const Feed = () => import('~/components/feeds/Feed')
 
 export default {
   components: {
+    MyFollowedGyms,
+    MyUpcomingContests,
     MyPartnerFigures,
     AddSubscribesCard,
     SubscribesAscentsCard,
@@ -137,10 +155,18 @@ export default {
 
   data () {
     return {
+      feed: false,
+
       mdiMapMarkerRadiusOutline,
       mdiBullhornOutline,
       mdiAccountMultipleCheckOutline,
       mdiBookCheck
+    }
+  },
+
+  head () {
+    return {
+      title: this.$t('metaTitle')
     }
   },
 
@@ -155,9 +181,21 @@ export default {
     }
   },
 
-  head () {
-    return {
-      title: this.$t('metaTitle')
+  computed: {
+    haveFollowedGyms () {
+      if (this.$auth.loggedIn) {
+        return this.$auth.user.subscribes.filter(subscribe => subscribe.followable_type === 'Gym').length > 0
+      } else {
+        return true
+      }
+    }
+  },
+
+  methods: {
+    loadFeed (entries, observer) {
+      if (entries[0].isIntersecting) {
+        this.feed = true
+      }
     }
   }
 }

@@ -1,5 +1,5 @@
 <template>
-  <v-card class="full-height">
+  <v-card class="full-height d-flex flex-column justify-space-between">
     <v-card-title>
       <v-icon left>
         {{ mdiSourceBranch }}
@@ -8,23 +8,52 @@
     </v-card-title>
     <v-card-text class="text-center pt-5 pb-7">
       <strong class="big-font-size">
-        {{ routesCount }}
+        {{ figures.mounted_gym_routes_count !== null ? figures.mounted_gym_routes_count : '...' }}
       </strong>
     </v-card-text>
     <v-card-actions>
-      <v-spacer />
+      <v-menu>
+        <template #activator="{ on, attrs }">
+          <v-btn
+            icon
+            class="ml-auto"
+            v-bind="attrs"
+            v-on="on"
+          >
+            <v-icon>
+              {{ mdiDotsVertical }}
+            </v-icon>
+          </v-btn>
+        </template>
+        <v-list>
+          <v-list-item
+            :to="`${gym.adminPath}/opening-sheets`"
+          >
+            <v-list-item-icon>
+              <v-icon>
+                {{ mdiFileRefreshOutline }}
+              </v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>
+                {{ $t('components.openingSheet.list') }}
+              </v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
+      </v-menu>
       <v-btn
-        text
+        elevation="0"
         color="primary"
         :to="`${gym.adminPath}/routes/tables`"
       >
         <v-icon left>
           {{ mdiTable }}
         </v-icon>
-        {{ $t('components.gymAdmin.gestionSettings') }}
+        {{ $t('components.gymAdmin.table') }}
       </v-btn>
       <v-btn
-        text
+        elevation="0"
         color="primary"
         :to="`${gym.adminPath}/routes/statistics`"
       >
@@ -38,7 +67,7 @@
 </template>
 
 <script>
-import { mdiSourceBranch, mdiTable, mdiChartBar } from '@mdi/js'
+import { mdiSourceBranch, mdiTable, mdiChartBar, mdiDotsVertical, mdiFileRefreshOutline } from '@mdi/js'
 import GymApi from '~/services/oblyk-api/GymApi'
 
 export default {
@@ -52,25 +81,25 @@ export default {
 
   data () {
     return {
-      routesCount: '...',
+      figures: {},
 
       mdiSourceBranch,
       mdiTable,
-      mdiChartBar
+      mdiChartBar,
+      mdiDotsVertical,
+      mdiFileRefreshOutline
     }
   },
 
   mounted () {
-    this.getRoutesCount()
+    this.getFigures()
   },
 
   methods: {
-    getRoutesCount () {
+    getFigures () {
       new GymApi(this.$axios, this.$auth)
-        .routesCount(this.gym.id)
-        .then((resp) => {
-          this.routesCount = resp.data
-        })
+        .figures(this.gym.id, ['mounted_gym_routes_count'])
+        .then((resp) => { this.figures = resp.data })
     }
   }
 }

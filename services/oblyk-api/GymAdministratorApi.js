@@ -51,6 +51,32 @@ class GymAdministratorApi extends BaseApi {
     })
   }
 
+  updateFeedLastRead (gymId, feedType) {
+    return this.axios.request({
+      method: 'PUT',
+      url: `${this.baseUrl}/gyms/${gymId}/gym_administrators/update_feed_last_read.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
+      data: {
+        feed_type: feedType
+      }
+    })
+  }
+
+  newFeedsCount (gymId, feeds) {
+    return this.axios.request({
+      method: 'GET',
+      url: `${this.baseUrl}/gyms/${gymId}/gym_administrators/new_in_feeds.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
+      params: { feeds }
+    })
+  }
+
   delete (gymId, gymAdministratorId) {
     return this.axios.request({
       method: 'DELETE',

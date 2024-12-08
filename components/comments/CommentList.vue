@@ -11,7 +11,7 @@
       <div
         v-for="(comment, commentIndex) in comments"
         :key="`comment-index-${commentIndex}`"
-        class="mt-3"
+        class="mt-4"
       >
         <comment-card
           :get-comments="getComments"
@@ -33,7 +33,7 @@
     <client-only>
       <div
         v-if="$auth.loggedIn"
-        class="text-right mt-4"
+        class="text-center mt-4"
       >
         <v-dialog
           v-model="commentFormDialog"
@@ -44,7 +44,7 @@
               v-bind="attrs"
               text
               outlined
-              color="primary"
+              class="black-btn-icon"
               v-on="on"
             >
               <v-icon left small>
@@ -80,6 +80,7 @@ import { mdiCommentPlus } from '@mdi/js'
 import CommentApi from '~/services/oblyk-api/CommentApi'
 import Comment from '@/models/Comment'
 import CommentCard from '@/components/comments/CommentCard'
+import GymRouteApi from '~/services/oblyk-api/GymRouteApi'
 const CommentForm = () => import('@/components/comments/forms/CommentForm')
 
 export default {
@@ -101,6 +102,14 @@ export default {
     addCommentTranslateKey: {
       type: String,
       default: 'actions.addComment'
+    },
+    gymRouteOptions: {
+      type: Object,
+      default: null
+    },
+    commentsCount: {
+      type: Number,
+      default: null
     }
   },
 
@@ -116,15 +125,24 @@ export default {
   },
 
   mounted () {
-    this.getComments()
+    if (this.commentsCount === null || this.commentsCount > 0) {
+      this.getComments()
+    } else {
+      this.loadingComments = false
+    }
   },
 
   methods: {
     getComments () {
       this.loadingComments = true
       this.commentFormDialog = false
-      new CommentApi(this.$axios, this.$auth)
-        .allInCommentable(this.commentableType, this.commentableId)
+      let promise = null
+      if (this.gymRouteOptions) {
+        promise = new GymRouteApi(this.$axios, this.$auth).comments(this.gymRouteOptions.gymId, this.gymRouteOptions.gymRouteId)
+      } else {
+        promise = new CommentApi(this.$axios, this.$auth).allInCommentable(this.commentableType, this.commentableId)
+      }
+      promise
         .then((resp) => {
           this.comments = []
           for (const comment of resp.data) {

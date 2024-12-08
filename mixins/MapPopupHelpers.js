@@ -8,6 +8,7 @@ import Park from '@/models/Park'
 import Approach from '@/models/Approach'
 import User from '@/models/User'
 import RockBar from '~/models/RockBar'
+import GuideBookPaper from '~/models/GuideBookPaper'
 
 export const MapPopupHelpers = {
   mixins: [DateHelpers, GradeMixin],
@@ -19,6 +20,8 @@ export const MapPopupHelpers = {
         return this.rockBarPopup(data)
       } else if (type === 'Gym') {
         return this.gymPopup(data)
+      } else if (type === 'GuideBookPaper') {
+        return this.guideBookPaperPopup(data)
       } else if (type === 'PlaceOfSale') {
         return this.placeOfSalePopup(data)
       } else if (type === 'CragSector') {
@@ -193,6 +196,46 @@ export const MapPopupHelpers = {
         </div>
       `
       popup.querySelector('button').addEventListener('click', () => { this.$router.push(gym.path) })
+
+      return popup
+    },
+
+    guideBookPaperPopup (data) {
+      const guideBookPaper = new GuideBookPaper({ attributes: data })
+      let author = null
+      let publicationYear = null
+      if (guideBookPaper.publication_year) {
+        publicationYear = `<p class="mb-0 mt-0">
+                    <strong class="font-weight-bold">${this.$t('models.guideBookPaper.publication_year')} :</strong><br>
+                    ${guideBookPaper.publication_year}
+                  </p>`
+      }
+      if (guideBookPaper.author) {
+        author = `<p class="mb-0 mt-1">
+                    <strong class="font-weight-bold">${this.$t('models.guideBookPaper.author')} :</strong><br>
+                    ${guideBookPaper.author}
+                  </p>`
+      }
+
+      const popup = document.createElement('div')
+      popup.innerHTML = `
+        <p class="map-guide-book-paper-title">${guideBookPaper.name}</p>
+        <div class="d-flex">
+          <img class="map-guide-book-paper-cover pa-1 ml-2" src="${guideBookPaper.thumbnailCoverUrl}" alt="couverture topo" />
+          <div class="pa-2">
+            ${publicationYear || ''}
+            ${author || ''}
+            <p class="mb-0 mt-1">
+              <strong class="font-weight-bold">${this.$t('models.guideBookPaper.number_of_crags')} :</strong><br>
+              ${guideBookPaper.crags.length}
+            </p>
+          </div>
+        </div>
+        <div class="map-popup-link-area">
+          <button>${this.$t('actions.see')}</button>
+        </div>
+      `
+      popup.querySelector('button').addEventListener('click', () => { this.$router.push(guideBookPaper.path) })
 
       return popup
     },

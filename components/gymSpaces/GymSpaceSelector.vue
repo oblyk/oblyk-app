@@ -6,10 +6,28 @@
       <v-skeleton-loader class="d-inline-block" type="avatar" />
     </div>
     <div v-if="!loadingGymSpaces && (groups.length > 0 || ungroupedSpaces.length > 0)">
-      <p class="mb-2">
-        <small class="text--disabled">Les espaces de {{ gym.name }} :</small>
-      </p>
       <div class="text-no-wrap overflow-x-auto">
+        <!-- All spaces -->
+        <nuxt-link
+          v-if="gymSpace"
+          :to="`/gyms/${gym.id}/${gym.slug_name}/spaces`"
+          class="gym-space-block text-center discrete-link inactive"
+        >
+          <v-avatar
+            size="70"
+            class="gym-space-avatar"
+          >
+            <v-icon size="25">
+              {{ mdiAsterisk }}
+            </v-icon>
+          </v-avatar>
+          <p class="text-truncate text-center mb-0">
+            <small>
+              Tous
+            </small>
+          </p>
+        </nuxt-link>
+
         <!-- Grouped spaces -->
         <div
           v-for="(group, groupIndex) in groups"
@@ -33,8 +51,8 @@
               class="gym-space-avatar"
             >
               <v-img
-                v-if="space.plan"
-                :src="space.planThumbnailUrl"
+                v-if="space.pictureTinyUrl"
+                :src="space.pictureTinyUrl"
                 height="62"
                 width="62"
                 contain
@@ -70,8 +88,8 @@
             class="gym-space-avatar"
           >
             <v-img
-              v-if="space.plan"
-              :src="space.planThumbnailUrl"
+              v-if="space.pictureTinyUrl"
+              :src="space.pictureTinyUrl"
               height="62"
               width="62"
               contain
@@ -87,29 +105,16 @@
             class="text-truncate text-center mb-0"
             :class="selectedGymSpaceId === space.id ? 'font-weight-bold' : ''"
           >
+            <v-chip
+              v-if="space.draft"
+              color="amber"
+              x-small
+              class="px-1"
+            >
+              B
+            </v-chip>
             <small>
               {{ space.name }}
-            </small>
-          </p>
-        </nuxt-link>
-
-        <!-- All spaces -->
-        <nuxt-link
-          v-if="gymSpace"
-          :to="`/gyms/${gym.id}/${gym.slug_name}/spaces`"
-          class="gym-space-block text-center discrete-link inactive"
-        >
-          <v-avatar
-            size="70"
-            class="gym-space-avatar"
-          >
-            <v-icon size="25">
-              {{ mdiAsterisk }}
-            </v-icon>
-          </v-avatar>
-          <p class="text-truncate text-center mb-0">
-            <small>
-              Tous
             </small>
           </p>
         </nuxt-link>

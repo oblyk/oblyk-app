@@ -44,30 +44,6 @@
       </template>
     </v-checkbox>
 
-    <p class="subtitle-2 mt-3">
-      {{ $t('components.gymGrade.whichPointSystem') }}
-    </p>
-
-    <v-radio-group v-model="data.point_system_type">
-      <v-radio value="fix">
-        <template #label>
-          <span v-html="$t('models.gymGrade.point_system_types.fix')" />
-        </template>
-      </v-radio>
-
-      <v-radio value="divisible">
-        <template #label>
-          <span v-html="$t('models.gymGrade.point_system_types.divisible')" />
-        </template>
-      </v-radio>
-
-      <v-radio value="none">
-        <template #label>
-          <span v-html="$t('models.gymGrade.point_system_types.none')" />
-        </template>
-      </v-radio>
-    </v-radio-group>
-
     <p class="subtitle-2 mb-2">
       {{ $t('components.gymGrade.exampleTitle') }}
     </p>

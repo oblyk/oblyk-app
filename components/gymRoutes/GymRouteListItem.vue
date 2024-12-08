@@ -5,6 +5,7 @@
     class="rounded-list-item gym-route-list-item"
     :class="itemListClass"
     @click="openGymRoute"
+    @mouseenter="onMouseEnter"
   >
     <v-list-item-avatar
       v-if="gymRoute.thumbnail"
@@ -32,9 +33,16 @@
       </v-list-item-title>
       <v-list-item-subtitle class="d-flex">
         <div class="mr-auto">
+          <small
+            v-if="gymRoute.dismounted_at !== null"
+            class="font-weight-bold red--text"
+          >
+            {{ $t('components.gymRoute.dismounted') }}
+          </small>
           <ascent-gym-route-status-icon
             v-if="$auth.loggedIn"
             :gym-route="gymRoute"
+            :size="22"
           />
           <small v-if="gymRoute.anchor_number">
             {{ $t('models.gymRoute.anchor_number') }}{{ gymRoute.anchor_number }}
@@ -52,6 +60,35 @@
             </v-icon>
             {{ gymRoute.likes_count }}
           </strong>
+
+          <!-- videos -->
+          <strong
+            v-if="gymRoute.videos_count || 0 !== 0"
+            class="text--disabled"
+          >
+            <v-icon
+              small
+              class="ml-2 text--disabled vertical-align-top"
+            >
+              {{ mdiPlayBox }}
+            </v-icon>
+            {{ gymRoute.videos_count || 0 }}
+          </strong>
+
+          <!-- comments -->
+          <strong
+            v-if="gymRoute.all_comments_count || 0 !== 0"
+            class="text--disabled"
+          >
+            <v-icon
+              small
+              class="ml-2 text--disabled"
+            >
+              {{ mdiComment }}
+            </v-icon>
+            {{ gymRoute.all_comments_count || 0 }}
+          </strong>
+
           <!-- Ascents -->
           <strong
             v-if="gymRoute.ascents_count || 0 !== 0"
@@ -72,7 +109,7 @@
 </template>
 
 <script>
-import { mdiCheckAll, mdiHeart } from '@mdi/js'
+import { mdiCheckAll, mdiHeart, mdiComment, mdiPlayBox } from '@mdi/js'
 import GymRouteTagAndHold from '~/components/gymRoutes/partial/GymRouteTagAndHold.vue'
 import GymRouteGradeAndPoint from '~/components/gymRoutes/partial/GymRouteGradeAndPoint.vue'
 import AscentGymRouteStatusIcon from '~/components/ascentGymRoutes/AscentGymRouteStatusIcon.vue'
@@ -93,13 +130,23 @@ export default {
     relativePath: {
       type: Boolean,
       default: true
+    },
+    clickCallback: {
+      type: Function,
+      default: null
+    },
+    highlightSectors: {
+      type: Boolean,
+      default: false
     }
   },
 
   data () {
     return {
       mdiCheckAll,
-      mdiHeart
+      mdiHeart,
+      mdiComment,
+      mdiPlayBox
     }
   },
 
@@ -126,15 +173,25 @@ export default {
 
   methods: {
     openGymRoute () {
-      const query = {}
-      if (!this.activeRoute) { query.route = this.gymRoute.id }
-      const path = this.relativePath ? this.$route.path : this.gymRoute.gymSpacePath
-      this.$router.push(
-        {
-          path,
-          query
-        }
-      )
+      if (this.clickCallback) {
+        this.clickCallback(this.gymRoute)
+      } else {
+        const query = {}
+        if (!this.activeRoute) { query.route = this.gymRoute.id }
+        const path = this.relativePath ? this.$route.path : this.gymRoute.gymSpacePath
+        this.$router.push(
+          {
+            path,
+            query
+          }
+        )
+      }
+    },
+
+    onMouseEnter () {
+      if (this.highlightSectors) {
+        this.$root.$emit('activeSector', this.gymRoute.gym_sector.id)
+      }
     }
   }
 }

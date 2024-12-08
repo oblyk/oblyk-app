@@ -206,7 +206,7 @@ export default {
     fundingIcon () {
       if (this.guideBookPaper.funding_status === 'contributes_to_financing') {
         return mdiHandCoin
-      } else if (this.funding_status === 'not_contributes_to_financing') {
+      } else if (this.guideBookPaper.funding_status === 'not_contributes_to_financing') {
         return mdiCurrencyUsdOff
       } else {
         return mdiHelpCircleOutline

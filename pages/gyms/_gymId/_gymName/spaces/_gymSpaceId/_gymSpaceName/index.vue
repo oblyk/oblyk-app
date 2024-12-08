@@ -1,20 +1,47 @@
 <template>
   <!-- Gym space -->
-  <div class="gym-space-interface">
+  <div
+    class="gym-space-interface"
+    :class="$vuetify.breakpoint.mobile ? '--mobile-interface sheet-background-color' : '--desktop-interface'"
+  >
     <!-- Plan area -->
     <div
       class="gym-space-plan"
-      :class="$vuetify.breakpoint.mobile ? 'mobile-interface' : 'desktop-interface'"
+      :class="$vuetify.breakpoint.mobile ? '--mobile-interface' : '--desktop-interface'"
     >
       <client-only>
-        <gym-space-plan
-          v-if="gymSpace && gymSpace.plan"
-          :gym-space="gymSpace"
-        />
-        <gym-space-plan-missing
-          v-if="gymSpace && !gymSpace.plan"
-          :gym-space="gymSpace"
-        />
+        <!-- 2D plan -->
+        <div
+          v-if="gymSpace && gymSpace.representation_type === '2d_picture'"
+          class="full-height"
+        >
+          <gym-space-plan
+            v-if="gymSpace.plan"
+            :gym-space="gymSpace"
+          />
+          <gym-space-plan-missing
+            v-if="!gymSpace.plan"
+            :gym-space="gymSpace"
+            :gym="gymSpace.gym"
+          />
+        </div>
+
+        <!-- 3D plan -->
+        <div
+          v-if="gymSpace && gymSpace.representation_type === '3d'"
+          class="full-height sheet-background-color"
+        >
+          <gym-space-three-d
+            v-if="gym && gymSpace && gymSpace.have_three_d"
+            :gym-space="gymSpace"
+            :gym="gym"
+          />
+          <gym-space-three-d-missing
+            v-if="!gymSpace.have_three_d"
+            :gym-space="gymSpace"
+            :gym="gymSpace.gym"
+          />
+        </div>
         <p
           v-if="!gymSpace"
           class="text-center text--disabled mt-5"
@@ -34,7 +61,6 @@
         <v-sheet
           v-if="!gymSpace"
           class="rounded pa-4 ma-4"
-          style="height: calc(100vh - 100px)"
         >
           <v-skeleton-loader type="sentences, avatar" />
         </v-sheet>
@@ -48,9 +74,9 @@
       <!-- Open gym route in right side of info in desktop interface -->
       <div
         v-if="!$vuetify.breakpoint.mobile && (loadingGymRoute || gymRoute)"
-        class="gym-route-on-desktop-container py-3"
+        class="gym-route-on-desktop-container"
       >
-        <div class="gym-route-on-desktop-card">
+        <div class="gym-route-on-desktop-card py-1 pl-1">
           <v-card class="gym-route-card">
             <spinner v-if="loadingGymRoute" />
             <gym-route-info
@@ -64,29 +90,21 @@
     </div>
 
     <!-- Open gym route in full screen on mobile -->
-    <div
-      v-if="(gymRoute || loadingGymRoute) && $vuetify.breakpoint.mobile"
-      class="gym-route-modal-on-mobile"
+    <down-to-close-dialog
+      v-if="$vuetify.breakpoint.mobile"
+      ref="GymRouteDialog"
+      v-model="gymRouteDialog"
+      padding-x="px-2"
+      :close-callback="closeGymRouteModal"
+      wait-signal
     >
-      <v-dialog
-        :value="true"
-        transition="dialog-bottom-transition"
-        content-class="gym-route-dialog"
-        persistent
-      >
-        <v-card
-          @touchstart="touchEvent('start', $event)"
-          @touchend="touchEvent('end', $event)"
-        >
-          <spinner v-if="loadingGymRoute" />
-          <gym-route-info
-            v-if="gymRoute"
-            :gym-route="gymRoute"
-            :gym="gym"
-          />
-        </v-card>
-      </v-dialog>
-    </div>
+      <gym-route-info
+        v-if="!loadingGymRoute && gymRoute"
+        :close-callback="closeGymRouteModal"
+        :gym-route="gymRoute"
+        :gym="gym"
+      />
+    </down-to-close-dialog>
   </div>
 </template>
 
@@ -99,6 +117,9 @@ import GymApi from '~/services/oblyk-api/GymApi'
 import GymRouteApi from '~/services/oblyk-api/GymRouteApi'
 import GymRoute from '~/models/GymRoute'
 import Spinner from '~/components/layouts/Spiner'
+import DownToCloseDialog from '~/components/ui/DownToCloseDialog'
+const GymSpaceThreeDMissing = () => import('~/components/gymSpaces/GymSpaceThreeDMissing')
+const GymSpaceThreeD = () => import('~/components/gymSpaces/GymSpaceThreeD')
 const GymRouteInfo = () => import('~/components/gymRoutes/GymRouteInfo')
 const GymSpacePlan = () => import('@/components/gymSpaces/GymSpacePlan')
 const GymSpacePlanMissing = () => import('@/components/gymSpaces/GymSpacePlanMissing')
@@ -106,11 +127,14 @@ const GymSpacePlanMissing = () => import('@/components/gymSpaces/GymSpacePlanMis
 export default {
   meta: { orphanRoute: true },
   components: {
+    GymSpaceThreeDMissing,
+    GymSpaceThreeD,
+    DownToCloseDialog,
     Spinner,
+    GymSpaceInfoAndRoutes,
     GymRouteInfo,
     GymSpacePlanMissing,
-    GymSpacePlan,
-    GymSpaceInfoAndRoutes
+    GymSpacePlan
   },
   mixins: [GymSpaceConcern],
 
@@ -118,9 +142,8 @@ export default {
     return {
       gym: null,
       gymRoute: null,
+      gymRouteDialog: false,
       loadingGymRoute: false,
-      closeDragStart: null,
-      toucheClientY: 0,
 
       mdiChevronDown
     }
@@ -134,9 +157,9 @@ export default {
     leftSideClass () {
       const leftClass = []
       if (this.$vuetify.breakpoint.mobile) {
-        leftClass.push('mobile-interface')
+        leftClass.push('--mobile-interface')
       } else {
-        leftClass.push('desktop-interface')
+        leftClass.push('--desktop-interface')
       }
 
       if (this.gymRoute !== null || this.loadingGymRoute) {
@@ -150,6 +173,8 @@ export default {
     activeGymRouteId () {
       if (this.activeGymRouteId) {
         this.getGymRoute()
+      } else if (this.$refs.GymRouteDialog) {
+        this.$refs.GymRouteDialog.close()
       } else {
         this.gymRoute = null
       }
@@ -172,40 +197,36 @@ export default {
         })
     },
 
-    getGymRoute () {
+    async getGymRoute () {
       this.loadingGymRoute = true
       this.gymRoute = null
-      new GymRouteApi(this.$axios, this.$auth)
-        .find(
-          this.$route.params.gymId,
-          this.$route.params.gymSpaceId,
-          this.activeGymRouteId
-        ).then((resp) => {
-          this.gymRoute = new GymRoute({ attributes: resp.data })
-        }).finally(() => {
-          this.loadingGymRoute = false
-        })
+      this.gymRouteDialog = true
+
+      // Get route in indexDb first and get in API if it does not exist
+      const localRoute = await this.$localforage.gymRoutes.getItem(this.activeGymRouteId)
+      if (localRoute) {
+        this.gymRoute = new GymRoute({ attributes: localRoute })
+        this.$refs.GymRouteDialog?.signal()
+        this.loadingGymRoute = false
+      } else {
+        new GymRouteApi(this.$axios, this.$auth)
+          .find(
+            this.$route.params.gymId,
+            this.$route.params.gymSpaceId,
+            this.activeGymRouteId
+          ).then((resp) => {
+            this.gymRoute = new GymRoute({ attributes: resp.data })
+            this.$refs.GymRouteDialog?.signal()
+          }).finally(() => {
+            this.loadingGymRoute = false
+          })
+      }
     },
 
     closeGymRouteModal () {
+      this.gymRoute = null
+      this.gymRouteDialog = false
       this.$router.push({ path: this.$route.path })
-    },
-
-    touchEvent (touchStatus, event) {
-      const dialogue = document.querySelector('.gym-route-dialog')
-      if (dialogue.scrollTop === 0 && touchStatus === 'start') {
-        this.closeDragStart = true
-        this.toucheClientY = event.changedTouches[0].clientY
-      }
-      if (touchStatus === 'end' && this.closeDragStart === true) {
-        if (event.changedTouches[0].clientY - this.toucheClientY > 50) {
-          this.closeGymRouteModal()
-        }
-      }
-      if (touchStatus === 'end') {
-        this.closeDragStart = null
-        this.toucheClientY = null
-      }
     }
   }
 }
@@ -213,11 +234,18 @@ export default {
 
 <style lang="scss">
 .gym-space-interface {
+  position: relative;
+  width: 100%;
+  &.--desktop-interface { height: calc(100vh - 64px); }
+  &.--mobile-interface { height: calc(100vh - 43px); }
+
   .gym-space-left-side {
-    z-index: 1;
+    z-index: 5;
     position: relative;
-    &.desktop-interface {
+    &.--desktop-interface {
       width: 450px;
+      height: calc(100vh - 64px);
+      overflow-y: auto;
       margin-top: 0;
       &.--with-active-gym-route {
         width: 900px;
@@ -226,7 +254,7 @@ export default {
         width: 450px;
       }
     }
-    &.mobile-interface {
+    &.--mobile-interface {
       width: 100%;
       margin-top: calc(100vh - 260px);
       .gym-space-info-and-routes {
@@ -238,37 +266,38 @@ export default {
       position: absolute;
       top: 0;
       right: 0;
-      height: calc(100vh - 64px);
+      height: 100%;
       width: 450px;
       overflow: hidden;
       .gym-route-on-desktop-card {
         position: fixed;
-        height: calc(100vh - 85px);
-        top: 75px;
+        height: 100%;
         width: 450px;
         overflow-y: auto;
         overflow-x: hidden;
         .gym-route-card {
           min-height: 100%;
-          backdrop-filter: blur(10px);
         }
       }
     }
   }
 
   .gym-space-plan {
-    position: fixed;
-    top: 0;
-    right: 0;
     width: 100%;
-    height: calc(100vh - 45px);
-    &.desktop-interface {
-      top: 64px;
-      width: calc(100vw - 300px);
-      height: calc(100vh - 64px);
+    &.--desktop-interface {
+      height: 100%;
+      position: absolute;
+      padding-left: 440px;
+    }
+    &.--mobile-interface {
+      height: calc(100vh - 260px);
+      position: fixed;
+      top: 0;
+      right: 0;
     }
   }
 }
+
 .gym-route-dialog {
   width: 100%;
   height: 100%;
@@ -277,16 +306,6 @@ export default {
   overflow-x: hidden;
   .v-card {
     min-height: 100%;
-  }
-}
-.theme--dark {
-  .gym-route-card {
-    background-color: rgba(17, 17, 17, 0.9) !important;
-  }
-}
-.theme--light {
-  .gym-route-card {
-    background-color: rgba(255, 255, 255, 0.8) !important;
   }
 }
 </style>

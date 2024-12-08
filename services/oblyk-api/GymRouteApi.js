@@ -1,29 +1,35 @@
 import BaseApi from '~/services/oblyk-api/BaseApi'
 
 class GymRouteApi extends BaseApi {
-  allInGym (gymId, groupBy, orderBy) {
+  paginatedRoutesInGym (gymId, sectorId, orderBy, direction, page, dismounted = false) {
+    return this.axios.request({
+      method: 'GET',
+      url: `${this.baseUrl}/gyms/${gymId}/gym_routes/paginated.json`,
+      headers: { HttpApiAccessToken: this.apiAccessToken },
+      params: { order_by: orderBy, direction, page, gym_sector_id: sectorId, dismounted }
+    })
+  }
+
+  paginatedRoutesInSpace (gymId, spaceId, sectorId, orderBy, direction, page, dismounted = false) {
+    return this.axios.request({
+      method: 'GET',
+      url: `${this.baseUrl}/gyms/${gymId}/gym_spaces/${spaceId}/gym_routes/paginated.json`,
+      headers: { HttpApiAccessToken: this.apiAccessToken },
+      params: { order_by: orderBy, direction, page, gym_sector_id: sectorId, dismounted }
+    })
+  }
+
+  all (gymId, routeIds, orderBy, direction, qrcodeLink = false) {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/gyms/${gymId}/gym_routes.json`,
       headers: { HttpApiAccessToken: this.apiAccessToken },
-      params: { group_by: groupBy, order_by: orderBy }
-    })
-  }
-
-  allInSpace (gymId, spaceId, groupBy, orderBy) {
-    return this.axios.request({
-      method: 'GET',
-      url: `${this.baseUrl}/gyms/${gymId}/gym_spaces/${spaceId}/gym_routes.json`,
-      headers: { HttpApiAccessToken: this.apiAccessToken },
-      params: { group_by: groupBy, order_by: orderBy }
-    })
-  }
-
-  allInSector (gymId, spaceId, sectorId) {
-    return this.axios.request({
-      method: 'GET',
-      url: `${this.baseUrl}/gyms/${gymId}/gym_spaces/${spaceId}/gym_sectors/${sectorId}/gym_routes.json`,
-      headers: { HttpApiAccessToken: this.apiAccessToken }
+      params: {
+        order_by: orderBy,
+        route_ids: routeIds,
+        qrcode_link: qrcodeLink,
+        direction
+      }
     })
   }
 
@@ -41,6 +47,17 @@ class GymRouteApi extends BaseApi {
       method: 'GET',
       url: `${this.baseUrl}/gyms/${gymId}/gym_routes/${routeId}/ascents.json`,
       headers: { HttpApiAccessToken: this.apiAccessToken }
+    })
+  }
+
+  comments (gymId, routeId) {
+    return this.axios.request({
+      method: 'GET',
+      url: `${this.baseUrl}/gyms/${gymId}/gym_routes/${routeId}/comments.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
     })
   }
 
@@ -94,21 +111,6 @@ class GymRouteApi extends BaseApi {
     })
   }
 
-  printCollection (gymId, gymRouteIds) {
-    return this.axios.request({
-      method: 'GET',
-      url: `${this.baseUrl}/gyms/${gymId}/gym_routes/print.pdf`,
-      headers: {
-        Authorization: this.authToken(),
-        HttpApiAccessToken: this.apiAccessToken
-      },
-      responseType: 'blob',
-      params: {
-        ids: gymRouteIds
-      }
-    })
-  }
-
   exportCollection (gymId, gymRouteIds) {
     return this.axios.request({
       method: 'GET',
@@ -138,6 +140,20 @@ class GymRouteApi extends BaseApi {
     })
   }
 
+  openingSheetCollection (data) {
+    return this.axios.request({
+      method: 'POST',
+      url: `${this.baseUrl}/gyms/${data.gym_id}/gym_routes/opening_sheet_collection.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
+      data: {
+        gym_opening_sheet: data
+      }
+    })
+  }
+
   create (data) {
     return this.axios.request({
       method: 'POST',
@@ -148,6 +164,17 @@ class GymRouteApi extends BaseApi {
       },
       data: {
         gym_route: data
+      }
+    })
+  }
+
+  deletePicture (gymId, gymRouteId) {
+    return this.axios.request({
+      method: 'DELETE',
+      url: `${this.baseUrl}/gyms/${gymId}/gym_routes/${gymRouteId}/delete_picture.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
       }
     })
   }

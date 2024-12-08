@@ -84,20 +84,25 @@
         précisé aux utilisateurs d'<strong>Oblyk.org</strong> l'identité des propriétaires du site internet, et de
         l'organisme hébergeur du site.
       </p>
+      <p class="mb-0">
+        <strong>Oblyk.org</strong> est édité par Oblyk SAS.
+      </p>
       <p>
-        <strong>Oblyk.org</strong> est édité par Lucien Chastan. Le directeur de rédaction
-        d'<strong>Oblyk.org</strong> est Lucien Chastan.
+        Société par Action Simplifiée au capital de 1000 €. Domicilé au 139 Avenue Maréchal de Saxe 69003, LYON<br>
+        SIRET : 98515257800011
+      </p>
+      <p>
+        Le directeur de rédaction d'<strong>Oblyk.org</strong> est Lucien Chastan.
       </p>
       <p>
         Contact : <a href="mailto:ekip@oblyk.org">ekip@oblyk.org</a>
       </p>
-      <p>
-        <u>Hébergement de l’API de <strong>Oblyk.org</strong> :</u><br>
-        La partie API d’<strong>Oblyk.org</strong>, qui stock les photos, documents et l’intégralité des données est hébergée par l’association la <a href="https://www.felinn.org/">FELINN</a> (Force d'Émancipation Locale pour l'Indépendance et la Neutralité du Net) domiciliée à Lyon.
+      <p class="mb-0">
+        <u>Hébergement de l’application et l'API de <strong>Oblyk.org</strong> :</u><br>
+        L’application Web de <strong>Oblyk.org</strong> est hébergée par <a href="https://onetsolutions.net/">ONETSOLUTIONS</a>
       </p>
       <p>
-        <u>Hébergement de l’application de <strong>Oblyk.org</strong> :</u><br>
-        L’application Web de <strong>Oblyk.org</strong> est hébergée par <a href="https://onetsolutions.net/">ONETSOLUTIONS</a> - Société par action simplifiée. 1 Allée de l'Ecluse, 33370 YVRAC
+        Société par action simplifiée. 1 Allée de l'Ecluse, 33370 YVRAC
       </p>
       <p>
         <u>Hébergement de la documentation de <strong>Oblyk.org</strong> :</u><br>
@@ -176,17 +181,18 @@
       <p>
         <strong>Oblyk.org</strong> utilise des cookies, qui sont des marqueurs permettant d'améliorer l'expérience de
         navigation sur le site (sauvegarde de certains paramètres en mémoire sur le navigateur, pour plus de rapidité
-        lors de l'utilisation). Les cookies sont sans dommage pour l'ordinateur et les données personnelles de
-        l'utilisateur.
-      </p>
-      <p>
-        L'utilisateur a le choix d'accepter ou de refuser l'utilisation des cookies sur <strong>Oblyk.org</strong> par
-        le biais de son navigateur internet.
+        lors de l'utilisation).
       </p>
       <p>
         Les cookies sont anonymes, et ne sont pas utilisés à des fins de collecte d'information à caractère personnel.
         Aucune de ces données anonymes ne pourra être transmise à des partenaires commerciaux, ou organismes tiers :
         elle resteront en possession d'<strong>Oblyk.org</strong>.
+      </p>
+      <p>
+        Pour plus de précision, veuillez consulter la page :
+        <nuxt-link to="/fr/cookie-et-mesure-d-audience">
+          Cookie & Mesure d'audience
+        </nuxt-link>
       </p>
 
       <h3>Article 5 : Propriété intellectuelle</h3>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <spinner
-      v-if="loadingGymGrades || loadingGym"
+      v-if="loadingGym"
       :full-height="false"
     />
 
@@ -38,23 +38,22 @@
       />
 
       <v-select
-        v-model="data.gym_grade_id"
-        :items="gymGrades"
-        item-text="text"
-        item-value="value"
-        hide-details
-        :label="$t('models.gymSpace.gym_grade_id')"
-        outlined
-      />
-
-      <v-select
         v-if="gym.gym_space_groups.length > 0"
         v-model="data.gym_space_group_id"
         :items="gym.gym_space_groups"
         item-text="name"
         item-value="id"
-        hide-details
         :label="$t('models.gymSpace.gym_space_group_id')"
+        outlined
+      />
+
+      <v-select
+        v-model="data.representation_type"
+        :items="representationTypes"
+        item-text="text"
+        item-value="value"
+        hide-details
+        :label="$t('models.gymSpace.representation_type')"
         outlined
       />
 
@@ -63,6 +62,14 @@
         class="mb-5"
         :label="$t('models.gymSpace.anchor')"
         :hint="$t('components.gymSpace.anchorExplain')"
+        persistent-hint
+      />
+
+      <v-checkbox
+        v-model="data.draft"
+        class="mb-5"
+        :label="$t('models.gymSpace.draft')"
+        :hint="$t('components.gymSpace.draftExplain')"
         persistent-hint
       />
 
@@ -80,7 +87,6 @@ import { FormHelpers } from '@/mixins/FormHelpers'
 import CloseForm from '@/components/forms/CloseForm'
 import SubmitForm from '@/components/forms/SubmitForm'
 import Spinner from '@/components/layouts/Spiner'
-import GymGradeApi from '~/services/oblyk-api/GymGradeApi'
 import GymSpaceApi from '~/services/oblyk-api/GymSpaceApi'
 import GymSpace from '@/models/GymSpace'
 import MarkdownInput from '@/components/forms/MarkdownInput'
@@ -103,7 +109,6 @@ export default {
 
   data () {
     return {
-      loadingGymGrades: true,
       loadingGym: true,
       redirectTo: null,
       gym: null,
@@ -113,9 +118,10 @@ export default {
         order: this.gymSpace?.order,
         description: this.gymSpace?.description,
         climbing_type: this.gymSpace?.climbing_type,
-        gym_grade_id: this.gymSpace?.gym_grade_id,
         gym_space_group_id: this.gymSpace?.gym_space_group_id,
         anchor: this.gymSpace?.anchor,
+        draft: this.gymSpace?.draft,
+        representation_type: this.gymSpace?.representation_type,
         gym_id: this.gymSpace?.gym_id || this.gymId
       },
       climbingGymList: [
@@ -125,14 +131,16 @@ export default {
         { text: this.$t('models.climbs.training_space'), value: 'training_space' },
         { text: this.$t('models.climbs.pan'), value: 'pan' }
       ],
-      gymGrades: []
+      representationTypes: [
+        { text: this.$t('models.representationTypes.2d_picture'), value: '2d_picture' },
+        { text: this.$t('models.representationTypes.3d'), value: '3d' }
+      ]
     }
   },
 
   mounted () {
     const urlParams = new URLSearchParams(window.location.search)
     this.redirectTo = urlParams.get('redirect_to')
-    this.getGymGrades()
     this.getGym()
   },
 
@@ -154,18 +162,6 @@ export default {
           this.$root.$emit('alertFromApiError', err, 'gymSpace')
         }).then(() => {
           this.overlay = false
-        })
-    },
-
-    getGymGrades () {
-      new GymGradeApi(this.$axios, this.$auth)
-        .all(this.gymId)
-        .then((resp) => {
-          for (const grade of resp.data) {
-            this.gymGrades.push({ text: grade.name, value: grade.id })
-          }
-        }).finally(() => {
-          this.loadingGymGrades = false
         })
     },
 

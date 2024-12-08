@@ -1,7 +1,11 @@
 <template>
   <v-form @submit.prevent="submit()">
     <!-- Ascent status -->
-    <ascent-status-input v-model="data.ascent_status" />
+    <ascent-status-input
+      v-model="data.ascent_status"
+      :with-sent="isEditingForm()"
+      :with-repetition="repetition"
+    />
 
     <!-- Released at -->
     <date-picker-input
@@ -34,14 +38,27 @@
     <hardness-status-input
       v-if="gymRoute.sections.length === 1"
       v-model="data.hardness_status"
-      label-key="components.input.howFindDifficulty"
     />
 
     <v-textarea
-      v-model="data.comment"
+      v-if="data.ascent_comment"
+      v-model="data.ascent_comment.body"
       outlined
       hide-details
       :label="$t('models.ascentGymRoute.comment')"
+    />
+
+    <v-checkbox
+      v-model="privateComment"
+      :label="$t('actions.addPrivateComment')"
+    />
+
+    <v-textarea
+      v-if="privateComment"
+      v-model="data.comment"
+      outlined
+      hide-details
+      :label="$t('models.ascentGymRoute.private_comment')"
     />
 
     <!-- Sections choice -->
@@ -119,13 +136,17 @@ export default {
     },
     defaultAscentStatus: {
       type: String,
-      default: 'sent'
+      default: 'red_point'
+    },
+    repetition: {
+      type: Boolean,
+      default: false
     }
   },
 
   data () {
     return {
-      mdiCalendar,
+      privateComment: this.ascentGymRoute && this.ascentGymRoute.comment,
       data: {
         id: this.ascentGymRoute?.id,
         ascent_status: this.ascentGymRoute?.ascent_status || this.defaultAscentStatus,
@@ -134,8 +155,11 @@ export default {
         selected_sections: this.ascentGymRoute?.sections_done || this.gymRoute.sections.map((section, index) => index),
         gym_route_id: this.ascentGymRoute?.gym_route_id || this.gymRoute.id,
         note: this.ascentGymRoute?.note,
-        comment: this.ascentGymRoute?.comment
-      }
+        comment: this.ascentGymRoute?.comment,
+        ascent_comment: this.ascentGymRoute?.ascent_comment || { body: null }
+      },
+
+      mdiCalendar
     }
   },
 
@@ -149,7 +173,7 @@ export default {
     submit () {
       this.submitOverlay = true
       const promise = (this.isEditingForm()) ? new AscentGymRouteApi(this.$axios, this.$auth).update(this.data) : new AscentGymRouteApi(this.$axios, this.$auth).create(this.data)
-
+      this.$localforage.gymRoutes.removeItem(this.data.gym_route_id)
       promise
         .then(() => {
           this.$auth.fetchUser().then(() => {

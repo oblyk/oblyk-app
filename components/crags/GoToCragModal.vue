@@ -5,13 +5,15 @@
   >
     <template #activator="{ on, attrs }">
       <v-btn
-        class="mb-3 expand"
-        outlined
-        block
-        color="primary"
+        class="mb-3 black-btn-icon --with-border"
+        dark
+        elevation="0"
         v-bind="attrs"
         v-on="on"
       >
+        <v-icon left>
+          {{ mdiDirectionsFork }}
+        </v-icon>
         {{ $t('components.navigation.goTo') }}
       </v-btn>
     </template>
@@ -137,7 +139,7 @@
 </template>
 
 <script>
-import { mdiAlphaPBox, mdiGoogleMaps, mdiWaze, mdiTerrain } from '@mdi/js'
+import { mdiAlphaPBox, mdiGoogleMaps, mdiWaze, mdiTerrain, mdiDirectionsFork } from '@mdi/js'
 import ParkApi from '~/services/oblyk-api/ParkApi'
 import Park from '@/models/Park'
 
@@ -152,13 +154,15 @@ export default {
 
   data () {
     return {
+      loadingPark: true,
+      parks: [],
+      goToCragModal: false,
+
       mdiAlphaPBox,
       mdiGoogleMaps,
       mdiWaze,
       mdiTerrain,
-      loadingPark: true,
-      parks: [],
-      goToCragModal: false
+      mdiDirectionsFork
     }
   },
 

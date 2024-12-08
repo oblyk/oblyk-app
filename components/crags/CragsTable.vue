@@ -28,7 +28,7 @@
               {{ mdiWalk }}
             </v-icon>
           </th>
-          <th class="text-center" :title="$t('components.cragsTable.approachTimeTitle')">
+          <th class="text-center" :title="$t('components.cragsTable.favorableSeasonsTitle')">
             <v-icon small>
               {{ mdiLeafMaple }}
             </v-icon>

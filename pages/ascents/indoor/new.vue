@@ -1,6 +1,16 @@
 <template>
   <v-container>
     <h1 class="text-h5 mt-4 mb-4">
+      <v-btn
+        icon
+        left
+        exact-path
+        to="/ascents/new"
+      >
+        <v-icon>
+          {{ mdiArrowLeft }}
+        </v-icon>
+      </v-btn>
       {{ $t('components.ascentCragRoute.addedAscentToLogbook') }}
     </h1>
 
@@ -45,6 +55,13 @@
         </div>
       </v-card-text>
     </v-card>
+
+    <!-- My Gyms -->
+    <my-followed-gyms
+      v-if="!selectedGym"
+      :callback="selectFollowedGym"
+      class="mt-7"
+    />
 
     <!-- Gym card and ascents form -->
     <div v-if="selectedGym && !ascentAdded">
@@ -131,16 +148,18 @@ import {
   mdiOfficeBuildingMarker,
   mdiPlusBoxOutline,
   mdiBookCheckOutline,
-  mdiPlus
+  mdiPlus,
+  mdiArrowLeft
 } from '@mdi/js'
 import GymSearchForm from '~/components/gyms/forms/GymSearchForm.vue'
 import GymSmallCard from '~/components/gyms/GymSmallCard.vue'
 import AscentGymBulkForm from '~/components/ascentGymRoutes/forms/AscentGymBulkForm.vue'
 import GymApi from '~/services/oblyk-api/GymApi'
 import Gym from '~/models/Gym'
+import MyFollowedGyms from '~/components/users/MyFollowedGyms.vue'
 
 export default {
-  components: { AscentGymBulkForm, GymSmallCard, GymSearchForm },
+  components: { MyFollowedGyms, AscentGymBulkForm, GymSmallCard, GymSearchForm },
 
   data () {
     return {
@@ -154,7 +173,8 @@ export default {
       mdiOfficeBuildingMarker,
       mdiPlusBoxOutline,
       mdiBookCheckOutline,
-      mdiPlus
+      mdiPlus,
+      mdiArrowLeft
     }
   },
 
@@ -179,13 +199,25 @@ export default {
         })
     },
 
+    selectFollowedGym (gym) {
+      if (gym.gym_spaces_count > 0) {
+        this.$router.push(`${gym.path}/spaces`)
+      } else {
+        this.selectedGym = gym
+      }
+    },
+
     searchUsed (query) {
       this.addGymBtn = true
       this.query = query
     },
 
     gymFormSearch (gym) {
-      this.selectedGym = gym
+      if (gym.gym_spaces_count > 0) {
+        this.$router.push(`${gym.path}/spaces`)
+      } else {
+        this.selectedGym = gym
+      }
     },
 
     addCallback () {

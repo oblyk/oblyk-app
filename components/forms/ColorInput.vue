@@ -1,6 +1,6 @@
 <template>
   <div :class="inputStyle === 'button' ? 'd-inline-block' : ''">
-    <div @click="colorModal = true">
+    <div @click="focusInput">
       <v-select
         v-if="inputStyle === 'Select'"
         v-model="selectedColors"
@@ -9,8 +9,10 @@
         :multiple="!onlySimpleColor"
         :items="colors"
         :label="label"
+        :hide-details="hideDetails"
         chips
-        @focus="colorModal = !colorModal"
+        :prepend-inner-icon="prependInnerIcon"
+        @focus="focusInput"
       >
         <template #selection="{ attrs, item, selected }">
           <v-chip
@@ -93,7 +95,7 @@
           <v-btn
             text
             color="primary"
-            @click="colorModal = false"
+            @click.prevent="closeModal"
           >
             {{ $t('actions.ok') }}
           </v-btn>
@@ -123,6 +125,10 @@ export default {
       type: String,
       default: 'Circle'
     },
+    prependInnerIcon: {
+      type: String,
+      default: null
+    },
     label: {
       type: String,
       default: null
@@ -150,12 +156,17 @@ export default {
     disableAllColor: {
       type: Boolean,
       default: false
+    },
+    hideDetails: {
+      type: Boolean,
+      default: false
     }
   },
 
   data () {
     return {
       colorModal: false,
+      delayClose: false,
       selectedColors: this.value,
 
       mdiCircle,
@@ -216,6 +227,19 @@ export default {
     btnClass (color) {
       const hoverable = this.disableAllColor && color.value === '#00000000' ? '' : 'activable-v-sheet'
       return this.selectedColors && this.selectedColors.includes(color.value) ? `${hoverable} --active` : `${hoverable} --inactive`
+    },
+
+    focusInput () {
+      if (!this.delayClose && !this.colorModal) {
+        this.colorModal = true
+      } else {
+        this.delayClose = false
+      }
+    },
+
+    closeModal () {
+      this.delayClose = true
+      this.colorModal = false
     }
   }
 }

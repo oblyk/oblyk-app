@@ -564,7 +564,7 @@
 
         <!-- Additional Geo json features-->
         <l-geo-json
-          v-if="zoom >= 14"
+          v-if="zoom >= minZoomAdditionalGeoJson"
           :key="`additional-geo-json-${rerenderAddGeoJsonKey}`"
           :geojson="additionalGeoJson"
           :options="geoJsonOptions"
@@ -674,6 +674,7 @@ import ApproachApi from '~/services/oblyk-api/ApproachApi'
 import UserApi from '~/services/oblyk-api/UserApi'
 import OsmNominatim from '~/services/osm-nominatim'
 import RockBarApi from '~/services/oblyk-api/RockBarApi'
+import GuideBookPaperApi from '~/services/oblyk-api/GuideBookPaperApi'
 const SearchPlaceInput = () => import('~/components/forms/SearchPlaceInput.vue')
 
 export default {
@@ -795,6 +796,7 @@ export default {
       layerIndex: 0,
       additionalGeoJson: { features: [] },
       sunnyRocksGeoJson: { features: [] },
+      minZoomAdditionalGeoJson: 14,
       fetchCragIds: [],
       zoom: this.zoomForce || parseFloat(localStorage.getItem('map-zoom') || '10'),
       showMapFilter: false,
@@ -1126,6 +1128,8 @@ export default {
       return (feature, latLng) => {
         if (feature.properties.icon === 'locality') {
           return L.marker(latLng, { icon: L.divIcon(this.localityMarker(feature.properties)) })
+        } else if (feature.properties.icon === 'guide-book-paper') {
+          return L.marker(latLng, { icon: L.divIcon(this.guideBookPaperMarker(feature.properties)) })
         } else {
           return L.marker(latLng, { icon: L.icon(this.markers[feature.properties.icon]) })
         }
@@ -1136,15 +1140,21 @@ export default {
       return (feature, layer) => {
         if (feature.properties.type === 'RockBar') {
           layer.options.bubblingMouseEvents = false
-          layer.options.color = '#616161'
+          layer.options.color = '#212121'
           layer.options.weight = 7
-          layer.setText('• ', { repeat: true, offset: 12, attributes: { fill: '#616161' }, below: true })
+          layer.setText('• ', { repeat: true, offset: 12, attributes: { fill: '#212121' }, below: true })
         }
         if (feature.properties.type === 'Approach') {
           layer.options.bubblingMouseEvents = false
           layer.options.color = '#795548'
           layer.options.dashArray = [10, 10]
           layer.options.weight = 6
+        }
+        if (feature.properties.type === 'CragToGuideBook') {
+          layer.options.bubblingMouseEvents = false
+          layer.options.color = '#311b92'
+          layer.options.dashArray = [3, 6]
+          layer.options.weight = 2
         }
         if (feature.properties.type === 'Department') {
           layer.options.color = 'rgb(234, 141, 125)'
@@ -1269,7 +1279,38 @@ export default {
         .getData(properties)
         .then((resp) => {
           marker.setPopupContent(this.getHtmlPopup(properties.type, resp))
+          if (properties.type === 'GuideBookPaper') {
+            this.buildGuideBookCragsGeoJson(resp, marker)
+          }
         })
+    },
+
+    buildGuideBookCragsGeoJson (data, marker) {
+      this.additionalGeoJson = { features: [] }
+      new GuideBookPaperApi(this.$axios, this.$auth)
+        .geoJson(data.id, true)
+        .then((resp) => {
+          const features = structuredClone(resp.data.features)
+          for (const feature of resp.data.features) {
+            if (feature.properties.type !== 'Crag') { continue }
+            features.push({
+              type: 'Feature',
+              properties: {
+                type: 'CragToGuideBook'
+              },
+              geometry: {
+                type: 'LineString',
+                coordinates: [
+                  [feature.geometry.coordinates[0], feature.geometry.coordinates[1]],
+                  [marker._latlng.lng, marker._latlng.lat]
+                ]
+              }
+            })
+          }
+          this.additionalGeoJson = { features }
+        })
+      this.minZoomAdditionalGeoJson = 1
+      this.rerenderAddGeoJsonKey += 1
     },
 
     getBoundsFeatures () {
@@ -1309,6 +1350,9 @@ export default {
         primaryId = properties.crag_id
         secondaryId = properties.id
         apiService = new RockBarApi(this.$axios, this.$auth)
+      } else if (properties.type === 'GuideBookPaper') {
+        primaryId = properties.id
+        apiService = new GuideBookPaperApi(this.$axios, this.$auth)
       } else if (properties.type === 'PlaceOfSale') {
         primaryId = properties.guide_book_paper_id
         secondaryId = properties.id
@@ -1516,12 +1560,26 @@ export default {
 .leaflet-popup {
   .map-popup-cover {
     background-color: rgb(240, 240, 240);
-    border-radius: 4px 4px 0 0;
+    border-radius: 16px 16px 0 0;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     width: 300px;
     height: 150px;
+  }
+  .map-guide-book-paper-cover {
+    max-width: 140px;
+    object-fit: contain;
+    background-position: center center;
+    border-radius: 10px;
+  }
+  .map-guide-book-paper-title {
+    padding: 5px 8px 0 8px;
+    font-weight: bold;
+    font-size: 1.4em;
+    margin-top: -3px;
+    margin-right: 20px;
+    margin-bottom: 5px;
   }
   .map-popup-information-table {
     width: 300px;
@@ -1550,7 +1608,10 @@ export default {
     border-top-color: rgb(230,230,230);
     border-width: 1px;
     button {
-      color: #1e88e5;
+      color: white;
+      background-color: black;
+      border-radius: 30px;
+      padding: 5px 10px;
       font-weight: bold;
       text-transform: uppercase;
       text-decoration: none;
@@ -1558,7 +1619,7 @@ export default {
   }
 
   .leaflet-popup-content-wrapper {
-    border-radius: 4px;
+    border-radius: 16px;
     padding: 0;
   }
 
@@ -1620,10 +1681,32 @@ export default {
     height: 10px;
   }
 }
+.leaflet-container .leaflet-marker-pane {
+  .guide-book-paper-marker {
+    max-width: 60px;
+    max-height: 60px;
+    text-align: center;
+    img {
+      max-width: 60px !important;
+      max-height: 60px !important;
+      object-fit: contain;
+      background-position: center center;
+      border-radius: 5px;
+    }
+  }
+}
 .leaflet-container a.leaflet-popup-close-button {
-  padding-top: 7px;
-  width: 30px;
-  height: 30px;
+  padding-top: 6px;
+  padding-right: 0;
+  padding-left: 0;
+  text-align: center;
+  width: 26px;
+  height: 26px;
+  background-color: white;
+  border-radius: 50%;
+  color: black;
+  margin-top: 3px;
+  margin-right: 4px;
 }
 .leaflet-customer-control {
   background-color: white;

@@ -6,12 +6,13 @@ This repository is the App part of Oblyk project.
 For front api, go here : [oblyk-app](https://github.com/oblyk/oblyk-api)
 
 ## Dependencies
+- node 14
 - npm >= 7.11
 
 ## Installation
 ```shell
 npm install
-cp .env.example .env.local
+cp .env.example .env
 ```
 Set `VUE_APP_OBLYK_API_ACCESS_TOKEN` params in `.env.local` with your Api token (see: [oblyk-api organization token part](https://github.com/oblyk/oblyk-api))
 

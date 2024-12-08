@@ -66,44 +66,41 @@
         {{ $t('components.gymStatistic.difficultyTitle') }}
       </p>
       <div>
-        <v-chip
-          :title="$t('models.hardnessStatus.easy_for_the_grade')"
-          outlined
-        >
-          😎 {{ appreciationFigures.difficulty.easy_for_the_grade }}
-        </v-chip>
-        <v-chip
-          :title="$t('models.hardnessStatus.this_grade_is_accurate')"
-          outlined
-        >
-          👌 {{ appreciationFigures.difficulty.this_grade_is_accurate }}
-        </v-chip>
-        <v-chip
-          :title="$t('models.hardnessStatus.sandbagged')"
-          outlined
-        >
-          🥵 {{ appreciationFigures.difficulty.sandbagged }}
-        </v-chip>
-        <v-icon
-          small
-          class="mx-1"
-        >
-          {{ mdiArrowRight }}
-        </v-icon>
-        <v-chip
-          outlined
-          pill
-          :title="appreciationFigures.difficulty.difficulty_average"
-          class="px-1"
-        >
-          <v-icon
-            class="vertical-align-text-top"
-            :style="`transform: rotate(${appreciationFigures.difficulty.difficulty_average * -90}deg)`"
-            :color="difficultyColor(appreciationFigures.difficulty.difficulty_average)"
+        <div class="text-no-wrap">
+          <v-chip
+            :title="$t('models.hardnessStatus.easy_for_the_grade')"
+            outlined
           >
-            {{ mdiArrowRightThin }}
-          </v-icon>
-        </v-chip>
+            😎 {{ appreciationFigures.difficulty.easy_for_the_grade }}
+          </v-chip>
+          <v-chip
+            :title="$t('models.hardnessStatus.this_grade_is_accurate')"
+            outlined
+          >
+            👌 {{ appreciationFigures.difficulty.this_grade_is_accurate }}
+          </v-chip>
+          <v-chip
+            :title="$t('models.hardnessStatus.sandbagged')"
+            outlined
+          >
+            🥵 {{ appreciationFigures.difficulty.sandbagged }}
+          </v-chip>
+          =
+          <v-chip
+            outlined
+            pill
+            :title="appreciationFigures.difficulty.difficulty_average"
+            class="px-1"
+          >
+            <v-icon
+              class="vertical-align-text-top"
+              :style="`transform: rotate(${appreciationFigures.difficulty.difficulty_average * -90}deg)`"
+              :color="difficultyColor(appreciationFigures.difficulty.difficulty_average)"
+            >
+              {{ mdiArrowRightThin }}
+            </v-icon>
+          </v-chip>
+        </div>
         <p class="mb-0 mt-1">
           {{ $t('components.gymStatistic.onAverage') }} : <strong>{{ difficultyAppreciationStatus(appreciationFigures.difficulty.difficulty_average) }}</strong>
         </p>

@@ -1,7 +1,7 @@
 <template>
   <v-card
     flat
-    class="rounded-sm"
+    class="rounded-sm back-app-color"
   >
     <v-card-text>
       <div>
@@ -28,11 +28,29 @@
       />
       {{ $t(`models.ascentStatus.${ascentGymRoute.ascent_status}`) }}
 
-      <p class="mb-0">
-        <cite v-if="ascentGymRoute.comment">
+      <div
+        v-if="ascentGymRoute.comment"
+        class="mb-0"
+      >
+        <p class="mb-0 text-decoration-underline">
+          {{ $t('models.ascentGymRoute.private_comment') }}
+        </p>
+        <div class="font-italic">
           {{ ascentGymRoute.comment }}
-        </cite>
-      </p>
+        </div>
+      </div>
+
+      <div
+        v-if="ascentGymRoute.ascent_comment && ascentGymRoute.ascent_comment.body"
+        class="mb-0"
+      >
+        <p class="mb-0 text-decoration-underline">
+          {{ $t('models.ascentGymRoute.comment') }}
+        </p>
+        <div class="font-italic">
+          {{ ascentGymRoute.ascent_comment.body }}
+        </div>
+      </div>
 
       <div v-if="ascentGymRoute.GymRoute.sections_count > 1">
         <p
@@ -60,7 +78,7 @@
 </template>
 
 <script>
-import { mdiDelete } from '@mdi/js'
+import { mdiDelete, mdiLock, mdiLockOpen } from '@mdi/js'
 import { DateHelpers } from '@/mixins/DateHelpers'
 import AscentGymRouteApi from '~/services/oblyk-api/AscentGymRouteApi'
 import AscentGymRouteStatusIcon from '@/components/ascentGymRoutes/AscentGymRouteStatusIcon'
@@ -87,7 +105,9 @@ export default {
       subscribes: [],
       loadingSubscribes: true,
 
-      mdiDelete
+      mdiDelete,
+      mdiLock,
+      mdiLockOpen
     }
   },
 
@@ -97,9 +117,8 @@ export default {
         new AscentGymRouteApi(this.$axios, this.$auth)
           .delete(this.ascentGymRoute.id)
           .then(() => {
-            this.$auth.fetchUser().then(() => {
-              this.$root.$emit('reloadAscentGymRoute')
-            })
+            this.$localforage.gymRoutes.removeItem(this.gymRoute.id)
+            this.$auth.fetchUser()
           })
           .catch((err) => {
             this.$root.$emit('alertFromApiError', err, 'ascentGymRoute')

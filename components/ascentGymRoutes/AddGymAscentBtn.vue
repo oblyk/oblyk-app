@@ -16,12 +16,7 @@
         >
           {{ mdiPlusBoxOutline }}
         </v-icon>
-        <span v-if="inMyLogBook">
-          {{ $t('actions.addRepetition') }}
-        </span>
-        <span v-else>
-          {{ $t('actions.addInMyLogbook') }}
-        </span>
+        {{ inMyLogBook ? $t('actions.addRepetition') : $t('actions.addInMyLogbook') }}
       </v-btn>
     </template>
 
@@ -34,7 +29,8 @@
           :gym-route="gymRoute"
           submit-methode="post"
           :callback="successCallback"
-          :default-ascent-status="inMyLogBook ? 'repetition' : 'sent'"
+          :default-ascent-status="inMyLogBook ? 'repetition' : 'red_point'"
+          :repetition="inMyLogBook"
         />
       </v-card-text>
     </v-card>
@@ -82,7 +78,6 @@ export default {
 
   methods: {
     successCallback () {
-      this.$root.$emit('reloadAscentGymRoute')
       this.ascentModal = false
     }
   }

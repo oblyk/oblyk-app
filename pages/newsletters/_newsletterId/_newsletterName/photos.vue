@@ -32,10 +32,7 @@
                 {{ mdiPencil }}
               </v-icon>
             </v-btn>
-            <copy-btn
-              :small="false"
-              :message="imgBalise(photo)"
-            />
+            <copy-btn :message="imgBalise(photo)" />
           </div>
         </v-col>
       </v-row>

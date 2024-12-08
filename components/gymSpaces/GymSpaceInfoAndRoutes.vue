@@ -1,94 +1,148 @@
 <template>
-  <div :class="$vuetify.breakpoint.mobile ? '' : 'pa-3'">
-    <div v-if="!editingSectorPolygon && !editingSectorColor">
-      <!-- Gym space selector -->
-      <v-sheet
-        class="blur-card px-4 pt-1 pb-4"
-        :class="$vuetify.breakpoint.mobile ? 'elevation-3' : ''"
-        rounded
+  <div>
+    <v-sheet
+      v-if="!editingSectorPolygon && !editingSectorColor"
+      class="pb-4 border-right gym-space-card"
+      :elevation="$vuetify.breakpoint.mobile ? 24 : 0"
+      :class="$vuetify.breakpoint.mobile ? '--mobile-interface rounded border-top' : '--desktop-interface'"
+    >
+      <!-- Visual indication that encourages scrolling -->
+      <div
+        v-if="$vuetify.breakpoint.mobile"
+        class="scroll-encourage"
       >
-        <!-- Visual indication that encourages scrolling -->
-        <div
-          v-if="$vuetify.breakpoint.mobile"
-          class="scroll-encourage"
-        >
-          <div />
-        </div>
+        <div />
+      </div>
 
-        <!-- Gym Title -->
-        <v-list
-          v-if="gym"
-          class="pt-0 pb-0"
-          color="rgba(0,0,0,0)"
-        >
-          <v-list-item class="pl-0">
-            <v-list-item-avatar v-if="gym.logo">
-              <v-avatar
-                size="40"
-                class="mr-2 vertical-align-top"
-              >
-                <v-img :src="gym.logoUrl" alt="gym logo" />
-              </v-avatar>
-            </v-list-item-avatar>
+      <!-- Gym Title -->
+      <v-list
+        v-if="gym"
+        class="pt-0 pb-0 mx-2"
+        color="rgba(0,0,0,0)"
+      >
+        <v-list-item class="pl-0">
+          <v-list-item-avatar
+            v-if="gym.logo"
+            tile
+            size="50"
+          >
+            <v-avatar
+              size="50"
+              tile
+              class="vertical-align-top rounded-sm"
+            >
+              <v-img :src="gym.thumbnailLogoUrl" alt="gym logo" />
+            </v-avatar>
+          </v-list-item-avatar>
+          <v-list-item-content>
             <v-list-item-title class="font-weight-bold">
               {{ gym.name }}<span class="font-weight-regular">, {{ gymSpace.name }}</span>
             </v-list-item-title>
+            <v-list-item-subtitle>
+              <v-btn
+                icon
+                :to="gym.path"
+                exact-path
+              >
+                <v-icon>
+                  {{ mdiInformationOutline }}
+                </v-icon>
+              </v-btn>
+              <client-only>
+                <subscribe-btn
+                  subscribe-type="Gym"
+                  :subscribe-id="gym.id"
+                  outlined
+                  type-text
+                  :small="true"
+                />
+              </client-only>
+            </v-list-item-subtitle>
+          </v-list-item-content>
+          <client-only>
             <v-list-item-action
-              v-if="currentUserIsGymAdmin() && (gymAuthCan(gym, 'manage_space') || gymAuthCan(gym, 'manage_opening'))"
+              v-if="gym && $auth.loggedIn && (currentUserIsGymAdmin() && (gymAuthCan(gym, 'manage_space') || gymAuthCan(gym, 'manage_opening')))"
             >
               <gym-space-action-menu
                 :gym-space="gymSpace"
                 :gym="gym"
               />
             </v-list-item-action>
-          </v-list-item>
-        </v-list>
+          </client-only>
+        </v-list-item>
+      </v-list>
 
-        <!-- Skeleton loader for gym name -->
-        <v-skeleton-loader
-          v-else
-          class="my-3"
-          type="list-item-avatar"
-        />
-
-        <!-- Space selector -->
-        <gym-space-selector
-          :gym-space="gymSpace"
-          :gym="gymSpace.gym"
-        />
-
-        <!-- Space description -->
-        <div class="gym-space-description mt-2">
-          <markdown-text
-            v-if="gymSpace.description"
-            :text="gymSpace.description"
-          />
-        </div>
-      </v-sheet>
-
-      <gym-go-to-ranking
-        :gym="gym"
-        additional-class="blur-card"
-        class="mt-4"
+      <!-- Skeleton loader for gym name -->
+      <v-skeleton-loader
+        v-else
+        class="my-3"
+        type="list-item-avatar"
       />
 
-      <!-- Route list -->
-      <v-sheet
-        class="pa-4 mt-4 blur-card"
-        :class="$vuetify.breakpoint.mobile ? 'elevation-3' : ''"
-        rounded
+      <!-- Space selector -->
+      <gym-space-selector
+        class="mt-2 px-1"
+        :gym-space="gymSpace"
+        :gym="gymSpace.gym"
+      />
+
+      <v-alert
+        v-if="gymSpace.draft"
+        dense
+        text
+        color="amber"
+        class="mx-3"
       >
-        <gym-space-route-list
-          :gym-space="gymSpace"
-          :gym="gym"
+        <div class="font-weight-bold">
+          {{ $t('models.gymSpace.draft') }}
+        </div>
+        <div>
+          {{ $t('components.gymSpace.draftExplain') }}
+        </div>
+      </v-alert>
+
+      <!-- Space description -->
+      <div class="gym-space-description mt-2 px-3">
+        <markdown-text
+          v-if="gymSpace.description"
+          :text="gymSpace.description"
         />
-      </v-sheet>
-    </div>
+      </div>
+
+      <gym-ranking-and-logbook
+        class="mt-3 px-3"
+        :gym="gym"
+      />
+
+      <div
+        v-if="gym.upcoming_contests.length > 0"
+        class="mt-4 px-3"
+      >
+        <contest-up-coming
+          :gym="gym"
+          class="mt-2 mb-3"
+          :elevation="$vuetify.breakpoint.mobile ? 3 : 0"
+        />
+      </div>
+
+      <div class="border-top border-bottom px-4 my-3">
+        <h3 class="py-1">
+          {{ $t('components.gym.guidebook') }} !
+        </h3>
+      </div>
+
+      <!-- Route list -->
+      <gym-space-route-list
+        class="mt-4 px-3"
+        :gym-space="gymSpace"
+        :gym="gym"
+      />
+    </v-sheet>
 
     <!-- If in editing sector polygon -->
     <v-sheet
       v-if="editingSectorPolygon"
-      class="blur-card h-100"
+      class="h-100"
       rounded
     >
       <gym-sector-editing-plan
@@ -99,7 +153,7 @@
     <!-- If in editing sector colors -->
     <v-sheet
       v-if="editingSectorColor"
-      class="blur-card h-100"
+      class="h-100"
       rounded
     >
       <gym-space-editing-sectors-color
@@ -111,11 +165,14 @@
 </template>
 
 <script>
+import { mdiInformationOutline } from '@mdi/js'
 import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
 import GymSpaceSelector from '@/components/gymSpaces/GymSpaceSelector'
-import GymSpaceActionMenu from '@/components/gymSpaces/GymSpaceActionMenu'
 import GymSpaceRouteList from '@/components/gymRoutes/GymSpaceRouteList'
-import GymGoToRanking from '~/components/gyms/GymGoToRanking'
+import ContestUpComing from '~/components/gyms/ContestUpComing'
+import SubscribeBtn from '~/components/forms/SubscribeBtn'
+import GymRankingAndLogbook from '~/components/gyms/GymRankingAndLogbook'
+const GymSpaceActionMenu = () => import('@/components/gymSpaces/GymSpaceActionMenu')
 const GymSectorEditingPlan = () => import('@/components/gymSectors/GymSectorEditingPlan')
 const GymSpaceEditingSectorsColor = () => import('~/components/gymSpaces/GymSpaceEditingSectorsColor')
 const MarkdownText = () => import('@/components/ui/MarkdownText')
@@ -123,8 +180,10 @@ const MarkdownText = () => import('@/components/ui/MarkdownText')
 export default {
   name: 'GymSpaceInfoAndRoutes',
   components: {
+    GymRankingAndLogbook,
+    SubscribeBtn,
+    ContestUpComing,
     GymSpaceEditingSectorsColor,
-    GymGoToRanking,
     MarkdownText,
     GymSectorEditingPlan,
     GymSpaceRouteList,
@@ -147,7 +206,9 @@ export default {
   data () {
     return {
       editingSectorPolygon: false,
-      editingSectorColor: false
+      editingSectorColor: false,
+
+      mdiInformationOutline
     }
   },
 
@@ -168,11 +229,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.blur-card {
-  backdrop-filter: blur(10px);
-}
+.gym-space-card.--mobile-interface { min-height: calc(100vh - 44px); }
+.gym-space-card.--desktop-interface { min-height: calc(100vh - 64px); }
 .scroll-encourage {
   margin-bottom: 10px;
+  padding-top: 5px;
   div {
     margin-left: auto;
     margin-right: auto;
@@ -182,22 +243,16 @@ export default {
   }
 }
 .theme--dark {
-  .blur-card {
-    background-color: rgba(17, 17, 17, 0.9);
-  }
   .scroll-encourage {
     div {
-      background-color: rgba(255, 255, 255, 0.2);
+      background-color: rgb(255, 255, 255, 0.3);
     }
   }
 }
 .theme--light {
-  .blur-card {
-    background-color: rgba(255, 255, 255, 0.8);
-  }
   .scroll-encourage {
     div {
-      background-color: rgba(0, 0, 0, 0.2);
+      background-color: rgb(0, 0, 0, 0.2);
     }
   }
 }

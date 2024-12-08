@@ -96,6 +96,7 @@ export default {
         })
           .then((resp) => {
             const gymRoute = new GymRoute({ attributes: resp.data })
+            this.$localforage.gymRoutes.removeItem(this.gymRoute.id)
             if (this.callback) {
               this.callback(gymRoute)
             } else {

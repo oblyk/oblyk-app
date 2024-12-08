@@ -31,7 +31,7 @@ export default {
   meta: { orphanRoute: true },
   components: { GymSpaceGroupForm, Spinner },
   mixins: [GymSpaceGroupConcern, GymFetchConcern],
-  middleware: ['auth'],
+  middleware: ['auth', 'gymAdmin'],
 
   i18n: {
     messages: {

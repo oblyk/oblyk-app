@@ -31,6 +31,7 @@ export default {
   meta: { orphanRoute: true },
   components: { GymGradeCard, Spinner },
   mixins: [GymGradeConcern],
+  middleware: ['auth', 'gymAdmin'],
 
   data () {
     return {

@@ -1,8 +1,8 @@
 <template>
   <div>
-    <h3 class="text-center mb-7 text-h5 font-weight-bold">
+    <h2 class="text-center mb-7 text-h5 font-weight-bold">
       {{ $t('home.figures.title') }}
-    </h3>
+    </h2>
     <v-sheet
       class="px-0 px-md-4 py-10 rounded-lg"
     >
@@ -36,7 +36,7 @@
             <v-row>
               <v-col class="text-center col-4">
                 <p class="figures">
-                  {{ figures.all.crags_count }}
+                  {{ figures.all.crags_count.toLocaleString() }}
                   <small
                     v-if="figures.latest.crags_count > 0"
                     :title="$tc('home.figures.in24Hours.crags', figures.latest.crags_count, { count: figures.latest.crags_count } )"
@@ -50,7 +50,7 @@
               </v-col>
               <v-col class="text-center col-4">
                 <p class="figures">
-                  {{ figures.all.users_count }}
+                  {{ figures.all.users_count.toLocaleString() }}
                   <small
                     v-if="figures.latest.users_count > 0"
                     :title="$tc('home.figures.in24Hours.climbers', figures.latest.users_count, { count: figures.latest.users_count } )"
@@ -64,7 +64,7 @@
               </v-col>
               <v-col class="text-center col-4">
                 <p class="figures">
-                  {{ figures.all.gyms_count }}
+                  {{ figures.all.gyms_count.toLocaleString() }}
                   <small
                     v-if="figures.latest.gyms_count > 0"
                     :title="$tc('home.figures.in24Hours.gyms', figures.latest.gyms_count, { count: figures.latest.gyms_count } )"
@@ -78,7 +78,7 @@
               </v-col>
               <v-col class="text-center col-4">
                 <p class="figures">
-                  {{ figures.all.routes_count }}
+                  {{ figures.all.routes_count.toLocaleString() }}
                   <small
                     v-if="figures.latest.routes_count > 0"
                     :title="$tc('home.figures.in24Hours.routes', figures.latest.routes_count, { count: figures.latest.routes_count } )"
@@ -92,7 +92,7 @@
               </v-col>
               <v-col class="text-center col-4">
                 <p class="figures">
-                  {{ figures.all.ascents_count }}
+                  {{ figures.all.ascents_count.toLocaleString() }}
                   <small
                     v-if="figures.latest.ascents_count > 0"
                     :title="$tc('home.figures.in24Hours.ascents', figures.latest.ascents_count, { count: figures.latest.ascents_count } )"
@@ -106,7 +106,7 @@
               </v-col>
               <v-col class="text-center col-4">
                 <p class="figures">
-                  {{ figures.all.photos_count }}
+                  {{ figures.all.photos_count.toLocaleString() }}
                   <small
                     v-if="figures.latest.photos_count > 0"
                     :title="$tc('home.figures.in24Hours.photos', figures.latest.photos_count, { count: figures.latest.photos_count } )"
@@ -120,7 +120,7 @@
               </v-col>
               <v-col class="text-center col-4">
                 <p class="figures">
-                  {{ figures.all.guides_count }}
+                  {{ figures.all.guides_count.toLocaleString() }}
                   <small
                     v-if="figures.latest.guides_count > 0"
                     :title="$tc('home.figures.in24Hours.guides', figures.latest.guides_count, { count: figures.latest.guides_count } )"
@@ -134,7 +134,7 @@
               </v-col>
               <v-col class="text-center col-4">
                 <p class="figures">
-                  {{ figures.all.comments_count }}
+                  {{ figures.all.comments_count.toLocaleString() }}
                   <small
                     v-if="figures.latest.comments_count > 0"
                     :title="$tc('home.figures.in24Hours.comments', figures.latest.comments_count, { count: figures.latest.comments_count } )"
@@ -148,7 +148,7 @@
               </v-col>
               <v-col class="text-center col-4">
                 <p class="figures">
-                  {{ figures.all.videos_count }}
+                  {{ figures.all.videos_count.toLocaleString() }}
                   <small
                     v-if="figures.latest.videos_count > 0"
                     :title="$tc('home.figures.in24Hours.videos', figures.latest.videos_count, { count: figures.latest.videos_count } )"
@@ -166,7 +166,7 @@
               class="text-center figures"
             >
               <small>
-                {{ $tc('home.figures.addedSince24Hours', addInLast24Hours, { count: addInLast24Hours }) }}
+                {{ $tc('home.figures.addedSince24Hours', addInLast24Hours, { count: addInLast24Hours.toLocaleString() }) }}
               </small>
             </p>
           </div>

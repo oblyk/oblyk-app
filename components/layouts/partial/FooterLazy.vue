@@ -63,12 +63,6 @@
         >
           {{ $t('components.layout.footer.apiAndDevelopers') }}
         </nuxt-link>
-        <nuxt-link class="d-block" to="/support-us">
-          <v-icon small color="red" left>
-            {{ mdiHeart }}
-          </v-icon>
-          {{ $t('components.layout.footer.donation') }}
-        </nuxt-link>
         <nuxt-link
           class="d-block"
           :to="`/report-problem?redirect_to=${$route.fullPath}`"
@@ -85,9 +79,26 @@
       <v-col
         class="col-12 col-md-4 order-1 order-md-3"
       >
+        <p class="font-weight-bold mb-3">
+          {{ $t('components.layout.footer.ourApp') }}
+        </p>
+        <div class="mb-4 pl-3">
+          <a class="pt-4 pb-3 px-0" href="https://play.google.com/store/apps/details?id=org.oblyk.twa">
+            <img class="vertical-align-middle mb-1" height="50" src="/svg/google-store-white.svg" alt="logo Google Play Store">
+          </a>
+          <a class="pt-4 pb-3 px-0" href="https://apps.apple.com/fr/app/oblyk/id6569245391">
+            <img class="vertical-align-middle mb-1" height="50" src="/svg/apple-store-white.svg" alt="logo Apple App Store">
+          </a>
+        </div>
         <p class="font-weight-bold">
           {{ $t('components.layout.footer.followUs') }}
         </p>
+        <a class="d-block" href="https://www.instagram.com/oblyk.climbing/">
+          <v-icon small left dark>
+            {{ mdiInstagram }}
+          </v-icon>
+          {{ $t('components.layout.footer.instagram') }}
+        </a>
         <a class="d-block" href="https://www.facebook.com/pageoblyk/">
           <v-icon small left dark>
             {{ mdiFacebook }}
@@ -121,34 +132,40 @@
       </v-col>
     </v-row>
     <v-divider class="mt-2 mb-2" />
-    <v-row class="font-weight-light">
-      <v-col>
+    <div class="font-weight-light d-flex">
+      <div class="text-no-wrap">
         <nuxt-link to="/">
           <v-icon small left dark>
             {{ mdiCopyright }}
           </v-icon>
           2022 — Oblyk
         </nuxt-link>
-      </v-col>
-      <v-col class="text-right">
+      </div>
+      <div class="ml-auto">
+        <nuxt-link to="/fr/cookie-et-mesure-d-audience" rel="nofollow">
+          Cookies
+        </nuxt-link>
+      </div>
+      <div>
         <nuxt-link to="/fr/conditions-d-utilisation" rel="nofollow">
           {{ $t('components.layout.footer.termsOfUse') }}
         </nuxt-link>
-      </v-col>
-    </v-row>
+      </div>
+    </div>
   </v-container>
 </template>
 
 <script>
 import {
   mdiCopyright,
-  mdiHeart,
   mdiFlag,
   mdiFacebook,
   mdiGithub,
   mdiEmail,
   mdiDatabase,
-  mdiOpenInNew
+  mdiOpenInNew,
+  mdiInstagram,
+  mdiCookie
 } from '@mdi/js'
 
 export default {
@@ -157,13 +174,14 @@ export default {
   data () {
     return {
       mdiCopyright,
-      mdiHeart,
       mdiFlag,
       mdiFacebook,
       mdiGithub,
       mdiEmail,
       mdiDatabase,
-      mdiOpenInNew
+      mdiOpenInNew,
+      mdiInstagram,
+      mdiCookie
     }
   },
 

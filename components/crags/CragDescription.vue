@@ -207,7 +207,7 @@
           </v-col>
 
           <!-- Localization -->
-          <v-col cols="12">
+          <v-col cols="12" class="text-center">
             <go-to-crag-modal :crag="crag" />
           </v-col>
         </v-row>
@@ -247,7 +247,7 @@
                     dark
                     rounded
                     large
-                    color="rgba(0,0,0,0.5)"
+                    class="black-btn-icon --with-border"
                     :to="`/maps/crags?lat=${crag.latitude}&lng=${crag.longitude}&zoom=16&crag_id=${crag.id}`"
                   >
                     {{ $t('actions.seeMap') }}

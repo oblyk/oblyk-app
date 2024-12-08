@@ -31,7 +31,7 @@ class GymApi extends BaseApi {
     })
   }
 
-  routes (gymId, dismounted = false) {
+  routes (gymId, gymSpaceId = null, dismounted = false) {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/gyms/${gymId}/routes.json`,
@@ -40,7 +40,8 @@ class GymApi extends BaseApi {
         HttpApiAccessToken: this.apiAccessToken
       },
       params: {
-        dismounted
+        dismounted,
+        gym_space_id: gymSpaceId
       }
     })
   }
@@ -49,6 +50,17 @@ class GymApi extends BaseApi {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/gyms/${gymId}/tree_structures.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
+    })
+  }
+
+  treeRoutes (gymId) {
+    return this.axios.request({
+      method: 'GET',
+      url: `${this.baseUrl}/gyms/${gymId}/tree_routes.json`,
       headers: {
         Authorization: this.authToken(),
         HttpApiAccessToken: this.apiAccessToken
@@ -133,6 +145,59 @@ class GymApi extends BaseApi {
       },
       data: {
         gym: data
+      }
+    })
+  }
+
+  figures (gymId, figureType) {
+    return this.axios.request({
+      method: 'GET',
+      url: `${this.baseUrl}/gyms/${gymId}/figures.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
+      params: {
+        figures: figureType
+      }
+    })
+  }
+
+  comments (gymId, page) {
+    return this.axios.request({
+      method: 'GET',
+      url: `${this.baseUrl}/gyms/${gymId}/comments.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
+      params: {
+        page
+      }
+    })
+  }
+
+  videos (gymId, page) {
+    return this.axios.request({
+      method: 'GET',
+      url: `${this.baseUrl}/gyms/${gymId}/videos.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
+      params: {
+        page
+      }
+    })
+  }
+
+  threeD (gymId) {
+    return this.axios.request({
+      method: 'GET',
+      url: `${this.baseUrl}/gyms/${gymId}/three_d.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
       }
     })
   }

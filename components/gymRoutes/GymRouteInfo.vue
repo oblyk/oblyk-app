@@ -1,57 +1,10 @@
 <template>
-  <div
-    :class="$vuetify.breakpoint.mobile ? 'mobile-interface' : 'desktop-interface'"
-  >
-    <v-img
+  <div>
+    <!-- Gym route picture -->
+    <gym-route-picture
       v-if="gymRoute.hasPicture"
-      ref="gymRoutePicture"
-      class="rounded gym-route-picture"
-      :class="fullHeightPicture ? `--full-height ${landscapePicture ? '--landscape' : '--portrait' }` : `--limited-height ${landscapePicture ? '--landscape' : '--portrait' }`"
-      cover
-      :src="gymRoute.pictureUrl"
-      @click="fullHeightPicture = !fullHeightPicture"
-    >
-      <div
-        v-if="gymRoute.thumbnail_position"
-        class="gym-route-thumbnail-position"
-        :style="`height: ${thbPos.h}%; width: ${thbPos.w}%; top: calc(50% - ${thbPos.dy}%); left: calc(50% - ${thbPos.dx}%)`"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="GymRouteGradient" x1="0" x2="100%" y1="0" y2="0">
-              <stop
-                v-for="(gradiant, gradiantIndex) in thumbnailGradiant"
-                :key="`gradiant-index-${gradiantIndex}`"
-                :stop-color="gradiant.color"
-                :offset="`${gradiant.offset}%`"
-              />
-            </linearGradient>
-          </defs>
-          <rect
-            x="4"
-            y="4"
-            height="100%"
-            width="100%"
-            style="width:calc(100% - 8px);height:calc(100% - 8px)"
-            rx="50%"
-            ry="50%"
-            stroke-width="8"
-            fill="transparent"
-            stroke="url(#GymRouteGradient)"
-          />
-        </svg>
-      </div>
-      <v-btn
-        v-if="!landscapePicture"
-        icon
-        style="position: absolute; bottom: 10px; right: 10px"
-        @click.stop="fullHeightPicture = !fullHeightPicture"
-      >
-        <v-icon>
-          {{ fullHeightPicture ? mdiArrowCollapse : mdiArrowExpand }}
-        </v-icon>
-      </v-btn>
-    </v-img>
+      :gym-route="gymRoute"
+    />
 
     <!-- Information, ascents, etc. -->
     <div class="pa-2">
@@ -91,6 +44,15 @@
         </v-col>
       </v-row>
 
+      <v-alert
+        v-if="gymRoute.dismounted_at"
+        text
+        type="error"
+        class="mx-1 mt-2"
+      >
+        {{ $t('components.gymRoute.dismountedAt', { date: humanizeDate(gymRoute.dismounted_at) }) }}
+      </v-alert>
+
       <!-- Route description -->
       <v-sheet
         v-if="gymRoute.description"
@@ -99,40 +61,39 @@
         <markdown-text :text="gymRoute.description" />
       </v-sheet>
 
-      <!-- Global information -->
       <v-row
-        class="mb-2"
+        v-if="(gymRoute.likes_count && gymRoute.likes_count > 0) || (gymRoute.ascents_count || 0 > 0)"
+        class="my-1"
         no-gutters
       >
         <!-- Route real favorite -->
         <v-col
           v-if="gymRoute.likes_count && gymRoute.likes_count > 0"
           cols="6"
-          class="my-1 px-1"
+          class="my-1 font-weight-bold text-no-wrap pl-2"
         >
-          <description-line
-            :icon="mdiHeart"
-            icon-color="red"
-            :item-title="$t('common.realFavorite')"
-            :item-value="`${gymRoute.likes_count} ${$t('common.realFavorite')}`"
-            class="back-app-color rounded-sm px-2 py-1"
-          />
+          <v-icon small color="red">
+            {{ mdiHeart }}
+          </v-icon>
+          {{ $tc('common.realFavoriteCount', gymRoute.likes_count, { count: gymRoute.likes_count }) }}
         </v-col>
-
-        <!-- Route ascent count -->
         <v-col
           v-if="gymRoute.ascents_count || 0 > 0"
           cols="6"
-          class="my-1 px-1"
+          class="my-1 font-weight-bold text-no-wrap pl-2"
         >
-          <description-line
-            :icon="mdiCheckAll"
-            :item-title="$t('models.gymRoute.ascents')"
-            :item-value="$tc('components.gymRoute.ascents', gymRoute.ascents_count, { count: gymRoute.ascents_count })"
-            class="back-app-color rounded-sm px-2 py-1"
-          />
+          <v-icon small>
+            {{ mdiCheckAll }}
+          </v-icon>
+          {{ $tc('components.gymRoute.ascents', gymRoute.ascents_count, { count: gymRoute.ascents_count }) }}
         </v-col>
+      </v-row>
 
+      <!-- Global information -->
+      <v-row
+        class="mb-2"
+        no-gutters
+      >
         <!-- Route opened_at -->
         <v-col
           v-if="gymRoute.opened_at"
@@ -143,7 +104,7 @@
             :icon="mdiCalendar"
             :item-title="$t('models.gymRoute.opened_at')"
             :item-value="humanizeDate(gymRoute.opened_at, 'DATE_MED')"
-            class="back-app-color rounded-sm px-2 py-1"
+            class="rounded-sm px-2 py-1"
           />
         </v-col>
 
@@ -155,7 +116,7 @@
           <description-line
             :icon="mdiTextureBox"
             :item-title="$t('models.gymRoute.gym_sector_id')"
-            class="back-app-color rounded-sm px-2 py-1"
+            class="rounded-sm px-2 py-1"
           >
             <template #content>
               <a
@@ -184,7 +145,7 @@
           <description-line
             :icon="mdiMap"
             :item-title="$t('models.gymRoute.gym_space_id')"
-            class="back-app-color rounded-sm px-2 py-1"
+            class="rounded-sm px-2 py-1"
           >
             <template #content>
               <nuxt-link :to="gymRoute.gymSpacePath">
@@ -204,20 +165,20 @@
             :icon="mdiBolt"
             :item-title="$t('models.gymRoute.openers')"
             :item-value="gymRoute.openers.map(opener => opener.name).join(', ')"
-            class="back-app-color rounded-sm px-2 py-1"
+            class="rounded-sm px-2 py-1"
           />
         </v-col>
 
         <!-- Difficulty appreciation -->
         <v-col
-          v-if="gymRoute.votes"
+          v-if="gymRoute.votes && gymRoute.votes.difficulty_appreciations"
           cols="12"
           class="my-1 px-1"
         >
           <description-line
             :icon="mdiGauge"
             :item-title="$t('models.gymRoute.difficulty_appreciation')"
-            class="back-app-color rounded-sm px-2 py-1"
+            class="rounded-sm px-2 py-1"
           >
             <template #content>
               <v-chip
@@ -263,7 +224,7 @@
           <description-line
             :icon="mdiPound"
             :item-title="$t('models.gymRoute.styles')"
-            class="back-app-color rounded-sm px-2 pb-2 pt-1"
+            class="rounded-sm px-2 pb-2 pt-1"
           >
             <template #content>
               <gym-route-climbing-styles
@@ -277,61 +238,116 @@
       </v-row>
 
       <!-- Cross list and add in logbook btn -->
-      <gym-route-ascent
-        v-if="$auth.loggedIn"
-        :gym-route="gymRoute"
-      />
+      <client-only>
+        <div v-if="$auth.loggedIn">
+          <gym-route-ascent :gym-route="gymRoute" />
 
-      <!-- Edit and add to logbook -->
-      <div class="text-right mt-2 mb-3">
-        <like-btn
-          class="vertical-align-bottom"
-          :likeable-id="gymRoute.id"
-          likeable-type="GymRoute"
-          :small="false"
-        />
-        <add-gym-ascent-btn
-          v-if="$auth.loggedIn"
-          :gym-route="gymRoute"
-        />
-      </div>
-      <div
-        v-if="$auth.loggedIn && currentUserIsGymAdmin() && gymAuthCan(gymRoute.gym, 'manage_opening')"
-        class="border-bottom border-top py-2 mb-2"
-      >
-        <small class="mr-2">
-          {{ $t('components.gymAdmin.administration') }} :
-        </small>
-        <gym-route-action-btn :gym-route="gymRoute" />
-      </div>
+          <!-- Edit and add to logbook -->
+          <div
+            v-if="!hideAscentBtn"
+            class="text-right mt-2 mb-3"
+          >
+            <like-btn
+              class="vertical-align-bottom"
+              :likeable-id="gymRoute.id"
+              likeable-type="GymRoute"
+              :small="false"
+            />
+            <add-gym-ascent-btn :gym-route="gymRoute" />
+          </div>
 
-      <!-- Climber ascent part -->
-      <v-sheet
-        v-if="ascents.length > 0"
-        class="back-app-color rounded-sm px-2 pb-2 pt-1"
-      >
-        <description-line
-          :item-title="$t('components.gymRoute.climbersComments')"
-          :icon="mdiComment"
+          <!-- Administration -->
+          <div
+            v-if="currentUserIsGymAdmin() && gymAuthCan(gymRoute.gym, 'manage_opening')"
+            class="border-bottom border-top py-2 mb-2"
+          >
+            <small class="mr-2">
+              {{ $t('components.gymAdmin.administration') }} :
+            </small>
+            <gym-route-action-btn :gym-route="gymRoute" />
+          </div>
+        </div>
+        <div
+          v-else
+          class="pa-4 border rounded-sm mt-2 mb-7 text-center"
         >
-          <template #content>
-            <v-sheet
-              v-for="(ascent, index) in ascents"
-              :key="`gym-route-ascent-${index}`"
-              class="rounded-sm px-2 py-1 mt-2"
+          <p class="font-weight-bold">
+            {{ $t('components.gymRoute.createCount') }}
+          </p>
+          <div class="text-center mt-2">
+            <v-btn
+              elevation="0"
+              color="primary"
+              :to="`/sign-up?redirect_to=${$route.fullPath}`"
             >
-              <div>{{ ascent.comment }}</div>
-              <small class="text--disabled">
-                {{ $t('common.by') }}
-                <nuxt-link :to="`/climbers/${ascent.user.slug_name}`">
-                  {{ ascent.user.first_name }}
-                </nuxt-link>
-                le {{ humanizeDate(ascent.released_at) }}
-              </small>
-            </v-sheet>
-          </template>
-        </description-line>
-      </v-sheet>
+              {{ $t('actions.createMyAccount') }}
+            </v-btn>
+            <div>
+              <v-btn
+                small
+                elevation="0"
+                link
+                :to="`/sign-in?redirect_to=${$route.fullPath}`"
+              >
+                {{ $t('actions.signIn') }}
+              </v-btn>
+            </div>
+          </div>
+        </div>
+      </client-only>
+
+      <!-- Comments and videos -->
+      <v-tabs v-model="tab">
+        <v-tab>
+          <v-badge
+            :value="gymRoute.all_comments_count > 0"
+            :content="gymRoute.all_comments_count"
+          >
+            {{ $t('common.comments') }}
+          </v-badge>
+        </v-tab>
+        <v-tab>
+          <v-badge
+            :value="gymRoute.videos_count > 0"
+            :content="gymRoute.videos_count"
+          >
+            {{ $t('common.videos') }}
+          </v-badge>
+        </v-tab>
+      </v-tabs>
+      <v-tabs-items v-model="tab">
+        <v-tab-item class="pb-3">
+          <div v-intersect="loadCommentsList">
+            <comment-list
+              v-if="commentList"
+              commentable-type="GymRoute"
+              :commentable-id="gymRoute.id"
+              :gym-route-options="{ gymId: gym.id, gymRouteId: gymRoute.id }"
+              :comments-count="gymRoute.all_comments_count"
+            />
+            <p
+              v-else
+              class="text-center text--disabled my-5"
+            >
+              {{ $t('common.loadingCommentModule') }}
+            </p>
+          </div>
+        </v-tab-item>
+        <v-tab-item class="pb-3">
+          <div v-intersect="loadVideosList">
+            <gym-route-video-list
+              v-if="videoList"
+              :gym-route="gymRoute"
+            />
+            <p
+              v-else
+              class="text-center text--disabled my-5"
+            >
+              {{ $t('common.loadingVideoModule') }}
+            </p>
+          </div>
+        </v-tab-item>
+      </v-tabs-items>
     </div>
   </div>
 </template>
@@ -339,7 +355,6 @@
 <script>
 import {
   mdiClose,
-  mdiComment,
   mdiHeart,
   mdiCheckAll,
   mdiCalendar,
@@ -347,8 +362,6 @@ import {
   mdiBolt,
   mdiPound,
   mdiMap,
-  mdiArrowExpand,
-  mdiArrowCollapse,
   mdiGauge,
   mdiArrowRight
 } from '@mdi/js'
@@ -357,18 +370,23 @@ import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
 import GymRouteTagAndHold from '@/components/gymRoutes/partial/GymRouteTagAndHold'
 import GymRouteGradeAndPoint from '@/components/gymRoutes/partial/GymRouteGradeAndPoint'
 import GymRouteAscent from '@/components/gymRoutes/GymRouteAscent'
-import GymRouteApi from '~/services/oblyk-api/GymRouteApi'
-import AscentGymRoute from '@/models/AscentGymRoute'
-import DescriptionLine from '~/components/ui/DescriptionLine.vue'
-import GymRouteActionBtn from '~/components/gymRoutes/partial/GymRouteActionBtn.vue'
-import AddGymAscentBtn from '~/components/ascentGymRoutes/AddGymAscentBtn.vue'
-import GymRouteClimbingStyles from '~/components/gymRoutes/partial/GymRouteClimbingStyles.vue'
-import LikeBtn from '~/components/forms/LikeBtn.vue'
+import DescriptionLine from '~/components/ui/DescriptionLine'
+import GymRouteActionBtn from '~/components/gymRoutes/partial/GymRouteActionBtn'
+import AddGymAscentBtn from '~/components/ascentGymRoutes/AddGymAscentBtn'
+import GymRouteClimbingStyles from '~/components/gymRoutes/partial/GymRouteClimbingStyles'
+import LikeBtn from '~/components/forms/LikeBtn'
+import GymRoutePicture from '~/components/gymRoutes/GymRoutePicture'
+const GymRouteVideoList = () => import('~/components/gymRoutes/GymRouteVideoList')
+const CommentList = () => import('~/components/comments/CommentList')
+
 const MarkdownText = () => import('@/components/ui/MarkdownText')
 
 export default {
   name: 'GymRouteInfo',
   components: {
+    GymRouteVideoList,
+    CommentList,
+    GymRoutePicture,
     LikeBtn,
     GymRouteClimbingStyles,
     AddGymAscentBtn,
@@ -389,19 +407,26 @@ export default {
       type: Boolean,
       default: false
     },
+    hideAscentBtn: {
+      type: Boolean,
+      default: false
+    },
     gym: {
       type: Object,
+      default: null
+    },
+    closeCallback: {
+      type: Function,
       default: null
     }
   },
 
   data () {
     return {
-      loadingAscents: true,
-      ascents: [],
-      fullHeightPicture: false,
+      commentList: false,
+      videoList: false,
+      tab: 0,
 
-      mdiComment,
       mdiClose,
       mdiHeart,
       mdiCheckAll,
@@ -410,52 +435,12 @@ export default {
       mdiBolt,
       mdiPound,
       mdiMap,
-      mdiArrowExpand,
-      mdiArrowCollapse,
       mdiGauge,
       mdiArrowRight
     }
   },
 
   computed: {
-    landscapePicture () {
-      if (this.gymRoute.calculated_thumbnail_position === null) { return null }
-
-      return this.gymRoute.calculated_thumbnail_position.img_w > this.gymRoute.calculated_thumbnail_position.img_h
-    },
-
-    thbPos () {
-      if (this.gymRoute.calculated_thumbnail_position === null) { return null }
-
-      const thbP = this.gymRoute.calculated_thumbnail_position
-      const isLandscape = thbP.img_w > thbP.img_h
-      return {
-        h: this.fullHeightPicture || isLandscape ? thbP.h : thbP.h / 350 * thbP.img_h,
-        w: thbP.w,
-        dx: thbP.delta_x,
-        dy: this.fullHeightPicture || isLandscape ? thbP.delta_y : thbP.delta_y / 350 * thbP.img_h
-      }
-    },
-
-    thumbnailGradiant () {
-      if (this.gymRoute.calculated_thumbnail_position === null) { return null }
-
-      const colors = this.gymRoute.tag_colors && this.gymRoute.tag_colors.length > 0 ? this.gymRoute.tag_colors : this.gymRoute.hold_colors
-      const numberOfColor = colors.length
-      const gradiant = []
-      if (numberOfColor === 1) {
-        gradiant.push({ color: colors[0], offset: 0 })
-        gradiant.push({ color: colors[0], offset: 1 })
-      } else {
-        let index = 0
-        for (const color of colors) {
-          gradiant.push({ color, offset: 100 / (numberOfColor - 1) * index })
-          index++
-        }
-      }
-      return gradiant
-    },
-
     difficultyAppreciationStatus () {
       const appreciation = this.gymRoute.difficulty_appreciation
       if (appreciation >= 0.6) {
@@ -472,82 +457,41 @@ export default {
     }
   },
 
-  mounted () {
-    this.getAscents()
-  },
-
   methods: {
     closeGymRouteCard () {
-      this.$router.push(
-        {
-          path: this.$route.path
-        }
-      )
-    },
-
-    getAscents () {
-      this.loadingAscents = true
-      new GymRouteApi(this.$axios, this.$auth)
-        .routeAscents(this.gymRoute.gym.id, this.gymRoute.id)
-        .then((resp) => {
-          for (const ascent of resp.data) {
-            if (ascent.note || ascent.comment) {
-              this.ascents.push(new AscentGymRoute({ attributes: ascent }))
-            }
+      if (this.closeCallback) {
+        this.closeCallback()
+      } else {
+        this.$router.push(
+          {
+            path: this.$route.path
           }
-        })
-        .finally(() => {
-          this.loadingAscents = false
-        })
+        )
+      }
     },
 
     showSector () {
       this.closeGymRouteCard()
       this.$root.$emit('setMapViewOnSector', this.gymRoute.gym_sector_id)
       this.$root.$emit('filterBySector', this.gymRoute.gym_sector_id, this.gymRoute.gym_sector.name)
+    },
+
+    loadCommentsList (entries, observer) {
+      if (entries[0].isIntersecting) {
+        this.commentList = true
+      }
+    },
+
+    loadVideosList (entries, observer) {
+      if (entries[0].isIntersecting) {
+        this.videoList = true
+      }
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.gym-route-picture {
-  transition: max-height 0.3s;
-  &.--full-height {
-    max-height: calc(100vh - 64px);
-  }
-}
-.mobile-interface {
-  .gym-route-picture {
-    &.--limited-height {
-      height: calc(100vw - 60px);
-      max-height: calc(100vw - 60px);
-    }
-  }
-}
-.desktop-interface {
-  .gym-route-picture {
-    &.--limited-height {
-      max-height: 350px;
-      &.--portrait {
-        height: 350px;
-      }
-    }
-  }
-}
-.gym-route-thumbnail-position {
-  box-sizing: border-box;
-  position: absolute;
-  border-color: rgba(255, 255, 255, 0.5);
-  border-width: 2px;
-  border-radius: 50%;
-  border-style: solid;
-  svg {
-    opacity: 0.5;
-    width:100%;
-    height:100%;
-  }
-}
 .gym-route-title {
   .tag-and-hold {
     max-width: 65px;

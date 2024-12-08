@@ -249,6 +249,27 @@
                 </td>
               </tr>
 
+              <!-- Number of Bolt -->
+              <tr v-if="cragRoute.sections.length === 1 && isBoltable(cragRoute.climbing_type)">
+                <th
+                  :title="$t('models.cragRoute.bolt_count')"
+                  class="smallest-table-column text-right"
+                >
+                  <v-icon>{{ mdiDotsVertical }}</v-icon>
+                </th>
+                <td>
+                  <span v-if="cragRoute.sections[0].bolt_count">
+                    {{ $tc('components.cragRoute.pointCount', cragRoute.sections[0].bolt_count, { count: cragRoute.sections[0].bolt_count }) }}
+                  </span>
+                  <cite
+                    v-else
+                    class="text--disabled"
+                  >
+                    {{ $t('common.noInformation') }}
+                  </cite>
+                </td>
+              </tr>
+
               <!-- Start -->
               <tr v-if="cragRoute.sections.length === 1 && isStartable(cragRoute.climbing_type)">
                 <th
@@ -334,7 +355,8 @@ import {
   mdiNut,
   mdiArrowExpandUp,
   mdiBolt,
-  mdiCheckAll
+  mdiCheckAll,
+  mdiDotsVertical
 } from '@mdi/js'
 import CragRouteSectionList from '@/components/cragRoutes/CragRouteSectionList'
 import CragRouteNoteModal from '@/components/cragRoutes/partial/CragRouteNoteModal'
@@ -373,7 +395,8 @@ export default {
       mdiNut,
       mdiArrowExpandUp,
       mdiBolt,
-      mdiCheckAll
+      mdiCheckAll,
+      mdiDotsVertical
     }
   }
 }

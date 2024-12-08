@@ -2,20 +2,23 @@
   <div>
     <home-header />
     <v-container class="home-container">
+      <client-only>
+        <home-box-create-account v-if="!$auth.loggedIn" />
+      </client-only>
       <lazy-hydrate when-visible>
-        <home-box-crag-info class="home-boxes" />
+        <home-box-crag-info id="crag-information" class="home-boxes" />
       </lazy-hydrate>
       <lazy-hydrate when-visible>
-        <home-box-ascents-log class="home-boxes" />
+        <home-box-ascents-log id="logbook" class="home-boxes" />
       </lazy-hydrate>
       <lazy-hydrate when-visible>
-        <home-box-partner class="home-boxes" />
+        <home-box-partner id="find-partner" class="home-boxes" />
       </lazy-hydrate>
       <lazy-hydrate when-visible>
         <home-box-guide-book class="home-boxes" />
       </lazy-hydrate>
       <lazy-hydrate when-visible>
-        <home-box-indoor class="home-boxes" />
+        <home-box-indoor id="indoor" class="home-boxes" />
       </lazy-hydrate>
       <lazy-hydrate when-visible>
         <last-article />
@@ -25,9 +28,6 @@
       </lazy-hydrate>
       <lazy-hydrate when-visible>
         <home-box-figures />
-      </lazy-hydrate>
-      <lazy-hydrate when-visible>
-        <home-box-help class="home-boxes" />
       </lazy-hydrate>
       <lazy-hydrate
         v-if="false"
@@ -43,6 +43,7 @@
 <script>
 import LazyHydrate from 'vue-lazy-hydration'
 import HomeHeader from '~/components/homes/HomeHeader'
+const HomeBoxCreateAccount = () => import('~/components/homes/HomeBoxCreateAccount')
 const HomeBoxIndoor = () => import('~/components/homes/HomeBoxIndoor')
 const HomeLastAdded = () => import('~/components/homes/HomeLastAdded')
 const HomeBoxCragInfo = () => import('@/components/homes/HomeBoxCragInfo')
@@ -50,7 +51,6 @@ const HomeBoxAscentsLog = () => import('@/components/homes/HomeBoxAscentsLog')
 const HomeBoxDeveloper = () => import('@/components/homes/HomeBoxDeveloper')
 const AppFooter = () => import('@/components/layouts/AppFooter')
 const HomeBoxPartner = () => import('@/components/homes/HomeBoxPartner')
-const HomeBoxHelp = () => import('@/components/homes/HomeBoxHelp')
 const HomeBoxGuideBook = () => import('@/components/homes/HomeBoxGuideBook')
 const HomeBoxFigures = () => import('@/components/homes/HomeBoxFigures')
 const LastArticle = () => import('@/components/articles/LastArticle')
@@ -58,6 +58,7 @@ const LastArticle = () => import('@/components/articles/LastArticle')
 export default {
   name: 'Home',
   components: {
+    HomeBoxCreateAccount,
     HomeBoxIndoor,
     HomeHeader,
     LazyHydrate,
@@ -66,7 +67,6 @@ export default {
     LastArticle,
     HomeBoxFigures,
     HomeBoxGuideBook,
-    HomeBoxHelp,
     HomeBoxPartner,
     HomeBoxAscentsLog,
     HomeBoxCragInfo,

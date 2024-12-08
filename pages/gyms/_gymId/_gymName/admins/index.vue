@@ -35,12 +35,12 @@
 
       <v-breadcrumbs :items="breadcrumbs" />
 
-      <!-- Guide book settings -->
+      <!-- Main function -->
       <h4 class="mb-3 mt-8">
         <v-icon class="mb-1" left>
           {{ mdiMapLegend }}
         </v-icon>
-        {{ $t('components.gymAdmin.GuideBookSettings') }}
+        {{ $t('components.gymAdmin.GuideBookAndContest') }}
       </h4>
       <v-row>
         <v-col cols="12" md="6" lg="4" class="pa-2">
@@ -50,9 +50,31 @@
           <gym-admin-space-figures :gym="gym" />
         </v-col>
         <v-col cols="12" md="6" lg="4" class="pa-2">
-          <gym-admin-interactive-guide-parameters :gym="gym" />
+          <gym-admin-contests-figures :gym="gym" />
         </v-col>
       </v-row>
+
+      <!-- Community -->
+      <h4 class="mb-3 mt-8">
+        <v-icon class="mb-1" left>
+          {{ mdiAccountMultiple }}
+        </v-icon>
+        {{ $t('components.gymAdmin.myCommunity') }}
+      </h4>
+      <v-row>
+        <v-col cols="12" md="6" lg="4" class="pa-2">
+          <gym-admin-comment-and-video-figures :gym="gym" />
+        </v-col>
+      </v-row>
+
+      <!-- Guide book settings -->
+      <h4 class="mb-3 mt-8">
+        <v-icon class="mb-1" left>
+          {{ mdiCog }}
+        </v-icon>
+        {{ $t('components.gymAdmin.GuideBookSettings') }}
+      </h4>
+      <gym-admin-interactive-guide-parameters :gym="gym" />
 
       <!-- Gestion settings -->
       <h4 class="mb-3 mt-8">
@@ -78,7 +100,7 @@
       </h4>
       <v-btn
         text
-        color="primary"
+        outlined
         href="https://oblyk.github.io/app-user-doc/docs/indoor/"
         target="_blank"
       >
@@ -92,7 +114,7 @@
 </template>
 
 <script>
-import { mdiMapLegend, mdiTune, mdiFolder, mdiHelpCircleOutline } from '@mdi/js'
+import { mdiMapLegend, mdiTune, mdiFolder, mdiHelpCircleOutline, mdiCog, mdiAccountMultiple } from '@mdi/js'
 import { GymConcern } from '~/concerns/GymConcern'
 import GymAdminTeamFigures from '~/components/gyms/admin/GymAdminTeamFigures'
 import GymAdminWelcome from '~/components/gyms/admin/GymAdminWelcome'
@@ -100,10 +122,14 @@ import GymAdminSpaceFigures from '~/components/gyms/admin/GymAdminSpaceFigures'
 import GymAdminRouteFigures from '~/components/gyms/admin/GymAdminRouteFigures'
 import GymAdminOpenersFigures from '~/components/gyms/admin/GymAdminOpenersFigures.vue'
 import GymAdminInteractiveGuideParameters from '~/components/gyms/admin/GymAdminInteractiveGuideParameters.vue'
+import GymAdminContestsFigures from '~/components/gyms/admin/GymAdminContestFigures.vue'
+import GymAdminCommentAndVideoFigures from '~/components/gyms/admin/GymAdminCommentAndVideoFigures.vue'
 
 export default {
   meta: { orphanRoute: true },
   components: {
+    GymAdminCommentAndVideoFigures,
+    GymAdminContestsFigures,
     GymAdminInteractiveGuideParameters,
     GymAdminOpenersFigures,
     GymAdminRouteFigures,
@@ -113,13 +139,16 @@ export default {
   },
 
   mixins: [GymConcern],
+  middleware: ['auth', 'gymAdmin'],
 
   data () {
     return {
       mdiMapLegend,
       mdiTune,
       mdiFolder,
-      mdiHelpCircleOutline
+      mdiHelpCircleOutline,
+      mdiCog,
+      mdiAccountMultiple
     }
   },
 

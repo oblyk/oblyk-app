@@ -1,7 +1,7 @@
 <template>
   <v-row>
     <v-col align-self="center" cols="12" md="6">
-      <h3 class="text-h5 mb-3 font-weight-bold">
+      <h2 class="text-h5 mb-3 font-weight-bold">
         {{ $t('home.indoor.title') }}
         <v-chip
           dark
@@ -12,11 +12,15 @@
           </v-icon>
           Beta
         </v-chip>
-      </h3>
+      </h2>
       <p v-html="$t('home.indoor.body')" />
       <p v-html="$t('home.indoor.body2')" />
       <p class="text-right">
-        <v-btn outlined color="primary" to="/about/indoor">
+        <v-btn
+          outlined
+          class="black-btn-icon"
+          to="/about/indoor"
+        >
           {{ $t('home.indoor.action') }}
         </v-btn>
       </p>

@@ -5,8 +5,10 @@
       outlined
       :label="label"
       hide-details
+      :placeholder="placeholder"
       :auto-grow="autoGrow"
       :rows="rows"
+      :autofocus="autofocus"
       @focus="showTips = true"
       @blur="showTips = false"
       @input="onChange"
@@ -52,6 +54,10 @@ export default {
       type: String,
       default: null
     },
+    placeholder: {
+      type: String,
+      default: null
+    },
     hideDetail: {
       type: Boolean,
       default: false
@@ -61,6 +67,10 @@ export default {
       default: 5
     },
     autoGrow: {
+      type: Boolean,
+      default: false
+    },
+    autofocus: {
       type: Boolean,
       default: false
     }

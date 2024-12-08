@@ -13,7 +13,7 @@ export default class GymOpener extends ActiveData {
   }
 
   get className () {
-    return 'GymGrade'
+    return 'GymOpener'
   }
 
   get path () {

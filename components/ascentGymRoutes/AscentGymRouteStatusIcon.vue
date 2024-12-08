@@ -1,7 +1,8 @@
 <template>
   <v-icon
     v-if="ascentInLogBook || ascentStatus"
-    small
+    :small="size === null"
+    :size="size"
     :title="title()"
     color="amber darken-1"
   >
@@ -23,6 +24,10 @@ export default {
     },
     ascentStatus: {
       type: String,
+      default: null
+    },
+    size: {
+      type: Number,
       default: null
     }
   },
@@ -104,7 +109,7 @@ export default {
       const status = this.$t(`models.ascentStatus.${this.status()}`)
       let date = ''
       if (this.ascentInLogBook?.released_at) {
-        date = `${this.humanizeDate(this.gymRouteAscents.released_at)} :`
+        date = `${this.humanizeDate(this.ascentInLogBook.released_at)} :`
       }
       return `${date} ${status}`
     }

@@ -9,6 +9,18 @@ class VideoApi extends BaseApi {
     })
   }
 
+  all (viewableType, viewableId) {
+    return this.axios.request({
+      method: 'GET',
+      url: `${this.baseUrl}/videos.json`,
+      headers: { HttpApiAccessToken: this.apiAccessToken },
+      params: {
+        viewable_type: viewableType,
+        viewable_id: viewableId
+      }
+    })
+  }
+
   create (data) {
     return this.axios.request({
       method: 'POST',
@@ -41,6 +53,17 @@ class VideoApi extends BaseApi {
     return this.axios.request({
       method: 'DELETE',
       url: `${this.baseUrl}/videos/${videoId}.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
+    })
+  }
+
+  moderateByGymAdministrator (videoId) {
+    return this.axios.request({
+      method: 'DELETE',
+      url: `${this.baseUrl}/videos/${videoId}/moderate_by_gym_administrator.json`,
       headers: {
         Authorization: this.authToken(),
         HttpApiAccessToken: this.apiAccessToken

@@ -9,11 +9,13 @@
       :title="label()"
       :text="typeText"
       :color="textColor"
+      :small="small"
       @click.prevent="changeSubscription()"
     >
       <v-icon
         :left="large"
         :color="color()"
+        :small="small"
       >
         {{ icon() }}
       </v-icon>
@@ -90,6 +92,10 @@ export default {
     outlined: {
       type: Boolean,
       required: false
+    },
+    small: {
+      type: Boolean,
+      default: false
     }
   },
 

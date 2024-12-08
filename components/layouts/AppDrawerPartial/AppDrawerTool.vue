@@ -50,12 +50,28 @@
           {{ $t('components.newsletter.title') }}
         </v-list-item-title>
       </v-list-item>
+      <v-list-item to="/gym-administrations">
+        <v-list-item-icon>
+          <v-icon>
+            {{ mdiOfficeBuilding }}
+          </v-icon>
+        </v-list-item-icon>
+        <v-list-item-title>
+          Les salles
+        </v-list-item-title>
+      </v-list-item>
     </client-only>
   </v-list-group>
 </template>
 
 <script>
-import { mdiTools, mdiBookOpenVariant, mdiNumeric7BoxMultiple, mdiEmailMultiple } from '@mdi/js'
+import {
+  mdiTools,
+  mdiBookOpenVariant,
+  mdiNumeric7BoxMultiple,
+  mdiEmailMultiple,
+  mdiOfficeBuilding
+} from '@mdi/js'
 
 export default {
   name: 'AppDrawerTool',
@@ -65,7 +81,8 @@ export default {
       mdiTools,
       mdiBookOpenVariant,
       mdiNumeric7BoxMultiple,
-      mdiEmailMultiple
+      mdiEmailMultiple,
+      mdiOfficeBuilding
     }
   }
 }

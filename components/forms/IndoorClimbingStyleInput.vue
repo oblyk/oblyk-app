@@ -1,5 +1,5 @@
 <template>
-  <v-autocomplete
+  <v-select
     v-model="climbingStyles"
     :items="favoriteClimbingStyles || climbingStyleList"
     outlined
@@ -8,6 +8,7 @@
     item-text="text"
     item-value="value"
     multiple
+    :prepend-inner-icon="icon"
     :disabled="loadingClimbingStyle"
     :loading="loadingClimbingStyle"
     @change="onChange"
@@ -49,7 +50,7 @@
         </v-list-item-content>
       </template>
     </template>
-  </v-autocomplete>
+  </v-select>
 </template>
 
 <script>
@@ -97,6 +98,10 @@ export default {
     climbingType: {
       type: String,
       required: true
+    },
+    icon: {
+      type: String,
+      default: null
     }
   },
 

@@ -30,7 +30,7 @@ export default {
   meta: { orphanRoute: true },
   components: { Spinner, GymGradeForm },
   mixins: [GymGradeConcern],
-  middleware: ['auth'],
+  middleware: ['auth', 'gymAdmin'],
 
   i18n: {
     messages: {

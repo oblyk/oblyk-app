@@ -16,10 +16,11 @@
     </v-btn>
     <v-btn
       elevation="0"
-      color="primary"
+      :color="submitBtnColor"
       :tabindex="tabindex"
-      :type="submitBtnColor"
+      :dark="submitBtnDark"
       class="float-right"
+      type="submit"
     >
       {{ $t(submitLocalKey) }}
     </v-btn>
@@ -45,6 +46,10 @@ export default {
       type: String,
       required: false,
       default: 'primary'
+    },
+    submitBtnDark: {
+      type: Boolean,
+      default: false
     },
     tabindex: {
       type: Number,

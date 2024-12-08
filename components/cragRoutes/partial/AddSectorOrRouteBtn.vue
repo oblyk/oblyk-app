@@ -74,7 +74,7 @@ export default {
   methods: {
     newRoutePath () {
       if (this.cragSector) {
-        return `${this.cragSector.Crag.path}/routes/new`
+        return `${this.cragSector.Crag.path}/sectors/${this.cragSector.id}/${this.cragSector.slug_name}/routes/new`
       } else {
         return `${this.crag.path}/routes/new`
       }

@@ -10,19 +10,7 @@
             to="/"
             class="discrete-link"
           >
-            <svg
-              class="oblyk-svg-logo"
-              :class="loading ? '--animate' : ''"
-              viewBox="0 0 10.054166 10.054166"
-              height="38"
-              width="38"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M 4.4298964,4.2390636 6.4357839,2.2107931 9.2531882,5.0281974 6.4357839,7.8456017 2.6792446,4.0890607 0.80097503,5.9673303 2.6792446,7.8456017 3.7579684,6.7668798"
-                style="fill:none;fill-rule:evenodd;stroke:#31994e;stroke-width:1.13275;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1"
-              />
-            </svg>
+            <animate-oblyk-logo :animate="loading" />
             <div class="d-inline-block oblyk-app-drawer-title">
               <p>
                 Oblyk
@@ -130,12 +118,14 @@ import AppDrawerAccount from '~/components/layouts/AppDrawerPartial/AppDrawerAcc
 import AppToolBar from '~/components/layouts/AppDrawerPartial/AppToolBar'
 import AppDrawerFind from '~/components/layouts/AppDrawerPartial/AppDrawerFind'
 import AppDrawerAbout from '~/components/layouts/AppDrawerPartial/AppDrawerAbout'
+import AnimateOblykLogo from '~/components/layouts/AnimateOblykLogo.vue'
 const MyGyms = () => import('@/components/layouts/partial/MyGyms')
 const MyOrganizations = () => import('@/components/layouts/partial/MyOrganizations')
 
 export default {
   name: 'AppDrawer',
   components: {
+    AnimateOblykLogo,
     AppDrawerAbout,
     AppDrawerFind,
     AppToolBar,
@@ -185,29 +175,10 @@ export default {
 }
 </script>
 <style lang="scss">
-@keyframes draw_oblyk_logo {
-  from {
-    stroke-dashoffset: 0;
-  }
-  to {
-    stroke-dashoffset: 30px;
-  }
-}
 .oblyk-app-drawer {
   .oblyk-app-drawer-header {
     padding-top: 5px;
     padding-bottom: 6px;
-    .oblyk-svg-logo {
-      margin-top: 5px;
-      margin-right: 8px;
-      margin-left: 3px;
-      &.--animate {
-        path {
-          animation: draw_oblyk_logo 1.5s linear infinite;
-          stroke-dasharray: 25 6;
-        }
-      }
-    }
     .oblyk-app-drawer-title {
       font-size: 1.5em;
       p {

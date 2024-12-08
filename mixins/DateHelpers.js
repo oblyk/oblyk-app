@@ -50,6 +50,21 @@ export const DateHelpers = {
       }
     },
 
+    weekDayAndFromNow (date) {
+      const dif = DateTime.now().startOf('day').diff(DateTime.fromISO(date), 'days').toObject()
+      let fromNow = null
+      if (dif.days === 0) {
+        fromNow = this.$t('common.today')
+      } else if (dif.days === 1) {
+        fromNow = this.$t('common.yesterday')
+      } else if (dif.days < 7) {
+        fromNow = this.humanizeDate(date, 'cccc')
+      } else {
+        fromNow = this.dateFromNow(date)
+      }
+      return `${fromNow.charAt(0).toUpperCase()}${fromNow.slice(1)}`
+    },
+
     dateIsAfterDate (firstDate, secondDate) {
       return DateTime.fromISO(secondDate).diff(DateTime.fromISO(firstDate)).toObject().milliseconds > 0
     },
@@ -60,6 +75,12 @@ export const DateHelpers = {
 
     isoDate (date) {
       return DateTime.fromISO(date).toISO()
+    },
+
+    ageAt (dateOfBirth, ageAt) {
+      ageAt = ageAt || new Date()
+      const diff = ageAt.getTime() - dateOfBirth.getTime()
+      return Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25))
     }
   }
 }

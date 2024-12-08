@@ -83,6 +83,9 @@ export default {
   watch: {
     date (val) {
       this.dateFormatted = this.formatDate(this.date)
+    },
+    value () {
+      this.dateFormatted = this.formatDate(this.value)
     }
   },
 

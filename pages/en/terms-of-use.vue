@@ -79,19 +79,21 @@
         According to article 6 of the law of confidence in the digital economy n°2004-575 of June 21st 2004, it is
         stated to <strong>Oblyk.org</strong> users the identity of the website's owners, and of the hosting provider.
       </p>
+      <p class="mb-0">
+        <strong>Oblyk.org</strong> was published by Oblyk SAS.
+      </p>
       <p>
-        <strong>Oblyk.org</strong> was published by Lucien Chastan. The editing director of <strong>Oblyk.org</strong>
-        are Lucien Chastan.
+        Simplified joint stock company with capital of €1,000. Domiciled at 139 Avenue Maréchal de Saxe 69003, LYON<br>
+        SIRET : 98515257800011
+      </p>
+      <p>
+        The editing director of <strong>Oblyk.org</strong> are Lucien Chastan.
       </p>
       <p>
         Contact : <a href="mailto:ekip@oblyk.org">ekip@oblyk.org</a>
       </p>
       <p>
-        <u><strong>Oblyk.org</strong> API hosting :</u><br>
-        The API part of <strong>Oblyk.org</strong>, which stores photos, documents and all data, is hosted by the association <a href="https://onetsolutions.net/">FELINN</a> (Force d'Émancipation Locale pour l'Indépendance et la Neutralité du Net) based in Lyon.
-      </p>
-      <p>
-        <u><strong>Oblyk.org</strong> App hosting :</u><br>
+        <u><strong>Oblyk.org</strong> App and API hosting :</u><br>
         The <strong>Oblyk.org</strong> web application is hosted by <a href="https://onetsolutions.net/">ONETSOLUTIONS</a> - Société par action simplifiée. 1 Allée de l'Ecluse, 33370 YVRAC
       </p>
       <p>
@@ -172,16 +174,17 @@
       <h4>4.3 Cookies</h4>
       <p>
         <strong>Oblyk.org</strong> uses cookies, which are markers allowing a better experience on the website ( backup
-        of some settings in memory on the web browser, to fasten the website's browsing). Cookies are harmless for the
-        user's computer and personal data.
-      </p>
-      <p>
-        The user can choose to accept or decline the use of cookies on <strong>Oblyk.org</strong> through his web
-        browser.
+        of some settings in memory on the web browser, to fasten the website's browsing).
       </p>
       <p>
         Cookies are anonymous and can't be used to collect personal data. None of this anonymous data will be
         transmitted to business partners, or third parties : their remain in the ownership of <strong>Oblyk.org</strong>.
+      </p>
+      <p>
+        For more information, please consult the :
+        <nuxt-link to="/en/cookie-and-audience-measurement">
+          Cookie & Audience measurement
+        </nuxt-link>
       </p>
 
       <h3>Article 5 : Intellectual property</h3>

@@ -28,6 +28,9 @@
         {{ $t('components.gym.tabs.admin') }}
       </v-tab>
     </client-only>
+    <v-tab :to="`${gym.path}/followers`">
+      {{ $tc('common.followerCount', gym.follow_count, { count: gym.follow_count }) }}
+    </v-tab>
   </v-tabs>
 </template>
 <script>
@@ -45,9 +48,7 @@ export default {
 
   computed: {
     spacesPath () {
-      if (this.gym.gym_spaces.length === 0) {
-        return `${this.gym.adminPath}/first-space`
-      } else if (this.gym.gym_spaces.length === 1) {
+      if (this.gym.gym_spaces.length === 1) {
         return this.gym.firstSpacePath
       } else {
         return `${this.gym.path}/spaces`

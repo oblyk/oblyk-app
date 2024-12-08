@@ -3,22 +3,24 @@
     <v-card
       :link="linkable"
       :class="bindClass"
-      :to="linkable ? gym.path : null"
+      :to="!callback ? path : null"
+      @click="callback ? callback(gym) : null"
     >
       <v-list-item
         :three-line="!small"
         :two-line="!small"
       >
         <v-list-item-avatar
+          tile
           :size="small ? 45 : 70"
           :class="small ? 'mt-1 mb-1' : ''"
         >
           <v-avatar
-            color="grey"
             :size="small ? 45 : 70"
+            class="rounded-sm"
             tile
           >
-            <v-img :src="gym.logoUrl" />
+            <v-img :src="gym.thumbnailLogoUrl" />
           </v-avatar>
         </v-list-item-avatar>
         <v-list-item-content
@@ -79,6 +81,14 @@ export default {
     bordered: {
       type: Boolean,
       default: false
+    },
+    goToSpaces: {
+      type: Boolean,
+      default: false
+    },
+    callback: {
+      type: Function,
+      default: null
     }
   },
 
@@ -107,6 +117,18 @@ export default {
         classList.push('hoverable-card')
       }
       return classList.join(' ')
+    },
+
+    path () {
+      if (this.linkable) {
+        if (this.goToSpaces && this.gym.gym_spaces_count > 0) {
+          return `${this.gym.path}/spaces`
+        } else {
+          return this.gym.path
+        }
+      } else {
+        return null
+      }
     }
   }
 }

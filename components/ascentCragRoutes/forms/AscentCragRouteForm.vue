@@ -2,12 +2,18 @@
   <div>
     <v-form @submit.prevent="submit()">
       <!-- Ascent status -->
-      <ascent-status-input v-model="data.ascent_status" />
+      <ascent-status-input
+        v-model="data.ascent_status"
+        :with-sent="isEditingForm()"
+        :with-repetition="repetition"
+      />
 
       <!-- Roping mode (lead, etc.) -->
       <roping-status-input
         v-if="ropable()"
         v-model="data.roping_status"
+        :multi-pith-roping-statuses="multiPitchRopingStatus()"
+        :sport-climbing-roping-statuses="sportClimbingPitchRopingStatus()"
       />
 
       <!-- Released at -->
@@ -73,7 +79,6 @@
         :label="$t('models.ascentCragRoute.private_comment')"
       />
 
-      <close-form />
       <submit-form
         :overlay="submitOverlay"
         :submit-local-key="isEditingForm() ? 'actions.edit' : 'actions.add'"
@@ -86,16 +91,15 @@
 import { mdiCalendar, mdiRedoVariant } from '@mdi/js'
 import { DateHelpers } from '@/mixins/DateHelpers'
 import { FormHelpers } from '@/mixins/FormHelpers'
+import { CragRouteHelpers } from '~/mixins/CragRouteHelpers'
 import SubmitForm from '@/components/forms/SubmitForm'
 import AscentCragRouteApi from '~/services/oblyk-api/AscentCragRouteApi'
-import CloseForm from '@/components/forms/CloseForm'
 import RopingStatusInput from '@/components/forms/RopingStatusInput'
 import AscentStatusInput from '@/components/forms/AscentStatusInput'
 import DatePickerInput from '@/components/forms/DatePickerInput'
 import NoteInput from '@/components/forms/NoteInput'
 import MarkdownInput from '@/components/forms/MarkdownInput'
 import HardnessStatusInput from '@/components/forms/HardnessStatusInput'
-import { CragRouteHelpers } from '~/mixins/CragRouteHelpers'
 
 export default {
   name: 'AscentCragRouteForm',
@@ -106,7 +110,6 @@ export default {
     DatePickerInput,
     AscentStatusInput,
     RopingStatusInput,
-    CloseForm,
     SubmitForm
   },
   mixins: [
@@ -114,6 +117,7 @@ export default {
     DateHelpers,
     CragRouteHelpers
   ],
+
   props: {
     cragRoute: {
       type: Object,
@@ -122,6 +126,10 @@ export default {
     ascentCragRoute: {
       type: Object,
       default: null
+    },
+    repetition: {
+      type: Boolean,
+      default: false
     },
     callback: {
       type: Function,
@@ -132,17 +140,17 @@ export default {
   data () {
     return {
       data: {
-        id: (this.ascentCragRoute || {}).id,
-        ascent_status: (this.ascentCragRoute || {}).ascent_status,
-        roping_status: (this.ascentCragRoute || {}).roping_status || 'lead_climb',
-        attempt: (this.ascentCragRoute || {}).attempt,
-        released_at: (this.ascentCragRoute || {}).released_at || this.ISODateToday(),
-        note: (this.ascentCragRoute || {}).note,
-        hardness_status: (this.ascentCragRoute || {}).hardness_status,
-        comment: (this.ascentCragRoute || {}).comment,
-        private_comment: (this.ascentCragRoute || {}).private_comment || false,
-        selected_sections: (this.ascentCragRoute || {}).sections_done || this.cragRoute.sections.map((section, index) => index),
-        crag_route_id: (this.ascentCragRoute || {}).crag_route_id || this.cragRoute.id
+        id: this.ascentCragRoute?.id,
+        ascent_status: this.ascentCragRoute?.ascent_status || (this.repetition ? 'repetition' : 'red_point'),
+        roping_status: this.ascentCragRoute?.roping_status || 'lead_climb',
+        attempt: this.ascentCragRoute?.attempt,
+        released_at: this.ascentCragRoute?.released_at || this.ISODateToday(),
+        note: this.ascentCragRoute?.note,
+        hardness_status: this.ascentCragRoute?.hardness_status,
+        comment: this.ascentCragRoute?.comment,
+        private_comment: this.ascentCragRoute?.private_comment || false,
+        selected_sections: this.ascentCragRoute?.sections_done || this.cragRoute.sections.map((section, index) => index),
+        crag_route_id: this.ascentCragRoute?.crag_route_id || this.cragRoute.id
       },
 
       mdiCalendar,
@@ -174,6 +182,16 @@ export default {
 
     ropable () {
       return this.isRopable(this.cragRoute.climbing_type)
+    },
+
+    multiPitchRopingStatus () {
+      if (this.isEditingForm()) { return true }
+      return this.ropable() && !['sport_climbing'].includes(this.cragRoute.climbing_type)
+    },
+
+    sportClimbingPitchRopingStatus () {
+      if (this.isEditingForm()) { return true }
+      return this.ropable() && !['multi_pitch'].includes(this.cragRoute.climbing_type)
     }
   }
 }

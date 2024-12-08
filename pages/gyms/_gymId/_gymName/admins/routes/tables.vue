@@ -6,7 +6,7 @@
       <client-only>
         <gym-routes-table
           :gym="gym"
-          class="mt-4"
+          class="mt-2"
         />
       </client-only>
     </div>
@@ -22,6 +22,7 @@ export default {
   meta: { orphanRoute: true },
   components: { GymAdminRoutesTabs, GymRoutesTable },
   mixins: [GymFetchConcern],
+  middleware: ['auth', 'gymAdmin'],
 
   i18n: {
     messages: {

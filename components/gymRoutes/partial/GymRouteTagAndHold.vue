@@ -75,7 +75,7 @@
         <g transform="translate(-6.2826004,-2.7284437)">
           <path
             v-if="haveHold"
-            :style="`fill:url(#${gymRoute.id}-hold-gradiant);fill-opacity:1;stroke:none;stroke-width:0.0530205px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1`"
+            :style="`fill:url(#${gymRoute.id}-hold-gradiant);fill-opacity:1;stroke:${haveWithColor ? '#777' : 'none'};stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1`"
             d="M 23.707131,2.7285245 C 20.764505,2.715079 17.62354,4.5213969 15.07389,4.8152774 11.765921,5.1965617 8.9492903,6.21941 8.0876007,8.2877087 5.8511022,13.655915 5.9781195,20.806644 6.937717,22.426692 c 1.6270764,2.746921 2.6665989,4.063406 4.939922,5.586835 1.752985,1.174734 4.700314,2.855687 8.713186,3.022585 3.580596,0.148919 6.386349,-3.959899 7.719983,-6.969404 C 29.520041,21.337915 30.862457,14.008731 29.4959,9.1507399 28.893156,7.0080415 28.841419,4.5146681 26.114907,3.2410209 25.339405,2.8787586 24.531066,2.7322898 23.707131,2.7285245 Z M 18.629687,13.281268 c 1.42752,-6e-6 2.584759,1.157231 2.584753,2.584753 6e-6,1.42752 -1.157233,2.584757 -2.584753,2.584751 -1.427483,-5e-5 -2.584659,-1.157269 -2.584653,-2.584751 -6e-6,-1.427484 1.15717,-2.584703 2.584653,-2.584753 z"
           />
           <path
@@ -97,7 +97,7 @@
           <path
             v-if="haveTag && (haveHold || fullColors)"
             d="m 33.56112,16.313219 -9.196968,0.0074 a 1.8393959,1.8393959 0 0 0 -1.837934,1.840882 l 0.01176,14.715155 6.435668,-2.76424 6.440113,2.753947 -0.01178,-14.715152 c -7.31e-4,-1.020908 -0.829208,-1.83878 -1.840879,-1.837972 z"
-            :style="`fill:url(#${gymRoute.id}-tag-gradiant);stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none`"
+            :style="`fill:url(#${gymRoute.id}-tag-gradiant);stroke:${haveWithColor ? '#777' : 'none'};stroke-width:0.5px;stroke-miterlimit:4;stroke-dasharray:none`"
             class="gym-route-tag-color"
           />
           <path
@@ -105,7 +105,7 @@
             data-v-7d349c86=""
             d="M 29.125596,2.3284498 12.163484,2.3420978 A 3.3924267,3.3924267 0 0 0 8.7737525,5.7372653 L 8.7954425,32.876656 20.664847,27.778525 32.542448,32.857672 32.520718,5.7182873 C 32.519373,3.8354106 30.9914,2.3269965 29.125559,2.3284867 Z"
             class="gym-route-tag-color"
-            :style="`fill:url(#${gymRoute.id}-tag-gradiant);stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none`"
+            :style="`fill:url(#${gymRoute.id}-tag-gradiant);stroke:${haveWithColor ? '#777' : 'none'};stroke-width:0.5px;stroke-miterlimit:4;stroke-dasharray:none`"
           />
         </g>
       </svg>
@@ -130,7 +130,7 @@ export default {
 
   computed: {
     holdColors () {
-      return this.buildGradiantStop(this.gymRoute.hold_colors)
+      return this.buildGradiantStop(this.gymRoute.hold_colors, this.fullColors)
     },
 
     tagColors () {
@@ -139,6 +139,10 @@ export default {
 
     haveHold () {
       return this.gymRoute.hold_colors && this.gymRoute.hold_colors.length > 0 && this.gymRoute.hold_colors[0] !== '#00000000'
+    },
+
+    haveWithColor () {
+      return this.gymRoute.hold_colors && this.gymRoute.hold_colors.includes('#f2f2f2')
     },
 
     fullColors () {

@@ -3,10 +3,24 @@
     class="oblyk-alert"
     :class="`oblyk-alert-${alert.alert_type}`"
   >
-    <markdown-text
-      v-if="alert.description"
-      :text="alert.description"
-    />
+    <div class="d-flex">
+      <div
+        v-if="alert.alert_type === 'omega_roc'"
+        class="pr-3"
+      >
+        <v-img
+          width="40"
+          src="/images/omega_roc.png"
+          alt="Logo Omega Roc"
+        />
+      </div>
+      <div>
+        <markdown-text
+          v-if="alert.description"
+          :text="alert.description"
+        />
+      </div>
+    </div>
     <client-only>
       <div
         v-if="$auth.loggedIn && $auth.user.super_admin"
@@ -85,6 +99,9 @@ export default {
   }
   &.oblyk-alert-warning {
     border-color: #ffc107;
+  }
+  &.oblyk-alert-omega_roc {
+    border-color: #f5aa34;
   }
   &.oblyk-alert-info {
     border-color: #03a9f4;
