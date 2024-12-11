@@ -48,7 +48,7 @@
           {{ gradeValueToText(cragRoute.grade_gap.max_grade_value) }}
         </p>
 
-        <crag-route-small-line :route="cragRoute" />
+        <crag-route-small-line :route="cragRoute" :ascent-crag-route="ascents[index]" />
       </div>
 
       <loading-more
@@ -72,6 +72,7 @@ import Spinner from '@/components/layouts/Spiner'
 import LoadingMore from '@/components/layouts/LoadingMore'
 import UserApi from '~/services/oblyk-api/UserApi'
 import { GradeMixin } from '@/mixins/GradeMixin'
+import AscentCragRoute from '@/models/AscentCragRoute'
 
 export default {
   name: 'LogBookList',
@@ -93,6 +94,7 @@ export default {
     return {
       loadingAscendedCragRoutes: true,
       cragRoutes: [],
+      ascents: [],
       firstLoading: true,
 
       order: 'difficulty',
@@ -103,7 +105,7 @@ export default {
       ],
 
       climbingType: 'all',
-      climbingItems: [
+      climbingItems: [ // TODO-now list of climbing types a recupere depuis le backend sur api ClimbsController.index
         { text: this.$t('components.logBook.climbingItems.all'), value: 'all' },
         { text: this.$t('models.climbs.sport_climbing'), value: 'sport_climbing' },
         { text: this.$t('models.climbs.bouldering'), value: 'bouldering' },
@@ -172,6 +174,7 @@ export default {
         .then((resp) => {
           for (const route of resp.data) {
             this.cragRoutes.push(new CragRoute({ attributes: route }))
+            this.ascents.push(new AscentCragRoute({ attributes: route }))
           }
           this.successLoadingMore(resp)
         })
