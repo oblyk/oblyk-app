@@ -2191,7 +2191,9 @@ export default {
       private_comment: 'Commentaire privé',
       released_at: 'Réalisé le',
       hardness_status: 'Appréciation de la difficulté',
-      only_lead_climbs: 'Exclure les moulinettes'
+      only_lead_climbs: 'Sans moulinettes',
+      no_double: 'Sans doublons',
+      only_on_sight: 'A vue'
     },
     ascentGymRoute: {
       type: 'Type',

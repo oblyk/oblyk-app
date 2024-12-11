@@ -84,9 +84,9 @@ export default {
       type: Object,
       default: null
     },
-    onlyLeadClimbs: {
-      type: Boolean,
-      default: false
+    filters: {
+      type: Array,
+      default: () => []
     }
   },
 
@@ -126,12 +126,14 @@ export default {
         this.ascendedCragRoutes()
       }
     },
-    onlyLeadClimbs () {
+
+    filters () {
       if (!this.firstLoading) {
         this.resetAscents()
         this.ascendedCragRoutes()
       }
     },
+
     climbingType () {
       if (!this.firstLoading) {
         this.resetAscents()
@@ -157,7 +159,7 @@ export default {
         promise = new UserApi(this.$axios, this.$auth).ascendedCragRoutes(
           this.user.uuid,
           this.order,
-          this.climbingType,
+          this.climbingType, // todo-now: est ce qu'on filtre aussi les autres users views
           this.page
         )
       } else {
@@ -165,7 +167,7 @@ export default {
           this.order,
           this.climbingType,
           this.page,
-          this.onlyLeadClimbs
+          this.filters
         )
       }
 

@@ -97,7 +97,7 @@ export default {
 
   data () {
     return {
-      onlyLeadClimbs: false,
+      filters: [],
 
       loadingClimbingTypeChart: true,
       climbingTypeData: [],
@@ -123,8 +123,8 @@ export default {
   },
 
   watch: {
-    onlyLeadClimbs () {
-      localStorage.setItem('onlyLeadClimbs', JSON.stringify(this.onlyLeadClimbs))
+    filters () {
+      localStorage.setItem('filters', JSON.stringify(this.filters))
       this.getClimbingTypeChart()
       this.getGradeChart()
       this.getYearChart()
@@ -134,7 +134,7 @@ export default {
   },
 
   mounted () {
-    this.onlyLeadClimbs = JSON.parse(localStorage.getItem('onlyLeadClimbs')) || false
+    this.filters = JSON.parse(localStorage.getItem('filters')) || false
     this.getClimbingTypeChart()
     this.getGradeChart()
     this.getYearChart()
@@ -146,7 +146,7 @@ export default {
     getClimbingTypeChart () {
       this.loadingClimbingTypeChart = true
       new LogBookOutdoorApi(this.$axios, this.$auth)
-        .climbingTypeChart(this.onlyLeadClimbs)
+        .climbingTypeChart(this.filters)
         .then((resp) => {
           this.climbingTypeData = resp.data
         })
@@ -158,7 +158,7 @@ export default {
     getGradeChart () {
       this.loadingGradeChart = true
       new LogBookOutdoorApi(this.$axios, this.$auth)
-        .gradeChart(this.onlyLeadClimbs)
+        .gradeChart(this.filters)
         .then((resp) => {
           this.gradeData = resp.data
         })
@@ -170,7 +170,7 @@ export default {
     getYearChart () {
       this.loadingYearChart = true
       new LogBookOutdoorApi(this.$axios, this.$auth)
-        .yearChart(this.onlyLeadClimbs)
+        .yearChart(this.filters)
         .then((resp) => {
           this.yearData = resp.data
         })
@@ -182,7 +182,7 @@ export default {
     getMonthChart () {
       this.loadingMonthChart = true
       new LogBookOutdoorApi(this.$axios, this.$auth)
-        .monthChart(this.onlyLeadClimbs)
+        .monthChart(this.filters)
         .then((resp) => {
           this.monthData = resp.data
         })
@@ -194,7 +194,7 @@ export default {
     getEvolutionChart () {
       this.loadingEvolutionChart = true
       new LogBookOutdoorApi(this.$axios, this.$auth)
-        .evolutionChart(this.onlyLeadClimbs)
+        .evolutionChart(this.filters)
         .then((resp) => {
           this.evolutionData = resp.data
         })

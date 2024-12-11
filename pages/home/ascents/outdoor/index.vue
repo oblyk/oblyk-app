@@ -39,20 +39,32 @@
           </v-col>
         </v-row>
       </v-card-text>
+      <v-row>
+        <v-col>
+          <v-btn-toggle
+            v-model="filters"
+            multiple
+          >
+            <v-btn value="only_lead_climbs">
+              {{ $t('models.ascentCragRoute.only_lead_climbs') }}
+            </v-btn>
+            <v-btn value="only_on_sight">
+              {{ $t('models.ascentCragRoute.only_on_sight') }}
+            </v-btn>
+            <v-btn value="no_double">
+              {{ $t('models.ascentCragRoute.no_double') }}
+            </v-btn>
+          </v-btn-toggle>
+        </v-col>
+      </v-row>
     </v-card>
     <v-card
       v-if="loadTheRest"
       class="mt-3"
     >
       <v-card-text>
-        <v-row>
-          <v-checkbox
-              v-model="onlyLeadClimbs"
-              :label="$t('models.ascentCragRoute.only_lead_climbs')"
-          />
-        </v-row>
         <!-- Send list -->
-        <log-book-list :only-lead-climbs="onlyLeadClimbs" />
+        <log-book-list :filters="filters" />
       </v-card-text>
     </v-card>
     <client-only>
@@ -62,6 +74,9 @@
 </template>
 
 <script>
+// TODO-now mettre les toggle btn en objets separés et les ajouter a analytiks
+// TODO-now supprimer Doublon et le mettre true default dans le backend
+// TODO-now bug sur les icones quand on change les filtres . Probable decoordination entre les crag et les status dans les deux lists pushed
 import LogBookFigures from '~/components/logBooks/outdoors/LogBookFigures.vue'
 import LogBookOutdoorApi from '~/services/oblyk-api/LogBookOutdoorApi'
 import Spinner from '~/components/layouts/Spiner.vue'
@@ -92,7 +107,7 @@ export default {
   data () {
     return {
       loadTheRest: false,
-      onlyLeadClimbs: false,
+      filters: [],
 
       loadingFigures: true,
       figures: {},
@@ -123,14 +138,14 @@ export default {
   },
 
   watch: {
-    onlyLeadClimbs () {
-      localStorage.setItem('onlyLeadClimbs', JSON.stringify(this.onlyLeadClimbs))
+    filters () {
+      localStorage.setItem('filters', JSON.stringify(this.filters))
       this.getFigures()
     }
   },
 
   mounted () {
-    this.onlyLeadClimbs = JSON.parse(localStorage.getItem('onlyLeadClimbs')) || false
+    this.filters = JSON.parse(localStorage.getItem('filters')) || false
     this.getFigures()
   },
 
@@ -138,7 +153,7 @@ export default {
     getFigures () {
       this.loadingFigures = true
       new LogBookOutdoorApi(this.$axios, this.$auth)
-        .figures(this.onlyLeadClimbs)
+        .figures(this.filters)
         .then((resp) => {
           this.figures = resp.data
           if (this.figures.ascents > 0) {
@@ -159,7 +174,7 @@ export default {
     getClimbingTypeChart () {
       this.loadingClimbingTypeChart = true
       new LogBookOutdoorApi(this.$axios, this.$auth)
-        .climbingTypeChart(this.onlyLeadClimbs)
+        .climbingTypeChart(this.filters)
         .then((resp) => {
           this.climbingTypeData = resp.data
         })
@@ -171,7 +186,7 @@ export default {
     getGradeChart () {
       this.loadingGradeChart = true
       new LogBookOutdoorApi(this.$axios, this.$auth)
-        .gradeChart(this.onlyLeadClimbs)
+        .gradeChart(this.filters)
         .then((resp) => {
           this.gradeData = resp.data
         })

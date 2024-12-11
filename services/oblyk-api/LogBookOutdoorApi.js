@@ -1,7 +1,21 @@
 import BaseApi from '~/services/oblyk-api/BaseApi'
 
 class LogBookOutdoorApi extends BaseApi {
-  figures (only_lead_climbs = false) {
+  // Method to dynamically generate the filters object
+  generateFiltersHash (filters = [], climbingType = 'all') {
+    console.log('filters', filters)
+    if (!filters) { return {} }
+    return {
+      filters: {
+        only_lead_climbs: filters.includes('only_lead_climbs'),
+        only_on_sight: filters.includes('only_on_sight'),
+        no_double: filters.includes('no_double'),
+        climbing_type_filter: climbingType
+      }
+    }
+  }
+
+  figures (filters = []) {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/current_users/log_books/outdoors/figures.json`,
@@ -9,13 +23,11 @@ class LogBookOutdoorApi extends BaseApi {
         Authorization: this.authToken(),
         HttpApiAccessToken: this.apiAccessToken
       },
-      params: {
-        only_lead_climbs
-      }
+      params: this.generateFiltersHash(filters)
     })
   }
 
-  climbingTypeChart (only_lead_climbs = false) {
+  climbingTypeChart (filters = []) {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/current_users/log_books/outdoors/climb_types_chart.json`,
@@ -23,13 +35,11 @@ class LogBookOutdoorApi extends BaseApi {
         Authorization: this.authToken(),
         HttpApiAccessToken: this.apiAccessToken
       },
-      params: {
-        only_lead_climbs
-      }
+      params: this.generateFiltersHash(filters)
     })
   }
 
-  gradeChart (only_lead_climbs = false) {
+  gradeChart (filters = []) {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/current_users/log_books/outdoors/grades_chart.json`,
@@ -37,13 +47,11 @@ class LogBookOutdoorApi extends BaseApi {
         Authorization: this.authToken(),
         HttpApiAccessToken: this.apiAccessToken
       },
-      params: {
-        only_lead_climbs
-      }
+      params: this.generateFiltersHash(filters)
     })
   }
 
-  yearChart (only_lead_climbs = false) {
+  yearChart (filters = []) {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/current_users/log_books/outdoors/years_chart.json`,
@@ -51,13 +59,11 @@ class LogBookOutdoorApi extends BaseApi {
         Authorization: this.authToken(),
         HttpApiAccessToken: this.apiAccessToken
       },
-      params: {
-        only_lead_climbs
-      }
+      params: this.generateFiltersHash(filters)
     })
   }
 
-  monthChart (only_lead_climbs = false) {
+  monthChart (filters = []) {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/current_users/log_books/outdoors/months_chart.json`,
@@ -65,13 +71,11 @@ class LogBookOutdoorApi extends BaseApi {
         Authorization: this.authToken(),
         HttpApiAccessToken: this.apiAccessToken
       },
-      params: {
-        only_lead_climbs
-      }
+      params: this.generateFiltersHash(filters)
     })
   }
 
-  evolutionChart (only_lead_climbs = false) {
+  evolutionChart (filters = []) {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/current_users/log_books/outdoors/evolutions_chart.json`,
@@ -79,13 +83,11 @@ class LogBookOutdoorApi extends BaseApi {
         Authorization: this.authToken(),
         HttpApiAccessToken: this.apiAccessToken
       },
-      params: {
-        only_lead_climbs
-      }
+      params: this.generateFiltersHash(filters)
     })
   }
 
-  ascendedCragRoutes (order = 'difficulty', climbingType = 'all', page = 1, only_lead_climbs = false) {
+  ascendedCragRoutes (order = 'difficulty', climbingType = 'all', page = 1, filters = []) {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/current_users/ascended_crag_routes.json`,
@@ -94,8 +96,7 @@ class LogBookOutdoorApi extends BaseApi {
         HttpApiAccessToken: this.apiAccessToken
       },
       params: {
-        only_lead_climbs,
-        climbing_type: climbingType,
+        ...this.generateFiltersHash(filters, climbingType),
         order,
         page
       }

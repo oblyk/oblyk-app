@@ -2191,7 +2191,9 @@ export default {
       private_comment: 'Comment is private',
       released_at: 'Released at',
       hardness_status: 'Difficulty appreciation',
-      only_lead_climbs: 'Only Lead Climbs'
+      only_lead_climbs: 'Only Lead Climbs',
+      no_double: 'No double',
+      only_on_sight: 'Only on sight'
     },
     ascentGymRoute: {
       type: 'Type',

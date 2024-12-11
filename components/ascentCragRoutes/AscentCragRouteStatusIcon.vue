@@ -72,7 +72,7 @@ export default {
         if (this.cragRoute.id === ascent.crag_route_id) {
           this.ascentInLogBook = ascent
           if (!(ascent.ascent_status === 'project') && !(ascent.ascent_status === 'tick_list') &&
-            (ascent.roping_status.includes('lead'))) {
+            (ascent.roping_status.includes('lead'))) { // TODO-now si plusieurs voies en lead classer selon ascent status among  sent red_point flash onsight repetition
             return
           }
         }

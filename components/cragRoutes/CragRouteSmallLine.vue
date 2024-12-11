@@ -113,6 +113,7 @@ export default {
     ascentStatus () {
       return this.ascentCragRoute && this.ascentCragRoute.ascent_status ? this.ascentCragRoute.ascent_status : ''
     },
+
     ropingStatus () {
       return this.ascentCragRoute && this.ascentCragRoute.roping_status ? this.ascentCragRoute.roping_status : ''
     }
