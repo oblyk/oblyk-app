@@ -157,7 +157,7 @@ export default {
         promise = new UserApi(this.$axios, this.$auth).ascendedCragRoutes(
           this.user.uuid,
           this.order,
-          this.climbingType, // todo-now: est ce qu'on filtre aussi les autres users views
+          this.climbingType,
           this.page
         )
       } else {

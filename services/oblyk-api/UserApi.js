@@ -137,7 +137,7 @@ class UserApi extends BaseApi {
       },
       params: {
         order,
-        climbing_type: climbingType,
+        filters: { climbing_type_filter: climbingType },
         page
       }
     })
