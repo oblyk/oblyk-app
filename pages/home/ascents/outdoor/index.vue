@@ -45,8 +45,9 @@
       class="mt-3"
     >
       <v-card-text>
+        <ascent-filters-toggle-btn v-model="outdoorAnalytikFilters" />
         <!-- Send list -->
-        <log-book-list />
+        <log-book-list :outdoor-analytik-filters="outdoorAnalytikFilters" />
       </v-card-text>
     </v-card>
     <client-only>
@@ -63,11 +64,13 @@ import LogBookClimbingTypeChart from '~/components/logBooks/outdoors/LogBookClim
 import LogBookGradeChart from '~/components/logBooks/outdoors/LogBookGradeChart.vue'
 import LogBookList from '~/components/logBooks/outdoors/LogBookList.vue'
 import ClimbingTypeLegend from '~/components/ui/ClimbingTypeLegend.vue'
+import AscentFiltersToggleBtn from '~/components/forms/AscentFiltersToggleBtn.vue'
 const CragRouteDrawer = () => import('~/components/cragRoutes/CragRouteDrawer.vue')
 
 export default {
   name: 'CurrentUserSendListView',
   components: {
+    AscentFiltersToggleBtn,
     ClimbingTypeLegend,
     CragRouteDrawer,
     LogBookList,
@@ -86,6 +89,7 @@ export default {
   data () {
     return {
       loadTheRest: false,
+      outdoorAnalytikFilters: [],
 
       loadingFigures: true,
       figures: {},
@@ -115,6 +119,12 @@ export default {
     }
   },
 
+  watch: {
+    outdoorAnalytikFilters () {
+      this.getFigures()
+    }
+  },
+
   mounted () {
     this.getFigures()
   },
@@ -123,7 +133,7 @@ export default {
     getFigures () {
       this.loadingFigures = true
       new LogBookOutdoorApi(this.$axios, this.$auth)
-        .figures()
+        .figures(this.outdoorAnalytikFilters)
         .then((resp) => {
           this.figures = resp.data
           if (this.figures.ascents > 0) {
@@ -144,7 +154,7 @@ export default {
     getClimbingTypeChart () {
       this.loadingClimbingTypeChart = true
       new LogBookOutdoorApi(this.$axios, this.$auth)
-        .climbingTypeChart()
+        .climbingTypeChart(this.outdoorAnalytikFilters)
         .then((resp) => {
           this.climbingTypeData = resp.data
         })
@@ -156,7 +166,7 @@ export default {
     getGradeChart () {
       this.loadingGradeChart = true
       new LogBookOutdoorApi(this.$axios, this.$auth)
-        .gradeChart()
+        .gradeChart(this.outdoorAnalytikFilters)
         .then((resp) => {
           this.gradeData = resp.data
         })

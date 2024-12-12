@@ -1,5 +1,6 @@
 <template>
   <v-container fluid>
+    <ascent-filters-toggle-btn v-model="outdoorAnalytikFilters" />
     <v-row>
       <v-col cols="12" md="6" lg="4">
         <v-card>
@@ -77,10 +78,12 @@ import LogBookGradeChart from '~/components/logBooks/outdoors/LogBookGradeChart.
 import LogBookYearChart from '~/components/logBooks/outdoors/LogBookYearChart.vue'
 import LogBookMonthChart from '~/components/logBooks/outdoors/LogBookMonthChart.vue'
 import LogBookEvolutionChart from '~/components/logBooks/outdoors/LogBookEvolutionChart.vue'
+import AscentFiltersToggleBtn from '~/components/forms/AscentFiltersToggleBtn.vue'
 
 export default {
   name: 'CurrentUserAnalytiksView',
   components: {
+    AscentFiltersToggleBtn,
     LogBookEvolutionChart,
     LogBookMonthChart,
     LogBookYearChart,
@@ -97,6 +100,8 @@ export default {
 
   data () {
     return {
+      outdoorAnalytikFilters: [],
+
       loadingClimbingTypeChart: true,
       climbingTypeData: [],
 
@@ -120,6 +125,16 @@ export default {
     }
   },
 
+  watch: {
+    outdoorAnalytikFilters () {
+      this.getClimbingTypeChart()
+      this.getGradeChart()
+      this.getYearChart()
+      this.getMonthChart()
+      this.getEvolutionChart()
+    }
+  },
+
   mounted () {
     this.getClimbingTypeChart()
     this.getGradeChart()
@@ -132,7 +147,7 @@ export default {
     getClimbingTypeChart () {
       this.loadingClimbingTypeChart = true
       new LogBookOutdoorApi(this.$axios, this.$auth)
-        .climbingTypeChart()
+        .climbingTypeChart(this.outdoorAnalytikFilters)
         .then((resp) => {
           this.climbingTypeData = resp.data
         })
@@ -144,7 +159,7 @@ export default {
     getGradeChart () {
       this.loadingGradeChart = true
       new LogBookOutdoorApi(this.$axios, this.$auth)
-        .gradeChart()
+        .gradeChart(this.outdoorAnalytikFilters)
         .then((resp) => {
           this.gradeData = resp.data
         })
@@ -156,7 +171,7 @@ export default {
     getYearChart () {
       this.loadingYearChart = true
       new LogBookOutdoorApi(this.$axios, this.$auth)
-        .yearChart()
+        .yearChart(this.outdoorAnalytikFilters)
         .then((resp) => {
           this.yearData = resp.data
         })
@@ -168,7 +183,7 @@ export default {
     getMonthChart () {
       this.loadingMonthChart = true
       new LogBookOutdoorApi(this.$axios, this.$auth)
-        .monthChart()
+        .monthChart(this.outdoorAnalytikFilters)
         .then((resp) => {
           this.monthData = resp.data
         })
@@ -180,7 +195,7 @@ export default {
     getEvolutionChart () {
       this.loadingEvolutionChart = true
       new LogBookOutdoorApi(this.$axios, this.$auth)
-        .evolutionChart()
+        .evolutionChart(this.outdoorAnalytikFilters)
         .then((resp) => {
           this.evolutionData = resp.data
         })

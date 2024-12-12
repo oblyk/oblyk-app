@@ -82,6 +82,10 @@ export default {
     user: {
       type: Object,
       default: null
+    },
+    outdoorAnalytikFilters: {
+      type: Array,
+      default: () => []
     }
   },
 
@@ -121,6 +125,13 @@ export default {
       }
     },
 
+    outdoorAnalytikFilters () {
+      if (!this.firstLoading) {
+        this.resetAscents()
+        this.ascendedCragRoutes()
+      }
+    },
+
     climbingType () {
       if (!this.firstLoading) {
         this.resetAscents()
@@ -153,7 +164,8 @@ export default {
         promise = new LogBookOutdoorApi(this.$axios, this.$auth).ascendedCragRoutes(
           this.order,
           this.climbingType,
-          this.page
+          this.page,
+          this.outdoorAnalytikFilters
         )
       }
 
