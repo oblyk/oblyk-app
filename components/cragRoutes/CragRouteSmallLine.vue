@@ -17,8 +17,6 @@
         <ascent-crag-route-status-icon
           v-if="$auth.loggedIn"
           :crag-route="route"
-          :ascent-status="ascentStatus"
-          :ascent-rope-status="ropingStatus"
         />
         {{ route.name }}
         <grade-route-note :route="route" />
@@ -90,10 +88,7 @@ export default {
       type: Object,
       required: true
     },
-    ascentCragRoute: {
-      type: Object,
-      default: null
-    },
+
     callback: {
       type: Function,
       default: null
@@ -106,16 +101,6 @@ export default {
       mdiFilmstrip,
       mdiComment,
       mdiTerrain
-    }
-  },
-
-  computed: {
-    ascentStatus () {
-      return this.ascentCragRoute && this.ascentCragRoute.ascent_status ? this.ascentCragRoute.ascent_status : ''
-    },
-
-    ropingStatus () {
-      return this.ascentCragRoute && this.ascentCragRoute.roping_status ? this.ascentCragRoute.roping_status : ''
     }
   },
 

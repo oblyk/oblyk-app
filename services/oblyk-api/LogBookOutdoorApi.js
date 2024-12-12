@@ -3,7 +3,6 @@ import BaseApi from '~/services/oblyk-api/BaseApi'
 class LogBookOutdoorApi extends BaseApi {
   // Method to dynamically generate the filters object
   generateFiltersHash (filters = [], climbingType = 'all') {
-    console.log('filters', filters)
     if (!filters) { return {} }
     return {
       filters: {

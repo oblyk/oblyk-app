@@ -48,7 +48,7 @@
           {{ gradeValueToText(cragRoute.grade_gap.max_grade_value) }}
         </p>
 
-        <crag-route-small-line :route="cragRoute" :ascent-crag-route="ascents[index]" />
+        <crag-route-small-line :route="cragRoute" />
       </div>
 
       <loading-more
@@ -72,7 +72,6 @@ import Spinner from '@/components/layouts/Spiner'
 import LoadingMore from '@/components/layouts/LoadingMore'
 import UserApi from '~/services/oblyk-api/UserApi'
 import { GradeMixin } from '@/mixins/GradeMixin'
-import AscentCragRoute from '@/models/AscentCragRoute'
 
 export default {
   name: 'LogBookList',
@@ -94,7 +93,6 @@ export default {
     return {
       loadingAscendedCragRoutes: true,
       cragRoutes: [],
-      ascents: [],
       firstLoading: true,
 
       order: 'difficulty',
@@ -176,7 +174,6 @@ export default {
         .then((resp) => {
           for (const route of resp.data) {
             this.cragRoutes.push(new CragRoute({ attributes: route }))
-            this.ascents.push(new AscentCragRoute({ attributes: route }))
           }
           this.successLoadingMore(resp)
         })
