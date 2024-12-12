@@ -2192,7 +2192,6 @@ export default {
       released_at: 'Réalisé le',
       hardness_status: 'Appréciation de la difficulté',
       only_lead_climbs: 'Sans moulinettes',
-      no_double: 'Sans doublons',
       only_on_sight: 'A vue'
     },
     ascentGymRoute: {

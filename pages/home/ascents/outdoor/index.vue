@@ -39,32 +39,15 @@
           </v-col>
         </v-row>
       </v-card-text>
-      <v-row>
-        <v-col>
-          <v-btn-toggle
-            v-model="filters"
-            multiple
-          >
-            <v-btn value="only_lead_climbs">
-              {{ $t('models.ascentCragRoute.only_lead_climbs') }}
-            </v-btn>
-            <v-btn value="only_on_sight">
-              {{ $t('models.ascentCragRoute.only_on_sight') }}
-            </v-btn>
-            <v-btn value="no_double">
-              {{ $t('models.ascentCragRoute.no_double') }}
-            </v-btn>
-          </v-btn-toggle>
-        </v-col>
-      </v-row>
     </v-card>
     <v-card
       v-if="loadTheRest"
       class="mt-3"
     >
       <v-card-text>
+        <ascent-filters-toggle-btn v-model="outdoorAnalytikFilters" />
         <!-- Send list -->
-        <log-book-list :filters="filters" />
+        <log-book-list :outdoor-analytik-filters="outdoorAnalytikFilters" />
       </v-card-text>
     </v-card>
     <client-only>
@@ -74,9 +57,6 @@
 </template>
 
 <script>
-// TODO-now mettre les toggle btn en objets separés et les ajouter a analytiks
-// TODO-now supprimer Doublon et le mettre true default dans le backend
-// TODO-now bug sur les icones quand on change les filtres . Probable decoordination entre les crag et les status dans les deux lists pushed
 import LogBookFigures from '~/components/logBooks/outdoors/LogBookFigures.vue'
 import LogBookOutdoorApi from '~/services/oblyk-api/LogBookOutdoorApi'
 import Spinner from '~/components/layouts/Spiner.vue'
@@ -84,11 +64,13 @@ import LogBookClimbingTypeChart from '~/components/logBooks/outdoors/LogBookClim
 import LogBookGradeChart from '~/components/logBooks/outdoors/LogBookGradeChart.vue'
 import LogBookList from '~/components/logBooks/outdoors/LogBookList.vue'
 import ClimbingTypeLegend from '~/components/ui/ClimbingTypeLegend.vue'
+import AscentFiltersToggleBtn from '~/components/forms/AscentFiltersToggleBtn.vue'
 const CragRouteDrawer = () => import('~/components/cragRoutes/CragRouteDrawer.vue')
 
 export default {
   name: 'CurrentUserSendListView',
   components: {
+    AscentFiltersToggleBtn,
     ClimbingTypeLegend,
     CragRouteDrawer,
     LogBookList,
@@ -107,7 +89,7 @@ export default {
   data () {
     return {
       loadTheRest: false,
-      filters: [],
+      outdoorAnalytikFilters: [],
 
       loadingFigures: true,
       figures: {},
@@ -138,14 +120,12 @@ export default {
   },
 
   watch: {
-    filters () {
-      localStorage.setItem('filters', JSON.stringify(this.filters))
+    outdoorAnalytikFilters () {
       this.getFigures()
     }
   },
 
   mounted () {
-    this.filters = JSON.parse(localStorage.getItem('filters')) || false
     this.getFigures()
   },
 
@@ -153,7 +133,7 @@ export default {
     getFigures () {
       this.loadingFigures = true
       new LogBookOutdoorApi(this.$axios, this.$auth)
-        .figures(this.filters)
+        .figures(this.outdoorAnalytikFilters)
         .then((resp) => {
           this.figures = resp.data
           if (this.figures.ascents > 0) {
@@ -174,7 +154,7 @@ export default {
     getClimbingTypeChart () {
       this.loadingClimbingTypeChart = true
       new LogBookOutdoorApi(this.$axios, this.$auth)
-        .climbingTypeChart(this.filters)
+        .climbingTypeChart(this.outdoorAnalytikFilters)
         .then((resp) => {
           this.climbingTypeData = resp.data
         })
@@ -186,7 +166,7 @@ export default {
     getGradeChart () {
       this.loadingGradeChart = true
       new LogBookOutdoorApi(this.$axios, this.$auth)
-        .gradeChart(this.filters)
+        .gradeChart(this.outdoorAnalytikFilters)
         .then((resp) => {
           this.gradeData = resp.data
         })

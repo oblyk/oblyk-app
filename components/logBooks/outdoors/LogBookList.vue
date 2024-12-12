@@ -83,7 +83,7 @@ export default {
       type: Object,
       default: null
     },
-    filters: {
+    outdoorAnalytikFilters: {
       type: Array,
       default: () => []
     }
@@ -103,7 +103,7 @@ export default {
       ],
 
       climbingType: 'all',
-      climbingItems: [ // TODO-now list of climbing types a recupere depuis le backend sur api ClimbsController.index
+      climbingItems: [
         { text: this.$t('components.logBook.climbingItems.all'), value: 'all' },
         { text: this.$t('models.climbs.sport_climbing'), value: 'sport_climbing' },
         { text: this.$t('models.climbs.bouldering'), value: 'bouldering' },
@@ -125,7 +125,7 @@ export default {
       }
     },
 
-    filters () {
+    outdoorAnalytikFilters () {
       if (!this.firstLoading) {
         this.resetAscents()
         this.ascendedCragRoutes()
@@ -165,7 +165,7 @@ export default {
           this.order,
           this.climbingType,
           this.page,
-          this.filters
+          this.outdoorAnalytikFilters
         )
       }
 

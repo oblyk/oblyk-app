@@ -2192,7 +2192,6 @@ export default {
       released_at: 'Released at',
       hardness_status: 'Difficulty appreciation',
       only_lead_climbs: 'Only Lead Climbs',
-      no_double: 'No double',
       only_on_sight: 'Only on sight'
     },
     ascentGymRoute: {
