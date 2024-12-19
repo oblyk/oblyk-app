@@ -185,6 +185,7 @@
             submit-methode="post"
             :crag-route="cragRoute"
             :callback="ascentAdded"
+            :repetition=true
           />
         </v-sheet>
 
