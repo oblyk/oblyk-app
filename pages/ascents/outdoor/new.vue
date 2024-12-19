@@ -185,7 +185,7 @@
             submit-methode="post"
             :crag-route="cragRoute"
             :callback="ascentAdded"
-            :repetition=true
+            :repetition="ascents.length > 0"
           />
         </v-sheet>
 
@@ -272,6 +272,8 @@ import AscentCragRouteForm from '~/components/ascentCragRoutes/forms/AscentCragR
 import CragRoutes from '~/components/cragRoutes/CragRoutes'
 import MyFollowedCrags from '~/components/users/MyFollowedCrags'
 import CragRouteDrawer from '~/components/cragRoutes/CragRouteDrawer'
+import AscentCragRouteApi from '~/services/oblyk-api/AscentCragRouteApi'
+import AscentCragRoute from '~/models/AscentCragRoute'
 
 export default {
   meta: { orphanRoute: true },
@@ -298,6 +300,7 @@ export default {
       grade: null,
       loadingGrade: false,
       successAdded: false,
+      ascents: [],
 
       mdiTerrain,
       mdiPlus,
@@ -394,6 +397,25 @@ export default {
         })
         .finally(() => {
           this.loadingCragRoute = false
+        })
+      this.getAscents(cragRouteId)
+    },
+
+    getAscents (cragRouteId) {
+      this.loadingAscents = true
+      this.ascents = []
+      new AscentCragRouteApi(this.$axios, this.$auth)
+        .all(cragRouteId)
+        .then((resp) => {
+          for (const ascent of resp.data) {
+            this.ascents.push(new AscentCragRoute({ attributes: ascent }))
+          }
+        })
+        .catch((err) => {
+          this.$root.$emit('alertFromApiError', err, 'ascentCragRouteApi')
+        })
+        .finally(() => {
+          this.loadingAscents = false
         })
     },
 

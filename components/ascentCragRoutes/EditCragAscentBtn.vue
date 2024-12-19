@@ -26,7 +26,7 @@
           :ascent-crag-route="ascentCragRoute"
           submit-methode="put"
           :callback="successCallback"
-          :repetition=true
+          :repetition="true"
         />
       </v-card-text>
     </v-card>
