@@ -181,7 +181,7 @@
             {{ $t('components.ascentCragRoute.new', { name: cragRoute.name } ) }}
           </p>
           <ascent-crag-route-form
-            v-if="cragRoute"
+            v-if="cragRoute && !loadingAscents"
             submit-methode="post"
             :crag-route="cragRoute"
             :callback="ascentAdded"
@@ -301,6 +301,7 @@ export default {
       loadingGrade: false,
       successAdded: false,
       ascents: [],
+      loadingAscents: false,
 
       mdiTerrain,
       mdiPlus,
@@ -335,6 +336,7 @@ export default {
     }
     if (cragRouteId) {
       this.getCragRoute(cragRouteId)
+      this.getAscents(cragRouteId)
     }
     this.$root.$on('searchCragRoutesResults', (results) => {
       this.haveCragRoutesResults(results)
@@ -398,7 +400,6 @@ export default {
         .finally(() => {
           this.loadingCragRoute = false
         })
-      this.getAscents(cragRouteId)
     },
 
     getAscents (cragRouteId) {
@@ -426,6 +427,7 @@ export default {
 
     selectCragRoute (cragRoute) {
       this.getCragRoute(cragRoute.id)
+      this.getAscents(cragRoute.id)
       this.addCragRouteBtn = false
     },
 
