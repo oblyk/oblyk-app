@@ -181,10 +181,11 @@
             {{ $t('components.ascentCragRoute.new', { name: cragRoute.name } ) }}
           </p>
           <ascent-crag-route-form
-            v-if="cragRoute"
+            v-if="cragRoute && !loadingAscents"
             submit-methode="post"
             :crag-route="cragRoute"
             :callback="ascentAdded"
+            :repetition="ascents.length > 0"
           />
         </v-sheet>
 
@@ -271,6 +272,8 @@ import AscentCragRouteForm from '~/components/ascentCragRoutes/forms/AscentCragR
 import CragRoutes from '~/components/cragRoutes/CragRoutes'
 import MyFollowedCrags from '~/components/users/MyFollowedCrags'
 import CragRouteDrawer from '~/components/cragRoutes/CragRouteDrawer'
+import AscentCragRouteApi from '~/services/oblyk-api/AscentCragRouteApi'
+import AscentCragRoute from '~/models/AscentCragRoute'
 
 export default {
   meta: { orphanRoute: true },
@@ -297,6 +300,8 @@ export default {
       grade: null,
       loadingGrade: false,
       successAdded: false,
+      ascents: [],
+      loadingAscents: false,
 
       mdiTerrain,
       mdiPlus,
@@ -331,6 +336,7 @@ export default {
     }
     if (cragRouteId) {
       this.getCragRoute(cragRouteId)
+      this.getAscents(cragRouteId)
     }
     this.$root.$on('searchCragRoutesResults', (results) => {
       this.haveCragRoutesResults(results)
@@ -396,6 +402,24 @@ export default {
         })
     },
 
+    getAscents (cragRouteId) {
+      this.loadingAscents = true
+      this.ascents = []
+      new AscentCragRouteApi(this.$axios, this.$auth)
+        .all(cragRouteId)
+        .then((resp) => {
+          for (const ascent of resp.data) {
+            this.ascents.push(new AscentCragRoute({ attributes: ascent }))
+          }
+        })
+        .catch((err) => {
+          this.$root.$emit('alertFromApiError', err, 'ascentCragRouteApi')
+        })
+        .finally(() => {
+          this.loadingAscents = false
+        })
+    },
+
     haveCragRoutesResults (results) {
       this.cragRoutes = results
       this.addCragRouteBtn = true
@@ -403,6 +427,7 @@ export default {
 
     selectCragRoute (cragRoute) {
       this.getCragRoute(cragRoute.id)
+      this.getAscents(cragRoute.id)
       this.addCragRouteBtn = false
     },
 
