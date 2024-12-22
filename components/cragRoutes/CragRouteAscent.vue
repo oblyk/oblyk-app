@@ -88,7 +88,7 @@ export default {
         .catch((err) => {
           this.$root.$emit('alertFromApiError', err, 'ascentCragRouteApi')
         })
-        .then(() => {
+        .finally(() => {
           this.loadingAscents = false
         })
     }
