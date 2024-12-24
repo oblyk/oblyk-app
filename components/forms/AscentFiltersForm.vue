@@ -28,7 +28,7 @@
 
       <submit-form
         :overlay="false"
-        :submit-local-key="'actions.filter'"
+        :submit-local-key="'actions.save'"
         :go-back-btn="false"
       />
     </v-form>
@@ -36,6 +36,7 @@
 </template>
 
 <script>
+// TODO bouton Filtrer en couleur si des filtres sont actifs
 import AscentStatusInput from '~/components/forms/AscentStatusInput'
 import RopingStatusInput from '~/components/forms/RopingStatusInput'
 import SubmitForm from '~/components/forms/SubmitForm'
@@ -57,6 +58,17 @@ export default {
     }
   },
 
+  watch: {
+    // Watch for changes in filters and emit automatically
+    filters: {
+      handler (newFilters) {
+        console.log('Filters updated:', newFilters)
+        this.$emit('input', { ...newFilters }) // Emit fresh copy of changes
+      },
+      deep: true // Ensure nested changes in filters are detected
+    }
+  },
+
   mounted () {
     // recover from local storage and reset if one key is missing in the stored filters
     if (typeof localStorage !== 'undefined') {
@@ -74,8 +86,6 @@ export default {
   methods: {
     onSubmit () {
       this.showForm = false
-      console.log('Submitting filters:', this.filters) // TODO remove
-      this.$emit('input', { ...this.filters })
       localStorage.setItem('filters', JSON.stringify(this.filters))
     }
   }

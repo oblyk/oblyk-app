@@ -1,6 +1,6 @@
 <template>
   <v-container fluid>
-    <ascent-filters-toggle-btn v-model="filters" />
+    <ascent-filters-form v-model="filters" />
     <v-row>
       <v-col cols="12" md="6" lg="4">
         <v-card>
@@ -78,12 +78,12 @@ import LogBookGradeChart from '~/components/logBooks/outdoors/LogBookGradeChart.
 import LogBookYearChart from '~/components/logBooks/outdoors/LogBookYearChart.vue'
 import LogBookMonthChart from '~/components/logBooks/outdoors/LogBookMonthChart.vue'
 import LogBookEvolutionChart from '~/components/logBooks/outdoors/LogBookEvolutionChart.vue'
-import AscentFiltersToggleBtn from '~/components/forms/AscentFiltersToggleBtn.vue'
+import AscentFiltersForm from '~/components/forms/AscentFiltersForm'
 
 export default {
   name: 'CurrentUserAnalytiksView',
   components: {
-    AscentFiltersToggleBtn,
+    AscentFiltersForm,
     LogBookEvolutionChart,
     LogBookMonthChart,
     LogBookYearChart,

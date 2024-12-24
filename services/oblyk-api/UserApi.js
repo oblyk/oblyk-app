@@ -127,7 +127,7 @@ class UserApi extends BaseApi {
     })
   }
 
-  ascendedCragRoutes (userName, order = 'difficulty', climbingType = 'all', page = 1) {
+  ascendedCragRoutes (userName, order = 'difficulty', filters = {}, page = 1) {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/users/${userName}/ascended_crag_routes.json`,
@@ -137,7 +137,7 @@ class UserApi extends BaseApi {
       },
       params: {
         order,
-        filters: { climbing_type_filter: climbingType },
+        filters,
         page
       }
     })
@@ -198,4 +198,5 @@ class UserApi extends BaseApi {
     })
   }
 }
+
 export default UserApi

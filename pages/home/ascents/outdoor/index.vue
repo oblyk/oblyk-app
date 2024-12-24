@@ -2,7 +2,7 @@
   <v-container fluid>
     <v-card>
       <v-card-text>
-        <ascent-filters-form v-model="outdoorAnalytikFilters" />
+        <ascent-filters-form v-model="filters" />
       </v-card-text>
     </v-card>
     <v-card>
@@ -51,7 +51,7 @@
     >
       <v-card-text>
         <!-- Send list -->
-        <log-book-list :outdoor-analytik-filters="outdoorAnalytikFilters" />
+        <log-book-list :filters="filters" />
       </v-card-text>
     </v-card>
     <client-only>
@@ -94,7 +94,7 @@ export default {
   data () {
     return {
       loadTheRest: false,
-      outdoorAnalytikFilters: {},
+      filters: {},
 
       loadingFigures: true,
       figures: {},
@@ -125,8 +125,8 @@ export default {
   },
 
   watch: {
-    outdoorAnalytikFilters () {
-      console.log('outdoorAnalytikFilters watch change', this.outdoorAnalytikFilters)
+    filters () {
+      console.log('filters watch change', this.filters)
       this.getFigures()
     },
     deep: true,
@@ -141,7 +141,7 @@ export default {
     getFigures () {
       this.loadingFigures = true
       new LogBookOutdoorApi(this.$axios, this.$auth)
-        .figures(this.outdoorAnalytikFilters)
+        .figures(this.filters)
         .then((resp) => {
           this.figures = resp.data
           if (this.figures.ascents > 0) {
@@ -162,7 +162,7 @@ export default {
     getClimbingTypeChart () {
       this.loadingClimbingTypeChart = true
       new LogBookOutdoorApi(this.$axios, this.$auth)
-        .climbingTypeChart(this.outdoorAnalytikFilters)
+        .climbingTypeChart(this.filters)
         .then((resp) => {
           this.climbingTypeData = resp.data
         })
@@ -174,7 +174,7 @@ export default {
     getGradeChart () {
       this.loadingGradeChart = true
       new LogBookOutdoorApi(this.$axios, this.$auth)
-        .gradeChart(this.outdoorAnalytikFilters)
+        .gradeChart(this.filters)
         .then((resp) => {
           this.gradeData = resp.data
         })

@@ -12,16 +12,6 @@
           outlined
         />
       </v-col>
-      <v-col>
-        <v-select
-          v-model="climbingType"
-          :items="climbingItems"
-          item-text="text"
-          item-value="value"
-          :label="$t('components.logBook.filterByClimbingType')"
-          outlined
-        />
-      </v-col>
     </v-row>
 
     <!-- Send list -->
@@ -101,18 +91,6 @@ export default {
         { text: this.$t('components.logBook.sortItem.difficulty'), value: 'difficulty' },
         { text: this.$t('components.logBook.sortItem.crags'), value: 'crags' },
         { text: this.$t('components.logBook.sortItem.released_at'), value: 'released_at' }
-      ],
-
-      climbingType: 'all',
-      climbingItems: [
-        { text: this.$t('components.logBook.climbingItems.all'), value: 'all' },
-        { text: this.$t('models.climbs.sport_climbing'), value: 'sport_climbing' },
-        { text: this.$t('models.climbs.bouldering'), value: 'bouldering' },
-        { text: this.$t('models.climbs.multi_pitch'), value: 'multi_pitch' },
-        { text: this.$t('models.climbs.trad_climbing'), value: 'trad_climbing' },
-        { text: this.$t('models.climbs.aid_climbing'), value: 'aid_climbing' },
-        { text: this.$t('models.climbs.deep_water'), value: 'deep_water' },
-        { text: this.$t('models.climbs.via_ferrata'), value: 'via_ferrata' }
       ]
     }
   },
@@ -127,13 +105,6 @@ export default {
     },
 
     filters () {
-      if (!this.firstLoading) {
-        this.resetAscents()
-        this.ascendedCragRoutes()
-      }
-    },
-
-    climbingType () {
       if (!this.firstLoading) {
         this.resetAscents()
         this.ascendedCragRoutes()
@@ -158,15 +129,14 @@ export default {
         promise = new UserApi(this.$axios, this.$auth).ascendedCragRoutes(
           this.user.uuid,
           this.order,
-          this.climbingType,
+          this.filters,
           this.page
         )
       } else {
         promise = new LogBookOutdoorApi(this.$axios, this.$auth).ascendedCragRoutes(
           this.order,
-          this.climbingType,
-          this.page,
-          this.filters
+          this.filters,
+          this.page
         )
       }
 
