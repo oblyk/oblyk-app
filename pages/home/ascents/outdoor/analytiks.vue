@@ -1,6 +1,6 @@
 <template>
   <v-container fluid>
-    <ascent-filters-toggle-btn v-model="outdoorAnalytikFilters" />
+    <ascent-filters-toggle-btn v-model="filters" />
     <v-row>
       <v-col cols="12" md="6" lg="4">
         <v-card>
@@ -100,7 +100,7 @@ export default {
 
   data () {
     return {
-      outdoorAnalytikFilters: [],
+      filters: [],
 
       loadingClimbingTypeChart: true,
       climbingTypeData: [],
@@ -126,7 +126,7 @@ export default {
   },
 
   watch: {
-    outdoorAnalytikFilters () {
+    filters () {
       this.getClimbingTypeChart()
       this.getGradeChart()
       this.getYearChart()
@@ -147,7 +147,7 @@ export default {
     getClimbingTypeChart () {
       this.loadingClimbingTypeChart = true
       new LogBookOutdoorApi(this.$axios, this.$auth)
-        .climbingTypeChart(this.outdoorAnalytikFilters)
+        .climbingTypeChart(this.filters)
         .then((resp) => {
           this.climbingTypeData = resp.data
         })
@@ -159,7 +159,7 @@ export default {
     getGradeChart () {
       this.loadingGradeChart = true
       new LogBookOutdoorApi(this.$axios, this.$auth)
-        .gradeChart(this.outdoorAnalytikFilters)
+        .gradeChart(this.filters)
         .then((resp) => {
           this.gradeData = resp.data
         })
@@ -171,7 +171,7 @@ export default {
     getYearChart () {
       this.loadingYearChart = true
       new LogBookOutdoorApi(this.$axios, this.$auth)
-        .yearChart(this.outdoorAnalytikFilters)
+        .yearChart(this.filters)
         .then((resp) => {
           this.yearData = resp.data
         })
@@ -183,7 +183,7 @@ export default {
     getMonthChart () {
       this.loadingMonthChart = true
       new LogBookOutdoorApi(this.$axios, this.$auth)
-        .monthChart(this.outdoorAnalytikFilters)
+        .monthChart(this.filters)
         .then((resp) => {
           this.monthData = resp.data
         })
@@ -195,7 +195,7 @@ export default {
     getEvolutionChart () {
       this.loadingEvolutionChart = true
       new LogBookOutdoorApi(this.$axios, this.$auth)
-        .evolutionChart(this.outdoorAnalytikFilters)
+        .evolutionChart(this.filters)
         .then((resp) => {
           this.evolutionData = resp.data
         })

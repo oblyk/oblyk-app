@@ -2,6 +2,11 @@
   <v-container fluid>
     <v-card>
       <v-card-text>
+        <ascent-filters-form v-model="outdoorAnalytikFilters" />
+      </v-card-text>
+    </v-card>
+    <v-card>
+      <v-card-text>
         <v-row>
           <!-- Climbing type chart -->
           <v-col class="col-12 col-md-6 col-lg-3">
@@ -45,7 +50,6 @@
       class="mt-3"
     >
       <v-card-text>
-        <ascent-filters-toggle-btn v-model="outdoorAnalytikFilters" />
         <!-- Send list -->
         <log-book-list :outdoor-analytik-filters="outdoorAnalytikFilters" />
       </v-card-text>
@@ -57,6 +61,7 @@
 </template>
 
 <script>
+import AscentFiltersForm from '~/components/forms/AscentFiltersForm'
 import LogBookFigures from '~/components/logBooks/outdoors/LogBookFigures.vue'
 import LogBookOutdoorApi from '~/services/oblyk-api/LogBookOutdoorApi'
 import Spinner from '~/components/layouts/Spiner.vue'
@@ -64,13 +69,13 @@ import LogBookClimbingTypeChart from '~/components/logBooks/outdoors/LogBookClim
 import LogBookGradeChart from '~/components/logBooks/outdoors/LogBookGradeChart.vue'
 import LogBookList from '~/components/logBooks/outdoors/LogBookList.vue'
 import ClimbingTypeLegend from '~/components/ui/ClimbingTypeLegend.vue'
-import AscentFiltersToggleBtn from '~/components/forms/AscentFiltersToggleBtn.vue'
+
 const CragRouteDrawer = () => import('~/components/cragRoutes/CragRouteDrawer.vue')
 
 export default {
   name: 'CurrentUserSendListView',
   components: {
-    AscentFiltersToggleBtn,
+    AscentFiltersForm,
     ClimbingTypeLegend,
     CragRouteDrawer,
     LogBookList,
@@ -89,7 +94,7 @@ export default {
   data () {
     return {
       loadTheRest: false,
-      outdoorAnalytikFilters: [],
+      outdoorAnalytikFilters: {},
 
       loadingFigures: true,
       figures: {},
@@ -121,8 +126,11 @@ export default {
 
   watch: {
     outdoorAnalytikFilters () {
+      console.log('outdoorAnalytikFilters watch change', this.outdoorAnalytikFilters)
       this.getFigures()
-    }
+    },
+    deep: true,
+    immediate: true
   },
 
   mounted () {

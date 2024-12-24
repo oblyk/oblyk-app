@@ -1517,6 +1517,7 @@ export default {
       myOutdoorAscents: 'My outdoor ascents',
       sortByLabel: 'Sort ascents by',
       filterByClimbingType: 'Filter by climbing type',
+      filterMyLogBook: 'Filter my Log Book',
       emptyProject: 'Your project list is empty',
       emptyTickList: "You don't have any route in your tick list for the moment",
       IHaveNoAscents: 'I have no ascents here yet',

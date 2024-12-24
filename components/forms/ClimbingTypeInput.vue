@@ -1,5 +1,6 @@
 <template>
   <v-select
+    v-if="selectInput"
     v-model="climbingTypes"
     :items="climbByEnvironment()"
     item-text="text"
@@ -13,13 +14,52 @@
     outlined
     @change="onChange"
   />
+  <v-input v-else>
+    <fieldset class="full-width custom-fieldset border rounded mt-n1 pb-0 px-2">
+      <legend class="v-label custom-fieldset-label">
+        {{ $t('components.input.climbing_type') }}
+      </legend>
+      <div>
+        <v-chip-group
+          v-model="climbingTypes"
+          active-class="primary--text"
+          column
+          :multiple="multiple"
+          @change="onChange"
+        >
+          <v-chip
+            v-for="(item, itemIndex) in climbByEnvironment()"
+            :key="`item-index-${itemIndex}`"
+            :value="item.value"
+            outlined
+          >
+            <v-icon
+              :class="`climbs-pastille ${item.value} mr-3`"
+              :color="climbingTypes === item.value ? 'green' : null"
+              small
+              left
+            >
+              {{ item.icon }}
+            </v-icon>
+            {{ item.text }}
+          </v-chip>
+        </v-chip-group>
+      </div>
+    </fieldset>
+    <v-chip v-if="multiple" @click="selectAll()">
+      {{ $t('common.seeAll') }}
+    </v-chip>
+  </v-input>
 </template>
 
 <script>
 export default {
   name: 'ClimbingTypeInput',
   props: {
-    value: [Array, String],
+    value: {
+      type: [Array, String],
+      default: null
+    },
     environment: {
       type: String,
       default: 'crag'
@@ -43,12 +83,16 @@ export default {
     clearable: {
       type: Boolean,
       default: false
+    },
+    selectInput: { // if false, we use the chips group instead of select input
+      type: Boolean,
+      default: true
     }
   },
 
   data () {
     return {
-      climbingCragList: [
+      climbingCragList: [ // TODO ajouter les icons
         { text: this.$t('models.climbs.sport_climbing'), value: 'sport_climbing' },
         { text: this.$t('models.climbs.bouldering'), value: 'bouldering' },
         { text: this.$t('models.climbs.multi_pitch'), value: 'multi_pitch' },
@@ -78,6 +122,13 @@ export default {
     }
   },
 
+  mounted () {
+    // for selectInput=false et multiple choices, select all at mount if no list passed in initial v-model
+    if (!this.selectInput && this.multiple && this.value.length === 0) {
+      this.selectAll()
+    }
+  },
+
   methods: {
     onChange () {
       this.$emit('input', this.climbingTypes)
@@ -91,6 +142,10 @@ export default {
       } else if (this.environment === 'user') {
         return this.climbingUserList
       }
+    },
+    selectAll () {
+      this.climbingTypes = this.climbByEnvironment().map(climb => climb.value)
+      this.onChange()
     }
   }
 }

@@ -83,9 +83,10 @@ export default {
       type: Object,
       default: null
     },
-    outdoorAnalytikFilters: {
-      type: Array,
-      default: () => []
+    filters: {
+      type: Object,
+      default: () => {
+      }
     }
   },
 
@@ -125,7 +126,7 @@ export default {
       }
     },
 
-    outdoorAnalytikFilters () {
+    filters () {
       if (!this.firstLoading) {
         this.resetAscents()
         this.ascendedCragRoutes()
@@ -165,7 +166,7 @@ export default {
           this.order,
           this.climbingType,
           this.page,
-          this.outdoorAnalytikFilters
+          this.filters
         )
       }
 
