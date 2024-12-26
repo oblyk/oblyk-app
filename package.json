@@ -26,7 +26,7 @@
     "actioncable-vue": "^2.5.1",
     "chart.js": "^2.9.4",
     "core-js": "^3.15.1",
-    "leaflet": "^1.7.1",
+    "leaflet": "^1.9.4",
     "leaflet-textpath": "^1.2.3",
     "luxon": "^3.4.0",
     "marked": "^4.0.10",
