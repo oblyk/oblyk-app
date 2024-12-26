@@ -1,9 +1,9 @@
 // States
-export const state = {
+export const state = () => ({
   latitude: null,
   longitude: null,
   status: null
-}
+})
 
 // Getters
 export const getters = {

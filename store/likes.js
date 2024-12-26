@@ -1,7 +1,7 @@
 // States
-export const state = {
+export const state = () => ({
   likes: {}
-}
+})
 
 // Getters
 export const getters = {

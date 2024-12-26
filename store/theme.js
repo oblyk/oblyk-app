@@ -1,7 +1,7 @@
 // States
-export const state = {
+export const state = () => ({
   theme: 'light'
-}
+})
 
 // Getters
 export const getters = {

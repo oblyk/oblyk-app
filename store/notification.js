@@ -1,7 +1,7 @@
 // States
-export const state = {
+export const state = () => ({
   newNotification: false
-}
+})
 
 // Getters
 export const getters = {
