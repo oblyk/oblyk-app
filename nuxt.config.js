@@ -230,7 +230,8 @@ export default {
       // Nuxt 2 uses @babel/core@7, as node 16 supports the logical assignment operators
       // we need to add the plugin to the babel configuration to avoid the error
       // at build time
-      plugins: ['@babel/plugin-proposal-logical-assignment-operators']
-    }
+      plugins: ['@babel/plugin-proposal-logical-assignment-operators', '@babel/plugin-proposal-optional-chaining']
+    },
+    transpile: ['leaflet-editable']
   }
 }
