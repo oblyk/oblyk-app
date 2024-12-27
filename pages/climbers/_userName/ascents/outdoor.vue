@@ -20,6 +20,11 @@
     <div v-else>
       <v-card>
         <v-card-text>
+          <ascent-filters-form v-model="filters" />
+        </v-card-text>
+      </v-card>
+      <v-card class="mt-3">
+        <v-card-text>
           <v-row>
             <!-- Climbing type chart -->
             <v-col
@@ -69,7 +74,7 @@
                 class="py-5"
               >
                 <p class="text-center mb-0">
-                  {{ $t('components.user.emptyLogbook', { name: user.first_name}) }}
+                  {{ $t('components.user.emptyLogbook', { name: user.first_name }) }}
                 </p>
               </div>
             </v-col>
@@ -81,7 +86,7 @@
         class="mt-3"
       >
         <v-card-text>
-          <log-book-list :user="user" />
+          <log-book-list :user="user" :filters="filters" />
         </v-card-text>
         <client-only>
           <crag-route-drawer />
@@ -101,10 +106,13 @@ import LogBookClimbingTypeChart from '~/components/logBooks/outdoors/LogBookClim
 import LogBookGradeChart from '~/components/logBooks/outdoors/LogBookGradeChart'
 import LogBookList from '~/components/logBooks/outdoors/LogBookList'
 import ClimbingTypeLegend from '~/components/ui/ClimbingTypeLegend'
+import AscentFiltersForm from '~/components/logBooks/outdoors/AscentFiltersForm'
+
 const CragRouteDrawer = () => import('~/components/cragRoutes/CragRouteDrawer')
 
 export default {
   components: {
+    AscentFiltersForm,
     ClimbingTypeLegend,
     CragRouteDrawer,
     LogBookList,
@@ -123,6 +131,8 @@ export default {
 
   data () {
     return {
+      filters: [],
+
       loadingFigures: true,
       figures: {},
 
@@ -178,6 +188,12 @@ export default {
     }
   },
 
+  watch: {
+    filters () {
+      this.getFigures()
+    }
+  },
+
   mounted () {
     if (this.currentUserCanSeeAscents()) {
       this.getFigures()
@@ -187,10 +203,14 @@ export default {
   methods: {
     currentUserCanSeeAscents () {
       // If user have public profil
-      if (this.user.public_profile && this.user.public_outdoor_ascents) { return true }
+      if (this.user.public_profile && this.user.public_outdoor_ascents) {
+        return true
+      }
 
       // If user have public outdoor logbook
-      if (this.$auth.loggedIn && this.user.public_outdoor_ascents) { return true }
+      if (this.$auth.loggedIn && this.user.public_outdoor_ascents) {
+        return true
+      }
 
       // If current user is subscribed to user
       return (this.$auth.loggedIn && this.iAmSubscribedToThis('User', this.user.id) === 'subscribe')
@@ -199,7 +219,7 @@ export default {
     getFigures () {
       this.loadingFigures = true
       new UserApi(this.$axios, this.$auth)
-        .outdoorFigures(this.user.uuid)
+        .outdoorFigures(this.user.uuid, this.filters)
         .then((resp) => {
           this.figures = resp.data
           if (this.figures.ascents > 0) {
@@ -220,7 +240,7 @@ export default {
     getClimbingTypeChart () {
       this.loadingClimbingTypeChart = true
       new UserApi(this.$axios, this.$auth)
-        .outdoorClimbTypesChart(this.user.uuid)
+        .outdoorClimbTypesChart(this.user.uuid, this.filters)
         .then((resp) => {
           this.climbingTypeData = resp.data
         })
@@ -232,7 +252,7 @@ export default {
     getGradeChart () {
       this.loadingGradeChart = true
       new UserApi(this.$axios, this.$auth)
-        .outdoorGradesChart(this.user.uuid)
+        .outdoorGradesChart(this.user.uuid, this.filters)
         .then((resp) => {
           this.gradeData = resp.data
         })

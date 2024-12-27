@@ -105,25 +105,27 @@ class UserApi extends BaseApi {
     })
   }
 
-  outdoorFigures (userName) {
+  outdoorFigures (userName, filters = {}) {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/users/${userName}/outdoor_figures.json`,
       headers: {
         Authorization: this.authToken(),
         HttpApiAccessToken: this.apiAccessToken
-      }
+      },
+      params: { filters }
     })
   }
 
-  outdoorClimbTypesChart (userName) {
+  outdoorClimbTypesChart (userName, filters = {}) {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/users/${userName}/outdoor_climb_types_chart.json`,
       headers: {
         Authorization: this.authToken(),
         HttpApiAccessToken: this.apiAccessToken
-      }
+      },
+      params: { filters }
     })
   }
 
@@ -143,14 +145,15 @@ class UserApi extends BaseApi {
     })
   }
 
-  outdoorGradesChart (userName) {
+  outdoorGradesChart (userName, filters = {}) {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/users/${userName}/outdoor_grades_chart.json`,
       headers: {
         Authorization: this.authToken(),
         HttpApiAccessToken: this.apiAccessToken
-      }
+      },
+      params: { filters }
     })
   }
 

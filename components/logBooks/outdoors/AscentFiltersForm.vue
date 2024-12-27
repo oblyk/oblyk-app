@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-btn v-if="!showForm" @click="showForm=!showForm">
-      {{ $t('components.logBook.filterMyLogBook') }}
+      {{ $t('components.logBook.filterTheLogBook') }}
     </v-btn>
     <v-form v-if="showForm" @submit.prevent="onSubmit()">
       <ascent-status-input
@@ -23,7 +23,7 @@
         v-model="filters.climbingTypesList"
         multiple
         environment="crag"
-        :select-input="false"
+        input-type="chips"
       />
 
       <submit-form
@@ -36,7 +36,6 @@
 </template>
 
 <script>
-// TODO bouton Filtrer en couleur si des filtres sont actifs
 import AscentStatusInput from '~/components/forms/AscentStatusInput'
 import RopingStatusInput from '~/components/forms/RopingStatusInput'
 import SubmitForm from '~/components/forms/SubmitForm'
@@ -62,7 +61,6 @@ export default {
     // Watch for changes in filters and emit automatically
     filters: {
       handler (newFilters) {
-        console.log('Filters updated:', newFilters)
         this.$emit('input', { ...newFilters }) // Emit fresh copy of changes
       },
       deep: true // Ensure nested changes in filters are detected

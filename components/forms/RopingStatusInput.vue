@@ -32,7 +32,7 @@
         </v-chip-group>
       </div>
     </fieldset>
-    <v-chip v-if="multiple" @click="selectAll()">
+    <v-chip v-if="multiple" class="ml-1" @click="selectAll()">
       {{ $t('common.seeAll') }}
     </v-chip>
   </v-input>

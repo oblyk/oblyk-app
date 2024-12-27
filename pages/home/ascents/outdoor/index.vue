@@ -5,7 +5,7 @@
         <ascent-filters-form v-model="filters" />
       </v-card-text>
     </v-card>
-    <v-card>
+    <v-card class="mt-3">
       <v-card-text>
         <v-row>
           <!-- Climbing type chart -->
@@ -61,7 +61,7 @@
 </template>
 
 <script>
-import AscentFiltersForm from '~/components/forms/AscentFiltersForm'
+import AscentFiltersForm from '~/components/logBooks/outdoors/AscentFiltersForm'
 import LogBookFigures from '~/components/logBooks/outdoors/LogBookFigures.vue'
 import LogBookOutdoorApi from '~/services/oblyk-api/LogBookOutdoorApi'
 import Spinner from '~/components/layouts/Spiner.vue'
@@ -126,7 +126,6 @@ export default {
 
   watch: {
     filters () {
-      console.log('filters watch change', this.filters)
       this.getFigures()
     },
     deep: true,

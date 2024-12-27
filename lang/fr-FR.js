@@ -1517,7 +1517,7 @@ export default {
       myOutdoorAscents: 'Mes croix outdoor',
       sortByLabel: 'Trier les croix par',
       filterByClimbingType: "Filtrer par type d'escalade",
-      filterMyLogBook: 'Filtrer mon carnet',
+      filterTheLogBook: 'Filtrer le carnet',
       emptyProject: 'Votre liste de projet est vide',
       emptyTickList: "Vous n'avez aucune ligne dans votre tick list pour l'instant",
       IHaveNoAscents: "Je n'ai pas encore de croix",

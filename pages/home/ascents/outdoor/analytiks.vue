@@ -1,7 +1,11 @@
 <template>
   <v-container fluid>
-    <ascent-filters-form v-model="filters" />
-    <v-row>
+    <v-card>
+      <v-card-text>
+        <ascent-filters-form v-model="filters" />
+      </v-card-text>
+    </v-card>
+    <v-row class="mt-3">
       <v-col cols="12" md="6" lg="4">
         <v-card>
           <v-card-text>
@@ -78,7 +82,7 @@ import LogBookGradeChart from '~/components/logBooks/outdoors/LogBookGradeChart.
 import LogBookYearChart from '~/components/logBooks/outdoors/LogBookYearChart.vue'
 import LogBookMonthChart from '~/components/logBooks/outdoors/LogBookMonthChart.vue'
 import LogBookEvolutionChart from '~/components/logBooks/outdoors/LogBookEvolutionChart.vue'
-import AscentFiltersForm from '~/components/forms/AscentFiltersForm'
+import AscentFiltersForm from '~/components/logBooks/outdoors/AscentFiltersForm'
 
 export default {
   name: 'CurrentUserAnalytiksView',
@@ -127,23 +131,22 @@ export default {
 
   watch: {
     filters () {
+      this.getAllCharts()
+    }
+  },
+
+  mounted () {
+    this.getAllCharts()
+  },
+
+  methods: {
+    getAllCharts () {
       this.getClimbingTypeChart()
       this.getGradeChart()
       this.getYearChart()
       this.getMonthChart()
       this.getEvolutionChart()
-    }
-  },
-
-  mounted () {
-    this.getClimbingTypeChart()
-    this.getGradeChart()
-    this.getYearChart()
-    this.getMonthChart()
-    this.getEvolutionChart()
-  },
-
-  methods: {
+    },
     getClimbingTypeChart () {
       this.loadingClimbingTypeChart = true
       new LogBookOutdoorApi(this.$axios, this.$auth)

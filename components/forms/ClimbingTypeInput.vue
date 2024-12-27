@@ -1,6 +1,6 @@
 <template>
   <v-select
-    v-if="selectInput"
+    v-if="inputType === 'select'"
     v-model="climbingTypes"
     :items="climbByEnvironment()"
     item-text="text"
@@ -14,7 +14,7 @@
     outlined
     @change="onChange"
   />
-  <v-input v-else>
+  <v-input v-else-if="inputType === 'chips'">
     <fieldset class="full-width custom-fieldset border rounded mt-n1 pb-0 px-2">
       <legend class="v-label custom-fieldset-label">
         {{ $t('components.input.climbing_type') }}
@@ -46,7 +46,7 @@
         </v-chip-group>
       </div>
     </fieldset>
-    <v-chip v-if="multiple" @click="selectAll()">
+    <v-chip v-if="multiple" class="ml-1" @click="selectAll()">
       {{ $t('common.seeAll') }}
     </v-chip>
   </v-input>
@@ -84,15 +84,15 @@ export default {
       type: Boolean,
       default: false
     },
-    selectInput: { // if false, we use the chips group instead of select input
-      type: Boolean,
-      default: true
+    inputType: { // possible values: 'select', 'chips'
+      type: String,
+      default: 'select'
     }
   },
 
   data () {
     return {
-      climbingCragList: [ // TODO ajouter les icons
+      climbingCragList: [
         { text: this.$t('models.climbs.sport_climbing'), value: 'sport_climbing' },
         { text: this.$t('models.climbs.bouldering'), value: 'bouldering' },
         { text: this.$t('models.climbs.multi_pitch'), value: 'multi_pitch' },
@@ -123,8 +123,8 @@ export default {
   },
 
   mounted () {
-    // for selectInput=false et multiple choices, select all at mount if no list passed in initial v-model
-    if (!this.selectInput && this.multiple && this.value.length === 0) {
+    // for inputType=chips et multiple choices, select all at mount if no list passed in initial v-model
+    if (this.inputType === 'chips' && this.multiple && this.value.length === 0) {
       this.selectAll()
     }
   },
