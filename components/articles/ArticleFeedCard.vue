@@ -3,7 +3,7 @@
     <v-col class="col-12 col-md-3">
       <v-img
         height="140"
-        :src="article.thumbnailCoverUrl"
+        :src="imageVariant(article.attachments.cover, { fit: 'scale-down', height: 1080, width: 1080 })"
         :alt="article.name"
       />
     </v-col>
@@ -36,10 +36,12 @@
 
 <script>
 import ArticleFooter from '@/components/articles/layouts/ArticleFooter'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 
 export default {
   name: 'ArticleFeedCard',
   components: { ArticleFooter },
+  mixins: [ImageVariantHelpers],
   props: {
     article: {
       type: Object,

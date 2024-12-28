@@ -21,30 +21,6 @@ export default class Article extends ActiveData {
     return `/articles/${this.id}/${this.slug_name}`
   }
 
-  get coverUrl () {
-    if (this.cover_url) {
-      return this.cover_url
-    } else {
-      return '/images/default-crag-banner.jpg'
-    }
-  }
-
-  get croppedCoverUrl () {
-    if (this.cover_cropped_url) {
-      return this.cover_cropped_url
-    } else {
-      return '/images/default-crag-banner.jpg'
-    }
-  }
-
-  get thumbnailCoverUrl () {
-    if (this.thumbnail_url) {
-      return this.thumbnail_url
-    } else {
-      return '/images/default-crag-banner.jpg'
-    }
-  }
-
   get Author () {
     return new Author({ attributes: this.author })
   }

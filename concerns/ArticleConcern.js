@@ -1,8 +1,9 @@
 import { DateHelpers } from '@/mixins/DateHelpers'
 import Article from '@/models/Article'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 
 export const ArticleConcern = {
-  mixins: [DateHelpers],
+  mixins: [DateHelpers, ImageVariantHelpers],
 
   data () {
     return {
@@ -13,7 +14,7 @@ export const ArticleConcern = {
   computed: {
     articleMetaImage () {
       if (this.article) {
-        return this.article.coverUrl
+        return this.imageVariant(this.article.attachments.cover, { fit: 'scale-down', width: 1920, height: 1920 })
       } else {
         return `${process.env.VUE_APP_OBLYK_APP_URL}/images/oblyk-og-image.jpg`
       }
@@ -37,17 +38,17 @@ export const ArticleConcern = {
 
   head () {
     return {
-      title: (this.article || {}).name,
+      title: this.article?.name,
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: (this.article || {}).description
+          content: this.article?.description
         },
         {
           hid: 'og:title',
           property: 'og:title',
-          content: (this.article || {}).name
+          content: this.article?.name
         },
         {
           hid: 'og:type',
@@ -57,7 +58,7 @@ export const ArticleConcern = {
         {
           hid: 'og:description',
           property: 'og:description',
-          content: (this.article || {}).description
+          content: this.article?.description
         },
         {
           hid: 'og:image',

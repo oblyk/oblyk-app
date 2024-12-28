@@ -1,6 +1,9 @@
 import GymChain from '@/models/GymChain'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 
 export const GymChainConcern = {
+  mixins: [ImageVariantHelpers],
+
   data () {
     return {
       gymChain: null
@@ -15,8 +18,8 @@ export const GymChainConcern = {
       return this.gymChain?.description
     },
     gymChainMetaImage () {
-      if (this.gymChain && this.gymChain.banner) {
-        return this.gymChain.bannerUrl
+      if (this.gymChain && this.gymChain.attachments.banner.attached) {
+        return this.imageVariant(this.gymChain.attachments.banner, { fit: 'scale-down', width: 1920, height: 1920 })
       } else {
         return `${process.env.VUE_APP_OBLYK_APP_URL}/images/oblyk-og-image.jpg`
       }

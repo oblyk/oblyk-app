@@ -17,20 +17,4 @@ export default class Author extends ActiveData {
   get path () {
     return `/authors/${this.id}`
   }
-
-  get coverUrl () {
-    if (this.cover_url) {
-      return this.cover_url
-    } else {
-      return '/images/default-crag-banner.jpg'
-    }
-  }
-
-  get thumbnailCoverUrl () {
-    if (this.thumbnail_url) {
-      return this.thumbnail_url
-    } else {
-      return '/images/default-crag-banner.jpg'
-    }
-  }
 }

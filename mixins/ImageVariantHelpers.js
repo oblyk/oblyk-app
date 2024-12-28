@@ -11,7 +11,9 @@ export const ImageVariantHelpers = {
       if (attachment.attached === false) {
         const defaultImage = {
           GymChain_banner: '/images/gym-default-banner.jpg',
-          GymChain_logo: '/svg/gym-default-logo.svg'
+          GymChain_logo: '/svg/gym-default-logo.svg',
+          Article_cover: '/images/default-crag-banner.jpg',
+          Author_cover: '/images/default-crag-banner.jpg'
         }
         return defaultImage[attachment.attachment_type]
       }

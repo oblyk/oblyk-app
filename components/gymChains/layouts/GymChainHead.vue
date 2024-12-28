@@ -3,12 +3,12 @@
     <v-img
       dark
       height="400px"
-      :lazy-src="imageVariant(gymChain.attachments.banner, { fit: 'scale-down', width: 640, height: 640 })"
-      :src="imageVariant(gymChain.attachments.banner, { fit: 'scale-down', width: 640, height: 640 })"
+      :lazy-src="imageVariant(gymChain.attachments.banner, { fit: 'scale-down', width: 720, height: 720 })"
+      :src="imageVariant(gymChain.attachments.banner, { fit: 'scale-down', width: 720, height: 720 })"
       :srcset="`
-        ${imageVariant(gymChain.attachments.banner, { fit: 'scale-down', width: 640, height: 640 })} 640w,
-        ${imageVariant(gymChain.attachments.banner, { fit: 'scale-down', width: 960, height: 960 })} 960w,
-        ${imageVariant(gymChain.attachments.banner, { fit: 'scale-down', width: 1200, height: 1200 })} 1200w`
+        ${imageVariant(gymChain.attachments.banner, { fit: 'scale-down', width: 720, height: 720 })} 640w,
+        ${imageVariant(gymChain.attachments.banner, { fit: 'scale-down', width: 1080, height: 1080 })} 960w,
+        ${imageVariant(gymChain.attachments.banner, { fit: 'scale-down', width: 1920, height: 1920 })} 1200w`
       "
       class="gym-chain-header-banner"
     >
@@ -28,7 +28,7 @@
             class="mr-3 align-self-center rounded-sm"
           >
             <v-img
-              :src="imageVariant(gymChain.attachments.logo, { fit: 'crop', width: 80, height: 80 })"
+              :src="imageVariant(gymChain.attachments.logo, { fit: 'crop', width: 100, height: 100 })"
               :alt="`logo ${gymChain.name}`"
             />
           </v-avatar>

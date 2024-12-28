@@ -5,9 +5,13 @@
       max-height="500px"
       class="article-head-img"
       gradient="to bottom, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.8) 100%"
-      :lazy-src="article.thumbnailCoverUrl"
-      :src="article.coverUrl"
-      :srcset="`${article.croppedCoverUrl} 500w, ${article.coverUrl} 600w`"
+      :lazy-src="imageVariant(article.attachments.cover, { fit: 'scale-down', width: 720, height: 720 })"
+      :src="imageVariant(article.attachments.cover, { fit: 'scale-down', width: 720, height: 720 })"
+      :srcset="`
+        ${imageVariant(article.attachments.cover, { fit: 'scale-down', width: 720, height: 720 })} 640w,
+        ${imageVariant(article.attachments.cover, { fit: 'scale-down', width: 1080, height: 1080 })} 960w,
+        ${imageVariant(article.attachments.cover, { fit: 'scale-down', width: 1920, height: 1920 })} 1200w`
+      "
     >
       <div class="article-header-title">
         <h1 class="font-weight-medium">
@@ -57,12 +61,13 @@ import { mdiComment } from '@mdi/js'
 import { DateHelpers } from '@/mixins/DateHelpers'
 import ShareBtn from '~/components/ui/ShareBtn'
 import LikeBtn from '~/components/forms/LikeBtn'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 const ArticleActionMenu = () => import('@/components/articles/forms/ArticleActionMenu')
 
 export default {
   name: 'ArticleHead',
   components: { LikeBtn, ShareBtn, ArticleActionMenu },
-  mixins: [DateHelpers],
+  mixins: [DateHelpers, ImageVariantHelpers],
   props: {
     article: {
       type: Object,

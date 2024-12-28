@@ -38,7 +38,10 @@
         size="115"
         color="grey"
       >
-        <v-img :alt="article.author.name" :src="article.Author.coverUrl" />
+        <v-img
+          :alt="article.author.name"
+          :src="imageVariant(article.author.attachments.cover, { fit: 'crop', width: 200, height: 200 })"
+        />
       </v-avatar>
       <div class="px-3 py-3">
         <markdown-text
@@ -53,11 +56,13 @@
 
 <script>
 import { mdiPencil, mdiImageEdit, mdiFountainPenTip } from '@mdi/js'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 const MarkdownText = () => import('@/components/ui/MarkdownText')
 
 export default {
   name: 'AboutAuthorCard',
   components: { MarkdownText },
+  mixins: [ImageVariantHelpers],
   props: {
     article: {
       type: Object,
