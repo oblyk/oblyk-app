@@ -1696,13 +1696,13 @@ export default {
   }
 }
 .leaflet-container a.leaflet-popup-close-button {
-  padding-top: 6px;
+  padding-top: 0;
   padding-right: 0;
   padding-left: 0;
   text-align: center;
   width: 26px;
   height: 26px;
-  background-color: white;
+  background-color: white !important;
   border-radius: 50%;
   color: black;
   margin-top: 3px;

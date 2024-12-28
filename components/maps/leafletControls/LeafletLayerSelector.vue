@@ -1,11 +1,15 @@
 <template>
   <div class="leaflet-bar">
-    <a v-if="!showLayersSelector" @click.prevent="showLayersSelector = true">
+    <a
+      v-if="!showLayersSelector"
+      @click.stop="showLayersSelector = true"
+    >
       <v-icon light small>{{ mdiLayers }}</v-icon>
     </a>
     <div
       v-if="showLayersSelector"
       class="leaflet-customer-control"
+      @click.stop
     >
       <v-radio-group
         v-model="layerIndex"

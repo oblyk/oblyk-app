@@ -1,11 +1,15 @@
 <template>
   <div class="leaflet-bar">
-    <a v-if="!showLegend" @click.prevent="showLegend = true">
+    <a v-if="!showLegend" @click.stop="showLegend = true">
       <v-icon light small>
         {{ mdiMapLegend }}
       </v-icon>
     </a>
-    <div v-if="showLegend" class="leaflet-customer-control">
+    <div
+      v-if="showLegend"
+      class="leaflet-customer-control"
+      @click.stop
+    >
       <ul>
         <li class="oblyk-legend-boulder">
           {{ $t('components.map.legend.boulder') }}
