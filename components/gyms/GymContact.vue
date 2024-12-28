@@ -139,10 +139,10 @@
           :to="gymChain.path"
         >
           <v-avatar
-            v-if="gymChain.logo"
+            v-if="gymChain.attachments.logo.attached"
             left
           >
-            <v-img :src="gymChain.thumbnailLogoUrl" />
+            <v-img :src="imageVariant(gymChain.attachments.logo, { fit: 'scale-down', width: 40, height: 40, quality: 100 })" />
           </v-avatar>
           {{ gymChain.name }}
         </v-chip>
@@ -214,10 +214,11 @@ import {
 } from '@mdi/js'
 import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
 import GymChain from '~/models/GymChain'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 
 export default {
   name: 'GymContact',
-  mixins: [GymRolesHelpers],
+  mixins: [GymRolesHelpers, ImageVariantHelpers],
   props: {
     gym: {
       type: Object,

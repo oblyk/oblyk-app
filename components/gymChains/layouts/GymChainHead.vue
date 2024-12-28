@@ -3,9 +3,13 @@
     <v-img
       dark
       height="400px"
-      :lazy-src="gymChain.thumbnailBannerUrl"
-      :src="gymChain.croppedBannerUrl"
-      :srcset="`${gymChain.croppedBannerUrl} 500w, ${gymChain.bannerUrl} 600w`"
+      :lazy-src="imageVariant(gymChain.attachments.banner, { fit: 'scale-down', width: 640, height: 640 })"
+      :src="imageVariant(gymChain.attachments.banner, { fit: 'scale-down', width: 640, height: 640 })"
+      :srcset="`
+        ${imageVariant(gymChain.attachments.banner, { fit: 'scale-down', width: 640, height: 640 })} 640w,
+        ${imageVariant(gymChain.attachments.banner, { fit: 'scale-down', width: 960, height: 960 })} 960w,
+        ${imageVariant(gymChain.attachments.banner, { fit: 'scale-down', width: 1200, height: 1200 })} 1200w`
+      "
       class="gym-chain-header-banner"
     >
       <template #placeholder>
@@ -24,7 +28,7 @@
             class="mr-3 align-self-center rounded-sm"
           >
             <v-img
-              :src="gymChain.thumbnailLogoUrl"
+              :src="imageVariant(gymChain.attachments.logo, { fit: 'crop', width: 80, height: 80 })"
               :alt="`logo ${gymChain.name}`"
             />
           </v-avatar>
@@ -50,10 +54,12 @@
 
 <script>
 import ShareBtn from '~/components/ui/ShareBtn'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 
 export default {
   name: 'GymChainHead',
   components: { ShareBtn },
+  mixins: [ImageVariantHelpers],
   props: {
     gymChain: {
       type: Object,
