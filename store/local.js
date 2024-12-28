@@ -1,7 +1,7 @@
 // States
-export const state = {
+export const state = () => ({
   lang: 'fr'
-}
+})
 
 // Getters
 export const getters = {

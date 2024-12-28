@@ -204,7 +204,10 @@ export default {
     lazy: {
       skipNuxtState: true
     },
-    langDir: 'lang/'
+    langDir: 'lang/',
+    vueI18n: {
+      silentFallbackWarn: true
+    }
   },
 
   localforage: {

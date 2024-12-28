@@ -1,7 +1,7 @@
 // States
-export const state = {
+export const state = () => ({
   contestTokens: {}
-}
+})
 
 // Getters
 export const getters = {
