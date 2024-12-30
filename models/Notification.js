@@ -24,10 +24,10 @@ export default class Notification extends ActiveData {
     if (['ConversationMessage', 'Like', 'Comment'].includes(this.notifiable_type)) { return new User({ attributes: this.parent_object }) }
   }
 
-  get thumbnailImageUrl () {
-    if (this.notifiable_type === 'ConversationMessage') { return this.Parent.thumbnailAvatarUrl }
-    if (this.notifiable_type === 'Like') { return this.Parent.thumbnailAvatarUrl }
-    if (this.notifiable_type === 'Comment') { return this.Parent.thumbnailAvatarUrl }
-    if (this.notifiable_type === 'User') { return this.Notifiable.thumbnailAvatarUrl }
+  get attachmentImage () {
+    if (this.notifiable_type === 'ConversationMessage') { return this.Parent.attachments.avatar }
+    if (this.notifiable_type === 'Like') { return this.Parent.attachments.avatar }
+    if (this.notifiable_type === 'Comment') { return this.Parent.attachments.avatar }
+    if (this.notifiable_type === 'User') { return this.Notifiable.attachments.avatar }
   }
 }

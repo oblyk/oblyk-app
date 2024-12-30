@@ -4,8 +4,10 @@
     :to="notificationLink"
     @click="markedAsRead()"
   >
-    <v-list-item-avatar>
-      <v-img :src="notification.thumbnailImageUrl" />
+    <v-list-item-avatar
+      v-if="notification.attachmentImage.attached"
+    >
+      <v-img :src="imageVariant(notification.attachmentImage, { fit: 'crop', height: 100, width: 100 })" />
     </v-list-item-avatar>
 
     <v-list-item-content>
@@ -39,10 +41,11 @@ import {
 } from '@mdi/js'
 import { DateHelpers } from '@/mixins/DateHelpers'
 import NotificationApi from '~/services/oblyk-api/NotificationApi'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 
 export default {
   name: 'NotificationItemList',
-  mixins: [DateHelpers],
+  mixins: [DateHelpers, ImageVariantHelpers],
   props: {
     notification: {
       type: Object,
