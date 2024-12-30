@@ -8,8 +8,8 @@
       size="60"
     >
       <v-img
-        v-if="contest.banner"
-        :src="contest.thumbnailBannerUrl"
+        v-if="contest.attachments.banner.attached"
+        :src="imageVariant(contest.attachments.banner, { fit: 'crop', width: 100, height: 100 })"
         class="rounded-sm"
       />
       <v-icon v-else>
@@ -51,10 +51,11 @@
 <script>
 import { mdiTrophy } from '@mdi/js'
 import { DateHelpers } from '~/mixins/DateHelpers'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 
 export default {
   name: 'ContestItemList',
-  mixins: [DateHelpers],
+  mixins: [DateHelpers, ImageVariantHelpers],
   props: {
     contest: {
       type: Object,

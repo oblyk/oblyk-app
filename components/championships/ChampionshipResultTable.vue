@@ -50,7 +50,7 @@
                 <div class="d-flex">
                   <div class="pt-1">
                     <v-avatar size="28">
-                      <v-img :src="contest.thumbnailBannerUrl" />
+                      <v-img :src="imageVariant(contest.attachments.banner, { fit: 'crop', width: 100, height: 100 })" />
                     </v-avatar>
                   </div>
                   <div class="ml-auto flex-grow-1 text-center">
@@ -111,9 +111,11 @@
 import { mdiRefresh } from '@mdi/js'
 import ChampionshipApi from '~/services/oblyk-api/ChampionshipApi'
 import Contest from '~/models/Contest'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 
 export default {
   name: 'ChampionshipResultTable',
+  mixins: [ImageVariantHelpers],
 
   props: {
     championship: {

@@ -56,8 +56,8 @@
                     size="60"
                   >
                     <v-img
-                      v-if="contest.banner"
-                      :src="contest.thumbnailBannerUrl"
+                      v-if="contest.attachments.banner.attached"
+                      :src="imageVariant(contest.attachments.banner, { fit: 'crop', width: 100, height: 100 })"
                       class="rounded-sm"
                     />
                     <v-icon v-else>
@@ -337,9 +337,11 @@ import {
 import ContestApi from '~/services/oblyk-api/ContestApi'
 import Contest from '~/models/Contest'
 import ContestRankerParticipant from '~/components/contests/ContestRankerParticipant'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 
 export default {
   components: { ContestRankerParticipant },
+  mixins: [ImageVariantHelpers],
   meta: { orphanRoute: true },
   layout: 'contest',
 

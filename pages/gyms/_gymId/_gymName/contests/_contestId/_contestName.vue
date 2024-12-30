@@ -13,8 +13,13 @@
             height="400px"
             max-height="400px"
             gradient="to bottom, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.8) 100%"
-            :lazy-src="contest.thumbnailBannerUrl"
-            :src="contest.bannerUrl"
+            :lazy-src="imageVariant(contest.attachments.banner, { fit: 'scale-down', width: 720, height: 720 })"
+            :src="imageVariant(contest.attachments.banner, { fit: 'scale-down', width: 720, height: 720 })"
+            :srcset="`
+              ${imageVariant(contest.attachments.banner, { fit: 'scale-down', width: 720, height: 720 })} 640w,
+              ${imageVariant(contest.attachments.banner, { fit: 'scale-down', width: 1080, height: 1080 })} 960w,
+              ${imageVariant(contest.attachments.banner, { fit: 'scale-down', width: 1920, height: 1920 })} 1200w`
+            "
             class="rounded"
           >
             <template #placeholder>
@@ -99,15 +104,16 @@
 
 <script>
 import { mdiInformation, mdiHumanGreeting, mdiPodium } from '@mdi/js'
-import AppFooter from '~/components/layouts/AppFooter.vue'
 import { ContestConcern } from '~/concerns/ContestConcern'
 import { DateHelpers } from '~/mixins/DateHelpers'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
+import AppFooter from '~/components/layouts/AppFooter'
 import ContestParticipantApi from '~/services/oblyk-api/ContestParticipantApi'
 
 export default {
   components: { AppFooter },
   meta: { orphanRoute: true },
-  mixins: [ContestConcern, DateHelpers],
+  mixins: [ContestConcern, DateHelpers, ImageVariantHelpers],
   layout: 'contest',
 
   data () {

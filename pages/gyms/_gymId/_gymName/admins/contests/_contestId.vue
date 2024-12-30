@@ -325,9 +325,9 @@
           <v-sheet class="pa-2 rounded full-height d-flex flex-column">
             <div>
               <v-img
-                v-if="contest.banner"
-                :lazy-src="contest.thumbnailBannerUrl"
-                :src="contest.bannerUrl"
+                v-if="contest.attachments.banner.attached"
+                :lazy-src="imageVariant(contest.attachments.banner, { fit: 'scale-down', width: 720, height: 720 })"
+                :src="imageVariant(contest.attachments.banner, { fit: 'scale-down', width: 1920, height: 1920 })"
                 class="rounded-sm"
               >
                 <template #placeholder>
@@ -461,6 +461,7 @@ import ContestBannerForm from '~/components/contests/forms/ContestBannerForm.vue
 import ContestApi from '~/services/oblyk-api/ContestApi'
 import ToolApi from '~/services/oblyk-api/ToolApi'
 import ContestTombola from '~/components/contests/ContestTombola.vue'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 
 export default {
   components: {
@@ -472,7 +473,7 @@ export default {
     Spinner
   },
   meta: { orphanRoute: true },
-  mixins: [ContestConcern, DateHelpers],
+  mixins: [ContestConcern, DateHelpers, ImageVariantHelpers],
   middleware: ['auth', 'gymAdmin'],
 
   data () {

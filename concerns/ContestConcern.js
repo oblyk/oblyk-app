@@ -1,6 +1,9 @@
 import Contest from '~/models/Contest'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 
 export const ContestConcern = {
+  mixins: [ImageVariantHelpers],
+
   data () {
     return {
       contest: null
@@ -21,8 +24,8 @@ export const ContestConcern = {
       )
     },
     contestMetaImage () {
-      if (this.contest && this.contest.banner) {
-        return this.contest.bannerUrl
+      if (this.contest && this.contest.attachments.banner.attached) {
+        return this.imageVariant(this.contest.attachments.banner, { fit: 'scale-down', width: 1920, height: 1920 })
       } else if (this.contest && this.contest?.gym && this.contest?.gym?.banner) {
         return this.contest.Gym.bannerUrl
       } else {
