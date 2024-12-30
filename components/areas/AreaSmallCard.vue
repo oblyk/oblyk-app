@@ -7,6 +7,7 @@
     >
       <v-list-item three-line>
         <v-list-item-avatar
+          v-if="area.photo"
           size="70"
         >
           <v-avatar
@@ -14,7 +15,7 @@
             size="70"
             tile
           >
-            <v-img :src="area.thumbnailCoverUrl" />
+            <v-img :src="imageVariant(area.photo.attachments.picture, { fit: 'crop', width: 100, height: 100 })" />
           </v-avatar>
         </v-list-item-avatar>
         <v-list-item-content>
@@ -39,8 +40,11 @@
 </template>
 
 <script>
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
+
 export default {
   name: 'AreaSmallCard',
+  mixins: [ImageVariantHelpers],
   props: {
     area: {
       type: Object,

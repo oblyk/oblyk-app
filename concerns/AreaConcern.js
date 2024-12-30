@@ -1,6 +1,9 @@
 import Area from '@/models/Area'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 
 export const AreaConcern = {
+  mixins: [ImageVariantHelpers],
+
   data () {
     return {
       area: null
@@ -15,8 +18,8 @@ export const AreaConcern = {
       return this.$t('metaDescription', { name: this.area?.name })
     },
     areaMetaImage () {
-      if (this.area && this.area.photo) {
-        return this.area.coverUrl
+      if (this.area && this.area.photo.attachments.picture.attached) {
+        return this.imageVariant(this.area.photo.attachments.picture, { fit: 'scale-down', width: 1920, height: 1920 })
       } else {
         return `${process.env.VUE_APP_OBLYK_APP_URL}/images/oblyk-og-image.jpg`
       }

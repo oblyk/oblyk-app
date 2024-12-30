@@ -3,9 +3,13 @@
     <v-img
       dark
       height="400px"
-      :lazy-src="area.thumbnailCoverUrl"
-      :src="croppedSrc"
-      :srcset="`${croppedSrc} 500w, ${largeSrc} 600w`"
+      :lazy-src="imageVariant(picture, { fit: 'scale-down', width: 720, height: 720 })"
+      :src="imageVariant(picture, { fit: 'scale-down', width: 720, height: 720 })"
+      :srcset="`
+        ${imageVariant(picture, { fit: 'scale-down', width: 720, height: 720 })} 640w,
+        ${imageVariant(picture, { fit: 'scale-down', width: 1080, height: 1080 })} 960w,
+        ${imageVariant(picture, { fit: 'scale-down', width: 1920, height: 1920 })} 1200w`
+      "
       class="area-header-banner"
     >
       <div
@@ -67,11 +71,13 @@
 
 <script>
 import { mdiPencil, mdiDotsVertical } from '@mdi/js'
-import ShareBtn from '~/components/ui/ShareBtn.vue'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
+import ShareBtn from '~/components/ui/ShareBtn'
 
 export default {
   name: 'AreaHead',
   components: { ShareBtn },
+  mixins: [ImageVariantHelpers],
   props: {
     area: {
       type: Object,
@@ -81,8 +87,7 @@ export default {
 
   data () {
     return {
-      croppedSrc: this.area.croppedCoverUrl,
-      largeSrc: this.area.coverUrl,
+      picture: this.area.photo.attachments.picture,
 
       mdiPencil,
       mdiDotsVertical
@@ -90,20 +95,13 @@ export default {
   },
 
   mounted () {
-    this.$root.$on('updateAreaBannerSrc', (src) => {
-      this.updateAreaBannerSrc(src)
+    this.$root.$on('updateAreaBannerSrc', (picture) => {
+      this.picture = picture
     })
   },
 
   beforeDestroy () {
     this.$root.$off('updateAreaBannerSrc')
-  },
-
-  methods: {
-    updateAreaBannerSrc (src) {
-      this.croppedSrc = src
-      this.largeSrc = src
-    }
   }
 }
 </script>

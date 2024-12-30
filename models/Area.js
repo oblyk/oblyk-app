@@ -17,28 +17,4 @@ export default class Area extends ActiveData {
   get path () {
     return `/areas/${this.id}/${this.slug_name}`
   }
-
-  get coverUrl () {
-    if ((this.photo || {}).url) {
-      return this.photo.url
-    } else {
-      return '/images/default-crag-banner.jpg'
-    }
-  }
-
-  get croppedCoverUrl () {
-    if ((this.photo || {}).cropped_url) {
-      return this.photo.cropped_url
-    } else {
-      return '/images/default-crag-banner.jpg'
-    }
-  }
-
-  get thumbnailCoverUrl () {
-    if ((this.photo || {}).thumbnail_url) {
-      return this.photo.thumbnail_url
-    } else {
-      return '/images/default-crag-banner.jpg'
-    }
-  }
 }
