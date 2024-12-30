@@ -6,19 +6,23 @@
       class="hoverable-card"
       :to="linkable ? guideBookPaper.path : null"
     >
-      <v-list-item three-line>
+      <v-list-item
+        :two-line="small"
+        :three-line="!small"
+      >
         <v-list-item-avatar
           rounded="0"
-          size="70"
+          :size="small ? 40 : 70"
+          :class="small ? 'mt-1 mb-1' : ''"
         >
-          <v-img
-            :src="guideBookPaper.thumbnailCoverUrl"
-            contain
-            max-width="70px"
-            max-height="70px"
-          />
+          <v-avatar tile :size="small ? 40 : 70">
+            <v-img
+              :src="guideBookPaper.thumbnailCoverUrl"
+              contain
+            />
+          </v-avatar>
         </v-list-item-avatar>
-        <v-list-item-content>
+        <v-list-item-content :class="small ? 'pt-0 pb-0' : ''">
           <v-list-item-title class="font-weight-bold">
             <span class="vertical-align-middle">
               <v-chip
@@ -38,7 +42,7 @@
               {{ guideBookPaper.name }}
             </span>
           </v-list-item-title>
-          <v-list-item-subtitle class="mt-n3 mb-4 text-truncate">
+          <v-list-item-subtitle class="text-truncate">
             <v-alert
               dense
               text
@@ -84,6 +88,10 @@ export default {
       type: Boolean,
       required: false,
       default: true
+    },
+    small: {
+      type: Boolean,
+      default: false
     }
   },
 

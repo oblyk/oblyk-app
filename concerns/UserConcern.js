@@ -1,6 +1,9 @@
 import User from '@/models/User'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 
 export const UserConcern = {
+  mixins: [ImageVariantHelpers],
+
   data () {
     return {
       user: null
@@ -15,8 +18,8 @@ export const UserConcern = {
       return this.$t('metaDescription', { name: this.user?.first_name })
     },
     userMetaImage () {
-      if (this.user && this.user.banner) {
-        return this.user.bannerUrl
+      if (this.user && this.user.attachments.banner) {
+        return this.imageVariant(this.user.attachments.banner, { fit: 'scale-down', height: 1920, width: 1920 })
       } else {
         return `${process.env.VUE_APP_OBLYK_APP_URL}/images/oblyk-og-image.jpg`
       }

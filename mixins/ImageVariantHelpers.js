@@ -14,6 +14,8 @@ export const ImageVariantHelpers = {
           GymChain_logo: '/svg/gym-default-logo.svg',
           Article_cover: '/images/default-crag-banner.jpg',
           Author_cover: '/images/default-crag-banner.jpg',
+          User_banner: '/images/user-default-banner.jpg',
+          User_avatar: '/svg/user-default-avatar.svg',
           GuideBookPaper_cover: '/svg/paper-guide-book-default.svg',
           Gym_logo: '/svg/gym-default-logo.svg',
           Gym_banner: '/images/gym-default-banner.jpg'

@@ -3,9 +3,13 @@
     <v-img
       dark
       gradient="to bottom, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.8) 100%"
-      :src="user.croppedBannerUrl"
-      :srcset="`${user.croppedBannerUrl} 500w, ${user.bannerUrl} 600w`"
-      :lazy-src="user.thumbnailBannerUrl"
+      :lazy-src="imageVariant(user.attachments.banner, { fit: 'scale-down', width: 720, height: 720 })"
+      :src="imageVariant(user.attachments.banner, { fit: 'scale-down', width: 720, height: 720 })"
+      :srcset="`
+        ${imageVariant(user.attachments.banner, { fit: 'scale-down', width: 720, height: 720 })} 640w,
+        ${imageVariant(user.attachments.banner, { fit: 'scale-down', width: 1080, height: 1080 })} 960w,
+        ${imageVariant(user.attachments.banner, { fit: 'scale-down', width: 1920, height: 1920 })} 1200w`
+      "
       :height="200"
       class="rounded align-end"
     >
@@ -14,7 +18,7 @@
           size="48"
         >
           <v-img
-            :src="user.avatarUrl"
+            :src="imageVariant(user.attachments.avatar, { fit: 'crop', width: 100, height: 100 })"
             :alt="`logo ${user.full_name}`"
           />
         </v-avatar>
@@ -47,12 +51,15 @@
     </div>
   </div>
 </template>
+
 <script>
 import MarkdownText from '~/components/ui/MarkdownText'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 
 export default {
   name: 'UserCard',
   components: { MarkdownText },
+  mixins: [ImageVariantHelpers],
   props: {
     user: {
       type: Object,

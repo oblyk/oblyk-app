@@ -40,7 +40,7 @@
             elevation="0"
           >
             <v-avatar size="40">
-              <v-img :src="climber.thumbnailAvatarUrl" />
+              <v-img :src="imageVariant(climber.attachments.avatar, { fit: 'crop', width: 100, height: 100 })" />
             </v-avatar>
             <p class="text-truncate mb-0">
               {{ climber.first_name }}
@@ -89,9 +89,11 @@
 import { mdiAccountGroup, mdiMap } from '@mdi/js'
 import PartnerApi from '~/services/oblyk-api/PartnerApi'
 import User from '@/models/User'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 
 export default {
   name: 'ClimbersAround',
+  mixins: [ImageVariantHelpers],
   props: {
     latitude: {
       type: [Number, String],

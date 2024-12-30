@@ -8,10 +8,7 @@
       :to="linkable ? user.userPath : null"
       @click="callback ? callback(user) : null"
     >
-      <v-list-item
-        :two-line="small"
-        :three-line="!small"
-      >
+      <v-list-item two-line>
         <v-list-item-avatar
           :size="small ? 40 : 70"
           :class="small ? 'mt-1 mb-1' : ''"
@@ -21,7 +18,7 @@
             :size="small ? 40 : 70"
             tile
           >
-            <v-img :src="user.thumbnailAvatarUrl" />
+            <v-img :src="imageVariant(user.attachments.avatar, { fit: 'crop', width: 100, height: 100 })" />
           </v-avatar>
         </v-list-item-avatar>
         <v-list-item-content :class="small ? 'pt-0 pb-0' : ''">
@@ -30,6 +27,9 @@
               {{ user.full_name }}
             </span>
           </v-list-item-title>
+          <v-list-item-subtitle>
+            @{{ user.slug_name }}
+          </v-list-item-subtitle>
         </v-list-item-content>
         <v-list-item-action
           v-if="subscribable"
@@ -54,10 +54,12 @@
 <script>
 import { mdiAccountOutline, mdiAccount } from '@mdi/js'
 import SubscribeBtn from '@/components/forms/SubscribeBtn'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 
 export default {
   name: 'UserSmallCard',
   components: { SubscribeBtn },
+  mixins: [ImageVariantHelpers],
   props: {
     user: {
       type: Object,

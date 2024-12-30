@@ -6,7 +6,6 @@ import PlaceOfSale from '@/models/PlaceOfSale'
 import CragSector from '@/models/CragSector'
 import Park from '@/models/Park'
 import Approach from '@/models/Approach'
-import User from '@/models/User'
 import RockBar from '~/models/RockBar'
 import GuideBookPaper from '~/models/GuideBookPaper'
 
@@ -30,8 +29,6 @@ export const MapPopupHelpers = {
         return this.parkPopup(data)
       } else if (type === 'Approach') {
         return this.approachPopup(data)
-      } else if (type === 'PartnerUser') {
-        return this.userPartnerPopup(data)
       }
     },
 
@@ -329,71 +326,6 @@ export const MapPopupHelpers = {
         </div>
       `
       popup.querySelector('button').addEventListener('click', () => { this.$router.push(`${approach.path}/edit`) })
-
-      return popup
-    },
-
-    userPartnerPopup (data) {
-      const user = new User({ attributes: data })
-
-      let genreAndAge = null
-      if (user.genre) {
-        genreAndAge = this.$t(`models.genres.${user.genre}`)
-      }
-
-      if (user.age) {
-        if (genreAndAge !== null) {
-          genreAndAge += `, ${user.age} ans`
-        } else {
-          genreAndAge = `${user.age} ans`
-        }
-      }
-
-      const level = `
-      ${this.$t('common.from')}
-      ${this.gradeValueToText(user.grade_min) || '1a'}
-      ${this.$t('common.to').toLowerCase()}
-      ${this.gradeValueToText(user.grade_max) || '∞'}
-      `
-      const lastActivity = this.$t('date.lastActivity', { date: this.dateFromNow(user.last_activity_at) })
-
-      const popup = document.createElement('div')
-      popup.innerHTML = `
-        <div class="map-popup-cover" style="background-image: url(${user.thumbnailBannerUrl})">
-          <div class="user-map-popup-name-and-avatar">
-             <img alt="${user.full_name}" src="${user.avatarUrl}" class="user-map-popup-avatar" />
-             <span class="user-map-popup-name">
-                <strong>${user.full_name}</strong><br>
-                ${genreAndAge}
-             </span>
-          </div>
-        </div>
-        <table class="map-popup-information-table">
-          <tr>
-            <td colspan="2" class="map-popup-information-bio">${user.description}</td>
-          </tr>
-          <tr>
-            <th>${this.$t('common.practice')}</th>
-            <td>${user.climbingTypes.map((climb) => { return this.$t(`models.climbs.${climb}`) }).join(', ')}</td>
-          </tr>
-          <tr>
-            <th>${this.$t('common.level')}</th>
-            <td>${level}</td>
-          </tr>
-        </table>
-        <p class="user-map-popup-last-activity-at">
-          <small>${lastActivity}</small>
-        </p>
-        <div class="map-popup-link-area">
-          <button>${this.$t('actions.see')}</button>
-        </div>
-      `
-
-      if (this.$auth.loggedIn) {
-        popup.querySelector('button').addEventListener('click', () => { this.$router.push(user.userPath) })
-      } else {
-        popup.querySelector('button').addEventListener('click', () => { this.$router.push(`/sign-up?redirect_to=${user.userPath}&partner_request=true&partner_name=${user.full_name}`) })
-      }
 
       return popup
     }

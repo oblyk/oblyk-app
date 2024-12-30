@@ -37,10 +37,11 @@
 import User from '@/models/User'
 import { DateHelpers } from '@/mixins/DateHelpers'
 import ConversationApi from '~/services/oblyk-api/ConversationApi'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 
 export default {
   name: 'ConversationItemList',
-  mixins: [DateHelpers],
+  mixins: [DateHelpers, ImageVariantHelpers],
   props: {
     conversation: {
       type: Object,
@@ -79,7 +80,7 @@ export default {
       const avatarSources = []
       for (const conversationUser of this.conversation.conversation_users) {
         const user = new User({ attributes: conversationUser })
-        if (user.uuid !== this.$auth.user.uuid) { avatarSources.push(user.thumbnailAvatarUrl) }
+        if (user.uuid !== this.$auth.user.uuid) { avatarSources.push(this.imageVariant(user.attachments.avatar, { fit: 'crop', width: 100, height: 100 })) }
         if (avatarSources.length === 2) { break }
       }
       return avatarSources

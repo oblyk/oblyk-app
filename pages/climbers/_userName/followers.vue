@@ -9,7 +9,11 @@
           :key="`follower-${index}`"
           class="col-12 col-md-6 col-lg-4"
         >
-          <user-small-card class="mb-2" :user="userToObject(follower)" />
+          <user-small-card
+            class="mb-2"
+            :user="userToObject(follower)"
+            small
+          />
         </v-col>
       </v-row>
 

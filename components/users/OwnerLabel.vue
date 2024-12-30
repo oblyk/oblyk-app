@@ -1,11 +1,11 @@
 <template>
   <div class="text--disabled d-flex">
     <v-avatar
-      v-if="user.avatar_thumbnail_url"
+      v-if="user.attachments.avatar.attached"
       size="30"
       class="mr-3 align-self-center"
     >
-      <v-img :src="user.thumbnailAvatarUrl" />
+      <v-img :src="imageVariant(user.attachments.avatar, { fit: 'crop', height: 50, width: 50 })" />
     </v-avatar>
     <div>
       <nuxt-link
@@ -85,10 +85,11 @@
 import { mdiPencil, mdiDelete, mdiFlag, mdiDotsVertical } from '@mdi/js'
 import { DateHelpers } from '@/mixins/DateHelpers'
 import User from '@/models/User'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 
 export default {
   name: 'OwnerLabel',
-  mixins: [DateHelpers],
+  mixins: [DateHelpers, ImageVariantHelpers],
 
   props: {
     owner: {

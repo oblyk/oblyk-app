@@ -26,50 +26,6 @@ export default class User extends ActiveData {
     return this.userPath
   }
 
-  get avatarUrl () {
-    if (this.avatar) {
-      return this.avatar
-    } else {
-      return '/svg/user-default-avatar.svg'
-    }
-  }
-
-  get bannerUrl () {
-    if (this.banner) {
-      return this.banner
-    } else {
-      return '/images/user-default-banner.jpg'
-    }
-  }
-
-  get croppedBannerUrl () {
-    if (this.banner_cropped_url) {
-      return this.banner_cropped_url
-    } else {
-      return '/images/user-default-banner.jpg'
-    }
-  }
-
-  get thumbnailBannerUrl () {
-    if (this.banner_thumbnail_url) {
-      return this.banner_thumbnail_url
-    } else {
-      return '/images/user-default-banner.jpg'
-    }
-  }
-
-  get thumbnailAvatarUrl () {
-    if (this.avatar_thumbnail_url) {
-      return this.avatar_thumbnail_url
-    } else {
-      return '/markers/user-marker-avatar.svg'
-    }
-  }
-
-  get haveAvatar () {
-    return (this.avatar)
-  }
-
   get climbingTypes () {
     const list = []
     if (this.sport_climbing) { list.push('sport_climbing') }

@@ -4,12 +4,16 @@
       dark
       class="user-header-banner"
       gradient="to bottom, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.8) 100%"
-      :src="user.croppedBannerUrl"
-      :srcset="`${user.croppedBannerUrl} 500w, ${user.bannerUrl} 600w`"
-      :lazy-src="user.thumbnailBannerUrl"
+      :lazy-src="imageVariant(user.attachments.banner, { fit: 'scale-down', width: 720, height: 720 })"
+      :src="imageVariant(user.attachments.banner, { fit: 'scale-down', width: 720, height: 720 })"
+      :srcset="`
+        ${imageVariant(user.attachments.banner, { fit: 'scale-down', width: 720, height: 720 })} 640w,
+        ${imageVariant(user.attachments.banner, { fit: 'scale-down', width: 1080, height: 1080 })} 960w,
+        ${imageVariant(user.attachments.banner, { fit: 'scale-down', width: 1920, height: 1920 })} 1200w`
+      "
     >
       <div
-        v-if="itsMe()"
+        v-if="itsMe"
         class="user-header-banner-action"
       >
         <v-btn
@@ -21,25 +25,26 @@
           :title="$t('actions.changeBanner')"
         >
           <v-icon small>
-            {{ mdiPanorama }}
+            {{ mdiImageEdit }}
           </v-icon>
         </v-btn>
       </div>
     </v-img>
-    <div class="user-header-title">
-      <div class="float-left user-header-avatar-area">
+    <div class="user-header-title d-flex">
+      <div class="user-header-avatar-area">
         <v-avatar
           size="100"
           class="user-header-avatar"
           @click="avatarPictureDialog = true"
         >
           <v-img
-            :src="user.avatarUrl"
+            :lazy-src="imageVariant(user.attachments.avatar, { fit: 'crop', width: 50, height: 50 })"
+            :src="imageVariant(user.attachments.avatar, { fit: 'crop', width: 1080, height: 1080 })"
             :alt="`logo ${user.full_name}`"
           />
         </v-avatar>
         <div
-          v-if="itsMe()"
+          v-if="itsMe"
           class="user-header-avatar-action"
         >
           <v-btn
@@ -51,74 +56,89 @@
             :to="`${user.currentUserPath}/settings/avatar`"
           >
             <v-icon small>
-              {{ mdiAccountCircle }}
+              {{ mdiImageEdit }}
             </v-icon>
           </v-btn>
         </div>
       </div>
-      <h1>
-        {{ user.full_name }}
-        <v-btn
-          v-if="itsMe()"
-          dark
-          icon
-          small
-          class="ml-2 mb-2 black-btn-icon --with-border"
-          :title="$t('actions.editMyProfile')"
-          :to="`${user.currentUserPath}/settings/general`"
-        >
-          <v-icon
-            small
+      <div>
+        <h1>
+          {{ user.full_name }}
+        </h1>
+        <div class="mt-n1">
+          <small class="text--disabled">
+            @{{ user.slug_name }}
+          </small>
+          <v-menu v-if="itsMe">
+            <template #activator="{ on, attrs }">
+              <v-btn
+                icon
+                x-small
+                v-bind="attrs"
+                v-on="on"
+              >
+                <v-icon small>
+                  {{ mdiDotsVertical }}
+                </v-icon>
+              </v-btn>
+            </template>
+            <v-list>
+              <v-list-item :to="`${user.userPath}`">
+                <v-list-item-title>
+                  {{ $t('components.user.seeMyPublicProfile') }}
+                </v-list-item-title>
+              </v-list-item>
+              <v-divider />
+              <v-list-item :to="`${user.currentUserPath}/settings/general`">
+                <v-list-item-title>
+                  {{ $t('actions.editMyProfile') }}
+                </v-list-item-title>
+              </v-list-item>
+              <v-list-item :to="`${user.currentUserPath}/settings/avatar`">
+                <v-list-item-title>
+                  {{ $t('actions.changeAvatar') }}
+                </v-list-item-title>
+              </v-list-item>
+              <v-list-item :to="`${user.currentUserPath}/settings/banner`">
+                <v-list-item-title>
+                  {{ $t('actions.changeBanner') }}
+                </v-list-item-title>
+              </v-list-item>
+            </v-list>
+          </v-menu>
+
+          <v-btn
+            text
+            x-small
+            :to="itsMe ? `${user.currentUserPath}/community/followers` : `${user.userPath}/followers`"
           >
-            {{ mdiPencil }}
-          </v-icon>
-        </v-btn>
-        <v-btn
-          text
-          class="mb-2 d-none d-md-inline-flex"
-          :to="`${itsMe() ? `${user.currentUserPath}/community` : user.userPath}/followers`"
-        >
-          <span v-if="user.followers_count > 0">
-            {{ user.followers_count }} abonné·es
-          </span>
-          <span v-else>
-            Abonné·es
-          </span>
-        </v-btn>
-      </h1>
-      <p
-        v-if="user.followers_count > 0"
-        class="subtitle-1 d-md-none mt-n2 mb-0"
-      >
-        <nuxt-link
-          :to="`${itsMe() ? `${user.currentUserPath}/community` : user.userPath}/followers`"
-          class="discrete-link"
-        >
-          {{ user.followers_count }} abonné·es
-        </nuxt-link>
-      </p>
+            {{ $tc('common.followerCount', user.followers_count, { count: user.followers_count }) }}
+          </v-btn>
+        </div>
+      </div>
     </div>
 
     <v-dialog
       v-model="avatarPictureDialog"
-      max-width="290"
+      max-width="500"
     >
       <v-img
         class="radius rounded"
-        :src="user.avatarUrl"
-        :alt="`logo ${user.full_name}`"
+        :src="imageVariant(user.attachments.avatar, { fit: 'scale-down', width: 1080, height: 1080 })"
+        :alt="`avatar ${user.full_name}`"
       />
     </v-dialog>
   </div>
 </template>
 
 <script>
-import { mdiAccountOutline, mdiAccount, mdiPencil, mdiAccountCircle, mdiPanorama } from '@mdi/js'
+import { mdiImageEdit, mdiDotsVertical } from '@mdi/js'
 import { DateHelpers } from '@/mixins/DateHelpers'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 
 export default {
   name: 'UserHead',
-  mixins: [DateHelpers],
+  mixins: [DateHelpers, ImageVariantHelpers],
   props: {
     user: {
       type: Object,
@@ -128,16 +148,14 @@ export default {
 
   data () {
     return {
-      mdiAccountOutline,
-      mdiAccount,
-      mdiPencil,
-      mdiAccountCircle,
-      mdiPanorama,
-      avatarPictureDialog: false
+      avatarPictureDialog: false,
+
+      mdiImageEdit,
+      mdiDotsVertical
     }
   },
 
-  methods: {
+  computed: {
     itsMe () {
       return (this.$auth.loggedIn && this.$auth.user.uuid === this.user.uuid)
     }
@@ -161,9 +179,10 @@ export default {
   }
 }
 .user-header-title {
-  padding: 0 0.5em 1em 1em;
+  padding: 0 0.5em 0 1em;
   bottom: 0;
   .user-header-avatar-area {
+    max-width: 100px;
     margin-right: 10px;
     margin-top: -50px;
     position: relative;
@@ -178,6 +197,8 @@ export default {
     }
   }
   h1 {
+    font-size: 1.60em;
+    line-height: 1.1;
     .v-avatar {
       vertical-align: middle;
     }

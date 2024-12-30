@@ -6,7 +6,7 @@
         @click="click(user)"
       >
         <v-img
-          :src="user.thumbnailAvatarUrl"
+          :src="imageVariant(user.attachments.avatar, { fit: 'crop', width: 100, height: 100 })"
           :alt="`avatar ${user.first_name}`"
         />
       </v-avatar>
@@ -40,9 +40,11 @@
 </template>
 <script>
 import { mdiTrophy } from '@mdi/js'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 
 export default {
   name: 'GymRankingPodium',
+  mixins: [ImageVariantHelpers],
   props: {
     user: {
       type: Object,

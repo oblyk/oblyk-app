@@ -3,13 +3,13 @@
     <v-card flat>
       <v-img
         height="200px"
-        :src="user.bannerUrl"
+        :src="imageVariant(user.attachments.banner, { fit: 'scale-down', height: 720, width: 720 })"
       >
         <v-card-title class="white--text mt-8">
           <v-avatar size="70">
             <img
               alt="user"
-              :src="user.avatarUrl"
+              :src="imageVariant(user.attachments.avatar, { fit: 'crop', height: 100, width: 100 })"
             >
           </v-avatar>
           <p class="ml-3">
@@ -53,10 +53,11 @@
 <script>
 import { DateHelpers } from '@/mixins/DateHelpers'
 import CurrentUserApi from '~/services/oblyk-api/CurrentUserApi'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 
 export default {
   name: 'UserAcceptSubscribesCard',
-  mixins: [DateHelpers],
+  mixins: [DateHelpers, ImageVariantHelpers],
   props: {
     user: {
       type: Object,

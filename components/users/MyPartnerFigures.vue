@@ -71,7 +71,7 @@
               elevation="0"
             >
               <v-avatar size="60">
-                <v-img :src="climber.thumbnailAvatarUrl" />
+                <v-img :src="imageVariant(climber.attachments.avatar, { fit: 'crop', height: 100, width: 100 })" />
               </v-avatar>
               <p class="text-truncate mb-0">
                 {{ climber.first_name }}
@@ -149,9 +149,11 @@
 import { mdiAccountMultipleCheckOutline, mdiArrowRight, mdiMap, mdiCogOutline } from '@mdi/js'
 import CurrentUserApi from '~/services/oblyk-api/CurrentUserApi'
 import User from '~/models/User'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 
 export default {
   name: 'MyPartnerFigures',
+  mixins: [ImageVariantHelpers],
 
   data () {
     return {

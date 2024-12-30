@@ -6,7 +6,7 @@
       <v-list-item>
         <v-list-item-avatar size="55">
           <v-avatar>
-            <v-img :src="climberLocality.User.thumbnailAvatarUrl" />
+            <v-img :src="imageVariant(climberLocality.User.attachments.avatar, { fit: 'crop', width: 100, height: 100 })" />
           </v-avatar>
         </v-list-item-avatar>
         <v-list-item-content>
@@ -74,10 +74,11 @@ import { mdiCircle, mdiAccountSearch } from '@mdi/js'
 import { DateHelpers } from '~/mixins/DateHelpers'
 import { GradeMixin } from '~/mixins/GradeMixin'
 import { ClimbingTypeMixin } from '~/mixins/ClimbingTypeMixin'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 
 export default {
   name: 'LocalityUserCard',
-  mixins: [DateHelpers, GradeMixin, ClimbingTypeMixin],
+  mixins: [DateHelpers, GradeMixin, ClimbingTypeMixin, ImageVariantHelpers],
 
   props: {
     climberLocality: {

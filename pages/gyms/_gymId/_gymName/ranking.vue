@@ -226,7 +226,7 @@
           >
             <v-list-item-avatar>
               <v-img
-                :src="score.user.thumbnailAvatarUrl"
+                :src="imageVariant(score.user.attachments.avatar, { fit: 'crop', width: 100, height: 100 })"
                 :alt="`avatar ${score.user.first_name}`"
               />
             </v-list-item-avatar>
@@ -276,11 +276,12 @@ import UserCard from '~/components/users/UserCard'
 import UserApi from '~/services/oblyk-api/UserApi'
 import GymRankingPodium from '~/components/gyms/GymRankingPodium'
 import ContestUpComing from '~/components/gyms/ContestUpComing'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 
 export default {
   components: { ContestUpComing, GymRankingPodium, UserCard, DownToCloseDialog },
   meta: { orphanRoute: true },
-  mixins: [GymConcern, DateHelpers, TextHelpers],
+  mixins: [GymConcern, DateHelpers, TextHelpers, ImageVariantHelpers],
 
   data () {
     return {

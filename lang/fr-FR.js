@@ -1677,6 +1677,7 @@ export default {
       waitingFollowers: 'Un·e abonné·e attend votre confirmation | %{count} abonné·es attendent votre confirmation',
       explainLocalization: 'Active la localisation pour accéder rapidement aux sites, salles et grimpeur autour de toi.',
       emptyLogbook: "%{name} n'a de croix dans son carnet",
+      seeMyPublicProfile: 'Voir mon profil public',
       cardsTitle: {
         myLogbook: 'Mon carnet',
         aroundMe: 'Autour de moi',

@@ -1677,6 +1677,7 @@ export default {
       waitingFollowers: 'One subscriber is waiting for your confirmation | %{count} subscribers are waiting for your confirmation',
       explainLocalization: 'Activate the location to quickly access the crags, gyms and climbers around you.',
       emptyLogbook: '%{name} has no ascents in his logbook',
+      seeMyPublicProfile: 'See my public profile',
       cardsTitle: {
         myLogbook: 'My logbook',
         aroundMe: 'Around me',

@@ -28,11 +28,11 @@
             >
               <td>
                 <v-avatar
-                  v-if="opener.user && opener.user.avatar_thumbnail_url"
+                  v-if="opener.user && opener.user.attachments.avatar.attached"
                   size="32"
                   class="mr-2"
                 >
-                  <v-img :src="opener.User.thumbnailAvatarUrl" />
+                  <v-img :src="imageVariant(opener.User.attachments.avatar, { fit: 'crop', width: 100, height: 100 })" />
                 </v-avatar>
                 {{ opener.name }}
               </td>
@@ -121,11 +121,12 @@ import GymOpenerApi from '~/services/oblyk-api/GymOpenerApi'
 import Spinner from '~/components/layouts/Spiner.vue'
 import GymOpener from '~/models/GymOpener'
 import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 
 export default {
   components: { Spinner },
   meta: { orphanRoute: true },
-  mixins: [GymFetchConcern, GymRolesHelpers],
+  mixins: [GymFetchConcern, GymRolesHelpers, ImageVariantHelpers],
   middleware: ['auth', 'gymAdmin'],
 
   data () {

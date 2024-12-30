@@ -1,7 +1,7 @@
 <template>
   <v-tabs
     show-arrows
-    class="rounded"
+    class="rounded mt-1"
   >
     <!-- Profil -->
     <v-tab

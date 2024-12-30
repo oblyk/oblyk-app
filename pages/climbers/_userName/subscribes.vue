@@ -12,21 +12,25 @@
           <gym-small-card
             v-if="subscribe.followable_type === 'Gym'"
             :gym="subscribeToObject('Gym', subscribe.followable_object)"
+            small
           />
 
           <crag-small-card
             v-if="subscribe.followable_type === 'Crag'"
             :crag="subscribeToObject('Crag', subscribe.followable_object)"
+            small
           />
 
           <guide-book-paper-small-card
             v-if="subscribe.followable_type === 'GuideBookPaper'"
             :guide-book-paper="subscribeToObject('GuideBookPaper', subscribe.followable_object)"
+            small
           />
 
           <user-small-card
             v-if="subscribe.followable_type === 'User'"
             :user="subscribeToObject('User', subscribe.followable_object)"
+            small
           />
         </v-col>
       </v-row>
