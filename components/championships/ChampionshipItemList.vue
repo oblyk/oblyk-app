@@ -8,7 +8,7 @@
     >
       <v-img
         v-if="championship.banner"
-        :src="championship.thumbnailBannerUrl"
+        :src="imageVariant(championship.attachments.banner, { fit: 'crop', width: 100, height: 100 })"
         class="rounded-sm"
       />
       <v-icon v-else>
@@ -29,10 +29,11 @@
 <script>
 import { mdiTrophy } from '@mdi/js'
 import { DateHelpers } from '~/mixins/DateHelpers'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 
 export default {
   name: 'ChampionshipItemList',
-  mixins: [DateHelpers],
+  mixins: [DateHelpers, ImageVariantHelpers],
   props: {
     championship: {
       type: Object,

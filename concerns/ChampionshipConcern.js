@@ -1,6 +1,9 @@
 import Championship from '~/models/Championship'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 
 export const ChampionshipConcern = {
+  mixins: [ImageVariantHelpers],
+
   data () {
     return {
       championship: null
@@ -21,8 +24,8 @@ export const ChampionshipConcern = {
       )
     },
     championshipMetaImage () {
-      if (this.championship && this.championship.banner) {
-        return this.championship.bannerUrl
+      if (this.championship && this.championship.attachments.banner.attached) {
+        return this.imageVariant(this.championship.attachments.banner, { fit: 'scale-down', width: 1920, height: 1920 })
       } else if (this.championship && this.championship?.gym && this.championship?.gym?.banner) {
         return this.championship.Gym.bannerUrl
       } else {

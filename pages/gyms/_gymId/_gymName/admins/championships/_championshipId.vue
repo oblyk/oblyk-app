@@ -197,8 +197,8 @@
             <div>
               <v-img
                 v-if="championship.banner"
-                :lazy-src="championship.thumbnailBannerUrl"
-                :src="championship.bannerUrl"
+                :lazy-src="imageVariant(championship.attachments.banner, { fit: 'scale-down', width: 720, height: 720 })"
+                :src="imageVariant(championship.attachments.banner, { fit: 'scale-down', width: 1920, height: 1920 })"
                 class="rounded-sm"
               >
                 <template #placeholder>
@@ -298,9 +298,10 @@ import {
   mdiDelete
 } from '@mdi/js'
 import { ChampionshipConcern } from '~/concerns/ChampionshipConcern'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 import Spinner from '~/components/layouts/Spiner'
 import ChampionshipBannerForm from '~/components/championships/forms/ChampionshipBannerForm'
-import ChampionshipForm from '~/components/championships/forms/ChampionshipForm.vue'
+import ChampionshipForm from '~/components/championships/forms/ChampionshipForm'
 import ChampionshipApi from '~/services/oblyk-api/ChampionshipApi'
 const MarkdownText = () => import('~/components/ui/MarkdownText')
 
@@ -312,7 +313,7 @@ export default {
     Spinner
   },
   meta: { orphanRoute: true },
-  mixins: [ChampionshipConcern],
+  mixins: [ChampionshipConcern, ImageVariantHelpers],
   middleware: ['auth', 'gymAdmin'],
 
   data () {

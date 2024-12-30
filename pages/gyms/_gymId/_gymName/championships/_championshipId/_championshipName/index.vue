@@ -12,8 +12,13 @@
           height="400px"
           max-height="400px"
           gradient="to bottom, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.8) 100%"
-          :lazy-src="championship.thumbnailBannerUrl"
-          :src="championship.bannerUrl"
+          :lazy-src="imageVariant(championship.attachments.banner, { fit: 'scale-down', width: 720, height: 720 })"
+          :src="imageVariant(championship.attachments.banner, { fit: 'scale-down', width: 720, height: 720 })"
+          :srcset="`
+            ${imageVariant(championship.attachments.banner, { fit: 'scale-down', width: 720, height: 720 })} 640w,
+            ${imageVariant(championship.attachments.banner, { fit: 'scale-down', width: 1080, height: 1080 })} 960w,
+            ${imageVariant(championship.attachments.banner, { fit: 'scale-down', width: 1920, height: 1920 })} 1200w`
+          "
           class="rounded"
         >
           <template #placeholder>
@@ -59,16 +64,18 @@
     <app-footer />
   </div>
 </template>
+
 <script>
 import { ChampionshipConcern } from '~/concerns/ChampionshipConcern'
-import MarkdownText from '~/components/ui/MarkdownText.vue'
-import ChampionshipResultTable from '~/components/championships/ChampionshipResultTable.vue'
-import AppFooter from '~/components/layouts/AppFooter.vue'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
+import ChampionshipResultTable from '~/components/championships/ChampionshipResultTable'
+import MarkdownText from '~/components/ui/MarkdownText'
+import AppFooter from '~/components/layouts/AppFooter'
 
 export default {
   components: { AppFooter, ChampionshipResultTable, MarkdownText },
   meta: { orphanRoute: true },
-  mixins: [ChampionshipConcern],
+  mixins: [ChampionshipConcern, ImageVariantHelpers],
   layout: 'contest'
 }
 </script>
