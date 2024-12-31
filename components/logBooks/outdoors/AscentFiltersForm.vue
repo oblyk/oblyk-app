@@ -52,7 +52,7 @@ export default {
         ascentStatusList: [],
         ropingStatusList: [],
         climbingTypesList: [],
-        otherFilters: ['no_double'] // initialized by default with no_double. Can add later a toggle button, but for now it is always on.
+        no_double: true // initialized by default true. Can add later a toggle button, but for now it is always on.
       }
     }
   },
@@ -68,14 +68,14 @@ export default {
   },
 
   mounted () {
-    // recover from local storage and reset if one key is missing in the stored filters
+    // recover from local storage and reset if one key is missing in the stored filters (to keep the app working if we change filters)
     if (typeof localStorage !== 'undefined') {
       const storedFilters = JSON.parse(localStorage.getItem('filters')) || {}
       this.filters = {
         ascentStatusList: Array.isArray(storedFilters.ascentStatusList) ? storedFilters.ascentStatusList : [],
         ropingStatusList: Array.isArray(storedFilters.ropingStatusList) ? storedFilters.ropingStatusList : [],
         climbingTypesList: Array.isArray(storedFilters.climbingTypesList) ? storedFilters.climbingTypesList : [],
-        otherFilters: ['no_double'] // Always keep this initialized
+        no_double: true
       }
     }
     this.$emit('input', this.filters)
