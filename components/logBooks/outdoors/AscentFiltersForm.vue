@@ -5,7 +5,7 @@
     </v-btn>
     <v-form v-if="showForm" @submit.prevent="onSubmit()">
       <ascent-status-input
-        v-model="filters.ascentStatusList"
+        v-model="filters.ascent_status_list"
         multiple
         with-repetition
         with-sent
@@ -14,13 +14,13 @@
       />
 
       <roping-status-input
-        v-model="filters.ropingStatusList"
+        v-model="filters.roping_status_list"
         multiple
         :required="false"
       />
 
       <climbing-type-input
-        v-model="filters.climbingTypesList"
+        v-model="filters.climbing_types_list"
         multiple
         environment="crag"
         input-type="chips"
@@ -49,10 +49,10 @@ export default {
     return {
       showForm: false,
       filters: {
-        ascentStatusList: [],
-        ropingStatusList: [],
-        climbingTypesList: [],
-        no_double: true // initialized by default true. Can add later a toggle button, but for now it is always on.
+        ascent_status_list: [],
+        roping_status_list: [],
+        climbing_types_list: [],
+        no_double: false // initialized by default true. Can add later a toggle button, but for now it is always on.
       }
     }
   },
@@ -72,10 +72,10 @@ export default {
     if (typeof localStorage !== 'undefined') {
       const storedFilters = JSON.parse(localStorage.getItem('filters')) || {}
       this.filters = {
-        ascentStatusList: Array.isArray(storedFilters.ascentStatusList) ? storedFilters.ascentStatusList : [],
-        ropingStatusList: Array.isArray(storedFilters.ropingStatusList) ? storedFilters.ropingStatusList : [],
-        climbingTypesList: Array.isArray(storedFilters.climbingTypesList) ? storedFilters.climbingTypesList : [],
-        no_double: true
+        ascent_status_list: Array.isArray(storedFilters.ascent_status_list) ? storedFilters.ascent_status_list : this.getAllAscentStatus,
+        roping_status_list: Array.isArray(storedFilters.roping_status_list) ? storedFilters.roping_status_list : this.getAllRopingStatus,
+        climbing_types_list: Array.isArray(storedFilters.climbing_types_list) ? storedFilters.climbing_types_list : this.getAllClimbingTypes,
+        no_double: false
       }
     }
     this.$emit('input', this.filters)
@@ -85,6 +85,15 @@ export default {
     onSubmit () {
       this.showForm = false
       localStorage.setItem('filters', JSON.stringify(this.filters))
+    },
+    getAllAscentStatus () {
+      return ['onsight', 'flash', 'red_point', 'project', 'sent', 'repetition']
+    },
+    getAllRopingStatus () {
+      return ['lead_climb', 'top_rope', 'multi_pitch_leader', 'multi_pitch_second', 'multi_pitch_alternate_lead']
+    },
+    getAllClimbingTypes () {
+      return ['sport_climbing', 'bouldering', 'multi_pitch', 'trad_climbing', 'aid_climbing', 'deep_water', 'via_ferrata']
     }
   }
 }
