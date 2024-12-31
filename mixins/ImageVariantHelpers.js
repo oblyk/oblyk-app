@@ -13,7 +13,10 @@ export const ImageVariantHelpers = {
           GymChain_banner: '/images/gym-default-banner.jpg',
           GymChain_logo: '/svg/gym-default-logo.svg',
           Article_cover: '/images/default-crag-banner.jpg',
-          Author_cover: '/images/default-crag-banner.jpg'
+          Author_cover: '/images/default-crag-banner.jpg',
+          GuideBookPaper_cover: '/svg/paper-guide-book-default.svg',
+          Gym_logo: '/svg/gym-default-logo.svg',
+          Gym_banner: '/images/gym-default-banner.jpg'
         }
         return defaultImage[attachment.attachment_type]
       }

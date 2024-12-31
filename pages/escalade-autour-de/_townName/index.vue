@@ -85,14 +85,40 @@
             </h2>
             <p>
               Il n'y a pas de site de grimpe naturel à moins de <strong>{{ town.dist }} km</strong> de {{ town.name }}.
-              Le site le plus proche est <strong>{{ toCragObject(town.crags.nearest).name }}</strong> à {{ town.crags.nearest_dist }} km.
+              Le site le plus proche est <strong>{{ town.crags.nearest.name }}</strong> à {{ town.crags.nearest_dist }} km.
             </p>
 
-            <crag-small-card
-              :crag="toCragObject(town.crags.nearest)"
-              small
-              class="mb-2"
-            />
+            <v-card
+              link
+              flat
+              :to="`/crags/${town.crags.nearest.id}/${town.crags.nearest.slug_name}`"
+            >
+              <v-list-item two-line>
+                <v-list-item-avatar
+                  :size="45"
+                  class="mt-1 mb-1"
+                >
+                  <v-avatar
+                    v-if="town.crags.nearest.photo.attachments.picture.attached"
+                    :size="45"
+                    tile
+                  >
+                    <v-img :src="imageVariant(town.crags.nearest.photo.attachments.picture, { fit: 'crop', width: 100, height: 100 })"/>
+                  </v-avatar>
+                  <v-icon>
+                    {{ mdiTerrain }}
+                  </v-icon>
+                </v-list-item-avatar>
+                <v-list-item-content class="pt-1 pb-0">
+                  <v-list-item-title class="font-weight-bold">
+                    {{ town.crags.nearest.name }}
+                  </v-list-item-title>
+                  <v-list-item-subtitle class="md-2">
+                    {{ town.crags.nearest.country }}, {{ town.crags.nearest.city }}
+                  </v-list-item-subtitle>
+                </v-list-item-content>
+              </v-list-item>
+            </v-card>
           </div>
         </lazy-hydrate>
 
@@ -109,13 +135,35 @@
               {{ $tc('components.town.gymsAround', town.gyms.around.length, { count: town.gyms.around.length, name: town.name }) }}
             </h2>
 
-            <gym-small-card
-              v-for="(gym, index) in town.gyms.around"
-              :key="`gym-${index}`"
-              :gym="toGymObject(gym)"
-              small
-              class="mb-2"
-            />
+            <v-list rounded>
+              <v-list-item
+                v-for="(gym, index) in town.gyms.around"
+                :key="`gym-${index}`"
+                :to="`/gyms/${gym.id}/${gym.slug_name}`"
+              >
+                <v-list-item-avatar
+                  tile
+                  :size="45"
+                  class="mt-1 mb-1"
+                >
+                  <v-avatar
+                    :size="45"
+                    class="rounded-sm"
+                    tile
+                  >
+                    <v-img :src="imageVariant(gym.attachments.logo, { fit: 'crop', height: 100, width: 100 })" />
+                  </v-avatar>
+                </v-list-item-avatar>
+                <v-list-item-content class="pt-3 pb-0">
+                  <v-list-item-title class="font-weight-bold">
+                    {{ gym.name }}
+                  </v-list-item-title>
+                  <v-list-item-subtitle class="mb-3">
+                    {{ gym.country }}, {{ gym.city }}
+                  </v-list-item-subtitle>
+                </v-list-item-content>
+              </v-list-item>
+            </v-list>
           </div>
 
           <!-- Nearest gym -->
@@ -131,12 +179,37 @@
             </h2>
             <p>
               Il n'y a pas de salle à moins de <strong>{{ town.dist }} km</strong> de {{ town.name }},
-              il faudra s'éloigner de {{ town.gyms.nearest_dist }} km pour trouver la salle <strong>{{ toGymObject(town.gyms.nearest).name }}</strong> à <strong>{{ town.gyms.nearest.city }}</strong>.
+              il faudra s'éloigner de {{ town.gyms.nearest_dist }} km pour trouver la salle <strong>{{ town.gyms.nearest.name }}</strong> à <strong>{{ town.gyms.nearest.city }}</strong>.
             </p>
-            <gym-small-card
-              :gym="toGymObject(town.gyms.nearest)"
-              small
-            />
+            <v-card
+              link
+              flat
+              :to="`/gyms/${town.gyms.nearest.id}/${town.gyms.nearest.slug_name}`"
+            >
+              <v-list-item>
+                <v-list-item-avatar
+                  tile
+                  :size="45"
+                  class="mt-1 mb-1"
+                >
+                  <v-avatar
+                    :size="45"
+                    class="rounded-sm"
+                    tile
+                  >
+                    <v-img :src="imageVariant(town.gyms.nearest.attachments.logo, { fit: 'crop', height: 100, width: 100 })" />
+                  </v-avatar>
+                </v-list-item-avatar>
+                <v-list-item-content class="pt-3 pb-0">
+                  <v-list-item-title class="font-weight-bold">
+                    {{ town.gyms.nearest.name }}
+                  </v-list-item-title>
+                  <v-list-item-subtitle class="mb-3">
+                    {{ town.gyms.nearest.country }}, {{ town.gyms.nearest.city }}
+                  </v-list-item-subtitle>
+                </v-list-item-content>
+              </v-list-item>
+            </v-card>
           </div>
         </lazy-hydrate>
 
@@ -164,9 +237,23 @@
                   md="6"
                   lg="3"
                 >
-                  <guide-book-paper-cover-card
-                    :guide-book-paper="toGuideObject(guide)"
-                  />
+                  <div class="text-center mb-1">
+                    <nuxt-link :to="`/guide-book-papers/${guide.id}/${guide.slug_name}`">
+                      <v-img
+                        :src="imageVariant(guide.attachments.cover, { fit: 'scale-down', height: 720, width: 720 })"
+                        contain
+                        height="240px"
+                      />
+                    </nuxt-link>
+                    <p class="text-center text-truncate mb-0">
+                      {{ guide.name }}
+                    </p>
+                    <p class="text-center text--disabled mb-0">
+                      <small>
+                        {{ guide.author }}
+                      </small>
+                    </p>
+                  </div>
                 </v-col>
               </v-row>
             </v-sheet>
@@ -212,13 +299,8 @@
 <script>
 import LazyHydrate from 'vue-lazy-hydration'
 import { mdiMagnify, mdiArrowLeft, mdiTerrain, mdiBookshelf, mdiOfficeBuildingMarker, mdiMap } from '@mdi/js'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 import TownApi from '~/services/oblyk-api/TownApi'
-import CragSmallCard from '~/components/crags/CragSmallCard'
-import Crag from '~/models/Crag'
-import Gym from '~/models/Gym'
-import GymSmallCard from '~/components/gyms/GymSmallCard'
-import GuideBookPaper from '~/models/GuideBookPaper'
-import GuideBookPaperCoverCard from '~/components/guideBookPapers/GuideBookPaperCoverCard'
 import AppFooter from '~/components/layouts/AppFooter'
 import TownDescription from '~/components/towns/TownDescription'
 import CragsTable from '~/components/crags/CragsTable'
@@ -234,16 +316,14 @@ export default {
     Spinner,
     CragsTable,
     TownDescription,
-    AppFooter,
-    GuideBookPaperCoverCard,
-    GymSmallCard,
-    CragSmallCard
+    AppFooter
   },
+  mixins: [ImageVariantHelpers],
 
   data () {
     return {
       town: {},
-      dist: (this.town || {}).dist || 10,
+      dist: this.town?.dist || 10,
 
       geoJsons: null,
       loadingGeoJson: true,
@@ -314,18 +394,6 @@ export default {
       if (this.geoJsonIsLoad) { return false }
 
       this.getGeoJson()
-    },
-
-    toCragObject (crag) {
-      return new Crag({ attributes: crag })
-    },
-
-    toGymObject (gym) {
-      return new Gym({ attributes: gym })
-    },
-
-    toGuideObject (guide) {
-      return new GuideBookPaper({ attributes: guide })
     },
 
     getGeoJson () {

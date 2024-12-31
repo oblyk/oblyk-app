@@ -177,9 +177,23 @@
                 md="6"
                 lg="3"
               >
-                <guide-book-paper-cover-card
-                  :guide-book-paper="toGuideObject(guide)"
-                />
+                <div class="text-center mb-1">
+                  <nuxt-link :to="`/guide-book-papers/${guide.id}/${guide.slug_name}`">
+                    <v-img
+                      :src="imageVariant(guide.attachments.cover, { fit: 'scale-down', height: 720, width: 720 })"
+                      contain
+                      height="240px"
+                    />
+                  </nuxt-link>
+                  <p class="text-center text-truncate mb-0">
+                    {{ guide.name }}
+                  </p>
+                  <p class="text-center text--disabled mb-0">
+                    <small>
+                      {{ guide.author }}
+                    </small>
+                  </p>
+                </div>
               </v-col>
             </v-row>
           </v-sheet>
@@ -236,27 +250,25 @@ import {
   mdiBookshelf
 } from '@mdi/js'
 import { TextHelpers } from '~/mixins/TextHelpers'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 import DepartmentApi from '~/services/oblyk-api/DepartmentApi'
 import AppFooter from '~/components/layouts/AppFooter'
 import LocalityGradeChart from '~/components/localities/charts/LocalityGradeChart'
 import Spinner from '~/components/layouts/Spiner'
 import DescriptionLine from '~/components/ui/DescriptionLine'
-import GuideBookPaperCoverCard from '~/components/guideBookPapers/GuideBookPaperCoverCard'
-import GuideBookPaper from '~/models/GuideBookPaper'
 import DepartmentDescription from '~/components/departments/DepartmentDescription'
 const LeafletMap = () => import('~/components/maps/LeafletMap')
 
 export default {
   components: {
     DepartmentDescription,
-    GuideBookPaperCoverCard,
     LeafletMap,
     DescriptionLine,
     Spinner,
     LocalityGradeChart,
     AppFooter
   },
-  mixins: [TextHelpers],
+  mixins: [TextHelpers, ImageVariantHelpers],
 
   data () {
     return {
@@ -448,10 +460,6 @@ export default {
         .finally(() => {
           this.loadingGeoJson = false
         })
-    },
-
-    toGuideObject (guide) {
-      return new GuideBookPaper({ attributes: guide })
     }
   }
 }

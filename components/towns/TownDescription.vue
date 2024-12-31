@@ -66,7 +66,7 @@
       <nuxt-link :to="toCragObject(town.crags.nearest).path">
         {{ town.crags.nearest.name }}
       </nuxt-link>
-      (site de {{ nearestCragsType }}), situé à {{ town.crags.nearest.city }}, à {{ town.crags.nearest_dist }}km de distance.
+      situé à {{ town.crags.nearest.city }}, à {{ town.crags.nearest_dist }}km de distance.
     </p>
 
     <!-- Guide books -->
@@ -78,7 +78,7 @@
       <nuxt-link
         v-for="(guide, index) in town.guide_book_papers"
         :key="`guide-book-index'${index}`"
-        :to="toGuideObject(guide).path"
+        :to="`/guide-book-papers/${guide.id}/${guide.slug_name}`"
       >
         "{{ guide.name }}"
       </nuxt-link>.
@@ -88,7 +88,7 @@
     <p v-if="town.gyms.around.length === 0">
       Côté indoor, il n’y a aucune salle située à proximité de {{ town.name }},
       la plus proche étant la SAE
-      <nuxt-link :to="toGymObject(town.gyms.nearest).path">
+      <nuxt-link :to="`/gyms/${town.gyms.nearest.id}/${town.gyms.nearest.slug_name}`">
         {{ town.gyms.nearest.name }}
       </nuxt-link>
       à {{ town.gyms.nearest.city }} ({{ town.gyms.nearest_dist }}kms de {{ town.name }}).
@@ -101,7 +101,7 @@
         <nuxt-link
           v-for="(gym, index) in town.gyms.around"
           :key="`gym-index'${index}`"
-          :to="toGymObject(gym).path"
+          :to="`/gyms/${gym.id}/${gym.slug_name}`"
         >
           {{ gym.name }}
         </nuxt-link>.
@@ -117,8 +117,6 @@
 </template>
 
 <script>
-import GuideBookPaper from '~/models/GuideBookPaper'
-import Gym from '~/models/Gym'
 import Crag from '~/models/Crag'
 import Department from '~/models/Department'
 import CragRoute from '~/models/CragRoute'
@@ -161,14 +159,6 @@ export default {
 
     havingClimbingTypes () {
       return Object.values(this.town.crags.crag_count_by_climbing_types).reduce((a, b) => a + b, 0)
-    },
-
-    nearestCragsType () {
-      const types = []
-      for (const type of this.toCragObject(this.town.crags.nearest).climbingTypes) {
-        types.push(this.$t(`models.climbs.${type}`).toLocaleLowerCase())
-      }
-      return types.join(', ')
     }
   },
 
@@ -179,14 +169,6 @@ export default {
 
     toCragRouteObject (cragRoute) {
       return new CragRoute({ attributes: cragRoute })
-    },
-
-    toGuideObject (guide) {
-      return new GuideBookPaper({ attributes: guide })
-    },
-
-    toGymObject (gym) {
-      return new Gym({ attributes: gym })
     },
 
     toDepartmentObject (department) {
