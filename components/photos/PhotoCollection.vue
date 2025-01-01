@@ -19,7 +19,7 @@
             v-for="(photo, index) in photos"
             :key="photo.id"
             class="collection-thumbnail-photo"
-            :src="photo.thumbnailUrl"
+            :src="imageVariant(photo.attachments.picture, { fit: 'crop', height: 400, width: 400 })"
             :height="100"
             :width="100"
             @click="changeSelectedPhoto(index)"
@@ -32,11 +32,16 @@
 
 <script>
 import { mdiImageMultiple } from '@mdi/js'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 
 export default {
   name: 'PhotoCollection',
+  mixins: [ImageVariantHelpers],
   props: {
-    photos: Array
+    photos: {
+      type: Array,
+      required: true
+    }
   },
 
   data () {

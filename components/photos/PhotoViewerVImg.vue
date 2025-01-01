@@ -5,9 +5,9 @@
       :style="photo.description ? 'height: calc(100% - 35px)' : 'height: 100%'"
     >
       <v-img
-        :key="url"
-        :src="url"
-        :lazy-src="thumbnailUrl"
+        :key="photo.attachments.picture.variant_path"
+        :src="imageVariant(photo.attachments.picture, { fit: 'scale-down', height: 1920, width: 1920 })"
+        :lazy-src="imageVariant(photo.attachments.picture, { fit: 'scale-down', height: 400, width: 400 })"
         width="100%"
         height="100%"
         contain
@@ -37,9 +37,11 @@
 
 <script>
 import * as panzoom from 'panzoom'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 
 export default {
   name: 'PhotoViewerVImg',
+  mixins: [ImageVariantHelpers],
 
   props: {
     photo: {

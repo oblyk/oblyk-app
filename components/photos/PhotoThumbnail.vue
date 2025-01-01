@@ -1,7 +1,7 @@
 <template>
   <v-img
     v-if="!deleted"
-    :src="photo.thumbnailUrl"
+    :src="imageVariant(photo.attachments.picture, { fit: 'crop', height: 400, width: 400 })"
     class="photo-thumbnail hoverable"
     :gradient="photoOver ? 'to top, rgba(0, 0, 0, 0.4) 0%, transparent 72px' : 'to top, rgba(0, 0, 0, 0) 0%, transparent 72px'"
     aspect-ratio="1"
@@ -118,6 +118,7 @@
 
 <script>
 import { mdiFlag, mdiPanorama, mdiDelete, mdiPencil, mdiDotsVertical } from '@mdi/js'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 import CragApi from '~/services/oblyk-api/CragApi'
 import Crag from '@/models/Crag'
 import CragSectorApi from '~/services/oblyk-api/CragSectorApi'
@@ -127,11 +128,12 @@ import CragRoute from '@/models/CragRoute'
 import AreaApi from '~/services/oblyk-api/AreaApi'
 import Area from '@/models/Area'
 import PhotoApi from '~/services/oblyk-api/PhotoApi'
-import LikeBtn from '~/components/forms/LikeBtn.vue'
+import LikeBtn from '~/components/forms/LikeBtn'
 
 export default {
   name: 'PhotoThumbnail',
   components: { LikeBtn },
+  mixins: [ImageVariantHelpers],
   props: {
     photo: {
       type: Object,
