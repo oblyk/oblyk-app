@@ -51,8 +51,7 @@ export default {
       filters: {
         ascent_status_list: [],
         roping_status_list: [],
-        climbing_types_list: [],
-        no_double: false // initialized by default true. Can add later a toggle button, but for now it is always on.
+        climbing_types_list: []
       }
     }
   },
@@ -72,10 +71,9 @@ export default {
     if (typeof localStorage !== 'undefined') {
       const storedFilters = JSON.parse(localStorage.getItem('filters')) || {}
       this.filters = {
-        ascent_status_list: Array.isArray(storedFilters.ascent_status_list) ? storedFilters.ascent_status_list : this.getAllAscentStatus,
-        roping_status_list: Array.isArray(storedFilters.roping_status_list) ? storedFilters.roping_status_list : this.getAllRopingStatus,
-        climbing_types_list: Array.isArray(storedFilters.climbing_types_list) ? storedFilters.climbing_types_list : this.getAllClimbingTypes,
-        no_double: false
+        ascent_status_list: Array.isArray(storedFilters.ascent_status_list) ? storedFilters.ascent_status_list : this.getAllAscentStatus(),
+        roping_status_list: Array.isArray(storedFilters.roping_status_list) ? storedFilters.roping_status_list : this.getAllRopingStatus(),
+        climbing_types_list: Array.isArray(storedFilters.climbing_types_list) ? storedFilters.climbing_types_list : this.getAllClimbingTypes()
       }
     }
     this.$emit('input', this.filters)
