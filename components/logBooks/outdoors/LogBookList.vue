@@ -12,16 +12,6 @@
           outlined
         />
       </v-col>
-      <v-col>
-        <v-select
-          v-model="climbingType"
-          :items="climbingItems"
-          item-text="text"
-          item-value="value"
-          :label="$t('components.logBook.filterByClimbingType')"
-          outlined
-        />
-      </v-col>
     </v-row>
 
     <!-- Send list -->
@@ -70,7 +60,6 @@ import LogBookOutdoorApi from '~/services/oblyk-api/LogBookOutdoorApi'
 import CragRoute from '@/models/CragRoute'
 import Spinner from '@/components/layouts/Spiner'
 import LoadingMore from '@/components/layouts/LoadingMore'
-import UserApi from '~/services/oblyk-api/UserApi'
 import { GradeMixin } from '@/mixins/GradeMixin'
 
 export default {
@@ -82,6 +71,11 @@ export default {
     user: {
       type: Object,
       default: null
+    },
+    filters: {
+      type: Object,
+      default: () => {
+      }
     }
   },
 
@@ -96,18 +90,6 @@ export default {
         { text: this.$t('components.logBook.sortItem.difficulty'), value: 'difficulty' },
         { text: this.$t('components.logBook.sortItem.crags'), value: 'crags' },
         { text: this.$t('components.logBook.sortItem.released_at'), value: 'released_at' }
-      ],
-
-      climbingType: 'all',
-      climbingItems: [
-        { text: this.$t('components.logBook.climbingItems.all'), value: 'all' },
-        { text: this.$t('models.climbs.sport_climbing'), value: 'sport_climbing' },
-        { text: this.$t('models.climbs.bouldering'), value: 'bouldering' },
-        { text: this.$t('models.climbs.multi_pitch'), value: 'multi_pitch' },
-        { text: this.$t('models.climbs.trad_climbing'), value: 'trad_climbing' },
-        { text: this.$t('models.climbs.aid_climbing'), value: 'aid_climbing' },
-        { text: this.$t('models.climbs.deep_water'), value: 'deep_water' },
-        { text: this.$t('models.climbs.via_ferrata'), value: 'via_ferrata' }
       ]
     }
   },
@@ -121,7 +103,7 @@ export default {
       }
     },
 
-    climbingType () {
+    filters () {
       if (!this.firstLoading) {
         this.resetAscents()
         this.ascendedCragRoutes()
@@ -141,24 +123,14 @@ export default {
     },
 
     ascendedCragRoutes () {
-      let promise
-      if (this.user) {
-        promise = new UserApi(this.$axios, this.$auth).ascendedCragRoutes(
-          this.user.uuid,
-          this.order,
-          this.climbingType,
-          this.page
-        )
-      } else {
-        promise = new LogBookOutdoorApi(this.$axios, this.$auth).ascendedCragRoutes(
-          this.order,
-          this.climbingType,
-          this.page
-        )
-      }
-
       this.moreIsBeingLoaded()
-      promise
+      new LogBookOutdoorApi(this.$axios, this.$auth)
+        .ascendedCragRoutes(
+          this.order,
+          this.filters,
+          this.page,
+          this.user?.uuid
+        )
         .then((resp) => {
           for (const route of resp.data) {
             this.cragRoutes.push(new CragRoute({ attributes: route }))

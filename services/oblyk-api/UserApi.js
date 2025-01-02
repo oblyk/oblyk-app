@@ -105,55 +105,6 @@ class UserApi extends BaseApi {
     })
   }
 
-  outdoorFigures (userName) {
-    return this.axios.request({
-      method: 'GET',
-      url: `${this.baseUrl}/users/${userName}/outdoor_figures.json`,
-      headers: {
-        Authorization: this.authToken(),
-        HttpApiAccessToken: this.apiAccessToken
-      }
-    })
-  }
-
-  outdoorClimbTypesChart (userName) {
-    return this.axios.request({
-      method: 'GET',
-      url: `${this.baseUrl}/users/${userName}/outdoor_climb_types_chart.json`,
-      headers: {
-        Authorization: this.authToken(),
-        HttpApiAccessToken: this.apiAccessToken
-      }
-    })
-  }
-
-  ascendedCragRoutes (userName, order = 'difficulty', climbingType = 'all', page = 1) {
-    return this.axios.request({
-      method: 'GET',
-      url: `${this.baseUrl}/users/${userName}/ascended_crag_routes.json`,
-      headers: {
-        Authorization: this.authToken(),
-        HttpApiAccessToken: this.apiAccessToken
-      },
-      params: {
-        order,
-        climbing_type: climbingType,
-        page
-      }
-    })
-  }
-
-  outdoorGradesChart (userName) {
-    return this.axios.request({
-      method: 'GET',
-      url: `${this.baseUrl}/users/${userName}/outdoor_grades_chart.json`,
-      headers: {
-        Authorization: this.authToken(),
-        HttpApiAccessToken: this.apiAccessToken
-      }
-    })
-  }
-
   indoorFigures (userName) {
     return this.axios.request({
       method: 'GET',
@@ -198,4 +149,5 @@ class UserApi extends BaseApi {
     })
   }
 }
+
 export default UserApi
