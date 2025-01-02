@@ -10,35 +10,31 @@
         <v-row>
           <!-- Climbing type chart -->
           <v-col class="col-12 col-md-6 col-lg-3">
-            <div v-if="loadTheRest">
-              <spinner v-if="loadingClimbingTypeChart" :full-height="false" />
-              <log-book-climbing-type-chart
-                v-if="!loadingClimbingTypeChart"
-                :data="climbingTypeData"
-                :legend="false"
-              />
-              <!-- Climbing type legend -->
-              <climbing-type-legend class="mt-3" />
-            </div>
+            <spinner v-if="loadingStats" :full-height="false" />
+            <log-book-climbing-type-chart
+              v-if="!loadingStats"
+              :data="stats.climb_types_chart"
+              :legend="false"
+            />
+            <!-- Climbing type legend -->
+            <climbing-type-legend class="mt-3" />
           </v-col>
 
           <!-- Climbing grade chart -->
           <v-col class="col-12 col-md-6 col-lg-4">
-            <div v-if="loadTheRest">
-              <spinner v-if="loadingGradeChart" :full-height="false" />
-              <log-book-grade-chart
-                v-if="!loadingGradeChart"
-                :data="gradeData"
-              />
-            </div>
+            <spinner v-if="loadingStats" :full-height="false" />
+            <log-book-grade-chart
+              v-if="!loadingStats"
+              :data="stats.grades_chart"
+            />
           </v-col>
 
           <!-- Global figures -->
           <v-col class="col-12 col-md-12 col-lg-5">
-            <spinner v-if="loadingFigures" :full-height="false" />
+            <spinner v-if="loadingStats" :full-height="false" />
             <log-book-figures
-              v-if="!loadingFigures"
-              :figures="figures"
+              v-if="!loadingStats"
+              :figures="stats.figures"
               :user="user"
             />
           </v-col>
@@ -94,16 +90,19 @@ export default {
   data () {
     return {
       loadTheRest: false,
+      loadingStats: true,
+
       filters: {},
-
-      loadingFigures: true,
-      figures: {},
-
-      loadingClimbingTypeChart: true,
-      climbingTypeData: {},
-
-      loadingGradeChart: true,
-      gradeData: {}
+      stats: {
+        figures: {},
+        climb_types_chart: {},
+        grades_chart: {}
+      },
+      stats_list: {
+        figures: true,
+        climb_types_chart: true,
+        grades_chart: true
+      }
     }
   },
 
@@ -126,59 +125,29 @@ export default {
 
   watch: {
     filters () {
-      this.getFigures()
+      this.getStats()
     },
     deep: true,
     immediate: true
   },
 
   mounted () {
-    this.getFigures()
+    this.getStats()
   },
 
   methods: {
-    getFigures () {
-      this.loadingFigures = true
+    getStats () {
+      this.loadingStats = true
       new LogBookOutdoorApi(this.$axios, this.$auth)
-        .figures(this.filters)
+        .stats(this.stats_list, this.filters)
         .then((resp) => {
-          this.figures = resp.data
-          if (this.figures.ascents > 0) {
+          this.stats = resp.data
+          if (this.stats.figures.ascents > 0) {
             this.loadTheRest = true
-            this.getOtherChars()
           }
         })
         .finally(() => {
-          this.loadingFigures = false
-        })
-    },
-
-    getOtherChars () {
-      this.getClimbingTypeChart()
-      this.getGradeChart()
-    },
-
-    getClimbingTypeChart () {
-      this.loadingClimbingTypeChart = true
-      new LogBookOutdoorApi(this.$axios, this.$auth)
-        .climbingTypeChart(this.filters)
-        .then((resp) => {
-          this.climbingTypeData = resp.data
-        })
-        .finally(() => {
-          this.loadingClimbingTypeChart = false
-        })
-    },
-
-    getGradeChart () {
-      this.loadingGradeChart = true
-      new LogBookOutdoorApi(this.$axios, this.$auth)
-        .gradeChart(this.filters)
-        .then((resp) => {
-          this.gradeData = resp.data
-        })
-        .finally(() => {
-          this.loadingGradeChart = false
+          this.loadingStats = false
         })
     }
   }

@@ -1,75 +1,18 @@
 import BaseApi from '~/services/oblyk-api/BaseApi'
 
 class LogBookOutdoorApi extends BaseApi {
-  figures (filters = {}) {
+  stats (stats_list = {}, filters = {}) {
     return this.axios.request({
       method: 'GET',
-      url: `${this.baseUrl}/current_users/log_books/outdoors/figures.json`,
+      url: `${this.baseUrl}/current_users/log_books/outdoors/stats.json`,
       headers: {
         Authorization: this.authToken(),
         HttpApiAccessToken: this.apiAccessToken
       },
-      params: { filters }
-    })
-  }
-
-  climbingTypeChart (filters = {}) {
-    return this.axios.request({
-      method: 'GET',
-      url: `${this.baseUrl}/current_users/log_books/outdoors/climb_types_chart.json`,
-      headers: {
-        Authorization: this.authToken(),
-        HttpApiAccessToken: this.apiAccessToken
-      },
-      params: { filters }
-    })
-  }
-
-  gradeChart (filters = {}) {
-    return this.axios.request({
-      method: 'GET',
-      url: `${this.baseUrl}/current_users/log_books/outdoors/grades_chart.json`,
-      headers: {
-        Authorization: this.authToken(),
-        HttpApiAccessToken: this.apiAccessToken
-      },
-      params: { filters }
-    })
-  }
-
-  yearChart (filters = {}) {
-    return this.axios.request({
-      method: 'GET',
-      url: `${this.baseUrl}/current_users/log_books/outdoors/years_chart.json`,
-      headers: {
-        Authorization: this.authToken(),
-        HttpApiAccessToken: this.apiAccessToken
-      },
-      params: { filters }
-    })
-  }
-
-  monthChart (filters = {}) {
-    return this.axios.request({
-      method: 'GET',
-      url: `${this.baseUrl}/current_users/log_books/outdoors/months_chart.json`,
-      headers: {
-        Authorization: this.authToken(),
-        HttpApiAccessToken: this.apiAccessToken
-      },
-      params: { filters }
-    })
-  }
-
-  evolutionChart (filters = {}) {
-    return this.axios.request({
-      method: 'GET',
-      url: `${this.baseUrl}/current_users/log_books/outdoors/evolutions_chart.json`,
-      headers: {
-        Authorization: this.authToken(),
-        HttpApiAccessToken: this.apiAccessToken
-      },
-      params: { filters }
+      params: {
+        filters,
+        stats_list
+      }
     })
   }
 

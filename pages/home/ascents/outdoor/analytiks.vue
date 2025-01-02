@@ -9,10 +9,10 @@
       <v-col cols="12" md="6" lg="4">
         <v-card>
           <v-card-text>
-            <spinner v-if="loadingClimbingTypeChart" :full-height="false" />
+            <spinner v-if="loadingStats" :full-height="false" />
             <log-book-climbing-type-chart
-              v-if="!loadingClimbingTypeChart"
-              :data="climbingTypeData"
+              v-if="!loadingStats"
+              :data="stats.climb_types_chart"
               height-class="height-250"
               :legend="true"
               legend-position="right"
@@ -23,10 +23,10 @@
       <v-col cols="12" md="6" lg="4">
         <v-card>
           <v-card-text>
-            <spinner v-if="loadingGradeChart" :full-height="false" />
+            <spinner v-if="loadingStats" :full-height="false" />
             <log-book-grade-chart
-              v-if="!loadingGradeChart"
-              :data="gradeData"
+              v-if="!loadingStats"
+              :data="stats.grades_chart"
               height-class="height-250"
             />
           </v-card-text>
@@ -35,10 +35,10 @@
       <v-col cols="12" md="6" lg="4">
         <v-card>
           <v-card-text>
-            <spinner v-if="loadingEvolutionChart" :full-height="false" />
+            <spinner v-if="loadingStats" :full-height="false" />
             <log-book-evolution-chart
-              v-if="!loadingEvolutionChart"
-              :data="evolutionData"
+              v-if="!loadingStats"
+              :data="stats.evolution_chart"
               height-class="height-250"
             />
           </v-card-text>
@@ -49,10 +49,10 @@
       <v-col cols="12" md="6" lg="8">
         <v-card>
           <v-card-text>
-            <spinner v-if="loadingMonthChart" :full-height="false" />
+            <spinner v-if="loadingStats" :full-height="false" />
             <log-book-month-chart
-              v-if="!loadingMonthChart"
-              :data="monthData"
+              v-if="!loadingStats"
+              :data="stats.months_chart"
               height-class="height-250"
             />
           </v-card-text>
@@ -61,10 +61,10 @@
       <v-col cols="12" md="6" lg="4">
         <v-card>
           <v-card-text>
-            <spinner v-if="loadingYearChart" :full-height="false" />
+            <spinner v-if="loadingStats" :full-height="false" />
             <log-book-year-chart
-              v-if="!loadingYearChart"
-              :data="yearData"
+              v-if="!loadingStats"
+              :data="stats.years_chart"
               height-class="height-250"
             />
           </v-card-text>
@@ -106,20 +106,21 @@ export default {
     return {
       filters: [],
 
-      loadingClimbingTypeChart: true,
-      climbingTypeData: [],
-
-      loadingGradeChart: true,
-      gradeData: [],
-
-      loadingYearChart: true,
-      yearData: [],
-
-      loadingMonthChart: true,
-      monthData: [],
-
-      loadingEvolutionChart: true,
-      evolutionData: []
+      loadingStats: true,
+      stats: {
+        climb_types_chart: {},
+        grades_chart: {},
+        years_chart: {},
+        months_chart: {},
+        evolution_chart: {}
+      },
+      stats_list: {
+        climb_types_chart: true,
+        grades_chart: true,
+        years_chart: true,
+        months_chart: true,
+        evolution_chart: true
+      }
     }
   },
 
@@ -141,69 +142,14 @@ export default {
 
   methods: {
     getAllCharts () {
-      this.getClimbingTypeChart()
-      this.getGradeChart()
-      this.getYearChart()
-      this.getMonthChart()
-      this.getEvolutionChart()
-    },
-    getClimbingTypeChart () {
-      this.loadingClimbingTypeChart = true
+      this.loadingStats = true
       new LogBookOutdoorApi(this.$axios, this.$auth)
-        .climbingTypeChart(this.filters)
+        .stats(this.stats_list, this.filters)
         .then((resp) => {
-          this.climbingTypeData = resp.data
+          this.stats = resp.data
         })
         .finally(() => {
-          this.loadingClimbingTypeChart = false
-        })
-    },
-
-    getGradeChart () {
-      this.loadingGradeChart = true
-      new LogBookOutdoorApi(this.$axios, this.$auth)
-        .gradeChart(this.filters)
-        .then((resp) => {
-          this.gradeData = resp.data
-        })
-        .finally(() => {
-          this.loadingGradeChart = false
-        })
-    },
-
-    getYearChart () {
-      this.loadingYearChart = true
-      new LogBookOutdoorApi(this.$axios, this.$auth)
-        .yearChart(this.filters)
-        .then((resp) => {
-          this.yearData = resp.data
-        })
-        .finally(() => {
-          this.loadingYearChart = false
-        })
-    },
-
-    getMonthChart () {
-      this.loadingMonthChart = true
-      new LogBookOutdoorApi(this.$axios, this.$auth)
-        .monthChart(this.filters)
-        .then((resp) => {
-          this.monthData = resp.data
-        })
-        .finally(() => {
-          this.loadingMonthChart = false
-        })
-    },
-
-    getEvolutionChart () {
-      this.loadingEvolutionChart = true
-      new LogBookOutdoorApi(this.$axios, this.$auth)
-        .evolutionChart(this.filters)
-        .then((resp) => {
-          this.evolutionData = resp.data
-        })
-        .finally(() => {
-          this.loadingEvolutionChart = false
+          this.loadingStats = false
         })
     }
   }

@@ -29,7 +29,10 @@ export default {
   name: 'LogBookClimbingTypeChart',
   components: { DoughnutChart },
   props: {
-    data: Object,
+    data: {
+      type: Object,
+      default: () => ({ labels: [], datasets: [] })
+    },
     legend: Boolean,
     heightClass: {
       type: String,
