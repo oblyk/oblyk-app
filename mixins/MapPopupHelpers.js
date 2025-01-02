@@ -1,5 +1,6 @@
 import { DateHelpers } from '@/mixins/DateHelpers'
 import { GradeMixin } from '@/mixins/GradeMixin'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 import Crag from '@/models/Crag'
 import Gym from '@/models/Gym'
 import PlaceOfSale from '@/models/PlaceOfSale'
@@ -10,7 +11,7 @@ import RockBar from '~/models/RockBar'
 import GuideBookPaper from '~/models/GuideBookPaper'
 
 export const MapPopupHelpers = {
-  mixins: [DateHelpers, GradeMixin],
+  mixins: [DateHelpers, GradeMixin, ImageVariantHelpers],
   methods: {
     getHtmlPopup (type, data) {
       if (type === 'Crag') {
@@ -218,7 +219,7 @@ export const MapPopupHelpers = {
       popup.innerHTML = `
         <p class="map-guide-book-paper-title">${guideBookPaper.name}</p>
         <div class="d-flex">
-          <img class="map-guide-book-paper-cover pa-1 ml-2" src="${guideBookPaper.thumbnailCoverUrl}" alt="couverture topo" />
+          <img class="map-guide-book-paper-cover pa-1 ml-2" src="${this.imageVariant(guideBookPaper.attachments.cover, { fit: 'scale-down', height: 720, width: 720 })}" alt="couverture topo" />
           <div class="pa-2">
             ${publicationYear || ''}
             ${author || ''}

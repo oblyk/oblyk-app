@@ -17,7 +17,7 @@
         >
           <v-avatar tile :size="small ? 40 : 70">
             <v-img
-              :src="guideBookPaper.thumbnailCoverUrl"
+              :src="imageVariant(guideBookPaper.attachments.cover, { fit: 'scale-down', height: 100, width: 100 })"
               contain
             />
           </v-avatar>
@@ -75,10 +75,12 @@
 <script>
 import { mdiBookshelf, mdiCurrencyUsdOff, mdiHandCoin, mdiHelpCircleOutline } from '@mdi/js'
 import SubscribeBtn from '@/components/forms/SubscribeBtn'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 
 export default {
   name: 'GuideBookPaperSmallCard',
   components: { SubscribeBtn },
+  mixins: [ImageVariantHelpers],
   props: {
     guideBookPaper: {
       type: Object,

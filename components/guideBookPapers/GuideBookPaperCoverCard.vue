@@ -3,7 +3,7 @@
     <div class="text-center mb-1">
       <nuxt-link :to="guideBookPaper.path">
         <v-img
-          :src="guideBookPaper.thumbnailCoverUrl"
+          :src="imageVariant(guideBookPaper.attachments.cover, { fit: 'scale-down', height: 720, width: 720 })"
           contain
           :height="coverHeight"
         />
@@ -116,10 +116,12 @@
 <script>
 import { mdiCurrencyEur, mdiWeight, mdiFountainPenTip, mdiBookOpenPageVariant, mdiCalendarOutline, mdiBookshelf } from '@mdi/js'
 import SubscribeBtn from '@/components/forms/SubscribeBtn'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 
 export default {
   name: 'GuideBookPaperCoverCard',
   components: { SubscribeBtn },
+  mixins: [ImageVariantHelpers],
   props: {
     guideBookPaper: {
       type: Object,

@@ -6,7 +6,7 @@
         size="70"
       >
         <v-img
-          :src="guideBookPaper.thumbnailCoverUrl"
+          :src="imageVariant(guideBookPaper.attachments.cover, { fit: 'scale-down', height: 100, width: 100 })"
           contain
           max-width="70px"
           max-height="70px"
@@ -46,10 +46,12 @@
 <script>
 import { mdiBookshelf } from '@mdi/js'
 import SubscribeBtn from '@/components/forms/SubscribeBtn'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 
 export default {
   name: 'GuideBookPaperFeedCard',
   components: { SubscribeBtn },
+  mixins: [ImageVariantHelpers],
   props: {
     guideBookPaper: {
       type: Object,

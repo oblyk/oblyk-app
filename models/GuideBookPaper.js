@@ -18,22 +18,6 @@ export default class GuideBookPaper extends ActiveData {
     return `/guide-book-papers/${this.id}/${this.slug_name}`
   }
 
-  get coverUrl () {
-    if (this.cover) {
-      return this.cover
-    } else {
-      return '/svg/paper-guide-book-default.svg'
-    }
-  }
-
-  get thumbnailCoverUrl () {
-    if (this.thumbnail_url) {
-      return this.thumbnail_url
-    } else {
-      return '/svg/paper-guide-book-default.svg'
-    }
-  }
-
   get haveArticles () {
     return ((this.articles_count || 0) > 0)
   }

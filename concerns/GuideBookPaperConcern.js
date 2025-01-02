@@ -1,6 +1,9 @@
 import GuideBookPaper from '@/models/GuideBookPaper'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 
 export const GuideBookPaperConcern = {
+  mixins: [ImageVariantHelpers],
+
   data () {
     return {
       guideBookPaper: null
@@ -15,8 +18,8 @@ export const GuideBookPaperConcern = {
       return this.$t('metaDescription', { name: this.guideBookPaper?.name })
     },
     guideBookPaperMetaImage () {
-      if (this.guideBookPaper) {
-        return this.guideBookPaper.coverUrl
+      if (this.guideBookPaper && this.guideBookPaper.attachments.cover.attached) {
+        return this.imageVariant(this.guideBookPaper.attachments.cover, { fit: 'scale-down', height: 1980, width: 1980 })
       } else {
         return `${process.env.VUE_APP_OBLYK_APP_URL}/images/oblyk-og-image.jpg`
       }

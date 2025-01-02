@@ -1,4 +1,7 @@
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
+
 export const MapMarkerHelpers = {
+  mixins: [ImageVariantHelpers],
   data () {
     return {
       markers: {
@@ -203,7 +206,7 @@ export const MapMarkerHelpers = {
     },
 
     guideBookPaperMarker (properties) {
-      const src = properties.thumbnail_url ? properties.thumbnail_url : '/svg/paper-guide-book-default.svg'
+      const src = properties.attachments.cover.attached ? this.imageVariant(properties.attachments.cover, { fit: 'scale-down', height: 100, width: 100 }) : '/svg/paper-guide-book-default.svg'
       return {
         iconSize: [60, 60],
         iconAnchor: [30, 30],
