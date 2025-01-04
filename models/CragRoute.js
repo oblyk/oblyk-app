@@ -24,34 +24,6 @@ export default class CragRoute extends ActiveData {
     return `/crags/${this.crag.id}/${this.crag.slug_name}/routes/${this.id}/${this.slug_name}`
   }
 
-  get havingPicture () {
-    return (this.photo.url)
-  }
-
-  get coverUrl () {
-    if (this.photo.url) {
-      return this.photo.url
-    } else if (this.crag_sector && this.crag_sector.photo.url) {
-      return this.crag_sector.photo.url
-    } else if (this.crag.photo.url) {
-      return this.crag.photo.url
-    } else {
-      return '/images/default-crag-banner.jpg'
-    }
-  }
-
-  get croppedCoverUrl () {
-    if (this.photo.cropped_url) {
-      return this.photo.cropped_url
-    } else if (this.crag_sector && this.crag_sector.photo.cropped_url) {
-      return this.crag_sector.photo.cropped_url
-    } else if (this.crag.photo.cropped_url) {
-      return this.crag.photo.cropped_url
-    } else {
-      return '/images/default-crag-banner.jpg'
-    }
-  }
-
   get coverFrom () {
     if (this.photo.url) {
       return 'cragRoute'
@@ -61,18 +33,6 @@ export default class CragRoute extends ActiveData {
       return 'crag'
     } else {
       return null
-    }
-  }
-
-  get thumbnailCoverUrl () {
-    if (this.photo.thumbnail_url) {
-      return this.photo.thumbnail_url
-    } else if (this.crag_sector && this.crag_sector.photo.thumbnail_url) {
-      return this.crag_sector.photo.thumbnail_url
-    } else if (this.crag.photo.thumbnail_url) {
-      return this.crag.photo.thumbnail_url
-    } else {
-      return '/images/default-crag-banner.jpg'
     }
   }
 

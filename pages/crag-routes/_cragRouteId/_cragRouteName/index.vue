@@ -81,6 +81,7 @@ import CragRoutePhotos from '~/components/cragRoutes/CragRoutePhotos'
 import CragRouteVideos from '~/components/cragRoutes/CragRouteVideos'
 import CragRouteAscent from '~/components/cragRoutes/CragRouteAscent'
 import VersionInformation from '~/components/ui/VersionInformation'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 
 export default {
   components: {
@@ -92,7 +93,7 @@ export default {
     CragRouteDescription,
     CragRouteHead
   },
-  mixins: [CragRouteConcern],
+  mixins: [CragRouteConcern, ImageVariantHelpers],
 
   data () {
     return {
@@ -149,8 +150,8 @@ export default {
       )
     },
     cragMetaImage () {
-      if (this.cragRoute && this.cragRoute.photo) {
-        return this.cragRoute.coverUrl
+      if (this.cragRoute && this.cragRoute.photo.attachments.picture.attached) {
+        return this.imageVariant(this.cragRoute.photo.attachments.picture, { fit: 'scale-down', height: 1920, width: 1920 })
       } else {
         return `${process.env.VUE_APP_OBLYK_APP_URL}/images/oblyk-og-image.jpg`
       }

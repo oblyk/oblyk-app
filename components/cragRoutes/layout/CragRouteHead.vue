@@ -1,13 +1,17 @@
 <template>
   <div>
     <v-img
-      v-if="cragRoute.havingPicture"
+      v-if="picture.attached"
       dark
       height="400px"
       gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-      :lazy-src="cragRoute.thumbnailCoverUrl"
-      :src="croppedSrc"
-      :srcset="`${croppedSrc} 500w, ${largeSrc} 600w`"
+      :lazy-src="imageVariant(picture, { fit: 'scale-down', width: 720, height: 720 })"
+      :src="imageVariant(picture, { fit: 'scale-down', width: 720, height: 720 })"
+      :srcset="`
+        ${imageVariant(picture, { fit: 'scale-down', width: 720, height: 720 })} 640w,
+        ${imageVariant(picture, { fit: 'scale-down', width: 1080, height: 1080 })} 960w,
+        ${imageVariant(picture, { fit: 'scale-down', width: 1920, height: 1920 })} 1200w`
+      "
     >
       <p
         v-if="cragRoute.coverFrom"
@@ -31,10 +35,12 @@
 
 <script>
 import CragRouteTitle from '~/components/cragRoutes/shared/CragRouteTitle'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 
 export default {
   name: 'CragRouteHead',
   components: { CragRouteTitle },
+  mixins: [ImageVariantHelpers],
   props: {
     cragRoute: {
       type: Object,
@@ -44,26 +50,18 @@ export default {
 
   data () {
     return {
-      croppedSrc: this.cragRoute.croppedCoverUrl,
-      largeSrc: this.cragRoute.coverUrl
+      picture: this.cragRoute.photo.attachments.picture
     }
   },
 
   mounted () {
-    this.$root.$on('updateCragRouteBannerSrc', (src) => {
-      this.updateCragRouteBannerSrc(src)
+    this.$root.$on('updateCragRouteBannerSrc', (picture) => {
+      this.picture = picture
     })
   },
 
   beforeDestroy () {
     this.$root.$off('updateCragRouteBannerSrc')
-  },
-
-  methods: {
-    updateCragRouteBannerSrc (src) {
-      this.croppedSrc = src
-      this.largeSrc = src
-    }
   }
 }
 </script>

@@ -18,6 +18,7 @@ export const ImageVariantHelpers = {
           User_avatar: '/svg/user-default-avatar.svg',
           Area_picture: '/images/default-crag-banner.jpg',
           Crag_picture: '/images/default-crag-banner.jpg',
+          Crag_cover: '/images/default-crag-banner.jpg',
           Championship_banner: '/images/gym-default-banner.jpg',
           Contest_banner: '/images/gym-default-banner.jpg',
           GuideBookPaper_cover: '/svg/paper-guide-book-default.svg',

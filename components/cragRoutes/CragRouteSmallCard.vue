@@ -18,8 +18,8 @@
             tile
           >
             <v-img
-              v-if="(cragRoute.photo || {}).url"
-              :src="cragRoute.thumbnailCoverUrl"
+              v-if="cragRoute.photo.attachments.picture.attached"
+              :src="imageVariant(cragRoute.photo.attachments.picture, { fit: 'crop', height: 100, width: 100 })"
             />
             <v-icon
               v-else
@@ -63,10 +63,12 @@
 <script>
 import { mdiSourceBranch } from '@mdi/js'
 import AscentCragRouteStatusIcon from '@/components/ascentCragRoutes/AscentCragRouteStatusIcon'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 
 export default {
   name: 'CragRouteSmallCard',
   components: { AscentCragRouteStatusIcon },
+  mixins: [ImageVariantHelpers],
   props: {
     cragRoute: {
       type: Object,
