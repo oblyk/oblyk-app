@@ -7,14 +7,14 @@
     >
       <v-list-item three-line>
         <v-list-item-avatar
+          v-if="cragSector.photo.attachments.picture.attached"
           size="70"
         >
           <v-avatar
-            color="grey"
             size="70"
             tile
           >
-            <v-img :src="cragSector.thumbnailCoverUrl" />
+            <v-img :src="imageVariant(cragSector.photo.attachments.picture, { fit: 'crop', height: 100, width: 100 })" />
           </v-avatar>
         </v-list-item-avatar>
         <v-list-item-content>
@@ -40,10 +40,16 @@
 </template>
 
 <script>
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
+
 export default {
   name: 'CragSectorSmallCard',
+  mixins: [ImageVariantHelpers],
   props: {
-    cragSector: Object,
+    cragSector: {
+      type: Object,
+      required: true
+    },
     linkable: {
       type: Boolean,
       required: false,

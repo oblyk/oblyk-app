@@ -1,6 +1,9 @@
 import CragSector from '@/models/CragSector'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 
 export const CragSectorConcern = {
+  mixins: [ImageVariantHelpers],
+
   data () {
     return {
       cragSector: null
@@ -27,8 +30,8 @@ export const CragSectorConcern = {
       }
     },
     cragSectorMetaImage () {
-      if (this.cragSector) {
-        return this.cragSector.coverUrl
+      if (this.cragSector && this.cragSector.photo.attachments.picture.attached) {
+        return this.imageVariant(this.cragSector.photo.attachments.picture, { fit: 'scale-down', height: 1920, width: 1920 })
       } else {
         return `${process.env.VUE_APP_OBLYK_APP_URL}/images/oblyk-og-image.jpg`
       }

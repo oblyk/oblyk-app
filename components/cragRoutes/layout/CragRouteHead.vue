@@ -13,12 +13,6 @@
         ${imageVariant(picture, { fit: 'scale-down', width: 1920, height: 1920 })} 1200w`
       "
     >
-      <p
-        v-if="cragRoute.coverFrom"
-        class="text-right pr-5"
-      >
-        <small>{{ $t(`components.${cragRoute.coverFrom}.coverFrom`) }}</small>
-      </p>
       <crag-route-title
         :crag-route="cragRoute"
         class="crag-route-header-title-in-picture"

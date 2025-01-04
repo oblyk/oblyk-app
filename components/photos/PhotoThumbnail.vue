@@ -224,7 +224,7 @@ export default {
             this.$root.$emit('updateCragBannerSrc', crag.photo.attachments.picture)
           } else if (this.environnementType === 'cragSector') {
             const cragSector = new CragSector({ attributes: resp.data })
-            this.$root.$emit('updateCragSectorBannerSrc', cragSector.coverUrl)
+            this.$root.$emit('updateCragSectorBannerSrc', cragSector.photo.attachments.picture)
           } else if (this.environnementType === 'cragRoute') {
             const cragRoute = new CragRoute({ attributes: resp.data })
             this.$root.$emit('updateCragRouteBannerSrc', cragRoute.photo.attachments.picture)

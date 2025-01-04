@@ -1,21 +1,19 @@
 <template>
   <div>
     <v-img
-      v-if="cragSector.havingPicture"
+      v-if="cragSector.photo.attachments.picture.attached"
       dark
       height="400px"
       class="rounded"
       gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-      :lazy-src="cragSector.thumbnailCoverUrl"
-      :src="croppedSrc"
-      :srcset="`${croppedSrc} 500w, ${largeSrc} 600w`"
+      :lazy-src="imageVariant(picture, { fit: 'scale-down', width: 720, height: 720 })"
+      :src="imageVariant(picture, { fit: 'scale-down', width: 720, height: 720 })"
+      :srcset="`
+        ${imageVariant(picture, { fit: 'scale-down', width: 720, height: 720 })} 640w,
+        ${imageVariant(picture, { fit: 'scale-down', width: 1080, height: 1080 })} 960w,
+        ${imageVariant(picture, { fit: 'scale-down', width: 1920, height: 1920 })} 1200w`
+      "
     >
-      <p
-        v-if="cragSector.coverFrom"
-        class="text-right pr-5"
-      >
-        <small>{{ $t(`components.${cragSector.coverFrom}.coverFrom`) }}</small>
-      </p>
       <crag-sector-head-title
         :crag-sector="cragSector"
         class="crag-sector-header-title-in-picture"
@@ -32,10 +30,12 @@
 
 <script>
 import CragSectorHeadTitle from '~/components/cragSectors/layout/CragSectorHeadTitle'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 
 export default {
   name: 'CragSectorHead',
   components: { CragSectorHeadTitle },
+  mixins: [ImageVariantHelpers],
   props: {
     cragSector: {
       type: Object,
@@ -45,26 +45,18 @@ export default {
 
   data () {
     return {
-      croppedSrc: this.cragSector.croppedCoverUrl,
-      largeSrc: this.cragSector.coverUrl
+      picture: this.cragSector.photo.attachments.picture
     }
   },
 
   mounted () {
-    this.$root.$on('updateCragSectorBannerSrc', (src) => {
-      this.updateCragSectorBannerSrc(src)
+    this.$root.$on('updateCragSectorBannerSrc', (picture) => {
+      this.picture = picture
     })
   },
 
   beforeDestroy () {
     this.$root.$off('updateCragSectorBannerSrc')
-  },
-
-  methods: {
-    updateCragSectorBannerSrc (src) {
-      this.croppedSrc = src
-      this.largeSrc = src
-    }
   }
 }
 </script>

@@ -111,8 +111,8 @@ export const MapPopupHelpers = {
       }
 
       let banner = ''
-      if (rockBar.crag_sector && rockBar.crag_sector.photo?.thumbnail_url) {
-        banner = `<div class="map-popup-cover" style="background-image: url(${rockBar.CragSector.thumbnailCoverUrl})"></div>`
+      if (rockBar.crag_sector && rockBar.crag_sector.photo.attachments.picture.attached) {
+        banner = `<div class="map-popup-cover" style="background-image: url(${this.imageVariant(rockBar.CragSector.photo.attachments.picture, { fit: 'scale-down', height: 720, width: 720 })})"></div>`
       }
       if (!rockBar.crag_sector && rockBar.crag.photo.attachments.picture.attached) {
         banner = `<div class="map-popup-cover" style="background-image: url(${this.imageVariant(rockBar.Crag.photo.attachments.picture, { fit: 'scale-down', height: 720, width: 720 })})"></div>`
@@ -151,8 +151,8 @@ export const MapPopupHelpers = {
       const cragSector = new CragSector({ attributes: data })
       const popup = document.createElement('div')
       let mapCover = ''
-      if (cragSector.photo.thumbnail_url) {
-        mapCover = `<div class="map-popup-cover" style="background-image: url(${cragSector.thumbnailCoverUrl})"></div>`
+      if (cragSector.photo.attachments.picture.attached) {
+        mapCover = `<div class="map-popup-cover" style="background-image: url(${this.imageVariant(cragSector.photo.attachments.picture, { fit: 'scale-down', height: 720, width: 720 })})"></div>`
       }
       popup.innerHTML = `
         ${mapCover}

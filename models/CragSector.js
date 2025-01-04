@@ -32,50 +32,6 @@ export default class CragSector extends ActiveData {
     return `${(grade || {}).min_text || '?'} > ${(grade || {}).max_text || '?'}`
   }
 
-  get havingPicture () {
-    return (this.photo.url)
-  }
-
-  get coverUrl () {
-    if (this.photo.url) {
-      return this.photo.url
-    } else if (this.crag.photo.url) {
-      return this.crag.photo.url
-    } else {
-      return '/images/default-crag-banner.jpg'
-    }
-  }
-
-  get croppedCoverUrl () {
-    if (this.photo.cropped_url) {
-      return this.photo.cropped_url
-    } else if (this.crag.photo.cropped_url) {
-      return this.crag.photo.cropped_url
-    } else {
-      return '/images/default-crag-banner.jpg'
-    }
-  }
-
-  get coverFrom () {
-    if (this.photo.url) {
-      return 'cragSector'
-    } else if (this.crag.photo.url) {
-      return 'crag'
-    } else {
-      return null
-    }
-  }
-
-  get thumbnailCoverUrl () {
-    if (this.photo.thumbnail_url) {
-      return this.photo.thumbnail_url
-    } else if (this.crag.photo.thumbnail_url) {
-      return this.crag.photo.thumbnail_url
-    } else {
-      return '/images/default-crag-banner.jpg'
-    }
-  }
-
   get orientations () {
     const list = []
     if (this.north) { list.push('north') }

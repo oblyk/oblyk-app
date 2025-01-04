@@ -24,18 +24,6 @@ export default class CragRoute extends ActiveData {
     return `/crags/${this.crag.id}/${this.crag.slug_name}/routes/${this.id}/${this.slug_name}`
   }
 
-  get coverFrom () {
-    if (this.photo.url) {
-      return 'cragRoute'
-    } else if (this.crag_sector && this.crag_sector.photo.url) {
-      return 'cragSector'
-    } else if (this.crag.photo.url) {
-      return 'crag'
-    } else {
-      return null
-    }
-  }
-
   get CragSector () {
     if (this.crag_sector === null) { return null }
     const cragSector = new CragSector({ attributes: this.crag_sector })
