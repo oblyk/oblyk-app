@@ -1,7 +1,10 @@
 import GymSpace from '@/models/GymSpace'
 import GymSpaceApi from '~/services/oblyk-api/GymSpaceApi'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 
 export const GymSpaceConcern = {
+  mixins: [ImageVariantHelpers],
+
   data () {
     return {
       gymSpace: null
@@ -26,8 +29,8 @@ export const GymSpaceConcern = {
       return this.$t('metaDescription', { gym: this.gymSpace?.gym?.name })
     },
     gymSpaceMetaImage () {
-      if (this.gymSpace && this.gymSpace.gym.banner) {
-        return this.gymSpace.Gym.bannerUrl
+      if (this.gymSpace && this.gymSpace.gym.attachments.banner.attached) {
+        return this.imageVariant(this.gymSpace.gym.attachments.banner, { fit: 'scale-down', height: 1920, width: 1290 })
       } else {
         return `${process.env.VUE_APP_OBLYK_APP_URL}/images/oblyk-og-image.jpg`
       }

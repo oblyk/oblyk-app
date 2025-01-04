@@ -26,8 +26,8 @@ export const ChampionshipConcern = {
     championshipMetaImage () {
       if (this.championship && this.championship.attachments.banner.attached) {
         return this.imageVariant(this.championship.attachments.banner, { fit: 'scale-down', width: 1920, height: 1920 })
-      } else if (this.championship && this.championship?.gym && this.championship?.gym?.banner) {
-        return this.championship.Gym.bannerUrl
+      } else if (this.championship && this.championship?.gym && this.championship?.gym?.attachments.banner.attached) {
+        return this.imageVariant(this.championship.gym.attachments.banner, { fit: 'scale-down', width: 1920, height: 1920 })
       } else {
         return `${process.env.VUE_APP_OBLYK_APP_URL}/images/oblyk-og-image.jpg`
       }

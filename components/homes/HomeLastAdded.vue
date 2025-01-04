@@ -97,7 +97,7 @@
           <nuxt-link :to="gym.path">
             <v-img
               class="rounded"
-              :src="gym.thumbnailBannerUrl"
+              :src="imageVariant(gym.attachments.banner, { fit: 'scale-down', width: 720, height: 720 })"
               height="170"
               :alt="gym.name"
             >

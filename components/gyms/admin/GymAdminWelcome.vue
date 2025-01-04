@@ -1,6 +1,7 @@
 <template>
   <v-img
-    :src="gym.bannerUrl"
+    :src="imageVariant(gym.attachments.banner, { fit: 'scale-down', width: 1920, height: 1920 })"
+    :lazy-src="imageVariant(gym.attachments.banner, { fit: 'scale-down', width: 720, height: 720 })"
     class="white--text align-end rounded"
     height="320px"
   >
@@ -15,7 +16,7 @@
               >
                 <v-avatar tile>
                   <v-img
-                    :src="gym.thumbnailLogoUrl"
+                    :src="imageVariant(gym.attachments.logo, { fit: 'crop', width: 100, height: 100 })"
                     :alt="`logo ${gym.name}`"
                     class="rounded-sm"
                   />
@@ -166,10 +167,11 @@ import {
   mdiImageArea
 } from '@mdi/js'
 import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 
 export default {
   name: 'GymAdminWelcome',
-  mixins: [GymRolesHelpers],
+  mixins: [GymRolesHelpers, ImageVariantHelpers],
   props: {
     gym: {
       type: Object,

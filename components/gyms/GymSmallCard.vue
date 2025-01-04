@@ -20,7 +20,7 @@
             class="rounded-sm"
             tile
           >
-            <v-img :src="gym.thumbnailLogoUrl" />
+            <v-img :src="imageVariant(gym.attachments.logo, { fit: 'crop', width: 100, height: 100 })" />
           </v-avatar>
         </v-list-item-avatar>
         <v-list-item-content
@@ -60,11 +60,12 @@
 <script>
 import SubscribeBtn from '@/components/forms/SubscribeBtn'
 import { LocalizationHelpers } from '@/mixins/LocalizationHelpers'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 
 export default {
   name: 'GymSmallCard',
   components: { SubscribeBtn },
-  mixins: [LocalizationHelpers],
+  mixins: [LocalizationHelpers, ImageVariantHelpers],
   props: {
     gym: {
       type: Object,

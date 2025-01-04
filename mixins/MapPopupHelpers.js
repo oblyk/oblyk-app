@@ -175,7 +175,7 @@ export const MapPopupHelpers = {
 
       const popup = document.createElement('div')
       popup.innerHTML = `
-        <div class="map-popup-cover" style="background-image: url(${gym.thumbnailBannerUrl})"></div>
+        <div class="map-popup-cover" style="background-image: url(${this.imageVariant(gym.attachments.banner, { fit: 'scale-down', height: 720, width: 720 })})"></div>
         <table class="map-popup-information-table">
           <tr>
             <td colspan="2" class="gym-map-title">${gym.name}</td>

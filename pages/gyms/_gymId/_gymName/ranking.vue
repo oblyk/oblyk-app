@@ -3,8 +3,13 @@
     <v-img
       dark
       height="300px"
-      :lazy-src="gym.thumbnailBannerUrl"
-      :src="gym.bannerUrl"
+      :lazy-src="imageVariant(gym.attachments.banner, { fit: 'scale-down', width: 720, height: 720 })"
+      :src="imageVariant(gym.attachments.banner, { fit: 'scale-down', width: 720, height: 720 })"
+      :srcset="`
+        ${imageVariant(gym.attachments.banner, { fit: 'scale-down', width: 720, height: 720 })} 640w,
+        ${imageVariant(gym.attachments.banner, { fit: 'scale-down', width: 1080, height: 1080 })} 960w,
+        ${imageVariant(gym.attachments.banner, { fit: 'scale-down', width: 1920, height: 1920 })} 1200w`
+      "
       gradient="to bottom, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.6) 100%"
       class="rounded align-end"
     >
@@ -30,10 +35,10 @@
       <div class="pb-2 text-center">
         <h1>
           <v-avatar
-            v-if="gym.logoUrl"
+            v-if="gym.attachments.logo.attached"
             class="mr-1"
           >
-            <v-img :src="gym.thumbnailLogoUrl" />
+            <v-img :src="imageVariant(gym.attachments.logo, { fit: 'crop', width: 100, height: 100 })" />
           </v-avatar>
           {{ gym.name }}
         </h1>

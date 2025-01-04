@@ -1,6 +1,9 @@
 import Gym from '@/models/Gym'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 
 export const GymConcern = {
+  mixins: [ImageVariantHelpers],
+
   data () {
     return {
       gym: null
@@ -23,8 +26,8 @@ export const GymConcern = {
       )
     },
     gymMetaImage () {
-      if (this.gym && this.gym.banner) {
-        return this.gym.bannerUrl
+      if (this.gym && this.gym.attachments.banner.attached) {
+        return this.imageVariant(this.gym.attachments.banner, { fit: 'scale-down', height: 1920, width: 1920 })
       } else {
         return `${process.env.VUE_APP_OBLYK_APP_URL}/images/oblyk-og-image.jpg`
       }

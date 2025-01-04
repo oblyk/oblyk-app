@@ -3,9 +3,13 @@
     <v-img
       dark
       height="400px"
-      :lazy-src="gym.thumbnailBannerUrl"
-      :src="gym.croppedBannerUrl"
-      :srcset="`${gym.croppedBannerUrl} 500w, ${gym.bannerUrl} 600w`"
+      :lazy-src="imageVariant(gym.attachments.banner, { fit: 'scale-down', width: 720, height: 720 })"
+      :src="imageVariant(gym.attachments.banner, { fit: 'scale-down', width: 720, height: 720 })"
+      :srcset="`
+        ${imageVariant(gym.attachments.banner, { fit: 'scale-down', width: 720, height: 720 })} 640w,
+        ${imageVariant(gym.attachments.banner, { fit: 'scale-down', width: 1080, height: 1080 })} 960w,
+        ${imageVariant(gym.attachments.banner, { fit: 'scale-down', width: 1920, height: 1920 })} 1200w`
+      "
       class="gym-header-banner"
     >
       <template #placeholder>
@@ -24,7 +28,7 @@
             class="mr-3 align-self-center rounded-sm"
           >
             <v-img
-              :src="gym.thumbnailLogoUrl"
+              :src="imageVariant(gym.attachments.logo, { fit: 'crop', width: 100, height: 100 })"
               :alt="`logo ${gym.name}`"
             />
           </v-avatar>
@@ -61,10 +65,12 @@
 <script>
 import SubscribeBtn from '@/components/forms/SubscribeBtn'
 import ShareBtn from '~/components/ui/ShareBtn'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 
 export default {
   name: 'GymHead',
   components: { ShareBtn, SubscribeBtn },
+  mixins: [ImageVariantHelpers],
   props: {
     gym: {
       type: Object,

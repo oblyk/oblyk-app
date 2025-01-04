@@ -20,7 +20,7 @@
             size="28"
           >
             <img
-              :src="gym.thumbnailLogoUrl"
+              :src="imageVariant(gym.attachments.logo, { fit: 'crop', width: 50, height: 50 })"
               :alt="`logo ${gym.name}`"
               class="rounded-sm"
             >
@@ -36,9 +36,11 @@
 
 <script>
 import Gym from '@/models/Gym'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 
 export default {
   name: 'MyGyms',
+  mixins: [ImageVariantHelpers],
 
   computed: {
     gyms () {

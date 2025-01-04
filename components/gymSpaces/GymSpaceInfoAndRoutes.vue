@@ -31,7 +31,7 @@
               tile
               class="vertical-align-top rounded-sm"
             >
-              <v-img :src="gym.thumbnailLogoUrl" alt="gym logo" />
+              <v-img :src="imageVariant(gym.attachments.logo, { fit: 'crop', width: 100, height: 100 })" alt="gym logo" />
             </v-avatar>
           </v-list-item-avatar>
           <v-list-item-content>
@@ -172,6 +172,7 @@ import GymSpaceRouteList from '@/components/gymRoutes/GymSpaceRouteList'
 import ContestUpComing from '~/components/gyms/ContestUpComing'
 import SubscribeBtn from '~/components/forms/SubscribeBtn'
 import GymRankingAndLogbook from '~/components/gyms/GymRankingAndLogbook'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 const GymSpaceActionMenu = () => import('@/components/gymSpaces/GymSpaceActionMenu')
 const GymSectorEditingPlan = () => import('@/components/gymSectors/GymSectorEditingPlan')
 const GymSpaceEditingSectorsColor = () => import('~/components/gymSpaces/GymSpaceEditingSectorsColor')
@@ -190,7 +191,7 @@ export default {
     GymSpaceActionMenu,
     GymSpaceSelector
   },
-  mixins: [GymRolesHelpers],
+  mixins: [GymRolesHelpers, ImageVariantHelpers],
 
   props: {
     gymSpace: {

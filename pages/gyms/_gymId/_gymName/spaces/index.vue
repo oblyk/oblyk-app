@@ -37,7 +37,7 @@
       >
         <v-img
           height="190px"
-          :src="gym.bannerUrl"
+          :src="imageVariant(gym.attachments.banner, { fit: 'scale-down', width: 720, height: 720 })"
           class="align-end mb-2 gym-picture-in-gym-spaces"
           dark
           gradient="to bottom, rgba(0,0,0,0), rgba(0,0,0,.5)"
@@ -51,7 +51,7 @@
               size="60"
             >
               <v-img
-                :src="gym.thumbnailLogoUrl"
+                :src="imageVariant(gym.attachments.logo, { fit: 'crop', width: 100, height: 100 })"
                 class="rounded-sm"
               />
             </v-list-item-avatar>
@@ -186,6 +186,7 @@ import GymRouteInfo from '~/components/gymRoutes/GymRouteInfo'
 import DownToCloseDialog from '~/components/ui/DownToCloseDialog'
 import GymSpaceSelector from '~/components/gymSpaces/GymSpaceSelector.vue'
 import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 const GymRankingAndLogbook = () => import('~/components/gyms/GymRankingAndLogbook')
 const SubscribeBtn = () => import('~/components/forms/SubscribeBtn')
 const GymSpacesActionMenu = () => import('~/components/gymSpaces/GymSpacesActionMenu')
@@ -208,7 +209,7 @@ export default {
     Spinner
   },
   meta: { orphanRoute: true },
-  mixins: [GymConcern, GymRolesHelpers],
+  mixins: [GymConcern, GymRolesHelpers, ImageVariantHelpers],
 
   data () {
     return {

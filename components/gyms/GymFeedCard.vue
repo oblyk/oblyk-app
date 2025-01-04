@@ -1,14 +1,11 @@
 <template>
   <v-list-item two-line>
-    <v-list-item-avatar
-      size="50"
-    >
+    <v-list-item-avatar size="50">
       <v-avatar
-        color="grey"
         size="50"
         tile
       >
-        <v-img :src="gym.thumbnailLogoUrl" />
+        <v-img :src="imageVariant(gym.attachments.logo, { fit: 'crop', width: 100, height: 100 })" />
       </v-avatar>
     </v-list-item-avatar>
     <v-list-item-content>
@@ -34,12 +31,17 @@
 
 <script>
 import SubscribeBtn from '@/components/forms/SubscribeBtn'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 
 export default {
   name: 'GymFeedCard',
   components: { SubscribeBtn },
+  mixins: [ImageVariantHelpers],
   props: {
-    gym: Object
+    gym: {
+      type: Object,
+      required: true
+    }
   }
 }
 </script>

@@ -15,7 +15,7 @@
       <div v-if="gym">
         <div class="text-center mt-5">
           <v-avatar>
-            <v-img :src="gym.thumbnailLogoUrl" />
+            <v-img :src="imageVariant(gym.attachments.logo, { fit: 'crop', width: 100, height: 100 })" />
           </v-avatar>
         </div>
         <v-sheet
@@ -66,10 +66,11 @@ import GymRoute from '~/models/GymRoute'
 import GymRouteListItem from '~/components/gymRoutes/GymRouteListItem'
 import { GymFetchConcern } from '~/concerns/GymFetchConcern'
 import GymRouteInfo from '~/components/gymRoutes/GymRouteInfo.vue'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 
 export default {
   components: { GymRouteInfo, GymRouteListItem },
-  mixins: [GymFetchConcern],
+  mixins: [GymFetchConcern, ImageVariantHelpers],
 
   data () {
     return {
