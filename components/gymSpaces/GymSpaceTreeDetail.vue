@@ -19,9 +19,9 @@
           tile
         >
           <v-img
-            v-if="gymSpace.pictureTinyUrl"
+            v-if="gymSpace.pictureAttachment"
             contain
-            :src="gymSpace.pictureTinyUrl"
+            :src="imageVariant(gymSpace.pictureAttachment, { fit: 'scale-down', height: 100, width: 100 })"
           />
         </v-avatar>
       </v-list-item-avatar>
@@ -258,12 +258,13 @@ import { ClimbingTypeMixin } from '~/mixins/ClimbingTypeMixin'
 import GymSpaceApi from '~/services/oblyk-api/GymSpaceApi'
 import GymSectorApi from '~/services/oblyk-api/GymSectorApi'
 import DescriptionLine from '~/components/ui/DescriptionLine.vue'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 const MarkdownText = () => import('~/components/ui/MarkdownText.vue')
 
 export default {
   name: 'GymSpaceTreeDetail',
   components: { DescriptionLine, MarkdownText },
-  mixins: [ClimbingTypeMixin],
+  mixins: [ClimbingTypeMixin, ImageVariantHelpers],
   props: {
     gymSpace: {
       type: Object,

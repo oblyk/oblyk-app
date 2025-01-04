@@ -56,6 +56,7 @@ import { MapDrawingHelpers } from '@/mixins/MapDrawingHelpers'
 import Spinner from '@/components/layouts/Spiner'
 import GymSpace from '@/models/GymSpace'
 import GymSpaceApi from '~/services/oblyk-api/GymSpaceApi'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 
 export default {
   name: 'GymSpacePlan',
@@ -67,7 +68,7 @@ export default {
     LControlZoom,
     LControl
   },
-  mixins: [MapDrawingHelpers],
+  mixins: [MapDrawingHelpers, ImageVariantHelpers],
 
   props: {
     gymSpace: {
@@ -95,7 +96,7 @@ export default {
 
   computed: {
     url () {
-      return this.gymSpaceData.planUrl
+      return this.imageVariant(this.gymSpaceData.attachments.plan, { fit: 'scale-down', height: 4000, width: 4000 })
     },
 
     sectorPolygons () {

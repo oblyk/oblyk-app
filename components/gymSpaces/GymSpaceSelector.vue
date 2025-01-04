@@ -51,8 +51,8 @@
               class="gym-space-avatar"
             >
               <v-img
-                v-if="space.pictureTinyUrl"
-                :src="space.pictureTinyUrl"
+                v-if="space.pictureAttachment"
+                :src="imageVariant(space.pictureAttachment, { fit: 'scale-down', height: 100, width: 100 })"
                 height="62"
                 width="62"
                 contain
@@ -88,8 +88,8 @@
             class="gym-space-avatar"
           >
             <v-img
-              v-if="space.pictureTinyUrl"
-              :src="space.pictureTinyUrl"
+              v-if="space.pictureAttachment"
+              :src="imageVariant(space.pictureAttachment, { fit: 'scale-down', height: 100, width: 100 })"
               height="62"
               width="62"
               contain
@@ -127,9 +127,11 @@
 import { mdiMapOutline, mdiAsterisk } from '@mdi/js'
 import GymSpaceApi from '~/services/oblyk-api/GymSpaceApi'
 import GymSpace from '~/models/GymSpace'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 
 export default {
   name: 'GymSpaceSelector',
+  mixins: [ImageVariantHelpers],
   props: {
     gymSpace: {
       type: Object,

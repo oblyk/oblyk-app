@@ -13,8 +13,8 @@
           class="mb-4 pt-4"
         >
           <v-img
-            v-if="space.plan"
-            :src="space.pictureThumbnailUrl"
+            v-if="space.pictureAttachment"
+            :src="imageVariant(space.pictureAttachment, { fit: 'scale-down', height: 720, width: 720 })"
             height="200"
             contain
           />
@@ -42,10 +42,11 @@
 import { mdiMap } from '@mdi/js'
 import { GymFetchConcern } from '~/concerns/GymFetchConcern'
 import GymSpace from '~/models/GymSpace'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 
 export default {
   meta: { orphanRoute: true },
-  mixins: [GymFetchConcern],
+  mixins: [GymFetchConcern, ImageVariantHelpers],
 
   data () {
     return {

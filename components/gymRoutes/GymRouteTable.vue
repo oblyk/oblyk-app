@@ -18,12 +18,12 @@
               @click="getRoutes(space.id)"
             >
               <v-img
-                v-if="spaceToObject(space).pictureTinyUrl"
+                v-if="spaceToObject(space).pictureAttachment"
                 contain
                 height="40"
                 width="40"
                 class="mr-3"
-                :src="spaceToObject(space).pictureTinyUrl"
+                :src="imageVariant(spaceToObject(space).pictureAttachment, { fit: 'scale-down', height: 50, width: 50 })"
               />
               {{ space.name }}
             </v-tab>
@@ -409,6 +409,7 @@ import GymSpace from '~/models/GymSpace'
 import DownToCloseDialog from '~/components/ui/DownToCloseDialog'
 import GymRouteInfo from '~/components/gymRoutes/GymRouteInfo'
 import OpeningSheetDialog from '~/components/gymOpeningSheets/OpeningSheetDialog'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 
 export default {
   name: 'GymRoutesTable',
@@ -421,7 +422,7 @@ export default {
     Note,
     GymRouteTagAndHold
   },
-  mixins: [DateHelpers, GymRolesHelpers],
+  mixins: [DateHelpers, GymRolesHelpers, ImageVariantHelpers],
   props: {
     gym: {
       type: Object,

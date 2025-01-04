@@ -25,45 +25,11 @@ export default class GymSpace extends ActiveData {
     return `/gyms/${this.gym.id}/${this.gym.slug_name}`
   }
 
-  get planUrl () {
-    if (this.plan) {
-      return this.plan
-    } else {
-      return '/images/gym-default-banner.jpg'
-    }
-  }
-
-  get planThumbnailUrl () {
-    if (this.plan) {
-      return this.plan_thumbnail_url
-    } else {
-      return '/images/gym-default-banner.jpg'
-    }
-  }
-
-  get planTinyThumbnailUrl () {
-    if (this.plan) {
-      return this.plan_tiny_thumbnail_url
-    } else {
-      return '/images/gym-default-banner.jpg'
-    }
-  }
-
-  get pictureTinyUrl () {
-    if (this.representation_type === '3d' && this.three_d_picture_tiny_thumbnail_url) {
-      return this.three_d_picture_tiny_thumbnail_url
-    } else if (this.representation_type === '2d_picture' && this.plan_tiny_thumbnail_url) {
-      return this.plan_tiny_thumbnail_url
-    } else {
-      return null
-    }
-  }
-
-  get pictureThumbnailUrl () {
-    if (this.representation_type === '3d' && this.three_d_picture_thumbnail_url) {
-      return this.three_d_picture_thumbnail_url
-    } else if (this.representation_type === '2d_picture' && this.plan_thumbnail_url) {
-      return this.plan_thumbnail_url
+  get pictureAttachment () {
+    if (this.representation_type === '3d' && this.attachments.three_d_picture.attached) {
+      return this.attachments.three_d_picture
+    } else if (this.representation_type === '2d_picture' && this.attachments.plan.attached) {
+      return this.attachments.plan
     } else {
       return null
     }

@@ -6,14 +6,14 @@
   >
     <div class="d-flex flex-column" style="height: 100%">
       <div
-        v-if="gymSpace.pictureThumbnailUrl"
+        v-if="gymSpace.pictureAttachment"
         class="pa-4"
       >
         <v-img
           contain
           height="150"
-          :src="gymSpace.pictureThumbnailUrl"
-          :lazy-src="gymSpace.pictureTinyUrl"
+          :src="imageVariant(gymSpace.pictureAttachment, { fit: 'scale-down', height: 720, width: 720 })"
+          :lazy-src="imageVariant(gymSpace.pictureAttachment, { fit: 'scale-down', height: 100, width: 100 })"
         >
           <template #placeholder>
             <v-row
@@ -79,11 +79,12 @@
 import { mdiSourceBranch, mdiCalendar } from '@mdi/js'
 import DescriptionLine from '~/components/ui/DescriptionLine.vue'
 import { DateHelpers } from '~/mixins/DateHelpers'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 
 export default {
   name: 'GymSpaceCard',
   components: { DescriptionLine },
-  mixins: [DateHelpers],
+  mixins: [DateHelpers, ImageVariantHelpers],
   props: {
     gymSpace: {
       type: Object,
