@@ -76,7 +76,7 @@
           class="rounded"
           height="100%"
           width="100%"
-          :src="crag.staticMapUrl"
+          :src="imageVariant(crag.attachments.static_map, { fit: 'scale-down', height: 1920, width: 1920 })"
         >
           <v-row
             class="fill-height ma-0"
@@ -114,13 +114,15 @@
 
 <script>
 import { mdiParking, mdiWalk, mdiMap } from '@mdi/js'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 import ApproachApi from '~/services/oblyk-api/ApproachApi'
 import Approach from '~/models/Approach'
-import ApproachCard from '~/components/approaches/ApproachCard.vue'
+import ApproachCard from '~/components/approaches/ApproachCard'
 
 export default {
   name: 'CragMapDetailsView',
   components: { ApproachCard },
+  mixins: [ImageVariantHelpers],
   props: {
     crag: {
       type: Object,

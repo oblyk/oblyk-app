@@ -233,7 +233,7 @@
             class="rounded"
             height="100%"
             width="100%"
-            :src="crag.staticMapUrl"
+            :src="imageVariant(crag.attachments.static_map, { fit: 'scale-down', height: 1080, width: 1080 })"
           >
             <v-row
               class="fill-height ma-0"
@@ -292,6 +292,7 @@ import DescriptionLine from '~/components/ui/DescriptionLine'
 import Compass from '~/components/ui/Compass'
 import Seasons from '~/components/ui/Seasons'
 import ClimbingStyleCragChips from '~/components/crags/ClimbingStyleCragChips.vue'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 
 export default {
   name: 'CragInfo',
@@ -304,6 +305,7 @@ export default {
     AlertList,
     QrCodeBtn
   },
+  mixins: [ImageVariantHelpers],
   props: {
     crag: {
       type: Object,

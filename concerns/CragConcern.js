@@ -1,6 +1,9 @@
 import Crag from '@/models/Crag'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 
 export const CragConcern = {
+  mixins: [ImageVariantHelpers],
+
   data () {
     return {
       crag: null,
@@ -16,10 +19,8 @@ export const CragConcern = {
       return this.$t('metaDescription', { name: this.crag?.name, region: this.crag?.region, city: this.crag?.city })
     },
     cragMetaImage () {
-      if (this.crag && this.crag.photo) {
-        return this.crag.coverUrl
-      } else if (this.crag && this.crag.static_map.url) {
-        return this.crag.static_map.url
+      if (this.crag && this.crag.attachments.cover.attached) {
+        return this.imageVariant(this.crag.attachments.cover, { fit: 'scale-down', width: 1920, height: 1920 })
       } else {
         return `${process.env.VUE_APP_OBLYK_APP_URL}/images/oblyk-og-image.jpg`
       }

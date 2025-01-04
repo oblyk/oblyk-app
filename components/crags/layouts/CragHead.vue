@@ -3,8 +3,13 @@
     <v-img
       dark
       height="400px"
-      :src="croppedSrc"
-      :srcset="`${croppedSrc} 500w, ${largeSrc} 600w`"
+      :lazy-src="imageVariant(picture, { fit: 'scale-down', width: 720, height: 720 })"
+      :src="imageVariant(picture, { fit: 'scale-down', width: 720, height: 720 })"
+      :srcset="`
+        ${imageVariant(picture, { fit: 'scale-down', width: 720, height: 720 })} 640w,
+        ${imageVariant(picture, { fit: 'scale-down', width: 1080, height: 1080 })} 960w,
+        ${imageVariant(picture, { fit: 'scale-down', width: 1920, height: 1920 })} 1200w`
+      "
       class="crag-header-banner"
     >
       <template #placeholder>
@@ -109,11 +114,13 @@
 <script>
 import { mdiDotsVertical, mdiMapMarkerRadiusOutline, mdiBellPlus, mdiPencil } from '@mdi/js'
 import ShareBtn from '~/components/ui/ShareBtn.vue'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 const SubscribeBtn = () => import('@/components/forms/SubscribeBtn')
 
 export default {
   name: 'CragHead',
   components: { ShareBtn, SubscribeBtn },
+  mixins: [ImageVariantHelpers],
   props: {
     crag: {
       type: Object,
@@ -123,8 +130,7 @@ export default {
 
   data () {
     return {
-      croppedSrc: this.crag.croppedCoverUrl,
-      largeSrc: this.crag.coverUrl,
+      picture: this.crag.attachments.cover,
 
       mdiDotsVertical,
       mdiMapMarkerRadiusOutline,
@@ -134,20 +140,13 @@ export default {
   },
 
   mounted () {
-    this.$root.$on('updateCragBannerSrc', (src) => {
-      this.updateCragBannerSrc(src)
+    this.$root.$on('updateCragBannerSrc', (picture) => {
+      this.picture = picture
     })
   },
 
   beforeDestroy () {
     this.$root.$off('updateCragBannerSrc')
-  },
-
-  methods: {
-    updateCragBannerSrc (src) {
-      this.croppedSrc = src
-      this.largeSrc = src
-    }
   }
 }
 </script>

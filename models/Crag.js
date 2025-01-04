@@ -19,38 +19,6 @@ export default class Crag extends ActiveData {
     return `/crags/${this.id}/${this.slug_name}`
   }
 
-  get coverUrl () {
-    if (this.photo?.url) {
-      return this.photo.url
-    } else if (this.static_map?.banner_url) {
-      return this.static_map.banner_url
-    } else {
-      return '/images/default-crag-banner.jpg'
-    }
-  }
-
-  get croppedCoverUrl () {
-    if (this.photo?.cropped_url) {
-      return this.photo.cropped_url
-    } else if (this.static_map?.url) {
-      return this.static_map.url
-    } else {
-      return '/images/default-crag-banner.jpg'
-    }
-  }
-
-  get thumbnailCoverUrl () {
-    if (this.photo?.thumbnail_url) {
-      return this.photo.thumbnail_url
-    } else {
-      return '/images/default-crag-banner.jpg'
-    }
-  }
-
-  get staticMapUrl () {
-    return this.static_map.url
-  }
-
   get climbingTypes () {
     const list = []
     if (this.sport_climbing) { list.push('sport_climbing') }

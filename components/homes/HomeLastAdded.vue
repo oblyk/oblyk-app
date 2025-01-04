@@ -34,7 +34,7 @@
           <nuxt-link :to="crag.path">
             <v-img
               class="rounded"
-              :src="crag.thumbnailCoverUrl"
+              :src="imageVariant(crag.attachments.cover, { fit: 'scale-down', width: 720, height: 720 })"
               height="170"
               :alt="crag.name"
             >
@@ -161,10 +161,12 @@ import Gym from '~/models/Gym'
 import CragRoute from '~/models/CragRoute'
 import CragRouteDrawer from '~/components/cragRoutes/CragRouteDrawer'
 import CragRouteSmallLine from '~/components/cragRoutes/CragRouteSmallLine'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 
 export default {
   name: 'HomeLastAdded',
   components: { CragRouteSmallLine, CragRouteDrawer },
+  mixins: [ImageVariantHelpers],
   data () {
     return {
       loadingLastAdded: true,

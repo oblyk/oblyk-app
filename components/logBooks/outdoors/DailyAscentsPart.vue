@@ -1,8 +1,7 @@
 <template>
   <div class="daily-ascent-crag">
     <v-img
-      :src="Crag.coverUrl"
-      :lazy-src="Crag.thumbnailCoverUrl"
+      :src="imageVariant(Crag.attachments.cover, { fit: 'scale-down', width: 720, height: 720 })"
       class="hoverable"
       width="250"
       height="160"
@@ -34,8 +33,7 @@
         <v-img
           class="flex-grow-0"
           height="160"
-          :src="Crag.coverUrl"
-          :lazy-src="Crag.thumbnailCoverUrl"
+          :src="imageVariant(Crag.attachments.cover, { fit: 'scale-down', width: 720, height: 720 })"
         />
         <div class="flex-grow-1 d-flex flex-column justify-space-between">
           <div class="flex-grow-0">
@@ -78,13 +76,14 @@
 <script>
 import Crag from '~/models/Crag'
 import { DateHelpers } from '~/mixins/DateHelpers'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 import CragRoute from '~/models/CragRoute'
 import CragRouteSmallLine from '~/components/cragRoutes/CragRouteSmallLine'
 
 export default {
   name: 'DailyAscentsPart',
   components: { CragRouteSmallLine },
-  mixins: [DateHelpers],
+  mixins: [DateHelpers, ImageVariantHelpers],
 
   props: {
     part: {

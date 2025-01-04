@@ -20,8 +20,8 @@
             tile
           >
             <v-img
-              v-if="(crag.photo || {}).url"
-              :src="crag.thumbnailCoverUrl"
+              v-if="crag.photo.attachments.picture.attached"
+              :src="imageVariant(crag.photo.attachments.picture, { fit: 'crop', height: 100, width: 100 })"
             />
             <v-icon
               v-else
@@ -56,11 +56,12 @@
 import { mdiTerrain } from '@mdi/js'
 import SubscribeBtn from '@/components/forms/SubscribeBtn'
 import { LocalizationHelpers } from '@/mixins/LocalizationHelpers'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 
 export default {
   name: 'CragSmallCard',
   components: { SubscribeBtn },
-  mixins: [LocalizationHelpers],
+  mixins: [LocalizationHelpers, ImageVariantHelpers],
   props: {
     crag: {
       type: Object,

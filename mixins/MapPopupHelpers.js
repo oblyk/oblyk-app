@@ -51,8 +51,8 @@ export const MapPopupHelpers = {
       }
 
       let banner = ''
-      if (crag.photo?.thumbnail_url) {
-        banner = `<div class="map-popup-cover" style="background-image: url(${crag.thumbnailCoverUrl})"></div>`
+      if (crag.photo.attachments.picture.attached) {
+        banner = `<div class="map-popup-cover" style="background-image: url(${this.imageVariant(crag.photo.attachments.picture, { fit: 'scale', height: 720, width: 720 })})"></div>`
       }
 
       const popup = document.createElement('div')
@@ -114,8 +114,8 @@ export const MapPopupHelpers = {
       if (rockBar.crag_sector && rockBar.crag_sector.photo?.thumbnail_url) {
         banner = `<div class="map-popup-cover" style="background-image: url(${rockBar.CragSector.thumbnailCoverUrl})"></div>`
       }
-      if (!rockBar.crag_sector && rockBar.crag.photo?.thumbnail_url) {
-        banner = `<div class="map-popup-cover" style="background-image: url(${rockBar.Crag.thumbnailCoverUrl})"></div>`
+      if (!rockBar.crag_sector && rockBar.crag.photo.attachments.picture.attached) {
+        banner = `<div class="map-popup-cover" style="background-image: url(${this.imageVariant(rockBar.Crag.photo.attachments.picture, { fit: 'scale-down', height: 720, width: 720 })})"></div>`
       }
 
       let type = ''

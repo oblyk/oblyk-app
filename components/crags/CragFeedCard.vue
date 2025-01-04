@@ -5,11 +5,19 @@
         size="50"
       >
         <v-avatar
-          color="grey"
           size="50"
           tile
         >
-          <v-img :src="crag.thumbnailCoverUrl" />
+          <v-img
+            v-if="crag.photo.attachments.picture.attached"
+            :src="imageVariant(crag.photo.attachments.picture, { fit: 'crop', height: 100, width: 100 })"
+          />
+          <v-icon
+            v-else
+            class="px-1 mt-n1"
+          >
+            {{ mdiTerrain }}
+          </v-icon>
         </v-avatar>
       </v-list-item-avatar>
       <v-list-item-content
@@ -37,13 +45,25 @@
 </template>
 
 <script>
+import { mdiTerrain } from '@mdi/js'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 import SubscribeBtn from '@/components/forms/SubscribeBtn'
 
 export default {
   name: 'CragFeedCard',
   components: { SubscribeBtn },
+  mixins: [ImageVariantHelpers],
   props: {
-    crag: Object
+    crag: {
+      type: Object,
+      required: true
+    }
+  },
+
+  data () {
+    return {
+      mdiTerrain
+    }
   }
 }
 </script>
