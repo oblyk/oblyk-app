@@ -9,14 +9,14 @@
       @click="switchCrop"
     >
       <div
-        v-if="gymRoute.hasPicture"
+        v-if="gymRoute.gym_route_cover.attachments.picture.attached"
         id="panzoom"
       >
         <v-img
           ref="gymRoutePicture"
           class="rounded gym-route-picture"
           :min-height="height"
-          :src="gymRoute.pictureUrl"
+          :src="imageVariant(gymRoute.gym_route_cover.attachments.picture, { fit: 'scale-down', height: 1080, width: 1080 })"
         >
           <div
             v-if="gymRoute.thumbnail_position"
@@ -70,9 +70,11 @@
 <script>
 import { mdiArrowExpand, mdiArrowCollapse } from '@mdi/js'
 import * as panzoom from 'panzoom'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 
 export default {
   name: 'GymRoutePicture',
+  mixins: [ImageVariantHelpers],
   props: {
     gymRoute: {
       type: Object,

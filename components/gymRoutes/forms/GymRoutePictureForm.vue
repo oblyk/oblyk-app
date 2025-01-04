@@ -31,7 +31,7 @@
             v-slot="{ active, toggle }"
           >
             <v-img
-              :src="lastGymRoute.pictureUrl"
+              :src="imageVariant(lastGymRoute.attachments.picture, { fit: 'scale-down', height: 720, width: 720 })"
               width="250px"
               class="ma-4 rounded align-end"
               :gradient="active ? 'to bottom, rgba(49, 153, 78 ,0.4), rgba(49, 153, 78, 0.4)' : 'to bottom, rgba(0,0,0,0.1) 80%, rgba(0,0,0,.7) 100%'"
@@ -62,11 +62,12 @@ import SubmitForm from '@/components/forms/SubmitForm'
 import GymRoute from '@/models/GymRoute'
 import GymSectorApi from '~/services/oblyk-api/GymSectorApi'
 import { DateHelpers } from '~/mixins/DateHelpers'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 
 export default {
   name: 'GymRoutePictureForm',
   components: { SubmitForm },
-  mixins: [FormHelpers, AppConcern, DateHelpers],
+  mixins: [FormHelpers, AppConcern, DateHelpers, ImageVariantHelpers],
   props: {
     gymRoute: {
       type: Object,

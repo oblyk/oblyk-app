@@ -14,22 +14,6 @@ export default class ContestRoute extends ActiveData {
     return 'ContestRoute'
   }
 
-  get pictureUrl () {
-    if (this.picture) {
-      return this.picture
-    } else {
-      return null
-    }
-  }
-
-  get pictureLargeUrl () {
-    if (this.picture_large) {
-      return this.picture_large
-    } else {
-      return null
-    }
-  }
-
   get path () {
     return `/gyms/${this.gym.id}/${this.gym.slug_name}/contests/${this.contest.id}/${this.contest.slug_name}/routes/${this.id}`
   }

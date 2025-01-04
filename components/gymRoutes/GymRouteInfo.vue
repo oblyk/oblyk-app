@@ -2,7 +2,7 @@
   <div>
     <!-- Gym route picture -->
     <gym-route-picture
-      v-if="gymRoute.hasPicture"
+      v-if="gymRoute.gym_route_cover.attachments.picture.attached"
       :gym-route="gymRoute"
     />
 

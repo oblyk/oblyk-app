@@ -8,13 +8,13 @@
     <div class="flex-grow-1">
       <div class="d-flex">
         <v-avatar
-          v-if="route.picture"
+          v-if="route.attachments.picture.attached"
           size="32"
           rounded
           class="flex-grow-0 ml-2"
           @click="pictureModal = true"
         >
-          <v-img :src="route.pictureUrl" />
+          <v-img :src="imageVariant(route.attachments.picture, { fit: 'crop', height: 50, width: 50 })" />
         </v-avatar>
         <div
           v-if="route.ranking_type === 'highest_hold'"
@@ -98,11 +98,11 @@
               @click="addPictureModal = true"
             >
               <v-icon>
-                {{ route.picture ? mdiCameraFlip : mdiCameraPlus }}
+                {{ route.attachments.picture.attached ? mdiCameraFlip : mdiCameraPlus }}
               </v-icon>
             </v-btn>
           </template>
-          <span v-text="route.picture ? 'Changer la photo' : 'Ajouter une photo'" />
+          <span v-text="route.attachments.picture.attached ? 'Changer la photo' : 'Ajouter une photo'" />
         </v-tooltip>
       </div>
       <div v-if="route.gym_route_id">
@@ -156,11 +156,11 @@
           <v-list-item @click="addPictureModal = true">
             <v-list-item-icon>
               <v-icon>
-                {{ route.picture ? mdiCameraFlip : mdiCameraPlus }}
+                {{ route.attachments.picture.attached ? mdiCameraFlip : mdiCameraPlus }}
               </v-icon>
             </v-list-item-icon>
             <v-list-item-title
-              v-text="route.picture ? 'Changer la photo' : 'Ajouter une photo'"
+              v-text="route.attachments.picture.attached ? 'Changer la photo' : 'Ajouter une photo'"
             />
           </v-list-item>
           <v-list-item
@@ -178,7 +178,7 @@
           </v-list-item>
           <v-divider />
           <v-list-item
-            v-if="route.picture"
+            v-if="route.attachments.picture.attached"
             @click="deletePicture()"
           >
             <v-list-item-icon>
@@ -276,8 +276,8 @@
       width="700"
     >
       <v-img
-        :src="route.pictureLargeUrl"
-        :lazy-src="route.pictureUrl"
+        :src="imageVariant(route.attachments.picture, { fit: 'scale-down', height: 1080, width: 1080 })"
+        :lazy-src="imageVariant(route.attachments.picture, { fit: 'crop', height: 50, width: 50 })"
       />
     </v-dialog>
   </div>
@@ -302,10 +302,12 @@ import ContestRouteForm from '~/components/contests/forms/ContestRouteForm'
 import ContestRoute from '~/models/ContestRoute'
 import GymRouteSimpleItem from '~/components/gymRoutes/GymRouteItem'
 import ContestRoutePictureForm from '~/components/contests/forms/ContestRoutePictureForm'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 
 export default {
   name: 'ContestRouteLine',
   components: { ContestRoutePictureForm, GymRouteSimpleItem, ContestRouteForm },
+  mixins: [ImageVariantHelpers],
   props: {
     contest: {
       type: Object,

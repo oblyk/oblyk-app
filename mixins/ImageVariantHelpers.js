@@ -23,7 +23,8 @@ export const ImageVariantHelpers = {
           Contest_banner: '/images/gym-default-banner.jpg',
           GuideBookPaper_cover: '/svg/paper-guide-book-default.svg',
           Gym_logo: '/svg/gym-default-logo.svg',
-          Gym_banner: '/images/gym-default-banner.jpg'
+          Gym_banner: '/images/gym-default-banner.jpg',
+          GymRoute_thumbnail: '/svg/gym-route-default-picture.svg'
         }
         return defaultImage[attachment.attachment_type]
       }

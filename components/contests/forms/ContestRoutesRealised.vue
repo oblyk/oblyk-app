@@ -33,7 +33,7 @@
                 class="flex-grow-0"
                 @click="openPictureModal(route)"
               >
-                <v-img :src="contestRouteObject(route).pictureUrl" />
+                <v-img :src="imageVariant(route.attachments.picture, { fit: 'crop', height: 50, width: 50 })" />
               </v-avatar>
             </td>
             <td class="py-2 pl-3 pr-0">
@@ -105,8 +105,7 @@
     >
       <v-img
         v-if="contestRoute"
-        :src="contestRoute.pictureLargeUrl"
-        :lazy-src="contestRoute.pictureUrl"
+        :src="imageVariant(contestRoute.attachments.picture, { fit: 'scale-down', height: 1080, width: 1080 })"
       />
     </v-dialog>
   </div>
@@ -122,10 +121,12 @@ import Gym from '~/models/Gym'
 import GymApi from '~/services/oblyk-api/GymApi'
 import ContestRoute from '~/models/ContestRoute'
 import ContestParticipantAscentApi from '~/services/oblyk-api/ContestParticipantAscentApi'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 
 export default {
   name: 'ContestRoutesRealised',
   components: { GymRouteInfo, GymRouteSimpleItem, ContestRouteAscentForm },
+  mixins: [ImageVariantHelpers],
   props: {
     contest: {
       type: Object,

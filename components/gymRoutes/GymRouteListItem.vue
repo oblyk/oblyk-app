@@ -8,7 +8,7 @@
     @mouseenter="onMouseEnter"
   >
     <v-list-item-avatar
-      v-if="gymRoute.thumbnail"
+      v-if="gymRoute.attachments.thumbnail.attached"
       class="my-0"
       height="72"
       width="72"
@@ -17,7 +17,7 @@
       <v-img
         height="72"
         width="72"
-        :src="gymRoute.thumbnailUrl"
+        :src="imageVariant(gymRoute.attachments.thumbnail, { fit: 'crop', height: 100, width: 100 })"
       />
     </v-list-item-avatar>
 
@@ -113,6 +113,7 @@ import { mdiCheckAll, mdiHeart, mdiComment, mdiPlayBox } from '@mdi/js'
 import GymRouteTagAndHold from '~/components/gymRoutes/partial/GymRouteTagAndHold.vue'
 import GymRouteGradeAndPoint from '~/components/gymRoutes/partial/GymRouteGradeAndPoint.vue'
 import AscentGymRouteStatusIcon from '~/components/ascentGymRoutes/AscentGymRouteStatusIcon.vue'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 
 export default {
   name: 'GymRouteListItem',
@@ -121,6 +122,7 @@ export default {
     GymRouteGradeAndPoint,
     GymRouteTagAndHold
   },
+  mixins: [ImageVariantHelpers],
 
   props: {
     gymRoute: {

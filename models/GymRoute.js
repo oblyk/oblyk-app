@@ -57,14 +57,6 @@ export default class GymRoute extends ActiveData {
     return styleCounter > 0
   }
 
-  get thumbnailUrl () {
-    if (this.thumbnail) {
-      return this.thumbnail
-    } else {
-      return '/svg/gym-route-default-picture.svg'
-    }
-  }
-
   get GymSector () {
     return new GymSector({ attributes: this.gym_sector })
   }

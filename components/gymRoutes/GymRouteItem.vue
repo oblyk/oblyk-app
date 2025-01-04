@@ -4,11 +4,11 @@
     @click="click"
   >
     <v-avatar
-      v-if="route.thumbnail"
+      v-if="route.attachments.thumbnail.attached"
       size="44"
       class="flex-grow-0"
     >
-      <v-img :src="route.thumbnailUrl" />
+      <v-img :src="imageVariant(route.attachments.thumbnail, { fit: 'crop', height: 50, width: 50 })" />
     </v-avatar>
     <div class="align-self-center d-flex pr-4 ml-3">
       <gym-route-tag-and-hold
@@ -37,12 +37,14 @@
 <script>
 import GymRouteTagAndHold from '~/components/gymRoutes/partial/GymRouteTagAndHold'
 import GymRoute from '~/models/GymRoute'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 
 export default {
   name: 'GymRouteSimpleItem',
   components: {
     GymRouteTagAndHold
   },
+  mixins: [ImageVariantHelpers],
 
   props: {
     gymRoute: {
