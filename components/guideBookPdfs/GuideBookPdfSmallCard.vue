@@ -7,7 +7,7 @@
           size="70"
         >
           <v-img
-            :src="guideBookPdf.coverUrl"
+            src="/svg/pdf-guide-book-default.svg"
             contain
             max-width="70px"
             max-height="70px"

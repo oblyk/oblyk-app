@@ -9,7 +9,7 @@
           size="70"
         >
           <v-img
-            :src="guideBookWeb.coverUrl"
+            src="/svg/web-guide-book-default.svg"
             contain
             max-width="70px"
             max-height="70px"

@@ -21,8 +21,4 @@ export default class GuideBookPdf extends ActiveData {
   get url () {
     return this.pdf_file
   }
-
-  get coverUrl () {
-    return '/svg/pdf-guide-book-default.svg'
-  }
 }

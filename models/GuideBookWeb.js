@@ -17,8 +17,4 @@ export default class GuideBookWeb extends ActiveData {
   get path () {
     return `/guide-book-webs/${this.id}`
   }
-
-  get coverUrl () {
-    return '/svg/web-guide-book-default.svg'
-  }
 }
