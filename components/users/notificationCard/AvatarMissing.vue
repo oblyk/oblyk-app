@@ -58,7 +58,7 @@ export default {
     },
 
     setOffer () {
-      this.offerToUpload = !(this.user.avatar || localStorage.getItem('dontAskMeAgainAboutAvatar') === 'true')
+      this.offerToUpload = !(this.user.attachments.avatar.attached || localStorage.getItem('dontAskMeAgainAboutAvatar') === 'true')
     }
   }
 }

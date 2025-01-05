@@ -58,7 +58,7 @@ export default {
     },
 
     setOffer () {
-      this.offerToUpload = !(this.user.banner || localStorage.getItem('dontAskMeAgainAboutBanner') === 'true')
+      this.offerToUpload = !(this.user.attachments.banner.attached || localStorage.getItem('dontAskMeAgainAboutBanner') === 'true')
     }
   }
 }
