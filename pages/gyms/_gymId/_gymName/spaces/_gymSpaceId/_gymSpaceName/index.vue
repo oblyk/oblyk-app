@@ -16,11 +16,11 @@
           class="full-height"
         >
           <gym-space-plan
-            v-if="gymSpace.plan"
+            v-if="gymSpace.attachments.plan.attached"
             :gym-space="gymSpace"
           />
           <gym-space-plan-missing
-            v-if="!gymSpace.plan"
+            v-if="!gymSpace.attachments.plan.attached"
             :gym-space="gymSpace"
             :gym="gymSpace.gym"
           />
