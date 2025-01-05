@@ -18,9 +18,9 @@
         </v-btn>
         <v-list-item class="border rounded mb-3 sheet-background-color">
           <v-list-item-avatar
-            v-if="gymSpace.three_d_picture_tiny_thumbnail_url"
+            v-if="gymSpace.attachments.three_d_picture.attached"
           >
-            <v-img :src="gymSpace.three_d_picture_tiny_thumbnail_url" />
+            <v-img :src="imageVariant(gymSpace.attachments.three_d_picture, { fit: 'scale-down', height: 100, width: 100})" />
           </v-list-item-avatar>
           <v-list-item-content>
             <v-list-item-title>
@@ -46,9 +46,9 @@
             :to="`${gymSpace.Gym.adminPath}/spaces/${space.id}/take-three-d-picture`"
           >
             <v-list-item-avatar
-              v-if="space.three_d_picture_tiny_thumbnail_url"
+              v-if="space.attachments.three_d_picture.attached"
             >
-              <v-img :src="space.three_d_picture_tiny_thumbnail_url" />
+              <v-img :src="imageVariant(space.attachments.three_d_picture, { fit: 'scale-down', height: 100, width: 100})" />
             </v-list-item-avatar>
             <v-list-item-content>
               <v-list-item-title>
@@ -81,12 +81,13 @@ import { mdiArrowLeft } from '@mdi/js'
 import { GymSpaceConcern } from '~/concerns/GymSpaceConcern'
 import GymSpaceApi from '~/services/oblyk-api/GymSpaceApi'
 import GymSpace from '~/models/GymSpace'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 const GymSpaceThreeDPicture = () => import('~/components/gymSpaces/GymSpaceThreeDPicture')
 
 export default {
   components: { GymSpaceThreeDPicture },
   meta: { orphanRoute: true },
-  mixins: [GymSpaceConcern],
+  mixins: [GymSpaceConcern, ImageVariantHelpers],
   middleware: ['auth', 'gymAdmin'],
 
   data () {

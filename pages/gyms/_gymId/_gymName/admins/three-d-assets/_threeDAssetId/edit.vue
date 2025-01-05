@@ -3,7 +3,7 @@
     <v-breadcrumbs :items="breadcrumbs" />
     <v-row>
       <v-col cols="12" md="4">
-        <v-alert v-if="threeDAsset && threeDAsset.picture_url === null">
+        <v-alert v-if="threeDAsset && !threeDAsset.attachments.picture.attached">
           Pour prendre une capture de votre décoration, placer la au mieux dans le cadre si contre
           et cliquez sur le bouton d'appareille photo en bas à droite
         </v-alert>

@@ -71,10 +71,10 @@
                   @mouseenter="highlightSpace(space)"
                 >
                   <v-list-item-avatar
-                    v-if="space.three_d_picture_tiny_thumbnail_url"
+                    v-if="space.attachments.three_d_picture.attached"
                   >
                     <v-img
-                      :src="space.three_d_picture_tiny_thumbnail_url"
+                      :src="imageVariant(space.attachments.three_d_picture, { fit: 'scale-down', height: 100, width: 100 })"
                     />
                   </v-list-item-avatar>
                   <v-list-item-content>
@@ -82,7 +82,7 @@
                       {{ space.name }}
                     </v-list-item-title>
                     <v-list-item-subtitle
-                      v-if="!space.have_three_d || !space.three_d_picture_url || space.representation_type !== '3d'"
+                      v-if="!space.have_three_d || !space.attachments.three_d_picture.attached || space.representation_type !== '3d'"
                     >
                       <v-chip
                         v-if="!space.have_three_d"
@@ -97,7 +97,7 @@
                         Fichier 3D manquant
                       </v-chip>
                       <v-chip
-                        v-if="space.have_three_d && !space.three_d_picture_url"
+                        v-if="space.have_three_d && !space.attachments.three_d_picture.attached"
                         small
                         color="amber darken-2"
                         outlined
@@ -287,9 +287,9 @@
                   @mouseenter="highlightAsset(threeDElement)"
                 >
                   <v-list-item-avatar
-                    v-if="threeDElement.gym_three_d_asset.picture_url"
+                    v-if="threeDElement.gym_three_d_asset.attachments.picture.attached"
                   >
-                    <v-img :src="threeDElement.gym_three_d_asset.picture_tiny_thumbnail_url" />
+                    <v-img :src="imageVariant(threeDElement.gym_three_d_asset.attachments.picture, { fit: 'scale-down', height: 100, width: 100 })" />
                   </v-list-item-avatar>
                   <v-list-item-content>
                     <v-list-item-title>
@@ -373,8 +373,8 @@
                             v-for="(asset, assetIndex) in threeDAssets"
                             :key="`asset-${assetIndex}`"
                           >
-                            <v-list-item-avatar v-if="asset.picture_url">
-                              <v-img :src="asset.picture_tiny_thumbnail_url" />
+                            <v-list-item-avatar v-if="asset.attachments.picture.attached">
+                              <v-img :src="imageVariant(asset.attachments.picture, { fit: 'scale-down', height: 100, width: 100 })" />
                             </v-list-item-avatar>
                             <v-list-item-content>
                               <div class="d-flex">
@@ -666,12 +666,13 @@ import GymThreeDElement from '~/models/GymThreeDElement'
 import GymThreeDAssetApi from '~/services/oblyk-api/GymThreeDAssetApi'
 import GymThreeDAsset from '~/models/GymThreeDAsset'
 import GymApi from '~/services/oblyk-api/GymApi'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 const GymThreeDEditor = () => import('~/components/gyms/GymThreeDEditor')
 
 export default {
   components: { GymThreeDEditor },
   meta: { orphanRoute: true },
-  mixins: [GymFetchConcern],
+  mixins: [GymFetchConcern, ImageVariantHelpers],
   middleware: ['auth', 'gymAdmin'],
 
   data () {
