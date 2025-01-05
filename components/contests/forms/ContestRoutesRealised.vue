@@ -27,7 +27,7 @@
               class="text-no-wrap px-0"
             >
               <v-avatar
-                v-if="route.picture"
+                v-if="route.attachments.picture.attached"
                 size="32"
                 rounded
                 class="flex-grow-0"
@@ -159,7 +159,7 @@ export default {
   computed: {
     havePictures () {
       for (const route of this.contestStep.routes) {
-        if (route.picture !== null) {
+        if (route.attachments.picture.attached !== null) {
           return true
         }
       }
