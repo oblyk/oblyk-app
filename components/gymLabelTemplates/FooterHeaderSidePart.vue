@@ -9,7 +9,7 @@
       alt="logo"
       class="logo"
       :style="`height: ${logoHeight}; width: ${logoHeight};`"
-      :src="gym.logo_thumbnail_url"
+      :src="imageVariant(gym.attachments.logo, { fit: 'scale-down', height: 720, width: 720 })"
     >
     <div
       v-if="type === 'logo_oblyk'"
@@ -24,8 +24,11 @@
   </div>
 </template>
 <script>
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
+
 export default {
   name: 'FooterHeaderSidePart',
+  mixins: [ImageVariantHelpers],
   props: {
     type: {
       type: String,

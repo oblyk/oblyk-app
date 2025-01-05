@@ -8,8 +8,8 @@
       <div v-else>
         <v-img
           class="rounded-sm"
-          :src="photo.pictureUrl"
-          :lazy-src="photo.thumbnailUrl"
+          :src="imageVariant(photo.attachments.picture, { fit: 'scale-down', height: 1920, width: 1920 })"
+          :lazy-src="imageVariant(photo.attachments.picture, { fit: 'scale-down', height: 720, width: 720 })"
         >
           <template #placeholder>
             <v-row
@@ -113,11 +113,12 @@ import { PhotoConcern } from '~/concerns/PhotoConcern'
 import DescriptionLine from '~/components/ui/DescriptionLine.vue'
 import LikeBtn from '~/components/forms/LikeBtn.vue'
 import PhotoApi from '~/services/oblyk-api/PhotoApi'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 const MarkdownText = () => import('~/components/ui/MarkdownText')
 
 export default {
   components: { LikeBtn, DescriptionLine, MarkdownText },
-  mixins: [PhotoConcern],
+  mixins: [PhotoConcern, ImageVariantHelpers],
 
   i18n: {
     messages: {

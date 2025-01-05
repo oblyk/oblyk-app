@@ -57,16 +57,6 @@ export default {
     }
   },
 
-  computed: {
-    url () {
-      return this.photo.pictureUrl
-    },
-
-    thumbnailUrl () {
-      return this.photo.thumbnailUrl
-    }
-  },
-
   watch: {
     photo () {
       if (this.panzoom && this.photo) {

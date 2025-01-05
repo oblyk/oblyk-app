@@ -19,7 +19,7 @@
         :key="`article-photo-${index}`"
       >
         <v-col class="col-3">
-          <v-img :src="photo.thumbnailUrl" />
+          <v-img :src="imageVariant(photo.attachments.picture, { fit: 'scale-down', height: 100, width: 100 })" />
         </v-col>
         <v-col class="col-9">
           <div class="text-truncate">
@@ -51,9 +51,11 @@ import { mdiImagePlus, mdiPencil } from '@mdi/js'
 import ArticleApi from '@/services/oblyk-api/ArticleApi'
 import Photo from '@/models/Photo'
 import Spinner from '@/components/layouts/Spiner'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 
 export default {
   components: { Spinner },
+  mixins: [ImageVariantHelpers],
 
   data () {
     return {
@@ -91,7 +93,7 @@ export default {
     },
 
     imgBalise (photo) {
-      return `<img src="${photo.pictureUrl}" alt="${photo.description}" loading="lazy">`
+      return `<img src="${this.imageVariant(photo.attachments.picture, { fit: 'scale-down', height: 1920, width: 1920 })}" alt="${photo.description}" loading="lazy">`
     }
   }
 }

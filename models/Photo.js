@@ -19,14 +19,6 @@ export default class Photo extends ActiveData {
     return `/photos/${this.illustrable.type}/${this.illustrable.id}/${this.id}`
   }
 
-  get pictureUrl () {
-    return this.picture
-  }
-
-  get thumbnailUrl () {
-    return this.thumbnail
-  }
-
   get copy () {
     const copies = []
     if (this.copyright_by) { copies.push('BY') }

@@ -29,26 +29,6 @@ export default class GymRoute extends ActiveData {
     return `/gyms/${this.gym.id}/${this.gym.slug_name}/spaces/${this.gym_space.id}/${this.gym_space.slug_name}`
   }
 
-  get pictureUrl () {
-    if (this.hasPicture) {
-      return this.picture
-    } else {
-      return '/svg/missing-picture.svg'
-    }
-  }
-
-  get hasPicture () {
-    return (this.picture)
-  }
-
-  get hasTags () {
-    let tagCounter = 0
-    for (const section of this.sections) {
-      tagCounter += section?.tags?.length || 0
-    }
-    return tagCounter > 0
-  }
-
   get hasStyles () {
     let styleCounter = 0
     for (const section of this.sections) {

@@ -41,14 +41,14 @@
         </v-list-item-icon>
         <v-list-item-content>
           <v-list-item-title
-            v-text="gymRoute.hasPicture ? $t('actions.editPicture') : $t('actions.addPicture')"
+            v-text="gymRoute.gym_route_cover.attachments.picture.attached ? $t('actions.editPicture') : $t('actions.addPicture')"
           />
         </v-list-item-content>
       </v-list-item>
 
       <!-- Define thumbnail -->
       <v-list-item
-        v-if="gymRoute.hasPicture"
+        v-if="gymRoute.gym_route_cover.attachments.picture.attached"
         link
         :to="`${gymRoute.path}/thumbnail`"
       >
@@ -79,7 +79,7 @@
       </v-list-item>
 
       <v-list-item
-        v-if="gymRoute.hasPicture"
+        v-if="gymRoute.gym_route_cover.attachments.picture.attached"
         link
         @click="deletePicture()"
       >

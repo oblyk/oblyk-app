@@ -17,11 +17,11 @@
         :key="`newsletter-photo-${index}`"
       >
         <v-col class="col-3">
-          <v-img :src="photo.thumbnailUrl" />
+          <v-img :src="imageVariant(photo.attachments.picture, { fit: 'scale-down', height: 1920, width: 1920 })" />
         </v-col>
         <v-col class="col-9">
           <div class="text-truncate">
-            {{ photo.pictureUrl }}
+            {{ imageVariant(photo.attachments.picture, { fit: 'scale-down', height: 1920, width: 1920 }) }}
           </div>
           <div>
             <v-btn
@@ -46,10 +46,12 @@ import NewsletterApi from '~/services/oblyk-api/NewsletterApi'
 import Photo from '~/models/Photo'
 import Spinner from '~/components/layouts/Spiner'
 import CopyBtn from '~/components/ui/CopyBtn'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 
 export default {
   meta: { orphanRoute: true },
   components: { CopyBtn, Spinner },
+  mixins: [ImageVariantHelpers],
   middleware: ['auth'],
 
   data () {
@@ -88,7 +90,7 @@ export default {
     },
 
     imgBalise (photo) {
-      return `<img style="width: 100%" src="${photo.pictureUrl}" alt="${photo.description}">`
+      return `<img style="width: 100%" src="${this.imageVariant(photo.attachments.picture, { fit: 'scale-down', height: 1920, width: 1920 })}" alt="${photo.description}">`
     }
   }
 }
