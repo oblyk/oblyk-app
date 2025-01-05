@@ -196,7 +196,7 @@
           <v-sheet class="pa-2 rounded full-height d-flex flex-column">
             <div>
               <v-img
-                v-if="championship.banner"
+                v-if="championship.attachments.banner.attached"
                 :lazy-src="imageVariant(championship.attachments.banner, { fit: 'scale-down', width: 720, height: 720 })"
                 :src="imageVariant(championship.attachments.banner, { fit: 'scale-down', width: 1920, height: 1920 })"
                 class="rounded-sm"

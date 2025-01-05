@@ -7,7 +7,7 @@
       size="60"
     >
       <v-img
-        v-if="championship.banner"
+        v-if="championship.attachments.banner.attached"
         :src="imageVariant(championship.attachments.banner, { fit: 'crop', width: 100, height: 100 })"
         class="rounded-sm"
       />
