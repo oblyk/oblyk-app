@@ -4,13 +4,13 @@ class LogBookOutdoorApi extends BaseApi {
   // if user_id is null, it will return the current user's logbook
   stats (stats_list = {}, filters = {}, user_id = null) {
     return this.axios.request({
-      method: 'POST',
+      method: 'GET',
       url: `${this.baseUrl}/current_users/log_books/outdoors/stats.json`,
       headers: {
         Authorization: this.authToken(),
         HttpApiAccessToken: this.apiAccessToken
       },
-      data: {
+      params: {
         user_id,
         filters,
         stats_list
@@ -20,13 +20,13 @@ class LogBookOutdoorApi extends BaseApi {
 
   ascendedCragRoutes (order = 'difficulty', filters = {}, page = 1, user_id = null) {
     return this.axios.request({
-      method: 'POST',
+      method: 'GET',
       url: `${this.baseUrl}/current_users/log_books/outdoors/ascended_crag_routes.json`,
       headers: {
         Authorization: this.authToken(),
         HttpApiAccessToken: this.apiAccessToken
       },
-      data: {
+      params: {
         user_id,
         filters,
         order,
