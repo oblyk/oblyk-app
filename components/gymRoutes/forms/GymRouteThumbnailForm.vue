@@ -9,7 +9,7 @@
     >
       <vue-cropper
         ref="cropper"
-        :img="imageVariant(gymRoute.gym_route_cover.attachments.picture, { fit: 'scale-down', height: 10000, width: 10000 })"
+        :img="gymRoute.gym_route_cover.original_file_path"
         :output-size="1"
         output-type="jpeg"
         :auto-crop="true"
@@ -35,12 +35,11 @@ import { FormHelpers } from '@/mixins/FormHelpers'
 import { AppConcern } from '@/concerns/AppConcern'
 import SubmitForm from '@/components/forms/SubmitForm'
 import GymRoute from '@/models/GymRoute'
-import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 
 export default {
   name: 'GymRouteThumbnailForm',
   components: { SubmitForm, VueCropper },
-  mixins: [FormHelpers, AppConcern, ImageVariantHelpers],
+  mixins: [FormHelpers, AppConcern],
   props: {
     gymRoute: {
       type: Object,
