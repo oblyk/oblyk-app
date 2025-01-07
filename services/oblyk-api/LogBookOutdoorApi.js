@@ -1,6 +1,18 @@
 import qs from 'qs'
 import BaseApi from '~/services/oblyk-api/BaseApi'
 
+// Fonction pour convertir camelCase en snake_case
+function camelToSnake (obj) {
+  const newObj = {}
+  for (const key in obj) {
+    if (Object.hasOwn(obj, key)) {
+      const newKey = key.replace(/([A-Z])/g, '_$1').toLowerCase()
+      newObj[newKey] = obj[key]
+    }
+  }
+  return newObj
+}
+
 class LogBookOutdoorApi extends BaseApi {
   // if user_id is null, it will return the current user's logbook
   stats (stats_list = {}, filters = {}, user_id = null) {
@@ -13,8 +25,8 @@ class LogBookOutdoorApi extends BaseApi {
       },
       params: {
         user_id,
-        filters,
-        stats_list
+        filters: camelToSnake(filters),
+        stats_list: camelToSnake(stats_list)
       },
       paramsSerializer: (params) => {
         return qs.stringify(params, { arrayFormat: 'brackets', encode: false })
@@ -32,7 +44,7 @@ class LogBookOutdoorApi extends BaseApi {
       },
       params: {
         user_id,
-        filters,
+        filters: camelToSnake(filters),
         order,
         page
       },
