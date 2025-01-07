@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-btn v-if="!showForm" @click="showForm=!showForm">
+    <v-btn v-if="!showForm" @click="showForm =! showForm">
       {{ $t('components.logBook.filterTheLogBook') }}
     </v-btn>
     <v-form v-if="showForm" @submit.prevent="onSubmit()">
@@ -68,8 +68,9 @@ export default {
 
   mounted () {
     // recover from local storage and reset if one key is missing in the stored filters (to keep the app working if we change filters)
-    if (typeof localStorage !== 'undefined') {
-      const storedFilters = JSON.parse(localStorage.getItem('filters')) || {}
+    let storedFilters = localStorage.getItem('filters')
+    if (storedFilters) {
+      storedFilters = JSON.parse(storedFilters) || {}
       this.filters = {
         ascent_status_list: Array.isArray(storedFilters.ascent_status_list) ? storedFilters.ascent_status_list : this.getAllAscentStatus(),
         roping_status_list: Array.isArray(storedFilters.roping_status_list) ? storedFilters.roping_status_list : this.getAllRopingStatus(),
@@ -96,7 +97,3 @@ export default {
   }
 }
 </script>
-
-<style scoped lang="scss">
-
-</style>

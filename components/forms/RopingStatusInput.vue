@@ -114,13 +114,6 @@ export default {
     }
   },
 
-  mounted () {
-    // for multiple choices select all at mount if no list passed in initial v-model
-    if (this.multiple && this.value.length === 0) {
-      this.selectAll()
-    }
-  },
-
   methods: {
     onChange () {
       this.$emit('input', this.ropingStatus)

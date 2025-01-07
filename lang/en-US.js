@@ -38,7 +38,7 @@ export default {
     uploadIllustration: 'Change illustration',
     exclude: 'Exclude',
     reInclude: 'Re-include',
-    dontAskMeAgain: "Don't ask me again",
+    dontAskMeAgain: 'Don\'t ask me again',
     changeLogo: 'Change logo',
     changePlan: 'Change plan',
     change3dPlan: 'Change 3D',
@@ -323,7 +323,7 @@ export default {
         title: 'About Oblyk'
       },
       news: {
-        title: "Oblyk's news"
+        title: 'Oblyk\'s news'
       },
       enrichOblyk: {
         title: 'Enrich Oblyk',
@@ -333,9 +333,9 @@ export default {
       supportUs: {
         title: 'Support us',
         noLimite: 'In Oblyk there are no limits, no premium account, no adds, no sponsored link, everything free! 😉',
-        freeBut: "If it is free and Oblyk doesn't get any money, does it mean it is a zero cost project?",
+        freeBut: 'If it is free and Oblyk doesn\'t get any money, does it mean it is a zero cost project?',
         unfortunately: 'Unfortunately no, as every website, Oblyk needs to be hosted in a data center and rent a domain name to exist.<br>And that is not free…',
-        extraEuro: "If you have a few money to spent, you like the work done and want to encourage Oblyk development, you can make a donation 😉<br>It is for us a priceless help! You will help us continue the development and ensure it's future 😉",
+        extraEuro: 'If you have a few money to spent, you like the work done and want to encourage Oblyk development, you can make a donation 😉<br>It is for us a priceless help! You will help us continue the development and ensure it\'s future 😉',
         thanks: 'Thank you in advance for your generosity!'
       },
       thanks: {
@@ -403,7 +403,7 @@ export default {
           },
           climberMap: {
             title: 'Step 3: Climbers map',
-            body: "Now you have filled your climbing spot and tilled us more about you, you can use le climbers map to find someone you'd like to climb with.",
+            body: 'Now you have filled your climbing spot and tilled us more about you, you can use le climbers map to find someone you\'d like to climb with.',
             action: 'Climbers Map'
           },
           contact: {
@@ -490,7 +490,7 @@ export default {
         createMyOrganisation: 'Create my organisation',
         readDoc: 'Consult the API documentation.',
         oblykApiDocumentation: 'Oblyk API Documentation',
-        gitHub: "Feel free to follow the project <a href='https://github.com/oblyk' target='_blank'>GitHub of Oblyk</a> to know the evolutions or participate in improving the API!"
+        gitHub: 'Feel free to follow the project <a href=\'https://github.com/oblyk\' target=\'_blank\'>GitHub of Oblyk</a> to know the evolutions or participate in improving the API!'
       },
       find: {
         somethingElse: {
@@ -524,7 +524,7 @@ export default {
           },
           aroundCity: {
             title: 'Around a city',
-            explain: "Give us the name of a city, we'll tell you what climbs around it (French city only)"
+            explain: 'Give us the name of a city, we\'ll tell you what climbs around it (French city only)'
           },
           advancedSearch: {
             title: 'Advanced search',
@@ -540,12 +540,12 @@ export default {
           },
           aroundCity: {
             title: 'Around a city',
-            explain: "Give us the name of a city, we'll tell you where to climb in the area (French city only)"
+            explain: 'Give us the name of a city, we\'ll tell you where to climb in the area (French city only)'
           }
         },
         climbers: {
           title: 'Find a climber',
-          intro: "Are you moving to a new region? Or are you just starting to climb?<br>Use the climbers' map to find people to go climbing with",
+          intro: 'Are you moving to a new region? Or are you just starting to climb?<br>Use the climbers\' map to find people to go climbing with',
           map: {
             title: 'Climbers map',
             explain: 'Use the map to find a climber to climb with.'
@@ -564,10 +564,10 @@ export default {
           },
           aroundCity: {
             title: 'Guidebooks around a city',
-            explain: "Give us the name of a town, we'll give you the guidebooks of the surrounding sites"
+            explain: 'Give us the name of a town, we\'ll give you the guidebooks of the surrounding sites'
           },
           new: {
-            title: "What's new",
+            title: 'What\'s new',
             explain: 'The latest releases of the guidebooks of France and the World'
           },
           andMore: {
@@ -643,7 +643,7 @@ export default {
       inclineType: 'Incline',
       ascentStatus: 'I made the line ...',
       ropingStatus: 'Roping status',
-      ropingStatusQuestion: "I've climbed on ...",
+      ropingStatusQuestion: 'I\'ve climbed on ...',
       hardnessStatus: 'For the grade it was ...',
       howFindDifficulty: 'How did you find the difficulty?',
       note: 'Note',
@@ -858,9 +858,9 @@ export default {
       connectAlert: 'You must be logged in to access this page',
       alreadyConnected: 'You are logged in',
       stayConnected: 'Stay connected',
-      termsOfUse: "I have read and accept Oblyk's terms and conditions",
+      termsOfUse: 'I have read and accept Oblyk\'s terms and conditions',
       termsOfUseTitle: 'terms and conditions',
-      youMustBeAgree: "You must agree to Oblyk's terms of use",
+      youMustBeAgree: 'You must agree to Oblyk\'s terms of use',
       newsletterSubscribe: 'Receive the newsletter (once per quarter approximately)',
       forgottenPassword: 'Forgotten password ?',
       forgottenPasswordExplain: 'Enter your email address so that we can send you a link to change your password.',
@@ -869,7 +869,7 @@ export default {
       checkYourMailBox: 'Check your mailbox!',
       resetPasswordError: 'Invalid email address or without associated account',
       newPasswordError: 'The link has expired, or the two passwords are not identical',
-      createAccountForWatch: "Create an account to view %{name}'s profile!",
+      createAccountForWatch: 'Create an account to view %{name}\'s profile!',
       me: 'Me',
       privacy: 'Privacy',
       guideBook: 'Guidebooks',
@@ -880,7 +880,7 @@ export default {
       },
       buyGuide: {
         part1: 'One more thing!',
-        part2: "Do you climb outdoors? <strong>Buy the topos! It's important.</strong>",
+        part2: 'Do you climb outdoors? <strong>Buy the topos! It\'s important.</strong>',
         part3: 'Perhaps you are new to outdoor climbing, or you have never thought about the <strong>importance of guidebooks for our sport?</strong> Here are <strong>3 reasons</strong> why you should <strong>buy paper topos</strong>:',
         reason1: 'Income from guidebook sales <strong>enables the maintenance of the crags</strong> you climb for free;',
         reason2: 'The topos contain <strong>essential information</strong> for finding your way around the climbing crags that <strong>you will not find on Oblyk</strong> <cite>(such as the trace and order of the routes on the crag);</cite>',
@@ -943,7 +943,7 @@ export default {
       cragAroundInCreate: 'There is one crag within 1km: | There are %{count} crags within 1km:',
       doNotCreateADuplicate: 'Do not create a duplicate if another climber has already referenced this crag!',
       guideBookTitle: 'Climbing guidebooks',
-      opinion: "The climbers' opinion",
+      opinion: 'The climbers\' opinion',
       information: 'Detailed information',
       locationAndAccess: 'Location & Access',
       gradesAndLevels: 'Grades & Levels',
@@ -978,7 +978,7 @@ export default {
       routes: 'Routes',
       searchRoute: 'Search route',
       sortRouteLabel: 'Sort routes',
-      climberOpinion: "Climbers' opinion",
+      climberOpinion: 'Climbers\' opinion',
       inMyLogbook: 'In my logbook',
       new: 'add a new route',
       gradeExample: 'example: 7a, 6c+, 5.10, B15, etc.',
@@ -987,7 +987,7 @@ export default {
       inMeters: 'in meters',
       addPitch: 'Add pitch',
       removePitch: 'Remove pitch',
-      routeAdded: "Route: '%{name}' added",
+      routeAdded: 'Route: \'%{name}\' added',
       pointCount: 'One point | %{count} points',
       mustBeLogin: '<span class="font-weight-bold">Log in</span> or <span class="font-weight-bold">create an account</span> to <span class="font-weight-bold">see route names</span> and much more!',
       tips: '<strong>Tips</strong>: use <kbd>tab</kbd> for navigate, <kbd>espace</kbd> for open lists',
@@ -1025,7 +1025,7 @@ export default {
       whichRoute: 'Which line did you climb?',
       addedAscentToLogbook: 'Add to my logbook',
       whichCrag: 'Which crag?',
-      cragNotFound: "Can't find your crag?",
+      cragNotFound: 'Can\'t find your crag?',
       addNewAscent: 'Add another ascent',
       seeLogbook: 'See my logbook',
       goToCrag: 'Go to crag'
@@ -1039,12 +1039,12 @@ export default {
       iMadeCountPitch: 'I climbed %{count} pitches',
       cumulativeHeight: '<strong>%{meter}m</strong> cumulative',
       maxGrade: 'Highest grade sent: <strong>%{grade}</strong>',
-      noAscents: "I don't have an ascent here",
+      noAscents: 'I don\'t have an ascent here',
       whichGym: 'Which gym?',
       gymPage: 'Climbing gym page',
       addNewAscents: 'Add new ascents',
       addingSuccess: 'Ascent(s) added!',
-      gymNotFound: "Can't find your climbing gym?"
+      gymNotFound: 'Can\'t find your climbing gym?'
     },
     ascentGymBulk: {
       addMyAscents: 'Fill in my ascents by:',
@@ -1072,7 +1072,7 @@ export default {
       addCragInArea: 'Add crag',
       removeFromArea: 'Remove crag',
       searchArea: 'Search crag group',
-      explainNewTopo: "If you didn't find what you were looking for in the search engine, or in the crags group nearby, you can add a new group:",
+      explainNewTopo: 'If you didn\'t find what you were looking for in the search engine, or in the crags group nearby, you can add a new group:',
       noAreaAround: 'No crags group found within 50km',
       cragsMap: 'Crags map',
       tabs: {
@@ -1125,7 +1125,7 @@ export default {
       removeFromGuideBook: 'Remove from guidebook',
       addCragInGuide: 'Add crag in this guidebook',
       searchGuideBookPaper: 'Search a paper guidebook',
-      explainNewTopo: "If you didn't find what you were looking for in the search engine, or in the guidebooks nearby, you can add a new guidebook:",
+      explainNewTopo: 'If you didn\'t find what you were looking for in the search engine, or in the guidebooks nearby, you can add a new guidebook:',
       noGuideAround: 'No guidebook found within 50km',
       showMissingInformation: 'Showing missing information',
       addGuideBook: 'Add guidebook',
@@ -1184,7 +1184,7 @@ export default {
       }
     },
     guideBookPaperFind: {
-      title: "Tell us where you're going, we'll tell you which guidebooks to take!",
+      title: 'Tell us where you\'re going, we\'ll tell you which guidebooks to take!',
       ray: 'Ray',
       findGuideInRay: '<strong>One guidebook found</strong> within %{dist}km of %{city} | <strong>%{count} guidebooks found</strong> within %{dist}km of %{city}',
       noGuideFound: 'No guidebook found within %{dist}km of %{city}',
@@ -1306,8 +1306,8 @@ export default {
       comments: 'Comments',
       videos: 'Videos',
       myCommunity: 'My community',
-      noComments: "You'll see your climbers' comments here when they've posted some!",
-      noVideos: "You'll see your climbers' videos here when they post one!",
+      noComments: 'You\'ll see your climbers\' comments here when they\'ve posted some!',
+      noVideos: 'You\'ll see your climbers\' videos here when they post one!',
       assets: 'Assets',
       openingSheet: 'Opening sheets'
     },
@@ -1365,7 +1365,7 @@ export default {
     openingSheet: {
       list: 'Opening sheets',
       explain: 'The opening sheets allow you to select one or more sectors of your climbing gym, and indicate the re-openings to be planned by your route setters.',
-      noSheet: "You don't have any opening sheets yet.",
+      noSheet: 'You don\'t have any opening sheets yet.',
       style: 'Style',
       open: 'Open',
       toOpen: 'To open',
@@ -1417,7 +1417,7 @@ export default {
       noRouteInSector: 'No route in this sector',
       findRandomName: 'Find a random name',
       refTo: 'In reference to',
-      climbersComments: "Climbers' comments",
+      climbersComments: 'Climbers\' comments',
       inMyLogBook: 'In my logbook',
       ascents: 'One ascent | %{count} ascents',
       printedFileName: 'Route sheet - %{date} - %{name}.pdf',
@@ -1478,14 +1478,14 @@ export default {
       alreadyRegistered: 'I already have a code ?',
       iAmRegistered: 'I am already registered',
       registeredPart1: 'When you registered, we gave you a code <cite>(your first name + a few random letters)</cite><br>Enter this code to identify yourself.',
-      registeredPart2: "We can't find any participants registered with this code on this contest. Please check that you have entered your code correctly and try again.",
+      registeredPart2: 'We can\'t find any participants registered with this code on this contest. Please check that you have entered your code correctly and try again.',
       notOpenYet: 'Registrations are not yet open.',
       comeBackOn: 'Come back on %{date} !',
       youAreRegisteredAt: 'You are registered at %{name}',
       useTheCode: 'Use the code below to note your results and follow your ranking during the contest:',
       codeIsSaved: 'This code is saved on this device. You can copy and paste it to record your results on another device. You have also received this code by email.',
       remainingPlaces: 'Complete | One place left | <strong class="font-weight-black text-h5">%{count}</strong> remaining places',
-      unPublish: "This contest is visible only to you and members of the %{name} team. Publish it when you've finished setting it up.",
+      unPublish: 'This contest is visible only to you and members of the %{name} team. Publish it when you\'ve finished setting it up.',
       notPublic: 'This contest is not yet available to the public. Please come back later!',
       toleranceExplain: 'How many minutes do you want your climbers to have to finish filling in their work after the end of the contest?',
       capacityExplain: 'Indicate the maximum number of competitors.<br>Leave blank if there is no maximum.<br>You can then choose a total capacity per category.',
@@ -1504,7 +1504,7 @@ export default {
       addComment: 'Comment my session',
       myIndoorSession: 'My indoor sessions',
       myOutdoorSession: 'My outdoor sessions',
-      empty: "You don't have a climbing session yet.<br>add ascents to your logbook to see your sessions!"
+      empty: 'You don\'t have a climbing session yet.<br>add ascents to your logbook to see your sessions!'
     },
     logBook: {
       inFewFigures: 'In few figures',
@@ -1519,7 +1519,7 @@ export default {
       filterByClimbingType: 'Filter by climbing type',
       filterTheLogBook: 'Filter Log Book',
       emptyProject: 'Your project list is empty',
-      emptyTickList: "You don't have any route in your tick list for the moment",
+      emptyTickList: 'You don\'t have any route in your tick list for the moment',
       IHaveNoAscents: 'I have no ascents here yet',
       myAscentsHere: 'My ascents here',
       myIndoorLogBook: 'My indoor ascents',
@@ -1612,7 +1612,7 @@ export default {
       successfulEditMessage: 'Your profile has been updated',
       whatClimbingType: 'What type of climbing do you practice ?',
       whichLevel: 'In which level do you like tso climb ?',
-      bePartPartner: "Be part of the climbers' map?",
+      bePartPartner: 'Be part of the climbers\' map?',
       bePartPartnerExplain: 'Being part of the climbing map allows you to find people to climb with!',
       localizationDeactivated: 'localization disabled',
       localizationActivated: 'localization enabled',
@@ -1636,9 +1636,9 @@ export default {
       climbersActiveRecently: 'Climbers active recently',
       emptyContribution: '%{name} has not yet contributed to Oblyk',
       climbersMap: 'In climbers map',
-      openClimbersMap: "Open the climbers' map",
-      followersEmpty: "%{name} doesn't have a followers yet.",
-      subscribesEmpty: "%{name} doesn't have a subscribes yet.",
+      openClimbersMap: 'Open the climbers\' map',
+      followersEmpty: '%{name} doesn\'t have a followers yet.',
+      subscribesEmpty: '%{name} doesn\'t have a subscribes yet.',
       myFavoriteCragsEmpty: 'You are not following a crag for the moment',
       myFavoriteGymsEmpty: 'You are not following a gym for the moment',
       searchUser: 'Search for a climber',
@@ -1666,9 +1666,9 @@ export default {
       exportExplain: 'Export my crosses or projects in <cite>.csv</cite> format.<br>The columns are separated by tabs.',
       exportAscents: 'Export my ascents',
       exportProjects: 'Exporter my projects',
-      explainGradeValue: "The <cite>'Grade value'</cite> column allows you to sort by difficulty even on different grading systems.",
+      explainGradeValue: 'The <cite>\'Grade value\'</cite> column allows you to sort by difficulty even on different grading systems.',
       gradeMoreInformation: 'More information on the rating system here',
-      privateLogBook: "%{name}'s logbook is private.",
+      privateLogBook: '%{name}\'s logbook is private.',
       privateMedia: 'Photos & videos of %{name} is private.',
       subscribeToSee: 'Subscribe to see it!',
       waitingFollowers: 'One subscriber is waiting for your confirmation | %{count} subscribers are waiting for your confirmation',
@@ -1738,7 +1738,7 @@ export default {
       paragraph1: 'Deletion of your account is <strong class="red--text">irreversible</strong> and <strong class="red--text">immediate</strong>.',
       paragraph2: 'All your indoor and outdoor crosses<strong>(1)</strong>, your messages, favorites, subscriptions, etc. will be <strong>irreversibly eliminated</strong>.',
       unlock: 'Enter <strong>"delete"</strong> below to delete your account.',
-      label: "type 'delete' to delete your account",
+      label: 'type \'delete\' to delete your account',
       tips: 'You can export your crosses before deleting your account.',
       connectToDelete: 'Login to delete your account.'
     },
@@ -1923,7 +1923,7 @@ export default {
       },
       footer: {
         clickToTop: 'Click to return to the top of the page',
-        itIsTimeToGoBackUp: "It's time to go back up !",
+        itIsTimeToGoBackUp: 'It\'s time to go back up !',
         moreAboutOblyk: 'More about Oblyk',
         ourApp: 'Our App !',
         followUs: 'Follow us',
@@ -1992,7 +1992,7 @@ export default {
     supportUs: {
       title: 'Support Us',
       body1: 'In Oblyk there are no limits, no premium account, no adds, no sponsored link, everything free ! 😉',
-      body2: "If it is free and Oblyk doesn't get any money, does it mean it is a zero cost project ?",
+      body2: 'If it is free and Oblyk doesn\'t get any money, does it mean it is a zero cost project ?',
       body3: 'Unfortunately no, as every website, Oblyk needs to be hosted in a data center and rent a domain name to exist.<br>And that is not free… ',
       action: 'Support Us'
     },
@@ -2005,7 +2005,7 @@ export default {
     },
     oblykAndGuide: {
       title: 'Oblyk and the climbing guidebook',
-      body1: "You could ask yourself if Oblyk may replace paper guidebook and in the meantime harm climbing spots development ?<br>Be sure to know that we asked yourself this question a lot. Answer is no, Oblyk can't replace a guidebook!<br>Guidebooks have essential information that we won't add in Oblyk",
+      body1: 'You could ask yourself if Oblyk may replace paper guidebook and in the meantime harm climbing spots development ?<br>Be sure to know that we asked yourself this question a lot. Answer is no, Oblyk can\'t replace a guidebook!<br>Guidebooks have essential information that we won\'t add in Oblyk',
       body2: '<strong>Buying a guidebook</strong>, it is helping passionate climbers who give a lot to maintain, develop, clean climbing spots where you will climb for free.',
       action: 'Our tools for guidebooks'
     },
@@ -2191,9 +2191,7 @@ export default {
       comment: 'My comment',
       private_comment: 'Comment is private',
       released_at: 'Released at',
-      hardness_status: 'Difficulty appreciation',
-      only_lead_climbs: 'Only Lead Climbs',
-      only_on_sight: 'Only on sight'
+      hardness_status: 'Difficulty appreciation'
     },
     ascentGymRoute: {
       type: 'Type',
@@ -2332,7 +2330,7 @@ export default {
       first_name: 'First name',
       last_name: 'Last name',
       email: 'email',
-      email_explain: "Enter the route setter's email address to link it to their Oblyk account"
+      email_explain: 'Enter the route setter\'s email address to link it to their Oblyk account'
     },
     gymLabelTemplate: {
       name: 'Name',
@@ -2480,7 +2478,7 @@ export default {
     },
     gymGrade: {
       name: 'System name',
-      difficulty_by_grade: "'Normal' grade system <cite>(7a, 6b+, etc.)</cite>.",
+      difficulty_by_grade: '\'Normal\' grade system <cite>(7a, 6b+, etc.)</cite>.',
       difficulty_by_level: 'Level system <cite>(yellow, green, blue, etc.)</cite>.',
       tag_color: 'There are tags at the start of the routes.',
       hold_color: 'Sockets are of the same colour within a route.',
@@ -2879,12 +2877,12 @@ export default {
       tick_list: 'Tick list'
     },
     ascentStatusExplain: {
-      project: "you haven't succeeded yet ... but you're counting on it one day!",
-      sent: "you'd already tried it before and succeeded in doing it without a break.",
-      red_point: "you'd already tried it before and succeeded in doing it without a break.",
-      flash: "you got it right the first time! But you've seen someone climb it before, or you've been given methods or tips on how to succeed.",
-      onsight: "you got it right the first time! And what's more, you didn't know the moves, the holds, nothing! It was a total discovery.",
-      repetition: "you've done it before.",
+      project: 'you haven\'t succeeded yet ... but you\'re counting on it one day!',
+      sent: 'you\'d already tried it before and succeeded in doing it without a break.',
+      red_point: 'you\'d already tried it before and succeeded in doing it without a break.',
+      flash: 'you got it right the first time! But you\'ve seen someone climb it before, or you\'ve been given methods or tips on how to succeed.',
+      onsight: 'you got it right the first time! And what\'s more, you didn\'t know the moves, the holds, nothing! It was a total discovery.',
+      repetition: 'you\'ve done it before.',
       tick_list: 'to try later'
     },
     ropingStatus: {
@@ -2900,7 +2898,7 @@ export default {
       point_by_grade: 'Point by grade'
     },
     rankingSystemExplain: {
-      division: "Each route or boulder is worth 1000 points, and the more climbers do the route or boulder, the fewer points it's worth.",
+      division: 'Each route or boulder is worth 1000 points, and the more climbers do the route or boulder, the fewer points it\'s worth.',
       fixed_points: 'For each route or boulder you assign a fixed number of points.',
       point_by_grade: 'Each grade (4a, 6a, etc.) has a number of points given by its difficulty.<br>See the documentation: <a href="https://oblyk.github.io/app-user-doc/docs/indoor/systeme-de-classement" target="_blank">Point by grade</a>'
     },

@@ -122,13 +122,6 @@ export default {
     }
   },
 
-  mounted () {
-    // for inputType=chips et multiple choices, select all at mount if no list passed in initial v-model
-    if (this.inputType === 'chips' && this.multiple && this.value.length === 0) {
-      this.selectAll()
-    }
-  },
-
   methods: {
     onChange () {
       this.$emit('input', this.climbingTypes)
@@ -143,6 +136,7 @@ export default {
         return this.climbingUserList
       }
     },
+
     selectAll () {
       this.climbingTypes = this.climbByEnvironment().map(climb => climb.value)
       this.onChange()

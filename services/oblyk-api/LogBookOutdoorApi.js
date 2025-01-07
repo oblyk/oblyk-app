@@ -1,3 +1,4 @@
+import qs from 'qs'
 import BaseApi from '~/services/oblyk-api/BaseApi'
 
 class LogBookOutdoorApi extends BaseApi {
@@ -14,6 +15,9 @@ class LogBookOutdoorApi extends BaseApi {
         user_id,
         filters,
         stats_list
+      },
+      paramsSerializer: (params) => {
+        return qs.stringify(params, { arrayFormat: 'brackets', encode: false })
       }
     })
   }
@@ -31,6 +35,9 @@ class LogBookOutdoorApi extends BaseApi {
         filters,
         order,
         page
+      },
+      paramsSerializer: (params) => {
+        return qs.stringify(params, { arrayFormat: 'brackets', encode: false })
       }
     })
   }

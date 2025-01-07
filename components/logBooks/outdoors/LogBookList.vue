@@ -74,8 +74,7 @@ export default {
     },
     filters: {
       type: Object,
-      default: () => {
-      }
+      default: () => ({})
     }
   },
 

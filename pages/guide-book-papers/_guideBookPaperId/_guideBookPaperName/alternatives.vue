@@ -35,7 +35,7 @@
           class="col-12"
         >
           <p class="text--disabled">
-            {{ $t('components.guideBookPaper.alternative.notFound')}} <strong>{{ alternative.crag.name }}</strong>
+            {{ $t('components.guideBookPaper.alternative.notFound') }} <strong>{{ alternative.crag.name }}</strong>
           </p>
         </div>
         <div
@@ -92,7 +92,7 @@ export default {
     messages: {
       fr: {
         metaTitle: 'Topos alternatifs à %{name}',
-        metaDescription: "Liste des autres topos d'escalades qui traitent des mêmes sites que le topo %{name}"
+        metaDescription: 'Liste des autres topos d\'escalades qui traitent des mêmes sites que le topo %{name}'
       },
       en: {
         metaTitle: 'Alternative guides to %{name}',
