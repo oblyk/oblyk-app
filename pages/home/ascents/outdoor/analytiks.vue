@@ -12,7 +12,7 @@
             <spinner v-if="loadingStats" :full-height="false" />
             <log-book-climbing-type-chart
               v-if="!loadingStats"
-              :data="stats.climbTypesChart"
+              :data="stats.climb_types_chart"
               height-class="height-250"
               :legend="true"
               legend-position="right"
@@ -26,7 +26,7 @@
             <spinner v-if="loadingStats" :full-height="false" />
             <log-book-grade-chart
               v-if="!loadingStats"
-              :data="stats.gradesChart"
+              :data="stats.grades_chart"
               height-class="height-250"
             />
           </v-card-text>
@@ -38,7 +38,7 @@
             <spinner v-if="loadingStats" :full-height="false" />
             <log-book-evolution-chart
               v-if="!loadingStats"
-              :data="stats.evolutionChart"
+              :data="stats.evolution_chart"
               height-class="height-250"
             />
           </v-card-text>
@@ -52,7 +52,7 @@
             <spinner v-if="loadingStats" :full-height="false" />
             <log-book-month-chart
               v-if="!loadingStats"
-              :data="stats.monthsChart"
+              :data="stats.months_chart"
               height-class="height-250"
             />
           </v-card-text>
@@ -64,7 +64,7 @@
             <spinner v-if="loadingStats" :full-height="false" />
             <log-book-year-chart
               v-if="!loadingStats"
-              :data="stats.yearsChart"
+              :data="stats.years_chart"
               height-class="height-250"
             />
           </v-card-text>
@@ -108,18 +108,18 @@ export default {
 
       loadingStats: true,
       stats: {
-        climbTypesChart: {},
-        gradesChart: {},
-        yearsChart: {},
-        monthsChart: {},
-        evolutionChart: {}
+        climb_types_chart: {},
+        grades_chart: {},
+        years_chart: {},
+        months_chart: {},
+        evolution_chart: {}
       },
       stats_list: {
-        climbTypesChart: true,
-        gradesChart: true,
-        yearsChart: true,
-        monthsChart: true,
-        evolutionChart: true
+        climb_types_chart: true,
+        grades_chart: true,
+        years_chart: true,
+        months_chart: true,
+        evolution_chart: true
       }
     }
   },

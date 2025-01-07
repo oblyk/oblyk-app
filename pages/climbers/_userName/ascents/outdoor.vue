@@ -35,7 +35,7 @@
               <spinner v-if="loadingStats" :full-height="false" />
               <log-book-climbing-type-chart
                 v-if="!loadingStats"
-                :data="stats.climbTypesChart"
+                :data="stats.climb_types_chart"
                 :legend="false"
               />
               <!-- Climbing type legend -->
@@ -51,7 +51,7 @@
               <spinner v-if="loadingStats" :full-height="false" />
               <log-book-grade-chart
                 v-if="!loadingStats"
-                :data="stats.gradesChart"
+                :data="stats.grades_chart"
               />
             </v-col>
 
@@ -135,13 +135,13 @@ export default {
       filters: {},
       stats: {
         figures: {},
-        climbTypesChart: {},
-        gradesChart: {}
+        climb_types_chart: {},
+        grades_chart: {}
       },
       stats_list: {
         figures: true,
-        climbTypesChart: true,
-        gradesChart: true
+        climb_types_chart: true,
+        grades_chart: true
       },
 
       mdiLock
