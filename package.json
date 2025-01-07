@@ -47,7 +47,7 @@
     "vuex-persistedstate": "^4.1.0"
   },
   "devDependencies": {
-    "@babel/eslint-parser": "^7.17.7",
+    "@babel/eslint-parser": "^7.14.7",
     "@babel/plugin-proposal-logical-assignment-operators": "^7.20.7",
     "@mdi/js": "^6.5.95",
     "@nuxt/types": "~2.15.0",
