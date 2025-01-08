@@ -28,7 +28,7 @@
 
       <submit-form
         :overlay="false"
-        :submit-local-key="'actions.save'"
+        :submit-local-key="'actions.apply'"
         :go-back-btn="false"
       />
     </v-form>
@@ -56,16 +56,6 @@ export default {
     }
   },
 
-  watch: {
-    // Watch for changes in filters and emit automatically
-    filters: {
-      handler (newFilters) {
-        this.$emit('input', { ...newFilters }) // Emit fresh copy of changes
-      },
-      deep: true // Ensure nested changes in filters are detected
-    }
-  },
-
   mounted () {
     // recover from local storage and reset if one key is missing in the stored filters (to keep the app working if we change filters)
     let storedFilters = localStorage.getItem('filters')
@@ -82,6 +72,7 @@ export default {
 
   methods: {
     onSubmit () {
+      this.$emit('input', { ...this.filters }) // Emit fresh copy of changes
       this.showForm = false
       localStorage.setItem('filters', JSON.stringify(this.filters))
     },
