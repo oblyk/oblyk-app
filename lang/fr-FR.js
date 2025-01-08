@@ -13,7 +13,7 @@ export default {
     addSpace: 'Ajouter un espace',
     apply: 'Appliquer',
     editSector: 'Modifier le secteur',
-    editSpace: 'Modifier l\'espace',
+    editSpace: "Modifier l'espace",
     printSector: 'Imprimer le secteur',
     create: 'Créer',
     delete: 'Supprimer',
@@ -21,7 +21,7 @@ export default {
     close: 'Fermer',
     valid: 'Valider',
     ok: 'ok',
-    okIChose: 'Ok j\'ai choisi',
+    okIChose: "Ok j'ai choisi",
     create_copy: 'Créer une copie',
     like: 'Aimer',
     reply: 'Répondre',
@@ -35,7 +35,7 @@ export default {
     createFreeAccount: 'Créer mon compte gratuit',
     changeBanner: 'Changer le bandeau',
     uploadBanner: 'Uploader un bandeau',
-    uploadIllustration: 'Changer l\'illustration',
+    uploadIllustration: "Changer l'illustration",
     exclude: 'Exclure',
     reInclude: 'Re-inclure',
     dontAskMeAgain: 'Ne plus me demander',
@@ -79,31 +79,31 @@ export default {
     see: 'Voir',
     seeMap: 'Voir la carte',
     seeOnTheMap: 'Voir sur la carte',
-    seeEmail: 'Voir l\'email',
+    seeEmail: "Voir l'email",
     myAvatar: 'Mon avatar',
     changeAvatar: 'Changer ma photo de profil',
     uploadAvatar: 'Uploader une photo',
     mySettings: 'Mes paramètres',
     editMyProfile: 'Modifier mon profil',
-    seeSunshine: 'Voir l\'ensoleillement',
+    seeSunshine: "Voir l'ensoleillement",
     no: 'Non',
     yes: 'Oui',
     change: 'Changer',
     continue: 'Continuer',
     previous: 'Précédent',
-    IUnderstand: 'J\'ai compris',
+    IUnderstand: "J'ai compris",
     activate: 'Activer',
     deactivate: 'Désactiver',
     disable: 'Désactiver',
     newPassword: 'Nouveau mot de passe',
     changeMyPassword: 'Changer mon mot de passe',
-    subscribe: 'S\'abonner',
+    subscribe: "S'abonner",
     unsubscribe: 'Me désabonner',
     addToLibrary: 'Ajouter à ma topothèque',
     removeFromLibrary: 'Retirer de ma topothèque',
     valueCopied: '%{value} copié·e !',
-    errorHasOccurred: 'Une erreur s\'est produite',
-    localisationError: 'Une erreur s\'est produite lors de la récupération de la localisation',
+    errorHasOccurred: "Une erreur s'est produite",
+    localisationError: "Une erreur s'est produite lors de la récupération de la localisation",
     changeCover: 'Changer la couverture',
     addLink: 'Ajouter un lien',
     addComment: 'Ajouter un commentaire',
@@ -123,7 +123,7 @@ export default {
     addPark: 'Ajouter un parking',
     addApproach: 'Ajouter une approche',
     createAndQuite: 'Créer & quitter',
-    continueToAdd: 'Continuer d\'ajouter',
+    continueToAdd: "Continuer d'ajouter",
     addArea: 'Ajouter un nouveau groupe',
     createGroup: 'Créer un groupe',
     importAsset: 'Importer une décoration',
@@ -147,7 +147,7 @@ export default {
     readMore: 'Lire plus',
     writeNewsletter: 'Écrire une newsletter',
     send: 'Envoyer',
-    subscribeMe: 'M\'inscrire',
+    subscribeMe: "M'inscrire",
     unsubscribeMe: 'Me désinscrire',
     accept: 'Accepter',
     reject: 'Refuser',
@@ -164,7 +164,7 @@ export default {
     editNote: 'Modifier la note',
     next: 'Suivant',
     back: 'Retour',
-    authenticateMe: 'M\'authentifier',
+    authenticateMe: "M'authentifier",
     otherRegistration: 'Autre inscription',
     entryResult: 'Renseigner mes résultats',
     archive: 'Archiver',
@@ -217,8 +217,8 @@ export default {
     requiredFields: 'champs obligatoires',
     noInformation: 'Non renseigné',
     informations: 'Informations',
-    moreInformation: 'Plus d\'informations',
-    moreInformationShort: 'Plus d\'info',
+    moreInformation: "Plus d'informations",
+    moreInformationShort: "Plus d'info",
     comments: 'Commentaires',
     videos: 'vidéos',
     commentsCount: 'Commentaire | Un commentaire | %{count} commentaires',
@@ -235,7 +235,7 @@ export default {
     number: 'nombre',
     advancedOptions: 'Options avancées',
     documentation: 'Documentation',
-    seeDocumentation: 'Consultez la documentation pour en connaître d\'avantage :',
+    seeDocumentation: "Consultez la documentation pour en connaître d'avantage :",
     whatDoYouWantToDo: 'Que voulez-vous faire ?',
     others: 'Autres',
     goTo: 'Aller à %{name}',
@@ -243,7 +243,7 @@ export default {
     realFavoriteCount: 'Un coup de cœur | %{count} coups de cœur',
     experimental: 'Expérimental',
     archives: 'Archives',
-    whatIsIt: 'Qu\'est ce que c\'est ?',
+    whatIsIt: "Qu'est ce que c'est ?",
     at: 'le',
     is: 'à',
     in: 'en',
@@ -258,7 +258,7 @@ export default {
     made: 'fait',
     all: 'Tous',
     allTypes: 'Tous les types',
-    today: 'aujourd\'hui',
+    today: "aujourd'hui",
     yesterday: 'hier',
     start: 'Commence',
     open: 'Ouvert',
@@ -317,36 +317,36 @@ export default {
     },
     pages: {
       cookies: 'Oblyk utilise des cookies uniquement à des fins de fonctionnement.',
-      newVersion: 'Une nouvelle version d\'Oblyk est là !',
+      newVersion: "Une nouvelle version d'Oblyk est là !",
       clicToUpdate: 'Cliquez sur <strong>METTRE À JOUR</strong> pour profiter des derniers changements.',
       about: {
-        title: 'À propos d\'Oblyk'
+        title: "À propos d'Oblyk"
       },
       news: {
-        title: 'Les nouvelles d\'Oblyk'
+        title: "Les nouvelles d'Oblyk"
       },
       enrichOblyk: {
         title: 'Enrichir Oblyk',
-        intro: 'Oblyk est une grande base de donnée alimentée par la communauté de l\'escalade en France et dans le monde.<br><strong>Aide-nous à l\'enrichir en partageant tes connaissances !</strong>',
+        intro: "Oblyk est une grande base de donnée alimentée par la communauté de l'escalade en France et dans le monde.<br><strong>Aide-nous à l'enrichir en partageant tes connaissances !</strong>",
         lastActivity: 'Les derniers ajouts de la communauté'
       },
       supportUs: {
         title: 'Nous soutenir',
-        noLimite: 'Sur Oblyk il n\'y a aucune limitation, pas de compte premium, ni pub, ni lien ou article sponsorisé, tout est gratuit ! 😉',
-        freeBut: 'Si tout est gratuit et qu\'Oblyk ne perçoit aucun revenu, cela veut-il dire qu\'Oblyk ne coûte rien à développer ?',
-        unfortunately: 'Malheureusement non, comme tout site internet, Oblyk doit être hébergé dans un datacenter et louer un nom de domaine pour pouvoir éxister sur la toile.<br>Et ça par contre, ce n\'est pas gratuit…',
-        extraEuro: 'Si vous avez quelques euros en trop, que vous appréciez le travail réalisé et que vous souhaitez encourager le développement d\'Oblyk, vous pouvez nous faire un don 😉<br>C\'est pour nous une aide inestimable ! Vous nous permettrez ainsi de continuer le développement de cette belle plateforme et d\'assurer son avenir 😉',
-        thanks: 'Merci d\'avance de votre générosité !'
+        noLimite: "Sur Oblyk il n'y a aucune limitation, pas de compte premium, ni pub, ni lien ou article sponsorisé, tout est gratuit ! 😉",
+        freeBut: "Si tout est gratuit et qu'Oblyk ne perçoit aucun revenu, cela veut-il dire qu'Oblyk ne coûte rien à développer ?",
+        unfortunately: "Malheureusement non, comme tout site internet, Oblyk doit être hébergé dans un datacenter et louer un nom de domaine pour pouvoir éxister sur la toile.<br>Et ça par contre, ce n'est pas gratuit…",
+        extraEuro: "Si vous avez quelques euros en trop, que vous appréciez le travail réalisé et que vous souhaitez encourager le développement d'Oblyk, vous pouvez nous faire un don 😉<br>C'est pour nous une aide inestimable ! Vous nous permettrez ainsi de continuer le développement de cette belle plateforme et d'assurer son avenir 😉",
+        thanks: "Merci d'avance de votre générosité !"
       },
       thanks: {
         title: 'Merci !',
-        body: 'Un énorme merci pour votre don ! Grâce à vous, Oblyk peut continuer à se développer et envisager l\'avenir plus sereinement 😊',
+        body: "Un énorme merci pour votre don ! Grâce à vous, Oblyk peut continuer à se développer et envisager l'avenir plus sereinement 😊",
         end: 'Encore merci et bonne grimpe à vous !',
-        action: 'Retour à l\'accueil'
+        action: "Retour à l'accueil"
       },
       contact: {
         title: 'Contact',
-        paragraphe: 'Pour toutes questions : que ce soit une demande d\'aide, une suggestion d\'amélioration, un bug trouvé, une demande d\'informations, etc.<br>Envoyez nous un mail',
+        paragraphe: "Pour toutes questions : que ce soit une demande d'aide, une suggestion d'amélioration, un bug trouvé, une demande d'informations, etc.<br>Envoyez nous un mail",
         quickResponse: 'On essaiera de vous répondre rapidement, promis !'
       },
       reportProblem: {
@@ -354,11 +354,11 @@ export default {
       },
       grade: {
         title: 'Les cotations',
-        intro: 'Oblyk permet d\'utiliser plusieurs formats pour les cotations (française, anglaise, américaine, etc.). Pour chacune des cotations il est donné un code couleur pour se rendre compte rapidement du niveau de difficulté même si on n\'est pas habitué au système de cotation affiché.',
-        equivalence: 'Le tableau d\'équivalence suivant est contestable, il a pour vocation de donner un ordre d\'idée de la difficulté d\'une cotation et non pas de donner exactement l\'équivalence d\'un système vers un autre.',
+        intro: "Oblyk permet d'utiliser plusieurs formats pour les cotations (française, anglaise, américaine, etc.). Pour chacune des cotations il est donné un code couleur pour se rendre compte rapidement du niveau de difficulté même si on n'est pas habitué au système de cotation affiché.",
+        equivalence: "Le tableau d'équivalence suivant est contestable, il a pour vocation de donner un ordre d'idée de la difficulté d'une cotation et non pas de donner exactement l'équivalence d'un système vers un autre.",
         weighting: 'Sur Oblyk, chaque cotation peut prendre les pondérations suivantes :',
         developerBonus: 'Petit bonus pour les développeur·euse·s :',
-        regexpExplain: 'Si vous avez besoin de valider qu\'une chaîne de texte est conforme à l\'un de ces systèmes de cotation, voici l\'expression régulière que vous pouvez utiliser :',
+        regexpExplain: "Si vous avez besoin de valider qu'une chaîne de texte est conforme à l'un de ces systèmes de cotation, voici l'expression régulière que vous pouvez utiliser :",
         list: {
           strongGrade: 'cotation forte',
           weakGrade: 'cotation faible',
@@ -384,31 +384,31 @@ export default {
         welcomeOnMap: 'Bienvenue sur la carte des grimpeur·euse·s de Oblyk!',
         title: 'La recherche de partenaire',
         howIsWork: 'Comment ça marche ?',
-        explain: 'Tu arrives dans une nouvelle région, tu cherches quelqu\'un pour t\'accompagner lors de tes sorties falaises ou pour aller grimper à la salle du coin ? Tu trouveras peut-être ton bonheur ici !',
+        explain: "Tu arrives dans une nouvelle région, tu cherches quelqu'un pour t'accompagner lors de tes sorties falaises ou pour aller grimper à la salle du coin ? Tu trouveras peut-être ton bonheur ici !",
         connect: 'Pour voir les grimpeurs et grimpeuses inscrit·e·s sur la recherche de partenaire, il faut déjà que tu aies un compte !',
         figuresGlobal: 'Déjà <strong>%{global} grimpeur·euse·s</strong> sont inscrit·e·s à la carte',
         figuresWeekly: ', dont <strong>%{weekly} nouveaux</strong> cette semaine !',
-        emptyClimbersWithFilter: 'Il n\'y a pas de grimpeurs ou grimpeuses avec les filtres que vous avez choisi',
+        emptyClimbersWithFilter: "Il n'y a pas de grimpeurs ou grimpeuses avec les filtres que vous avez choisi",
         connectForMatch: 'Crée-toi un compte et rencontre les <strong>grimpeurs et grimpeuses</strong><br>inscrits·es à <strong>%{name}</strong> !',
         steps: {
           configuration: {
             title: 'Étape 1 : Mon profil',
-            body: 'Pour donner envie aux autres de te contacter il faut qu\'ils aient un minimum d\'informations sur toi, quel style d\'escalade tu pratiques (bloc, voie, trad,…), dans quelle cotation tu aimes grimper, avoir une photo de profil, etc.',
+            body: "Pour donner envie aux autres de te contacter il faut qu'ils aient un minimum d'informations sur toi, quel style d'escalade tu pratiques (bloc, voie, trad,…), dans quelle cotation tu aimes grimper, avoir une photo de profil, etc.",
             action: 'Qui je suis ?'
           },
           location: {
             title: 'Étape 2 : Ma zone de grimpe',
-            body: 'Pour que nous puissions te présenter une liste des grimpeur·euse·s près de chez toi, faut-il déjà que nous sachions où tu grimpes !<br>Marque l\'endroit où tu cherche des grimpeur·euse·s, et Oblyk te présentera celles et ceux qui sont autour de toi.',
+            body: "Pour que nous puissions te présenter une liste des grimpeur·euse·s près de chez toi, faut-il déjà que nous sachions où tu grimpes !<br>Marque l'endroit où tu cherche des grimpeur·euse·s, et Oblyk te présentera celles et ceux qui sont autour de toi.",
             action: 'Où je grimpe ?'
           },
           climberMap: {
             title: 'Étape 3 : La carte des grimpeur·euse·s',
-            body: 'Maintenant que tu as renseigné ton lieu d\'escalade et dis qui tu étais, tu peux utiliser la carte des grimpeur·euse·s pour trouver quelqu\'un avec qui tu aimerais grimper.',
+            body: "Maintenant que tu as renseigné ton lieu d'escalade et dis qui tu étais, tu peux utiliser la carte des grimpeur·euse·s pour trouver quelqu'un avec qui tu aimerais grimper.",
             action: 'La carte des grimpeur·euse·s'
           },
           contact: {
             title: 'Étape 4 : Contact',
-            body: 'Tu as trouvé quelqu\'un avec qui tu aimerais grimper ? Envoie lui un message via la messagerie d\'Oblyk.<br>Libre à vous ensuite de vous organiser comme vous le voulez. ',
+            body: "Tu as trouvé quelqu'un avec qui tu aimerais grimper ? Envoie lui un message via la messagerie d'Oblyk.<br>Libre à vous ensuite de vous organiser comme vous le voulez. ",
             action: 'Ma messagerie'
           }
         }
@@ -422,7 +422,7 @@ export default {
         `,
         features: {
           information: {
-            title: 'Tout ce qu\'il y a savoir sur les topos !',
+            title: "Tout ce qu'il y a savoir sur les topos !",
             body: 'Quels sont les sites de grimpe présents dans les topos ? Où les acheter ? Qui en sont les auteurs ?<br>Vous trouverez toutes les informations intéressantes.',
             action: 'Tous nos topos'
           },
@@ -434,11 +434,11 @@ export default {
             action: 'Trouver un topo'
           },
           alternative: {
-            title: 'Acheter un topo c\'est bien, acheter les bons c\'est mieux !',
-            body1: 'Certains topos ne participent pas à l\'équipement des sites d\'escalades. Même s\'ils peuvent présenter une compilation intéressante d\'une région, il est préférable d\'avoir les originaux pour soutenir le travail des équipeurs et équipeuses.',
+            title: "Acheter un topo c'est bien, acheter les bons c'est mieux !",
+            body1: "Certains topos ne participent pas à l'équipement des sites d'escalades. Même s'ils peuvent présenter une compilation intéressante d'une région, il est préférable d'avoir les originaux pour soutenir le travail des équipeurs et équipeuses.",
             body2: 'Pour vous aider à trouver le bon topo nous avons mis en place <strong>deux outils</strong>.',
-            body3: 'Une indication claire pour savoir si un topo participe à l\'équipement des sites',
-            body4: 'Et s\'il ne participe pas, nous vous invitons à regarder les autres topos qui présentent ces sites.'
+            body3: "Une indication claire pour savoir si un topo participe à l'équipement des sites",
+            body4: "Et s'il ne participe pas, nous vous invitons à regarder les autres topos qui présentent ces sites."
           },
           myLibrary: {
             title: 'Votre topothèque numérique',
@@ -446,11 +446,11 @@ export default {
             Vous avez des dizaines de topos et on vous en félicite ! Vous vous êtes sûrement déjà demandé·e·s quelle est la <strong>valeur de votre topothèque</strong>,
             <strong>combien de sites de grimpe</strong> vous avez dans votre étagère ?<br>
             Ou, vous vous êtes déjà retrouvé·e·s dans les rayons d'une librairie, ne vous souvenant plus si vous avez déjà cet énième topo de Fontainebleau ?`,
-            body2: 'Nous avons l\'outil pour vous ! <strong>Cherchez vos topos</strong> sur Oblyk et en un clic constituez le clone numérique de votre <strong>topothèque papier</strong>.'
+            body2: "Nous avons l'outil pour vous ! <strong>Cherchez vos topos</strong> sur Oblyk et en un clic constituez le clone numérique de votre <strong>topothèque papier</strong>."
           },
           new: {
             title: 'Continuez de soutenir les équipeurs et équipeuses',
-            body1: 'Acheter la nouvelle version d\'un topo que vous avez déjà, c\'est continuer de contribuer à l\'entretien des sites d\'escalade dans lesquels vous grimpez.',
+            body1: "Acheter la nouvelle version d'un topo que vous avez déjà, c'est continuer de contribuer à l'entretien des sites d'escalade dans lesquels vous grimpez.",
             body2: `
             Nous voulons vous aidez à les soutenir !<br>
             Nous nous basons sur <strong>votre carnet de croix</strong> et <strong>votre topothèque</strong> pour vous suggérer les nouvelles versions des topos que vous possédez.`
@@ -458,8 +458,8 @@ export default {
         }
       },
       newsletterSubscribe: {
-        title: 'S\'inscrire à la newsletter',
-        paragraphe: 'Environ une fois par trimestre nous envoyons un mail relatant des actualités d\'Oblyk, de l\'expansion de la communauté, des développements du mois et des projets à venir.',
+        title: "S'inscrire à la newsletter",
+        paragraphe: "Environ une fois par trimestre nous envoyons un mail relatant des actualités d'Oblyk, de l'expansion de la communauté, des développements du mois et des projets à venir.",
         stayInformed: 'Tu veux être tenu·e au courant ? Renseigne ton adresse mail ici !',
         successTitle: 'Vous êtes désormais inscrit·e à notre newsletter !',
         successParagraphe: 'Nous espérons que vous apprécierez recevoir de nos nouvelles 🙂',
@@ -469,11 +469,11 @@ export default {
         title: 'Se désinscrire de la newsletter',
         paragraphe: 'Pour vous désinscrire de la newsletter, renseignez votre adresse email ici :',
         successTitle: 'Vous êtes désormais désinscrit·e',
-        successParagraphe: 'Merci de nous avoir suivi·es jusqu\'à présent :)'
+        successParagraphe: "Merci de nous avoir suivi·es jusqu'à présent :)"
       },
       goFlyAKite: {
         title: 'Vous êtes un robot ?',
-        strangeBehavior: 'Si vous voyez cette page c\'est que nous considérons que vous avez un comportement étrange…',
+        strangeBehavior: "Si vous voyez cette page c'est que nous considérons que vous avez un comportement étrange…",
         actHuman: 'Revenez dans 30 minutes et ayez un comportement humain.'
       },
       successAccountDeleting: {
@@ -483,14 +483,14 @@ export default {
       },
       apiAndDevelopers: {
         title: 'API & Développeurs',
-        paragraphe: 'La base de donnée des falaises et voies d\'escalades d\'Oblyk est ouverte en API, vous pouvez la consulter librement pour des projets open-sources, personnels ou étudiants.',
-        stepFor: 'Voici les étapes à suivre pour utiliser l\'API :',
-        connectOrRegister: 'Vous devez avoir un compte utilisateur Oblyk normal qui vous permettra d\'administrer votre organisation.',
-        createYourOrganization: 'Créer votre organisation pour obtenir votre clé d\'API.',
+        paragraphe: "La base de donnée des falaises et voies d'escalades d'Oblyk est ouverte en API, vous pouvez la consulter librement pour des projets open-sources, personnels ou étudiants.",
+        stepFor: "Voici les étapes à suivre pour utiliser l'API :",
+        connectOrRegister: "Vous devez avoir un compte utilisateur Oblyk normal qui vous permettra d'administrer votre organisation.",
+        createYourOrganization: "Créer votre organisation pour obtenir votre clé d'API.",
         createMyOrganisation: 'Créer mon organisation',
-        readDoc: 'Consulter la documentation de l\'API.',
+        readDoc: "Consulter la documentation de l'API.",
         oblykApiDocumentation: 'Oblyk API Documentation',
-        gitHub: 'N\'hésitez pas à suivre le projet <a href=\'https://github.com/oblyk\' target=\'_blank\'>GitHub d\'Oblyk</a> pour connaître les évolutions ou participer à l\'amélioration l\'API !'
+        gitHub: "N'hésitez pas à suivre le projet <a href='https://github.com/oblyk' target='_blank'>GitHub d'Oblyk</a> pour connaître les évolutions ou participer à l'amélioration l'API !"
       },
       find: {
         somethingElse: {
@@ -498,18 +498,18 @@ export default {
           crag: 'Une falaise',
           cragSubtitle: 'Carte, recherche avancée, etc.',
           gym: 'Une salle',
-          gymSubtitle: 'Carte, autour d\'une ville, etc.',
+          gymSubtitle: "Carte, autour d'une ville, etc.",
           guideBook: 'Un topo',
           guideBookSubtitle: 'Les nouveautés, autour de vous',
           climbers: 'Un·e grimpeur·euse',
           climbersSubtitle: 'Trouver un·e partenaire de grimpe'
         },
         crags: {
-          title: 'Trouver un site d\'escalade',
-          intro: 'Nous avons tous les outils qu\'il vous faut pour trouver une falaise autour de chez vous, de votre lieu de vacances<br> ou n\'importe où d\'autre en France et dans le monde.',
+          title: "Trouver un site d'escalade",
+          intro: "Nous avons tous les outils qu'il vous faut pour trouver une falaise autour de chez vous, de votre lieu de vacances<br> ou n'importe où d'autre en France et dans le monde.",
           map: {
-            title: 'Carte des sites d\'escalades',
-            explain: 'Déplacez-vous librement sur la carte de tous les sites d\'escalade que nous avons.',
+            title: "Carte des sites d'escalades",
+            explain: "Déplacez-vous librement sur la carte de tous les sites d'escalade que nous avons.",
             filter: {
               btnTile: 'Filtrer les sites',
               styleLabel: 'Voie ? Bloc ? Grande voie ? etc.',
@@ -523,76 +523,76 @@ export default {
             }
           },
           aroundCity: {
-            title: 'Autour d\'une ville',
-            explain: 'Donnez nous le nom d\'une ville, on vous dit ce qui se grimpe autour. (ville française uniquement)'
+            title: "Autour d'une ville",
+            explain: "Donnez nous le nom d'une ville, on vous dit ce qui se grimpe autour. (ville française uniquement)"
           },
           advancedSearch: {
             title: 'Recherche avancée',
-            explain: 'Vous cherchez une falaise en particulier ? Orientation ? Cotations ? C\'est ici !'
+            explain: "Vous cherchez une falaise en particulier ? Orientation ? Cotations ? C'est ici !"
           }
         },
         gyms: {
-          title: 'Trouver une salle d\'escalade',
-          intro: 'Nous avons tous les outils qu\'il vous faut pour trouver une salle autour de chez vous, de votre lieu de vacances<br> ou n\'importe où d\'autre en France et dans le monde.',
+          title: "Trouver une salle d'escalade",
+          intro: "Nous avons tous les outils qu'il vous faut pour trouver une salle autour de chez vous, de votre lieu de vacances<br> ou n'importe où d'autre en France et dans le monde.",
           map: {
-            title: 'Carte des salles d\'escalade',
-            explain: 'Déplacez-vous librement sur la carte de toutes les salles d\'escalade que nous avons.'
+            title: "Carte des salles d'escalade",
+            explain: "Déplacez-vous librement sur la carte de toutes les salles d'escalade que nous avons."
           },
           aroundCity: {
-            title: 'Autour d\'une ville',
-            explain: 'Donnez nous le nom d\'une ville, on vous dit ce qui se grimpe autour. (ville française uniquement)'
+            title: "Autour d'une ville",
+            explain: "Donnez nous le nom d'une ville, on vous dit ce qui se grimpe autour. (ville française uniquement)"
           }
         },
         climbers: {
           title: 'Trouver un grimpeur ou une grimpeuse',
-          intro: 'Tu arrives dans une nouvelle région ? Ou tu te mets à l\'escalade ?<br>Utilise la carte des grimpeur·euses pour trouver des gens avec qui aller grimper',
+          intro: "Tu arrives dans une nouvelle région ? Ou tu te mets à l'escalade ?<br>Utilise la carte des grimpeur·euses pour trouver des gens avec qui aller grimper",
           map: {
             title: 'Carte des grimpeur·euses',
             explain: 'Utiliser la carte pour trouver un ou une grimpeuse avec qui grimper.'
           },
           howItWorks: {
             title: 'Comment ça marche ?',
-            explain: 'Avant d\'utiliser la recherche, prends le temps de regarder comment ça marche.'
+            explain: "Avant d'utiliser la recherche, prends le temps de regarder comment ça marche."
           }
         },
         guideBooks: {
           title: 'Trouve le topo que tu cherches',
-          intro: 'Nous avons tous les outils imaginables pour les topos : trouver un topo autour d\'une ville, voir les derniers topos sortis, les nouvelles versions, constituer sa topothèque, etc.',
+          intro: "Nous avons tous les outils imaginables pour les topos : trouver un topo autour d'une ville, voir les derniers topos sortis, les nouvelles versions, constituer sa topothèque, etc.",
           map: {
             title: 'Carte des topos',
-            explain: 'La carte de tous les topos, localisés au mieux suivant les sites d\'escalade qu\'ils contiennent'
+            explain: "La carte de tous les topos, localisés au mieux suivant les sites d'escalade qu'ils contiennent"
           },
           aroundCity: {
-            title: 'Topos autour d\'une ville',
-            explain: 'Donne nous le nom d\'une ville, on te donne les topos des sites aux alentours. (ville française uniquement)'
+            title: "Topos autour d'une ville",
+            explain: "Donne nous le nom d'une ville, on te donne les topos des sites aux alentours. (ville française uniquement)"
           },
           new: {
             title: 'Les nouveautés',
             explain: 'Les dernières sorties des topos de France et du monde'
           },
           andMore: {
-            title: 'Et plus d\'outils',
-            explain: 'Nous avons d\'autres outils comme : la topothèque, les recommandations, etc.'
+            title: "Et plus d'outils",
+            explain: "Nous avons d'autres outils comme : la topothèque, les recommandations, etc."
           }
         }
       },
       cragSearch: {
-        title: 'Chercher un site d\'escalade',
-        localisation: 'Autour de quelle ville cherchez-vous un site d\'escalade ?',
+        title: "Chercher un site d'escalade",
+        localisation: "Autour de quelle ville cherchez-vous un site d'escalade ?",
         kmAround: 'km autour de',
-        whichType: 'Quel type d\'escalade ?',
-        whichLevel: 'Quel niveau d\'escalade ?',
+        whichType: "Quel type d'escalade ?",
+        whichLevel: "Quel niveau d'escalade ?",
         whichOrientation: 'Quelle orientation ?',
         approachMaxTime: 'Temps maximum de marche ?',
         minutesToReach: '<strong>minutes</strong> maximum pour rejoindre le site.',
         whichSeason: 'Saison favorable ?',
         cragMustContain: 'Le site doit contenir des lignes <strong>entre :</strong>',
         chooseYourFilters: 'Choisissez vos filtres',
-        noResults: 'Nous n\'avons pas trouver de site d\'escalade à moins de %{distance}km de %{city} avec ces filtres.',
+        noResults: "Nous n'avons pas trouver de site d'escalade à moins de %{distance}km de %{city} avec ces filtres.",
         expandTo: 'Élargir la recherche à :',
         outdoorAnalytikFilters: {
           climbingType: {
-            title: 'Type d\'escalade',
+            title: "Type d'escalade",
             subtitle: 'Chercher un site de bloc, de voie, de grand voie, etc.'
           },
           grade: {
@@ -604,12 +604,12 @@ export default {
             subtitle: 'Chercher par orientation du site : Nord, Sud, Est, etc.'
           },
           approach: {
-            title: 'Temps de marche d\'approche',
+            title: "Temps de marche d'approche",
             subtitle: 'Filtrer sur le temps maximum de marche pour accéder à la falaise'
           },
           season: {
             title: 'Saison favorable',
-            subtitle: 'Chercher une falaise d\'hiver, d\'été, d\'intersaison, etc.'
+            subtitle: "Chercher une falaise d'hiver, d'été, d'intersaison, etc."
           }
         }
       }
@@ -617,50 +617,50 @@ export default {
   },
   components: {
     appAlert: {
-      500: 'Une erreur inattendue s\'est produite, merci d\'essayer plus tard.',
+      500: "Une erreur inattendue s'est produite, merci d'essayer plus tard.",
       400: 'Des éléments semblent manquer, merci de renseigner les champs.',
-      401: 'Vous n\'êtes pas autorisé·e à faire cette action.',
+      401: "Vous n'êtes pas autorisé·e à faire cette action.",
       422: 'Les éléments suivants ne semblent pas corrects :'
     },
     loadMore: {
       loadMore: 'Charger plus'
     },
     input: {
-      climbing_type: 'Type d\'escalade',
+      climbing_type: "Type d'escalade",
       fontFamily: 'Police',
       tags: 'Tags',
-      climbingStyle: 'Styles d\'escalade',
+      climbingStyle: "Styles d'escalade",
       rocks: 'Type de roche',
       rain: 'Exposition à la pluie',
       sun: 'Ensoleillement',
       seasons: 'Saisons favorables',
       orientations: 'Orientations',
-      approachType: 'Type d\'approche',
+      approachType: "Type d'approche",
       anchorType: 'Type de relais',
       boltType: 'Type de point',
       receptionType: 'Type de réception',
       startType: 'Type de départ',
       inclineType: 'Inclinaison',
-      ascentStatus: 'J\'ai fait la ligne ...',
+      ascentStatus: "J'ai fait la ligne ...",
       ropingStatus: 'Mode',
-      ropingStatusQuestion: 'J\'ai grimpé en ...',
-      hardnessStatus: 'Pour la cotation c\'était ...',
+      ropingStatusQuestion: "J'ai grimpé en ...",
+      hardnessStatus: "Pour la cotation c'était ...",
       howFindDifficulty: 'Comment avez-vous trouvé la difficulté ?',
       note: 'Note',
       dateOfBirth: 'Date de naissance',
       genre: 'Genre',
       emailNotifications: 'Recevoir une notification e-mail quand :',
-      usageType: 'Type d\'usage',
+      usageType: "Type d'usage",
       foundingStatus: 'Contribue au financement des sites ?',
-      colorMulti: 'Choisissez jusqu\'à %{colorsLimit} couleurs',
+      colorMulti: "Choisissez jusqu'à %{colorsLimit} couleurs",
       colorSingle: 'Choisissez une couleur',
-      ascentStatusIcon: 'Statut de l\'enchaînement',
+      ascentStatusIcon: "Statut de l'enchaînement",
       gymOpener: 'Ouvreurs, Ouvreuses',
       gymRoles: 'Peut gérer',
       gymAddOpener: 'Ajouter un·e ouvreur·euse',
       contestRankingTypes: 'Type de classement',
       contestCategoryTypes: 'Type de catégorisation',
-      contestCategoryObligation: 'Type de restriction à l\'inscription',
+      contestCategoryObligation: "Type de restriction à l'inscription",
       rankingSystem: 'Type de classement',
       gradeSystem: 'Type de cotation',
       levelRepresentation: 'Représentation du niveau',
@@ -689,12 +689,12 @@ export default {
         table: 'Tableau',
         neverTooMuch: 'Il y a jamais trop de force',
         aBrute: 'Une Brute',
-        thisIs: 'C\'est',
-        butIsGood: 'mais c\'est bon',
+        thisIs: "C'est",
+        butIsGood: "mais c'est bon",
         tooHard: 'trop dur',
-        teachesMarkdown: 'm\'apprend le markdown',
+        teachesMarkdown: "m'apprend le markdown",
         this: 'Ça',
-        is: 'c\'est',
+        is: "c'est",
         complicated: 'compliqué',
         column: 'Colonne',
         alignedTo: 'Alignée à',
@@ -746,8 +746,8 @@ export default {
     },
     notification: {
       title: 'Notifications',
-      newEmpty: 'Vous n\'avez pas de nouvelle notification',
-      empty: 'Vous n\'avez pas de notification',
+      newEmpty: "Vous n'avez pas de nouvelle notification",
+      empty: "Vous n'avez pas de notification",
       markedAllAsRead: 'Tout marquer comme lu',
       type: {
         new_message: 'Nouveau message de %{name}',
@@ -756,12 +756,12 @@ export default {
         request_for_follow_up: '%{name} demande à vous suivre',
         new_article: 'Nouvel article ! %{name}',
         new_like: '%{name} aime votre %{type}',
-        new_reply: '%{name} a répondu à l\'un de vos commentaires'
+        new_reply: "%{name} a répondu à l'un de vos commentaires"
       }
     },
     country: {
       search: 'Chercher une ville',
-      mapExplain: 'Cliquez sur un département pour connaître les <strong>sites d\'escalade</strong>, les <strong>salles</strong> et les <strong>topos</strong> du département.',
+      mapExplain: "Cliquez sur un département pour connaître les <strong>sites d'escalade</strong>, les <strong>salles</strong> et les <strong>topos</strong> du département.",
       france: {
         title: 'Escalade en France',
         searchPlaceHolder: 'Marseille, Paris, Grenoble, etc.',
@@ -773,19 +773,19 @@ export default {
       climbing: 'Escalade',
       gradeOf: 'en cotations',
       inFigures: 'en quelques chiffres',
-      mapTitle: 'Carte des sites et salles d\'escalade',
+      mapTitle: "Carte des sites et salles d'escalade",
       bookCovering: 'Un topo couvre | %{count} topos couvrent',
       selfGeneratedDescription: 'Description générée à partir des données disponibles sur Oblyk.',
       towns: 'Les villes',
       namePrefixType: {
-        apostrophe: 'L\'',
+        apostrophe: "L'",
         plural: 'Les ',
         masculine: 'Le ',
         feminine: 'La ',
         nothing: ''
       },
       inSentencePrefixType: {
-        in_apostrophe: 'dans l\'',
+        in_apostrophe: "dans l'",
         on: 'en ',
         in_plural: 'dans les ',
         in_masculine: 'dans le ',
@@ -796,12 +796,12 @@ export default {
     town: {
       title: 'Escalade autour de %{name}',
       searchAnotherCity: 'Chercher une autre ville',
-      cragsAround: 'Un site d\'escalade aux alentours de %{name} | %{count} sites d\'escalade aux alentours de %{name}',
+      cragsAround: "Un site d'escalade aux alentours de %{name} | %{count} sites d'escalade aux alentours de %{name}",
       nearestCrag: 'La falaise la plus proche de %{name}',
       gymsAround: 'Une salle pour grimper en indoor à %{name} et aux alentours | %{count} salles pour grimper en indoor à %{name} et aux alentours',
       nearestGym: 'La salle la plus proche de %{name}',
-      guideBooks: 'Les topos d\'escalade autour de %{name}',
-      map: 'La carte d\'escalade de %{name}',
+      guideBooks: "Les topos d'escalade autour de %{name}",
+      map: "La carte d'escalade de %{name}",
       density: {
         low: 'une faible densité',
         medium: 'une densité moyenne',
@@ -841,15 +841,15 @@ export default {
         fetchData: 'Récupération des informations locales',
         sun: 'Soleil',
         sunshineAt: 'Ensoleillement au',
-        clicForTool: 'Cliquez sur la carte pour plus d\'outils'
+        clicForTool: "Cliquez sur la carte pour plus d'outils"
       }
     },
     localization: {
       title: 'Ma localisation',
-      explain: 'Activer la localisation te permet d\'avoir des informations locales dans ton flux, de rechercher des falaises, des salles ou des grimpeurs et grimpeuses autour de toi.',
+      explain: "Activer la localisation te permet d'avoir des informations locales dans ton flux, de rechercher des falaises, des salles ou des grimpeurs et grimpeuses autour de toi.",
       activated: 'Localisation activée',
       deactivated: 'Activer ma localisation',
-      private: 'Ta localisation n\'est pas enregistrée par Oblyk.',
+      private: "Ta localisation n'est pas enregistrée par Oblyk.",
       IAmHere: 'Je suis là',
       activateLocation: 'Activer ma localisation',
       waitingLocalization: 'Récupération de votre position…'
@@ -858,9 +858,9 @@ export default {
       connectAlert: 'Vous devez être connecté·e pour accéder à cette page',
       alreadyConnected: 'Vous êtes connecté·e',
       stayConnected: 'Rester connecté·e',
-      termsOfUse: 'J\'ai lu et j\'accepte les conditions d\'utilisation d\'Oblyk',
+      termsOfUse: "J'ai lu et j'accepte les conditions d'utilisation d'Oblyk",
       termsOfUseTitle: 'Mentions légales',
-      youMustBeAgree: 'Vous devez accepter les conditions d\'utilisation d\'Oblyk',
+      youMustBeAgree: "Vous devez accepter les conditions d'utilisation d'Oblyk",
       newsletterSubscribe: 'Recevoir la newsletter (une par trimestre environ)',
       forgottenPassword: 'Mot de passe oublié ?',
       forgottenPasswordExplain: 'Renseigner votre adresse mail pour que nous puissions vous envoyer un lien de résiliation de votre mot de passe.',
@@ -880,12 +880,12 @@ export default {
       },
       buyGuide: {
         part1: 'Une dernière chose !',
-        part2: 'Vous grimpez en extérieur ? <strong>Achetez les topos ! C\'est important.</strong>',
-        part3: 'Vous êtes peut-être nouveau dans la pratique de l\'escalade outdoor, ou vous ne vous étiez jamais posé·e la question de <strong>l\'importance des topos pour notre sport</strong> ? Voici <strong>3 raisons</strong> pour lesquelles vous devez acheter les topos papiers :',
-        reason1: 'Le revenu des ventes de topos <strong>permet l\'entretien des falaises</strong> sur lesquelles vous grimpez gratuitement ;',
-        reason2: 'Les topos contiennent des <strong>informations indispensables</strong> pour se repérer sur les sites d\'escalade <strong>que vous ne trouverez pas sur Oblyk</strong> <cite>(comme le tracé et l\'ordre des voies sur la falaise)</cite> ;',
-        reason3: 'Plus que de simples guides d\'escalade, <strong>les topos font partie de notre sport</strong>. Vous y trouverez des explications géologiques, des informations sur la faune, l\'histoire des sites, des anecdotes, etc.',
-        part4: 'Ayez le réflexe : <strong>je vais en falaise, j\'achète le topo</strong> <cite>(nous avons plein d\'outils pour vous aider à trouver les bons topos)</cite>',
+        part2: "Vous grimpez en extérieur ? <strong>Achetez les topos ! C'est important.</strong>",
+        part3: "Vous êtes peut-être nouveau dans la pratique de l'escalade outdoor, ou vous ne vous étiez jamais posé·e la question de <strong>l'importance des topos pour notre sport</strong> ? Voici <strong>3 raisons</strong> pour lesquelles vous devez acheter les topos papiers :",
+        reason1: "Le revenu des ventes de topos <strong>permet l'entretien des falaises</strong> sur lesquelles vous grimpez gratuitement ;",
+        reason2: "Les topos contiennent des <strong>informations indispensables</strong> pour se repérer sur les sites d'escalade <strong>que vous ne trouverez pas sur Oblyk</strong> <cite>(comme le tracé et l'ordre des voies sur la falaise)</cite> ;",
+        reason3: "Plus que de simples guides d'escalade, <strong>les topos font partie de notre sport</strong>. Vous y trouverez des explications géologiques, des informations sur la faune, l'histoire des sites, des anecdotes, etc.",
+        part4: "Ayez le réflexe : <strong>je vais en falaise, j'achète le topo</strong> <cite>(nous avons plein d'outils pour vous aider à trouver les bons topos)</cite>",
         part5: 'Merci de votre compréhension 🙂'
       }
     },
@@ -904,7 +904,7 @@ export default {
       soft: 'Facile pour la cote'
     },
     alert: {
-      editAlert: 'Modifier l\'alerte',
+      editAlert: "Modifier l'alerte",
       types: {
         good: 'Bonne (vert)',
         warning: 'Attention (jaune)',
@@ -932,7 +932,7 @@ export default {
       elevation: 'Altitude',
       rangingFrom: 'De <strong>%{min}</strong> à <strong>%{max}</strong>',
       noGuide: 'Pas de topo renseigné',
-      noRoutes: 'Il n\'y a pas encore de ligne enregistrée sur ce site',
+      noRoutes: "Il n'y a pas encore de ligne enregistrée sur ce site",
       guideAroundThisCrag: 'Topos à 50km autour de',
       areaAroundThisCrag: 'Groupe de site à 50km autour de',
       addOnArea: 'Ajouter ce site dans un groupe',
@@ -943,14 +943,14 @@ export default {
       cragAroundInCreate: 'Il y a un site à moins de 1 km : | Il y a %{count} sites à moins de 1km :',
       doNotCreateADuplicate: 'Ne créez pas un doublon si un·e autre grimpeur·euse a déjà référencé ce site !',
       guideBookTitle: 'Les topos',
-      opinion: 'L\'avis des grimpeurs et grimpeuses',
+      opinion: "L'avis des grimpeurs et grimpeuses",
       information: 'Informations détaillées',
       locationAndAccess: 'Localisation & Accès',
       gradesAndLevels: 'Cotations & Niveaux',
-      explainMapEditor: 'Cliquez sur un élément de la carte pour le modifier.<br>Ou cliquez sur "Ajouter" pour ajouter un parking, une marche d\'approche, etc.',
-      explainGlobalLocation: 'Faites glisser le marqueur pour modifier l\'emplacement général de la falaise.',
-      explainPark: 'Cliquez sur la carte à l\'emplacement du parking. Ou déplacez le marqueur rose.',
-      explainApproach: 'Cliquez sur la carte aux différents points où passe la marche d\'approche',
+      explainMapEditor: "Cliquez sur un élément de la carte pour le modifier.<br>Ou cliquez sur \"Ajouter\" pour ajouter un parking, une marche d'approche, etc.",
+      explainGlobalLocation: "Faites glisser le marqueur pour modifier l'emplacement général de la falaise.",
+      explainPark: "Cliquez sur la carte à l'emplacement du parking. Ou déplacez le marqueur rose.",
+      explainApproach: "Cliquez sur la carte aux différents points où passe la marche d'approche",
       explainRockBar: 'Cliquez sur la carte aux différents points pour tracer la barre rocheuse.',
       explainRockBarSector: 'Vous pouvez affecter la barre rocheuse à un secteur en particulier, ou laisser vide pour représenter la falaise en général.',
       cragFoot: 'Pied de falaise',
@@ -978,7 +978,7 @@ export default {
       routes: 'Les lignes',
       searchRoute: 'Chercher une voie',
       sortRouteLabel: 'Trier les voies',
-      climberOpinion: 'L\'avis des grimpeur·euse·s',
+      climberOpinion: "L'avis des grimpeur·euse·s",
       inMyLogbook: 'Dans mon carnet',
       new: 'Ajouter une nouvelle ligne',
       gradeExample: 'exemple: 7a, 6c+, 5.10, B15, etc.',
@@ -987,7 +987,7 @@ export default {
       inMeters: 'en mètres',
       addPitch: 'Ajouter une longueur',
       removePitch: 'Supprimer une longueur',
-      routeAdded: 'Ligne : \'%{name}\' ajoutée',
+      routeAdded: "Ligne : '%{name}' ajoutée",
       pointCount: 'Un point | %{count} points',
       mustBeLogin: '<span class="font-weight-bold">Connectez-vous</span> ou <span class="font-weight-bold">créez-vous un compte</span> pour <span class="font-weight-bold">voir le nom des voies</span> et bien plus !',
       tips: '<strong>Tips</strong> : utiliser <kbd>tab</kbd> pour naviguer, <kbd>espace</kbd> pour ouvrir les listes',
@@ -1003,7 +1003,7 @@ export default {
       crags: 'Sites',
       lines: 'Lignes',
       orientations: 'Orientations',
-      approachTimeTitle: 'Minutes de marche d\'approche',
+      approachTimeTitle: "Minutes de marche d'approche",
       favorableSeasonsTitle: 'Saisons favorables',
       distanceTitle: 'Distance du lieu cherché',
       season: 'Saison(s) favorable(s)'
@@ -1016,12 +1016,12 @@ export default {
       pitchMade: 'Longueurs faites',
       ascentMadeOn: 'Croix faite le %{date}',
       madeOn: 'fait le %{date}',
-      numberOfAttempt: 'Nombre d\'essais : <strong>%{number}</strong>',
+      numberOfAttempt: "Nombre d'essais : <strong>%{number}</strong>",
       myCommentaire: 'Mon commentaire',
       privateComment: 'commentaire privé',
       publicComment: 'commentaire public',
-      iMadeCountPitch: 'J\'ai fait les %{count} longueurs',
-      iWasWith: 'J\'étais avec',
+      iMadeCountPitch: "J'ai fait les %{count} longueurs",
+      iWasWith: "J'étais avec",
       whichRoute: 'Quelle ligne avez-vous faite ?',
       addedAscentToLogbook: 'Ajouter une croix à mon carnet',
       whichCrag: 'Quel site ?',
@@ -1036,13 +1036,13 @@ export default {
       pitchMade: 'Longueurs faites',
       ascentMadeOn: 'Croix faite le %{date}',
       madeOn: 'fait le %{date}',
-      iMadeCountPitch: 'J\'ai fait les %{count} longueurs',
+      iMadeCountPitch: "J'ai fait les %{count} longueurs",
       cumulativeHeight: '<strong>%{meter}m</strong> cumulés',
       maxGrade: 'Max réalisé : <strong>%{grade}</strong>',
-      noAscents: 'Je n\'ai pas de croix ici',
+      noAscents: "Je n'ai pas de croix ici",
       whichGym: 'Quelle salle ?',
       gymPage: 'Page de la salle',
-      addNewAscents: 'Ajouter d\'autres croix',
+      addNewAscents: "Ajouter d'autres croix",
       addingSuccess: 'Croix ajoutée(s) !',
       gymNotFound: 'Vous ne trouvez pas votre salle ?'
     },
@@ -1053,8 +1053,8 @@ export default {
       colorOrder: 'Ordre des couleurs <cite>(cliquer pour changer)</cite>',
       waiteColor: 'en attente des couleurs…',
       defaultHeight: 'Hauteur par défaut pour le %{climbingType} : %{height}m',
-      pitchHeight: 'Hauteur d\'une longueur',
-      ascentToday: 'Croix réalisée(s) aujourd\'hui',
+      pitchHeight: "Hauteur d'une longueur",
+      ascentToday: "Croix réalisée(s) aujourd'hui",
       addAscentBy: {
         title: 'Ajouter vos croix par %{ascentsBy} :',
         color: 'couleur',
@@ -1065,14 +1065,14 @@ export default {
       plusToAdd: 'Faites + pour ajouter les couleurs dans le bon ordre'
     },
     area: {
-      description: '<strong>%{name}</strong> est un groupement de %{crags} site d\'escalades.<br>Ces sites contiennent au total %{routes} lignes, allant de <strong>%{min}</strong> à <strong>%{max}</strong>',
+      description: "<strong>%{name}</strong> est un groupement de %{crags} site d'escalades.<br>Ces sites contiennent au total %{routes} lignes, allant de <strong>%{min}</strong> à <strong>%{max}</strong>",
       groupTitle: 'Groupe de %{count} sites',
       type: 'Groupe de sites',
       new: 'Nouvelle zone de falaise',
       addCragInArea: 'Ajouter un site',
       removeFromArea: 'Retirer le site',
       searchArea: 'Chercher un groupe de site',
-      explainNewTopo: 'Si vous n\'avez pas trouvé en cherchant, ou dans les groupes à proximité, vous pouvez ajouter un nouveau groupe&nbsp;:',
+      explainNewTopo: "Si vous n'avez pas trouvé en cherchant, ou dans les groupes à proximité, vous pouvez ajouter un nouveau groupe&nbsp;:",
       noAreaAround: 'Pas de groupe de sites trouvé à 50km au alentour',
       cragsMap: 'Carte des sites',
       tabs: {
@@ -1083,11 +1083,11 @@ export default {
     },
     approach: {
       names: 'Approches',
-      cardTitle: 'Marche d\'approche',
+      cardTitle: "Marche d'approche",
       newPolylineExplain: 'Cliquer à chaque endroit où passe la marche d’approche en partant du parkings',
-      editPolylineExplain: 'Déplacer les carrés blancs pour modifier le tracé de la marche d\'approche',
+      editPolylineExplain: "Déplacer les carrés blancs pour modifier le tracé de la marche d'approche",
       elevation_chart: 'Courbe altimétrique',
-      elevation_description: 'Départ à %{start} mètres d\'altitude, arrivé à  %{end} mètres.',
+      elevation_description: "Départ à %{start} mètres d'altitude, arrivé à  %{end} mètres.",
       walking_time: {
         steep_descent: '(à 6km/h)',
         soft_descent: '(à 6km/h)',
@@ -1098,7 +1098,7 @@ export default {
       }
     },
     library: {
-      title: 'Topos d\'escalade',
+      title: "Topos d'escalade",
       intro: `Nous tenons à jour une base de données la plus exhaustive possible des topos d'escalade papiers de France et du monde.
               Vous trouverez ici la liste de tous nos topos par année de parution ou par ordre alphabétique.
               Vous serez sûrement aussi intéressé·e par notre page <a href="/guide-book-papers/find">"Trouver un topo"</a>
@@ -1125,14 +1125,14 @@ export default {
       removeFromGuideBook: 'Retirer du topo',
       addCragInGuide: 'Ajouter un site à ce topo',
       searchGuideBookPaper: 'Chercher un topo papier',
-      explainNewTopo: 'Si vous n\'avez pas trouvé en cherchant, ou dans les topos à proximité, vous pouvez ajouter un nouveau topo :',
+      explainNewTopo: "Si vous n'avez pas trouvé en cherchant, ou dans les topos à proximité, vous pouvez ajouter un nouveau topo :",
       noGuideAround: 'Pas de topo trouvé à 50km au alentour',
       showMissingInformation: 'Montrer les informations manquantes',
       addGuideBook: 'Ajouter un topo',
       addGuideBookInMyLibrary: 'Ajouter un topo à ma topothèque',
       findGuideBook: 'Trouver un topo',
       titleFilter: 'Filtrer sur les titres',
-      addInLibraryPart1: 'Cliquez sur l\'icône ',
+      addInLibraryPart1: "Cliquez sur l'icône ",
       addInLibraryPart2: 'pour ajouter ou enlever le topo de votre topothèque.',
       nextVersionTitle: 'Il y a une version plus récente !',
       alternativeGuides: 'Topos alternatifs',
@@ -1144,7 +1144,7 @@ export default {
       fundingStatusExplain: {
         contributes_to_financing: 'Contribue au financement des sites',
         not_contributes_to_financing: 'Ne contribue pas au financement des sites',
-        undefined: 'Pas d\'information sur le financement des sites'
+        undefined: "Pas d'information sur le financement des sites"
       },
       figures: {
         numberOfGuides: 'Nombre de topos',
@@ -1156,17 +1156,17 @@ export default {
         cragsCovered: 'sites couverts',
         routesCount: 'Nombre de lignes',
         routes: 'lignes',
-        missingBook: 'Un topo pourrait t\'intéresser :) | %{count} topos pourraient t\'intéresser :)',
+        missingBook: "Un topo pourrait t'intéresser :) | %{count} topos pourraient t'intéresser :)",
         seeGuides: 'Voir les topos',
         newGuides: 'Il y a des nouvelles versions !',
         seeNewGuides: 'Une nouvelle version | %{count} nouvelles versions'
       },
       recommended: {
-        title: 'Les topos qui pourraient t\'intéresser',
-        guidesFound: 'Nous avons trouvé un topo qui pourrait t\'intéresser | Nous avons trouvé {count} topos qui pourraient t\'intéresser',
+        title: "Les topos qui pourraient t'intéresser",
+        guidesFound: "Nous avons trouvé un topo qui pourrait t'intéresser | Nous avons trouvé {count} topos qui pourraient t'intéresser",
         relationToAscents: '(par rapport à ton carnet de croix)',
         completYouAscent: 'Complète ton carnet de croix pour que nous puissions te suggérer plus de topos',
-        thisPageFind: 'Cette page trouve les topos qui pourraient t\'intéresser',
+        thisPageFind: "Cette page trouve les topos qui pourraient t'intéresser",
         connectYou: 'Connecte toi !'
       },
       newVersion: {
@@ -1196,15 +1196,15 @@ export default {
       crags: '<strong>1</strong> site | <strong>%{count}</strong> sites'
     },
     placeOfSale: {
-      noPlace: 'Il n\'y a pas de lieu de vente renseigné pour l\'instant.'
+      noPlace: "Il n'y a pas de lieu de vente renseigné pour l'instant."
     },
     organization: {
       addNew: 'Enregistrer mon organisation',
-      apiDocumentation: 'Documentation de l\'API',
+      apiDocumentation: "Documentation de l'API",
       ressources: 'Ressources',
       manage: 'Gérer',
-      refreshApiKey: 'Régénérer la clé d\'API',
-      surToRefresh: 'Êtes-vous sûr·e de vouloir régénérer la clé d\'api ? Cette action est irréversible.',
+      refreshApiKey: "Régénérer la clé d'API",
+      surToRefresh: "Êtes-vous sûr·e de vouloir régénérer la clé d'api ? Cette action est irréversible.",
       surToDelete: 'Êtes-vous sûr·e de vouloir supprimer votre organisation ? Cette action est irréversible.'
     },
     gymChain: {
@@ -1228,14 +1228,14 @@ export default {
       firstSpaceExplain1: 'Avant de créer votre premier espace et vos premières voies et blocs, <strong>il est important que vous choisissez</strong> comment fonctionne <strong>la difficulté de votre salle</strong> <cite>(ordre des couleurs, type des cotations, etc.)</cite>',
       firstSpaceExplain2: 'Choisissez votre système de difficulté, puis passez cette étape quand vous revenez.',
       firstDifficultySystemExplain: 'Les systèmes de difficulté vous permettent de définir comment fonctionnent vos cotations dans votre salle.',
-      firstDifficultySystemExplainTow: 'Ils vous permettent aussi d\'aller plus vite dans le renseignement vos lignes.',
+      firstDifficultySystemExplainTow: "Ils vous permettent aussi d'aller plus vite dans le renseignement vos lignes.",
       createDifficultySystemSpace: 'Créer mon premier système de difficulté',
       difficultySystem: 'Système de difficulté',
       administratorRequired: 'Vous devez être administrateur de la salle pour avoir accès à cette page.',
       IAmManager: 'Je suis le·a gérant·e',
       contactAndLocalization: 'Contact & Localisation',
       seePhoneNumber: 'Voir le numéro de téléphone',
-      seeEmail: 'Voir l\'e-mail',
+      seeEmail: "Voir l'e-mail",
       gymAround: '%{count} salle dans les environs | %{count} salles dans les environs',
       gymCount: '<strong>%{count}</strong> salle | <strong>%{count}</strong> salles',
       gymAroundInCreate: 'Il y a une salle à moins de 1 km : | Il y a %{count} salles à moins de 1km :',
@@ -1244,7 +1244,7 @@ export default {
       guidebook: 'Le topo',
       upcomingContests: 'Un contest est à venir ! | %{count} contests sont à venir',
       createYourGuidebook: 'Créez le topo de votre salle !',
-      followersEmpty: '%{name} n\'a pas encore d\'abonné·es pour l\'instant'
+      followersEmpty: "%{name} n'a pas encore d'abonné·es pour l'instant"
     },
     gymRanking: {
       rankingType: 'Les types de classements',
@@ -1253,12 +1253,12 @@ export default {
       rankOf: 'Le classement de %{date}',
       seeRankOf: 'Voir le classement de %{date}',
       rankNumber: '%{number}er | %{number}ème',
-      noRank: 'Il n\'y a pas de classement pour %{date} avec les filtres sélectionnés.',
+      noRank: "Il n'y a pas de classement pour %{date} avec les filtres sélectionnés.",
       giveDefaultPoints: 'Vous pouvez donner un nombre de points par défaut pour vos différents niveau.'
     },
     gymAdmin: {
       administration: 'Administration',
-      adminTitle: 'Zone d\'administration',
+      adminTitle: "Zone d'administration",
       publicPage: 'Page publique',
       GuideBookSettings: 'Paramètres topos',
       GuideBookAndContest: 'Mon topo & Les contests',
@@ -1269,24 +1269,24 @@ export default {
       statistic: 'Stats',
       structure: 'Structure',
       various: 'Divers',
-      team: 'L\'équipe',
+      team: "L'équipe",
       openers: 'Les ouvreurs et ouvreuses',
       contests: 'Contests',
       championships: 'Championnats',
       home: 'Tableau de bord',
       parameters: 'Paramètres',
       rakingSystem: 'Les classements',
-      rakingExplain: 'Paramètre du classement mensuel par style d\'escalade',
+      rakingExplain: "Paramètre du classement mensuel par style d'escalade",
       difficultySystem: 'Système de difficulté',
       levelsAndGardes: 'Niveaux & Cotations',
-      levelsAndGardesExplain: 'Paramètre de l\'ordre des couleurs et les cotations',
+      levelsAndGardesExplain: "Paramètre de l'ordre des couleurs et les cotations",
       difficultySystemExplain: 'Paramètre des systèmes de difficulté, cotation par niveau, etc.',
       difficultySystemShort: 'Les systèmes',
-      climbingStyle: 'Styles d\'escalade',
-      climbingStyleExplain: 'Sélectionnez la liste de styles d\'escalade que vous utilisez majoritairement.',
+      climbingStyle: "Styles d'escalade",
+      climbingStyleExplain: "Sélectionnez la liste de styles d'escalade que vous utilisez majoritairement.",
       styles: 'Les styles',
       spaces: 'Espaces',
-      spaceGroups: 'Groupes d\'espaces',
+      spaceGroups: "Groupes d'espaces",
       routes: 'Lignes',
       dismountedRoutes: 'Liste des lignes démontées',
       mountedRoutes: 'Liste des lignes montées',
@@ -1294,7 +1294,7 @@ export default {
       mountRoutes: 'Monter la ligne | Monter les %{count} lignes',
       printRoutes: 'Imprimer la ligne | Imprimer les %{count} lignes',
       exportRoutes: 'Exporter la ligne | Exporter les %{count} lignes',
-      openingSheetForRoutes: 'Créer une fiche d\'ouverture',
+      openingSheetForRoutes: "Créer une fiche d'ouverture",
       missingInformation: 'Il manque quelques informations sur votre salle, comme :',
       addYourLogo: 'Ajouter votre logo',
       updateYourLogo: 'Changer votre logo',
@@ -1309,23 +1309,23 @@ export default {
       noComments: 'Vous verrez les commentaires de vos grimpeurs et grimpeuses ici quand ils/elles en auront posté !',
       noVideos: 'Vous verrez les vidéos de vos grimpeurs et grimpeuses ici quand ils/elles en auront posté !',
       assets: 'Décorations',
-      openingSheet: 'Fiche d\'ouvertures'
+      openingSheet: "Fiche d'ouvertures"
     },
     gymClimbingStyles: {
-      title: 'Les styles d\'escalade de ma salle',
-      explain: 'Choisissez les styles d\'escalades que vous souhaitez utiliser couramment. Lors de l\'ajout des voies/blocs/pans ces styles vous seront proposés en priorité, vous gagnerez ainsi du temps à l\'ajout de vos lignes.<br><cite>(Vous pourrez toujours choisir les autres styles même s\'ils ne sont pas cochés)</cite>',
+      title: "Les styles d'escalade de ma salle",
+      explain: "Choisissez les styles d'escalades que vous souhaitez utiliser couramment. Lors de l'ajout des voies/blocs/pans ces styles vous seront proposés en priorité, vous gagnerez ainsi du temps à l'ajout de vos lignes.<br><cite>(Vous pourrez toujours choisir les autres styles même s'ils ne sont pas cochés)</cite>",
       noColor: 'Pas de couleur',
       favorites: 'Favoris'
     },
     gymRankingSystems: {
-      title: 'Les classements par type d\'escalade',
-      explain: 'Choisissez comment Oblyk calculera les points par type d\'escalade.',
+      title: "Les classements par type d'escalade",
+      explain: "Choisissez comment Oblyk calculera les points par type d'escalade.",
       chooseSystem: 'Choisissez un type de classement',
       deleteSystem: 'Ne pas faire de classement'
     },
     levelAndGrades: {
       title: 'Niveau par couleur & système de cotation',
-      explain: 'Choisissez dans quel ordre sont organisé vos couleurs et quel genre de cotation vous utilisé pour chaque type d\'escalade.'
+      explain: "Choisissez dans quel ordre sont organisé vos couleurs et quel genre de cotation vous utilisé pour chaque type d'escalade."
     },
     gymStatistic: {
       figuresTitle: 'En quelques chiffres',
@@ -1346,7 +1346,7 @@ export default {
       levelChartTitle: 'Ouvertures par niveau',
       notesTitle: 'Appréciation des ouvertures',
       noteSum: 'Nombre de votes',
-      openingFrequenciesTitle: 'Fréquence d\'ouverture',
+      openingFrequenciesTitle: "Fréquence d'ouverture",
       noData: 'Pas de donnée disponible',
       likeTitle: 'Les likes sur les ouvertures',
       difficultyTitle: 'Ressenti des difficultés',
@@ -1358,14 +1358,14 @@ export default {
     gymAdministrationRequest: {
       helloName: 'Bonjour %{name}',
       isAlreadyAdministered: 'Cette salle est déjà administrée par son gérant.',
-      needAccount: 'Pour prendre la gestion d\'une salles d\'escalade, il vous faut une compte Oblyk à votre nom.',
+      needAccount: "Pour prendre la gestion d'une salles d'escalade, il vous faut une compte Oblyk à votre nom.",
       explainJustification: 'Merci de remplir le formulaire ci-dessous en nous donnant des éléments qui nous permettraient de vérifier que vous êtes bien en droit de gérer cette salle.',
       requestIsSent: 'Nous avons bien enregistré votre demande !<br> Nous la traiterons le plus rapidement possible.'
     },
     openingSheet: {
-      list: 'Fiches d\'ouvertures',
-      explain: 'Les fiches d\'ouvertures vous permettes de sélectionner un ou plusieurs secteurs de votre salle, et indiquer les ré-ouvertures à prévoir par vos ouvreurs et ouvreuses.',
-      noSheet: 'Vous n\'avez pas encore de fiches d\'ouvertures.',
+      list: "Fiches d'ouvertures",
+      explain: "Les fiches d'ouvertures vous permettes de sélectionner un ou plusieurs secteurs de votre salle, et indiquer les ré-ouvertures à prévoir par vos ouvreurs et ouvreuses.",
+      noSheet: "Vous n'avez pas encore de fiches d'ouvertures.",
       style: 'Style',
       open: 'Actuelle',
       toOpen: 'À ouvrir',
@@ -1377,7 +1377,7 @@ export default {
       create: 'Nouvel espace',
       addNew: 'Ajouter un nouvel espace',
       chooseSpace: 'Choisissez un espace',
-      explain: 'Un <cite>"espace"</cite> est une grande zone d\'une salle qui peut contenir plusieurs secteurs. Exemple : "Espace de voie", "Espace de bloc", "Pan", etc.<br>À vous de trouver la meilleure division pour votre salle.',
+      explain: "Un <cite>\"espace\"</cite> est une grande zone d'une salle qui peut contenir plusieurs secteurs. Exemple : \"Espace de voie\", \"Espace de bloc\", \"Pan\", etc.<br>À vous de trouver la meilleure division pour votre salle.",
       explainMissingPlan: 'Uploader un plan de <cite>"%{name}"</cite> sur lequel vous pourrez tracer les secteurs',
       explainMissingThreeD: 'Uploader le fichier 3D de <cite>"%{name}"</cite> sur lequel vous pourrez tracer les secteurs',
       uploadPlanFor: 'Télécharger un plan pour : %{name}',
@@ -1387,14 +1387,14 @@ export default {
       showSector: 'Lignes du secteur <strong>%{name}</strong>.',
       colorExplain: 'Choisissez une couleur pour le tracé des secteurs sur le plan.',
       anchorExplain: 'Si coché : vous pourrez renseigner le numéro de relais sur chaque voie',
-      draftExplain: 'Seul les membres de l\'équipe peuvent voir cet espace',
+      draftExplain: "Seul les membres de l'équipe peuvent voir cet espace",
       archived: 'Espaces archivés'
     },
     gymSector: {
       name: 'Secteur',
       addNew: 'Créer un nouveau secteur',
       chooseSector: 'Choisissez un secteur',
-      addNewExplain: 'Un secteur est une petite division d\'un espace, exemple : Grand devers droite, couloir 4, etc. C\'est là que seront renseignées les lignes',
+      addNewExplain: "Un secteur est une petite division d'un espace, exemple : Grand devers droite, couloir 4, etc. C'est là que seront renseignées les lignes",
       resultingParametersOf: 'Issu des paramètres de : %{name}',
       editSectorPolygon: 'Modifier le tracé du secteur',
       createSectorPolygon: 'Tracer le secteur sur le plan',
@@ -1426,7 +1426,7 @@ export default {
       takeMainPicture: 'Prendre la photo principale',
       addNewRoute: 'Ajouter une autre ligne',
       mainPicture: 'Photo de ligne',
-      mainPictureExplain: 'Une photo du bloc dans sa globalité ou de la première partie d\'une voie',
+      mainPictureExplain: "Une photo du bloc dans sa globalité ou de la première partie d'une voie",
       thumbnailPicture: 'Détail représentatif',
       thumbnailPictureExplain: 'Cadrer un detail comme la prise de départ',
       reusePicture: 'Réutiliser une photo',
@@ -1435,7 +1435,7 @@ export default {
       dismountedAt: 'Ligne démonté le %{date}',
       dismounted: 'Démonté',
       sorts: {
-        opened_at: 'Trier par date d\'ouverture',
+        opened_at: "Trier par date d'ouverture",
         sector: 'Trier par secteur',
         grade: 'Trier par cotation',
         level: 'Trier par couleur',
@@ -1447,16 +1447,16 @@ export default {
       }
     },
     gymGrade: {
-      noSystem: 'Aucun système de difficulté n\'est renseigné pour l\'instant',
+      noSystem: "Aucun système de difficulté n'est renseigné pour l'instant",
       add: 'Ajouter un système de difficulté',
       explain: 'Les systèmes de difficulté ont pour but de vous faciliter la tâche de renseignement de vos lignes par la suite.',
-      whichIdentificationSystem: 'Comment j\'identifie une ligne ?',
-      whichGradeSystem: 'Comment je connais la difficulté d\'une ligne ?',
-      whichPointSystem: 'Est-ce que j\'utilise un système de points ?',
+      whichIdentificationSystem: "Comment j'identifie une ligne ?",
+      whichGradeSystem: "Comment je connais la difficulté d'une ligne ?",
+      whichPointSystem: "Est-ce que j'utilise un système de points ?",
       system: 'Système',
       typeOfSystem: 'Type de système',
       value: 'Valeur',
-      exampleTitle: 'Exemple de la représentation d\'une ligne sur le topo'
+      exampleTitle: "Exemple de la représentation d'une ligne sur le topo"
     },
     gymGradeLine: {
       colors: {
@@ -1474,8 +1474,8 @@ export default {
       myContest: 'Mon contest',
       results: 'Résultat',
       where: 'Ça se passe où ?',
-      registerNow: 'Je m\'inscris maintenant !',
-      alreadyRegistered: 'J\'ai déjà un code ?',
+      registerNow: "Je m'inscris maintenant !",
+      alreadyRegistered: "J'ai déjà un code ?",
       iAmRegistered: 'Je suis déjà inscrit',
       registeredPart1: 'Lors de votre inscription nous vous avons donné un code <cite>(votre prénom + quelques lettres au hasard)</cite><br>Renseigner ce code pour vous identifier.',
       registeredPart2: 'Nous ne trouvons pas de participant(e) inscrit avec ce code sur ce contest. Vérifiez que vous avez correctement tapé votre code et ressayez.',
@@ -1485,11 +1485,11 @@ export default {
       useTheCode: 'Utilisez le code ci-dessous pour noter vos résultats et suivre votre classement pendant le contest :',
       codeIsSaved: 'Ce code est sauvegardé sur cet appareil. Vous pouvez le copier-coller pour noter vos résultats sur un autre appareil. Vous avez aussi reçu ce code par email.',
       remainingPlaces: 'Complet | Une place restante | <strong class="font-weight-black text-h5">%{count}</strong> places restantes',
-      unPublish: 'Ce contest est visible uniquement par vous et les membres de l\'équipe de %{name}. Publiez-le quand vous aurez fini de le paramétrer.',
-      notPublic: 'Ce contest n\'est pas encore disponible au public. Revenez plus tard !',
+      unPublish: "Ce contest est visible uniquement par vous et les membres de l'équipe de %{name}. Publiez-le quand vous aurez fini de le paramétrer.",
+      notPublic: "Ce contest n'est pas encore disponible au public. Revenez plus tard !",
       toleranceExplain: 'Combien de minutes voulez-vous laisser à vos grimpeurs et grimpeuses pour finir de renseigner leur réalisation après la fin du contest.',
-      capacityExplain: 'Indiquez le nombre maximum de compétiteurs et compétitrices.<br>Laissez vide s\'il n\'y a pas de maximum.<br>Vous pourrez choisir une capacité totale par catégorie ensuite.',
-      subscriptionOpenExplain: 'Date à partir de laquelle le contest est public et que les compétiteurs et compétitrices peuvent s\'inscrire',
+      capacityExplain: "Indiquez le nombre maximum de compétiteurs et compétitrices.<br>Laissez vide s'il n'y a pas de maximum.<br>Vous pourrez choisir une capacité totale par catégorie ensuite.",
+      subscriptionOpenExplain: "Date à partir de laquelle le contest est public et que les compétiteurs et compétitrices peuvent s'inscrire",
       startDateExplain: 'Date de la premier étape du contest',
       newResultsCount: '<strong>Un</strong> nouveau résultat ! | <strong>%{count}</strong> nouveaux résultats !'
     },
@@ -1497,18 +1497,18 @@ export default {
       list: 'Mes sessions',
       title: 'Session du %{date}',
       ascentsAt: 'Mes croix du %{date}',
-      climbingPlaces: 'Les lieux où j\'ai grimpé',
-      climbingPartners: 'Les personnes avec qui j\'ai grimpé',
+      climbingPlaces: "Les lieux où j'ai grimpé",
+      climbingPartners: "Les personnes avec qui j'ai grimpé",
       ascentsByColorsAndGrade: 'Mes croix par cotation et couleur',
       editComment: 'Éditer mon commentaire',
       addComment: 'Commenter ma session',
       myIndoorSession: 'Mes sessions indoor',
       myOutdoorSession: 'Mes sessions outdoor',
-      empty: 'Vous n\'avez pas encore de session de grimpe.<br>Ajoutez des croix à votre carnet pour voir vos sessions !'
+      empty: "Vous n'avez pas encore de session de grimpe.<br>Ajoutez des croix à votre carnet pour voir vos sessions !"
     },
     logBook: {
       inFewFigures: 'En quelque chiffres',
-      climbingType: 'Type d\'escalade',
+      climbingType: "Type d'escalade",
       grades: 'Croix par cotations',
       levels: 'Croix par niveaux',
       years: 'Croix par années',
@@ -1516,11 +1516,11 @@ export default {
       evolution: 'Évolution',
       myOutdoorAscents: 'Mes croix outdoor',
       sortByLabel: 'Trier les croix par',
-      filterByClimbingType: 'Filtrer par type d\'escalade',
+      filterByClimbingType: "Filtrer par type d'escalade",
       filterTheLogBook: 'Filtrer le carnet',
       emptyProject: 'Votre liste de projet est vide',
-      emptyTickList: 'Vous n\'avez aucune ligne dans votre tick list pour l\'instant',
-      IHaveNoAscents: 'Je n\'ai pas encore de croix',
+      emptyTickList: "Vous n'avez aucune ligne dans votre tick list pour l'instant",
+      IHaveNoAscents: "Je n'ai pas encore de croix",
       myAscentsHere: 'Mes croix ici',
       myIndoorLogBook: 'Mes croix indoor',
       sortItem: {
@@ -1529,7 +1529,7 @@ export default {
         released_at: 'Date'
       },
       climbingItems: {
-        all: 'Tous les types d\'escalade'
+        all: "Tous les types d'escalade"
       },
       figures: {
         countries: '%{count} pays | %{count} pays',
@@ -1549,25 +1549,25 @@ export default {
       searchDefinition: 'Chercher une définition'
     },
     link: {
-      noLink: 'Il n\'y a pas de lien référencé ici pour l\'instant'
+      noLink: "Il n'y a pas de lien référencé ici pour l'instant"
     },
     comment: {
       on: 'Commentaire sur',
       comments: 'Commentaires',
       countInfos: 'Un commentaire posté | %{count} commentaires postés',
-      noComment: 'Il n\'y a pas de commentaire ici pour l\'instant',
+      noComment: "Il n'y a pas de commentaire ici pour l'instant",
       climbersComments: 'Commentaires des grimpeur·euse·s',
       seeReplies: 'Voir une réponse | Voir %{count} réponses',
-      moderate: 'Ce commentaire a été supprimé par l\'équipe de modération'
+      moderate: "Ce commentaire a été supprimé par l'équipe de modération"
     },
     report: {
       aProblem: 'Ah, un problème…',
       describeProblem: 'Décris-nous le problème que tu as rencontré pour que nous puissions le résoudre.',
-      thanks: 'Merci d\'avance pour ton aide !',
+      thanks: "Merci d'avance pour ton aide !",
       success: 'Nous avons bien reçu ton signalement, merci !'
     },
     version: {
-      noVersion: 'Il n\'y a pas d\'historique de modification pour cet item',
+      noVersion: "Il n'y a pas d'historique de modification pour cet item",
       contribution: 'contribution | contributions',
       version: 'version. | versions.',
       createdUpdated: 'Fiche créée le %{created}, dernière mise à jour le %{updated}',
@@ -1583,14 +1583,14 @@ export default {
       photoOf: 'Photo de',
       postedBy: 'Postée par',
       countInfos: 'Une photo postée | %{count} photos postées',
-      noPhoto: 'Il n\'y a pas de photo ici pour l\'instant'
+      noPhoto: "Il n'y a pas de photo ici pour l'instant"
     },
     video: {
       countInfos: 'Une video postée | %{count} vidéos postées',
       title: 'Vidéos',
       videoOf: 'Vidéo de',
       postedBy: 'Postée par',
-      noVideo: 'Il n\'y a pas de vidéo ici pour l\'instant'
+      noVideo: "Il n'y a pas de vidéo ici pour l'instant"
     },
     ascent: {
       countInfos: 'Une ascension | %{count} ascensions'
@@ -1598,7 +1598,7 @@ export default {
     partner: {
       xAround: 'Un grimpeur·euse est dans le coin | %{count} grimpeur·euse·s sont dans le coin',
       around: 'Les grimpeurs et grimpeuses du coin',
-      noClimbers: 'Il n\'y a pas encore de grimpeur ou grimpeuse dans les environs.<br>Inscris-toi ici pour que d\'autres puissent te trouver.'
+      noClimbers: "Il n'y a pas encore de grimpeur ou grimpeuse dans les environs.<br>Inscris-toi ici pour que d'autres puissent te trouver."
     },
     user: {
       type: 'Grimpeur·euse',
@@ -1610,19 +1610,19 @@ export default {
       notificationSetting: 'Paramètre des notifications',
       otherSetting: 'Autres paramètres',
       successfulEditMessage: 'Votre profil à été mis à jour',
-      whatClimbingType: 'Quel type d\'escalade pratiquez-vous ?',
+      whatClimbingType: "Quel type d'escalade pratiquez-vous ?",
       whichLevel: 'Dans quel niveau aimez-vous grimper ?',
       bePartPartner: 'Voulez-vous faire partie de la carte des grimpeurs et grimpeuses ?',
       bePartPartnerExplain: 'Faire partie de la carte des grimpeurs et grimpeuses vous permet de trouver des gens avec qui grimper autour de chez vous !',
       localizationDeactivated: 'Localisation désactivée',
       localizationActivated: 'Localisation activée',
       activateLocalization: 'Activer la localisation',
-      activateLocalizationExplain: 'Activer la localisation te permet d\'avoir tout un panel de fonctionnalités pratiques (falaises aux alentours, infos locales dans ton flux, centrer les cartes, recherche de partenaire, etc.)',
-      youControlYourLocation: 'Tu peux activer ou désactiver la localisation à tout moment via l\'icône ',
-      youControlYourLocationInAppDrawer: 'dans le menu d\'Oblyk',
-      uploadBanner: '<strong>TIPS !</strong> Upload un bandeau pour personnaliser l\'entête de cette page.',
+      activateLocalizationExplain: "Activer la localisation te permet d'avoir tout un panel de fonctionnalités pratiques (falaises aux alentours, infos locales dans ton flux, centrer les cartes, recherche de partenaire, etc.)",
+      youControlYourLocation: "Tu peux activer ou désactiver la localisation à tout moment via l'icône ",
+      youControlYourLocationInAppDrawer: "dans le menu d'Oblyk",
+      uploadBanner: "<strong>TIPS !</strong> Upload un bandeau pour personnaliser l'entête de cette page.",
       uploadAvatar: '<strong>TIPS !</strong> Ajoute une photo de profil à ton compte.',
-      bioIsEmpty: '%{name} n\'a pas encore rédigé sa bio',
+      bioIsEmpty: "%{name} n'a pas encore rédigé sa bio",
       bio: 'Bio',
       completeBio: 'Complétez votre bio',
       oblykContribution: 'Contribution à Oblyk',
@@ -1634,22 +1634,22 @@ export default {
       myDateOfBirth: 'Ma date de naissance',
       dateOfBirthExplain: 'Vous devez avoir <strong>plus de 18 ans</strong> pour faire partie de la recherche de partenaire.',
       climbersActiveRecently: 'Grimpeurs et grimpeuses actives récemment',
-      emptyContribution: '%{name} n\'a pas encore contribué à Oblyk',
+      emptyContribution: "%{name} n'a pas encore contribué à Oblyk",
       climbersMap: 'Sur la carte des grimpeur·euse·s',
       openClimbersMap: 'Ouvrir la carte des grimpeur·euse·s',
-      followersEmpty: '%{name} n\'a pas encore d\'abonné·e.',
-      subscribesEmpty: '%{name} n\'a pas encore d\'abonnement.',
-      myFavoriteCragsEmpty: 'Vous ne suivez pas de site pour l\'instant',
-      myFavoriteGymsEmpty: 'Vous ne suivez pas de salle pour l\'instant',
+      followersEmpty: "%{name} n'a pas encore d'abonné·e.",
+      subscribesEmpty: "%{name} n'a pas encore d'abonnement.",
+      myFavoriteCragsEmpty: "Vous ne suivez pas de site pour l'instant",
+      myFavoriteGymsEmpty: "Vous ne suivez pas de salle pour l'instant",
       searchUser: 'Chercher un·e grimpeur·euse',
       userAround: '%{count} grimpeur·euse au alentour | %{count} grimpeur·euse·s au alentour',
       aroundSettings: 'Choisir ma zone',
       saveMyPreference: 'Sauvegarder ma préférence',
-      chooseNewsArea: 'Choisir mon rayon d\'actualités',
+      chooseNewsArea: "Choisir mon rayon d'actualités",
       distanceSetting: '%{distance} Km autour de moi',
       seeInYourFeed: 'Que veux-tu voir dans ton feed ?',
       newGuideBookLabel: 'Les nouveaux topos',
-      newsFeedLabel: 'Les actualités d\'Oblyk',
+      newsFeedLabel: "Les actualités d'Oblyk",
       subscribeFeedLabel: 'Les news de mes abonnements',
       aroundFeedLabel: 'Les informations locales (Nouvelle falaise, voie et photos)',
       userCount: '<strong>%{count}</strong> grimpeur·euse | <strong>%{count}</strong> grimpeur·euse·s',
@@ -1666,14 +1666,14 @@ export default {
       exportExplain: 'Exporter mes croix ou mes projets au format <cite>.csv</cite><br>Les colonnes sont séparées par des tabulations.',
       exportAscents: 'Exporter mes croix',
       exportProjects: 'Exporter mes projets',
-      explainGradeValue: 'La colonne <cite>\'Grade value\'</cite> vous permet de trier par difficulté même sur des systèmes de cotation différents.',
-      gradeMoreInformation: 'Plus d\'informations sur le système de cotation ici',
+      explainGradeValue: "La colonne <cite>'Grade value'</cite> vous permet de trier par difficulté même sur des systèmes de cotation différents.",
+      gradeMoreInformation: "Plus d'informations sur le système de cotation ici",
       privateLogBook: 'Le carnet de croix de %{name} est privé.',
       privateMedia: 'Les photos & videos de %{name} sont privées.',
       subscribeToSee: 'Abonnez-vous pour pouvoir le voir !',
       waitingFollowers: 'Un·e abonné·e attend votre confirmation | %{count} abonné·es attendent votre confirmation',
       explainLocalization: 'Active la localisation pour accéder rapidement aux sites, salles et grimpeur autour de toi.',
-      emptyLogbook: '%{name} n\'a de croix dans son carnet',
+      emptyLogbook: "%{name} n'a de croix dans son carnet",
       cardsTitle: {
         myLogbook: 'Mon carnet',
         aroundMe: 'Autour de moi',
@@ -1714,7 +1714,7 @@ export default {
         myMap: 'Ma carte'
       },
       public_explain: {
-        profile: 'Votre profil est <strong>ouvert</strong> à la consultation par les autres grimpeur·euse·s, qu\'ils ou elles soient <strong>connecté ou non à Oblyk</strong>.<br>Les grimpeur·euse·s peuvent <strong>vous suivre sans attendre votre validation.</strong>',
+        profile: "Votre profil est <strong>ouvert</strong> à la consultation par les autres grimpeur·euse·s, qu'ils ou elles soient <strong>connecté ou non à Oblyk</strong>.<br>Les grimpeur·euse·s peuvent <strong>vous suivre sans attendre votre validation.</strong>",
         outdoor_ascents: 'Votre <strong>carnet de croix outdoor</strong> est consultable par les <strong>grimpeur·euse·s connecté·e·s</strong> à Oblyk.',
         indoor_ascents: 'Votre <strong>carnet de croix indoor</strong> est consultable par les <strong>grimpeur·euse·s connecté·e·s</strong> à Oblyk.'
       },
@@ -1738,21 +1738,21 @@ export default {
       paragraph1: 'La suppression de votre compte est <strong class="red--text">irreversible</strong> et <strong class="red--text">immediate</strong>.',
       paragraph2: 'Toutes vos croix indoor et outdoor<strong>(1)</strong>, vos messages, favoris, abonnements, etc. seront <strong>irréversiblement supprimés</strong>.',
       unlock: 'Rentrez <strong>"supprimer"</strong> ci-dessous pour supprimer votre compte.',
-      label: 'tapez \'supprimer\' pour supprimer votre compte',
+      label: "tapez 'supprimer' pour supprimer votre compte",
       tips: 'Vous pouvez exporter vos croix avant de supprimer votre compte.',
       connectToDelete: 'Connectez vous pour supprimer votre compte.'
     },
     subscribesAscents: {
       nextAscents: 'croix suivantes',
-      noAscents: 'Tes ami·e·s n\'ont pas encore complété leur carnet de croix.',
+      noAscents: "Tes ami·e·s n'ont pas encore complété leur carnet de croix.",
       followYourFriends: 'Suis tes ami·es pour voir leur dernières réalisations.',
       addSubscribesBtn: 'Mes Abonnements'
     },
     like: {
       like: 'Like',
       likesCount: 'Like | Likes',
-      IAlreadyIt: 'J\'aime déjà',
-      isRealFavorite: 'C\'est un coup de cœur',
+      IAlreadyIt: "J'aime déjà",
+      isRealFavorite: "C'est un coup de cœur",
       type: {
         GymRoute: 'voie indoor',
         Comment: 'commentaire',
@@ -1787,19 +1787,19 @@ export default {
     },
     dailyCrosses: {
       title: 'Souvenir de mes croix',
-      iMade: 'J\'ai fait %{count} croix %{ago} <cite>(le %{date})</cite>',
+      iMade: "J'ai fait %{count} croix %{ago} <cite>(le %{date})</cite>",
       addCrosses: 'Compléter mon carnet',
       myLogbook: 'Mon carnet de grimpe',
       myMap: 'Ma carte'
     },
     article: {
       whatsNew: 'Quoi de neuf ?',
-      edit: 'Modifier l\'article',
-      articleUpdate: 'L\'article a été mis à jour',
+      edit: "Modifier l'article",
+      articleUpdate: "L'article a été mis à jour",
       writtenBy: 'Rédigé par %{name}',
       readXTimes: 'Lu %{count} fois | Lu %{count} fois',
       comments: 'Un commentaire | %{count} commentaires',
-      aboutAuthor: 'À propos de l\'auteur',
+      aboutAuthor: "À propos de l'auteur",
       seeAllArticles: 'Toutes les actualités',
       helpers: {
         title: 'Helpers',
@@ -1821,7 +1821,7 @@ export default {
       links: {
         guide: {
           title: 'Topothèque & recherche de topo',
-          subtitle: 'Créez votre topothèque, trouvez les topos autour d\'une ville, etc.'
+          subtitle: "Créez votre topothèque, trouvez les topos autour d'une ville, etc."
         },
         partner: {
           title: 'La recherche de partenaire',
@@ -1835,7 +1835,7 @@ export default {
         logOut: 'Me déconnecter',
         darkTheme: 'Thème sombre',
         addCross: 'Ajouter une croix',
-        searchPlaceHolder: 'Chercher un site, une salle, quelqu\'un, etc.',
+        searchPlaceHolder: "Chercher un site, une salle, quelqu'un, etc.",
         user: {
           avatar: 'Photo de profil',
           banner: 'Photo du bandeau',
@@ -1880,7 +1880,7 @@ export default {
           find: 'Trouver',
           admin: 'Admin',
           enrich: 'Enrichir Oblyk',
-          about: 'À propos d\'Oblyk'
+          about: "À propos d'Oblyk"
         },
         user: {
           home: 'Mon accueil',
@@ -1910,7 +1910,7 @@ export default {
           gym: 'Une salle',
           guideBook: {
             title: 'Un topo',
-            around: 'Autour d\'une ville',
+            around: "Autour d'une ville",
             new: 'Les nouveautés'
           },
           climbers: {
@@ -1949,7 +1949,7 @@ export default {
           title: 'Oops… page introuvable'
         },
         500: {
-          title: 'Oops… une erreur s\'est produite'
+          title: "Oops… une erreur s'est produite"
         }
       }
     }
@@ -1957,8 +1957,8 @@ export default {
   home: {
     header: {
       title: {
-        intro: 'Plateforme participative & open source dédiée à l\'escalade.',
-        introNext: 'Trouvez des infos sur les falaises et des partenaires de grimpe, tenez un carnet de croix, créez le topo de votre salle d\'escalade, et bien plus !',
+        intro: "Plateforme participative & open source dédiée à l'escalade.",
+        introNext: "Trouvez des infos sur les falaises et des partenaires de grimpe, tenez un carnet de croix, créez le topo de votre salle d'escalade, et bien plus !",
         crag: 'Falaises',
         logbook: 'Carnet de croix',
         partner: 'Partenaire de grimpe',
@@ -1967,46 +1967,46 @@ export default {
     },
     createAccount: {
       title: 'Rejoins-nous !',
-      body: 'Crée-toi un compte et rejoins une communauté de plus de <strong>%{count} grimpeurs et grimpeuses</strong> passionné·es d\'escalade !'
+      body: "Crée-toi un compte et rejoins une communauté de plus de <strong>%{count} grimpeurs et grimpeuses</strong> passionné·es d'escalade !"
     },
     crags: {
       title: 'Check les infos des falaises',
-      body: 'Oblyk est une grande base de donnée des <strong>falaises d\'escalade</strong> de France et du monde constamment <strong>enrichie par la communauté</strong>, tu peux consulter celle-ci en utilisant la recherche ou en naviguant sur la <strong>carte des falaises.</strong>',
+      body: "Oblyk est une grande base de donnée des <strong>falaises d'escalade</strong> de France et du monde constamment <strong>enrichie par la communauté</strong>, tu peux consulter celle-ci en utilisant la recherche ou en naviguant sur la <strong>carte des falaises.</strong>",
       action: 'Trouver un site naturel'
     },
     ascents: {
       title: 'Tiens un carnet de croix',
-      body: 'Bon pour la mémoire, la progression et la motivation, tenir un <strong>carnet de croix</strong> a beaucoup d\'avantages.<br> Oblyk te permet de le faire facilement, tu pourras ensuite <strong>visualiser ta progression</strong> grâce à de nombreuses façons d\'analyser et d\'afficher ton carnet de croix.'
+      body: "Bon pour la mémoire, la progression et la motivation, tenir un <strong>carnet de croix</strong> a beaucoup d'avantages.<br> Oblyk te permet de le faire facilement, tu pourras ensuite <strong>visualiser ta progression</strong> grâce à de nombreuses façons d'analyser et d'afficher ton carnet de croix."
     },
     partner: {
       title: 'Trouve un ou une partenaire de grimpe',
-      body: 'Tu arrives dans une nouvelle région, tu aimerais trouver quelqu\'un avec qui <strong>grimper en falaise ou en salle</strong> ?<br>Regarde du côté de notre <strong>carte des grimpeuses et grimpeurs</strong>, peut-être que tu trouveras quelqu\'un avec qui grimper.',
+      body: "Tu arrives dans une nouvelle région, tu aimerais trouver quelqu'un avec qui <strong>grimper en falaise ou en salle</strong> ?<br>Regarde du côté de notre <strong>carte des grimpeuses et grimpeurs</strong>, peut-être que tu trouveras quelqu'un avec qui grimper.",
       action: 'Comment ça marche ?'
     },
     indoor: {
       title: 'Créez le topo indoor de votre salle',
-      body: 'Oblyk c\'est aussi une application qui vous permet de <strong>créer et gérer</strong> facilement les <strong>ouvertures de votre salle d\'escalade</strong>.',
+      body: "Oblyk c'est aussi une application qui vous permet de <strong>créer et gérer</strong> facilement les <strong>ouvertures de votre salle d'escalade</strong>.",
       body2: 'Connectez-vous à votre communauté de grimpeurs et grimpeuses, offrez-leur un outil numérique pour <strong>consulter le topo de votre salle</strong> mais aussi <strong>noter leur croix indoor !</strong>',
       action: 'Créer mon topo indoor'
     },
     supportUs: {
       title: 'Nous soutenir',
-      body1: 'Sur Oblyk il n\'y a aucune limitation, pas de compte premium, ni pub, ni lien ou article sponsorisé, tout est gratuit ! 😉',
-      body2: 'Si tout est gratuit et qu\'Oblyk ne perçoit aucun revenu, cela veut-il dire qu\'Oblyk ne coûte rien à développer ?',
-      body3: 'Malheureusement non, comme tout site internet, Oblyk doit être hébergé dans un datacenter et louer un nom de domaine pour pouvoir exister sur la toile.<br>Et ça par contre, ce n\'est pas gratuit… ',
+      body1: "Sur Oblyk il n'y a aucune limitation, pas de compte premium, ni pub, ni lien ou article sponsorisé, tout est gratuit ! 😉",
+      body2: "Si tout est gratuit et qu'Oblyk ne perçoit aucun revenu, cela veut-il dire qu'Oblyk ne coûte rien à développer ?",
+      body3: "Malheureusement non, comme tout site internet, Oblyk doit être hébergé dans un datacenter et louer un nom de domaine pour pouvoir exister sur la toile.<br>Et ça par contre, ce n'est pas gratuit… ",
       action: 'Nous soutenir'
     },
     developer: {
       title: 'Une base de donnée ouverte en API !',
       body1: 'Avec Oblyk, nous désirons construire une base de connaissance ouverte et réutilisable pour les humains et les machines.',
-      body2: 'Via nos API nous rendons accessible notre base de données des falaises et voies à d\'autres projets open-source, publics, personnels ou étudiants.',
-      body3: 'Contribuer à Oblyk, c\'est permettre à d\'autres projets autour de la grimpe de voir le jour ou de s\'améliorer.',
+      body2: "Via nos API nous rendons accessible notre base de données des falaises et voies à d'autres projets open-source, publics, personnels ou étudiants.",
+      body3: "Contribuer à Oblyk, c'est permettre à d'autres projets autour de la grimpe de voir le jour ou de s'améliorer.",
       action: 'En savoir plus'
     },
     oblykAndGuide: {
       title: 'Oblyk et les topos',
-      body1: 'Vous pourriez vous demander si Oblyk peut remplacer les topos papier et par extension nuire au développement des <strong>sites d\'escalade</strong> ?<br> Sachez que nous nous sommes beaucoup posé cette question aussi. Et la réponse est non, Oblyk ne peut pas remplacer un topo !<br>Les topos contiennent des informations indispensables que nous ne permettons pas d\'ajouter sur Oblyk',
-      body2: '<strong>Acheter un topo</strong>, c\'est soutenir des passionné·es qui donnent énormément pour maintenir, développer, nettoyer les <strong>sites d\'escalade</strong> sur lesquels vous allez grimper gratuitement.',
+      body1: "Vous pourriez vous demander si Oblyk peut remplacer les topos papier et par extension nuire au développement des <strong>sites d'escalade</strong> ?<br> Sachez que nous nous sommes beaucoup posé cette question aussi. Et la réponse est non, Oblyk ne peut pas remplacer un topo !<br>Les topos contiennent des informations indispensables que nous ne permettons pas d'ajouter sur Oblyk",
+      body2: "<strong>Acheter un topo</strong>, c'est soutenir des passionné·es qui donnent énormément pour maintenir, développer, nettoyer les <strong>sites d'escalade</strong> sur lesquels vous allez grimper gratuitement.",
       action: 'Nos outils pour les topos'
     },
     lastObjects: {
@@ -2027,46 +2027,46 @@ export default {
       videos: 'Vidéos',
       addedSince24Hours: '* un élément ajouté depuis 24 heures | * %{count} éléments ajoutés depuis 24 heures',
       in24Hours: {
-        crags: 'Une falaise a été ajoutée aujourd\'hui | %{count} falaises ont été ajoutées aujourd\'hui',
-        climbers: 'Un·e grimpeur·euse est arrivé·e aujourd\'hui | %{count} grimpeur·euse·s sont arrivé·e·s aujourd\'hui',
-        gyms: 'Une salle a été ajoutée aujourd\'hui | %{count} salles ont été ajoutées aujourd\'hui',
-        routes: 'Une ligne a été ajoutée aujourd\'hui | %{count} lignes ont été ajoutées aujourd\'hui',
-        ascents: 'Une croix a été faite aujourd\'hui | %{count} croix ont été faites aujourd\'hui',
-        photos: 'Une photo a été prise aujourd\'hui | %{count} photos ont été prises aujourd\'hui',
-        guides: 'Un topo a été ajouté aujourd\'hui | %{count} topos ont été ajoutés aujourd\'hui',
-        comments: 'Un commentaire a été posté aujourd\'hui | %{count} commentaires ont été postés aujourd\'hui',
-        videos: 'Une vidéo a été ajoutée aujourd\'hui | %{count} videos ont été ajoutées aujourd\'hui'
+        crags: "Une falaise a été ajoutée aujourd'hui | %{count} falaises ont été ajoutées aujourd'hui",
+        climbers: "Un·e grimpeur·euse est arrivé·e aujourd'hui | %{count} grimpeur·euse·s sont arrivé·e·s aujourd'hui",
+        gyms: "Une salle a été ajoutée aujourd'hui | %{count} salles ont été ajoutées aujourd'hui",
+        routes: "Une ligne a été ajoutée aujourd'hui | %{count} lignes ont été ajoutées aujourd'hui",
+        ascents: "Une croix a été faite aujourd'hui | %{count} croix ont été faites aujourd'hui",
+        photos: "Une photo a été prise aujourd'hui | %{count} photos ont été prises aujourd'hui",
+        guides: "Un topo a été ajouté aujourd'hui | %{count} topos ont été ajoutés aujourd'hui",
+        comments: "Un commentaire a été posté aujourd'hui | %{count} commentaires ont été postés aujourd'hui",
+        videos: "Une vidéo a été ajoutée aujourd'hui | %{count} videos ont été ajoutées aujourd'hui"
       }
     }
   },
   errors: {
     rules: {
-      email_or_password_suite_not_find: 'Pas de compte trouvé pour le mot de passe et l\'e-mail donnés',
+      email_or_password_suite_not_find: "Pas de compte trouvé pour le mot de passe et l'e-mail donnés",
       is_required: 'est requis(e)',
       is_mandatory: 'est obligatoire',
       is_already_taken: 'est déjà pris(e)',
       is_too_short: 'est trop court(e)',
       must_be_positive: 'doit être positif',
       is_invalid: 'est invalide',
-      is_not_a_permitted_value: 'n\'est pas dans la liste des valeurs autorisées',
+      is_not_a_permitted_value: "n'est pas dans la liste des valeurs autorisées",
       you_must_choose_at_least_one_system: 'Vous devez choisir au moins un système',
       you_cannot_have_both_point_systems: 'Vous ne pouvez pas avoir les deux systèmes de points',
-      is_not_in_the_right_format: 'n\'est pas au bon format',
+      is_not_in_the_right_format: "n'est pas au bon format",
       confirm: 'doit être identique',
-      un_destroyable: 'L\'élément ne peut être supprimé',
+      un_destroyable: "L'élément ne peut être supprimé",
       cannot_be_changed: 'ne peut pas être changé(e)',
       you_must_be_major: 'Vous devez être majeur',
       before_start_date: 'doit être avant la date de début',
       before_end_date: 'doit être avant la date de fin',
       you_must_choose_one: 'vous devez en choisir au moins une',
-      category_is_taken_in_this_step: 'Une catégorie ne peut être présente qu\'une fois par étape',
+      category_is_taken_in_this_step: "Une catégorie ne peut être présente qu'une fois par étape",
       participant_is_already_registered: 'Un participant est déjà inscrit à ce nom',
       contest_is_complete: 'Le contest est complet',
       category_is_complete: 'La catégorie est complète',
       no_file: 'Un fichier doit être transmis',
-      file_wrong_format: 'Le fichier n\'est pas au bon format',
-      must_be_valid_video_service: 'doit être un url valide d\'une vidéo publique parmi les services pris en charge',
-      three_d_import_error: 'Une erreur s\'est produite lors de l\'import ou la conversion de votre modèle 3D'
+      file_wrong_format: "Le fichier n'est pas au bon format",
+      must_be_valid_video_service: "doit être un url valide d'une vidéo publique parmi les services pris en charge",
+      three_d_import_error: "Une erreur s'est produite lors de l'import ou la conversion de votre modèle 3D"
     }
   },
   models: {
@@ -2083,7 +2083,7 @@ export default {
       email: 'Email',
       genre: 'Genre',
       partner_search: 'Faire partie de la recherche de partenaire',
-      grade_min: 'Cotation "d\'échauffement"',
+      grade_min: "Cotation \"d'échauffement\"",
       grade_max: 'Cotation projet',
       language: 'Langue préférée',
       public_profile: 'Profil public',
@@ -2107,7 +2107,7 @@ export default {
       country: 'Pays',
       city: 'Ville',
       region: 'Région',
-      climbing_types: 'Type d\'escalade',
+      climbing_types: "Type d'escalade",
       seasons: 'Saison favorable',
       sport_climbing: 'Voie',
       bouldering: 'Bloc',
@@ -2150,14 +2150,14 @@ export default {
       name: 'Nom',
       height: 'Hauteur',
       total_height: 'Hauteur totale',
-      open_year: 'Année d\'ouverture',
+      open_year: "Année d'ouverture",
       opener: 'Ouvreurs',
       sections: 'Sections',
       climbing_type: 'Type de grimpe',
       difficulty_appreciation: 'Appréciation de la difficulté',
       note: 'Note',
       note_count: 'Nombre de notes',
-      ascents_count: 'Nombre d\'ascensions',
+      ascents_count: "Nombre d'ascensions",
       sections_count: 'Nombre de sections',
       tags: 'Tags',
       crag: 'Site',
@@ -2179,23 +2179,25 @@ export default {
     },
     ascentCragRoute: {
       type: 'Type',
-      ascent_status: 'Statut de l\'ascension',
+      ascent_status: "Statut de l'ascension",
       roping_status: 'Mode',
-      attempt: 'Nombre d\'essais',
+      attempt: "Nombre d'essais",
       crag_route_id: 'Ligne',
       crag_route: 'Ligne',
       sections: 'Sections',
       height: 'Hauteur',
-      climbing_type: 'Type d\'escalade',
+      climbing_type: "Type d'escalade",
       note: 'Note',
       comment: 'Mon commentaire',
       private_comment: 'Commentaire privé',
       released_at: 'Réalisé le',
-      hardness_status: 'Appréciation de la difficulté'
+      hardness_status: 'Appréciation de la difficulté',
+      only_lead_climbs: 'Sans moulinettes',
+      only_on_sight: 'A vue'
     },
     ascentGymRoute: {
       type: 'Type',
-      ascent_status: 'Status de l\'ascension',
+      ascent_status: "Status de l'ascension",
       gym_route_id: 'Ligne',
       gym_route: 'Ligne',
       sections: 'Sections',
@@ -2206,7 +2208,7 @@ export default {
       note: 'Note',
       comment: 'Commentaire public',
       private_comment: 'Commentaire privé',
-      climbing_type: 'Type d\'escalade',
+      climbing_type: "Type d'escalade",
       released_at: 'Réalisé le',
       hardness_status: 'Appréciation de la difficulté'
     },
@@ -2218,8 +2220,8 @@ export default {
     },
     organization: {
       name: 'Nom',
-      api_access_key: 'Clé d\'accès à l\'API',
-      api_usage_type: 'Type d\'usage',
+      api_access_key: "Clé d'accès à l'API",
+      api_usage_type: "Type d'usage",
       phone: 'Téléphone',
       email: 'Email',
       address: 'Adresse',
@@ -2246,8 +2248,8 @@ export default {
       crag: 'Falaise'
     },
     approach: {
-      title: 'Marche d\'approche',
-      description: 'Info sur la marche d\'approche',
+      title: "Marche d'approche",
+      description: "Info sur la marche d'approche",
       no_description: 'pas de description renseignée',
       elevation_drop: 'Dénivelé',
       approach_type: 'Type de marche',
@@ -2271,20 +2273,20 @@ export default {
       pages: 'Pages',
       weight: 'Poids',
       weight_in_gram: 'Poids en grammes',
-      crag: 'Site d\'escalade',
+      crag: "Site d'escalade",
       number_of_crags: 'Nombre de falaises'
     },
     guideBookWeb: {
       name: 'Nom du topo',
       url: 'Lien vers le topo',
-      crag: 'Site d\'escalade'
+      crag: "Site d'escalade"
     },
     guideBookPdf: {
       name: 'Nom du topo',
       description: 'Description',
       author: 'Auteur(s)',
       publication_year: 'Année de publication',
-      crag: 'Site d\'escalade',
+      crag: "Site d'escalade",
       pdf_file: 'Fichier PDF'
     },
     gymChain: {
@@ -2308,7 +2310,7 @@ export default {
       sport_climbing: 'Voie',
       pan: 'Pan',
       fun_climbing: 'Fun climbing',
-      training_space: 'Espace d\'entrainement',
+      training_space: "Espace d'entrainement",
       latitude: 'Latitude',
       longitude: 'Longitude'
     },
@@ -2322,15 +2324,15 @@ export default {
       requested_email: 'Email',
       user: 'Un compte Oblyk associé à ce mail',
       roles: 'Peut gérer',
-      subscribe_to_comment_feed: 'M\'avertir des nouveaux commentaires',
-      subscribe_to_video_feed: 'M\'avertir des nouvelles vidéos'
+      subscribe_to_comment_feed: "M'avertir des nouveaux commentaires",
+      subscribe_to_video_feed: "M'avertir des nouvelles vidéos"
     },
     gymOpener: {
       name: 'Nom / pseudonyme',
       first_name: 'Prénom',
       last_name: 'Nom de famille',
       email: 'email',
-      email_explain: 'Renseigner l\'e-mail de l\'ouvreur ou l\'ouvreuse pour le·a lier à son compte Oblyk'
+      email_explain: "Renseigner l'e-mail de l'ouvreur ou l'ouvreuse pour le·a lier à son compte Oblyk"
     },
     gymLabelTemplate: {
       name: 'Nom',
@@ -2339,15 +2341,15 @@ export default {
       border_style: 'Style de bordure',
       font_family: 'Police',
       qr_code_position: 'Emplacement du QrCode',
-      label_arrangement: 'Forme de l\'étiquette',
+      label_arrangement: "Forme de l'étiquette",
       grade_style: 'Visualisation du niveau et de la cotation',
       display_points: 'Afficher les points',
       display_openers: 'Afficher les ouvreurs',
-      display_opened_at: 'Afficher la date d\'ouverture',
+      display_opened_at: "Afficher la date d'ouverture",
       display_name: 'Afficher le nom',
       display_description: 'Afficher la description',
       display_anchor: 'Afficher le relais',
-      display_climbing_style: 'Afficher les styles d\'escalade',
+      display_climbing_style: "Afficher les styles d'escalade",
       display_grade: 'Afficher la cotation',
       display_tag_and_hold: 'Afficher le visuel de la prise ou du niveau',
       page_format: 'Format de la page',
@@ -2355,7 +2357,7 @@ export default {
       font_color: 'Couleur de la police',
       layout_option_properties: {
         align_items: 'Alignement vertical des étiquettes sur la page.',
-        page_margin: 'Marge d\'impression de la page'
+        page_margin: "Marge d'impression de la page"
       },
       label_direction_list: {
         one_by_row: 'Une étiquette par largeur',
@@ -2365,21 +2367,21 @@ export default {
         circular: 'Circulairement'
       },
       qr_code_position_list: {
-        in_label: 'Dans l\'étiquette',
+        in_label: "Dans l'étiquette",
         footer: 'Dans le pied de page',
         none: 'Pas de QrCode'
       },
       page_direction_list: {
         portrait: 'Portrait',
         landscape: 'Paysage',
-        free: 'Choix à l\'impression'
+        free: "Choix à l'impression"
       },
       page_format_list: {
         A3: 'A3',
         A4: 'A4',
         A5: 'A5',
         A6: 'A6',
-        free: 'Choix à l\'impression'
+        free: "Choix à l'impression"
       },
       label_arrangement_list: {
         rectangular_horizontal: 'Rectangulaire horizontal',
@@ -2402,17 +2404,17 @@ export default {
       }
     },
     gymSpace: {
-      loading: 'Chargement de l\'espace…',
-      name: 'Nom de l\'espace',
+      loading: "Chargement de l'espace…",
+      name: "Nom de l'espace",
       description: 'Description',
-      order: 'Ordre d\'importance',
+      order: "Ordre d'importance",
       sectors_color: 'Couleur des secteurs',
-      climbing_type: 'Type d\'escalade majoritaire',
+      climbing_type: "Type d'escalade majoritaire",
       gym_grade_id: 'Système de difficulté',
       gym_grade: 'Système de difficulté',
       gym_space_group_id: 'Groupe',
       anchor: 'Afficher les numéros de relais des voies',
-      representation_type: 'Type de représentation de l\'espace',
+      representation_type: "Type de représentation de l'espace",
       draft: 'Brouillon'
     },
     gymSpaceGroup: {
@@ -2432,10 +2434,10 @@ export default {
       anchor_number_explain: 'Numéros de relais dans ce secteur',
       description: 'Description',
       group_sector_name: 'Nom du regroupement',
-      climbing_type: 'Type d\'escalade',
+      climbing_type: "Type d'escalade",
       height: 'Hauteur du secteur',
       gym_grade_id: 'Système de difficulté',
-      can_be_more_than_one_pitch: 'Peut avoir des lignes avec plus d\'une longueur'
+      can_be_more_than_one_pitch: "Peut avoir des lignes avec plus d'une longueur"
     },
     gymRoute: {
       name: 'Nom de la ligne, ou référence',
@@ -2463,7 +2465,7 @@ export default {
       note: 'Note',
       note_count: 'Nombre de notes',
       ascents: 'Ascensions',
-      ascents_count: 'Nombre d\'ascensions',
+      ascents_count: "Nombre d'ascensions",
       likes_count: 'Nombre de likes',
       sections_count: 'Nombre de sections',
       max_grade_text: 'Cotation max',
@@ -2478,14 +2480,14 @@ export default {
     },
     gymGrade: {
       name: 'Nom du système',
-      difficulty_by_grade: 'Système de cotation \'normal\' <cite>(7a, 6b+, etc.)</cite>.',
+      difficulty_by_grade: "Système de cotation 'normal' <cite>(7a, 6b+, etc.)</cite>.",
       difficulty_by_level: 'Système de niveau <cite>(jaune, vert, bleu, etc.)</cite>.',
       tag_color: 'Par des étiquettes.',
       hold_color: 'Par la couleur de prise.',
       point_system_type: 'Type de système par point',
       point_system_types: {
         fix: 'Un nombre de points fixe donné par le niveau <cite>(50pts, 500pts, etc.)</cite>',
-        divisible: '1000pt / divisé par le nombre d\'ascensions',
+        divisible: "1000pt / divisé par le nombre d'ascensions",
         none: 'Pas de système de point'
       }
     },
@@ -2499,7 +2501,7 @@ export default {
       fixedPointsExplain: 'Recommandé uniquement si vous utilisez un système de classement par points fixes (1)'
     },
     roles: {
-      manage_team_member: 'Les membres de l\'équipe',
+      manage_team_member: "Les membres de l'équipe",
       manage_opening: 'Les ouvertures',
       manage_space: 'Les espaces et secteur',
       manage_gym: 'La salle',
@@ -2533,11 +2535,11 @@ export default {
       explain: {
         addition: 'On additionne le classement de chaque épreuve, par exemple : (bloc 2ème + voie 3ème) = 5 points<br>On classe par le plus petit nombre de points',
         multiplication: 'On multiplie le classement de chaque épreuve, exemple : (bloc 2ème * voie 3ème) = 6 points<br>On classe par le plus petit nombre de points',
-        decrement_points: 'Le(s) premier(s) d\'une épreuve à 100pts, le 2ème 80pts, troisième 65pts, etc.<br>On classe par le plus grand nombre de points.'
+        decrement_points: "Le(s) premier(s) d'une épreuve à 100pts, le 2ème 80pts, troisième 65pts, etc.<br>On classe par le plus grand nombre de points."
       }
     },
     contestCategoryType: {
-      official_under_age: 'Catégorisation officielle par l\'âge (U14, U18, senior, etc.)',
+      official_under_age: "Catégorisation officielle par l'âge (U14, U18, senior, etc.)",
       custom: 'Catégorisation personnalisée (loisir, expert, etc.)'
     },
     contestCategoryObligationType: {
@@ -2554,13 +2556,13 @@ export default {
       between_age: 'Age minium / maximum personalisé'
     },
     contestRankingType: {
-      division: '1000pt divisés par le nombre d\'ascension',
-      division_and_zone: '1000pt divisés par le nombre d\'ascension + zone',
-      division_and_attempt: '1000pt divisés par le nombre d\'ascension + nombre d\'essais',
+      division: "1000pt divisés par le nombre d'ascension",
+      division_and_zone: "1000pt divisés par le nombre d'ascension + zone",
+      division_and_attempt: "1000pt divisés par le nombre d'ascension + nombre d'essais",
       attempts_to_top: '10pt - 1pt par essais',
       zone_and_top_realised: 'Zone et top fait',
-      attempts_to_one_zone_and_top: 'Nombre d\'essais pour faire la zone et le top',
-      attempts_to_two_zones_and_top: 'Nombre d\'essais pour faire la 1er zone, 2ème zones et le top',
+      attempts_to_one_zone_and_top: "Nombre d'essais pour faire la zone et le top",
+      attempts_to_two_zones_and_top: "Nombre d'essais pour faire la 1er zone, 2ème zones et le top",
       highest_hold: 'Prise la plus haute atteinte',
       fixed_points: 'Points fixes',
       best_times: 'Meilleurs temps'
@@ -2571,12 +2573,12 @@ export default {
       descriptionPlaceholder: 'Aidez vos futur·es participant·es à choisir leur catégorie avec une courte description (optionnel)',
       unisex: 'Aucune distinction de genre dans cette catégorie',
       capacity: 'Capacité max',
-      registrationObligation: 'Type de limitation par l\'âge',
+      registrationObligation: "Type de limitation par l'âge",
       minAge: 'Âge minimum',
       maxAge: 'Âge maximum',
       auto_distribute: 'Auto-répartir les participants dans les vagues',
       waveable: 'Répartir cette catégorie en plusieurs vagues',
-      order: 'Ordre d\'affichage'
+      order: "Ordre d'affichage"
     },
     contestStage: {
       name: 'Nom',
@@ -2594,9 +2596,9 @@ export default {
     contestRouteGroup: {
       genre_type: 'Ces lignes sont pour ?',
       waveable: 'Diviser cette étape en vagues',
-      route_group_date: 'Date de l\'étape',
-      start_time: 'Début de l\'étape',
-      end_time: 'Fin de l\'étape',
+      route_group_date: "Date de l'étape",
+      start_time: "Début de l'étape",
+      end_time: "Fin de l'étape",
       additional_time: 'Minutes additionnelles',
       number_participants_for_next_step: 'Nombre de participant·es à passer à la prochaine étape',
       number_of_routes: 'Nombre de %{style}s à faire',
@@ -2612,7 +2614,7 @@ export default {
     contestParticipant: {
       first_name: 'Prénom',
       last_name: 'Nom de famille',
-      affiliation: 'Club ou salle d\'escalade',
+      affiliation: "Club ou salle d'escalade",
       email: 'Email',
       date_of_birth: 'Date de naissance',
       contest_category: 'Catégorie'
@@ -2700,18 +2702,18 @@ export default {
     },
     photo: {
       description: 'Description de la photo',
-      source: 'Si la photo n\'est pas de vous, merci de citer la source',
+      source: "Si la photo n'est pas de vous, merci de citer la source",
       exif_model: 'Modèle',
       exif_make: 'Marque',
       licence: 'Licence de la photo',
       copyright_by: 'BY - La source de la photo doit être citée',
       copyright_nc: 'NC - La photo ne peut pas être utilisée à des fins commerciales',
-      copyright_nd: 'ND - Vous n\'autorisez pas à modifier cette photo'
+      copyright_nd: "ND - Vous n'autorisez pas à modifier cette photo"
     },
     video: {
       description: 'Description',
       url: 'Lien de la vidéo',
-      explainUrl: 'Copier coller le lien d\'une vidéo de l\'un des services suivants'
+      explainUrl: "Copier coller le lien d'une vidéo de l'un des services suivants"
     },
     genres: {
       unisex: 'Mixte',
@@ -2846,8 +2848,8 @@ export default {
     },
     suns: {
       sunny_all_day: 'Soleil toute la journée',
-      shady: 'À l\'ombre toute la journée',
-      sunny_afternoon: 'Au soleil l\'après-midi',
+      shady: "À l'ombre toute la journée",
+      sunny_afternoon: "Au soleil l'après-midi",
       sunny_morning: 'Au soleil le matin'
     },
     seasons: {
@@ -2877,12 +2879,12 @@ export default {
       tick_list: 'Tick list'
     },
     ascentStatusExplain: {
-      project: 'vous n\'avez pas encore réussi ... mais vous comptez bien enchainer un jour !',
-      sent: 'vous aviez déjà essayé avant de réussir l\'enchainer sans pause.',
-      red_point: 'vous aviez déjà essayé avant de réussir l\'enchainer sans pause.',
-      flash: 'vous l\'avez réussi du premier coup ! Mais vous avez vu quelqu\'un grimper dedans avant, ou on vous a donné des méthodes, un tips pour réussir.',
-      onsight: 'vous l\'avez réussi du premier coup ! Et en plus vous ne connaissiez pas les mouvements, les prises, rien ! C\'était la découverte totale.',
-      repetition: 'vous l\'aviez déjà fait avant.',
+      project: "vous n'avez pas encore réussi ... mais vous comptez bien enchainer un jour !",
+      sent: "vous aviez déjà essayé avant de réussir l'enchainer sans pause.",
+      red_point: "vous aviez déjà essayé avant de réussir l'enchainer sans pause.",
+      flash: "vous l'avez réussi du premier coup ! Mais vous avez vu quelqu'un grimper dedans avant, ou on vous a donné des méthodes, un tips pour réussir.",
+      onsight: "vous l'avez réussi du premier coup ! Et en plus vous ne connaissiez pas les mouvements, les prises, rien ! C'était la découverte totale.",
+      repetition: "vous l'aviez déjà fait avant.",
       tick_list: 'à essayer plus tard'
     },
     ropingStatus: {
@@ -2893,7 +2895,7 @@ export default {
       multi_pitch_alternate_lead: 'Réversible'
     },
     rankingSystem: {
-      division: '1000 points divisés par le nombre d\'ascensions',
+      division: "1000 points divisés par le nombre d'ascensions",
       fixed_points: 'Points fixes',
       point_by_grade: 'Points par cotation'
     },
@@ -2956,14 +2958,14 @@ export default {
     },
     alert: {
       description: 'Description',
-      alert_type: 'Type d\'alerte'
+      alert_type: "Type d'alerte"
     },
     article: {
       name: 'Titre',
       description: 'Résumé',
       body: 'Contenu',
       views: 'Nombre de vues',
-      author_id: 'Identifiant de l\'auteur'
+      author_id: "Identifiant de l'auteur"
     },
     author: {
       name: 'Nom',
@@ -2977,7 +2979,7 @@ export default {
       email: 'Votre e-mail'
     },
     emailNotifications: {
-      new_message: 'J\'ai un message non lu',
+      new_message: "J'ai un message non lu",
       request_for_follow_up: 'On demande à me suivre',
       new_article: 'Il y a un nouvel article'
     }
