@@ -114,13 +114,7 @@ export default {
         months_chart: {},
         evolution_chart: {}
       },
-      stats_list: {
-        climb_types_chart: true,
-        grades_chart: true,
-        years_chart: true,
-        months_chart: true,
-        evolution_chart: true
-      }
+      statsList: ['climb_types_chart', 'grades_chart', 'years_chart', 'months_chart', 'evolution_chart']
     }
   },
 
@@ -144,7 +138,7 @@ export default {
     getAllCharts () {
       this.loadingStats = true
       new LogBookOutdoorApi(this.$axios, this.$auth)
-        .stats(this.stats_list, this.filters)
+        .stats(this.statsList, this.filters)
         .then((resp) => {
           this.stats = resp.data
         })

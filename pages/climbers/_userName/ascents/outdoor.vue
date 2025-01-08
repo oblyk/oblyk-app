@@ -138,11 +138,7 @@ export default {
         climb_types_chart: {},
         grades_chart: {}
       },
-      stats_list: {
-        figures: true,
-        climb_types_chart: true,
-        grades_chart: true
-      },
+      statsList: ['figures', 'climb_types_chart', 'grades_chart'],
 
       mdiLock
     }
@@ -219,7 +215,7 @@ export default {
     getStats () {
       this.loadingStats = true
       new LogBookOutdoorApi(this.$axios, this.$auth)
-        .stats(this.stats_list, this.filters, this.user.uuid)
+        .stats(this.statsList, this.filters, this.user.uuid)
         .then((resp) => {
           this.stats = resp.data
           if (this.stats.figures.ascents > 0) {

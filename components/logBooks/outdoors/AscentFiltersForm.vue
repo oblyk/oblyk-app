@@ -5,7 +5,7 @@
     </v-btn>
     <v-form v-if="showForm" @submit.prevent="onSubmit()">
       <ascent-status-input
-        v-model="filters.ascent_status_list"
+        v-model="filters.ascentStatusList"
         multiple
         with-repetition
         with-sent
@@ -14,13 +14,13 @@
       />
 
       <roping-status-input
-        v-model="filters.roping_status_list"
+        v-model="filters.ropingStatusList"
         multiple
         :required="false"
       />
 
       <climbing-type-input
-        v-model="filters.climbing_types_list"
+        v-model="filters.climbingTypeList"
         multiple
         environment="crag"
         input-type="chips"
@@ -49,9 +49,9 @@ export default {
     return {
       showForm: false,
       filters: {
-        ascent_status_list: [],
-        roping_status_list: [],
-        climbing_types_list: []
+        ascentStatusList: [],
+        ropingStatusList: [],
+        climbingTypeList: []
       }
     }
   },
@@ -72,9 +72,9 @@ export default {
     if (storedFilters) {
       storedFilters = JSON.parse(storedFilters) || {}
       this.filters = {
-        ascent_status_list: Array.isArray(storedFilters.ascent_status_list) ? storedFilters.ascent_status_list : this.getAllAscentStatus(),
-        roping_status_list: Array.isArray(storedFilters.roping_status_list) ? storedFilters.roping_status_list : this.getAllRopingStatus(),
-        climbing_types_list: Array.isArray(storedFilters.climbing_types_list) ? storedFilters.climbing_types_list : this.getAllClimbingTypes()
+        ascentStatusList: Array.isArray(storedFilters.ascentStatusList) ? storedFilters.ascentStatusList : this.getAllAscentStatus(),
+        ropingStatusList: Array.isArray(storedFilters.ropingStatusList) ? storedFilters.ropingStatusList : this.getAllRopingStatus(),
+        climbingTypeList: Array.isArray(storedFilters.climbingTypeList) ? storedFilters.climbingTypeList : this.getAllClimbingTypes()
       }
     }
     this.$emit('input', this.filters)

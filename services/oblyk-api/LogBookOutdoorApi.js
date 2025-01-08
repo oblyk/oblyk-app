@@ -1,9 +1,8 @@
-import qs from 'qs'
 import BaseApi from '~/services/oblyk-api/BaseApi'
 
 class LogBookOutdoorApi extends BaseApi {
   // if user_id is null, it will return the current user's logbook
-  stats (stats_list = {}, filters = {}, user_id = null) {
+  stats (statsList = {}, filters = {}, user_id = null) {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/current_users/log_books/outdoors/stats.json`,
@@ -13,11 +12,10 @@ class LogBookOutdoorApi extends BaseApi {
       },
       params: {
         user_id,
-        filters,
-        stats_list
-      },
-      paramsSerializer: (params) => {
-        return qs.stringify(params, { arrayFormat: 'brackets', encode: false })
+        roping_filter: filters.ropingStatusList,
+        ascent_filter: filters.ascentStatusList,
+        climbing_type_filter: filters.climbingTypeList,
+        stats_list: statsList
       }
     })
   }
@@ -32,12 +30,11 @@ class LogBookOutdoorApi extends BaseApi {
       },
       params: {
         user_id,
-        filters,
+        roping_filter: filters.ropingStatusList,
+        ascent_filter: filters.ascentStatusList,
+        climbing_type_filter: filters.climbingTypeList,
         order,
         page
-      },
-      paramsSerializer: (params) => {
-        return qs.stringify(params, { arrayFormat: 'brackets', encode: false })
       }
     })
   }
