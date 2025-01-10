@@ -15,7 +15,7 @@ export const ThreeJsMixin = {
       disableClick: false,
       animationId: null,
       TDAreaResizeObserver: null,
-      edgeColor: 'rgb(120, 120, 120)',
+      edgeColor: 'rgb(0, 0, 0)',
       labelPositionUpdatable: false,
       labelDisableEvent: false,
       labelDisableTimeout: null,
