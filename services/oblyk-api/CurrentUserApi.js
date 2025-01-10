@@ -374,5 +374,32 @@ class CurrentUserApi extends BaseApi {
       }
     })
   }
+
+  gymAdministrators () {
+    return this.axios.request({
+      method: 'GET',
+      url: `${this.baseUrl}/current_users/gym_administrators.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
+    })
+  }
+
+  switchWeeklyReport (gymAdministratorId) {
+    return this.axios.request({
+      method: 'PUT',
+      url: `${this.baseUrl}/current_users/switch_weekly_report.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
+      data: {
+        gym_administrator: {
+          id: gymAdministratorId
+        }
+      }
+    })
+  }
 }
 export default CurrentUserApi

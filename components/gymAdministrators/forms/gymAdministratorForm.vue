@@ -10,6 +10,11 @@
 
     <gym-roles-input v-model="data.roles" />
 
+    <v-checkbox
+      v-model="data.weekly_report"
+      :label="$t('models.gymAdministrator.weekly_report', { name: gym.name })"
+    />
+
     <close-form />
     <submit-form
       :overlay="submitOverlay"
@@ -46,7 +51,8 @@ export default {
         id: this.gymAdministrator?.id,
         requested_email: this.gymAdministrator?.requested_email,
         gym_id: this.gym.id,
-        roles: this.gymAdministrator?.roles
+        roles: this.gymAdministrator?.roles,
+        weekly_report: this.gymAdministrator?.weekly_report === null ? true : this.gymAdministrator?.weekly_report
       },
       roles: [
         { text: this.$t('models.role.analyste'), value: 'analyste' },

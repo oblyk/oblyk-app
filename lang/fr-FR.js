@@ -1678,6 +1678,7 @@ export default {
       explainLocalization: 'Active la localisation pour accéder rapidement aux sites, salles et grimpeur autour de toi.',
       emptyLogbook: "%{name} n'a de croix dans son carnet",
       seeMyPublicProfile: 'Voir mon profil public',
+      updateWeeklyReport: 'Mes inscriptions aux rapports hebdomadaires de mes salles',
       cardsTitle: {
         myLogbook: 'Mon carnet',
         aroundMe: 'Autour de moi',
@@ -2327,7 +2328,8 @@ export default {
       user: 'Un compte Oblyk associé à ce mail',
       roles: 'Peut gérer',
       subscribe_to_comment_feed: "M'avertir des nouveaux commentaires",
-      subscribe_to_video_feed: "M'avertir des nouvelles vidéos"
+      subscribe_to_video_feed: "M'avertir des nouvelles vidéos",
+      weekly_report: 'Recevoir les rapports hebdomadaires de %{name}'
     },
     gymOpener: {
       name: 'Nom / pseudonyme',
