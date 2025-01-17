@@ -11,8 +11,8 @@
     <gym-roles-input v-model="data.roles" />
 
     <v-checkbox
-      v-model="data.weekly_report"
-      :label="$t('models.gymAdministrator.weekly_report', { name: gym.name })"
+      v-model="data.email_report"
+      :label="$t('models.gymAdministrator.email_report', { name: gym.name })"
     />
 
     <close-form />
@@ -52,7 +52,7 @@ export default {
         requested_email: this.gymAdministrator?.requested_email,
         gym_id: this.gym.id,
         roles: this.gymAdministrator?.roles,
-        weekly_report: this.gymAdministrator?.weekly_report === null ? true : this.gymAdministrator?.weekly_report
+        email_report: this.gymAdministrator?.email_report === null ? true : this.gymAdministrator?.email_report
       },
       roles: [
         { text: this.$t('models.role.analyste'), value: 'analyste' },

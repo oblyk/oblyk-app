@@ -16,7 +16,7 @@
         <div v-if="user.administered_gyms.length > 0">
           <p>
             <u>
-              {{ $t('components.user.updateWeeklyReport') }}
+              {{ $t('components.user.updateEmailReport') }}
             </u>
           </p>
           <p
@@ -31,7 +31,7 @@
               :key="`gym-index-${gymAdministratorIndex}`"
             >
               <v-checkbox
-                v-model="gymAdministrator.weekly_report"
+                v-model="gymAdministrator.email_report"
                 :label="gymAdministrator.gym.name"
                 hide-details
                 :disabled="updateAdministrator.includes(gymAdministrator.id)"
@@ -107,7 +107,7 @@ export default {
     switchGymAdministrator (id) {
       this.updateAdministrator.push(id)
       new CurrentUserApi(this.$axios, this.$auth)
-        .switchWeeklyReport(id)
+        .switchEmailReport(id)
         .finally(() => {
           const index = this.updateAdministrator.indexOf(id)
           if (index !== -1) {

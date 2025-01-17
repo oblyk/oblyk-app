@@ -1678,7 +1678,7 @@ export default {
       explainLocalization: 'Activate the location to quickly access the crags, gyms and climbers around you.',
       emptyLogbook: '%{name} has no ascents in his logbook',
       seeMyPublicProfile: 'See my public profile',
-      updateWeeklyReport: "My subscriptions to my climbing gyms' weekly reports",
+      updateEmailReport: "My subscriptions to my climbing gyms' monthly reports",
       cardsTitle: {
         myLogbook: 'My logbook',
         aroundMe: 'Around me',
@@ -2329,7 +2329,7 @@ export default {
       roles: 'Can manage',
       subscribe_to_comment_feed: 'Notify me of new comments',
       subscribe_to_video_feed: 'Notify me of new videos',
-      weekly_report: 'Receive weekly reports from %{name}'
+      email_report: 'Receive monthly reports from %{name}'
     },
     gymOpener: {
       name: 'Name / Alias',

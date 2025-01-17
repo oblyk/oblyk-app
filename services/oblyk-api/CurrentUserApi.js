@@ -386,10 +386,10 @@ class CurrentUserApi extends BaseApi {
     })
   }
 
-  switchWeeklyReport (gymAdministratorId) {
+  switchEmailReport (gymAdministratorId) {
     return this.axios.request({
       method: 'PUT',
-      url: `${this.baseUrl}/current_users/switch_weekly_report.json`,
+      url: `${this.baseUrl}/current_users/switch_email_report.json`,
       headers: {
         Authorization: this.authToken(),
         HttpApiAccessToken: this.apiAccessToken
