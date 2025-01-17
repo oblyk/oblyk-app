@@ -192,11 +192,11 @@ export default {
 
   computed: {
     missingLogo () {
-      return !this.gym.logo
+      return !this.gym.attachments.logo.attached
     },
 
     missingBanner () {
-      return !this.gym.banner
+      return !this.gym.attachments.banner.attached
     },
 
     missingInformation () {
