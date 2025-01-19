@@ -20,7 +20,7 @@
     <div v-else>
       <v-card>
         <v-card-text>
-          <ascent-filters-form v-model="filters" />
+          <ascent-filters-form v-model="filters" only-climbing-filter />
         </v-card-text>
       </v-card>
       <v-card class="mt-3">
@@ -98,13 +98,13 @@
 import { mdiLock } from '@mdi/js'
 import { SubscribeConcern } from '~/concerns/SubscribeConcern'
 import LogBookFigures from '~/components/logBooks/outdoors/LogBookFigures'
+import UserApi from '~/services/oblyk-api/UserApi'
 import Spinner from '~/components/layouts/Spiner'
 import LogBookClimbingTypeChart from '~/components/logBooks/outdoors/LogBookClimbingTypeChart'
 import LogBookGradeChart from '~/components/logBooks/outdoors/LogBookGradeChart'
 import LogBookList from '~/components/logBooks/outdoors/LogBookList'
 import ClimbingTypeLegend from '~/components/ui/ClimbingTypeLegend'
 import AscentFiltersForm from '~/components/logBooks/outdoors/AscentFiltersForm'
-import LogBookOutdoorApi from '~/services/oblyk-api/LogBookOutdoorApi'
 
 const CragRouteDrawer = () => import('~/components/cragRoutes/CragRouteDrawer')
 
@@ -214,8 +214,8 @@ export default {
 
     getStats () {
       this.loadingStats = true
-      new LogBookOutdoorApi(this.$axios, this.$auth)
-        .stats(this.statsList, this.filters, this.user.uuid)
+      new UserApi(this.$axios, this.$auth)
+        .stats(this.user.uuid, this.statsList, this.filters)
         .then((resp) => {
           this.stats = resp.data
           if (this.stats.figures.ascents > 0) {

@@ -5,6 +5,7 @@
     </v-btn>
     <v-form v-if="showForm" @submit.prevent="onSubmit()">
       <ascent-status-input
+        v-if="!onlyClimbingFilter"
         v-model="filters.ascentStatusList"
         multiple
         with-repetition
@@ -14,6 +15,7 @@
       />
 
       <roping-status-input
+        v-if="!onlyClimbingFilter"
         v-model="filters.ropingStatusList"
         multiple
         :required="false"
@@ -45,6 +47,13 @@ export default {
   name: 'AscentFiltersForm',
   components: { ClimbingTypeInput, SubmitForm, RopingStatusInput, AscentStatusInput },
 
+  props: {
+    onlyClimbingFilter: {
+      type: Boolean,
+      default: false
+    }
+  },
+
   data () {
     return {
       showForm: false,
@@ -57,14 +66,23 @@ export default {
   },
 
   mounted () {
-    // recover from local storage and reset if one key is missing in the stored filters (to keep the app working if we change filters)
-    let storedFilters = localStorage.getItem('filters')
-    if (storedFilters) {
-      storedFilters = JSON.parse(storedFilters) || {}
+    if (this.onlyClimbingFilter) {
+      // no local storage. Use default filters each time.
       this.filters = {
-        ascentStatusList: Array.isArray(storedFilters.ascentStatusList) ? storedFilters.ascentStatusList : this.getAllAscentStatus(),
-        ropingStatusList: Array.isArray(storedFilters.ropingStatusList) ? storedFilters.ropingStatusList : this.getAllRopingStatus(),
-        climbingTypeList: Array.isArray(storedFilters.climbingTypeList) ? storedFilters.climbingTypeList : this.getAllClimbingTypes()
+        ascentStatusList: this.getAllAscentStatus(),
+        ropingStatusList: this.getAllRopingStatus(),
+        climbingTypeList: this.getAllClimbingTypes()
+      }
+    } else {
+      // recover from local storage and reset if one key is missing in the stored filters (to keep the app working if we change filters)
+      let storedFilters = localStorage.getItem('filters')
+      if (storedFilters) {
+        storedFilters = JSON.parse(storedFilters) || {}
+        this.filters = {
+          ascentStatusList: Array.isArray(storedFilters.ascentStatusList) ? storedFilters.ascentStatusList : this.getAllAscentStatus(),
+          ropingStatusList: Array.isArray(storedFilters.ropingStatusList) ? storedFilters.ropingStatusList : this.getAllRopingStatus(),
+          climbingTypeList: Array.isArray(storedFilters.climbingTypeList) ? storedFilters.climbingTypeList : this.getAllClimbingTypes()
+        }
       }
     }
     this.$emit('input', this.filters)

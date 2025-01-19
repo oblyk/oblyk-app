@@ -105,6 +105,41 @@ class UserApi extends BaseApi {
     })
   }
 
+  stats (userName, statsList = {}, filters = {}) {
+    return this.axios.request({
+      method: 'GET',
+      url: `${this.baseUrl}/users/${userName}/stats.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
+      params: {
+        roping_filter: filters.ropingStatusList,
+        ascent_filter: filters.ascentStatusList,
+        climbing_type_filter: filters.climbingTypeList,
+        stats_list: statsList
+      }
+    })
+  }
+
+  ascendedCragRoutes (userName, order = 'difficulty', filters = {}, page = 1) {
+    return this.axios.request({
+      method: 'GET',
+      url: `${this.baseUrl}/users/${userName}/ascended_crag_routes.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
+      params: {
+        roping_filter: filters.ropingStatusList,
+        ascent_filter: filters.ascentStatusList,
+        climbing_type_filter: filters.climbingTypeList,
+        order,
+        page
+      }
+    })
+  }
+
   indoorFigures (userName) {
     return this.axios.request({
       method: 'GET',

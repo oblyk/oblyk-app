@@ -61,6 +61,7 @@ import CragRoute from '@/models/CragRoute'
 import Spinner from '@/components/layouts/Spiner'
 import LoadingMore from '@/components/layouts/LoadingMore'
 import { GradeMixin } from '@/mixins/GradeMixin'
+import UserApi from '~/services/oblyk-api/UserApi'
 
 export default {
   name: 'LogBookList',
@@ -122,14 +123,24 @@ export default {
     },
 
     ascendedCragRoutes () {
-      this.moreIsBeingLoaded()
-      new LogBookOutdoorApi(this.$axios, this.$auth)
-        .ascendedCragRoutes(
+      let promise
+      if (this.user) {
+        promise = new UserApi(this.$axios, this.$auth).ascendedCragRoutes(
+          this.user.uuid,
           this.order,
           this.filters,
-          this.page,
-          this.user?.uuid
+          this.page
         )
+      } else {
+        promise = new LogBookOutdoorApi(this.$axios, this.$auth)
+          .ascendedCragRoutes(
+            this.order,
+            this.filters,
+            this.page
+          )
+      }
+      this.moreIsBeingLoaded()
+      promise
         .then((resp) => {
           for (const route of resp.data) {
             this.cragRoutes.push(new CragRoute({ attributes: route }))
