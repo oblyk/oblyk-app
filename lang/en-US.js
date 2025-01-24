@@ -284,7 +284,7 @@ export default {
     areYouSurDeletePicture: 'Are you sure you want to delete the photo?',
     areYouSurDeleteComment: 'Are you sure you want to delete this comment?',
     areYouSurDeleteVideo: 'Are you sure you want to delete this video?',
-    filters: 'Filters',
+    outdoorAnalytikFilters: 'Filters',
     map: 'Map',
     setting: 'Setting',
     new: '%{count} new | %{count} new',
@@ -590,7 +590,7 @@ export default {
         chooseYourFilters: 'Pick your filters',
         noResults: 'We did not find any climbing crags within %{distance}km of %{city} with these filters.',
         expandTo: 'Expanding search to:',
-        filters: {
+        outdoorAnalytikFilters: {
           climbingType: {
             title: 'Type of climbing',
             subtitle: 'Search for a bouldering site, a route, a multi-pitch, etc.'
