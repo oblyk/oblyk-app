@@ -1,9 +1,26 @@
 <template>
   <div>
-    <v-btn v-if="!showForm" @click="showForm =! showForm">
-      {{ $t('components.logBook.filterTheLogBook') }}
-    </v-btn>
-    <v-form v-if="showForm" @submit.prevent="onSubmit()">
+    <div
+      v-if="!showForm"
+      class="text-right"
+    >
+      <v-btn
+        elevation="0"
+        text
+        outlined
+        small
+        @click="showForm =! showForm"
+      >
+        <v-icon left>
+          {{ mdiFilterPlus }}
+        </v-icon>
+        {{ $t('components.logBook.filterMyLogBook') }}
+      </v-btn>
+    </div>
+    <v-form
+      v-if="showForm"
+      @submit.prevent="onSubmit()"
+    >
       <ascent-status-input
         v-if="!onlyClimbingFilter"
         v-model="filters.ascentStatusList"
@@ -38,6 +55,7 @@
 </template>
 
 <script>
+import { mdiFilterPlus } from '@mdi/js'
 import AscentStatusInput from '~/components/forms/AscentStatusInput'
 import RopingStatusInput from '~/components/forms/RopingStatusInput'
 import SubmitForm from '~/components/forms/SubmitForm'
@@ -61,7 +79,9 @@ export default {
         ascentStatusList: [],
         ropingStatusList: [],
         climbingTypeList: []
-      }
+      },
+
+      mdiFilterPlus
     }
   },
 
@@ -82,6 +102,12 @@ export default {
           ascentStatusList: Array.isArray(storedFilters.ascentStatusList) ? storedFilters.ascentStatusList : this.getAllAscentStatus(),
           ropingStatusList: Array.isArray(storedFilters.ropingStatusList) ? storedFilters.ropingStatusList : this.getAllRopingStatus(),
           climbingTypeList: Array.isArray(storedFilters.climbingTypeList) ? storedFilters.climbingTypeList : this.getAllClimbingTypes()
+        }
+      } else {
+        this.filters = {
+          ascentStatusList: this.getAllAscentStatus(),
+          ropingStatusList: this.getAllRopingStatus(),
+          climbingTypeList: this.getAllClimbingTypes()
         }
       }
     }

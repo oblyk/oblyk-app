@@ -18,11 +18,6 @@
 
     <!-- if visitor is authorised -->
     <div v-else>
-      <v-card>
-        <v-card-text>
-          <ascent-filters-form v-model="filters" only-climbing-filter />
-        </v-card-text>
-      </v-card>
       <v-card class="mt-3">
         <v-card-text>
           <v-row>
@@ -104,13 +99,11 @@ import LogBookClimbingTypeChart from '~/components/logBooks/outdoors/LogBookClim
 import LogBookGradeChart from '~/components/logBooks/outdoors/LogBookGradeChart'
 import LogBookList from '~/components/logBooks/outdoors/LogBookList'
 import ClimbingTypeLegend from '~/components/ui/ClimbingTypeLegend'
-import AscentFiltersForm from '~/components/logBooks/outdoors/AscentFiltersForm'
 
 const CragRouteDrawer = () => import('~/components/cragRoutes/CragRouteDrawer')
 
 export default {
   components: {
-    AscentFiltersForm,
     ClimbingTypeLegend,
     CragRouteDrawer,
     LogBookList,
@@ -132,7 +125,11 @@ export default {
       loadTheRest: false,
       loadingStats: true,
 
-      filters: {},
+      filters: {
+        ascentStatusList: ['onsight', 'flash', 'red_point', 'project', 'sent', 'repetition'],
+        climbingTypeList: ['sport_climbing', 'bouldering', 'multi_pitch', 'trad_climbing', 'aid_climbing', 'deep_water', 'via_ferrata'],
+        ropingStatusList: ['lead_climb', 'top_rope', 'multi_pitch_leader', 'multi_pitch_second', 'multi_pitch_alternate_lead']
+      },
       stats: {
         figures: {},
         climb_types_chart: {},
@@ -184,12 +181,6 @@ export default {
     }
   },
 
-  watch: {
-    filters () {
-      this.getStats()
-    }
-  },
-
   mounted () {
     if (this.currentUserCanSeeAscents()) {
       this.getStats()
@@ -215,7 +206,11 @@ export default {
     getStats () {
       this.loadingStats = true
       new UserApi(this.$axios, this.$auth)
-        .stats(this.user.uuid, this.statsList, this.filters)
+        .stats(
+          this.user.uuid,
+          this.statsList,
+          this.filters
+        )
         .then((resp) => {
           this.stats = resp.data
           if (this.stats.figures.ascents > 0) {
