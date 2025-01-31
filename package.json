@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "engines": {
-    "node": "16.x.x"
+    "node": "18.x.x"
   },
   "scripts": {
     "dev": "nuxt",
@@ -30,7 +30,7 @@
     "leaflet-textpath": "^1.2.3",
     "luxon": "^3.4.0",
     "marked": "^4.0.10",
-    "nuxt": "^2.15.7",
+    "nuxt": "^2.18.1",
     "nuxt-matomo": "^1.2.4",
     "nuxt-route-meta": "^2.3.6",
     "panzoom": "^9.4.3",
@@ -48,6 +48,7 @@
   "devDependencies": {
     "@babel/eslint-parser": "^7.14.7",
     "@babel/plugin-proposal-logical-assignment-operators": "^7.20.7",
+    "@babel/plugin-proposal-optional-chaining": "^7.21.0",
     "@mdi/js": "^6.5.95",
     "@nuxt/types": "~2.15.0",
     "@nuxtjs/eslint-config": "^6.0.1",
@@ -59,5 +60,10 @@
     "sass": "^1.44.0",
     "sass-loader": "^10.2.0",
     "webpack": "^4.46.0"
+  },
+  "overrides": {
+    "consola": "3.2.3",
+    "postcss": "^8.0.0",
+    "vuex": "^3.6.2"
   }
 }
