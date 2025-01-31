@@ -6,7 +6,7 @@ This repository is the App part of Oblyk project.
 For front api, go here : [oblyk-app](https://github.com/oblyk/oblyk-api)
 
 ## Dependencies
-- node 14
+- node 18
 - npm >= 7.11
 
 ## Installation
