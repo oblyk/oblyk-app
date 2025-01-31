@@ -2,38 +2,39 @@
   <v-container fluid>
     <v-card>
       <v-card-text>
+        <ascent-filters-form v-model="filters" />
+      </v-card-text>
+    </v-card>
+    <v-card class="mt-3">
+      <v-card-text>
         <v-row>
           <!-- Climbing type chart -->
           <v-col class="col-12 col-md-6 col-lg-3">
-            <div v-if="loadTheRest">
-              <spinner v-if="loadingClimbingTypeChart" :full-height="false" />
-              <log-book-climbing-type-chart
-                v-if="!loadingClimbingTypeChart"
-                :data="climbingTypeData"
-                :legend="false"
-              />
-              <!-- Climbing type legend -->
-              <climbing-type-legend class="mt-3" />
-            </div>
+            <spinner v-if="loadingStats" :full-height="false" />
+            <log-book-climbing-type-chart
+              v-if="!loadingStats"
+              :data="stats.climb_types_chart"
+              :legend="false"
+            />
+            <!-- Climbing type legend -->
+            <climbing-type-legend class="mt-3" />
           </v-col>
 
           <!-- Climbing grade chart -->
           <v-col class="col-12 col-md-6 col-lg-4">
-            <div v-if="loadTheRest">
-              <spinner v-if="loadingGradeChart" :full-height="false" />
-              <log-book-grade-chart
-                v-if="!loadingGradeChart"
-                :data="gradeData"
-              />
-            </div>
+            <spinner v-if="loadingStats" :full-height="false" />
+            <log-book-grade-chart
+              v-if="!loadingStats"
+              :data="stats.grades_chart"
+            />
           </v-col>
 
           <!-- Global figures -->
           <v-col class="col-12 col-md-12 col-lg-5">
-            <spinner v-if="loadingFigures" :full-height="false" />
+            <spinner v-if="loadingStats" :full-height="false" />
             <log-book-figures
-              v-if="!loadingFigures"
-              :figures="figures"
+              v-if="!loadingStats"
+              :figures="stats.figures"
               :user="user"
             />
           </v-col>
@@ -46,7 +47,7 @@
     >
       <v-card-text>
         <!-- Send list -->
-        <log-book-list />
+        <log-book-list :filters="filters" />
       </v-card-text>
     </v-card>
     <client-only>
@@ -56,6 +57,7 @@
 </template>
 
 <script>
+import AscentFiltersForm from '~/components/logBooks/outdoors/AscentFiltersForm'
 import LogBookFigures from '~/components/logBooks/outdoors/LogBookFigures.vue'
 import LogBookOutdoorApi from '~/services/oblyk-api/LogBookOutdoorApi'
 import Spinner from '~/components/layouts/Spiner.vue'
@@ -63,11 +65,13 @@ import LogBookClimbingTypeChart from '~/components/logBooks/outdoors/LogBookClim
 import LogBookGradeChart from '~/components/logBooks/outdoors/LogBookGradeChart.vue'
 import LogBookList from '~/components/logBooks/outdoors/LogBookList.vue'
 import ClimbingTypeLegend from '~/components/ui/ClimbingTypeLegend.vue'
+
 const CragRouteDrawer = () => import('~/components/cragRoutes/CragRouteDrawer.vue')
 
 export default {
   name: 'CurrentUserSendListView',
   components: {
+    AscentFiltersForm,
     ClimbingTypeLegend,
     CragRouteDrawer,
     LogBookList,
@@ -86,15 +90,15 @@ export default {
   data () {
     return {
       loadTheRest: false,
+      loadingStats: true,
 
-      loadingFigures: true,
-      figures: {},
-
-      loadingClimbingTypeChart: true,
-      climbingTypeData: {},
-
-      loadingGradeChart: true,
-      gradeData: {}
+      filters: {},
+      stats: {
+        figures: {},
+        climb_types_chart: {},
+        grades_chart: {}
+      },
+      statsList: ['figures', 'climb_types_chart', 'grades_chart']
     }
   },
 
@@ -115,53 +119,31 @@ export default {
     }
   },
 
+  watch: {
+    filters () {
+      this.getStats()
+    },
+    deep: true,
+    immediate: true
+  },
+
   mounted () {
-    this.getFigures()
+    this.getStats()
   },
 
   methods: {
-    getFigures () {
-      this.loadingFigures = true
+    getStats () {
+      this.loadingStats = true
       new LogBookOutdoorApi(this.$axios, this.$auth)
-        .figures()
+        .stats(this.statsList, this.filters)
         .then((resp) => {
-          this.figures = resp.data
-          if (this.figures.ascents > 0) {
+          this.stats = resp.data
+          if (this.stats.figures.ascents > 0) {
             this.loadTheRest = true
-            this.getOtherChars()
           }
         })
         .finally(() => {
-          this.loadingFigures = false
-        })
-    },
-
-    getOtherChars () {
-      this.getClimbingTypeChart()
-      this.getGradeChart()
-    },
-
-    getClimbingTypeChart () {
-      this.loadingClimbingTypeChart = true
-      new LogBookOutdoorApi(this.$axios, this.$auth)
-        .climbingTypeChart()
-        .then((resp) => {
-          this.climbingTypeData = resp.data
-        })
-        .finally(() => {
-          this.loadingClimbingTypeChart = false
-        })
-    },
-
-    getGradeChart () {
-      this.loadingGradeChart = true
-      new LogBookOutdoorApi(this.$axios, this.$auth)
-        .gradeChart()
-        .then((resp) => {
-          this.gradeData = resp.data
-        })
-        .finally(() => {
-          this.loadingGradeChart = false
+          this.loadingStats = false
         })
     }
   }

@@ -284,7 +284,7 @@ export default {
     areYouSurDeletePicture: 'Êtes vous sûr·e de supprimer la photo ?',
     areYouSurDeleteComment: 'Êtes-vous sûr·e de supprimer ce commentaire ?',
     areYouSurDeleteVideo: 'Êtes-vous sûr·e de supprimer cette vidéo ?',
-    filters: 'Filtres',
+    outdoorAnalytikFilters: 'Filtres',
     map: 'Carte',
     setting: 'Réglage',
     new: '%{count} nouveau | %{count} nouveaux',
@@ -590,7 +590,7 @@ export default {
         chooseYourFilters: 'Choisissez vos filtres',
         noResults: "Nous n'avons pas trouver de site d'escalade à moins de %{distance}km de %{city} avec ces filtres.",
         expandTo: 'Élargir la recherche à :',
-        filters: {
+        outdoorAnalytikFilters: {
           climbingType: {
             title: "Type d'escalade",
             subtitle: 'Chercher un site de bloc, de voie, de grand voie, etc.'
@@ -1516,7 +1516,8 @@ export default {
       evolution: 'Évolution',
       myOutdoorAscents: 'Mes croix outdoor',
       sortByLabel: 'Trier les croix par',
-      filterByClimbingType: "Filtrer pas type d'escalade",
+      filterByClimbingType: "Filtrer par type d'escalade",
+      filterTheLogBook: 'Filtrer le carnet',
       emptyProject: 'Votre liste de projet est vide',
       emptyTickList: "Vous n'avez aucune ligne dans votre tick list pour l'instant",
       IHaveNoAscents: "Je n'ai pas encore de croix",

@@ -1,13 +1,18 @@
 <template>
   <v-container fluid>
-    <v-row>
+    <v-card>
+      <v-card-text>
+        <ascent-filters-form v-model="filters" />
+      </v-card-text>
+    </v-card>
+    <v-row class="mt-3">
       <v-col cols="12" md="6" lg="4">
         <v-card>
           <v-card-text>
-            <spinner v-if="loadingClimbingTypeChart" :full-height="false" />
+            <spinner v-if="loadingStats" :full-height="false" />
             <log-book-climbing-type-chart
-              v-if="!loadingClimbingTypeChart"
-              :data="climbingTypeData"
+              v-if="!loadingStats"
+              :data="stats.climb_types_chart"
               height-class="height-250"
               :legend="true"
               legend-position="right"
@@ -18,10 +23,10 @@
       <v-col cols="12" md="6" lg="4">
         <v-card>
           <v-card-text>
-            <spinner v-if="loadingGradeChart" :full-height="false" />
+            <spinner v-if="loadingStats" :full-height="false" />
             <log-book-grade-chart
-              v-if="!loadingGradeChart"
-              :data="gradeData"
+              v-if="!loadingStats"
+              :data="stats.grades_chart"
               height-class="height-250"
             />
           </v-card-text>
@@ -30,10 +35,10 @@
       <v-col cols="12" md="6" lg="4">
         <v-card>
           <v-card-text>
-            <spinner v-if="loadingEvolutionChart" :full-height="false" />
+            <spinner v-if="loadingStats" :full-height="false" />
             <log-book-evolution-chart
-              v-if="!loadingEvolutionChart"
-              :data="evolutionData"
+              v-if="!loadingStats"
+              :data="stats.evolution_chart"
               height-class="height-250"
             />
           </v-card-text>
@@ -44,10 +49,10 @@
       <v-col cols="12" md="6" lg="8">
         <v-card>
           <v-card-text>
-            <spinner v-if="loadingMonthChart" :full-height="false" />
+            <spinner v-if="loadingStats" :full-height="false" />
             <log-book-month-chart
-              v-if="!loadingMonthChart"
-              :data="monthData"
+              v-if="!loadingStats"
+              :data="stats.months_chart"
               height-class="height-250"
             />
           </v-card-text>
@@ -56,10 +61,10 @@
       <v-col cols="12" md="6" lg="4">
         <v-card>
           <v-card-text>
-            <spinner v-if="loadingYearChart" :full-height="false" />
+            <spinner v-if="loadingStats" :full-height="false" />
             <log-book-year-chart
-              v-if="!loadingYearChart"
-              :data="yearData"
+              v-if="!loadingStats"
+              :data="stats.years_chart"
               height-class="height-250"
             />
           </v-card-text>
@@ -77,10 +82,12 @@ import LogBookGradeChart from '~/components/logBooks/outdoors/LogBookGradeChart.
 import LogBookYearChart from '~/components/logBooks/outdoors/LogBookYearChart.vue'
 import LogBookMonthChart from '~/components/logBooks/outdoors/LogBookMonthChart.vue'
 import LogBookEvolutionChart from '~/components/logBooks/outdoors/LogBookEvolutionChart.vue'
+import AscentFiltersForm from '~/components/logBooks/outdoors/AscentFiltersForm'
 
 export default {
   name: 'CurrentUserAnalytiksView',
   components: {
+    AscentFiltersForm,
     LogBookEvolutionChart,
     LogBookMonthChart,
     LogBookYearChart,
@@ -97,20 +104,17 @@ export default {
 
   data () {
     return {
-      loadingClimbingTypeChart: true,
-      climbingTypeData: [],
+      filters: [],
 
-      loadingGradeChart: true,
-      gradeData: [],
-
-      loadingYearChart: true,
-      yearData: [],
-
-      loadingMonthChart: true,
-      monthData: [],
-
-      loadingEvolutionChart: true,
-      evolutionData: []
+      loadingStats: true,
+      stats: {
+        climb_types_chart: {},
+        grades_chart: {},
+        years_chart: {},
+        months_chart: {},
+        evolution_chart: {}
+      },
+      statsList: ['climb_types_chart', 'grades_chart', 'years_chart', 'months_chart', 'evolution_chart']
     }
   },
 
@@ -120,72 +124,26 @@ export default {
     }
   },
 
+  watch: {
+    filters () {
+      this.getAllCharts()
+    }
+  },
+
   mounted () {
-    this.getClimbingTypeChart()
-    this.getGradeChart()
-    this.getYearChart()
-    this.getMonthChart()
-    this.getEvolutionChart()
+    this.getAllCharts()
   },
 
   methods: {
-    getClimbingTypeChart () {
-      this.loadingClimbingTypeChart = true
+    getAllCharts () {
+      this.loadingStats = true
       new LogBookOutdoorApi(this.$axios, this.$auth)
-        .climbingTypeChart()
+        .stats(this.statsList, this.filters)
         .then((resp) => {
-          this.climbingTypeData = resp.data
+          this.stats = resp.data
         })
         .finally(() => {
-          this.loadingClimbingTypeChart = false
-        })
-    },
-
-    getGradeChart () {
-      this.loadingGradeChart = true
-      new LogBookOutdoorApi(this.$axios, this.$auth)
-        .gradeChart()
-        .then((resp) => {
-          this.gradeData = resp.data
-        })
-        .finally(() => {
-          this.loadingGradeChart = false
-        })
-    },
-
-    getYearChart () {
-      this.loadingYearChart = true
-      new LogBookOutdoorApi(this.$axios, this.$auth)
-        .yearChart()
-        .then((resp) => {
-          this.yearData = resp.data
-        })
-        .finally(() => {
-          this.loadingYearChart = false
-        })
-    },
-
-    getMonthChart () {
-      this.loadingMonthChart = true
-      new LogBookOutdoorApi(this.$axios, this.$auth)
-        .monthChart()
-        .then((resp) => {
-          this.monthData = resp.data
-        })
-        .finally(() => {
-          this.loadingMonthChart = false
-        })
-    },
-
-    getEvolutionChart () {
-      this.loadingEvolutionChart = true
-      new LogBookOutdoorApi(this.$axios, this.$auth)
-        .evolutionChart()
-        .then((resp) => {
-          this.evolutionData = resp.data
-        })
-        .finally(() => {
-          this.loadingEvolutionChart = false
+          this.loadingStats = false
         })
     }
   }

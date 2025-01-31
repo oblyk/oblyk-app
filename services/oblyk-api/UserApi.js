@@ -105,29 +105,24 @@ class UserApi extends BaseApi {
     })
   }
 
-  outdoorFigures (userName) {
+  stats (userName, statsList = {}, filters = {}) {
     return this.axios.request({
       method: 'GET',
-      url: `${this.baseUrl}/users/${userName}/outdoor_figures.json`,
+      url: `${this.baseUrl}/users/${userName}/stats.json`,
       headers: {
         Authorization: this.authToken(),
         HttpApiAccessToken: this.apiAccessToken
+      },
+      params: {
+        roping_filter: filters.ropingStatusList,
+        ascent_filter: filters.ascentStatusList,
+        climbing_type_filter: filters.climbingTypeList,
+        stats_list: statsList
       }
     })
   }
 
-  outdoorClimbTypesChart (userName) {
-    return this.axios.request({
-      method: 'GET',
-      url: `${this.baseUrl}/users/${userName}/outdoor_climb_types_chart.json`,
-      headers: {
-        Authorization: this.authToken(),
-        HttpApiAccessToken: this.apiAccessToken
-      }
-    })
-  }
-
-  ascendedCragRoutes (userName, order = 'difficulty', climbingType = 'all', page = 1) {
+  ascendedCragRoutes (userName, order = 'difficulty', filters = {}, page = 1) {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/users/${userName}/ascended_crag_routes.json`,
@@ -136,20 +131,11 @@ class UserApi extends BaseApi {
         HttpApiAccessToken: this.apiAccessToken
       },
       params: {
+        roping_filter: filters.ropingStatusList,
+        ascent_filter: filters.ascentStatusList,
+        climbing_type_filter: filters.climbingTypeList,
         order,
-        climbing_type: climbingType,
         page
-      }
-    })
-  }
-
-  outdoorGradesChart (userName) {
-    return this.axios.request({
-      method: 'GET',
-      url: `${this.baseUrl}/users/${userName}/outdoor_grades_chart.json`,
-      headers: {
-        Authorization: this.authToken(),
-        HttpApiAccessToken: this.apiAccessToken
       }
     })
   }
@@ -198,4 +184,5 @@ class UserApi extends BaseApi {
     })
   }
 }
+
 export default UserApi

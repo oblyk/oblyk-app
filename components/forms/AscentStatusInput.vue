@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-input
-      class="required-field"
+      :class="required ? 'required-field' : ''"
       hide-details
     >
       <fieldset class="full-width custom-fieldset border rounded mt-n1 pb-0 px-2">
@@ -13,6 +13,7 @@
             v-model="ascentStatus"
             active-class="primary--text"
             column
+            :multiple="multiple"
             @change="onChange"
           >
             <v-chip
@@ -33,7 +34,11 @@
           </v-chip-group>
         </div>
       </fieldset>
+      <v-chip v-if="multiple" class="ml-1" @click="selectAll()">
+        {{ $t('common.seeAll') }}
+      </v-chip>
     </v-input>
+
     <div class="mb-3">
       <div class="text-right pr-1">
         <span
@@ -90,7 +95,15 @@
 </template>
 
 <script>
-import { mdiCropSquare, mdiCheckboxMarkedCircle, mdiRecordCircle, mdiFlash, mdiEye, mdiAutorenew, mdiChevronUp } from '@mdi/js'
+import {
+  mdiCropSquare,
+  mdiCheckboxMarkedCircle,
+  mdiRecordCircle,
+  mdiFlash,
+  mdiEye,
+  mdiAutorenew,
+  mdiChevronUp
+} from '@mdi/js'
 import { InputHelpers } from '@/mixins/InputHelpers'
 
 export default {
@@ -98,7 +111,7 @@ export default {
   mixins: [InputHelpers],
   props: {
     value: {
-      type: String,
+      type: [String, Array], // array if multipleChoices true
       default: null
     },
     withProject: {
@@ -112,12 +125,20 @@ export default {
     withRepetition: {
       type: Boolean,
       default: true
+    },
+    multiple: {
+      type: Boolean,
+      default: false
+    },
+    required: { // required input of the form and display the red * on top of the component
+      type: Boolean,
+      default: true
     }
   },
 
   data () {
     return {
-      ascentStatus: this.value,
+      ascentStatus: this.value, // string or array according to multipleChoices false or true
       showLegend: false,
 
       mdiChevronUp
@@ -146,6 +167,11 @@ export default {
   methods: {
     onChange () {
       this.$emit('input', this.ascentStatus)
+    },
+
+    selectAll () {
+      this.ascentStatus = this.ascentStatuses.map(status => status.value)
+      this.onChange()
     }
   }
 }

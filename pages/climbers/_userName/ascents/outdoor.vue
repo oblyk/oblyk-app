@@ -20,18 +20,22 @@
     <div v-else>
       <v-card>
         <v-card-text>
+          <ascent-filters-form v-model="filters" only-climbing-filter />
+        </v-card-text>
+      </v-card>
+      <v-card class="mt-3">
+        <v-card-text>
           <v-row>
             <!-- Climbing type chart -->
             <v-col
-              v-if="chartsPart"
               cols="12"
               md="6"
               lg="3"
             >
-              <spinner v-if="loadingClimbingTypeChart" :full-height="false" />
+              <spinner v-if="loadingStats" :full-height="false" />
               <log-book-climbing-type-chart
-                v-if="!loadingClimbingTypeChart"
-                :data="climbingTypeData"
+                v-if="!loadingStats"
+                :data="stats.climb_types_chart"
                 :legend="false"
               />
               <!-- Climbing type legend -->
@@ -40,15 +44,14 @@
 
             <!-- Climbing grade chart -->
             <v-col
-              v-if="chartsPart"
               cols="12"
               md="6"
               lg="4"
             >
-              <spinner v-if="loadingGradeChart" :full-height="false" />
+              <spinner v-if="loadingStats" :full-height="false" />
               <log-book-grade-chart
-                v-if="!loadingGradeChart"
-                :data="gradeData"
+                v-if="!loadingStats"
+                :data="stats.grades_chart"
               />
             </v-col>
 
@@ -56,20 +59,20 @@
             <v-col
               cols="12"
               md="12"
-              :lg="loadingFigures || figures.ascents === 0 ? '12' : '5'"
+              :lg="loadingStats || stats.figures.ascents === 0 ? '12' : '5'"
             >
-              <spinner v-if="loadingFigures" :full-height="false" />
+              <spinner v-if="loadingStats" :full-height="false" />
               <log-book-figures
-                v-if="!loadingFigures && figures.ascents > 0"
-                :figures="figures"
+                v-if="!loadingStats && stats.figures.ascents > 0"
+                :figures="stats.figures"
                 :user="user"
               />
               <div
-                v-if="!loadingFigures && figures.ascents === 0"
+                v-if="!loadingStats && stats.figures.ascents === 0"
                 class="py-5"
               >
                 <p class="text-center mb-0">
-                  {{ $t('components.user.emptyLogbook', { name: user.first_name}) }}
+                  {{ $t('components.user.emptyLogbook', { name: user.first_name }) }}
                 </p>
               </div>
             </v-col>
@@ -77,11 +80,11 @@
         </v-card-text>
       </v-card>
       <v-card
-        v-if="chartsPart"
+        v-if="loadTheRest"
         class="mt-3"
       >
         <v-card-text>
-          <log-book-list :user="user" />
+          <log-book-list :user="user" :filters="filters" />
         </v-card-text>
         <client-only>
           <crag-route-drawer />
@@ -101,10 +104,13 @@ import LogBookClimbingTypeChart from '~/components/logBooks/outdoors/LogBookClim
 import LogBookGradeChart from '~/components/logBooks/outdoors/LogBookGradeChart'
 import LogBookList from '~/components/logBooks/outdoors/LogBookList'
 import ClimbingTypeLegend from '~/components/ui/ClimbingTypeLegend'
+import AscentFiltersForm from '~/components/logBooks/outdoors/AscentFiltersForm'
+
 const CragRouteDrawer = () => import('~/components/cragRoutes/CragRouteDrawer')
 
 export default {
   components: {
+    AscentFiltersForm,
     ClimbingTypeLegend,
     CragRouteDrawer,
     LogBookList,
@@ -123,16 +129,16 @@ export default {
 
   data () {
     return {
-      loadingFigures: true,
-      figures: {},
+      loadTheRest: false,
+      loadingStats: true,
 
-      chartsPart: false,
-
-      loadingClimbingTypeChart: true,
-      climbingTypeData: {},
-
-      loadingGradeChart: true,
-      gradeData: {},
+      filters: {},
+      stats: {
+        figures: {},
+        climb_types_chart: {},
+        grades_chart: {}
+      },
+      statsList: ['figures', 'climb_types_chart', 'grades_chart'],
 
       mdiLock
     }
@@ -178,66 +184,46 @@ export default {
     }
   },
 
+  watch: {
+    filters () {
+      this.getStats()
+    }
+  },
+
   mounted () {
     if (this.currentUserCanSeeAscents()) {
-      this.getFigures()
+      this.getStats()
     }
   },
 
   methods: {
     currentUserCanSeeAscents () {
       // If user have public profil
-      if (this.user.public_profile && this.user.public_outdoor_ascents) { return true }
+      if (this.user.public_profile && this.user.public_outdoor_ascents) {
+        return true
+      }
 
       // If user have public outdoor logbook
-      if (this.$auth.loggedIn && this.user.public_outdoor_ascents) { return true }
+      if (this.$auth.loggedIn && this.user.public_outdoor_ascents) {
+        return true
+      }
 
       // If current user is subscribed to user
       return (this.$auth.loggedIn && this.iAmSubscribedToThis('User', this.user.id) === 'subscribe')
     },
 
-    getFigures () {
-      this.loadingFigures = true
+    getStats () {
+      this.loadingStats = true
       new UserApi(this.$axios, this.$auth)
-        .outdoorFigures(this.user.uuid)
+        .stats(this.user.uuid, this.statsList, this.filters)
         .then((resp) => {
-          this.figures = resp.data
-          if (this.figures.ascents > 0) {
-            this.chartsPart = true
-            this.loadCharts()
+          this.stats = resp.data
+          if (this.stats.figures.ascents > 0) {
+            this.loadTheRest = true
           }
         })
         .finally(() => {
-          this.loadingFigures = false
-        })
-    },
-
-    loadCharts () {
-      this.getClimbingTypeChart()
-      this.getGradeChart()
-    },
-
-    getClimbingTypeChart () {
-      this.loadingClimbingTypeChart = true
-      new UserApi(this.$axios, this.$auth)
-        .outdoorClimbTypesChart(this.user.uuid)
-        .then((resp) => {
-          this.climbingTypeData = resp.data
-        })
-        .finally(() => {
-          this.loadingClimbingTypeChart = false
-        })
-    },
-
-    getGradeChart () {
-      this.loadingGradeChart = true
-      new UserApi(this.$axios, this.$auth)
-        .outdoorGradesChart(this.user.uuid)
-        .then((resp) => {
-          this.gradeData = resp.data
-        })
-        .finally(() => {
-          this.loadingGradeChart = false
+          this.loadingStats = false
         })
     }
   }

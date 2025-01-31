@@ -1,5 +1,7 @@
 <template>
-  <v-input class="required-field">
+  <v-input
+    :class="required ? 'required-field' : ''"
+  >
     <fieldset class="full-width custom-fieldset border rounded mt-n1 pb-0 px-2">
       <legend class="v-label custom-fieldset-label">
         {{ $t('components.input.ropingStatusQuestion') }}
@@ -9,6 +11,7 @@
           v-model="ropingStatus"
           active-class="primary--text"
           column
+          :multiple="multiple"
           @change="onChange"
         >
           <v-chip
@@ -29,6 +32,9 @@
         </v-chip-group>
       </div>
     </fieldset>
+    <v-chip v-if="multiple" class="ml-1" @click="selectAll()">
+      {{ $t('common.seeAll') }}
+    </v-chip>
   </v-input>
 </template>
 
@@ -45,7 +51,7 @@ export default {
   mixins: [InputHelpers],
   props: {
     value: {
-      type: String,
+      type: [String, Array],
       default: null
     },
     sportClimbingRopingStatuses: {
@@ -53,6 +59,14 @@ export default {
       default: true
     },
     multiPithRopingStatuses: {
+      type: Boolean,
+      default: true
+    },
+    multiple: {
+      type: Boolean,
+      default: false
+    },
+    required: { // required input of the form and display the red * on top of the component
       type: Boolean,
       default: true
     }
@@ -68,13 +82,33 @@ export default {
     ropingStatuses () {
       const statuses = []
       if (this.sportClimbingRopingStatuses) {
-        statuses.push({ text: this.$t('models.ropingStatus.lead_climb'), value: 'lead_climb', icon: oblykRopingStatusLeadClimb })
-        statuses.push({ text: this.$t('models.ropingStatus.top_rope'), value: 'top_rope', icon: oblykRopingStatusTopRope })
+        statuses.push({
+          text: this.$t('models.ropingStatus.lead_climb'),
+          value: 'lead_climb',
+          icon: oblykRopingStatusLeadClimb
+        })
+        statuses.push({
+          text: this.$t('models.ropingStatus.top_rope'),
+          value: 'top_rope',
+          icon: oblykRopingStatusTopRope
+        })
       }
       if (this.multiPithRopingStatuses) {
-        statuses.push({ text: this.$t('models.ropingStatus.multi_pitch_leader'), value: 'multi_pitch_leader', icon: oblykRopingStatusMultiPitchLeader })
-        statuses.push({ text: this.$t('models.ropingStatus.multi_pitch_second'), value: 'multi_pitch_second', icon: oblykRopingStatusMultiPitchSecond })
-        statuses.push({ text: this.$t('models.ropingStatus.multi_pitch_alternate_lead'), value: 'multi_pitch_alternate_lead', icon: oblykRopingStatusLeadClimbMultiPitchAlternateLead })
+        statuses.push({
+          text: this.$t('models.ropingStatus.multi_pitch_leader'),
+          value: 'multi_pitch_leader',
+          icon: oblykRopingStatusMultiPitchLeader
+        })
+        statuses.push({
+          text: this.$t('models.ropingStatus.multi_pitch_second'),
+          value: 'multi_pitch_second',
+          icon: oblykRopingStatusMultiPitchSecond
+        })
+        statuses.push({
+          text: this.$t('models.ropingStatus.multi_pitch_alternate_lead'),
+          value: 'multi_pitch_alternate_lead',
+          icon: oblykRopingStatusLeadClimbMultiPitchAlternateLead
+        })
       }
       return statuses
     }
@@ -83,6 +117,10 @@ export default {
   methods: {
     onChange () {
       this.$emit('input', this.ropingStatus)
+    },
+    selectAll () {
+      this.ropingStatus = this.ropingStatuses.map(status => status.value)
+      this.onChange()
     }
   }
 }
