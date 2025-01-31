@@ -34,9 +34,16 @@
           </v-chip-group>
         </div>
       </fieldset>
-      <v-chip v-if="multiple" class="ml-1" @click="selectAll()">
-        {{ $t('common.seeAll') }}
-      </v-chip>
+      <v-btn
+        v-if="multiple"
+        icon
+        large
+        @click="switchSelection()"
+      >
+        <v-icon>
+          {{ ascentStatus.length === ascentStatuses.length ? mdiCheckboxMultipleBlankOutline : mdiCheckboxMultipleMarked }}
+        </v-icon>
+      </v-btn>
     </v-input>
 
     <div class="mb-3">
@@ -102,7 +109,9 @@ import {
   mdiFlash,
   mdiEye,
   mdiAutorenew,
-  mdiChevronUp
+  mdiChevronUp,
+  mdiCheckboxMultipleMarked,
+  mdiCheckboxMultipleBlankOutline
 } from '@mdi/js'
 import { InputHelpers } from '@/mixins/InputHelpers'
 
@@ -141,7 +150,9 @@ export default {
       ascentStatus: this.value, // string or array according to multipleChoices false or true
       showLegend: false,
 
-      mdiChevronUp
+      mdiChevronUp,
+      mdiCheckboxMultipleMarked,
+      mdiCheckboxMultipleBlankOutline
     }
   },
 
@@ -169,8 +180,12 @@ export default {
       this.$emit('input', this.ascentStatus)
     },
 
-    selectAll () {
-      this.ascentStatus = this.ascentStatuses.map(status => status.value)
+    switchSelection () {
+      if (this.ascentStatus.length === this.ascentStatuses.length) {
+        this.ascentStatus = []
+      } else {
+        this.ascentStatus = this.ascentStatuses.map(status => status.value)
+      }
       this.onChange()
     }
   }

@@ -34,7 +34,7 @@
             outlined
           >
             <v-icon
-              :class="`climbs-pastille ${item.value} mr-3`"
+              :class="`climbs-pastille ${item.value}`"
               :color="climbingTypes === item.value ? 'green' : null"
               small
               left
@@ -46,13 +46,21 @@
         </v-chip-group>
       </div>
     </fieldset>
-    <v-chip v-if="multiple" class="ml-1" @click="selectAll()">
-      {{ $t('common.seeAll') }}
-    </v-chip>
+    <v-btn
+      v-if="multiple"
+      icon
+      large
+      @click="switchSelection()"
+    >
+      <v-icon>
+        {{ climbingTypes.length === climbByEnvironment().length ? mdiCheckboxMultipleBlankOutline : mdiCheckboxMultipleMarked }}
+      </v-icon>
+    </v-btn>
   </v-input>
 </template>
 
 <script>
+import { mdiCheckboxMultipleBlankOutline, mdiCheckboxMultipleMarked } from '@mdi/js'
 export default {
   name: 'ClimbingTypeInput',
   props: {
@@ -118,7 +126,10 @@ export default {
         { text: this.$t('models.climbs.training_space'), value: 'training_space' },
         { text: this.$t('models.climbs.pan'), value: 'pan' }
       ],
-      climbingTypes: this.value
+      climbingTypes: this.value,
+
+      mdiCheckboxMultipleMarked,
+      mdiCheckboxMultipleBlankOutline
     }
   },
 
@@ -137,8 +148,12 @@ export default {
       }
     },
 
-    selectAll () {
-      this.climbingTypes = this.climbByEnvironment().map(climb => climb.value)
+    switchSelection () {
+      if (this.climbingTypes.length === this.climbByEnvironment().length) {
+        this.climbingTypes = []
+      } else {
+        this.climbingTypes = this.climbByEnvironment().map(climb => climb.value)
+      }
       this.onChange()
     }
   }

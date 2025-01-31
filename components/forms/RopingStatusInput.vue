@@ -32,17 +32,27 @@
         </v-chip-group>
       </div>
     </fieldset>
-    <v-chip v-if="multiple" class="ml-1" @click="selectAll()">
-      {{ $t('common.seeAll') }}
-    </v-chip>
+    <v-btn
+      v-if="multiple"
+      icon
+      large
+      @click="switchSelection()"
+    >
+      <v-icon>
+        {{ ropingStatus.length === ropingStatuses.length ? mdiCheckboxMultipleBlankOutline : mdiCheckboxMultipleMarked }}
+      </v-icon>
+    </v-btn>
   </v-input>
 </template>
 
 <script>
+import { mdiCheckboxMultipleBlankOutline, mdiCheckboxMultipleMarked } from '@mdi/js'
 import { InputHelpers } from '@/mixins/InputHelpers'
 import {
-  oblykRopingStatusLeadClimb, oblykRopingStatusLeadClimbMultiPitchAlternateLead,
-  oblykRopingStatusMultiPitchLeader, oblykRopingStatusMultiPitchSecond,
+  oblykRopingStatusLeadClimb,
+  oblykRopingStatusLeadClimbMultiPitchAlternateLead,
+  oblykRopingStatusMultiPitchLeader,
+  oblykRopingStatusMultiPitchSecond,
   oblykRopingStatusTopRope
 } from '~/assets/oblyk-icons'
 
@@ -74,7 +84,10 @@ export default {
 
   data () {
     return {
-      ropingStatus: this.value
+      ropingStatus: this.value,
+
+      mdiCheckboxMultipleMarked,
+      mdiCheckboxMultipleBlankOutline
     }
   },
 
@@ -118,8 +131,13 @@ export default {
     onChange () {
       this.$emit('input', this.ropingStatus)
     },
-    selectAll () {
-      this.ropingStatus = this.ropingStatuses.map(status => status.value)
+
+    switchSelection () {
+      if (this.ropingStatus.length === this.ropingStatuses.length) {
+        this.ropingStatus = []
+      } else {
+        this.ropingStatus = this.ropingStatuses.map(roping => roping.value)
+      }
       this.onChange()
     }
   }
