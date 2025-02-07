@@ -121,7 +121,7 @@ export default {
       localStorage.setItem('filters', JSON.stringify(this.filters))
     },
     getAllAscentStatus () {
-      return ['onsight', 'flash', 'red_point', 'project', 'sent', 'repetition']
+      return ['onsight', 'flash', 'red_point', 'sent', 'repetition']
     },
     getAllRopingStatus () {
       return ['lead_climb', 'top_rope', 'multi_pitch_leader', 'multi_pitch_second', 'multi_pitch_alternate_lead']

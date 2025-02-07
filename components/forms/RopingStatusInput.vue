@@ -39,7 +39,7 @@
       @click="switchSelection()"
     >
       <v-icon>
-        {{ ropingStatus.length === ropingStatuses.length ? mdiCheckboxMultipleBlankOutline : mdiCheckboxMultipleMarked }}
+        {{ ropingStatus.length === ropingStatuses.length ? mdiCheckboxMultipleMarked : mdiCheckboxMultipleBlankOutline }}
       </v-icon>
     </v-btn>
   </v-input>

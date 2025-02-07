@@ -41,7 +41,7 @@
         @click="switchSelection()"
       >
         <v-icon>
-          {{ ascentStatus.length === ascentStatuses.length ? mdiCheckboxMultipleBlankOutline : mdiCheckboxMultipleMarked }}
+          {{ ascentStatus.length === ascentStatuses.length ? mdiCheckboxMultipleMarked : mdiCheckboxMultipleBlankOutline }}
         </v-icon>
       </v-btn>
     </v-input>

@@ -53,7 +53,7 @@
       @click="switchSelection()"
     >
       <v-icon>
-        {{ climbingTypes.length === climbByEnvironment().length ? mdiCheckboxMultipleBlankOutline : mdiCheckboxMultipleMarked }}
+        {{ climbingTypes.length === climbByEnvironment().length ? mdiCheckboxMultipleMarked : mdiCheckboxMultipleBlankOutline }}
       </v-icon>
     </v-btn>
   </v-input>
