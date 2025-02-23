@@ -5,6 +5,10 @@
         {{ mdiTrophy }}
       </v-icon>
       {{ $t('components.gymAdmin.contests') }} & {{ $t('components.gymAdmin.championships') }}
+      <indoor-subscription-up-btn
+        v-if="gym.plan !== 'full_package'"
+        :gym="gym"
+      />
     </v-card-title>
     <v-card-text class="text-center pt-5 pb-7 d-flex justify-space-around">
       <div>
@@ -27,32 +31,18 @@
     <v-card-actions>
       <v-spacer />
       <v-btn
-        :disabled="!contestOptionAuthorised"
         elevation="0"
         text
         outlined
         :to="`${gym.adminPath}/championships`"
       >
-        <v-icon
-          v-if="!contestOptionAuthorised"
-          left
-        >
-          {{ mdiLock }}
-        </v-icon>
         {{ $t('components.gymAdmin.championships') }}
       </v-btn>
       <v-btn
-        :disabled="!contestOptionAuthorised"
         elevation="0"
         color="primary"
         :to="`${gym.adminPath}/contests`"
       >
-        <v-icon
-          v-if="!contestOptionAuthorised"
-          left
-        >
-          {{ mdiLock }}
-        </v-icon>
         {{ $t('components.gymAdmin.contests') }}
       </v-btn>
     </v-card-actions>
@@ -60,11 +50,13 @@
 </template>
 
 <script>
-import { mdiTrophy, mdiLock } from '@mdi/js'
+import { mdiTrophy } from '@mdi/js'
 import GymApi from '~/services/oblyk-api/GymApi'
+import IndoorSubscriptionUpBtn from '~/components/indoorSubscription/IndoorSubscriptionUpBtn.vue'
 
 export default {
   name: 'GymAdminContestsFigures',
+  components: { IndoorSubscriptionUpBtn },
   props: {
     gym: {
       type: Object,
@@ -76,14 +68,7 @@ export default {
     return {
       figures: {},
 
-      mdiTrophy,
-      mdiLock
-    }
-  },
-
-  computed: {
-    contestOptionAuthorised () {
-      return this.gym.gym_options.find((option) => { return option.option_type === 'contest' && option.usable })
+      mdiTrophy
     }
   },
 

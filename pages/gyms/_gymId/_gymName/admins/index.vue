@@ -90,6 +90,15 @@
         <v-col cols="12" md="6" lg="4" class="pa-2">
           <gym-admin-openers-figures :gym="gym" />
         </v-col>
+        <v-col
+          v-if="gymAuthCan(gym, 'manage_subscription')"
+          cols="12"
+          md="6"
+          lg="4"
+          class="pa-2"
+        >
+          <gym-subscriptions-figures :gym="gym" />
+        </v-col>
       </v-row>
 
       <h4 class="mb-1 mt-8">
@@ -124,10 +133,13 @@ import GymAdminOpenersFigures from '~/components/gyms/admin/GymAdminOpenersFigur
 import GymAdminInteractiveGuideParameters from '~/components/gyms/admin/GymAdminInteractiveGuideParameters.vue'
 import GymAdminContestsFigures from '~/components/gyms/admin/GymAdminContestFigures.vue'
 import GymAdminCommentAndVideoFigures from '~/components/gyms/admin/GymAdminCommentAndVideoFigures.vue'
+import GymSubscriptionsFigures from '~/components/gyms/admin/GymSubscriptionsFigures.vue'
+import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
 
 export default {
   meta: { orphanRoute: true },
   components: {
+    GymSubscriptionsFigures,
     GymAdminCommentAndVideoFigures,
     GymAdminContestsFigures,
     GymAdminInteractiveGuideParameters,
@@ -138,7 +150,7 @@ export default {
     GymAdminTeamFigures
   },
 
-  mixins: [GymConcern],
+  mixins: [GymConcern, GymRolesHelpers],
   middleware: ['auth', 'gymAdmin'],
 
   data () {

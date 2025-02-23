@@ -3,6 +3,10 @@
     <spinner v-if="loadingChampionships && !gym" />
     <div v-if="!loadingChampionships && gym">
       <v-breadcrumbs :items="breadcrumbs" />
+      <indoor-subscription-lock-alert
+        feature="championship"
+        :gym="gym"
+      />
       <v-list
         v-if="championships.length > 0"
         class="mb-4"
@@ -37,9 +41,22 @@
         <v-btn
           elevation="0"
           color="primary"
+          :disabled="gym.plan === 'free'"
           :to="`${gym.adminPath}/championships/new`"
         >
+          <v-icon
+            v-if="gym.plan === 'free'"
+            left
+          >
+            {{ mdiLock }}
+          </v-icon>
           Nouveau championnat
+          <v-icon
+            v-if="gym.plan === 'free_trial'"
+            right
+          >
+            {{ mdiArrowUpBoldHexagonOutline }}
+          </v-icon>
         </v-btn>
       </div>
     </div>
@@ -47,16 +64,17 @@
 </template>
 
 <script>
-import { mdiBookshelf } from '@mdi/js'
+import { mdiBookshelf, mdiArrowUpBoldHexagonOutline, mdiLock } from '@mdi/js'
 import { GymFetchConcern } from '~/concerns/GymFetchConcern'
 import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
 import Spinner from '~/components/layouts/Spiner'
 import ChampionshipApi from '~/services/oblyk-api/ChampionshipApi'
 import ChampionshipItemList from '~/components/championships/ChampionshipItemList.vue'
 import Championship from '~/models/Championship'
+import IndoorSubscriptionLockAlert from '~/components/indoorSubscription/IndoorSubscriptionLockAlert.vue'
 
 export default {
-  components: { ChampionshipItemList, Spinner },
+  components: { IndoorSubscriptionLockAlert, ChampionshipItemList, Spinner },
   meta: { orphanRoute: true },
   mixins: [GymFetchConcern, GymRolesHelpers],
   middleware: ['auth', 'gymAdmin'],
@@ -66,7 +84,9 @@ export default {
       loadingChampionships: true,
       championships: [],
 
-      mdiBookshelf
+      mdiLock,
+      mdiBookshelf,
+      mdiArrowUpBoldHexagonOutline
     }
   },
 

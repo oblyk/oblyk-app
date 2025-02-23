@@ -9,12 +9,19 @@
 
     <v-tab to="statistics">
       {{ $t('components.gym.tabs.statistics') }}
+      <v-icon
+        v-if="gym.plan !== 'full_package'"
+        right
+        color="deep-purple accent-4"
+      >
+        {{ mdiArrowUpBoldHexagonOutline }}
+      </v-icon>
     </v-tab>
   </v-tabs>
 </template>
 
 <script>
-import { mdiArrowLeft } from '@mdi/js'
+import { mdiArrowLeft, mdiArrowUpBoldHexagonOutline } from '@mdi/js'
 
 export default {
   name: 'GymAdminRoutesTabs',
@@ -27,7 +34,8 @@ export default {
 
   data () {
     return {
-      mdiArrowLeft
+      mdiArrowLeft,
+      mdiArrowUpBoldHexagonOutline
     }
   }
 }

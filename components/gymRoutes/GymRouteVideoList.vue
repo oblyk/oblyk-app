@@ -48,10 +48,15 @@
               {{ $t('actions.addVideo') }}
             </v-card-title>
             <div class="px-4 pb-4">
+              <indoor-subscription-lock-alert
+                v-if="currentUserIsGymAdmin() && gym.plan === 'free'"
+                feature="video"
+                :gym="gym"
+              />
               <video-form
                 :video="{ viewable_type: 'GymRoute', viewable_id: gymRoute.id }"
                 :show-description="currentUserIsGymAdmin()"
-                :enable-oblyk-video="currentUserIsGymAdmin()"
+                :enable-oblyk-video="currentUserIsGymAdmin() && gym.plan !== 'free'"
                 :callback="getVideos"
               />
             </div>
@@ -69,10 +74,11 @@ import Video from '~/models/Video'
 import VideoCard from '~/components/videos/VideoCard.vue'
 import VideoForm from '~/components/videos/forms/VideoForm.vue'
 import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
+import IndoorSubscriptionLockAlert from '~/components/indoorSubscription/IndoorSubscriptionLockAlert.vue'
 
 export default {
   name: 'GymRouteVideoList',
-  components: { VideoForm, VideoCard },
+  components: { IndoorSubscriptionLockAlert, VideoForm, VideoCard },
   mixins: [GymRolesHelpers],
   props: {
     gym: {

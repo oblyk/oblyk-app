@@ -9,13 +9,30 @@
         <template #default>
           <thead>
             <tr>
-              <th class="text-left">
+              <th rowspan="2" class="text-left border-bottom">
                 {{ $t('models.user.name') }}
               </th>
-              <th class="text-left">
+              <th rowspan="2" class="border-bottom border-right" />
+              <th
+                class="text-center border-bottom"
+                colspan="6"
+              >
                 {{ $t('models.gymAdministrator.roles') }}
               </th>
-              <th v-if="gymAuthCan(gym, 'manage_team_member')" />
+              <th
+                v-if="gymAuthCan(gym, 'manage_team_member')"
+                class="border-bottom border-left"
+                rowspan="2"
+              />
+            </tr>
+            <tr>
+              <th
+                v-for="(role, roleIndex) in roles"
+                :key="`role-th-index-${roleIndex}`"
+                class="text-center"
+              >
+                {{ $t(`models.roles.${role}`) }}
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -23,30 +40,52 @@
               v-for="(gymAdministrator, gymAdministratorIndex) in gymAdministrators"
               :key="`gym-administrator-index-${gymAdministratorIndex}`"
             >
-              <td>
+              <td class="border-right">
                 <span v-if="gymAdministrator.user">
                   {{ `${gymAdministrator.user.full_name}` }}
                 </span>
-                <v-chip
-                  v-else
-                  color="amber"
+                <span
+                  v-if="!gymAdministrator.user"
                 >
-                  <b class="mr-1">{{ gymAdministrator.requested_email }}</b>
+                  ~ {{ gymAdministrator.requested_email }}
+                </span>
+                <v-chip
+                  v-if="!gymAdministrator.user"
+                  color="amber lighten-4"
+                >
                   en attente de confirmation
                 </v-chip>
               </td>
-              <td>
-                <v-chip
-                  v-for="(role, roleIndex) in gymAdministrator.roles"
-                  :key="`role-index-${roleIndex}`"
-                  class="mr-1"
-                >
-                  {{ $t(`models.roles.${role}`) }}
-                </v-chip>
+              <td class="border-right">
+                <v-tooltip bottom>
+                  <template
+                    v-if="gymAdministrator.email_report"
+                    #activator="{ on, attrs }"
+                  >
+                    <v-icon
+                      v-bind="attrs"
+                      v-on="on"
+                    >
+                      {{ mdiFileChart }}
+                    </v-icon>
+                  </template>
+                  <span>
+                    Inscrit au rapport mensuel
+                  </span>
+                </v-tooltip>
+              </td>
+              <td
+                v-for="(role, roleIndex) in roles"
+                :key="`role-index-${roleIndex}`"
+                class="text-center"
+              >
+                <v-icon :color="gymAdministrator.roles.includes(role) ? 'green' : 'red lighten-3'">
+                  {{ gymAdministrator.roles.includes(role) ? mdiCheckBold : mdiCloseThick }}
+                </v-icon>
               </td>
               <td
                 v-if="gymAuthCan(gym, 'manage_team_member')"
-                class="text-right text-no-wrap"
+                class="text-right text-no-wrap border-left"
               >
                 <v-btn
                   icon
@@ -68,6 +107,8 @@
           </tbody>
         </template>
       </v-simple-table>
+
+      <gym-administrator-rights-card />
 
       <div
         v-if="gym && gymAuthCan(gym, 'manage_team_member')"
@@ -97,16 +138,24 @@
 </template>
 
 <script>
-import { mdiDelete, mdiArrowLeft, mdiPencil } from '@mdi/js'
+import {
+  mdiDelete,
+  mdiArrowLeft,
+  mdiPencil,
+  mdiCheckBold,
+  mdiCloseThick,
+  mdiFileChart
+} from '@mdi/js'
+import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
+import { GymFetchConcern } from '~/concerns/GymFetchConcern'
 import Spinner from '@/components/layouts/Spiner'
 import GymAdministratorApi from '@/services/oblyk-api/GymAdministratorApi'
-import { GymFetchConcern } from '~/concerns/GymFetchConcern'
 import GymAdministrator from '~/models/GymAdministrator'
-import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
+import GymAdministratorRightsCard from '~/components/gymAdministrators/GymAdministratorRightsCard'
 
 export default {
   meta: { orphanRoute: true },
-  components: { Spinner },
+  components: { GymAdministratorRightsCard, Spinner },
   mixins: [GymFetchConcern, GymRolesHelpers],
   middleware: ['auth', 'gymAdmin'],
 
@@ -114,10 +163,21 @@ export default {
     return {
       loadingGymAdministrators: true,
       gymAdministrators: [],
+      roles: [
+        'manage_gym',
+        'manage_space',
+        'manage_opening',
+        'manage_team_member',
+        'manage_opener',
+        'manage_subscription'
+      ],
 
       mdiDelete,
       mdiArrowLeft,
-      mdiPencil
+      mdiPencil,
+      mdiCheckBold,
+      mdiCloseThick,
+      mdiFileChart
     }
   },
 

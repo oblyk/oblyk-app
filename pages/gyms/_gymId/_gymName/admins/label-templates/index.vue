@@ -6,6 +6,11 @@
       <h2 class="mb-3">
         {{ $t('components.gymAdmin.labelTemplate') }}
       </h2>
+      <indoor-subscription-lock-alert
+        v-if="gym.plan === 'free'"
+        feature="labelTemplate"
+        :gym="gym"
+      />
       <v-skeleton-loader
         v-if="loadingLabelTemplates"
         type="list-item"
@@ -46,12 +51,20 @@
           <v-btn
             outlined
             text
+            :disabled="gym.plan === 'free'"
             :to="`${gym.adminPath}/label-templates/new`"
           >
             <v-icon left>
-              {{ mdiPlus }}
+              {{ gym.plan === 'free' ? mdiLock : mdiPlus }}
             </v-icon>
             {{ $t('actions.new') }}
+            <v-icon
+              v-if="gym.plan === 'free_trial'"
+              right
+              color="deep-purple accent-4"
+            >
+              {{ mdiArrowUpBoldHexagonOutline }}
+            </v-icon>
           </v-btn>
         </div>
         <v-alert
@@ -79,14 +92,15 @@
 </template>
 
 <script>
-import { mdiPlus, mdiFileDocumentOutline, mdiArrowLeft } from '@mdi/js'
+import { mdiPlus, mdiFileDocumentOutline, mdiArrowLeft, mdiLock, mdiArrowUpBoldHexagonOutline } from '@mdi/js'
 import { GymFetchConcern } from '~/concerns/GymFetchConcern'
 import GymLabelTemplateApi from '~/services/oblyk-api/GymLabelTemplateApi'
 import GymLabelTemplate from '~/models/GymLabelTemplate'
 import Spinner from '~/components/layouts/Spiner.vue'
+import IndoorSubscriptionLockAlert from '~/components/indoorSubscription/IndoorSubscriptionLockAlert.vue'
 
 export default {
-  components: { Spinner },
+  components: { IndoorSubscriptionLockAlert, Spinner },
   meta: { orphanRoute: true },
   mixins: [GymFetchConcern],
   middleware: ['auth', 'gymAdmin'],
@@ -98,7 +112,9 @@ export default {
 
       mdiPlus,
       mdiFileDocumentOutline,
-      mdiArrowLeft
+      mdiArrowLeft,
+      mdiLock,
+      mdiArrowUpBoldHexagonOutline
     }
   },
 

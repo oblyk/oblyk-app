@@ -3,7 +3,12 @@
     <div v-if="gym">
       <v-breadcrumbs :items="breadcrumbs" />
       <gym-admin-routes-tabs :gym="gym" />
-      <div>
+      <indoor-subscription-lock-alert
+        feature="statistics"
+        :gym="gym"
+        class="mt-4"
+      />
+      <div v-if="gym.plan !== 'free'">
         <!-- Filters -->
         <gym-statistic-filters
           :emit-filters="emitFilters"
@@ -88,9 +93,11 @@ import GymStatisticLevelsChart from '~/components/gymStatistics/GymStatisticLeve
 import GymStatisticOpeningFrequenciesChart from '~/components/gymStatistics/GymStatisticOpeningFrequenciesChart.vue'
 import GymStatisticLikeFigures from '~/components/gymStatistics/GymStatisticLikeFigures.vue'
 import { DateHelpers } from '~/mixins/DateHelpers'
+import IndoorSubscriptionLockAlert from '~/components/indoorSubscription/IndoorSubscriptionLockAlert.vue'
 
 export default {
   components: {
+    IndoorSubscriptionLockAlert,
     GymStatisticLikeFigures,
     GymStatisticOpeningFrequenciesChart,
     GymStatisticLevelsChart,

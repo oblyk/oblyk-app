@@ -16,7 +16,19 @@ export default function ({ $axios, redirect, $auth }) {
       }
       redirect('/sign-in')
     } else if (code === 403) {
-      window.location.href = '/errors/right-required'
+      if (error.response.data.need) {
+        const need = error.response.data.need
+        const params = []
+        if (need.gym_name) {
+          params.push(`gym_name=${need.gym_name}`)
+        }
+        if (need.role) {
+          params.push(`role=${need.role}`)
+        }
+        window.location.href = `/errors/right-required?${params.join('&')}`
+      } else {
+        window.location.href = '/errors/right-required'
+      }
     } else {
       return Promise.reject(error)
     }

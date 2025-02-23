@@ -7,12 +7,19 @@
     >
       {{ $t('common.loading') }}
     </p>
-    <gym-label-template-form
-      v-else
-      :gym="gym"
-      :gym-label-template="gymLabelTemplate"
-      submit-methode="post"
-    />
+    <div v-else>
+      <indoor-subscription-lock-alert
+        v-if="gym.plan === 'free'"
+        feature="labelTemplate"
+        :gym="gym"
+      />
+      <gym-label-template-form
+        v-else
+        :gym="gym"
+        :gym-label-template="gymLabelTemplate"
+        submit-methode="post"
+      />
+    </div>
   </v-container>
 </template>
 
@@ -21,9 +28,10 @@ import { GymFetchConcern } from '~/concerns/GymFetchConcern'
 import GymLabelTemplateForm from '~/components/gymLabelTemplates/forms/GymLabelTemplateForm'
 import GymLabelTemplateApi from '~/services/oblyk-api/GymLabelTemplateApi'
 import GymLabelTemplate from '~/models/GymLabelTemplate'
+import IndoorSubscriptionLockAlert from '~/components/indoorSubscription/IndoorSubscriptionLockAlert.vue'
 
 export default {
-  components: { GymLabelTemplateForm },
+  components: { IndoorSubscriptionLockAlert, GymLabelTemplateForm },
   meta: { orphanRoute: true },
   mixins: [GymFetchConcern],
   middleware: ['auth', 'gymAdmin'],

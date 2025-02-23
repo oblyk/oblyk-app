@@ -258,11 +258,23 @@
                 {{ $tc('components.gymAdmin.mountRoutes', routeSelected.length, { count: routeSelected.length }) }}
               </v-list-item-title>
             </v-list-item>
-            <v-list-item @click="printCollection()">
+            <v-list-item
+              :disabled="gym.plan === 'free'"
+              @click="printCollection()"
+            >
               <v-list-item-icon>
                 <v-icon>{{ mdiPrinter }}</v-icon>
               </v-list-item-icon>
-              <v-list-item-title>
+              <v-list-item-title
+                :class="gym.plan === 'free' ? 'text--disabled' : ''"
+              >
+                <v-icon
+                  v-if="gym.plan !== 'full_package'"
+                  left
+                  color="deep-purple accent-4"
+                >
+                  {{ mdiArrowUpBoldHexagonOutline }}
+                </v-icon>
                 {{ $tc('components.gymAdmin.printRoutes', routeSelected.length, { count: routeSelected.length }) }}
               </v-list-item-title>
             </v-list-item>
@@ -274,11 +286,23 @@
                 {{ $tc('components.gymAdmin.exportRoutes', routeSelected.length, { count: routeSelected.length }) }}
               </v-list-item-title>
             </v-list-item>
-            <v-list-item @click="openingSheetCollection()">
+            <v-list-item
+              :disabled="gym.plan === 'free'"
+              @click="openingSheetCollection()"
+            >
               <v-list-item-icon>
                 <v-icon>{{ mdiFileRefreshOutline }}</v-icon>
               </v-list-item-icon>
-              <v-list-item-title>
+              <v-list-item-title
+                :class="gym.plan === 'free' ? 'text--disabled' : ''"
+              >
+                <v-icon
+                  v-if="gym.plan !== 'full_package'"
+                  left
+                  color="deep-purple accent-4"
+                >
+                  {{ mdiArrowUpBoldHexagonOutline }}
+                </v-icon>
                 {{ $t('components.gymAdmin.openingSheetForRoutes') }}
               </v-list-item-title>
             </v-list-item>
@@ -393,7 +417,8 @@ import {
   mdiArrowRightThin,
   mdiMagnify,
   mdiEyeOutline,
-  mdiFileRefreshOutline
+  mdiFileRefreshOutline,
+  mdiArrowUpBoldHexagonOutline
 } from '@mdi/js'
 import { DateHelpers } from '@/mixins/DateHelpers'
 import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
@@ -459,7 +484,8 @@ export default {
       mdiArrowRightThin,
       mdiMagnify,
       mdiEyeOutline,
-      mdiFileRefreshOutline
+      mdiFileRefreshOutline,
+      mdiArrowUpBoldHexagonOutline
     }
   },
 

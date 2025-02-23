@@ -12,12 +12,19 @@
         >
           {{ $t('common.loading') }}
         </p>
-        <gym-opening-sheet-form
-          v-else
-          :gym="gym"
-          :tree-routes="treeRoutes"
-          submit-methode="post"
-        />
+        <div v-else>
+          <indoor-subscription-lock-alert
+            v-if="gym.plan === 'free'"
+            feature="openingSheet"
+            :gym="gym"
+          />
+          <gym-opening-sheet-form
+            v-else
+            :gym="gym"
+            :tree-routes="treeRoutes"
+            submit-methode="post"
+          />
+        </div>
       </v-col>
     </v-row>
   </v-container>
@@ -27,9 +34,10 @@
 import { GymFetchConcern } from '~/concerns/GymFetchConcern'
 import GymOpeningSheetForm from '~/components/gymOpeningSheets/forms/GymOpeningSheetForm'
 import GymSpaceApi from '~/services/oblyk-api/GymSpaceApi'
+import IndoorSubscriptionLockAlert from '~/components/indoorSubscription/IndoorSubscriptionLockAlert.vue'
 
 export default {
-  components: { GymOpeningSheetForm },
+  components: { IndoorSubscriptionLockAlert, GymOpeningSheetForm },
   meta: { orphanRoute: true },
   mixins: [GymFetchConcern],
   middleware: ['auth', 'gymAdmin'],

@@ -5,10 +5,19 @@
       <v-breadcrumbs :items="breadcrumbs" />
       <h1 class="mb-0">
         {{ $t('components.openingSheet.list') }}
+        <indoor-subscription-up-btn
+          v-if="gym.plan !== 'full_package'"
+          :gym="gym"
+          :small="false"
+        />
       </h1>
       <p class="subtitle-2 text--disabled">
         {{ $t('components.openingSheet.explain') }}
       </p>
+      <indoor-subscription-lock-alert
+        feature="openingSheet"
+        :gym="gym"
+      />
       <div class="text-right mb-3">
         <v-btn
           v-if="!showArchive"
@@ -36,6 +45,7 @@
           v-if="!showArchive"
           elevation="0"
           :to="`${gym.adminPath}/opening-sheets/new`"
+          :disabled="gym.plan === 'free'"
           color="primary"
         >
           <v-icon left>
@@ -137,9 +147,11 @@ import { DateHelpers } from '~/mixins/DateHelpers'
 import Spinner from '~/components/layouts/Spiner'
 import GymOpeningSheetApi from '~/services/oblyk-api/GymOpeningSheetApi'
 import GymOpeningSheet from '~/models/GymOpeningSheet'
+import IndoorSubscriptionUpBtn from '~/components/indoorSubscription/IndoorSubscriptionUpBtn.vue'
+import IndoorSubscriptionLockAlert from '~/components/indoorSubscription/IndoorSubscriptionLockAlert.vue'
 
 export default {
-  components: { Spinner },
+  components: { IndoorSubscriptionLockAlert, IndoorSubscriptionUpBtn, Spinner },
   meta: { orphanRoute: true },
   mixins: [GymFetchConcern, DateHelpers],
   middleware: ['auth', 'gymAdmin'],

@@ -1,7 +1,13 @@
 <template>
   <v-container v-if="gym">
     <v-breadcrumbs :items="breadcrumbs" />
+    <indoor-subscription-lock-alert
+      v-if="gym.plan === 'free'"
+      feature="championship"
+      :gym="gym"
+    />
     <championship-form
+      v-else
       :gym="gym"
       submit-methode="post"
     />
@@ -11,9 +17,10 @@
 <script>
 import { GymFetchConcern } from '~/concerns/GymFetchConcern'
 import ChampionshipForm from '~/components/championships/forms/ChampionshipForm.vue'
+import IndoorSubscriptionLockAlert from '~/components/indoorSubscription/IndoorSubscriptionLockAlert.vue'
 
 export default {
-  components: { ChampionshipForm },
+  components: { IndoorSubscriptionLockAlert, ChampionshipForm },
   meta: { orphanRoute: true },
   mixins: [GymFetchConcern],
   middleware: ['auth', 'gymAdmin'],

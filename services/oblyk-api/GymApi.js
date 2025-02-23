@@ -201,5 +201,16 @@ class GymApi extends BaseApi {
       }
     })
   }
+
+  stripeCustomerPortal (gymId) {
+    return this.axios.request({
+      method: 'GET',
+      url: `${this.baseUrl}/gyms/${gymId}/stripe_customer_portal.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
+    })
+  }
 }
 export default GymApi

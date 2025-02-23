@@ -3,6 +3,10 @@
     <spinner v-if="loadingContests && !gym" />
     <div v-if="!loadingContests && gym">
       <v-breadcrumbs :items="breadcrumbs" />
+      <indoor-subscription-lock-alert
+        feature="contest"
+        :gym="gym"
+      />
       <v-list
         v-if="contests.length > 0"
         class="mb-4"
@@ -37,9 +41,22 @@
         <v-btn
           color="primary"
           elevation="0"
+          :disabled="gym.plan === 'free'"
           :to="`${gym.adminPath}/contests/new`"
         >
+          <v-icon
+            v-if="gym.plan === 'free'"
+            left
+          >
+            {{ mdiLock }}
+          </v-icon>
           Nouveau contest
+          <v-icon
+            v-if="gym.plan === 'free_trial'"
+            right
+          >
+            {{ mdiArrowUpBoldHexagonOutline }}
+          </v-icon>
         </v-btn>
       </div>
     </div>
@@ -47,16 +64,17 @@
 </template>
 
 <script>
-import { mdiBookshelf } from '@mdi/js'
+import { mdiBookshelf, mdiLock, mdiArrowUpBoldHexagonOutline } from '@mdi/js'
 import { GymFetchConcern } from '~/concerns/GymFetchConcern'
 import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
 import Spinner from '~/components/layouts/Spiner'
 import ContestApi from '~/services/oblyk-api/ContestApi'
 import Contest from '~/models/Contest'
 import ContestItemList from '~/components/contests/ContestItemList'
+import IndoorSubscriptionLockAlert from '~/components/indoorSubscription/IndoorSubscriptionLockAlert.vue'
 
 export default {
-  components: { ContestItemList, Spinner },
+  components: { IndoorSubscriptionLockAlert, ContestItemList, Spinner },
   meta: { orphanRoute: true },
   mixins: [GymFetchConcern, GymRolesHelpers],
   middleware: ['auth', 'gymAdmin'],
@@ -66,7 +84,9 @@ export default {
       loadingContests: true,
       contests: [],
 
-      mdiBookshelf
+      mdiBookshelf,
+      mdiLock,
+      mdiArrowUpBoldHexagonOutline
     }
   },
 

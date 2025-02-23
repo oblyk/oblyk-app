@@ -43,13 +43,21 @@
 
         <!-- Print label -->
         <v-list-item
+          :disabled="gym.plan === 'free'"
           @click="printDialog()"
         >
           <v-list-item-icon>
             <v-icon>{{ mdiPrinter }}</v-icon>
           </v-list-item-icon>
-          <v-list-item-title>
+          <v-list-item-title :class="gym.plan === 'free' ? 'text--disabled' : ''">
             {{ $t('actions.print') }}
+            <v-icon
+              v-if="gym.plan !== 'full_package'"
+              color="deep-purple accent-4"
+              right
+            >
+              {{ mdiArrowUpBoldHexagonOutline }}
+            </v-icon>
           </v-list-item-title>
         </v-list-item>
 
@@ -118,7 +126,8 @@ import {
   mdiVectorPolygon,
   mdiVectorSquareRemove,
   mdiSourceBranchPlus,
-  mdiPrinter
+  mdiPrinter,
+  mdiArrowUpBoldHexagonOutline
 } from '@mdi/js'
 import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
 import GymSectorApi from '~/services/oblyk-api/GymSectorApi'
@@ -156,7 +165,8 @@ export default {
       mdiVectorPolygon,
       mdiVectorSquareRemove,
       mdiSourceBranchPlus,
-      mdiPrinter
+      mdiPrinter,
+      mdiArrowUpBoldHexagonOutline
     }
   },
 

@@ -69,6 +69,7 @@ export default {
     createAndPicture: 'Créer + Photo',
     finish: 'Terminer',
     filter: 'Filtrer',
+    refresh: 'Rafraîchir',
     textCopied: 'Texte copié',
     shareOn: 'Partager sur',
     share: 'Partager',
@@ -149,6 +150,7 @@ export default {
     send: 'Envoyer',
     subscribeMe: "M'inscrire",
     unsubscribeMe: 'Me désinscrire',
+    subscribeNow: "M'abonner",
     accept: 'Accepter',
     reject: 'Refuser',
     comment: 'Commenter',
@@ -667,6 +669,7 @@ export default {
       age: 'Age',
       textAlign: 'Alignement du text',
       colorPickerInput: 'Couleur',
+      countryCode: 'Pays',
       colorSystem: {
         chooseOrder: 'Choisissez un ordre de couleur',
         usage: 'Déjà utilisé %{count} fois ici',
@@ -1273,6 +1276,7 @@ export default {
       openers: 'Les ouvreurs et ouvreuses',
       contests: 'Contests',
       championships: 'Championnats',
+      subscriptions: 'Abonnements',
       home: 'Tableau de bord',
       parameters: 'Paramètres',
       rakingSystem: 'Les classements',
@@ -2072,7 +2076,8 @@ export default {
       no_file: 'Un fichier doit être transmis',
       file_wrong_format: "Le fichier n'est pas au bon format",
       must_be_valid_video_service: "doit être un url valide d'une vidéo publique parmi les services pris en charge",
-      three_d_import_error: "Une erreur s'est produite lors de l'import ou la conversion de votre modèle 3D"
+      three_d_import_error: "Une erreur s'est produite lors de l'import ou la conversion de votre modèle 3D",
+      free_trial_already_exists: "La période d'essai gratuite à déjà été prise"
     }
   },
   models: {
@@ -2316,7 +2321,13 @@ export default {
       fun_climbing: 'Fun climbing',
       training_space: "Espace d'entrainement",
       latitude: 'Latitude',
-      longitude: 'Longitude'
+      longitude: 'Longitude',
+      plan: 'abonnement',
+      plan_list: {
+        free: 'Gratuit',
+        free_trial: 'Essais Gratuit',
+        full_package: 'Pack Complet'
+      }
     },
     gymAdministratorRequest: {
       justification: 'Justificatif(s)',
@@ -2328,9 +2339,22 @@ export default {
       requested_email: 'Email',
       user: 'Un compte Oblyk associé à ce mail',
       roles: 'Peut gérer',
+      rights: 'Les droits',
       subscribe_to_comment_feed: "M'avertir des nouveaux commentaires",
       subscribe_to_video_feed: "M'avertir des nouvelles vidéos",
       email_report: 'Recevoir les rapports mensuels de %{name}'
+    },
+    gymBillingAccount: {
+      name: 'Nom',
+      email: 'Email',
+      phone: 'Téléphone',
+      siret: 'SIRET',
+      address_line1: 'Adresse (ligne 1)',
+      address_line2: 'Adresse (ligne 2)',
+      city: 'Ville',
+      postal_code: 'Code postale',
+      country_code: 'Pays',
+      state: 'Département'
     },
     gymOpener: {
       name: 'Nom / pseudonyme',
@@ -2510,7 +2534,16 @@ export default {
       manage_opening: 'Les ouvertures',
       manage_space: 'Les espaces et secteur',
       manage_gym: 'La salle',
-      manage_opener: 'Les ouvreurs·euses'
+      manage_opener: 'Les ouvreurs, ouvreuses',
+      manage_subscription: 'Les abonnements & facturations'
+    },
+    rolesExplain: {
+      manage_team_member: "Permet d'inviter et ajouter de nouveau membre à l'équipe de votre salle et leur attribuer des droits.",
+      manage_opening: "Permet d'ajouter, modifier et démonter les voies et blocs de votre salle.",
+      manage_space: "Permet d'ajouter, modifier et supprimer les espaces et secteurs de votre salle.",
+      manage_gym: 'Permet de modifier les informations principale de votre salle : nom, description, logo, bandeau, etc.',
+      manage_opener: 'Permet de modifier la liste des ouvreurs et ouvreuses.',
+      manage_subscription: "Permet de souscrire, résilier et voir les factures de l'abonnement de votre salle."
     },
     championship: {
       name: 'Nom',

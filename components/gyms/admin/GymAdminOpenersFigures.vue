@@ -1,5 +1,5 @@
 <template>
-  <v-card class="full-height">
+  <v-card class="full-height d-flex flex-column justify-space-between">
     <v-card-title>
       <v-icon left>
         {{ mdiBolt }}

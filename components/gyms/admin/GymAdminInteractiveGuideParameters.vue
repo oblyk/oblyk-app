@@ -96,6 +96,10 @@
               {{ mdiFileDocumentOutline }}
             </v-icon>
             {{ $t('components.gymAdmin.labelTemplate') }}
+            <indoor-subscription-up-btn
+              v-if="gym.plan !== 'full_package'"
+              :gym="gym"
+            />
           </p>
           <p class="mb-2">
             {{ $t('components.gymAdmin.labelTemplateExplain') }}
@@ -116,10 +120,17 @@
 </template>
 
 <script>
-import { mdiFormatListBulletedSquare, mdiFileDocumentOutline, mdiHumanGreeting, mdiPodium } from '@mdi/js'
+import {
+  mdiFormatListBulletedSquare,
+  mdiFileDocumentOutline,
+  mdiHumanGreeting,
+  mdiPodium
+} from '@mdi/js'
+import IndoorSubscriptionUpBtn from '~/components/indoorSubscription/IndoorSubscriptionUpBtn.vue'
 
 export default {
   name: 'GymAdminInteractiveGuideParameters',
+  components: { IndoorSubscriptionUpBtn },
   props: {
     gym: {
       type: Object,

@@ -53,6 +53,7 @@
         {{ $t('components.gymAdmin.table') }}
       </v-btn>
       <v-btn
+        v-if="gym.plan === 'full_package'"
         elevation="0"
         color="primary"
         :to="`${gym.adminPath}/routes/statistics`"
@@ -62,12 +63,34 @@
         </v-icon>
         {{ $t('components.gymAdmin.statistic') }}
       </v-btn>
+      <v-btn
+        v-else
+        elevation="0"
+        outlined
+        text
+        :to="`${gym.adminPath}/routes/statistics`"
+      >
+        <v-icon
+          left
+          color="deep-purple accent-4"
+        >
+          {{ mdiArrowUpBoldHexagonOutline }}
+        </v-icon>
+        {{ $t('components.gymAdmin.statistic') }}
+      </v-btn>
     </v-card-actions>
   </v-card>
 </template>
 
 <script>
-import { mdiSourceBranch, mdiTable, mdiChartBar, mdiDotsVertical, mdiFileRefreshOutline } from '@mdi/js'
+import {
+  mdiSourceBranch,
+  mdiTable,
+  mdiChartBar,
+  mdiDotsVertical,
+  mdiFileRefreshOutline,
+  mdiArrowUpBoldHexagonOutline
+} from '@mdi/js'
 import GymApi from '~/services/oblyk-api/GymApi'
 
 export default {
@@ -87,7 +110,8 @@ export default {
       mdiTable,
       mdiChartBar,
       mdiDotsVertical,
-      mdiFileRefreshOutline
+      mdiFileRefreshOutline,
+      mdiArrowUpBoldHexagonOutline
     }
   },
 

@@ -69,6 +69,7 @@ export default {
     createAndPicture: 'Create + Picture',
     finish: 'Finish',
     filter: 'Filter',
+    refresh: 'Refresh',
     textCopied: 'Text copied',
     shareOn: 'Share on',
     share: 'Share',
@@ -149,6 +150,7 @@ export default {
     send: 'Send',
     subscribeMe: 'Subscribe',
     unsubscribeMe: 'Unsubscribe',
+    subscribeNow: 'Subscribe now',
     accept: 'Accept',
     reject: 'Reject',
     comment: 'Comment',
@@ -667,6 +669,7 @@ export default {
       age: 'Age',
       textAlign: 'Text alignment',
       colorPickerInput: 'Colour',
+      countryCode: 'County',
       colorSystem: {
         chooseOrder: 'Choose a colour ordering',
         usage: 'Already used %{count} times here',
@@ -1274,6 +1277,7 @@ export default {
       home: 'Dashboard',
       contests: 'Contests',
       championships: 'Championships',
+      subscriptions: 'Subscriptions',
       parameters: 'Parameters',
       rakingSystem: 'Ranking system',
       rakingExplain: 'Parameter for monthly ranking by climbing style',
@@ -2072,7 +2076,8 @@ export default {
       no_file: 'A file must be transmitted',
       file_wrong_format: 'The file is in the wrong format',
       must_be_valid_video_service: 'must be a valid url of a public video among the supported services',
-      three_d_import_error: 'An error occurred while importing or converting your 3D model'
+      three_d_import_error: 'An error occurred while importing or converting your 3D model',
+      free_trial_already_exists: 'The free trial period has already been taken'
     }
   },
   models: {
@@ -2316,7 +2321,13 @@ export default {
       fun_climbing: 'Fun climbing',
       training_space: 'Training space',
       latitude: 'Latitude',
-      longitude: 'Longitude'
+      longitude: 'Longitude',
+      plan: 'Subscription',
+      plan_list: {
+        free: 'Free',
+        free_trial: 'Free Trial',
+        full_package: 'Full Package'
+      }
     },
     gymAdministratorRequest: {
       justification: 'Justification',
@@ -2328,9 +2339,22 @@ export default {
       requested_email: 'Email',
       user: 'An Oblyk account associated with this email',
       roles: 'Can manage',
+      rights: 'Rights',
       subscribe_to_comment_feed: 'Notify me of new comments',
       subscribe_to_video_feed: 'Notify me of new videos',
       email_report: 'Receive monthly reports from %{name}'
+    },
+    gymBillingAccount: {
+      name: 'Name',
+      email: 'Email',
+      phone: 'Phone',
+      siret: 'SIRET',
+      address_line1: 'Address (ligne 1)',
+      address_line2: 'Address (ligne 2)',
+      city: 'City',
+      postal_code: 'Postal code',
+      country_code: 'Country',
+      state: 'State'
     },
     gymOpener: {
       name: 'Name / Alias',
@@ -2510,7 +2534,16 @@ export default {
       manage_opening: 'Opening',
       manage_space: 'Space and sector',
       manage_gym: 'Gym',
-      manage_opener: 'Route setters'
+      manage_opener: 'Route setters',
+      manage_subscription: 'Subscriptions & Billing'
+    },
+    rolesExplain: {
+      manage_team_member: 'Allows you to invite and add new members to your climbing gym team and assign them rights.',
+      manage_opening: 'Allows you to add, modify and remove routes and boulder in your climbing gym.',
+      manage_space: 'Allows you to add, modify and delete spaces and sectors in your climbing gym.',
+      manage_gym: 'Allows you to change the main information about your climbing gym: name, description, logo, banner, etc.',
+      manage_opener: 'Allows you to modify the list of route setters.',
+      manage_subscription: "Allows you to take out, cancel and view your climbing gym's subscription invoices."
     },
     championship: {
       name: 'Name',
