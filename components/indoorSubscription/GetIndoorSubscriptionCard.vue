@@ -128,9 +128,9 @@
           class="pt-0"
         >
           <p>
-            Vous pouvez être facturé annuellement, trimestriellement ou mensuellement.
+            Vous pouvez être facturé annuellement ou mensuellement.<br>
+            Veuillez choisir votre fréquence de facturation :
           </p>
-          <p>Veuillez choisir votre fréquence de facturation :</p>
           <v-skeleton-loader
             v-if="loadingSubscriptionProduct"
             type="list-item-avatar,list-item-avatar"
