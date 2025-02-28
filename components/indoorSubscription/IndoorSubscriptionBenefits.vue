@@ -22,7 +22,7 @@
       <v-icon left color="deep-purple accent-4">
         {{ mdiFileRefreshOutline }}
       </v-icon>
-      Planifier vos ouvertures grâce au fiches d'ouvertures
+      Planifier vos ouvertures grâce aux fiches d'ouvertures
     </p>
     <p class="my-3">
       <v-icon left color="deep-purple accent-4">
