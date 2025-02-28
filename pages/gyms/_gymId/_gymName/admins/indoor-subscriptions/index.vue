@@ -22,17 +22,10 @@
         </v-card-text>
         <v-card-actions>
           <v-btn
-            class="ml-auto"
-            text
-            outlined
-            @click="freeTrialModal = true"
-          >
-            Essais gratuit
-          </v-btn>
-          <v-btn
             elevation="0"
             color="deep-purple accent-4"
             dark
+            class="ml-auto"
             @click="paidModal = true"
           >
             {{ $t('actions.subscribeNow') }}
@@ -43,27 +36,9 @@
         </v-card-actions>
       </v-card>
 
-      <div v-else>
-        Mon plan actuelle :
-        <v-chip outlined>
-          <v-icon
-            left
-            color="deep-purple accent-4"
-          >
-            {{ planIcons[gym.plan] }}
-          </v-icon>
-          <strong>
-            {{ $t(`models.gym.plan_list.${gym.plan}`) }}
-          </strong>
-        </v-chip>
-      </div>
-
-      <div
-        v-if="!loadingSubscription && subscriptions.length > 0"
-        class="mt-3"
-      >
+      <div v-if="!loadingSubscription && subscriptions.length > 0">
         <h4 class="mb-2">
-          Mes abonnements
+          Mon abonnement
           <v-btn
             small
             icon
@@ -82,49 +57,22 @@
         />
       </div>
 
-      <!-- Free Trial Modal -->
-      <v-dialog
-        v-model="freeTrialModal"
-        max-width="600"
+      <div
+        v-if="gym.plan === 'free' && subscriptions.length > 0"
+        class="text-right mt-2"
       >
-        <v-card>
-          <v-card-title>
-            Commencer mon essais gratuit
-          </v-card-title>
-          <v-card-text>
-            <div v-if="freeTrialIsAvailable">
-              <p>
-                Essayez toutes les fonctionnalités avancées d'Oblyk <strong>gratuitement</strong> pendant un mois !
-              </p>
-              <p>
-                <strong>Bon à savoir :</strong> À la fin de la période d'essais vous ne serez <strong>pas reconduit automatiquement</strong> sur la version payante.
-              </p>
-            </div>
-            <div v-else>
-              <p>Vous avez déjà profité de la période d'essais.</p>
-              <p>
-                Vous avec besoin de plus de temps ?<br>
-                Contactez-nous : <a href="mailto:ekip@oblyk.org">ekip@oblyk.org</a><br>
-                On pourra peut-être faire quelque chose 🙂
-              </p>
-            </div>
-          </v-card-text>
-          <v-card-actions
-            v-if="freeTrialIsAvailable"
-          >
-            <v-btn
-              class="ml-auto"
-              elevation="0"
-              dark
-              color="deep-purple accent-4"
-              :loading="startFreeTrialLoading"
-              @click="startFreeTrial()"
-            >
-              Commencer ma période d'essais !
-            </v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-dialog>
+        <v-btn
+          elevation="0"
+          dark
+          color="deep-purple accent-4"
+          @click="paidModal = true"
+        >
+          <v-icon left>
+            {{ mdiCreation }}
+          </v-icon>
+          {{ $t('actions.subscribeNow') }}
+        </v-btn>
+      </div>
 
       <!-- Paid Modal -->
       <v-dialog
@@ -249,23 +197,6 @@ export default {
         })
         .finally(() => {
           this.loadingSubscription = false
-        })
-    },
-
-    startFreeTrial () {
-      this.startFreeTrialLoading = true
-      new IndoorSubscriptionApi(this.$axios, this.$auth)
-        .startFreeTrial(this.gym.id)
-        .then(() => {
-          this.gym.plan = 'free_trial'
-          this.getSubscriptions()
-        })
-        .catch((err) => {
-          this.$root.$emit('alertFromApiError', err, 'indoorSubscription')
-        })
-        .finally(() => {
-          this.freeTrialModal = false
-          this.startFreeTrialLoading = false
         })
     },
 

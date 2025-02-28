@@ -246,6 +246,7 @@ export default {
     experimental: 'Experimental',
     archives: 'Archives',
     whatIsIt: 'What is it ?',
+    bugSuggestion: 'Bug ? Suggestion ?',
     at: 'at',
     is: 'is',
     in: 'in',

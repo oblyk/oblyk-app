@@ -34,17 +34,6 @@ class IndoorSubscriptionApi extends BaseApi {
     })
   }
 
-  startFreeTrial (gymId) {
-    return this.axios.request({
-      method: 'POST',
-      url: `${this.baseUrl}/gyms/${gymId}/indoor_subscriptions/start_free_trial.json`,
-      headers: {
-        Authorization: this.authToken(),
-        HttpApiAccessToken: this.apiAccessToken
-      }
-    })
-  }
-
   create (gymId, data) {
     return this.axios.request({
       method: 'POST',

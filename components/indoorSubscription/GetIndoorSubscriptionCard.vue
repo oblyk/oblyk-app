@@ -92,6 +92,23 @@
             </strong><br>
             Chaque période commencé est dû.
           </div>
+          <div
+            v-if="!gym.have_indoor_subscriptions"
+            class="rounded px-3 py-1 mb-3"
+            style="background-color: rgba(150, 150, 150, 0.15)"
+          >
+            <strong>
+              <v-icon
+                small
+                class="mr-1 vertical-align-text-top"
+                color="deep-purple accent-4"
+              >
+                {{ mdiArrowUpBoldHexagonOutline }}
+              </v-icon>
+              Période d'essais
+            </strong><br>
+            Vous bénéficierez d'un période d'essais de 28 jours !
+          </div>
           <div class="text-right">
             <v-btn
               elevation="0"
@@ -213,6 +230,9 @@
               Vous êtes sur le poins de souscrire à un abonnement <strong>{{ textByMonth[indoorSubscriptionProduct.month_by_occurrence] }}</strong>
               de <strong>{{ humanizeAmount(indoorSubscriptionProduct.price) }}</strong> renouvelable automatiquement tous les <strong>{{ indoorSubscriptionProduct.month_by_occurrence }} mois</strong>.
             </p>
+            <p v-if="!gym.have_indoor_subscriptions">
+              La facturation commencera après votre période d'essais gratuite de 28 jours. Vous pouvez arrêter votre période d'essais à tous moment.
+            </p>
             <p>
               En cliquant sur <strong>"m'abonner"</strong> vous serez redirigé sur "Stripe" pour procéder au paiement.
             </p>
@@ -258,7 +278,8 @@ import {
   mdiScaleBalance,
   mdiCashRefund,
   mdiPlus,
-  mdiClose
+  mdiClose,
+  mdiArrowUpBoldHexagonOutline
 } from '@mdi/js'
 import { MoneyHelpers } from '~/mixins/MoneyHelpers'
 import IndoorSubscriptionProductApi from '~/services/oblyk-api/IndoorSubscriptionProductApi'
@@ -312,7 +333,8 @@ export default {
       mdiScaleBalance,
       mdiCashRefund,
       mdiPlus,
-      mdiClose
+      mdiClose,
+      mdiArrowUpBoldHexagonOutline
     }
   },
 

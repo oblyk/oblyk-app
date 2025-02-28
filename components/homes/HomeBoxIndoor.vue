@@ -3,15 +3,6 @@
     <v-col align-self="center" cols="12" md="6">
       <h2 class="text-h5 mb-3 font-weight-bold">
         {{ $t('home.indoor.title') }}
-        <v-chip
-          dark
-          color="blue"
-        >
-          <v-icon small left>
-            {{ mdiFlask }}
-          </v-icon>
-          Beta
-        </v-chip>
       </h2>
       <p v-html="$t('home.indoor.body')" />
       <p v-html="$t('home.indoor.body2')" />
@@ -37,15 +28,7 @@
 </template>
 
 <script>
-import { mdiFlask } from '@mdi/js'
-
 export default {
-  name: 'HomeBoxIndoor',
-
-  data () {
-    return {
-      mdiFlask
-    }
-  }
+  name: 'HomeBoxIndoor'
 }
 </script>

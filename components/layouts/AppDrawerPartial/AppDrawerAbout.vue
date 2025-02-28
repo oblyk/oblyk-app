@@ -73,20 +73,6 @@
         </v-list-item-icon>
         <v-list-item-title>
           {{ $t('components.layout.appDrawer.indoor') }}
-          <v-chip
-            color="blue"
-            class="ml-1"
-            dark
-            small
-          >
-            <v-icon
-              left
-              x-small
-            >
-              {{ mdiFlask }}
-            </v-icon>
-            Beta
-          </v-chip>
         </v-list-item-title>
       </v-list-item>
 
@@ -144,8 +130,7 @@ import {
   mdiCodeBrackets,
   mdiEmail,
   mdiOpenInNew,
-  mdiSourceBranch,
-  mdiFlask
+  mdiSourceBranch
 } from '@mdi/js'
 import AppDrawerTool from '~/components/layouts/AppDrawerPartial/AppDrawerTool'
 
@@ -162,8 +147,7 @@ export default {
       mdiCodeBrackets,
       mdiEmail,
       mdiOpenInNew,
-      mdiSourceBranch,
-      mdiFlask
+      mdiSourceBranch
     }
   }
 }

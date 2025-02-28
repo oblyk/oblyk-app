@@ -246,6 +246,7 @@ export default {
     experimental: 'Expérimental',
     archives: 'Archives',
     whatIsIt: "Qu'est ce que c'est ?",
+    bugSuggestion: 'Un bug ? Une suggestion ?',
     at: 'le',
     is: 'à',
     in: 'en',

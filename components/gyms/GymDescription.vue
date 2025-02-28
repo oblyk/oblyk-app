@@ -47,28 +47,13 @@
       v-if="!gym.administered"
       class="text-center"
     >
-      <v-badge
-        content="beta"
-        color="blue"
-        overlap
+      <v-btn
+        outlined
+        :to="`${gym.path}/administration-request`"
+        color="deep-purple accent-3"
       >
-        <template #badge>
-          <v-icon
-            left
-            class="mr-1"
-          >
-            {{ mdiFlask }}
-          </v-icon>
-          Beta
-        </template>
-        <v-btn
-          outlined
-          :to="`${gym.path}/administration-request`"
-          color="deep-purple accent-3"
-        >
-          {{ $t('components.gym.IAmManager') }}
-        </v-btn>
-      </v-badge>
+        {{ $t('components.gym.IAmManager') }}
+      </v-btn>
       <div>
         <v-btn
           text
@@ -84,7 +69,7 @@
 </template>
 
 <script>
-import { mdiText, mdiFlask, mdiTrophy } from '@mdi/js'
+import { mdiText, mdiTrophy } from '@mdi/js'
 import ContestItemList from '~/components/contests/ContestItemList.vue'
 import Contest from '~/models/Contest'
 
@@ -103,7 +88,6 @@ export default {
   data () {
     return {
       mdiText,
-      mdiFlask,
       mdiTrophy
     }
   },

@@ -25,27 +25,6 @@
         </p>
       </div>
 
-      <!-- Beta banner -->
-      <v-sheet
-        class="pa-4 mt-10 mb-10 beta-background"
-        rounded
-        dark
-      >
-        <h3 class="mb-3">
-          <v-icon left>
-            {{ mdiFlask }}
-          </v-icon>
-          Oblyk pour les salles est en version bêta
-        </h3>
-        <p class="font-weight-bold">
-          <strong><u>Qu'est-ce que ça signifie ?</u></strong><br>
-          Toutes les fonctionnalités prévues ne sont pas encore présentes, et vous pouvez rencontrer des bugs. Mais nous estimons que l'outil est suffisamment stable et fonctionnel pour être utilisé.
-        </p>
-        <p class="font-weight-bold">
-          N'hésitez pas à nous faire part de vos suggestions ou des problèmes que vous rencontrez !
-        </p>
-      </v-sheet>
-
       <v-row class="my-15">
         <v-col cols="12" md="6" class="d-flex">
           <div class="px-5 align-self-center">
@@ -481,30 +460,6 @@
         </h3>
       </div>
 
-      <!-- Beta banner -->
-      <v-sheet
-        class="pa-4 mb-10 beta-background"
-        rounded
-        dark
-      >
-        <h3 class="mb-3">
-          <v-icon left>
-            {{ mdiFlask }}
-          </v-icon>
-          Tant qu’Oblyk indoor est en version beta, toutes les fonctionnalités sont gratuites !
-        </h3>
-        <p class="font-weight-bold">
-          Les plans affichés ci-dessous sont une estimation des tarifs que nous prévoyons de mettre en place.<br>
-          Il se peut que les prix ou les fonctionnalités proposées évoluent.
-        </p>
-        <p class="font-weight-bold">
-          Si les fonctionnalités ou les prix évoluent en votre défaveur le jour de la finalisation d'Oblyk Indoor,
-          nous vous offrirons une période de gratuité pour&nbsp;: <br>
-          <strong>1)</strong> vous remercier d'avoir essayé le système&nbsp;;<br>
-          <strong>2)</strong> vous laisser le temps de décider d'adhérer ou non à un plan payant si vous utilisiez des fonctionnalités payantes.
-        </p>
-      </v-sheet>
-
       <v-row>
         <!-- Starter formule -->
         <v-col cols="12" md="5">
@@ -623,7 +578,6 @@
           />
         </v-chip>
         <v-chip
-          v-if="iAmAClub"
           color="with"
           class="ml-2"
         >
@@ -652,7 +606,6 @@
 
 <script>
 import {
-  mdiFlask,
   mdiEmail,
   mdiCheckboxOutline,
   mdiHeartHalfFull,
@@ -687,7 +640,6 @@ export default {
       annualPlan: false,
       gymLimit: 6,
 
-      mdiFlask,
       mdiEmail,
       mdiCheckboxOutline,
       mdiHeartHalfFull,
@@ -738,8 +690,10 @@ export default {
         return 7.5
       } else if (this.iAmAClub && !this.annualPlan) {
         return 9
-      } else {
+      } else if (!this.iAmAClub && this.annualPlan) {
         return 30
+      } else {
+        return 35
       }
     },
 

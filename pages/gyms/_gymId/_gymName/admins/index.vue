@@ -118,12 +118,88 @@
         </v-icon>
         {{ $t('common.documentation') }}
       </v-btn>
+      <v-btn
+        text
+        outlined
+        @click="bugModal = true"
+      >
+        <v-icon left>
+          {{ mdiBug }}
+        </v-icon>
+        {{ $t('common.bugSuggestion') }}
+      </v-btn>
+      <v-btn
+        text
+        outlined
+        href="https://github.com/orgs/oblyk/projects/6"
+        target="_blank"
+      >
+        <v-icon left>
+          {{ mdiChartTimeline }}
+        </v-icon>
+        Roadmap
+      </v-btn>
     </div>
+
+    <v-dialog
+      v-model="bugModal"
+      width="700"
+    >
+      <v-card>
+        <v-card-title>
+          <v-icon left>
+            {{ mdiBug }}
+          </v-icon>
+          {{ $t('common.bugSuggestion') }}
+        </v-card-title>
+        <v-card-text>
+          <p>
+            Oblyk étant open-source nous partageons les retours de bug et suggestions publiquement sur la platform Github sur laquelle vous pouvez aussi consulter le code, la roadmap, les développements encours, etc.
+          </p>
+          <p>
+            Vous pouvez chercher les suggestions et bug déja remonté par la communauté en tapant des mots clés dans la bar de recherche sur la capture ci-dessous :
+          </p>
+          <a href="https://github.com/oblyk/oblyk-app/issues" target="_blank">
+            <v-img
+              class="elevation-5 rounded mb-4"
+              src="/images/github-report-bug.jpg"
+            />
+          </a>
+          <p class="mb-0">
+            Si vous ne trouvez pas votre bug ou votre suggestion, vous pouvez créer un nouveau ticket en cliquant sur [New Issue]
+          </p>
+        </v-card-text>
+        <v-card-actions>
+          <v-btn
+            elevation="0"
+            color="primary"
+            class="ml-auto"
+            target="_blank"
+            href="https://github.com/oblyk/oblyk-app/issues"
+          >
+            Reporter un bug, faire une suggestion
+            <v-icon left>
+              {{ mdiArrowRight }}
+            </v-icon>
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-container>
 </template>
 
 <script>
-import { mdiMapLegend, mdiTune, mdiFolder, mdiHelpCircleOutline, mdiCog, mdiAccountMultiple } from '@mdi/js'
+import {
+  mdiMapLegend,
+  mdiTune,
+  mdiFolder,
+  mdiHelpCircleOutline,
+  mdiCog,
+  mdiAccountMultiple,
+  mdiBug,
+  mdiChartTimeline,
+  mdiArrowRight
+} from '@mdi/js'
 import { GymConcern } from '~/concerns/GymConcern'
 import GymAdminTeamFigures from '~/components/gyms/admin/GymAdminTeamFigures'
 import GymAdminWelcome from '~/components/gyms/admin/GymAdminWelcome'
@@ -155,12 +231,17 @@ export default {
 
   data () {
     return {
+      bugModal: false,
+
       mdiMapLegend,
       mdiTune,
       mdiFolder,
       mdiHelpCircleOutline,
       mdiCog,
-      mdiAccountMultiple
+      mdiAccountMultiple,
+      mdiBug,
+      mdiChartTimeline,
+      mdiArrowRight
     }
   },
 
