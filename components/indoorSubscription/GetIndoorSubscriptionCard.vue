@@ -77,7 +77,7 @@
               </v-icon>
               Engagement
             </strong><br>
-            Vous pouvez résilier votre abonnement à tous moment.
+            Vous pouvez résilier votre abonnement à tout moment.
           </div>
           <div class="rounded px-3 py-1 mb-3" style="background-color: rgba(150, 150, 150, 0.15)">
             <strong>
@@ -90,7 +90,7 @@
               </v-icon>
               Remboursement
             </strong><br>
-            Chaque période commencé est dû.
+            Chaque période commencée est due.
           </div>
           <div
             v-if="!gym.have_indoor_subscriptions"
@@ -107,7 +107,7 @@
               </v-icon>
               Période d'essais
             </strong><br>
-            Vous bénéficierez d'un période d'essais de 28 jours !
+            Vous bénéficierez d'une période d'essai de 28 jours !
           </div>
           <div class="text-right">
             <v-btn
@@ -228,10 +228,10 @@
           <div v-if="indoorSubscriptionProduct">
             <p>
               Vous êtes sur le poins de souscrire à un abonnement <strong>{{ textByMonth[indoorSubscriptionProduct.month_by_occurrence] }}</strong>
-              de <strong>{{ humanizeAmount(indoorSubscriptionProduct.price) }}</strong> renouvelable automatiquement tous les <strong>{{ indoorSubscriptionProduct.month_by_occurrence }} mois</strong>.
+              de <strong>{{ humanizeAmount(indoorSubscriptionProduct.price) }}</strong> renouvelable automatiquement tous les <strong>{{ indoorSubscriptionProduct.month_by_occurrence === 1 ? 'mois' : 'ans' }}</strong>.
             </p>
             <p v-if="!gym.have_indoor_subscriptions">
-              La facturation commencera après votre période d'essais gratuite de 28 jours. Vous pouvez arrêter votre période d'essais à tous moment.
+              La facturation commencera après votre période d'essais gratuite de 28 jours. Vous pouvez arrêter votre période d'essai à tout moment.
             </p>
             <p>
               En cliquant sur <strong>"m'abonner"</strong> vous serez redirigé sur "Stripe" pour procéder au paiement.
