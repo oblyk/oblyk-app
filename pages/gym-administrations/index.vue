@@ -162,12 +162,22 @@
           <v-btn
             outlined
             text
-            @click="acceptRequest(requestedGym)"
+            @click="acceptRequest(requestedGym, 'club')"
           >
             <v-icon left>
               {{ mdiCheckboxOutline }}
             </v-icon>
-            Accepter
+            Accepter "Club"
+          </v-btn>
+          <v-btn
+            outlined
+            text
+            @click="acceptRequest(requestedGym, 'private')"
+          >
+            <v-icon left>
+              {{ mdiCheckboxOutline }}
+            </v-icon>
+            Accepter "private"
           </v-btn>
         </div>
       </v-sheet>
@@ -275,11 +285,11 @@ export default {
       return new User({ attributes: user })
     },
 
-    acceptRequest (request) {
+    acceptRequest (request, gymType) {
       if (confirm("Sûr d'accepter ?")) {
         this.loadingRequested = true
         new GymAdministrationApi(this.$axios, this.$auth)
-          .acceptRequested(request.id)
+          .acceptRequested(request.id, gymType)
           .finally(() => {
             this.getAssigned()
             this.getRequested()

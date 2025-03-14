@@ -23,7 +23,7 @@ class GymAdministrationApi extends BaseApi {
     })
   }
 
-  acceptRequested (requestId) {
+  acceptRequested (requestId, gymType) {
     return this.axios.request({
       method: 'PUT',
       url: `${this.baseUrl}/gym_administrations/accept_request.json`,
@@ -32,7 +32,8 @@ class GymAdministrationApi extends BaseApi {
         HttpApiAccessToken: this.apiAccessToken
       },
       data: {
-        id: requestId
+        id: requestId,
+        gym_type: gymType
       }
     })
   }
