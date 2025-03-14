@@ -4,7 +4,7 @@
     rounded
   >
     <p class="font-weight-bold mb-1">
-      {{$t('models.gymAdministrator.rights') }}
+      {{ $t('models.gymAdministrator.rights') }}
     </p>
     <p
       v-for="(role, roleIndex) in roles"
