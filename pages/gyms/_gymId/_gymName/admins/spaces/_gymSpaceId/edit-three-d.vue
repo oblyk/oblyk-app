@@ -286,6 +286,13 @@
             type="number"
             outlined
           />
+          <v-text-field
+            v-model="sectorElevated"
+            label="Élevation par rapport au sol"
+            suffix="mètre"
+            type="number"
+            outlined
+          />
           <div class="text-right">
             <v-btn
               text
@@ -379,6 +386,7 @@
           :gym-space="gymSpace"
           :sector-click-callback="clickOnSector"
           :editing-sector-height="sectorHeight"
+          :editing-sector-elevated="sectorElevated"
           :init-sector-height-callback="initSectorHeight"
           :edit-label-position="labelPositionProps"
         />
@@ -430,6 +438,7 @@ export default {
       loadingSectors: true,
       showSectorId: null,
       sectorHeight: null,
+      sectorElevated: null,
       showMoreOption: false,
       loadingSwitch: false,
       editLabelPositionSector: null,
@@ -489,6 +498,7 @@ export default {
     clickOnSector (sector) {
       const gymSector = this.gymSectors.find(gSector => gSector.id === sector.id)
       this.sectorHeight = gymSector.three_d_height
+      this.sectorElevated = gymSector.three_d_elevated
       this.startEditSector(gymSector)
     },
 
@@ -496,6 +506,7 @@ export default {
       this.editSector = sector
       if (sector.three_d_height) {
         this.sectorHeight = sector.three_d_height
+        this.sectorElevated = sector.three_d_elevated
       }
       this.startEditing = true
       setTimeout(() => {
@@ -563,7 +574,8 @@ export default {
           gym_space_id: this.gymSpace.id,
           id: this.editSector.id,
           three_d_path: points,
-          three_d_height: this.sectorHeight
+          three_d_height: this.sectorHeight,
+          three_d_elevated: this.sectorElevated
         })
         .then(() => {
           this.getSectors()

@@ -282,7 +282,7 @@ export default {
       const shape = new THREE.Shape(shapePoints)
 
       const extrudeGeometry = new THREE.ExtrudeGeometry(shape, {
-        depth: -sector.three_d_height,
+        depth: -(sector.three_d_height - sector.three_d_elevated),
         bevelEnabled: false,
         bevelSegments: 2,
         steps: 1,
@@ -292,6 +292,7 @@ export default {
       const boundingBox = new THREE.Mesh(extrudeGeometry, new THREE.MeshBasicMaterial({ color: 'white', transparent: true, opacity: 0.3, side: THREE.DoubleSide }))
       boundingBox.visible = false
       boundingBox.rotateX(THREE.MathUtils.degToRad(90))
+      boundingBox.translateZ(-sector.three_d_elevated)
       boundingBox.userData = { sector }
       this.sectorBoundingBoxes.push(boundingBox)
       this.scene.add(boundingBox)
@@ -304,6 +305,7 @@ export default {
       })
       const lineSegments = new THREE.LineSegments(edges, lineMaterial)
       lineSegments.rotateX(THREE.MathUtils.degToRad(90))
+      lineSegments.translateZ(-sector.three_d_elevated)
       lineSegments.computeLineDistances()
       lineSegments.visible = false
       lineSegments.userData = { sector }
@@ -384,7 +386,7 @@ export default {
           centerZ = 50
           gapY = 0.2
         }
-        center.y = center.y * 2 + gapY
+        center.y = center.y * 2 + gapY - parseFloat(sector.userData.sector.three_d_elevated)
         center.x = center.x + size.x * (centerX - 50) / 100
         center.z = center.z + size.z * (centerZ - 50) / 100
         tempV.copy(center)

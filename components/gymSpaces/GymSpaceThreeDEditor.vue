@@ -151,6 +151,10 @@ export default {
       type: [Number, String],
       default: null
     },
+    editingSectorElevated: {
+      type: [Number, String],
+      default: null
+    },
     editLabelPosition: {
       type: Object,
       default: null
@@ -189,6 +193,10 @@ export default {
   watch: {
     editingSectorHeight () {
       this.setDrawingPadHeight()
+    },
+
+    editingSectorElevated () {
+      this.setSectorBuilderBox()
     },
 
     editLabelPosition () {
@@ -581,7 +589,7 @@ export default {
       const shape = new THREE.Shape(shapePoints)
 
       const extrudeGeometry = new THREE.ExtrudeGeometry(shape, {
-        depth: -sector.three_d_height,
+        depth: -(sector.three_d_height - sector.three_d_elevated),
         bevelEnabled: false,
         bevelSegments: 2,
         steps: 1,
@@ -591,7 +599,8 @@ export default {
       const boundingBox = new THREE.Mesh(extrudeGeometry, new THREE.MeshBasicMaterial({ color: 'white', transparent: true, opacity: 0.3, side: THREE.DoubleSide }))
       boundingBox.visible = false
       boundingBox.rotateX(THREE.MathUtils.degToRad(90))
-      boundingBox.userData = { sector: { id: sector.id, three_d_label_options: sector.three_d_label_options } }
+      boundingBox.translateZ(-sector.three_d_elevated)
+      boundingBox.userData = { sector: { id: sector.id, three_d_label_options: sector.three_d_label_options, three_d_elevated: sector.three_d_elevated } }
       this.sectorBoundingBoxes.push(boundingBox)
       this.scene.add(boundingBox)
 
@@ -600,6 +609,7 @@ export default {
       const lineMaterial = new THREE.LineBasicMaterial({ color: this.gymSpace.sectors_color || '#31994e' })
       const lineSegments = new THREE.LineSegments(edges, lineMaterial)
       lineSegments.rotateX(THREE.MathUtils.degToRad(90))
+      lineSegments.translateZ(-sector.three_d_elevated)
       lineSegments.computeLineDistances()
       lineSegments.userData = { sector: { id: sector.id } }
       this.sectorLineSegments.push(lineSegments)
@@ -693,7 +703,7 @@ export default {
       }
 
       const extrudeGeometry = new THREE.ExtrudeGeometry(shape, {
-        depth: -sectorHeight,
+        depth: -(sectorHeight - (this.editingSectorElevated || 0)),
         bevelEnabled: false,
         bevelSegments: 2,
         steps: 1,
@@ -709,6 +719,7 @@ export default {
       })
       const lineSegments = new THREE.LineSegments(edges, lineMaterial)
       lineSegments.rotateX(THREE.MathUtils.degToRad(90))
+      lineSegments.translateZ(-this.editingSectorElevated)
       lineSegments.computeLineDistances()
       this.buildingBox = lineSegments
       this.scene.add(lineSegments)
@@ -744,7 +755,7 @@ export default {
           centerZ = 50
           gapY = 0.2
         }
-        center.y = center.y * 2 + gapY
+        center.y = center.y * 2 + gapY - parseFloat(sector.userData.sector.three_d_elevated)
         center.x = center.x + size.x * (centerX - 50) / 100
         center.z = center.z + size.z * (centerZ - 50) / 100
         tempV.copy(center)
