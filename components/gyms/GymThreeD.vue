@@ -179,7 +179,7 @@ export default {
       // Load files
       const loader = new GLTFLoader()
 
-      const edgeLine = new THREE.LineBasicMaterial({ color: this.edgeColor })
+      const edgeLine = new THREE.LineBasicMaterial({ color: this.edgeColor, opacity: 0.3, transparent: true })
       let spaceIndex = 0
       for (const space of this.threeDs.spaces) {
         loader.load(space.three_d_gltf_url, (gltf) => {
@@ -191,6 +191,13 @@ export default {
             if (child.isMesh) {
               child.castShadow = true
               child.receiveShadow = true
+
+              // Add Edges
+              if (space.three_d_parameters?.highlight_edges) {
+                const edges = new THREE.EdgesGeometry(child.geometry)
+                const line = new THREE.LineSegments(edges, edgeLine)
+                child.add(line)
+              }
 
               // color correction
               if (space.three_d_parameters?.color_correction_sketchup_exports && !treatedColors.includes(child.material.uuid)) {

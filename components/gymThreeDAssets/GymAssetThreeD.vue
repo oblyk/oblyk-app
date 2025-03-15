@@ -103,7 +103,7 @@ export default {
       // Load files
       const loader = new GLTFLoader()
 
-      const edgeLine = new THREE.LineBasicMaterial({ color: this.edgeColor })
+      const edgeLine = new THREE.LineBasicMaterial({ color: this.edgeColor, opacity: 0.3, transparent: true })
       loader.load(this.gymThreeDAsset.three_d_gltf_url, (gltf) => {
         const object = gltf.scene
         this.spaceObject = object

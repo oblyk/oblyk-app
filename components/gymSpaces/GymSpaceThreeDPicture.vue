@@ -91,7 +91,7 @@ export default {
 
       // Load files
       const loader = new GLTFLoader()
-      const edgeLine = new THREE.LineBasicMaterial({ color: this.edgeColor })
+      const edgeLine = new THREE.LineBasicMaterial({ color: this.edgeColor, opacity: 0.3, transparent: true })
       loader.load(this.gymSpace.three_d_gltf_url, (gltf) => {
         const object = gltf.scene
         this.spaceObject = object
@@ -101,6 +101,12 @@ export default {
           if (child.isMesh) {
             child.castShadow = true
             child.receiveShadow = true
+
+            if (this.gymSpace.three_d_parameters?.highlight_edges) {
+              const edges = new THREE.EdgesGeometry(child.geometry)
+              const line = new THREE.LineSegments(edges, edgeLine)
+              child.add(line)
+            }
 
             // color correction
             if (!treatedColors.includes(child.material.uuid)) {
