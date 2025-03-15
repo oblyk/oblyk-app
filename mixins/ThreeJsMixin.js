@@ -15,7 +15,7 @@ export const ThreeJsMixin = {
       disableClick: false,
       animationId: null,
       TDAreaResizeObserver: null,
-      edgeColor: 'rgb(0, 0, 0)',
+      edgeColor: this.$vuetify.theme.dark ? 'rgb(255, 255, 255)' : 'rgb(0, 0, 0)',
       labelPositionUpdatable: false,
       labelDisableEvent: false,
       labelDisableTimeout: null,
