@@ -630,7 +630,7 @@ export default {
         }
         center.x = center.x + size.x * (centerX - 50) / 100
         center.z = center.z + size.z * (centerZ - 50) / 100
-        center.y = (center.y * 2 + size.y * (centerY - 100) / 100) - parseInt(space.userData.space.three_d_position.y)
+        center.y = (center.y * 2 + size.y * (centerY - 100) / 100) - parseFloat(space.userData.space.three_d_position?.y || '0')
         tempV.copy(center)
         tempV.project(this.camera)
 

@@ -8,7 +8,7 @@
         <v-col class="global-form-width">
           <h2 class="mb-4">
             {{ $t('actions.edit') }}
-            "{{ gymAdministrator.user.first_name }}"
+            "{{ gymAdministrator.user?.first_name || gymAdministrator.requested_email }}"
           </h2>
           <gym-administrator-form
             :gym="gymAdministrator.Gym"
@@ -67,7 +67,7 @@ export default {
           exact: true
         },
         {
-          text: this.gymAdministrator.user.first_name,
+          text: this.gymAdministrator.user?.first_name || this.gymAdministrator.requested_email,
           exact: true
         },
         {
