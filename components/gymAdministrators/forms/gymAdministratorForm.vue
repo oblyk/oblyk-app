@@ -51,7 +51,7 @@ export default {
         id: this.gymAdministrator?.id,
         requested_email: this.gymAdministrator?.requested_email,
         gym_id: this.gym.id,
-        roles: this.gymAdministrator?.roles,
+        roles: this.gymAdministrator?.roles || [],
         email_report: this.gymAdministrator?.email_report === null ? true : this.gymAdministrator?.email_report
       },
       roles: [
