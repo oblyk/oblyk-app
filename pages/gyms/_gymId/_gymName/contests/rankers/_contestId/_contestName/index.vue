@@ -295,7 +295,9 @@
             </div>
           </v-card-title>
           <div class="px-4 pb-4 pt-0">
-            <p class="mb-0">Le ou la gagnant·e est ...</p>
+            <p class="mb-0">
+              Le ou la gagnant·e est ...
+            </p>
             <v-sheet
               rounded
               class="text-center text-h4 back-app-color pa-4"

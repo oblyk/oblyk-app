@@ -101,8 +101,14 @@ import { mdiBookPlusMultiple } from '@mdi/js'
 export default {
   name: 'UserContribution',
   props: {
-    user: Object,
-    contribution: Object
+    user: {
+      type: Object,
+      required: true
+    },
+    contribution: {
+      type: Object,
+      required: true
+    }
   },
 
   data () {

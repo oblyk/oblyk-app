@@ -17,7 +17,10 @@ import { mdiSortAscending } from '@mdi/js'
 export default {
   name: 'CragRouteSort',
   props: {
-    value: String
+    value: {
+      type: String,
+      required: true
+    }
   },
 
   data () {

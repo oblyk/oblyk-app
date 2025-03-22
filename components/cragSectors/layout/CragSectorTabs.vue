@@ -25,7 +25,10 @@
 export default {
   name: 'CragSectorTabs',
   props: {
-    cragSector: Object
+    cragSector: {
+      type: Object,
+      required: true
+    }
   }
 }
 </script>
