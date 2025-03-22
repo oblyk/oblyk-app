@@ -20,7 +20,10 @@ import TickListApi from '~/services/oblyk-api/TickListApi'
 export default {
   name: 'RemoveFromTickListBtn',
   props: {
-    cragRoute: Object
+    cragRoute: {
+      type: Object,
+      required: true
+    }
   },
 
   data () {

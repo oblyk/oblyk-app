@@ -17,7 +17,10 @@
 export default {
   name: 'GradeSelectInput',
   props: {
-    value: [String, Number],
+    value: {
+      type: [String, Number],
+      required: true
+    },
     hideDetails: {
       type: Boolean,
       default: false

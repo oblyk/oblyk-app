@@ -67,7 +67,10 @@ export default {
   name: 'CragRouteNoteModal',
   components: { Note, CragRouteNote },
   props: {
-    cragRoute: Object
+    cragRoute: {
+      type: Object,
+      required: true
+    }
   },
 
   data () {

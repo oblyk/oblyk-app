@@ -16,7 +16,10 @@
 export default {
   name: 'SeasonInput',
   props: {
-    value: Array
+    value: {
+      type: Array,
+      required: true
+    }
   },
 
   data () {

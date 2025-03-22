@@ -190,9 +190,6 @@ export default {
         },
         data: formData
       })
-        .then((resp) => {
-          console.log(resp)
-        })
         .catch((err) => {
           this.$root.$emit('alertFromApiError', err, 'gymRoute')
         })

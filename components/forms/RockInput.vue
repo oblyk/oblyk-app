@@ -16,7 +16,10 @@
 export default {
   name: 'RockInput',
   props: {
-    value: Array
+    value: {
+      type: Array,
+      required: true
+    }
   },
 
   data () {

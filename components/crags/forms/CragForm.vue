@@ -31,9 +31,9 @@
         </u>
       </p>
       <crag-small-card
-        v-for="(crag, index) in cragsAround"
+        v-for="(cragItem, index) in cragsAround"
         :key="`crag-around-${index}`"
-        :crag="crag"
+        :crag="cragItem"
         :small="true"
         class="mb-2"
       />

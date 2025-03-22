@@ -24,8 +24,14 @@ export default {
   name: 'StartInput',
   mixins: [InputHelpers],
   props: {
-    value: String,
-    tabindex: Number
+    value: {
+      type: String,
+      required: true
+    },
+    tabindex: {
+      type: Number,
+      required: true
+    }
   },
 
   data () {

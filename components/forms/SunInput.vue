@@ -21,7 +21,10 @@ export default {
   name: 'SunInput',
   mixins: [InputHelpers],
   props: {
-    value: String
+    value: {
+      type: String,
+      required: true
+    }
   },
 
   data () {
