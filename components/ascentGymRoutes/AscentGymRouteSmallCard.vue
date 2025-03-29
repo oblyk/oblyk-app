@@ -22,12 +22,7 @@
       </div>
 
       <!-- Ascent status, Roping status & difficulty appreciation -->
-      <ascent-gym-route-status-icon
-        :gym-route="gymRoute"
-        :ascent-status="ascentGymRoute.ascent_status"
-      />
-      {{ $t(`models.ascentStatus.${ascentGymRoute.ascent_status}`) }}
-
+      <ascent-gym-route-icon :gym-route="gymRoute" :ascent="ascentGymRoute" />
       <div
         v-if="ascentGymRoute.comment"
         class="mb-0"
@@ -81,12 +76,12 @@
 import { mdiDelete, mdiLock, mdiLockOpen } from '@mdi/js'
 import { DateHelpers } from '@/mixins/DateHelpers'
 import AscentGymRouteApi from '~/services/oblyk-api/AscentGymRouteApi'
-import AscentGymRouteStatusIcon from '@/components/ascentGymRoutes/AscentGymRouteStatusIcon'
 import EditGymAscentBtn from '@/components/ascentGymRoutes/EditGymAscentBtn'
+import AscentGymRouteIcon from '~/components/ascentGymRoutes/AscentGymRouteIcon'
 
 export default {
   name: 'AscentGymRouteSmallCard',
-  components: { EditGymAscentBtn, AscentGymRouteStatusIcon },
+  components: { AscentGymRouteIcon, EditGymAscentBtn },
   mixins: [DateHelpers],
   props: {
     ascentGymRoute: {

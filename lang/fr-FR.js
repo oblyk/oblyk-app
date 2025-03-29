@@ -234,6 +234,7 @@ export default {
     votes: 'Votes',
     minutes: 'minutes',
     month: 'Mois',
+    period: 'Période',
     number: 'nombre',
     advancedOptions: 'Options avancées',
     documentation: 'Documentation',
@@ -1257,8 +1258,10 @@ export default {
       rankOf: 'Le classement de %{date}',
       seeRankOf: 'Voir le classement de %{date}',
       rankNumber: '%{number}er | %{number}ème',
-      noRank: "Il n'y a pas de classement pour %{date} avec les filtres sélectionnés.",
-      giveDefaultPoints: 'Vous pouvez donner un nombre de points par défaut pour vos différents niveau.'
+      noRank: "Il n'y a pas de classement avec les filtres sélectionnés.",
+      giveDefaultPoints: 'Vous pouvez donner un nombre de points par défaut pour vos différents niveau.',
+      allOpenedRoutes: 'Toutes les voies & blocs ouverts',
+      myRank: 'Tu es 1er du classement ! | Tu es %{count}ème du classement !'
     },
     gymAdmin: {
       administration: 'Administration',
@@ -1330,7 +1333,8 @@ export default {
     },
     levelAndGrades: {
       title: 'Niveau par couleur & système de cotation',
-      explain: "Choisissez dans quel ordre sont organisé vos couleurs et quel genre de cotation vous utilisé pour chaque type d'escalade."
+      explain: "Choisissez dans quel ordre sont organisé vos couleurs et quel genre de cotation vous utilisé pour chaque type d'escalade.",
+      climbingTypeDisabled: "%{gym} n'a pas de %{type}."
     },
     gymStatistic: {
       figuresTitle: 'En quelques chiffres',
@@ -2324,6 +2328,8 @@ export default {
       latitude: 'Latitude',
       longitude: 'Longitude',
       plan: 'abonnement',
+      ascents_multiplier: 'Coefficient multiplicateur',
+      ascents_multiplier_explain: "Vous pouvez multiplier les points reçu par le grimpeur/grimpeuse en fonction de comment l'ascension a été réalisée.",
       plan_list: {
         free: 'Gratuit',
         free_trial: 'Essais Gratuit',

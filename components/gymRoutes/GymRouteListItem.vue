@@ -39,10 +39,10 @@
           >
             {{ $t('components.gymRoute.dismounted') }}
           </small>
-          <ascent-gym-route-status-icon
+          <ascent-gym-route-icon
             v-if="$auth.loggedIn"
             :gym-route="gymRoute"
-            :size="22"
+            :size="18"
           />
           <small v-if="gymRoute.anchor_number">
             {{ $t('models.gymRoute.anchor_number') }}{{ gymRoute.anchor_number }}
@@ -110,15 +110,15 @@
 
 <script>
 import { mdiCheckAll, mdiHeart, mdiComment, mdiPlayBox } from '@mdi/js'
-import GymRouteTagAndHold from '~/components/gymRoutes/partial/GymRouteTagAndHold.vue'
-import GymRouteGradeAndPoint from '~/components/gymRoutes/partial/GymRouteGradeAndPoint.vue'
-import AscentGymRouteStatusIcon from '~/components/ascentGymRoutes/AscentGymRouteStatusIcon.vue'
+import GymRouteTagAndHold from '~/components/gymRoutes/partial/GymRouteTagAndHold'
+import GymRouteGradeAndPoint from '~/components/gymRoutes/partial/GymRouteGradeAndPoint'
 import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
+import AscentGymRouteIcon from '~/components/ascentGymRoutes/AscentGymRouteIcon'
 
 export default {
   name: 'GymRouteListItem',
   components: {
-    AscentGymRouteStatusIcon,
+    AscentGymRouteIcon,
     GymRouteGradeAndPoint,
     GymRouteTagAndHold
   },

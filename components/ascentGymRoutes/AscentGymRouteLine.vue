@@ -31,9 +31,9 @@
           {{ $t('common.made') }}
         </span>
         {{ $t(`models.ascentStatus.${ascentGymRoute.ascent_status}`).toLowerCase() }}
-        <ascent-gym-route-status-icon
-          class="ml-1 mb-1"
-          :ascent-status="ascentGymRoute.ascent_status"
+        <ascent-gym-route-icon
+          :gym-route="ascentGymRoute.gym_route"
+          :ascent="ascentGymRoute"
         />
       </v-list-item-title>
       <v-list-item-subtitle>
@@ -106,14 +106,14 @@
 <script>
 import { mdiCircle, mdiTrashCan, mdiPencil, mdiDotsVertical } from '@mdi/js'
 import { GradeMixin } from '~/mixins/GradeMixin'
-import AscentGymRouteStatusIcon from '~/components/ascentGymRoutes/AscentGymRouteStatusIcon.vue'
 import AscentGymRouteApi from '~/services/oblyk-api/AscentGymRouteApi'
-import AscentGymEditForm from '~/components/ascentGymRoutes/forms/AscentGymEditForm.vue'
+import AscentGymEditForm from '~/components/ascentGymRoutes/forms/AscentGymEditForm'
 import { HoldColorsHelpers } from '~/mixins/HoldColorsHelpers'
+import AscentGymRouteIcon from '~/components/ascentGymRoutes/AscentGymRouteIcon'
 
 export default {
   name: 'AscentGymRouteLine',
-  components: { AscentGymEditForm, AscentGymRouteStatusIcon },
+  components: { AscentGymRouteIcon, AscentGymEditForm },
   mixins: [GradeMixin, HoldColorsHelpers],
   props: {
     ascentGymRoute: {

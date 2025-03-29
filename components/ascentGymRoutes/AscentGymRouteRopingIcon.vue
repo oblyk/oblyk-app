@@ -1,6 +1,6 @@
 <template>
   <v-icon
-    v-if="ascentInLogBook || ascentStatus"
+    v-if="ascentInLogBook || ropingStatus"
     :small="size === null"
     :size="size"
     :title="title()"
@@ -11,18 +11,24 @@
 </template>
 
 <script>
-import { mdiCropSquare, mdiCheckboxMarkedCircle, mdiRecordCircle, mdiFlash, mdiEye, mdiAutorenew, mdiCropFree } from '@mdi/js'
+import {
+  oblykRopingStatusTopRope,
+  oblykRopingStatusLeadClimbMultiPitchAlternateLead,
+  oblykRopingStatusLeadClimb,
+  oblykRopingStatusMultiPitchSecond,
+  oblykRopingStatusMultiPitchLeader
+} from '~/assets/oblyk-icons'
 import { DateHelpers } from '@/mixins/DateHelpers'
 
 export default {
-  name: 'AscentGymRouteStatusIcon',
+  name: 'AscentGymRouteRopingIcon',
   mixins: [DateHelpers],
   props: {
     gymRoute: {
       type: Object,
       default: null
     },
-    ascentStatus: {
+    ropingStatus: {
       type: String,
       default: null
     },
@@ -40,13 +46,11 @@ export default {
     return {
       ascentInLogBook: null,
 
-      mdiCropSquare,
-      mdiCheckboxMarkedCircle,
-      mdiRecordCircle,
-      mdiFlash,
-      mdiEye,
-      mdiAutorenew,
-      mdiCropFree
+      oblykRopingStatusLeadClimb,
+      oblykRopingStatusTopRope,
+      oblykRopingStatusLeadClimbMultiPitchAlternateLead,
+      oblykRopingStatusMultiPitchSecond,
+      oblykRopingStatusMultiPitchLeader
     }
   },
 
@@ -84,33 +88,29 @@ export default {
       if (!ascents || ascents.length === 0) { return }
 
       this.ascentInLogBook = ascents.sort((a, b) => statusOrder.indexOf(a.ascent_status) - statusOrder.indexOf(b.ascent_status))[0]
+      console.log(this.ascentInLogBook.roping_status)
     },
 
     status () {
-      const tickStatus = this.inMyTickList ? 'tick_list' : null
-      return this.ascentStatus || this.ascentInLogBook?.ascent_status || tickStatus
+      return this.ropingStatus || this.ascentInLogBook?.roping_status
     },
 
     icon () {
-      if (this.status() === 'project') {
-        return mdiCropSquare
-      } else if (this.status() === 'sent') {
-        return mdiCheckboxMarkedCircle
-      } else if (this.status() === 'red_point') {
-        return mdiRecordCircle
-      } else if (this.status() === 'flash') {
-        return mdiFlash
-      } else if (this.status() === 'onsight') {
-        return mdiEye
-      } else if (this.status() === 'repetition') {
-        return mdiAutorenew
-      } else if (this.status() === 'tick_list') {
-        return mdiCropFree
+      if (this.status() === 'lead_climb') {
+        return oblykRopingStatusLeadClimb
+      } else if (this.status() === 'top_rope') {
+        return oblykRopingStatusTopRope
+      } else if (this.status() === 'multi_pitch_leader') {
+        return oblykRopingStatusMultiPitchLeader
+      } else if (this.status() === 'multi_pitch_second') {
+        return oblykRopingStatusMultiPitchSecond
+      } else if (this.status() === 'multi_pitch_alternate_lead') {
+        return oblykRopingStatusLeadClimbMultiPitchAlternateLead
       }
     },
 
     title () {
-      const status = this.$t(`models.ascentStatus.${this.status()}`)
+      const status = this.$t(`models.ropingStatus.${this.status()}`)
       let date = ''
       if (this.ascentInLogBook?.released_at) {
         date = `${this.humanizeDate(this.ascentInLogBook.released_at)} :`

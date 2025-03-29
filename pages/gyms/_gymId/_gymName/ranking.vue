@@ -59,7 +59,7 @@
             :items="dates"
             item-text="text"
             item-value="value"
-            :label="$t('common.month')"
+            :label="$t('common.period')"
             outlined
             hide-details
             dense
@@ -92,7 +92,7 @@
             @input="getRank()"
           />
         </v-col>
-        <v-col>
+        <v-col v-if="climbingTypes.length > 2">
           <v-select
             v-model="query.climbingType"
             :items="climbingTypes"
@@ -163,128 +163,182 @@
 
     <div
       v-else
-      class="mt-7"
+      class="mt-4"
     >
-      <div v-if="podiums.length > 0">
-        <!-- Podiums -->
-        <v-row>
-          <!-- First -->
-          <v-col
-            cols="6"
-            md="4"
-            align-self="end"
-            order="1"
-            order-md="2"
-          >
-            <gym-ranking-podium
-              v-if="!loadingScore && podiums.length >= 1"
-              :rank="1"
-              :points="podiums[0].points"
-              :user="podiums[0].user"
-              :click="getClimber"
-            />
+      <v-alert
+        v-if="myScore"
+        text
+        :icon="mdiMedal"
+        type="info"
+      >
+        <v-row align="center">
+          <v-col class="grow">
+            {{ $tc('components.gymRanking.myRank', myScore.rank, { count: myScore.rank }) }}
           </v-col>
-
-          <!-- Second -->
-          <v-col
-            cols="6"
-            md="4"
-            align-self="end"
-            order="2"
-            order-md="1"
-          >
-            <gym-ranking-podium
-              v-if="!loadingScore && podiums.length >= 2"
-              :rank="2"
-              :points="podiums[1].points"
-              :user="podiums[1].user"
-              :click="getClimber"
-            />
-          </v-col>
-
-          <!-- Third -->
-          <v-col
-            cols="12"
-            md="4"
-            align-self="end"
-            order="3"
-          >
-            <gym-ranking-podium
-              v-if="!loadingScore && podiums.length >= 3"
-              :rank="3"
-              :points="podiums[2].points"
-              :user="podiums[2].user"
-              :click="getClimber"
-            />
+          <v-col class="shrink">
+            <v-btn
+              text
+              small
+              color="blue"
+              @click="goToRank(myScore.rank)"
+            >
+              {{ $t('actions.see') }}
+            </v-btn>
           </v-col>
         </v-row>
+      </v-alert>
 
-        <!-- Other climbers -->
-        <v-list
-          v-if="!loadingScore && scores.length >= 1"
-          class="rounded mt-5"
-        >
-          <v-list-item
-            v-for="(score, scoreIndex) in scores"
-            :key="`score-index-${scoreIndex}`"
-            @click="getClimber(score.user)"
-          >
-            <v-list-item-avatar>
-              <v-img
-                :src="imageVariant(score.user.attachments.avatar, { fit: 'crop', width: 100, height: 100 })"
-                :alt="`avatar ${score.user.first_name}`"
-              />
-            </v-list-item-avatar>
-            <v-list-item-content>
-              <v-list-item-title>
-                <strong>{{ score.rank }}</strong> - {{ score.user.first_name }}
-              </v-list-item-title>
-            </v-list-item-content>
-            <v-list-item-action>
-              <strong>
-                {{ score.points }}
-              </strong>
-              <small class="vertical-align-text-top">pts</small>
-            </v-list-item-action>
-          </v-list-item>
-        </v-list>
-      </div>
+      <v-simple-table v-if="!loadingScore && scores.length > 0">
+        <template #default>
+          <tbody>
+            <tr
+              v-for="(score, scoreIndex) in scores"
+              :id="`score-rank-${score.rank}`"
+              :key="`score-index-${scoreIndex}`"
+              :class="myScore && myScore.user.slug_name === score.user.slug_name ? 'blue--text' : null"
+            >
+              <td class="smallest-table-column text-center">
+                <v-icon
+                  v-if="score.rank <= 3"
+                  :color="podiumIconAndColor[score.rank].color"
+                >
+                  {{ mdiMedal }}
+                </v-icon>
+                <strong v-else>
+                  {{ score.rank }}
+                </strong>
+              </td>
+              <td class="smallest-table-column px-0">
+                <v-chip
+                  class="pl-1"
+                  :color="myScore && myScore.user.slug_name === score.user.slug_name ? 'blue lighten-2' : null"
+                  @click="getAscents(score)"
+                >
+                  <v-avatar class="mr-2">
+                    <v-img
+                      :src="imageVariant(score.user.attachments.avatar, { fit: 'crop', width: 100, height: 100 })"
+                      :alt="`avatar ${score.user.first_name}`"
+                    />
+                  </v-avatar>
+                  <strong>
+                    {{ score.user.first_name }}
+                  </strong>
+                </v-chip>
+              </td>
+              <td class="px-1 py-1 text-no-wrap">
+                <div
+                  v-for="(chart, chartIndex) in score.charts"
+                  :key="`chart-${chartIndex}`"
+                  class="border rounded-sm pa-1 d-inline-block mr-1"
+                  @click="getAscents(score, chart.climbing_type)"
+                >
+                  <sparkbar
+                    :colors="chart.colors"
+                    :data="chart.data"
+                    :bar-width="7"
+                    :gutter="2"
+                    :height="40"
+                    :title="$t(`models.climbs.${chart.climbing_type}`).toLowerCase()"
+                    :title-color="$vuetify.theme.dark ? 'rgba(255, 255, 255, 0.5)' : 'rgba(0, 0, 0, 0.5)'"
+                  />
+                </div>
+              </td>
+              <td class="smallest-table-column">
+                <strong>
+                  {{ score.points.toLocaleString() }}
+                </strong>
+                <small>pts</small>
+              </td>
+            </tr>
+          </tbody>
+        </template>
+      </v-simple-table>
+
       <p
         v-else
         class="text-center text--disabled my-7"
       >
-        {{ $t('components.gymRanking.noRank', { date: humanizeDate(query.date, 'LLLL y') }) }}
+        {{ $t('components.gymRanking.noRank') }}
       </p>
     </div>
+
+    <!-- Dialog for climber results -->
     <down-to-close-dialog
-      ref="climberDialog"
-      v-model="climberDialog"
+      ref="dialog"
+      v-model="dialog"
       wait-signal
     >
-      <user-card
-        v-if="!loadingClimber"
-        :user="climber"
+      <v-list-item v-if="ascentScoreAndUser">
+        <v-list-item-avatar>
+          <v-avatar>
+            <v-img
+              :src="imageVariant(ascentScoreAndUser.user.attachments.avatar, { fit: 'crop', width: 100, height: 100 })"
+              :alt="`avatar ${ascentScoreAndUser.user.first_name}`"
+            />
+          </v-avatar>
+        </v-list-item-avatar>
+        <v-list-item-content>
+          <v-list-item-title>
+            {{ ascentScoreAndUser.user.first_name }}
+            <v-btn
+              small
+              left
+              elevation="0"
+              :to="`/climbers/${ascentScoreAndUser.user.slug_name}`"
+            >
+              {{ $t('actions.see') }}
+            </v-btn>
+          </v-list-item-title>
+          <v-list-item-subtitle>
+            {{ ascentScoreAndUser.points.toLocaleString() }} <small>points</small>
+          </v-list-item-subtitle>
+        </v-list-item-content>
+        <v-list-item-action>
+          <strong>
+            {{ $tc('components.gymRanking.rankNumber', ascentScoreAndUser.rank, { number: ascentScoreAndUser.rank }) }}
+          </strong>
+        </v-list-item-action>
+      </v-list-item>
+      <v-chip-group
+        v-if="climbingTabs.length > 1"
+        v-model="ascentClimbingType"
+        active-class="primary"
+      >
+        <v-chip
+          v-for="climbingType in climbingTabs"
+          :key="climbingType.value"
+          :value="climbingType.value"
+        >
+          {{ climbingType.text }}
+        </v-chip>
+      </v-chip-group>
+      <ascent-gym-route-points
+        v-if="ascentScoreAndUser && ascentClimbingType"
+        :date="query.date"
+        :gym="gym"
+        :score-and-user="ascentScoreAndUser"
+        :climbing-type="ascentClimbingType"
+        :signal-callback="dialogSignal"
       />
     </down-to-close-dialog>
   </v-container>
 </template>
 
 <script>
-import { mdiArrowLeft } from '@mdi/js'
+import { mdiArrowLeft, mdiMedal } from '@mdi/js'
 import { GymConcern } from '~/concerns/GymConcern'
 import { DateHelpers } from '~/mixins/DateHelpers'
 import { TextHelpers } from '~/mixins/TextHelpers'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 import GymApi from '~/services/oblyk-api/GymApi'
 import User from '~/models/User'
 import DownToCloseDialog from '~/components/ui/DownToCloseDialog'
-import UserCard from '~/components/users/UserCard'
-import UserApi from '~/services/oblyk-api/UserApi'
-import GymRankingPodium from '~/components/gyms/GymRankingPodium'
 import ContestUpComing from '~/components/gyms/ContestUpComing'
-import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
+import Sparkbar from '~/components/ui/Sparkbar'
+import AscentGymRoutePoints from '~/components/ascentGymRoutes/AscentGymRoutePoints'
 
 export default {
-  components: { ContestUpComing, GymRankingPodium, UserCard, DownToCloseDialog },
+  components: { AscentGymRoutePoints, Sparkbar, ContestUpComing, DownToCloseDialog },
   meta: { orphanRoute: true },
   mixins: [GymConcern, DateHelpers, TextHelpers, ImageVariantHelpers],
 
@@ -292,26 +346,25 @@ export default {
     return {
       loadingScore: true,
       scores: [],
-      podiums: [],
-      climberDialog: false,
-      loadingClimber: true,
-      climber: null,
+      podiumIconAndColor: {
+        1: { color: 'amber' },
+        2: { color: 'blue-grey' },
+        3: { color: 'brown' }
+      },
+      dialog: false,
+      ascentClimbingType: null,
+      ascentScoreAndUser: null,
+      myScore: null,
       query: {
         climbingType: 'all',
         gender: 'all',
         age: 'all',
-        date: this.today().startOf('month').toISO()
+        date: 'opened'
       },
       genders: [
         { text: this.$t('models.genres.males_and_females'), value: 'all' },
         { text: this.$t('models.genres.male'), value: 'male' },
         { text: this.$t('models.genres.female'), value: 'female' }
-      ],
-      climbingTypes: [
-        { text: this.$t('common.allTypes'), value: 'all' },
-        { text: this.$t('models.climbs.sport_climbing'), value: 'sport_climbing' },
-        { text: this.$t('models.climbs.bouldering'), value: 'bouldering' },
-        { text: this.$t('models.climbs.pan'), value: 'pan' }
       ],
       ages: [
         { text: this.$t('models.ages.all'), value: 'all' },
@@ -328,7 +381,8 @@ export default {
         { text: this.$t('models.ages.A60'), value: 'A60' }
       ],
 
-      mdiArrowLeft
+      mdiArrowLeft,
+      mdiMedal
     }
   },
 
@@ -345,7 +399,7 @@ export default {
 
   computed: {
     dates () {
-      const dates = []
+      const dates = [{ value: 'opened', text: this.$t('components.gymRanking.allOpenedRoutes') }]
       const date = this.today().startOf('month')
       dates.push({ value: date.toISO(), text: this.capitalize(this.humanizeDate(date, 'LLLL y')) })
       for (let i = 0; i < 5; i++) {
@@ -355,6 +409,26 @@ export default {
         })
       }
       return dates
+    },
+
+    climbingTypes () {
+      const types = [{ text: this.$t('common.allTypes'), value: 'all' }]
+      for (const level in this.gym?.levels) {
+        if (this.gym.levels[level].enabled) {
+          types.push({ text: this.$t(`models.climbs.${this.gym.levels[level].climbing_type}`), value: this.gym.levels[level].climbing_type })
+        }
+      }
+      return types
+    },
+
+    climbingTabs () {
+      const types = []
+      for (const level in this.gym?.levels) {
+        if (this.gym.levels[level].enabled) {
+          types.push({ text: this.$t(`models.climbs.${this.gym.levels[level].climbing_type}`), value: this.gym.levels[level].climbing_type })
+        }
+      }
+      return types
     }
   },
 
@@ -378,31 +452,33 @@ export default {
   methods: {
     getRank () {
       this.scores = []
-      this.podiums = []
       this.loadingScore = true
+      this.myScore = null
       const params = {
-        start_date: this.toDateTime(this.query.date).startOf('month'),
-        end_date: this.toDateTime(this.query.date).endOf('month'),
         climbing_type: this.query.climbingType,
         gender: this.query.gender,
         age: this.query.age
       }
+      if (this.query.date !== 'opened') {
+        params.start_date = this.toDateTime(this.query.date).startOf('month')
+        params.end_date = this.toDateTime(this.query.date).endOf('month')
+      }
       new GymApi(this.$axios, this.$auth)
         .rank(this.$route.params.gymId, params)
         .then((resp) => {
-          let index = 1
           for (const score of resp.data) {
             const scoreDate = {
               rank: score.rank,
               points: score.points,
+              charts: score.charts,
               user: new User({ attributes: score.user })
             }
-            if (index <= 3) {
-              this.podiums.push(scoreDate)
-            } else {
-              this.scores.push(scoreDate)
+            this.scores.push(scoreDate)
+
+            // Store login user score
+            if (this.myScore === null && this.$auth.loggedIn && this.$auth.user.slug_name === score.user.slug_name) {
+              this.myScore = scoreDate
             }
-            index++
           }
         })
         .finally(() => {
@@ -410,18 +486,24 @@ export default {
         })
     },
 
-    getClimber (user) {
-      this.loadingClimber = true
-      this.climberDialog = true
-      new UserApi(this.$axios, this.$auth)
-        .find(user.slug_name)
-        .then((resp) => {
-          this.climber = new User({ attributes: resp.data })
-          this.$refs.climberDialog.signal()
-        })
-        .finally(() => {
-          this.loadingClimber = false
-        })
+    dialogSignal () {
+      this.$refs.dialog.signal()
+    },
+
+    getAscents (scoreAndUser, climbingType = null) {
+      if (climbingType === null) {
+        this.ascentClimbingType = this.climbingTabs[0].value
+      } else {
+        this.ascentClimbingType = climbingType
+      }
+      this.ascentScoreAndUser = scoreAndUser
+      this.dialog = true
+      this.$refs.dialog.signal()
+    },
+
+    goToRank (rank) {
+      const tr = document.getElementById(`score-rank-${rank}`)
+      tr.scrollIntoView({ behavior: 'smooth', block: 'center' })
     }
   }
 }

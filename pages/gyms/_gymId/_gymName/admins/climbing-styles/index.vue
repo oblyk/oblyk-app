@@ -19,11 +19,22 @@
               {{ $t(`models.climbs.${climbingType}`) }}
             </v-card-title>
             <v-card-text v-if="!loadingStyles">
-              <gym-climbing-styles-form
-                :gym-climbing-styles="gymClimbingStyles"
-                :climbing-type="climbingType"
-                :gym="gym"
-              />
+              <div v-if="gym.levels[climbingType].enabled">
+                <gym-climbing-styles-form
+                  :gym-climbing-styles="gymClimbingStyles"
+                  :climbing-type="climbingType"
+                  :gym="gym"
+                />
+              </div>
+              <p
+                v-else
+                class="text--disabled text-center mt-5"
+              >
+                {{ $t('components.levelAndGrades.climbingTypeDisabled', { gym: gym.name, type: $t(`models.climbs.${climbingType}`) }) }}<br>
+                <nuxt-link :to="`${gym.adminPath}/levels`">
+                  {{ $t('components.gymAdmin.levelsAndGardes') }}
+                </nuxt-link>
+              </p>
             </v-card-text>
           </v-card>
         </v-col>
@@ -71,8 +82,8 @@ export default {
       loadingStyles: true,
       gymClimbingStyles: null,
       climbingTypes: [
-        'bouldering',
         'sport_climbing',
+        'bouldering',
         'pan'
       ],
 

@@ -76,5 +76,17 @@ class AscentGymRouteApi extends BaseApi {
       }
     })
   }
+
+  points (params) {
+    return this.axios.request({
+      method: 'GET',
+      url: `${this.baseUrl}/ascent_gym_routes/points.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
+      params
+    })
+  }
 }
 export default AscentGymRouteApi

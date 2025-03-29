@@ -234,6 +234,7 @@ export default {
     votes: 'Votes',
     minutes: 'minutes',
     month: 'Month',
+    period: 'Period',
     number: 'number',
     advancedOptions: 'Advanced options',
     documentation: 'Documentation',
@@ -1257,8 +1258,10 @@ export default {
       rankOf: 'The %{date} ranking',
       seeRankOf: 'See the %{date} ranking',
       rankNumber: '%{number}st | %{number}nd',
-      noRank: 'There is no ranking for %{date} with the selected filters.',
-      giveDefaultPoints: 'You can give a default number of points for your different levels'
+      noRank: 'There is no ranking with the selected filters.',
+      giveDefaultPoints: 'You can give a default number of points for your different levels',
+      allOpenedRoutes: 'All opened routes',
+      myRank: "You're 1st in the ranking! | You are %{count}nd in the ranking !"
     },
     gymAdmin: {
       administration: 'Administration',
@@ -1330,7 +1333,8 @@ export default {
     },
     levelAndGrades: {
       title: 'Colour level & grading system',
-      explain: 'Choose the order in which your colours are organised and the grading system you use for each climbing type.'
+      explain: 'Choose the order in which your colours are organised and the grading system you use for each climbing type.',
+      climbingTypeDisabled: "%{gym} doesn't have %{type}."
     },
     gymStatistic: {
       figuresTitle: 'In a few figures',
@@ -2324,6 +2328,8 @@ export default {
       latitude: 'Latitude',
       longitude: 'Longitude',
       plan: 'Subscription',
+      ascents_multiplier: 'Multiplier coefficient',
+      ascents_multiplier_explain: 'You can multiply the points received by the climber according to how the ascent was achieved.',
       plan_list: {
         free: 'Free',
         free_trial: 'Free Trial',

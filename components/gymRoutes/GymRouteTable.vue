@@ -342,11 +342,11 @@
               >
                 {{ ascent.user.full_name }}
               </nuxt-link> -
-              <ascent-gym-route-status-icon
-                :ascent-status="ascent.ascent_status"
-                class="mr-1 mb-1"
+              <ascent-gym-route-icon
+                :gym-route="ascent.gym_route"
+                :ascent="ascent"
               />
-              {{ $t(`models.ascentStatus.${ascent.ascent_status}`) }} {{ $t('common.at') }} {{ humanizeDate(ascent.released_at) }}
+              {{ $t('common.at') }} {{ humanizeDate(ascent.released_at) }}
               <note
                 v-if="ascent.note !== null"
                 :note="ascent.note"
@@ -428,22 +428,22 @@ import GymRouteTagAndHold from '@/components/gymRoutes/partial/GymRouteTagAndHol
 import GymRouteApi from '~/services/oblyk-api/GymRouteApi'
 import AscentGymRoute from '~/models/AscentGymRoute'
 import Note from '~/components/notes/Note'
-import AscentGymRouteStatusIcon from '~/components/ascentGymRoutes/AscentGymRouteStatusIcon'
 import PrintLabelDialog from '~/components/gymLabelTemplates/PrintLabelDialog'
 import GymSpace from '~/models/GymSpace'
 import DownToCloseDialog from '~/components/ui/DownToCloseDialog'
 import GymRouteInfo from '~/components/gymRoutes/GymRouteInfo'
 import OpeningSheetDialog from '~/components/gymOpeningSheets/OpeningSheetDialog'
 import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
+import AscentGymRouteIcon from '~/components/ascentGymRoutes/AscentGymRouteIcon'
 
 export default {
   name: 'GymRoutesTable',
   components: {
+    AscentGymRouteIcon,
     OpeningSheetDialog,
     GymRouteInfo,
     DownToCloseDialog,
     PrintLabelDialog,
-    AscentGymRouteStatusIcon,
     Note,
     GymRouteTagAndHold
   },

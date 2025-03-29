@@ -7,6 +7,13 @@
       :with-repetition="repetition"
     />
 
+    <!-- Roping status -->
+    <roping-status-input
+      v-if="gymRoute.climbing_type === 'sport_climbing'"
+      v-model="data.roping_status"
+      :multi-pith-roping-statuses="false"
+    />
+
     <!-- Released at -->
     <date-picker-input
       v-model="data.released_at"
@@ -105,10 +112,12 @@ import DatePickerInput from '@/components/forms/DatePickerInput'
 import LikeBtn from '~/components/forms/LikeBtn.vue'
 import HardnessStatusInput from '~/components/forms/HardnessStatusInput.vue'
 import RequiredExplained from '~/components/forms/RequiredExplained.vue'
+import RopingStatusInput from '~/components/forms/RopingStatusInput.vue'
 
 export default {
   name: 'AscentGymRouteForm',
   components: {
+    RopingStatusInput,
     RequiredExplained,
     HardnessStatusInput,
     LikeBtn,
@@ -150,6 +159,7 @@ export default {
       data: {
         id: this.ascentGymRoute?.id,
         ascent_status: this.ascentGymRoute?.ascent_status || this.defaultAscentStatus,
+        roping_status: this.ascentGymRoute?.roping_status || localStorage.getItem('defaultAscentGymRouteRopingStatus') || 'lead_climb',
         hardness_status: this.ascentGymRoute?.hardness_status,
         released_at: this.ascentGymRoute?.released_at || this.ISODateToday(),
         selected_sections: this.ascentGymRoute?.sections_done || this.gymRoute.sections.map((section, index) => index),
@@ -176,6 +186,7 @@ export default {
       this.$localforage.gymRoutes.removeItem(this.data.gym_route_id)
       promise
         .then(() => {
+          localStorage.setItem('defaultAscentGymRouteRopingStatus', this.data.roping_status)
           this.$auth.fetchUser().then(() => {
             if (this.callback) {
               this.callback()

@@ -5,7 +5,10 @@ class GymRouteApi extends BaseApi {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/gyms/${gymId}/gym_routes/paginated.json`,
-      headers: { HttpApiAccessToken: this.apiAccessToken },
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
       params: { order_by: orderBy, direction, page, gym_sector_id: sectorId, dismounted }
     })
   }
@@ -14,7 +17,10 @@ class GymRouteApi extends BaseApi {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/gyms/${gymId}/gym_spaces/${spaceId}/gym_routes/paginated.json`,
-      headers: { HttpApiAccessToken: this.apiAccessToken },
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
       params: { order_by: orderBy, direction, page, gym_sector_id: sectorId, dismounted }
     })
   }
