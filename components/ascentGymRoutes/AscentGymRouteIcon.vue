@@ -3,7 +3,7 @@
     v-if="ascentInLogBook || ascent"
     small
     dark
-    class="pl-1 pr-2"
+    :class="withLabel ? 'pl-1 pr-2' : 'px-1'"
   >
     <v-icon
       :small="size === null"
@@ -12,7 +12,10 @@
     >
       {{ statusIcon() }}
     </v-icon>
-    <strong class="pl-1">
+    <strong
+      v-if="withLabel"
+      class="pl-1"
+    >
       {{ label() }}
     </strong>
   </v-chip>
@@ -49,6 +52,10 @@ export default {
     color: {
       type: String,
       default: 'amber darken-1'
+    },
+    withLabel: {
+      type: Boolean,
+      default: true
     }
   },
 

@@ -4,27 +4,27 @@
       <v-list-item
         v-for="(ascent, ascentIndex) in ascents"
         :key="`ascent-index-${ascentIndex}`"
-        :class="ascent.gym_route.attachments.thumbnail.attached ? 'pl-0' : ''"
+        class="px-0"
       >
         <v-list-item-avatar
           v-if="ascent.gym_route.attachments.thumbnail.attached"
           class="my-0"
-          height="72"
-          width="72"
-          rounded
+          height="60"
+          width="60"
+          pill
         >
           <v-img
-            height="72"
-            width="72"
+            height="60"
+            width="60"
             :src="imageVariant(ascent.gym_route.attachments.thumbnail, { fit: 'crop', height: 100, width: 100 })"
           />
         </v-list-item-avatar>
         <v-list-item-content>
-          <div class="align-self-center d-flex pr-4 ml-3">
+          <div class="align-self-center d-flex">
             <gym-route-tag-and-hold
               :gym-route="ascent.gym_route"
               :size="35"
-              style="margin-top: 5px"
+              style="margin-top: 5px; max-width: 35px"
             />
             <div class="ml-1" style="padding-top: 1px">
               <div>
@@ -50,13 +50,16 @@
               </div>
             </div>
             <div class="ml-auto text-right">
-              <ascent-gym-route-icon :ascent="ascent" />
-              <div class="mt-1">
-                <strong>+ {{ ascent.points.score.toLocaleString() }} points</strong>
+              <ascent-gym-route-icon
+                :ascent="ascent"
+                :with-label="false"
+              />
+              <div class="mt-1 text-no-wrap">
+                <strong>+ {{ ascent.points.score.toLocaleString() }} pts</strong>
               </div>
               <div v-if="ascent.points.multiplier !== 1">
-                <small class="text--disabled">
-                  {{ ascent.points.base.toLocaleString() }} points x {{ ascent.points.multiplier.toLocaleString() }}
+                <small class="text--disabled text-no-wrap">
+                  {{ ascent.points.base.toLocaleString() }} pts x {{ ascent.points.multiplier.toLocaleString() }}
                 </small>
               </div>
             </div>
