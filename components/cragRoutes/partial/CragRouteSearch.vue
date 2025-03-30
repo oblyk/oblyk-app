@@ -52,7 +52,7 @@ export default {
     },
     tabindex: {
       type: Number,
-      required: true
+      default: null
     }
   },
 

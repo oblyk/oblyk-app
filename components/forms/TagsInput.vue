@@ -28,14 +28,9 @@ export default {
       type: Array,
       required: true
     },
-    environment: {
-      type: String,
-      required: true
-    },
     label: {
       type: String,
-      required: false,
-      default: ''
+      default: null
     },
     dense: {
       type: Boolean,
@@ -47,7 +42,7 @@ export default {
     },
     tabindex: {
       type: Number,
-      required: true
+      default: null
     }
   },
 
