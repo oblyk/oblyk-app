@@ -506,8 +506,8 @@ export default {
       this.editSector = sector
       if (sector.three_d_height) {
         this.sectorHeight = sector.three_d_height
-        this.sectorElevated = sector.three_d_elevated
       }
+      this.sectorElevated = sector.three_d_elevated || 0
       this.startEditing = true
       setTimeout(() => {
         this.$refs.gymSpaceThreeDEditor.startEditingSector(sector)
