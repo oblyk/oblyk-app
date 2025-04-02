@@ -6,19 +6,60 @@ This repository is the App part of Oblyk project.
 For front api, go here : [oblyk-app](https://github.com/oblyk/oblyk-api)
 
 ## Dependencies
-- docker compose
-- make
+
+### With Docker
+
+- Docker Compose
+- Make
+
+### Without Docker
+
+- Node 18
+- npm >= 7.11
 
 ## Installation
+
+Copy the example environment file:
+
 ```shell
-make install
 cp .env.example .env
 ```
+
 Set `VUE_APP_OBLYK_API_ACCESS_TOKEN` params in `.env.local` with your Api token (see: [oblyk-api organization token part](https://github.com/oblyk/oblyk-api))
 
-## Launch vue
+### With Docker
+
+Run the installation command:
+
+```shell
+make install
+```
+
+Set VUE_APP_OBLYK_APP_HOST in the .env file:
+
+```shell
+echo "VUE_APP_OBLYK_APP_HOST=0.0.0.0" >> .env
+```
+
+Start the development server
+
 ```shell
 make dev
 ```
-go to [localhost:4500](http://localhost:4500/)  
-enjoy !
+
+### Without Docker
+
+Install npm dependencies:
+
+```shell
+    npm install
+```
+
+Start the development server
+
+```shell
+npm run dev
+```
+
+Open your browser and go to [localhost:4500](http://localhost:4500/)  
+Enjoy !
