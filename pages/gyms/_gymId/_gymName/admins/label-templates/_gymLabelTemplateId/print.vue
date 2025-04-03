@@ -136,12 +136,12 @@
             Orientation de la page :
           </p>
           <label :class="pageOrientation === 'portrait' ? '--active' : ''">
-            <input v-model="pageOrientation" type="radio" value="portrait" />
+            <input v-model="pageOrientation" type="radio" value="portrait">
             <span class="icon-orientation --portrait" />
             {{ $t('models.gymLabelTemplate.page_direction_list.portrait') }}
           </label>
           <label :class="pageOrientation === 'landscape' ? '--active' : ''">
-            <input v-model="pageOrientation" type="radio" value="landscape" />
+            <input v-model="pageOrientation" type="radio" value="landscape">
             <span class="icon-orientation --landscape" />
             {{ $t('models.gymLabelTemplate.page_direction_list.landscape') }}
           </label>
@@ -151,15 +151,15 @@
             Format de la page :
           </p>
           <label :class="pageFormat === 'A3' ? '--active' : ''">
-            <input v-model="pageFormat" type="radio" value="A3" />
+            <input v-model="pageFormat" type="radio" value="A3">
             {{ $t('models.gymLabelTemplate.page_format_list.A3') }}
           </label>
           <label :class="pageFormat === 'A4' ? '--active' : ''">
-            <input v-model="pageFormat" type="radio" value="A4" />
+            <input v-model="pageFormat" type="radio" value="A4">
             {{ $t('models.gymLabelTemplate.page_format_list.A4') }}
           </label>
           <label :class="pageFormat === 'A5' ? '--active' : ''">
-            <input v-model="pageFormat" type="radio" value="A5" />
+            <input v-model="pageFormat" type="radio" value="A5">
             {{ $t('models.gymLabelTemplate.page_format_list.A5') }}
           </label>
         </div>

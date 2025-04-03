@@ -34,7 +34,7 @@
             color="primary"
             :to="climberLocality.User.path"
           >
-            {{ $t('actions.see')}}
+            {{ $t('actions.see') }}
           </v-btn>
         </v-list-item-action>
       </v-list-item>

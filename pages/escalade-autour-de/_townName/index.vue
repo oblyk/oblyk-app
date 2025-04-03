@@ -103,7 +103,7 @@
                     :size="45"
                     tile
                   >
-                    <v-img :src="imageVariant(town.crags.nearest.photo.attachments.picture, { fit: 'crop', width: 100, height: 100 })"/>
+                    <v-img :src="imageVariant(town.crags.nearest.photo.attachments.picture, { fit: 'crop', width: 100, height: 100 })" />
                   </v-avatar>
                   <v-icon>
                     {{ mdiTerrain }}

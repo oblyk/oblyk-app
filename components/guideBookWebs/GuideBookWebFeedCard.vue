@@ -30,7 +30,10 @@
 export default {
   name: 'GuideBookWebFeedCard',
   props: {
-    guideBookWeb: Object
+    guideBookWeb: {
+      type: Object,
+      required: true
+    }
   }
 }
 </script>

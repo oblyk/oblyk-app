@@ -135,7 +135,6 @@ export default {
           url: this.copyUrl
         })
       } catch (err) {
-        console.error(err)
       }
     }
   }

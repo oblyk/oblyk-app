@@ -15,7 +15,10 @@
 export default {
   name: 'ApproachTypeInput',
   props: {
-    value: String
+    value: {
+      type: String,
+      required: true
+    }
   },
 
   data () {

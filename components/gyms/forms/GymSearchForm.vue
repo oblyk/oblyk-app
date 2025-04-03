@@ -5,7 +5,7 @@
         <v-text-field
           ref="GymSearchForm"
           v-model="query"
-          :label="$t(this.label)"
+          :label="$t(label)"
           outlined
           :loading="searching"
           clearable

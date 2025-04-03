@@ -23,7 +23,10 @@
 export default {
   name: 'VideoFeedCard',
   props: {
-    video: Object
+    video: {
+      type: Object,
+      required: true
+    }
   }
 }
 </script>
