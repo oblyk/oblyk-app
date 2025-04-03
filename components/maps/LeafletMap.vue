@@ -676,6 +676,7 @@ import OsmNominatim from '~/services/osm-nominatim'
 import RockBarApi from '~/services/oblyk-api/RockBarApi'
 import GuideBookPaperApi from '~/services/oblyk-api/GuideBookPaperApi'
 const SearchPlaceInput = () => import('~/components/forms/SearchPlaceInput.vue')
+const leafletMapFilterKey = 'leafletMapFilter'
 
 export default {
   name: 'LeafletMap',
@@ -1110,6 +1111,13 @@ export default {
   },
 
   mounted () {
+    if (localStorage.getItem(leafletMapFilterKey)) {
+      try {
+        this.filter = JSON.parse(localStorage.getItem(leafletMapFilterKey))
+      } catch {
+        localStorage.removeItem(leafletMapFilterKey)
+      }
+    }
     this.$root.$on('fitMapOnGeoJsonBounds', () => {
       this.fitGeoJsonBounds()
     })
@@ -1472,6 +1480,7 @@ export default {
       this.timeToFilter = setTimeout(() => {
         this.filterCallback(this.filter)
         this.clusteredMarker = false
+        localStorage.setItem(leafletMapFilterKey, JSON.stringify(this.filter))
       }, 800)
     }
   }
