@@ -76,6 +76,7 @@
               {{ $t('components.contest.myContest') }}
             </v-tab>
             <v-tab
+              v-if="!contest.hide_results"
               exact-path
               :to="`${contest.path}/results`"
             >

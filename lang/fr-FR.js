@@ -2568,7 +2568,8 @@ export default {
       ranking_type: 'Type de classement',
       categorization_type: 'Type de catégorisation',
       authorise_public_subscription: 'Autoriser les inscriptions depuis la page publique',
-      private: 'Contest privé'
+      private: 'Contest privé',
+      hide_results: 'Cacher la page "Résultat" sur la page publique du contest'
     },
     contestCombinedRanking: {
       title: 'Type de classement',

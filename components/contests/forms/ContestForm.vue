@@ -98,6 +98,16 @@
       />
     </div>
 
+    <div class="pa-2 my-4 border rounded-sm">
+      <v-checkbox
+        v-model="data.hide_results"
+        :label="$t('models.contest.hide_results')"
+        hint="La page publique de votre contest ne comportera pas de page Résultat"
+        class="mt-n1"
+        persistent-hint
+      />
+    </div>
+
     <close-form />
     <submit-form
       :overlay="submitOverlay"
@@ -159,8 +169,9 @@ export default {
         subscription_end_date: this.contest?.subscription_end_date,
         total_capacity: this.contest?.total_capacity,
         categorization_type: this.contest?.categorization_type,
-        authorise_public_subscription: this.contest?.authorise_public_subscription || true,
+        authorise_public_subscription: this.contest?.authorise_public_subscription === undefined ? true : this.contest?.authorise_public_subscription,
         private: this.contest?.private,
+        hide_results: this.contest?.hide_results,
         gym_id: this.gym.id
       },
 

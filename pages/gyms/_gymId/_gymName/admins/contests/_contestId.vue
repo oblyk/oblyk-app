@@ -27,18 +27,42 @@
                   <description-line
                     class="mb-4"
                     :item-title="$t('models.contest.start_date')"
-                    :item-value="humanizeDate(contest.start_date)"
-                  />
+                  >
+                    <template #content>
+                      <v-chip
+                        small
+                        @click="openEditModal()"
+                      >
+                        {{ humanizeDate(contest.start_date) }}
+                      </v-chip>
+                    </template>
+                  </description-line>
                   <description-line
                     v-if="contest.start_date !== contest.end_date"
                     class="mb-4"
                     :item-title="$t('models.contest.end_date')"
-                    :item-value="humanizeDate(contest.end_date)"
-                  />
+                  >
+                    <template #content>
+                      <v-chip
+                        small
+                        @click="openEditModal()"
+                      >
+                        {{ humanizeDate(contest.end_date) }}
+                      </v-chip>
+                    </template>
+                  </description-line>
                   <description-line
                     item-title="Période d'inscription"
-                    :item-value="`du ${humanizeDate(contest.subscription_start_date, 'DATE_SHORT')} au ${humanizeDate(contest.subscription_end_date, 'DATE_SHORT')}`"
-                  />
+                  >
+                    <template #content>
+                      <v-chip
+                        small
+                        @click="openEditModal()"
+                      >
+                        {{ humanizeDate(contest.subscription_start_date, 'DATE_SHORT') }} au {{ humanizeDate(contest.subscription_end_date, 'DATE_SHORT') }}
+                      </v-chip>
+                    </template>
+                  </description-line>
                 </v-col>
               </v-row>
               <description-line
@@ -50,25 +74,51 @@
               </p>
               <div
                 v-if="contest.description"
-                class="pa-2 rounded-sm back-app-color"
+                class="pa-2 rounded-sm back-app-color d-flex align-end"
               >
-                <markdown-text :text="contest.description" />
+                <div>
+                  <markdown-text :text="contest.description" />
+                </div>
+                <div class="ml-auto">
+                  <v-btn
+                    icon
+                    small
+                    @click="openEditModal()"
+                  >
+                    <v-icon small>
+                      {{ mdiPencil }}
+                    </v-icon>
+                  </v-btn>
+                </div>
               </div>
               <div class="rounded-sm border pa-2 mt-2">
-                <v-row>
-                  <v-col cols="12" md="6" lg="8">
-                    <p class="mb-0">
-                      {{ $t('models.contest.authorise_public_subscription') }} :
-                      <strong>{{ contest.authorise_public_subscription ? 'oui' : 'non' }}</strong>
-                    </p>
-                  </v-col>
-                  <v-col>
-                    <p class="mb-0">
-                      {{ $t('models.contest.private') }} :
-                      <strong>{{ contest.private ? 'oui' : 'non' }}</strong>
-                    </p>
-                  </v-col>
-                </v-row>
+                <p class="mb-0">
+                  {{ $t('models.contest.authorise_public_subscription') }}:
+                  <v-chip
+                    small
+                    @click="openEditModal()"
+                  >
+                    {{ contest.authorise_public_subscription ? 'oui' : 'non' }}
+                  </v-chip>
+                </p>
+                <p class="mb-0">
+                  {{ $t('models.contest.private') }}:
+                  <v-chip
+                    small
+                    @click="openEditModal()"
+                  >
+                    {{ contest.private ? 'oui' : 'non' }}
+                  </v-chip>
+                </p>
+                <p class="mb-0">
+                  {{ $t('models.contest.hide_results') }}:
+                  <v-chip
+                    small
+                    @click="openEditModal()"
+                  >
+                    {{ contest.hide_results ? 'oui' : 'non' }}
+                  </v-chip>
+                </p>
               </div>
               <v-alert
                 v-if="contest.archived_at !== null"

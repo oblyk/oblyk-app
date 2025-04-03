@@ -1,16 +1,24 @@
 <template>
   <div>
     <contest-result-table
-      v-if="contest.beginning_is_in_past"
+      v-if="contest.beginning_is_in_past && !contest.hide_results"
       class="mt-4"
       :contest="contest"
     />
-    <p
-      v-else
-      class="mt-7 text-center"
-    >
-      Les résultats seront disponibles quand le contest aura commencé.
-    </p>
+    <div v-else>
+      <p
+        v-if="contest.hide_results"
+        class="mt-7 text-center"
+      >
+        Les résultats ne peuvent pas être consulté ici
+      </p>
+      <p
+        v-else
+        class="mt-7 text-center"
+      >
+        Les résultats seront disponibles quand le contest aura commencé.
+      </p>
+    </div>
   </div>
 </template>
 
