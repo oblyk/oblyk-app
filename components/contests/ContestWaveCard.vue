@@ -43,7 +43,12 @@
       </v-menu>
     </v-card-title>
     <div class="px-4 pb-4">
-      {{ contestWave.contest_participants_count }} compétiteurs·ices inscrit
+      <span v-if="contestWave.capacity">
+        {{ contestWave.contest_participants_count }} / {{ contestWave.capacity }} compétiteurs·ices inscrit
+      </span>
+      <span v-else>
+        {{ contestWave.contest_participants_count }} compétiteurs·ices inscrit
+      </span>
     </div>
     <v-dialog
       v-model="editModal"

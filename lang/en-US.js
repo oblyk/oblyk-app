@@ -2666,7 +2666,9 @@ export default {
       contest_category: 'Category'
     },
     contestWave: {
-      name: 'Name'
+      name: 'Name',
+      capacity: 'Max capacity',
+      capacityExplain: 'Leave blank if you do not wish to apply a limit'
     },
     ages: {
       all: 'All ages',

@@ -31,6 +31,19 @@
       </v-btn>
     </div>
 
+    <v-text-field
+      v-model="data.capacity"
+      outlined
+      required
+      hide-details
+      class="required-field"
+      :label="$t('models.contestWave.capacity')"
+    />
+    <p
+      class="text--disabled"
+      v-html="$t('models.contestWave.capacityExplain')"
+    />
+
     <submit-form
       :go-back-btn="false"
       :overlay="submitOverlay"
@@ -72,6 +85,7 @@ export default {
       data: {
         id: this.contestWave?.id,
         name: this.contestWave?.name,
+        capacity: this.contestWave?.capacity,
         gym_id: this.gym.id,
         contest_id: this.contest.id
       }

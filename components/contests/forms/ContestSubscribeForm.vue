@@ -129,8 +129,9 @@
                     :key="`wave-index-${waveIndex}`"
                   >
                     <v-card
-                      class="border px-3 pt-1 pb-2 rounded-sm"
+                      class="border px-3 pt-1 pb-2 rounded-sm full-height"
                       :color="category.id === data.contest_category_id && wave.id === data.contest_wave_id ? `green ${$vuetify.theme.dark ? 'darken' : 'lighten'}-5` : null"
+                      :disabled="wave.remaining_places <= 0"
                       @click="chooseWave(wave.id)"
                     >
                       <div class="subtitle-2">
@@ -144,7 +145,10 @@
                         </v-icon>
                         {{ wave.name }}
                       </div>
-                      <ul class="pl-3">
+                      <ul
+                        v-if="wave.remaining_places === null || wave.remaining_places > 0"
+                        class="pl-3"
+                      >
                         <li v-if="wave.remaining_places">
                           {{ wave.remaining_places }} place restantes
                         </li>
@@ -158,6 +162,12 @@
                           Commence le {{ humanizeDate(wave.time_blocks[0].start_date, 'DATE_SHORT') }} à {{ humanizeDate(wave.time_blocks[0].start_time, 'TIME_SIMPLE') }}
                         </li>
                       </ul>
+                      <p
+                        v-else
+                        class="text-center mt-2 mb-0 font-weight-black red--text text--lighten-2"
+                      >
+                        COMPLET
+                      </p>
                     </v-card>
                   </v-col>
                 </v-row>

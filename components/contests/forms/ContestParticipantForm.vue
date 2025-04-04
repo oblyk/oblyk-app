@@ -86,7 +86,10 @@
                     {{ wave.name }}
                   </div>
                   <ul class="pl-3">
-                    <li v-if="wave.remaining_places">
+                    <li
+                      v-if="wave.remaining_places !== null"
+                      :class="wave.remaining_places <= 0 ? 'red--text text--lighten-2' : null"
+                    >
                       {{ wave.remaining_places }} places restantes
                     </li>
                     <li v-else>
