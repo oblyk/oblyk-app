@@ -45,7 +45,7 @@
       </v-row>
 
       <v-alert
-        v-if="gymRoute.dismounted_at"
+        v-if="gymRoute.disGymRouteAscentsDialog_at"
         text
         type="error"
         class="mx-1 mt-2"
@@ -82,10 +82,12 @@
           cols="6"
           class="my-1 font-weight-bold text-no-wrap pl-2"
         >
-          <v-icon small>
-            {{ mdiCheckAll }}
-          </v-icon>
-          {{ $tc('components.gymRoute.ascents', gymRoute.ascents_count, { count: gymRoute.ascents_count }) }}
+          <button @click="openGymRouteAscents()">
+            <v-icon small>
+              {{ mdiCheckAll }}
+            </v-icon>
+            {{ $tc('components.gymRoute.ascents', gymRoute.ascents_count, { count: gymRoute.ascents_count }) }}
+          </button>
         </v-col>
       </v-row>
 
@@ -350,6 +352,7 @@
         </v-tab-item>
       </v-tabs-items>
     </div>
+    <GymRouteAscentsDialog ref="gymRouteAscents" :gym-route="gymRoute" :gym="gym" />
   </div>
 </template>
 
@@ -366,6 +369,7 @@ import {
   mdiGauge,
   mdiArrowRight
 } from '@mdi/js'
+import GymRouteAscentsDialog from './GymRouteAscentsDialog.vue'
 import { DateHelpers } from '@/mixins/DateHelpers'
 import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
 import GymRouteTagAndHold from '@/components/gymRoutes/partial/GymRouteTagAndHold'
@@ -377,6 +381,8 @@ import AddGymAscentBtn from '~/components/ascentGymRoutes/AddGymAscentBtn'
 import GymRouteClimbingStyles from '~/components/gymRoutes/partial/GymRouteClimbingStyles'
 import LikeBtn from '~/components/forms/LikeBtn'
 import GymRoutePicture from '~/components/gymRoutes/GymRoutePicture'
+import Gym from '~/models/Gym'
+import GymRoute from '~/models/GymRoute'
 const GymRouteVideoList = () => import('~/components/gymRoutes/GymRouteVideoList')
 const CommentList = () => import('~/components/comments/CommentList')
 
@@ -396,12 +402,13 @@ export default {
     MarkdownText,
     GymRouteAscent,
     GymRouteGradeAndPoint,
-    GymRouteTagAndHold
+    GymRouteTagAndHold,
+    GymRouteAscentsDialog
   },
   mixins: [DateHelpers, GymRolesHelpers],
   props: {
     gymRoute: {
-      type: Object,
+      type: GymRoute,
       required: true
     },
     showSpace: {
@@ -413,7 +420,7 @@ export default {
       default: false
     },
     gym: {
-      type: Object,
+      type: Gym,
       default: null
     },
     closeCallback: {
@@ -487,6 +494,10 @@ export default {
       if (entries[0].isIntersecting) {
         this.videoList = true
       }
+    },
+
+    openGymRouteAscents () {
+      this.$refs.gymRouteAscents.open()
     }
   }
 }
