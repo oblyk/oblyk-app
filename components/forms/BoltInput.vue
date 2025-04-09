@@ -1,7 +1,7 @@
 <template>
   <v-select
-    v-model="bolt"
     ref="boltInput"
+    v-model="bolt"
     v-disabled-icon-focus
     :items="bolts"
     item-text="text"
@@ -26,7 +26,10 @@ export default {
   name: 'BoltInput',
   mixins: [InputHelpers],
   props: {
-    value: String,
+    value: {
+      type: String,
+      required: true
+    },
     dense: {
       type: Boolean,
       default: false
@@ -35,7 +38,10 @@ export default {
       type: Boolean,
       default: false
     },
-    tabindex: Number
+    tabindex: {
+      type: Number,
+      default: null
+    }
   },
 
   data () {

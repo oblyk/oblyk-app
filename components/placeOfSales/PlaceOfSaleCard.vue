@@ -40,8 +40,14 @@ export default {
   name: 'PlaceOfSaleCard',
   components: { OwnerLabel },
   props: {
-    placeOfSale: Object,
-    getPlaceOfSales: Function
+    placeOfSale: {
+      type: Object,
+      required: true
+    },
+    getPlaceOfSales: {
+      type: Function,
+      required: true
+    }
   },
 
   data () {

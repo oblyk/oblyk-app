@@ -15,8 +15,14 @@
 export default {
   name: 'GlobalSearchTabTitle',
   props: {
-    arrayResult: Array,
-    titleKey: String
+    arrayResult: {
+      type: Array,
+      required: true
+    },
+    titleKey: {
+      type: String,
+      required: true
+    }
   }
 }
 </script>

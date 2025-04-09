@@ -14,9 +14,18 @@ import { mdiArrowRight, mdiArrowLeft } from '@mdi/js'
 export default {
   name: 'LightBoxArrow',
   props: {
-    direction: String,
-    selectedIndex: Number,
-    photosGallery: Array
+    direction: {
+      type: String,
+      required: true
+    },
+    selectedIndex: {
+      type: Number,
+      required: true
+    },
+    photosGallery: {
+      type: Array,
+      required: true
+    }
   },
 
   data () {

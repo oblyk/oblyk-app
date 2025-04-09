@@ -1,5 +1,5 @@
 <template>
-  <v-tabs show-arrows >
+  <v-tabs show-arrows>
     <!-- Photos -->
     <v-tab :to="`${user.currentUserPath}/media/photos`">
       {{ user.photos_count }}
@@ -18,7 +18,10 @@
 export default {
   name: 'CurrentUserMediaTabs',
   props: {
-    user: { type: Object, required: true }
+    user: {
+      type: Object,
+      required: true
+    }
   }
 }
 </script>

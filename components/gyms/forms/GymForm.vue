@@ -36,9 +36,9 @@
         </u>
       </p>
       <gym-small-card
-        v-for="(gym, index) in gymsAround"
+        v-for="(gymItem, index) in gymsAround"
         :key="`gym-around-${index}`"
-        :gym="gym"
+        :gym="gymItem"
         :small="true"
         class="mb-2"
       />

@@ -17,7 +17,10 @@ export default {
   name: 'CragRouteNote',
   components: { Note },
   props: {
-    route: Object
+    route: {
+      type: Object,
+      required: true
+    }
   }
 }
 </script>
