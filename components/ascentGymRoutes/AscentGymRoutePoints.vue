@@ -84,11 +84,12 @@ import AscentGymRoute from '~/models/AscentGymRoute'
 import GymRouteTagAndHold from '~/components/gymRoutes/partial/GymRouteTagAndHold.vue'
 import AscentGymRouteIcon from '~/components/ascentGymRoutes/AscentGymRouteIcon.vue'
 import LoadingMore from '~/components/layouts/LoadingMore.vue'
+import { DateHelpers } from '~/mixins/DateHelpers'
 
 export default {
   name: 'AscentGymRoutePoints',
   components: { LoadingMore, AscentGymRouteIcon, GymRouteTagAndHold },
-  mixins: [LoadingMoreHelpers, ImageVariantHelpers],
+  mixins: [LoadingMoreHelpers, ImageVariantHelpers, DateHelpers],
   props: {
     climbingType: {
       type: String,
@@ -145,8 +146,8 @@ export default {
       }
 
       if (this.date !== 'opened') {
-        params.start_date = this.toDateTime(this.date).startOf('month')
-        params.end_date = this.toDateTime(this.date).endOf('month')
+        params.start_date = this.toDateTime(this.date).startOf('month').toISODate()
+        params.end_date = this.toDateTime(this.date).endOf('month').toISODate()
       }
 
       new AscentGymRouteApi(this.$axios, this.$auth)
