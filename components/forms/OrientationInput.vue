@@ -21,7 +21,10 @@ export default {
   name: 'OrientationInput',
   mixins: [InputHelpers],
   props: {
-    value: Array
+    value: {
+      type: Array,
+      required: true
+    }
   },
 
   data () {

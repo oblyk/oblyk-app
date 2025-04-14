@@ -13,7 +13,10 @@ export default {
   name: 'WordFeedCard',
   components: { MarkdownText },
   props: {
-    word: Object
+    word: {
+      type: Object,
+      required: true
+    }
   }
 }
 </script>

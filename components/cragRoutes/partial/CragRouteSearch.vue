@@ -22,7 +22,10 @@ import CragRouteApi from '~/services/oblyk-api/CragRouteApi'
 export default {
   name: 'CragRouteSearch',
   props: {
-    value: String,
+    value: {
+      type: String,
+      required: true
+    },
     crag: {
       type: Object,
       default: null
@@ -47,7 +50,10 @@ export default {
       type: String,
       default: 'searchCragRoutesResults'
     },
-    tabindex: Number
+    tabindex: {
+      type: Number,
+      default: null
+    }
   },
 
   data () {

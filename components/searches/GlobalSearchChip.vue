@@ -16,10 +16,22 @@
 export default {
   name: 'GlobalSearchChip',
   props: {
-    arrayResults: Array,
-    titleKey: String,
-    icon: String,
-    callback: Function
+    arrayResult: {
+      type: Array,
+      required: true
+    },
+    titleKey: {
+      type: String,
+      required: true
+    },
+    icon: {
+      type: String,
+      required: true
+    },
+    callback: {
+      type: Function,
+      required: true
+    }
   }
 }
 </script>

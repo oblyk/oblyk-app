@@ -5,18 +5,18 @@
     <v-container v-if="!loadingVersions">
       <close-form />
       <div
-        v-for="(version, versionIndex) in version.versions"
+        v-for="(versionItem, versionIndex) in version.versions"
         :key="`version-${versionIndex}`"
         class="mb-7"
       >
         <p class="mb-1 text-decoration-underline">
-          {{ $t(`components.version.event.${version.event}` ) }}
+          {{ $t(`components.version.event.${versionItem.event}` ) }}
           {{ $t('common.at') }}
-          {{ humanizeDate(version.created_at) }}
-          <span v-if="version.user">
+          {{ humanizeDate(versionItem.created_at) }}
+          <span v-if="versionItem.user">
             {{ $t('common.by').toLowerCase() }}
-            <nuxt-link :to="`/climbers/${version.user.slug_name}`">
-              {{ version.user.name }}
+            <nuxt-link :to="`/climbers/${versionItem.user.slug_name}`">
+              {{ versionItem.user.name }}
             </nuxt-link>
           </span>
         </p>

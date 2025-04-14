@@ -65,7 +65,10 @@ export default {
   name: 'DateOfBirthSelectInput',
   mixins: [DateHelpers],
   props: {
-    value: String,
+    value: {
+      type: String,
+      required: true
+    },
     required: {
       type: Boolean,
       default: false

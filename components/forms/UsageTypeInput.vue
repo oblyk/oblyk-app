@@ -14,7 +14,10 @@
 export default {
   name: 'UsageTypeInput',
   props: {
-    value: String
+    value: {
+      type: String,
+      required: true
+    }
   },
 
   data () {
