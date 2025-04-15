@@ -352,7 +352,7 @@
         </v-tab-item>
       </v-tabs-items>
     </div>
-    <GymRouteAscentsDialog ref="gymRouteAscents" :gym-route="gymRoute" :gym="gym" />
+    <gym-route-ascents-dialog ref="gymRouteAscents" :gym-route="gymRoute" :gym="gym" />
   </div>
 </template>
 
