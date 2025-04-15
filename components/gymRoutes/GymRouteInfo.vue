@@ -381,8 +381,6 @@ import AddGymAscentBtn from '~/components/ascentGymRoutes/AddGymAscentBtn'
 import GymRouteClimbingStyles from '~/components/gymRoutes/partial/GymRouteClimbingStyles'
 import LikeBtn from '~/components/forms/LikeBtn'
 import GymRoutePicture from '~/components/gymRoutes/GymRoutePicture'
-import Gym from '~/models/Gym'
-import GymRoute from '~/models/GymRoute'
 const GymRouteVideoList = () => import('~/components/gymRoutes/GymRouteVideoList')
 const CommentList = () => import('~/components/comments/CommentList')
 

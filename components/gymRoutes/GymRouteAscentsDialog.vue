@@ -95,8 +95,6 @@ import AscentGymRouteHardnessIcon from '../ascentGymRoutes/AscentGymRouteHardnes
 import GymRouteTagAndHold from './partial/GymRouteTagAndHold.vue'
 import GymRouteApi from '~/services/oblyk-api/GymRouteApi'
 import AscentGymRoute from '~/models/AscentGymRoute'
-import GymRoute from '~/models/GymRoute'
-import Gym from '~/models/Gym'
 import { DateHelpers } from '~/mixins/DateHelpers'
 
 export default {
