@@ -110,11 +110,11 @@ export default {
 
   props: {
     gymRoute: {
-      type: GymRoute,
+      type: Object,
       required: true
     },
     gym: {
-      type: Gym,
+      type: Object,
       required: true
     }
   },

@@ -408,7 +408,7 @@ export default {
   mixins: [DateHelpers, GymRolesHelpers],
   props: {
     gymRoute: {
-      type: GymRoute,
+      type: Object,
       required: true
     },
     showSpace: {
@@ -420,7 +420,7 @@ export default {
       default: false
     },
     gym: {
-      type: Gym,
+      type: Object,
       default: null
     },
     closeCallback: {
