@@ -11,13 +11,25 @@
         class="flex-grow-0"
       />
       <div class="d-flex flex-column flex-grow-1">
-        <h3 v-if="gymRoute.name" class="text-h5">
+        <h3 v-if="gymRoute.name" class="d-flex flex-row text-h5">
           <small
             v-if="gymRoute.grade_to_s"
           >
             {{ gymRoute.grade_to_s }}
           </small>
-          {{ gymRoute.name }}
+          <span class="flex-grow-1 flex-shrink-1">{{ gymRoute.name }}</span>
+
+          <div class="flex-grow-0 flex-shrink-0">
+            <v-btn
+              icon
+              large
+              @click="close()"
+            >
+              <v-icon large>
+                {{ mdiClose }}
+              </v-icon>
+            </v-btn>
+          </div>
         </h3>
         <div>
           <small
@@ -88,7 +100,7 @@
 </template>
 
 <script>
-import { mdiTrumpet } from '@mdi/js'
+import { mdiClose, mdiTrumpet } from '@mdi/js'
 import DownToCloseDialog from '../ui/DownToCloseDialog.vue'
 import AscentGymRouteIcon from '../ascentGymRoutes/AscentGymRouteIcon.vue'
 import AscentGymRouteHardnessIcon from '../ascentGymRoutes/AscentGymRouteHardnessIcon.vue'
@@ -128,7 +140,8 @@ export default {
     return {
       isOpen: false,
       ascents: [],
-      isLoading: mdiTrumpet
+      isLoading: mdiTrumpet,
+      mdiClose
     }
   },
 
@@ -136,6 +149,10 @@ export default {
     open () {
       this.isOpen = true
       this.load()
+      this.$refs.dialog.signal()
+    },
+    close () {
+      this.isOpen = false
       this.$refs.dialog.signal()
     },
     load () {
