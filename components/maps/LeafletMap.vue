@@ -73,6 +73,22 @@
                 </v-icon>
                 {{ $t('common.pages.find.crags.map.filter.btnTile') }}
               </v-btn>
+              <v-btn
+                v-if="haveFilter"
+                outlined
+                small
+                color="red"
+                class="mr-1"
+                @click="resetFilter"
+              >
+                <v-icon
+                  left
+                  small
+                >
+                  {{ mdiFilterOff }}
+                </v-icon>
+                {{ $t('actions.reset') }}
+              </v-btn>
             </div>
             <div
               v-if="showMapFilter"
@@ -652,7 +668,8 @@ import {
   mdiClose,
   mdiBookshelf,
   mdiArrowLeft,
-  mdiFilter
+  mdiFilter,
+  mdiFilterOff
 } from '@mdi/js'
 import L, { icon } from 'leaflet'
 import 'leaflet-textpath/leaflet.textpath'
@@ -902,7 +919,8 @@ export default {
       mdiClose,
       mdiBookshelf,
       mdiArrowLeft,
-      mdiFilter
+      mdiFilter,
+      mdiFilterOff
     }
   },
 
@@ -1081,6 +1099,14 @@ export default {
       } else {
         return this.$t('common.pages.find.crags.map.filter.around', { type: object, min: this.gradeByValue[min], max: this.gradeByValue[max] })
       }
+    },
+
+    haveFilter () {
+      if (this.filter.altitude !== null) { return true }
+      if (this.filter.climbing_style !== null) { return true }
+      if (this.filter.gradeRange[0] !== 0 || this.filter.gradeRange[1] !== 52) { return true }
+      if (this.filter.orientations.length !== 0) { return true }
+      return false
     }
   },
 
@@ -1111,7 +1137,7 @@ export default {
   },
 
   mounted () {
-    if (localStorage.getItem(leafletMapFilterKey)) {
+    if (this.filterCallback && localStorage.getItem(leafletMapFilterKey)) {
       try {
         this.filter = JSON.parse(localStorage.getItem(leafletMapFilterKey))
       } catch {
@@ -1479,9 +1505,17 @@ export default {
       this.loadingFilter = true
       this.timeToFilter = setTimeout(() => {
         this.filterCallback(this.filter)
-        this.clusteredMarker = false
+        this.clusteredMarker = !this.haveFilter
         localStorage.setItem(leafletMapFilterKey, JSON.stringify(this.filter))
       }, 800)
+    },
+
+    resetFilter () {
+      this.filter.altitude = null
+      this.filter.climbing_style = null
+      this.filter.gradeRange = [0, 52]
+      this.filter.orientations = []
+      this.showMapFilter = false
     }
   }
 }

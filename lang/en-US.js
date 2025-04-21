@@ -173,7 +173,8 @@ export default {
     unArchive: 'Unarchive',
     follow: 'Follow',
     followed: 'Follower',
-    takeCapture: 'Take thumbnail'
+    takeCapture: 'Take thumbnail',
+    reset: 'Reset'
   },
   colors: {
     noColor: 'All',

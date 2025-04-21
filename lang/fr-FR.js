@@ -173,7 +173,8 @@ export default {
     unArchive: 'Dés-archiver',
     follow: 'Suivre',
     followed: 'Suivie',
-    takeCapture: 'Faire la miniature'
+    takeCapture: 'Faire la miniature',
+    reset: 'Reset'
   },
   colors: {
     noColor: 'Toutes',
