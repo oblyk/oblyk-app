@@ -19,7 +19,7 @@ export default {
   props: {
     value: {
       type: [String, Number],
-      required: true
+      default: null
     },
     hideDetails: {
       type: Boolean,

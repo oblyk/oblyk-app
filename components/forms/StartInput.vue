@@ -26,7 +26,7 @@ export default {
   props: {
     value: {
       type: String,
-      required: true
+      default: null
     },
     tabindex: {
       type: Number,

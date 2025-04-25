@@ -24,7 +24,7 @@ export default {
   props: {
     value: {
       type: String,
-      required: true
+      default: null
     },
     crag: {
       type: Object,

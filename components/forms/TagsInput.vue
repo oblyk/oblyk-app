@@ -26,7 +26,7 @@ export default {
   props: {
     value: {
       type: Array,
-      required: true
+      default: null
     },
     label: {
       type: String,

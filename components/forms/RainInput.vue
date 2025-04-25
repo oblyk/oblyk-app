@@ -23,7 +23,7 @@ export default {
   props: {
     value: {
       type: String,
-      required: true
+      default: null
     }
   },
 
