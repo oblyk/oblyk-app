@@ -921,9 +921,13 @@ export default {
     },
     navigation: {
       goTo: 'Se rendre au site',
+      parkList: 'Se rendre au parking | Se rendre aux parkings',
       cragBottom: 'Se rendre au pied de la falaise',
       goToPark: 'Se rendre au parking %{number}',
-      navigateWith: 'Naviguer avec %{name}'
+      navigateWith: 'Naviguer avec %{name}',
+      loadParks: 'Chargement des parkings',
+      getTo: "s'y rendre",
+      noParks: "Aucun parking n'a été référencé pour l'instant"
     },
     crag: {
       coverFrom: 'Photo du site',

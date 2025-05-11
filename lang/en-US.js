@@ -921,9 +921,13 @@ export default {
     },
     navigation: {
       goTo: 'Go to crag',
+      parkList: 'Getting to the car park | Getting to the car parks',
       cragBottom: 'Go to bottom of the crag',
       goToPark: 'Go to park %{number}',
-      navigateWith: 'Navigate with %{name}'
+      navigateWith: 'Navigate with %{name}',
+      loadParks: 'Loading car parks',
+      getTo: 'get there',
+      noParks: 'No car parks have yet been referenced'
     },
     crag: {
       coverFrom: 'Crag picture',
