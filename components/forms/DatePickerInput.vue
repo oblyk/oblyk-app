@@ -25,6 +25,7 @@
     <v-date-picker
       v-model="date"
       scrollable
+      :first-day-of-week="$i18n.locale === 'en' ? 0 : 1"
       @input="selectDate()"
     >
       <v-spacer />
