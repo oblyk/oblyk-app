@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "nuxt",
-    "build": "node node_modules/nuxt/bin/nuxt.js build",
+    "build": "NODE_OPTIONS='--max-old-space-size=4096' node node_modules/nuxt/bin/nuxt.js build",
     "start": "nuxt start",
     "generate": "nuxt generate",
     "lint:js": "eslint --ext \".js,.vue\" --ignore-path .gitignore .",
