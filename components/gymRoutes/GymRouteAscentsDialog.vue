@@ -110,6 +110,7 @@ import AscentGymRoute from '@/models/AscentGymRoute'
 import { DateHelpers } from '~/mixins/DateHelpers'
 
 export default {
+  name: 'GymRouteAscentsDialog',
   components: {
     DownToCloseDialog,
     GymRouteTagAndHold,
