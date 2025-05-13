@@ -369,21 +369,21 @@ import {
   mdiGauge,
   mdiArrowRight
 } from '@mdi/js'
-import GymRouteAscentsDialog from './GymRouteAscentsDialog.vue'
+import GymRouteAscentsDialog from '@/components/gymRoutes/GymRouteAscentsDialog.vue'
 import { DateHelpers } from '@/mixins/DateHelpers'
-import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
+import { GymRolesHelpers } from '@/mixins/GymRolesHelpers'
 import GymRouteTagAndHold from '@/components/gymRoutes/partial/GymRouteTagAndHold'
 import GymRouteGradeAndPoint from '@/components/gymRoutes/partial/GymRouteGradeAndPoint'
 import GymRouteAscent from '@/components/gymRoutes/GymRouteAscent'
-import DescriptionLine from '~/components/ui/DescriptionLine'
-import GymRouteActionBtn from '~/components/gymRoutes/partial/GymRouteActionBtn'
-import AddGymAscentBtn from '~/components/ascentGymRoutes/AddGymAscentBtn'
-import GymRouteClimbingStyles from '~/components/gymRoutes/partial/GymRouteClimbingStyles'
-import LikeBtn from '~/components/forms/LikeBtn'
-import GymRoutePicture from '~/components/gymRoutes/GymRoutePicture'
-const GymRouteVideoList = () => import('~/components/gymRoutes/GymRouteVideoList')
-const CommentList = () => import('~/components/comments/CommentList')
+import DescriptionLine from '@/components/ui/DescriptionLine'
+import GymRouteActionBtn from '@/components/gymRoutes/partial/GymRouteActionBtn'
+import AddGymAscentBtn from '@/components/ascentGymRoutes/AddGymAscentBtn'
+import GymRouteClimbingStyles from '@/components/gymRoutes/partial/GymRouteClimbingStyles'
+import LikeBtn from '@/components/forms/LikeBtn'
+import GymRoutePicture from '@/components/gymRoutes/GymRoutePicture'
 
+const GymRouteVideoList = () => import('@/components/gymRoutes/GymRouteVideoList')
+const CommentList = () => import('@/components/comments/CommentList')
 const MarkdownText = () => import('@/components/ui/MarkdownText')
 
 export default {
