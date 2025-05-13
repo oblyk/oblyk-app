@@ -152,10 +152,12 @@ export default {
       this.load()
       this.$refs.dialog.signal()
     },
+
     close () {
       this.isOpen = false
       this.$refs.dialog.signal()
     },
+
     load () {
       this.isLoading = true
       this.ascents = []
