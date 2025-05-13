@@ -100,7 +100,7 @@
 </template>
 
 <script>
-import { mdiClose, mdiTrumpet } from '@mdi/js'
+import { mdiClose } from '@mdi/js'
 import DownToCloseDialog from '../ui/DownToCloseDialog.vue'
 import AscentGymRouteIcon from '../ascentGymRoutes/AscentGymRouteIcon.vue'
 import AscentGymRouteHardnessIcon from '../ascentGymRoutes/AscentGymRouteHardnessIcon.vue'
