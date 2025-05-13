@@ -45,7 +45,7 @@
       </v-row>
 
       <v-alert
-        v-if="gymRoute.disGymRouteAscentsDialog_at"
+        v-if="gymRoute.dismounted_at"
         text
         type="error"
         class="mx-1 mt-2"
