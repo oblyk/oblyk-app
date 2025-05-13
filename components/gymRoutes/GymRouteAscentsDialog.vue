@@ -141,7 +141,7 @@ export default {
     return {
       isOpen: false,
       ascents: [],
-      isLoading: mdiTrumpet,
+      isLoading: true,
       mdiClose
     }
   },
