@@ -101,12 +101,12 @@
 
 <script>
 import { mdiClose } from '@mdi/js'
-import DownToCloseDialog from '../ui/DownToCloseDialog.vue'
-import AscentGymRouteIcon from '../ascentGymRoutes/AscentGymRouteIcon.vue'
-import AscentGymRouteHardnessIcon from '../ascentGymRoutes/AscentGymRouteHardnessIcon.vue'
 import GymRouteTagAndHold from './partial/GymRouteTagAndHold.vue'
+import AscentGymRouteHardnessIcon from '@/components/ascentGymRoutes/AscentGymRouteHardnessIcon.vue'
+import AscentGymRouteIcon from '@/components/ascentGymRoutes/AscentGymRouteIcon.vue'
+import DownToCloseDialog from '@/components/ui/DownToCloseDialog.vue'
 import GymRouteApi from '~/services/oblyk-api/GymRouteApi'
-import AscentGymRoute from '~/models/AscentGymRoute'
+import AscentGymRoute from '@/models/AscentGymRoute'
 import { DateHelpers } from '~/mixins/DateHelpers'
 
 export default {
