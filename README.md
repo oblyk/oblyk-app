@@ -55,6 +55,12 @@ Install npm dependencies:
     npm install
 ```
 
+Set VUE_APP_OBLYK_APP_HOST in the .env file:
+
+```shell
+echo "VUE_APP_OBLYK_APP_HOST='localhost'" >> .env
+```
+
 Start the development server
 
 ```shell

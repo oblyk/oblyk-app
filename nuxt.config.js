@@ -4,7 +4,7 @@ require('dotenv').config()
 export default {
   server: {
     port: process.env.VUE_APP_OBLYK_APP_PORT,
-    host: process.env.VUE_APP_OBLYK_APP_HOST ?? 'localhost'
+    host: process.env.VUE_APP_OBLYK_APP_HOST
   },
 
   // Global page headers: https://go.nuxtjs.dev/config-head
