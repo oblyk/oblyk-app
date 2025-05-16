@@ -19,13 +19,159 @@
     </template>
 
     <v-card>
-      <v-card-title class="headline">
-        {{ $t('components.navigation.goTo') }}
+      <v-card-title class="headline border-bottom mb-3 d-flex">
+        <div>
+          {{ $t('components.navigation.goTo') }}
+        </div>
+        <v-btn
+          class="ml-auto"
+          icon
+          @click="closeModal"
+        >
+          <v-icon>
+            {{ mdiClose }}
+          </v-icon>
+        </v-btn>
       </v-card-title>
 
-      <v-card-text>
-        <!-- Park -->
+      <v-card-text class="px-3">
+        <!-- By cycle and train -->
         <p class="mb-1 font-weight-bold">
+          <v-icon
+            color="light-green darken-1"
+            left
+          >
+            {{ mdiLeaf }}
+          </v-icon>
+          {{ $t('components.navigation.softMobility') }}
+        </p>
+        <div
+          v-if="loadingVeloGrimpeLink"
+          class="mb-3 pa-2 text-center"
+        >
+          <v-progress-circular
+            indeterminate
+            :size="10"
+            :width="2"
+            class="mr-2"
+          />
+          {{ $t('components.navigation.loadSoftMobility') }} ...
+        </div>
+        <div
+          v-if="!loadingVeloGrimpeLink && veloGrimpeLinks.length > 0"
+        >
+          <v-list-item class="border rounded">
+            <v-list-item-avatar>
+              <v-img src="/images/logo-velo-grimpe.png" alt="logo-velo-grimpe" />
+            </v-list-item-avatar>
+            <v-list-item-content>
+              <v-list-item-title>
+                velogrimpe.fr
+              </v-list-item-title>
+              <v-list-item-subtitle
+                class="text-wrap"
+                v-html="$t('components.navigation.goToWithTrainAndBike', { name: crag.name })"
+              />
+            </v-list-item-content>
+            <v-list-item-action>
+              <v-btn
+                v-if="veloGrimpeLinks.length === 1"
+                icon
+                dark
+                class="black-btn-icon"
+                :href="veloGrimpeLinks[0].link"
+                target="_blank"
+              >
+                <v-icon>
+                  {{ mdiArrowRight }}
+                </v-icon>
+              </v-btn>
+              <v-menu v-else>
+                <template #activator="{ on, attrs }">
+                  <v-btn
+                    icon
+                    v-bind="attrs"
+                    v-on="on"
+                  >
+                    <v-icon>
+                      {{ mdiArrowRight }}
+                    </v-icon>
+                  </v-btn>
+                </template>
+                <v-list>
+                  <v-list-item
+                    v-for="(link, linkIndex) in veloGrimpeLinks"
+                    :key="`link-index-${linkIndex}`"
+                    :href="link.link"
+                    target="_blank"
+                  >
+                    <v-list-item-title>
+                      {{ link.name }}
+                    </v-list-item-title>
+                    <v-list-item-action>
+                      <v-icon>
+                        {{ mdiArrowRight }}
+                      </v-icon>
+                    </v-list-item-action>
+                  </v-list-item>
+                </v-list>
+              </v-menu>
+            </v-list-item-action>
+          </v-list-item>
+        </div>
+        <p
+          v-if="!loadingVeloGrimpeLink && veloGrimpeLinks.length === 0"
+          class="text-center text--disabled mt-1 mb-0"
+        >
+          {{ $t('components.navigation.noSoftMobility') }}
+        </p>
+      </v-card-text>
+
+      <v-card-text class="border-top px-3 pt-4">
+        <!-- Choose your favorite navigation app -->
+        <v-select
+          v-model="navigationApp"
+          outlined
+          :items="availableNavigationApps"
+          item-text="text"
+          item-value="value"
+          :label="$t('components.navigation.myNavigationApp')"
+          hide-details
+        >
+          <template #item="data">
+            <template v-if="typeof data.item !== 'object'">
+              <v-list-item-content v-text="data.item" />
+            </template>
+            <template v-else>
+              <v-list-item-content>
+                <v-list-item-title>
+                  <v-icon
+                    :color="data.item.color"
+                    left
+                  >
+                    {{ data.item.icon }}
+                  </v-icon>
+                  {{ data.item.text }}
+                </v-list-item-title>
+              </v-list-item-content>
+            </template>
+          </template>
+          <template #selection="{ attrs, item }">
+            <div v-bind="attrs">
+              <v-icon
+                left
+                class="vertical-align-text-bottom"
+                :color="item.color"
+              >
+                {{ item.icon }}
+              </v-icon>
+              {{ item.text }}
+            </div>
+          </template>
+        </v-select>
+
+        <!-- Park -->
+        <p class="mb-1 mt-4 font-weight-bold">
           <v-icon left>
             {{ mdiAlphaPBox }}
           </v-icon>
@@ -61,100 +207,33 @@
                 <v-img :src="imageVariant(park.attachments.static_map, { fit: 'scale-down', width: 200, height: 200 })" />
               </v-avatar>
               <div class="flex-grow-1">
-                <div
-                  v-if="selectedPark !== park.id"
-                  class="pl-2 d-flex flex-column justify-space-between full-height"
-                >
-                  <div>
+                <div class="pl-2 d-flex flex-column justify-space-between full-height">
+                  <div v-if="park.description">
                     {{ park.description }}
+                  </div>
+                  <div
+                    v-else
+                    class="text-center text--disabled pt-4"
+                  >
+                    {{ $t('components.navigation.noParkDescription') }}
                   </div>
 
                   <div class="text-right">
                     <v-btn
+                      dark
                       small
-                      text
-                      @click="selectedPark = park.id"
+                      elevation="0"
+                      class="black-btn-icon"
+                      :href="mapLink(park.latitude, park.longitude)"
+                      target="_blank"
                     >
-                      {{ $t('components.navigation.getTo') }}
+                      Go
                       <v-icon right>
                         {{ mdiArrowRight }}
                       </v-icon>
                     </v-btn>
                   </div>
                 </div>
-                <v-slide-x-reverse-transition hide-on-leave>
-                  <div v-if="selectedPark === park.id">
-                    <div>
-                      <v-btn
-                        :href="mapLink(park.latitude, park.longitude, 'google')"
-                        small
-                        text
-                      >
-                        <v-icon left color="#ea4436">
-                          {{ mdiGoogleMaps }}
-                        </v-icon>
-                        Google Maps
-                      </v-btn>
-                    </div>
-                    <div>
-                      <v-btn
-                        :href="mapLink(park.latitude, park.longitude, 'waze')"
-                        small
-                        text
-                      >
-                        <v-icon left color="#31c7f8">
-                          {{ mdiWaze }}
-                        </v-icon>
-                        Waze
-                      </v-btn>
-                    </div>
-                    <div v-if="!loadindVeloGrimpeLink && veloGrimpeLinks.length > 0">
-                      <v-btn
-                        v-if="veloGrimpeLinks.length === 1"
-                        small
-                        text
-                        :href="veloGrimpeLinks[0].link"
-                        target="_blank"
-                      >
-                        <v-icon left color="#2e8b57">
-                          {{ mdiBike }}
-                        </v-icon>
-                        Vélo grimpe
-                      </v-btn>
-                      <v-menu v-else>
-                        <template #activator="{ on, attrs }">
-                          <v-btn
-                            small
-                            text
-                            v-bind="attrs"
-                            v-on="on"
-                          >
-                            <v-icon left color="#2e8b57">
-                              {{ mdiBike }}
-                            </v-icon>
-                            Vélo grimpe
-                            <v-chip
-                              x-small
-                              class="px-1 ml-1"
-                            >
-                              {{ veloGrimpeLinks.length }}
-                            </v-chip>
-                          </v-btn>
-                        </template>
-                        <v-list>
-                          <v-list-item
-                            v-for="(link, linkIndex) in veloGrimpeLinks"
-                            :key="`link-index-${linkIndex}`"
-                            :href="link.link"
-                            target="_blank"
-                          >
-                            {{ link.name }}
-                          </v-list-item>
-                        </v-list>
-                      </v-menu>
-                    </div>
-                  </div>
-                </v-slide-x-reverse-transition>
               </div>
             </div>
           </v-card>
@@ -185,93 +264,30 @@
               <v-img :src="imageVariant(crag.attachments.static_map, { fit: 'scale-down', width: 200, height: 200 })" />
             </v-avatar>
             <div class="flex-grow-1">
-              <div>
-                <div>
-                  <v-btn
-                    :href="mapLink(crag.latitude, crag.longitude, 'google')"
-                    small
-                    text
-                  >
-                    <v-icon left color="#ea4436">
-                      {{ mdiGoogleMaps }}
-                    </v-icon>
-                    Google Maps
-                  </v-btn>
+              <div class="pl-2 d-flex flex-column justify-space-between full-height">
+                <div class="text--disabled pt-1">
+                  {{ $t('components.navigation.cragBottomOf', { name: crag.name }) }}
                 </div>
-                <div>
+                <div class="text-right">
                   <v-btn
-                    :href="mapLink(crag.latitude, crag.longitude, 'waze')"
-                    small
-                    text
-                  >
-                    <v-icon left color="#31c7f8">
-                      {{ mdiWaze }}
-                    </v-icon>
-                    Waze
-                  </v-btn>
-                </div>
-                <div v-if="!loadindVeloGrimpeLink && veloGrimpeLinks.length > 0">
-                  <v-btn
-                    v-if="veloGrimpeLinks.length === 1"
-                    small
-                    text
-                    :href="veloGrimpeLinks[0].link"
+                    :href="mapLink(crag.latitude, crag.longitude)"
                     target="_blank"
+                    elevation="0"
+                    class="black-btn-icon"
+                    dark
+                    small
                   >
-                    <v-icon left color="#2e8b57">
-                      {{ mdiBike }}
+                    Go
+                    <v-icon right>
+                      {{ mdiArrowRight }}
                     </v-icon>
-                    Vélo grimpe
                   </v-btn>
-                  <v-menu v-else>
-                    <template #activator="{ on, attrs }">
-                      <v-btn
-                        small
-                        text
-                        v-bind="attrs"
-                        v-on="on"
-                      >
-                        <v-icon left color="#2e8b57">
-                          {{ mdiBike }}
-                        </v-icon>
-                        Vélo grimpe
-                        <v-chip
-                          x-small
-                          class="px-1 ml-1"
-                        >
-                          {{ veloGrimpeLinks.length }}
-                        </v-chip>
-                      </v-btn>
-                    </template>
-                    <v-list>
-                      <v-list-item
-                        v-for="(link, linkIndex) in veloGrimpeLinks"
-                        :key="`link-index-${linkIndex}`"
-                        :href="link.link"
-                        target="_blank"
-                      >
-                        {{ link.name }}
-                      </v-list-item>
-                    </v-list>
-                  </v-menu>
                 </div>
               </div>
             </div>
           </div>
         </v-card>
       </v-card-text>
-
-      <v-divider />
-
-      <v-card-actions>
-        <v-spacer />
-        <v-btn
-          text
-          @click="closeModal()"
-        >
-          {{ $t('actions.close') }}
-        </v-btn>
-      </v-card-actions>
     </v-card>
   </v-dialog>
 </template>
@@ -284,11 +300,15 @@ import {
   mdiTerrain,
   mdiDirectionsFork,
   mdiArrowRight,
-  mdiBike
+  mdiBike,
+  mdiTrain,
+  mdiLeaf,
+  mdiClose,
+  mdiCellphoneMarker
 } from '@mdi/js'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 import ParkApi from '~/services/oblyk-api/ParkApi'
 import Park from '@/models/Park'
-import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 import VeloGrimpeApi from '~/services/velogrimpe'
 
 export default {
@@ -308,16 +328,23 @@ export default {
       goToCragModal: false,
       selectedPark: null,
       showCragNavigationOption: false,
-      loadindVeloGrimpeLink: true,
+      loadingVeloGrimpeLink: true,
       veloGrimpeLinks: [],
+      navigationApp: 'default',
+      availableNavigationApps: [
+        { value: 'default', text: this.$t('components.navigation.defaultApp'), icon: mdiCellphoneMarker, color: null },
+        { value: 'google_maps', text: 'Google Maps', icon: mdiGoogleMaps, color: '#ea4436' },
+        { value: 'waze', text: 'Waze', icon: mdiWaze, color: '#31c7f8' }
+      ],
 
       mdiAlphaPBox,
-      mdiGoogleMaps,
-      mdiWaze,
       mdiTerrain,
       mdiDirectionsFork,
       mdiArrowRight,
-      mdiBike
+      mdiBike,
+      mdiTrain,
+      mdiLeaf,
+      mdiClose
     }
   },
 
@@ -346,7 +373,7 @@ export default {
     },
 
     getVeloGrimpeLink () {
-      this.loadindVeloGrimpeLink = true
+      this.loadingVeloGrimpeLink = true
       new VeloGrimpeApi(this.$axios)
         .oblykGetId(this.crag.id)
         .then((resp) => {
@@ -358,14 +385,16 @@ export default {
           }
         })
         .finally(() => {
-          this.loadindVeloGrimpeLink = false
+          this.loadingVeloGrimpeLink = false
         })
     },
 
-    mapLink (lat, lng, service) {
-      if (service === 'google') {
+    mapLink (lat, lng) {
+      if (this.navigationApp === 'default') {
+        return `geo:${lat},${lng}`
+      } else if (this.navigationApp === 'google_maps') {
         return `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`
-      } else if (service === 'waze') {
+      } else if (this.navigationApp === 'waze') {
         return `https://ul.waze.com/ul?ll=${lat}%2C${lng}&navigate=yes`
       }
     },

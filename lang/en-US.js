@@ -923,11 +923,19 @@ export default {
       goTo: 'Go to crag',
       parkList: 'Getting to the car park | Getting to the car parks',
       cragBottom: 'Go to bottom of the crag',
+      cragBottomOf: 'Go to bottom of : %{name}',
       goToPark: 'Go to park %{number}',
       navigateWith: 'Navigate with %{name}',
       loadParks: 'Loading car parks',
       getTo: 'get there',
-      noParks: 'No car parks have yet been referenced'
+      noParks: 'No car parks have yet been referenced',
+      noParkDescription: 'No description for this car park',
+      softMobility: 'Soft mobility',
+      noSoftMobility: 'No soft mobility has yet been referenced',
+      loadSoftMobility: 'Loading soft mobility',
+      goToWithTrainAndBike: 'Go to <b>%{name}</b> by train and bike!',
+      defaultApp: 'Default app',
+      myNavigationApp: 'My GPS app ?'
     },
     crag: {
       coverFrom: 'Crag picture',
