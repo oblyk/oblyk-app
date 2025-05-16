@@ -923,11 +923,19 @@ export default {
       goTo: 'Se rendre au site',
       parkList: 'Se rendre au parking | Se rendre aux parkings',
       cragBottom: 'Se rendre au pied de la falaise',
+      cragBottomOf: 'Se rendre au pied du site de : %{name}',
       goToPark: 'Se rendre au parking %{number}',
       navigateWith: 'Naviguer avec %{name}',
       loadParks: 'Chargement des parkings',
       getTo: "s'y rendre",
-      noParks: "Aucun parking n'a été référencé pour l'instant"
+      noParks: "Aucun parking n'a été référencé pour l'instant",
+      noParkDescription: 'Aucune description sur ce parking',
+      softMobility: 'Mobilité douce',
+      noSoftMobility: 'Pas de mobilité douce référencée',
+      loadSoftMobility: 'Chargement des mobilités douces',
+      goToWithTrainAndBike: 'Aller à <b>%{name}</b> en train et vélo !',
+      defaultApp: 'Application par défaut',
+      myNavigationApp: 'Mon application GPS ?'
     },
     crag: {
       coverFrom: 'Photo du site',
