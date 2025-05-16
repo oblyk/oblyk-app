@@ -127,7 +127,7 @@
         </p>
       </v-card-text>
 
-      <v-card-text class="border-top px-3 pt-4">
+      <v-card-text class="border-top px-3 pt-4 pb-1">
         <!-- Choose your favorite navigation app -->
         <v-select
           v-model="navigationApp"
