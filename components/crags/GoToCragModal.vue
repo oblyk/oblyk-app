@@ -354,7 +354,15 @@ export default {
         this.getParkings()
         this.getVeloGrimpeLink()
       }
+    },
+
+    navigationApp () {
+      localStorage.setItem('navigationApp', this.navigationApp)
     }
+  },
+
+  mounted () {
+    this.navigationApp = localStorage.getItem('navigationApp') || 'default'
   },
 
   methods: {
