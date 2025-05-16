@@ -225,9 +225,8 @@
                       elevation="0"
                       class="black-btn-icon"
                       :href="mapLink(park.latitude, park.longitude)"
-                      target="_blank"
                     >
-                      Go
+                      {{ $t('components.navigation.getTo') }}
                       <v-icon right>
                         {{ mdiArrowRight }}
                       </v-icon>
@@ -271,13 +270,12 @@
                 <div class="text-right">
                   <v-btn
                     :href="mapLink(crag.latitude, crag.longitude)"
-                    target="_blank"
                     elevation="0"
                     class="black-btn-icon"
                     dark
                     small
                   >
-                    Go
+                    {{ $t('components.navigation.getTo') }}
                     <v-icon right>
                       {{ mdiArrowRight }}
                     </v-icon>
