@@ -19,7 +19,7 @@
     </template>
 
     <v-card>
-      <v-card-title class="headline border-bottom mb-3 d-flex">
+      <v-card-title class="headline border-bottom mb-3 d-flex px-3 pt-2">
         <div>
           {{ $t('components.navigation.goTo') }}
         </div>
