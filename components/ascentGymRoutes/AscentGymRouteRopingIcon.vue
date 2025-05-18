@@ -88,7 +88,6 @@ export default {
       if (!ascents || ascents.length === 0) { return }
 
       this.ascentInLogBook = ascents.sort((a, b) => statusOrder.indexOf(a.ascent_status) - statusOrder.indexOf(b.ascent_status))[0]
-      console.log(this.ascentInLogBook.roping_status)
     },
 
     status () {
