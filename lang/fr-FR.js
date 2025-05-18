@@ -1861,9 +1861,12 @@ export default {
       appBar: {
         login: 'Me connecter',
         logOut: 'Me déconnecter',
+        account: 'Compte',
         darkTheme: 'Thème sombre',
         addCross: 'Ajouter une croix',
         searchPlaceHolder: "Chercher un site, une salle, quelqu'un, etc.",
+        menu: 'Menu',
+        explore: 'Explorer',
         user: {
           avatar: 'Photo de profil',
           banner: 'Photo du bandeau',

@@ -1861,9 +1861,12 @@ export default {
       appBar: {
         login: 'Login',
         logOut: 'Logout',
+        account: 'Account',
         darkTheme: 'Dark theme',
         addCross: 'Add cross',
         searchPlaceHolder: 'Search for a climbing site, a gym, someone, etc.',
+        menu: 'Menu',
+        explore: 'Explore',
         user: {
           avatar: 'Account avatar',
           banner: 'Banner picture',
@@ -1873,7 +1876,7 @@ export default {
         }
       },
       appDrawer: {
-        home: 'My home',
+        home: 'Home',
         login: 'Login',
         signUp: 'Sign up',
         maps: 'Maps',

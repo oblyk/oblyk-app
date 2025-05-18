@@ -13,7 +13,10 @@
         v-bind="attrs"
         v-on="on"
       >
-        <v-icon :color="iconColor">
+        <span v-if="iconWithTitle">
+          {{ $t('components.layout.appBar.explore') }}
+        </span>
+        <v-icon>
           {{ mdiMagnify }}
         </v-icon>
       </v-btn>
@@ -60,6 +63,10 @@ export default {
     iconColor: {
       type: String,
       default: 'black'
+    },
+    iconWithTitle: {
+      type: Boolean,
+      default: false
     }
   },
 

@@ -317,7 +317,7 @@ export default {
     top: 48px;
     left: 0;
     width: 100vw !important;
-    height: calc(100vh - 45px);
+    height: calc(100vh - 60px);
   }
 }
 .leaflet-interactive {
