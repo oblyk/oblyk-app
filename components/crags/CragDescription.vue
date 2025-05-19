@@ -184,10 +184,10 @@
             >
               <template #content>
                 <strong v-if="crag.approaches.min_time !== crag.approaches.max_time">
-                  de {{ crag.approaches.min_time }} à {{ crag.approaches.max_time }} mintues.
+                  de {{ crag.approaches.min_time }} à {{ crag.approaches.max_time }} minutes.
                 </strong>
                 <strong v-if="crag.approaches.min_time !== null && crag.approaches.min_time === crag.approaches.max_time">
-                  {{ crag.approaches.min_time }} mintues.
+                  {{ crag.approaches.min_time }} minutes.
                 </strong>
                 <span
                   v-if="crag.approaches.min_time === null"
