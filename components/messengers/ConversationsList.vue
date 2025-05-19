@@ -21,10 +21,10 @@
         fab
         :to="`${user.currentUserPath}/messenger/new`"
         :title="$t('actions.newConversation')"
-        color="primary"
+        dark
       >
         <v-icon>
-          {{ mdiCommentPlus }}
+          {{ mdiPencil }}
         </v-icon>
       </v-btn>
     </div>
@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import { mdiCommentPlus } from '@mdi/js'
+import { mdiPencil } from '@mdi/js'
 import ConversationItemList from '@/components/messengers/ConversationItemList'
 import Conversation from '@/models/Conversation'
 
@@ -52,7 +52,7 @@ export default {
 
   data () {
     return {
-      mdiCommentPlus
+      mdiPencil
     }
   },
 
@@ -76,9 +76,9 @@ export default {
     overflow-y: auto;
   }
   .conversation-add-btn {
-    padding-top: 1.5em;
     text-align: right;
-    width: 100%;
+    width: 75px;
+    margin-left: calc(100% - 75px);
     position: sticky;
     padding-right: 1em;
     bottom: 0;
