@@ -256,7 +256,7 @@ export default {
     }
     &.--mobile-interface {
       width: 100%;
-      margin-top: calc(100vh - 260px);
+      margin-top: calc(100vh - 275px);
       .gym-space-info-and-routes {
         padding-bottom: 45px;
       }
@@ -290,7 +290,7 @@ export default {
       padding-left: 440px;
     }
     &.--mobile-interface {
-      height: calc(100vh - 260px);
+      height: calc(100vh - 275px);
       position: fixed;
       top: 0;
       right: 0;

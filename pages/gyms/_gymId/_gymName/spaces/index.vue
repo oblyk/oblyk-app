@@ -328,7 +328,7 @@ export default {
     }
     &.--mobile-interface {
       width: 100%;
-      &.--3d { margin-top: calc(100vh - 260px); }
+      &.--3d { margin-top: calc(100vh - 250px); }
       .gym-spaces-card { min-height: calc(100vh - 44px); }
       .gym-spaces-info-and-routes { padding-bottom: 45px; }
     }
@@ -383,7 +383,7 @@ export default {
     padding-left: 440px;
   }
   &.--mobile-interface {
-    height: calc(100vh - 260px);
+    height: calc(100vh - 250px);
     position: fixed;
     top: 0;
     right: 0;
