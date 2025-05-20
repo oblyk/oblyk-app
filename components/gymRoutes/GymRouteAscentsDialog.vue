@@ -155,7 +155,6 @@ export default {
 
     close () {
       this.isOpen = false
-      this.$refs.dialog.signal()
     },
 
     load () {
