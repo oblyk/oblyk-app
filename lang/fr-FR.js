@@ -289,7 +289,7 @@ export default {
     areYouSurDeletePicture: 'Êtes vous sûr·e de supprimer la photo ?',
     areYouSurDeleteComment: 'Êtes-vous sûr·e de supprimer ce commentaire ?',
     areYouSurDeleteVideo: 'Êtes-vous sûr·e de supprimer cette vidéo ?',
-    outdoorAnalytikFilters: 'Filtres',
+    filters: 'Filtres',
     map: 'Carte',
     setting: 'Réglage',
     new: '%{count} nouveau | %{count} nouveaux',
@@ -595,7 +595,7 @@ export default {
         chooseYourFilters: 'Choisissez vos filtres',
         noResults: "Nous n'avons pas trouver de site d'escalade à moins de %{distance}km de %{city} avec ces filtres.",
         expandTo: 'Élargir la recherche à :',
-        outdoorAnalytikFilters: {
+        filters: {
           climbingType: {
             title: "Type d'escalade",
             subtitle: 'Chercher un site de bloc, de voie, de grand voie, etc.'
