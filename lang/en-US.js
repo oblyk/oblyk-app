@@ -173,7 +173,8 @@ export default {
     unArchive: 'Unarchive',
     follow: 'Follow',
     followed: 'Follower',
-    takeCapture: 'Take thumbnail'
+    takeCapture: 'Take thumbnail',
+    reset: 'Reset'
   },
   colors: {
     noColor: 'All',
@@ -288,7 +289,7 @@ export default {
     areYouSurDeletePicture: 'Are you sure you want to delete the photo?',
     areYouSurDeleteComment: 'Are you sure you want to delete this comment?',
     areYouSurDeleteVideo: 'Are you sure you want to delete this video?',
-    outdoorAnalytikFilters: 'Filters',
+    filters: 'Filters',
     map: 'Map',
     setting: 'Setting',
     new: '%{count} new | %{count} new',
@@ -594,7 +595,7 @@ export default {
         chooseYourFilters: 'Pick your filters',
         noResults: 'We did not find any climbing crags within %{distance}km of %{city} with these filters.',
         expandTo: 'Expanding search to:',
-        outdoorAnalytikFilters: {
+        filters: {
           climbingType: {
             title: 'Type of climbing',
             subtitle: 'Search for a bouldering site, a route, a multi-pitch, etc.'
@@ -920,9 +921,21 @@ export default {
     },
     navigation: {
       goTo: 'Go to crag',
+      parkList: 'Getting to the car park | Getting to the car parks',
       cragBottom: 'Go to bottom of the crag',
+      cragBottomOf: 'Go to bottom of : %{name}',
       goToPark: 'Go to park %{number}',
-      navigateWith: 'Navigate with %{name}'
+      navigateWith: 'Navigate with %{name}',
+      loadParks: 'Loading car parks',
+      getTo: 'get there',
+      noParks: 'No car parks have yet been referenced',
+      noParkDescription: 'No description for this car park',
+      softMobility: 'Soft mobility',
+      noSoftMobility: 'No soft mobility has yet been referenced',
+      loadSoftMobility: 'Loading soft mobility',
+      goToWithTrainAndBike: 'Go to <b>%{name}</b> by train and bike!',
+      defaultApp: 'Default app',
+      myNavigationApp: 'My GPS app ?'
     },
     crag: {
       coverFrom: 'Crag picture',
@@ -1848,9 +1861,12 @@ export default {
       appBar: {
         login: 'Login',
         logOut: 'Logout',
+        account: 'Account',
         darkTheme: 'Dark theme',
         addCross: 'Add cross',
         searchPlaceHolder: 'Search for a climbing site, a gym, someone, etc.',
+        menu: 'Menu',
+        explore: 'Explore',
         user: {
           avatar: 'Account avatar',
           banner: 'Banner picture',
@@ -1860,7 +1876,7 @@ export default {
         }
       },
       appDrawer: {
-        home: 'My home',
+        home: 'Home',
         login: 'Login',
         signUp: 'Sign up',
         maps: 'Maps',

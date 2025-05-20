@@ -17,7 +17,10 @@
 export default {
   name: 'EmailNotifiableListInput',
   props: {
-    value: Array
+    value: {
+      type: Array,
+      default: null
+    }
   },
 
   data () {

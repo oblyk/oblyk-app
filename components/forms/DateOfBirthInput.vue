@@ -50,7 +50,10 @@
 export default {
   name: 'DateOfBirthInput',
   props: {
-    value: String,
+    value: {
+      type: String,
+      default: null
+    },
     hideDetails: {
       type: Boolean,
       default: false

@@ -173,7 +173,8 @@ export default {
     unArchive: 'Dés-archiver',
     follow: 'Suivre',
     followed: 'Suivie',
-    takeCapture: 'Faire la miniature'
+    takeCapture: 'Faire la miniature',
+    reset: 'Reset'
   },
   colors: {
     noColor: 'Toutes',
@@ -288,7 +289,7 @@ export default {
     areYouSurDeletePicture: 'Êtes vous sûr·e de supprimer la photo ?',
     areYouSurDeleteComment: 'Êtes-vous sûr·e de supprimer ce commentaire ?',
     areYouSurDeleteVideo: 'Êtes-vous sûr·e de supprimer cette vidéo ?',
-    outdoorAnalytikFilters: 'Filtres',
+    filters: 'Filtres',
     map: 'Carte',
     setting: 'Réglage',
     new: '%{count} nouveau | %{count} nouveaux',
@@ -594,7 +595,7 @@ export default {
         chooseYourFilters: 'Choisissez vos filtres',
         noResults: "Nous n'avons pas trouver de site d'escalade à moins de %{distance}km de %{city} avec ces filtres.",
         expandTo: 'Élargir la recherche à :',
-        outdoorAnalytikFilters: {
+        filters: {
           climbingType: {
             title: "Type d'escalade",
             subtitle: 'Chercher un site de bloc, de voie, de grand voie, etc.'
@@ -920,9 +921,21 @@ export default {
     },
     navigation: {
       goTo: 'Se rendre au site',
+      parkList: 'Se rendre au parking | Se rendre aux parkings',
       cragBottom: 'Se rendre au pied de la falaise',
+      cragBottomOf: 'Se rendre au pied du site de : %{name}',
       goToPark: 'Se rendre au parking %{number}',
-      navigateWith: 'Naviguer avec %{name}'
+      navigateWith: 'Naviguer avec %{name}',
+      loadParks: 'Chargement des parkings',
+      getTo: "s'y rendre",
+      noParks: "Aucun parking n'a été référencé pour l'instant",
+      noParkDescription: 'Aucune description sur ce parking',
+      softMobility: 'Mobilité douce',
+      noSoftMobility: 'Pas de mobilité douce référencée',
+      loadSoftMobility: 'Chargement des mobilités douces',
+      goToWithTrainAndBike: 'Aller à <b>%{name}</b> en train et vélo !',
+      defaultApp: 'Application par défaut',
+      myNavigationApp: 'Mon application GPS ?'
     },
     crag: {
       coverFrom: 'Photo du site',
@@ -1848,9 +1861,12 @@ export default {
       appBar: {
         login: 'Me connecter',
         logOut: 'Me déconnecter',
+        account: 'Compte',
         darkTheme: 'Thème sombre',
         addCross: 'Ajouter une croix',
         searchPlaceHolder: "Chercher un site, une salle, quelqu'un, etc.",
+        menu: 'Menu',
+        explore: 'Explorer',
         user: {
           avatar: 'Photo de profil',
           banner: 'Photo du bandeau',

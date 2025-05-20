@@ -2,16 +2,19 @@
   <v-bottom-navigation
     app
     grow
-    dark
-    height="45"
-    class="oblyk-bottom-navigation"
+    :height="isIOS ? 70 : 60"
+    class="oblyk-bottom-navigation border-top"
+    :class="isIOS ? 'ios-bottom-navigation' : 'android-bottom-navigation'"
   >
     <v-btn
       aria-label="Open menu"
       value="menu"
       @click="inverseDrawer"
     >
-      <v-icon color="white">
+      <span>
+        {{ $t('components.layout.appBar.menu') }}
+      </span>
+      <v-icon>
         {{ mdiMenu }}
       </v-icon>
     </v-btn>
@@ -22,12 +25,14 @@
         <v-btn
           icon
           aria-label="Add cross"
-          class="add-cross-btn"
           :title="$t('components.layout.appBar.addCross')"
           v-bind="attrs"
           v-on="on"
         >
-          <v-icon size="34" color="white">
+          <span>
+            {{ $t('actions.add') }}
+          </span>
+          <v-icon>
             {{ mdiPlusBoxOutline }}
           </v-icon>
         </v-btn>
@@ -55,17 +60,21 @@
         </v-list-item>
       </v-list>
     </v-menu>
+
     <v-btn
       :to="$auth.loggedIn ? '/home' : '/'"
       value="home"
       @click="clicHome"
     >
+      <span>
+        {{ $t('components.layout.appDrawer.home') }}
+      </span>
       <svg
         class="oblyk-bottom-navigation-logo"
         :class="oblykLogoClass"
         viewBox="0 0 10.054166 10.054166"
-        height="33"
-        width="33"
+        height="27"
+        width="35"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
@@ -74,7 +83,7 @@
         />
       </svg>
     </v-btn>
-    <global-search-dialog icon-color="white" />
+    <global-search-dialog icon-with-title />
     <v-menu
       :position-y="0"
       bottom
@@ -82,14 +91,16 @@
     >
       <template #activator="{ on, attrs }">
         <v-btn
-          icon
           aria-label="open user menu"
           :class="haveNewNotification ? 'new-notification-badge' : ''"
           :title="$t('components.layout.appDrawer.toolBar.account')"
           v-bind="attrs"
           v-on="on"
         >
-          <v-icon color="white">
+          <span>
+            {{ $t('components.layout.appBar.account') }}
+          </span>
+          <v-icon>
             {{ mdiAccountCircleOutline }}
           </v-icon>
         </v-btn>
@@ -148,6 +159,17 @@ export default {
   computed: {
     haveNewNotification () {
       return this.$store.state.notification.newNotification
+    },
+
+    isIOS () {
+      return [
+        'iPad Simulator',
+        'iPhone Simulator',
+        'iPod Simulator',
+        'iPad',
+        'iPhone',
+        'iPod'
+      ].includes(navigator.platform) || (navigator.userAgent.includes('Mac') && 'ontouchend' in document)
     }
   },
 
@@ -163,15 +185,49 @@ export default {
 
 <style lang="scss">
 .theme--dark.oblyk-bottom-navigation {
-  background-color: rgb(0,0,0);
+  background-color: #121212;
+  border-top-color: rgb(30,30,30);
+  .oblyk-bottom-navigation-logo {
+    &.oblyk-white path {
+      stroke: white;
+    }
+  }
+  .v-btn {
+    span {
+      color: white !important;
+    }
+  }
+}
+.theme--light.oblyk-bottom-navigation {
+  .oblyk-bottom-navigation-logo {
+    &.oblyk-white path {
+      stroke: black;
+    }
+  }
+  .v-btn {
+    span {
+      color: black !important;
+    }
+  }
+}
+.android-bottom-navigation {
+  .v-btn {
+    padding-bottom: 5px !important;
+  }
+}
+.ios-bottom-navigation {
+  .v-btn {
+    padding-bottom: 15px !important;
+  }
 }
 .oblyk-bottom-navigation {
+  box-shadow: none !important;
   z-index: 5 !important;
-  border-top-style: solid;
-  border-top-color: rgb(50, 50, 50);
-  border-top-width: 1px;
   .v-btn {
     min-width: 65px !important;
+    span {
+      color: white !important;
+    }
   }
   .oblyk-bottom-navigation-logo {
     margin-top: -3px;
@@ -180,9 +236,6 @@ export default {
     }
     &.oblyk-green path {
       stroke: #31994e
-    }
-    &.oblyk-white path {
-      stroke: white;
     }
     &.stroke-transition path {
       transition: stroke 2s;

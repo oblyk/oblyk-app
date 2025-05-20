@@ -74,8 +74,14 @@ export default {
   name: 'PhotoDescription',
   components: { MarkdownText },
   props: {
-    photo: Object,
-    illustrableObject: Object
+    photo: {
+      type: Object,
+      required: true
+    },
+    illustrableObject: {
+      type: Object,
+      required: true
+    }
   },
 
   data () {

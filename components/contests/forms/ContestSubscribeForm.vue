@@ -98,17 +98,16 @@
           @click="chooseCategory(category.id, category)"
         >
           <v-card-title class="px-3 pt-2 pb-0">
+            <v-icon
+              v-if="!canSubscribe(category)"
+              left
+              small
+            >
+              {{ mdiLock }}
+            </v-icon>
             {{ category.name }}
           </v-card-title>
           <v-card-text class="px-3 pb-2">
-            <v-alert
-              v-if="!canSubscribe(category)"
-              type="warning"
-              text
-              class="my-1"
-            >
-              Vous n'avez pas l'âge requis pour vous inscrire <span v-if="contest.contest_categories.length > 1">dans cette catégorie</span>
-            </v-alert>
             <p
               v-if="category.description"
               class="mb-0"
@@ -299,7 +298,7 @@
 </template>
 
 <script>
-import { mdiArrowRight, mdiArrowLeft, mdiEyeOff, mdiEye, mdiCheck } from '@mdi/js'
+import { mdiArrowRight, mdiArrowLeft, mdiEyeOff, mdiEye, mdiCheck, mdiLock } from '@mdi/js'
 import GenreInput from '~/components/forms/GenreInput'
 import { FormHelpers } from '~/mixins/FormHelpers'
 import ContestParticipantApi from '~/services/oblyk-api/ContestParticipantApi'
@@ -358,7 +357,8 @@ export default {
       mdiArrowLeft,
       mdiEyeOff,
       mdiEye,
-      mdiCheck
+      mdiCheck,
+      mdiLock
     }
   },
 
@@ -437,25 +437,7 @@ export default {
         return age >= category.min_age && age <= category.max_age
       } else if (!betweenAge) {
         const myYearAge = new Date(this.contest.start_date).getFullYear() - new Date(this.data.date_of_birth).getFullYear()
-        const categories = []
-        for (const otherCategory of this.contest.contest_categories) {
-          categories.push({
-            id: otherCategory.id,
-            underAge: otherCategory.under_age,
-            previousUnder: 0
-          })
-        }
-        categories.sort((a, b) => { return a.underAge - b.underAge })
-        for (const categoryIndex in categories) {
-          if (typeof categories[categoryIndex - 1] === 'object') {
-            categories[categoryIndex].previousUnder = categories[categoryIndex - 1].underAge
-          }
-        }
-        for (const otherCategory of categories) {
-          if (otherCategory.id === category.id && myYearAge < otherCategory.underAge && myYearAge >= otherCategory.previousUnder) {
-            return true
-          }
-        }
+        return myYearAge >= category.over_age && myYearAge < category.under_age
       }
       return false
     },

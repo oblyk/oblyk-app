@@ -1,5 +1,5 @@
 <template>
-  <v-tabs show-arrows >
+  <v-tabs show-arrows>
     <v-tab :to="`${user.currentUserPath}/favorites/crags`">
       {{ $t('components.user.tabs.crags') }}
     </v-tab>

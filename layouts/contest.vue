@@ -14,13 +14,15 @@
 <script>
 import { Cable } from '~/channels/Cable'
 import { Channels } from '~/channels/Channels'
+import { ThemeColorMixin } from '~/mixins/ThemeColorMixin'
 import AppAlert from '~/components/layouts/AppAlert'
 
 export default {
   components: { AppAlert },
   mixins: [
     Cable,
-    Channels
+    Channels,
+    ThemeColorMixin
   ],
 
   watch: {

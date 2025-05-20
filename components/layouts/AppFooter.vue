@@ -1,5 +1,5 @@
 <template>
-  <v-footer padless class="app-footer">
+  <v-footer padless class="mt-15">
     <lazy-hydrate when-visible>
       <footer-lazy />
     </lazy-hydrate>
@@ -18,26 +18,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-.app-footer {
-  margin-top: 3em;
-  background-color: rgb(18, 18, 18) !important;
-  border-top-style: solid;
-  border-color: rgb(50, 50, 50) !important;
-  border-width: 1px;
-  padding-top: 15px !important;
-  color: white !important;
-  a {
-    color: white !important;
-    border-radius: 6px;
-    padding: 12px 12px;
-    &:hover {
-      background-color: #303030;
-    }
-  }
-  .v-icon {
-    color: white;
-  }
-}
-</style>

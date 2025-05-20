@@ -68,7 +68,10 @@ export default {
   name: 'LogBookEvolutionChart',
   components: { LineChart },
   props: {
-    data: Object,
+    data: {
+      type: Object,
+      required: true
+    },
     heightClass: {
       type: String,
       default: 'height-200'

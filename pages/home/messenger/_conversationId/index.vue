@@ -19,20 +19,28 @@
       class="full-height rounded"
     >
       <!-- Title -->
-      <div
-        class="conversation-title pa-3"
-      >
-        <h4>
-          <v-btn
-            v-if="isMobile"
-            class="mr-1"
-            icon
-            @click="showConversationList()"
+      <div class="conversation-title pa-1">
+        <v-btn
+          v-if="isMobile"
+          icon
+          @click="showConversationList()"
+        >
+          <v-icon>{{ mdiArrowLeft }}</v-icon>
+        </v-btn>
+        <v-chip
+          v-for="(conversationUser, userIndex) in conversationUsers"
+          :key="`user-index-${userIndex}`"
+          :to="conversationUser.path"
+          class="discrete-link mr-1"
+        >
+          <v-avatar
+            v-if="conversationUser.attachments.avatar.attached"
+            left
           >
-            <v-icon>{{ mdiArrowLeft }}</v-icon>
-          </v-btn>
-          {{ conversationTitle }}
-        </h4>
+            <v-img :src="imageVariant(conversationUser.attachments.avatar, { fit: 'crop', height: 50, width: 50 })" />
+          </v-avatar>
+          {{ conversationUser.first_name }}
+        </v-chip>
       </div>
 
       <!-- Message list and post form -->
@@ -90,6 +98,8 @@ import ConversationMessageApi from '~/services/oblyk-api/ConversationMessageApi'
 import ConversationApi from '~/services/oblyk-api/ConversationApi'
 import ConversationMessageList from '~/components/messengers/ConversationMessageList.vue'
 import { DateHelpers } from '~/mixins/DateHelpers'
+import User from '~/models/User'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 
 export default {
   components: {
@@ -99,7 +109,8 @@ export default {
   },
   mixins: [
     ConversationConcern,
-    DateHelpers
+    DateHelpers,
+    ImageVariantHelpers
   ],
   props: {
     user: {
@@ -142,12 +153,22 @@ export default {
   computed: {
     conversationTitle () {
       const title = []
-      for (const user of (this.conversation || {}).conversation_users || []) {
+      for (const user of this.conversation?.conversation_users || []) {
         if (this.$auth.user.uuid !== user.uuid) {
           title.push(user.first_name)
         }
       }
       return title.join(', ')
+    },
+
+    conversationUsers () {
+      const users = []
+      for (const user of this.conversation?.conversation_users || []) {
+        if (this.$auth.user.uuid !== user.uuid) {
+          users.push(new User({ attributes: user }))
+        }
+      }
+      return users
     }
   },
 
@@ -259,12 +280,12 @@ export default {
 
 <style lang="scss">
 .conversation-title {
-  height: 53px;
+  min-height: 44px;
 }
 
 .message-list-and-post-form {
-  height: calc(100% - 53px);
-  max-height: calc(100% - 53px);
+  height: calc(100% - 44px);
+  max-height: calc(100% - 44px);
   display: flex;
   flex-direction: column;
 
@@ -276,9 +297,9 @@ export default {
   }
 
   .post-message-form {
-    min-height: 125px;
+    min-height: 110px;
     flex: 0;
-    padding: 0 8px 0 8px;
+    padding: 8px 8px 0 8px;
   }
 }
 

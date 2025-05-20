@@ -35,7 +35,10 @@ export default {
   components: { BarChart },
   mixins: [DateHelpers],
   props: {
-    data: Object,
+    data: {
+      type: Object,
+      required: true
+    },
     heightClass: {
       type: String,
       default: 'height-200'

@@ -24,8 +24,14 @@ export default {
   name: 'InclineInput',
   mixins: [InputHelpers],
   props: {
-    value: String,
-    tabindex: Number
+    value: {
+      type: String,
+      default: null
+    },
+    tabindex: {
+      type: Number,
+      default: null
+    }
   },
 
   data () {

@@ -16,7 +16,10 @@
 export default {
   name: 'GenreInput',
   props: {
-    value: String,
+    value: {
+      type: String,
+      default: null
+    },
     required: {
       type: Boolean,
       default: false

@@ -23,7 +23,10 @@ export default {
   name: 'FundingStatusInput',
   mixins: [InputHelpers],
   props: {
-    value: String,
+    value: {
+      type: String,
+      default: null
+    },
     dense: {
       type: Boolean,
       default: false
@@ -32,7 +35,10 @@ export default {
       type: Boolean,
       default: false
     },
-    tabindex: Number
+    tabindex: {
+      type: Number,
+      default: null
+    }
   },
 
   data () {

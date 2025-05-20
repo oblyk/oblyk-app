@@ -68,7 +68,7 @@
           :to="`/report-problem?redirect_to=${$route.fullPath}`"
           rel="nofollow"
         >
-          <v-icon small left dark>
+          <v-icon small left>
             {{ mdiFlag }}
           </v-icon>
           {{ $t('components.layout.footer.reportProblem') }}
@@ -84,35 +84,45 @@
         </p>
         <div class="mb-4 pl-3">
           <a class="pt-4 pb-3 px-0" href="https://play.google.com/store/apps/details?id=org.oblyk.twa">
-            <img class="vertical-align-middle mb-1" height="50" src="/svg/google-store-white.svg" alt="logo Google Play Store">
+            <img
+              class="vertical-align-middle mb-1"
+              height="50"
+              :src="$vuetify.theme.dark ? '/svg/google-store-white.svg' : '/svg/google-store-black.svg'"
+              alt="logo Google Play Store"
+            >
           </a>
           <a class="pt-4 pb-3 px-0" href="https://apps.apple.com/fr/app/oblyk/id6569245391">
-            <img class="vertical-align-middle mb-1" height="50" src="/svg/apple-store-white.svg" alt="logo Apple App Store">
+            <img
+              class="vertical-align-middle mb-1"
+              height="50"
+              :src="$vuetify.theme.dark ? '/svg/apple-store-white.svg' : '/svg/apple-store-black.svg'"
+              alt="logo Apple App Store"
+            >
           </a>
         </div>
         <p class="font-weight-bold">
           {{ $t('components.layout.footer.followUs') }}
         </p>
         <a class="d-block" href="https://www.instagram.com/oblyk.climbing/">
-          <v-icon small left dark>
+          <v-icon small left>
             {{ mdiInstagram }}
           </v-icon>
           {{ $t('components.layout.footer.instagram') }}
         </a>
         <a class="d-block" href="https://www.facebook.com/pageoblyk/">
-          <v-icon small left dark>
+          <v-icon small left>
             {{ mdiFacebook }}
           </v-icon>
           {{ $t('components.layout.footer.facebook') }}
         </a>
         <a class="d-block" href="https://github.com/oblyk">
-          <v-icon small left dark>
+          <v-icon small left>
             {{ mdiGithub }}
           </v-icon>
           {{ $t('components.layout.footer.github') }}
         </a>
         <nuxt-link class="d-block" to="/newsletters/subscribe">
-          <v-icon small left dark>
+          <v-icon small left>
             {{ mdiEmail }}
           </v-icon>
           {{ $t('components.layout.footer.newsletter') }}
@@ -124,7 +134,7 @@
           class="d-block"
           :to="`/escalade-en/france`"
         >
-          <v-icon small left dark>
+          <v-icon small left>
             {{ mdiDatabase }}
           </v-icon>
           {{ $t('components.layout.footer.climbInFrance') }}
@@ -135,7 +145,7 @@
     <div class="font-weight-light d-flex">
       <div class="text-no-wrap">
         <nuxt-link to="/">
-          <v-icon small left dark>
+          <v-icon small left>
             {{ mdiCopyright }}
           </v-icon>
           2022 — Oblyk
@@ -197,19 +207,39 @@ export default {
 </script>
 
 <style lang="scss">
+.theme--dark .footer-container {
+  a {
+    color: white;
+  }
+  .v-icon {
+    color: white;
+  }
+}
+.theme--light .footer-container {
+  a {
+    color: black;
+  }
+  .v-icon {
+    color: black;
+  }
+}
 .footer-container {
+  padding-top: 2em;
   max-width: 1200px;
   a {
     text-decoration: none;
+    border-radius: 6px;
+    padding: 12px 12px;
+    color: inherit;
     &:hover {
-      opacity: 0.8;
+      background-color: rgba(130, 130, 130, 0.15);
     }
   }
   .back-to-the-to-col {
     cursor: pointer;
     border-radius: 6px;
     &:hover {
-      background-color: #303030;
+      background-color: rgba(130, 130, 130, 0.15);
     }
   }
 }

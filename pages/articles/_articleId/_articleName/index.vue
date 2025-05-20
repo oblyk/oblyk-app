@@ -190,7 +190,7 @@ export default {
 }
 .picture-dialogue {
   box-shadow: none;
-  height: calc(100vh - 50px);
+  height: calc(100vh - 65px);
   .picture-dialogue-subtitle {
     color: white;
   }

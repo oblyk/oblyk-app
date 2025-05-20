@@ -24,11 +24,13 @@ import { mdiPound } from '@mdi/js'
 export default {
   name: 'TagsInput',
   props: {
-    value: Array,
-    environment: String,
+    value: {
+      type: Array,
+      default: null
+    },
     label: {
       type: String,
-      required: false
+      default: null
     },
     dense: {
       type: Boolean,
@@ -38,7 +40,10 @@ export default {
       type: Boolean,
       default: false
     },
-    tabindex: Number
+    tabindex: {
+      type: Number,
+      default: null
+    }
   },
 
   data () {

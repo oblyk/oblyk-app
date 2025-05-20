@@ -13,10 +13,12 @@
 </template>
 
 <script>
+import { ThemeColorMixin } from '~/mixins/ThemeColorMixin'
 import AppFooter from '@/components/layouts/AppFooter'
 
 export default {
   components: { AppFooter },
+  mixins: [ThemeColorMixin],
   props: {
     error: {
       type: Object,

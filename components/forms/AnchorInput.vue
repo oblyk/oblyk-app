@@ -26,7 +26,10 @@ export default {
   name: 'AnchorInput',
   mixins: [InputHelpers],
   props: {
-    value: String,
+    value: {
+      type: String,
+      default: null
+    },
     dense: {
       type: Boolean,
       default: false

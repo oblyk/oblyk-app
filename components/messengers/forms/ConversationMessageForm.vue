@@ -1,33 +1,37 @@
 <template>
-  <v-form @submit.prevent="submit()">
-    <v-row>
-      <v-col
-        class="pb-0"
+  <v-form
+    class="d-flex"
+    @submit.prevent="submit()"
+  >
+    <div class="flex-grow-1 flex-shrink-0">
+      <v-textarea
+        v-model="data.body"
+        outlined
+        :label="$t('models.conversationMessage.body')"
+        hide-details
+        :rows="3"
+        @keydown="onKeyDown"
+        @keyup="saveDraft"
+      />
+    </div>
+    <div class="flex-grow-0 flex-shrink-1 d-flex flex-column justify-center pl-1 text-center">
+      <v-btn
+        large
+        :loading="messageSending"
+        icon
+        @click="submit()"
       >
-        <v-textarea
-          v-model="data.body"
-          outlined
-          :label="$t('models.conversationMessage.body')"
-          hide-details
-          :rows="3"
-          @keydown="onKeyDown"
-          @keyup="saveDraft"
-        />
-      </v-col>
-      <v-col class="submit-message-col pl-0 pb-0 pt-9">
-        <v-btn
-          class="mt-1"
-          large
-          :loading="messageSending"
-          icon
-          @click="submit()"
-        >
-          <v-icon>
-            {{ mdiSend }}
-          </v-icon>
-        </v-btn>
-      </v-col>
-    </v-row>
+        <v-icon>
+          {{ mdiSend }}
+        </v-icon>
+      </v-btn>
+      <small
+        class="text--disabled d-none d-md-block"
+        style="font-size: 0.7em"
+      >
+        ctrl+ent
+      </small>
+    </div>
   </v-form>
 </template>
 
@@ -71,14 +75,8 @@ export default {
 
   methods: {
     onKeyDown (event) {
-      if (window.innerWidth > 960) {
-        if (event.key === 'Enter' && !event.ctrlKey && !event.shiftKey) {
-          this.submit()
-          return false
-        }
-        if (event.key === 'Enter' && event.ctrlKey) {
-          this.data.body += '\n'
-        }
+      if (event.key === 'Enter' && event.ctrlKey) {
+        this.submit()
       }
     },
 
@@ -111,9 +109,3 @@ export default {
   }
 }
 </script>
-
-<style>
-.submit-message-col {
-  max-width: 70px;
-}
-</style>
