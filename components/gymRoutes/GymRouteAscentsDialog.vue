@@ -5,40 +5,9 @@
     wait-signal
   >
     <div class="gym-route-title d-flex flex-row">
-      <gym-route-tag-and-hold
-        :size="40"
-        :gym-route="gymRoute"
-        class="flex-grow-0"
-      />
-      <div class="d-flex flex-column flex-grow-1">
-        <h3 v-if="gymRoute.name" class="d-flex flex-row text-h5">
-          <small
-            v-if="gymRoute.grade_to_s"
-          >
-            {{ gymRoute.grade_to_s }}
-          </small>
-          <span class="flex-grow-1 flex-shrink-1">{{ gymRoute.name }}</span>
-        </h3>
-        <div>
-          <small
-            v-if="gymRoute.anchor_number"
-            class="text--disabled d-block mt-n1 font-weight-regular"
-          >
-            {{ $t('models.gymRoute.anchor_number') }}{{ gymRoute.anchor_number }}
-          </small>
-
-          <small
-            v-if="gymRoute.gym_sector_name"
-          >
-            {{ gymRoute.gym_space_name }}
-          </small>
-          <small
-            v-if="gymRoute.gym_sector_name"
-          >
-            {{ gymRoute.gym_sector_name }}
-          </small>
-        </div>
-      </div>
+      <h3 class="d-flex flex-row text-h6">
+        {{ $t('models.gymRoute.ascents') }}
+      </h3>
     </div>
 
     <p
@@ -89,7 +58,6 @@
 
 <script>
 import { mdiClose } from '@mdi/js'
-import GymRouteTagAndHold from './partial/GymRouteTagAndHold.vue'
 import AscentGymRouteHardnessIcon from '@/components/ascentGymRoutes/AscentGymRouteHardnessIcon.vue'
 import AscentGymRouteIcon from '@/components/ascentGymRoutes/AscentGymRouteIcon.vue'
 import DownToCloseDialog from '@/components/ui/DownToCloseDialog.vue'
@@ -101,7 +69,6 @@ export default {
   name: 'GymRouteAscentsDialog',
   components: {
     DownToCloseDialog,
-    GymRouteTagAndHold,
     AscentGymRouteIcon,
     AscentGymRouteHardnessIcon
   },
@@ -161,12 +128,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.gym-route-title {
-  .name-and-grade {
-    font-size: 1.1em;
-    font-weight: bold;
-  }
-}
-</style>
