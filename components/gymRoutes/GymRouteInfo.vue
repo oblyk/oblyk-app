@@ -82,7 +82,7 @@
           cols="6"
           class="my-1 font-weight-bold text-no-wrap pl-2"
         >
-          <v-btn outlined text @click="openGymRouteAscents()">
+          <v-btn small outlined text @click="openGymRouteAscents()">
             <v-icon small left>
               {{ mdiCheckAll }}
             </v-icon>
