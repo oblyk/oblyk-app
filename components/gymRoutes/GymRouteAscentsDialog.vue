@@ -147,9 +147,9 @@ export default {
   },
 
   methods: {
-    open () {
+    async open () {
       this.isOpen = true
-      this.load()
+      await this.load()
       this.$refs.dialog.signal()
     },
 
@@ -157,19 +157,18 @@ export default {
       this.isOpen = false
     },
 
-    load () {
+    async load () {
       this.isLoading = true
       this.ascents = []
-      new GymRouteApi(this.$axios, this.$auth)
-        .routeAscents(this.gym.id, this.gymRoute.id)
-        .then((resp) => {
-          this.ascents = resp.data.filter(ascent => ascent.ascent_status !== 'project')
-            .map(attributes => new AscentGymRoute({ attributes }))
-            .reverse()
-        })
-        .finally(() => {
-          this.isLoading = false
-        })
+      try {
+        const resp = await new GymRouteApi(this.$axios, this.$auth)
+          .routeAscents(this.gym.id, this.gymRoute.id)
+        this.ascents = resp.data.filter(ascent => ascent.ascent_status !== 'project')
+          .map(attributes => new AscentGymRoute({ attributes }))
+          .reverse()
+      } finally {
+        this.isLoading = false
+      }
     }
   }
 }
