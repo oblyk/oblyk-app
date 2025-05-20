@@ -185,7 +185,8 @@ export default {
 
 <style lang="scss">
 .theme--dark.oblyk-bottom-navigation {
-  background-color: rgb(0,0,0);
+  background-color: #121212;
+  border-top-color: rgb(30,30,30);
   .oblyk-bottom-navigation-logo {
     &.oblyk-white path {
       stroke: white;
