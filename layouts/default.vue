@@ -76,6 +76,7 @@ import { mdiGift } from '@mdi/js'
 import LazyHydrate from 'vue-lazy-hydration'
 import { Cable } from '~/channels/Cable'
 import { Channels } from '~/channels/Channels'
+import { ThemeColorMixin } from '~/mixins/ThemeColorMixin'
 import AppBar from '~/components/layouts/AppBar'
 import AppAlert from '~/components/layouts/AppAlert'
 import AppBottomNavigation from '~/components/layouts/AppBottomNavigation'
@@ -95,7 +96,8 @@ export default {
   },
   mixins: [
     Cable,
-    Channels
+    Channels,
+    ThemeColorMixin
   ],
 
   data () {
