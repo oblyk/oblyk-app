@@ -18,18 +18,6 @@
             {{ gymRoute.grade_to_s }}
           </small>
           <span class="flex-grow-1 flex-shrink-1">{{ gymRoute.name }}</span>
-
-          <div class="flex-grow-0 flex-shrink-0">
-            <v-btn
-              icon
-              large
-              @click="close()"
-            >
-              <v-icon large>
-                {{ mdiClose }}
-              </v-icon>
-            </v-btn>
-          </div>
         </h3>
         <div>
           <small
