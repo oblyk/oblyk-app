@@ -4,11 +4,9 @@
     v-model="isOpen"
     wait-signal
   >
-    <div class="gym-route-title d-flex flex-row">
-      <h3 class="d-flex flex-row text-h6">
-        {{ $t('models.gymRoute.ascents') }}
-      </h3>
-    </div>
+    <h3 class="text-h6">
+      {{ $t('models.gymRoute.ascents') }}
+    </h3>
 
     <p
       v-if="isLoading"
