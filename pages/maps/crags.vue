@@ -7,7 +7,7 @@
       :longitude-force="longitude"
       :zoom-force="zoom"
       :magic-card="true"
-      :search-place="true"
+      :search-place="false"
       :crag-add-fetching="true"
       :load-add-features="loadAddFeatures"
       :loading-crag="loadingCrag"
