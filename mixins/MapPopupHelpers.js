@@ -76,7 +76,13 @@ export const MapPopupHelpers = {
           <button>${this.$t('actions.see')}</button>
         </div>
       `
-      popup.querySelector('button').addEventListener('click', () => { this.$router.push(crag.path) })
+      popup.querySelector('button').addEventListener('click', (e) => {
+        if (e.ctrlKey) {
+          window.open(crag.path, '_blank')
+        } else {
+          this.$router.push(crag.path)
+        }
+      })
 
       return popup
     },
@@ -136,11 +142,12 @@ export const MapPopupHelpers = {
           <button>${this.$t('actions.see')}</button>
         </div>
       `
-      popup.querySelector('button').addEventListener('click', () => {
-        if (rockBar.crag_sector) {
-          this.$router.push(rockBar.CragSector.path)
+      popup.querySelector('button').addEventListener('click', (e) => {
+        const path = rockBar.crag_sector ? rockBar.CragSector.path : rockBar.Crag.path
+        if (e.ctrlKey) {
+          window.open(path, '_blank')
         } else {
-          this.$router.push(rockBar.Crag.path)
+          this.$router.push(path)
         }
       })
 
@@ -165,7 +172,13 @@ export const MapPopupHelpers = {
           <button>${this.$t('actions.see')}</button>
         </div>
       `
-      popup.querySelector('button').addEventListener('click', () => { this.$router.push(cragSector.path) })
+      popup.querySelector('button').addEventListener('click', (e) => {
+        if (e.ctrlKey) {
+          window.open(cragSector.path, '_blank')
+        } else {
+          this.$router.push(cragSector.path)
+        }
+      })
 
       return popup
     },
@@ -193,7 +206,13 @@ export const MapPopupHelpers = {
           <button>${this.$t('actions.see')}</button>
         </div>
       `
-      popup.querySelector('button').addEventListener('click', () => { this.$router.push(gym.path) })
+      popup.querySelector('button').addEventListener('click', (e) => {
+        if (e.ctrlKey) {
+          window.open(gym.path, '_blank')
+        } else {
+          this.$router.push(gym.path)
+        }
+      })
 
       return popup
     },
@@ -233,7 +252,13 @@ export const MapPopupHelpers = {
           <button>${this.$t('actions.see')}</button>
         </div>
       `
-      popup.querySelector('button').addEventListener('click', () => { this.$router.push(guideBookPaper.path) })
+      popup.querySelector('button').addEventListener('click', (e) => {
+        if (e.ctrlKey) {
+          window.open(guideBookPaper.path, '_blank')
+        } else {
+          this.$router.push(guideBookPaper.path)
+        }
+      })
 
       return popup
     },
