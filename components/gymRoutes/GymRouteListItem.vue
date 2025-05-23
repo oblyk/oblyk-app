@@ -2,7 +2,7 @@
   <v-list-item
     v-model="activeRoute"
     color="primary"
-    class="rounded-list-item gym-route-list-item"
+    class="rounded-list-item gym-route-list-item pl-1"
     :class="itemListClass"
     @click="openGymRoute"
     @mouseenter="onMouseEnter"
