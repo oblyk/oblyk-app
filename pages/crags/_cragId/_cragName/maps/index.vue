@@ -87,10 +87,9 @@
               <div>
                 <v-btn
                   elevation="0"
-                  dark
                   rounded
                   large
-                  class="black-btn-icon --with-border"
+                  color="primary"
                   :to="`/maps/crags?lat=${crag.latitude}&lng=${crag.longitude}&zoom=16&crag_id=${crag.id}`"
                 >
                   {{ $t('actions.seeMap') }}

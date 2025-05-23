@@ -45,9 +45,7 @@
               </div>
               <v-btn
                 small
-                dark
-                outlined
-                class="black-btn-icon"
+                color="primary"
                 elevation="0"
                 :to="`/maps/gyms?lat=${gym.latitude}&lng=${gym.longitude}`"
               >
@@ -70,9 +68,7 @@
               <v-btn
                 v-else
                 small
-                dark
-                outlined
-                class="black-btn-icon"
+                color="primary"
                 elevation="0"
               >
                 {{ $t('components.gym.seePhoneNumber') }}
@@ -100,9 +96,7 @@
               <v-btn
                 v-else
                 small
-                dark
-                outlined
-                class="black-btn-icon"
+                color="primary"
                 elevation="0"
               >
                 {{ $t('components.gym.seeEmail') }}

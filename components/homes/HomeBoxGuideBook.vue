@@ -8,8 +8,8 @@
       <p v-html="$t('home.oblykAndGuide.body2')" />
       <p class="text-right">
         <v-btn
-          outlined
-          class="black-btn-icon"
+          elevation="0"
+          color="primary"
           to="/guide-books/features"
         >
           {{ $t('home.oblykAndGuide.action') }}

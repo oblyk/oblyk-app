@@ -35,8 +35,7 @@
       <v-btn
         elevation="0"
         class="ml-2"
-        color="#6200ea"
-        dark
+        color="primary"
         :loading="updatingColor"
         @click="valid()"
       >
@@ -50,7 +49,7 @@
 import { mdiFormatColorFill } from '@mdi/js'
 import GymSpaceApi from '~/services/oblyk-api/GymSpaceApi'
 import GymSpace from '~/models/GymSpace'
-const defaultColor = 'rgb(98,0,234)'
+const defaultColor = 'rgb(0,0,0)'
 
 export default {
   name: 'GymSpaceEditingSectorsColor',

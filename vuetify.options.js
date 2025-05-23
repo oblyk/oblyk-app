@@ -9,7 +9,7 @@ export default {
   theme: {
     themes: {
       light: {
-        primary: '#31994e',
+        primary: '#000000',
         secondary: '#fff',
         third: '#bdbdbd',
         accent: '#2979ff',
@@ -19,8 +19,8 @@ export default {
         backCardColor: '#fff'
       },
       dark: {
-        primary: '#31994e',
-        secondary: '#121212',
+        primary: '#fff',
+        secondary: '#000000',
         third: '#424242',
         accent: '#448aff',
         error: '#b71c1c',

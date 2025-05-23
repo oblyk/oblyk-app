@@ -15,6 +15,7 @@
               v-if="!emailVisible"
               small
               text
+              outlined
               color="primary"
               @click="emailVisible = true"
             >

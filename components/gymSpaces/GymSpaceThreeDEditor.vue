@@ -606,7 +606,7 @@ export default {
 
       // Création des pointillés autour de la zone extrudée
       const edges = new THREE.EdgesGeometry(extrudeGeometry)
-      const lineMaterial = new THREE.LineBasicMaterial({ color: this.gymSpace.sectors_color || '#31994e' })
+      const lineMaterial = new THREE.LineBasicMaterial({ color: this.gymSpace.sectors_color || '#000000' })
       const lineSegments = new THREE.LineSegments(edges, lineMaterial)
       lineSegments.rotateX(THREE.MathUtils.degToRad(90))
       lineSegments.translateZ(-sector.three_d_elevated)

@@ -5,8 +5,8 @@
   >
     <template #activator="{ on, attrs }">
       <v-btn
-        class="mb-3 black-btn-icon --with-border"
-        dark
+        class="mb-3"
+        color="primary"
         elevation="0"
         v-bind="attrs"
         v-on="on"
@@ -76,9 +76,10 @@
             <v-list-item-action>
               <v-btn
                 v-if="veloGrimpeLinks.length === 1"
-                icon
-                dark
-                class="black-btn-icon"
+                fab
+                small
+                elevation="0"
+                color="primary"
                 :href="veloGrimpeLinks[0].link"
                 target="_blank"
               >
@@ -223,7 +224,7 @@
                       dark
                       small
                       elevation="0"
-                      class="black-btn-icon"
+                      color="primary"
                       :href="mapLink(park.latitude, park.longitude)"
                     >
                       {{ $t('components.navigation.getTo') }}
@@ -271,8 +272,7 @@
                   <v-btn
                     :href="mapLink(crag.latitude, crag.longitude)"
                     elevation="0"
-                    class="black-btn-icon"
-                    dark
+                    color="primary"
                     small
                   >
                     {{ $t('components.navigation.getTo') }}

@@ -7,8 +7,8 @@
       <p v-html="$t('home.crags.body')" />
       <p class="text-right">
         <v-btn
-          outlined
-          class="black-btn-icon"
+          elevation="0"
+          color="primary"
           to="/find/crags"
         >
           {{ $t('home.crags.action') }}

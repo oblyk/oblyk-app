@@ -51,6 +51,8 @@
           <v-btn
             :to="gym.path"
             text
+            outlined
+            exact-path
             color="primary"
           >
             <v-icon left>

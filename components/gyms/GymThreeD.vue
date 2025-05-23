@@ -77,7 +77,7 @@
         :key="`space-${spaceIndex}`"
         class="rounded font-weight-bold sector-label-in-spaces"
         :class="labelDisableEvent ? 'pointer-event-insensitive' : null"
-        :style="activeSpaceId === space.id ? `background-color: ${space.color || 'rgb(49, 153, 78)'}; color: ${space.text_contrast_color}` : 'color: black'"
+        :style="activeSpaceId === space.id ? `background-color: ${space.color || 'rgb(0, 0, 0)'}; color: ${space.text_contrast_color}` : 'color: black'"
         @mousemove.stop="glossySpace(space.id)"
       >
         <nuxt-link

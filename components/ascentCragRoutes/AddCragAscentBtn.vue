@@ -5,8 +5,8 @@
   >
     <template #activator="{ on, attrs }">
       <v-btn
-        text
-        class="black-btn-icon --with-border"
+        elevation="0"
+        color="primary"
         v-bind="attrs"
         v-on="on"
       >

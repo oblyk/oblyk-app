@@ -6,8 +6,8 @@
     <p v-html="$t('home.createAccount.body', { count: climbersCount.toLocaleString() })" />
     <div>
       <v-btn
-        outlined
-        class="black-btn-icon"
+        elevation="0"
+        color="primary"
         to="/sign-up"
       >
         {{ $t('actions.createFreeAccount') }}

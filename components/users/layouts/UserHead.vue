@@ -19,8 +19,7 @@
         <v-btn
           small
           icon
-          dark
-          class="black-btn-icon --with-border"
+          class="update-banner-btn"
           :to="`${user.currentUserPath}/settings/banner`"
           :title="$t('actions.changeBanner')"
         >
@@ -49,13 +48,12 @@
         >
           <v-btn
             icon
-            dark
             small
-            class="black-btn-icon --with-border"
+            class="update-avatar-btn"
             :title="$t('actions.changeAvatar')"
             :to="`${user.currentUserPath}/settings/avatar`"
           >
-            <v-icon small>
+            <v-icon small color="white">
               {{ mdiImageEdit }}
             </v-icon>
           </v-btn>
@@ -178,6 +176,11 @@ export default {
     right: 10px;
   }
 }
+.update-banner-btn, .update-avatar-btn {
+  background-color: black;
+  border-style: solid;
+  border-width: 2px;
+}
 .user-header-title {
   padding: 0 0.5em 0 1em;
   bottom: 0;
@@ -209,11 +212,24 @@ export default {
     border-color: rgb(240, 240, 245);
     background-color: rgb(225, 225, 225);
   }
+  .update-avatar-btn {
+    border-color: #f0f0f5;
+    color: white;
+  }
+  .update-banner-btn {
+    border-color: white;
+  }
 }
 .theme--dark {
   .user-header-title .user-header-avatar-area .user-header-avatar {
     border-color: rgb(18, 18, 18);
     background-color: rgb(30, 30, 30);
+  }
+  .update-avatar-btn {
+    border-color: black;
+  }
+  .update-banner-btn {
+    border-color: white;
   }
 }
 

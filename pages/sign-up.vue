@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-container>
+    <v-container class="common-page-container">
       <v-row justify="center">
         <v-col class="global-form-width" align-self="center">
           <h1 class="mb-4 text-h5 font-weight-bold">

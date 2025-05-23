@@ -306,14 +306,14 @@ export default {
 .theme--dark {
   .conversation-message {
     &.my-message { background-color: #121212; }
-    &.other-message { background-color: #01579b; }
+    &.other-message { background-color: rgb(60, 60, 60); }
   }
 }
 
 .theme--light {
   .conversation-message {
-    &.my-message {background-color: #f5f5f5; }
-    &.other-message {background-color: #01579b; }
+    &.my-message { background-color: #f5f5f5; }
+    &.other-message { background-color: rgb(40,40,40); }
   }
 }
 </style>

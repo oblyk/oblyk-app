@@ -53,8 +53,11 @@
         </div>
       </div>
       <v-btn
-        class="last-objects-scroll-to-right black-btn-icon --with-border"
-        icon
+        class="last-objects-scroll-to-right"
+        fab
+        small
+        color="primary"
+        elevation="0"
         @click="scrollLastObjectsList('cragsList')"
       >
         <v-icon>
@@ -116,8 +119,11 @@
         </div>
       </div>
       <v-btn
-        class="last-objects-scroll-to-right black-btn-icon --with-border"
-        icon
+        class="last-objects-scroll-to-right"
+        fab
+        small
+        color="primary"
+        elevation="0"
         @click="scrollLastObjectsList('gymsList')"
       >
         <v-icon>
@@ -244,7 +250,7 @@ export default {
   }
   .last-objects-scroll-to-right {
     position: absolute;
-    right: -15px;
+    right: -20px;
     top: 64px
   }
 }

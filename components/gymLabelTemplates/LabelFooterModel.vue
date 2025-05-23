@@ -65,7 +65,7 @@ export default {
 .label-footer-part {
   cursor: pointer;
   &:hover {
-    background-color: #31994e50;
+    background-color: rgba(150, 150, 150, 0.3);
   }
   &.--active {
     background-color: #31994e;

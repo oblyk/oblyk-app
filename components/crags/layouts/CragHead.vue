@@ -21,11 +21,16 @@
         </div>
       </template>
       <v-btn
-        class="seeOnMapBtn black-btn-icon --with-border"
-        text
+        class="see-on-map-btn"
+        elevation="0"
+        color="primary"
+        dark
         small
         :to="`/maps/crags?lat=${crag.latitude}&lng=${crag.longitude}&zoom=16&crag_id=${crag.id}`"
       >
+        <v-icon left>
+          {{ mdiArrowLeft }}
+        </v-icon>
         {{ $t('actions.seeOnTheMap') }}
       </v-btn>
       <div class="crag-header-title">
@@ -112,7 +117,13 @@
 </template>
 
 <script>
-import { mdiDotsVertical, mdiMapMarkerRadiusOutline, mdiBellPlus, mdiPencil } from '@mdi/js'
+import {
+  mdiDotsVertical,
+  mdiMapMarkerRadiusOutline,
+  mdiBellPlus,
+  mdiPencil,
+  mdiArrowLeft
+} from '@mdi/js'
 import ShareBtn from '~/components/ui/ShareBtn.vue'
 import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 const SubscribeBtn = () => import('@/components/forms/SubscribeBtn')
@@ -135,7 +146,8 @@ export default {
       mdiDotsVertical,
       mdiMapMarkerRadiusOutline,
       mdiBellPlus,
-      mdiPencil
+      mdiPencil,
+      mdiArrowLeft
     }
   },
 
@@ -152,9 +164,10 @@ export default {
 </script>
 <style lang="scss" scoped>
 .crag-header {
-  .seeOnMapBtn {
+  .see-on-map-btn {
+    border: 2px solid white;
     position: absolute;
-    right: 5px;
+    left: 5px;
     top: 5px;
   }
   .crag-header-banner {

@@ -40,8 +40,8 @@
         <v-spacer />
         <v-btn
           right
-          text
-          class="black-btn-icon --with-border"
+          elevation="0"
+          color="primary"
           :to="`/ascents/outdoor/new?crag_id=${crag.id}`"
         >
           <v-icon left>

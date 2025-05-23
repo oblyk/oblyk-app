@@ -31,9 +31,8 @@
         >
           <template #activator="{ on, attrs }">
             <v-btn
-              outlined
-              text
-              class="black-btn-icon mt-2"
+              elevation="0"
+              color="primary"
               v-bind="attrs"
               v-on="on"
             >

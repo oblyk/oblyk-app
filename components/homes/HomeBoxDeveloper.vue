@@ -8,7 +8,11 @@
       <p v-html="$t('home.developer.body2')" />
       <p v-html="$t('home.developer.body3')" />
       <p class="text-right">
-        <v-btn outlined color="primary" to="/api-and-developers">
+        <v-btn
+          elevation="0"
+          color="primary"
+          to="/api-and-developers"
+        >
           {{ $t('home.developer.action') }}
         </v-btn>
       </p>

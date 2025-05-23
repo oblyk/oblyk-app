@@ -8,8 +8,8 @@
       <p v-html="$t('home.indoor.body2')" />
       <p class="text-right">
         <v-btn
-          outlined
-          class="black-btn-icon"
+          elevation="0"
+          color="primary"
           to="/about/indoor"
         >
           {{ $t('home.indoor.action') }}

@@ -7,8 +7,8 @@
       <p v-html="$t('home.partner.body')" />
       <p class="text-right">
         <v-btn
-          outlined
-          class="black-btn-icon"
+          elevation="0"
+          color="primary"
           to="/about/partner-search"
         >
           {{ $t('home.partner.action') }}

@@ -8,7 +8,11 @@
       <p v-html="$t('home.supportUs.body2')" />
       <p v-html="$t('home.supportUs.body3')" />
       <p class="text-right">
-        <v-btn outlined color="primary" to="/support-us">
+        <v-btn
+          elevation="0"
+          color="primary"
+          to="/support-us"
+        >
           {{ $t('home.supportUs.action') }}
         </v-btn>
       </p>

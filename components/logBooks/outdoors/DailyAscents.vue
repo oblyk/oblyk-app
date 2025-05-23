@@ -90,8 +90,11 @@
         </div>
       </div>
       <v-btn
-        class="daily-ascents-scroll-to-right black-btn-icon --with-border"
-        icon
+        class="daily-ascents-scroll-to-right"
+        fab
+        color="primary"
+        elevation="0"
+        small
         @click="scrollAscents"
       >
         <v-icon>

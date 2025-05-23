@@ -234,24 +234,26 @@ export default {
     border-style: solid;
     border-width: 4px;
     transition: background-color 0.3s, border-color 0.3s;
-    &:hover {
-      background: rgba(49, 153, 78, 0.2) !important;
-      border-color: rgba(49, 153, 78, 0.3) !important;
-    }
-  }
-  .active {
-    .gym-space-avatar {
-      border-color: rgb(49, 153, 78);
-      background: rgba(49, 153, 78, 0.2);
-    }
   }
 }
 .theme--light {
   .gym-spaces-selector {
     .inactive {
       .gym-space-avatar {
-        background-color: rgb(240, 240, 245);
         border-color: rgb(220, 220, 225);
+        background-color: rgb(240, 240, 245);
+      }
+    }
+    .active {
+      .gym-space-avatar {
+        border-color: rgb(65, 65, 65);
+        background-color: rgb(240, 240, 245);
+      }
+    }
+    .gym-space-avatar {
+      &:hover {
+        border-color: rgb(65, 65, 65) !important;
+        background-color: rgb(240, 240, 245);
       }
     }
   }
@@ -262,6 +264,18 @@ export default {
       .gym-space-avatar {
         background-color: rgb(37, 37, 37);
         border-color: rgb(57, 57, 57);
+      }
+    }
+    .active {
+      .gym-space-avatar {
+        border-color: rgb(255, 255, 255);
+        background: rgba(255, 255, 255, 0.2);
+      }
+    }
+    .gym-space-avatar {
+      &:hover {
+        background: rgba(255, 255, 255, 0.2) !important;
+        border-color: rgb(255, 255, 255) !important;
       }
     }
   }

@@ -8,10 +8,7 @@
       <v-icon v-if="!localizationActivated">
         {{ mdiMapMarkerOff }}
       </v-icon>
-      <v-icon
-        v-if="localizationActivated"
-        color="primary"
-      >
+      <v-icon v-if="localizationActivated">
         {{ mdiMapMarker }}
       </v-icon>
     </v-btn>

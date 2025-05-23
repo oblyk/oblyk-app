@@ -203,9 +203,6 @@ export default {
   }
   .v-list-item--active {
     &:not(.v-list-group__header) {
-      .v-list-item__title {
-        color: #31994e;
-      }
       .v-list-item__icon .v-icon__svg {
         fill: #31994e;
       }
@@ -233,6 +230,9 @@ export default {
         &:before {
           background-color: rgb(240, 240, 245);
         }
+        .v-list-item__title {
+          color: #000000;
+        }
       }
     }
   }
@@ -252,6 +252,9 @@ export default {
           background-color: rgb(37, 37, 37);
         }
         .v-list-item__icon .v-icon {
+          color: white;
+        }
+        .v-list-item__title {
           color: white;
         }
       }
