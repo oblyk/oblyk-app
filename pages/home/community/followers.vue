@@ -71,6 +71,8 @@ export default {
     UserSmallCard
   },
   mixins: [LoadingMoreHelpers],
+  middleware: ['auth'],
+
   props: {
     user: {
       type: Object,

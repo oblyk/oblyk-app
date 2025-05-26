@@ -42,6 +42,7 @@ import LoadingMore from '~/components/layouts/LoadingMore.vue'
 export default {
   components: { LoadingMore, VideoCard, Spinner },
   mixins: [LoadingMoreHelpers],
+  middleware: ['auth'],
   props: {
     user: {
       type: Object,

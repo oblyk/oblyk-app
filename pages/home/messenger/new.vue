@@ -15,6 +15,7 @@ import ConversationForm from '~/components/messengers/forms/ConversationForm.vue
 
 export default {
   components: { ConversationForm },
+  middleware: ['auth'],
 
   i18n: {
     messages: {

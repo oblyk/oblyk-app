@@ -26,6 +26,7 @@ import UserImageForm from '~/components/users/forms/UserImageForm.vue'
 export default {
   components: { UserImageForm, Spinner },
   mixins: [CurrentUserConcern],
+  middleware: ['auth'],
 
   i18n: {
     messages: {

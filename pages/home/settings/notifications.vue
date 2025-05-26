@@ -53,6 +53,7 @@ import GymAdministrator from '~/models/GymAdministrator'
 
 export default {
   components: { EmailNotificationForm, NewsletterSubscribeSwitchForm },
+  middleware: ['auth'],
   props: {
     user: { type: Object, required: true }
   },

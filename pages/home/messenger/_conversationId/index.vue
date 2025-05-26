@@ -112,6 +112,7 @@ export default {
     DateHelpers,
     ImageVariantHelpers
   ],
+  middleware: ['auth'],
   props: {
     user: {
       type: Object,

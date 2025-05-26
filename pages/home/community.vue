@@ -18,6 +18,7 @@ import UserCommunityTabs from '~/components/users/layouts/UserCommunityTabs.vue'
 export default {
   components: { UserCommunityTabs, Spinner },
   mixins: [CurrentUserConcern],
+  middleware: ['auth'],
 
   i18n: {
     messages: {

@@ -59,6 +59,7 @@ import GuideBookStoreHeader from '~/components/guideBookPapers/GuideBookStoreHea
 export default {
   components: { GuideBookStoreHeader, GuideBookPaperCoverCard, Spinner },
   mixins: [CurrentUserConcern, TextHelpers],
+  middleware: ['auth'],
 
   data () {
     return {

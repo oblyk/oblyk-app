@@ -169,6 +169,7 @@ export default {
     Spinner,
     LogBookIndoorFigures
   },
+  middleware: ['auth'],
 
   data () {
     return {

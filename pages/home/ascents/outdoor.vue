@@ -17,6 +17,7 @@ import UserAccentsTabs from '~/components/users/layouts/UserAscentsTabs.vue'
 export default {
   components: { UserAccentsTabs, Spinner },
   mixins: [CurrentUserConcern],
+  middleware: ['auth'],
 
   i18n: {
     messages: {

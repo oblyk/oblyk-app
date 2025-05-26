@@ -40,6 +40,7 @@ import ConversationApi from '~/services/oblyk-api/ConversationApi'
 export default {
   components: { ConversationList },
   mixins: [CurrentUserConcern],
+  middleware: ['auth'],
 
   data () {
     return {

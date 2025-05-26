@@ -16,6 +16,7 @@ import ConnectionForm from '~/components/users/forms/ConnectionForm.vue'
 
 export default {
   components: { ConnectionForm },
+  middleware: ['auth'],
   props: {
     user: {
       type: Object,

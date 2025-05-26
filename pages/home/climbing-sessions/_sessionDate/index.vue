@@ -99,6 +99,7 @@ export default {
     ClimbingSessionConcern,
     DateHelpers
   ],
+  middleware: ['auth'],
 
   data () {
     return {

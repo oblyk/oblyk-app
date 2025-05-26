@@ -11,6 +11,7 @@ import PhotoGallery from '~/components/photos/PhotoGallery.vue'
 
 export default {
   components: { PhotoGallery },
+  middleware: ['auth'],
   props: {
     user: { type: Object, required: true }
   },

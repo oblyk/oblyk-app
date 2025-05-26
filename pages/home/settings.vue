@@ -17,6 +17,7 @@ import UserSettingsTabs from '~/components/users/layouts/UserSettingsTabs.vue'
 export default {
   components: { UserSettingsTabs, Spinner },
   mixins: [CurrentUserConcern],
+  middleware: ['auth'],
 
   i18n: {
     messages: {

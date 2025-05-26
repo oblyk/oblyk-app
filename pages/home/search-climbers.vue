@@ -56,6 +56,7 @@ export default {
     LoadingMore
   },
   mixins: [LoadingMoreHelpers],
+  middleware: ['auth'],
 
   data () {
     return {

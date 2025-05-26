@@ -20,6 +20,7 @@ export default {
   name: 'CurrentUserMediaView',
   components: { Spinner, CurrentUserMediaTabs },
   mixins: [CurrentUserConcern],
+  middleware: ['auth'],
 
   props: {
     user: {

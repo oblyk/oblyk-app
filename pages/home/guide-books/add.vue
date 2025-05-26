@@ -24,6 +24,7 @@ import AddGuideBookOnLibraryForm from '~/components/guideBookPaperCrags/forms/Ad
 
 export default {
   components: { AddGuideBookOnLibraryForm },
+  middleware: ['auth'],
 
   data () {
     return {

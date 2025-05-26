@@ -152,6 +152,7 @@ export default {
     Spinner
   },
   mixins: [CurrentUserConcern],
+  middleware: ['auth'],
 
   data () {
     return {

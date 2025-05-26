@@ -16,6 +16,7 @@ import UserPrivacyForm from '~/components/users/forms/PrivacyForm.vue'
 
 export default {
   components: { UserPrivacyForm },
+  middleware: ['auth'],
   props: {
     user: { type: Object, required: true }
   },

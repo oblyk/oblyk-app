@@ -16,6 +16,7 @@ import ClimbingSession from '~/components/climbingSessions/ClimbingSession.vue'
 
 export default {
   components: { ClimbingSession },
+  middleware: ['auth'],
 
   data () {
     return {

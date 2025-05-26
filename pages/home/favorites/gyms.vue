@@ -46,6 +46,7 @@ export default {
   mixins: [
     LoadingMoreHelpers
   ],
+  middleware: ['auth'],
 
   data () {
     return {

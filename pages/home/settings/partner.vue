@@ -20,6 +20,7 @@ import PartnerForm from '~/components/users/forms/PartnerForm.vue'
 
 export default {
   components: { PartnerForm },
+  middleware: ['auth'],
   props: {
     user: {
       type: Object,

@@ -16,6 +16,7 @@ import UserForm from '~/components/users/forms/UserForm.vue'
 
 export default {
   components: { UserForm },
+  middleware: ['auth'],
   props: {
     user: {
       type: Object,

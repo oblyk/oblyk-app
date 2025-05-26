@@ -38,6 +38,7 @@ import ExportAscentsOrProjectsForm from '~/components/users/forms/ExportAscentsO
 
 export default {
   components: { ExportAscentsOrProjectsForm, DeleteUserForm },
+  middleware: ['auth'],
   props: {
     user: {
       type: Object,
