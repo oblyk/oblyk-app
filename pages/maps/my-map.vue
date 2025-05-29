@@ -1,28 +1,24 @@
 <template>
   <div class="full-height">
-    <user-accents-tabs :user="currentUser" />
-    <div style="height: calc(100% - 50px)">
-      <client-only>
-        <leaflet-map
-          map-style="outdoor"
-          :geo-jsons="geoJsons"
-          :track-location="false"
-          :clustered="false"
-          :search-place="true"
-        />
-      </client-only>
-    </div>
+    <client-only>
+      <leaflet-map
+        map-style="outdoor"
+        :geo-jsons="geoJsons"
+        :track-location="false"
+        :clustered="false"
+        :search-place="false"
+      />
+    </client-only>
   </div>
 </template>
 
 <script>
 import CurrentUserApi from '@/services/oblyk-api/CurrentUserApi'
-import UserAccentsTabs from '~/components/users/layouts/UserAscentsTabs'
 import { CurrentUserConcern } from '~/concerns/CurrentUserConcern'
 const LeafletMap = () => import('@/components/maps/LeafletMap')
 
 export default {
-  components: { UserAccentsTabs, LeafletMap },
+  components: { LeafletMap },
   mixins: [CurrentUserConcern],
 
   data () {
