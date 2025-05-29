@@ -29,7 +29,7 @@
 
     <submit-form
       class="mt-10"
-      :go-back-btn="goBackBtn"
+      :go-back-btn="false"
       :overlay="submitOverlay"
       submit-local-key="actions.save"
     />
@@ -53,10 +53,6 @@ export default {
     redirectTo: {
       type: String,
       default: '/'
-    },
-    goBackBtn: {
-      type: Boolean,
-      default: true
     }
   },
 

@@ -17,7 +17,6 @@
           <user-privacy-form
             :user="overRideUser()"
             :redirect-to="redirectTo"
-            :go-back-btn="false"
           />
         </v-col>
       </v-row>

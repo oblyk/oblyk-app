@@ -63,7 +63,7 @@
     </v-list-item>
 
     <!-- Settings -->
-    <v-list-item to="/home/settings/general">
+    <v-list-item to="/home/settings">
       <v-list-item-icon>
         <v-icon>
           {{ mdiCog }}

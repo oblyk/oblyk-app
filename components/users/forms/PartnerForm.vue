@@ -3,6 +3,7 @@
     <v-form @submit.prevent="submit()">
       <v-checkbox
         v-model="data.partner_search"
+        class="mt-0"
         :label="$t('models.user.partner_search')"
       />
 
@@ -101,6 +102,7 @@
 
       <submit-form
         :overlay="submitOverlay"
+        :go-back-btn="false"
         submit-local-key="actions.save"
       />
     </v-form>

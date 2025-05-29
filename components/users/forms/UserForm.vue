@@ -48,6 +48,7 @@
 
       <submit-form
         :overlay="submitOverlay"
+        :go-back-btn="false"
         submit-local-key="actions.save"
       />
     </v-form>

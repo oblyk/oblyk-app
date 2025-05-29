@@ -1,28 +1,32 @@
 <template>
-  <v-container>
-    <v-row justify="center">
-      <v-col class="global-form-width">
-        <h2 class="mb-4">
-          {{ $t('components.user.globalInformation') }}
-        </h2>
-        <user-form :user="user" submit-methode="put" />
-      </v-col>
-    </v-row>
-  </v-container>
+  <div>
+    <setting-back-btn title-key="components.user.globalInformation" />
+
+    <div class="d-flex justify-center pb-10">
+      <div class="global-form-width px-3">
+        <user-form
+          v-if="currentUser"
+          :user="currentUser"
+          submit-methode="put"
+        />
+        <v-skeleton-loader
+          v-else
+          type="article"
+        />
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
-import UserForm from '~/components/users/forms/UserForm.vue'
+import { CurrentUserConcern } from '~/concerns/CurrentUserConcern'
+import UserForm from '~/components/users/forms/UserForm'
+import SettingBackBtn from '~/components/users/layouts/SettingBackBtn'
 
 export default {
-  components: { UserForm },
+  components: { SettingBackBtn, UserForm },
+  mixins: [CurrentUserConcern],
   middleware: ['auth'],
-  props: {
-    user: {
-      type: Object,
-      required: true
-    }
-  },
 
   i18n: {
     messages: {

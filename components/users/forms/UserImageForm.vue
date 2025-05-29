@@ -13,6 +13,7 @@
     <submit-form
       :overlay="submitOverlay"
       :progressable="true"
+      :go-back-btn="false"
       :progress-value="uploadPercentage"
       submit-local-key="actions.upload"
     />

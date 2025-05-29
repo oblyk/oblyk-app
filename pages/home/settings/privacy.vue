@@ -1,25 +1,32 @@
 <template>
-  <v-container>
-    <v-row justify="center">
-      <v-col class="global-form-width">
-        <h2 class="mb-4">
-          {{ $t('components.user.privacyParameters') }}
-        </h2>
-        <user-privacy-form :user="user" submit-methode="put" />
-      </v-col>
-    </v-row>
-  </v-container>
+  <div>
+    <setting-back-btn title-key="components.user.privacyParameters" />
+
+    <div class="d-flex justify-center pb-10">
+      <div class="global-form-width px-3">
+        <user-privacy-form
+          v-if="currentUser"
+          :user="currentUser"
+          submit-methode="put"
+        />
+        <v-skeleton-loader
+          v-else
+          type="article"
+        />
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
-import UserPrivacyForm from '~/components/users/forms/PrivacyForm.vue'
+import { CurrentUserConcern } from '~/concerns/CurrentUserConcern'
+import UserPrivacyForm from '~/components/users/forms/PrivacyForm'
+import SettingBackBtn from '~/components/users/layouts/SettingBackBtn'
 
 export default {
-  components: { UserPrivacyForm },
+  components: { SettingBackBtn, UserPrivacyForm },
+  mixins: [CurrentUserConcern],
   middleware: ['auth'],
-  props: {
-    user: { type: Object, required: true }
-  },
 
   i18n: {
     messages: {

@@ -1,29 +1,30 @@
 <template>
   <div>
-    <spinner v-if="!currentUser" />
+    <setting-back-btn title-key="actions.myAvatar" />
 
-    <v-container v-else>
-      <v-row justify="center">
-        <v-col class="global-form-width">
-          <h2 class="mb-4">
-            {{ $t('actions.myAvatar') }}
-          </h2>
-          <user-image-form
-            :user="currentUser"
-            upload-type="avatar"
-          />
-        </v-col>
-      </v-row>
-    </v-container>
+    <div class="d-flex justify-center pb-10">
+      <div class="global-form-width full-width px-3">
+        <user-image-form
+          v-if="currentUser"
+          :user="currentUser"
+          upload-type="avatar"
+        />
+        <v-skeleton-loader
+          v-else
+          type="article"
+        />
+      </div>
+    </div>
   </div>
 </template>
+
 <script>
 import { CurrentUserConcern } from '~/concerns/CurrentUserConcern'
-import Spinner from '~/components/layouts/Spiner.vue'
-import UserImageForm from '~/components/users/forms/UserImageForm.vue'
+import UserImageForm from '~/components/users/forms/UserImageForm'
+import SettingBackBtn from '~/components/users/layouts/SettingBackBtn'
 
 export default {
-  components: { UserImageForm, Spinner },
+  components: { SettingBackBtn, UserImageForm },
   mixins: [CurrentUserConcern],
   middleware: ['auth'],
 

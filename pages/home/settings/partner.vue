@@ -1,32 +1,32 @@
 <template>
-  <v-container>
-    <v-row justify="center">
-      <v-col class="global-form-width">
-        <h2 class="mb-4">
-          {{ $t('components.user.partnerSearch') }}
-        </h2>
+  <div>
+    <setting-back-btn title-key="components.user.partnerSearch" />
+
+    <div class="d-flex justify-center pb-10">
+      <v-col class="global-form-width px-3">
         <partner-form
-          v-if="user"
-          :user="user"
+          v-if="currentUser"
+          :user="currentUser"
           submit-methode="put"
         />
+        <v-skeleton-loader
+          v-else
+          type="article"
+        />
       </v-col>
-    </v-row>
-  </v-container>
+    </div>
+  </div>
 </template>
 
 <script>
-import PartnerForm from '~/components/users/forms/PartnerForm.vue'
+import { CurrentUserConcern } from '~/concerns/CurrentUserConcern'
+import PartnerForm from '~/components/users/forms/PartnerForm'
+import SettingBackBtn from '~/components/users/layouts/SettingBackBtn'
 
 export default {
-  components: { PartnerForm },
+  components: { SettingBackBtn, PartnerForm },
+  mixins: [CurrentUserConcern],
   middleware: ['auth'],
-  props: {
-    user: {
-      type: Object,
-      required: true
-    }
-  },
 
   i18n: {
     messages: {

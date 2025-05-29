@@ -1,28 +1,32 @@
 <template>
-  <v-container>
-    <v-row justify="center">
-      <v-col class="global-form-width">
-        <h2 class="mb-4">
-          {{ $t('components.user.changePassword') }}
-        </h2>
-        <connection-form :user="user" submit-methode="put" />
+  <div>
+    <setting-back-btn title-key="components.user.changePassword" />
+
+    <div class="d-flex justify-center pb-10">
+      <v-col class="global-form-width px-3">
+        <connection-form
+          v-if="currentUser"
+          :user="currentUser"
+          submit-methode="put"
+        />
+        <v-skeleton-loader
+          v-else
+          type="article"
+        />
       </v-col>
-    </v-row>
-  </v-container>
+    </div>
+  </div>
 </template>
 
 <script>
-import ConnectionForm from '~/components/users/forms/ConnectionForm.vue'
+import { CurrentUserConcern } from '~/concerns/CurrentUserConcern'
+import ConnectionForm from '~/components/users/forms/ConnectionForm'
+import SettingBackBtn from '~/components/users/layouts/SettingBackBtn'
 
 export default {
-  components: { ConnectionForm },
+  components: { SettingBackBtn, ConnectionForm },
+  mixins: [CurrentUserConcern],
   middleware: ['auth'],
-  props: {
-    user: {
-      type: Object,
-      required: true
-    }
-  },
 
   i18n: {
     messages: {
