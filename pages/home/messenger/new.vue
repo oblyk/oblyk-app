@@ -2,6 +2,9 @@
   <v-container>
     <v-row justify="center">
       <v-col class="global-form-width">
+        <h3 class="mb-3">
+          {{ $t('actions.writeMessage') }}
+        </h3>
         <conversation-form
           submit-methode="post"
         />

@@ -22,6 +22,8 @@
         :to="`${user.currentUserPath}/messenger/new`"
         :title="$t('actions.newConversation')"
         dark
+        elevation="0"
+        @click="showMessengerMessageList()"
       >
         <v-icon>
           {{ mdiPencil }}
@@ -59,6 +61,10 @@ export default {
   methods: {
     conversationObject (conversation) {
       return new Conversation({ attributes: conversation })
+    },
+
+    showMessengerMessageList () {
+      this.$root.$emit('showMessengerMessageList')
     }
   }
 }
