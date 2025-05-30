@@ -1,9 +1,9 @@
 <template>
   <div>
-    <spinner v-if="!currentUser" />
+    <current-user-media-tabs />
 
+    <spinner v-if="!currentUser" />
     <div v-else>
-      <current-user-media-tabs :user="currentUser" />
       <v-container>
         <nuxt-child :user="currentUser" />
       </v-container>
