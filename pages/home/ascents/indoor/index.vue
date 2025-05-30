@@ -1,21 +1,20 @@
 <template>
   <div>
     <v-sheet class="d-flex">
-      <div class="pl-2 py-1">
+      <div class="pa-2">
         <v-btn
           exact-path
           icon
+          large
           :to="$nuxt.context.from || '/home'"
         >
-          <v-icon>
+          <v-icon color="primary">
             {{ mdiArrowLeft }}
           </v-icon>
         </v-btn>
       </div>
-      <div class="pl-1 d-flex flex-column justify-center">
-        <div>
-          {{ $t('components.layout.appDrawer.user.ascents.indoor') }}
-        </div>
+      <div class="d-flex flex-column justify-center">
+        {{ $t('components.layout.appDrawer.user.ascents.indoor') }}
       </div>
     </v-sheet>
 

@@ -6,6 +6,22 @@
         v-show="conversationList"
         class="col-12 col-md-4 col-lg-3 pr-0 pr-md-3 conversations-col"
       >
+        <div class="d-flex pl-2 mb-2">
+          <v-btn
+            :to="$nuxt.context.from || '/home'"
+            icon
+            exact-path
+          >
+            <v-icon>
+              {{ mdiArrowLeft }}
+            </v-icon>
+          </v-btn>
+          <div class="pl-2 d-flex flex-column justify-center">
+            <div>
+              {{ $t('components.layout.appBar.user.messenger') }}
+            </div>
+          </div>
+        </div>
         <div v-if="loadingConversations" class="pl-4">
           <v-skeleton-loader
             v-for="index in 3"
@@ -33,6 +49,7 @@
 </template>
 
 <script>
+import { mdiArrowLeft } from '@mdi/js'
 import { CurrentUserConcern } from '~/concerns/CurrentUserConcern'
 import ConversationList from '~/components/messengers/ConversationsList.vue'
 import ConversationApi from '~/services/oblyk-api/ConversationApi'
@@ -48,7 +65,9 @@ export default {
       conversations: [],
       isMobile: false,
       conversationList: true,
-      messageList: true
+      messageList: true,
+
+      mdiArrowLeft
     }
   },
 

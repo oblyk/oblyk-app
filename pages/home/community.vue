@@ -1,9 +1,9 @@
 <template>
   <div>
-    <spinner v-if="!currentUser" />
+    <user-community-tabs />
 
+    <spinner v-if="!currentUser" />
     <div v-else>
-      <user-community-tabs :user="currentUser" />
       <v-container>
         <router-view :user="currentUser" />
       </v-container>

@@ -1,9 +1,9 @@
 <template>
   <div>
-    <spinner v-if="!currentUser" />
+    <user-accents-tabs />
 
+    <spinner v-if="!currentUser" />
     <div v-else>
-      <user-accents-tabs :user="currentUser" />
       <nuxt-child :user="currentUser" />
     </div>
   </div>

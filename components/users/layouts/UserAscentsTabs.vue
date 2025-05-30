@@ -1,57 +1,66 @@
 <template>
-  <v-sheet class="d-flex">
-    <div class="px-2 pt-4">
+  <v-sheet class="page-header-sheet">
+    <div class="page-header-sheet-back-btn">
       <v-btn
         exact-path
         icon
+        large
         :to="$nuxt.context.from || '/home'"
       >
-        <v-icon>
+        <v-icon color="primary">
           {{ mdiArrowLeft }}
         </v-icon>
       </v-btn>
     </div>
-    <div class="pt-1 pl-1 overflow-x-hidden">
-      <div class="pb-1">
+    <div class="page-header-sheet-content">
+      <div class="page-header-sheet-title">
         {{ $t('components.layout.appDrawer.user.ascents.outdoor') }}
       </div>
-      <div class="text-no-wrap overflow-x-auto pb-2">
-        <v-chip
+      <div class="page-header-sheet-btn-list">
+        <v-btn
           to="/home/ascents/outdoor"
-          small
+          exact-path
+          text
+          x-small
         >
-          <v-icon color="primary" left small>
+          <v-icon left small>
             {{ mdiImageAlbum }}
           </v-icon>
           {{ $t('components.user.ascentTabs.sendList') }}
-        </v-chip>
-        <v-chip
+        </v-btn>
+        <v-btn
           to="/home/ascents/outdoor/analytiks"
-          small
+          exact-path
+          text
+          x-small
         >
-          <v-icon color="primary" left small>
+          <v-icon left small>
             {{ mdiChartBar }}
           </v-icon>
           {{ $t('components.user.ascentTabs.analytiks') }}
-        </v-chip>
-        <v-chip
+        </v-btn>
+        <v-btn
           to="/home/ascents/outdoor/tick-list"
-          small
+          exact-path
+          text
+          x-small
         >
-          <v-icon color="primary" left small>
+          <v-icon left small>
             {{ mdiFormatListCheckbox }}
           </v-icon>
           {{ $t('components.user.ascentTabs.tickList') }}
-        </v-chip>
-        <v-chip
+        </v-btn>
+        <v-btn
           to="/home/ascents/outdoor/projects"
-          small
+          exact-path
+          text
+          x-small
         >
-          <v-icon color="primary" left small>
+          <v-icon left small>
             {{ mdiCropFree }}
           </v-icon>
           {{ $t('components.user.ascentTabs.projects') }}
-        </v-chip>
+        </v-btn>
       </div>
     </div>
   </v-sheet>
@@ -68,12 +77,6 @@ import {
 
 export default {
   name: 'UserAccentsTabs',
-  props: {
-    user: {
-      type: Object,
-      required: true
-    }
-  },
 
   data () {
     return {

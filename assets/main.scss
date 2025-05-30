@@ -342,6 +342,36 @@ strong {
   }
 }
 
+.page-header-sheet {
+  display: flex;
+  .page-header-sheet-back-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-right: 8px;
+    padding-left: 8px;
+  }
+  .page-header-sheet-content {
+    overflow-x: hidden;
+    padding-top: 4px;
+  }
+  .page-header-sheet-btn-list {
+    padding-bottom: 7px;
+    text-wrap: nowrap;
+    overflow-x: auto;
+    .v-btn {
+      padding: 12px !important;
+      border-radius: 15px;
+      &:not(.v-btn--active) {
+        padding: 11px !important;
+        border-style: solid;
+        border-width: 1px;
+        border-color: rgba(150, 150, 150, 0.4);
+      }
+    }
+  }
+}
+
 .beta-background {
   background: linear-gradient(-45deg, #1E88E5 12.5%, #208be9 12.5%, #208be9 37.5%, #1E88E5 37.5%, #1E88E5 62.5%, #208be9 62.5%, #208be9 87.5%, #1E88E5 87.5%);
   background-size: 50px 50px;
