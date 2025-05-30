@@ -1,17 +1,39 @@
 <template>
-  <v-container fluid>
-    <v-row class="mt-4">
-      <v-col cols="12" lg="9" offset-lg="1">
-        <climbing-session
-          v-if="paramsAreRetrieved"
-          :filters="filters"
-        />
-      </v-col>
-    </v-row>
-  </v-container>
+  <div>
+    <v-sheet class="d-flex">
+      <div class="pl-2 py-1">
+        <v-btn
+          exact-path
+          icon
+          :to="$nuxt.context.from || '/home'"
+        >
+          <v-icon>
+            {{ mdiArrowLeft }}
+          </v-icon>
+        </v-btn>
+      </div>
+      <div class="pl-1 d-flex flex-column justify-center">
+        <div>
+          {{ $t('components.layout.appDrawer.user.ascents.session') }}
+        </div>
+      </div>
+    </v-sheet>
+
+    <v-container fluid>
+      <v-row class="mt-4">
+        <v-col cols="12" lg="9" offset-lg="1">
+          <climbing-session
+            v-if="paramsAreRetrieved"
+            :filters="filters"
+          />
+        </v-col>
+      </v-row>
+    </v-container>
+  </div>
 </template>
 
 <script>
+import { mdiArrowLeft } from '@mdi/js'
 import ClimbingSession from '~/components/climbingSessions/ClimbingSession.vue'
 
 export default {
@@ -21,7 +43,9 @@ export default {
   data () {
     return {
       paramsAreRetrieved: false,
-      filters: {}
+      filters: {},
+
+      mdiArrowLeft
     }
   },
 
