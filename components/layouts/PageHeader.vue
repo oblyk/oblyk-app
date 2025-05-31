@@ -13,12 +13,14 @@
       </v-btn>
     </div>
     <div class="page-header-sheet-content">
-      <h1
-        class="page-header-sheet-title text-h6"
+      <div
+        class="page-header-sheet-title"
         :class="links ? '--with-links' : null"
       >
-        {{ title }}
-      </h1>
+        <h1 class="text-h6 text-truncate">
+          {{ title }}
+        </h1>
+      </div>
       <div
         v-if="links"
         class="page-header-sheet-btn-list"

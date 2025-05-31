@@ -361,8 +361,10 @@ strong {
     .page-header-sheet-title {
       flex-grow: 1;
       display: flex;
-      font-size: 1.05rem !important;
-      line-height: 1.5rem !important;
+      h1 {
+        font-size: 1.05rem !important;
+        line-height: 1.5rem !important;
+      }
       &:not(.--with-links) {
         flex-direction: column;
         justify-content: center;

@@ -13,6 +13,10 @@
     </v-container>
   </div>
   <div v-else>
+    <page-header
+      :title="article.name"
+      back-to="/articles"
+    />
     <v-container class="article-header-container">
       <article-head :article="article" />
     </v-container>
@@ -84,9 +88,11 @@ import AboutAuthorCard from '@/components/authors/AboutAuthorCard'
 import ArticleCrags from '@/components/articles/ArticleCrags'
 import ArticleGuideBookPapers from '@/components/articles/ArticleGuideBookPapers'
 import AppFooter from '@/components/layouts/AppFooter'
+import PageHeader from '~/components/layouts/PageHeader.vue'
 
 export default {
   components: {
+    PageHeader,
     ArticleGuideBookPapers,
     ArticleCrags,
     AboutAuthorCard,
