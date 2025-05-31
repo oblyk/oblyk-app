@@ -1,5 +1,10 @@
 <template>
   <div>
+    <page-header
+      :title="$t('components.layout.appDrawer.user.guideBooks')"
+      back-to="/home"
+    />
+
     <spinner v-if="!currentUser" />
 
     <div v-else>
@@ -55,9 +60,10 @@ import CurrentUserApi from '~/services/oblyk-api/CurrentUserApi'
 import GuideBookPaper from '~/models/GuideBookPaper'
 import GuideBookPaperCoverCard from '~/components/guideBookPapers/GuideBookPaperCoverCard.vue'
 import GuideBookStoreHeader from '~/components/guideBookPapers/GuideBookStoreHeader.vue'
+import PageHeader from '~/components/layouts/PageHeader.vue'
 
 export default {
-  components: { GuideBookStoreHeader, GuideBookPaperCoverCard, Spinner },
+  components: { PageHeader, GuideBookStoreHeader, GuideBookPaperCoverCard, Spinner },
   mixins: [CurrentUserConcern, TextHelpers],
   middleware: ['auth'],
 

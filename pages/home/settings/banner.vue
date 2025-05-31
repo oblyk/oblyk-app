@@ -1,6 +1,9 @@
 <template>
   <div>
-    <setting-back-btn title-key="actions.changeBanner" />
+    <page-header
+      :title="$t('actions.changeBanner')"
+      back-to="/home/settings"
+    />
 
     <div class="d-flex justify-center pb-10">
       <v-col class="global-form-width px-3 full-width">
@@ -21,10 +24,10 @@
 <script>
 import { CurrentUserConcern } from '~/concerns/CurrentUserConcern'
 import UserImageForm from '~/components/users/forms/UserImageForm'
-import SettingBackBtn from '~/components/users/layouts/SettingBackBtn'
+import PageHeader from '~/components/layouts/PageHeader.vue'
 
 export default {
-  components: { SettingBackBtn, UserImageForm },
+  components: { PageHeader, UserImageForm },
   mixins: [CurrentUserConcern],
   middleware: ['auth'],
 

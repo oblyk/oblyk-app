@@ -1,6 +1,9 @@
 <template>
   <div>
-    <setting-back-btn title-key="components.user.privacyParameters" />
+    <page-header
+      :title="$t('components.user.privacyParameters')"
+      back-to="/home/settings"
+    />
 
     <div class="d-flex justify-center pb-10">
       <div class="global-form-width px-3">
@@ -21,10 +24,10 @@
 <script>
 import { CurrentUserConcern } from '~/concerns/CurrentUserConcern'
 import UserPrivacyForm from '~/components/users/forms/PrivacyForm'
-import SettingBackBtn from '~/components/users/layouts/SettingBackBtn'
+import PageHeader from '~/components/layouts/PageHeader'
 
 export default {
-  components: { SettingBackBtn, UserPrivacyForm },
+  components: { PageHeader, UserPrivacyForm },
   mixins: [CurrentUserConcern],
   middleware: ['auth'],
 

@@ -1,25 +1,35 @@
 <template>
-  <div class="full-height">
-    <client-only>
-      <leaflet-map
-        map-style="outdoor"
-        :geo-jsons="geoJsons"
-        :track-location="false"
-        :clustered="false"
-        :search-place="false"
+  <div class="full-height d-flex flex-column">
+    <div class="flex-shrink-0">
+      <page-header
+        :title="$t('components.layout.appDrawer.user.myMap')"
+        back-to="/home"
       />
-    </client-only>
+    </div>
+    <div class="flex-grow-1">
+      <client-only>
+        <leaflet-map
+          map-style="outdoor"
+          :geo-jsons="geoJsons"
+          :track-location="false"
+          :clustered="false"
+          :search-place="false"
+        />
+      </client-only>
+    </div>
   </div>
 </template>
 
 <script>
 import CurrentUserApi from '@/services/oblyk-api/CurrentUserApi'
 import { CurrentUserConcern } from '~/concerns/CurrentUserConcern'
+import PageHeader from '~/components/layouts/PageHeader'
 const LeafletMap = () => import('@/components/maps/LeafletMap')
 
 export default {
-  components: { LeafletMap },
+  components: { PageHeader, LeafletMap },
   mixins: [CurrentUserConcern],
+  middleware: ['auth'],
 
   data () {
     return {

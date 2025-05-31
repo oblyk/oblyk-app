@@ -1,6 +1,9 @@
 <template>
   <div>
-    <setting-back-btn title-key="components.user.otherSetting" />
+    <page-header
+      :title="$t('components.user.otherSetting')"
+      back-to="/home/settings"
+    />
 
     <div class="d-flex justify-center pb-10">
       <div class="global-form-width px-3">
@@ -38,10 +41,10 @@
 import { CurrentUserConcern } from '~/concerns/CurrentUserConcern'
 import DeleteUserForm from '~/components/users/forms/DeleteUserForm'
 import ExportAscentsOrProjectsForm from '~/components/users/forms/ExportAscentsOrProjectsForm'
-import SettingBackBtn from '~/components/users/layouts/SettingBackBtn'
+import PageHeader from '~/components/layouts/PageHeader'
 
 export default {
-  components: { SettingBackBtn, ExportAscentsOrProjectsForm, DeleteUserForm },
+  components: { PageHeader, ExportAscentsOrProjectsForm, DeleteUserForm },
   mixins: [CurrentUserConcern],
   middleware: ['auth'],
 

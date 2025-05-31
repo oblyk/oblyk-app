@@ -1,6 +1,10 @@
 <template>
   <div>
-    <user-accents-tabs />
+    <page-header
+      :title="$t('components.layout.appDrawer.user.ascents.outdoor')"
+      back-to="/home"
+      :links="headerLinks"
+    />
 
     <spinner v-if="!currentUser" />
     <div v-else>
@@ -10,12 +14,13 @@
 </template>
 
 <script>
+import { mdiImageAlbum, mdiChartBar, mdiFormatListCheckbox, mdiCropFree } from '@mdi/js'
 import { CurrentUserConcern } from '~/concerns/CurrentUserConcern'
-import Spinner from '~/components/layouts/Spiner.vue'
-import UserAccentsTabs from '~/components/users/layouts/UserAscentsTabs.vue'
+import Spinner from '~/components/layouts/Spiner'
+import PageHeader from '~/components/layouts/PageHeader'
 
 export default {
-  components: { UserAccentsTabs, Spinner },
+  components: { PageHeader, Spinner },
   mixins: [CurrentUserConcern],
   middleware: ['auth'],
 
@@ -27,6 +32,33 @@ export default {
       en: {
         metaTitle: 'My outdoor ascents'
       }
+    }
+  },
+
+  data () {
+    return {
+      headerLinks: [
+        {
+          to: '/home/ascents/outdoor',
+          title: this.$t('components.user.ascentTabs.sendList'),
+          icon: mdiImageAlbum
+        },
+        {
+          to: '/home/ascents/analytiks',
+          title: this.$t('components.user.ascentTabs.analytiks'),
+          icon: mdiChartBar
+        },
+        {
+          to: '/home/ascents/tick-list',
+          title: this.$t('components.user.ascentTabs.tickList'),
+          icon: mdiFormatListCheckbox
+        },
+        {
+          to: '/home/ascents/projects',
+          title: this.$t('components.user.ascentTabs.projects'),
+          icon: mdiCropFree
+        }
+      ]
     }
   },
 

@@ -1,6 +1,10 @@
 <template>
   <div>
-    <current-user-media-tabs />
+    <page-header
+      :title="$t('components.user.tabs.media')"
+      back-to="/home"
+      :links="headerLinks"
+    />
 
     <spinner v-if="!currentUser" />
     <div v-else>
@@ -12,13 +16,14 @@
 </template>
 
 <script>
+import { mdiImage, mdiVideo } from '@mdi/js'
 import { CurrentUserConcern } from '~/concerns/CurrentUserConcern'
-import CurrentUserMediaTabs from '~/components/users/layouts/CurrentUserMediaTabs.vue'
-import Spinner from '~/components/layouts/Spiner.vue'
+import Spinner from '~/components/layouts/Spiner'
+import PageHeader from '~/components/layouts/PageHeader'
 
 export default {
   name: 'CurrentUserMediaView',
-  components: { Spinner, CurrentUserMediaTabs },
+  components: { PageHeader, Spinner },
   mixins: [CurrentUserConcern],
   middleware: ['auth'],
 
@@ -26,6 +31,23 @@ export default {
     user: {
       type: Object,
       required: true
+    }
+  },
+
+  data () {
+    return {
+      headerLinks: [
+        {
+          to: '/home/media/photos',
+          title: this.$t('components.user.tabs.photos'),
+          icon: mdiImage
+        },
+        {
+          to: '/home/media/videos',
+          title: this.$t('components.user.tabs.videos'),
+          icon: mdiVideo
+        }
+      ]
     }
   }
 }

@@ -1,6 +1,10 @@
 <template>
   <div>
-    <user-favorite-tabs />
+    <page-header
+      :title="$t('components.layout.appDrawer.user.favorites')"
+      back-to="/home"
+      :links="headerLinks"
+    />
 
     <spinner v-if="!currentUser" />
     <div v-else>
@@ -12,16 +16,17 @@
 </template>
 
 <script>
+import { mdiTerrain, mdiOfficeBuildingMarker } from '@mdi/js'
 import { CurrentUserConcern } from '~/concerns/CurrentUserConcern'
-import Spinner from '~/components/layouts/Spiner.vue'
+import Spinner from '~/components/layouts/Spiner'
 import CurrentUserApi from '~/services/oblyk-api/CurrentUserApi'
 import Gym from '~/models/Gym'
 import Crag from '~/models/Crag'
-import UserFavoriteTabs from '~/components/users/layouts/UserFavoriteTabs.vue'
+import PageHeader from '~/components/layouts/PageHeader'
 
 export default {
   components: {
-    UserFavoriteTabs,
+    PageHeader,
     Spinner
   },
   mixins: [CurrentUserConcern],
@@ -32,7 +37,19 @@ export default {
       loadingGyms: true,
       loadingCrags: true,
       gyms: [],
-      crags: []
+      crags: [],
+      headerLinks: [
+        {
+          to: '/home/favorites/crags',
+          title: this.$t('components.user.tabs.crags'),
+          icon: mdiTerrain
+        },
+        {
+          to: '/home/favorites/gyms',
+          title: this.$t('components.user.tabs.gyms'),
+          icon: mdiOfficeBuildingMarker
+        }
+      ]
     }
   },
 

@@ -345,6 +345,7 @@ strong {
 .page-header-sheet {
   display: flex;
   .page-header-sheet-back-btn {
+    height: 63px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -352,21 +353,40 @@ strong {
     padding-left: 8px;
   }
   .page-header-sheet-content {
-    overflow-x: hidden;
-    padding-top: 4px;
-  }
-  .page-header-sheet-btn-list {
-    padding-bottom: 7px;
-    text-wrap: nowrap;
-    overflow-x: auto;
-    .v-btn {
-      padding: 12px !important;
-      border-radius: 15px;
-      &:not(.v-btn--active) {
-        padding: 11px !important;
-        border-style: solid;
-        border-width: 1px;
-        border-color: rgba(150, 150, 150, 0.4);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-content: stretch;
+    overflow-y: hidden;
+    .page-header-sheet-title {
+      flex-grow: 1;
+      display: flex;
+      font-size: 1.05rem !important;
+      line-height: 1.5rem !important;
+      &:not(.--with-links) {
+        flex-direction: column;
+        justify-content: center;
+      }
+      &.--with-links {
+        flex-direction: column;
+        justify-content: end;
+      }
+    }
+    .page-header-sheet-btn-list {
+      flex-shrink: 0;
+      padding-bottom: 6px;
+      text-wrap: nowrap;
+      overflow-x: auto;
+      .v-btn {
+        padding: 12px !important;
+        border-radius: 15px;
+        margin-right: 2px;
+        &:not(.v-btn--active) {
+          padding: 11px !important;
+          border-style: solid;
+          border-width: 1px;
+          border-color: rgba(150, 150, 150, 0.4);
+        }
       }
     }
   }

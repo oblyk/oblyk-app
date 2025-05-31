@@ -1,22 +1,9 @@
 <template>
   <div>
-    <v-sheet class="d-flex">
-      <div class="pa-2">
-        <v-btn
-          exact-path
-          icon
-          large
-          :to="$nuxt.context.from || '/home'"
-        >
-          <v-icon color="primary">
-            {{ mdiArrowLeft }}
-          </v-icon>
-        </v-btn>
-      </div>
-      <div class="d-flex flex-column justify-center">
-        {{ $t('components.layout.appDrawer.user.ascents.indoor') }}
-      </div>
-    </v-sheet>
+    <page-header
+      :title="$t('components.layout.appDrawer.user.ascents.indoor')"
+      back-to="/home"
+    />
 
     <v-container fluid>
       <!-- Figures -->
@@ -169,18 +156,20 @@
 </template>
 
 <script>
-import { mdiCircle, mdiPlusBoxOutline, mdiArrowLeft } from '@mdi/js'
-import LogBookIndoorFigures from '~/components/logBooks/indoors/LogBookIndoorFigures.vue'
+import { mdiCircle, mdiPlusBoxOutline } from '@mdi/js'
+import LogBookIndoorFigures from '~/components/logBooks/indoors/LogBookIndoorFigures'
 import LogBookIndoorApi from '~/services/oblyk-api/LogBookIndoorApi'
-import Spinner from '~/components/layouts/Spiner.vue'
-import LogBookClimbingTypeChart from '~/components/logBooks/outdoors/LogBookClimbingTypeChart.vue'
-import LogBookMonthChart from '~/components/logBooks/outdoors/LogBookMonthChart.vue'
-import LogBookYearChart from '~/components/logBooks/outdoors/LogBookYearChart.vue'
-import LogBookGradeChart from '~/components/logBooks/outdoors/LogBookGradeChart.vue'
-import IndoorLevelChart from '~/components/logBooks/indoors/IndoorLevelChart.vue'
+import Spinner from '~/components/layouts/Spiner'
+import LogBookClimbingTypeChart from '~/components/logBooks/outdoors/LogBookClimbingTypeChart'
+import LogBookMonthChart from '~/components/logBooks/outdoors/LogBookMonthChart'
+import LogBookYearChart from '~/components/logBooks/outdoors/LogBookYearChart'
+import LogBookGradeChart from '~/components/logBooks/outdoors/LogBookGradeChart'
+import IndoorLevelChart from '~/components/logBooks/indoors/IndoorLevelChart'
+import PageHeader from '~/components/layouts/PageHeader'
 
 export default {
   components: {
+    PageHeader,
     IndoorLevelChart,
     LogBookGradeChart,
     LogBookYearChart,
@@ -215,8 +204,7 @@ export default {
       levelData: [],
 
       mdiCircle,
-      mdiPlusBoxOutline,
-      mdiArrowLeft
+      mdiPlusBoxOutline
     }
   },
 

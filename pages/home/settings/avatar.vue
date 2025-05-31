@@ -1,6 +1,9 @@
 <template>
   <div>
-    <setting-back-btn title-key="actions.myAvatar" />
+    <page-header
+      :title="$t('actions.myAvatar')"
+      back-to="/home/settings"
+    />
 
     <div class="d-flex justify-center pb-10">
       <div class="global-form-width full-width px-3">
@@ -21,10 +24,10 @@
 <script>
 import { CurrentUserConcern } from '~/concerns/CurrentUserConcern'
 import UserImageForm from '~/components/users/forms/UserImageForm'
-import SettingBackBtn from '~/components/users/layouts/SettingBackBtn'
+import PageHeader from '~/components/layouts/PageHeader'
 
 export default {
-  components: { SettingBackBtn, UserImageForm },
+  components: { PageHeader, UserImageForm },
   mixins: [CurrentUserConcern],
   middleware: ['auth'],
 

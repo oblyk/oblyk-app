@@ -25,7 +25,9 @@
           icon
           @click="showConversationList()"
         >
-          <v-icon>{{ mdiArrowLeft }}</v-icon>
+          <v-icon color="primary">
+            {{ mdiArrowLeft }}
+          </v-icon>
         </v-btn>
         <v-chip
           v-for="(conversationUser, userIndex) in conversationUsers"

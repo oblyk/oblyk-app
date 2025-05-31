@@ -1,6 +1,6 @@
 <template>
-  <v-card>
-    <v-card-title>
+  <v-card class="mt-4">
+    <v-card-title class="d-none d-md-block">
       <h2>
         {{ $t('components.layout.appDrawer.user.guideBooks') }}
       </h2>
@@ -57,7 +57,7 @@
         </div>
         <div
           v-if="suggestGuides.length > 0"
-          class="col-6 col-md-4 col-lg-3"
+          class="col-12 col-md-4 col-lg-3"
         >
           <p class="mb-1 font-weight-bold">
             <v-icon small left>
@@ -77,7 +77,7 @@
         </div>
         <div
           v-if="newGuides.length > 0"
-          class="col-6 col-md-4 col-lg-3"
+          class="col-12 col-md-4 col-lg-3"
         >
           <p class="mb-1 font-weight-bold">
             <v-icon small left>

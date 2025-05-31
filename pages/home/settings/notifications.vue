@@ -1,6 +1,9 @@
 <template>
   <div>
-    <setting-back-btn title-key="components.user.notificationSetting" />
+    <page-header
+      :title="$t('components.user.notificationSetting')"
+      back-to="/home/settings"
+    />
 
     <div class="d-flex justify-center pb-10">
       <div class="global-form-width">
@@ -34,11 +37,11 @@
 import { CurrentUserConcern } from '~/concerns/CurrentUserConcern'
 import NewsletterSubscribeSwitchForm from '~/components/users/forms/NewsletterSubscribeSwitchForm'
 import EmailNotificationForm from '~/components/users/forms/EmailNotificationForm'
-import SettingBackBtn from '~/components/users/layouts/SettingBackBtn'
 import GymEmailingReportForm from '~/components/users/forms/GymEmailingReportForm'
+import PageHeader from '~/components/layouts/PageHeader'
 
 export default {
-  components: { GymEmailingReportForm, SettingBackBtn, EmailNotificationForm, NewsletterSubscribeSwitchForm },
+  components: { PageHeader, GymEmailingReportForm, EmailNotificationForm, NewsletterSubscribeSwitchForm },
   mixins: [CurrentUserConcern],
   middleware: ['auth'],
 

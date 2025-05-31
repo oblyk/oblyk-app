@@ -1,5 +1,9 @@
 <template>
   <div>
+    <page-header
+      :title="word?.name"
+      back-to="/glossary"
+    />
     <v-container class="glossary-width">
       <v-row>
         <v-col>
@@ -9,23 +13,11 @@
               type="article"
             />
           </div>
-          <div v-else>
-            <word-card
-              :presentation="false"
-              :word="word"
-            />
-            <v-btn
-              :to="word.glossaryPath"
-              text
-              class="mt-2"
-              color="primary"
-            >
-              <v-icon left>
-                {{ mdiArrowLeft }}
-              </v-icon>
-              {{ $t('components.word.backToGlossary') }}
-            </v-btn>
-          </div>
+          <word-card
+            v-else
+            :presentation="false"
+            :word="word"
+          />
         </v-col>
       </v-row>
     </v-container>
@@ -34,20 +26,14 @@
 </template>
 
 <script>
-import { mdiArrowLeft } from '@mdi/js'
 import { WordConcern } from '~/concerns/WordConcern'
 import WordCard from '~/components/words/WordCard'
 import AppFooter from '~/components/layouts/AppFooter'
+import PageHeader from '~/components/layouts/PageHeader'
 
 export default {
-  components: { AppFooter, WordCard },
-  mixins: [WordConcern],
-
-  data () {
-    return {
-      mdiArrowLeft
-    }
-  }
+  components: { PageHeader, AppFooter, WordCard },
+  mixins: [WordConcern]
 }
 </script>
 

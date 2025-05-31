@@ -1,22 +1,9 @@
 <template>
   <div>
-    <v-sheet class="d-flex">
-      <div class="pa-2">
-        <v-btn
-          exact-path
-          icon
-          large
-          :to="$nuxt.context.from || '/home'"
-        >
-          <v-icon color="primary">
-            {{ mdiArrowLeft }}
-          </v-icon>
-        </v-btn>
-      </div>
-      <div class="d-flex flex-column justify-center">
-        {{ $t('components.layout.appDrawer.user.ascents.session') }}
-      </div>
-    </v-sheet>
+    <page-header
+      :title="$t('components.layout.appDrawer.user.ascents.session')"
+      back-to="/home"
+    />
 
     <v-container fluid>
       <v-row class="mt-4">
@@ -32,19 +19,17 @@
 </template>
 
 <script>
-import { mdiArrowLeft } from '@mdi/js'
-import ClimbingSession from '~/components/climbingSessions/ClimbingSession.vue'
+import ClimbingSession from '~/components/climbingSessions/ClimbingSession'
+import PageHeader from '~/components/layouts/PageHeader'
 
 export default {
-  components: { ClimbingSession },
+  components: { PageHeader, ClimbingSession },
   middleware: ['auth'],
 
   data () {
     return {
       paramsAreRetrieved: false,
-      filters: {},
-
-      mdiArrowLeft
+      filters: {}
     }
   },
 

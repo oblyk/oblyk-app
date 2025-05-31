@@ -1,6 +1,9 @@
 <template>
   <div>
-    <setting-back-btn title-key="components.user.changePassword" />
+    <page-header
+      :title="$t('components.user.changePassword')"
+      back-to="/home/settings"
+    />
 
     <div class="d-flex justify-center pb-10">
       <v-col class="global-form-width px-3">
@@ -21,10 +24,10 @@
 <script>
 import { CurrentUserConcern } from '~/concerns/CurrentUserConcern'
 import ConnectionForm from '~/components/users/forms/ConnectionForm'
-import SettingBackBtn from '~/components/users/layouts/SettingBackBtn'
+import PageHeader from '~/components/layouts/PageHeader'
 
 export default {
-  components: { SettingBackBtn, ConnectionForm },
+  components: { PageHeader, ConnectionForm },
   mixins: [CurrentUserConcern],
   middleware: ['auth'],
 

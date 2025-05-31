@@ -1,44 +1,46 @@
 <template>
-  <v-container style="max-width: 800px;">
-    <h2 class="mb-7">
-      {{ $t('components.user.myPartnerSearch') }}
-    </h2>
-
-    <div v-if="!firstLoadingClimbers">
-      <locality-user-filter
-        v-model="filters"
-        :elevation="0"
-        bg-color="backCardColor"
-      />
-    </div>
-
-    <v-skeleton-loader
-      v-if="firstLoadingClimbers || reloading"
-      type="article"
+  <div>
+    <page-header
+      :title="$t('components.user.myPartnerSearch')"
+      back-to="/home"
     />
-
-    <div v-else>
-      <div
-        v-for="(climberLocality, climberIndex) in climberLocalities"
-        :key="`climber-index-${climberIndex}`"
-      >
-        <locality-user-card :climber-locality="climberLocality" />
+    <v-container class="mt-4" style="max-width: 800px;">
+      <div v-if="!firstLoadingClimbers">
+        <locality-user-filter
+          v-model="filters"
+          :elevation="0"
+          bg-color="backCardColor"
+        />
       </div>
-      <loading-more
-        :get-function="getClimberLocalities"
-        :loading-more="loadingMoreData"
-        :no-more-data="noMoreDataToLoad"
-        skeleton-type="list-item-three-line"
+
+      <v-skeleton-loader
+        v-if="firstLoadingClimbers || reloading"
+        type="article"
       />
 
-      <p
-        v-if="climberLocalities.length === 0"
-        class="text--disabled text-center my-6"
-      >
-        {{ $t('common.pages.partner.emptyClimbersWithFilter') }}
-      </p>
-    </div>
-  </v-container>
+      <div v-else>
+        <div
+          v-for="(climberLocality, climberIndex) in climberLocalities"
+          :key="`climber-index-${climberIndex}`"
+        >
+          <locality-user-card :climber-locality="climberLocality" />
+        </div>
+        <loading-more
+          :get-function="getClimberLocalities"
+          :loading-more="loadingMoreData"
+          :no-more-data="noMoreDataToLoad"
+          skeleton-type="list-item-three-line"
+        />
+
+        <p
+          v-if="climberLocalities.length === 0"
+          class="text--disabled text-center my-6"
+        >
+          {{ $t('common.pages.partner.emptyClimbersWithFilter') }}
+        </p>
+      </div>
+    </v-container>
+  </div>
 </template>
 
 <script>
@@ -48,9 +50,11 @@ import LocalityUser from '~/models/LocalityUser'
 import LoadingMore from '~/components/layouts/LoadingMore.vue'
 import LocalityUserCard from '~/components/localityUsers/LocalityUserCard.vue'
 import LocalityUserFilter from '~/components/localityUsers/LocalityUserFilter.vue'
+import PageHeader from '~/components/layouts/PageHeader.vue'
 
 export default {
   components: {
+    PageHeader,
     LocalityUserFilter,
     LocalityUserCard,
     LoadingMore

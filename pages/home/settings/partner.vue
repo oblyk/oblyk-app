@@ -1,6 +1,9 @@
 <template>
   <div>
-    <setting-back-btn title-key="components.user.partnerSearch" />
+    <page-header
+      :title="$t('components.user.partnerSearch')"
+      back-to="/home/settings"
+    />
 
     <div class="d-flex justify-center pb-10">
       <v-col class="global-form-width px-3">
@@ -21,10 +24,10 @@
 <script>
 import { CurrentUserConcern } from '~/concerns/CurrentUserConcern'
 import PartnerForm from '~/components/users/forms/PartnerForm'
-import SettingBackBtn from '~/components/users/layouts/SettingBackBtn'
+import PageHeader from '~/components/layouts/PageHeader'
 
 export default {
-  components: { SettingBackBtn, PartnerForm },
+  components: { PageHeader, PartnerForm },
   mixins: [CurrentUserConcern],
   middleware: ['auth'],
 

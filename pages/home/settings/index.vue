@@ -1,26 +1,12 @@
 <template>
   <div>
+    <page-header
+      :title="$t('actions.mySettings')"
+      back-to="/home"
+    />
+
     <spinner v-if="!currentUser" />
-
     <div v-else>
-      <v-sheet class="d-flex">
-        <div class="pa-2">
-          <v-btn
-            exact-path
-            icon
-            large
-            :to="$nuxt.context.from || '/home'"
-          >
-            <v-icon color="primary">
-              {{ mdiArrowLeft }}
-            </v-icon>
-          </v-btn>
-        </div>
-        <div class="d-flex flex-column justify-center">
-          {{ $t('actions.mySettings') }}
-        </div>
-      </v-sheet>
-
       <div class="px-4 pt-3" style="max-width: 600px; margin: 0 auto">
         <v-sheet class="rounded mb-2">
           <v-list-item to="/home/settings/general">
@@ -184,7 +170,6 @@
 <script>
 import {
   mdiInformation,
-  mdiArrowLeft,
   mdiMapMarkerRadius,
   mdiLastpass,
   mdiLock,
@@ -194,10 +179,11 @@ import {
   mdiImageArea
 } from '@mdi/js'
 import { CurrentUserConcern } from '~/concerns/CurrentUserConcern'
-import Spinner from '~/components/layouts/Spiner.vue'
+import Spinner from '~/components/layouts/Spiner'
+import PageHeader from '~/components/layouts/PageHeader'
 
 export default {
-  components: { Spinner },
+  components: { PageHeader, Spinner },
   mixins: [CurrentUserConcern],
   middleware: ['auth'],
 
@@ -215,7 +201,6 @@ export default {
   data () {
     return {
       mdiInformation,
-      mdiArrowLeft,
       mdiMapMarkerRadius,
       mdiLastpass,
       mdiLock,
