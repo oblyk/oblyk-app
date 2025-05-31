@@ -1,5 +1,6 @@
 <template>
   <div>
+    <guide-book-paper-page-header />
     <v-container class="common-page-container">
       <h1 class="mb-10 mt-5 text-center">
         {{ $t('components.library.title') }}
@@ -86,9 +87,11 @@ import AppFooter from '@/components/layouts/AppFooter'
 import GuideBookPaperApi from '~/services/oblyk-api/GuideBookPaperApi'
 import GuideBookPaper from '~/models/GuideBookPaper'
 import GuideBookPaperCoverCard from '~/components/guideBookPapers/GuideBookPaperCoverCard'
+import GuideBookPaperPageHeader from '~/components/guideBookPapers/layouts/GuideBookPaperPageHeader'
 
 export default {
   components: {
+    GuideBookPaperPageHeader,
     GuideBookPaperCoverCard,
     AppFooter
   },

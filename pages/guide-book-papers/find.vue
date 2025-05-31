@@ -1,5 +1,6 @@
 <template>
   <div>
+    <guide-book-paper-page-header />
     <v-container class="common-page-container">
       <h1
         v-if="place === null"
@@ -67,9 +68,11 @@ import Spinner from '@/components/layouts/Spiner'
 import GuideBookPaperAroundCard from '@/components/guideBookPapers/GuideBookPaperAroundCard'
 import AppFooter from '@/components/layouts/AppFooter'
 import GuideBookPaper from '~/models/GuideBookPaper'
+import GuideBookPaperPageHeader from '~/components/guideBookPapers/layouts/GuideBookPaperPageHeader'
 
 export default {
   components: {
+    GuideBookPaperPageHeader,
     GuideBookPaperAroundCard,
     Spinner,
     SearchPlaceInput,

@@ -1,24 +1,32 @@
 <template>
-  <client-only>
-    <leaflet-map
-      map-style="outdoor"
-      :geo-jsons="geoJsons"
-      :latitude-force="latitude"
-      :longitude-force="longitude"
-      :zoom-force="zoom"
-      :clustered="false"
-      :search-place="true"
-    />
-  </client-only>
+  <div class="full-height d-flex flex-column">
+    <div class="flex-shrink-0">
+      <guide-book-paper-page-header />
+    </div>
+    <div class="flex-grow-1">
+      <client-only>
+        <leaflet-map
+          map-style="outdoor"
+          :geo-jsons="geoJsons"
+          :latitude-force="latitude"
+          :longitude-force="longitude"
+          :zoom-force="zoom"
+          :clustered="false"
+          :search-place="false"
+        />
+      </client-only>
+    </div>
+  </div>
 </template>
 
 <script>
 import GuideBookPaperApi from '~/services/oblyk-api/GuideBookPaperApi'
+import GuideBookPaperPageHeader from '~/components/guideBookPapers/layouts/GuideBookPaperPageHeader.vue'
 const LeafletMap = () => import('@/components/maps/LeafletMap')
 
 export default {
   name: 'GymMapView',
-  components: { LeafletMap },
+  components: { GuideBookPaperPageHeader, LeafletMap },
 
   data () {
     return {
