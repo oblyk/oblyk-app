@@ -1,16 +1,17 @@
 <template>
   <div>
     <page-header
-      :title="$t('components.user.globalInformation')"
+      :title="$t('components.user.settingTabs.externalApplications')"
       back-to="/home/settings"
     />
 
-    <v-container class="pt-6">
-      <user-form
-        v-if="currentUser"
-        :user="currentUser"
-        submit-methode="put"
-      />
+    <v-container>
+      <div v-if="currentUser">
+        <user-application-user-list :user="currentUser" />
+        <div class="text-right">
+          <add-user-application />
+        </div>
+      </div>
       <v-skeleton-loader
         v-else
         type="article"
@@ -21,11 +22,12 @@
 
 <script>
 import { CurrentUserConcern } from '~/concerns/CurrentUserConcern'
-import UserForm from '~/components/users/forms/UserForm'
+import UserApplicationUserList from '~/components/userApplication/UserApplicationUserList'
+import AddUserApplication from '~/components/userApplication/AddUserApplication'
 import PageHeader from '~/components/layouts/PageHeader'
 
 export default {
-  components: { PageHeader, UserForm },
+  components: { PageHeader, AddUserApplication, UserApplicationUserList },
   mixins: [CurrentUserConcern],
   middleware: ['auth'],
 

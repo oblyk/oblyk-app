@@ -10,6 +10,7 @@ export default {
     new: 'Nouveau',
     move: 'Déplacer',
     add: 'Ajouter',
+    associate: 'Associer',
     addSpace: 'Ajouter un espace',
     apply: 'Appliquer',
     editSector: 'Modifier le secteur',
@@ -1803,6 +1804,8 @@ export default {
         connection: 'Connexion',
         privacy: 'Confidentialité',
         partner: 'Carte des grimpeur·euse·s',
+        externalApplications: 'Applications externes',
+        myApplications: 'Mes applications',
         notifications: 'Notifications',
         others: 'Autres'
       },
@@ -2198,6 +2201,20 @@ export default {
       public_profile: 'Profil public',
       public_outdoor_ascents: 'Carnet de croix outdoor public',
       public_indoor_ascents: 'Carnet de croix indoor public'
+    },
+    userApplication: {
+      status: 'Statut',
+      ffmeMyCompet: {
+        ffme_licence_number: 'Numéro de licence',
+        status: {
+          OK: 'Association validée',
+          ATTENTE_LICENCE: 'Association en cours de traitement',
+          ATTENTE_LICENCE2: 'Association en cours de traitement',
+          ATTENTE_CONFIRMATION: 'En attente de confirmation',
+          CONFLIT: 'Problème lors de l’association, vous êtes déjà associé à un autre numéro de licence',
+          BLACKLIST: 'Problème sur votre licence, veuillez contacter competition@ffme.fr'
+        }
+      }
     },
     password: {
       rules: 'Doit contenir : 8 caractères ou plus, une majuscule, une minuscule et un chiffre',

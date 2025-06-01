@@ -10,6 +10,7 @@ export default {
     new: 'New',
     move: 'Move',
     add: 'Add',
+    associate: 'Associate',
     addSpace: 'Add space',
     apply: 'Apply',
     editSector: 'Edit sector',
@@ -1802,6 +1803,8 @@ export default {
         connection: 'Connection',
         privacy: 'Privacy',
         partner: 'Climbers Map',
+        externalApplications: 'External application',
+        myApplications: 'My applications',
         notifications: 'Notifications',
         others: 'Others'
       },
@@ -2197,6 +2200,20 @@ export default {
       public_profile: 'Public profile',
       public_outdoor_ascents: 'Public outdoor ascents',
       public_indoor_ascents: 'Public indoor ascents'
+    },
+    userApplication: {
+      status: 'Status',
+      ffmeMyCompet: {
+        ffme_licence_number: 'FFME Licence number',
+        status: {
+          OK: 'Approved association',
+          ATTENTE_LICENCE: 'Association currently being processed',
+          ATTENTE_LICENCE2: 'Association currently being processed',
+          ATTENTE_CONFIRMATION: 'Awaiting confirmation',
+          CONFLIT: 'Problem during pairing, you are already paired with another licence number',
+          BLACKLIST: 'You have a problem with your licence, please contact competition@ffme.fr.'
+        }
+      }
     },
     password: {
       rules: 'Must contain: 8 or more characters, one upper case, one lower case and one number',

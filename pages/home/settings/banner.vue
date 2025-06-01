@@ -5,19 +5,17 @@
       back-to="/home/settings"
     />
 
-    <div class="d-flex justify-center pb-10">
-      <v-col class="global-form-width px-3 full-width">
-        <user-image-form
-          v-if="currentUser"
-          :user="currentUser"
-          upload-type="banner"
-        />
-        <v-skeleton-loader
-          v-else
-          type="article"
-        />
-      </v-col>
-    </div>
+    <v-container class="pt-6">
+      <user-image-form
+        v-if="currentUser"
+        :user="currentUser"
+        upload-type="banner"
+      />
+      <v-skeleton-loader
+        v-else
+        type="article"
+      />
+    </v-container>
   </div>
 </template>
 

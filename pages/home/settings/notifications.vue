@@ -5,31 +5,29 @@
       back-to="/home/settings"
     />
 
-    <div class="d-flex justify-center pb-10">
-      <div class="global-form-width">
-        <div
-          v-if="currentUser"
-          class="px-3"
-        >
-          <newsletter-subscribe-switch-form :user="currentUser" />
-          <p class="mt-2">
-            <u>
-              {{ $t('components.user.emailNotification') }}
-            </u>
-          </p>
-          <email-notification-form :user="currentUser" />
+    <v-container class="pt-6">
+      <div
+        v-if="currentUser"
+        class="px-3"
+      >
+        <newsletter-subscribe-switch-form :user="currentUser" />
+        <p class="mt-2">
+          <u>
+            {{ $t('components.user.emailNotification') }}
+          </u>
+        </p>
+        <email-notification-form :user="currentUser" />
 
-          <gym-emailing-report-form
-            v-if="currentUser.administered_gyms.length > 0"
-            :user="currentUser"
-          />
-        </div>
-        <v-skeleton-loader
-          v-else
-          type="article"
+        <gym-emailing-report-form
+          v-if="currentUser.administered_gyms.length > 0"
+          :user="currentUser"
         />
       </div>
-    </div>
+      <v-skeleton-loader
+        v-else
+        type="article"
+      />
+    </v-container>
   </div>
 </template>
 

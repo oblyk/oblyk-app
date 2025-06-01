@@ -5,19 +5,17 @@
       back-to="/home/settings"
     />
 
-    <div class="d-flex justify-center pb-10">
-      <div class="global-form-width px-3">
-        <user-privacy-form
-          v-if="currentUser"
-          :user="currentUser"
-          submit-methode="put"
-        />
-        <v-skeleton-loader
-          v-else
-          type="article"
-        />
-      </div>
-    </div>
+    <v-container class="pt-6">
+      <user-privacy-form
+        v-if="currentUser"
+        :user="currentUser"
+        submit-methode="put"
+      />
+      <v-skeleton-loader
+        v-else
+        type="article"
+      />
+    </v-container>
   </div>
 </template>
 

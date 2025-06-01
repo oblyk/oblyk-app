@@ -5,35 +5,33 @@
       back-to="/home/settings"
     />
 
-    <div class="d-flex justify-center pb-10">
-      <div class="global-form-width px-3">
-        <v-expansion-panels v-if="currentUser">
-          <!-- Export ascents and projects -->
-          <v-expansion-panel>
-            <v-expansion-panel-header>
-              {{ $t('components.user.exportAscentsOrProject') }}
-            </v-expansion-panel-header>
-            <v-expansion-panel-content>
-              <export-ascents-or-projects-form />
-            </v-expansion-panel-content>
-          </v-expansion-panel>
+    <v-container class="pt-6">
+      <v-expansion-panels v-if="currentUser">
+        <!-- Export ascents and projects -->
+        <v-expansion-panel>
+          <v-expansion-panel-header>
+            {{ $t('components.user.exportAscentsOrProject') }}
+          </v-expansion-panel-header>
+          <v-expansion-panel-content>
+            <export-ascents-or-projects-form />
+          </v-expansion-panel-content>
+        </v-expansion-panel>
 
-          <!-- Delete account -->
-          <v-expansion-panel>
-            <v-expansion-panel-header>
-              {{ $t('components.user.deleteMyAccount') }}
-            </v-expansion-panel-header>
-            <v-expansion-panel-content>
-              <delete-user-form :user="currentUser" />
-            </v-expansion-panel-content>
-          </v-expansion-panel>
-        </v-expansion-panels>
-        <v-skeleton-loader
-          v-else
-          type="article"
-        />
-      </div>
-    </div>
+        <!-- Delete account -->
+        <v-expansion-panel>
+          <v-expansion-panel-header>
+            {{ $t('components.user.deleteMyAccount') }}
+          </v-expansion-panel-header>
+          <v-expansion-panel-content>
+            <delete-user-form :user="currentUser" />
+          </v-expansion-panel-content>
+        </v-expansion-panel>
+      </v-expansion-panels>
+      <v-skeleton-loader
+        v-else
+        type="article"
+      />
+    </v-container>
   </div>
 </template>
 

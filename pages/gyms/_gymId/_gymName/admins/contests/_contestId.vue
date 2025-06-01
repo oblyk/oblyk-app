@@ -264,6 +264,17 @@
                     </v-list-item-title>
                   </v-list-item>
                   <v-divider />
+                  <v-list-item>
+                    <v-list-item-icon>
+                      <v-icon>
+                        {{ mdiTrophyAward }}
+                      </v-icon>
+                    </v-list-item-icon>
+                    <v-list-item-title>
+                      Contest FFME
+                    </v-list-item-title>
+                  </v-list-item>
+                  <v-divider />
                   <v-list-item
                     v-if="contest.draft"
                     @click="draft(false)"
@@ -549,6 +560,7 @@
 <script>
 import {
   mdiTrophy,
+  mdiTrophyAward,
   mdiEarth,
   mdiTimelineClock,
   mdiDatabase,
@@ -619,7 +631,8 @@ export default {
       mdiAccountGroup,
       mdiChartLine,
       mdiGavel,
-      mdiFileDocumentOutline
+      mdiFileDocumentOutline,
+      mdiTrophyAward
     }
   },
 
