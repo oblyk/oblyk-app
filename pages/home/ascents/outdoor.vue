@@ -44,17 +44,17 @@ export default {
           icon: mdiImageAlbum
         },
         {
-          to: '/home/ascents/analytiks',
+          to: '/home/ascents/outdoor/analytiks',
           title: this.$t('components.user.ascentTabs.analytiks'),
           icon: mdiChartBar
         },
         {
-          to: '/home/ascents/tick-list',
+          to: '/home/ascents/outdoor/tick-list',
           title: this.$t('components.user.ascentTabs.tickList'),
           icon: mdiFormatListCheckbox
         },
         {
-          to: '/home/ascents/projects',
+          to: '/home/ascents/outdoor/projects',
           title: this.$t('components.user.ascentTabs.projects'),
           icon: mdiCropFree
         }
