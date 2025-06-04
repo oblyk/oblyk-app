@@ -1,15 +1,22 @@
 <template>
-  <v-card>
+  <v-card class="mb-4">
     <v-card-title class="pb-3">
       {{ subscription.name }}
     </v-card-title>
     <v-card-subtitle class="pb-2">
       <v-chip
-        v-if="subscription.active_subscription"
+        v-if="subscription.active_subscription && subscription.payment_status === 'paid'"
         x-small
-        color="primary"
+        outlined
       >
         Actif
+      </v-chip>
+      <v-chip
+        v-if="subscription.active_subscription && subscription.payment_status === 'waiting_first_payment'"
+        x-small
+        color="amber"
+      >
+        en attente
       </v-chip>
       <v-chip
         v-if="subscription.expired_subscription"
@@ -26,102 +33,137 @@
       </small>
     </v-card-subtitle>
     <v-card-text>
-      <v-alert
-        v-if="subscription.payment_status === 'waiting_first_payment'"
-        color="info"
-        text
-      >
-        <v-row no-gutters>
-          <v-col class="grow" align-self="center">
-            Attente de confirmation du paiement
-          </v-col>
-          <v-col class="shrink">
-            <v-btn
-              text
-              :loading="loading"
-              color="info"
-              @click="getSubscription"
-            >
-              <v-icon left>
-                {{ mdiRefresh }}
-              </v-icon>
-              {{ $t('actions.refresh') }}
-            </v-btn>
-          </v-col>
-        </v-row>
-      </v-alert>
-      <div
-        v-if="subscription.in_free_trial"
-        class="mb-2"
-      >
-        <v-chip outlined>
-          <v-icon left color="deep-purple accent-4">
-            {{ mdiArrowUpBoldHexagonOutline }}
-          </v-icon>
-          Période d'essais jusqu'au {{ humanizeDate(subscription.trial_end_date) }}
-        </v-chip>
-      </div>
-      <p class="mb-0">
-        À débuté le : <strong>{{ humanizeDate(subscription.start_date) }}</strong>
-      </p>
-      <p
-        v-if="subscription.end_date"
-        class="mb-0"
-      >
-        Fin le : <strong>{{ humanizeDate(subscription.end_date) }}</strong>
-      </p>
-      <p class="mt-2 mb-1">
-        <strong>Factures & Moyen de paiement :</strong>
-      </p>
-      <div class="mt-1">
-        <v-btn
-          outlined
-          small
+      <div v-if="subscription.payment_status === 'waiting_first_payment'">
+        <v-alert
+          color="info"
           text
-          @click="goToStipeSession"
+          class="mb-0"
         >
-          <v-icon left>
-            {{ mdiFileDocumentEdit }}
-          </v-icon>
-          Éditer mes informations de facturation
-        </v-btn>
+          <v-row no-gutters>
+            <v-col class="grow" align-self="center">
+              Attente de confirmation du paiement
+            </v-col>
+            <v-col class="shrink">
+              <v-btn
+                text
+                :loading="loading"
+                color="info"
+                @click="getSubscription"
+              >
+                <v-icon left>
+                  {{ mdiRefresh }}
+                </v-icon>
+                {{ $t('actions.refresh') }}
+              </v-btn>
+            </v-col>
+          </v-row>
+        </v-alert>
+        <p class="mb-6">
+          * Pour démarre votre période d'essai vous devez renseigner un moyen de paiement. Il ne sera utilisé et sauvegardé uniquement si vous continuez après votre période d'essais.
+        </p>
+        <div class="text-right">
+          <v-btn
+            color="deep-purple accent-4"
+            elevation="0"
+            dark
+            :href="subscription.payment_link"
+          >
+            Continuer
+            <v-icon right>
+              {{ mdiArrowRight }}
+            </v-icon>
+          </v-btn>
+        </div>
       </div>
-      <div class="mt-1">
-        <v-btn
-          outlined
-          small
-          text
-          @click="goToStipeSession"
+      <div v-if="subscription.payment_status === 'paid'">
+        <div
+          v-if="subscription.in_free_trial"
+          class="mb-2"
         >
-          <v-icon left>
-            {{ mdiCreditCard }}
-          </v-icon>
-          Gérer mon moyen de paiement
-        </v-btn>
-      </div>
-      <div class="mt-1">
-        <v-btn
-          outlined
-          small
-          text
-          @click="goToStipeSession"
+          <v-chip outlined>
+            <v-icon left color="deep-purple accent-4">
+              {{ mdiArrowUpBoldHexagonOutline }}
+            </v-icon>
+            Période d'essais jusqu'au {{ humanizeDate(subscription.trial_end_date) }}
+          </v-chip>
+        </div>
+        <p class="mb-0">
+          À débuté le : <strong>{{ humanizeDate(subscription.start_date) }}</strong>
+        </p>
+        <p
+          v-if="subscription.end_date"
+          class="mb-0"
         >
-          <v-icon left>
-            {{ mdiFileDocument }}
-          </v-icon>
-          Mes factures
-        </v-btn>
+          Fin le : <strong>{{ humanizeDate(subscription.end_date) }}</strong>
+        </p>
+        <p class="mt-2 mb-1">
+          <strong>Factures & Moyen de paiement :</strong>
+        </p>
+        <div class="mt-1">
+          <v-btn
+            v-if="subscription.active_subscription"
+            outlined
+            small
+            text
+            @click="goToStipeSession"
+          >
+            <v-icon left>
+              {{ mdiFileDocumentEdit }}
+            </v-icon>
+            Éditer mes informations de facturation
+          </v-btn>
+        </div>
+        <div class="mt-1">
+          <v-btn
+            v-if="subscription.active_subscription"
+            outlined
+            small
+            text
+            @click="goToStipeSession"
+          >
+            <v-icon left>
+              {{ mdiCreditCard }}
+            </v-icon>
+            Gérer mon moyen de paiement
+          </v-btn>
+        </div>
+        <div class="mt-1">
+          <v-btn
+            outlined
+            small
+            text
+            @click="goToStipeSession"
+          >
+            <v-icon left>
+              {{ mdiFileDocument }}
+            </v-icon>
+            Mes factures
+          </v-btn>
+        </div>
       </div>
     </v-card-text>
-    <v-card-actions>
+    <v-card-actions v-if="subscription.have_stripe_subscription && subscription.active_subscription">
       <v-btn
-        v-if="subscription.have_stripe_subscription"
+        v-if="subscription.end_date"
+        color="deep-purple accent-4"
+        elevation="0"
+        dark
+        class="ml-auto"
+        @click="goToStipeSession"
+      >
+        <v-icon left>
+          {{ mdiCreation }}
+        </v-icon>
+        Réactiver mon abonnement
+      </v-btn>
+      <v-btn
+        v-else
         text
         outlined
         class="ml-auto"
         @click="goToStipeSession"
       >
-        {{ subscription.end_date ? 'Réactiver mon abonnement' : 'Gérer mon abonnement' }}
+        Gérer mon abonnement
       </v-btn>
     </v-card-actions>
   </v-card>
@@ -133,7 +175,9 @@ import {
   mdiArrowUpBoldHexagonOutline,
   mdiFileDocument,
   mdiCreditCard,
-  mdiFileDocumentEdit
+  mdiFileDocumentEdit,
+  mdiArrowRight,
+  mdiCreation
 } from '@mdi/js'
 import { DateHelpers } from '~/mixins/DateHelpers'
 import { MoneyHelpers } from '~/mixins/MoneyHelpers'
@@ -166,7 +210,9 @@ export default {
       mdiArrowUpBoldHexagonOutline,
       mdiFileDocument,
       mdiCreditCard,
-      mdiFileDocumentEdit
+      mdiFileDocumentEdit,
+      mdiArrowRight,
+      mdiCreation
     }
   },
 

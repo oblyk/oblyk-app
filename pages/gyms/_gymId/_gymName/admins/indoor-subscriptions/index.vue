@@ -3,8 +3,7 @@
     <spinner v-if="!gym" />
     <v-container v-else>
       <v-breadcrumbs :items="breadcrumbs" />
-
-      <v-card v-if="gym.plan === 'free'">
+      <v-card v-if="gym.subscription_possibility === 'start_a_free_trial'">
         <v-card-title>
           Accéder au plein potentiel d'Oblyk pour les salles !
         </v-card-title>
@@ -28,10 +27,10 @@
             class="ml-auto"
             @click="paidModal = true"
           >
-            {{ $t('actions.subscribeNow') }}
-            <v-icon right>
+            <v-icon left>
               {{ mdiCreation }}
             </v-icon>
+            {{ $t('actions.subscribeNow') }}
           </v-btn>
         </v-card-actions>
       </v-card>
@@ -58,7 +57,7 @@
       </div>
 
       <div
-        v-if="gym.plan === 'free' && subscriptions.length > 0"
+        v-if="gym.subscription_possibility === 'resubscribe'"
         class="text-right mt-2"
       >
         <v-btn
@@ -70,7 +69,7 @@
           <v-icon left>
             {{ mdiCreation }}
           </v-icon>
-          {{ $t('actions.subscribeNow') }}
+          Me ré-abonner
         </v-btn>
       </div>
 
