@@ -72,18 +72,11 @@
       :hint="$t('models.contestStageStep.ascents_limit_explain')"
     />
 
-    <v-text-field
-      v-model="data.default_participants_for_next_step"
-      type="number"
-      hide-details
-      outlined
-      :label="$t('models.contestStageStep.default_participants_for_next_step')"
-    />
-
     <v-checkbox
       v-model="data.self_reporting"
       hide-details
       :label="$t('models.contestStageStep.self_reporting')"
+      class="mt-0"
     />
 
     <submit-form
@@ -140,7 +133,6 @@ export default {
         ascents_limit: this.contestStageStep?.ascents_limit,
         step_order: this.contestStageStep?.step_order,
         self_reporting: this.contestStageStep?.self_reporting || true,
-        default_participants_for_next_step: this.contestStageStep?.default_participants_for_next_step,
         gym_id: this.gym.id,
         contest_id: this.contest.id,
         contest_stage_id: this.contestStage.id
