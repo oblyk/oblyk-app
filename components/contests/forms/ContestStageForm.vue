@@ -1,11 +1,5 @@
 <template>
   <v-form @submit.prevent="submit()">
-    <v-text-field
-      v-model="data.name"
-      outlined
-      :label="`${$t('models.contestStage.name')} (optionnel)`"
-    />
-
     <v-select
       v-model="data.climbing_type"
       :items="climbs"
@@ -14,6 +8,12 @@
       label="Type d'escalade de l'épreuve"
       class="required-field"
       outlined
+    />
+
+    <v-text-field
+      v-model="data.name"
+      outlined
+      :label="`${$t('models.contestStage.name')} (optionnel)`"
     />
 
     <v-text-field
