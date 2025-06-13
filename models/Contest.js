@@ -20,7 +20,8 @@ export default class Contest extends ActiveData {
   }
 
   get rankersPath () {
-    return `/gyms/${this.gym.id}/${this.gym.slug_name}/contests/rankers/${this.id}/${this.slug_name}`
+    const byTeam = this.team_contest ? '?by_team=true' : null
+    return `/gyms/${this.gym.id}/${this.gym.slug_name}/contests/rankers/${this.id}/${this.slug_name}${byTeam}`
   }
 
   get adminPath () {

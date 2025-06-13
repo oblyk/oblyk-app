@@ -30,13 +30,10 @@
           outlined
           class="font-weight-bold live-chip"
         >
-          <v-icon
-            left
-            small
-            :color="liveOn ? 'red darken-4' : 'grey darken-3'"
-          >
-            {{ mdiRecord }}
-          </v-icon>
+          <div
+            class="live-icon d-inline-block"
+            :class="liveOn ? 'red darken-4 live-on' : 'grey darken-3'"
+          />
           {{ liveOn ? 'DIRECT' : 'DÉCONNECTÉ' }}
         </v-chip>
         <!-- Contest card -->
@@ -125,7 +122,9 @@
           >
             <p class="font-weight-bold mb-2 pl-1">
               {{ categoryGenre.category_name }}
-              <span v-if="!categoryGenre.unisex"> - {{ $t(`models.genres.${categoryGenre.genre}`) }}</span> -
+              <span v-if="!categoryGenre.unisex && !byTeam">
+                - {{ $t(`models.genres.${categoryGenre.genre}`) }}
+              </span> -
               <small>{{ categoryGenre.participants.length }} participants</small>
             </p>
           </v-col>
@@ -147,6 +146,7 @@
         >
           <contest-ranker-participant
             :participants="categoryGenre.participants"
+            :by-team="byTeam"
           />
         </v-col>
       </v-row>
@@ -375,6 +375,7 @@ export default {
       tombolaTimeout: null,
       tombolaLaunched: false,
       liveOn: false,
+      byTeam: false,
 
       mdiArrowLeft,
       mdiWeatherSunny,
@@ -449,6 +450,9 @@ export default {
   },
 
   mounted () {
+    const urlParams = new URLSearchParams(window.location.search)
+    const byTeam = urlParams.get('by_team')
+    this.byTeam = byTeam === 'true'
     this.getRank()
     this.getContest()
     this.dark = this.$store.getters['theme/getTheme'] === 'dark'
@@ -470,7 +474,8 @@ export default {
       new ContestApi(this.$axios, this.$auth)
         .results(
           this.$route.params.gymId,
-          this.$route.params.contestId
+          this.$route.params.contestId,
+          this.byTeam
         )
         .then((resp) => {
           this.results = resp.data
@@ -485,7 +490,8 @@ export default {
       new ContestApi(this.$axios, this.$auth)
         .results(
           this.$route.params.gymId,
-          this.$route.params.contestId
+          this.$route.params.contestId,
+          this.byTeam
         )
         .then((resp) => {
           this.results = resp.data
@@ -667,7 +673,16 @@ export default {
 .live-chip {
   position: absolute;
   right: 5px;
-  top: 5px
+  top: 5px;
+  .live-icon {
+    height: 12px;
+    width: 12px;
+    margin-right: 10px;
+    border-radius: 10px;
+    &.live-on {
+      animation: direct-pulse-animation 4s infinite;
+    }
+  }
 }
 .contest-rankers {
   min-height: calc(100vh - 140px);
@@ -719,6 +734,14 @@ export default {
     bottom: 7px;
     left: 3px;
     z-index: 3;
+  }
+}
+@keyframes direct-pulse-animation {
+  0% {
+    box-shadow: 0 0 0 0 rgba(183, 28, 28, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 0 60px rgba(183, 28, 28, 0);
   }
 }
 </style>
