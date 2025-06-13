@@ -20,8 +20,17 @@
       </v-stepper-step>
       <v-divider />
       <v-stepper-step
+        v-if="contest.team_contest"
         :complete="subscribeStep > 3"
         step="3"
+        @click="subscribeStep > 3 ? subscribeStep = 3 : null"
+      >
+        Équipe
+      </v-stepper-step>
+      <v-divider v-if="contest.team_contest" />
+      <v-stepper-step
+        :complete="subscribeStep > 4"
+        step="4"
       >
         Contact
       </v-stepper-step>
@@ -176,6 +185,146 @@
         </v-card>
       </v-stepper-content>
       <v-stepper-content step="3">
+        <div v-if="!createTeamForm">
+          <p class="font-weight-bold text-decoration-underline mb-3">
+            Choisissez ou ajoutez votre équipe !
+          </p>
+          <v-text-field
+            v-model="teamQuery"
+            label="Cherchez votre équipe"
+            dense
+            outlined
+            hide-details
+            :prepend-inner-icon="mdiMagnify"
+            class="mb-4"
+          />
+          <div class="rounded border d-flex flex-column">
+            <div
+              style="height: 40vh; overflow-y: auto"
+              class="flex-grow-1"
+            >
+              <p
+                v-if="loadingTeams"
+                class="text-center text--disabled mt-6"
+              >
+                <v-progress-circular
+                  size="12"
+                  width="2"
+                  class="mr-1"
+                  indeterminate
+                />
+                Chargement des équipes ...
+              </p>
+              <div>
+                <p
+                  v-if="!loadingTeams && filteredTeams.length === 0 && teams.length === 0"
+                  class="text--disabled text-center"
+                >
+                  Il n'y pas encore d'équipe créée sur ce contest, ajouter la votre !
+                </p>
+                <p
+                  v-if="!loadingTeams && filteredTeams.length === 0 && teams.length > 0"
+                  class="text--disabled text-center mt-5"
+                >
+                  Pas d'équipe trouvées pour <strong>"{{ teamQuery }}"</strong>
+                </p>
+              </div>
+              <v-list
+                v-if="!loadingTeams"
+                rounded
+              >
+                <v-list-item-group
+                  v-model="data.contest_team_id"
+                >
+                  <v-list-item
+                    v-for="(team, teamIndex) in filteredTeams"
+                    :key="`team-index-${teamIndex}`"
+                    :value="team.id"
+                    :disabled="team.remaining_places === 0"
+                    class="pl-2"
+                  >
+                    <v-list-item-icon class="mr-4 mb-0 mt-2">
+                      <v-icon :size="32">
+                        {{ data.contest_team_id === team.id ? mdiRadioboxMarked : mdiRadioboxBlank }}
+                      </v-icon>
+                    </v-list-item-icon>
+                    <v-list-item-content class="py-0">
+                      <v-list-item-title>
+                        {{ team.name }}
+                      </v-list-item-title>
+                      <v-list-item-subtitle>
+                        {{ $tc('common.remainingPlaces', team.remaining_places, { count: team.remaining_places }) }}
+                      </v-list-item-subtitle>
+                    </v-list-item-content>
+                  </v-list-item>
+                </v-list-item-group>
+              </v-list>
+            </div>
+            <div class="flex-shrink-0 border-top">
+              <v-list-item @click="showCreateTeamForm()">
+                <v-list-item-icon>
+                  <v-icon
+                    size="30"
+                    color="primary"
+                  >
+                    {{ mdiAccountMultiplePlus }}
+                  </v-icon>
+                </v-list-item-icon>
+                <v-list-item-content>
+                  <v-list-item-title class="font-weight-bold">
+                    Créer mon équipe ?
+                  </v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+            </div>
+          </div>
+          <div class="text-right mt-4">
+            <v-btn
+              elevation="0"
+              color="primary"
+              :disabled="disabledNextFormTeam"
+              @click="subscribeStep += 1"
+            >
+              Suivant
+              <v-icon right>
+                {{ mdiArrowRight }}
+              </v-icon>
+            </v-btn>
+          </div>
+        </div>
+        <div v-else>
+          <p class="font-weight-bold text-decoration-underline mb-3">
+            Choisissez un nom pour votre équipe :
+          </p>
+          <v-text-field
+            v-model="newTeamName"
+            outlined
+            placeholder="Exemple : Les Gibbons"
+            hide-details
+          />
+          <div class="d-flex justify-space-between mt-4">
+            <v-btn
+              icon
+              :disabled="loadingCreateTeam"
+              @click="closeCreateTeamForm()"
+            >
+              <v-icon>
+                {{ mdiArrowLeft }}
+              </v-icon>
+            </v-btn>
+            <v-btn
+              elevation="0"
+              color="primary"
+              :loading="loadingCreateTeam"
+              :disabled="newTeamName === null || newTeamName === ''"
+              @click="addTeam()"
+            >
+              Créer mon équipe
+            </v-btn>
+          </div>
+        </div>
+      </v-stepper-content>
+      <v-stepper-content step="4">
         <p class="font-weight-bold text-decoration-underline mb-3">
           Pour finir, votre contact :
         </p>
@@ -298,13 +447,25 @@
 </template>
 
 <script>
-import { mdiArrowRight, mdiArrowLeft, mdiEyeOff, mdiEye, mdiCheck, mdiLock } from '@mdi/js'
+import {
+  mdiArrowRight,
+  mdiArrowLeft,
+  mdiEyeOff,
+  mdiEye,
+  mdiCheck,
+  mdiLock,
+  mdiMagnify,
+  mdiRadioboxBlank,
+  mdiRadioboxMarked,
+  mdiAccountMultiplePlus
+} from '@mdi/js'
 import GenreInput from '~/components/forms/GenreInput'
 import { FormHelpers } from '~/mixins/FormHelpers'
 import ContestParticipantApi from '~/services/oblyk-api/ContestParticipantApi'
 import { DateHelpers } from '~/mixins/DateHelpers'
 import DateOfBirthSelectInput from '~/components/forms/DateOfBirthSelectInput'
 import SignInForm from '~/components/sessions/SignInForm'
+import ContestTeamApi from '~/services/oblyk-api/ContestTeamApi'
 
 export default {
   name: 'ContestSubscribeForm',
@@ -335,6 +496,12 @@ export default {
       needAuthentification: false,
       signInModal: false,
       successAuthentification: false,
+      loadingTeams: true,
+      teams: [],
+      teamQuery: null,
+      createTeamForm: false,
+      newTeamName: null,
+      loadingCreateTeam: false,
       data: {
         id: this.contestParticipant?.id,
         first_name: this.contestParticipant?.first_name,
@@ -345,6 +512,7 @@ export default {
         affiliation: this.contestParticipant?.affiliation,
         contest_category_id: this.contestParticipant?.contest_category_id,
         contest_wave_id: this.contestParticipant?.contest_wave_id,
+        contest_team_id: this.contestParticipant?.contest_team_id || null,
         create_account: false,
         save_user: true,
         password: null,
@@ -358,13 +526,21 @@ export default {
       mdiEyeOff,
       mdiEye,
       mdiCheck,
-      mdiLock
+      mdiLock,
+      mdiMagnify,
+      mdiRadioboxBlank,
+      mdiRadioboxMarked,
+      mdiAccountMultiplePlus
     }
   },
 
   computed: {
     canGoToStep2 () {
       return this.data.first_name && this.data.last_name && this.data.date_of_birth && this.data.genre
+    },
+
+    disabledNextFormTeam () {
+      return this.data.contest_team_id === null || this.data.contest_team_id === '' || this.data.contest_team_id === undefined
     },
 
     participantAge () {
@@ -375,6 +551,27 @@ export default {
         new Date(this.data.date_of_birth),
         new Date(this.contest.start_date)
       )
+    },
+
+    filteredTeams () {
+      const teams = []
+      for (const team of this.teams) {
+        if (
+          (this.teamQuery === null || this.teamQuery === '') ||
+          team.name.toLowerCase().includes(this.teamQuery.toLowerCase())
+        ) {
+          teams.push(team)
+        }
+      }
+      return teams
+    }
+  },
+
+  watch: {
+    subscribeStep () {
+      if (this.subscribeStep === 3) {
+        this.getTeams()
+      }
     }
   },
 
@@ -393,13 +590,34 @@ export default {
     chooseCategory (categoryId, category) {
       this.data.contest_category_id = categoryId
       if (category.auto_distribute || category.waves.length === 0) {
-        this.subscribeStep += 1
+        this.nextStepFromCategory()
       }
+    },
+
+    showCreateTeamForm () {
+      this.data.contest_team_id = null
+      this.newTeamName = this.teamQuery
+      this.createTeamForm = true
+    },
+
+    closeCreateTeamForm () {
+      this.getTeams()
+      this.data.contest_team_id = null
+      this.newTeamName = null
+      this.createTeamForm = false
     },
 
     chooseWave (waveId) {
       this.data.contest_wave_id = waveId
-      this.subscribeStep += 1
+      this.nextStepFromCategory()
+    },
+
+    nextStepFromCategory () {
+      if (this.contest.team_contest) {
+        this.subscribeStep = 3
+      } else {
+        this.subscribeStep = 4
+      }
     },
 
     submit () {
@@ -453,6 +671,38 @@ export default {
       this.successAuthentification = true
       this.data.create_account = false
       this.data.save_user = true
+    },
+
+    getTeams () {
+      this.loadingTeams = true
+      new ContestTeamApi(this.$axios, this.$auth)
+        .all(this.contest.gym_id, this.contest.id)
+        .then((resp) => {
+          this.teams = []
+          for (const team of resp.data) {
+            this.teams.push(team)
+          }
+        })
+        .finally(() => {
+          this.loadingTeams = false
+        })
+    },
+
+    addTeam () {
+      this.loadingCreateTeam = true
+      new ContestTeamApi(this.$axios, this.$auth)
+        .create({
+          gym_id: this.contest.gym_id,
+          contest_id: this.contest.id,
+          name: this.newTeamName
+        })
+        .then((resp) => {
+          this.data.contest_team_id = resp.data.id
+          this.subscribeStep += 1
+        })
+        .finally(() => {
+          this.loadingCreateTeam = false
+        })
     }
   }
 }

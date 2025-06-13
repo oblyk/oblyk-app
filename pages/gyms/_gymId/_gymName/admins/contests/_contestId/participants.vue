@@ -72,6 +72,7 @@
               :contest="contest"
               :contest-participant="participant"
               :contest-categories="contestCategories"
+              :contest-teams="contestTeams"
               :callback="editCallback"
               submit-methode="put"
             />
@@ -94,6 +95,7 @@
               :contest="contest"
               :callback="addCallback"
               :contest-categories="contestCategories"
+              :contest-teams="contestTeams"
               submit-methode="post"
             />
           </div>
@@ -291,6 +293,17 @@
             {{ item.token }}
           </v-chip>
         </template>
+        <template #[`item.contest_team_name`]="{ item }">
+          <span v-if="item.contest_team_name">
+            {{ item.contest_team_name }}
+          </span>
+          <span
+            v-else
+            class="text--lighten-2 red--text font-italic"
+          >
+            pas d'équipe !
+          </span>
+        </template>
         <template #[`item.actions`]="{ item }">
           <v-btn
             icon
@@ -375,6 +388,7 @@ import ContestWaveApi from '~/services/oblyk-api/ContestWaveApi'
 import ContestWave from '~/models/ContestWave'
 import { AppConcern } from '~/concerns/AppConcern'
 import ToolApi from '~/services/oblyk-api/ToolApi'
+import ContestTeamApi from '~/services/oblyk-api/ContestTeamApi'
 
 export default {
   components: { ContestParticipantCard, ContestParticipantForm },
@@ -409,12 +423,52 @@ export default {
       search: null,
       contestCategories: null,
       contestWaves: null,
+      contestTeams: null,
       loadingImport: false,
       importFile: null,
       importResults: null,
       sendEmail: true,
       loadingImportTemplate: false,
-      participantHeaders: [
+
+      mdiDotsVertical,
+      mdiPencil,
+      mdiTrashCan,
+      mdiMagnify,
+      mdiWindowRestore,
+      mdiExport,
+      mdiImport,
+      mdiQrcode,
+      mdiAutoFix
+    }
+  },
+
+  computed: {
+    participantItems () {
+      const refreshKey = this.refreshKey
+      const participants = []
+      for (const participant of this.participants) {
+        let contestTeamName = null
+        if (this.contest.team_contest && participant.contest_team_id !== null) {
+          contestTeamName = `${participant.contest_team.name} (${participant.contest_team.number_of_participants}/${this.contest.participant_per_team})`
+        }
+        participants.push({
+          id: participant.id,
+          first_name: participant.first_name,
+          last_name: participant.last_name,
+          token: participant.token,
+          affiliation: participant.affiliation,
+          wave: participant.contest_wave?.name,
+          contest_team_name: contestTeamName,
+          category: participant.contest_category.name,
+          genre: this.$t(`models.genres.${participant.genre}`),
+          refreshKey
+        })
+      }
+      return participants
+    },
+
+    participantHeaders () {
+      const headers = [
         {
           text: 'Référence',
           align: 'start',
@@ -438,13 +492,29 @@ export default {
           align: 'start',
           sortable: true,
           value: 'genre'
-        },
-        {
-          text: 'Vague',
-          align: 'start',
-          sortable: true,
-          value: 'wave'
-        },
+        }
+      ]
+      if (this.contest.contest_waves.length > 0) {
+        headers.push(
+          {
+            text: 'Vague',
+            align: 'start',
+            sortable: true,
+            value: 'wave'
+          }
+        )
+      }
+      if (this.contest.team_contest) {
+        headers.push(
+          {
+            text: 'Équipe',
+            align: 'start',
+            sortable: true,
+            value: 'contest_team_name'
+          }
+        )
+      }
+      headers.push(
         {
           text: 'Catégorie',
           align: 'start',
@@ -463,38 +533,8 @@ export default {
           sortable: false,
           value: 'actions'
         }
-      ],
-
-      mdiDotsVertical,
-      mdiPencil,
-      mdiTrashCan,
-      mdiMagnify,
-      mdiWindowRestore,
-      mdiExport,
-      mdiImport,
-      mdiQrcode,
-      mdiAutoFix
-    }
-  },
-
-  computed: {
-    participantItems () {
-      const refreshKey = this.refreshKey
-      const participants = []
-      for (const participant of this.participants) {
-        participants.push({
-          id: participant.id,
-          first_name: participant.first_name,
-          last_name: participant.last_name,
-          token: participant.token,
-          affiliation: participant.affiliation,
-          wave: participant.contest_wave?.name,
-          category: participant.contest_category.name,
-          genre: this.$t(`models.genres.${participant.genre}`),
-          refreshKey
-        })
-      }
-      return participants
+      )
+      return headers
     }
   },
 
@@ -502,6 +542,9 @@ export default {
     this.getParticipants()
     this.getCategories()
     this.getWaves()
+    if (this.contest.team_contest) {
+      this.getTeams()
+    }
   },
 
   methods: {
@@ -559,6 +602,17 @@ export default {
           this.contestWaves = []
           for (const wave of resp.data) {
             this.contestWaves.push(new ContestWave({ attributes: wave }))
+          }
+        })
+    },
+
+    getTeams () {
+      new ContestTeamApi(this.$axios, this.$auth)
+        .all(this.contest.gym_id, this.contest.id)
+        .then((resp) => {
+          this.contestTeams = []
+          for (const team of resp.data) {
+            this.contestTeams.push(team)
           }
         })
     },

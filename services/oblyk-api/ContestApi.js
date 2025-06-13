@@ -41,18 +41,22 @@ class ContestApi extends BaseApi {
     })
   }
 
-  results (gymId, contestId) {
+  results (gymId, contestId, byTeam = false, unisex = false) {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/gyms/${gymId}/contests/${contestId}/results.json`,
       headers: {
         Authorization: this.authToken(),
         HttpApiAccessToken: this.apiAccessToken
+      },
+      params: {
+        by_team: byTeam,
+        unisex
       }
     })
   }
 
-  exportResults (gymId, contestId) {
+  exportResults (gymId, contestId, byTeam = false) {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/gyms/${gymId}/contests/${contestId}/export_results.json`,
@@ -60,6 +64,9 @@ class ContestApi extends BaseApi {
       headers: {
         Authorization: this.authToken(),
         HttpApiAccessToken: this.apiAccessToken
+      },
+      params: {
+        by_team: byTeam
       }
     })
   }

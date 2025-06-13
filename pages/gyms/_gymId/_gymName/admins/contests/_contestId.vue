@@ -92,6 +92,18 @@
                 </div>
               </div>
               <div class="rounded-sm border pa-2 mt-2">
+                <p
+                  v-if="contest.team_contest"
+                  class="mb-0"
+                >
+                  {{ $t('models.contest.participant_per_team') }}:
+                  <v-chip
+                    small
+                    @click="openEditModal()"
+                  >
+                    {{ contest.participant_per_team }}
+                  </v-chip>
+                </p>
                 <p class="mb-0">
                   {{ $t('models.contest.authorise_public_subscription') }}:
                   <v-chip
@@ -466,6 +478,16 @@
           Participant·e·s
         </v-tab>
         <v-tab
+          v-if="contest.team_contest"
+          exact-path
+          :to="`${contest.adminPath}/teams`"
+        >
+          <v-icon left>
+            {{ mdiAccountGroup }}
+          </v-icon>
+          Équipes
+        </v-tab>
+        <v-tab
           exact-path
           :to="`${contest.adminPath}/results`"
         >
@@ -499,7 +521,8 @@ import {
   mdiRecord,
   mdiQrcode,
   mdiDelete,
-  mdiBookshelf
+  mdiBookshelf,
+  mdiAccountGroup
 } from '@mdi/js'
 import { ContestConcern } from '~/concerns/ContestConcern'
 import { DateHelpers } from '~/mixins/DateHelpers'
@@ -549,7 +572,8 @@ export default {
       mdiRecord,
       mdiQrcode,
       mdiDelete,
-      mdiBookshelf
+      mdiBookshelf,
+      mdiAccountGroup
     }
   },
 

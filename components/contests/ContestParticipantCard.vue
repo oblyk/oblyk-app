@@ -24,6 +24,12 @@
       <p class="mb-1">
         Catégorie : <strong>{{ participant.contest_category.name }} - {{ participant.genre }}</strong>
       </p>
+      <p
+        v-if="participant.contest_team_id"
+        class="mb-1"
+      >
+        Équipe : <strong>{{ participant.contest_team.name }}</strong>
+      </p>
       <p>
         Référence : <strong>{{ participant.token }}</strong>
         <copy-btn
@@ -44,7 +50,7 @@
           v-for="(step, stepIndex) in participant.steps"
           :key="`step-index-${stepIndex}`"
         >
-          <div style="overflow-x: auto; height: calc(100vh - 310px)">
+          <div style="overflow-x: auto; height: calc(100vh - 350px)">
             <contest-routes-realised
               :contest-step="step"
               :contest="contest"

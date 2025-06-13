@@ -300,6 +300,7 @@ export default {
     inBrief: 'En bref',
     createdOn: 'Créé le %{date}',
     archivedOn: 'Archivé le %{date}',
+    remainingPlaces: 'Complet | Une place restante | %{count} places restantes',
     months: {
       '01': '01 - Janvier',
       '02': '02 - Février',
@@ -2098,7 +2099,9 @@ export default {
       file_wrong_format: "Le fichier n'est pas au bon format",
       must_be_valid_video_service: "doit être un url valide d'une vidéo publique parmi les services pris en charge",
       three_d_import_error: "Une erreur s'est produite lors de l'import ou la conversion de votre modèle 3D",
-      free_trial_already_exists: "La période d'essai gratuite à déjà été prise"
+      free_trial_already_exists: "La période d'essai gratuite à déjà été prise",
+      not_a_number: 'doit être un chiffre',
+      greater_than_or_equal_to: 'doit être plus grand'
     }
   },
   models: {
@@ -2584,6 +2587,8 @@ export default {
       ranking_type: 'Type de classement',
       categorization_type: 'Type de catégorisation',
       authorise_public_subscription: 'Autoriser les inscriptions depuis la page publique',
+      team_contest: 'Contest par équipe',
+      participant_per_team: 'Nombre de participants par équipe',
       private: 'Contest privé',
       hide_results: 'Cacher la page "Résultat" sur la page publique du contest'
     },
@@ -2645,6 +2650,10 @@ export default {
     contestStage: {
       name: 'Nom',
       stage_order: 'Ordre'
+    },
+    contestTeam: {
+      name: "Nom d'équipe",
+      number_of_participants: 'Nombre de participants'
     },
     contestStageStep: {
       name: 'Nom',

@@ -36,6 +36,7 @@
       :label="`${$t('models.contestParticipant.email')} (conseillé)`"
     />
 
+    <!-- CATEGORY -->
     <p class="font-weight-bold mb-1 mt-4">
       Catégories : <strong class="red--text">*</strong>
     </p>
@@ -106,21 +107,102 @@
         </v-slide-y-transition>
       </v-card-text>
     </v-card>
+
+    <!-- TEAM -->
+    <div v-if="contest.team_contest">
+      <p class="font-weight-bold mb-1 mt-4">
+        Équipe : <strong class="red--text">*</strong>
+      </p>
+      <div v-if="!showNewTeam">
+        <v-select
+          v-model="data.contest_team_id"
+          :items="filteredTeams"
+          item-text="detail_name"
+          item-value="id"
+          label="Équipe"
+          outlined
+          small-chips
+        >
+          <template #prepend-item>
+            <div
+              class="d-flex px-2 align-center"
+              @mousedown.prevent
+            >
+              <v-text-field
+                v-model="teamQuery"
+                hide-details
+                dense
+                outlined
+                label="Chercher une équipe"
+                class="flex-grow-1"
+              />
+              <v-btn
+                outlined
+                text
+                class="flex-shrink-0 ml-2"
+                @click="showAddNewTeam()"
+              >
+                <v-icon left>
+                  {{ mdiPlus }}
+                </v-icon>
+                Nouvelle équipe
+              </v-btn>
+            </div>
+            <v-divider class="mt-2" />
+          </template>
+        </v-select>
+      </div>
+      <div
+        v-else
+        class="border rounded pa-4 d-flex align-center mb-4"
+      >
+        <v-btn
+          outlined
+          text
+          icon
+          class="flex-shrink-0 mr-2"
+          @click="showNewTeam = false"
+        >
+          <v-icon>
+            {{ mdiClose }}
+          </v-icon>
+        </v-btn>
+        <v-text-field
+          v-model="newTeamName"
+          outlined
+          dense
+          hide-details
+          label="Nom de la nouvelle équipe"
+          class="flex-grow-1"
+        />
+        <v-btn
+          color="primary"
+          elevation="0"
+          class="flex-shrink-0 ml-2"
+          :loading="loadingCreateNewTeam"
+          @click="submitTeam"
+        >
+          {{ $t('actions.add') }}
+        </v-btn>
+      </div>
+    </div>
     <submit-form
       :overlay="submitOverlay"
+      :go-back-btn="false"
       :submit-local-key="submitText()"
     />
   </v-form>
 </template>
 
 <script>
-import { mdiArrowRight, mdiEyeOff, mdiEye, mdiCheck } from '@mdi/js'
+import { mdiArrowRight, mdiEyeOff, mdiEye, mdiCheck, mdiPlus, mdiClose } from '@mdi/js'
 import { FormHelpers } from '~/mixins/FormHelpers'
 import { DateHelpers } from '~/mixins/DateHelpers'
 import GenreInput from '~/components/forms/GenreInput'
 import ContestParticipantApi from '~/services/oblyk-api/ContestParticipantApi'
 import SubmitForm from '~/components/forms/SubmitForm'
 import DateOfBirthSelectInput from '~/components/forms/DateOfBirthSelectInput'
+import ContestTeamApi from '~/services/oblyk-api/ContestTeamApi'
 
 export default {
   name: 'ContestParticipantForm',
@@ -136,6 +218,10 @@ export default {
       type: Array,
       required: true
     },
+    contestTeams: {
+      type: Array,
+      default: null
+    },
     contestParticipant: {
       type: Object,
       default: null
@@ -149,6 +235,12 @@ export default {
   data () {
     return {
       subscribing: false,
+      showNewTeam: false,
+      teamQuery: null,
+      newTeamName: null,
+      loadingCreateNewTeam: false,
+      loadingTeams: false,
+      teams: this.contestTeams,
       data: {
         id: this.contestParticipant?.id,
         first_name: this.contestParticipant?.first_name,
@@ -159,6 +251,7 @@ export default {
         affiliation: this.contestParticipant?.affiliation,
         contest_category_id: this.contestParticipant?.contest_category_id,
         contest_wave_id: this.contestParticipant?.contest_wave_id,
+        contest_team_id: this.contestParticipant?.contest_team_id,
         contest_id: this.contest.id,
         gym_id: this.contest.gym_id
       },
@@ -166,7 +259,25 @@ export default {
       mdiArrowRight,
       mdiEyeOff,
       mdiEye,
-      mdiCheck
+      mdiCheck,
+      mdiPlus,
+      mdiClose
+    }
+  },
+
+  computed: {
+    filteredTeams () {
+      if (this.teamQuery === null || this.teamQuery === '') {
+        return this.teams
+      }
+
+      const teams = []
+      for (const team of this.teams) {
+        if (team.name.toLowerCase().includes(this.teamQuery.toLowerCase())) {
+          teams.push(team)
+        }
+      }
+      return teams
     }
   },
 
@@ -182,9 +293,11 @@ export default {
         affiliation: this.contestParticipant?.affiliation,
         contest_category_id: this.contestParticipant?.contest_category_id,
         contest_wave_id: this.contestParticipant?.contest_wave_id,
+        contest_team_id: this.contestParticipant?.contest_team_id,
         contest_id: this.contest.id,
         gym_id: this.contest.gym_id
       }
+      this.teams = this.contestTeams
     }
   },
 
@@ -205,7 +318,8 @@ export default {
             genre: null,
             affiliation: null,
             contest_category_id: null,
-            contest_wave_id: null
+            contest_wave_id: null,
+            contest_team_id: null
           }
         })
         .catch((err) => {
@@ -214,6 +328,55 @@ export default {
         .finally(() => {
           this.submitOverlay = false
         })
+    },
+
+    showAddNewTeam () {
+      this.showNewTeam = true
+      this.newTeamName = this.teamQuery
+    },
+
+    async submitTeam () {
+      await this.createTeam()
+      await this.getTeams()
+    },
+
+    createTeam () {
+      return new Promise((resolve, reject) => {
+        this.loadingCreateNewTeam = true
+        new ContestTeamApi(this.$axios, this.$auth)
+          .create(
+            {
+              name: this.newTeamName,
+              contest_id: this.contest.id,
+              gym_id: this.contest.gym_id
+            }
+          )
+          .then((resp) => {
+            this.data.contest_team_id = resp.data.id
+          })
+          .finally(() => {
+            this.showNewTeam = false
+            this.loadingCreateNewTeam = false
+            this.newTeamName = null
+            this.teamQuery = null
+            resolve()
+          })
+      })
+    },
+
+    getTeams () {
+      return new Promise((resolve, reject) => {
+        this.loadingTeams = true
+        new ContestTeamApi(this.$axios, this.$auth)
+          .all(this.contest.gym_id, this.contest.id)
+          .then((resp) => {
+            this.teams = resp.data
+          })
+          .finally(() => {
+            this.loadingTeams = false
+            resolve()
+          })
+      })
     }
   }
 }

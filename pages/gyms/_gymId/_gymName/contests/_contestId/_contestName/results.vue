@@ -4,6 +4,8 @@
       v-if="contest.beginning_is_in_past && !contest.hide_results"
       class="mt-4"
       :contest="contest"
+      :by-team="byTeam"
+      :unisex="unisex"
     />
     <div v-else>
       <p
@@ -23,7 +25,7 @@
 </template>
 
 <script>
-import ContestResultTable from '~/components/contests/ContestResultTable.vue'
+import ContestResultTable from '~/components/contests/ContestResultTable'
 
 export default {
   components: { ContestResultTable },
@@ -31,6 +33,13 @@ export default {
     contest: {
       type: Object,
       required: true
+    }
+  },
+
+  data () {
+    return {
+      byTeam: this.contest.team_contest,
+      unisex: false
     }
   }
 }

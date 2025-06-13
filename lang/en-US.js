@@ -2098,7 +2098,9 @@ export default {
       file_wrong_format: 'The file is in the wrong format',
       must_be_valid_video_service: 'must be a valid url of a public video among the supported services',
       three_d_import_error: 'An error occurred while importing or converting your 3D model',
-      free_trial_already_exists: 'The free trial period has already been taken'
+      free_trial_already_exists: 'The free trial period has already been taken',
+      not_a_number: 'must be a number',
+      greater_than_or_equal_to: 'must be bigger'
     }
   },
   models: {
@@ -2645,6 +2647,10 @@ export default {
     contestStage: {
       name: 'Name',
       stage_order: 'Order'
+    },
+    contestTeam: {
+      name: 'Team name',
+      number_of_participants: 'Number of participants'
     },
     contestStageStep: {
       name: 'Name',

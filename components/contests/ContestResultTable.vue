@@ -12,10 +12,14 @@
       >
         <div class="d-flex">
           <p class="font-weight-bold mb-1 pl-1 pt-2">
-            {{ category.category_name }} <span v-if="!category.unisex"> - {{ $t(`models.genres.${category.genre}`).toLowerCase() }}</span>
+            {{ category.category_name }}
+            <span v-if="!category.unisex && !unisex && !byTeam">
+              - {{ $t(`models.genres.${category.genre}`).toLowerCase() }}
+            </span>
           </p>
           <v-spacer />
           <v-btn
+            v-if="!printer"
             icon
             :loading="loadingResult"
             @click="getResults"
@@ -36,6 +40,13 @@
                 class="border-bottom vertical-align-bottom pb-2"
               >
                 Classement
+              </th>
+              <th
+                v-if="contest.team_contest"
+                rowspan="2"
+                class="border-bottom vertical-align-bottom pb-2"
+              >
+                Équipe
               </th>
               <th
                 rowspan="2"
@@ -72,8 +83,10 @@
               :key="`participant-${participantIndex}`"
             >
               <td
+                v-if="(!contest.team_contest || !byTeam) || (contest.team_contest && byTeam && !participant.same_team)"
                 class="border-right"
                 :title="participant.global_rank_point"
+                :rowspan="contest.team_contest && byTeam ? participant.team_size : 1"
               >
                 <strong>
                   {{ participant.global_rank }}
@@ -84,6 +97,19 @@
                 >
                   {{ Math.round(participant.global_rank_point) }} pts
                 </small>
+              </td>
+              <td
+                v-if="(contest.team_contest && !byTeam) || (contest.team_contest && byTeam && !participant.same_team)"
+                :rowspan="contest.team_contest && byTeam ? participant.team_size : 1"
+                class="border-right"
+              >
+                {{ participant.team_name }}
+                <span
+                  v-if="participant.team_name === null"
+                  class="red--text text--lighten-2 font-italic"
+                >
+                  sans équipe
+                </span>
               </td>
               <td class="border-right">
                 <v-chip
@@ -96,6 +122,12 @@
                   v-else
                   v-text="`${participant.first_name} ${participant.last_name}`"
                 />
+                <small
+                  v-if="participant.affiliation"
+                  class="font-italic text--disabled"
+                >
+                  - {{ participant.affiliation }}
+                </small>
               </td>
               <template v-for="(stage, stageIndex) in participant.stages">
                 <td
@@ -214,6 +246,14 @@ export default {
     showSubscribeCheckbox: {
       type: Boolean,
       default: false
+    },
+    byTeam: {
+      type: Boolean,
+      default: false
+    },
+    unisex: {
+      type: Boolean,
+      default: false
     }
   },
 
@@ -231,6 +271,15 @@ export default {
     }
   },
 
+  watch: {
+    byTeam () {
+      this.getResults()
+    },
+    unisex () {
+      this.getResults()
+    }
+  },
+
   mounted () {
     this.getResults()
   },
@@ -241,7 +290,9 @@ export default {
       new ContestApi(this.$axios, this.$auth)
         .results(
           this.contest.gym_id,
-          this.contest.id
+          this.contest.id,
+          this.byTeam,
+          this.unisex
         )
         .then((resp) => {
           this.results = resp.data

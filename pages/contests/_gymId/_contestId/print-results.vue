@@ -21,3 +21,8 @@ export default {
   }
 }
 </script>
+<style>
+.theme--light .v-main__wrap {
+  background-color: white;
+}
+</style>

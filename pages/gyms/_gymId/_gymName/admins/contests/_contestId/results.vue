@@ -2,9 +2,38 @@
   <div class="mt-2">
     <div
       id="results-contest-header"
-      class="text-right mt-3"
+      class="d-flex mt-3"
     >
+      <div class="pt-1">
+        Classement :
+        <v-btn-toggle
+          v-if="contest.team_contest"
+          v-model="byTeam"
+        >
+          <v-btn
+            :value="false"
+            small
+          >
+            Individuel
+          </v-btn>
+          <v-btn
+            :value="true"
+            small
+          >
+            Par Équipe
+          </v-btn>
+        </v-btn-toggle>
+        <v-checkbox
+          v-if="!byTeam || !contest.team_contest"
+          v-model="unisex"
+          label="Classement mixte"
+          hide-details
+          class="d-inline-block mt-0 vertical-align-middle pt-0"
+        />
+      </div>
+
       <v-btn
+        class="ml-auto"
         outlined
         text
         :loading="loadingExport"
@@ -57,6 +86,8 @@
       :contest="contest"
       :show-subscribe-checkbox="showSubscribeCheckbox"
       :admin="true"
+      :by-team="byTeam"
+      :unisex="unisex"
       class="mt-2"
     />
   </div>
@@ -83,6 +114,8 @@ export default {
       showSubscribeCheckbox: false,
       showSelfReportingAlert: false,
       loadingExport: false,
+      byTeam: this.contest.team_contest,
+      unisex: this.contest.team_contest,
 
       mdiPrinterOutline,
       mdiCheckboxMultipleOutline,

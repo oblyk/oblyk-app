@@ -80,6 +80,25 @@
 
     <div class="pa-2 border rounded-sm">
       <v-checkbox
+        v-model="data.team_contest"
+        :label="$t('models.contest.team_contest')"
+        hint="Faite des équipes de 2, 3, 4, etc. et ayez un classement par équipe plutôt que par participant !"
+        class="mt-n1"
+        persistent-hint
+      />
+      <v-text-field
+        v-if="data.team_contest"
+        v-model="data.participant_per_team"
+        :label="$t('models.contest.participant_per_team')"
+        outlined
+        hide-details
+        type="number"
+        class="mt-2"
+      />
+    </div>
+
+    <div class="pa-2 my-4 border rounded-sm">
+      <v-checkbox
         v-model="data.authorise_public_subscription"
         :label="$t('models.contest.authorise_public_subscription')"
         hint="Les participants pourrons être inscrit uniquement par vous via l'administration ou l'import d'un fichier de participant."
@@ -172,6 +191,8 @@ export default {
         authorise_public_subscription: this.contest?.authorise_public_subscription === undefined ? true : this.contest?.authorise_public_subscription,
         private: this.contest?.private,
         hide_results: this.contest?.hide_results,
+        team_contest: this.contest?.team_contest,
+        participant_per_team: this.contest?.participant_per_team,
         gym_id: this.gym.id
       },
 
