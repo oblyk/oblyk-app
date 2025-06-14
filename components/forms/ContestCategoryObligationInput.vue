@@ -36,6 +36,8 @@ export default {
       obligations: [
         { text: this.$t('models.contestCategoryObligationType.no'), value: null },
         { text: this.$t('models.contestCategoryObligationType.between_age'), value: 'between_age' },
+        { text: this.$t('models.contestCategoryObligationType.u6'), value: 'u6' },
+        { text: this.$t('models.contestCategoryObligationType.u8'), value: 'u8' },
         { text: this.$t('models.contestCategoryObligationType.u10'), value: 'u10' },
         { text: this.$t('models.contestCategoryObligationType.u12'), value: 'u12' },
         { text: this.$t('models.contestCategoryObligationType.u14'), value: 'u14' },

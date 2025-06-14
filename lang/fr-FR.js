@@ -2611,6 +2611,8 @@ export default {
     },
     contestCategoryObligationType: {
       no: 'Pas de restriction',
+      u6: 'U6',
+      u8: 'U8',
       u10: 'U10',
       u12: 'U12',
       u14: 'U14',
