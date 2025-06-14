@@ -1,7 +1,7 @@
 <template>
   <div class="border-top pa-1 pb-0 pl-2 d-flex">
     <div>
-      <v-chip @click="editModal = true">
+      <v-chip @click="openModal('routeNumber')">
         {{ route.number }}
       </v-chip>
     </div>
@@ -17,63 +17,36 @@
           <v-img :src="imageVariant(route.attachments.picture, { fit: 'crop', height: 50, width: 50 })" />
         </v-avatar>
         <div
-          v-if="route.ranking_type === 'highest_hold'"
+          v-if="showHighestHold"
           class="ml-2"
         >
-          <v-chip
-            v-if="!route.number_of_holds"
-            @click="editModal = true"
-          >
-            Nombre de prise ?
-          </v-chip>
-          <v-chip
-            v-else
-            @click="editModal = true"
-          >
-            {{ route.number_of_holds }} prises
+          <v-chip @click="openModal('numberOfHolds')">
+            {{ route.number_of_holds ? `${route.number_of_holds} prises` : 'Nombre de prise ?' }}
           </v-chip>
         </div>
         <div
-          v-if="route.ranking_type === 'fixed_points'"
+          v-if="showFixedPoints"
           class="ml-2"
         >
-          <v-chip
-            v-if="!route.fixed_points"
-            @click="editModal = true"
-          >
-            Points ?
-          </v-chip>
-          <v-chip
-            v-else
-            @click="editModal = true"
-          >
-            {{ route.fixed_points }} pts
+          <v-chip @click="openModal('fixedPoints')">
+            {{ route.fixed_points ? `${route.fixed_points} pts` : 'Points ?' }}
           </v-chip>
         </div>
         <div
           v-if="route.ranking_type === 'division_and_zone'"
           class="ml-2"
         >
-          <v-chip
-            v-if="route.additional_zone"
-            @click="editModal = true"
-          >
-            <v-icon left>
+          <v-chip @click="openModal()">
+            <v-icon v-if="route.additional_zone" left>
               {{ mdiAlphaZBoxOutline }}
             </v-icon>
-            À une zone
-          </v-chip>
-          <v-chip
-            v-else
-            @click="editModal = true"
-          >
-            Pas de zone
+            {{ route.additional_zone ? 'À une zone' : 'Pas de zone' }}
           </v-chip>
         </div>
         <div
           v-if="route.name"
           class="ml-2"
-          @click="editModal = true"
+          @click="openModal('routeName')"
         >
           <v-chip outlined>
             {{ route.name }}
@@ -129,7 +102,7 @@
         </template>
         <v-list>
           <v-list-item
-            @click="editModal = true"
+            @click="openModal()"
           >
             <v-list-item-icon>
               <v-icon>
@@ -241,6 +214,7 @@
         </v-card-title>
         <div class="pa-4">
           <contest-route-form
+            ref="contestRouteForm"
             :contest="contest"
             :gym="contest.gym"
             :contest-route="route"
@@ -357,6 +331,16 @@ export default {
     }
   },
 
+  computed: {
+    showFixedPoints () {
+      return ['fixed_points', 'point_relative_to_highest_hold'].includes(this.route.ranking_type)
+    },
+
+    showHighestHold () {
+      return ['highest_hold', 'point_relative_to_highest_hold'].includes(this.route.ranking_type)
+    }
+  },
+
   watch: {
     contestRoute () {
       this.route = new ContestRoute({ attributes: this.contestRoute })
@@ -451,6 +435,15 @@ export default {
         .then(() => {
           this.getRoute()
         })
+    },
+
+    openModal (focusInput = null) {
+      this.editModal = true
+      if (focusInput) {
+        setTimeout(() => {
+          this.$refs.contestRouteForm.giveFocus(focusInput)
+        }, 100)
+      }
     }
   }
 }

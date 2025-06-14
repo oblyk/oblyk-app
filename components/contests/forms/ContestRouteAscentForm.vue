@@ -129,7 +129,7 @@
 
     <!-- Highest hold -->
     <div
-      v-if="contestStep.ranking_type === 'highest_hold'"
+      v-if="showHighestHold()"
       class="d-flex"
     >
       <v-text-field
@@ -138,10 +138,15 @@
         outlined
         hide-details
         type="number"
-        class="mr-4 flex-grow-0"
+        class="mr-4"
+        style="max-width: 220px"
+        min="0"
+        :max="contestRoute.number_of_holds"
+        :rules="[rules.greatOrEqualThanZero, rules.maxHoldNumber]"
         @blur="submit"
       />
       <v-checkbox
+        v-if="contestStep.ranking_type === 'highest_hold'"
         v-model="ascent.hold_number_plus"
         label="+"
         hide-details
@@ -224,9 +229,11 @@ export default {
       ascent: this.setAscentValue(),
       previousNumberOfHold: null,
       rules: {
+        greatOrEqualThanZero: value => value >= 0 || 'Doit être supérieur à 0',
         greatThanZero: value => value >= 1 || 'Doit être supérieur à 1',
         minutesOrHours: value => (value >= 0 && value <= 59) || 'Doit être compris entre 0 et 59',
-        milliseconds: value => (value >= 0 && value <= 999) || 'Doit être compris entre 0 et 999'
+        milliseconds: value => (value >= 0 && value <= 999) || 'Doit être compris entre 0 et 999',
+        maxHoldNumber: value => (value <= this.contestRoute.number_of_holds) || `Doit être inférieur à ${this.contestRoute.number_of_holds}`
       }
     }
   },
@@ -259,6 +266,10 @@ export default {
             hold_number: this.contestRoute.ascent.hold_number,
             hold_number_plus: this.contestRoute.ascent.hold_number_plus
           }
+        } else if (this.contestStep.ranking_type === 'point_relative_to_highest_hold') {
+          return {
+            hold_number: this.contestRoute.ascent.hold_number
+          }
         } else if (this.contestStep.ranking_type === 'best_times') {
           const time = new Date(this.contestRoute.ascent.ascent_time)
           return {
@@ -289,6 +300,10 @@ export default {
         return {
           hold_number: null,
           hold_number_plus: false
+        }
+      } else if (this.contestStep.ranking_type === 'point_relative_to_highest_hold') {
+        return {
+          hold_number: null
         }
       } else if (this.contestStep.ranking_type === 'best_times') {
         return {
@@ -333,8 +348,29 @@ export default {
       }
 
       if (this.contestStep.ranking_type === 'highest_hold') {
+        if ((this.ascent.hold_number || 0) > this.contestRoute.number_of_holds) {
+          this.ascent.hold_number = this.contestRoute.number_of_holds
+        }
+        if (this.ascent.hold_number !== null && this.ascent.hold_number < 0) {
+          this.ascent.hold_number = null
+        }
         data.hold_number = this.ascent.hold_number
         data.hold_number_plus = this.ascent.hold_number_plus
+        if (this.previousNumberOfHold === this.ascent.hold_number) {
+          return false
+        } else {
+          this.previousNumberOfHold = this.ascent.hold_number
+        }
+      }
+
+      if (this.contestStep.ranking_type === 'point_relative_to_highest_hold') {
+        if ((this.ascent.hold_number || 0) > this.contestRoute.number_of_holds) {
+          this.ascent.hold_number = this.contestRoute.number_of_holds
+        }
+        if (this.ascent.hold_number !== null && this.ascent.hold_number < 0) {
+          this.ascent.hold_number = null
+        }
+        data.hold_number = this.ascent.hold_number
         if (this.previousNumberOfHold === this.ascent.hold_number) {
           return false
         } else {
@@ -349,6 +385,10 @@ export default {
       }
 
       this.$emit('input', data)
+    },
+
+    showHighestHold () {
+      return ['highest_hold', 'point_relative_to_highest_hold'].includes(this.contestStep.ranking_type)
     }
   }
 }

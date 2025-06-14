@@ -1,6 +1,7 @@
 <template>
   <v-form @submit.prevent="submit()">
     <v-text-field
+      ref="routeNumber"
       v-model="data.number"
       outlined
       required
@@ -10,6 +11,7 @@
     />
 
     <v-text-field
+      ref="routeName"
       v-model="data.name"
       outlined
       required
@@ -19,7 +21,8 @@
     />
 
     <v-text-field
-      v-if="contestRoute.ranking_type === 'highest_hold'"
+      v-if="showHighestHold"
+      ref="numberOfHolds"
       v-model="data.number_of_holds"
       outlined
       required
@@ -30,7 +33,8 @@
     />
 
     <v-text-field
-      v-if="contestRoute.ranking_type === 'fixed_points'"
+      v-if="showFixedPoints"
+      ref="fixedPoints"
       v-model="data.fixed_points"
       outlined
       required
@@ -120,6 +124,16 @@ export default {
     }
   },
 
+  computed: {
+    showFixedPoints () {
+      return ['fixed_points', 'point_relative_to_highest_hold'].includes(this.contestRoute.ranking_type)
+    },
+
+    showHighestHold () {
+      return ['highest_hold', 'point_relative_to_highest_hold'].includes(this.contestRoute.ranking_type)
+    }
+  },
+
   methods: {
     submit () {
       this.submitOverlay = true
@@ -143,6 +157,10 @@ export default {
 
     suggestPoint (gymRoute) {
       return Math.round(2000 * Math.pow(0.85, (49 - gymRoute.grade_gap.min_grade_value)))
+    },
+
+    giveFocus (input) {
+      this.$refs[input].focus()
     }
   }
 }

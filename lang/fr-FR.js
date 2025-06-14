@@ -2632,7 +2632,21 @@ export default {
       attempts_to_two_zones_and_top: "Nombre d'essais pour faire la 1er zone, 2ème zones et le top",
       highest_hold: 'Prise la plus haute atteinte',
       fixed_points: 'Points fixes',
-      best_times: 'Meilleurs temps'
+      best_times: 'Meilleurs temps',
+      point_relative_to_highest_hold: 'Points fixes au prorata de la prise atteinte'
+    },
+    contestRankingTypeExplain: {
+      division: 'Chaque ligne vaut initialement 1000pts, plus elle est faite moins elle vaut de point.',
+      division_and_zone: "Idem que [1000pt divisés par le nombre d'ascension] mais vous pouvez définir une zone par ligne pour départager les égalités.",
+      division_and_attempt: "Idem que [1000pt divisés par le nombre d'ascension] mais les participants compte leur essais pour départager les égalités.",
+      attempts_to_top: 'Chaque ligne vaut 10 points, le participant compte ses essais et perd un point par essais.',
+      zone_and_top_realised: "Le participant coche s'il a fait la zone ou le top d'une ligne, celui ou celle qui a fait le plus de top, puis de zone gagne.",
+      attempts_to_one_zone_and_top: "On compte le nombre d'essais pour atteindre les zones et les tops, celui ou celle qui fait le moins d'essais gagne.",
+      attempts_to_two_zones_and_top: "Nombre d'essais pour faire la 1er zone, 2ème zones et le top.",
+      highest_hold: "Vous renseignez le nombre de prise qu'il y a sur la ligne, le participant doit aller le plus loin possible.",
+      fixed_points: 'Vous donnez un nombre de point à une ligne, si le participant fait la ligne il a les points.',
+      best_times: "Le participant renseigne le temps qu'il a mis à faire la ligne, celui qui met le moins de temps gagne.",
+      point_relative_to_highest_hold: 'Vous renseignez le nombre de prise de la ligne + un nombre de point, le participant à les points au prorata de la prise atteinte.'
     },
     contestCategory: {
       name: 'Nom',
@@ -2659,8 +2673,8 @@ export default {
       name: 'Nom',
       step_order: 'Ordre',
       ranking_type: 'Type de classement',
-      ascents_limit: 'Prendre en compte uniquement les %{count} meilleurs ascensions',
-      ascents_limit_explain: 'Explication : Si vous mettez 10, seules les 10 voies les plus dures de chaque participant seront prises en compte dans le classement. Laissez vide si voulez prendre en compte toutes les voies',
+      ascents_limit: 'Prendre en compte uniquement les :',
+      ascents_limit_explain: 'Explication : Si vous mettez 10, seules les 10 voies qui rapportent le plus de point seront prises en compte dans le classement. Laissez vide si voulez prendre en compte toutes les voies',
       self_reporting: 'Les participants renseignent eux-même leurs réalisations',
       default_participants_for_next_step: 'Nombre de participants par défaut à passer à la prochaine étape'
     },

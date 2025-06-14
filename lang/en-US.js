@@ -2629,7 +2629,21 @@ export default {
       attempts_to_two_zones_and_top: 'Number of attempts to do the 1st zone, 2nd zone and the top',
       highest_hold: 'Highest hold reached',
       fixed_points: 'Fixed points',
-      best_times: 'Best times'
+      best_times: 'Best times',
+      point_relative_to_highest_hold: 'Points fixes au prorata de la prise atteinte'
+    },
+    contestRankingTypeExplain: {
+      division: 'Each line is initially worth 1000 points, but the more it is completed, the fewer points it is worth.',
+      division_and_zone: 'Same as [1000 points divided by the number of ascents], but you can define a zone per line to break ties.',
+      division_and_attempt: 'Same as [1000 points divided by the number of ascents], but participants count their attempts to break ties.',
+      attempts_to_top: 'Each line is worth 10 points. Participants count their attempts and lose one point per attempt.',
+      zone_and_top_realised: 'Participants tick whether they have completed the zone or the top of a line. The person who has completed the most tops, then zones, wins.',
+      attempts_to_one_zone_and_top: 'We count the number of attempts to reach the zones and tops, and the person with the fewest attempts wins.',
+      attempts_to_two_zones_and_top: 'Number of attempts to complete the first zone, second zones and the top.',
+      highest_hold: 'You enter the number of catches on the line, and the participant must go as far as possible.',
+      fixed_points: 'You assign a number of points to a line; if the participant completes the line, they earn the points.',
+      best_times: 'Participants record the time it took them to complete the line; the person who took the least time wins.',
+      point_relative_to_highest_hold: 'You enter the number of catches for the line + a number of points, and the participant receives points in proportion to the catch achieved.'
     },
     contestCategory: {
       name: 'Nam',
@@ -2656,7 +2670,7 @@ export default {
       name: 'Name',
       step_order: 'Order',
       ranking_type: 'Ranking type',
-      ascents_limit: 'Take into account only the %{count} best ascents',
+      ascents_limit: 'Take into account only the:',
       ascents_limit_explain: 'Explanation: If you enter 10, only the 10 hardest routes of each participant will be taken into account in the ranking. Leave blank if you want all routes to be taken into account.',
       self_reporting: 'Participants fill in the details of their projects themselves',
       default_participants_for_next_step: 'Default number of participants moving on to the next stage'

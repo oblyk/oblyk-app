@@ -62,7 +62,7 @@
     />
 
     <v-text-field
-      v-if="data.ranking_type === 'fixed_points'"
+      v-if="showAscentsLimit"
       v-model="data.ascents_limit"
       class="mb-4"
       type="number"
@@ -74,7 +74,6 @@
 
     <v-checkbox
       v-model="data.self_reporting"
-      hide-details
       :label="$t('models.contestStageStep.self_reporting')"
       class="mt-0"
     />
@@ -137,6 +136,12 @@ export default {
         contest_id: this.contest.id,
         contest_stage_id: this.contestStage.id
       }
+    }
+  },
+
+  computed: {
+    showAscentsLimit () {
+      return ['fixed_points', 'point_relative_to_highest_hold'].includes(this.data.ranking_type)
     }
   },
 

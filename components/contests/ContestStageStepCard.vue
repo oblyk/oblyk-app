@@ -59,14 +59,22 @@
         <strong>{{ stageStep.default_participants_for_next_step }}</strong> participants passe à l'étape suivante.
       </li>
       <li>
-        Les participants renseignent eux-même leur réalisations : <strong>{{ stageStep.self_reporting ? 'oui' : 'non' }}</strong>
+        Les participants renseignent eux-même leur réalisations :
+        <v-chip small @click="editModal = true">
+          {{ stageStep.self_reporting ? 'oui' : 'non' }}
+        </v-chip>
       </li>
       <li>
         Type de classement :
-        <strong>{{ $t(`models.contestRankingType.${stageStep.ranking_type}`) }}</strong>
+        <v-chip small @click="editModal = true">
+          {{ $t(`models.contestRankingType.${stageStep.ranking_type}`) }}
+        </v-chip>
       </li>
-      <li v-if="stageStep.ascents_limit !== null && stageStep.ranking_type === 'fixed_points'">
-        {{ $t('models.contestStageStep.ascents_limit', { count: stageStep.ascents_limit }) }}
+      <li v-if="showAscentsLimit()">
+        {{ $t('models.contestStageStep.ascents_limit') }}
+        <v-chip small @click="editModal = true">
+          {{ stageStep.ascents_limit }} meilleurs ascensions
+        </v-chip>
       </li>
     </ul>
     <div class="d-flex mt-4">
@@ -208,6 +216,10 @@ export default {
     editCallback () {
       this.editModal = false
       this.getStageStep()
+    },
+
+    showAscentsLimit () {
+      return this.stageStep.ascents_limit !== null && ['fixed_points', 'point_relative_to_highest_hold'].includes(this.stageStep.ranking_type)
     }
   }
 }
