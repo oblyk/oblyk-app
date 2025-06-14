@@ -69,7 +69,7 @@
               <li>
                 <v-icon
                   left
-                  color="primary"
+                  color="purple darken-2"
                   class="mb-1"
                 >
                   {{ mdiCheckboxOutline }}
@@ -79,7 +79,7 @@
               <li>
                 <v-icon
                   left
-                  color="primary"
+                  color="purple darken-2"
                   class="mb-1"
                 >
                   {{ mdiCheckboxOutline }}
@@ -89,7 +89,7 @@
               <li>
                 <v-icon
                   left
-                  color="primary"
+                  color="purple darken-2"
                   class="mb-1"
                 >
                   {{ mdiCheckboxOutline }}
@@ -99,7 +99,7 @@
               <li>
                 <v-icon
                   left
-                  color="primary"
+                  color="purple darken-2"
                   class="mb-1"
                 >
                   {{ mdiCheckboxOutline }}
@@ -109,7 +109,7 @@
               <li>
                 <v-icon
                   left
-                  color="primary"
+                  color="purple darken-2"
                   class="mb-1"
                 >
                   {{ mdiCheckboxOutline }}
@@ -272,40 +272,46 @@
             </p>
             <div class="pl-4">
               <p>
-                <v-icon color="purple lighten-4" left>
+                <v-icon color="purple darken-2" left>
                   {{ mdiCalendarCheck }}
                 </v-icon>
                 Faites durer vos contest quelques heures comme plusieurs jours
               </p>
               <p>
-                <v-icon color="purple lighten-3" left>
+                <v-icon color="purple darken-2" left>
                   {{ mdiWaves }}
                 </v-icon>
                 Divisez vos grimpeurs et grimpeuses en vagues pour limiter le nombre de personnes sur les tapis
               </p>
               <p>
-                <v-icon color="purple lighten-2" left>
+                <v-icon color="purple darken-2" left>
                   {{ mdiShape }}
                 </v-icon>
                 Utilisez des catégories officielles (U12, U16, etc.) mais aussi des catégories personnalisées (loisir, confirmé, etc.)
               </p>
               <p>
-                <v-icon color="purple lighten-1" left>
+                <v-icon color="purple darken-2" left>
                   {{ mdiFormatListNumbered }}
                 </v-icon>
                 Organisez votre contest en étapes (qualif, demi, finale)
               </p>
               <p>
-                <v-icon color="purple" left>
+                <v-icon color="purple darken-2" left>
                   {{ mdiCounter }}
                 </v-icon>
                 Choisissez parmi plus de 10 systèmes de décompte de points pour classer vos participants
               </p>
               <p>
-                <v-icon color="purple darken-1" left>
+                <v-icon color="purple darken-2" left>
                   {{ mdiSetMerge }}
                 </v-icon>
                 Faites des combinés <cite>voie - bloc - vitesse</cite> mais aussi des combinés plus originaux
+              </p>
+              <p>
+                <v-icon color="purple darken-2" left>
+                  {{ mdiAccountMultiple }}
+                </v-icon>
+                Faites des contests en équipe !
               </p>
               <p>
                 <v-icon color="purple darken-2" left>
@@ -314,13 +320,13 @@
                 Liez tous vos contests annuels au sein d'un championnat
               </p>
               <p>
-                <v-icon color="purple darken-3" left>
+                <v-icon color="purple darken-2" left>
                   {{ mdiCircleBoxOutline }}
                 </v-icon>
                 Affichez vos résultats en direct comme un pro&nbsp;!
               </p>
               <p>
-                <v-icon color="purple darken-4" left>
+                <v-icon color="purple darken-2" left>
                   {{ mdiDice5 }}
                 </v-icon>
                 Tirez au sort parmi vos participants et participantes pour une tombola clé en main&nbsp;!
@@ -621,7 +627,8 @@ import {
   mdiSetMerge,
   mdiTrophy,
   mdiCircleBoxOutline,
-  mdiDice5
+  mdiDice5,
+  mdiAccountMultiple
 } from '@mdi/js'
 import Gym from '~/models/Gym'
 import GymSmallCard from '~/components/gyms/GymSmallCard'
@@ -655,7 +662,8 @@ export default {
       mdiSetMerge,
       mdiTrophy,
       mdiCircleBoxOutline,
-      mdiDice5
+      mdiDice5,
+      mdiAccountMultiple
     }
   },
 
