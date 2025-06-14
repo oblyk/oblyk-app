@@ -100,8 +100,16 @@
 
     <v-checkbox
       v-model="data.unisex"
-      hide-details
       :label="$t('models.contestCategory.unisex')"
+      :hint="$t('models.contestCategory.unisex_explain')"
+      persistent-hint
+    />
+
+    <v-checkbox
+      v-model="data.parity"
+      :label="$t('models.contestCategory.parity')"
+      :hint="$t('models.contestCategory.parity_explain')"
+      persistent-hint
     />
 
     <v-checkbox
@@ -168,6 +176,7 @@ export default {
         description: this.contestCategory?.description,
         capacity: this.contestCategory?.capacity,
         unisex: this.contestCategory?.unisex,
+        parity: this.contestCategory?.parity,
         auto_distribute: this.contestCategory?.auto_distribute,
         waveable: this.contestCategory?.waveable,
         registration_obligation: this.contestCategory?.registration_obligation,
@@ -214,7 +223,7 @@ export default {
           }
         })
         .catch((err) => {
-          this.$root.$emit('alertFromApiError', err, 'ContestCategory')
+          this.$root.$emit('alertFromApiError', err, 'contestCategory')
         }).then(() => {
           this.submitOverlay = false
         })

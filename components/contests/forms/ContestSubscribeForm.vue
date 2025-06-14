@@ -123,6 +123,12 @@
             >
               {{ category.description }}
             </p>
+            <p
+              v-if="!remainingPlaceCheck(category) && category.parity"
+              class="font-weight-bold mb-0 mt-1 font-italic"
+            >
+              Il n'y pas plus de place disponible dans cette catégorie, la parité a été atteinte.
+            </p>
             <v-slide-y-transition>
               <div
                 v-if="category.waves.length > 0 && !category.auto_distribute && category.id === data.contest_category_id"
@@ -640,6 +646,10 @@ export default {
     },
 
     canSubscribe (category) {
+      return this.registrationObligationCheck(category) && this.remainingPlaceCheck(category)
+    },
+
+    registrationObligationCheck (category) {
       const age = this.participantAge
       const betweenAge = category.registration_obligation === 'between_age'
       if (category.registration_obligation === null) {
@@ -658,6 +668,23 @@ export default {
         return myYearAge >= category.over_age && myYearAge < category.under_age
       }
       return false
+    },
+
+    remainingPlaceCheck (category) {
+      if (category.capacity === null) {
+        return true
+      } else if (category.contest_participants_count >= category.capacity) {
+        return false
+      } else if (category.parity) {
+        const maxByGenre = category.capacity / 2
+        if (this.data.genre === 'male' && (category.contest_participants_male_count + 1) > maxByGenre) {
+          return false
+        }
+        if (this.data.genre === 'female' && (category.contest_participants_female_count + 1) > maxByGenre) {
+          return false
+        }
+      }
+      return true
     },
 
     noLinkedAccount () {

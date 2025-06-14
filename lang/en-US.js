@@ -2100,7 +2100,10 @@ export default {
       three_d_import_error: 'An error occurred while importing or converting your 3D model',
       free_trial_already_exists: 'The free trial period has already been taken',
       not_a_number: 'must be a number',
-      greater_than_or_equal_to: 'must be bigger'
+      greater_than_or_equal_to: 'must be bigger',
+      must_be_specified: 'must be specified',
+      cannot_be_odd: 'cannot be odd',
+      must_have_a_minimum_or_maximum_age_specified: 'must have a minimum or maximum age specified'
     }
   },
   models: {
@@ -2652,6 +2655,9 @@ export default {
       description: 'Description',
       descriptionPlaceholder: 'Help your future participants choose their categories with a short description (optional)',
       unisex: 'No gender distinction in this category',
+      unisex_explain: 'If checked, you will receive a ranking of your participants without distinction between men and women.',
+      parity: 'Enforce gender parity',
+      parity_explain: 'If your category has 100 places, there cannot be more than 50 men or 50 women.',
       capacity: 'Max capacity',
       registrationObligation: 'Type of age limit',
       minAge: 'Minimum age',

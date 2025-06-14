@@ -47,7 +47,9 @@
       </v-menu>
     </v-card-title>
     <v-card-subtitle>
-      {{ contestCategory.contest_participants_count || 0 }} / {{ contestCategory.capacity || '∞' }} compétiteurs·ices
+      {{ contestCategory.contest_participants_count || 0 }} / {{ contestCategory.capacity || '∞' }} compétiteurs·ices<br>
+      {{ $tc('models.contestCategory.contest_participants_female_count', contestCategory.contest_participants_female_count, { count: contestCategory.contest_participants_female_count }) }},
+      {{ $tc('models.contestCategory.contest_participants_male_count', contestCategory.contest_participants_male_count, { count: contestCategory.contest_participants_male_count }) }}
     </v-card-subtitle>
     <v-card-text>
       <div
@@ -59,6 +61,9 @@
       <ul class="pl-3">
         <li v-if="contestCategory.unisex">
           Aucune distinction de genre
+        </li>
+        <li v-if="contestCategory.parity">
+          Parité imposé
         </li>
         <li v-if="contestCategory.waveable">
           Divisé en vague

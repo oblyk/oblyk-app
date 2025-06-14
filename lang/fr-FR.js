@@ -2101,7 +2101,10 @@ export default {
       three_d_import_error: "Une erreur s'est produite lors de l'import ou la conversion de votre modèle 3D",
       free_trial_already_exists: "La période d'essai gratuite à déjà été prise",
       not_a_number: 'doit être un chiffre',
-      greater_than_or_equal_to: 'doit être plus grand'
+      greater_than_or_equal_to: 'doit être plus grand',
+      must_be_specified: 'doit être renseigné(e)',
+      cannot_be_odd: 'ne peut pas être impaire',
+      must_have_a_minimum_or_maximum_age_specified: 'doit avoir un age minimum ou maximum de renseigné'
     }
   },
   models: {
@@ -2655,13 +2658,18 @@ export default {
       description: 'Description',
       descriptionPlaceholder: 'Aidez vos futur·es participant·es à choisir leur catégorie avec une courte description (optionnel)',
       unisex: 'Aucune distinction de genre dans cette catégorie',
+      unisex_explain: 'Si coché, vous aurez un classement de vos participants sans distinction hommes / femmes.',
+      parity: 'Imposer la parité',
+      parity_explain: 'Si votre catégorie à 100 places, il ne pourra pas y avoir plus de 50 hommes ou 50 femmes.',
       capacity: 'Capacité max',
       registrationObligation: "Type de limitation par l'âge",
       minAge: 'Âge minimum',
       maxAge: 'Âge maximum',
       auto_distribute: 'Auto-répartir les participants dans les vagues',
       waveable: 'Répartir cette catégorie en plusieurs vagues',
-      order: "Ordre d'affichage"
+      order: "Ordre d'affichage",
+      contest_participants_female_count: 'Aucune femme | Une femme | %{count} femmes',
+      contest_participants_male_count: 'Aucun homme | Un homme | %{count} hommes'
     },
     contestStage: {
       name: 'Nom',
