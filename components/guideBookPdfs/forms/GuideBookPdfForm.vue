@@ -74,10 +74,10 @@ export default {
       data: {
         id: this.guideBookPdf?.id,
         crag_id: this.guideBookPdf?.crag?.id || this.cragId,
-        name: this.guideBookPdf?.name,
-        publication_year: this.guideBookPdf?.publication_year,
-        author: this.guideBookPdf?.author,
-        description: this.guideBookPdf?.description
+        name: this.guideBookPdf?.name || null,
+        publication_year: this.guideBookPdf?.publication_year || null,
+        author: this.guideBookPdf?.author || null,
+        description: this.guideBookPdf?.description || null
       }
     }
   },
