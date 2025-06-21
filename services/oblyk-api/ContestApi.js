@@ -71,6 +71,22 @@ class ContestApi extends BaseApi {
     })
   }
 
+  statistics (gymId, contestId, filters = {}) {
+    return this.axios.request({
+      method: 'GET',
+      url: `${this.baseUrl}/gyms/${gymId}/contests/${contestId}/statistics.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
+      params: {
+        genre: filters.genre,
+        category_id: filters.category_id,
+        exclude_without_ascents: filters.exclude_without_ascents
+      }
+    })
+  }
+
   update (data) {
     return this.axios.request({
       method: 'PUT',

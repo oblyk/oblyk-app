@@ -8,6 +8,8 @@
     :class="required ? 'required-field' : ''"
     :label="$t('components.input.genre')"
     outlined
+    :clearable="clearable"
+    :hide-details="hideDetail"
     @change="onChange"
   />
 </template>
@@ -29,6 +31,14 @@ export default {
       default: true
     },
     withUnisex: {
+      type: Boolean,
+      default: false
+    },
+    hideDetail: {
+      type: Boolean,
+      default: false
+    },
+    clearable: {
       type: Boolean,
       default: false
     }

@@ -13,6 +13,12 @@ export default {
     }
   },
 
+  watch: {
+    data () {
+      this.renderChart(this.data, this.options)
+    }
+  },
+
   mounted () {
     this.renderChart(this.data, this.options)
   }

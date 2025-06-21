@@ -496,6 +496,15 @@
           </v-icon>
           Résultats
         </v-tab>
+        <v-tab
+          exact-path
+          :to="`${contest.adminPath}/statistics`"
+        >
+          <v-icon left>
+            {{ mdiChartLine }}
+          </v-icon>
+          Stats
+        </v-tab>
       </v-tabs>
       <nuxt-child
         :key="$route.params.contestId"
@@ -522,7 +531,8 @@ import {
   mdiQrcode,
   mdiDelete,
   mdiBookshelf,
-  mdiAccountGroup
+  mdiAccountGroup,
+  mdiChartLine
 } from '@mdi/js'
 import { ContestConcern } from '~/concerns/ContestConcern'
 import { DateHelpers } from '~/mixins/DateHelpers'
@@ -573,7 +583,8 @@ export default {
       mdiQrcode,
       mdiDelete,
       mdiBookshelf,
-      mdiAccountGroup
+      mdiAccountGroup,
+      mdiChartLine
     }
   },
 
