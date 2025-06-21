@@ -42,6 +42,20 @@ class GymSectorApi extends BaseApi {
     })
   }
 
+  bulkUpdate (gymId, gymSpaceId, sectors) {
+    return this.axios.request({
+      method: 'PUT',
+      url: `${this.baseUrl}/gyms/${gymId}/gym_spaces/${gymSpaceId}/gym_sectors/bulk_update.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
+      data: {
+        gym_sectors: sectors
+      }
+    })
+  }
+
   dismountRoutes (gymId, spaceId, sectorId) {
     return this.axios.request({
       method: 'DELETE',

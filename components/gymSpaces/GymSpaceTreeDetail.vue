@@ -14,10 +14,11 @@
       </div>
     </v-alert>
     <v-list-item>
-      <v-list-item-avatar tile>
-        <v-avatar
-          tile
-        >
+      <v-list-item-avatar
+        tile
+        @click="showSpace = !showSpace"
+      >
+        <v-avatar tile>
           <v-img
             v-if="gymSpace.pictureAttachment"
             contain
@@ -35,14 +36,13 @@
           </v-chip>
           {{ gymSpace.name }}
           <v-btn
+            class="ml-2"
+            outlined
             text
             small
-            outlined
-            class="ml-1"
-            :to="gymSpace.path"
-          >
-            {{ $t('actions.see') }}
-          </v-btn>
+            @click="showSpace = !showSpace"
+            v-text="showSpace ? 'moins d\'infos' : 'plus d\'infos'"
+          />
         </v-list-item-title>
       </v-list-item-content>
       <v-list-item-action class="flex-row">
@@ -116,7 +116,7 @@
           @click="showSpace = !showSpace"
         >
           <v-icon>
-            {{ showSpace ? mdiChevronDown : mdiChevronUp }}
+            {{ showSpace ? mdiChevronUp : mdiChevronDown }}
           </v-icon>
         </v-btn>
       </v-list-item-action>
@@ -167,75 +167,13 @@
       <p class="text-decoration-underline mt-5 mb-2">
         {{ $t('components.cragSector.sectors') }} :
       </p>
-      <v-sheet
-        v-for="(sector, sectorIndex) in gymSpace.sectors"
-        :key="`sector-index-${sectorIndex}`"
-        class="mb-2 back-app-color rounded"
-      >
-        <v-list-item>
-          <v-list-item-content>
-            <v-list-item-title>
-              <v-chip
-                small
-                class="mr-2"
-              >
-                {{ sector.order }}
-              </v-chip>
-              <strong>
-                {{ sector.name }}
-              </strong>
-              , {{ sector.height }}m
-              <span v-if="sector.can_be_more_than_one_pitch">
-                , {{ $t('models.gymSector.can_be_more_than_one_pitch') }}
-              </span>
-              <span v-if="sector.anchor && sector.anchor_ranges.length > 0">
-                , {{ $t('models.cragRoute.anchor') }} n°{{ sector.min_anchor_number }} à {{ sector.max_anchor_number }}
-              </span>
-            </v-list-item-title>
-          </v-list-item-content>
-          <v-list-item-action>
-            <v-menu>
-              <template #activator="{ on, attrs }">
-                <v-btn
-                  icon
-                  v-bind="attrs"
-                  v-on="on"
-                >
-                  <v-icon>
-                    {{ mdiDotsVertical }}
-                  </v-icon>
-                </v-btn>
-              </template>
-              <v-list>
-                <!-- Edit article -->
-                <v-list-item
-                  :to="`${sector.path}/edit?redirect_to=${$route.fullPath}`"
-                >
-                  <v-list-item-icon>
-                    <v-icon>{{ mdiPencil }}</v-icon>
-                  </v-list-item-icon>
-                  <v-list-item-title>
-                    {{ $t('actions.edit') }}
-                  </v-list-item-title>
-                </v-list-item>
-                <v-divider />
-                <v-list-item
-                  @click="deleteSector(sector.id)"
-                >
-                  <v-list-item-icon>
-                    <v-icon color="red">
-                      {{ mdiDelete }}
-                    </v-icon>
-                  </v-list-item-icon>
-                  <v-list-item-title class="red--text">
-                    {{ $t('actions.delete') }}
-                  </v-list-item-title>
-                </v-list-item>
-              </v-list>
-            </v-menu>
-          </v-list-item-action>
-        </v-list-item>
-      </v-sheet>
+
+      <gym-sectors-edit-table
+        :gym-space="gymSpace"
+        :gym-sectors="gymSpace.sectors"
+        :reload-space-callback="getStructures"
+        :start-loading-structures-callback="startLoadingStructures"
+      />
     </div>
   </div>
 </template>
@@ -255,15 +193,15 @@ import {
   mdiChevronUp
 } from '@mdi/js'
 import { ClimbingTypeMixin } from '~/mixins/ClimbingTypeMixin'
-import GymSpaceApi from '~/services/oblyk-api/GymSpaceApi'
-import GymSectorApi from '~/services/oblyk-api/GymSectorApi'
-import DescriptionLine from '~/components/ui/DescriptionLine.vue'
 import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
-const MarkdownText = () => import('~/components/ui/MarkdownText.vue')
+import GymSpaceApi from '~/services/oblyk-api/GymSpaceApi'
+import DescriptionLine from '~/components/ui/DescriptionLine'
+import GymSectorsEditTable from '~/components/gymSectors/GymSectorsEditTable'
+const MarkdownText = () => import('~/components/ui/MarkdownText')
 
 export default {
   name: 'GymSpaceTreeDetail',
-  components: { DescriptionLine, MarkdownText },
+  components: { GymSectorsEditTable, DescriptionLine, MarkdownText },
   mixins: [ClimbingTypeMixin, ImageVariantHelpers],
   props: {
     gymSpace: {
@@ -282,7 +220,7 @@ export default {
 
   data () {
     return {
-      showSpace: this.gymSpace.archived_at === null,
+      showSpace: false,
 
       mdiDotsVertical,
       mdiDelete,
@@ -326,17 +264,6 @@ export default {
         this.startLoadingStructures()
         new GymSpaceApi(this.$axios, this.$auth)
           .unarchived(this.gymSpace.gym.id, this.gymSpace.id)
-          .then(() => {
-            this.getStructures()
-          })
-      }
-    },
-
-    deleteSector (sectorId) {
-      if (confirm(this.$t('common.areYouSurToDelete'))) {
-        this.startLoadingStructures()
-        new GymSectorApi(this.$axios, this.$auth)
-          .delete(this.gymSpace.gym.id, this.gymSpace.id, sectorId)
           .then(() => {
             this.getStructures()
           })
