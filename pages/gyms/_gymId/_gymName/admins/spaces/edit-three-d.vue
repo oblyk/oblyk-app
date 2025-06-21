@@ -469,6 +469,7 @@
             label="Hauteur par rapport au sol"
             suffix="mètre"
             type="number"
+            step="0.1"
             dense
             outlined
           />
@@ -584,6 +585,7 @@
             label="Hauteur par rapport au sol"
             suffix="mètre"
             type="number"
+            step="0.1"
             outlined
             dense
           />

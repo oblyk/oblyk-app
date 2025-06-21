@@ -284,6 +284,7 @@
             label="Hauteur du secteur"
             suffix="mètre"
             type="number"
+            step="0.1"
             outlined
           />
           <v-text-field
@@ -291,6 +292,7 @@
             label="Élevation par rapport au sol"
             suffix="mètre"
             type="number"
+            step="0.1"
             outlined
           />
           <div class="text-right">
