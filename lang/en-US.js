@@ -260,6 +260,7 @@ export default {
     to: 'To',
     to_2: 'to',
     on: 'on',
+    or: 'or',
     made: 'made',
     all: 'All',
     allTypes: 'All types',
@@ -1376,6 +1377,10 @@ export default {
       averageLike: 'Like / routes',
       likedRatio: 'Routes are liked',
       onAverage: 'On average'
+    },
+    gymAdministrator: {
+      guest_by_email: 'Enter the email address of the member you wish to invite:',
+      guest_by_user: 'search for a member on Oblyk:'
     },
     gymAdministrationRequest: {
       helloName: 'Hello %{name}',

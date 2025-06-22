@@ -260,6 +260,7 @@ export default {
     to: 'À',
     to_2: 'au',
     on: 'sur',
+    or: 'ou',
     made: 'fait',
     all: 'Tous',
     allTypes: 'Tous les types',
@@ -1377,6 +1378,10 @@ export default {
       averageLike: 'Likes / ouvertures',
       likedRatio: 'Des lignes sont likées',
       onAverage: 'En moyenne'
+    },
+    gymAdministrator: {
+      guest_by_email: 'Renseigner le mail du membre à inviter :',
+      guest_by_user: 'chercher un·e membre sur Oblyk :'
     },
     gymAdministrationRequest: {
       helloName: 'Bonjour %{name}',

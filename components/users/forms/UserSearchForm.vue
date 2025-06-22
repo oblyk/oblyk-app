@@ -9,7 +9,7 @@
       clearable
       hide-details
       @keyup="search()"
-      @click:clear="onSearch = false"
+      @click:clear="clearSearch()"
       @focus="scrollToElement"
     />
     <slot />
@@ -118,6 +118,11 @@ export default {
         const element = this.$refs.UserSearchForm.$el
         element.scrollIntoView({ behavior: 'smooth', block: 'start' })
       }
+    },
+
+    clearSearch () {
+      this.onSearch = false
+      this.searchResults = []
     }
   }
 }
