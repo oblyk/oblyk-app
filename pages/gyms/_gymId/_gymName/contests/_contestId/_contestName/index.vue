@@ -157,9 +157,10 @@
                       outlined
                       hide-details
                     />
-                    <div class="text-right">
+                    <div class="text-right mt-2">
                       <v-btn
-                        text
+                        elevation="0"
+                        color="primary"
                         :loading="loadingAuthenticate"
                         @click.prevent="authenticate"
                       >

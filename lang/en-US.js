@@ -1499,7 +1499,7 @@ export default {
       registerNow: 'Register now!',
       alreadyRegistered: 'I already have a code ?',
       iAmRegistered: 'I am already registered',
-      registeredPart1: 'When you registered, we gave you a code <cite>(your first name + a few random letters)</cite><br>Enter this code to identify yourself.',
+      registeredPart1: 'When you registered, we gave you a code <cite>(your first name + a few random letters, exemple : oliver.abc)</cite><br>Enter this code to identify yourself.',
       registeredPart2: "We can't find any participants registered with this code on this contest. Please check that you have entered your code correctly and try again.",
       notOpenYet: 'Registrations are not yet open.',
       comeBackOn: 'Come back on %{date} !',
