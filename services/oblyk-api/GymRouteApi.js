@@ -103,6 +103,17 @@ class GymRouteApi extends BaseApi {
     })
   }
 
+  mount (gymId, gymRouteId) {
+    return this.axios.request({
+      method: 'PUT',
+      url: `${this.baseUrl}/gyms/${gymId}/gym_routes/${gymRouteId}/mount.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
+    })
+  }
+
   dismountCollection (gymId, gymRouteIds) {
     return this.axios.request({
       method: 'PUT',

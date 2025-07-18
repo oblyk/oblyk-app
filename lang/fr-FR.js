@@ -65,6 +65,7 @@ export default {
     upload: 'Uploader',
     reverse: 'Retourner',
     dismountRoute: 'Démonter la ligne',
+    takeUpRoute: 'Re-monter la ligne',
     dismountAllRoutes: 'Démonter toutes les lignes',
     createAndPicture: 'Créer + Photo',
     finish: 'Terminer',

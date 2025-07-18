@@ -65,6 +65,7 @@ export default {
     upload: 'Upload',
     reverse: 'Reverse',
     dismountRoute: 'Take down route',
+    takeUpRoute: 'Take up route',
     dismountAllRoutes: 'Take down all routes',
     createAndPicture: 'Create + Picture',
     finish: 'Finish',
