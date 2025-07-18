@@ -99,7 +99,6 @@
       :label="$t('models.gym.web_site')"
     />
 
-    <close-form />
     <submit-form
       :overlay="submitOverlay"
       :submit-local-key="submitText()"
@@ -114,7 +113,6 @@ import GymApi from '~/services/oblyk-api/GymApi'
 import Gym from '@/models/Gym'
 import SubmitForm from '@/components/forms/SubmitForm'
 import ClimbingTypeInput from '@/components/forms/ClimbingTypeInput'
-import CloseForm from '@/components/forms/CloseForm'
 import MarkdownInput from '@/components/forms/MarkdownInput'
 import GymSmallCard from '@/components/gyms/GymSmallCard'
 const MapInput = () => import('@/components/forms/MapInput')
@@ -124,7 +122,6 @@ export default {
   components: {
     GymSmallCard,
     MarkdownInput,
-    CloseForm,
     ClimbingTypeInput,
     SubmitForm,
     MapInput

@@ -1,5 +1,10 @@
 <template>
   <div>
+    <page-header
+      v-if="!$fetchState.pending"
+      :title="town.name"
+      :back-to="`/escalade-en/france/${town.department.department_number}/${town.department.slug_name}`"
+    />
     <v-container class="common-page-container climb-around-town">
       <div v-if="$fetchState.pending">
         <v-skeleton-loader
@@ -13,19 +18,6 @@
       </div>
 
       <div v-else>
-        <div>
-          <v-btn
-            text
-            rounded
-            :to="`/escalade-en/france/${town.department.department_number}/${town.department.slug_name}`"
-          >
-            <v-icon left>
-              {{ mdiArrowLeft }}
-            </v-icon>
-            {{ town.department.name }}
-          </v-btn>
-        </div>
-
         <h1 class="mt-10 text-center">
           {{ $t('components.town.title', { name: town.name }) }}
         </h1>
@@ -298,18 +290,20 @@
 
 <script>
 import LazyHydrate from 'vue-lazy-hydration'
-import { mdiMagnify, mdiArrowLeft, mdiTerrain, mdiBookshelf, mdiOfficeBuildingMarker, mdiMap } from '@mdi/js'
+import { mdiMagnify, mdiTerrain, mdiBookshelf, mdiOfficeBuildingMarker, mdiMap } from '@mdi/js'
 import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 import TownApi from '~/services/oblyk-api/TownApi'
 import AppFooter from '~/components/layouts/AppFooter'
 import TownDescription from '~/components/towns/TownDescription'
 import CragsTable from '~/components/crags/CragsTable'
 import Spinner from '~/components/layouts/Spiner'
+import PageHeader from '~/components/layouts/PageHeader.vue'
 const TownSearchForm = () => import('~/components/towns/forms/TownSearchForm')
 const LeafletMap = () => import('~/components/maps/LeafletMap')
 
 export default {
   components: {
+    PageHeader,
     TownSearchForm,
     LeafletMap,
     LazyHydrate,
@@ -332,7 +326,6 @@ export default {
       showTownSearch: false,
 
       mdiMagnify,
-      mdiArrowLeft,
       mdiTerrain,
       mdiBookshelf,
       mdiOfficeBuildingMarker,

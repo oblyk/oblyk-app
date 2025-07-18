@@ -1,11 +1,11 @@
 <template>
-  <v-sheet class="page-header-sheet">
+  <v-sheet class="page-header-sheet border-bottom">
     <div class="page-header-sheet-back-btn">
       <v-btn
         exact-path
         icon
         large
-        :to="backTo"
+        :to="URLBackTo ? URLBackTo : backTo"
       >
         <v-icon color="primary">
           {{ mdiArrowLeft }}
@@ -21,24 +21,35 @@
           {{ title }}
         </h1>
       </div>
-      <div
+      <v-tabs
         v-if="links"
-        class="page-header-sheet-btn-list"
+        class="page-header-sheet-tabs"
+        height="30"
       >
-        <v-btn
+        <v-tab
           v-for="(link, linkIndex) in links"
           :key="`link-index-${linkIndex}`"
           :to="link.to"
           exact-path
-          text
-          small
         >
-          <v-icon left small>
+          <v-icon
+            v-if="link.icon"
+            left
+            small
+          >
             {{ link.icon }}
           </v-icon>
           {{ link.title }}
-        </v-btn>
-      </div>
+          <v-chip
+            v-if="link.badge"
+            small
+            color="primary"
+            class="ml-1 px-1"
+          >
+            {{ link.badge }}
+          </v-chip>
+        </v-tab>
+      </v-tabs>
     </div>
   </v-sheet>
 </template>
@@ -64,7 +75,19 @@ export default {
 
   data () {
     return {
+      URLBackTo: null,
+
       mdiArrowLeft
+    }
+  },
+
+  mounted () {
+    const urlParams = new URLSearchParams(window.location.search)
+    this.URLBackTo = urlParams.get('back_to')
+    if (this.URLBackTo) {
+      const url = new URL(window.location.href)
+      url.searchParams.delete('back_to')
+      window.history.replaceState({}, '', url.toString())
     }
   }
 }

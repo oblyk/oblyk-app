@@ -47,7 +47,7 @@
                 small
                 color="primary"
                 elevation="0"
-                :to="`/maps/gyms?lat=${gym.latitude}&lng=${gym.longitude}`"
+                :to="`/maps/gyms?lat=${gym.latitude}&lng=${gym.longitude}&gym_id=${gym.id}`"
               >
                 {{ $t('actions.seeOnTheMap') }}
               </v-btn>

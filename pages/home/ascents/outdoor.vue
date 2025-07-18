@@ -2,7 +2,7 @@
   <div>
     <page-header
       :title="$t('components.layout.appDrawer.user.ascents.outdoor')"
-      back-to="/home"
+      back-to="/outdoor"
       :links="headerLinks"
     />
 

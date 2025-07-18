@@ -65,7 +65,6 @@
     <season-input v-model="seasons" />
     <orientation-input v-model="orientations" />
 
-    <close-form />
     <submit-form
       :overlay="submitOverlay"
       :submit-local-key="submitText()"
@@ -78,7 +77,6 @@ import { mdiAlert } from '@mdi/js'
 import { FormHelpers } from '@/mixins/FormHelpers'
 import SubmitForm from '@/components/forms/SubmitForm'
 import CragApi from '~/services/oblyk-api/CragApi'
-import CloseForm from '@/components/forms/CloseForm'
 import Crag from '@/models/Crag'
 import ClimbingTypeInput from '@/components/forms/ClimbingTypeInput'
 import RockInput from '@/components/forms/RockInput'
@@ -100,7 +98,6 @@ export default {
     RockInput,
     MapInput,
     ClimbingTypeInput,
-    CloseForm,
     SubmitForm
   },
   mixins: [FormHelpers],

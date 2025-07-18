@@ -1,5 +1,9 @@
 <template>
   <div>
+    <page-header
+      :title="$t('components.country.france.title')"
+      back-to="/outdoor"
+    />
     <v-container class="common-page-container">
       <h1 class="mb-16 mt-10 text-center">
         {{ $t('components.country.france.title') }}
@@ -94,9 +98,10 @@ import DepartmentApi from '~/services/oblyk-api/DepartmentApi'
 import AppFooter from '~/components/layouts/AppFooter'
 import TownSearchForm from '~/components/towns/forms/TownSearchForm'
 import FraneSvg from '~/components/Countries/FranceSvg'
+import PageHeader from '~/components/layouts/PageHeader.vue'
 
 export default {
-  components: { FraneSvg, TownSearchForm, AppFooter },
+  components: { PageHeader, FraneSvg, TownSearchForm, AppFooter },
   mixins: [LocalizationHelpers, TextHelpers],
 
   data () {

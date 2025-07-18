@@ -279,7 +279,7 @@ export default {
     posted: 'Posté',
     crosses: 'croix',
     linesCount: 'une ligne | %{count} lignes',
-    followerCount: 'Abonné·es | 1 Abonné·es | %{count} Abonné·es',
+    followerCount: 'Abonné·es | 1 abonné·e | %{count} abonné·es',
     seeMore: 'voir plus',
     seeAll: 'Tout voir',
     ascents: 'Croix',
@@ -303,6 +303,7 @@ export default {
     createdOn: 'Créé le %{date}',
     archivedOn: 'Archivé le %{date}',
     remainingPlaces: 'Complet | Une place restante | %{count} places restantes',
+    findAnotherWay: 'Trouver autrement',
     months: {
       '01': '01 - Janvier',
       '02': '02 - Février',
@@ -734,9 +735,14 @@ export default {
         crag: '1 site | {count} sites',
         cragRoute: '1 ligne | {count} lignes',
         gym: '1 salle | {count} salles',
-        user: '1 grimpeur·euse | {count} grimpeur·euse·s',
+        user: '1 grimpeur·euse | {count} grimpeurs·euses',
         guideBookPaper: '1 topo | {count} topos',
         word: '1 mot | {count} mots'
+      },
+      type: {
+        aCrag: 'une falaise',
+        aCragRoute: 'une voie',
+        aGuideBook: 'un topo'
       },
       tabs: {
         crag: 'Site',
@@ -922,6 +928,23 @@ export default {
         omega_roc: 'OmegaRoc'
       }
     },
+    indoor: {
+      moreIndoor: "Plus d'indoor",
+      nearbyClimbingGyms: 'Salles les plus proches',
+      welcome: 'Bienvenue sur Oblyk indoor !',
+      welcomeParagraphe: '<strong>Rejoignez-nous</strong> pour <strong>suivre votre salle</strong>, voir les <strong>dernières ouvertures</strong>, <strong>suivre votre progression</strong> et bien plus !'
+    },
+    outdoor: {
+      moreOutdoor: "Plus d'outdoor",
+      nearbyCrags: 'Falaises les plus proches',
+      welcome: 'Bienvenue sur Oblyk Outdoor !',
+      welcomeParagraphe: '<strong>Rejoignez-nous</strong> pour créer votre <strong>carnet de croix</strong>, <strong>suivre vos ami·es</strong>, tenir votre <strong>topothèque</strong>, participer à la communauté et bien plus !'
+    },
+    community: {
+      search: 'Chercher un grimpeur, une grimpeuse',
+      welcome: 'Bienvenue dans le communauté !',
+      welcomeParagraphe: '<strong>Rejoignez-nous</strong> pour trouver des <strong>partenaires de grimpe</strong> et partager vos ascensions avec vos ami·es !'
+    },
     navigation: {
       goTo: 'Se rendre au site',
       parkList: 'Se rendre au parking | Se rendre aux parkings',
@@ -945,6 +968,7 @@ export default {
       searchCrag: 'Chercher une falaise',
       type: 'Falaise',
       newCrag: 'Nouvelle falaise',
+      myCrags: 'Mes falaises',
       descriptionOf: 'Description de %{name}',
       localization: 'Localisation',
       orientations: 'Orientations',
@@ -1533,10 +1557,12 @@ export default {
       addComment: 'Commenter ma session',
       myIndoorSession: 'Mes sessions indoor',
       myOutdoorSession: 'Mes sessions outdoor',
+      count: 'Aucune session | Une session | %{count} sessions',
       empty: "Vous n'avez pas encore de session de grimpe.<br>Ajoutez des croix à votre carnet pour voir vos sessions !"
     },
     logBook: {
       inFewFigures: 'En quelque chiffres',
+      since28Days: 'Les 28 derniers jours',
       climbingType: "Type d'escalade",
       grades: 'Croix par cotations',
       levels: 'Croix par niveaux',
@@ -1566,6 +1592,7 @@ export default {
         gyms: '%{count} salle | %{count} salles',
         regions: '%{count} région | %{count} régions',
         ascents: '%{count} croix | %{count} croix',
+        additionalAscents: "pas d'ascension | une ascension | %{count} ascensions",
         meters: '%{count} mètre grimpé | %{count} mètres grimpés',
         max_grade: '%{grade} max'
       }
@@ -1639,7 +1666,7 @@ export default {
       changePassword: 'Changer mon mot de passe',
       privacyParameters: 'Paramètres de confidentialité',
       partnerSearch: 'Recherche de partenaire',
-      upcomingContests: 'Mes contests à venir',
+      upcomingContests: 'Contests à venir',
       notificationSetting: 'Paramètre des notifications',
       otherSetting: 'Autres paramètres',
       successfulEditMessage: 'Votre profil à été mis à jour',
@@ -1709,6 +1736,8 @@ export default {
       emptyLogbook: "%{name} n'a de croix dans son carnet",
       seeMyPublicProfile: 'Voir mon profil public',
       updateEmailReport: 'Mes inscriptions aux rapports mensuels de mes salles',
+      mutualFriend: '1 ami·e en commun | %{count} ami·es en commun',
+      youMayBeFamiliarWith: 'Vous pourriez connaître ...',
       cardsTitle: {
         myLogbook: 'Mon carnet',
         aroundMe: 'Autour de moi',

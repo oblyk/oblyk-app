@@ -347,6 +347,9 @@ strong {
 }
 
 .page-header-sheet {
+  position: sticky;
+  top: 64px;
+  z-index: 1;
   display: flex;
   .page-header-sheet-back-btn {
     height: 63px;
@@ -378,28 +381,44 @@ strong {
         justify-content: end;
       }
     }
-    .page-header-sheet-btn-list {
-      flex-shrink: 0;
-      padding-bottom: 6px;
-      text-wrap: nowrap;
-      overflow-x: auto;
-      .v-btn {
-        padding: 12px !important;
-        border-radius: 15px;
-        margin-right: 2px;
-        &:not(.v-btn--active) {
-          padding: 11px !important;
-          border-style: solid;
-          border-width: 1px;
-          border-color: rgba(150, 150, 150, 0.4);
-        }
+    .page-header-sheet-tabs {
+      max-height: 30px;
+      .v-slide-group__prev, .v-slide-group__next {
+        display: none !important;
+      }
+      .v-tab {
+        padding: 0;
+        margin-right: 16px;
+        min-width: 20px;
+      }
+      .v-tabs-slider {
+        border-radius: 2px;
       }
     }
   }
 }
 
+@media only screen and (max-width: 959px) {
+  .page-header-sheet {
+    position: sticky;
+    top: 0;
+  }
+}
+
+.rounded-focus {
+  &:focus::before {
+    border-radius: 40px;
+  }
+}
+
 .beta-background {
   background: linear-gradient(-45deg, #1E88E5 12.5%, #208be9 12.5%, #208be9 37.5%, #1E88E5 37.5%, #1E88E5 62.5%, #208be9 62.5%, #208be9 87.5%, #1E88E5 87.5%);
+  background-size: 50px 50px;
+  background-position: 50px 50px;
+}
+
+.missing-background {
+  background: linear-gradient(-45deg, rgba(0, 0, 0, 0) 12.5%, rgba(150, 150, 150, 0.05) 12.5%, rgba(150, 150, 150, 0.05) 37.5%, rgba(0, 0, 0, 0) 37.5%, rgba(0, 0, 0, 0) 62.5%, rgba(150, 150, 150, 0.05) 62.5%, rgba(150, 150, 150, 0.05) 87.5%, rgba(0, 0, 0, 0) 87.5%);
   background-size: 50px 50px;
   background-position: 50px 50px;
 }
@@ -481,6 +500,13 @@ strong {
 
 .v-data-table tbody tr.v-data-table__selected {
   background-color: rgba(49, 153, 78, 0.2) !important;
+}
+
+.row.v-row-gutters-12 {
+  margin: -6px;
+  > div {
+    padding: 6px;
+  }
 }
 
 .theme--dark {

@@ -45,13 +45,33 @@
             </span>
           </v-list-item-title>
           <v-list-item-subtitle :class="small ? 'mt-0 mb-3' : 'mt-n3 mb-4'">
-            <v-alert
-              dense
-              text
-              class="d-inline-block mr-1 mb-0 pl-2 pr-2 pt-0 pb-0"
+            <v-chip
+              small
+              outlined
+              class=""
             >
+              <v-icon
+                small
+                left
+              >
+                {{ climbIcons[cragRoute.climbing_type] }}
+              </v-icon>
               {{ $t(`models.climbs.${cragRoute.climbing_type}`) }}
-            </v-alert>
+            </v-chip>
+            <v-chip
+              v-if="cragRoute.ascents_count > 0"
+              small
+              outlined
+              class=""
+            >
+              <v-icon
+                small
+                left
+              >
+                {{ mdiCheckAll }}
+              </v-icon>
+              {{ cragRoute.ascents_count }}
+            </v-chip>
             {{ cragRoute.Crag.name }}, {{ cragRoute.Crag.city }}
           </v-list-item-subtitle>
         </v-list-item-content>
@@ -61,7 +81,16 @@
 </template>
 
 <script>
-import { mdiSourceBranch } from '@mdi/js'
+import { mdiSourceBranch, mdiCheckAll } from '@mdi/js'
+import {
+  oblykClimbAid,
+  oblykClimbBoulder,
+  oblykClimbDeepWater,
+  oblykClimbMultiPitch,
+  oblykClimbSportClimbing,
+  oblykClimbTrad,
+  oblykClimbViaFerrata
+} from '~/assets/oblyk-icons'
 import AscentCragRouteStatusIcon from '@/components/ascentCragRoutes/AscentCragRouteStatusIcon'
 import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 
@@ -87,7 +116,18 @@ export default {
 
   data () {
     return {
-      mdiSourceBranch
+      climbIcons: {
+        aid_climbing: oblykClimbAid,
+        bouldering: oblykClimbBoulder,
+        deep_water: oblykClimbDeepWater,
+        multi_pitch: oblykClimbMultiPitch,
+        sport_climbing: oblykClimbSportClimbing,
+        trad_climbing: oblykClimbTrad,
+        via_ferrata: oblykClimbViaFerrata
+      },
+
+      mdiSourceBranch,
+      mdiCheckAll
     }
   }
 }

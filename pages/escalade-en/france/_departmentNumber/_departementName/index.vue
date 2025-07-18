@@ -1,5 +1,9 @@
 <template>
   <div>
+    <page-header
+      :title="department?.name || '...'"
+      back-to="/escalade-en/france"
+    />
     <v-container class="common-page-container climb-around-department">
       <!-- Loading -->
       <div v-if="$fetchState.pending" class="mt-5">
@@ -15,20 +19,6 @@
 
       <!-- Content -->
       <div v-else>
-        <div>
-          <v-btn
-            text
-            rounded
-            exact-path
-            to="/escalade-en/france"
-          >
-            <v-icon left>
-              {{ mdiArrowLeft }}
-            </v-icon>
-            France
-          </v-btn>
-        </div>
-
         <h1 class="mb-10 mt-10 text-center">
           {{ $t('components.department.climbing') }} {{ $t(`components.department.inSentencePrefixType.${department.in_sentence_prefix_type}`) }} {{ department.name }}
         </h1>
@@ -242,7 +232,6 @@ import {
   mdiMagnify,
   mdiSourceBranch,
   mdiTerrain,
-  mdiArrowLeft,
   mdiOfficeBuildingMarkerOutline,
   mdiCityVariantOutline,
   mdiPoll,
@@ -257,10 +246,12 @@ import LocalityGradeChart from '~/components/localities/charts/LocalityGradeChar
 import Spinner from '~/components/layouts/Spiner'
 import DescriptionLine from '~/components/ui/DescriptionLine'
 import DepartmentDescription from '~/components/departments/DepartmentDescription'
+import PageHeader from '~/components/layouts/PageHeader.vue'
 const LeafletMap = () => import('~/components/maps/LeafletMap')
 
 export default {
   components: {
+    PageHeader,
     DepartmentDescription,
     LeafletMap,
     DescriptionLine,
@@ -324,7 +315,6 @@ export default {
       mdiMagnify,
       mdiSourceBranch,
       mdiTerrain,
-      mdiArrowLeft,
       mdiOfficeBuildingMarkerOutline,
       mdiCityVariantOutline,
       mdiPoll,

@@ -1,7 +1,10 @@
 <template>
   <div class="full-height d-flex flex-column">
     <div class="flex-shrink-0">
-      <guide-book-paper-page-header />
+      <page-header
+        :title="$t('common.pages.find.guideBooks.map.title')"
+        back-to="/outdoor"
+      />
     </div>
     <div class="flex-grow-1">
       <client-only>
@@ -21,12 +24,12 @@
 
 <script>
 import GuideBookPaperApi from '~/services/oblyk-api/GuideBookPaperApi'
-import GuideBookPaperPageHeader from '~/components/guideBookPapers/layouts/GuideBookPaperPageHeader.vue'
+import PageHeader from '~/components/layouts/PageHeader'
 const LeafletMap = () => import('@/components/maps/LeafletMap')
 
 export default {
   name: 'GymMapView',
-  components: { GuideBookPaperPageHeader, LeafletMap },
+  components: { PageHeader, LeafletMap },
 
   data () {
     return {

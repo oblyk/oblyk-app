@@ -1,31 +1,40 @@
 <template>
-  <client-only>
-    <leaflet-map
-      map-style="outdoor"
-      :geo-jsons="geoJsons"
-      :latitude-force="latitude"
-      :longitude-force="longitude"
-      :zoom-force="zoom"
-      :magic-card="true"
-      :search-place="false"
-      :crag-add-fetching="true"
-      :load-add-features="loadAddFeatures"
-      :loading-crag="loadingCrag"
-      :crag="crag"
-      :crag-map-filter="true"
-      :filter-callback="getGeoJson"
-    />
-  </client-only>
+  <div class="full-height d-flex flex-column">
+    <div class="flex-shrink-0">
+      <page-header
+        :title="crag ? crag.name : $t('components.layout.appDrawer.mapCrags')"
+        :back-to="crag ? crag.path : '/outdoor'"
+      />
+    </div>
+    <div class="flex-grow-1">
+      <client-only>
+        <leaflet-map
+          map-style="outdoor"
+          :geo-jsons="geoJsons"
+          :latitude-force="latitude"
+          :longitude-force="longitude"
+          :zoom-force="zoom"
+          :magic-card="true"
+          :search-place="false"
+          :crag-add-fetching="true"
+          :load-add-features="loadAddFeatures"
+          :crag-map-filter="true"
+          :filter-callback="getGeoJson"
+        />
+      </client-only>
+    </div>
+  </div>
 </template>
 
 <script>
 import CragApi from '@/services/oblyk-api/CragApi'
 import Crag from '~/models/Crag'
+import PageHeader from '~/components/layouts/PageHeader.vue'
 const LeafletMap = () => import('@/components/maps/LeafletMap')
 
 export default {
   name: 'CragMapView',
-  components: { LeafletMap },
+  components: { PageHeader, LeafletMap },
 
   data () {
     return {

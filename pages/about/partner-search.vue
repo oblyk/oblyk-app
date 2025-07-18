@@ -1,5 +1,9 @@
 <template>
   <div>
+    <page-header
+      :title="`${$t('common.pages.partner.title')}, ${$t('common.pages.partner.howIsWork').toLowerCase()}`"
+      back-to="/community"
+    />
     <v-container class="common-page-container">
       <h1 class="text-center mt-5">
         {{ $t('common.pages.partner.title') }}
@@ -132,9 +136,10 @@ import { mdiHuman, mdiMapMarkerRadius, mdiMap, mdiForum } from '@mdi/js'
 import PartnerFigures from '@/components/partners/PartnerFigures'
 import AppFooter from '@/components/layouts/AppFooter'
 import OtherFeatures from '~/components/globals/OtherFeatures'
+import PageHeader from '~/components/layouts/PageHeader'
 
 export default {
-  components: { OtherFeatures, PartnerFigures, AppFooter },
+  components: { PageHeader, OtherFeatures, PartnerFigures, AppFooter },
 
   data () {
     return {

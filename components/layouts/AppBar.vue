@@ -12,7 +12,21 @@
 
     <!-- Search on Oblyk -->
     <client-only>
-      <global-search-dialog activator="text-field" />
+      <div style="width: 400px">
+        <community-global-search
+          v-if="oblykEnvironnement === 'community'"
+          :short-cut-butons="false"
+          mode="dialog"
+        />
+        <indoor-global-search
+          v-else-if="oblykEnvironnement === 'indoor'"
+          mode="dialog"
+        />
+        <outdoor-global-search
+          v-else
+          mode="dialog"
+        />
+      </div>
 
       <!-- Add cross -->
       <v-menu offset-y>
@@ -67,12 +81,17 @@
 
 <script>
 import { mdiPlusBoxOutline, mdiTerrain, mdiOfficeBuildingMarker } from '@mdi/js'
-import GlobalSearchDialog from '~/components/searches/GlobalSearchDialog'
+import { oblykPartner, oblykIndoor } from '~/assets/oblyk-icons'
+const OutdoorGlobalSearch = () => import('~/components/outdoor/OutdoorGlobalSearch')
+const IndoorGlobalSearch = () => import('~/components/indoor/IndoorGlobalSearch')
+const CommunityGlobalSearch = () => import('~/components/community/CommunityGlobalSearch')
 
 export default {
   name: 'AppBar',
   components: {
-    GlobalSearchDialog
+    OutdoorGlobalSearch,
+    IndoorGlobalSearch,
+    CommunityGlobalSearch
   },
 
   props: {
@@ -84,9 +103,21 @@ export default {
 
   data () {
     return {
+      searchIcons: {
+        indoor: oblykIndoor,
+        community: oblykPartner,
+        outdoor: mdiTerrain
+      },
+
       mdiPlusBoxOutline,
       mdiTerrain,
       mdiOfficeBuildingMarker
+    }
+  },
+
+  computed: {
+    oblykEnvironnement () {
+      return this.$store.getters['oblykEnvironment/getOblykEnvironnement']
     }
   }
 }

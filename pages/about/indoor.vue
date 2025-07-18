@@ -1,5 +1,9 @@
 <template>
   <div>
+    <page-header
+      title="Oblyk pour votre salle"
+      back-to="/indoor"
+    />
     <v-container class="indoor-presentation">
       <!-- Title and subtitle -->
       <v-img
@@ -634,9 +638,10 @@ import Gym from '~/models/Gym'
 import GymSmallCard from '~/components/gyms/GymSmallCard'
 import AppFooter from '~/components/layouts/AppFooter'
 import CommonApi from '~/services/oblyk-api/CommonApi'
+import PageHeader from '~/components/layouts/PageHeader.vue'
 
 export default {
-  components: { AppFooter, GymSmallCard },
+  components: { PageHeader, AppFooter, GymSmallCard },
 
   data () {
     return {

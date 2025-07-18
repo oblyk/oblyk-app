@@ -118,27 +118,34 @@ export default {
   },
 
   watch: {
-    '$store.state.theme.theme' () {
-      this.$vuetify.theme.dark = this.$store.getters['theme/getTheme'] === 'dark'
-    },
-
     '$store.state.geolocation.status' () {
       if (this.localizationActivated) {
         this.activateWatchGeolocation()
       } else if (this.watchLocationId !== null) {
         this.deactivateWatchGeolocation()
       }
+    },
+
+    '$route' () {
+      this.setEnvironnement()
     }
+  },
+
+  beforeCreate () {
+    this.$vuetify.theme.dark = this.$store.getters['theme/getTheme'] === 'dark'
   },
 
   created () {
     if (process.client) {
       this.connectCable()
+      this.setEnvironnement()
     }
   },
 
   mounted () {
-    this.$vuetify.theme.dark = this.$store.getters['theme/getTheme'] === 'dark'
+    setTimeout(() => {
+      this.$vuetify.theme.dark = this.$store.getters['theme/getTheme'] === 'dark'
+    }, 300)
     this.updateWorkbox()
     if (this.$store.state.geolocation.status === 'activate') {
       this.activateWatchGeolocation()
@@ -232,6 +239,59 @@ export default {
           this.$store.dispatch('geolocation/deactivateLocation')
         }
       }
+    },
+
+    setEnvironnement () {
+      const route = this.$route.path
+      const indoorPaths = [
+        '/about/indoor',
+        '/ascents/indoor',
+        '/contests',
+        '/find/gyms',
+        '/gr',
+        '/gym',
+        '/home/ascents/indoor',
+        '/home/favorites/gyms',
+        '/indoor',
+        '/maps/gyms'
+      ]
+      const outdoorPaths = [
+        '/areas',
+        '/ascents/outdoor',
+        '/crag',
+        '/escalade',
+        '/find/crags',
+        '/find/guide-books',
+        '/guide-book',
+        '/home/ascents/outdoor',
+        '/home/favorites/crags',
+        '/home/guide-books',
+        '/maps/crags',
+        '/maps/my-map',
+        '/maps/guide-book-papers',
+        '/outdoor'
+      ]
+      const communityPaths = [
+        '/about/partner-search',
+        '/community',
+        '/find/climbers',
+        '/home/messenger',
+        '/maps/climbers'
+      ]
+      const indoorRegex = new RegExp(`^(${indoorPaths.join('|')})`)
+      const outdoorRegex = new RegExp(`^(${outdoorPaths.join('|')})`)
+      const communityRegex = new RegExp(`^(${communityPaths.join('|')})`)
+      let environnement = null
+      if (route.match(indoorRegex)) {
+        environnement = 'indoor'
+      } else if (route.match(communityRegex)) {
+        environnement = 'community'
+      } else if (route.match(outdoorRegex)) {
+        environnement = 'outdoor'
+      } else {
+        environnement = null
+      }
+      this.$store.dispatch('oblykEnvironment/changeOblykEnvironnement', environnement)
     }
   }
 }

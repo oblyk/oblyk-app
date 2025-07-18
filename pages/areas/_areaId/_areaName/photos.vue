@@ -1,24 +1,30 @@
 <template>
-  <photo-gallery
-    v-if="area"
-    environnement-type="area"
-    :environnement-object="area"
-    gallery-type="Area"
-    :gallery-id="area.id"
-  />
+  <div>
+    <skeleton-loader-page-head v-if="$fetchState.pending" />
+    <div v-else>
+      <area-page-header :area="area" />
+      <v-container class="area-container">
+        <photo-gallery
+          v-if="area"
+          environnement-type="area"
+          :environnement-object="area"
+          gallery-type="Area"
+          :gallery-id="area.id"
+        />
+      </v-container>
+    </div>
+  </div>
 </template>
 
 <script>
+import { AreaConcern } from '~/concerns/AreaConcern'
 import PhotoGallery from '@/components/photos/PhotoGallery'
+import SkeletonLoaderPageHead from '~/components/layouts/SkeletonLoaderPageHead'
+import AreaPageHeader from '~/components/areas/layouts/AreaPageHeader.vue'
 
 export default {
-  components: { PhotoGallery },
-  props: {
-    area: {
-      type: Object,
-      required: true
-    }
-  },
+  components: { AreaPageHeader, SkeletonLoaderPageHead, PhotoGallery },
+  mixins: [AreaConcern],
 
   data () {
     return {
@@ -69,7 +75,7 @@ export default {
         {
           hid: 'og:url',
           property: 'og:url',
-          content: `${process.env.VUE_APP_OBLYK_APP_URL}${this.area.path}/photos`
+          content: `${process.env.VUE_APP_OBLYK_APP_URL}${this.area?.path}/photos`
         }
       ]
     }

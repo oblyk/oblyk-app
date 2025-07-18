@@ -1,7 +1,7 @@
 <template>
   <client-only v-if="$auth.loggedIn">
     <v-btn
-      class="subscribe-btn"
+      class="subscribe-btn rounded-sm"
       :block="block"
       :outlined="large || outlined"
       :icon="!large"
@@ -13,6 +13,7 @@
       @click.prevent="changeSubscription()"
     >
       <v-icon
+        v-if="!hideIcon"
         :left="large"
         :color="color()"
         :small="small"
@@ -94,6 +95,10 @@ export default {
       required: false
     },
     small: {
+      type: Boolean,
+      default: false
+    },
+    hideIcon: {
       type: Boolean,
       default: false
     }

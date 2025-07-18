@@ -2,7 +2,7 @@
   <div>
     <page-header
       :title="$t('components.layout.appDrawer.user.guideBooks')"
-      back-to="/home"
+      back-to="/outdoor"
     />
 
     <spinner v-if="!currentUser" />

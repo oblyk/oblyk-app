@@ -1,27 +1,34 @@
 <template>
   <div>
-    <v-skeleton-loader
-      v-if="loadingCrags"
-      class="mb-3"
-      type="text, text, text"
-    />
-    <area-crags
-      v-if="!loadingCrags"
-      :crags-data="crags"
-      :area="area"
-    />
+    <skeleton-loader-page-head v-if="$fetchState.pending" />
+    <div v-else>
+      <area-page-header :area="area" />
+      <v-container class="area-container">
+        <v-skeleton-loader
+          v-if="loadingCrags"
+          class="mb-3"
+          type="text, text, text"
+        />
+        <area-crags
+          v-if="!loadingCrags"
+          :crags-data="crags"
+          :area="area"
+        />
+      </v-container>
+    </div>
   </div>
 </template>
 
 <script>
+import { AreaConcern } from '~/concerns/AreaConcern'
 import AreaApi from '@/services/oblyk-api/AreaApi'
 import AreaCrags from '@/components/areas/AreaCrags'
+import AreaPageHeader from '~/components/areas/layouts/AreaPageHeader.vue'
+import SkeletonLoaderPageHead from '~/components/layouts/SkeletonLoaderPageHead.vue'
 
 export default {
-  components: { AreaCrags },
-  props: {
-    area: { type: Object, required: true }
-  },
+  components: { SkeletonLoaderPageHead, AreaPageHeader, AreaCrags },
+  mixins: [AreaConcern],
 
   data () {
     return {
@@ -73,7 +80,7 @@ export default {
       this.crags = []
       this.loadingCrags = true
       new AreaApi(this.$axios, this.$auth)
-        .cragsFigures(this.area.id)
+        .cragsFigures(this.$route.params.areaId)
         .then((resp) => {
           this.crags = resp.data
         })

@@ -9,6 +9,7 @@
     <v-btn
       aria-label="Open menu"
       value="menu"
+      :class="haveNewNotification ? 'new-notification-badge' : null"
       @click="inverseDrawer"
     >
       <span>
@@ -18,53 +19,48 @@
         {{ mdiMenu }}
       </v-icon>
     </v-btn>
-    <v-menu
-      v-if="$auth.loggedIn"
+    <v-btn
+      to="/indoor"
+      value="indoor"
+      class="indoor-btn"
     >
-      <template #activator="{ on, attrs }">
-        <v-btn
-          icon
-          aria-label="Add cross"
-          :title="$t('components.layout.appBar.addCross')"
-          v-bind="attrs"
-          v-on="on"
-        >
-          <span>
-            {{ $t('actions.add') }}
-          </span>
-          <v-icon>
-            {{ mdiPlusBoxOutline }}
-          </v-icon>
-        </v-btn>
-      </template>
-      <v-list>
-        <v-list-item to="/ascents/outdoor/new">
-          <v-list-item-icon>
-            <v-icon>
-              {{ mdiTerrain }}
-            </v-icon>
-          </v-list-item-icon>
-          <v-list-item-title
-            v-html="$t('components.layout.appDrawer.user.ascents.addOutdoorAscents')"
-          />
-        </v-list-item>
-        <v-list-item to="/ascents/indoor/new">
-          <v-list-item-icon>
-            <v-icon>
-              {{ mdiOfficeBuildingMarker }}
-            </v-icon>
-          </v-list-item-icon>
-          <v-list-item-title
-            v-html="$t('components.layout.appDrawer.user.ascents.addIndoorAscents')"
-          />
-        </v-list-item>
-      </v-list>
-    </v-menu>
+      <span>
+        Indoor
+      </span>
+      <v-icon :color="oblykEnvironnement === 'indoor' ? '#743ad5' : 'primary'">
+        {{ oblykIndoor }}
+      </v-icon>
+    </v-btn>
+
+    <v-btn
+      to="/outdoor"
+      value="outdoor"
+      class="outdoor-btn"
+    >
+      <span>
+        Outdoor
+      </span>
+      <v-icon :color="oblykEnvironnement === 'outdoor' ? '#31994e' : 'primary'">
+        {{ mdiTerrain }}
+      </v-icon>
+    </v-btn>
+
+    <v-btn
+      to="/community"
+      value="community"
+      class="community-btn"
+    >
+      <span>
+        Commu'
+      </span>
+      <v-icon :color="oblykEnvironnement === 'community' ? '#007b8b' : 'primary'">
+        {{ oblykPartner }}
+      </v-icon>
+    </v-btn>
 
     <v-btn
       :to="$auth.loggedIn ? '/home' : '/'"
       value="home"
-      @click="clicHome"
     >
       <span>
         {{ $t('components.layout.appDrawer.home') }}
@@ -83,60 +79,15 @@
         />
       </svg>
     </v-btn>
-    <global-search-dialog icon-with-title />
-    <v-menu
-      :position-y="0"
-      bottom
-      left
-    >
-      <template #activator="{ on, attrs }">
-        <v-btn
-          aria-label="open user menu"
-          :class="haveNewNotification ? 'new-notification-badge' : ''"
-          :title="$t('components.layout.appDrawer.toolBar.account')"
-          v-bind="attrs"
-          v-on="on"
-        >
-          <span>
-            {{ $t('components.layout.appBar.account') }}
-          </span>
-          <v-icon>
-            {{ mdiAccountCircleOutline }}
-          </v-icon>
-        </v-btn>
-      </template>
-
-      <v-list>
-        <lazy-hydrate on-interaction>
-          <app-bar-profil />
-        </lazy-hydrate>
-        <login-logout-btn />
-      </v-list>
-    </v-menu>
   </v-bottom-navigation>
 </template>
 
 <script>
-import {
-  mdiMenu,
-  mdiPlusBoxOutline,
-  mdiAccountCircleOutline,
-  mdiTerrain,
-  mdiOfficeBuildingMarker
-} from '@mdi/js'
-import LazyHydrate from 'vue-lazy-hydration'
-import GlobalSearchDialog from '~/components/searches/GlobalSearchDialog'
-import AppBarProfil from '~/components/layouts/partial/AppBarProfile'
-import LoginLogoutBtn from '~/components/layouts/partial/LoginLogoutBtn'
+import { mdiMenu, mdiTerrain, mdiCircle } from '@mdi/js'
+import { oblykIndoor, oblykPartner } from '~/assets/oblyk-icons'
 
 export default {
   name: 'AppBottomNavigation',
-  components: {
-    LoginLogoutBtn,
-    AppBarProfil,
-    GlobalSearchDialog,
-    LazyHydrate
-  },
   props: {
     inverseDrawer: {
       type: Function,
@@ -148,15 +99,19 @@ export default {
     return {
       oblykLogoClass: 'oblyk-white',
 
+      mdiCircle,
       mdiMenu,
-      mdiPlusBoxOutline,
-      mdiAccountCircleOutline,
       mdiTerrain,
-      mdiOfficeBuildingMarker
+      oblykIndoor,
+      oblykPartner
     }
   },
 
   computed: {
+    oblykEnvironnement () {
+      return this.$store.getters['oblykEnvironment/getOblykEnvironnement']
+    },
+
     haveNewNotification () {
       return this.$store.state.notification.newNotification
     },
@@ -170,14 +125,6 @@ export default {
         'iPhone',
         'iPod'
       ].includes(navigator.platform) || (navigator.userAgent.includes('Mac') && 'ontouchend' in document)
-    }
-  },
-
-  methods: {
-    clicHome () {
-      this.oblykLogoClass = 'oblyk-green'
-      setTimeout(() => { this.oblykLogoClass = 'stroke-transition oblyk-white' }, 100)
-      setTimeout(() => { this.oblykLogoClass = 'oblyk-white' }, 2100)
     }
   }
 }
@@ -193,8 +140,15 @@ export default {
     }
   }
   .v-btn {
-    span {
+    span:not(.v-icon) {
       color: white !important;
+    }
+  }
+  .new-notification-badge {
+    .v-icon {
+      &:before {
+        border-color: #121212;
+      }
     }
   }
 }
@@ -205,8 +159,15 @@ export default {
     }
   }
   .v-btn {
-    span {
+    span:not(.v-icon) {
       color: black !important;
+    }
+  }
+  .new-notification-badge {
+    .v-icon {
+      &:before {
+        border-color: #ffffff;
+      }
     }
   }
 }
@@ -225,35 +186,43 @@ export default {
   z-index: 5 !important;
   .v-btn {
     min-width: 65px !important;
-    span {
+    span:not(.v-icon) {
       color: white !important;
     }
   }
   .oblyk-bottom-navigation-logo {
     margin-top: -3px;
-    path {
-      will-change: stroke;
-    }
-    &.oblyk-green path {
-      stroke: #31994e
-    }
-    &.stroke-transition path {
-      transition: stroke 2s;
-    }
   }
   .new-notification-badge {
     .v-icon {
       &:before {
         content: '';
-        height: 9px;
-        width: 9px;
+        height: 16px;
+        width: 16px;
         background-color: rgb(244, 67, 54);
+        border-style: solid;
+        border-width: 3px;
         border-radius: 50%;
         position: absolute;
-        top: 0;
-        right: 0;
+        top: -3px;
+        right: -6px;
+        animation: notification-pulse-animation 3s infinite;
       }
     }
+  }
+}
+@keyframes notification-pulse-animation {
+  0% {
+    transform: scale(100%);
+    background-color: rgb(244, 67, 54);
+  }
+  25% {
+    transform: scale(120%);
+    background-color: rgb(255, 99, 89);
+  }
+  100% {
+    transform: scale(100%);
+    background-color: rgb(244, 67, 54);
   }
 }
 </style>

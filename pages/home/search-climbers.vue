@@ -2,7 +2,7 @@
   <div>
     <page-header
       :title="$t('components.user.myPartnerSearch')"
-      back-to="/home"
+      back-to="/community"
     />
     <v-container class="mt-4" style="max-width: 800px;">
       <div v-if="!firstLoadingClimbers">

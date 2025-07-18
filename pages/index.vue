@@ -10,12 +10,20 @@ export default {
     Home
   },
 
-  middleware ({ store, redirect }) {
-    // If the user is authenticated
-    if (store.state.auth.loggedIn) {
-      return redirect('/home')
-    }
-  },
+  // middleware ({ store, redirect }) {
+  //   // If the user is authenticated
+  //   if (store.state.auth.loggedIn) {
+  //     if (store.state.oblykEnvironment.oblykEnvironment === 'outdoor') {
+  //       return redirect('/outdoor')
+  //     } else if (store.state.oblykEnvironment.oblykEnvironment === 'indoor') {
+  //       return redirect('/indoor')
+  //     } else if (store.state.oblykEnvironment.oblykEnvironment === 'community') {
+  //       return redirect('/community')
+  //     } else {
+  //       return redirect('/home')
+  //     }
+  //   }
+  // },
 
   head () {
     return {
@@ -31,7 +39,16 @@ export default {
 
   beforeCreate () {
     if (this.$auth.loggedIn) {
-      this.$router.replace('/home')
+      const environnement = this.$store.getters['oblykEnvironment/getOblykEnvironnement']
+      if (environnement === 'outdoor') {
+        this.$router.replace('/outdoor')
+      } else if (environnement === 'indoor') {
+        this.$router.replace('/indoor')
+      } else if (environnement === 'community') {
+        this.$router.replace('/community')
+      } else {
+        this.$router.replace('/home')
+      }
     }
   },
 

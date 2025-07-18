@@ -1,13 +1,11 @@
 <template>
   <div>
-    <h3 class="mb-2">
-      <v-icon
-        class="mr-2 mb-2"
-      >
+    <p class="mb-1 font-weight-medium">
+      <v-icon color="primary" left class="vertical-align-top">
         {{ mdiAccountMultipleCheckOutline }}
       </v-icon>
       {{ $t('components.user.myPartnerSearch') }}
-    </h3>
+    </p>
     <v-sheet class="rounded pa-4">
       <v-row>
         <v-col cols="12" md="4" lg="2">
@@ -124,7 +122,7 @@
           <v-card
             width="100"
             class="d-inline-block light-primary-hoverable pt-2"
-            to="/home/settings/partner"
+            to="/home/settings/partner?back_to=/community"
           >
             <v-btn
               icon

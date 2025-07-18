@@ -1,445 +1,451 @@
 <template>
-  <v-container>
-    <h1 class="text-center mt-5 mb-10">
-      {{ $t('common.pages.cragSearch.title') }}
-    </h1>
+  <div>
+    <page-header
+      :title="$t('common.pages.cragSearch.title')"
+      back-to="/outdoor"
+    />
+    <v-container>
+      <h1 class="text-center mt-5 mb-10">
+        {{ $t('common.pages.cragSearch.title') }}
+      </h1>
 
-    <!-- City -->
-    <v-card class="mb-3">
-      <v-card-title class="pb-2">
-        {{ $t('common.pages.cragSearch.localisation') }}
-      </v-card-title>
-      <v-card-text>
-        <search-place-input v-model="localisation" />
-        <p
-          v-if="localisation"
-          class="mb-0 mt-3 pl-1"
-        >
-          <v-icon class="mr-1 vertical-align-top">
-            {{ mdiTarget }}
-          </v-icon>
-          {{ distance }}{{ $t('common.pages.cragSearch.kmAround') }} {{ localisation.postCode }} {{ localisation.city }}
-          <cite class="text--disabled">
-            ({{ localisation.regions }}, {{ localisation.country }})
-          </cite>
-        </p>
-      </v-card-text>
-    </v-card>
-
-    <!-- Climbing type -->
-    <v-card
-      v-if="climbingTypeFilter"
-      class="mb-3"
-    >
-      <v-card-title class="pb-1 pt-2 text-body-1 font-weight-medium">
-        <v-icon small left>
-          {{ mdiTerrain }}
-        </v-icon>
-        {{ $t('common.pages.cragSearch.whichType') }}
-        <v-spacer />
-        <v-btn
-          icon
-          left
-          @click="closeFilter('climbingTypeFilter')"
-        >
-          <v-icon>
-            {{ mdiWindowClose }}
-          </v-icon>
-        </v-btn>
-      </v-card-title>
-      <v-card-text>
-        <v-chip-group
-          v-model="climbingTypes"
-          column
-          multiple
-        >
-          <v-chip
-            v-for="(climbingType, climbingTypeIndex) in availableClimbingTypes"
-            :key="`climbing-type-${climbingTypeIndex}`"
-            filter
-            outlined
-            :value="climbingType.value"
+      <!-- City -->
+      <v-card class="mb-3">
+        <v-card-title class="pb-2">
+          {{ $t('common.pages.cragSearch.localisation') }}
+        </v-card-title>
+        <v-card-text>
+          <search-place-input v-model="localisation" />
+          <p
+            v-if="localisation"
+            class="mb-0 mt-3 pl-1"
           >
-            {{ climbingType.text }}
-          </v-chip>
-        </v-chip-group>
-      </v-card-text>
-    </v-card>
-
-    <!-- Grade min / max -->
-    <v-card
-      v-if="gradeFilter"
-      class="mb-3"
-    >
-      <v-card-title class="pb-1 pt-2 text-body-1 font-weight-medium">
-        <v-icon small left>
-          {{ mdiNumeric7BoxMultipleOutline }}
-        </v-icon>
-        {{ $t('common.pages.cragSearch.whichLevel') }}
-        <v-spacer />
-        <v-btn
-          icon
-          left
-          @click="closeFilter('gradeFilter')"
-        >
-          <v-icon>
-            {{ mdiWindowClose }}
-          </v-icon>
-        </v-btn>
-      </v-card-title>
-      <v-card-text>
-        <v-row>
-          <v-col cols="8" md="3" class="pt-5 text-right" v-html="$t('common.pages.cragSearch.cragMustContain')" />
-          <v-col cols="4" md="2">
-            <v-select
-              v-model="minGrade"
-              :items="gradeWithoutWeightings"
-              dense
-              outlined
-              hide-details
-            />
-          </v-col>
-          <v-col
-            cols="8"
-            md="1"
-            class="pt-5 text-right font-weight-bold"
-          >
-            {{ $t('common.and') }} :
-          </v-col>
-          <v-col
-            cols="4"
-            md="2"
-          >
-            <v-select
-              v-model="maxGrade"
-              :items="gradeWithoutWeightings"
-              dense
-              outlined
-              hide-details
-            />
-          </v-col>
-        </v-row>
-      </v-card-text>
-    </v-card>
-
-    <!-- Orientation -->
-    <v-card
-      v-if="orientationFilter"
-      class="mb-3"
-    >
-      <v-card-title class="pb-1 pt-2 text-body-1 font-weight-medium">
-        <v-icon small left>
-          {{ mdiCompass }}
-        </v-icon>
-        {{ $t('common.pages.cragSearch.whichOrientation') }}
-        <v-spacer />
-        <v-btn
-          icon
-          left
-          @click="closeFilter('orientationFilter')"
-        >
-          <v-icon>
-            {{ mdiWindowClose }}
-          </v-icon>
-        </v-btn>
-      </v-card-title>
-      <v-card-text>
-        <v-chip-group
-          v-model="orientations"
-          column
-          multiple
-        >
-          <v-chip
-            v-for="(orientation, orientationIndex) in availableOrientations"
-            :key="`orientation-${orientationIndex}`"
-            filter
-            outlined
-            :value="orientation.value"
-            :filter-icon="orientation.icon"
-          >
-            {{ orientation.text }}
-          </v-chip>
-        </v-chip-group>
-      </v-card-text>
-    </v-card>
-
-    <!-- Approach time -->
-    <v-card
-      v-if="approachTimeFilter"
-      class="mb-3"
-    >
-      <v-card-title class="pb-1 pt-2 text-body-1 font-weight-medium">
-        <v-icon small left>
-          {{ mdiFlower }}
-        </v-icon>
-        {{ $t('common.pages.cragSearch.approachMaxTime') }}
-        <v-spacer />
-        <v-btn
-          icon
-          left
-          @click="closeFilter('approachTimeFilter')"
-        >
-          <v-icon>
-            {{ mdiWindowClose }}
-          </v-icon>
-        </v-btn>
-      </v-card-title>
-      <v-card-text>
-        <v-row>
-          <v-col cols="3" md="1" class="pr-0">
-            <v-text-field
-              v-model="maxApproachTime"
-              dense
-              outlined
-              hide-details
-            />
-          </v-col>
-          <v-col cols="9" md="10" class="pt-lg-5" v-html="$t('common.pages.cragSearch.minutesToReach')" />
-        </v-row>
-      </v-card-text>
-    </v-card>
-
-    <!-- Season -->
-    <v-card
-      v-if="seasonFilter"
-      class="mb-3"
-    >
-      <v-card-title class="pb-1 pt-2 text-body-1 font-weight-medium">
-        <v-icon small left>
-          {{ mdiFlower }}
-        </v-icon>
-        {{ $t('common.pages.cragSearch.whichSeason') }}
-        <v-spacer />
-        <v-btn
-          icon
-          left
-          @click="closeFilter('seasonFilter')"
-        >
-          <v-icon>
-            {{ mdiWindowClose }}
-          </v-icon>
-        </v-btn>
-      </v-card-title>
-      <v-card-text>
-        <v-chip-group
-          v-model="seasons"
-          column
-          multiple
-        >
-          <v-chip
-            v-for="(season, seasonIndex) in availableSeasons"
-            :key="`season-${seasonIndex}`"
-            filter
-            outlined
-            :value="season.value"
-            :filter-icon="season.icon"
-          >
-            {{ season.text }}
-          </v-chip>
-        </v-chip-group>
-      </v-card-text>
-    </v-card>
-
-    <div class="text-right mt-2 mb-3">
-      <v-dialog
-        v-model="filterModal"
-        width="400"
-      >
-        <template #activator="{ on, attrs }">
-          <v-btn
-            text
-            color="primary"
-            v-bind="attrs"
-            v-on="on"
-          >
-            <v-icon left>
-              {{ mdiFilterPlus }}
+            <v-icon class="mr-1 vertical-align-top">
+              {{ mdiTarget }}
             </v-icon>
-            {{ $t('actions.addFilters') }}
-          </v-btn>
-        </template>
-        <v-card>
-          <v-card-title>
-            {{ $t('common.pages.cragSearch.chooseYourFilters') }}
-          </v-card-title>
-          <v-list
-            flat
-            subheader
-            three-line
+            {{ distance }}{{ $t('common.pages.cragSearch.kmAround') }} {{ localisation.postCode }} {{ localisation.city }}
+            <cite class="text--disabled">
+              ({{ localisation.regions }}, {{ localisation.country }})
+            </cite>
+          </p>
+        </v-card-text>
+      </v-card>
+
+      <!-- Climbing type -->
+      <v-card
+        v-if="climbingTypeFilter"
+        class="mb-3"
+      >
+        <v-card-title class="pb-1 pt-2 text-body-1 font-weight-medium">
+          <v-icon small left>
+            {{ mdiTerrain }}
+          </v-icon>
+          {{ $t('common.pages.cragSearch.whichType') }}
+          <v-spacer />
+          <v-btn
+            icon
+            left
+            @click="closeFilter('climbingTypeFilter')"
           >
-            <v-list-item-group
-              v-model="filters"
-              multiple
+            <v-icon>
+              {{ mdiWindowClose }}
+            </v-icon>
+          </v-btn>
+        </v-card-title>
+        <v-card-text>
+          <v-chip-group
+            v-model="climbingTypes"
+            column
+            multiple
+          >
+            <v-chip
+              v-for="(climbingType, climbingTypeIndex) in availableClimbingTypes"
+              :key="`climbing-type-${climbingTypeIndex}`"
+              filter
+              outlined
+              :value="climbingType.value"
             >
-              <v-list-item>
-                <template #default="{ active }">
-                  <v-list-item-action>
-                    <v-checkbox :input-value="active" />
-                  </v-list-item-action>
+              {{ climbingType.text }}
+            </v-chip>
+          </v-chip-group>
+        </v-card-text>
+      </v-card>
 
-                  <v-list-item-content>
-                    <v-list-item-title>
-                      <v-icon left>
-                        {{ mdiTerrain }}
-                      </v-icon>
-                      {{ $t('common.pages.cragSearch.filters.climbingType.title') }}
-                    </v-list-item-title>
-                    <v-list-item-subtitle>
-                      {{ $t('common.pages.cragSearch.filters.climbingType.subtitle') }}
-                    </v-list-item-subtitle>
-                  </v-list-item-content>
-                </template>
-              </v-list-item>
-
-              <v-list-item>
-                <template #default="{ active }">
-                  <v-list-item-action>
-                    <v-checkbox :input-value="active" />
-                  </v-list-item-action>
-
-                  <v-list-item-content>
-                    <v-list-item-title>
-                      <v-icon left>
-                        {{ mdiNumeric7BoxMultipleOutline }}
-                      </v-icon>
-                      {{ $t('common.pages.cragSearch.filters.grade.title') }}
-                    </v-list-item-title>
-                    <v-list-item-subtitle>
-                      {{ $t('common.pages.cragSearch.filters.grade.subtitle') }}
-                    </v-list-item-subtitle>
-                  </v-list-item-content>
-                </template>
-              </v-list-item>
-
-              <v-list-item>
-                <template #default="{ active }">
-                  <v-list-item-action>
-                    <v-checkbox :input-value="active" />
-                  </v-list-item-action>
-
-                  <v-list-item-content>
-                    <v-list-item-title>
-                      <v-icon left small>
-                        {{ mdiCompass }}
-                      </v-icon>
-                      {{ $t('common.pages.cragSearch.filters.orientation.title') }}
-                    </v-list-item-title>
-                    <v-list-item-subtitle>
-                      {{ $t('common.pages.cragSearch.filters.orientation.subtitle') }}
-                    </v-list-item-subtitle>
-                  </v-list-item-content>
-                </template>
-              </v-list-item>
-
-              <v-list-item>
-                <template #default="{ active }">
-                  <v-list-item-action>
-                    <v-checkbox :input-value="active" />
-                  </v-list-item-action>
-
-                  <v-list-item-content>
-                    <v-list-item-title>
-                      <v-icon left>
-                        {{ mdiWalk }}
-                      </v-icon>
-                      {{ $t('common.pages.cragSearch.filters.approach.title') }}
-                    </v-list-item-title>
-                    <v-list-item-subtitle>
-                      {{ $t('common.pages.cragSearch.filters.approach.subtitle') }}
-                    </v-list-item-subtitle>
-                  </v-list-item-content>
-                </template>
-              </v-list-item>
-
-              <v-list-item>
-                <template #default="{ active }">
-                  <v-list-item-action>
-                    <v-checkbox :input-value="active" />
-                  </v-list-item-action>
-
-                  <v-list-item-content>
-                    <v-list-item-title>
-                      <v-icon left>
-                        {{ mdiFlower }}
-                      </v-icon>
-                      {{ $t('common.pages.cragSearch.filters.season.title') }}
-                    </v-list-item-title>
-                    <v-list-item-subtitle>
-                      {{ $t('common.pages.cragSearch.filters.season.subtitle') }}
-                    </v-list-item-subtitle>
-                  </v-list-item-content>
-                </template>
-              </v-list-item>
-            </v-list-item-group>
-          </v-list>
-          <v-card-actions>
-            <v-spacer />
-            <v-btn
-              elevation="0"
-              color="primary"
-              @click="filterModal = false"
+      <!-- Grade min / max -->
+      <v-card
+        v-if="gradeFilter"
+        class="mb-3"
+      >
+        <v-card-title class="pb-1 pt-2 text-body-1 font-weight-medium">
+          <v-icon small left>
+            {{ mdiNumeric7BoxMultipleOutline }}
+          </v-icon>
+          {{ $t('common.pages.cragSearch.whichLevel') }}
+          <v-spacer />
+          <v-btn
+            icon
+            left
+            @click="closeFilter('gradeFilter')"
+          >
+            <v-icon>
+              {{ mdiWindowClose }}
+            </v-icon>
+          </v-btn>
+        </v-card-title>
+        <v-card-text>
+          <v-row>
+            <v-col cols="8" md="3" class="pt-5 text-right" v-html="$t('common.pages.cragSearch.cragMustContain')" />
+            <v-col cols="4" md="2">
+              <v-select
+                v-model="minGrade"
+                :items="gradeWithoutWeightings"
+                dense
+                outlined
+                hide-details
+              />
+            </v-col>
+            <v-col
+              cols="8"
+              md="1"
+              class="pt-5 text-right font-weight-bold"
             >
-              {{ $t('actions.close') }}
-            </v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-dialog>
-      <v-btn
-        :loading="loading"
-        color="primary"
-        elevation="0"
-        @click="search"
+              {{ $t('common.and') }} :
+            </v-col>
+            <v-col
+              cols="4"
+              md="2"
+            >
+              <v-select
+                v-model="maxGrade"
+                :items="gradeWithoutWeightings"
+                dense
+                outlined
+                hide-details
+              />
+            </v-col>
+          </v-row>
+        </v-card-text>
+      </v-card>
+
+      <!-- Orientation -->
+      <v-card
+        v-if="orientationFilter"
+        class="mb-3"
       >
-        {{ $t('actions.search') }}
-      </v-btn>
-    </div>
-    <div v-if="crags">
-      <crags-table
-        v-if="Object.keys(crags.crag_with_levels).length > 0"
-        :crags-data="crags.crag_with_levels"
-        :route-figures="crags.route_figures"
-        :centre-coordinate="[latitude, longitude]"
-      />
-      <p
-        v-else
-        class="text-center mt-5 mb-5 text--disabled"
+        <v-card-title class="pb-1 pt-2 text-body-1 font-weight-medium">
+          <v-icon small left>
+            {{ mdiCompass }}
+          </v-icon>
+          {{ $t('common.pages.cragSearch.whichOrientation') }}
+          <v-spacer />
+          <v-btn
+            icon
+            left
+            @click="closeFilter('orientationFilter')"
+          >
+            <v-icon>
+              {{ mdiWindowClose }}
+            </v-icon>
+          </v-btn>
+        </v-card-title>
+        <v-card-text>
+          <v-chip-group
+            v-model="orientations"
+            column
+            multiple
+          >
+            <v-chip
+              v-for="(orientation, orientationIndex) in availableOrientations"
+              :key="`orientation-${orientationIndex}`"
+              filter
+              outlined
+              :value="orientation.value"
+              :filter-icon="orientation.icon"
+            >
+              {{ orientation.text }}
+            </v-chip>
+          </v-chip-group>
+        </v-card-text>
+      </v-card>
+
+      <!-- Approach time -->
+      <v-card
+        v-if="approachTimeFilter"
+        class="mb-3"
       >
-        {{ $t('common.pages.cragSearch.noResults', { distance: distance, city: localisation.city }) }}
-      </p>
-      <div>
-        <p class="mt-4 mb-0">
-          <u>
-            {{ $t('common.pages.cragSearch.expandTo') }}
-          </u>
-        </p>
-        <v-chip-group
-          v-if="!loading"
-          v-model="distance"
-          mandatory
-          active-class="primary--text"
+        <v-card-title class="pb-1 pt-2 text-body-1 font-weight-medium">
+          <v-icon small left>
+            {{ mdiFlower }}
+          </v-icon>
+          {{ $t('common.pages.cragSearch.approachMaxTime') }}
+          <v-spacer />
+          <v-btn
+            icon
+            left
+            @click="closeFilter('approachTimeFilter')"
+          >
+            <v-icon>
+              {{ mdiWindowClose }}
+            </v-icon>
+          </v-btn>
+        </v-card-title>
+        <v-card-text>
+          <v-row>
+            <v-col cols="3" md="1" class="pr-0">
+              <v-text-field
+                v-model="maxApproachTime"
+                dense
+                outlined
+                hide-details
+              />
+            </v-col>
+            <v-col cols="9" md="10" class="pt-lg-5" v-html="$t('common.pages.cragSearch.minutesToReach')" />
+          </v-row>
+        </v-card-text>
+      </v-card>
+
+      <!-- Season -->
+      <v-card
+        v-if="seasonFilter"
+        class="mb-3"
+      >
+        <v-card-title class="pb-1 pt-2 text-body-1 font-weight-medium">
+          <v-icon small left>
+            {{ mdiFlower }}
+          </v-icon>
+          {{ $t('common.pages.cragSearch.whichSeason') }}
+          <v-spacer />
+          <v-btn
+            icon
+            left
+            @click="closeFilter('seasonFilter')"
+          >
+            <v-icon>
+              {{ mdiWindowClose }}
+            </v-icon>
+          </v-btn>
+        </v-card-title>
+        <v-card-text>
+          <v-chip-group
+            v-model="seasons"
+            column
+            multiple
+          >
+            <v-chip
+              v-for="(season, seasonIndex) in availableSeasons"
+              :key="`season-${seasonIndex}`"
+              filter
+              outlined
+              :value="season.value"
+              :filter-icon="season.icon"
+            >
+              {{ season.text }}
+            </v-chip>
+          </v-chip-group>
+        </v-card-text>
+      </v-card>
+
+      <div class="text-right mt-2 mb-3">
+        <v-dialog
+          v-model="filterModal"
+          width="400"
         >
-          <v-chip :value="10">
-            10km
-          </v-chip>
-          <v-chip :value="20">
-            20km
-          </v-chip>
-          <v-chip :value="30">
-            30km
-          </v-chip>
-          <v-chip :value="40">
-            40km
-          </v-chip>
-        </v-chip-group>
+          <template #activator="{ on, attrs }">
+            <v-btn
+              text
+              color="primary"
+              v-bind="attrs"
+              v-on="on"
+            >
+              <v-icon left>
+                {{ mdiFilterPlus }}
+              </v-icon>
+              {{ $t('actions.addFilters') }}
+            </v-btn>
+          </template>
+          <v-card>
+            <v-card-title>
+              {{ $t('common.pages.cragSearch.chooseYourFilters') }}
+            </v-card-title>
+            <v-list
+              flat
+              subheader
+              three-line
+            >
+              <v-list-item-group
+                v-model="filters"
+                multiple
+              >
+                <v-list-item>
+                  <template #default="{ active }">
+                    <v-list-item-action>
+                      <v-checkbox :input-value="active" />
+                    </v-list-item-action>
+
+                    <v-list-item-content>
+                      <v-list-item-title>
+                        <v-icon left>
+                          {{ mdiTerrain }}
+                        </v-icon>
+                        {{ $t('common.pages.cragSearch.filters.climbingType.title') }}
+                      </v-list-item-title>
+                      <v-list-item-subtitle>
+                        {{ $t('common.pages.cragSearch.filters.climbingType.subtitle') }}
+                      </v-list-item-subtitle>
+                    </v-list-item-content>
+                  </template>
+                </v-list-item>
+
+                <v-list-item>
+                  <template #default="{ active }">
+                    <v-list-item-action>
+                      <v-checkbox :input-value="active" />
+                    </v-list-item-action>
+
+                    <v-list-item-content>
+                      <v-list-item-title>
+                        <v-icon left>
+                          {{ mdiNumeric7BoxMultipleOutline }}
+                        </v-icon>
+                        {{ $t('common.pages.cragSearch.filters.grade.title') }}
+                      </v-list-item-title>
+                      <v-list-item-subtitle>
+                        {{ $t('common.pages.cragSearch.filters.grade.subtitle') }}
+                      </v-list-item-subtitle>
+                    </v-list-item-content>
+                  </template>
+                </v-list-item>
+
+                <v-list-item>
+                  <template #default="{ active }">
+                    <v-list-item-action>
+                      <v-checkbox :input-value="active" />
+                    </v-list-item-action>
+
+                    <v-list-item-content>
+                      <v-list-item-title>
+                        <v-icon left small>
+                          {{ mdiCompass }}
+                        </v-icon>
+                        {{ $t('common.pages.cragSearch.filters.orientation.title') }}
+                      </v-list-item-title>
+                      <v-list-item-subtitle>
+                        {{ $t('common.pages.cragSearch.filters.orientation.subtitle') }}
+                      </v-list-item-subtitle>
+                    </v-list-item-content>
+                  </template>
+                </v-list-item>
+
+                <v-list-item>
+                  <template #default="{ active }">
+                    <v-list-item-action>
+                      <v-checkbox :input-value="active" />
+                    </v-list-item-action>
+
+                    <v-list-item-content>
+                      <v-list-item-title>
+                        <v-icon left>
+                          {{ mdiWalk }}
+                        </v-icon>
+                        {{ $t('common.pages.cragSearch.filters.approach.title') }}
+                      </v-list-item-title>
+                      <v-list-item-subtitle>
+                        {{ $t('common.pages.cragSearch.filters.approach.subtitle') }}
+                      </v-list-item-subtitle>
+                    </v-list-item-content>
+                  </template>
+                </v-list-item>
+
+                <v-list-item>
+                  <template #default="{ active }">
+                    <v-list-item-action>
+                      <v-checkbox :input-value="active" />
+                    </v-list-item-action>
+
+                    <v-list-item-content>
+                      <v-list-item-title>
+                        <v-icon left>
+                          {{ mdiFlower }}
+                        </v-icon>
+                        {{ $t('common.pages.cragSearch.filters.season.title') }}
+                      </v-list-item-title>
+                      <v-list-item-subtitle>
+                        {{ $t('common.pages.cragSearch.filters.season.subtitle') }}
+                      </v-list-item-subtitle>
+                    </v-list-item-content>
+                  </template>
+                </v-list-item>
+              </v-list-item-group>
+            </v-list>
+            <v-card-actions>
+              <v-spacer />
+              <v-btn
+                elevation="0"
+                color="primary"
+                @click="filterModal = false"
+              >
+                {{ $t('actions.close') }}
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+        <v-btn
+          :loading="loading"
+          color="primary"
+          elevation="0"
+          @click="search"
+        >
+          {{ $t('actions.search') }}
+        </v-btn>
+      </div>
+      <div v-if="crags">
+        <crags-table
+          v-if="Object.keys(crags.crag_with_levels).length > 0"
+          :crags-data="crags.crag_with_levels"
+          :route-figures="crags.route_figures"
+          :centre-coordinate="[latitude, longitude]"
+        />
         <p
           v-else
-          class="text--disabled mt-2"
+          class="text-center mt-5 mb-5 text--disabled"
         >
-          {{ $t('common.loading') }}
+          {{ $t('common.pages.cragSearch.noResults', { distance: distance, city: localisation.city }) }}
         </p>
+        <div>
+          <p class="mt-4 mb-0">
+            <u>
+              {{ $t('common.pages.cragSearch.expandTo') }}
+            </u>
+          </p>
+          <v-chip-group
+            v-if="!loading"
+            v-model="distance"
+            mandatory
+            active-class="primary--text"
+          >
+            <v-chip :value="10">
+              10km
+            </v-chip>
+            <v-chip :value="20">
+              20km
+            </v-chip>
+            <v-chip :value="30">
+              30km
+            </v-chip>
+            <v-chip :value="40">
+              40km
+            </v-chip>
+          </v-chip-group>
+          <p
+            v-else
+            class="text--disabled mt-2"
+          >
+            {{ $t('common.loading') }}
+          </p>
+        </div>
       </div>
-    </div>
-  </v-container>
+    </v-container>
+  </div>
 </template>
 
 <script>
@@ -464,9 +470,10 @@ import CragApi from '~/services/oblyk-api/CragApi'
 import SearchPlaceInput from '~/components/forms/SearchPlaceInput'
 import { GradeMixin } from '~/mixins/GradeMixin'
 import CragsTable from '~/components/crags/CragsTable'
+import PageHeader from '~/components/layouts/PageHeader.vue'
 
 export default {
-  components: { CragsTable, SearchPlaceInput },
+  components: { PageHeader, CragsTable, SearchPlaceInput },
   mixins: [GradeMixin],
   data () {
     return {

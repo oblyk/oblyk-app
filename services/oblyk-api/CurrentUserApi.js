@@ -31,7 +31,7 @@ class CurrentUserApi extends BaseApi {
     })
   }
 
-  favoriteGyms (page = 1) {
+  favoriteGyms (page = 1, perPage = 25) {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/current_users/favorite_gyms.json`,
@@ -40,7 +40,8 @@ class CurrentUserApi extends BaseApi {
         HttpApiAccessToken: this.apiAccessToken
       },
       params: {
-        page
+        page,
+        per_page: perPage
       }
     })
   }
@@ -398,6 +399,21 @@ class CurrentUserApi extends BaseApi {
         gym_administrator: {
           id: gymAdministratorId
         }
+      }
+    })
+  }
+
+  suggestedFriends (page, perPage = 25) {
+    return this.axios.request({
+      method: 'GET',
+      url: `${this.baseUrl}/current_users/suggested_friends.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
+      params: {
+        page,
+        per_page: perPage
       }
     })
   }

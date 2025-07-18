@@ -25,31 +25,30 @@
         <v-list-item-content :class="small ? 'pt-0 pb-0' : ''">
           <v-list-item-title class="font-weight-bold">
             <span class="vertical-align-middle">
-              <v-chip
-                v-if="guideBookPaper.fundingAttributes.displayed"
-                outlined
-                class="pr-1 pl-1 mr-1 mb-1"
-                small
-                :color="guideBookPaper.fundingAttributes.color"
-              >
-                <v-icon
-                  small
-                  :title="$t(guideBookPaper.fundingAttributes.labelKey)"
-                >
-                  {{ fundingIcon() }}
-                </v-icon>
-              </v-chip>
               {{ guideBookPaper.name }}
             </span>
           </v-list-item-title>
           <v-list-item-subtitle class="text-truncate">
-            <v-alert
-              dense
-              text
-              class="d-inline-block mr-1 mb-0 pl-2 pr-2 pt-0 pb-0"
+            <v-chip
+              v-if="guideBookPaper.follows_count > 0"
+              small
+              outlined
+              class="pr-2"
             >
-              {{ $t('components.guideBookPaper.type') }}
-            </v-alert>
+              <v-icon small left>
+                {{ mdiBookshelf }}
+              </v-icon>
+              {{ guideBookPaper.follows_count }}
+            </v-chip>
+            <v-icon
+              v-if="guideBookPaper.fundingAttributes.displayed"
+              small
+              class="mx-1 vertical-align-sub"
+              :color="guideBookPaper.fundingAttributes.color"
+              :title="$t(guideBookPaper.fundingAttributes.labelKey)"
+            >
+              {{ fundingIcon() }}
+            </v-icon>
             {{ guideBookPaper.author }}, {{ guideBookPaper.editor }}, {{ guideBookPaper.publication_year }}
           </v-list-item-subtitle>
         </v-list-item-content>

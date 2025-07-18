@@ -4,7 +4,6 @@
       :linkable-result="false"
       :callback="addCrag"
     />
-    <close-form />
     <overlay-form :overlay="submitOverlay" />
   </div>
 </template>
@@ -12,13 +11,12 @@
 <script>
 import { FormHelpers } from '@/mixins/FormHelpers'
 import CragSearchForm from '@/components/crags/forms/CragSearchForm'
-import CloseForm from '@/components/forms/CloseForm'
 import OverlayForm from '@/components/forms/OverlayForm'
 import AreaApi from '~/services/oblyk-api/AreaApi'
 
 export default {
   name: 'AddCragInAreaForm',
-  components: { OverlayForm, CloseForm, CragSearchForm },
+  components: { OverlayForm, CragSearchForm },
   mixins: [FormHelpers],
 
   props: {

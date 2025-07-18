@@ -1,19 +1,27 @@
 <template>
-  <div class="full-height">
-    <client-only>
-      <leaflet-map
-        map-style="outdoor"
-        :geo-jsons="geoJsons"
-        :latitude-force="latitude"
-        :longitude-force="longitude"
-        :zoom-force="zoom"
-        :clustered="true"
-        :locality-users="localityUsers"
-        :search-place="true"
+  <div class="full-height d-flex flex-column">
+    <div class="flex-shrink-0">
+      <page-header
+        :title="$t('common.pages.find.climbers.map.title')"
+        back-to="/community"
       />
-      <locality-user-drawer />
-      <partner-modal />
-    </client-only>
+    </div>
+    <div class="flex-grow-1">
+      <client-only>
+        <leaflet-map
+          map-style="outdoor"
+          :geo-jsons="geoJsons"
+          :latitude-force="latitude"
+          :longitude-force="longitude"
+          :zoom-force="zoom"
+          :clustered="true"
+          :locality-users="localityUsers"
+          :search-place="true"
+        />
+        <locality-user-drawer />
+        <partner-modal />
+      </client-only>
+    </div>
   </div>
 </template>
 
@@ -22,11 +30,13 @@ import PartnerModal from '@/components/partners/PartnerModal'
 import LocalityApi from '~/services/oblyk-api/LocalityApi'
 import { AddLocalityUserToMap } from '~/mixins/AddLocalityUserToMap'
 import LocalityUserDrawer from '~/components/localityUsers/LocalityUsersDrawer.vue'
+import PageHeader from '~/components/layouts/PageHeader.vue'
 const LeafletMap = () => import('@/components/maps/LeafletMap')
 
 export default {
   name: 'PartnerMapView',
   components: {
+    PageHeader,
     LocalityUserDrawer,
     PartnerModal,
     LeafletMap

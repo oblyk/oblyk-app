@@ -1,54 +1,60 @@
 <template>
-  <v-container>
-    <h1 content="mt-5 mb-5">
-      {{ $t('components.notification.title') }}
-    </h1>
+  <div>
+    <page-header
+      :title="$t('components.notification.title')"
+      back-to="/home"
+    />
+    <v-container>
+      <h1 content="mt-5 mb-5">
+        {{ $t('components.notification.title') }}
+      </h1>
 
-    <!-- Load notification -->
-    <spinner v-if="loadingNotification" />
+      <!-- Load notification -->
+      <spinner v-if="loadingNotification" />
 
-    <!-- Notification list -->
-    <div v-else>
-      <v-btn
-        color="primary"
-        text
-        small
-        outlined
-        @click="markedAllAsRead()"
-      >
-        <v-icon small left>
-          {{ mdiBellCheck }}
-        </v-icon>
-        {{ $t('components.notification.markedAllAsRead') }}
-      </v-btn>
-
-      <v-list
-        v-if="notifications.length > 0"
-        class="mt-3 rounded"
-        two-line
-      >
-        <div
-          v-for="(notification, index) in notifications"
-          :key="`notification-${index}`"
+      <!-- Notification list -->
+      <div v-else>
+        <v-btn
+          color="primary"
+          text
+          small
+          outlined
+          @click="markedAllAsRead()"
         >
-          <notification-item-list :notification="notification" />
-        </div>
-        <loading-more
-          :get-function="getAllNotification"
-          :loading-more="loadingMoreData"
-          :no-more-data="noMoreDataToLoad"
-        />
-      </v-list>
-    </div>
+          <v-icon small left>
+            {{ mdiBellCheck }}
+          </v-icon>
+          {{ $t('components.notification.markedAllAsRead') }}
+        </v-btn>
 
-    <!-- if notification is empty -->
-    <p
-      v-if="notifications.length === 0 && !loadingNotification"
-      class="text-center grey--text mb-10 mt-10"
-    >
-      {{ $t('components.notification.empty') }}
-    </p>
-  </v-container>
+        <v-list
+          v-if="notifications.length > 0"
+          class="mt-3 rounded"
+          two-line
+        >
+          <div
+            v-for="(notification, index) in notifications"
+            :key="`notification-${index}`"
+          >
+            <notification-item-list :notification="notification" />
+          </div>
+          <loading-more
+            :get-function="getAllNotification"
+            :loading-more="loadingMoreData"
+            :no-more-data="noMoreDataToLoad"
+          />
+        </v-list>
+      </div>
+
+      <!-- if notification is empty -->
+      <p
+        v-if="notifications.length === 0 && !loadingNotification"
+        class="text-center grey--text mb-10 mt-10"
+      >
+        {{ $t('components.notification.empty') }}
+      </p>
+    </v-container>
+  </div>
 </template>
 
 <script>
@@ -59,9 +65,10 @@ import Spinner from '@/components/layouts/Spiner'
 import NotificationItemList from '@/components/notifications/NotificationItemList'
 import LoadingMore from '@/components/layouts/LoadingMore'
 import { LoadingMoreHelpers } from '~/mixins/LoadingMoreHelpers'
+import PageHeader from '~/components/layouts/PageHeader.vue'
 
 export default {
-  components: { LoadingMore, NotificationItemList, Spinner },
+  components: { PageHeader, LoadingMore, NotificationItemList, Spinner },
   mixins: [LoadingMoreHelpers],
 
   data () {

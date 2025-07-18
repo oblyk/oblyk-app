@@ -1,29 +1,50 @@
 <template>
-  <client-only>
-    <leaflet-map
-      map-style="indoor"
-      :geo-jsons="geoJsons"
-      :latitude-force="latitude"
-      :longitude-force="longitude"
-      :zoom-force="zoom"
-      :search-place="false"
-    />
-  </client-only>
+  <div class="full-height d-flex flex-column">
+    <div class="flex-shrink-0">
+      <page-header
+        v-if="!gym"
+        :title="$t('components.layout.appDrawer.mapGyms')"
+        back-to="/indoor"
+      />
+      <page-header
+        v-else
+        :title="gym.name"
+        :back-to="gym.path"
+      />
+    </div>
+    <div class="flex-grow-1">
+      <client-only>
+        <leaflet-map
+          map-style="indoor"
+          :geo-jsons="geoJsons"
+          :latitude-force="latitude"
+          :longitude-force="longitude"
+          :zoom-force="zoom"
+          :clustered="false"
+          :search-place="false"
+        />
+      </client-only>
+    </div>
+  </div>
 </template>
 
 <script>
 import GymApi from '@/services/oblyk-api/GymApi'
+import PageHeader from '~/components/layouts/PageHeader'
+import Gym from '~/models/Gym'
 const LeafletMap = () => import('@/components/maps/LeafletMap')
 
 export default {
   name: 'GymMapView',
-  components: { LeafletMap },
+  components: { PageHeader, LeafletMap },
 
   data () {
     return {
       geoJsons: null,
       latitude: null,
       longitude: null,
+      gymId: null,
+      gym: null,
       zoom: null
     }
   },
@@ -57,8 +78,12 @@ export default {
     const urlParams = new URLSearchParams(window.location.search)
     this.latitude = urlParams.get('lat')
     this.longitude = urlParams.get('lng')
+    this.gymId = urlParams.get('gym_id')
     this.zoom = this.latitude !== null ? 15 : null
     this.getGeoJson()
+    if (this.gymId) {
+      this.getGym()
+    }
   },
 
   methods: {
@@ -69,6 +94,14 @@ export default {
           this.geoJsons = { features: resp.data.features }
         })
         .finally(() => {})
+    },
+
+    getGym () {
+      new GymApi(this.$axios, this.$auth)
+        .find(this.gymId)
+        .then((resp) => {
+          this.gym = new Gym({ attributes: resp.data })
+        })
     }
   }
 }

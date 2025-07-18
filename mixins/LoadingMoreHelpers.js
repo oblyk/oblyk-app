@@ -17,9 +17,9 @@ export const LoadingMoreHelpers = {
       this.loadingMoreData = true
     },
 
-    successLoadingMore (resp) {
+    successLoadingMore (resp, perPage = 25) {
       this.page++
-      if (resp.data.length < 25) { this.noMoreDataToLoad = true }
+      if (resp.data.length < perPage) { this.noMoreDataToLoad = true }
     },
 
     failureToLoadingMore () {

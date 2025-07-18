@@ -1,6 +1,23 @@
 import BaseApi from '~/services/oblyk-api/BaseApi'
 
 class CragRouteApi extends BaseApi {
+  all (ids = null, page, perPage, options = { order: null }) {
+    return this.axios.request({
+      method: 'GET',
+      url: `${this.baseUrl}/public/crag_routes.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
+      params: {
+        ids,
+        page,
+        per_page: perPage,
+        order_by: options.order
+      }
+    })
+  }
+
   allInCrag (cragId, page = 1, orderBy = 'difficulty_desc') {
     return this.axios.request({
       method: 'GET',
@@ -27,6 +44,35 @@ class CragRouteApi extends BaseApi {
       params: {
         order_by: orderBy,
         page
+      }
+    })
+  }
+
+  search (query) {
+    return this.axios.request({
+      method: 'GET',
+      url: `${this.baseUrl}/public/crag_routes/search.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
+      params: {
+        query
+      }
+    })
+  }
+
+  suggestedRoutes (page, perPage) {
+    return this.axios.request({
+      method: 'GET',
+      url: `${this.baseUrl}/public/crag_routes/suggested_routes.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
+      params: {
+        page,
+        per_page: perPage
       }
     })
   }

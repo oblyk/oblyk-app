@@ -1,11 +1,17 @@
 import BaseApi from '~/services/oblyk-api/BaseApi'
 
 class GuideBookPaperApi extends BaseApi {
-  all () {
+  all (ids = null, page, perPage, options = { order: null }) {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/public/guide_book_papers.json`,
-      headers: { HttpApiAccessToken: this.apiAccessToken }
+      headers: { HttpApiAccessToken: this.apiAccessToken },
+      params: {
+        ids,
+        page,
+        per_page: perPage,
+        order: options.order
+      }
     })
   }
 

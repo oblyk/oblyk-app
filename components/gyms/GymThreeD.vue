@@ -48,6 +48,7 @@
         <animate-oblyk-logo
           :animate="loadingSpaces"
           stroke-linejoin="round"
+          color="#743ad5"
         />
         <p>
           <small class="font-weight-bold">

@@ -302,6 +302,7 @@ export default {
     inBrief: 'In brief',
     createdOn: 'Created on %{date}',
     archivedOn: 'Archived on %{date}',
+    findAnotherWay: 'Find another way',
     months: {
       '01': '01 - January',
       '02': '02 - February',
@@ -737,6 +738,11 @@ export default {
         guideBookPaper: '1 guide | {count} guides',
         word: '1 word | {count} words'
       },
+      type: {
+        aCrag: 'crag',
+        aCragRoute: 'crag route',
+        aGuideBook: 'guide book'
+      },
       tabs: {
         crag: 'Crag',
         cragRoute: 'Route',
@@ -921,6 +927,23 @@ export default {
         omega_roc: 'OmegaRoc'
       }
     },
+    indoor: {
+      moreIndoor: 'More indoor',
+      nearbyClimbingGyms: 'Nearby climbing gyms',
+      welcome: 'Welcome to Oblyk Indoor !',
+      welcomeParagraphe: '<strong>Join us</strong> to <strong>track your gym</strong>, see the <strong>latest openings</strong>, <strong>monitor your progress</strong>, and much more!'
+    },
+    outdoor: {
+      moreOutdoor: 'More outdoor',
+      nearbyCrags: 'Nearby crags',
+      welcome: 'Welcome to Oblyk Outdoor !',
+      welcomeParagraphe: '<strong>Join us</strong> to create your <strong>logbook</strong>, <strong>follow your friends</strong>, keep track of your <strong>climbing guide book library</strong>, participate in the community, and much more!'
+    },
+    community: {
+      search: 'Search a climber',
+      welcome: 'Welcome to the community!',
+      welcomeParagraphe: '<strong>Join us</strong> to find <strong>climbing partners</strong> and share your ascents with your friends!'
+    },
     navigation: {
       goTo: 'Go to crag',
       parkList: 'Getting to the car park | Getting to the car parks',
@@ -944,6 +967,7 @@ export default {
       searchCrag: 'Crag search',
       type: 'Crag',
       newCrag: 'New Crag',
+      myCrags: 'My Crags',
       descriptionOf: 'Description of %{name}',
       localization: 'Localization',
       orientations: 'Orientations',
@@ -1532,10 +1556,12 @@ export default {
       addComment: 'Comment my session',
       myIndoorSession: 'My indoor sessions',
       myOutdoorSession: 'My outdoor sessions',
+      count: 'No sessions | One session | %{count} sessions',
       empty: "You don't have a climbing session yet.<br>add ascents to your logbook to see your sessions!"
     },
     logBook: {
       inFewFigures: 'In few figures',
+      since28Days: 'The last 28 days',
       climbingType: 'Climbing type',
       grades: 'Ascents by grades',
       levels: 'Ascents by levels',
@@ -1565,6 +1591,7 @@ export default {
         gyms: '%{count} salle | %{count} salles',
         regions: '%{count} region | %{count} regions',
         ascents: '%{count} ascent | %{count} ascents',
+        additionalAscents: 'no ascents | one ascent | %{count} ascents',
         meters: '%{count} meter climbed | %{count} meters climbed',
         max_grade: '%{grade} max'
       }
@@ -1638,7 +1665,7 @@ export default {
       changePassword: 'Change password',
       privacyParameters: 'Privacy parameters',
       partnerSearch: 'Partner search',
-      upcomingContests: 'My up coming contest',
+      upcomingContests: 'Up coming contest',
       otherSetting: 'Others settings',
       notificationSetting: 'Notifications parameters',
       successfulEditMessage: 'Your profile has been updated',
@@ -1708,6 +1735,8 @@ export default {
       emptyLogbook: '%{name} has no ascents in his logbook',
       seeMyPublicProfile: 'See my public profile',
       updateEmailReport: "My subscriptions to my climbing gyms' monthly reports",
+      mutualFriend: '1 mutual friend | %{count} mutual friends',
+      youMayBeFamiliarWith: 'You may be familiar with ...',
       cardsTitle: {
         myLogbook: 'My logbook',
         aroundMe: 'Around me',

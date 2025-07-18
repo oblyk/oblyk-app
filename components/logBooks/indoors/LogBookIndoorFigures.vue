@@ -51,7 +51,7 @@
             text
             outlined
             class="mr-2"
-            to="/home/climbing-sessions?only-indoor=true"
+            to="/home/climbing-sessions?only-indoor=true?back_to=/home/ascents/indoor"
           >
             <v-icon
               left

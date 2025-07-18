@@ -37,7 +37,7 @@
               height="160"
               class="text-center pa-4"
               rounded
-              to="/ascents/new"
+              to="/ascents/outdoor/new"
             >
               <p class="font-weight-bold mb-7">
                 {{ $t('components.dailyCrosses.addCrosses') }}

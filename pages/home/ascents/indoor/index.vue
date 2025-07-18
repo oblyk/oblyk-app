@@ -2,7 +2,7 @@
   <div>
     <page-header
       :title="$t('components.layout.appDrawer.user.ascents.indoor')"
-      back-to="/home"
+      back-to="/indoor"
     />
 
     <v-container fluid>

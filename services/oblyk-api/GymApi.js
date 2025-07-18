@@ -1,13 +1,18 @@
 import BaseApi from '~/services/oblyk-api/BaseApi'
 
 class GymApi extends BaseApi {
-  all (ids = null) {
+  all (ids = null, page = null, perPage = null, options = { latitude: null, longitude: null, order: null }) {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/gyms.json`,
       headers: { HttpApiAccessToken: this.apiAccessToken },
       params: {
-        ids
+        ids,
+        page,
+        per_page: perPage,
+        latitude: options.latitude,
+        longitude: options.longitude,
+        order: options.order
       }
     })
   }

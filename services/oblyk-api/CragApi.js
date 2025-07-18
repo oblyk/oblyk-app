@@ -1,11 +1,19 @@
 import BaseApi from '~/services/oblyk-api/BaseApi'
 
 class CragApi extends BaseApi {
-  all () {
+  all (ids = null, page, perPage, options = { latitude: null, longitude: null, order: null }) {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/public/crags.json`,
-      headers: { HttpApiAccessToken: this.apiAccessToken }
+      headers: { HttpApiAccessToken: this.apiAccessToken },
+      params: {
+        ids,
+        page,
+        per_page: perPage,
+        latitude: options.latitude,
+        longitude: options.longitude,
+        order: options.order
+      }
     })
   }
 

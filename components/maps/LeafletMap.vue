@@ -5,55 +5,11 @@
       :class="options.rounded ? 'rounded-leaflet' : ''"
     >
       <div
-        v-if="magicCard || searchPlace || loadingCrag || crag"
+        v-if="magicCard || searchPlace"
         class="leaflet-map-search-card pa-2"
       >
-        <v-sheet
-          v-if="crag && !sunController"
-          class="rounded mb-2"
-        >
-          <v-list-item>
-            <v-list-item-icon class="mr-3">
-              <v-btn
-                :to="crag.path"
-                large
-                icon
-              >
-                <v-icon>
-                  {{ mdiArrowLeft }}
-                </v-icon>
-              </v-btn>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title>
-                {{ crag.name }}
-              </v-list-item-title>
-              <v-list-item-subtitle>
-                {{ crag.city }}, {{ crag.region }} ({{ crag.country }})
-              </v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
-          <v-list-item class="mt-n5 pb-1">
-            <v-list-item-icon class="my-0" />
-            <v-list-item-title class="pt-0">
-              <v-btn
-                text
-                outlined
-                @click="setSunOnCrag"
-              >
-                <v-icon
-                  left
-                  color="#ffcc00"
-                >
-                  {{ mdiSunCompass }}
-                </v-icon>
-                {{ $t('models.rockBar.sunshine') }}
-              </v-btn>
-            </v-list-item-title>
-          </v-list-item>
-        </v-sheet>
         <search-place-input
-          v-if="searchPlace && !crag && !sunController"
+          v-if="searchPlace && !sunController"
           class="leaflet-search-in-map mb-1"
           :callback="goToPlace"
           :solo-style="true"
@@ -777,14 +733,6 @@ export default {
       type: Boolean,
       default: null
     },
-    crag: {
-      type: Object,
-      default: null
-    },
-    loadingCrag: {
-      type: Boolean,
-      default: false
-    },
     cragMapFilter: {
       type: Boolean,
       default: false
@@ -887,7 +835,6 @@ export default {
       loadingMagicPlace: null,
       showMagicActions: true,
       sunController: false,
-      openSunOnCrag: false,
       minute: new Date().getHours() * 60 + new Date().getMinutes(),
       sunDate: new Date(),
       timeModal: false,
@@ -1235,32 +1182,18 @@ export default {
       this.$refs.leafletLegend.hideLeafletMapLegend()
     },
 
-    setSunOnCrag () {
-      this.magicPlace = {
-        lat: parseFloat(this.crag.latitude),
-        lng: parseFloat(this.crag.longitude)
-      }
-      this.openSunOnCrag = true
-      this.sunController = true
-    },
-
     openSunController () {
       this.goToPlace(
         this.magicPlace,
         this.$refs.leafletMap.mapObject.getZoom()
       )
-      this.openSunOnCrag = false
       this.sunController = true
     },
 
     closeSunController () {
-      if (!this.openSunOnCrag) {
-        this.sunController = false
-        this.showMagicActions = true
-        this.addressDetail()
-      } else {
-        this.closeMagicCard()
-      }
+      this.sunController = false
+      this.showMagicActions = true
+      this.addressDetail()
     },
 
     closeMagicCard () {

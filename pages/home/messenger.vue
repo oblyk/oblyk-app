@@ -2,7 +2,7 @@
   <div>
     <page-header
       :title="$t('components.layout.appBar.user.messenger')"
-      back-to="/home"
+      back-to="/community"
     />
 
     <v-row class="messenger-layout">

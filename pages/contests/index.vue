@@ -1,63 +1,66 @@
 <template>
-  <v-container>
-    <h1>
-      {{ $t('components.contest.title') }}
-    </h1>
+  <div>
+    <page-header
+      :title="$t('components.contest.title')"
+      back-to="/indoor"
+    />
+    <v-container>
+      <!-- Coming contest -->
+      <div v-if="isComingContests.length > 0">
+        <p class="font-weight-bold mb-1 mt-6">
+          {{ $t('common.coming') }}
+        </p>
+        <v-list class="rounded-sm">
+          <contest-item-list
+            v-for="(contest, contestIndex) in isComingContests"
+            :key="`is-coming-contest-index-${contestIndex}`"
+            :contest="contest"
+            :public-path="true"
+          />
+        </v-list>
+      </div>
 
-    <!-- Coming contest -->
-    <div v-if="isComingContests.length > 0">
-      <p class="font-weight-bold mb-1 mt-6">
-        {{ $t('common.coming') }}
-      </p>
-      <v-list class="rounded-sm">
-        <contest-item-list
-          v-for="(contest, contestIndex) in isComingContests"
-          :key="`is-coming-contest-index-${contestIndex}`"
-          :contest="contest"
-          :public-path="true"
-        />
-      </v-list>
-    </div>
+      <!-- Ongoing contest -->
+      <div v-if="ongoingContests.length > 0">
+        <p class="font-weight-bold mb-1 mt-6">
+          {{ $t('common.ongoing') }}
+        </p>
+        <v-list class="rounded-sm">
+          <contest-item-list
+            v-for="(contest, contestIndex) in ongoingContests"
+            :key="`ongoing-contest-index-${contestIndex}`"
+            :contest="contest"
+            :public-path="true"
+          />
+        </v-list>
+      </div>
 
-    <!-- Ongoing contest -->
-    <div v-if="ongoingContests.length > 0">
-      <p class="font-weight-bold mb-1 mt-6">
-        {{ $t('common.ongoing') }}
-      </p>
-      <v-list class="rounded-sm">
-        <contest-item-list
-          v-for="(contest, contestIndex) in ongoingContests"
-          :key="`ongoing-contest-index-${contestIndex}`"
-          :contest="contest"
-          :public-path="true"
-        />
-      </v-list>
-    </div>
-
-    <!-- Pasts contest -->
-    <div v-if="pastContests.length > 0">
-      <p class="font-weight-bold mb-1 mt-6">
-        {{ $t('common.past') }}
-      </p>
-      <v-list class="rounded-sm">
-        <contest-item-list
-          v-for="(contest, contestIndex) in pastContests"
-          :key="`past-contest-index-${contestIndex}`"
-          :contest="contest"
-          :public-path="true"
-        />
-      </v-list>
-    </div>
-  </v-container>
+      <!-- Pasts contest -->
+      <div v-if="pastContests.length > 0">
+        <p class="font-weight-bold mb-1 mt-6">
+          {{ $t('common.past') }}
+        </p>
+        <v-list class="rounded-sm">
+          <contest-item-list
+            v-for="(contest, contestIndex) in pastContests"
+            :key="`past-contest-index-${contestIndex}`"
+            :contest="contest"
+            :public-path="true"
+          />
+        </v-list>
+      </div>
+    </v-container>
+  </div>
 </template>
 
 <script>
 import ContestApi from '~/services/oblyk-api/ContestApi'
 import Contest from '~/models/Contest'
 import ContestItemList from '~/components/contests/ContestItemList.vue'
+import PageHeader from '~/components/layouts/PageHeader.vue'
 
 export default {
-  components: { ContestItemList },
+  components: { PageHeader, ContestItemList },
   data () {
     return {
       loadingContest: true,

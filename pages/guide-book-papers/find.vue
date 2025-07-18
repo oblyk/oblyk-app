@@ -1,6 +1,9 @@
 <template>
   <div>
-    <guide-book-paper-page-header />
+    <page-header
+      :title="$t('common.pages.find.guideBooks.aroundCity.title')"
+      back-to="/outdoor"
+    />
     <v-container class="common-page-container">
       <h1
         v-if="place === null"
@@ -68,11 +71,11 @@ import Spinner from '@/components/layouts/Spiner'
 import GuideBookPaperAroundCard from '@/components/guideBookPapers/GuideBookPaperAroundCard'
 import AppFooter from '@/components/layouts/AppFooter'
 import GuideBookPaper from '~/models/GuideBookPaper'
-import GuideBookPaperPageHeader from '~/components/guideBookPapers/layouts/GuideBookPaperPageHeader'
+import PageHeader from '~/components/layouts/PageHeader'
 
 export default {
   components: {
-    GuideBookPaperPageHeader,
+    PageHeader,
     GuideBookPaperAroundCard,
     Spinner,
     SearchPlaceInput,

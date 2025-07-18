@@ -7,7 +7,6 @@
       :label="$t('models.area.name')"
     />
 
-    <close-form />
     <submit-form
       :overlay="submitOverlay"
       :submit-local-key="submitText()"
@@ -18,12 +17,11 @@
 import { FormHelpers } from '@/mixins/FormHelpers'
 import SubmitForm from '@/components/forms/SubmitForm'
 import AreaApi from '~/services/oblyk-api/AreaApi'
-import CloseForm from '@/components/forms/CloseForm'
 import Area from '@/models/Area'
 
 export default {
   name: 'AreaForm',
-  components: { CloseForm, SubmitForm },
+  components: { SubmitForm },
   mixins: [FormHelpers],
   props: {
     area: {

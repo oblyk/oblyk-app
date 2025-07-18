@@ -1,14 +1,11 @@
 <template>
   <div v-if="contests.length > 0">
-    <h3 class="mb-2">
-      <v-icon
-        class="mr-2 mb-2"
-        color="amber"
-      >
+    <p class="mt-4 mb-1 font-weight-medium">
+      <v-icon color="primary" left class="vertical-align-top">
         {{ mdiTrophy }}
       </v-icon>
       {{ $t('components.user.upcomingContests') }}
-    </h3>
+    </p>
     <v-sheet class="rounded">
       <v-list rounded>
         <contest-item-list

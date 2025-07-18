@@ -3,7 +3,7 @@
     <div class="flex-shrink-0">
       <page-header
         :title="$t('components.layout.appDrawer.user.myMap')"
-        back-to="/home"
+        back-to="/outdoor"
       />
     </div>
     <div class="flex-grow-1">

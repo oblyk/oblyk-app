@@ -1,5 +1,8 @@
 <template>
-  <div class="oblyk-app-drawer">
+  <div
+    class="oblyk-app-drawer"
+    :class="`oblyk-app-drawer-${oblykEnvironnement}`"
+  >
     <v-list-item>
       <v-row class="oblyk-app-drawer-header">
         <v-col
@@ -10,7 +13,10 @@
             to="/"
             class="discrete-link"
           >
-            <animate-oblyk-logo :animate="loading" />
+            <animate-oblyk-logo
+              :animate="loading"
+              :color="environnementColor"
+            />
             <div class="d-inline-block oblyk-app-drawer-title">
               <p>
                 Oblyk
@@ -61,6 +67,8 @@
     <!-- If user is connected -->
     <client-only>
       <app-tool-bar />
+
+      <app-environment-switch />
 
       <app-drawer-user />
 
@@ -119,12 +127,14 @@ import AppToolBar from '~/components/layouts/AppDrawerPartial/AppToolBar'
 import AppDrawerFind from '~/components/layouts/AppDrawerPartial/AppDrawerFind'
 import AppDrawerAbout from '~/components/layouts/AppDrawerPartial/AppDrawerAbout'
 import AnimateOblykLogo from '~/components/layouts/AnimateOblykLogo.vue'
+import AppEnvironmentSwitch from '~/components/layouts/AppDrawerPartial/AppEnvironmentSwitch.vue'
 const MyGyms = () => import('@/components/layouts/partial/MyGyms')
 const MyOrganizations = () => import('@/components/layouts/partial/MyOrganizations')
 
 export default {
   name: 'AppDrawer',
   components: {
+    AppEnvironmentSwitch,
     AnimateOblykLogo,
     AppDrawerAbout,
     AppDrawerFind,
@@ -152,6 +162,22 @@ export default {
 
       mdiMenuDown,
       mdiPlus
+    }
+  },
+
+  computed: {
+    oblykEnvironnement () {
+      return this.$store.getters['oblykEnvironment/getOblykEnvironnement']
+    },
+
+    environnementColor () {
+      if (this.oblykEnvironnement === 'indoor') {
+        return '#743ad5'
+      } else if (this.oblykEnvironnement === 'community') {
+        return '#007b8b'
+      } else {
+        return '#31994e'
+      }
     }
   },
 
@@ -201,16 +227,36 @@ export default {
     font-weight: bold;
     font-size: 0.8rem;
   }
-  .v-list-item--active {
-    &:not(.v-list-group__header) {
-      .v-list-item__icon .v-icon__svg {
-        fill: #31994e;
-      }
-    }
-  }
   .enrich-oblyk-btn {
     background-color: #262626;
     color: white !important;
+  }
+  &.oblyk-app-drawer-outdoor {
+    .v-list-item--active {
+      &:not(.v-list-group__header) {
+        .v-list-item__icon .v-icon__svg {
+          fill: #31994e;
+        }
+      }
+    }
+  }
+  &.oblyk-app-drawer-indoor {
+    .v-list-item--active {
+      &:not(.v-list-group__header) {
+        .v-list-item__icon .v-icon__svg {
+          fill: #743ad5;
+        }
+      }
+    }
+  }
+  &.oblyk-app-drawer-community {
+    .v-list-item--active {
+      &:not(.v-list-group__header) {
+        .v-list-item__icon .v-icon__svg {
+          fill: #007b8b;
+        }
+      }
+    }
   }
 }
 

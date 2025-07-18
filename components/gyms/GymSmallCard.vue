@@ -32,13 +32,20 @@
             </span>
           </v-list-item-title>
           <v-list-item-subtitle :class="small ? 'mb-3' : 'mb-4'">
-            <v-alert
-              dense
-              text
-              class="d-inline-block mr-1 mb-0 pl-2 pr-2 pt-0 pb-0"
+            <v-chip
+              v-if="gym.have_guide_book"
+              class="px-1 vertical-align-text-top"
+              x-small
+              pill
             >
-              {{ $t('components.gym.type') }}
-            </v-alert>
+              <v-icon
+                x-small
+                class="mr-1"
+              >
+                {{ mdiSourceBranch }}
+              </v-icon>
+              TOPO
+            </v-chip>
             {{ gym.country }}, {{ gym.city }}
             <client-only>
               <cite v-if="IAmGeolocated"> - {{ $t('common.is') }} {{ distance }} km</cite>
@@ -58,9 +65,10 @@
 </template>
 
 <script>
-import SubscribeBtn from '@/components/forms/SubscribeBtn'
+import { mdiSourceBranch } from '@mdi/js'
 import { LocalizationHelpers } from '@/mixins/LocalizationHelpers'
 import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
+import SubscribeBtn from '@/components/forms/SubscribeBtn'
 
 export default {
   name: 'GymSmallCard',
@@ -93,6 +101,12 @@ export default {
     }
   },
 
+  data () {
+    return {
+      mdiSourceBranch
+    }
+  },
+
   computed: {
     IAmGeolocated () {
       return this.$store.getters['geolocation/IAmGeolocated']
@@ -122,8 +136,8 @@ export default {
 
     path () {
       if (this.linkable) {
-        if (this.goToSpaces && this.gym.gym_spaces_count > 0) {
-          return `${this.gym.path}/spaces`
+        if (this.goToSpaces) {
+          return this.gym.guideBookPath
         } else {
           return this.gym.path
         }
