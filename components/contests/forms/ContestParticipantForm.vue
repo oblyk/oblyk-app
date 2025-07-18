@@ -21,7 +21,8 @@
     <genre-input
       v-model="data.genre"
       :with-undefined="false"
-      required
+      :required="!contest.optional_gender"
+      :clearable="contest.optional_gender"
     />
     <v-text-field
       v-model="data.affiliation"

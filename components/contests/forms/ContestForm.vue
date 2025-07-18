@@ -127,6 +127,16 @@
       />
     </div>
 
+    <div class="pa-2 my-4 border rounded-sm">
+      <v-checkbox
+        v-model="data.optional_gender"
+        :label="$t('models.contest.optional_gender')"
+        hint="Rendre optionnel le genre à l'inscription (contest mixte uniquement)"
+        class="mt-n1"
+        persistent-hint
+      />
+    </div>
+
     <close-form />
     <submit-form
       :overlay="submitOverlay"
@@ -193,6 +203,7 @@ export default {
         hide_results: this.contest?.hide_results,
         team_contest: this.contest?.team_contest,
         participant_per_team: this.contest?.participant_per_team,
+        optional_gender: this.contest?.optional_gender,
         gym_id: this.gym.id
       },
 

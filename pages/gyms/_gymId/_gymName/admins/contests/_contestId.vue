@@ -131,6 +131,15 @@
                     {{ contest.hide_results ? 'oui' : 'non' }}
                   </v-chip>
                 </p>
+                <p class="mb-0">
+                  {{ $t('models.contest.optional_gender') }}:
+                  <v-chip
+                    small
+                    @click="openEditModal()"
+                  >
+                    {{ contest.optional_gender ? 'oui' : 'non' }}
+                  </v-chip>
+                </p>
               </div>
               <v-alert
                 v-if="contest.archived_at !== null"

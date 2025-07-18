@@ -22,7 +22,7 @@
         </v-btn>
       </div>
       <p class="mb-1">
-        Catégorie : <strong>{{ participant.contest_category.name }} - {{ participant.genre }}</strong>
+        Catégorie : <strong>{{ participant.contest_category.name }} {{ participant.genre ? `- ${$t(`models.genres.${participant.genre}`)}` : '' }}</strong>
       </p>
       <p
         v-if="participant.contest_team_id"

@@ -460,7 +460,7 @@ export default {
           wave: participant.contest_wave?.name,
           contest_team_name: contestTeamName,
           category: participant.contest_category.name,
-          genre: this.$t(`models.genres.${participant.genre}`),
+          genre: participant.genre ? this.$t(`models.genres.${participant.genre}`) : '-',
           refreshKey
         })
       }

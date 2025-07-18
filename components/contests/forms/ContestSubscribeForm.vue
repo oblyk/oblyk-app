@@ -64,7 +64,8 @@
         <genre-input
           v-model="data.genre"
           :with-undefined="false"
-          required
+          :required="!contest.optional_gender"
+          :clearable="contest.optional_gender"
         />
         <p class="font-weight-bold text-decoration-underline mb-1">
           Si vous le souhaitez vous pouvez ajouter le nom de votre club ou de votre salle préférée.
@@ -542,7 +543,7 @@ export default {
 
   computed: {
     canGoToStep2 () {
-      return this.data.first_name && this.data.last_name && this.data.date_of_birth && this.data.genre
+      return this.data.first_name && this.data.last_name && this.data.date_of_birth && (this.contest.optional_gender || this.data.genre)
     },
 
     disabledNextFormTeam () {

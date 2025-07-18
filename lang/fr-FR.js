@@ -2599,7 +2599,8 @@ export default {
       team_contest: 'Contest par équipe',
       participant_per_team: 'Nombre de participants par équipe',
       private: 'Contest privé',
-      hide_results: 'Cacher la page "Résultat" sur la page publique du contest'
+      hide_results: 'Cacher la page "Résultat" sur la page publique du contest',
+      optional_gender: 'Rendre le "genre" optionnel à l\'inscription'
     },
     contestCombinedRanking: {
       title: 'Type de classement',

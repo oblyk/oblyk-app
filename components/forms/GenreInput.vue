@@ -6,7 +6,7 @@
     item-text="text"
     item-value="value"
     :class="required ? 'required-field' : ''"
-    :label="$t('components.input.genre')"
+    :label="`${$t('components.input.genre')} ${required ? '' : '(optionnel)'}`"
     outlined
     :clearable="clearable"
     :hide-details="hideDetail"

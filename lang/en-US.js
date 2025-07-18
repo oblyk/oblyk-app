@@ -2596,7 +2596,8 @@ export default {
       categorization_type: 'Categorization type',
       authorise_public_subscription: 'Allow entries from the public page',
       private: 'Private contest',
-      hide_results: "Hide the \"Results\" page on contest's public page"
+      hide_results: "Hide the \"Results\" page on contest's public page",
+      optional_gender: 'Make "gender" optional when registering'
     },
     contestCombinedRanking: {
       title: 'Ranking type',

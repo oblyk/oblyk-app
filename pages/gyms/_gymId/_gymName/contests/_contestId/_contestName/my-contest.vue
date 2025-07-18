@@ -8,7 +8,8 @@
       <v-sheet class="pa-4 rounded mt-4">
         <h3>{{ participant.first_name }} {{ participant.last_name }}</h3>
         <p class="subtitle-2">
-          {{ participant.wave }} | Catégorie : {{ participant.category }}
+          {{ participant.wave ? `${participant.wave} |` : '' }}
+          Catégorie : {{ participant.category }}
         </p>
       </v-sheet>
 
