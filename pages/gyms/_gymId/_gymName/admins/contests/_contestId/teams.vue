@@ -146,15 +146,8 @@
 
 <script>
 import {
-  mdiDotsVertical,
-  mdiPencil,
   mdiTrashCan,
   mdiMagnify,
-  mdiWindowRestore,
-  mdiExport,
-  mdiImport,
-  mdiQrcode,
-  mdiAutoFix,
   mdiClose
 } from '@mdi/js'
 import { AppConcern } from '~/concerns/AppConcern'
@@ -202,15 +195,8 @@ export default {
         }
       ],
 
-      mdiDotsVertical,
-      mdiPencil,
       mdiTrashCan,
       mdiMagnify,
-      mdiWindowRestore,
-      mdiExport,
-      mdiImport,
-      mdiQrcode,
-      mdiAutoFix,
       mdiClose
     }
   },

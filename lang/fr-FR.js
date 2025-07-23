@@ -2686,6 +2686,10 @@ export default {
       name: "Nom d'équipe",
       number_of_participants: 'Nombre de participants'
     },
+    contestJudge: {
+      name: 'Nom du juge',
+      code: 'Code'
+    },
     contestStageStep: {
       name: 'Nom',
       step_order: 'Ordre',

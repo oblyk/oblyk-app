@@ -1,5 +1,11 @@
 <template>
   <div class="border-top pa-1 pb-0 pl-2 d-flex">
+    <v-checkbox
+      v-if="multipleSelection"
+      v-model="selected"
+      hide-details
+      class="mt-0"
+    />
     <div>
       <v-chip @click="openModal('routeNumber')">
         {{ route.number }}
@@ -57,6 +63,17 @@
           class="red--text ml-3 align-self-center"
         >
           [exclue du contest]
+        </div>
+        <div v-if="route.contest_judges.length > 0">
+          <v-icon
+            v-for="(judge, judgeIndex) in route.contest_judges"
+            :key="`judge-index-${judgeIndex}`"
+            :title="judge.name"
+            small
+            right
+          >
+            {{ mdiGavel }}
+          </v-icon>
         </div>
         <v-spacer />
         <v-tooltip
@@ -269,7 +286,8 @@ import {
   mdiCameraPlus,
   mdiCameraFlip,
   mdiCameraOff,
-  mdiAlphaZBoxOutline
+  mdiAlphaZBoxOutline,
+  mdiGavel
 } from '@mdi/js'
 import ContestRouteApi from '~/services/oblyk-api/ContestRouteApi'
 import ContestRouteForm from '~/components/contests/forms/ContestRouteForm'
@@ -283,6 +301,10 @@ export default {
   components: { ContestRoutePictureForm, GymRouteSimpleItem, ContestRouteForm },
   mixins: [ImageVariantHelpers],
   props: {
+    value: {
+      type: Array,
+      default: null
+    },
     contest: {
       type: Object,
       required: true
@@ -306,6 +328,10 @@ export default {
     openRouteLink: {
       type: Function,
       required: true
+    },
+    multipleSelection: {
+      type: Boolean,
+      default: false
     }
   },
 
@@ -316,6 +342,8 @@ export default {
       pictureModal: false,
       loadingAction: false,
       route: new ContestRoute({ attributes: this.contestRoute }),
+      selected: this.value.includes(this.contestRoute.id),
+      selectedRoutes: this.value,
 
       mdiDotsVertical,
       mdiPencil,
@@ -327,7 +355,8 @@ export default {
       mdiCameraPlus,
       mdiCameraFlip,
       mdiCameraOff,
-      mdiAlphaZBoxOutline
+      mdiAlphaZBoxOutline,
+      mdiGavel
     }
   },
 
@@ -344,6 +373,22 @@ export default {
   watch: {
     contestRoute () {
       this.route = new ContestRoute({ attributes: this.contestRoute })
+    },
+
+    selected () {
+      if (this.selected) {
+        if (!this.value.includes(this.contestRoute.id)) {
+          this.selectedRoutes.push(this.contestRoute.id)
+        }
+      } else {
+        this.selectedRoutes = this.selectedRoutes.filter(id => id !== this.contestRoute.id)
+      }
+      this.$emit('input', this.selectedRoutes)
+    },
+
+    value () {
+      this.selectedRoutes = this.value
+      this.selected = this.value.includes(this.contestRoute.id)
     }
   },
 

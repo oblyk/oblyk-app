@@ -4,7 +4,7 @@
       <template #default>
         <tbody>
           <tr
-            v-for="(route, routeIndex) in contestStep.routes"
+            v-for="(route, routeIndex) in contestRoutes"
             :key="`route-index-${routeIndex}`"
           >
             <td
@@ -67,7 +67,7 @@
     <v-btn
       :disabled="!changed"
       color="primary"
-      style="position: sticky; bottom: 5px; margin-left: auto; display: block"
+      style="position: sticky; bottom: 5px; margin-left: auto; display: block; margin-right: 5px"
       elevation="0"
       :loading="saving"
       @click="save"
@@ -139,6 +139,18 @@ export default {
     participantToken: {
       type: String,
       required: true
+    },
+    saveCallback: {
+      type: Function,
+      default: null
+    },
+    changeCallback: {
+      type: Function,
+      default: null
+    },
+    onlyRouteIds: {
+      type: Array,
+      default: null
     }
   },
 
@@ -164,6 +176,28 @@ export default {
         }
       }
       return false
+    },
+
+    contestRoutes () {
+      if (this.onlyRouteIds) {
+        const routes = []
+        for (const route of this.contestStep.routes) {
+          if (this.onlyRouteIds.includes(route.id)) {
+            routes.push(route)
+          }
+        }
+        return routes
+      } else {
+        return this.contestStep.routes
+      }
+    }
+  },
+
+  watch: {
+    changed () {
+      if (this.changeCallback) {
+        this.changeCallback(this.changed)
+      }
     }
   },
 
@@ -229,6 +263,9 @@ export default {
           this.ascents = {}
           this.changed = false
           this.$root.$emit('alertSimpleSuccess', 'Progression sauvegardée avec succès !')
+          if (this.saveCallback) {
+            this.saveCallback()
+          }
         })
         .catch(() => {
           this.$root.$emit('alertSimpleError', "Une erreur s'est produite...")

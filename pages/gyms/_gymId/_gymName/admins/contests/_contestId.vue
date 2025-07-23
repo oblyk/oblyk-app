@@ -498,6 +498,15 @@
         </v-tab>
         <v-tab
           exact-path
+          :to="`${contest.adminPath}/judges`"
+        >
+          <v-icon left>
+            {{ mdiGavel }}
+          </v-icon>
+          Juges
+        </v-tab>
+        <v-tab
+          exact-path
           :to="`${contest.adminPath}/results`"
         >
           <v-icon left>
@@ -541,7 +550,8 @@ import {
   mdiDelete,
   mdiBookshelf,
   mdiAccountGroup,
-  mdiChartLine
+  mdiChartLine,
+  mdiGavel
 } from '@mdi/js'
 import { ContestConcern } from '~/concerns/ContestConcern'
 import { DateHelpers } from '~/mixins/DateHelpers'
@@ -593,7 +603,8 @@ export default {
       mdiDelete,
       mdiBookshelf,
       mdiAccountGroup,
-      mdiChartLine
+      mdiChartLine,
+      mdiGavel
     }
   },
 
