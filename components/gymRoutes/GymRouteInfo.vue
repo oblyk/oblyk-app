@@ -327,7 +327,7 @@
               v-if="commentList"
               commentable-type="GymRoute"
               :commentable-id="route.id"
-              :gym-route-options="{ gymId: gym.id, routeId: route.id }"
+              :gym-route-options="{ gymId: gym.id, gymRouteId: route.id }"
               :comments-count="route.all_comments_count"
             />
             <p
