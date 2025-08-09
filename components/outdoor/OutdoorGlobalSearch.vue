@@ -34,8 +34,8 @@
             {{ mdiTerrain }}
           </v-icon>
         </div>
-        <div class="flex-grow-1 text--disabled pl-3">
-          {{ $t('components.search.title') }}
+        <div class="flex-grow-1 text--disabled pl-2 text-no-wrap">
+          {{ $t('components.search.searchA') }}
           <v-chip
             :to="mode === 'link' ? '/outdoor/search/crags' : null"
             small

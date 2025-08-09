@@ -9,7 +9,7 @@
         <v-btn
           elevation="0"
           color="primary"
-          to="/about/partner-search"
+          to="/about/partner-search?back_to=/oblyk"
         >
           {{ $t('home.partner.action') }}
         </v-btn>

@@ -88,7 +88,7 @@ import AboutAuthorCard from '@/components/authors/AboutAuthorCard'
 import ArticleCrags from '@/components/articles/ArticleCrags'
 import ArticleGuideBookPapers from '@/components/articles/ArticleGuideBookPapers'
 import AppFooter from '@/components/layouts/AppFooter'
-import PageHeader from '~/components/layouts/PageHeader.vue'
+import PageHeader from '~/components/layouts/PageHeader'
 
 export default {
   components: {

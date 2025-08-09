@@ -40,9 +40,9 @@
 <script>
 import { mdiArrowLeft } from '@mdi/js'
 import { CurrentUserConcern } from '~/concerns/CurrentUserConcern'
-import ConversationList from '~/components/messengers/ConversationsList.vue'
+import ConversationList from '~/components/messengers/ConversationsList'
 import ConversationApi from '~/services/oblyk-api/ConversationApi'
-import PageHeader from '~/components/layouts/PageHeader.vue'
+import PageHeader from '~/components/layouts/PageHeader'
 
 export default {
   components: { PageHeader, ConversationList },

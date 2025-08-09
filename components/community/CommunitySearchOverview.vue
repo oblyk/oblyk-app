@@ -111,13 +111,40 @@
         v-if="haveQuery"
         class="mt-3"
       >
-        <user-small-card
-          v-for="(user, userIndex) in searchResults"
-          :key="`user-community-${userIndex}`"
-          small
-          :user="user"
-          class="mb-1"
-        />
+        <div v-if="$auth.loggedIn">
+          <user-small-card
+            v-for="(user, userIndex) in searchResults"
+            :key="`user-community-${userIndex}`"
+            small
+            :user="user"
+            class="mb-1"
+          />
+        </div>
+        <v-sheet
+          v-else
+          rounded
+          class="pa-4 text-center"
+        >
+          <p class="text--disabled">
+            Connectez-vous pour trouver des grimpeurs et grimpeuses !
+          </p>
+          <div>
+            <v-btn
+              to="/sign-up?back_to=/community/search"
+              color="primary"
+              elevation="0"
+            >
+              {{ $t('actions.signUp') }}
+            </v-btn><br>
+            <v-btn
+              to="/sign-in?back_to=/community/search"
+              color="primary"
+              text
+            >
+              {{ $t('actions.signIn') }}
+            </v-btn>
+          </div>
+        </v-sheet>
       </div>
     </v-container>
   </div>
@@ -180,7 +207,7 @@ export default {
     },
 
     search () {
-      if (this.previousQuery === this.query) {
+      if (this.previousQuery === this.query || !this.$auth.loggedIn) {
         this.searching = false
         return
       }

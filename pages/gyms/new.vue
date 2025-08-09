@@ -19,7 +19,7 @@
 
 <script>
 import GymForm from '~/components/gyms/forms/GymForm'
-import PageHeader from '~/components/layouts/PageHeader.vue'
+import PageHeader from '~/components/layouts/PageHeader'
 
 export default {
   meta: { orphanRoute: true },

@@ -179,14 +179,14 @@
 
 <script>
 import { mdiLogin, mdiAccountPlus, mdiCheckBold, mdiPlus } from '@mdi/js'
-import GymSearchForm from '~/components/gyms/forms/GymSearchForm.vue'
-import SignUpForm from '~/components/sessions/SignUpForm.vue'
-import SignInForm from '~/components/sessions/SignInForm.vue'
-import GymSmallCard from '~/components/gyms/GymSmallCard.vue'
-import GymAdministratorRequestForm from '~/components/gyms/forms/GymAdministratorRequestForm.vue'
+import GymSearchForm from '~/components/gyms/forms/GymSearchForm'
+import SignUpForm from '~/components/sessions/SignUpForm'
+import SignInForm from '~/components/sessions/SignInForm'
+import GymSmallCard from '~/components/gyms/GymSmallCard'
+import GymAdministratorRequestForm from '~/components/gyms/forms/GymAdministratorRequestForm'
 import GymApi from '~/services/oblyk-api/GymApi'
 import Gym from '~/models/Gym'
-import PageHeader from '~/components/layouts/PageHeader.vue'
+import PageHeader from '~/components/layouts/PageHeader'
 
 export default {
   components: {

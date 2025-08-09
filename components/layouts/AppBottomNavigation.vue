@@ -20,7 +20,7 @@
       </v-icon>
     </v-btn>
     <v-btn
-      to="/indoor"
+      :to="$route.path === '/indoor' ? '/indoor/search' : '/indoor'"
       value="indoor"
       class="indoor-btn"
     >
@@ -33,7 +33,7 @@
     </v-btn>
 
     <v-btn
-      to="/outdoor"
+      :to="$route.path === '/outdoor' ? '/outdoor/search/crags' : '/outdoor'"
       value="outdoor"
       class="outdoor-btn"
     >
@@ -46,7 +46,7 @@
     </v-btn>
 
     <v-btn
-      to="/community"
+      :to="$route.path === '/community' ? '/community/search' : '/community'"
       value="community"
       class="community-btn"
     >

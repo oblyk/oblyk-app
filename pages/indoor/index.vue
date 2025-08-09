@@ -10,7 +10,7 @@
       <!-- IF USER NOT LOGIN -->
       <v-sheet
         v-if="!$auth.loggedIn"
-        class="text-center border rounded pa-2 missing-background mt-2 indoor-join-us"
+        class="text-center border rounded pa-2 missing-background mb-6 indoor-join-us"
       >
         <h1 class="text-h6 mb-1">
           <v-icon color="#d53a9d" left>
@@ -43,8 +43,8 @@
       </v-sheet>
 
       <!-- MY CLIMBING GYMS -->
-      <div v-if="$auth.loggedIn">
-        <p class="mt-4 mb-1 font-weight-medium">
+      <div v-if="$auth.loggedIn" class="mb-6">
+        <p class="mb-1 font-weight-medium">
           <v-icon
             color="primary"
             left
@@ -60,81 +60,77 @@
       <!-- CONTEST À VENIR -->
       <my-upcoming-contests
         v-if="$auth.loggedIn"
-        class="mt-6"
+        class="mb-6"
       />
 
       <!-- LOG BOOK -->
       <log-book-indoor-small-figures
         v-if="$auth.loggedIn"
-        class="mt-6"
+        class="mb-6"
       />
 
       <!-- NEARBY GYM -->
-      <nearby-gyms-carousel class="mt-6" />
+      <nearby-gyms-carousel class="mb-6" />
 
       <!-- TOOL AND LINKS -->
-      <p class="mt-6 mb-1 font-weight-medium">
-        <v-icon color="primary" left class="vertical-align-top">
-          {{ mdiPlusBox }}
-        </v-icon>
-        {{ $t('components.indoor.moreIndoor') }}
-      </p>
-      <div class="d-flex">
-        <v-card
-          to="/maps/gyms"
-          width="180"
-          height="180"
-          class="mr-2"
-        >
-          <v-img
-            src="/images/gym-map.jpg"
-            alt="Carte des salles"
-            class="align-end"
-            dark
-            gradient="to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,.6)"
-          >
-            <p class="ma-2 font-weight-bold">
-              <v-icon left small>
-                {{ mdiMap }}
-              </v-icon>
-              {{ $t('components.search.map.gym') }}
-            </p>
-          </v-img>
-        </v-card>
-        <v-card
-          to="/contests"
-          width="180"
-          height="180"
-          class="mr-2"
-        >
-          <v-img
-            src="/images/contests.jpg"
-            alt="Image représentant un contest"
-            class="align-end"
-            dark
-            gradient="to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,.6)"
-          >
-            <p class="ma-2 font-weight-bold">
-              <v-icon left small>
-                {{ mdiTrophy }}
-              </v-icon>
-              {{ $t('components.contest.title') }}
-            </p>
-          </v-img>
-        </v-card>
+      <div class="mb-6">
+        <p class="mb-1 font-weight-medium">
+          <v-icon color="primary" left class="vertical-align-top">
+            {{ mdiPlusBox }}
+          </v-icon>
+          {{ $t('components.indoor.moreIndoor') }}
+        </p>
+        <v-row class="v-row-gutters-12 mb-2">
+          <v-col cols="6" md="4" lg="3">
+            <v-card to="/maps/gyms">
+              <v-img
+                src="/images/gym-map.jpg"
+                alt="Carte des salles"
+                class="align-end"
+                dark
+                gradient="to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,.6)"
+              >
+                <p class="ma-2 font-weight-bold text-truncate">
+                  <v-icon left small>
+                    {{ mdiMap }}
+                  </v-icon>
+                  {{ $t('components.search.map.gym') }}
+                </p>
+              </v-img>
+            </v-card>
+          </v-col>
+          <v-col cols="6" md="4" lg="3">
+            <v-card to="/contests">
+              <v-img
+                src="/images/contests.jpg"
+                alt="Image représentant un contest"
+                class="align-end"
+                dark
+                gradient="to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,.6)"
+              >
+                <p class="ma-2 font-weight-bold text-truncate">
+                  <v-icon left small>
+                    {{ mdiTrophy }}
+                  </v-icon>
+                  {{ $t('components.contest.title') }}
+                </p>
+              </v-img>
+            </v-card>
+          </v-col>
+        </v-row>
       </div>
 
       <!-- OTHER LINK AND TOOL -->
       <v-sheet
         v-if="$auth.loggedIn"
-        class="rounded-sm mb-1 mt-2"
+        class="rounded-sm mb-2"
         outlined
       >
         <v-list-item
           link
           to="/gyms/new"
         >
-          <v-list-item-icon>
+          <v-list-item-icon class="mr-3">
             <v-icon large color="primary">
               {{ mdiPlusBoxOutline }}
             </v-icon>
@@ -149,25 +145,22 @@
           </v-list-item-content>
         </v-list-item>
       </v-sheet>
-      <v-sheet class="rounded-sm" outlined>
+      <v-sheet class="rounded-sm mb-2" outlined>
         <v-list-item
           link
           to="/about/indoor"
         >
-          <v-list-item-icon>
+          <v-list-item-icon class="mr-3">
             <v-icon large color="primary">
               {{ mdiSourceBranch }}
             </v-icon>
           </v-list-item-icon>
           <v-list-item-content>
             <v-list-item-title>
-              Vous êtes gérant d'une salle ?
-              <v-icon
-                color="#743ad5"
-                right
-              >
+              <v-icon color="#743ad5" class="vertical-align-bottom mr-1">
                 {{ mdiProfessionalHexagon }}
               </v-icon>
+              Vous êtes gérant d'une salle ?
             </v-list-item-title>
             <v-list-item-subtitle class="text-wrap">
               Vous êtes gérant, ouvreur, ou bénévole d'un club ?

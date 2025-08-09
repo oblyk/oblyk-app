@@ -9,7 +9,7 @@
         <v-btn
           elevation="0"
           color="primary"
-          to="/find/crags"
+          to="/find/crags?back_to=/oblyk"
         >
           {{ $t('home.crags.action') }}
         </v-btn>

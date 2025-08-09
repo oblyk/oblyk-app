@@ -8,7 +8,7 @@
       <v-btn
         elevation="0"
         color="primary"
-        to="/sign-up"
+        to="/sign-up?back_to=/oblyk"
       >
         {{ $t('actions.createFreeAccount') }}
       </v-btn>
@@ -17,7 +17,7 @@
       <v-btn
         text
         small
-        to="/sign-in"
+        to="/sign-in?back_to=/oblyk"
       >
         {{ $t('actions.signIn') }}
       </v-btn>

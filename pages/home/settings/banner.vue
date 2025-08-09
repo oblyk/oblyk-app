@@ -24,7 +24,7 @@
 <script>
 import { CurrentUserConcern } from '~/concerns/CurrentUserConcern'
 import UserImageForm from '~/components/users/forms/UserImageForm'
-import PageHeader from '~/components/layouts/PageHeader.vue'
+import PageHeader from '~/components/layouts/PageHeader'
 
 export default {
   components: { PageHeader, UserImageForm },

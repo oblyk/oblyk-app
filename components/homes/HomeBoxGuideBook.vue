@@ -10,7 +10,7 @@
         <v-btn
           elevation="0"
           color="primary"
-          to="/guide-books/features"
+          to="/guide-books/features?back_to=/oblyk"
         >
           {{ $t('home.oblykAndGuide.action') }}
         </v-btn>

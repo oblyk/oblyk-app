@@ -47,10 +47,10 @@
 import CurrentUserApi from '~/services/oblyk-api/CurrentUserApi'
 import { LoadingMoreHelpers } from '~/mixins/LoadingMoreHelpers'
 import LocalityUser from '~/models/LocalityUser'
-import LoadingMore from '~/components/layouts/LoadingMore.vue'
-import LocalityUserCard from '~/components/localityUsers/LocalityUserCard.vue'
-import LocalityUserFilter from '~/components/localityUsers/LocalityUserFilter.vue'
-import PageHeader from '~/components/layouts/PageHeader.vue'
+import LoadingMore from '~/components/layouts/LoadingMore'
+import LocalityUserCard from '~/components/localityUsers/LocalityUserCard'
+import LocalityUserFilter from '~/components/localityUsers/LocalityUserFilter'
+import PageHeader from '~/components/layouts/PageHeader'
 
 export default {
   components: {

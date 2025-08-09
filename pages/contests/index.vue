@@ -56,8 +56,8 @@
 <script>
 import ContestApi from '~/services/oblyk-api/ContestApi'
 import Contest from '~/models/Contest'
-import ContestItemList from '~/components/contests/ContestItemList.vue'
-import PageHeader from '~/components/layouts/PageHeader.vue'
+import ContestItemList from '~/components/contests/ContestItemList'
+import PageHeader from '~/components/layouts/PageHeader'
 
 export default {
   components: { PageHeader, ContestItemList },

@@ -470,7 +470,7 @@ import CragApi from '~/services/oblyk-api/CragApi'
 import SearchPlaceInput from '~/components/forms/SearchPlaceInput'
 import { GradeMixin } from '~/mixins/GradeMixin'
 import CragsTable from '~/components/crags/CragsTable'
-import PageHeader from '~/components/layouts/PageHeader.vue'
+import PageHeader from '~/components/layouts/PageHeader'
 
 export default {
   components: { PageHeader, CragsTable, SearchPlaceInput },

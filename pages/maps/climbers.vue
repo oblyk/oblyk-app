@@ -29,8 +29,8 @@
 import PartnerModal from '@/components/partners/PartnerModal'
 import LocalityApi from '~/services/oblyk-api/LocalityApi'
 import { AddLocalityUserToMap } from '~/mixins/AddLocalityUserToMap'
-import LocalityUserDrawer from '~/components/localityUsers/LocalityUsersDrawer.vue'
-import PageHeader from '~/components/layouts/PageHeader.vue'
+import LocalityUserDrawer from '~/components/localityUsers/LocalityUsersDrawer'
+import PageHeader from '~/components/layouts/PageHeader'
 const LeafletMap = () => import('@/components/maps/LeafletMap')
 
 export default {

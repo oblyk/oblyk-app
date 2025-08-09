@@ -10,7 +10,7 @@
         <v-btn
           elevation="0"
           color="primary"
-          to="/about/indoor"
+          to="/about/indoor?back_to=/oblyk"
         >
           {{ $t('home.indoor.action') }}
         </v-btn>

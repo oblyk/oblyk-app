@@ -72,14 +72,14 @@
             <v-btn
               elevation="0"
               color="primary"
-              :to="`/sign-in?redirect_to=${$route.fullPath}`"
+              :to="`/sign-in?redirect_to=${$route.fullPath}&back_to=${$route.fullPath}`"
             >
               {{ $t('actions.signIn') }}
             </v-btn>
             <v-btn
               elevation="0"
               color="primary"
-              :to="`/sign-up?redirect_to=${$route.fullPath}`"
+              :to="`/sign-up?redirect_to=${$route.fullPath}&back_to=${$route.fullPath}`"
             >
               {{ $t('actions.signUp') }}
             </v-btn>

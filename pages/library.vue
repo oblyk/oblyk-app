@@ -90,7 +90,7 @@ import AppFooter from '@/components/layouts/AppFooter'
 import GuideBookPaperApi from '~/services/oblyk-api/GuideBookPaperApi'
 import GuideBookPaper from '~/models/GuideBookPaper'
 import GuideBookPaperCoverCard from '~/components/guideBookPapers/GuideBookPaperCoverCard'
-import PageHeader from '~/components/layouts/PageHeader.vue'
+import PageHeader from '~/components/layouts/PageHeader'
 
 export default {
   components: {

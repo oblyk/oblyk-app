@@ -11,7 +11,7 @@
         <v-btn
           elevation="0"
           color="primary"
-          to="/support-us"
+          to="/support-us?back_to=/oblyk"
         >
           {{ $t('home.supportUs.action') }}
         </v-btn>

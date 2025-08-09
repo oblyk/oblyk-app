@@ -29,7 +29,7 @@
 <script>
 import CragApi from '@/services/oblyk-api/CragApi'
 import Crag from '~/models/Crag'
-import PageHeader from '~/components/layouts/PageHeader.vue'
+import PageHeader from '~/components/layouts/PageHeader'
 const LeafletMap = () => import('@/components/maps/LeafletMap')
 
 export default {

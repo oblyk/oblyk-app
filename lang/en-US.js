@@ -725,6 +725,7 @@ export default {
     },
     search: {
       title: 'Search',
+      searchA: 'Search',
       searchLabel: 'Look for a crag, a route, a gym, etc.',
       noResultsFor: 'No results for <strong>%{query}</strong>',
       searchAroundTitle: 'Find crags and climbing gyms around me',
@@ -941,7 +942,7 @@ export default {
     },
     community: {
       search: 'Search a climber',
-      welcome: 'Welcome to the community!',
+      welcome: 'Welcome to the Oblyk community!',
       welcomeParagraphe: '<strong>Join us</strong> to find <strong>climbing partners</strong> and share your ascents with your friends!'
     },
     navigation: {
@@ -1671,6 +1672,7 @@ export default {
       successfulEditMessage: 'Your profile has been updated',
       whatClimbingType: 'What type of climbing do you practice ?',
       whichLevel: 'In which level do you like tso climb ?',
+      bePartPartnerTitle: "The climbers' map!",
       bePartPartner: "Be part of the climbers' map?",
       bePartPartnerExplain: 'Being part of the climbing map allows you to find people to climb with!',
       localizationDeactivated: 'localization disabled',

@@ -1,13 +1,13 @@
 <template>
   <div>
+    <page-header
+      :title="$t('actions.signIn')"
+      back-to="/"
+    />
     <v-container class="common-page-container">
       <v-row justify="center">
         <v-col class="global-form-width" align-self="center">
           <div v-if="!$auth.loggedIn">
-            <h1 class="mb-4 text-h5 font-weight-bold">
-              {{ $t('actions.signIn') }}
-            </h1>
-
             <v-alert
               v-if="redirectTo !== null && alert"
               outlined
@@ -39,9 +39,10 @@
 <script>
 import SignInForm from '@/components/sessions/SignInForm'
 import AppFooter from '@/components/layouts/AppFooter'
+import PageHeader from '~/components/layouts/PageHeader'
 
 export default {
-  components: { AppFooter, SignInForm },
+  components: { PageHeader, AppFooter, SignInForm },
 
   data () {
     return {

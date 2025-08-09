@@ -10,7 +10,7 @@
       <!-- IF USER NOT LOGIN -->
       <v-sheet
         v-if="!$auth.loggedIn"
-        class="text-center border rounded pa-2 missing-background mt-2 community-join-us"
+        class="text-center border rounded pa-2 missing-background mb-6 community-join-us"
       >
         <h1 class="text-h6 mb-1">
           <v-icon color="#00c2ff" left>
@@ -47,67 +47,66 @@
         <enable-partner-search
           v-if="$auth.user.partner_search === null && !$auth.user.minor"
           :user="$auth.user"
-          class="mb-3"
+          class="mb-6"
         />
 
-        <my-partner-figures v-if="$auth.user.partner_search" />
+        <my-partner-figures
+          v-if="$auth.user.partner_search"
+          class="mb-6"
+        />
       </div>
 
       <!-- TOOL AND LINKS -->
-      <p class="mt-6 mb-1 font-weight-medium">
-        <v-icon color="primary" left class="vertical-align-top">
-          {{ mdiPlusBoxOutline }}
-        </v-icon>
-        {{ $t('components.user.partnerSearch') }}
-      </p>
-      <div class="d-flex">
-        <v-card
-          to="/maps/climbers?back_to=/community"
-          width="180"
-          height="180"
-          class="mr-2"
-        >
-          <v-img
-            src="/images/climbers-map.jpg"
-            alt="Carte des grimpeurs et grimpeuses"
-            class="align-end"
-            dark
-            gradient="to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,.6)"
-          >
-            <p class="ma-2 font-weight-bold">
-              <v-icon left small>
-                {{ mdiMap }}
-              </v-icon>
-              {{ $t('components.layout.appDrawer.mapClimber') }}
-            </p>
-          </v-img>
-        </v-card>
-        <v-card
-          to="/about/partner-search?back_to=/community"
-          width="180"
-          height="180"
-          class="mr-2"
-        >
-          <v-img
-            src="/images/climbers-how-it-works.jpg"
-            alt="des grimpeurs qui font une parade"
-            class="align-end"
-            dark
-            gradient="to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,.6)"
-          >
-            <p class="ma-2 font-weight-bold">
-              <v-icon left small>
-                {{ mdiHelpCircle }}
-              </v-icon>
-              {{ $t('common.pages.find.climbers.howItWorks.title') }}
-            </p>
-          </v-img>
-        </v-card>
+      <div class="mb-6">
+        <p class="mb-1 font-weight-medium">
+          <v-icon color="primary" left class="vertical-align-top">
+            {{ mdiPlusBoxOutline }}
+          </v-icon>
+          {{ $t('components.user.partnerSearch') }}
+        </p>
+        <v-row class="v-row-gutters-12">
+          <v-col cols="6" md="4" lg="3">
+            <v-card to="/maps/climbers?back_to=/community">
+              <v-img
+                src="/images/climbers-map.jpg"
+                alt="Carte des grimpeurs et grimpeuses"
+                class="align-end"
+                dark
+                gradient="to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,.6)"
+              >
+                <p class="ma-2 font-weight-bold text-truncate">
+                  <v-icon left small>
+                    {{ mdiMap }}
+                  </v-icon>
+                  {{ $t('components.layout.appDrawer.mapClimber') }}
+                </p>
+              </v-img>
+            </v-card>
+          </v-col>
+          <v-col cols="6" md="4" lg="3">
+            <v-card to="/about/partner-search?back_to=/community">
+              <v-img
+                src="/images/climbers-how-it-works.jpg"
+                alt="des grimpeurs qui font une parade"
+                class="align-end"
+                dark
+                gradient="to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,.6)"
+              >
+                <p class="ma-2 font-weight-bold text-truncate">
+                  <v-icon left small>
+                    {{ mdiHelpCircle }}
+                  </v-icon>
+                  {{ $t('common.pages.find.climbers.howItWorks.title') }}
+                </p>
+              </v-img>
+            </v-card>
+          </v-col>
+        </v-row>
       </div>
 
       <suggested-friends
         v-if="$auth.loggedIn"
-        class="mt-6"
+        class="mb-6"
       />
     </v-container>
   </div>

@@ -11,7 +11,7 @@
         <v-btn
           elevation="0"
           color="primary"
-          to="/api-and-developers"
+          to="/api-and-developers?back_to=/oblyk"
         >
           {{ $t('home.developer.action') }}
         </v-btn>

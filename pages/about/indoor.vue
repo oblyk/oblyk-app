@@ -638,7 +638,7 @@ import Gym from '~/models/Gym'
 import GymSmallCard from '~/components/gyms/GymSmallCard'
 import AppFooter from '~/components/layouts/AppFooter'
 import CommonApi from '~/services/oblyk-api/CommonApi'
-import PageHeader from '~/components/layouts/PageHeader.vue'
+import PageHeader from '~/components/layouts/PageHeader'
 
 export default {
   components: { PageHeader, AppFooter, GymSmallCard },

@@ -266,7 +266,7 @@ import MyFollowedCrags from '~/components/users/MyFollowedCrags'
 import CragRouteDrawer from '~/components/cragRoutes/CragRouteDrawer'
 import AscentCragRouteApi from '~/services/oblyk-api/AscentCragRouteApi'
 import AscentCragRoute from '~/models/AscentCragRoute'
-import PageHeader from '~/components/layouts/PageHeader.vue'
+import PageHeader from '~/components/layouts/PageHeader'
 
 export default {
   meta: { orphanRoute: true },

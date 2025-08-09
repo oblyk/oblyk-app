@@ -1,5 +1,9 @@
 <template>
   <div>
+    <page-header
+      :title="$t('common.pages.find.guideBooks.title')"
+      back-to="/outdoor"
+    />
     <v-container>
       <h1 class="text-center mt-7 mb-1">
         {{ $t('common.pages.find.guideBooks.title') }}
@@ -212,9 +216,10 @@
 import { mdiTools, mdiMapMarkerRadius, mdiAlertDecagram } from '@mdi/js'
 import AppFooter from '~/components/layouts/AppFooter'
 import FindSomethingElse from '~/components/find/FindSomethingElse'
+import PageHeader from '~/components/layouts/PageHeader'
 
 export default {
-  components: { FindSomethingElse, AppFooter },
+  components: { PageHeader, FindSomethingElse, AppFooter },
   data () {
     return {
       mdiTools,

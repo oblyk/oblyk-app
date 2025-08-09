@@ -37,7 +37,7 @@
     <submit-form
       submit-local-key="actions.signIn"
       :overlay="overlay"
-      :go-back-btn="goBackBtn"
+      :go-back-btn="false"
     >
       <v-btn
         text
@@ -49,7 +49,7 @@
         {{ $t('actions.signUp') }}
       </v-btn>
     </submit-form>
-    <p class="text-right mt-5">
+    <p class="text-right mt-2">
       <nuxt-link to="/reset-password">
         {{ $t('components.session.forgottenPassword') }}
       </nuxt-link>

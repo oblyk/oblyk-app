@@ -65,7 +65,7 @@ import Spinner from '@/components/layouts/Spiner'
 import NotificationItemList from '@/components/notifications/NotificationItemList'
 import LoadingMore from '@/components/layouts/LoadingMore'
 import { LoadingMoreHelpers } from '~/mixins/LoadingMoreHelpers'
-import PageHeader from '~/components/layouts/PageHeader.vue'
+import PageHeader from '~/components/layouts/PageHeader'
 
 export default {
   components: { PageHeader, LoadingMore, NotificationItemList, Spinner },

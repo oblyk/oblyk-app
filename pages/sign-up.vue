@@ -1,12 +1,12 @@
 <template>
   <div>
+    <page-header
+      :title="$t('actions.signUp')"
+      back-to="/"
+    />
     <v-container class="common-page-container">
       <v-row justify="center">
         <v-col class="global-form-width" align-self="center">
-          <h1 class="mb-4 text-h5 font-weight-bold">
-            {{ $t('actions.createMyAccount') }}
-          </h1>
-
           <sign-up-form
             v-if="!$auth.loggedIn"
             :redirect-to="redirectTo"
@@ -33,9 +33,10 @@
 <script>
 import SignUpForm from '@/components/sessions/SignUpForm'
 import AppFooter from '@/components/layouts/AppFooter'
+import PageHeader from '~/components/layouts/PageHeader'
 
 export default {
-  components: { AppFooter, SignUpForm },
+  components: { PageHeader, AppFooter, SignUpForm },
 
   data () {
     return {

@@ -726,6 +726,7 @@ export default {
     },
     search: {
       title: 'Chercher',
+      searchA: 'Chercher un(e)',
       searchLabel: 'Chercher une falaise, une voie, une salle, etc.',
       noResultsFor: 'Pas de résultats pour <strong>%{query}</strong>',
       searchAroundTitle: 'Trouver les sites et salles autour de moi',
@@ -740,9 +741,9 @@ export default {
         word: '1 mot | {count} mots'
       },
       type: {
-        aCrag: 'une falaise',
-        aCragRoute: 'une voie',
-        aGuideBook: 'un topo'
+        aCrag: 'Falaise',
+        aCragRoute: 'Voie',
+        aGuideBook: 'Topo'
       },
       tabs: {
         crag: 'Site',
@@ -942,7 +943,7 @@ export default {
     },
     community: {
       search: 'Chercher un grimpeur, une grimpeuse',
-      welcome: 'Bienvenue dans le communauté !',
+      welcome: 'Bienvenue dans le communauté Oblyk !',
       welcomeParagraphe: '<strong>Rejoignez-nous</strong> pour trouver des <strong>partenaires de grimpe</strong> et partager vos ascensions avec vos ami·es !'
     },
     navigation: {
@@ -1670,10 +1671,11 @@ export default {
       notificationSetting: 'Paramètre des notifications',
       otherSetting: 'Autres paramètres',
       successfulEditMessage: 'Votre profil à été mis à jour',
-      whatClimbingType: "Quel type d'escalade pratiquez-vous ?",
+      whatClimbingType: "Quel type d'escalade pratiquez-vous ?",
       whichLevel: 'Dans quel niveau aimez-vous grimper ?',
-      bePartPartner: 'Voulez-vous faire partie de la carte des grimpeurs et grimpeuses ?',
-      bePartPartnerExplain: 'Faire partie de la carte des grimpeurs et grimpeuses vous permet de trouver des gens avec qui grimper autour de chez vous !',
+      bePartPartnerTitle: 'La carte des grimpeurs et grimpeuses !',
+      bePartPartner: 'Voulez-vous faire partie de la carte des grimpeurs et grimpeuses ?',
+      bePartPartnerExplain: 'Faire partie de la carte des grimpeurs et grimpeuses vous permet de trouver des gens avec qui grimper autour de chez vous !',
       localizationDeactivated: 'Localisation désactivée',
       localizationActivated: 'Localisation activée',
       activateLocalization: 'Activer la localisation',

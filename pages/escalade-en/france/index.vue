@@ -98,7 +98,7 @@ import DepartmentApi from '~/services/oblyk-api/DepartmentApi'
 import AppFooter from '~/components/layouts/AppFooter'
 import TownSearchForm from '~/components/towns/forms/TownSearchForm'
 import FraneSvg from '~/components/Countries/FranceSvg'
-import PageHeader from '~/components/layouts/PageHeader.vue'
+import PageHeader from '~/components/layouts/PageHeader'
 
 export default {
   components: { PageHeader, FraneSvg, TownSearchForm, AppFooter },

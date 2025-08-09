@@ -297,7 +297,7 @@ import AppFooter from '~/components/layouts/AppFooter'
 import TownDescription from '~/components/towns/TownDescription'
 import CragsTable from '~/components/crags/CragsTable'
 import Spinner from '~/components/layouts/Spiner'
-import PageHeader from '~/components/layouts/PageHeader.vue'
+import PageHeader from '~/components/layouts/PageHeader'
 const TownSearchForm = () => import('~/components/towns/forms/TownSearchForm')
 const LeafletMap = () => import('~/components/maps/LeafletMap')
 

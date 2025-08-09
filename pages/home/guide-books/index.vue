@@ -55,12 +55,12 @@
 <script>
 import { CurrentUserConcern } from '~/concerns/CurrentUserConcern'
 import { TextHelpers } from '~/mixins/TextHelpers'
-import Spinner from '~/components/layouts/Spiner.vue'
+import Spinner from '~/components/layouts/Spiner'
 import CurrentUserApi from '~/services/oblyk-api/CurrentUserApi'
 import GuideBookPaper from '~/models/GuideBookPaper'
-import GuideBookPaperCoverCard from '~/components/guideBookPapers/GuideBookPaperCoverCard.vue'
-import GuideBookStoreHeader from '~/components/guideBookPapers/GuideBookStoreHeader.vue'
-import PageHeader from '~/components/layouts/PageHeader.vue'
+import GuideBookPaperCoverCard from '~/components/guideBookPapers/GuideBookPaperCoverCard'
+import GuideBookStoreHeader from '~/components/guideBookPapers/GuideBookStoreHeader'
+import PageHeader from '~/components/layouts/PageHeader'
 
 export default {
   components: { PageHeader, GuideBookStoreHeader, GuideBookPaperCoverCard, Spinner },

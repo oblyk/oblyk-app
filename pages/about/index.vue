@@ -1,5 +1,9 @@
 <template>
   <div>
+    <page-header
+      :title="$t('common.pages.about.title')"
+      back-to="/oblyk"
+    />
     <v-container class="common-page-container">
       <!-- In few words -->
       <h1 class="text-center mt-5 mb-10">
@@ -182,9 +186,10 @@
 import { mdiHeart } from '@mdi/js'
 import CommonApi from '@/services/oblyk-api/CommonApi'
 import AppFooter from '@/components/layouts/AppFooter'
+import PageHeader from '~/components/layouts/PageHeader'
 
 export default {
-  components: { AppFooter },
+  components: { PageHeader, AppFooter },
 
   data () {
     return {

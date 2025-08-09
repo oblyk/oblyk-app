@@ -6,7 +6,7 @@
   />
 </template>
 <script>
-import PageHeader from '~/components/layouts/PageHeader.vue'
+import PageHeader from '~/components/layouts/PageHeader'
 
 export default {
   name: 'AreaPageHeader',

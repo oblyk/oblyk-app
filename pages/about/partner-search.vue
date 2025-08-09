@@ -26,7 +26,7 @@
           <v-btn
             outlined
             color="primary"
-            to="/sign-up"
+            :to="`/sign-up?back_to=${$route.fullPath}`"
           >
             {{ $t('actions.signUp') }}
           </v-btn>

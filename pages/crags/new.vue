@@ -19,7 +19,7 @@
 
 <script>
 import CragForm from '~/components/crags/forms/CragForm'
-import PageHeader from '~/components/layouts/PageHeader.vue'
+import PageHeader from '~/components/layouts/PageHeader'
 
 export default {
   meta: { orphanRoute: true },

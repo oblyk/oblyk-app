@@ -11,7 +11,7 @@
       <!-- IF USER NOT LOGIN -->
       <v-sheet
         v-if="!$auth.loggedIn"
-        class="text-center border rounded pa-2 missing-background mt-2 outdoor-join-us"
+        class="text-center border rounded pa-2 missing-background mb-6 outdoor-join-us"
       >
         <h1 class="text-h6 mb-1">
           <v-icon color="#51fd8b" left>
@@ -27,7 +27,7 @@
           <v-btn
             elevation="0"
             color="primary"
-            to="/sign-up"
+            :to="`/sign-up?back_to=${$route.fullPath}`"
           >
             {{ $t('actions.createMyAccount') }}
           </v-btn>
@@ -37,7 +37,7 @@
           small
           elevation="0"
           color="primary"
-          to="/sign-in"
+          to="/sign-in?back_to=/outdoor"
         >
           {{ $t('actions.signIn') }}
         </v-btn>
@@ -45,103 +45,109 @@
 
       <div v-if="$auth.loggedIn">
         <!-- MY CRAGS -->
-        <p class="mt-4 mb-1 font-weight-medium">
+        <div class="mb-6">
+          <p class="mb-1 font-weight-medium">
+            <v-icon
+              color="primary"
+              left
+              class="vertical-align-top"
+            >
+              {{ mdiStar }}
+            </v-icon>
+            {{ $t('components.crag.myCrags') }}
+          </p>
+          <my-favorite-crags-carousel />
+        </div>
+
+        <!-- GUIDE BOOK FIGURES -->
+        <div class="mb-6">
+          <p class="mb-1 font-weight-medium">
+            <v-icon color="primary" left class="vertical-align-top">
+              {{ mdiBookOutline }}
+            </v-icon>
+            {{ $t('components.dailyCrosses.myLogbook') }}
+          </p>
+          <daily-ascents />
+        </div>
+      </div>
+
+      <!-- NEARBY CRAG -->
+      <nearby-crags-carousel class="mb-6" />
+
+      <!-- MAPS AND TOOLS -->
+      <div class="mb-6">
+        <p class="mb-1 font-weight-medium">
           <v-icon
             color="primary"
             left
             class="vertical-align-top"
           >
-            {{ mdiStar }}
+            {{ mdiPlusBoxOutline }}
           </v-icon>
-          {{ $t('components.crag.myCrags') }}
+          {{ $t('components.outdoor.moreOutdoor') }}
         </p>
-        <my-favorite-crags-carousel />
-
-        <!-- GUIDE BOOK FIGURES -->
-        <p class="mb-1 mt-6 font-weight-medium">
-          <v-icon color="primary" left class="vertical-align-top">
-            {{ mdiBookOutline }}
-          </v-icon>
-          {{ $t('components.dailyCrosses.myLogbook') }}
-        </p>
-        <daily-ascents />
+        <v-row class="v-row-gutters-12">
+          <v-col cols="6" md="4" lg="3">
+            <v-card to="/maps/crags">
+              <v-img
+                src="/images/crags-map.jpg"
+                alt="Carte des salles"
+                class="align-end"
+                dark
+                gradient="to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,.6)"
+              >
+                <p class="ma-2 font-weight-bold text-truncate">
+                  <v-icon left small>
+                    {{ mdiMap }}
+                  </v-icon>
+                  {{ $t('components.search.map.crag') }}
+                </p>
+              </v-img>
+            </v-card>
+          </v-col>
+          <v-col cols="6" md="4" lg="3">
+            <v-card to="/maps/guide-book-papers">
+              <v-img
+                src="/images/guide-book-map.jpg"
+                alt="Carte des topos"
+                class="align-end"
+                dark
+                gradient="to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,.6)"
+              >
+                <p class="ma-2 font-weight-bold text-truncate">
+                  <v-icon left>
+                    {{ mdiBookshelf }}
+                  </v-icon>
+                  {{ $t('common.pages.find.guideBooks.map.title') }}
+                </p>
+              </v-img>
+            </v-card>
+          </v-col>
+          <v-col cols="6" md="4" lg="3">
+            <v-card to="/crags/search">
+              <v-img
+                src="/images/advanced-search.jpg"
+                alt="Recherche avancée"
+                class="align-end"
+                dark
+                gradient="to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,.6)"
+              >
+                <p class="ma-2 font-weight-bold text-truncate">
+                  <v-icon left>
+                    {{ mdiMagnifyExpand }}
+                  </v-icon>
+                  {{ $t('common.pages.find.crags.advancedSearch.title') }}
+                </p>
+              </v-img>
+            </v-card>
+          </v-col>
+        </v-row>
       </div>
-
-      <!-- NEARBY CRAG -->
-      <nearby-crags-carousel class="mt-6" />
-
-      <!-- MAPS AND TOOLS -->
-      <p class="mt-4 mb-1 font-weight-medium">
-        <v-icon
-          color="primary"
-          left
-          class="vertical-align-top"
-        >
-          {{ mdiPlusBoxOutline }}
-        </v-icon>
-        {{ $t('components.outdoor.moreOutdoor') }}
-      </p>
-      <v-row class="v-row-gutters-12">
-        <v-col cols="6" md="4" lg="3">
-          <v-card to="/maps/crags">
-            <v-img
-              src="/images/crags-map.jpg"
-              alt="Carte des salles"
-              class="align-end"
-              dark
-              gradient="to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,.6)"
-            >
-              <p class="ma-2 font-weight-bold text-truncate">
-                <v-icon left small>
-                  {{ mdiMap }}
-                </v-icon>
-                {{ $t('components.search.map.crag') }}
-              </p>
-            </v-img>
-          </v-card>
-        </v-col>
-        <v-col cols="6" md="4" lg="3">
-          <v-card to="/maps/guide-book-papers">
-            <v-img
-              src="/images/guide-book-map.jpg"
-              alt="Carte des topos"
-              class="align-end"
-              dark
-              gradient="to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,.6)"
-            >
-              <p class="ma-2 font-weight-bold text-truncate">
-                <v-icon left>
-                  {{ mdiBookshelf }}
-                </v-icon>
-                {{ $t('common.pages.find.guideBooks.map.title') }}
-              </p>
-            </v-img>
-          </v-card>
-        </v-col>
-        <v-col cols="6" md="4" lg="3">
-          <v-card to="/crags/search">
-            <v-img
-              src="/images/advanced-search.jpg"
-              alt="Recherche avancée"
-              class="align-end"
-              dark
-              gradient="to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,.6)"
-            >
-              <p class="ma-2 font-weight-bold text-truncate">
-                <v-icon left>
-                  {{ mdiMagnifyExpand }}
-                </v-icon>
-                {{ $t('common.pages.find.crags.advancedSearch.title') }}
-              </p>
-            </v-img>
-          </v-card>
-        </v-col>
-      </v-row>
 
       <!-- OTHER LINKS -->
       <v-sheet
         v-if="$auth.loggedIn"
-        class="rounded-sm mb-1 mt-2"
+        class="rounded-sm mb-2"
         outlined
       >
         <v-list-item
@@ -165,7 +171,7 @@
       </v-sheet>
       <v-sheet
         v-if="$auth.loggedIn"
-        class="rounded-sm mb-1 mt-2"
+        class="rounded-sm mb-2"
         outlined
       >
         <v-list-item

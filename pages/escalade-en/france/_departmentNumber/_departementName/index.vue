@@ -246,7 +246,7 @@ import LocalityGradeChart from '~/components/localities/charts/LocalityGradeChar
 import Spinner from '~/components/layouts/Spiner'
 import DescriptionLine from '~/components/ui/DescriptionLine'
 import DepartmentDescription from '~/components/departments/DepartmentDescription'
-import PageHeader from '~/components/layouts/PageHeader.vue'
+import PageHeader from '~/components/layouts/PageHeader'
 const LeafletMap = () => import('~/components/maps/LeafletMap')
 
 export default {

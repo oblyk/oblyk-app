@@ -9,7 +9,7 @@
     </v-subheader>
 
     <v-list-item
-      to="/sign-in"
+      :to="`/sign-in?back_to=${$route.fullPath}`"
     >
       <v-list-item-icon>
         <v-icon>
@@ -22,7 +22,7 @@
     </v-list-item>
 
     <v-list-item
-      to="/sign-up"
+      :to="`/sign-up?back_to=${$route.fullPath}`"
     >
       <v-list-item-icon>
         <v-icon>
