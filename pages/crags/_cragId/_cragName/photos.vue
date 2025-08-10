@@ -75,6 +75,7 @@ export default {
     PhotoGallery,
     Spinner
   },
+  scrollToTop: true,
   props: {
     crag: {
       type: Object,

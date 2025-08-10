@@ -25,9 +25,10 @@
                   {{ gym.name }}
                 </p>
                 <p class="mb-0 text-truncate">
-                  <v-chip
+                  <v-btn
                     v-if="gym.have_guide_book"
                     x-small
+                    elevation="0"
                     class="px-1 font-weight-medium"
                     color="primary"
                   >
@@ -38,7 +39,7 @@
                       {{ mdiSourceBranch }}
                     </v-icon>
                     TOPO
-                  </v-chip>
+                  </v-btn>
                   <small>
                     {{ gym.city }}
                   </small>

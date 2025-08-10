@@ -97,9 +97,6 @@
                 gradient="to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,.6)"
               >
                 <p class="ma-2 font-weight-bold text-truncate">
-                  <v-icon left small>
-                    {{ mdiMap }}
-                  </v-icon>
                   {{ $t('components.search.map.crag') }}
                 </p>
               </v-img>
@@ -115,9 +112,6 @@
                 gradient="to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,.6)"
               >
                 <p class="ma-2 font-weight-bold text-truncate">
-                  <v-icon left>
-                    {{ mdiBookshelf }}
-                  </v-icon>
                   {{ $t('common.pages.find.guideBooks.map.title') }}
                 </p>
               </v-img>
@@ -133,9 +127,6 @@
                 gradient="to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,.6)"
               >
                 <p class="ma-2 font-weight-bold text-truncate">
-                  <v-icon left>
-                    {{ mdiMagnifyExpand }}
-                  </v-icon>
                   {{ $t('common.pages.find.crags.advancedSearch.title') }}
                 </p>
               </v-img>
@@ -202,10 +193,8 @@ import {
   mdiStar,
   mdiCreation,
   mdiBookOutline,
-  mdiMap,
   mdiPlusBoxOutline,
-  mdiBookshelf,
-  mdiMagnifyExpand
+  mdiBookshelf
 } from '@mdi/js'
 import MyFavoriteCragsCarousel from '~/components/crags/MyFavoriteCragsCarousel'
 import DailyAscents from '~/components/logBooks/outdoors/DailyAscents'
@@ -221,10 +210,8 @@ export default {
       mdiStar,
       mdiCreation,
       mdiBookOutline,
-      mdiMap,
       mdiPlusBoxOutline,
-      mdiBookshelf,
-      mdiMagnifyExpand
+      mdiBookshelf
     }
   },
 
@@ -252,6 +239,10 @@ export default {
         { hid: 'og:image', property: 'og:image', content: `${process.env.VUE_APP_OBLYK_APP_URL}/images/oblyk-og-image.jpg` }
       ]
     }
+  },
+
+  mounted () {
+    this.$store.dispatch('oblykEnvironment/clearHubs')
   }
 }
 </script>

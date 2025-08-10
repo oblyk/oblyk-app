@@ -1,7 +1,9 @@
 <template>
   <div v-if="crag">
+    <crag-head :crag="crag" />
+
     <!-- Crag information, map, etc. -->
-    <v-row>
+    <v-row class="mt-1">
       <v-col class="col-12">
         <crag-info :crag="crag" />
       </v-col>
@@ -94,6 +96,7 @@ import CragInfo from '@/components/crags/CragDescription'
 import CragGuidesCard from '@/components/crags/CragGuidesCard'
 import ClimbersAround from '~/components/partners/ClimbersAround'
 import VersionInformation from '~/components/ui/VersionInformation'
+import CragHead from '~/components/crags/layouts/CragHead.vue'
 const CragArticles = () => import('@/components/crags/CragArticles')
 const CragUserAscents = () => import('~/components/crags/CragUserAscents')
 const CragComment = () => import('@/components/crags/CragComment')
@@ -101,6 +104,7 @@ const CragFigures = () => import('~/components/crags/CragFigures')
 
 export default {
   components: {
+    CragHead,
     LazyHydrate,
     VersionInformation,
     ClimbersAround,
@@ -111,6 +115,7 @@ export default {
     CragFigures,
     CragComment
   },
+  scrollToTop: true,
   props: {
     crag: {
       type: Object,
@@ -123,6 +128,10 @@ export default {
       cragFigures: false,
       comments: false
     }
+  },
+
+  created () {
+    this.$store.dispatch('oblykEnvironment/pushHubs', { hub: this.crag.path, page: this.$route.path })
   },
 
   methods: {

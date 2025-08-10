@@ -1,30 +1,27 @@
 <template>
-  <div>
-    <skeleton-loader-page-head v-if="$fetchState.pending" />
-    <div v-else>
-      <area-page-header :area="area" />
-      <v-container class="area-container">
-        <photo-gallery
-          v-if="area"
-          environnement-type="area"
-          :environnement-object="area"
-          gallery-type="Area"
-          :gallery-id="area.id"
-        />
-      </v-container>
-    </div>
+  <div v-if="area">
+    <photo-gallery
+      v-if="area"
+      environnement-type="area"
+      :environnement-object="area"
+      gallery-type="Area"
+      :gallery-id="area.id"
+    />
   </div>
 </template>
 
 <script>
-import { AreaConcern } from '~/concerns/AreaConcern'
 import PhotoGallery from '@/components/photos/PhotoGallery'
-import SkeletonLoaderPageHead from '~/components/layouts/SkeletonLoaderPageHead'
-import AreaPageHeader from '~/components/areas/layouts/AreaPageHeader.vue'
 
 export default {
-  components: { AreaPageHeader, SkeletonLoaderPageHead, PhotoGallery },
-  mixins: [AreaConcern],
+  components: { PhotoGallery },
+  scrollToTop: true,
+  props: {
+    area: {
+      type: Object,
+      required: true
+    }
+  },
 
   data () {
     return {

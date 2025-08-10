@@ -31,6 +31,7 @@ import UserMediaTabs from '~/components/users/layouts/UserMediaTabs'
 export default {
   components: { UserMediaTabs },
   mixins: [SubscribeConcern],
+  scrollToTop: true,
   props: {
     user: {
       type: Object,

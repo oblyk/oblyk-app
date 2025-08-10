@@ -63,7 +63,7 @@
           <v-icon left>
             {{ mdiBookOutline }}
           </v-icon>
-          {{ $t('components.user.cardsTitle.myLogbook') }}
+          {{ $t('components.user.ascentTabs.sendList') }}
         </v-btn>
         <v-btn
           to="/ascents/indoor/new"

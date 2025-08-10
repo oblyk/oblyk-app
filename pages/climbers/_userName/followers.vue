@@ -44,6 +44,7 @@ import User from '~/models/User'
 export default {
   components: { LoadingMore, Spinner, UserSmallCard },
   mixins: [LoadingMoreHelpers],
+  scrollToTop: true,
   props: {
     user: {
       type: Object,
@@ -96,6 +97,10 @@ export default {
       }
       return ''
     }
+  },
+
+  created () {
+    this.$store.dispatch('oblykEnvironment/pushHubs', { hub: this.user.userPath, page: this.$route.path })
   },
 
   mounted () {

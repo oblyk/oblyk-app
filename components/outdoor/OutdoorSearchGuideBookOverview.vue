@@ -28,71 +28,53 @@
           </v-icon>
           {{ $t('common.findAnotherWay') }}
         </p>
-        <div class="d-flex mb-4 overflow-x-auto">
-          <v-card
-            to="/maps/guide-book-papers?back_to=/outdoor/search/guide-books"
-            width="180"
-            height="180"
-            class="mr-2"
-          >
-            <v-img
-              src="/images/guide-book-map.jpg"
-              alt="Carte des topos"
-              class="align-end"
-              dark
-              gradient="to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,.6)"
-            >
-              <p class="ma-2 font-weight-bold text-truncate">
-                <v-icon left>
-                  {{ mdiMap }}
-                </v-icon>
-                {{ $t('common.pages.find.guideBooks.map.title') }}
-              </p>
-            </v-img>
-          </v-card>
-          <v-card
-            to="/guide-book-papers/find?back_to=/outdoor/search/guide-books"
-            width="180"
-            height="180"
-            class="mr-2"
-          >
-            <v-img
-              src="/images/around-city.jpg"
-              alt="Autour d'une ville"
-              class="align-end"
-              dark
-              gradient="to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,.6)"
-            >
-              <p class="ma-2 font-weight-bold text-truncate">
-                <v-icon left>
-                  {{ mdiMapMarkerRadius }}
-                </v-icon>
-                {{ $t('common.pages.find.crags.aroundCity.title') }}
-              </p>
-            </v-img>
-          </v-card>
-          <v-card
-            to="/library?back_to=/outdoor/search/guide-books"
-            width="180"
-            height="180"
-            class="mr-2"
-          >
-            <v-img
-              src="/images/new-guide-book.jpg"
-              alt="Nouveaux topo"
-              class="align-end"
-              dark
-              gradient="to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,.6)"
-            >
-              <p class="ma-2 font-weight-bold text-truncate">
-                <v-icon left>
-                  {{ mdiAlertDecagram }}
-                </v-icon>
-                {{ $t('components.layout.appDrawer.guideBook.news') }}
-              </p>
-            </v-img>
-          </v-card>
-        </div>
+        <v-row class="v-row-gutters-12 mb-4">
+          <v-col cols="6" md="4">
+            <v-card to="/maps/guide-book-papers?back_to=/outdoor/search/guide-books">
+              <v-img
+                src="/images/guide-book-map.jpg"
+                alt="Carte des topos"
+                class="align-end"
+                dark
+                gradient="to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,.6)"
+              >
+                <p class="ma-2 font-weight-bold text-truncate">
+                  {{ $t('common.pages.find.guideBooks.map.title') }}
+                </p>
+              </v-img>
+            </v-card>
+          </v-col>
+          <v-col cols="6" md="4">
+            <v-card to="/guide-book-papers/find?back_to=/outdoor/search/guide-books">
+              <v-img
+                src="/images/around-city.jpg"
+                alt="Autour d'une ville"
+                class="align-end"
+                dark
+                gradient="to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,.6)"
+              >
+                <p class="ma-2 font-weight-bold text-truncate">
+                  {{ $t('common.pages.find.crags.aroundCity.title') }}
+                </p>
+              </v-img>
+            </v-card>
+          </v-col>
+          <v-col cols="6" md="4">
+            <v-card to="/library?back_to=/outdoor/search/guide-books">
+              <v-img
+                src="/images/new-guide-book.jpg"
+                alt="Nouveaux topo"
+                class="align-end"
+                dark
+                gradient="to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,.6)"
+              >
+                <p class="ma-2 font-weight-bold text-truncate">
+                  {{ $t('components.layout.appDrawer.guideBook.news') }}
+                </p>
+              </v-img>
+            </v-card>
+          </v-col>
+        </v-row>
 
         <guide-book-papers-by-popularity />
       </div>
@@ -114,7 +96,7 @@
   </div>
 </template>
 <script>
-import { mdiAlertDecagram, mdiMap, mdiMapMarkerRadius, mdiMapSearch } from '@mdi/js'
+import { mdiMap, mdiMapSearch } from '@mdi/js'
 import OutdoorSearchField from '~/components/outdoor/OutdoorSearchField'
 import GuideBookPapersByPopularity from '~/components/guideBookPapers/GuideBookPapersByPopularity'
 import GuideBookPaperSmallCard from '~/components/guideBookPapers/GuideBookPaperSmallCard'
@@ -142,9 +124,7 @@ export default {
       countLoading: true,
 
       mdiMapSearch,
-      mdiMap,
-      mdiAlertDecagram,
-      mdiMapMarkerRadius
+      mdiMap
     }
   },
 

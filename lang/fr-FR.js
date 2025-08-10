@@ -1012,6 +1012,7 @@ export default {
       relatedArticles: 'Articles liés'
     },
     cragSector: {
+      sector: 'Secteur :',
       coverFrom: 'Photo du secteur',
       newSector: 'Nouveau secteur',
       sectorOf: 'Secteur de',

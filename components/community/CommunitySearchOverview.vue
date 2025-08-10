@@ -81,29 +81,23 @@
           </v-icon>
           {{ $t('common.findAnotherWay') }}
         </p>
-        <div class="d-flex mb-4">
-          <v-card
-            to="/maps/climbers?back_to=/community/search"
-            width="180"
-            height="180"
-            class="mr-2"
-          >
-            <v-img
-              src="/images/climbers-map.jpg"
-              alt="Carte des grimpeurs et grimpeuses"
-              class="align-end"
-              dark
-              gradient="to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,.6)"
-            >
-              <p class="ma-2 font-weight-bold text-truncate">
-                <v-icon left>
-                  {{ mdiAccountMultiple }}
-                </v-icon>
-                {{ $t('components.layout.appDrawer.mapClimber') }}
-              </p>
-            </v-img>
-          </v-card>
-        </div>
+        <v-row class="v-row-gutters-12 mb-4">
+          <v-col cols="6" md="4">
+            <v-card to="/maps/climbers?back_to=/community/search">
+              <v-img
+                src="/images/climbers-map.jpg"
+                alt="Carte des grimpeurs et grimpeuses"
+                class="align-end"
+                dark
+                gradient="to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,.6)"
+              >
+                <p class="ma-2 font-weight-bold text-truncate">
+                  {{ $t('components.layout.appDrawer.mapClimber') }}
+                </p>
+              </v-img>
+            </v-card>
+          </v-col>
+        </v-row>
 
         <suggested-friends v-if="$auth.loggedIn" />
       </div>
@@ -150,7 +144,7 @@
   </div>
 </template>
 <script>
-import { mdiAccountMultiple, mdiClose, mdiMapSearch } from '@mdi/js'
+import { mdiClose, mdiMapSearch } from '@mdi/js'
 import SuggestedFriends from '~/components/users/SuggestedFriends'
 import UserSmallCard from '~/components/users/UserSmallCard'
 import { oblykPartner } from '~/assets/oblyk-icons'
@@ -177,8 +171,7 @@ export default {
 
       oblykPartner,
       mdiClose,
-      mdiMapSearch,
-      mdiAccountMultiple
+      mdiMapSearch
     }
   },
 

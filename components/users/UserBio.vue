@@ -1,7 +1,7 @@
 <template>
   <v-card class="full-height d-flex flex-column">
     <v-card-title class="flex-grow-0">
-      <v-icon left>
+      <v-icon left color="primary">
         {{ mdiTextAccount }}
       </v-icon>
       {{ $t('components.user.bio') }}

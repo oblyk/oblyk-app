@@ -4,7 +4,7 @@
       <v-card
         :to="mode === 'link' ? '/community/search' : null"
         class="rounded-pill rounded-focus community-gradient-search-box"
-        :class="shortCutButons ? '--with-short-cuts-btn' : ''"
+        :class="shortCutButons && $auth.loggedIn ? '--with-short-cuts-btn' : ''"
         @click="openDialog"
       >
         <div class="d-flex justify-center align-center" style="height: 45px;">
@@ -44,11 +44,11 @@
         </div>
       </v-card>
       <div
-        v-if="shortCutButons"
+        v-if="shortCutButons && $auth.loggedIn"
         class="community-search-icons"
       >
         <v-btn
-          to="/notifications"
+          :to="`/notifications?back_to=${$route.fullPath}`"
           class="ml-1"
           icon
         >
@@ -57,7 +57,7 @@
           </v-icon>
         </v-btn>
         <v-btn
-          to="/home/messenger"
+          :to="`/home/messenger?back_to=${$route.fullPath}`"
           class="ml-1"
           icon
         >

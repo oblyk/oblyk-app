@@ -3,7 +3,7 @@
     class="rounded"
     height="100%"
     width="100%"
-    :src="imageVariant(cragSector.Crag.attachments.cover, { fit: 'scale-down', height: 1920, width: 1920 })"
+    :src="imageVariant(cragSector.Crag.attachments.static_map, { fit: 'scale-down', height: 1920, width: 1920 })"
   >
     <v-row
       class="fill-height ma-0"
@@ -42,6 +42,7 @@ import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 export default {
   name: 'CragSectorMapView',
   mixins: [ImageVariantHelpers],
+  scrollToTop: true,
   props: {
     cragSector: {
       type: Object,

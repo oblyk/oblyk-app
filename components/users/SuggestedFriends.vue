@@ -18,8 +18,8 @@
       >
         <v-img
           :src="imageVariant(user.attachments.banner, { fit: 'scale-down', width: 720, height: 720 })"
-          height="200"
-          width="150"
+          height="230"
+          width="170"
           class="rounded-sm d-flex align-end"
           :alt="user.name"
           gradient="to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 0.6) 100%"

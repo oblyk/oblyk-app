@@ -1,5 +1,9 @@
 <template>
   <div>
+    <page-header
+      :title="$t('common.pages.guideBookFeature.title')"
+      back-to="/outdoor"
+    />
     <v-container>
       <h1 class="guide-features-h1 text-center">
         {{ $t('common.pages.guideBookFeature.title') }}
@@ -160,9 +164,10 @@
 import { mdiHandCoin, mdiCurrencyUsdOff } from '@mdi/js'
 import AppFooter from '~/components/layouts/AppFooter'
 import OtherFeatures from '~/components/globals/OtherFeatures'
+import PageHeader from '~/components/layouts/PageHeader.vue'
 
 export default {
-  components: { OtherFeatures, AppFooter },
+  components: { PageHeader, OtherFeatures, AppFooter },
   data () {
     return {
       mdiHandCoin,

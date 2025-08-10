@@ -137,6 +137,7 @@ export default {
 
   created () {
     if (process.client) {
+      this.$store.dispatch('oblykEnvironment/clearHubs')
       this.connectCable()
       this.setEnvironnement()
     }
@@ -269,14 +270,16 @@ export default {
         '/maps/crags',
         '/maps/my-map',
         '/maps/guide-book-papers',
-        '/outdoor'
+        '/outdoor',
+        '/library'
       ]
       const communityPaths = [
         '/about/partner-search',
         '/community',
         '/find/climbers',
         '/home/messenger',
-        '/maps/climbers'
+        '/maps/climbers',
+        '/climbers'
       ]
       const indoorRegex = new RegExp(`^(${indoorPaths.join('|')})`)
       const outdoorRegex = new RegExp(`^(${outdoorPaths.join('|')})`)

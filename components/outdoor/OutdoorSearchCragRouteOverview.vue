@@ -23,7 +23,10 @@
         </div>
 
         <!-- SUGGESTED CRAG ROUTES -->
-        <suggested-crag-routes :click-callback="openCragRoute" />
+        <suggested-crag-routes
+          v-if="$auth.loggedIn"
+          :click-callback="openCragRoute"
+        />
       </div>
 
       <!-- RESULTS -->
@@ -44,8 +47,8 @@
           />
         </div>
       </div>
-      <crag-route-drawer />
     </v-container>
+    <crag-route-drawer />
   </div>
 </template>
 <script>

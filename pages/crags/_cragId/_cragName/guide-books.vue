@@ -19,6 +19,7 @@ import GuideList from '@/components/crags/GuideList'
 export default {
   name: 'CragGuideBooksView',
   components: { GuideList, AddGuideBookBtn },
+  scrollToTop: true,
   props: {
     crag: {
       type: Object,
@@ -38,6 +39,10 @@ export default {
         city: (this.crag || {}).city
       })
     }
+  },
+
+  created () {
+    this.$store.dispatch('oblykEnvironment/pushHubs', { hub: this.crag.path, page: this.$route.path })
   },
 
   i18n: {

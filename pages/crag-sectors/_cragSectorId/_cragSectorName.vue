@@ -1,21 +1,11 @@
 <template>
   <div>
-    <div v-if="$fetchState.pending">
-      <v-container>
-        <v-skeleton-loader
-          class="mx-auto"
-          type="image, table-heading, divider, list-item-three-line, actions"
-        />
-      </v-container>
-    </div>
+    <skeleton-loader-page-head v-if="$fetchState.pending" />
     <div v-else>
-      <div class="crag-sector-card mt-0 mt-md-7">
-        <v-card>
-          <crag-sector-head :crag-sector="cragSector" />
-          <crag-sector-tabs :crag-sector="cragSector" />
-          <nuxt-child :crag-sector="cragSector" />
-        </v-card>
-      </div>
+      <crag-sector-page-header :crag-sector="cragSector" />
+      <v-container style="min-height: 100vh">
+        <nuxt-child :crag-sector="cragSector" />
+      </v-container>
       <app-footer />
     </div>
   </div>
@@ -23,24 +13,16 @@
 
 <script>
 import { CragSectorConcern } from '~/concerns/CragSectorConcern'
-import CragSectorHead from '~/components/cragSectors/layout/CragSectorHead'
-import CragSectorTabs from '~/components/cragSectors/layout/CragSectorTabs'
 import AppFooter from '~/components/layouts/AppFooter'
+import SkeletonLoaderPageHead from '~/components/layouts/SkeletonLoaderPageHead'
+import CragSectorPageHeader from '~/components/cragSectors/layout/CragSectorPageHeader'
 
 export default {
   components: {
-    AppFooter,
-    CragSectorTabs,
-    CragSectorHead
+    CragSectorPageHeader,
+    SkeletonLoaderPageHead,
+    AppFooter
   },
   mixins: [CragSectorConcern]
 }
 </script>
-
-<style lang="scss" scoped>
-.crag-sector-card {
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 1000px;
-}
-</style>

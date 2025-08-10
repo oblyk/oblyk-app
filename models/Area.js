@@ -17,4 +17,8 @@ export default class Area extends ActiveData {
   get path () {
     return `/areas/${this.id}/${this.slug_name}`
   }
+
+  get formsPath () {
+    return `/areas/${this.id}/forms`
+  }
 }

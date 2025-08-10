@@ -122,6 +122,7 @@ export default {
   name: 'CragMapDetailsView',
   components: { ApproachCard },
   mixins: [ImageVariantHelpers],
+  scrollToTop: true,
   props: {
     crag: {
       type: Object,

@@ -55,6 +55,8 @@ export default {
   },
 
   mounted () {
+    this.$store.dispatch('oblykEnvironment/clearHubs')
+    this.$store.dispatch('oblykEnvironment/pushHubs', { hub: this.$route.path, page: this.$route.path })
     this.getGeoJson()
   },
 

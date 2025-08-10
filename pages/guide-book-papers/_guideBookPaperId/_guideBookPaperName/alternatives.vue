@@ -129,6 +129,10 @@ export default {
     }
   },
 
+  created () {
+    this.$store.dispatch('oblykEnvironment/pushHubs', { hub: this.guideBookPaper.path, page: this.$route.path })
+  },
+
   methods: {
     guideBookPaperObject (object) {
       return new GuideBookPaper({ attributes: object })

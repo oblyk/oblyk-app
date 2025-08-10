@@ -91,9 +91,6 @@
                 gradient="to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,.6)"
               >
                 <p class="ma-2 font-weight-bold text-truncate">
-                  <v-icon left small>
-                    {{ mdiMap }}
-                  </v-icon>
                   {{ $t('components.search.map.gym') }}
                 </p>
               </v-img>
@@ -109,9 +106,6 @@
                 gradient="to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,.6)"
               >
                 <p class="ma-2 font-weight-bold text-truncate">
-                  <v-icon left small>
-                    {{ mdiTrophy }}
-                  </v-icon>
                   {{ $t('components.contest.title') }}
                 </p>
               </v-img>
@@ -175,9 +169,7 @@
 <script>
 import {
   mdiStar,
-  mdiMap,
   mdiPlusBoxOutline,
-  mdiTrophy,
   mdiPlusBox,
   mdiSourceBranch,
   mdiCreation,
@@ -197,12 +189,11 @@ export default {
     MyUpcomingContests,
     MyFavoriteGymsCarousel
   },
+
   data () {
     return {
       mdiStar,
-      mdiMap,
       mdiPlusBoxOutline,
-      mdiTrophy,
       mdiPlusBox,
       mdiSourceBranch,
       mdiCreation,
@@ -234,6 +225,10 @@ export default {
         { hid: 'og:image', property: 'og:image', content: `${process.env.VUE_APP_OBLYK_APP_URL}/images/oblyk-og-image.jpg` }
       ]
     }
+  },
+
+  mounted () {
+    this.$store.dispatch('oblykEnvironment/clearHubs')
   }
 }
 </script>

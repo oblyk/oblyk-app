@@ -1,34 +1,31 @@
 <template>
-  <div>
-    <skeleton-loader-page-head v-if="$fetchState.pending" />
-    <div v-else>
-      <area-page-header :area="area" />
-      <v-container class="area-container">
-        <v-skeleton-loader
-          v-if="loadingCrags"
-          class="mb-3"
-          type="text, text, text"
-        />
-        <area-crags
-          v-if="!loadingCrags"
-          :crags-data="crags"
-          :area="area"
-        />
-      </v-container>
-    </div>
+  <div v-if="area">
+    <v-skeleton-loader
+      v-if="loadingCrags"
+      class="mb-3"
+      type="text, text, text"
+    />
+    <area-crags
+      v-if="!loadingCrags"
+      :crags-data="crags"
+      :area="area"
+    />
   </div>
 </template>
 
 <script>
-import { AreaConcern } from '~/concerns/AreaConcern'
 import AreaApi from '@/services/oblyk-api/AreaApi'
 import AreaCrags from '@/components/areas/AreaCrags'
-import AreaPageHeader from '~/components/areas/layouts/AreaPageHeader.vue'
-import SkeletonLoaderPageHead from '~/components/layouts/SkeletonLoaderPageHead.vue'
 
 export default {
-  components: { SkeletonLoaderPageHead, AreaPageHeader, AreaCrags },
-  mixins: [AreaConcern],
+  components: { AreaCrags },
+  scrollToTop: true,
+  props: {
+    area: {
+      type: Object,
+      required: true
+    }
+  },
 
   data () {
     return {
@@ -69,6 +66,10 @@ export default {
         { hid: 'og:url', property: 'og:url', content: `${process.env.VUE_APP_OBLYK_APP_URL}${this.area?.path}/crags` }
       ]
     }
+  },
+
+  created () {
+    this.$store.dispatch('oblykEnvironment/pushHubs', { hub: this.area.path, page: this.$route.path })
   },
 
   mounted () {

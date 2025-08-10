@@ -1,7 +1,7 @@
 <template>
   <div>
     <h4 class="mb-2 mt-6 mt-md-0">
-      <v-icon left>
+      <v-icon left color="primary">
         {{ mdiMap }}
       </v-icon>
       {{ $t('components.user.climbersMap') }}

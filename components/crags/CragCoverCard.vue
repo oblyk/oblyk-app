@@ -5,7 +5,7 @@
   >
     <v-img
       :src="imageVariant(crag.attachments.cover, { fit: 'scale-down', width: 720, height: 720 })"
-      height="130"
+      height="170"
       class="rounded-sm mb-2 d-flex align-end"
       :alt="crag.name"
       gradient="to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 0.6) 100%"

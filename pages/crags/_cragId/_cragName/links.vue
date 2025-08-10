@@ -1,9 +1,9 @@
 <template>
-  <v-row>
-    <v-col>
-      <link-list :linkable-id="crag.id" linkable-type="Crag" />
-    </v-col>
-  </v-row>
+  <link-list
+    v-if="crag"
+    :linkable-id="crag.id"
+    linkable-type="Crag"
+  />
 </template>
 
 <script>
@@ -12,6 +12,7 @@ import LinkList from '@/components/links/LinkList'
 export default {
   name: 'CragLinkView',
   components: { LinkList },
+  scrollToTop: true,
   props: {
     crag: {
       type: Object,

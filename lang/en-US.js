@@ -1011,6 +1011,7 @@ export default {
       relatedArticles: 'Related articles'
     },
     cragSector: {
+      sector: 'Sector:',
       coverFrom: 'Sector picture',
       newSector: 'New sector',
       sectorOf: 'Sector of',

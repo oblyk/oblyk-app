@@ -1,54 +1,52 @@
 <template>
-  <v-row class="mt-5">
-    <v-col
-      class="col-12 d-flex flex-column"
-      :class="user.partner_search ? 'col-md-6' : ''"
-    >
-      <!-- User bio -->
-      <v-row>
-        <v-col class="pt-0">
-          <user-bio :user="user" />
-        </v-col>
-      </v-row>
+  <div>
+    <user-head :user="user" />
+    <v-row class="mt-0">
+      <v-col
+        class="col-12 d-flex flex-column"
+        :class="user.partner_search ? 'col-md-6' : ''"
+      >
+        <!-- User bio -->
+        <user-bio :user="user" />
 
-      <!-- User contribution -->
-      <v-row>
-        <v-col class="pb-0">
-          <spinner v-if="loadingContribution" :full-height="false" />
+        <!-- User contribution -->
+        <div class="mt-4">
+          <v-skeleton-loader v-if="loadingContribution" type="article" />
           <user-contribution
-            v-if="!loadingContribution"
+            v-else
             :user="user"
             :contribution="contribution"
           />
-        </v-col>
-      </v-row>
-    </v-col>
+        </div>
+      </v-col>
 
-    <!-- User partner search -->
-    <v-col
-      v-if="user.partner_search"
-      class="col-12 col-md-6 pt-0 pb-0"
-    >
-      <climber-localities :user="user" />
-    </v-col>
-  </v-row>
+      <!-- User partner search -->
+      <v-col
+        v-if="user.partner_search"
+        class="col-12 col-md-6 pt-0 pb-0"
+      >
+        <climber-localities :user="user" />
+      </v-col>
+    </v-row>
+  </div>
 </template>
 
 <script>
-import UserBio from '~/components/users/UserBio.vue'
-import UserContribution from '~/components/users/UserContribution.vue'
+import UserBio from '~/components/users/UserBio'
+import UserContribution from '~/components/users/UserContribution'
 import UserApi from '~/services/oblyk-api/UserApi'
-import Spinner from '~/components/layouts/Spiner.vue'
-import ClimberLocalities from '~/components/users/ClimberLocalities.vue'
+import ClimberLocalities from '~/components/users/ClimberLocalities'
+import UserHead from '~/components/users/layouts/UserHead'
 
 export default {
   name: 'UserProfileView',
   components: {
+    UserHead,
     ClimberLocalities,
-    Spinner,
     UserContribution,
     UserBio
   },
+  scrollToTop: true,
   props: {
     user: {
       type: Object,
@@ -61,6 +59,10 @@ export default {
       loadingContribution: true,
       contribution: null
     }
+  },
+
+  created () {
+    this.$store.dispatch('oblykEnvironment/pushHubs', { hub: this.user.userPath, page: this.$route.path })
   },
 
   mounted () {

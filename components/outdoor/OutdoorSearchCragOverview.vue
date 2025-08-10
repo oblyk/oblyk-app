@@ -28,50 +28,38 @@
           </v-icon>
           {{ $t('common.findAnotherWay') }}
         </p>
-        <div class="d-flex mb-4">
-          <v-card
-            to="/maps/crags?back_to=/outdoor/search/crags"
-            width="180"
-            height="180"
-            class="mr-2"
-          >
-            <v-img
-              src="/images/crags-map.jpg"
-              alt="Carte des falaise"
-              class="align-end"
-              dark
-              gradient="to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,.6)"
-            >
-              <p class="ma-2 font-weight-bold text-truncate">
-                <v-icon left>
-                  {{ mdiMap }}
-                </v-icon>
-                {{ $t('components.search.map.crag') }}
-              </p>
-            </v-img>
-          </v-card>
-          <v-card
-            to="/crags/search?back_to=/outdoor/search/crags"
-            width="180"
-            height="180"
-            class="mr-2"
-          >
-            <v-img
-              src="/images/advanced-search.jpg"
-              alt="Recherche avancée"
-              class="align-end"
-              dark
-              gradient="to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,.6)"
-            >
-              <p class="ma-2 font-weight-bold text-truncate">
-                <v-icon left>
-                  {{ mdiMagnifyExpand }}
-                </v-icon>
-                {{ $t('common.pages.find.crags.advancedSearch.title') }}
-              </p>
-            </v-img>
-          </v-card>
-        </div>
+        <v-row class="v-row-gutters-12 mb-4">
+          <v-col cols="6" md="4">
+            <v-card to="/maps/crags?back_to=/outdoor/search/crags">
+              <v-img
+                src="/images/crags-map.jpg"
+                alt="Carte des falaise"
+                class="align-end"
+                dark
+                gradient="to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,.6)"
+              >
+                <p class="ma-2 font-weight-bold text-truncate">
+                  {{ $t('components.search.map.crag') }}
+                </p>
+              </v-img>
+            </v-card>
+          </v-col>
+          <v-col cols="6" md="4">
+            <v-card to="/crags/search?back_to=/outdoor/search/crags">
+              <v-img
+                src="/images/advanced-search.jpg"
+                alt="Recherche avancée"
+                class="align-end"
+                dark
+                gradient="to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,.6)"
+              >
+                <p class="ma-2 font-weight-bold text-truncate">
+                  {{ $t('common.pages.find.crags.advancedSearch.title') }}
+                </p>
+              </v-img>
+            </v-card>
+          </v-col>
+        </v-row>
 
         <!-- CRAGS BY POPULARITY -->
         <crags-by-popularity />
@@ -93,7 +81,7 @@
   </div>
 </template>
 <script>
-import { mdiMagnifyExpand, mdiMap, mdiMapSearch } from '@mdi/js'
+import { mdiMap, mdiMapSearch } from '@mdi/js'
 import OutdoorSearchField from '~/components/outdoor/OutdoorSearchField'
 import CragCoverCard from '~/components/crags/CragCoverCard'
 import CragsByPopularity from '~/components/crags/CragsByPopularity'
@@ -120,8 +108,7 @@ export default {
       cragsCount: '...',
 
       mdiMap,
-      mdiMapSearch,
-      mdiMagnifyExpand
+      mdiMapSearch
     }
   },
 

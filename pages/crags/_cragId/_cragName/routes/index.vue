@@ -13,6 +13,7 @@ const CragRouteDrawer = () => import('~/components/cragRoutes/CragRouteDrawer')
 
 export default {
   components: { CragRouteDrawer, CragRoutes },
+  scrollToTop: true,
   props: {
     crag: {
       type: Object,

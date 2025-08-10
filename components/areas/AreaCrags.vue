@@ -12,7 +12,7 @@
         <v-btn
           text
           outlined
-          :to="`${area.path}/add-crag`"
+          :to="`${area.formsPath}/add-crag`"
           color="primary"
         >
           <v-icon

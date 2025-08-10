@@ -10,21 +10,6 @@ export default {
     Home
   },
 
-  // middleware ({ store, redirect }) {
-  //   // If the user is authenticated
-  //   if (store.state.auth.loggedIn) {
-  //     if (store.state.oblykEnvironment.oblykEnvironment === 'outdoor') {
-  //       return redirect('/outdoor')
-  //     } else if (store.state.oblykEnvironment.oblykEnvironment === 'indoor') {
-  //       return redirect('/indoor')
-  //     } else if (store.state.oblykEnvironment.oblykEnvironment === 'community') {
-  //       return redirect('/community')
-  //     } else {
-  //       return redirect('/home')
-  //     }
-  //   }
-  // },
-
   head () {
     return {
       title: this.$t('metaTitle'),
@@ -50,6 +35,10 @@ export default {
         this.$router.replace('/home')
       }
     }
+  },
+
+  mounted () {
+    this.$store.dispatch('oblykEnvironment/clearHubs')
   },
 
   i18n: {

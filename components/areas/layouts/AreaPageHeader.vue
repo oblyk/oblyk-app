@@ -1,7 +1,7 @@
 <template>
   <page-header
     :title="area.name"
-    :back-to="area.path"
+    :back-to="backTo || '/outdoor'"
     :links="headerLinks"
   />
 </template>
@@ -35,6 +35,10 @@ export default {
           title: this.$t('components.area.tabs.photos')
         }
       ]
+    },
+
+    backTo () {
+      return this.$store.getters['oblykEnvironment/getPreviousHubs'](this.$route.path, this.area.path)
     }
   }
 }

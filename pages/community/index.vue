@@ -75,9 +75,6 @@
                 gradient="to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,.6)"
               >
                 <p class="ma-2 font-weight-bold text-truncate">
-                  <v-icon left small>
-                    {{ mdiMap }}
-                  </v-icon>
                   {{ $t('components.layout.appDrawer.mapClimber') }}
                 </p>
               </v-img>
@@ -93,9 +90,6 @@
                 gradient="to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,.6)"
               >
                 <p class="ma-2 font-weight-bold text-truncate">
-                  <v-icon left small>
-                    {{ mdiHelpCircle }}
-                  </v-icon>
                   {{ $t('common.pages.find.climbers.howItWorks.title') }}
                 </p>
               </v-img>
@@ -114,13 +108,8 @@
 
 <script>
 import {
-  mdiStar,
   mdiCreation,
-  mdiPlusBoxOutline,
-  mdiMap,
-  mdiHelpCircle,
-  mdiSend,
-  mdiBell
+  mdiPlusBoxOutline
 } from '@mdi/js'
 import { oblykPartner } from '~/assets/oblyk-icons'
 import EnablePartnerSearch from '~/components/users/notificationCard/EnablePartnerSearch'
@@ -134,14 +123,9 @@ export default {
     return {
       outdoorQuery: null,
 
-      mdiStar,
       mdiCreation,
       oblykPartner,
-      mdiPlusBoxOutline,
-      mdiMap,
-      mdiHelpCircle,
-      mdiSend,
-      mdiBell
+      mdiPlusBoxOutline
     }
   },
 
@@ -169,6 +153,10 @@ export default {
         { hid: 'og:image', property: 'og:image', content: `${process.env.VUE_APP_OBLYK_APP_URL}/images/oblyk-og-image.jpg` }
       ]
     }
+  },
+
+  mounted () {
+    this.$store.dispatch('oblykEnvironment/clearHubs')
   }
 }
 </script>

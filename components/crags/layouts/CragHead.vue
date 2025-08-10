@@ -164,6 +164,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .crag-header {
+  border-radius: 15px;
   .see-on-map-btn {
     border: 2px solid white;
     position: absolute;
@@ -171,7 +172,7 @@ export default {
     top: 5px;
   }
   .crag-header-banner {
-    border-radius: 15px 15px 0 0;
+    border-radius: 15px;
     .crag-header-banner-spinner {
       position: absolute;
       top: 10px;

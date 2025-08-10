@@ -79,6 +79,10 @@ export default {
     }
   },
 
+  created () {
+    this.$store.dispatch('oblykEnvironment/pushHubs', { hub: this.guideBookPaper.path, page: this.$route.path })
+  },
+
   mounted () {
     this.getGeoJson()
   },
@@ -100,7 +104,7 @@ export default {
 
 <style scoped>
 .guide-book-paper-map {
-  height: calc(100vh - 113px);
+  height: calc(100vh - 160px);
   width: 100%;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <div>
     <div>
       <client-only>
         <v-btn
@@ -44,7 +44,7 @@
         {{ $t('components.video.noVideo') }}
       </p>
     </div>
-  </v-container>
+  </div>
 </template>
 
 <script>
@@ -58,6 +58,7 @@ import VideoCard from '~/components/videos/VideoCard'
 export default {
   name: 'CragSectorPhotosView',
   components: { VideoCard, PhotoGallery, Spinner },
+  scrollToTop: true,
   props: {
     cragSector: {
       type: Object,

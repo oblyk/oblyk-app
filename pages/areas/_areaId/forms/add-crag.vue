@@ -18,9 +18,9 @@
 </template>
 
 <script>
-import { AreaConcern } from '@/concerns/AreaConcern'
-import AddCragInAreaForm from '@/components/areas/forms/AddCragInAreaForm'
-import PageHeader from '~/components/layouts/PageHeader'
+import { AreaConcern } from '~/concerns/AreaConcern'
+import AddCragInAreaForm from '~/components/areas/forms/AddCragInAreaForm.vue'
+import PageHeader from '~/components/layouts/PageHeader.vue'
 
 export default {
   components: { PageHeader, AddCragInAreaForm },

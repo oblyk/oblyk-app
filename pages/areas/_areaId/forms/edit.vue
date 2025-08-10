@@ -24,7 +24,7 @@
 <script>
 import { AreaConcern } from '@/concerns/AreaConcern'
 import AreaForm from '@/components/areas/forms/AreaForm'
-import PageHeader from '~/components/layouts/PageHeader'
+import PageHeader from '~/components/layouts/PageHeader.vue'
 
 export default {
   components: { PageHeader, AreaForm },

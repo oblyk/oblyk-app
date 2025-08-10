@@ -13,7 +13,7 @@
       <div
         v-for="(guide, index) in guides"
         :key="`guide-${index}`"
-        class="guide-box"
+        class="guide-box mb-2"
       >
         <div v-if="guide.className === 'GuideBookPaper'">
           <guide-book-paper-small-card :guide-book-paper="guide" />

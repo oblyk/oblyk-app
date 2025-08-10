@@ -50,7 +50,7 @@
                 </v-btn>
               </template>
               <v-list>
-                <v-list-item :to="`${area.path}/edit`">
+                <v-list-item :to="`${area.formsPath}/edit`">
                   <v-list-item-icon>
                     <v-icon>
                       {{ mdiPencil }}
@@ -108,7 +108,7 @@ export default {
 <style lang="scss" scoped>
 .area-header {
   .area-header-banner {
-    border-radius: 15px 15px 0 0;
+    border-radius: 15px;
   }
   .area-photo-of {
     position: absolute;

@@ -1,8 +1,9 @@
 <template>
-  <div>
+  <div v-if="guideBookPaper">
+    <guide-book-paper-head :guide-book-paper="guideBookPaper" />
     <v-sheet
       rounded
-      color="mb-4"
+      color="my-4"
     >
       <h2 class="text-h6 pa-3">
         <v-icon left>
@@ -28,24 +29,20 @@
       class="mb-4"
     />
 
-    <v-row>
-      <v-col>
-        <v-card>
-          <v-card-title class="pb-0 text-h6 font-weight-regular">
-            <v-icon left small>
-              {{ mdiComment }}
-            </v-icon>
-            {{ $t('components.comment.climbersComments') }}
-          </v-card-title>
-          <v-card-text>
-            <comment-list
-              :commentable-id="guideBookPaper.id"
-              commentable-type="GuideBookPaper"
-            />
-          </v-card-text>
-        </v-card>
-      </v-col>
-    </v-row>
+    <v-card>
+      <v-card-title class="pb-0 text-h6 font-weight-regular">
+        <v-icon left small>
+          {{ mdiComment }}
+        </v-icon>
+        {{ $t('components.comment.climbersComments') }}
+      </v-card-title>
+      <v-card-text>
+        <comment-list
+          :commentable-id="guideBookPaper.id"
+          commentable-type="GuideBookPaper"
+        />
+      </v-card-text>
+    </v-card>
 
     <version-information
       class="mt-4"
@@ -62,9 +59,11 @@ import CommentList from '~/components/comments/CommentList'
 import VersionInformation from '~/components/ui/VersionInformation'
 import GuideBookPaperApi from '~/services/oblyk-api/GuideBookPaperApi'
 import GuideBookPaperCrags from '~/components/guideBookPapers/GuideBookPaperCrags'
+import GuideBookPaperHead from '~/components/guideBookPapers/layouts/GuideBookPaperHead'
 
 export default {
   components: {
+    GuideBookPaperHead,
     GuideBookPaperCrags,
     VersionInformation,
     CommentList,
@@ -95,6 +94,10 @@ export default {
     ).then((resp) => {
       this.crags = resp.data
     })
+  },
+
+  created () {
+    this.$store.dispatch('oblykEnvironment/pushHubs', { hub: this.guideBookPaper.path, page: this.$route.path })
   }
 }
 </script>
