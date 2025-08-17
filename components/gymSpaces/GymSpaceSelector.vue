@@ -6,7 +6,10 @@
       <v-skeleton-loader class="d-inline-block" type="avatar" />
     </div>
     <div v-if="!loadingGymSpaces && (groups.length > 0 || ungroupedSpaces.length > 0)">
-      <div class="text-no-wrap overflow-x-auto">
+      <div
+        id="gym-spaces-selector-overflow"
+        class="text-no-wrap overflow-x-auto"
+      >
         <!-- All spaces -->
         <nuxt-link
           v-if="gymSpace"
@@ -41,6 +44,7 @@
           </p>
           <nuxt-link
             v-for="(space, gymSpaceIndex) in group.gym_spaces"
+            :id="`gym-space-selector-${space.id}`"
             :key="`grouped-gym-space-index-${gymSpaceIndex}`"
             :to="space.path"
             class="gym-space-block text-center discrete-link"
@@ -78,6 +82,7 @@
         <!-- Ungrouped spaces -->
         <nuxt-link
           v-for="(space, gymSpaceIndex) in ungroupedSpaces"
+          :id="`gym-space-selector-${space.id}`"
           :key="`ungrouped-gym-space-index-${gymSpaceIndex}`"
           :to="space.path"
           class="gym-space-block text-center discrete-link"
@@ -183,6 +188,15 @@ export default {
           }
           for (const space of resp.data.ungrouped_spaces) {
             this.ungroupedSpaces.push(new GymSpace({ attributes: space }))
+          }
+          this.loadingGymSpaces = false
+          if (this.selectedGymSpaceId) {
+            setTimeout(() => {
+              const spaceElement = document.querySelector(`#gym-space-selector-${this.selectedGymSpaceId}`)
+              document.querySelector('#gym-spaces-selector-overflow').scrollTo({
+                left: spaceElement.offsetLeft
+              })
+            }, 100)
           }
         }).catch((err) => {
           this.$root.$emit('alertFromApiError', err, 'gymSpace')

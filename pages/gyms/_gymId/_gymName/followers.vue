@@ -1,5 +1,8 @@
 <template>
-  <div v-if="gym">
+  <v-container
+    v-if="gym"
+    class="mt-3"
+  >
     <spinner v-if="loadingFollowers" />
 
     <div v-if="!loadingFollowers">
@@ -30,7 +33,7 @@
         {{ $t('components.gym.followersEmpty', { name: gym.name }) }}
       </p>
     </div>
-  </div>
+  </v-container>
 </template>
 
 <script>
@@ -48,6 +51,7 @@ export default {
     Spinner
   },
   mixins: [LoadingMoreHelpers],
+  scrollToTop: true,
   props: {
     gym: {
       type: Object,

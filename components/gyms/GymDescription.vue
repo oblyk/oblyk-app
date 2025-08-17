@@ -1,7 +1,7 @@
 <template>
   <v-card class="full-height">
     <v-card-title>
-      <v-icon left>
+      <v-icon left color="primary">
         {{ mdiText }}
       </v-icon>
       {{ $t('models.gym.description') }}

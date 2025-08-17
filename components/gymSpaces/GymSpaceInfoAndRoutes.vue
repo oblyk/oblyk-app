@@ -14,73 +14,33 @@
         <div />
       </div>
 
-      <!-- Gym Title -->
-      <v-list
-        v-if="gym"
-        class="pt-0 pb-0 mx-2"
-        color="rgba(0,0,0,0)"
-      >
-        <v-list-item class="pl-0">
-          <v-list-item-avatar
-            v-if="gym.logo"
-            tile
-            size="50"
-          >
-            <v-avatar
-              size="50"
-              tile
-              class="vertical-align-top rounded-sm"
-            >
-              <v-img :src="imageVariant(gym.attachments.logo, { fit: 'crop', width: 100, height: 100 })" alt="gym logo" />
-            </v-avatar>
-          </v-list-item-avatar>
-          <v-list-item-content>
-            <v-list-item-title class="font-weight-bold">
-              {{ gym.name }}<span class="font-weight-regular">, {{ gymSpace.name }}</span>
-            </v-list-item-title>
-            <v-list-item-subtitle>
-              <v-btn
-                icon
-                :to="gym.path"
-                exact-path
-              >
-                <v-icon>
-                  {{ mdiInformationOutline }}
-                </v-icon>
-              </v-btn>
-              <client-only>
-                <subscribe-btn
-                  subscribe-type="Gym"
-                  :subscribe-id="gym.id"
-                  outlined
-                  type-text
-                  :small="true"
-                />
-              </client-only>
-            </v-list-item-subtitle>
-          </v-list-item-content>
+      <div class="border-bottom pl-2 mb-2 d-flex">
+        <h3
+          v-if="gym.gym_spaces.length > 1"
+          class="py-1"
+        >
+          {{ gymSpace.name }}
+          <small class="font-weight-regular text-lowercase">
+            , {{ $t('components.gym.guidebook') }}
+          </small>
+        </h3>
+        <h3 v-else class="py-1">
+          {{ $t('components.gym.guidebook') }}
+        </h3>
+        <div class="ml-auto">
           <client-only>
-            <v-list-item-action
+            <gym-space-action-menu
               v-if="gym && $auth.loggedIn && (currentUserIsGymAdmin() && (gymAuthCan(gym, 'manage_space') || gymAuthCan(gym, 'manage_opening')))"
-            >
-              <gym-space-action-menu
-                :gym-space="gymSpace"
-                :gym="gym"
-              />
-            </v-list-item-action>
+              :gym-space="gymSpace"
+              :gym="gym"
+            />
           </client-only>
-        </v-list-item>
-      </v-list>
-
-      <!-- Skeleton loader for gym name -->
-      <v-skeleton-loader
-        v-else
-        class="my-3"
-        type="list-item-avatar"
-      />
+        </div>
+      </div>
 
       <!-- Space selector -->
       <gym-space-selector
+        v-if="gym.gym_spaces.length > 1"
         class="mt-2 px-1"
         :gym-space="gymSpace"
         :gym="gymSpace.gym"
@@ -109,11 +69,6 @@
         />
       </div>
 
-      <gym-ranking-and-logbook
-        class="mt-3 px-3"
-        :gym="gym"
-      />
-
       <div
         v-if="gym.upcoming_contests.length > 0"
         class="mt-4 px-3"
@@ -123,12 +78,6 @@
           class="mt-2 mb-3"
           :elevation="$vuetify.breakpoint.mobile ? 3 : 0"
         />
-      </div>
-
-      <div class="border-top border-bottom px-4 my-3">
-        <h3 class="py-1">
-          {{ $t('components.gym.guidebook') }} !
-        </h3>
       </div>
 
       <!-- Route list -->
@@ -165,14 +114,11 @@
 </template>
 
 <script>
-import { mdiInformationOutline } from '@mdi/js'
 import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 import GymSpaceSelector from '@/components/gymSpaces/GymSpaceSelector'
 import GymSpaceRouteList from '@/components/gymRoutes/GymSpaceRouteList'
 import ContestUpComing from '~/components/gyms/ContestUpComing'
-import SubscribeBtn from '~/components/forms/SubscribeBtn'
-import GymRankingAndLogbook from '~/components/gyms/GymRankingAndLogbook'
-import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 const GymSpaceActionMenu = () => import('@/components/gymSpaces/GymSpaceActionMenu')
 const GymSectorEditingPlan = () => import('@/components/gymSectors/GymSectorEditingPlan')
 const GymSpaceEditingSectorsColor = () => import('~/components/gymSpaces/GymSpaceEditingSectorsColor')
@@ -181,8 +127,6 @@ const MarkdownText = () => import('@/components/ui/MarkdownText')
 export default {
   name: 'GymSpaceInfoAndRoutes',
   components: {
-    GymRankingAndLogbook,
-    SubscribeBtn,
     ContestUpComing,
     GymSpaceEditingSectorsColor,
     MarkdownText,
@@ -207,9 +151,7 @@ export default {
   data () {
     return {
       editingSectorPolygon: false,
-      editingSectorColor: false,
-
-      mdiInformationOutline
+      editingSectorColor: false
     }
   },
 
@@ -233,7 +175,6 @@ export default {
 .gym-space-card.--mobile-interface { min-height: calc(100vh - 44px); }
 .gym-space-card.--desktop-interface { min-height: calc(100vh - 64px); }
 .scroll-encourage {
-  margin-bottom: 10px;
   padding-top: 5px;
   div {
     margin-left: auto;
@@ -241,23 +182,9 @@ export default {
     width: 30px;
     height: 5px;
     border-radius: 3px;
+    background-color: rgb(155, 155, 155, 0.3);
   }
 }
-.theme--dark {
-  .scroll-encourage {
-    div {
-      background-color: rgb(255, 255, 255, 0.3);
-    }
-  }
-}
-.theme--light {
-  .scroll-encourage {
-    div {
-      background-color: rgb(0, 0, 0, 0.2);
-    }
-  }
-}
-.gym-space-description {}
 .space-actions-btn {
   max-width: 40px;
   padding-left: 0;

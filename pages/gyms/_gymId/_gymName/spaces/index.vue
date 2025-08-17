@@ -35,88 +35,16 @@
         class="gym-spaces-card"
         :class="$vuetify.breakpoint.mobile ? 'rounded' : ''"
       >
-        <v-img
-          height="190px"
-          :src="imageVariant(gym.attachments.banner, { fit: 'scale-down', width: 720, height: 720 })"
-          class="align-end mb-2 gym-picture-in-gym-spaces"
-          dark
-          gradient="to bottom, rgba(0,0,0,0), rgba(0,0,0,.5)"
-        >
-          <v-list-item
-            dark
-            class="px-2"
-          >
-            <v-list-item-avatar
-              tile
-              size="60"
-            >
-              <v-img
-                :src="imageVariant(gym.attachments.logo, { fit: 'crop', width: 100, height: 100 })"
-                class="rounded-sm"
-              />
-            </v-list-item-avatar>
-            <v-list-item-content class="py-0">
-              <v-list-item-title>
-                <h1 class="mb-n1 text-truncate white--text">
-                  {{ gym.name }}
-                </h1>
-              </v-list-item-title>
-              <v-list-item-subtitle>
-                <v-btn
-                  icon
-                  :to="gym.path"
-                  exact-path
-                >
-                  <v-icon>
-                    {{ mdiInformationOutline }}
-                  </v-icon>
-                </v-btn>
-                <client-only>
-                  <subscribe-btn
-                    v-if="$auth.loggedIn"
-                    :subscribe-id="gym.id"
-                    subscribe-type="Gym"
-                    outlined
-                    type-text
-                    :small="true"
-                  />
-                </client-only>
-              </v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
-        </v-img>
-
         <div
-          v-if="$vuetify.breakpoint.mobile && (gym && gym.representation_type === '3d')"
+          v-if="$vuetify.breakpoint.mobile"
           class="spaces-scroll-encourage"
         >
           <div />
         </div>
 
-        <gym-space-selector
-          v-if="gym && $vuetify.breakpoint.mobile && gym.representation_type === '2d_picture'"
-          :gym="gym"
-        />
-
-        <div class="px-2">
-          <client-only>
-            <gym-ranking-and-logbook
-              v-if="$auth.loggedIn"
-              class="mt-0 mb-2"
-              :gym="gym"
-            />
-          </client-only>
-
-          <contest-up-coming
-            v-if="gym.upcoming_contests.length > 0"
-            :gym="gym"
-            class="my-2"
-          />
-        </div>
-
-        <div class="d-flex border-top border-bottom px-4 mb-3">
-          <h3 class="pt-1">
-            {{ $t('components.gym.guidebook') }} !
+        <div class="d-flex border-bottom pl-3">
+          <h3>
+            {{ $t('components.gym.guidebook') }}
           </h3>
           <v-spacer />
           <client-only>
@@ -125,6 +53,15 @@
               :gym="gym"
             />
           </client-only>
+        </div>
+
+        <div class="pa-2">
+          <gym-space-selector :gym="gym" />
+
+          <contest-up-coming
+            v-if="gym.upcoming_contests.length > 0"
+            :gym="gym"
+          />
         </div>
 
         <div class="px-2">
@@ -176,19 +113,14 @@
 </template>
 
 <script>
-import { mdiInformationOutline } from '@mdi/js'
-import { GymConcern } from '~/concerns/GymConcern'
+import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
 import Spinner from '~/components/layouts/Spiner'
 import GymSpaceRouteList from '~/components/gymRoutes/GymSpaceRouteList'
 import GymRouteApi from '~/services/oblyk-api/GymRouteApi'
 import GymRoute from '~/models/GymRoute'
 import GymRouteInfo from '~/components/gymRoutes/GymRouteInfo'
 import DownToCloseDialog from '~/components/ui/DownToCloseDialog'
-import GymSpaceSelector from '~/components/gymSpaces/GymSpaceSelector.vue'
-import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
-import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
-const GymRankingAndLogbook = () => import('~/components/gyms/GymRankingAndLogbook')
-const SubscribeBtn = () => import('~/components/forms/SubscribeBtn')
+import GymSpaceSelector from '~/components/gymSpaces/GymSpaceSelector'
 const GymSpacesActionMenu = () => import('~/components/gymSpaces/GymSpacesActionMenu')
 const ContestUpComing = () => import('~/components/gyms/ContestUpComing')
 const GymSpaceList = () => import('~/components/gymSpaces/GymSpaceList')
@@ -199,25 +131,27 @@ export default {
     GymSpaceSelector,
     GymSpacesActionMenu,
     GymThreeD,
-    GymRankingAndLogbook,
     DownToCloseDialog,
     ContestUpComing,
-    SubscribeBtn,
     GymRouteInfo,
     GymSpaceList,
     GymSpaceRouteList,
     Spinner
   },
-  meta: { orphanRoute: true },
-  mixins: [GymConcern, GymRolesHelpers, ImageVariantHelpers],
+  mixins: [GymRolesHelpers],
+  scrollToTop: true,
+  props: {
+    gym: {
+      type: Object,
+      required: true
+    }
+  },
 
   data () {
     return {
       gymRoute: null,
       gymRouteDialog: false,
-      loadingGymRoute: false,
-
-      mdiInformationOutline
+      loadingGymRoute: false
     }
   },
 
@@ -328,15 +262,9 @@ export default {
     }
     &.--mobile-interface {
       width: 100%;
-      &.--3d { margin-top: calc(100vh - 250px); }
+      &.--3d { margin-top: calc(100vh - 313px); }
       .gym-spaces-card { min-height: calc(100vh - 44px); }
       .gym-spaces-info-and-routes { padding-bottom: 45px; }
-    }
-
-    &.--3d.--mobile-interface {
-      .gym-picture-in-gym-spaces {
-        border-radius: 15px 15px 0 0;
-      }
     }
 
     .gym-route-on-desktop-container {
@@ -346,6 +274,7 @@ export default {
       height: 100%;
       width: 450px;
       overflow: hidden;
+      z-index: 5;
       .gym-route-on-desktop-card {
         position: fixed;
         height: 100%;
@@ -359,10 +288,6 @@ export default {
     }
   }
   .spaces-scroll-encourage {
-    position: absolute;
-    top: 0;
-    width: 100%;
-    margin-bottom: 10px;
     padding-top: 5px;
     div {
       margin-left: auto;
@@ -370,7 +295,7 @@ export default {
       width: 30px;
       height: 5px;
       border-radius: 3px;
-      background-color: rgba(255, 255, 255, 0.8);
+      background-color: rgb(155, 155, 155, 0.3);
     }
   }
 }
@@ -383,9 +308,9 @@ export default {
     padding-left: 440px;
   }
   &.--mobile-interface {
-    height: calc(100vh - 250px);
+    height: calc(100vh - 312px);
     position: fixed;
-    top: 0;
+    top: 63px;
     right: 0;
   }
 }

@@ -42,16 +42,16 @@
         color="primary"
       >
         <v-icon left>
-          {{ mdiMap }}
+          {{ mdiSourceBranch }}
         </v-icon>
-        {{ $t('components.gymSpace.list') }}
+        {{ $t('components.gym.guidebook') }}
       </v-btn>
     </v-card-actions>
   </v-card>
 </template>
 
 <script>
-import { mdiMap, mdiPlus, mdiCogOutline } from '@mdi/js'
+import { mdiMap, mdiPlus, mdiCogOutline, mdiSourceBranch } from '@mdi/js'
 import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
 import GymSpaceSelector from '~/components/gymSpaces/GymSpaceSelector.vue'
 
@@ -70,7 +70,8 @@ export default {
     return {
       mdiMap,
       mdiPlus,
-      mdiCogOutline
+      mdiCogOutline,
+      mdiSourceBranch
     }
   },
 

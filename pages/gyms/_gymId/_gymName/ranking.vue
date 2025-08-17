@@ -21,19 +21,8 @@
           />
         </div>
       </template>
-      <v-btn
-        elevation="0"
-        color="black"
-        style="position: absolute; top: 5px; left: 5px"
-        @click="$router.go(-1)"
-      >
-        <v-icon left>
-          {{ mdiArrowLeft }}
-        </v-icon>
-        {{ gym.name }}
-      </v-btn>
-      <div class="pb-2 text-center">
-        <h1>
+      <div class="pb-2 px-2 text-center">
+        <h1 class="text-truncate">
           <v-avatar
             v-if="gym.attachments.logo.attached"
             class="mr-1"
@@ -42,7 +31,7 @@
           </v-avatar>
           {{ gym.name }}
         </h1>
-        <p class="subtitle-2 mt-n3" style="padding-left: 48px">
+        <p class="subtitle-2 mt-n1">
           {{ $t('components.gymRanking.rank') }}
         </p>
       </div>
@@ -325,8 +314,7 @@
 </template>
 
 <script>
-import { mdiArrowLeft, mdiMedal } from '@mdi/js'
-import { GymConcern } from '~/concerns/GymConcern'
+import { mdiMedal } from '@mdi/js'
 import { DateHelpers } from '~/mixins/DateHelpers'
 import { TextHelpers } from '~/mixins/TextHelpers'
 import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
@@ -339,8 +327,14 @@ import AscentGymRoutePoints from '~/components/ascentGymRoutes/AscentGymRoutePoi
 
 export default {
   components: { AscentGymRoutePoints, Sparkbar, ContestUpComing, DownToCloseDialog },
-  meta: { orphanRoute: true },
-  mixins: [GymConcern, DateHelpers, TextHelpers, ImageVariantHelpers],
+  mixins: [DateHelpers, TextHelpers, ImageVariantHelpers],
+
+  props: {
+    gym: {
+      type: Object,
+      required: true
+    }
+  },
 
   data () {
     return {
@@ -381,7 +375,6 @@ export default {
         { text: this.$t('models.ages.A60'), value: 'A60' }
       ],
 
-      mdiArrowLeft,
       mdiMedal
     }
   },

@@ -280,6 +280,7 @@ export default {
     crosses: 'crosses',
     linesCount: 'one line | %{count} lines',
     followerCount: 'Followers | 1 Follower | %{count} Followers',
+    subscribed: 'Subscribed',
     seeMore: 'see more',
     seeAll: 'See all',
     ascents: 'Ascents',

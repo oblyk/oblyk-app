@@ -16,7 +16,8 @@
         v-if="!hideIcon"
         :left="large"
         :color="color()"
-        :small="small"
+        :small="iconSize !== null ? false : small"
+        :size="iconSize"
       >
         {{ icon() }}
       </v-icon>
@@ -97,6 +98,10 @@ export default {
     small: {
       type: Boolean,
       default: false
+    },
+    iconSize: {
+      type: Number,
+      default: null
     },
     hideIcon: {
       type: Boolean,

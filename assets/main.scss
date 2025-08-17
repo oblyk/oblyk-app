@@ -352,8 +352,14 @@ strong {
   z-index: 1;
   .page-header-container {
     display: flex;
-    max-width: 1185px;
     margin: 0 auto;
+    transition: max-width 0.3s;
+    &:not(.--fluid-container) {
+      max-width: 1185px;
+    }
+    &.--fluid-container {
+      max-width: 100%;
+    }
   }
   .page-header-sheet-back-btn {
     height: 63px;

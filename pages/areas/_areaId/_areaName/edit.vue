@@ -22,11 +22,12 @@
 </template>
 
 <script>
-import { AreaConcern } from '@/concerns/AreaConcern'
-import AreaForm from '@/components/areas/forms/AreaForm'
+import { AreaConcern } from '~/concerns/AreaConcern'
+import AreaForm from '~/components/areas/forms/AreaForm.vue'
 import PageHeader from '~/components/layouts/PageHeader.vue'
 
 export default {
+  meta: { orphanRoute: true },
   components: { PageHeader, AreaForm },
   mixins: [AreaConcern],
 

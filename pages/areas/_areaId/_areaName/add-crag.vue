@@ -23,6 +23,7 @@ import AddCragInAreaForm from '~/components/areas/forms/AddCragInAreaForm.vue'
 import PageHeader from '~/components/layouts/PageHeader.vue'
 
 export default {
+  meta: { orphanRoute: true },
   components: { PageHeader, AddCragInAreaForm },
   mixins: [AreaConcern],
 

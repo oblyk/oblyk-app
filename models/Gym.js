@@ -23,7 +23,8 @@ export default class Gym extends ActiveData {
   }
 
   get spacePath () {
-    return `/gyms/${this.id}/${this.slug_name}/spaces`
+    const spacePath = this.optimal_spaces_path || '/spaces'
+    return `/gyms/${this.id}/${this.slug_name}${spacePath}`
   }
 
   get guideBookPath () {

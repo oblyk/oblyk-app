@@ -3,7 +3,10 @@
     class="page-header-sheet border-bottom"
     :class="`page-header-sheet-${oblykEnvironnement}`"
   >
-    <div class="page-header-container">
+    <div
+      class="page-header-container"
+      :class="fluidContainer ? '--fluid-container' : null"
+    >
       <div class="page-header-sheet-back-btn">
         <v-btn
           exact-path
@@ -42,7 +45,7 @@
             v-for="(link, linkIndex) in links"
             :key="`link-index-${linkIndex}`"
             :to="link.to"
-            exact-path
+            :exact-path="link.exactPath === null || link.exactPath === undefined ? true : link.exactPath"
           >
             <v-icon
               v-if="link.icon"
@@ -84,6 +87,10 @@ export default {
     links: {
       type: Array,
       default: null
+    },
+    fluidContainer: {
+      type: Boolean,
+      default: false
     }
   },
 

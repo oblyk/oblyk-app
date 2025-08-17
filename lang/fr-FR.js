@@ -280,6 +280,7 @@ export default {
     crosses: 'croix',
     linesCount: 'une ligne | %{count} lignes',
     followerCount: 'Abonné·es | 1 abonné·e | %{count} abonné·es',
+    subscribed: 'Abonné·e',
     seeMore: 'voir plus',
     seeAll: 'Tout voir',
     ascents: 'Croix',
@@ -1295,7 +1296,7 @@ export default {
     },
     gymRanking: {
       rankingType: 'Les types de classements',
-      rank: 'Le classement',
+      rank: 'Classement',
       allRank: 'Classement général toutes périodes confondues',
       rankOf: 'Le classement de %{date}',
       seeRankOf: 'Voir le classement de %{date}',

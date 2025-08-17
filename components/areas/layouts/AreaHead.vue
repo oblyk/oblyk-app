@@ -50,7 +50,7 @@
                 </v-btn>
               </template>
               <v-list>
-                <v-list-item :to="`${area.formsPath}/edit`">
+                <v-list-item :to="`${area.path}/edit`">
                   <v-list-item-icon>
                     <v-icon>
                       {{ mdiPencil }}

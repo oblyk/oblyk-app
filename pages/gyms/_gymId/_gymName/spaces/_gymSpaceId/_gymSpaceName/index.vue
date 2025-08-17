@@ -32,7 +32,7 @@
           class="full-height sheet-background-color"
         >
           <gym-space-three-d
-            v-if="gym && gymSpace && gymSpace.have_three_d"
+            v-if="gymSpace && gymSpace.have_three_d"
             :gym-space="gymSpace"
             :gym="gym"
           />
@@ -65,7 +65,7 @@
           <v-skeleton-loader type="sentences, avatar" />
         </v-sheet>
         <gym-space-info-and-routes
-          v-if="gymSpace && gym"
+          v-if="gymSpace"
           :gym-space="gymSpace"
           :gym="gym"
         />
@@ -109,15 +109,14 @@
 </template>
 
 <script>
-import { mdiChevronDown } from '@mdi/js'
-import { GymSpaceConcern } from '@/concerns/GymSpaceConcern'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 import GymSpaceInfoAndRoutes from '~/components/gymSpaces/GymSpaceInfoAndRoutes'
-import Gym from '~/models/Gym'
-import GymApi from '~/services/oblyk-api/GymApi'
 import GymRouteApi from '~/services/oblyk-api/GymRouteApi'
 import GymRoute from '~/models/GymRoute'
 import Spinner from '~/components/layouts/Spiner'
 import DownToCloseDialog from '~/components/ui/DownToCloseDialog'
+import GymSpace from '~/models/GymSpace'
+import GymSpaceApi from '~/services/oblyk-api/GymSpaceApi'
 const GymSpaceThreeDMissing = () => import('~/components/gymSpaces/GymSpaceThreeDMissing')
 const GymSpaceThreeD = () => import('~/components/gymSpaces/GymSpaceThreeD')
 const GymRouteInfo = () => import('~/components/gymRoutes/GymRouteInfo')
@@ -125,7 +124,6 @@ const GymSpacePlan = () => import('@/components/gymSpaces/GymSpacePlan')
 const GymSpacePlanMissing = () => import('@/components/gymSpaces/GymSpacePlanMissing')
 
 export default {
-  meta: { orphanRoute: true },
   components: {
     GymSpaceThreeDMissing,
     GymSpaceThreeD,
@@ -136,16 +134,39 @@ export default {
     GymSpacePlanMissing,
     GymSpacePlan
   },
-  mixins: [GymSpaceConcern],
+  mixins: [ImageVariantHelpers],
+  scrollToTop: true,
+
+  props: {
+    gym: {
+      type: Object,
+      required: true
+    }
+  },
 
   data () {
     return {
-      gym: null,
+      loadingGymSpace: true,
+      gymSpace: null,
       gymRoute: null,
       gymRouteDialog: false,
-      loadingGymRoute: false,
+      loadingGymRoute: false
+    }
+  },
 
-      mdiChevronDown
+  head () {
+    return {
+      title: this.gymSpaceMetaTitle,
+      meta: [
+        { hid: 'description', name: 'description', content: this.gymSpaceMetaDescription },
+        { hid: 'og:title', property: 'og:title', content: this.gymSpaceMetaTitle },
+        { hid: 'og:description', property: 'og:description', content: this.gymSpaceMetaDescription },
+        { hid: 'og:image', property: 'og:image', content: this.gymSpaceMetaImage },
+        { hid: 'og:url', property: 'og:url', content: this.gymSpaceMetaUrl }
+      ],
+      link: [
+        { rel: 'preload', href: this.gymSpaceMetaImage, as: 'image' }
+      ]
     }
   },
 
@@ -166,6 +187,36 @@ export default {
         leftClass.push('--with-active-gym-route')
       }
       return leftClass.join(' ')
+    },
+
+    gymSpaceMetaTitle () {
+      return this.$t('metaTitle', { name: this.gymSpace?.name, gym: this.gymSpace?.gym?.name })
+    },
+    gymSpaceMetaDescription () {
+      return this.$t('metaDescription', { gym: this.gymSpace?.gym?.name })
+    },
+    gymSpaceMetaImage () {
+      if (this.gymSpace && this.gymSpace.gym.attachments.banner.attached) {
+        return this.imageVariant(this.gymSpace.gym.attachments.banner, { fit: 'scale-down', height: 1920, width: 1290 })
+      } else {
+        return `${process.env.VUE_APP_OBLYK_APP_URL}/images/oblyk-og-image.jpg`
+      }
+    },
+    gymSpaceMetaUrl () {
+      return `${process.env.VUE_APP_OBLYK_APP_URL}${this.gymSpace?.path}`
+    }
+  },
+
+  i18n: {
+    messages: {
+      fr: {
+        metaTitle: "%{name} topo indoor de la salle d'escalade %{gym}",
+        metaDescription: "Consulter le détail des voies d'escalade de %{gym}, ajoutez vos croix pour suivre votre progression"
+      },
+      en: {
+        metaTitle: '%{name} indoor guide book of climbing gym %{gym}',
+        metaDescription: 'Consult the details of the climbing routes of %{gym}, add your ascents to track your progress'
+      }
     }
   },
 
@@ -178,22 +229,38 @@ export default {
       } else {
         this.gymRoute = null
       }
+    },
+
+    '$route' () {
+      this.getGymSpace()
     }
   },
 
   mounted () {
-    this.getGym(true)
+    this.$root.$on('ReFetchGymSpace', (gymSpace) => {
+      if (gymSpace) {
+        this.gymSpace = gymSpace
+      } else {
+        this.getGymSpace()
+      }
+    })
+    this.getGymSpace()
+  },
+
+  beforeDestroy () {
+    this.$root.$off('ReFetchGymSpace')
   },
 
   methods: {
-    getGym (loadRouteAfter = false) {
-      new GymApi(this.$axios, this.$auth)
-        .find(this.$route.params.gymId)
+    getGymSpace () {
+      this.loadingGymSpace = true
+      new GymSpaceApi(this.$axios, this.$auth)
+        .find(this.$route.params.gymId, this.$route.params.gymSpaceId)
         .then((resp) => {
-          this.gym = new Gym({ attributes: resp.data })
-          if (loadRouteAfter && this.activeGymRouteId) {
-            this.getGymRoute()
-          }
+          this.gymSpace = new GymSpace({ attributes: resp.data })
+        })
+        .finally(() => {
+          this.loadingGymSpace = false
         })
     },
 
@@ -240,7 +307,6 @@ export default {
   &.--mobile-interface { height: calc(100vh - 43px); }
 
   .gym-space-left-side {
-    z-index: 5;
     position: relative;
     &.--desktop-interface {
       width: 450px;
@@ -256,7 +322,7 @@ export default {
     }
     &.--mobile-interface {
       width: 100%;
-      margin-top: calc(100vh - 275px);
+      margin-top: calc(100vh - 322px);
       .gym-space-info-and-routes {
         padding-bottom: 45px;
       }
@@ -287,12 +353,12 @@ export default {
     &.--desktop-interface {
       height: 100%;
       position: absolute;
-      padding-left: 440px;
+      padding-left: 450px;
     }
     &.--mobile-interface {
-      height: calc(100vh - 275px);
+      height: calc(100vh - 321px);
       position: fixed;
-      top: 0;
+      top: 63px;
       right: 0;
     }
   }

@@ -1,6 +1,6 @@
 <template>
   <v-sheet
-    class="py-1 px-3 rounded"
+    class="rounded"
     :class="`elevation-${elevation}`"
   >
     <p class="font-weight-bold mb-0 mt-1">

@@ -11,7 +11,7 @@
         <v-row>
           <v-col cols="12" md="7">
             <h2 class="h2-title-in-card-title mb-4">
-              <v-icon left>
+              <v-icon left color="primary">
                 {{ mdiFormatListChecks }}
               </v-icon>
               {{ $t('components.logBook.myAscentsHere') }}

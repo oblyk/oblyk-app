@@ -1,5 +1,9 @@
 <template>
-  <div v-if="gym">
+  <v-container v-if="gym">
+    <gym-head
+      :gym="gym"
+      class="mb-3"
+    />
     <v-row>
       <v-col cols="12" md="7">
         <gym-description :gym="gym" />
@@ -29,7 +33,7 @@
         />
       </v-col>
     </v-row>
-  </div>
+  </v-container>
 </template>
 
 <script>
@@ -38,9 +42,11 @@ import GymDescription from '@/components/gyms/GymDescription'
 import ClimbersAround from '~/components/partners/ClimbersAround'
 import VersionInformation from '~/components/ui/VersionInformation'
 import GymUserAscents from '~/components/gyms/GymUserAscents.vue'
+import GymHead from '~/components/gyms/layouts/GymHead.vue'
 
 export default {
-  components: { GymUserAscents, VersionInformation, ClimbersAround, GymDescription, GymContact },
+  components: { GymHead, GymUserAscents, VersionInformation, ClimbersAround, GymDescription, GymContact },
+  scrollToTop: true,
   props: {
     gym: {
       type: Object,

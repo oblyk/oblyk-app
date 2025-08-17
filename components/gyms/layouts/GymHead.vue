@@ -45,6 +45,7 @@
           <client-only>
             <subscribe-btn
               subscribe-type="Gym"
+              :unsubscribe-label="$t('common.subscribed')"
               :subscribe-id="gym.id"
               :incrementable="true"
               :type-text="true"
@@ -82,7 +83,7 @@ export default {
 <style lang="scss" scoped>
 .gym-header {
   .gym-header-banner {
-    border-radius: 15px 15px 0 0;
+    border-radius: 15px;
     .change-gym-banner {
       float: right;
       margin-right: 5px;
