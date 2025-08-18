@@ -2,7 +2,7 @@
   <v-card class="full-height rounded">
     <v-card-title>
       <h2 class="h2-title-in-card-title">
-        <v-icon left>
+        <v-icon left color="primary">
           {{ mdiComment }}
         </v-icon>
         {{ $t('components.crag.opinion') }}

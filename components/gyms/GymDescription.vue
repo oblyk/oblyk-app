@@ -49,7 +49,7 @@
     >
       <v-btn
         outlined
-        :to="`${gym.path}/administration-request`"
+        :to="`${gym.path}/administration-request?back_to=${gym.path}`"
         color="deep-purple accent-3"
       >
         {{ $t('components.gym.IAmManager') }}
@@ -59,7 +59,7 @@
           text
           color="deep-purple accent-4"
           link
-          to="/about/indoor"
+          :to="`/about/indoor?back_to=${gym.path}`"
         >
           {{ $t('components.gym.createYourGuidebook') }}
         </v-btn>

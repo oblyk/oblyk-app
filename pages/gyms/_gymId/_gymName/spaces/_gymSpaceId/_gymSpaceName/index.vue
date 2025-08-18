@@ -236,6 +236,10 @@ export default {
     }
   },
 
+  created () {
+    this.$store.dispatch('oblykEnvironment/pushHubs', { hub: this.gym.path, page: this.$route.path })
+  },
+
   mounted () {
     this.$root.$on('ReFetchGymSpace', (gymSpace) => {
       if (gymSpace) {

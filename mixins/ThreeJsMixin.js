@@ -195,10 +195,10 @@ export const ThreeJsMixin = {
       })
     },
 
-    autoRotateScene () {
+    autoRotateScene (autoRotateSpeed = -1) {
       if (!this.autoRotate) {
         this.orbitControls.autoRotate = true
-        this.orbitControls.autoRotateSpeed = -1
+        this.orbitControls.autoRotateSpeed = autoRotateSpeed
         this.animate()
       } else if (this.animationId !== null) {
         cancelAnimationFrame(this.animationId)

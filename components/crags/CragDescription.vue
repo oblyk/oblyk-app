@@ -4,7 +4,7 @@
       <!-- Information -->
       <v-col class="col-12 col-md-6">
         <h2 class="h2-title-in-card-title mb-5">
-          <v-icon left>
+          <v-icon left color="primary">
             {{ mdiInformation }}
           </v-icon>
           {{ $t('components.crag.information') }}
@@ -18,7 +18,7 @@
 
         <v-row>
           <!-- Climbing type -->
-          <v-col cols="6">
+          <v-col cols="12" md="6">
             <description-line
               :icon="mdiTerrain"
               :item-title="$t('models.crag.climbing_types')"
@@ -32,26 +32,36 @@
           </v-col>
 
           <!-- Lines -->
-          <v-col cols="6">
+          <v-col cols="12" md="6">
             <description-line
               :icon="mdiSourceBranch"
               :item-title="$t('components.crag.lines')"
             >
               <template #content>
                 <div v-if="crag.routes_figures.route_count > 0">
-                  <nuxt-link
-                    :to="`${crag.path}/routes`"
-                    class="text-decoration-none font-weight-bold d-inline-block border rounded py-1 px-2"
-                  >
-                    {{ crag.routes_figures.route_count }} {{ $t('components.crag.lines') }}.
-                  </nuxt-link>
+                  <span class="text-lowercase">
+                    <strong>{{ crag.routes_figures.route_count }}</strong> {{ $t('components.crag.lines') }}
+                  </span>
                   <span
                     v-if="crag.routes_figures.route_count > 0"
+                    class="text-lowercase"
                     v-html="$t('components.crag.rangingFrom', {
                       min: crag.routes_figures.grade.min_text,
                       max: crag.routes_figures.grade.max_text
                     })"
                   />
+                  <v-btn
+                    :to="`${crag.path}/routes`"
+                    small
+                    text
+                    outlined
+                    class="ml-1 vertical-align-bottom"
+                  >
+                    {{ $t('actions.see') }}
+                    <v-icon right>
+                      {{ mdiArrowRight }}
+                    </v-icon>
+                  </v-btn>
                 </div>
                 <p
                   v-else
@@ -137,7 +147,8 @@
           <!-- Areas -->
           <v-col
             v-if="crag.Areas.length > 0"
-            cols="6"
+            cols="12"
+            md="6"
           >
             <description-line
               :icon="mdiUngroup"
@@ -195,13 +206,19 @@
                 >
                   {{ $t('common.noInformation') }}
                 </span>
-                <nuxt-link
+                <v-btn
                   v-if="crag.approaches.min_time !== null"
                   :to="`${crag.path}/maps`"
-                  class="text-decoration-none"
+                  text
+                  small
+                  outlined
+                  class="vertical-align-bottom"
                 >
-                  {{ $t('common.moreInformation') }}
-                </nuxt-link>
+                  {{ $t('actions.see') }}
+                  <v-icon right>
+                    {{ mdiArrowRight }}
+                  </v-icon>
+                </v-btn>
               </template>
             </description-line>
           </v-col>
@@ -216,7 +233,7 @@
       <!-- Map -->
       <v-col class="col-12 col-md-6">
         <h2 class="h2-title-in-card-title mb-2">
-          <v-icon left>
+          <v-icon left color="primary">
             {{ mdiMap }}
           </v-icon>
           {{ $t('components.crag.locationAndAccess') }}
@@ -282,7 +299,8 @@ import {
   mdiUngroup,
   mdiMap,
   mdiWalk,
-  mdiWeatherPouring
+  mdiWeatherPouring,
+  mdiArrowRight
 } from '@mdi/js'
 import QrCodeBtn from '@/components/forms/QrCodeBtn'
 import AlertList from '@/components/alerts/AlertList'
@@ -327,7 +345,8 @@ export default {
       mdiUngroup,
       mdiMap,
       mdiWalk,
-      mdiWeatherPouring
+      mdiWeatherPouring,
+      mdiArrowRight
     }
   }
 }

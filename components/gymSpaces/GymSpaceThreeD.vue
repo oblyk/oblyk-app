@@ -254,6 +254,7 @@ export default {
       this.sectorsBuilder()
       this.initLabelInsensitiveEvent()
       this.initTDAResizer()
+      this.autoRotateScene(-0.6)
     },
 
     sectorsBuilder () {

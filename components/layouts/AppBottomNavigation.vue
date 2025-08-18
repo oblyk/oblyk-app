@@ -27,7 +27,7 @@
       <span>
         Indoor
       </span>
-      <v-icon :color="oblykEnvironnement === 'indoor' ? '#743ad5' : 'primary'">
+      <v-icon :color="oblykEnvironment === 'indoor' ? '#743ad5' : 'primary'">
         {{ oblykIndoor }}
       </v-icon>
     </v-btn>
@@ -40,7 +40,7 @@
       <span>
         Outdoor
       </span>
-      <v-icon :color="oblykEnvironnement === 'outdoor' ? '#31994e' : 'primary'">
+      <v-icon :color="oblykEnvironment === 'outdoor' ? '#31994e' : 'primary'">
         {{ mdiTerrain }}
       </v-icon>
     </v-btn>
@@ -53,7 +53,7 @@
       <span>
         Commu'
       </span>
-      <v-icon :color="oblykEnvironnement === 'community' ? '#007b8b' : 'primary'">
+      <v-icon :color="oblykEnvironment === 'community' ? '#007b8b' : 'primary'">
         {{ oblykPartner }}
       </v-icon>
     </v-btn>
@@ -108,8 +108,8 @@ export default {
   },
 
   computed: {
-    oblykEnvironnement () {
-      return this.$store.getters['oblykEnvironment/getOblykEnvironnement']
+    oblykEnvironment () {
+      return this.$store.getters['oblykEnvironment/getOblykEnvironment']
     },
 
     haveNewNotification () {

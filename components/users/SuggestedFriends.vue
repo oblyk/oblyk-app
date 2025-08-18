@@ -43,8 +43,8 @@
             <subscribe-btn
               :subscribe-id="user.id"
               subscribe-type="User"
-              :subscribe-label="$t('actions.follow')"
-              :unsubscribe-label="$t('actions.followed')"
+              subscribe-label="actions.follow"
+              unsubscribe-label="actions.followed"
               hide-icon
               small
               block
@@ -57,8 +57,8 @@
         v-intersect="loadMoreFriends"
         type="image"
         class="rounded-sm"
-        height="200"
-        min-width="150"
+        min-height="230"
+        min-width="170"
       />
     </div>
   </div>

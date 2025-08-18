@@ -294,7 +294,7 @@ export default {
       } else {
         environnement = null
       }
-      this.$store.dispatch('oblykEnvironment/changeOblykEnvironnement', environnement)
+      this.$store.dispatch('oblykEnvironment/changeOblykEnvironment', environnement)
     }
   }
 }

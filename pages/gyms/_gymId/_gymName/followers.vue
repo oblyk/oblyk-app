@@ -1,37 +1,58 @@
 <template>
-  <v-container
-    v-if="gym"
-    class="mt-3"
-  >
-    <spinner v-if="loadingFollowers" />
-
-    <div v-if="!loadingFollowers">
-      <v-row>
-        <v-col
-          v-for="(user, index) in followers"
-          :key="`user-${index}`"
-          class="col-12 col-md-6 col-lg-4 py-0"
-        >
-          <user-small-card
-            small
-            class="mb-2"
-            :user="user"
-          />
-        </v-col>
-      </v-row>
-
-      <loading-more
-        :get-function="getFollowers"
-        :no-more-data="noMoreDataToLoad"
-        :loading-more="loadingMoreData"
-      />
-
-      <p
-        v-if="followers.length === 0 && !loadingFollowers"
-        class="text-center text--disabled mt-5 mb-5"
-      >
-        {{ $t('components.gym.followersEmpty', { name: gym.name }) }}
+  <v-container class="mt-3">
+    <div
+      v-if="!$auth.loggedIn"
+      class="missing-background border text-center py-5 mt-2"
+    >
+      <p>
+        {{ $t('components.gym.connectForSeeFollowers', { name: gym.name }) }}
       </p>
+      <v-btn
+        to="/sign-in"
+        color="primary"
+        elevation="0"
+      >
+        {{ $t('actions.signIn') }}
+      </v-btn>
+      <v-btn
+        to="/sign-up"
+        color="primary"
+        elevation="0"
+      >
+        {{ $t('actions.signUp') }}
+      </v-btn>
+    </div>
+    <div v-else>
+      <spinner v-if="loadingFollowers" />
+
+      <div v-if="!loadingFollowers">
+        <v-row>
+          <v-col
+            v-for="(user, index) in followers"
+            :key="`user-${index}`"
+            class="col-12 col-md-6 col-lg-4 py-0"
+          >
+            <user-small-card
+              small
+              class="mb-2"
+              :user="user"
+            />
+          </v-col>
+        </v-row>
+
+        <loading-more
+          :get-function="getFollowers"
+          :no-more-data="noMoreDataToLoad"
+          :loading-more="loadingMoreData"
+        />
+
+        <p
+          v-if="followers.length === 0 && !loadingFollowers"
+          class="text-center text--disabled mt-5 mb-5"
+        >
+          {{ $t('components.gym.followersEmpty', { name: gym.name }) }}
+        </p>
+      </div>
     </div>
   </v-container>
 </template>
@@ -96,6 +117,10 @@ export default {
 
   methods: {
     getFollowers () {
+      if (!this.$auth.loggedIn) {
+        this.loadingFollowers = false
+        return false
+      }
       this.moreIsBeingLoaded()
       new FollowApi(this.$axios, this.$auth)
         .followers('Gym', this.gym.id, this.page)

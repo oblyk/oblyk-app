@@ -40,8 +40,8 @@
             :unfollowed-icon="mdiAccountOutline"
             :followed-icon="mdiAccount"
             followed-color="primary"
-            :subscribe-label="$t('actions.follow')"
-            :unsubscribe-label="$t('actions.followed')"
+            subscribe-label="actions.follow"
+            unsubscribe-label="actions.followed"
             small
             large
           />

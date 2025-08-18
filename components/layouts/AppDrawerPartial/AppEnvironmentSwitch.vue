@@ -2,7 +2,7 @@
   <v-list-item class="oblyk-app-drawer-actions">
     <div
       class="d-flex justify-space-between pa-1 oblyk-app-drawer-actions-area"
-      :class="`app-drawer-environment-${oblykEnvironnement}`"
+      :class="`app-drawer-environment-${oblykEnvironment}`"
     >
       <v-chip
         to="/outdoor"
@@ -66,8 +66,8 @@ export default {
   },
 
   computed: {
-    oblykEnvironnement () {
-      return this.$store.getters['oblykEnvironment/getOblykEnvironnement']
+    oblykEnvironment () {
+      return this.$store.getters['oblykEnvironment/getOblykEnvironment']
     }
   }
 }

@@ -14,12 +14,12 @@
     <client-only>
       <div style="width: 400px">
         <community-global-search
-          v-if="oblykEnvironnement === 'community'"
+          v-if="oblykEnvironment === 'community'"
           :short-cut-butons="false"
           mode="dialog"
         />
         <indoor-global-search
-          v-else-if="oblykEnvironnement === 'indoor'"
+          v-else-if="oblykEnvironment === 'indoor'"
           mode="dialog"
         />
         <outdoor-global-search
@@ -116,8 +116,8 @@ export default {
   },
 
   computed: {
-    oblykEnvironnement () {
-      return this.$store.getters['oblykEnvironment/getOblykEnvironnement']
+    oblykEnvironment () {
+      return this.$store.getters['oblykEnvironment/getOblykEnvironment']
     }
   }
 }

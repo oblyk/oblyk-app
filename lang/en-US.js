@@ -1291,7 +1291,8 @@ export default {
       guidebook: 'Routes list',
       upcomingContests: 'One contest coming soon ! | %{count} contests coming soon !',
       createYourGuidebook: 'Create your climbing gym guidebook!',
-      followersEmpty: '%{name} has no followers yet'
+      followersEmpty: '%{name} has no followers yet',
+      connectForSeeFollowers: 'Log in to see followers to %{name}'
     },
     gymRanking: {
       rankingType: 'Ranking type',

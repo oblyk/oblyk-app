@@ -1,7 +1,7 @@
 <template>
   <div
     class="oblyk-app-drawer"
-    :class="`oblyk-app-drawer-${oblykEnvironnement}`"
+    :class="`oblyk-app-drawer-${oblykEnvironment}`"
   >
     <v-list-item>
       <v-row class="oblyk-app-drawer-header">
@@ -15,7 +15,7 @@
           >
             <animate-oblyk-logo
               :animate="loading"
-              :color="environnementColor"
+              :color="environmentColor"
             />
             <div class="d-inline-block oblyk-app-drawer-title">
               <p>
@@ -166,14 +166,14 @@ export default {
   },
 
   computed: {
-    oblykEnvironnement () {
-      return this.$store.getters['oblykEnvironment/getOblykEnvironnement']
+    oblykEnvironment () {
+      return this.$store.getters['oblykEnvironment/getOblykEnvironment']
     },
 
-    environnementColor () {
-      if (this.oblykEnvironnement === 'indoor') {
+    environmentColor () {
+      if (this.oblykEnvironment === 'indoor') {
         return '#743ad5'
-      } else if (this.oblykEnvironnement === 'community') {
+      } else if (this.oblykEnvironment === 'community') {
         return '#007b8b'
       } else {
         return '#31994e'
@@ -202,6 +202,7 @@ export default {
 </script>
 <style lang="scss">
 .oblyk-app-drawer {
+  padding-bottom: 50px;
   .oblyk-app-drawer-header {
     padding-top: 5px;
     padding-bottom: 6px;

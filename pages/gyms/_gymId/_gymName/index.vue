@@ -41,8 +41,8 @@ import GymContact from '@/components/gyms/GymContact'
 import GymDescription from '@/components/gyms/GymDescription'
 import ClimbersAround from '~/components/partners/ClimbersAround'
 import VersionInformation from '~/components/ui/VersionInformation'
-import GymUserAscents from '~/components/gyms/GymUserAscents.vue'
-import GymHead from '~/components/gyms/layouts/GymHead.vue'
+import GymUserAscents from '~/components/gyms/GymUserAscents'
+import GymHead from '~/components/gyms/layouts/GymHead'
 
 export default {
   components: { GymHead, GymUserAscents, VersionInformation, ClimbersAround, GymDescription, GymContact },
@@ -52,6 +52,10 @@ export default {
       type: Object,
       required: true
     }
+  },
+
+  created () {
+    this.$store.dispatch('oblykEnvironment/pushHubs', { hub: this.gym.path, page: this.$route.path })
   }
 }
 </script>

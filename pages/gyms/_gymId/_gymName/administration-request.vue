@@ -1,73 +1,82 @@
 <template>
-  <v-container
-    v-if="gym"
-    class="global-form-width"
-  >
-    <v-row>
-      <!-- If is already administered -->
-      <v-col v-if="gym.administered">
-        <p class="text-center text--disabled mt-10">
-          {{ $t('components.gymAdministrationRequest.isAlreadyAdministered') }}
-        </p>
-      </v-col>
-
-      <!-- If not administered -->
-      <v-col v-if="!gym.administered">
-        <!-- If not connected -->
-        <div v-if="!$auth.loggedIn">
-          <p class="text-center">
-            {{ $t('components.gymAdministrationRequest.needAccount') }}
+  <div>
+    <page-header
+      :title="$t('components.gym.IAmManager')"
+      :back-to="gym?.path || '/about/indoor'"
+    />
+    <v-container
+      v-if="gym"
+      class="global-form-width"
+    >
+      <v-row>
+        <!-- If is already administered -->
+        <v-col v-if="gym.administered">
+          <p class="text-center text--disabled mt-10">
+            {{ $t('components.gymAdministrationRequest.isAlreadyAdministered') }}
           </p>
-          <p class="text-center mb-10 mt-10">
-            <v-btn
-              outlined
-              color="primary"
-              :to="`/sign-up?redirect_to=${$route.path}`"
-            >
-              {{ $t('actions.signUp') }}
-            </v-btn>
-            <br>
-            <v-btn
-              text
-              small
-              class="mt-3"
-              color="primary"
-              :to="`/sign-in?redirect_to=${$route.path}&alert=false`"
-            >
-              {{ $t('actions.signIn') }}
-            </v-btn>
-          </p>
-        </div>
+        </v-col>
 
-        <!-- If connected -->
-        <client-only>
-          <div v-if="$auth.loggedIn">
-            <p>
-              <strong>
-                {{ $t('components.gymAdministrationRequest.helloName', { name: $auth.user.first_name }) }}
-              </strong>
+        <!-- If not administered -->
+        <v-col v-if="!gym.administered">
+          <!-- If not connected -->
+          <div
+            v-if="!$auth.loggedIn"
+            class="missing-background border rounded pa-4"
+          >
+            <p class="text-center">
+              {{ $t('components.gymAdministrationRequest.needAccount') }}
             </p>
-            <p>
-              {{ $t('components.gymAdministrationRequest.explainJustification') }}
+            <p class="text-center mt-10 mb-0">
+              <v-btn
+                elevation="0"
+                color="primary"
+                :to="`/sign-up?redirect_to=${$route.path}`"
+              >
+                {{ $t('actions.signUp') }}
+              </v-btn>
+              <br>
+              <v-btn
+                text
+                small
+                class="mt-3"
+                color="primary"
+                :to="`/sign-in?redirect_to=${$route.path}&alert=false`"
+              >
+                {{ $t('actions.signIn') }}
+              </v-btn>
             </p>
-
-            <gym-administrator-request-form :gym="gym" />
           </div>
-        </client-only>
-      </v-col>
-    </v-row>
-  </v-container>
+
+          <!-- If connected -->
+          <client-only>
+            <div v-if="$auth.loggedIn">
+              <p>
+                <strong>
+                  {{ $t('components.gymAdministrationRequest.helloName', { name: $auth.user.first_name }) }}
+                </strong>
+              </p>
+              <p>
+                {{ $t('components.gymAdministrationRequest.explainJustification') }}
+              </p>
+
+              <gym-administrator-request-form :gym="gym" />
+            </div>
+          </client-only>
+        </v-col>
+      </v-row>
+    </v-container>
+  </div>
 </template>
 
 <script>
 import { GymConcern } from '~/concerns/GymConcern'
 import GymAdministratorRequestForm from '~/components/gyms/forms/GymAdministratorRequestForm'
+import PageHeader from '~/components/layouts/PageHeader.vue'
 
 export default {
   meta: { orphanRoute: true },
-  components: { GymAdministratorRequestForm },
+  components: { PageHeader, GymAdministratorRequestForm },
   mixins: [GymConcern],
-  middleware: ['auth'],
 
   i18n: {
     messages: {

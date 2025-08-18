@@ -1005,7 +1005,7 @@ export default {
       tabs: {
         info: 'Info',
         routes: 'Voies',
-        media: 'Photos & Videos',
+        media: 'Photos',
         links: 'Liens',
         guideBooks: 'Topos',
         map: 'Carte'
@@ -1292,7 +1292,8 @@ export default {
       guidebook: 'Le topo',
       upcomingContests: 'Un contest est à venir ! | %{count} contests sont à venir',
       createYourGuidebook: 'Créez le topo de votre salle !',
-      followersEmpty: "%{name} n'a pas encore d'abonné·es pour l'instant"
+      followersEmpty: "%{name} n'a pas encore d'abonné·es pour l'instant",
+      connectForSeeFollowers: 'Connectez-vous pour voir les abonné·es à %{name}'
     },
     gymRanking: {
       rankingType: 'Les types de classements',

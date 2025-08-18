@@ -1,7 +1,7 @@
 <template>
   <v-sheet
     class="page-header-sheet border-bottom"
-    :class="`page-header-sheet-${oblykEnvironnement}`"
+    :class="`page-header-sheet-${oblykEnvironment}`"
   >
     <div
       class="page-header-container"
@@ -39,7 +39,7 @@
           v-if="links"
           class="page-header-sheet-tabs"
           height="30"
-          :color="iconColors[oblykEnvironnement] || 'primary'"
+          :color="iconColors[oblykEnvironment] || 'primary'"
         >
           <v-tab
             v-for="(link, linkIndex) in links"
@@ -59,7 +59,7 @@
               v-if="link.badge"
               small
               dark
-              :color="iconColors[oblykEnvironnement] || 'primary'"
+              :color="iconColors[oblykEnvironment] || 'primary'"
               class="ml-1 px-2 font-weight-bold"
             >
               {{ link.badge }}
@@ -112,8 +112,8 @@ export default {
       return !!this.$slots.title
     },
 
-    oblykEnvironnement () {
-      return this.$store.getters['oblykEnvironment/getOblykEnvironnement'] || 'no-environnement'
+    oblykEnvironment () {
+      return this.$store.getters['oblykEnvironment/getOblykEnvironment'] || 'no-environment'
     }
   },
 

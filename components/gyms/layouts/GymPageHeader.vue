@@ -13,6 +13,7 @@
           :large="false"
           small
           :icon-size="20"
+          :incrementable="true"
           class="vertical-align-sub"
         />
         {{ gym.name }}

@@ -3,7 +3,9 @@
     <div class="outdoor-search-head sheet-background-color border-bottom d-block d-md-none">
       <div class="outdoor-search-head-container">
         <!-- SEARCH CRAG, GUIDE BOOK AND ROUTES -->
-        <outdoor-global-search />
+        <client-only>
+          <outdoor-global-search />
+        </client-only>
       </div>
     </div>
 
@@ -43,36 +45,38 @@
         </v-btn>
       </v-sheet>
 
-      <div v-if="$auth.loggedIn">
-        <!-- MY CRAGS -->
-        <div class="mb-6">
-          <p class="mb-1 font-weight-medium">
-            <v-icon
-              color="primary"
-              left
-              class="vertical-align-top"
-            >
-              {{ mdiStar }}
-            </v-icon>
-            {{ $t('components.crag.myCrags') }}
-          </p>
-          <my-favorite-crags-carousel />
+      <client-only v-if="$auth.loggedIn">
+        <div>
+          <!-- MY CRAGS -->
+          <div class="mb-6">
+            <p class="mb-1 font-weight-medium">
+              <v-icon
+                color="primary"
+                left
+                class="vertical-align-top"
+              >
+                {{ mdiStar }}
+              </v-icon>
+              {{ $t('components.crag.myCrags') }}
+            </p>
+            <my-favorite-crags-carousel />
+          </div>
+
+          <!-- GUIDE BOOK FIGURES -->
+          <div class="mb-6">
+            <p class="mb-1 font-weight-medium">
+              <v-icon color="primary" left class="vertical-align-top">
+                {{ mdiBookOutline }}
+              </v-icon>
+              {{ $t('components.dailyCrosses.myLogbook') }}
+            </p>
+            <daily-ascents />
+          </div>
         </div>
 
-        <!-- GUIDE BOOK FIGURES -->
-        <div class="mb-6">
-          <p class="mb-1 font-weight-medium">
-            <v-icon color="primary" left class="vertical-align-top">
-              {{ mdiBookOutline }}
-            </v-icon>
-            {{ $t('components.dailyCrosses.myLogbook') }}
-          </p>
-          <daily-ascents />
-        </div>
-      </div>
-
-      <!-- NEARBY CRAG -->
-      <nearby-crags-carousel class="mb-6" />
+        <!-- NEARBY CRAG -->
+        <nearby-crags-carousel class="mb-6" />
+      </client-only>
 
       <!-- MAPS AND TOOLS -->
       <div class="mb-6">
@@ -136,54 +140,54 @@
       </div>
 
       <!-- OTHER LINKS -->
-      <v-sheet
-        v-if="$auth.loggedIn"
-        class="rounded-sm mb-2"
-        outlined
-      >
-        <v-list-item
-          link
-          to="/home/guide-books"
+      <client-only v-if="$auth.loggedIn">
+        <v-sheet
+          class="rounded-sm mb-2"
+          outlined
         >
-          <v-list-item-icon>
-            <v-icon large color="primary">
-              {{ mdiBookshelf }}
-            </v-icon>
-          </v-list-item-icon>
-          <v-list-item-content>
-            <v-list-item-title>
-              {{ $t('components.layout.appDrawer.user.guideBooks') }}
-            </v-list-item-title>
-            <v-list-item-subtitle class="text-wrap">
-              Les topos papiers que je possède
-            </v-list-item-subtitle>
-          </v-list-item-content>
-        </v-list-item>
-      </v-sheet>
-      <v-sheet
-        v-if="$auth.loggedIn"
-        class="rounded-sm mb-2"
-        outlined
-      >
-        <v-list-item
-          link
-          to="/crags/new"
+          <v-list-item
+            link
+            to="/home/guide-books"
+          >
+            <v-list-item-icon>
+              <v-icon large color="primary">
+                {{ mdiBookshelf }}
+              </v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>
+                {{ $t('components.layout.appDrawer.user.guideBooks') }}
+              </v-list-item-title>
+              <v-list-item-subtitle class="text-wrap">
+                Les topos papiers que je possède
+              </v-list-item-subtitle>
+            </v-list-item-content>
+          </v-list-item>
+        </v-sheet>
+        <v-sheet
+          class="rounded-sm mb-2"
+          outlined
         >
-          <v-list-item-icon>
-            <v-icon large color="primary">
-              {{ mdiPlusBoxOutline }}
-            </v-icon>
-          </v-list-item-icon>
-          <v-list-item-content>
-            <v-list-item-title>
-              {{ $t('actions.addCrag') }}
-            </v-list-item-title>
-            <v-list-item-subtitle class="text-wrap">
-              Il manque une falaise à notre base ? Aidez-nous, ajoutez-là !
-            </v-list-item-subtitle>
-          </v-list-item-content>
-        </v-list-item>
-      </v-sheet>
+          <v-list-item
+            link
+            to="/crags/new"
+          >
+            <v-list-item-icon>
+              <v-icon large color="primary">
+                {{ mdiPlusBoxOutline }}
+              </v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>
+                {{ $t('actions.addCrag') }}
+              </v-list-item-title>
+              <v-list-item-subtitle class="text-wrap">
+                Il manque une falaise à notre base ? Aidez-nous, ajoutez-là !
+              </v-list-item-subtitle>
+            </v-list-item-content>
+          </v-list-item>
+        </v-sheet>
+      </client-only>
     </v-container>
   </div>
 </template>

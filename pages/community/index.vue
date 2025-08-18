@@ -2,7 +2,9 @@
   <div>
     <div class="community-search-head sheet-background-color border-bottom d-block d-md-none">
       <div class="community-search-head-container">
-        <community-global-search />
+        <client-only>
+          <community-global-search />
+        </client-only>
       </div>
     </div>
 
@@ -43,7 +45,7 @@
       </v-sheet>
 
       <!-- Enable partner search -->
-      <div v-if="$auth.loggedIn">
+      <client-only v-if="$auth.loggedIn">
         <enable-partner-search
           v-if="$auth.user.partner_search === null && !$auth.user.minor"
           :user="$auth.user"
@@ -54,7 +56,7 @@
           v-if="$auth.user.partner_search"
           class="mb-6"
         />
-      </div>
+      </client-only>
 
       <!-- TOOL AND LINKS -->
       <div class="mb-6">
@@ -98,10 +100,9 @@
         </v-row>
       </div>
 
-      <suggested-friends
-        v-if="$auth.loggedIn"
-        class="mb-6"
-      />
+      <client-only v-if="$auth.loggedIn">
+        <suggested-friends class="mb-6" />
+      </client-only>
     </v-container>
   </div>
 </template>

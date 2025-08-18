@@ -24,12 +24,12 @@ export default {
 
   beforeCreate () {
     if (this.$auth.loggedIn) {
-      const environnement = this.$store.getters['oblykEnvironment/getOblykEnvironnement']
-      if (environnement === 'outdoor') {
+      const environment = this.$store.getters['oblykEnvironment/getOblykEnvironment']
+      if (environment === 'outdoor') {
         this.$router.replace('/outdoor')
-      } else if (environnement === 'indoor') {
+      } else if (environment === 'indoor') {
         this.$router.replace('/indoor')
-      } else if (environnement === 'community') {
+      } else if (environment === 'community') {
         this.$router.replace('/community')
       } else {
         this.$router.replace('/home')

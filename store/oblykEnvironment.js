@@ -6,7 +6,7 @@ export const state = () => ({
 
 // Getters
 export const getters = {
-  getOblykEnvironnement: (state) => {
+  getOblykEnvironment: (state) => {
     return state.oblykEnvironment
   },
 
@@ -32,8 +32,8 @@ export const getters = {
 
 // Actions
 export const actions = {
-  changeOblykEnvironnement ({ commit }, environnent) {
-    commit('changeOblykEnvironnement', environnent)
+  changeOblykEnvironment ({ commit }, environment) {
+    commit('changeOblykEnvironment', environment)
   },
 
   pushHubs ({ commit }, pages) {
@@ -47,7 +47,7 @@ export const actions = {
 
 // Mutations
 export const mutations = {
-  changeOblykEnvironnement (state, payload) {
+  changeOblykEnvironment (state, payload) {
     state.oblykEnvironment = payload
   },
 

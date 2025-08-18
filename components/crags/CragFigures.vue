@@ -2,7 +2,7 @@
   <v-card class="full-height">
     <v-card-title>
       <h2 class="h2-title-in-card-title">
-        <v-icon left>
+        <v-icon left color="primary">
           {{ mdiChartBar }}
         </v-icon>
         {{ $t('components.crag.gradesAndLevels') }}

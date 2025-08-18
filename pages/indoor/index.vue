@@ -2,7 +2,9 @@
   <div>
     <div class="indoor-search-head sheet-background-color border-bottom d-block d-md-none">
       <div class="indoor-search-head-container">
-        <indoor-global-search />
+        <client-only>
+          <indoor-global-search />
+        </client-only>
       </div>
     </div>
 
@@ -43,34 +45,36 @@
       </v-sheet>
 
       <!-- MY CLIMBING GYMS -->
-      <div v-if="$auth.loggedIn" class="mb-6">
-        <p class="mb-1 font-weight-medium">
-          <v-icon
-            color="primary"
-            left
-            class="vertical-align-top"
-          >
-            {{ mdiStar }}
-          </v-icon>
-          {{ $tc('components.user.myFollowedGym', 2) }}
-        </p>
-        <my-favorite-gyms-carousel />
-      </div>
+      <client-only>
+        <div v-if="$auth.loggedIn" class="mb-6">
+          <p class="mb-1 font-weight-medium">
+            <v-icon
+              color="primary"
+              left
+              class="vertical-align-top"
+            >
+              {{ mdiStar }}
+            </v-icon>
+            {{ $tc('components.user.myFollowedGym', 2) }}
+          </p>
+          <my-favorite-gyms-carousel />
+        </div>
 
-      <!-- CONTEST À VENIR -->
-      <my-upcoming-contests
-        v-if="$auth.loggedIn"
-        class="mb-6"
-      />
+        <!-- CONTEST À VENIR -->
+        <my-upcoming-contests
+          v-if="$auth.loggedIn"
+          class="mb-6"
+        />
 
-      <!-- LOG BOOK -->
-      <log-book-indoor-small-figures
-        v-if="$auth.loggedIn"
-        class="mb-6"
-      />
+        <!-- LOG BOOK -->
+        <log-book-indoor-small-figures
+          v-if="$auth.loggedIn"
+          class="mb-6"
+        />
 
-      <!-- NEARBY GYM -->
-      <nearby-gyms-carousel class="mb-6" />
+        <!-- NEARBY GYM -->
+        <nearby-gyms-carousel class="mb-6" />
+      </client-only>
 
       <!-- TOOL AND LINKS -->
       <div class="mb-6">
@@ -115,30 +119,32 @@
       </div>
 
       <!-- OTHER LINK AND TOOL -->
-      <v-sheet
-        v-if="$auth.loggedIn"
-        class="rounded-sm mb-2"
-        outlined
-      >
-        <v-list-item
-          link
-          to="/gyms/new"
+      <client-only>
+        <v-sheet
+          v-if="$auth.loggedIn"
+          class="rounded-sm mb-2"
+          outlined
         >
-          <v-list-item-icon class="mr-3">
-            <v-icon large color="primary">
-              {{ mdiPlusBoxOutline }}
-            </v-icon>
-          </v-list-item-icon>
-          <v-list-item-content>
-            <v-list-item-title>
-              {{ $t('actions.addGym') }}
-            </v-list-item-title>
-            <v-list-item-subtitle class="text-wrap">
-              Il manque une salle à notre base ? Ajoutez-la !
-            </v-list-item-subtitle>
-          </v-list-item-content>
-        </v-list-item>
-      </v-sheet>
+          <v-list-item
+            link
+            to="/gyms/new"
+          >
+            <v-list-item-icon class="mr-3">
+              <v-icon large color="primary">
+                {{ mdiPlusBoxOutline }}
+              </v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>
+                {{ $t('actions.addGym') }}
+              </v-list-item-title>
+              <v-list-item-subtitle class="text-wrap">
+                Il manque une salle à notre base ? Ajoutez-la !
+              </v-list-item-subtitle>
+            </v-list-item-content>
+          </v-list-item>
+        </v-sheet>
+      </client-only>
       <v-sheet class="rounded-sm mb-2" outlined>
         <v-list-item
           link

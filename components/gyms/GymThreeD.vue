@@ -332,6 +332,7 @@ export default {
       this.initTDAResizer()
       this.initLabelInsensitiveEvent()
       this.renderScene()
+      this.autoRotateScene(-0.6)
     },
 
     highlightSpace (event) {

@@ -38,14 +38,14 @@ export default {
           badge: mediaCount > 0 ? mediaCount : null
         },
         {
-          to: `${this.crag.path}/links`,
-          title: this.$t('components.crag.tabs.links'),
-          badge: this.crag.link_count > 0 ? this.crag.link_count : null
-        },
-        {
           to: `${this.crag.path}/guide-books`,
           title: this.$t('components.crag.tabs.guideBooks'),
           badge: guidesCount > 0 ? guidesCount : null
+        },
+        {
+          to: `${this.crag.path}/links`,
+          title: this.$t('components.crag.tabs.links'),
+          badge: this.crag.link_count > 0 ? this.crag.link_count : null
         },
         {
           to: `${this.crag.path}/maps`,
