@@ -1,5 +1,9 @@
 <template>
   <div>
+    <page-header
+      :title="$t('common.pages.grade.title')"
+      back-to="/oblyk"
+    />
     <v-container class="common-page-container">
       <h1 class="mt-5">
         {{ $t('common.pages.grade.title') }}
@@ -100,9 +104,10 @@
 
 <script>
 import AppFooter from '@/components/layouts/AppFooter'
+import PageHeader from '~/components/layouts/PageHeader'
 
 export default {
-  components: { AppFooter },
+  components: { PageHeader, AppFooter },
 
   data () {
     return {

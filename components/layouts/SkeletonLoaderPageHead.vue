@@ -1,21 +1,23 @@
 <template>
   <div>
-    <v-sheet class="page-header-sheet">
-      <div class="page-header-sheet-back-btn">
-        <v-btn
-          exact-path
-          icon
-          large
-          @click="back"
-        >
-          <v-icon>
-            {{ mdiArrowLeft }}
-          </v-icon>
-        </v-btn>
-      </div>
-      <div class="page-header-sheet-content mb-4">
-        <div class="page-header-sheet-title pt-4">
-          <v-skeleton-loader type="heading" width="150" />
+    <v-sheet class="page-header-sheet border-bottom">
+      <div class="page-header-container">
+        <div class="page-header-sheet-back-btn">
+          <v-btn
+            exact-path
+            icon
+            large
+            @click="back"
+          >
+            <v-icon>
+              {{ mdiArrowLeft }}
+            </v-icon>
+          </v-btn>
+        </div>
+        <div class="page-header-sheet-content flex-grow-1">
+          <div class="page-header-sheet-title">
+            <v-skeleton-loader type="heading" width="150" />
+          </div>
         </div>
       </div>
     </v-sheet>

@@ -237,7 +237,7 @@ export default {
 .gym-spaces-interface {
   position: relative;
   width: 100%;
-  &.--desktop-interface { height: calc(100vh - 64px); }
+  &.--desktop-interface { height: calc(100vh - 128px); }
   &.--mobile-interface { height: calc(100vh - 43px); }
 
   .gym-space-info-and-routes {
@@ -250,15 +250,15 @@ export default {
     position: relative;
     &.--desktop-interface {
       width: 450px;
-      height: calc(100vh - 64px);
+      height: calc(100vh - 128px);
       overflow-y: auto;
       margin-top: 0;
       &.--with-active-gym-route {
         width: 900px;
       }
       .gym-spaces-card {
-        width: 450px;
-        min-height: calc(100vh - 64px);
+        width: 100%;
+        min-height: calc(100vh - 128px);
       }
       .gym-spaces-info-and-routes {
         width: 450px;
@@ -309,7 +309,7 @@ export default {
   &.--desktop-interface {
     height: 100%;
     position: absolute;
-    padding-left: 440px;
+    padding-left: 450px;
   }
   &.--mobile-interface {
     height: calc(100vh - 312px);

@@ -10,8 +10,8 @@ export const getters = {
     return state.oblykEnvironment
   },
 
-  getPreviousHubs: state => (currentPath, hubPath) => {
-    if (currentPath === hubPath) {
+  getPreviousHubs: state => (currentPath, hubPath, likeHubPath = false) => {
+    if (currentPath === hubPath || likeHubPath) {
       let hubIndex = null
       for (const index in state.hubs) {
         if (state.hubs[index].hub === hubPath) {

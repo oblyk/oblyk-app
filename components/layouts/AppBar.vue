@@ -12,20 +12,54 @@
 
     <!-- Search on Oblyk -->
     <client-only>
-      <div style="width: 400px">
-        <community-global-search
-          v-if="oblykEnvironment === 'community'"
-          :short-cut-butons="false"
-          mode="dialog"
-        />
-        <indoor-global-search
-          v-else-if="oblykEnvironment === 'indoor'"
-          mode="dialog"
-        />
-        <outdoor-global-search
-          v-else
-          mode="dialog"
-        />
+      <div class="d-flex">
+        <v-btn-toggle
+          v-model="forceEnvironment"
+          rounded
+        >
+          <v-btn
+            height="43"
+            text
+            value="outdoor"
+          >
+            <v-icon :color="forceEnvironment === 'outdoor' ? '#31994e' : 'primary'">
+              {{ mdiTerrain }}
+            </v-icon>
+          </v-btn>
+          <v-btn
+            height="43"
+            text
+            value="indoor"
+          >
+            <v-icon :color="forceEnvironment === 'indoor' ? '#743ad5' : 'primary'">
+              {{ oblykIndoor }}
+            </v-icon>
+          </v-btn>
+          <v-btn
+            height="43"
+            text
+            value="community"
+          >
+            <v-icon :color="forceEnvironment === 'community' ? '#007b8b' : 'primary'">
+              {{ oblykPartner }}
+            </v-icon>
+          </v-btn>
+        </v-btn-toggle>
+        <div style="width: 370px; height: 45px; margin-left: 5px">
+          <community-global-search
+            v-if="forceEnvironment === 'community'"
+            :short-cut-butons="false"
+            mode="dialog"
+          />
+          <indoor-global-search
+            v-else-if="forceEnvironment === 'indoor'"
+            mode="dialog"
+          />
+          <outdoor-global-search
+            v-else
+            mode="dialog"
+          />
+        </div>
       </div>
 
       <!-- Add cross -->
@@ -103,6 +137,7 @@ export default {
 
   data () {
     return {
+      forceEnvironment: 'outdoor',
       searchIcons: {
         indoor: oblykIndoor,
         community: oblykPartner,
@@ -111,13 +146,21 @@ export default {
 
       mdiPlusBoxOutline,
       mdiTerrain,
-      mdiOfficeBuildingMarker
+      mdiOfficeBuildingMarker,
+      oblykPartner,
+      oblykIndoor
     }
   },
 
   computed: {
     oblykEnvironment () {
       return this.$store.getters['oblykEnvironment/getOblykEnvironment']
+    }
+  },
+
+  watch: {
+    '$route' () {
+      this.forceEnvironment = this.$store.getters['oblykEnvironment/getOblykEnvironment'] || 'outdoor'
     }
   }
 }

@@ -83,7 +83,8 @@ export default {
     },
 
     backTo () {
-      return this.$store.getters['oblykEnvironment/getPreviousHubs'](this.$route.path, this.gym.path)
+      const likeHubPath = this.$route.path.search(`${this.gym.path}/spaces`) === 0
+      return this.$store.getters['oblykEnvironment/getPreviousHubs'](this.$route.path, this.gym.path, likeHubPath)
     }
   }
 }

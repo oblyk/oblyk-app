@@ -4,6 +4,7 @@
       :title="$t('components.layout.appDrawer.user.ascents.outdoor')"
       back-to="/outdoor"
       :links="headerLinks"
+      fluid-container
     />
 
     <spinner v-if="!currentUser" />

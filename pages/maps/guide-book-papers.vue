@@ -4,6 +4,7 @@
       <page-header
         :title="$t('common.pages.find.guideBooks.map.title')"
         back-to="/outdoor"
+        fluid-container
       />
     </div>
     <div class="flex-grow-1">

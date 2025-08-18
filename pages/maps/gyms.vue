@@ -5,6 +5,7 @@
         v-if="!gym"
         :title="$t('components.layout.appDrawer.mapGyms')"
         back-to="/indoor"
+        fluid-container
       />
       <page-header
         v-else

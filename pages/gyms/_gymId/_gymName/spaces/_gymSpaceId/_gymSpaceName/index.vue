@@ -307,14 +307,14 @@ export default {
 .gym-space-interface {
   position: relative;
   width: 100%;
-  &.--desktop-interface { height: calc(100vh - 64px); }
+  &.--desktop-interface { height: calc(100vh - 128px); }
   &.--mobile-interface { height: calc(100vh - 43px); }
 
   .gym-space-left-side {
     position: relative;
     &.--desktop-interface {
       width: 450px;
-      height: calc(100vh - 64px);
+      height: calc(100vh - 128px);
       overflow-y: auto;
       margin-top: 0;
       &.--with-active-gym-route {

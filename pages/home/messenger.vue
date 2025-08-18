@@ -3,6 +3,7 @@
     <page-header
       :title="$t('components.layout.appBar.user.messenger')"
       back-to="/community"
+      fluid-container
     />
 
     <v-row class="messenger-layout">

@@ -304,6 +304,7 @@ export default {
     createdOn: 'Created on %{date}',
     archivedOn: 'Archived on %{date}',
     findAnotherWay: 'Find another way',
+    community: 'Community',
     months: {
       '01': '01 - January',
       '02': '02 - February',

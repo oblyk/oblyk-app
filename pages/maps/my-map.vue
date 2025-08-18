@@ -4,6 +4,7 @@
       <page-header
         :title="$t('components.layout.appDrawer.user.myMap')"
         back-to="/outdoor"
+        fluid-container
       />
     </div>
     <div class="flex-grow-1">

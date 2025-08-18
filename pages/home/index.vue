@@ -8,6 +8,26 @@
 
         <!-- Get localization -->
         <client-only>
+          <div class="text-right mt-n11 d-none d-md-block">
+            <v-btn to="/outdoor" class="rounded-pill" text outlined>
+              <v-icon left color="#31994e">
+                {{ mdiTerrain }}
+              </v-icon>
+              Outdoor
+            </v-btn>
+            <v-btn to="/indoor" class="rounded-pill" text outlined>
+              <v-icon left color="#743ad5">
+                {{ oblykIndoor }}
+              </v-icon>
+              indoor
+            </v-btn>
+            <v-btn to="/community" class="rounded-pill" text outlined>
+              <v-icon left color="#007b8b">
+                {{ oblykPartner }}
+              </v-icon>
+              {{ $t('common.community') }}
+            </v-btn>
+          </div>
           <!-- Avatar missing -->
           <avatar-missing :user="currentUser" class="mb-3" />
 
@@ -69,7 +89,8 @@
 </template>
 
 <script>
-import { mdiBullhornOutline, mdiAccountMultipleCheckOutline } from '@mdi/js'
+import { mdiBullhornOutline, mdiAccountMultipleCheckOutline, mdiTerrain } from '@mdi/js'
+import { oblykPartner, oblykIndoor } from '~/assets/oblyk-icons'
 import { CurrentUserConcern } from '~/concerns/CurrentUserConcern'
 import Spinner from '~/components/layouts/Spiner'
 import UserHead from '~/components/users/layouts/UserHead'
@@ -100,8 +121,11 @@ export default {
     return {
       feed: false,
 
+      mdiTerrain,
       mdiBullhornOutline,
-      mdiAccountMultipleCheckOutline
+      mdiAccountMultipleCheckOutline,
+      oblykPartner,
+      oblykIndoor
     }
   },
 

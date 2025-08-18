@@ -23,8 +23,8 @@
 
 <script>
 import { AreaConcern } from '~/concerns/AreaConcern'
-import AreaForm from '~/components/areas/forms/AreaForm.vue'
-import PageHeader from '~/components/layouts/PageHeader.vue'
+import AreaForm from '~/components/areas/forms/AreaForm'
+import PageHeader from '~/components/layouts/PageHeader'
 
 export default {
   meta: { orphanRoute: true },

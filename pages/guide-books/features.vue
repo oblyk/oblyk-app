@@ -164,7 +164,7 @@
 import { mdiHandCoin, mdiCurrencyUsdOff } from '@mdi/js'
 import AppFooter from '~/components/layouts/AppFooter'
 import OtherFeatures from '~/components/globals/OtherFeatures'
-import PageHeader from '~/components/layouts/PageHeader.vue'
+import PageHeader from '~/components/layouts/PageHeader'
 
 export default {
   components: { PageHeader, OtherFeatures, AppFooter },

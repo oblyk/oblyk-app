@@ -1,5 +1,9 @@
 <template>
   <div>
+    <page-header
+      :title="$t('common.pages.contact.title')"
+      back-to="/oblyk"
+    />
     <v-container class="common-page-container">
       <h1 class="mt-5 mb-10 text-center">
         {{ $t('common.pages.contact.title') }}
@@ -42,12 +46,13 @@
 
 <script>
 import AppFooter from '@/components/layouts/AppFooter'
+import PageHeader from '~/components/layouts/PageHeader'
 
 export default {
   meta: {
     test: true
   },
-  components: { AppFooter },
+  components: { PageHeader, AppFooter },
 
   data () {
     return {

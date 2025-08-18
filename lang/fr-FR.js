@@ -305,6 +305,7 @@ export default {
     archivedOn: 'Archivé le %{date}',
     remainingPlaces: 'Complet | Une place restante | %{count} places restantes',
     findAnotherWay: 'Trouver autrement',
+    community: 'Communauté',
     months: {
       '01': '01 - Janvier',
       '02': '02 - Février',

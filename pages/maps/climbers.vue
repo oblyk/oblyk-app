@@ -4,6 +4,7 @@
       <page-header
         :title="$t('common.pages.find.climbers.map.title')"
         back-to="/community"
+        fluid-container
       />
     </div>
     <div class="flex-grow-1">

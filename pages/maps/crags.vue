@@ -4,6 +4,7 @@
       <page-header
         :title="crag ? crag.name : $t('components.layout.appDrawer.mapCrags')"
         :back-to="crag ? crag.path : '/outdoor'"
+        fluid-container
       />
     </div>
     <div class="flex-grow-1">

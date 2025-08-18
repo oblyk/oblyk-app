@@ -71,7 +71,7 @@
 <script>
 import { GymConcern } from '~/concerns/GymConcern'
 import GymAdministratorRequestForm from '~/components/gyms/forms/GymAdministratorRequestForm'
-import PageHeader from '~/components/layouts/PageHeader.vue'
+import PageHeader from '~/components/layouts/PageHeader'
 
 export default {
   meta: { orphanRoute: true },

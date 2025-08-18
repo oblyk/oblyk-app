@@ -19,8 +19,8 @@
 
 <script>
 import { AreaConcern } from '~/concerns/AreaConcern'
-import AddCragInAreaForm from '~/components/areas/forms/AddCragInAreaForm.vue'
-import PageHeader from '~/components/layouts/PageHeader.vue'
+import AddCragInAreaForm from '~/components/areas/forms/AddCragInAreaForm'
+import PageHeader from '~/components/layouts/PageHeader'
 
 export default {
   meta: { orphanRoute: true },
