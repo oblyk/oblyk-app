@@ -10,6 +10,15 @@
     </div>
 
     <v-container class="common-page-container">
+      <h1 class="font-weight-black outdoor-big-title mb-5 d-none d-sm-block">
+        <v-icon size="35" color="#31994e" left class="vertical-align-sub">
+          {{ mdiTerrain }}
+        </v-icon>
+        <span>
+          Outdoor
+        </span>
+      </h1>
+
       <!-- IF USER NOT LOGIN -->
       <v-sheet
         v-if="!$auth.loggedIn"
@@ -198,7 +207,8 @@ import {
   mdiCreation,
   mdiBookOutline,
   mdiPlusBoxOutline,
-  mdiBookshelf
+  mdiBookshelf,
+  mdiTerrain
 } from '@mdi/js'
 import MyFavoriteCragsCarousel from '~/components/crags/MyFavoriteCragsCarousel'
 import DailyAscents from '~/components/logBooks/outdoors/DailyAscents'
@@ -215,7 +225,8 @@ export default {
       mdiCreation,
       mdiBookOutline,
       mdiPlusBoxOutline,
-      mdiBookshelf
+      mdiBookshelf,
+      mdiTerrain
     }
   },
 
@@ -262,6 +273,13 @@ export default {
     margin-right: auto;
     margin-left: auto;
     padding: 9px;
+  }
+}
+.outdoor-big-title {
+  span {
+    background: linear-gradient(to right, #31994e, #51fd8b);
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 }
 .outdoor-join-us {

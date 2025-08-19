@@ -9,24 +9,29 @@
       <div
         id="gym-spaces-selector-overflow"
         class="text-no-wrap overflow-x-auto"
+        @scrollend="saveScroll"
       >
         <!-- All spaces -->
         <nuxt-link
-          v-if="gymSpace"
           :to="`/gyms/${gym.id}/${gym.slug_name}/spaces`"
-          class="gym-space-block text-center discrete-link inactive"
+          class="gym-space-block text-center discrete-link"
+          :class="selectedGymSpaceId === null ? 'active' : 'inactive'"
         >
           <v-avatar
             size="70"
             class="gym-space-avatar"
           >
-            <v-icon size="25">
-              {{ mdiAsterisk }}
-            </v-icon>
+            <v-img
+              height="70"
+              width="70"
+              style="max-width: 70px"
+              contain
+              :src="imageVariant(gym.attachments.logo, { fit: 'scale-down', height: 100, width: 100 })"
+            />
           </v-avatar>
           <p class="text-truncate text-center mb-0">
             <small>
-              Tous
+              Salle
             </small>
           </p>
         </nuxt-link>
@@ -129,10 +134,10 @@
 </template>
 
 <script>
-import { mdiMapOutline, mdiAsterisk } from '@mdi/js'
+import { mdiMapOutline } from '@mdi/js'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 import GymSpaceApi from '~/services/oblyk-api/GymSpaceApi'
 import GymSpace from '~/models/GymSpace'
-import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 
 export default {
   name: 'GymSpaceSelector',
@@ -150,14 +155,13 @@ export default {
 
   data () {
     return {
-      selectedGymSpaceId: this.gymSpace?.id,
+      selectedGymSpaceId: this.gymSpace?.id || null,
       gymSpaces: [],
       loadingGymSpaces: true,
       groups: [],
       ungroupedSpaces: [],
 
-      mdiMapOutline,
-      mdiAsterisk
+      mdiMapOutline
     }
   },
 
@@ -193,8 +197,10 @@ export default {
           if (this.selectedGymSpaceId) {
             setTimeout(() => {
               const spaceElement = document.querySelector(`#gym-space-selector-${this.selectedGymSpaceId}`)
+              const savedScroll = localStorage.getItem(`gym-space-selector-scroll-${this.gym.id}`) || null
+              const scrollLeft = savedScroll !== null ? savedScroll : spaceElement.scrollLeft
               document.querySelector('#gym-spaces-selector-overflow').scrollTo({
-                left: spaceElement.offsetLeft
+                left: scrollLeft
               })
             }, 100)
           }
@@ -224,6 +230,10 @@ export default {
         }
         this.$router.push(`/gyms/${this.gym.id}/${this.gym.slug_name}/spaces/${this.selectedGymSpaceId}/${selectedGymSpace.slug_name}`)
       }
+    },
+
+    saveScroll (element) {
+      localStorage.setItem(`gym-space-selector-scroll-${this.gym.id}`, element.target.scrollLeft)
     }
   }
 }

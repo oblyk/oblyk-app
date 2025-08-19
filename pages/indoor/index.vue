@@ -9,6 +9,15 @@
     </div>
 
     <v-container class="common-page-container">
+      <h1 class="font-weight-black indoor-big-title mb-5 d-none d-sm-block">
+        <v-icon size="35" color="#743ad5" left class="vertical-align-sub">
+          {{ oblykIndoor }}
+        </v-icon>
+        <span>
+          Indoor
+        </span>
+      </h1>
+
       <!-- IF USER NOT LOGIN -->
       <v-sheet
         v-if="!$auth.loggedIn"
@@ -181,6 +190,7 @@ import {
   mdiCreation,
   mdiProfessionalHexagon
 } from '@mdi/js'
+import { oblykIndoor } from '~/assets/oblyk-icons'
 import NearbyGymsCarousel from '~/components/gyms/NearbyGymsCarousel'
 import LogBookIndoorSmallFigures from '~/components/logBooks/indoors/LogBookIndoorSmallFigures'
 import IndoorGlobalSearch from '~/components/indoor/IndoorGlobalSearch'
@@ -203,7 +213,8 @@ export default {
       mdiPlusBox,
       mdiSourceBranch,
       mdiCreation,
-      mdiProfessionalHexagon
+      mdiProfessionalHexagon,
+      oblykIndoor
     }
   },
 
@@ -250,6 +261,13 @@ export default {
     margin-right: auto;
     margin-left: auto;
     padding: 9px;
+  }
+}
+.indoor-big-title {
+  span {
+    background: linear-gradient(to right, #743ad5, #d53a9d);
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 }
 .indoor-join-us {

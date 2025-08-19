@@ -9,6 +9,15 @@
     </div>
 
     <v-container class="common-page-container">
+      <h1 class="font-weight-black community-big-title mb-5 d-none d-sm-block">
+        <v-icon size="35" color="#007b8b" left class="vertical-align-sub">
+          {{ oblykPartner }}
+        </v-icon>
+        <span>
+          {{ $t('common.community') }}
+        </span>
+      </h1>
+
       <!-- IF USER NOT LOGIN -->
       <v-sheet
         v-if="!$auth.loggedIn"
@@ -173,6 +182,13 @@ export default {
     margin-right: auto;
     margin-left: auto;
     padding: 9px;
+  }
+}
+.community-big-title {
+  span {
+    background: linear-gradient(to right, #007b8b, #23e6ff);
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 }
 .community-join-us {

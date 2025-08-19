@@ -162,6 +162,10 @@ export default {
     '$route' () {
       this.forceEnvironment = this.$store.getters['oblykEnvironment/getOblykEnvironment'] || 'outdoor'
     }
+  },
+
+  mounted () {
+    this.forceEnvironment = this.$store.getters['oblykEnvironment/getOblykEnvironment'] || 'outdoor'
   }
 }
 </script>
