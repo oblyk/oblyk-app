@@ -65,11 +65,30 @@
         </v-btn>
       </div>
     </v-card-text>
+    <v-card-text
+      v-if="gym.optimal_spaces_path"
+      class="text-center"
+    >
+      <v-btn
+        color="deep-purple accent-4"
+        elevation="0"
+        text
+        outlined
+        large
+        class="font-weight-black"
+        :to="gym.spacePath"
+      >
+        <v-icon size="25" left class="mr-3">
+          {{ mdiSourceBranch }}
+        </v-icon>
+        TOPO
+      </v-btn>
+    </v-card-text>
   </v-card>
 </template>
 
 <script>
-import { mdiText, mdiTrophy } from '@mdi/js'
+import { mdiText, mdiTrophy, mdiSourceBranch } from '@mdi/js'
 import ContestItemList from '~/components/contests/ContestItemList.vue'
 import Contest from '~/models/Contest'
 
@@ -88,7 +107,8 @@ export default {
   data () {
     return {
       mdiText,
-      mdiTrophy
+      mdiTrophy,
+      mdiSourceBranch
     }
   },
 

@@ -279,7 +279,8 @@ export default {
         '/find/climbers',
         '/home/messenger',
         '/maps/climbers',
-        '/climbers'
+        '/climbers',
+        '/home/search-climbers'
       ]
       const indoorRegex = new RegExp(`^(${indoorPaths.join('|')})`)
       const outdoorRegex = new RegExp(`^(${outdoorPaths.join('|')})`)

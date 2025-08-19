@@ -9,14 +9,36 @@
     </div>
 
     <v-container class="common-page-container">
-      <h1 class="font-weight-black community-big-title mb-5 d-none d-sm-block">
-        <v-icon size="35" color="#007b8b" left class="vertical-align-sub">
-          {{ oblykPartner }}
-        </v-icon>
-        <span>
-          {{ $t('common.community') }}
-        </span>
-      </h1>
+      <div class="d-none d-sm-flex mb-5">
+        <h1 class="font-weight-black community-big-title">
+          <v-icon size="35" color="#007b8b" left class="vertical-align-sub">
+            {{ oblykPartner }}
+          </v-icon>
+          <span>
+            {{ $t('common.community') }}
+          </span>
+        </h1>
+        <div class="ml-auto">
+          <v-btn
+            to="/indoor"
+            large
+            icon
+          >
+            <v-icon color="primary">
+              {{ oblykIndoor }}
+            </v-icon>
+          </v-btn>
+          <v-btn
+            to="/outdoor"
+            large
+            icon
+          >
+            <v-icon color="primary">
+              {{ mdiTerrain }}
+            </v-icon>
+          </v-btn>
+        </div>
+      </div>
 
       <!-- IF USER NOT LOGIN -->
       <v-sheet
@@ -119,9 +141,10 @@
 <script>
 import {
   mdiCreation,
-  mdiPlusBoxOutline
+  mdiPlusBoxOutline,
+  mdiTerrain
 } from '@mdi/js'
-import { oblykPartner } from '~/assets/oblyk-icons'
+import { oblykPartner, oblykIndoor } from '~/assets/oblyk-icons'
 import EnablePartnerSearch from '~/components/users/notificationCard/EnablePartnerSearch'
 import MyPartnerFigures from '~/components/users/MyPartnerFigures'
 import SuggestedFriends from '~/components/users/SuggestedFriends'
@@ -134,7 +157,9 @@ export default {
       outdoorQuery: null,
 
       mdiCreation,
+      mdiTerrain,
       oblykPartner,
+      oblykIndoor,
       mdiPlusBoxOutline
     }
   },

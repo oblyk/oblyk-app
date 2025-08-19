@@ -10,14 +10,36 @@
     </div>
 
     <v-container class="common-page-container">
-      <h1 class="font-weight-black outdoor-big-title mb-5 d-none d-sm-block">
-        <v-icon size="35" color="#31994e" left class="vertical-align-sub">
-          {{ mdiTerrain }}
-        </v-icon>
-        <span>
-          Outdoor
-        </span>
-      </h1>
+      <div class="d-none d-sm-flex mb-5">
+        <h1 class="font-weight-black outdoor-big-title">
+          <v-icon size="35" color="#31994e" left class="vertical-align-sub">
+            {{ mdiTerrain }}
+          </v-icon>
+          <span>
+            Outdoor
+          </span>
+        </h1>
+        <div class="ml-auto">
+          <v-btn
+            to="/community"
+            large
+            icon
+          >
+            <v-icon color="primary">
+              {{ oblykPartner }}
+            </v-icon>
+          </v-btn>
+          <v-btn
+            to="/indoor"
+            large
+            icon
+          >
+            <v-icon color="primary">
+              {{ oblykIndoor }}
+            </v-icon>
+          </v-btn>
+        </div>
+      </div>
 
       <!-- IF USER NOT LOGIN -->
       <v-sheet
@@ -210,6 +232,7 @@ import {
   mdiBookshelf,
   mdiTerrain
 } from '@mdi/js'
+import { oblykIndoor, oblykPartner } from '~/assets/oblyk-icons'
 import MyFavoriteCragsCarousel from '~/components/crags/MyFavoriteCragsCarousel'
 import DailyAscents from '~/components/logBooks/outdoors/DailyAscents'
 import NearbyCragsCarousel from '~/components/crags/NearbyCragsCarousel'
@@ -226,7 +249,9 @@ export default {
       mdiBookOutline,
       mdiPlusBoxOutline,
       mdiBookshelf,
-      mdiTerrain
+      mdiTerrain,
+      oblykIndoor,
+      oblykPartner
     }
   },
 

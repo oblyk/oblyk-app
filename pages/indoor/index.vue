@@ -8,15 +8,37 @@
       </div>
     </div>
 
-    <v-container class="common-page-container">
-      <h1 class="font-weight-black indoor-big-title mb-5 d-none d-sm-block">
-        <v-icon size="35" color="#743ad5" left class="vertical-align-sub">
-          {{ oblykIndoor }}
-        </v-icon>
-        <span>
-          Indoor
-        </span>
-      </h1>
+    <v-container class="common-page-container align-center">
+      <div class="d-none d-sm-flex mb-5">
+        <h1 class="font-weight-black indoor-big-title">
+          <v-icon size="35" color="#743ad5" left class="vertical-align-sub">
+            {{ oblykIndoor }}
+          </v-icon>
+          <span>
+            Indoor
+          </span>
+        </h1>
+        <div class="ml-auto">
+          <v-btn
+            to="/outdoor"
+            large
+            icon
+          >
+            <v-icon color="primary">
+              {{ mdiTerrain }}
+            </v-icon>
+          </v-btn>
+          <v-btn
+            to="/community"
+            large
+            icon
+          >
+            <v-icon color="primary">
+              {{ oblykPartner }}
+            </v-icon>
+          </v-btn>
+        </div>
+      </div>
 
       <!-- IF USER NOT LOGIN -->
       <v-sheet
@@ -188,9 +210,10 @@ import {
   mdiPlusBox,
   mdiSourceBranch,
   mdiCreation,
-  mdiProfessionalHexagon
+  mdiProfessionalHexagon,
+  mdiTerrain
 } from '@mdi/js'
-import { oblykIndoor } from '~/assets/oblyk-icons'
+import { oblykIndoor, oblykPartner } from '~/assets/oblyk-icons'
 import NearbyGymsCarousel from '~/components/gyms/NearbyGymsCarousel'
 import LogBookIndoorSmallFigures from '~/components/logBooks/indoors/LogBookIndoorSmallFigures'
 import IndoorGlobalSearch from '~/components/indoor/IndoorGlobalSearch'
@@ -214,7 +237,9 @@ export default {
       mdiSourceBranch,
       mdiCreation,
       mdiProfessionalHexagon,
-      oblykIndoor
+      oblykIndoor,
+      mdiTerrain,
+      oblykPartner
     }
   },
 
