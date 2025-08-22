@@ -33,14 +33,11 @@
             :value="item.value"
             outlined
           >
-            <v-icon
-              :class="`climbs-pastille ${item.value}`"
-              :color="climbingTypes === item.value ? 'green' : null"
+            <climbing-style-icon
+              :climbing-style="item.value"
               small
               left
-            >
-              {{ item.icon }}
-            </v-icon>
+            />
             {{ item.text }}
           </v-chip>
         </v-chip-group>
@@ -61,8 +58,10 @@
 
 <script>
 import { mdiCheckboxMultipleBlankOutline, mdiCheckboxMultipleMarked } from '@mdi/js'
+import ClimbingStyleIcon from '~/components/crags/ClimbingStyleIcon.vue'
 export default {
   name: 'ClimbingTypeInput',
+  components: { ClimbingStyleIcon },
   props: {
     value: {
       type: [Array, String],

@@ -199,10 +199,12 @@
                 >
                   <v-icon>{{ mdiSourceBranch }}</v-icon>
                 </th>
-                <td
-                  class="climbs-pastille"
-                  :class="cragRoute.climbing_type"
-                >
+                <td>
+                  <climbing-style-icon
+                    :climbing-style="cragRoute.climbing_type"
+                    small
+                    left
+                  />
                   {{ $t(`models.climbs.${cragRoute.climbing_type}`) }}
                 </td>
               </tr>
@@ -362,10 +364,12 @@ import CragRouteSectionList from '@/components/cragRoutes/CragRouteSectionList'
 import CragRouteNoteModal from '@/components/cragRoutes/partial/CragRouteNoteModal'
 import CragRouteDifficultyModal from '@/components/cragRoutes/partial/CragRouteDifficultyModal'
 import { CragRouteHelpers } from '~/mixins/CragRouteHelpers'
+import ClimbingStyleIcon from '~/components/crags/ClimbingStyleIcon.vue'
 
 export default {
   name: 'CragRouteDescription',
   components: {
+    ClimbingStyleIcon,
     CragRouteDifficultyModal,
     CragRouteNoteModal,
     CragRouteSectionList

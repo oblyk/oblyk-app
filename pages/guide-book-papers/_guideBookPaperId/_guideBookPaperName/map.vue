@@ -19,6 +19,7 @@ const LeafletMap = () => import('@/components/maps/LeafletMap')
 export default {
   name: 'GuideBookPaperMapView',
   components: { LeafletMap },
+  scrollToTop: true,
   props: {
     guideBookPaper: {
       type: Object,

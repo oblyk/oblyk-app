@@ -59,14 +59,14 @@
             >
               {{ cragData.crag.name }}
             </nuxt-link>
-            <span
+            <climbing-style-icon
               v-for="(climbingType, typeIndex) in toCragObject(cragData.crag).climbingTypes"
               :key="`climbing-type-${index}-${typeIndex}`"
+              :climbing-style="climbingType"
+              small
               :title="$t(`models.climbs.${climbingType}`)"
-              :class="`text--disabled climbs-pastille pastille-x-small mr-1 ${climbingType}`"
-            >
-              {{ $t(`models.climbsShort.${climbingType}`) }}
-            </span>
+              class="vertical-align-sub"
+            />
           </td>
           <td class="text-center">
             <compass :orientations="toCragObject(cragData.crag).orientations" />
@@ -122,10 +122,12 @@ import Crag from '~/models/Crag'
 import Compass from '~/components/ui/Compass'
 import SeasonIcon from '~/components/ui/SeasonIcon'
 import { LocalizationHelpers } from '~/mixins/LocalizationHelpers'
+import ClimbingStyleIcon from '~/components/crags/ClimbingStyleIcon.vue'
 
 export default {
   name: 'CragsTable',
   components: {
+    ClimbingStyleIcon,
     SeasonIcon,
     Compass
   },

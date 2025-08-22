@@ -22,6 +22,7 @@ import GuideBookPaperCrags from '~/components/guideBookPapers/GuideBookPaperCrag
 export default {
   name: 'GuideBookPaperCragsView',
   components: { GuideBookPaperCrags },
+  scrollToTop: true,
   props: {
     guideBookPaper: {
       type: Object,

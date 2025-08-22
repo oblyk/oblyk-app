@@ -10,10 +10,11 @@
       class="mr-2"
     />
     <v-list-item-content class="pt-2 pb-2">
-      <v-list-item-title
-        class="climbs-pastille"
-        :class="route.climbing_type"
-      >
+      <v-list-item-title>
+        <climbing-style-icon
+          :climbing-style="route.climbing_type"
+          small
+        />
         <ascent-crag-route-status-icon
           v-if="$auth.loggedIn"
           :crag-route="route"
@@ -74,10 +75,12 @@ import { mdiCamera, mdiFilmstrip, mdiComment, mdiTerrain } from '@mdi/js'
 import GradeRouteNote from '@/components/cragRoutes/partial/CragRouteNote'
 import CragRouteAvatar from '@/components/cragRoutes/partial/CragRouteAvatar'
 import AscentCragRouteStatusIcon from '@/components/ascentCragRoutes/AscentCragRouteStatusIcon'
+import ClimbingStyleIcon from '~/components/crags/ClimbingStyleIcon.vue'
 
 export default {
   name: 'CragRouteSmallLine',
   components: {
+    ClimbingStyleIcon,
     AscentCragRouteStatusIcon,
     CragRouteAvatar,
     GradeRouteNote

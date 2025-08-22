@@ -11,6 +11,7 @@ export default {
   components: {
     GuideBookPaperPlaceOfSale
   },
+  scrollToTop: true,
   props: {
     guideBookPaper: {
       type: Object,

@@ -12,6 +12,7 @@ import LinkList from '@/components/links/LinkList'
 export default {
   name: 'GuideBookPaperLinkView',
   components: { LinkList },
+  scrollToTop: true,
   props: {
     guideBookPaper: {
       type: Object,

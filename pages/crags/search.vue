@@ -65,6 +65,11 @@
               outlined
               :value="climbingType.value"
             >
+              <climbing-style-icon
+                :climbing-style="climbingType.value"
+                small
+                left
+              />
               {{ climbingType.text }}
             </v-chip>
           </v-chip-group>
@@ -471,9 +476,10 @@ import SearchPlaceInput from '~/components/forms/SearchPlaceInput'
 import { GradeMixin } from '~/mixins/GradeMixin'
 import CragsTable from '~/components/crags/CragsTable'
 import PageHeader from '~/components/layouts/PageHeader'
+import ClimbingStyleIcon from '~/components/crags/ClimbingStyleIcon.vue'
 
 export default {
-  components: { PageHeader, CragsTable, SearchPlaceInput },
+  components: { ClimbingStyleIcon, PageHeader, CragsTable, SearchPlaceInput },
   mixins: [GradeMixin],
   data () {
     return {

@@ -3,14 +3,32 @@
     :title="crag.name"
     :back-to="backTo || '/outdoor'"
     :links="headerLinks"
-  />
+  >
+    <template #title>
+      <h1 class="text-h6 font-weight-black text-no-wrap">
+        <client-only>
+          <subscribe-btn
+            :subscribe-id="crag.id"
+            subscribe-type="Crag"
+            :large="false"
+            small
+            :icon-size="20"
+            :incrementable="true"
+            class="vertical-align-sub"
+          />
+        </client-only>
+        {{ crag.name }}
+      </h1>
+    </template>
+  </page-header>
 </template>
 <script>
 import PageHeader from '~/components/layouts/PageHeader'
+const SubscribeBtn = () => import('~/components/forms/SubscribeBtn')
 
 export default {
   name: 'CragPageHeader',
-  components: { PageHeader },
+  components: { SubscribeBtn, PageHeader },
   props: {
     crag: {
       type: Object,

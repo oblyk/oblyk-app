@@ -36,21 +36,10 @@
       <div class="crag-header-title">
         <h1 class="font-weight-medium mb-n1">
           {{ crag.name }}
-          <client-only>
-            <subscribe-btn
-              class="vertical-align-text-bottom"
-              :subscribe-id="crag.id"
-              :incrementable="true"
-              subscribe-type="Crag"
-              :type-text="true"
-              :large="false"
-              :outlined="true"
-            />
-          </client-only>
         </h1>
 
         <!-- Localisation part -->
-        <div class="mb-2">
+        <div class="mb-1">
           <v-icon
             small
             class="mr-1 mb-1"
@@ -61,6 +50,35 @@
             {{ crag.city }}, {{ crag.region }} ({{ crag.country }})
           </span>
         </div>
+
+        <!-- Ascents count -->
+        <div
+          v-if="crag.ascent_users_count > 0 || crag.ascents_count > 0"
+          class="mb-1"
+        >
+          <v-chip
+            v-if="crag.ascent_users_count > 0"
+            small
+            outlined
+          >
+            <v-icon small left>
+              {{ oblykPartner }}
+            </v-icon>
+            {{ crag.ascent_users_count }}
+          </v-chip>
+          <v-chip
+            v-if="crag.ascents_count > 0"
+            small
+            outlined
+          >
+            <v-icon small left>
+              {{ mdiCheckAll }}
+            </v-icon>
+            {{ crag.ascents_count }}
+          </v-chip>
+        </div>
+
+        <!-- Share and edit buttons -->
         <div>
           <client-only>
             <share-btn
@@ -122,15 +140,16 @@ import {
   mdiMapMarkerRadiusOutline,
   mdiBellPlus,
   mdiPencil,
-  mdiArrowLeft
+  mdiArrowLeft,
+  mdiCheckAll
 } from '@mdi/js'
+import { oblykPartner } from '~/assets/oblyk-icons'
 import ShareBtn from '~/components/ui/ShareBtn.vue'
 import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
-const SubscribeBtn = () => import('@/components/forms/SubscribeBtn')
 
 export default {
   name: 'CragHead',
-  components: { ShareBtn, SubscribeBtn },
+  components: { ShareBtn },
   mixins: [ImageVariantHelpers],
   props: {
     crag: {
@@ -147,7 +166,9 @@ export default {
       mdiMapMarkerRadiusOutline,
       mdiBellPlus,
       mdiPencil,
-      mdiArrowLeft
+      mdiArrowLeft,
+      oblykPartner,
+      mdiCheckAll
     }
   },
 

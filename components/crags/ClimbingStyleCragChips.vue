@@ -6,7 +6,7 @@
       outlined
     >
       <v-icon color="#3a71c7" small left>
-        {{ mdiCircle }}
+        {{ oblykClimbSportClimbing }}
       </v-icon>
       {{ $t('models.crag.sport_climbing') }}
     </v-chip>
@@ -17,7 +17,7 @@
       outlined
     >
       <v-icon color="#ffcb00" small left>
-        {{ mdiCircle }}
+        {{ oblykClimbBoulder }}
       </v-icon>
       {{ $t('models.crag.bouldering') }}
     </v-chip>
@@ -28,7 +28,7 @@
       outlined
     >
       <v-icon color="#ff5656" small left>
-        {{ mdiCircle }}
+        {{ oblykClimbMultiPitch }}
       </v-icon>
       {{ $t('models.crag.multi_pitch') }}
     </v-chip>
@@ -39,7 +39,7 @@
       outlined
     >
       <v-icon color="#e92b2b" small left>
-        {{ mdiCircle }}
+        {{ oblykClimbTrad }}
       </v-icon>
       {{ $t('models.crag.trad_climbing') }}
     </v-chip>
@@ -50,7 +50,7 @@
       outlined
     >
       <v-icon color="#d40000" small left>
-        {{ mdiCircle }}
+        {{ oblykClimbAid }}
       </v-icon>
       {{ $t('models.crag.aid_climbing') }}
     </v-chip>
@@ -61,7 +61,7 @@
       outlined
     >
       <v-icon color="#86ccdd" small left>
-        {{ mdiCircle }}
+        {{ oblykClimbDeepWater }}
       </v-icon>
       {{ $t('models.crag.deep_water') }}
     </v-chip>
@@ -72,7 +72,7 @@
       outlined
     >
       <v-icon color="#3cc770" small left>
-        {{ mdiCircle }}
+        {{ oblykClimbViaFerrata }}
       </v-icon>
       {{ $t('models.crag.via_ferrata') }}
     </v-chip>
@@ -80,7 +80,15 @@
 </template>
 
 <script>
-import { mdiCircle } from '@mdi/js'
+import {
+  oblykClimbSportClimbing,
+  oblykClimbBoulder,
+  oblykClimbMultiPitch,
+  oblykClimbTrad,
+  oblykClimbAid,
+  oblykClimbDeepWater,
+  oblykClimbViaFerrata
+} from '~/assets/oblyk-icons'
 
 export default {
   name: 'ClimbingStyleCragChips',
@@ -93,7 +101,13 @@ export default {
 
   data () {
     return {
-      mdiCircle
+      oblykClimbSportClimbing,
+      oblykClimbBoulder,
+      oblykClimbMultiPitch,
+      oblykClimbTrad,
+      oblykClimbAid,
+      oblykClimbDeepWater,
+      oblykClimbViaFerrata
     }
   }
 }

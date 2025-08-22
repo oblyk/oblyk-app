@@ -62,6 +62,7 @@ import Crag from '~/models/Crag'
 
 export default {
   components: { GuideBookPaperCoverCard, CragSmallCard },
+  scrollToTop: true,
   props: {
     guideBookPaper: {
       type: Object,

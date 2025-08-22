@@ -15,6 +15,7 @@ import PhotoGallery from '@/components/photos/PhotoGallery'
 export default {
   name: 'GuideBookPaperPhotosView',
   components: { PhotoGallery },
+  scrollToTop: true,
   props: {
     guideBookPaper: {
       type: Object,
