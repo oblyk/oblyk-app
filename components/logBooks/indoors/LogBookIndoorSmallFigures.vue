@@ -11,7 +11,7 @@
         <v-sheet class="pt-4 px-3 pb-1 rounded-sm back-app-color">
           <p class="mb-4 text-center">
             <span class="text-h4">
-              {{ figures?.ascents || '...' }}
+              {{ figures?.ascents === null ? '...' : figures?.ascents }}
             </span><br>
             <span class="text--disabled">
               {{ $t('models.gymRoute.ascents') }}
@@ -83,7 +83,7 @@
 
 <script>
 import { mdiBookOutline, mdiPlusBoxOutline } from '@mdi/js'
-import UserApi from '~/services/oblyk-api/UserApi'
+import LogBookIndoorApi from '~/services/oblyk-api/LogBookIndoorApi'
 
 export default {
   name: 'LogBookIndoorSmallFigures',
@@ -105,8 +105,8 @@ export default {
   methods: {
     getFigures () {
       this.loadingFigures = true
-      new UserApi(this.$axios, this.$auth)
-        .indoorFigures(this.$auth.user.uuid)
+      new LogBookIndoorApi(this.$axios, this.$auth)
+        .figures()
         .then((resp) => {
           this.figures = resp.data
         })

@@ -13,14 +13,22 @@
         min-width="250"
       />
     </div>
-    <gym-carousel
-      v-else
-      :gyms="favoriteGyms"
-      :loading-more="loadingMoreData"
-      :no-more-data="noMoreDataToLoad"
-      :get-function="getFavoriteGyms"
-      go-to-spaces
-    />
+    <div v-else>
+      <gym-carousel
+        v-if="favoriteGyms.length > 0"
+        :gyms="favoriteGyms"
+        :loading-more="loadingMoreData"
+        :no-more-data="noMoreDataToLoad"
+        :get-function="getFavoriteGyms"
+        go-to-spaces
+      />
+      <v-sheet
+        v-else
+        class="text-center border rounded pa-4 missing-background"
+      >
+        {{ $t('components.indoor.addFavoriteGym') }}
+      </v-sheet>
+    </div>
   </div>
 </template>
 <script>

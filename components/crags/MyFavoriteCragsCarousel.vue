@@ -26,7 +26,7 @@
         v-else
         class="text-center border rounded pa-4 missing-background"
       >
-        Ajouter des falaises à vos favoris pour les voire ici !
+        {{ $t('components.outdoor.addFavoriteCrag') }}
       </v-sheet>
     </div>
   </div>

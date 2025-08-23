@@ -935,12 +935,14 @@ export default {
       moreIndoor: "Plus d'indoor",
       nearbyClimbingGyms: 'Salles les plus proches',
       welcome: 'Bienvenue sur Oblyk indoor !',
+      addFavoriteGym: 'Ajouter des salles à vos favoris pour les retrouver ici !',
       welcomeParagraphe: '<strong>Rejoignez-nous</strong> pour <strong>suivre votre salle</strong>, voir les <strong>dernières ouvertures</strong>, <strong>suivre votre progression</strong> et bien plus !'
     },
     outdoor: {
       moreOutdoor: "Plus d'outdoor",
       nearbyCrags: 'Falaises les plus proches',
       welcome: 'Bienvenue sur Oblyk Outdoor !',
+      addFavoriteCrag: 'Ajouter des falaises à vos favoris pour les retrouver ici !',
       welcomeParagraphe: '<strong>Rejoignez-nous</strong> pour créer votre <strong>carnet de croix</strong>, <strong>suivre vos ami·es</strong>, tenir votre <strong>topothèque</strong>, participer à la communauté et bien plus !'
     },
     community: {

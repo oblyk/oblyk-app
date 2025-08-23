@@ -934,12 +934,14 @@ export default {
       moreIndoor: 'More indoor',
       nearbyClimbingGyms: 'Nearby climbing gyms',
       welcome: 'Welcome to Oblyk Indoor !',
+      addFavoriteGym: 'Add climbing gym to your favourites to find them here!',
       welcomeParagraphe: '<strong>Join us</strong> to <strong>track your gym</strong>, see the <strong>latest openings</strong>, <strong>monitor your progress</strong>, and much more!'
     },
     outdoor: {
       moreOutdoor: 'More outdoor',
       nearbyCrags: 'Nearby crags',
       welcome: 'Welcome to Oblyk Outdoor !',
+      addFavoriteCrag: 'Add crag to your favourites to find them here!',
       welcomeParagraphe: '<strong>Join us</strong> to create your <strong>logbook</strong>, <strong>follow your friends</strong>, keep track of your <strong>climbing guide book library</strong>, participate in the community, and much more!'
     },
     community: {
