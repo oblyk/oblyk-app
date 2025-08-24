@@ -1,0 +1,61 @@
+<template>
+  <client-only>
+    <div style="width: 100%; height: 100%;">
+      <leaflet-map
+        map-style="outdoor"
+        :geo-jsons="geoJsons"
+        :latitude-force="latitude"
+        :longitude-force="longitude"
+        :zoom-force="zoom"
+        :clustered="false"
+        :search-place="false"
+        :options="{ openOnNewTab: true }"
+      />
+      <a
+        href="https://oblyk.org/maps/guide-book-papers"
+        target="_blank"
+        style="position: fixed; bottom: 0; left: 0; z-index: 1000; background-color: rgba(255, 255, 255, 0.8); padding: 1px 10px; text-decoration: none"
+      >
+        <img src="/svg/logo-black.svg" style="height: 20px; width: 20px; vertical-align: text-bottom; margin-right: 4px" alt="logo oblyk">
+        Voir sur oblyk.org
+      </a>
+    </div>
+  </client-only>
+</template>
+<script>
+import GuideBookPaperApi from '~/services/oblyk-api/GuideBookPaperApi'
+
+const LeafletMap = () => import('~/components/maps/LeafletMap')
+
+export default {
+  components: { LeafletMap },
+  layout: 'blank',
+
+  data () {
+    return {
+      geoJsons: null,
+      latitude: null,
+      longitude: null,
+      zoom: null
+    }
+  },
+
+  mounted () {
+    this.getGeoJson()
+    const urlParams = new URLSearchParams(window.location.search)
+    this.latitude = urlParams.get('lat')
+    this.longitude = urlParams.get('lng')
+  },
+
+  methods: {
+    getGeoJson () {
+      new GuideBookPaperApi(this.$axios, this.$auth)
+        .geoIndex()
+        .then((resp) => {
+          this.geoJsons = { features: resp.data.features }
+        })
+        .finally(() => {})
+    }
+  }
+}
+</script>

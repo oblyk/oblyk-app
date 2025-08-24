@@ -77,7 +77,7 @@ export const MapPopupHelpers = {
         </div>
       `
       popup.querySelector('button').addEventListener('click', (e) => {
-        if (e.ctrlKey) {
+        if (e.ctrlKey || (this.options && this.options.openOnNewTab === true)) {
           window.open(crag.path, '_blank')
         } else {
           this.$router.push(crag.path)
@@ -144,7 +144,7 @@ export const MapPopupHelpers = {
       `
       popup.querySelector('button').addEventListener('click', (e) => {
         const path = rockBar.crag_sector ? rockBar.CragSector.path : rockBar.Crag.path
-        if (e.ctrlKey) {
+        if (e.ctrlKey || (this.options && this.options.openOnNewTab === true)) {
           window.open(path, '_blank')
         } else {
           this.$router.push(path)
@@ -173,7 +173,7 @@ export const MapPopupHelpers = {
         </div>
       `
       popup.querySelector('button').addEventListener('click', (e) => {
-        if (e.ctrlKey) {
+        if (e.ctrlKey || (this.options && this.options.openOnNewTab === true)) {
           window.open(cragSector.path, '_blank')
         } else {
           this.$router.push(cragSector.path)
@@ -207,7 +207,7 @@ export const MapPopupHelpers = {
         </div>
       `
       popup.querySelector('button').addEventListener('click', (e) => {
-        if (e.ctrlKey) {
+        if (e.ctrlKey || (this.options && this.options.openOnNewTab === true)) {
           window.open(gym.path, '_blank')
         } else {
           this.$router.push(gym.path)
@@ -253,7 +253,7 @@ export const MapPopupHelpers = {
         </div>
       `
       popup.querySelector('button').addEventListener('click', (e) => {
-        if (e.ctrlKey) {
+        if (e.ctrlKey || (this.options && this.options.openOnNewTab === true)) {
           window.open(guideBookPaper.path, '_blank')
         } else {
           this.$router.push(guideBookPaper.path)

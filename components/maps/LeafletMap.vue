@@ -749,6 +749,7 @@ export default {
           department: {
             clickable: true
           },
+          openOnNewTab: false,
           rounded: false
         }
       }
