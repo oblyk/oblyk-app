@@ -339,6 +339,7 @@ export default {
       height: 100%;
       width: 450px;
       overflow: hidden;
+      z-index: 5;
       .gym-route-on-desktop-card {
         position: fixed;
         height: 100%;
