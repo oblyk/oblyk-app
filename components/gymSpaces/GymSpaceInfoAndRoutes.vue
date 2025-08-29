@@ -76,7 +76,6 @@
         <contest-up-coming
           :gym="gym"
           class="mt-2 mb-3"
-          :elevation="$vuetify.breakpoint.mobile ? 3 : 0"
         />
       </div>
 

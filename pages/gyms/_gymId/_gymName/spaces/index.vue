@@ -74,28 +74,10 @@
           </client-only>
         </div>
       </v-sheet>
-
-      <div
-        v-show="!$vuetify.breakpoint.mobile && (loadingGymRoute || gymRoute)"
-        class="gym-route-on-desktop-container"
-      >
-        <div class="gym-route-on-desktop-card py-1 pl-1">
-          <v-card class="gym-route-card">
-            <spinner v-if="loadingGymRoute" />
-            <gym-route-info
-              v-if="gymRoute"
-              :gym-route="gymRoute"
-              :show-space="true"
-              :gym="gym"
-            />
-          </v-card>
-        </div>
-      </div>
     </div>
 
     <!-- Open gym route in full screen on mobile -->
     <down-to-close-dialog
-      v-if="$vuetify.breakpoint.mobile"
       ref="GymRouteDialog"
       v-model="gymRouteDialog"
       padding-x="px-2"
@@ -114,7 +96,6 @@
 
 <script>
 import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
-import Spinner from '~/components/layouts/Spiner'
 import GymSpaceRouteList from '~/components/gymRoutes/GymSpaceRouteList'
 import GymRouteApi from '~/services/oblyk-api/GymRouteApi'
 import GymRoute from '~/models/GymRoute'
@@ -135,8 +116,7 @@ export default {
     ContestUpComing,
     GymRouteInfo,
     GymSpaceList,
-    GymSpaceRouteList,
-    Spinner
+    GymSpaceRouteList
   },
   mixins: [GymRolesHelpers],
   scrollToTop: true,
@@ -168,9 +148,6 @@ export default {
         classes.push('--desktop-interface')
       }
       classes.push(`--${this.gym?.representation_type}`)
-      if (this.gymRoute !== null || this.loadingGymRoute) {
-        classes.push('--with-active-gym-route')
-      }
       return classes.join(' ')
     }
   },
@@ -192,19 +169,22 @@ export default {
   },
 
   mounted () {
-    if (this.activeGymRouteId) {
-      this.getGymRoute()
+    const urlParams = new URLSearchParams(window.location.search)
+    const route = urlParams.get('route')
+    if (route) {
+      this.getGymRoute(route)
     }
   },
 
   methods: {
-    async getGymRoute () {
+    async getGymRoute (forceRoute = null) {
+      const routeId = forceRoute || this.activeGymRouteId
       this.loadingGymRoute = true
       this.gymRoute = null
       this.gymRouteDialog = true
 
       // Get route in indexDb first and get in API if it does not exist
-      const localRoute = await this.$localforage.gymRoutes.getItem(this.activeGymRouteId)
+      const localRoute = await this.$localforage.gymRoutes.getItem(routeId)
       if (localRoute) {
         this.gymRoute = new GymRoute({ attributes: localRoute })
         this.$refs.GymRouteDialog?.signal()
@@ -214,7 +194,7 @@ export default {
           .find(
             this.$route.params.gymId,
             this.$route.params.gymSpaceId,
-            this.activeGymRouteId
+            routeId
           ).then((resp) => {
             this.gymRoute = new GymRoute({ attributes: resp.data })
             this.$refs.GymRouteDialog?.signal()
@@ -253,9 +233,6 @@ export default {
       height: calc(100vh - 128px);
       overflow-y: auto;
       margin-top: 0;
-      &.--with-active-gym-route {
-        width: 900px;
-      }
       .gym-spaces-card {
         width: 100%;
         min-height: calc(100vh - 128px);

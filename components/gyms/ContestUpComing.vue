@@ -1,8 +1,5 @@
 <template>
-  <v-sheet
-    class="rounded"
-    :class="`elevation-${elevation}`"
-  >
+  <v-sheet class="rounded">
     <p class="font-weight-bold mb-0 mt-1">
       <v-icon
         left
@@ -34,10 +31,6 @@ export default {
     gym: {
       type: Object,
       required: true
-    },
-    elevation: {
-      type: Number,
-      default: 0
     }
   },
 
