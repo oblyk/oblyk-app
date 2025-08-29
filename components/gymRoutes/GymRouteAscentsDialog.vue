@@ -51,21 +51,24 @@
         </p>
       </div>
     </div>
+    <gym-create-your-account v-if="!$auth.loggedIn" />
   </DownToCloseDialog>
 </template>
 
 <script>
 import { mdiClose } from '@mdi/js'
-import AscentGymRouteHardnessIcon from '@/components/ascentGymRoutes/AscentGymRouteHardnessIcon.vue'
-import AscentGymRouteIcon from '@/components/ascentGymRoutes/AscentGymRouteIcon.vue'
-import DownToCloseDialog from '@/components/ui/DownToCloseDialog.vue'
+import { DateHelpers } from '~/mixins/DateHelpers'
+import AscentGymRouteHardnessIcon from '@/components/ascentGymRoutes/AscentGymRouteHardnessIcon'
+import AscentGymRouteIcon from '@/components/ascentGymRoutes/AscentGymRouteIcon'
+import DownToCloseDialog from '@/components/ui/DownToCloseDialog'
+import GymCreateYourAccount from '~/components/gyms/GymCreateYourAccount'
 import GymRouteApi from '~/services/oblyk-api/GymRouteApi'
 import AscentGymRoute from '@/models/AscentGymRoute'
-import { DateHelpers } from '~/mixins/DateHelpers'
 
 export default {
   name: 'GymRouteAscentsDialog',
   components: {
+    GymCreateYourAccount,
     DownToCloseDialog,
     AscentGymRouteIcon,
     AscentGymRouteHardnessIcon
@@ -111,6 +114,10 @@ export default {
     },
 
     async load () {
+      if (!this.$auth.loggedIn) {
+        this.isLoading = false
+        return false
+      }
       this.isLoading = true
       this.ascents = []
       try {

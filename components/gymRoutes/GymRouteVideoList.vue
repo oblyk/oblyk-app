@@ -31,6 +31,7 @@
         >
           <template #activator="{ on, attrs }">
             <v-btn
+              v-if="$auth.loggedIn"
               elevation="0"
               color="primary"
               v-bind="attrs"

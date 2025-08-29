@@ -43,6 +43,16 @@
       </v-btn>
     </div>
 
+    <!-- Dismount alert -->
+    <v-alert
+      v-if="route.dismounted_at"
+      text
+      type="error"
+      class="mx-1 mt-3"
+    >
+      {{ $t('components.gymRoute.dismountedAt', { date: humanizeDate(route.dismounted_at) }) }}
+    </v-alert>
+
     <!-- Comments and videos -->
     <v-tabs
       v-model="tab"
@@ -73,15 +83,6 @@
     <v-tabs-items v-model="tab">
       <!-- Information, ascents, etc. -->
       <v-tab-item class="pb-3" style="min-height: 500px">
-        <v-alert
-          v-if="route.dismounted_at"
-          text
-          type="error"
-          class="mx-1 mt-2"
-        >
-          {{ $t('components.gymRoute.dismountedAt', { date: humanizeDate(route.dismounted_at) }) }}
-        </v-alert>
-
         <!-- Route description -->
         <v-sheet
           v-if="route.description"
@@ -301,33 +302,7 @@
               />
             </div>
           </div>
-          <div
-            v-else
-            class="pa-4 border rounded-sm mt-2 mb-7 text-center"
-          >
-            <p class="font-weight-bold">
-              {{ $t('components.gymRoute.createCount') }}
-            </p>
-            <div class="text-center mt-2">
-              <v-btn
-                elevation="0"
-                color="primary"
-                :to="`/sign-up?redirect_to=${$route.fullPath}`"
-              >
-                {{ $t('actions.createMyAccount') }}
-              </v-btn>
-              <div>
-                <v-btn
-                  small
-                  elevation="0"
-                  link
-                  :to="`/sign-in?redirect_to=${$route.fullPath}`"
-                >
-                  {{ $t('actions.signIn') }}
-                </v-btn>
-              </div>
-            </div>
-          </div>
+          <gym-create-your-account v-else />
         </client-only>
       </v-tab-item>
 
@@ -367,7 +342,13 @@
         </div>
       </v-tab-item>
     </v-tabs-items>
-    <gym-route-ascents-dialog ref="gymRouteAscents" :gym-route="route" :gym="gym" />
+
+    <!-- Gym Route Ascents-->
+    <gym-route-ascents-dialog
+      ref="gymRouteAscents"
+      :gym-route="route"
+      :gym="gym"
+    />
   </div>
 </template>
 
@@ -384,9 +365,9 @@ import {
   mdiGauge,
   mdiArrowRight
 } from '@mdi/js'
-import GymRouteAscentsDialog from '@/components/gymRoutes/GymRouteAscentsDialog.vue'
 import { DateHelpers } from '@/mixins/DateHelpers'
 import { GymRolesHelpers } from '@/mixins/GymRolesHelpers'
+import GymRouteAscentsDialog from '@/components/gymRoutes/GymRouteAscentsDialog'
 import GymRouteTagAndHold from '@/components/gymRoutes/partial/GymRouteTagAndHold'
 import GymRouteGradeAndPoint from '@/components/gymRoutes/partial/GymRouteGradeAndPoint'
 import GymRouteAscent from '@/components/gymRoutes/GymRouteAscent'
@@ -396,6 +377,7 @@ import AddGymAscentBtn from '@/components/ascentGymRoutes/AddGymAscentBtn'
 import GymRouteClimbingStyles from '@/components/gymRoutes/partial/GymRouteClimbingStyles'
 import LikeBtn from '@/components/forms/LikeBtn'
 import GymRoutePicture from '@/components/gymRoutes/GymRoutePicture'
+import GymCreateYourAccount from '~/components/gyms/GymCreateYourAccount'
 import GymRouteApi from '~/services/oblyk-api/GymRouteApi'
 import GymRoute from '~/models/GymRoute'
 
@@ -406,6 +388,7 @@ const MarkdownText = () => import('@/components/ui/MarkdownText')
 export default {
   name: 'GymRouteInfo',
   components: {
+    GymCreateYourAccount,
     GymRouteVideoList,
     CommentList,
     GymRoutePicture,
