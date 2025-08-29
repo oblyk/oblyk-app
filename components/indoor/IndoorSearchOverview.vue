@@ -81,11 +81,9 @@
         v-if="haveQuery"
         class="mt-3"
       >
-        <gym-small-card
+        <gym-cover-card
           v-for="(gym, gymIndex) in searchResults"
           :key="`gym-indoor-${gymIndex}`"
-          small
-          go-to-spaces
           :gym="gym"
           class="mb-1"
         />
@@ -96,15 +94,15 @@
 <script>
 import { mdiClose } from '@mdi/js'
 import { oblykIndoor } from '~/assets/oblyk-icons'
-import GymSmallCard from '~/components/gyms/GymSmallCard'
 import GymsByPopularity from '~/components/gyms/GymsByPopularity'
+import GymCoverCard from '~/components/gyms/GymCoverCard'
 import CommonApi from '~/services/oblyk-api/CommonApi'
 import GymApi from '~/services/oblyk-api/GymApi'
 import Gym from '~/models/Gym'
 
 export default {
   name: 'IndoorSearchOverview',
-  components: { GymSmallCard, GymsByPopularity },
+  components: { GymCoverCard, GymsByPopularity },
 
   data () {
     return {
