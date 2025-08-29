@@ -48,6 +48,7 @@
                 v-else
                 :data="gradeData"
                 height-class="height-250"
+                :screen-shot-title="`Cotation ${department.name}`"
               />
             </v-sheet>
           </v-col>

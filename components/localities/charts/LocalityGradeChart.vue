@@ -19,10 +19,20 @@
         }
       }"
     />
+    <v-btn
+      class="chart-to-png-btn"
+      icon
+      @click="chartToPng()"
+    >
+      <v-icon small>
+        {{ mdiCamera }}
+      </v-icon>
+    </v-btn>
   </div>
 </template>
 
 <script>
+import { mdiCamera } from '@mdi/js'
 import { GradeMixin } from '@/mixins/GradeMixin'
 const BarChart = () => import('~/components/charts/BarChart')
 
@@ -38,6 +48,16 @@ export default {
     heightClass: {
       type: String,
       default: 'height-200'
+    },
+    screenShotTitle: {
+      type: String,
+      default: null
+    }
+  },
+
+  data () {
+    return {
+      mdiCamera
     }
   },
 
@@ -74,6 +94,17 @@ export default {
         }],
         labels
       }
+    },
+
+    chartToPng () {
+      const a = document.createElement('a')
+      document.body.appendChild(a)
+      a.style.display = 'none'
+      document.querySelector('.grade-chart canvas').toBlob((blob) => {
+        a.href = window.URL.createObjectURL(blob)
+        a.download = `${this.screenShotTitle || 'capture-cotation'}.png`
+        a.click()
+      })
     }
   }
 }
@@ -83,6 +114,7 @@ export default {
 .grade-chart {
   flex-grow: 1;
   min-height: 0;
+  position: relative;
 
   > div {
     position: relative;
@@ -95,6 +127,12 @@ export default {
 
   &.height-250 {
     height: 250px
+  }
+
+  .chart-to-png-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
   }
 }
 </style>

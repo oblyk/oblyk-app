@@ -20,6 +20,7 @@
           <locality-grade-chart
             :data="figures"
             height-class="height-250"
+            :screen-shot-title="`Cotation ${crag.name}`"
           />
         </v-col>
         <v-col cols="12" md="4">
