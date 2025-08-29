@@ -1,108 +1,105 @@
 <template>
   <v-row>
     <v-col>
-      <v-simple-table class="no-hover-table">
-        <template #default>
-          <tbody>
-            <!-- Crag name -->
-            <tr>
-              <th class="smallest-table-column text-right">
-                {{ $t('components.cragSector.sectorOf') }} :
-              </th>
-              <td>
-                <nuxt-link
-                  :to="cragSector.Crag.path"
-                >
-                  {{ cragSector.Crag.name }}
-                </nuxt-link>
-              </td>
-            </tr>
+      <v-sheet class="pa-4 rounded">
 
-            <!-- Orientation -->
-            <tr>
-              <th class="smallest-table-column text-right">
-                {{ $t('components.input.orientations') }} :
-              </th>
-              <td>
-                <span v-if="cragSector.orientations.length > 0">
-                  {{ cragSector.orientations.map((climb) => { return $t(`models.crag.${climb}`) }).join(', ') }}
-                </span>
-                <cite v-else class="text--disabled">
-                  {{ $t('common.noInformation') }}
-                </cite>
-              </td>
-            </tr>
+        <!-- Crag -->
+        <description-line
+          :icon="mdiTerrain"
+          :item-title="$t('components.cragSector.sectorOf')"
+          class="mb-5"
+        >
+          <template #content>
+            <v-btn
+              :to="cragSector.Crag.path"
+              elevation="0"
+              text
+              outlined
+              class="pl-1"
+            >
+              <v-avatar size="28" class="mr-2">
+                <v-img :src="imageVariant(cragSector.Crag.attachments.cover, { fit: 'scale-down', width: 100, height: 100 })" />
+              </v-avatar>
+              {{ cragSector.Crag.name }}
+            </v-btn>
+          </template>
+        </description-line>
 
+        <v-row>
+          <!-- Orientation -->
+          <v-col>
+            <description-line
+              :icon="mdiCompass"
+              :item-title="$t('components.input.orientations')"
+              :item-value="orientations"
+            />
+          </v-col>
+          <v-col v-if="cragSector.elevation">
             <!-- Elevation -->
-            <tr v-if="cragSector.elevation">
-              <th class="smallest-table-column text-right">
-                {{ $t('components.cragSector.elevation') }} :
-              </th>
-              <td>
-                {{ parseInt(cragSector.elevation) }} {{ $t('common.meters') }}
-              </td>
-            </tr>
+            <description-line
+              :icon="mdiArrowExpandUp"
+              :item-title="$t('components.cragSector.elevation')"
+              :item-value="parseInt(cragSector.elevation)"
+              :item-suffix="$t('common.meters')"
+            />
+          </v-col>
+        </v-row>
 
+        <v-row>
+          <v-col>
             <!-- Rain -->
-            <tr>
-              <th class="smallest-table-column text-right">
-                {{ $t('components.input.rain') }} :
-              </th>
-              <td>
-                <span v-if="cragSector.rain">
-                  {{ $t(`models.rains.${cragSector.rain}`) }}
-                </span>
-                <cite v-if="!cragSector.rain" class="text--disabled">
-                  {{ $t('common.noInformation') }}
-                </cite>
-              </td>
-            </tr>
-
+            <description-line
+              :icon="mdiWeatherPouring"
+              :item-title="$t('components.input.rain')"
+              :item-value="cragSector.rain ? $t(`models.rains.${cragSector.rain}`) : null"
+            />
+          </v-col>
+          <v-col>
             <!-- Sun -->
-            <tr>
-              <th class="smallest-table-column text-right">
-                {{ $t('components.input.sun') }} :
-              </th>
-              <td>
-                <span v-if="cragSector.sun">
-                  {{ $t(`models.suns.${cragSector.sun}`) }}
-                </span>
-                <cite v-if="!cragSector.sun" class="text--disabled">
-                  {{ $t('common.noInformation') }}
-                </cite>
-              </td>
-            </tr>
+            <description-line
+              :icon="mdiWeatherSunny"
+              :item-title="$t('components.input.sun')"
+              :item-value="cragSector.sun ? $t(`models.suns.${cragSector.sun}`) : null"
+            />
+          </v-col>
+        </v-row>
 
-            <!-- Lines -->
-            <tr>
-              <th class="smallest-table-column text-right">
-                {{ $t('components.crag.lines') }} :
-              </th>
-              <td>
-                {{ cragSector.routes_figures.count }} {{ $t('components.crag.lines') }}.
-                <span
-                  v-if="cragSector.routes_figures.count > 0"
-                  v-html=" $t('components.crag.rangingFrom', {
-                    min: cragSector.routes_figures.grade.min_text,
-                    max: cragSector.routes_figures.grade.max_text
-                  })"
-                />
-              </td>
-            </tr>
-
-            <!-- Contribution -->
-            <tr>
-              <td colspan="2" class="text-right">
-                <contributions-label
-                  version-type="cragSector"
-                  :version-id="cragSector.id"
-                  :versions-count="cragSector.versions_count"
-                />
-              </td>
-            </tr>
-          </tbody>
-        </template>
-      </v-simple-table>
+        <!-- Lines -->
+        <description-line
+          class="mt-5"
+          :icon="mdiSourceBranch"
+          :item-title="$t('components.crag.lines')"
+        >
+          <template #content>
+            {{ cragSector.routes_figures.count }} {{ $t('components.crag.lines') }}.
+            <span
+              v-if="cragSector.routes_figures.count > 0"
+              v-html="$t('components.crag.rangingFrom', {
+                min: cragSector.routes_figures.grade.min_text,
+                max: cragSector.routes_figures.grade.max_text
+              })"
+            />
+          </template>
+        </description-line>
+        <div class="text-right">
+          <contributions-label
+            version-type="cragSector"
+            :version-id="cragSector.id"
+            :versions-count="cragSector.versions_count"
+          />
+          <client-only>
+            <v-btn
+              v-if="$auth.loggedIn"
+              :to="`${cragSector.aPath}/edit`"
+              text
+              outlined
+              class="ml-4"
+            >
+              {{ $t('actions.edit') }}
+            </v-btn>
+          </client-only>
+        </div>
+      </v-sheet>
     </v-col>
     <v-col>
       <comment-list
@@ -115,16 +112,48 @@
 </template>
 
 <script>
+import {
+  mdiTerrain,
+  mdiCompass,
+  mdiArrowExpandUp,
+  mdiWeatherPouring,
+  mdiWeatherSunny,
+  mdiSourceBranch
+} from '@mdi/js'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 import ContributionsLabel from '@/components/globals/ContributionsLable'
 import CommentList from '@/components/comments/CommentList'
+import DescriptionLine from '~/components/ui/DescriptionLine'
 
 export default {
   name: 'CragSectorDescription',
-  components: { CommentList, ContributionsLabel },
+  components: { DescriptionLine, CommentList, ContributionsLabel },
+  mixins: [ImageVariantHelpers],
   props: {
     cragSector: {
       type: Object,
       required: true
+    }
+  },
+
+  data () {
+    return {
+      mdiTerrain,
+      mdiCompass,
+      mdiArrowExpandUp,
+      mdiWeatherPouring,
+      mdiWeatherSunny,
+      mdiSourceBranch
+    }
+  },
+
+  computed: {
+    orientations () {
+      if (this.cragSector.orientations.length > 0) {
+        return this.cragSector.orientations.map((climb) => { return this.$t(`models.crag.${climb}`) }).join(', ')
+      } else {
+        return null
+      }
     }
   }
 }
