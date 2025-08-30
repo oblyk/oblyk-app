@@ -147,7 +147,7 @@ export default {
         setTimeout(() => {
           this.readyToClose = true
         }, 100)
-      }, 10)
+      }, 100)
     }
   }
 }
