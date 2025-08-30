@@ -59,15 +59,9 @@ export default {
     }
   },
 
-  computed: {
-    haveSpaces () {
-      return this.gym.gym_spaces.length > 0
-    }
-  },
-
   methods: {
     clickOnBtn () {
-      if (this.haveSpaces) {
+      if (this.gym.optimal_spaces_path) {
         this.$router.push(this.gym.firstSpacePath)
       } else {
         this.ascentsModal = true
