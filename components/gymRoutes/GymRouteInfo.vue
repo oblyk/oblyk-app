@@ -53,7 +53,7 @@
       {{ $t('components.gymRoute.dismountedAt', { date: humanizeDate(route.dismounted_at) }) }}
     </v-alert>
 
-    <!-- Comments and videos -->
+    <!-- TABS -->
     <v-tabs
       v-model="tab"
       color="#743ad5"

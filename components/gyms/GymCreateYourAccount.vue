@@ -1,5 +1,5 @@
 <template>
-  <div class="pa-4 border rounded-sm mt-2 mb-7 text-center missing-background">
+  <div class="pa-4 border rounded mt-2 text-center missing-background">
     <p class="font-weight-bold">
       {{ $t('components.gymRoute.createCount') }}
     </p>
