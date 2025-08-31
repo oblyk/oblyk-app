@@ -2,15 +2,9 @@
   <div class="full-height d-flex flex-column">
     <div class="flex-shrink-0">
       <page-header
-        v-if="!gym"
-        :title="$t('components.layout.appDrawer.mapGyms')"
-        back-to="/indoor"
+        :title="gym ? gym.name : $t('components.layout.appDrawer.mapGyms')"
+        :back-to=" gym ? gym.path : '/indoor'"
         fluid-container
-      />
-      <page-header
-        v-else
-        :title="gym.name"
-        :back-to="gym.path"
       />
     </div>
     <div class="flex-grow-1">
