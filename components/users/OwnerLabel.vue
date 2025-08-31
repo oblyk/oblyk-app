@@ -13,7 +13,7 @@
         :to="user.userPath"
         v-text="owner.full_name"
       />
-      <p class="mt-n1 mb-0">
+      <p class="mt-n3 mb-0">
         <small>
           {{ $t('common.at') }} {{ humanizeDate(history.created_at) }}
         </small>

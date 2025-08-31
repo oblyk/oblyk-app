@@ -29,17 +29,18 @@
       New
     </v-chip>
     <client-only>
-      <div class="d-flex">
+      <div class="d-flex align-center">
         <div
           v-if="dataComment.comments_count && dataComment.comments_count - comments.length > 0 && !noMoreReplyComments && !loadingComments"
         >
-          <v-btn
+          <v-chip
             text
             outlined
+            small
             @click="getReplyComments"
           >
             {{ $tc('components.comment.seeReplies', dataComment.comments_count, { count: dataComment.comments_count - comments.length }) }}
-          </v-btn>
+          </v-chip>
         </div>
         <div class="ml-auto">
           <v-btn
