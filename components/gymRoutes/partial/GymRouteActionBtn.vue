@@ -1,114 +1,86 @@
 <template>
-  <v-menu offset-y right>
-    <template #activator="{ on, attrs }">
+  <v-sheet class="pa-2" rounded>
+    <v-btn
+      :to="`${gymRoute.path}/edit`"
+      outlined
+      text
+      small
+    >
+      <v-icon left>
+        {{ mdiPencil }}
+      </v-icon>
+      {{ $t('actions.edit') }}
+    </v-btn>
+
+    <v-btn
+      v-if="gymRoute.dismounted_at"
+      outlined
+      text
+      small
+      @click="mount()"
+    >
+      <v-icon left>
+        {{ mdiForwardburger }}
+      </v-icon>
+      {{ $t('actions.takeUpRoute') }}
+    </v-btn>
+
+    <v-btn
+      v-else
+      outlined
+      text
+      small
+      @click="dismount()"
+    >
+      <v-icon left>
+        {{ mdiBackburger }}
+      </v-icon>
+      {{ $t('actions.dismountRoute') }}
+    </v-btn>
+
+    <div class="mt-1">
+      <p class="mb-0 font-weight-bold">
+        <small>Photo</small>
+      </p>
       <v-btn
-        color="primary"
-        outlined
-        small
-        text
-        v-bind="attrs"
-        v-on="on"
-      >
-        <v-icon left>
-          {{ mdiPencil }}
-        </v-icon>
-        {{ $t('actions.edit') }}
-      </v-btn>
-    </template>
-    <v-list>
-      <!-- Edit route -->
-      <v-list-item
-        link
-        :to="`${gymRoute.path}/edit`"
-      >
-        <v-list-item-icon>
-          <v-icon>{{ mdiPencil }}</v-icon>
-        </v-list-item-icon>
-        <v-list-item-content>
-          <v-list-item-title>
-            {{ $t('actions.edit') }}
-          </v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
-
-      <!-- Add picture -->
-      <v-list-item
-        link
         :to="`${gymRoute.path}/picture`"
+        outlined
+        text
+        x-small
       >
-        <v-list-item-icon>
-          <v-icon>{{ mdiCamera }}</v-icon>
-        </v-list-item-icon>
-        <v-list-item-content>
-          <v-list-item-title
-            v-text="gymRoute.gym_route_cover.attachments.picture.attached ? $t('actions.editPicture') : $t('actions.addPicture')"
-          />
-        </v-list-item-content>
-      </v-list-item>
+        <v-icon left small>
+          {{ mdiCamera }}
+        </v-icon>
+        {{ gymRoute.gym_route_cover.attachments.picture.attached ? $t('actions.editPicture') : $t('actions.addPicture') }}
+      </v-btn>
 
-      <!-- Define thumbnail -->
-      <v-list-item
+      <v-btn
         v-if="gymRoute.gym_route_cover.attachments.picture.attached"
-        link
-        :to="`${gymRoute.path}/thumbnail`"
-      >
-        <v-list-item-icon>
-          <v-icon>{{ mdiCrop }}</v-icon>
-        </v-list-item-icon>
-        <v-list-item-content>
-          <v-list-item-title>
-            {{ $t('actions.defineThumbnail') }}
-          </v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
-
-      <v-divider />
-
-      <v-list-item
-        v-if="gymRoute.dismounted_at"
-        link
-        @click="mount()"
-      >
-        <v-list-item-icon>
-          <v-icon>{{ mdiForwardburger }}</v-icon>
-        </v-list-item-icon>
-        <v-list-item-content>
-          <v-list-item-title class="red--text">
-            {{ $t('actions.takeUpRoute') }}
-          </v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
-      <v-list-item
-        v-else
-        link
-        @click="dismount()"
-      >
-        <v-list-item-icon>
-          <v-icon>{{ mdiBackburger }}</v-icon>
-        </v-list-item-icon>
-        <v-list-item-content>
-          <v-list-item-title class="red--text">
-            {{ $t('actions.dismountRoute') }}
-          </v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
-
-      <v-list-item
-        v-if="gymRoute.gym_route_cover.attachments.picture.attached"
-        link
+        outlined
+        text
+        x-small
         @click="deletePicture()"
       >
-        <v-list-item-icon>
-          <v-icon>{{ mdiCameraOff }}</v-icon>
-        </v-list-item-icon>
-        <v-list-item-content>
-          <v-list-item-title class="red--text">
-            {{ $t('actions.deletePicture') }}
-          </v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
-    </v-list>
-  </v-menu>
+        <v-icon left small>
+          {{ mdiCameraOff }}
+        </v-icon>
+        {{ $t('actions.deletePicture') }}
+      </v-btn>
+
+      <v-btn
+        v-if="gymRoute.gym_route_cover.attachments.picture.attached"
+        :to="`${gymRoute.path}/thumbnail`"
+        outlined
+        text
+        x-small
+      >
+        <v-icon left small>
+          {{ mdiCrop }}
+        </v-icon>
+        {{ $t('actions.defineThumbnail') }}
+      </v-btn>
+    </div>
+  </v-sheet>
 </template>
 
 <script>

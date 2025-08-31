@@ -83,201 +83,19 @@
     <v-tabs-items v-model="tab">
       <!-- Information, ascents, etc. -->
       <v-tab-item class="pb-3" style="min-height: 500px">
-        <!-- Route description -->
-        <v-sheet
-          v-if="route.description"
-          class="px-3 pb-1 pt-4 my-2 font-italic back-app-color rounded-sm"
-        >
-          <markdown-text :text="route.description" />
-        </v-sheet>
 
-        <v-row
-          v-if="(route.likes_count && route.likes_count > 0) || (route.ascents_count || 0 > 0)"
-          class="my-1"
-          no-gutters
-        >
-          <!-- Route real favorite -->
-          <v-col
-            v-if="route.likes_count && route.likes_count > 0"
-            cols="6"
-            class="my-1 font-weight-bold text-no-wrap pl-2"
-          >
-            <v-icon small color="red">
-              {{ mdiHeart }}
-            </v-icon>
-            {{ $tc('common.realFavoriteCount', route.likes_count, { count: route.likes_count }) }}
-          </v-col>
-          <v-col
-            v-if="route.ascents_count || 0 > 0"
-            cols="6"
-            class="my-1 font-weight-bold text-no-wrap pl-2"
-          >
-            <v-btn small outlined text @click="openGymRouteAscents()">
-              <v-icon small left>
-                {{ mdiCheckAll }}
-              </v-icon>
-              {{ $tc('components.gymRoute.ascents', route.ascents_count, { count: route.ascents_count }) }}
-            </v-btn>
-          </v-col>
-        </v-row>
-
-        <!-- Global information -->
-        <v-row
-          class="mb-2"
-          no-gutters
-        >
-          <!-- Route opened_at -->
-          <v-col
-            v-if="route.opened_at"
-            cols="6"
-            class="my-1 px-1"
-          >
-            <description-line
-              :icon="mdiCalendar"
-              :item-title="$t('models.gymRoute.opened_at')"
-              :item-value="humanizeDate(route.opened_at, 'DATE_MED')"
-              class="rounded-sm px-2 py-1"
-            />
-          </v-col>
-
-          <!-- Sector -->
-          <v-col
-            cols="6"
-            class="my-1 px-1"
-          >
-            <description-line
-              :icon="mdiTextureBox"
-              :item-title="$t('models.gymRoute.gym_sector_id')"
-              class="rounded-sm px-2 py-1"
-            >
-              <template #content>
-                <a
-                  v-if="!showSpace"
-                  class="text-truncate d-block"
-                  @click="showSector"
-                >
-                  {{ route.gym_sector.name }}
-                </a>
-                <strong
-                  v-if="showSpace"
-                  class="text-truncate d-block"
-                >
-                  {{ route.gym_sector.name }}
-                </strong>
-              </template>
-            </description-line>
-          </v-col>
-
-          <!-- Space -->
-          <v-col
-            v-if="showSpace"
-            cols="6"
-            class="my-1 px-1"
-          >
-            <description-line
-              :icon="mdiMap"
-              :item-title="$t('models.gymRoute.gym_space_id')"
-              class="rounded-sm px-2 py-1"
-            >
-              <template #content>
-                <nuxt-link :to="route.gymSpacePath">
-                  {{ route.gym_space.name }}
-                </nuxt-link>
-              </template>
-            </description-line>
-          </v-col>
-
-          <!-- Route opener -->
-          <v-col
-            v-if="route.openers.length > 0"
-            cols="6"
-            class="my-1 px-1"
-          >
-            <description-line
-              :icon="mdiBolt"
-              :item-title="$t('models.gymRoute.openers')"
-              :item-value="route.openers.map(opener => opener.name).join(', ')"
-              class="rounded-sm px-2 py-1"
-            />
-          </v-col>
-
-          <!-- Difficulty appreciation -->
-          <v-col
-            v-if="route.votes && route.votes.difficulty_appreciations"
-            cols="12"
-            class="my-1 px-1"
-          >
-            <description-line
-              :icon="mdiGauge"
-              :item-title="$t('models.gymRoute.difficulty_appreciation')"
-              class="rounded-sm px-2 py-1"
-            >
-              <template #content>
-                <v-chip
-                  v-if="route.votes.difficulty_appreciations.easy_for_the_grade"
-                  outlined
-                  :title="$t('models.hardnessStatus.easy_for_the_grade')"
-                >
-                  😎 {{ route.votes.difficulty_appreciations.easy_for_the_grade.count }}
-                </v-chip>
-                <v-chip
-                  v-if="route.votes.difficulty_appreciations.this_grade_is_accurate"
-                  outlined
-                  :title="$t('models.hardnessStatus.this_grade_is_accurate')"
-                >
-                  👌 {{ route.votes.difficulty_appreciations.this_grade_is_accurate.count }}
-                </v-chip>
-                <v-chip
-                  v-if="route.votes.difficulty_appreciations.sandbagged"
-                  outlined
-                  :title="$t('models.hardnessStatus.sandbagged')"
-                >
-                  🥵 {{ route.votes.difficulty_appreciations.sandbagged.count }}
-                </v-chip>
-                <v-icon
-                  class="vertical-align-sub"
-                  left
-                  right
-                  small
-                >
-                  {{ mdiArrowRight }}
-                </v-icon>
-                {{ $t(`components.difficulty.${difficultyAppreciationStatus}`) }}
-              </template>
-            </description-line>
-          </v-col>
-
-          <!-- Route tags -->
-          <v-col
-            v-if="gym && route.hasStyles"
-            cols="12"
-            class="my-1 px-1"
-          >
-            <description-line
-              :icon="mdiPound"
-              :item-title="$t('models.gymRoute.styles')"
-              class="rounded-sm px-2 pb-2 pt-1"
-            >
-              <template #content>
-                <gym-route-climbing-styles
-                  class="mt-2"
-                  :gym-route="route"
-                  :gym="gym"
-                />
-              </template>
-            </description-line>
-          </v-col>
-        </v-row>
-
-        <!-- Cross list and add in logbook btn -->
+        <!-- USER ASCENTS -->
         <client-only>
-          <div v-if="$auth.loggedIn">
+          <div
+            v-if="$auth.loggedIn"
+            class="border rounded pa-2 mt-2"
+          >
             <gym-route-ascent :gym-route="route" />
 
             <!-- Edit and add to logbook -->
             <div
               v-if="!hideAscentBtn"
-              class="text-right mt-2 mb-3"
+              class="text-right"
             >
               <like-btn
                 class="vertical-align-bottom"
@@ -287,22 +105,211 @@
               />
               <add-gym-ascent-btn :gym-route="route" />
             </div>
-
-            <!-- Administration -->
-            <div
-              v-if="currentUserIsGymAdmin() && gymAuthCan(route.gym, 'manage_opening')"
-              class="border-bottom border-top py-2 mb-2"
-            >
-              <small class="mr-2">
-                {{ $t('components.gymAdmin.administration') }} :
-              </small>
-              <gym-route-action-btn
-                :gym-route="route"
-                :reload-route-callback="reloadGymRoute"
-              />
-            </div>
           </div>
           <gym-create-your-account v-else />
+        </client-only>
+
+        <!-- ROUTE INFORMATIONS -->
+        <div class="rounded pa-2 my-3 border">
+          <p class="font-weight-bold mb-1">
+            <v-icon small color="#743ad5" class="mr-1 vertical-align-text-top">
+              {{ mdiInformation }}
+            </v-icon>
+            {{ $t('common.informations') }}
+          </p>
+
+          <!-- Route description -->
+          <div
+            v-if="route.description"
+            class="pa-2 font-italic back-app-color rounded-sm"
+          >
+            <markdown-text :text="route.description" />
+          </div>
+
+          <v-row
+            v-if="(route.likes_count && route.likes_count > 0) || (route.ascents_count || 0 > 0)"
+            class="my-1"
+            no-gutters
+          >
+            <!-- Route real favorite -->
+            <v-col
+              v-if="route.likes_count && route.likes_count > 0"
+              cols="6"
+            >
+              <v-icon small left color="red" class="vertical-align-text-top">
+                {{ mdiHeart }}
+              </v-icon>
+              {{ $tc('common.realFavoriteCount', route.likes_count, { count: route.likes_count }) }}
+            </v-col>
+            <v-col
+              v-if="route.ascents_count || 0 > 0"
+              cols="6"
+            >
+              <v-btn small outlined text @click="openGymRouteAscents()">
+                <v-icon small left>
+                  {{ mdiCheckAll }}
+                </v-icon>
+                {{ $tc('components.gymRoute.ascents', route.ascents_count, { count: route.ascents_count }) }}
+              </v-btn>
+            </v-col>
+          </v-row>
+
+          <!-- Global information -->
+          <v-row
+            class="mb-2"
+            no-gutters
+          >
+            <!-- Route opened_at -->
+            <v-col
+              v-if="route.opened_at"
+              cols="6"
+              class="my-1"
+            >
+              <description-line
+                :icon="mdiCalendar"
+                :item-title="$t('models.gymRoute.opened_at')"
+                :item-value="humanizeDate(route.opened_at, 'DATE_MED')"
+                class="rounded-sm py-1"
+              />
+            </v-col>
+
+            <!-- Sector -->
+            <v-col
+              cols="6"
+              class="my-1"
+            >
+              <description-line
+                :icon="mdiTextureBox"
+                :item-title="$t('models.gymRoute.gym_sector_id')"
+                class="rounded-sm py-1"
+              >
+                <template #content>
+                  <a
+                    v-if="!showSpace"
+                    class="text-truncate d-block"
+                    @click="showSector"
+                  >
+                    {{ route.gym_sector.name }}
+                  </a>
+                  <strong
+                    v-if="showSpace"
+                    class="text-truncate d-block"
+                  >
+                    {{ route.gym_sector.name }}
+                  </strong>
+                </template>
+              </description-line>
+            </v-col>
+
+            <!-- Space -->
+            <v-col
+              v-if="showSpace"
+              cols="6"
+              class="my-1"
+            >
+              <description-line
+                :icon="mdiMap"
+                :item-title="$t('models.gymRoute.gym_space_id')"
+                class="rounded-sm py-1"
+              >
+                <template #content>
+                  <nuxt-link :to="route.gymSpacePath">
+                    {{ route.gym_space.name }}
+                  </nuxt-link>
+                </template>
+              </description-line>
+            </v-col>
+
+            <!-- Route opener -->
+            <v-col
+              v-if="route.openers.length > 0"
+              cols="6"
+              class="my-1"
+            >
+              <description-line
+                :icon="mdiBolt"
+                :item-title="$t('models.gymRoute.openers')"
+                :item-value="route.openers.map(opener => opener.name).join(', ')"
+                class="rounded-sm py-1"
+              />
+            </v-col>
+          </v-row>
+
+          <!-- Difficulty appreciation -->
+          <description-line
+            v-if="route.votes && route.votes.difficulty_appreciations"
+            :icon="mdiGauge"
+            :item-title="$t('models.gymRoute.difficulty_appreciation')"
+            class="rounded-sm py-1"
+          >
+            <template #content>
+              <v-chip
+                v-if="route.votes.difficulty_appreciations.easy_for_the_grade"
+                outlined
+                :title="$t('models.hardnessStatus.easy_for_the_grade')"
+              >
+                😎 {{ route.votes.difficulty_appreciations.easy_for_the_grade.count }}
+              </v-chip>
+              <v-chip
+                v-if="route.votes.difficulty_appreciations.this_grade_is_accurate"
+                outlined
+                :title="$t('models.hardnessStatus.this_grade_is_accurate')"
+              >
+                👌 {{ route.votes.difficulty_appreciations.this_grade_is_accurate.count }}
+              </v-chip>
+              <v-chip
+                v-if="route.votes.difficulty_appreciations.sandbagged"
+                outlined
+                :title="$t('models.hardnessStatus.sandbagged')"
+              >
+                🥵 {{ route.votes.difficulty_appreciations.sandbagged.count }}
+              </v-chip>
+              <v-icon
+                class="vertical-align-sub"
+                left
+                right
+                small
+              >
+                {{ mdiArrowRight }}
+              </v-icon>
+              {{ $t(`components.difficulty.${difficultyAppreciationStatus}`) }}
+            </template>
+          </description-line>
+
+          <!-- Route tags -->
+          <description-line
+            v-if="gym && route.hasStyles"
+            :icon="mdiPound"
+            :item-title="$t('models.gymRoute.styles')"
+            class="rounded-sm pb-2 pt-1"
+          >
+            <template #content>
+              <gym-route-climbing-styles
+                class="mt-2"
+                :gym-route="route"
+                :gym="gym"
+              />
+            </template>
+          </description-line>
+        </div>
+
+        <!-- Administration -->
+        <client-only>
+          <div
+            v-if="$auth.loggedIn && currentUserIsGymAdmin() && gymAuthCan(route.gym, 'manage_opening')"
+            class="border pa-2 mb-2 admin-background rounded"
+          >
+            <p class="font-weight-bold mb-1">
+              <v-icon small color="#743ad5" class="mr-1 vertical-align-text-top">
+                {{ mdiShield }}
+              </v-icon>
+              {{ $t('components.gymAdmin.administration') }}
+            </p>
+            <gym-route-action-btn
+              :gym-route="route"
+              :reload-route-callback="reloadGymRoute"
+            />
+          </div>
         </client-only>
       </v-tab-item>
 
@@ -363,7 +370,9 @@ import {
   mdiPound,
   mdiMap,
   mdiGauge,
-  mdiArrowRight
+  mdiArrowRight,
+  mdiShield,
+  mdiInformation
 } from '@mdi/js'
 import { DateHelpers } from '@/mixins/DateHelpers'
 import { GymRolesHelpers } from '@/mixins/GymRolesHelpers'
@@ -443,7 +452,9 @@ export default {
       mdiPound,
       mdiMap,
       mdiGauge,
-      mdiArrowRight
+      mdiArrowRight,
+      mdiShield,
+      mdiInformation
     }
   },
 

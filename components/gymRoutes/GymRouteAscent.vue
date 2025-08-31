@@ -1,6 +1,9 @@
 <template>
-  <div v-if="ascents.length > 0">
-    <p class="font-weight-bold mb-0 mt-4 pl-1">
+  <div
+    v-if="ascents.length > 0"
+    class="mt-1"
+  >
+    <p class="font-weight-bold mb-1 mt-n2">
       <v-icon
         size="20"
         color="amber darken-1"
@@ -10,18 +13,16 @@
       </v-icon>
       {{ $t('components.gymRoute.inMyLogBook') }}
     </p>
-    <v-sheet class="rounded-sm pa-2">
-      <div
-        v-for="(ascent, ascentIndex) in ascents"
-        :key="`ascent-index-${ascentIndex}`"
-        class="mb-2"
-      >
-        <ascent-gym-route-small-card
-          :gym-route="gymRoute"
-          :ascent-gym-route="ascent"
-        />
-      </div>
-    </v-sheet>
+    <div
+      v-for="(ascent, ascentIndex) in ascents"
+      :key="`ascent-index-${ascentIndex}`"
+      class="mb-2"
+    >
+      <ascent-gym-route-small-card
+        :gym-route="gymRoute"
+        :ascent-gym-route="ascent"
+      />
+    </div>
   </div>
 </template>
 
