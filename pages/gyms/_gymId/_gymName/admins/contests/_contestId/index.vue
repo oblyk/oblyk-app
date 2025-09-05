@@ -37,12 +37,21 @@
         />
       </v-col>
     </v-row>
-    <p
+    <div
       v-if="categories.length === 0"
-      class="text-center text--disabled my-5"
+      class="my-5 text-center"
     >
-      Cliquer sur "Ajouter" pour ajouter une catégorie
-    </p>
+      <p class="text--disabled mb-0">
+        Cliquer sur "Ajouter" pour ajouter une catégorie
+      </p>
+      <v-btn
+        href="https://oblyk.github.io/app-user-doc/docs/indoor/contest/categorie.html"
+        target="_blank"
+        text
+      >
+        {{ $t('common.documentation') }}
+      </v-btn>
+    </div>
 
     <!-- Waves -->
     <div v-if="showWaves">

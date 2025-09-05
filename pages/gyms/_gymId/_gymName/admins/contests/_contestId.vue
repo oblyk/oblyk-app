@@ -250,6 +250,19 @@
                       Télécharger le QrCode du contest
                     </v-list-item-title>
                   </v-list-item>
+                  <v-list-item
+                    href="https://oblyk.github.io/app-user-doc/docs/indoor/contest/"
+                    target="_blank"
+                  >
+                    <v-list-item-icon>
+                      <v-icon>
+                        {{ mdiFileDocumentOutline }}
+                      </v-icon>
+                    </v-list-item-icon>
+                    <v-list-item-title>
+                      {{ $t('common.documentation') }}
+                    </v-list-item-title>
+                  </v-list-item>
                   <v-divider />
                   <v-list-item
                     v-if="contest.draft"
@@ -551,7 +564,8 @@ import {
   mdiBookshelf,
   mdiAccountGroup,
   mdiChartLine,
-  mdiGavel
+  mdiGavel,
+  mdiFileDocumentOutline
 } from '@mdi/js'
 import { ContestConcern } from '~/concerns/ContestConcern'
 import { DateHelpers } from '~/mixins/DateHelpers'
@@ -604,7 +618,8 @@ export default {
       mdiBookshelf,
       mdiAccountGroup,
       mdiChartLine,
-      mdiGavel
+      mdiGavel,
+      mdiFileDocumentOutline
     }
   },
 

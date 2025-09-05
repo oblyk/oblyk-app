@@ -39,6 +39,13 @@
       </p>
       <div class="text-right">
         <v-btn
+          text
+          target="_blank"
+          href="https://oblyk.github.io/app-user-doc/docs/indoor/contest/"
+        >
+          {{ $t('common.documentation') }}
+        </v-btn>
+        <v-btn
           color="primary"
           elevation="0"
           :disabled="gym.plan === 'free'"
