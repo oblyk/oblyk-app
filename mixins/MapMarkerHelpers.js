@@ -103,32 +103,6 @@ export const MapMarkerHelpers = {
           iconUrl: '/markers/crag-marker-11111.png', iconSize: [23, 30], iconAnchor: [11.5, 30], popupAnchor: [0, 0]
         },
 
-        // Gym markers
-        'gym-marker-000': {
-          iconUrl: '/markers/gym-marker-000.png', iconSize: [23, 30], iconAnchor: [11.5, 30], popupAnchor: [0, 0]
-        },
-        'gym-marker-001': {
-          iconUrl: '/markers/gym-marker-001.png', iconSize: [23, 30], iconAnchor: [11.5, 30], popupAnchor: [0, 0]
-        },
-        'gym-marker-010': {
-          iconUrl: '/markers/gym-marker-010.png', iconSize: [23, 30], iconAnchor: [11.5, 30], popupAnchor: [0, 0]
-        },
-        'gym-marker-100': {
-          iconUrl: '/markers/gym-marker-100.png', iconSize: [23, 30], iconAnchor: [11.5, 30], popupAnchor: [0, 0]
-        },
-        'gym-marker-110': {
-          iconUrl: '/markers/gym-marker-110.png', iconSize: [23, 30], iconAnchor: [11.5, 30], popupAnchor: [0, 0]
-        },
-        'gym-marker-101': {
-          iconUrl: '/markers/gym-marker-101.png', iconSize: [23, 30], iconAnchor: [11.5, 30], popupAnchor: [0, 0]
-        },
-        'gym-marker-011': {
-          iconUrl: '/markers/gym-marker-011.png', iconSize: [23, 30], iconAnchor: [11.5, 30], popupAnchor: [0, 0]
-        },
-        'gym-marker-111': {
-          iconUrl: '/markers/gym-marker-111.png', iconSize: [23, 30], iconAnchor: [11.5, 30], popupAnchor: [0, 0]
-        },
-
         // Point of sales
         'place-of-sale-marker': {
           iconUrl: '/markers/place-of-sale-marker.png', iconSize: [23, 30], iconAnchor: [11.5, 30], popupAnchor: [0, 0]
@@ -212,6 +186,17 @@ export const MapMarkerHelpers = {
         iconAnchor: [30, 30],
         className: 'guide-book-paper-marker',
         html: `<img src="${src}" alt="couverture" />`
+      }
+    },
+
+    gymMarker (properties) {
+      const src = properties.attachments.logo.attached ? this.imageVariant(properties.attachments.logo, { fit: 'scale-down', height: 50, width: 50 }) : '/svg/gym-default-logo.svg'
+      return {
+        iconSize: [38, 38],
+        iconAnchor: [19, 19],
+        popupAnchor: [0, -16],
+        className: 'gym-marker',
+        html: `<img src="${src}" alt="logo" />`
       }
     }
   }

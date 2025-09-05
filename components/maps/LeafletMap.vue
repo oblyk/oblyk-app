@@ -1112,6 +1112,8 @@ export default {
           return L.marker(latLng, { icon: L.divIcon(this.localityMarker(feature.properties)) })
         } else if (feature.properties.icon === 'guide-book-paper') {
           return L.marker(latLng, { icon: L.divIcon(this.guideBookPaperMarker(feature.properties)) })
+        } else if (feature.properties.icon === 'gym-marker') {
+          return L.marker(latLng, { icon: L.divIcon(this.gymMarker(feature.properties)) })
         } else {
           return L.marker(latLng, { icon: L.icon(this.markers[feature.properties.icon]) })
         }
@@ -1669,6 +1671,21 @@ export default {
       object-fit: contain;
       background-position: center center;
       border-radius: 5px;
+    }
+  }
+  .gym-marker {
+    max-width: 38px;
+    max-height: 38px;
+    background-color: white;
+    text-align: center;
+    padding: 3px;
+    border-radius: 8px;
+    img {
+      max-width: 32px !important;
+      max-height: 32px !important;
+      object-fit: contain;
+      background-position: center center;
+      border-radius: 6px;
     }
   }
 }
