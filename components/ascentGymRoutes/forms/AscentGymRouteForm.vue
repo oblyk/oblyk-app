@@ -91,7 +91,6 @@
 
     <required-explained class="mt-2" />
 
-    <close-form />
     <submit-form
       :overlay="submitOverlay"
       :go-back-btn="false"
@@ -106,13 +105,12 @@ import { FormHelpers } from '@/mixins/FormHelpers'
 import { DateHelpers } from '@/mixins/DateHelpers'
 import SubmitForm from '@/components/forms/SubmitForm'
 import AscentGymRouteApi from '~/services/oblyk-api/AscentGymRouteApi'
-import CloseForm from '@/components/forms/CloseForm'
 import AscentStatusInput from '@/components/forms/AscentStatusInput'
 import DatePickerInput from '@/components/forms/DatePickerInput'
-import LikeBtn from '~/components/forms/LikeBtn.vue'
-import HardnessStatusInput from '~/components/forms/HardnessStatusInput.vue'
-import RequiredExplained from '~/components/forms/RequiredExplained.vue'
-import RopingStatusInput from '~/components/forms/RopingStatusInput.vue'
+import LikeBtn from '~/components/forms/LikeBtn'
+import HardnessStatusInput from '~/components/forms/HardnessStatusInput'
+import RequiredExplained from '~/components/forms/RequiredExplained'
+import RopingStatusInput from '~/components/forms/RopingStatusInput'
 
 export default {
   name: 'AscentGymRouteForm',
@@ -123,7 +121,6 @@ export default {
     LikeBtn,
     DatePickerInput,
     AscentStatusInput,
-    CloseForm,
     SubmitForm
   },
   mixins: [
