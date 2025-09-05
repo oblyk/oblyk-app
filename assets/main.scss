@@ -597,6 +597,13 @@ strong {
       background-color: black !important;
     }
   }
+  .v-dialog {
+    &:not(.v-dialog--fullscreen) {
+      border-style: solid;
+      border-width: 2px;
+      border-color: rgb(75, 75, 75);
+    }
+  }
 }
 
 .theme--light {
