@@ -1,28 +1,25 @@
 <template>
   <div>
-    <v-container>
-      <div v-if="$fetchState.pending">
-        <skeleton-loader-head />
-      </div>
-      <div v-else>
-        <div class="rounded">
-          <gym-chain-head :gym-chain="gymChain" />
-        </div>
-        <nuxt-child :gym-chain="gymChain" />
-      </div>
-    </v-container>
+    <skeleton-loader-page-head v-if="$fetchState.pending" />
+    <div v-else>
+      <page-header
+        :title="gymChain.name"
+        back-to="/indoor"
+      />
+      <nuxt-child :gym-chain="gymChain" />
+    </div>
     <app-footer />
   </div>
 </template>
 
 <script>
 import AppFooter from '@/components/layouts/AppFooter'
-import SkeletonLoaderHead from '~/components/layouts/SkeletonLoaderHead'
 import { GymChainConcern } from '~/concerns/GymChainConcern'
-import GymChainHead from '~/components/gymChains/layouts/GymChainHead.vue'
+import SkeletonLoaderPageHead from '~/components/layouts/SkeletonLoaderPageHead'
+import PageHeader from '~/components/layouts/PageHeader'
 
 export default {
-  components: { GymChainHead, SkeletonLoaderHead, AppFooter },
+  components: { PageHeader, SkeletonLoaderPageHead, AppFooter },
   mixins: [GymChainConcern]
 }
 </script>

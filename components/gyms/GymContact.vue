@@ -130,7 +130,7 @@
           link
           pill
           class="font-weight-bold"
-          :to="gymChain.path"
+          :to="`${gymChain.path}?back_to=${gym.path}`"
         >
           <v-avatar
             v-if="gymChain.attachments.logo.attached"
