@@ -4,7 +4,7 @@
       <legend class="v-label custom-fieldset-label">
         {{ $t(labelKey) }}
       </legend>
-      <div>
+      <div class="d-flex align-center">
         <v-chip-group
           v-model="hardnessStatus"
           active-class="primary--text"
@@ -20,13 +20,24 @@
             {{ item.text }}
           </v-chip>
         </v-chip-group>
+        <v-btn
+          v-if="hardnessStatus !== null"
+          class="ml-auto"
+          small
+          icon
+          @click="clear"
+        >
+          <v-icon>
+            {{ mdiClose }}
+          </v-icon>
+        </v-btn>
       </div>
     </fieldset>
   </v-input>
 </template>
 
 <script>
-import { mdiScaleBalance } from '@mdi/js'
+import { mdiScaleBalance, mdiClose } from '@mdi/js'
 import { InputHelpers } from '@/mixins/InputHelpers'
 
 export default {
@@ -52,11 +63,17 @@ export default {
       ],
       hardnessStatus: this.value,
 
-      mdiScaleBalance
+      mdiScaleBalance,
+      mdiClose
     }
   },
 
   methods: {
+    clear () {
+      this.hardnessStatus = null
+      this.onChange()
+    },
+
     onChange () {
       this.$emit('input', this.hardnessStatus)
     },

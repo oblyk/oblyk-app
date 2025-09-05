@@ -21,10 +21,10 @@
     </template>
 
     <v-card>
-      <v-card-title>
+      <v-card-title class="pt-2 px-2">
         {{ $t('components.ascentGymRoute.new', { name: gymRoute.name }) }}
       </v-card-title>
-      <v-card-text>
+      <v-card-text class="px-2 pb-2">
         <ascent-gym-route-form
           :gym-route="gymRoute"
           submit-methode="post"
