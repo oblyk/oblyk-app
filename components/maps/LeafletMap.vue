@@ -1674,15 +1674,18 @@ export default {
     }
   }
   .gym-marker {
-    max-width: 38px;
-    max-height: 38px;
-    background-color: white;
+    width: 38px;
+    height: 38px;
+    background: rgba(255, 255, 255, 0.5);
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgba(0, 0, 0, 0.25);
     text-align: center;
     padding: 3px;
     border-radius: 8px;
     img {
-      max-width: 32px !important;
-      max-height: 32px !important;
+      width: 30px !important;
+      height: 30px !important;
       object-fit: contain;
       background-position: center center;
       border-radius: 6px;
