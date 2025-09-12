@@ -193,10 +193,32 @@ export const MapMarkerHelpers = {
       const src = properties.attachments.logo.attached ? this.imageVariant(properties.attachments.logo, { fit: 'scale-down', height: 50, width: 50 }) : '/svg/gym-default-logo.svg'
       return {
         iconSize: [38, 38],
-        iconAnchor: [19, 19],
-        popupAnchor: [0, -16],
+        iconAnchor: [19, 38],
+        popupAnchor: [0, 9],
         className: 'gym-marker',
-        html: `<img src="${src}" alt="logo" />`
+        html: `
+<svg
+   width="38"
+   height="44.068954"
+   viewBox="0 0 38 44.068956"
+   xmlns="http://www.w3.org/2000/svg">
+  <g transform="translate(-1.0948906e-7,-2.9655236)">
+    <path
+       style="fill:rgba(255,255,255,0.8);stroke:rgba(0,0,0,0.25);stroke-width:0.6899;stroke-linejoin:round;"
+       d="m 6.8977131,3.3104736 c -3.6302279,0 -6.552763,2.8929521 -6.552763,6.4868016 V 34.133054 c 0,3.593849 2.9225351,6.48716 6.552763,6.48716 H 13.478997 L 19,46.689543 24.521003,40.620214 h 6.581284 c 3.630235,0 6.552763,-2.893311 6.552763,-6.48716 V 9.7972752 c 0,-3.5938495 -2.922528,-6.4868016 -6.552763,-6.4868016 z" />
+     <image
+       width="54.080173"
+       height="54.080173"
+       preserveAspectRatio="xMidYMid meet"
+       xlink:href="${src}"
+       x="151.27559"
+       y="308.06467"
+       clip-path="inset(0% round 8px)"
+       transform="matrix(0.59171408,0,0,0.59171408,-86.511894,-176.32068)"
+     />
+  </g>
+</svg>
+`
       }
     }
   }
