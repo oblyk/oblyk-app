@@ -16,7 +16,6 @@
           :longitude-force="longitude"
           :zoom-force="zoom"
           :clustered="false"
-          :search-place="false"
         />
       </client-only>
     </div>

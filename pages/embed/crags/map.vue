@@ -8,7 +8,6 @@
         :longitude-force="longitude"
         :zoom-force="zoom"
         :magic-card="false"
-        :search-place="false"
         :crag-add-fetching="true"
         :load-add-features="loadAddFeatures"
         :crag-map-filter="false"

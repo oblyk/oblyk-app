@@ -5,15 +5,9 @@
       :class="options.rounded ? 'rounded-leaflet' : ''"
     >
       <div
-        v-if="magicCard || searchPlace"
+        v-if="magicCard"
         class="leaflet-map-search-card pa-2"
       >
-        <search-place-input
-          v-if="searchPlace && !sunController"
-          class="leaflet-search-in-map mb-1"
-          :callback="goToPlace"
-          :solo-style="true"
-        />
         <div v-if="cragMapFilter" class="mb-1">
           <v-card
             rounded
@@ -648,14 +642,12 @@ import UserApi from '~/services/oblyk-api/UserApi'
 import OsmNominatim from '~/services/osm-nominatim'
 import RockBarApi from '~/services/oblyk-api/RockBarApi'
 import GuideBookPaperApi from '~/services/oblyk-api/GuideBookPaperApi'
-const SearchPlaceInput = () => import('~/components/forms/SearchPlaceInput.vue')
 const leafletMapFilterKey = 'leafletMapFilter'
 
 export default {
   name: 'LeafletMap',
 
   components: {
-    SearchPlaceInput,
     LeafletLocalizationCenter,
     LeafletLegend,
     LeafletLayerSelector,
@@ -718,10 +710,6 @@ export default {
       default: null
     },
     magicCard: {
-      type: Boolean,
-      default: false
-    },
-    searchPlace: {
       type: Boolean,
       default: false
     },

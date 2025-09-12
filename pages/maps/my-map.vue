@@ -14,7 +14,6 @@
           :geo-jsons="geoJsons"
           :track-location="false"
           :clustered="false"
-          :search-place="false"
         />
       </client-only>
     </div>

@@ -17,7 +17,6 @@
           :zoom-force="zoom"
           :clustered="true"
           :locality-users="localityUsers"
-          :search-place="true"
         />
         <locality-user-drawer />
         <partner-modal />
