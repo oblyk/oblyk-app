@@ -15,7 +15,9 @@
           :latitude-force="latitude"
           :longitude-force="longitude"
           :zoom-force="zoom"
+          :gym-map-filter="true"
           :clustered="false"
+          :filter-callback="getGeoJson"
         />
       </client-only>
     </div>
@@ -76,16 +78,15 @@ export default {
     this.longitude = urlParams.get('lng')
     this.gymId = urlParams.get('gym_id')
     this.zoom = this.latitude !== null ? 15 : null
-    this.getGeoJson()
     if (this.gymId) {
       this.getGym()
     }
   },
 
   methods: {
-    getGeoJson () {
+    getGeoJson (params = null) {
       new GymApi(this.$axios, this.$auth)
-        .geoJson()
+        .geoJson(params)
         .then((resp) => {
           this.geoJsons = { features: resp.data.features }
         })

@@ -547,7 +547,13 @@ export default {
           intro: "Nous avons tous les outils qu'il vous faut pour trouver une salle autour de chez vous, de votre lieu de vacances<br> ou n'importe où d'autre en France et dans le monde.",
           map: {
             title: "Carte des salles d'escalade",
-            explain: "Déplacez-vous librement sur la carte de toutes les salles d'escalade que nous avons."
+            explain: "Déplacez-vous librement sur la carte de toutes les salles d'escalade que nous avons.",
+            filter: {
+              btnTile: 'Filter les salles',
+              styleLabel: 'Voie ? Bloc ? Fun ?',
+              gymType: 'Club ? Salle privée ?',
+              withGuideBook: 'Salle avec un topo'
+            }
           },
           aroundCity: {
             title: "Autour d'une ville",
@@ -2797,6 +2803,10 @@ export default {
       training_space: 'Espace entrainement',
       pan: 'Pan',
       speed_climbing: 'Vitesse'
+    },
+    gymTypes: {
+      private: 'Salle privée',
+      club: 'Club'
     },
     climbsContest: {
       sport_climbing: 'voies',

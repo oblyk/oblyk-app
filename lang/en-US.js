@@ -546,7 +546,13 @@ export default {
           intro: 'We have all the tools you need to find a climbing gym around your home, your holiday destination<br> or anywhere else in France and the world.',
           map: {
             title: 'Map of climbing gyms',
-            explain: 'Move freely on the map of all the climbing gyms we have.'
+            explain: 'Move freely on the map of all the climbing gyms we have.',
+            filter: {
+              btnTile: 'Filter climbing gym',
+              styleLabel: 'Sport climbing ? Boulder ? Fun ?',
+              gymType: 'Club ? Private ?',
+              withGuideBook: 'Gym with guide book'
+            }
           },
           aroundCity: {
             title: 'Around a city',
@@ -2792,6 +2798,10 @@ export default {
       training_space: 'Training space',
       pan: 'Pan',
       speed_climbing: 'Speed Climbing'
+    },
+    gymTypes: {
+      private: 'Private climbing gym',
+      club: 'Club'
     },
     climbsContest: {
       sport_climbing: 'routes',

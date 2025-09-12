@@ -5,9 +5,10 @@
       :class="options.rounded ? 'rounded-leaflet' : ''"
     >
       <div
-        v-if="magicCard"
+        v-if="magicCard || cragMapFilter || gymMapFilter"
         class="leaflet-map-search-card pa-2"
       >
+        <!-- CRAG MAP FILTER -->
         <div v-if="cragMapFilter" class="mb-1">
           <v-card
             rounded
@@ -24,12 +25,12 @@
                 {{ $t('common.pages.find.crags.map.filter.btnTile') }}
               </v-btn>
               <v-btn
-                v-if="haveFilter"
+                v-if="haveCragFilter"
                 outlined
                 small
                 color="red"
                 class="mr-1"
-                @click="resetFilter"
+                @click="resetFilter('crag')"
               >
                 <v-icon
                   left
@@ -45,7 +46,7 @@
               class="pa-2"
             >
               <v-select
-                v-model="filter.climbing_style"
+                v-model="cragFilter.climbing_style"
                 outlined
                 dense
                 hide-details
@@ -53,7 +54,7 @@
                 class="mb-2"
                 chips
                 clearable
-                :items="climbingStyles"
+                :items="climbingStyles.filter((style) => style.crag === true)"
               >
                 <template #selection="data">
                   <v-chip
@@ -77,7 +78,7 @@
                   class="pr-0"
                 >
                   <v-select
-                    v-model="filter.altitudeSwitch"
+                    v-model="cragFilter.altitudeSwitch"
                     outlined
                     hide-details
                     dense
@@ -87,7 +88,7 @@
                 </v-col>
                 <v-col>
                   <v-text-field
-                    v-model="filter.altitude"
+                    v-model="cragFilter.altitude"
                     outlined
                     hide-details
                     dense
@@ -107,7 +108,7 @@
               >
                 <v-col>
                   <v-checkbox
-                    v-model="filter.orientations"
+                    v-model="cragFilter.orientations"
                     class="mt-0"
                     :label="$t('models.orientations.east')"
                     hide-details
@@ -116,7 +117,7 @@
                 </v-col>
                 <v-col>
                   <v-checkbox
-                    v-model="filter.orientations"
+                    v-model="cragFilter.orientations"
                     class="mt-0"
                     :label="$t('models.orientations.north')"
                     hide-details
@@ -125,7 +126,7 @@
                 </v-col>
                 <v-col>
                   <v-checkbox
-                    v-model="filter.orientations"
+                    v-model="cragFilter.orientations"
                     class="mt-0"
                     :label="$t('models.orientations.west')"
                     hide-details
@@ -134,7 +135,7 @@
                 </v-col>
                 <v-col>
                   <v-checkbox
-                    v-model="filter.orientations"
+                    v-model="cragFilter.orientations"
                     class="mt-0"
                     :label="$t('models.orientations.south')"
                     hide-details
@@ -146,7 +147,7 @@
                 {{ gradeRangeLabel }}
               </p>
               <v-range-slider
-                v-model="filter.gradeRange"
+                v-model="cragFilter.gradeRange"
                 min="0"
                 max="52"
                 step="2"
@@ -166,6 +167,85 @@
             </div>
           </v-card>
         </div>
+
+        <!-- GYM MAP FILTER -->
+        <div v-if="gymMapFilter" class="mb-1">
+          <v-card
+            rounded
+            :loading="loadingFilter"
+          >
+            <div>
+              <v-btn
+                text
+                @click="showMapFilter = !showMapFilter"
+              >
+                <v-icon left class="vertical-align-top">
+                  {{ mdiFilter }}
+                </v-icon>
+                {{ $t('common.pages.find.gyms.map.filter.btnTile') }}
+              </v-btn>
+              <v-btn
+                v-if="haveGymFilter"
+                outlined
+                small
+                color="red"
+                class="mr-1"
+                @click="resetFilter('gym')"
+              >
+                <v-icon
+                  left
+                  small
+                >
+                  {{ mdiFilterOff }}
+                </v-icon>
+                {{ $t('actions.reset') }}
+              </v-btn>
+            </div>
+            <div
+              v-if="showMapFilter"
+              class="pa-2"
+            >
+              <v-select
+                v-model="gymFilter.climbing_style"
+                outlined
+                dense
+                hide-details
+                :label="$t('common.pages.find.gyms.map.filter.styleLabel')"
+                class="mb-2"
+                clearable
+                :items="climbingStyles.filter((style) => style.gym === true)"
+              />
+              <v-select
+                v-model="gymFilter.gym_type"
+                outlined
+                dense
+                hide-details
+                :label="$t('common.pages.find.gyms.map.filter.gymType')"
+                class="mb-2"
+                clearable
+                :items="gymTypes"
+              />
+              <v-checkbox
+                v-model="gymFilter.with_guide_book"
+                class="mt-0"
+                :label="$t('common.pages.find.gyms.map.filter.withGuideBook')"
+                hide-details
+              />
+              <div class="text-center">
+                <v-btn
+                  icon
+                  @click="showMapFilter = false"
+                >
+                  <v-icon>
+                    {{ mdiChevronUp }}
+                  </v-icon>
+                </v-btn>
+              </div>
+            </div>
+          </v-card>
+        </div>
+
+        <!-- MAGIC CARD -->
         <div v-if="magicCard">
           <small
             v-if="!magicPlace"
@@ -428,6 +508,8 @@
           </v-card>
         </div>
       </div>
+
+      <!-- SUN CONTROLLER -->
       <v-sheet
         v-if="magicCard && sunController"
         class="leaflet-sun-time-line pa-1 border-top"
@@ -463,6 +545,8 @@
           />
         </div>
       </v-sheet>
+
+      <!-- MAP -->
       <l-map
         ref="leafletMap"
         :zoom="zoom"
@@ -642,7 +726,8 @@ import UserApi from '~/services/oblyk-api/UserApi'
 import OsmNominatim from '~/services/osm-nominatim'
 import RockBarApi from '~/services/oblyk-api/RockBarApi'
 import GuideBookPaperApi from '~/services/oblyk-api/GuideBookPaperApi'
-const leafletMapFilterKey = 'leafletMapFilter'
+const leafletMapCragFilterKey = 'leafletMapCragFilter'
+const leafletMapGymFilterKey = 'leafletMapGymFilter'
 
 export default {
   name: 'LeafletMap',
@@ -725,6 +810,10 @@ export default {
       type: Boolean,
       default: false
     },
+    gymMapFilter: {
+      type: Boolean,
+      default: false
+    },
     filterCallback: {
       type: Function,
       default: null
@@ -797,21 +886,31 @@ export default {
           iconUrl: '/markers/sunset-marker.png', iconSize: [34, 34], iconAnchor: [17, 17], popupAnchor: [0, -17]
         }
       ),
-      filter: {
+      cragFilter: {
         climbing_style: null,
         gradeRange: [0, 52],
         orientations: [],
         altitudeSwitch: null,
         altitude: null
       },
+      gymFilter: {
+        climbing_style: null,
+        gym_type: null,
+        with_guide_book: false
+      },
       loadingFilter: false,
       climbingStyles: [
-        { value: 'sport_climbing', text: this.$t('models.climbs.sport_climbing') },
-        { value: 'bouldering', text: this.$t('models.climbs.bouldering') },
-        { value: 'multi_pitch', text: this.$t('models.climbs.multi_pitch') },
-        { value: 'trad_climbing', text: this.$t('models.climbs.trad_climbing') },
-        { value: 'deep_water', text: this.$t('models.climbs.deep_water') },
-        { value: 'via_ferrata', text: this.$t('models.climbs.via_ferrata') }
+        { value: 'sport_climbing', text: this.$t('models.climbs.sport_climbing'), gym: true, crag: true },
+        { value: 'bouldering', text: this.$t('models.climbs.bouldering'), gym: true, crag: true },
+        { value: 'multi_pitch', text: this.$t('models.climbs.multi_pitch'), gym: false, crag: true },
+        { value: 'trad_climbing', text: this.$t('models.climbs.trad_climbing'), gym: false, crag: true },
+        { value: 'deep_water', text: this.$t('models.climbs.deep_water'), gym: false, crag: true },
+        { value: 'via_ferrata', text: this.$t('models.climbs.via_ferrata'), gym: false, crag: true },
+        { value: 'fun_climbing', text: this.$t('models.climbs.fun_climbing'), gym: true, crag: false }
+      ],
+      gymTypes: [
+        { value: 'club', text: this.$t('models.gymTypes.club') },
+        { value: 'private', text: this.$t('models.gymTypes.private') }
       ],
       moreOrLess: [
         { value: 'above', text: 'Au dessus de' },
@@ -1023,9 +1122,9 @@ export default {
     },
 
     gradeRangeLabel () {
-      const min = this.filter.gradeRange[0]
-      const max = this.filter.gradeRange[1]
-      const object = this.filter.climbing_style !== null ? this.$t(`models.climbs.${this.filter.climbing_style}`).toLowerCase() : 'ligne'
+      const min = this.cragFilter.gradeRange[0]
+      const max = this.cragFilter.gradeRange[1]
+      const object = this.cragFilter.climbing_style !== null ? this.$t(`models.climbs.${this.cragFilter.climbing_style}`).toLowerCase() : 'ligne'
       if (min === 0 && max === 52) {
         return this.$t('common.pages.find.crags.map.filter.whatDifficulty')
       } else if (min > 0 && max === 52) {
@@ -1037,11 +1136,18 @@ export default {
       }
     },
 
-    haveFilter () {
-      if (this.filter.altitude !== null) { return true }
-      if (this.filter.climbing_style !== null) { return true }
-      if (this.filter.gradeRange[0] !== 0 || this.filter.gradeRange[1] !== 52) { return true }
-      if (this.filter.orientations.length !== 0) { return true }
+    haveCragFilter () {
+      if (this.cragFilter.altitude !== null) { return true }
+      if (this.cragFilter.climbing_style !== null) { return true }
+      if (this.cragFilter.gradeRange[0] !== 0 || this.cragFilter.gradeRange[1] !== 52) { return true }
+      if (this.cragFilter.orientations.length !== 0) { return true }
+      return false
+    },
+
+    haveGymFilter () {
+      if (this.gymFilter.climbing_style !== null) { return true }
+      if (this.gymFilter.gym_type !== null) { return true }
+      if (this.gymFilter.with_guide_book !== false) { return true }
       return false
     }
   },
@@ -1064,20 +1170,42 @@ export default {
       this.loadingFilter = false
     },
 
-    filter: {
+    cragFilter: {
       handler () {
-        this.submitFilter()
+        this.submitCragFilter()
+      },
+      deep: true
+    },
+
+    gymFilter: {
+      handler () {
+        this.submitGymFilter()
       },
       deep: true
     }
   },
 
   mounted () {
-    if (this.filterCallback && localStorage.getItem(leafletMapFilterKey)) {
-      try {
-        this.filter = JSON.parse(localStorage.getItem(leafletMapFilterKey))
-      } catch {
-        localStorage.removeItem(leafletMapFilterKey)
+    if (this.filterCallback) {
+      let callbackSend = false
+      if (this.cragMapFilter && localStorage.getItem(leafletMapCragFilterKey)) {
+        try {
+          this.cragFilter = JSON.parse(localStorage.getItem(leafletMapCragFilterKey))
+          callbackSend = true
+        } catch {
+          localStorage.removeItem(leafletMapCragFilterKey)
+        }
+      }
+      if (this.gymMapFilter && localStorage.getItem(leafletMapGymFilterKey)) {
+        try {
+          this.gymFilter = JSON.parse(localStorage.getItem(leafletMapGymFilterKey))
+          callbackSend = true
+        } catch {
+          localStorage.removeItem(leafletMapGymFilterKey)
+        }
+      }
+      if (callbackSend === false) {
+        this.filterCallback()
       }
     }
     this.$root.$on('fitMapOnGeoJsonBounds', () => {
@@ -1344,12 +1472,12 @@ export default {
     },
 
     getAdditionalFeatures (cragIds) {
-      const unfetchCragIds = cragIds.filter(cragId => !this.fetchCragIds.includes(cragId))
-      this.fetchCragIds = this.fetchCragIds.concat(unfetchCragIds)
-      if (unfetchCragIds.length === 0) { return false }
+      const unFetchCragIds = cragIds.filter(cragId => !this.fetchCragIds.includes(cragId))
+      this.fetchCragIds = this.fetchCragIds.concat(unFetchCragIds)
+      if (unFetchCragIds.length === 0) { return false }
 
       new CragApi(this.$axios, this.$auth)
-        .additionalGeoJsonFeatures(unfetchCragIds)
+        .additionalGeoJsonFeatures(unFetchCragIds)
         .then((resp) => {
           this.additionalGeoJson.features = this.additionalGeoJson.features.concat(resp.data.features)
           this.createSunnyRockPart()
@@ -1424,21 +1552,39 @@ export default {
         })
     },
 
-    submitFilter () {
+    submitCragFilter () {
       clearTimeout(this.timeToFilter)
       this.loadingFilter = true
       this.timeToFilter = setTimeout(() => {
-        this.filterCallback(this.filter)
-        this.clusteredMarker = !this.haveFilter
-        localStorage.setItem(leafletMapFilterKey, JSON.stringify(this.filter))
+        this.filterCallback(this.cragFilter)
+        this.clusteredMarker = !this.haveCragFilter
+        localStorage.setItem(leafletMapCragFilterKey, JSON.stringify(this.cragFilter))
       }, 800)
     },
 
-    resetFilter () {
-      this.filter.altitude = null
-      this.filter.climbing_style = null
-      this.filter.gradeRange = [0, 52]
-      this.filter.orientations = []
+    submitGymFilter () {
+      clearTimeout(this.timeToFilter)
+      this.loadingFilter = true
+      this.timeToFilter = setTimeout(() => {
+        this.filterCallback(this.gymFilter)
+        localStorage.setItem(leafletMapGymFilterKey, JSON.stringify(this.gymFilter))
+      }, 800)
+    },
+
+    resetFilter (filterType) {
+      if (filterType === 'crag') {
+        this.cragFilter.altitude = null
+        this.cragFilter.climbing_style = null
+        this.cragFilter.gradeRange = [0, 52]
+        this.cragFilter.orientations = []
+      }
+
+      if (filterType === 'gym') {
+        this.gymFilter.climbing_style = null
+        this.gymFilter.gym_type = null
+        this.gymFilter.with_guide_book = false
+      }
+
       this.showMapFilter = false
     }
   }
