@@ -16,7 +16,7 @@
           :longitude-force="longitude"
           :zoom-force="zoom"
           :gym-map-filter="true"
-          :clustered="false"
+          :clustered="true"
           :filter-callback="getGeoJson"
         />
       </client-only>

@@ -2,7 +2,7 @@
   <client-only>
     <div
       class="leaflet-map"
-      :class="options.rounded ? 'rounded-leaflet' : ''"
+      :class="additionalClass"
     >
       <div
         v-if="magicCard || cragMapFilter || gymMapFilter"
@@ -595,7 +595,7 @@
         <!-- GeoJson & Marker cluster if clustered -->
         <v-marker-cluster
           v-if="clusteredMarker"
-          :options="{ disableClusteringAtZoom: 12 }"
+          :options="{ disableClusteringAtZoom: 11, showCoverageOnHover: false }"
         >
           <l-geo-json
             :key="`cluster-geo-json-${rerenderGeoJsonKey}`"
@@ -1149,6 +1149,17 @@ export default {
       if (this.gymFilter.gym_type !== null) { return true }
       if (this.gymFilter.with_guide_book !== false) { return true }
       return false
+    },
+
+    additionalClass () {
+      const addClasses = []
+      if (this.mapStyle === 'indoor') {
+        addClasses.push('cluster-indoor')
+      }
+      if (this.options.rounded) {
+        addClasses.push('rounded-leaflet')
+      }
+      return addClasses.join(' ')
     }
   },
 
@@ -1654,6 +1665,22 @@ export default {
         animation-iteration-count: infinite;
         animation-direction: normal;
         animation-play-state: running;
+      }
+    }
+  }
+  &.cluster-indoor {
+    .marker-cluster {
+      &.marker-cluster-small {
+        background-color: rgba(116, 58, 213, 0.5);
+        div { background-color: rgba(116, 58, 213, 0.5); }
+      }
+      &.marker-cluster-medium {
+        background-color: rgb(164, 58, 185, 0.5);
+        div { background-color: rgb(164, 58, 185, 0.5); }
+      }
+      &.marker-cluster-large {
+        background-color: rgb(213, 58, 157, 0.5);
+        div { background-color: rgb(213, 58, 157, 0.5); }
       }
     }
   }

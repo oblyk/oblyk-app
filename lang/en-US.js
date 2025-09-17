@@ -548,7 +548,7 @@ export default {
             title: 'Map of climbing gyms',
             explain: 'Move freely on the map of all the climbing gyms we have.',
             filter: {
-              btnTile: 'Filter climbing gym',
+              btnTile: 'Filter map',
               styleLabel: 'Sport climbing ? Boulder ? Fun ?',
               gymType: 'Club ? Private ?',
               withGuideBook: 'Gym with guide book'

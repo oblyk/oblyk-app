@@ -549,7 +549,7 @@ export default {
             title: "Carte des salles d'escalade",
             explain: "Déplacez-vous librement sur la carte de toutes les salles d'escalade que nous avons.",
             filter: {
-              btnTile: 'Filter les salles',
+              btnTile: 'Filter la carte',
               styleLabel: 'Voie ? Bloc ? Fun ?',
               gymType: 'Club ? Salle privée ?',
               withGuideBook: 'Salle avec un topo'
