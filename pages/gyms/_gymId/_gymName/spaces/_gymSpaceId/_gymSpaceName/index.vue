@@ -207,7 +207,7 @@ export default {
       }
     },
 
-    '$route' () {
+    '$route.params.gymSpaceId' () {
       this.getGymSpace()
     }
   },
