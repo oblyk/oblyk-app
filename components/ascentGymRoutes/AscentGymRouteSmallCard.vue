@@ -106,9 +106,9 @@ export default {
       if (confirm(this.$t('actions.areYouSur'))) {
         new AscentGymRouteApi(this.$axios, this.$auth)
           .delete(this.ascentGymRoute.id)
-          .then(() => {
+          .then((resp) => {
             this.$localforage.gymRoutes.removeItem(this.gymRoute.id)
-            this.$auth.fetchUser()
+            this.$store.dispatch('ascentsPusher/updateGymAscents', resp.data)
           })
           .catch((err) => {
             this.$root.$emit('alertFromApiError', err, 'ascentGymRoute')

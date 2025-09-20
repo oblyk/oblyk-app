@@ -62,6 +62,7 @@ export default {
   data () {
     return {
       ascentInLogBook: null,
+      myAscents: this.gymRoute?.my_ascents,
 
       mdiCropSquare,
       mdiCheckboxMarkedCircle,
@@ -74,9 +75,9 @@ export default {
   },
 
   computed: {
-    gymRouteAscents () {
+    storeAscents () {
       if (this.gymRoute) {
-        return this.$auth.user.ascent_gym_routes
+        return this.$store.getters['ascentsPusher/gymRoutesAscents']
       } else {
         return null
       }
@@ -84,30 +85,28 @@ export default {
   },
 
   watch: {
-    gymRouteAscents () {
-      if (this.gymRoute) {
-        this.findAscentInLogBook()
-      }
+    storeAscents: {
+      handler () {
+        const storeAscents = this.$store.getters['ascentsPusher/gymRoutesAscents']
+        if (storeAscents && storeAscents[this.gymRoute.id]) {
+          this.myAscents = storeAscents[this.gymRoute.id]
+          this.findAscentInLogBook()
+        }
+      },
+      deep: true
     }
   },
 
   created () {
-    if (this.gymRoute) {
-      this.findAscentInLogBook()
-    }
+    this.findAscentInLogBook()
   },
 
   methods: {
     findAscentInLogBook () {
       if (this.ascent) { return }
-      if (!this.gymRouteAscents || this.gymRouteAscents.length === 0) { return }
+      if (!this.myAscents) { return }
 
-      const statusOrder = ['onsight', 'flash', 'red_point', 'repetition', 'sent', 'project', 'tick_list']
-      const ascents = this.gymRouteAscents.filter(gymRouteAscent => gymRouteAscent.gym_route_id === this.gymRoute.id)
-
-      if (!ascents || ascents.length === 0) { return }
-
-      this.ascentInLogBook = ascents.sort((a, b) => statusOrder.indexOf(a.ascent_status) - statusOrder.indexOf(b.ascent_status))[0]
+      this.ascentInLogBook = this.myAscents.length === 0 ? null : this.myAscents[0]
     },
 
     ascentStatus () {

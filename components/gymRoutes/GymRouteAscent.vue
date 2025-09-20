@@ -52,14 +52,20 @@ export default {
   },
 
   computed: {
-    gymRouteAscents () {
-      return this.$auth.user.ascent_gym_routes
+    storeAscents () {
+      return this.$store.getters['ascentsPusher/gymRoutesAscents']
     }
   },
 
   watch: {
-    gymRouteAscents () {
-      this.getAscents()
+    storeAscents: {
+      handler () {
+        const storeAscents = this.$store.getters['ascentsPusher/gymRoutesAscents']
+        if (storeAscents && storeAscents[this.gymRoute.id]) {
+          this.getAscents(true)
+        }
+      },
+      deep: true
     }
   },
 
@@ -68,9 +74,8 @@ export default {
   },
 
   methods: {
-    getAscents () {
-      const inLogbookAscents = this.gymRouteAscents.filter(gymRouteAscent => gymRouteAscent.gym_route_id === this.gymRoute.id)
-      if (!inLogbookAscents || inLogbookAscents.length === 0) { return }
+    getAscents (force = false) {
+      if (!force && (!this.gymRoute.my_ascents || this.gymRoute.my_ascents.length === 0)) { return }
 
       this.loadingAscents = true
       new AscentGymRouteApi(this.$axios, this.$auth)

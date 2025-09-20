@@ -182,15 +182,14 @@ export default {
       const promise = (this.isEditingForm()) ? new AscentGymRouteApi(this.$axios, this.$auth).update(this.data) : new AscentGymRouteApi(this.$axios, this.$auth).create(this.data)
       this.$localforage.gymRoutes.removeItem(this.data.gym_route_id)
       promise
-        .then(() => {
+        .then((resp) => {
           localStorage.setItem('defaultAscentGymRouteRopingStatus', this.data.roping_status)
-          this.$auth.fetchUser().then(() => {
-            if (this.callback) {
-              this.callback()
-            } else {
-              this.$router.push(this.gymRoute.path)
-            }
-          })
+          this.$store.dispatch('ascentsPusher/updateGymAscents', resp.data)
+          if (this.callback) {
+            this.callback()
+          } else {
+            this.$router.push(this.gymRoute.path)
+          }
         })
         .catch((err) => {
           this.$root.$emit('alertFromApiError', err, 'ascentGymRoute')
