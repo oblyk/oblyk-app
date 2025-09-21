@@ -115,9 +115,9 @@ export default {
     },
 
     ropingStatus () {
-      if (this.ascent && (this.ascent.gym_route.climbing_type !== 'sport_climbing' || this.ascent.ascent_status === 'project')) {
+      if (this.ascent && (this.ascent.gym_route?.climbing_type !== 'sport_climbing' || this.ascent.ascent_status === 'project')) {
         return null
-      } else if (this.gymRoute && (this.gymRoute.climbing_type !== 'sport_climbing' || this.ascentStatus() === 'project')) {
+      } else if (this.gymRoute && (this.gymRoute?.climbing_type !== 'sport_climbing' || this.ascentStatus() === 'project')) {
         return null
       }
       return this.ascent?.roping_status || this.ascentInLogBook?.roping_status
