@@ -61,7 +61,7 @@ export default {
 
   computed: {
     gymRouteAscents () {
-      return this.$auth.loggedIn ? this.$auth.user.ascent_gym_routes || [] : []
+      return this.$auth.loggedIn ? this.gymRoute.my_ascents || [] : []
     },
 
     inMyLogBook () {
