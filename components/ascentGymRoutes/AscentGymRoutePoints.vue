@@ -7,25 +7,14 @@
         class="px-0"
       >
         <v-list-item-avatar
-          v-if="ascent.gym_route.attachments.thumbnail.attached"
           class="my-0"
-          height="60"
-          width="60"
-          pill
+          size="72"
+          rounded
         >
-          <v-img
-            height="60"
-            width="60"
-            :src="imageVariant(ascent.gym_route.attachments.thumbnail, { fit: 'crop', height: 100, width: 100 })"
-          />
+          <gym-route-avatar :gym-route="ascent.gym_route" />
         </v-list-item-avatar>
         <v-list-item-content>
           <div class="align-self-center d-flex">
-            <gym-route-tag-and-hold
-              :gym-route="ascent.gym_route"
-              :size="35"
-              style="margin-top: 5px; max-width: 35px"
-            />
             <div class="ml-1" style="padding-top: 1px">
               <div>
                 <strong
@@ -78,18 +67,17 @@
 <script>
 import { mdiCheckAll } from '@mdi/js'
 import { LoadingMoreHelpers } from '~/mixins/LoadingMoreHelpers'
-import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
+import { DateHelpers } from '~/mixins/DateHelpers'
 import AscentGymRouteApi from '~/services/oblyk-api/AscentGymRouteApi'
 import AscentGymRoute from '~/models/AscentGymRoute'
-import GymRouteTagAndHold from '~/components/gymRoutes/partial/GymRouteTagAndHold.vue'
-import AscentGymRouteIcon from '~/components/ascentGymRoutes/AscentGymRouteIcon.vue'
-import LoadingMore from '~/components/layouts/LoadingMore.vue'
-import { DateHelpers } from '~/mixins/DateHelpers'
+import AscentGymRouteIcon from '~/components/ascentGymRoutes/AscentGymRouteIcon'
+import LoadingMore from '~/components/layouts/LoadingMore'
+import GymRouteAvatar from '~/components/gymRoutes/GymRouteAvatar'
 
 export default {
   name: 'AscentGymRoutePoints',
-  components: { LoadingMore, AscentGymRouteIcon, GymRouteTagAndHold },
-  mixins: [LoadingMoreHelpers, ImageVariantHelpers, DateHelpers],
+  components: { GymRouteAvatar, LoadingMore, AscentGymRouteIcon },
+  mixins: [LoadingMoreHelpers, DateHelpers],
   props: {
     climbingType: {
       type: String,

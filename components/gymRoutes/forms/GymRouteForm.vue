@@ -202,7 +202,6 @@
             :multiple="true"
             :colors-limit="2"
             :prepend-inner-icon="mdiTag"
-            :disable-all-color="true"
           />
 
           <!-- Hold colors -->
@@ -212,7 +211,7 @@
             :label="$t('models.gymRoute.hold_colors')"
             icon="Circle"
             :multiple="true"
-            :prepend-inner-icon="mdiPalette"
+            :prepend-inner-icon="mdiChartBubble"
             :colors-limit="2"
           />
         </div>
@@ -463,20 +462,17 @@ import {
   mdiChevronRight,
   mdiPlus,
   mdiMinus,
-  mdiBookmarkMultipleOutline,
   mdiChartBubble,
   mdiCameraPlus,
   mdiArrowLeft,
   mdiArrowRightBoldBoxOutline,
   mdiSourceBranchPlus,
-  mdiCircle,
   mdiCreation,
   mdiOrderBoolDescending,
   mdiFormatLetterCase,
   mdiExponent,
   mdiArrowExpandVertical,
   mdiPaletteSwatchOutline,
-  mdiPalette,
   mdiTag,
   mdiScrewdriver,
   mdiCalendarToday
@@ -584,20 +580,17 @@ export default {
       mdiChevronRight,
       mdiPlus,
       mdiMinus,
-      mdiBookmarkMultipleOutline,
       mdiChartBubble,
       mdiCameraPlus,
       mdiArrowLeft,
       mdiArrowRightBoldBoxOutline,
       mdiSourceBranchPlus,
-      mdiCircle,
       mdiCreation,
       mdiOrderBoolDescending,
       mdiFormatLetterCase,
       mdiExponent,
       mdiArrowExpandVertical,
       mdiPaletteSwatchOutline,
-      mdiPalette,
       mdiTag,
       mdiScrewdriver,
       mdiCalendarToday

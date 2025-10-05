@@ -1,30 +1,18 @@
 <template>
   <v-list-item
     v-model="activeRoute"
-    color="primary"
     class="rounded-list-item gym-route-list-item pl-1"
     :class="itemListClass"
     @click="openGymRoute"
     @mouseenter="onMouseEnter"
   >
-    <v-list-item-avatar
-      v-if="gymRoute.attachments.thumbnail.attached"
-      class="my-0"
-      height="72"
-      width="72"
-      rounded
-    >
-      <v-img
-        height="72"
-        width="72"
-        :src="imageVariant(gymRoute.attachments.thumbnail, { fit: 'crop', height: 100, width: 100 })"
-      />
+    <v-list-item-avatar rounded size="72">
+      <gym-route-avatar :gym-route="gymRoute" />
     </v-list-item-avatar>
 
     <v-list-item-content>
       <v-list-item-title class="d-flex">
         <div class="mr-auto text-truncate">
-          <gym-route-tag-and-hold :gym-route="gymRoute" />
           {{ gymRoute.name }}
         </div>
         <div class="pt-1">
@@ -110,17 +98,17 @@
 
 <script>
 import { mdiCheckAll, mdiHeart, mdiComment, mdiPlayBox } from '@mdi/js'
-import GymRouteTagAndHold from '~/components/gymRoutes/partial/GymRouteTagAndHold'
-import GymRouteGradeAndPoint from '~/components/gymRoutes/partial/GymRouteGradeAndPoint'
 import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
+import GymRouteGradeAndPoint from '~/components/gymRoutes/partial/GymRouteGradeAndPoint'
 import AscentGymRouteIcon from '~/components/ascentGymRoutes/AscentGymRouteIcon'
+import GymRouteAvatar from '~/components/gymRoutes/GymRouteAvatar'
 
 export default {
   name: 'GymRouteListItem',
   components: {
+    GymRouteAvatar,
     AscentGymRouteIcon,
-    GymRouteGradeAndPoint,
-    GymRouteTagAndHold
+    GymRouteGradeAndPoint
   },
   mixins: [ImageVariantHelpers],
 

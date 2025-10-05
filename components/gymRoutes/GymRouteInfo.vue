@@ -9,7 +9,7 @@
 
     <!-- Title -->
     <div class="d-flex align-center">
-      <gym-route-tag-and-hold
+      <gym-route-tag-and-hold-v2
         :size="40"
         :gym-route="route"
       />
@@ -377,7 +377,6 @@ import {
 import { DateHelpers } from '@/mixins/DateHelpers'
 import { GymRolesHelpers } from '@/mixins/GymRolesHelpers'
 import GymRouteAscentsDialog from '@/components/gymRoutes/GymRouteAscentsDialog'
-import GymRouteTagAndHold from '@/components/gymRoutes/partial/GymRouteTagAndHold'
 import GymRouteGradeAndPoint from '@/components/gymRoutes/partial/GymRouteGradeAndPoint'
 import GymRouteAscent from '@/components/gymRoutes/GymRouteAscent'
 import DescriptionLine from '@/components/ui/DescriptionLine'
@@ -389,6 +388,7 @@ import GymRoutePicture from '@/components/gymRoutes/GymRoutePicture'
 import GymCreateYourAccount from '~/components/gyms/GymCreateYourAccount'
 import GymRouteApi from '~/services/oblyk-api/GymRouteApi'
 import GymRoute from '~/models/GymRoute'
+import GymRouteTagAndHoldV2 from '~/components/gymRoutes/partial/GymRouteTagAndHoldV2'
 
 const GymRouteVideoList = () => import('@/components/gymRoutes/GymRouteVideoList')
 const CommentList = () => import('@/components/comments/CommentList')
@@ -397,6 +397,7 @@ const MarkdownText = () => import('@/components/ui/MarkdownText')
 export default {
   name: 'GymRouteInfo',
   components: {
+    GymRouteTagAndHoldV2,
     GymCreateYourAccount,
     GymRouteVideoList,
     CommentList,
@@ -409,7 +410,6 @@ export default {
     MarkdownText,
     GymRouteAscent,
     GymRouteGradeAndPoint,
-    GymRouteTagAndHold,
     GymRouteAscentsDialog
   },
   mixins: [DateHelpers, GymRolesHelpers],
