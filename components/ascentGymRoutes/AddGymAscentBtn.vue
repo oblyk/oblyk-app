@@ -26,6 +26,7 @@
       </v-card-title>
       <v-card-text class="px-2 pb-2">
         <ascent-gym-route-form
+          :key="`ascent-gym-route-form-key-${ascentGymRouteFormKey}`"
           :gym-route="gymRoute"
           submit-methode="post"
           :callback="successCallback"
@@ -54,31 +55,52 @@ export default {
   data () {
     return {
       ascentModal: false,
+      inMyLogBook: false,
+      ascentGymRouteFormKey: 0,
+      myAscents: this.gymRoute?.my_ascents || [],
 
       mdiPlusBoxOutline
     }
   },
 
   computed: {
-    gymRouteAscents () {
-      return this.$auth.loggedIn ? this.gymRoute.my_ascents || [] : []
-    },
-
-    inMyLogBook () {
-      let inMyLogBook = false
-      for (const ascent of this.gymRouteAscents) {
-        if (ascent.gym_route_id === this.gymRoute.id && ascent.ascent_status !== 'project') {
-          inMyLogBook = true
-          break
-        }
-      }
-      return inMyLogBook
+    storeAscents () {
+      return this.$store.getters['ascentsPusher/gymRoutesAscents']
     }
+  },
+
+  watch: {
+    storeAscents: {
+      handler () {
+        const storeAscents = this.$store.getters['ascentsPusher/gymRoutesAscents']
+        if (storeAscents && storeAscents[this.gymRoute.id]) {
+          this.myAscents = storeAscents[this.gymRoute.id]
+          this.setInMyLogBook()
+        }
+      },
+      deep: true
+    }
+  },
+
+  mounted () {
+    this.setInMyLogBook()
   },
 
   methods: {
     successCallback () {
+      this.ascentGymRouteFormKey += 1
       this.ascentModal = false
+    },
+
+    setInMyLogBook () {
+      for (const ascent of this.myAscents || []) {
+        if (ascent.gym_route_id === this.gymRoute.id && ascent.ascent_status !== 'project') {
+          this.inMyLogBook = true
+          return
+        }
+      }
+
+      this.inMyLogBook = false
     }
   }
 }
