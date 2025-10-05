@@ -1049,6 +1049,7 @@ export default {
       mustBeLogin: '<span class="font-weight-bold">Connectez-vous</span> ou <span class="font-weight-bold">créez-vous un compte</span> pour <span class="font-weight-bold">voir le nom des voies</span> et bien plus !',
       tips: '<strong>Tips</strong> : utiliser <kbd>tab</kbd> pour naviguer, <kbd>espace</kbd> pour ouvrir les listes',
       similarRoute: 'Une ligne ressemble | {count} lignes ressemblent',
+      newRouteWarning: "Avant d'ajouter une nouvelle voie, assurez-vous que celle-ci soit prête à être public. Par exemple : être présente dans un topo officiel, ou que vous ayez l'autorisation de l'ouvreur, ouvreuse.",
       sort: {
         difficulty_desc: 'Du plus dur au plus facile',
         difficulty_asc: 'Du plus facile au plus dur',
@@ -1652,7 +1653,8 @@ export default {
       photoOf: 'Photo de',
       postedBy: 'Postée par',
       countInfos: 'Une photo postée | %{count} photos postées',
-      noPhoto: "Il n'y a pas de photo ici pour l'instant"
+      noPhoto: "Il n'y a pas de photo ici pour l'instant",
+      addWarning: '<u>Note :</u> Les photos ou captures de topo ne sont pas autorisées.<br>Merci de votre compréhension.'
     },
     video: {
       countInfos: 'Une video postée | %{count} vidéos postées',

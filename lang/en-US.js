@@ -1048,6 +1048,7 @@ export default {
       mustBeLogin: '<span class="font-weight-bold">Log in</span> or <span class="font-weight-bold">create an account</span> to <span class="font-weight-bold">see route names</span> and much more!',
       tips: '<strong>Tips</strong>: use <kbd>tab</kbd> for navigate, <kbd>espace</kbd> for open lists',
       similarRoute: 'One route looks like | {count} routes looks like',
+      newRouteWarning: 'Before adding a new route, ensure that it is ready to be made public. For example: it should be included in an official guidebook, or you should have the permission of the person who opened it.',
       sort: {
         difficulty_desc: 'From the hardest to the easiest',
         difficulty_asc: 'From the easiest to the hardest',
@@ -1651,7 +1652,8 @@ export default {
       photoOf: 'Photo of',
       postedBy: 'Posted by',
       countInfos: 'One photo posted | %{count} photos posted',
-      noPhoto: 'There is no picture here for the moment'
+      noPhoto: 'There is no picture here for the moment',
+      addWarning: '<u>Note :</u> Photographs or screenshots of the guidebook are not permitted.<br>Thank you for your understanding.'
     },
     video: {
       countInfos: 'One video posted | %{count} videos posted',

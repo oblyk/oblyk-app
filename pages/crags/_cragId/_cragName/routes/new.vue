@@ -5,6 +5,9 @@
         <h2 class="mb-4">
           {{ $t('components.cragRoute.new') }}
         </h2>
+        <v-alert color="blue" text>
+          {{ $t('components.cragRoute.newRouteWarning') }}
+        </v-alert>
         <crag-route-form
           :crag="crag"
           :crag-sector="cragSector"
