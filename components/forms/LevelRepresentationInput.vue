@@ -13,7 +13,7 @@
           <div class="pr-4 d-flex flex-column align-content-center">
             <v-img
               contain
-              src="/svg/level_representations/hold.svg"
+              src="/svg/level_representations/v2/hold.svg"
               height="48"
               width="48"
             />
@@ -35,7 +35,7 @@
           <div class="pr-4 d-flex flex-column align-content-center">
             <v-img
               contain
-              src="/svg/level_representations/tag.svg"
+              src="/svg/level_representations/v2/tag.svg"
               height="48"
               width="48"
             />
@@ -57,7 +57,7 @@
           <div class="pr-4 d-flex flex-column align-content-center">
             <v-img
               contain
-              src="/svg/level_representations/hold_and_tag.svg"
+              src="/svg/level_representations/v2/hold_and_tag.svg"
               height="48"
               width="48"
             />
