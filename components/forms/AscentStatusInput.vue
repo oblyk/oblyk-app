@@ -6,7 +6,7 @@
     >
       <fieldset class="full-width custom-fieldset border rounded mt-n1 pb-0 px-2">
         <legend class="v-label custom-fieldset-label">
-          {{ $t('components.input.ascentStatus') }}
+          {{ $t(labelKey) }}
         </legend>
         <div>
           <v-chip-group
@@ -142,6 +142,10 @@ export default {
     required: { // required input of the form and display the red * on top of the component
       type: Boolean,
       default: true
+    },
+    labelKey: {
+      type: String,
+      default: 'components.input.ascentStatus'
     }
   },
 

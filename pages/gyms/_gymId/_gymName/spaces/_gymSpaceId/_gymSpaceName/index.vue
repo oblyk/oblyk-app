@@ -290,7 +290,7 @@ export default {
   position: relative;
   width: 100%;
   &.--desktop-interface { height: calc(100vh - 128px); }
-  &.--mobile-interface { height: calc(100vh - 43px); }
+  //&.--mobile-interface { height: calc(100vh - 43px); }
 
   .gym-space-left-side {
     position: relative;

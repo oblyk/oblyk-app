@@ -38,6 +38,12 @@ export default {
     }
   },
 
+  data () {
+    return {
+      URLBackTo: null
+    }
+  },
+
   computed: {
     headerLinks () {
       const links = []
@@ -84,7 +90,17 @@ export default {
 
     backTo () {
       const likeHubPath = this.$route.path.search(`${this.gym.path}/spaces`) === 0
-      return this.$store.getters['oblykEnvironment/getPreviousHubs'](this.$route.path, this.gym.path, likeHubPath)
+      return this.URLBackTo || this.$store.getters['oblykEnvironment/getPreviousHubs'](this.$route.path, this.gym.path, likeHubPath)
+    }
+  },
+
+  mounted () {
+    const urlParams = new URLSearchParams(window.location.search)
+    this.URLBackTo = urlParams.get('back_to')
+    if (this.URLBackTo) {
+      const url = new URL(window.location.href)
+      url.searchParams.delete('back_to')
+      window.history.replaceState({}, '', url.toString())
     }
   }
 }

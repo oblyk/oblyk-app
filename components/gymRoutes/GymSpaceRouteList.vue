@@ -1,7 +1,21 @@
 <template>
   <div>
     <!-- Sort sector select -->
-    <div class="d-flex mb-2">
+    <v-sheet
+      class="d-flex mb-2 py-1 mx-n3 px-3"
+      style="position: sticky; z-index: 1"
+      :style="$vuetify.breakpoint.mobile ? 'top: 64px' : 'top: 0px'"
+    >
+      <v-btn
+        icon
+        class="mr-1"
+        :color="multipleSelection ? '#743ad5' : null"
+        @click="switchMultiSelection()"
+      >
+        <v-icon>
+          {{ mdiCheckboxMultipleMarkedOutline }}
+        </v-icon>
+      </v-btn>
       <gym-space-route-sort
         v-model="sort"
         class="flex-grow-1"
@@ -24,7 +38,7 @@
           </v-icon>
         </v-btn>
       </div>
-    </div>
+    </v-sheet>
 
     <!-- Show highlighted sector -->
     <v-alert
@@ -96,11 +110,12 @@
 
         <!-- Paginate route liste -->
         <gym-route-list-item
-          v-once
+          v-model="selectedRoutes"
           :highlight-sectors="showPlanOptions"
           :gym-route="route"
           :gym="gym"
           class="mb-1"
+          :multiple-selection="multipleSelection"
         />
       </div>
 
@@ -129,11 +144,30 @@
         {{ $t('components.gymRoute.noMoreToLoad') }}
       </p>
     </div>
+
+    <!-- MULTI CHECK CONFIRMATION -->
+    <v-slide-y-reverse-transition>
+      <ascent-gym-multi-check-dialog
+        v-if="multipleSelection && selectedRoutes.length > 0"
+        :selected-routes="selectedRoutes"
+        :off-multi-selection-callback="offMultiSelection"
+      />
+    </v-slide-y-reverse-transition>
+
+    <!--- MULTI CHECK SUCCESS -->
+    <ascent-gym-multi-check-success-modal
+      ref="ascentGymMultiCheckSuccessModal"
+      :gym="gym"
+      :ascents-added-count="ascentsAddedCount"
+    />
   </div>
 </template>
 
 <script>
-import { mdiSourceBranchPlus } from '@mdi/js'
+import {
+  mdiSourceBranchPlus,
+  mdiCheckboxMultipleMarkedOutline
+} from '@mdi/js'
 import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
 import { LoadingMoreHelpers } from '~/mixins/LoadingMoreHelpers'
 import { DateHelpers } from '~/mixins/DateHelpers'
@@ -146,10 +180,14 @@ import GymRouteListItem from '~/components/gymRoutes/GymRouteListItem'
 import LoadingMore from '~/components/layouts/LoadingMore'
 import GymSectorSeparator from '~/components/gymRoutes/listByGroup/GymSectorSeparator'
 import OpenedAtSeparator from '~/components/gymRoutes/listByGroup/OpenedAtSeparator'
+import AscentGymMultiCheckDialog from '~/components/ascentGymRoutes/AscentGymMultiCheckDialog'
+import AscentGymMultiCheckSuccessModal from '~/components/ascentGymRoutes/AscentGymMultiCheckSuccessModal'
 
 export default {
   name: 'GymSpaceRouteList',
   components: {
+    AscentGymMultiCheckSuccessModal,
+    AscentGymMultiCheckDialog,
     OpenedAtSeparator,
     GymSectorSeparator,
     LoadingMore,
@@ -184,7 +222,11 @@ export default {
       firstLoaded: false,
       showSectorId: null,
       showSectorName: null,
+      selectedRoutes: [],
+      multipleSelection: false,
+      ascentsAddedCount: 0,
 
+      mdiCheckboxMultipleMarkedOutline,
       mdiSourceBranchPlus
     }
   },
@@ -377,6 +419,18 @@ export default {
 
     openedAtDateDif (date) {
       return this.weekDayAndFromNow(date)
+    },
+
+    switchMultiSelection () {
+      this.selectedRoutes = []
+      this.multipleSelection = !this.multipleSelection
+    },
+
+    offMultiSelection (ascentsCount) {
+      this.selectedRoutes = []
+      this.ascentsAddedCount = ascentsCount
+      this.multipleSelection = false
+      this.$refs.ascentGymMultiCheckSuccessModal.toggleModal(true)
     }
   }
 }

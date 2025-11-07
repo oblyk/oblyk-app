@@ -2,11 +2,25 @@
   <v-list-item
     v-model="activeRoute"
     class="rounded-list-item gym-route-list-item pl-1"
+    :style="selected ? 'background-color: rgba(116, 58, 213, 0.1)' : null"
     :class="itemListClass"
     @click="openGymRoute"
     @mouseenter="onMouseEnter"
   >
-    <v-list-item-avatar rounded size="72">
+    <v-list-item-action
+      v-if="multipleSelection"
+      class="ml-2 mr-3"
+    >
+      <v-checkbox
+        v-model="selected"
+        hide-details
+        :disabled="gymRoute.sections.length > 1"
+        class="mt-0"
+        color="#743ad5"
+        @click.stop
+      />
+    </v-list-item-action>
+    <v-list-item-avatar rounded size="72" class="mr-2">
       <gym-route-avatar :gym-route="gymRoute" />
     </v-list-item-avatar>
 
@@ -113,6 +127,10 @@ export default {
   mixins: [ImageVariantHelpers],
 
   props: {
+    value: {
+      type: Array,
+      default: null
+    },
     gymRoute: {
       type: Object,
       required: true
@@ -128,11 +146,18 @@ export default {
     highlightSectors: {
       type: Boolean,
       default: false
+    },
+    multipleSelection: {
+      type: Boolean,
+      default: false
     }
   },
 
   data () {
     return {
+      selected: this.value.includes(this.gymRoute.id),
+      selectedRoutes: this.value,
+
       mdiCheckAll,
       mdiHeart,
       mdiComment,
@@ -161,9 +186,29 @@ export default {
     }
   },
 
+  watch: {
+    selected () {
+      if (this.selected) {
+        if (!this.value.includes(this.gymRoute.id)) {
+          this.selectedRoutes.push(this.gymRoute.id)
+        }
+      } else {
+        this.selectedRoutes = this.selectedRoutes.filter(id => id !== this.gymRoute.id)
+      }
+      this.$emit('input', this.selectedRoutes)
+    },
+
+    value () {
+      this.selectedRoutes = this.value
+      this.selected = this.value.includes(this.gymRoute.id)
+    }
+  },
+
   methods: {
     openGymRoute () {
-      if (this.clickCallback) {
+      if (this.multipleSelection) {
+        this.selected = this.gymRoute.sections.length > 1 ? false : !this.selected
+      } else if (this.clickCallback) {
         this.clickCallback(this.gymRoute)
       } else {
         const query = {}

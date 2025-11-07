@@ -24,6 +24,18 @@ class AscentGymRouteApi extends BaseApi {
     })
   }
 
+  gymRoutesInfosInLogbook (routeIds) {
+    return this.axios.request({
+      method: 'GET',
+      url: `${this.baseUrl}/ascent_gym_routes/gym_routes_infos_in_logbook.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
+      params: { route_ids: routeIds }
+    })
+  }
+
   update (data) {
     return this.axios.request({
       method: 'PUT',
@@ -56,6 +68,20 @@ class AscentGymRouteApi extends BaseApi {
     return this.axios.request({
       method: 'POST',
       url: `${this.baseUrl}/ascent_gym_routes/create_bulk.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
+      data: {
+        gym_ascents: data
+      }
+    })
+  }
+
+  addBulk (data) {
+    return this.axios.request({
+      method: 'POST',
+      url: `${this.baseUrl}/ascent_gym_routes/add_bulk.json`,
       headers: {
         Authorization: this.authToken(),
         HttpApiAccessToken: this.apiAccessToken
