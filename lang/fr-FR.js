@@ -312,6 +312,8 @@ export default {
     sessions: 'sessions',
     stats: "stats'",
     backToGuidebook: 'Retour au topo',
+    ascSort: 'Trie croissant',
+    descSort: 'Trie décroissant',
     months: {
       '01': '01 - Janvier',
       '02': '02 - Février',

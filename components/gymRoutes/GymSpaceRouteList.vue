@@ -2,7 +2,7 @@
   <div>
     <!-- Sort sector select -->
     <v-sheet
-      class="d-flex mb-2 py-1 mx-n3 px-3"
+      class="d-flex mb-2 py-1 px-2 border-bottom"
       style="position: sticky; z-index: 1"
       :style="$vuetify.breakpoint.mobile ? 'top: 64px' : 'top: 0px'"
     >
@@ -40,126 +40,128 @@
       </div>
     </v-sheet>
 
-    <!-- Show highlighted sector -->
-    <v-alert
-      v-if="showSectorsToast"
-      text
-      dense
-      color="primary"
-      dismissible
-      @input="closeSectorFilter"
-    >
-      <span v-html="$t('components.gymSpace.showSector', { name: showSectorName })" />
-    </v-alert>
+    <div class="px-2">
+      <!-- Show highlighted sector -->
+      <v-alert
+        v-if="showSectorsToast"
+        text
+        dense
+        color="primary"
+        dismissible
+        @input="closeSectorFilter"
+      >
+        <span v-html="$t('components.gymSpace.showSector', { name: showSectorName })" />
+      </v-alert>
 
-    <!-- Load routes -->
-    <div v-if="loadingRoutes">
-      <v-skeleton-loader type="list-item-avatar" />
-    </div>
-
-    <!-- Routes list -->
-    <div
-      v-if="!loadingRoutes"
-      id="gym-routes-list"
-    >
-      <gym-sector-separator
-        v-if="showSectorsToast && sort.column === 'sector'"
-        :gym-sector="{ id: showSectorId, name: showSectorName }"
-        :gym="gym"
-        :gym-space="gymSpace"
-        :show-plan-options="gymSpace !== null"
-      />
-
-      <!-- If I have no routes -->
-      <div v-if="!showSectorsToast && gymSpace && sort.column === 'sector' && gymRoutes.length === 0 && currentUserIsGymAdmin()">
-        <gym-sector-separator
-          v-for="(allSector, allSectorIndex) in gymSpace.gym_sectors"
-          :key="`space-sector-index-${allSectorIndex}`"
-          :gym-space="gymSpace"
-          :gym="gym"
-          :gym-sector="allSector"
-        />
+      <!-- Load routes -->
+      <div v-if="loadingRoutes">
+        <v-skeleton-loader type="list-item-avatar" />
       </div>
 
-      <!-- Route list -->
+      <!-- Routes list -->
       <div
-        v-for="(route, routeIndex) in gymRoutes"
-        :key="`gym-route-card-${routeIndex}`"
+        v-if="!loadingRoutes"
+        id="gym-routes-list"
       >
-        <!-- Gym Sector separator -->
-        <div
-          v-if="!showSectorsToast && sort.column === 'sector' && (routeIndex === 0 || route.gym_sector_id !== gymRoutes[routeIndex - 1].gym_sector_id)"
-        >
+        <gym-sector-separator
+          v-if="showSectorsToast && sort.column === 'sector'"
+          :gym-sector="{ id: showSectorId, name: showSectorName }"
+          :gym="gym"
+          :gym-space="gymSpace"
+          :show-plan-options="gymSpace !== null"
+        />
+
+        <!-- If I have no routes -->
+        <div v-if="!showSectorsToast && gymSpace && sort.column === 'sector' && gymRoutes.length === 0 && currentUserIsGymAdmin()">
           <gym-sector-separator
-            v-for="(spaceSector, spaceSectorIndex) in sectorsBetween(routeIndex)"
-            :key="`space-sector-index${spaceSectorIndex}`"
-            :gym-sector="spaceSector"
+            v-for="(allSector, allSectorIndex) in gymSpace.gym_sectors"
+            :key="`space-sector-index-${allSectorIndex}`"
+            :gym-space="gymSpace"
             :gym="gym"
-            :gym-space="gymSpace || route.gym_space"
-            :class="routeIndex !== 0 ? 'mt-5' : ''"
-            :show-plan-options="gymSpace !== null"
+            :gym-sector="allSector"
           />
         </div>
 
-        <!-- Open at Separator -->
-        <opened-at-separator
-          v-if="sort.column === 'opened_at' && (routeIndex === 0 || openedAtDateDif(route.opened_at) !== openedAtDateDif(gymRoutes[routeIndex - 1].opened_at))"
-          :opened-at="route.opened_at"
-          :class="routeIndex !== 0 ? 'mt-5' : ''"
+        <!-- Route list -->
+        <div
+          v-for="(route, routeIndex) in gymRoutes"
+          :key="`gym-route-card-${routeIndex}`"
+        >
+          <!-- Gym Sector separator -->
+          <div
+            v-if="!showSectorsToast && sort.column === 'sector' && (routeIndex === 0 || route.gym_sector_id !== gymRoutes[routeIndex - 1].gym_sector_id)"
+          >
+            <gym-sector-separator
+              v-for="(spaceSector, spaceSectorIndex) in sectorsBetween(routeIndex)"
+              :key="`space-sector-index${spaceSectorIndex}`"
+              :gym-sector="spaceSector"
+              :gym="gym"
+              :gym-space="gymSpace || route.gym_space"
+              :class="routeIndex !== 0 ? 'mt-5' : ''"
+              :show-plan-options="gymSpace !== null"
+            />
+          </div>
+
+          <!-- Open at Separator -->
+          <opened-at-separator
+            v-if="sort.column === 'opened_at' && (routeIndex === 0 || openedAtDateDif(route.opened_at) !== openedAtDateDif(gymRoutes[routeIndex - 1].opened_at))"
+            :opened-at="route.opened_at"
+            :class="routeIndex !== 0 ? 'mt-5' : ''"
+          />
+
+          <!-- Paginate route liste -->
+          <gym-route-list-item
+            v-model="selectedRoutes"
+            :highlight-sectors="showPlanOptions"
+            :gym-route="route"
+            :gym="gym"
+            class="mb-1"
+            :multiple-selection="multipleSelection"
+          />
+        </div>
+
+        <!-- Load last sector on space after last route -->
+        <div v-if="!showSectorsToast && noMoreDataToLoad && gymSpace && sort.column === 'sector' && gymRoutes.length > 0 && currentUserIsGymAdmin()">
+          <gym-sector-separator
+            v-for="(allSector, allSectorIndex) in lastSectors()"
+            :key="`space-sector-index-${allSectorIndex}`"
+            :gym-space="gymSpace"
+            :gym="gym"
+            :gym-sector="allSector"
+          />
+        </div>
+
+        <loading-more
+          :get-function="getRoutes"
+          :loading-more="loadingMoreData"
+          :no-more-data="noMoreDataToLoad"
+          skeleton-type="list-item-avatar-two-line,list-item-avatar-two-line,list-item-avatar-two-line"
         />
 
-        <!-- Paginate route liste -->
-        <gym-route-list-item
-          v-model="selectedRoutes"
-          :highlight-sectors="showPlanOptions"
-          :gym-route="route"
-          :gym="gym"
-          class="mb-1"
-          :multiple-selection="multipleSelection"
-        />
+        <p
+          v-if="noMoreDataToLoad"
+          class="text-center text--disabled"
+        >
+          {{ $t('components.gymRoute.noMoreToLoad') }}
+        </p>
       </div>
 
-      <!-- Load last sector on space after last route -->
-      <div v-if="!showSectorsToast && noMoreDataToLoad && gymSpace && sort.column === 'sector' && gymRoutes.length > 0 && currentUserIsGymAdmin()">
-        <gym-sector-separator
-          v-for="(allSector, allSectorIndex) in lastSectors()"
-          :key="`space-sector-index-${allSectorIndex}`"
-          :gym-space="gymSpace"
-          :gym="gym"
-          :gym-sector="allSector"
+      <!-- MULTI CHECK CONFIRMATION -->
+      <v-slide-y-reverse-transition>
+        <ascent-gym-multi-check-dialog
+          v-if="multipleSelection && selectedRoutes.length > 0"
+          :selected-routes="selectedRoutes"
+          :off-multi-selection-callback="offMultiSelection"
         />
-      </div>
+      </v-slide-y-reverse-transition>
 
-      <loading-more
-        :get-function="getRoutes"
-        :loading-more="loadingMoreData"
-        :no-more-data="noMoreDataToLoad"
-        skeleton-type="list-item-avatar-two-line,list-item-avatar-two-line,list-item-avatar-two-line"
+      <!--- MULTI CHECK SUCCESS -->
+      <ascent-gym-multi-check-success-modal
+        ref="ascentGymMultiCheckSuccessModal"
+        :gym="gym"
+        :ascents-added-count="ascentsAddedCount"
       />
-
-      <p
-        v-if="noMoreDataToLoad"
-        class="text-center text--disabled"
-      >
-        {{ $t('components.gymRoute.noMoreToLoad') }}
-      </p>
     </div>
-
-    <!-- MULTI CHECK CONFIRMATION -->
-    <v-slide-y-reverse-transition>
-      <ascent-gym-multi-check-dialog
-        v-if="multipleSelection && selectedRoutes.length > 0"
-        :selected-routes="selectedRoutes"
-        :off-multi-selection-callback="offMultiSelection"
-      />
-    </v-slide-y-reverse-transition>
-
-    <!--- MULTI CHECK SUCCESS -->
-    <ascent-gym-multi-check-success-modal
-      ref="ascentGymMultiCheckSuccessModal"
-      :gym="gym"
-      :ascents-added-count="ascentsAddedCount"
-    />
   </div>
 </template>
 

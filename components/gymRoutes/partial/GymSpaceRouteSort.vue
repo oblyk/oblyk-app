@@ -1,158 +1,150 @@
 <template>
-  <div class="d-flex">
-    <div class="flex-grow-1">
-      <v-menu>
-        <template #activator="{ on, attrs }">
-          <div
-            class="d-flex border rounded-pill py-1 pr-2 pl-3"
-            v-bind="attrs"
-            v-on="on"
-          >
-            <div>
-              {{ dismounted ? $t(`components.gymRoute.sorts.opened_at_dismounted`) : $t(`components.gymRoute.sorts.${column}`) }}
-            </div>
-            <div class="ml-auto">
-              <v-icon>
-                {{ mdiMenuDown }}
-              </v-icon>
-            </div>
-          </div>
-        </template>
-        <v-sheet class="rounded">
-          <v-list>
-            <v-list-item
-              :class="column === 'opened_at' && !dismounted ? 'v-list-item--active' : null"
-              @click="sorting('opened_at')"
-            >
-              <v-list-item-icon class="mr-1">
-                <v-icon>
-                  {{ sortIcon.opened_at }}
-                </v-icon>
-              </v-list-item-icon>
-              <v-list-item>
-                {{ $t('components.gymRoute.sorts.opened_at') }}
-              </v-list-item>
-            </v-list-item>
-            <v-list-item
-              :class="column === 'sector' && !dismounted ? 'v-list-item--active' : null"
-              @click="sorting('sector')"
-            >
-              <v-list-item-icon class="mr-1">
-                <v-icon>
-                  {{ sortIcon.sector }}
-                </v-icon>
-              </v-list-item-icon>
-              <v-list-item>
-                {{ $t('components.gymRoute.sorts.sector') }}
-              </v-list-item>
-            </v-list-item>
-            <v-list-item
-              v-if="sortsAvailable.difficulty_by_level"
-              :class="column === 'level' && !dismounted ? 'v-list-item--active' : null"
-              @click="sorting('level')"
-            >
-              <v-list-item-icon class="mr-1">
-                <v-icon>
-                  {{ sortIcon.level }}
-                </v-icon>
-              </v-list-item-icon>
-              <v-list-item>
-                {{ $t('components.gymRoute.sorts.level') }}
-              </v-list-item>
-            </v-list-item>
-            <v-list-item
-              v-if="sortsAvailable.difficulty_by_grade"
-              :class="column === 'grade' && !dismounted ? 'v-list-item--active' : null"
-              @click="sorting('grade')"
-            >
-              <v-list-item-icon class="mr-1">
-                <v-icon>
-                  {{ sortIcon.grade }}
-                </v-icon>
-              </v-list-item-icon>
-              <v-list-item>
-                {{ $t('components.gymRoute.sorts.grade') }}
-              </v-list-item>
-            </v-list-item>
+  <v-menu>
+    <template #activator="{ on, attrs }">
+      <div
+        class="rounded-pill pb-1 pt-2 px-1 font-weight-medium"
+        v-bind="attrs"
+        v-on="on"
+      >
+        {{ dismounted ? $t(`components.gymRoute.sorts.opened_at_dismounted`) : $t(`components.gymRoute.sorts.${column}`) }}
+        <v-icon color="primary" class="ml-1 vertical-align-bottom">
+          {{ mdiMenuDown }}
+        </v-icon>
+      </div>
+    </template>
+    <v-sheet class="rounded">
+      <div class="px-2 pt-2">
+        <v-chip
+          small
+          @click="switchDirection()"
+        >
+          <v-icon small left>
+            {{ direction === 'asc' ? mdiArrowDown : mdiArrowUp }}
+          </v-icon>
+          {{ direction === 'asc' ? $t('common.ascSort') : $t('common.descSort') }}
+        </v-chip>
+      </div>
+      <v-list>
+        <v-list-item
+          :class="column === 'opened_at' && !dismounted ? 'v-list-item--active' : null"
+          @click="sorting('opened_at')"
+        >
+          <v-list-item-icon class="mr-1">
+            <v-icon>
+              {{ sortIcon.opened_at }}
+            </v-icon>
+          </v-list-item-icon>
+          <v-list-item>
+            {{ $t('components.gymRoute.sorts.opened_at') }}
+          </v-list-item>
+        </v-list-item>
+        <v-list-item
+          :class="column === 'sector' && !dismounted ? 'v-list-item--active' : null"
+          @click="sorting('sector')"
+        >
+          <v-list-item-icon class="mr-1">
+            <v-icon>
+              {{ sortIcon.sector }}
+            </v-icon>
+          </v-list-item-icon>
+          <v-list-item>
+            {{ $t('components.gymRoute.sorts.sector') }}
+          </v-list-item>
+        </v-list-item>
+        <v-list-item
+          v-if="sortsAvailable.difficulty_by_level"
+          :class="column === 'level' && !dismounted ? 'v-list-item--active' : null"
+          @click="sorting('level')"
+        >
+          <v-list-item-icon class="mr-1">
+            <v-icon>
+              {{ sortIcon.level }}
+            </v-icon>
+          </v-list-item-icon>
+          <v-list-item>
+            {{ $t('components.gymRoute.sorts.level') }}
+          </v-list-item>
+        </v-list-item>
+        <v-list-item
+          v-if="sortsAvailable.difficulty_by_grade"
+          :class="column === 'grade' && !dismounted ? 'v-list-item--active' : null"
+          @click="sorting('grade')"
+        >
+          <v-list-item-icon class="mr-1">
+            <v-icon>
+              {{ sortIcon.grade }}
+            </v-icon>
+          </v-list-item-icon>
+          <v-list-item>
+            {{ $t('components.gymRoute.sorts.grade') }}
+          </v-list-item>
+        </v-list-item>
 
-            <v-divider v-if="sortsAvailable.ascents_count || sortsAvailable.likes_count || sortsAvailable.comments_count" />
+        <v-divider v-if="sortsAvailable.ascents_count || sortsAvailable.likes_count || sortsAvailable.comments_count" />
 
-            <v-list-item
-              v-if="sortsAvailable.ascents_count"
-              :class="column === 'ascents_count' && !dismounted ? 'v-list-item--active' : null"
-              @click="sorting('ascents_count')"
-            >
-              <v-list-item-icon class="mr-1">
-                <v-icon>
-                  {{ sortIcon.ascents_count }}
-                </v-icon>
-              </v-list-item-icon>
-              <v-list-item>
-                {{ $t('components.gymRoute.sorts.ascents_count') }}
-              </v-list-item>
-            </v-list-item>
+        <v-list-item
+          v-if="sortsAvailable.ascents_count"
+          :class="column === 'ascents_count' && !dismounted ? 'v-list-item--active' : null"
+          @click="sorting('ascents_count')"
+        >
+          <v-list-item-icon class="mr-1">
+            <v-icon>
+              {{ sortIcon.ascents_count }}
+            </v-icon>
+          </v-list-item-icon>
+          <v-list-item>
+            {{ $t('components.gymRoute.sorts.ascents_count') }}
+          </v-list-item>
+        </v-list-item>
 
-            <v-list-item
-              v-if="sortsAvailable.likes_count"
-              :class="column === 'likes_count' && !dismounted ? 'v-list-item--active' : null"
-              @click="sorting('likes_count')"
-            >
-              <v-list-item-icon class="mr-1">
-                <v-icon>
-                  {{ sortIcon.likes_count }}
-                </v-icon>
-              </v-list-item-icon>
-              <v-list-item>
-                {{ $t('components.gymRoute.sorts.likes_count') }}
-              </v-list-item>
-            </v-list-item>
+        <v-list-item
+          v-if="sortsAvailable.likes_count"
+          :class="column === 'likes_count' && !dismounted ? 'v-list-item--active' : null"
+          @click="sorting('likes_count')"
+        >
+          <v-list-item-icon class="mr-1">
+            <v-icon>
+              {{ sortIcon.likes_count }}
+            </v-icon>
+          </v-list-item-icon>
+          <v-list-item>
+            {{ $t('components.gymRoute.sorts.likes_count') }}
+          </v-list-item>
+        </v-list-item>
 
-            <v-list-item
-              v-if="sortsAvailable.comments_count"
-              :class="column === 'comments_count' && !dismounted ? 'v-list-item--active' : null"
-              @click="sorting('comments_count')"
-            >
-              <v-list-item-icon class="mr-1">
-                <v-icon>
-                  {{ sortIcon.comments_count }}
-                </v-icon>
-              </v-list-item-icon>
-              <v-list-item>
-                {{ $t('components.gymRoute.sorts.comments_count') }}
-              </v-list-item>
-            </v-list-item>
+        <v-list-item
+          v-if="sortsAvailable.comments_count"
+          :class="column === 'comments_count' && !dismounted ? 'v-list-item--active' : null"
+          @click="sorting('comments_count')"
+        >
+          <v-list-item-icon class="mr-1">
+            <v-icon>
+              {{ sortIcon.comments_count }}
+            </v-icon>
+          </v-list-item-icon>
+          <v-list-item>
+            {{ $t('components.gymRoute.sorts.comments_count') }}
+          </v-list-item>
+        </v-list-item>
 
-            <v-divider />
+        <v-divider />
 
-            <v-list-item
-              :class="column === 'opened_at' && dismounted ? 'v-list-item--active' : null"
-              @click="sorting('opened_at', true)"
-            >
-              <v-list-item-icon class="mr-1">
-                <v-icon>
-                  {{ sortIcon.opened_at_dismounted }}
-                </v-icon>
-              </v-list-item-icon>
-              <v-list-item>
-                {{ $t('components.gymRoute.sorts.opened_at_dismounted') }}
-              </v-list-item>
-            </v-list-item>
-          </v-list>
-        </v-sheet>
-      </v-menu>
-    </div>
-    <v-btn
-      outlined
-      icon
-      text
-      class="ml-2"
-      @click="switchDirection()"
-    >
-      <v-icon>
-        {{ direction === 'asc' ? mdiArrowDown : mdiArrowUp }}
-      </v-icon>
-    </v-btn>
-  </div>
+        <v-list-item
+          :class="column === 'opened_at' && dismounted ? 'v-list-item--active' : null"
+          @click="sorting('opened_at', true)"
+        >
+          <v-list-item-icon class="mr-1">
+            <v-icon>
+              {{ sortIcon.opened_at_dismounted }}
+            </v-icon>
+          </v-list-item-icon>
+          <v-list-item>
+            {{ $t('components.gymRoute.sorts.opened_at_dismounted') }}
+          </v-list-item>
+        </v-list-item>
+      </v-list>
+    </v-sheet>
+  </v-menu>
 </template>
 
 <script>

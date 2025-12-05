@@ -64,15 +64,13 @@
           />
         </div>
 
-        <div class="px-2">
-          <!-- Route list -->
-          <client-only>
-            <gym-space-route-list
-              :gym="gym"
-              :show-plan-options="false"
-            />
-          </client-only>
-        </div>
+        <!-- Route list -->
+        <client-only>
+          <gym-space-route-list
+            :gym="gym"
+            :show-plan-options="false"
+          />
+        </client-only>
       </v-sheet>
     </div>
 

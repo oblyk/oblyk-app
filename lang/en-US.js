@@ -311,6 +311,8 @@ export default {
     sessions: 'sessions',
     stats: "stats'",
     backToGuidebook: 'Back to guidebook',
+    ascSort: 'Ascending sort',
+    descSort: 'Descending sort',
     months: {
       '01': '01 - January',
       '02': '02 - February',

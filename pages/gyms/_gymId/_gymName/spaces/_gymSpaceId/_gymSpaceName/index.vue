@@ -305,9 +305,6 @@ export default {
     &.--mobile-interface {
       width: 100%;
       margin-top: calc(100vh - 322px);
-      .gym-space-info-and-routes {
-        padding-bottom: 45px;
-      }
     }
 
     .gym-route-on-desktop-container {

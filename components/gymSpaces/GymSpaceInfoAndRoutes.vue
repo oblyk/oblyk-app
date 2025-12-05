@@ -81,7 +81,7 @@
 
       <!-- Route list -->
       <gym-space-route-list
-        class="mt-4 px-3"
+        class="mt-4"
         :gym-space="gymSpace"
         :gym="gym"
       />
