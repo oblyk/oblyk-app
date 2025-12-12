@@ -4,8 +4,11 @@
     class="rounded-list-item gym-route-list-item pl-1"
     :style="selected ? 'background-color: rgba(116, 58, 213, 0.1)' : null"
     :class="itemListClass"
+    @touchstart="startLongPress"
     @click="openGymRoute"
+    @mousedown="endLongPress"
     @mouseenter="onMouseEnter"
+    @touchmove="endLongPress"
   >
     <v-list-item-action
       v-if="multipleSelection"
@@ -150,6 +153,10 @@ export default {
     multipleSelection: {
       type: Boolean,
       default: false
+    },
+    switchMultiSelection: {
+      type: Function,
+      default: null
     }
   },
 
@@ -157,6 +164,8 @@ export default {
     return {
       selected: this.value.includes(this.gymRoute.id),
       selectedRoutes: this.value,
+      longPressTimeOut: null,
+      activeMultiSelectedOnMouseUp: false,
 
       mdiCheckAll,
       mdiHeart,
@@ -227,6 +236,21 @@ export default {
       if (this.highlightSectors) {
         this.$root.$emit('activeSector', this.gymRoute.gym_sector.id)
       }
+    },
+
+    startLongPress () {
+      clearTimeout(this.longPressTimeOut)
+      this.longPressTimeOut = setTimeout(() => {
+        clearTimeout(this.longPressTimeOut)
+        if (this.multipleSelection === false) {
+          this.switchMultiSelection()
+          this.selected = true
+        }
+      }, 1000)
+    },
+
+    endLongPress () {
+      clearTimeout(this.longPressTimeOut)
     }
   }
 }

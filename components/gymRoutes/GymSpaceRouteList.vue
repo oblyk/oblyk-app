@@ -117,6 +117,7 @@
             :gym="gym"
             class="mb-1"
             :multiple-selection="multipleSelection"
+            :switch-multi-selection="switchMultiSelection"
           />
         </div>
 
