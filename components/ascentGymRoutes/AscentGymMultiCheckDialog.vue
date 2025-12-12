@@ -42,17 +42,12 @@
           v-else
           class="flex-grow-1 px-4"
         >
+          <p class="subtitle-2 text--disabled mt-n1">
+            {{ newOrRepetitionLabel }}
+          </p>
+
           <!-- GLOBAL INFORMATION STEP  -->
-          <div v-if="currentStep === 'globalInformation'">
-            <p class="subtitle-2 text--disabled mt-n1">
-              {{ newOrRepetitionLabel }}
-            </p>
-            <date-picker-input
-              v-model="realisedAt"
-              required
-              :label="$t('components.ascentGymRoute.IMadeThisAscentsAt')"
-              @input="setDefaultAttributes"
-            />
+          <div v-if="newRouteIds.length > 0 || haveSportClimbing">
             <ascent-status-input
               v-if="newRouteIds.length > 0"
               v-model="ascentStatus"
@@ -60,33 +55,18 @@
               :with-sent="false"
               :with-repetition="false"
               label-key="components.input.ascentsStatus"
-              @input="setDefaultAttributes"
+              @input="setAscentStatusAttributes"
             />
             <roping-status-input
               v-if="haveSportClimbing"
               v-model="ropingStatus"
               :multi-pith-roping-statuses="false"
-              @input="setDefaultAttributes"
+              @input="setRopingStatusAttributes"
             />
-            <div class="pb-4" style="position: sticky; bottom: 0">
-              <v-btn
-                color="primary"
-                large
-                elevation="0"
-                :disabled="!firstStepIsValid"
-                block
-                @click="currentStep = 'commentAndEvaluation'"
-              >
-                {{ $t('actions.next') }}
-              </v-btn>
-            </div>
           </div>
 
           <!-- COMMENT AND EVALUATION STEP  -->
-          <div v-if="currentStep === 'commentAndEvaluation'">
-            <p class="subtitle-2 text--disabled mt-n1">
-              {{ $t('components.ascentGymRoute.commentOrReview') }}
-            </p>
+          <div class="mt-2 mb-6">
             <template v-for="(_ascent, gymRouteIndex) in data.ascents">
               <ascent-gym-multi-check-item
                 :key="`gym-route-index-${gymRouteIndex}`"
@@ -105,18 +85,26 @@
                 <li>{{ $t('models.hardnessStatus.sandbagged') }}</li>
               </ul>
             </v-sheet>
-            <div class="pb-4" style="position: sticky; bottom: 0">
-              <v-btn
-                color="primary"
-                large
-                elevation="0"
-                :loading="loadingSubmitData"
-                block
-                @click="submit"
-              >
-                {{ $t('actions.add') }} !
-              </v-btn>
-            </div>
+          </div>
+
+          <date-picker-input
+            v-model="realisedAt"
+            required
+            :label="$t('components.ascentGymRoute.IMadeThisAscentsAt')"
+            @input="setRealisedAtAttributes"
+          />
+
+          <div class="pb-4" style="position: sticky; bottom: 0">
+            <v-btn
+              color="primary"
+              large
+              elevation="0"
+              :loading="loadingSubmitData"
+              block
+              @click="submit"
+            >
+              {{ $t('actions.add') }} !
+            </v-btn>
           </div>
         </div>
       </v-card>
@@ -165,7 +153,7 @@ export default {
 
       realisedAt: new Date().toISOString().substring(0, 10),
       ascentStatus: null,
-      ropingStatus: null,
+      ropingStatus: localStorage.getItem('defaultAscentGymRouteRopingStatus') || 'lead_climb',
 
       data: {
         ascents: []
@@ -178,10 +166,6 @@ export default {
   computed: {
     haveSportClimbing () {
       return this.climbingTypes?.sport_climbing && this.climbingTypes?.sport_climbing > 0
-    },
-
-    firstStepIsValid () {
-      return (!this.haveSportClimbing || this.ropingStatus !== null) && this.ascentStatus && this.realisedAt !== null
     },
 
     newOrRepetitionLabel () {
@@ -197,10 +181,34 @@ export default {
   },
 
   methods: {
-    setDefaultAttributes () {
+    setRealisedAtAttributes () {
+      if (this.realisedAt === undefined) {
+        return
+      }
+
       for (const ascent of this.data.ascents) {
         ascent.released_at = this.realisedAt
+      }
+    },
+
+    setRopingStatusAttributes () {
+      if (this.ropingStatus === undefined) {
+        return
+      }
+
+      for (const ascent of this.data.ascents) {
         ascent.roping_status = this.ropingStatus
+      }
+
+      localStorage.setItem('defaultAscentGymRouteRopingStatus', this.ropingStatus)
+    },
+
+    setAscentStatusAttributes () {
+      if (this.ascentStatus === undefined) {
+        return
+      }
+
+      for (const ascent of this.data.ascents) {
         if (this.repetitionRouteIds.includes(parseInt(ascent.gym_route_id))) {
           ascent.ascent_status = 'repetition'
         } else {
@@ -213,8 +221,8 @@ export default {
       this.multiCheckModal = true
       this.currentStep = 'globalInformation'
       this.realisedAt = new Date().toISOString().substring(0, 10)
-      this.ascentStatus = null
-      this.ropingStatus = null
+      this.ascentStatus = 'red_point'
+      this.ropingStatus = localStorage.getItem('defaultAscentGymRouteRopingStatus') || 'lead_climb'
       this.getAscentsForGymRoutes()
     },
 
@@ -224,19 +232,18 @@ export default {
       new AscentGymRouteApi(this.$axios, this.$auth)
         .gymRoutesInfosInLogbook(this.selectedRoutes)
         .then((resp) => {
-          const defaultAscentStatus = resp.data.new.length === 0 ? 'repetition' : null
           this.newRouteIds = resp.data.new
           this.repetitionRouteIds = resp.data.made
           this.climbingTypes = resp.data.climbing_types
           this.gymRoutes = resp.data.gym_routes
-          this.ascentStatus = defaultAscentStatus
+          this.ascentStatus = resp.data.new.length === 0 ? 'repetition' : 'red_point'
           for (const gymRoute of this.gymRoutes) {
             this.data.ascents.push({
               gym_route_id: gymRoute.id,
               like: false,
               hardness_status: null,
-              ascent_status: defaultAscentStatus,
-              roping_status: null,
+              ascent_status: this.repetitionRouteIds.includes(parseInt(gymRoute.id)) ? 'repetition' : 'red_point',
+              roping_status: gymRoute.climbing_type === 'sport_climbing' ? this.ropingStatus : null,
               released_at: new Date().toISOString().substring(0, 10),
               comment: null,
               ascent_comment: { body: null }

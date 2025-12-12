@@ -41,6 +41,40 @@
             </v-list>
           </v-menu>
         </div>
+        <div
+          v-if="gymRoute.climbing_type === 'sport_climbing'"
+          class="rounded-pill sheet-background-color mx-1"
+        >
+          <v-menu>
+            <template #activator="{ on, attrs }">
+              <v-btn
+                icon
+                v-bind="attrs"
+                v-on="on"
+              >
+                <v-icon>
+                  {{ ropingStatusIcons[ascent.roping_status] }}
+                </v-icon>
+              </v-btn>
+            </template>
+            <v-list>
+              <v-list-item
+                v-for="(status, statusIndex) in ['lead_climb', 'top_rope']"
+                :key="`roping-index-${statusIndex}-${ascent.gym_route_id}`"
+                @click="setRopingStatus(status)"
+              >
+                <v-list-item-icon>
+                  <v-icon>
+                    {{ ropingStatusIcons[status] }}
+                  </v-icon>
+                </v-list-item-icon>
+                <v-list-item-title>
+                  {{ $t(`models.ropingStatus.${status}`) }}
+                </v-list-item-title>
+              </v-list-item>
+            </v-list>
+          </v-menu>
+        </div>
         <div class="rounded-pill sheet-background-color">
           <v-btn
             icon
@@ -66,15 +100,6 @@
           >
             🥵
           </v-btn>
-          <v-btn
-            v-if="ascent.hardness_status !== null"
-            icon
-            @click="setHardnessStatus(null)"
-          >
-            <v-icon>
-              {{ mdiClose }}
-            </v-icon>
-          </v-btn>
         </div>
       </div>
       <v-textarea
@@ -91,6 +116,7 @@
 </template>
 <script>
 import { mdiClose, mdiAutorenew, mdiEye, mdiFlash, mdiRecordCircle } from '@mdi/js'
+import { oblykRopingStatusLeadClimb, oblykRopingStatusTopRope } from '~/assets/oblyk-icons'
 import GymRouteAvatar from '~/components/gymRoutes/GymRouteAvatar'
 import LikeBtn from '~/components/forms/LikeBtn'
 
@@ -126,6 +152,11 @@ export default {
         repetition: mdiAutorenew
       },
 
+      ropingStatusIcons: {
+        lead_climb: oblykRopingStatusLeadClimb,
+        top_rope: oblykRopingStatusTopRope
+      },
+
       mdiClose
     }
   },
@@ -140,12 +171,17 @@ export default {
     },
 
     setHardnessStatus (hardnessStatus) {
-      this.ascent.hardness_status = hardnessStatus
+      this.ascent.hardness_status = this.ascent.hardness_status !== hardnessStatus ? hardnessStatus : null
       this.emit()
     },
 
     setAscentStatus (status) {
       this.ascent.ascent_status = status
+      this.emit()
+    },
+
+    setRopingStatus (roping) {
+      this.ascent.roping_status = roping
       this.emit()
     },
 
