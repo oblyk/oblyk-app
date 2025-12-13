@@ -246,6 +246,8 @@ export default {
 
   watch: {
     sort () {
+      this.showSectorId = null
+      this.showSectorName = null
       this.loadingRoutes = true
       this.gymRoutes = []
       this.resetLoadMorePageNumber()
