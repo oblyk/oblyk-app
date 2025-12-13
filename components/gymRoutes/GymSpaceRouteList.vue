@@ -7,6 +7,7 @@
       :style="$vuetify.breakpoint.mobile ? 'top: 64px' : 'top: 0px'"
     >
       <v-btn
+        v-if="$auth.loggedIn"
         icon
         class="mr-1"
         :color="multipleSelection ? '#743ad5' : null"

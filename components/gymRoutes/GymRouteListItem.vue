@@ -239,7 +239,7 @@ export default {
     },
 
     startLongPress () {
-      if (typeof this.switchMultiSelection === 'function') {
+      if (typeof this.switchMultiSelection === 'function' && this.$auth.loggedIn) {
         clearTimeout(this.longPressTimeOut)
         this.longPressTimeOut = setTimeout(() => {
           clearTimeout(this.longPressTimeOut)
@@ -252,7 +252,7 @@ export default {
     },
 
     endLongPress () {
-      if (typeof this.switchMultiSelection === 'function') {
+      if (typeof this.switchMultiSelection === 'function' && this.$auth.loggedIn) {
         clearTimeout(this.longPressTimeOut)
       }
     }
