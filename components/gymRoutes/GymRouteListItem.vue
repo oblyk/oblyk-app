@@ -246,7 +246,7 @@ export default {
           this.switchMultiSelection()
           this.selected = true
         }
-      }, 1000)
+      }, 800)
     },
 
     endLongPress () {
