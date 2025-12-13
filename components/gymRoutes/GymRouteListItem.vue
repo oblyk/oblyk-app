@@ -162,7 +162,7 @@ export default {
 
   data () {
     return {
-      selected: this.value.includes(this.gymRoute.id),
+      selected: this.value?.includes(this.gymRoute.id),
       selectedRoutes: this.value,
       longPressTimeOut: null,
       activeMultiSelectedOnMouseUp: false,
@@ -239,18 +239,22 @@ export default {
     },
 
     startLongPress () {
-      clearTimeout(this.longPressTimeOut)
-      this.longPressTimeOut = setTimeout(() => {
+      if (typeof this.switchMultiSelection === 'function') {
         clearTimeout(this.longPressTimeOut)
-        if (this.multipleSelection === false) {
-          this.switchMultiSelection()
-          this.selected = true
-        }
-      }, 800)
+        this.longPressTimeOut = setTimeout(() => {
+          clearTimeout(this.longPressTimeOut)
+          if (this.multipleSelection === false) {
+            this.switchMultiSelection()
+            this.selected = true
+          }
+        }, 800)
+      }
     },
 
     endLongPress () {
-      clearTimeout(this.longPressTimeOut)
+      if (typeof this.switchMultiSelection === 'function') {
+        clearTimeout(this.longPressTimeOut)
+      }
     }
   }
 }
