@@ -2,7 +2,8 @@
   <v-list-item
     v-model="activeRoute"
     class="rounded-list-item gym-route-list-item pl-1"
-    :style="selected ? 'background-color: rgba(116, 58, 213, 0.1)' : null"
+    style="position: relative"
+    :style="backgroundColor"
     :class="itemListClass"
     @touchstart="startLongPress"
     @click="openGymRoute"
@@ -10,6 +11,27 @@
     @mouseenter="onMouseEnter"
     @touchmove="endLongPress"
   >
+    <!-- Background Ascent Icon -->
+    <div
+      v-if="MD_myAscentStatus"
+      style="position: absolute; top: 5px; right: 5px; z-index: 0"
+    >
+      <v-icon
+        v-if="MD_myAscentRopingStatus"
+        size="80"
+        :color="MM_myAscentColorBuilder(0.2)"
+      >
+        {{ MD_myAscentRopingStatus.icon }}
+      </v-icon>
+      <v-icon
+        size="80"
+        :color="MM_myAscentColorBuilder(0.4)"
+      >
+        {{ MD_myAscentStatus.icon }}
+      </v-icon>
+    </div>
+
+    <!-- ACTIONS -->
     <v-list-item-action
       v-if="multipleSelection"
       class="ml-2 mr-3"
@@ -27,7 +49,7 @@
       <gym-route-avatar :gym-route="gymRoute" />
     </v-list-item-avatar>
 
-    <v-list-item-content>
+    <v-list-item-content style="position: relative">
       <v-list-item-title class="d-flex">
         <div class="mr-auto text-truncate">
           {{ gymRoute.name }}
@@ -44,11 +66,6 @@
           >
             {{ $t('components.gymRoute.dismounted') }}
           </small>
-          <ascent-gym-route-icon
-            v-if="$auth.loggedIn"
-            :gym-route="gymRoute"
-            :size="18"
-          />
           <small v-if="gymRoute.anchor_number">
             {{ $t('models.gymRoute.anchor_number') }}{{ gymRoute.anchor_number }}
           </small>
@@ -116,18 +133,17 @@
 <script>
 import { mdiCheckAll, mdiHeart, mdiComment, mdiPlayBox } from '@mdi/js'
 import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
+import { MyAscentStatusMixin } from '~/mixins/MyAscentStatusMixin'
 import GymRouteGradeAndPoint from '~/components/gymRoutes/partial/GymRouteGradeAndPoint'
-import AscentGymRouteIcon from '~/components/ascentGymRoutes/AscentGymRouteIcon'
 import GymRouteAvatar from '~/components/gymRoutes/GymRouteAvatar'
 
 export default {
   name: 'GymRouteListItem',
   components: {
     GymRouteAvatar,
-    AscentGymRouteIcon,
     GymRouteGradeAndPoint
   },
-  mixins: [ImageVariantHelpers],
+  mixins: [ImageVariantHelpers, MyAscentStatusMixin],
 
   props: {
     value: {
@@ -192,6 +208,17 @@ export default {
         klass.push('pl-0')
       }
       return klass.join(' ')
+    },
+
+    backgroundColor () {
+      if (this.selected) {
+        return 'background-color: rgba(116, 58, 213, 0.1)'
+      } else if (this.MD_myAscentStatus) {
+        const alpha = this.MD_myAscentStatus.value === 'project' ? 0.2 : 0.5
+        return `background: linear-gradient(90deg, rgba(255, 255, 255, 0) 15%, ${this.MM_myAscentColorBuilder(alpha)} 100%);`
+      } else {
+        return null
+      }
     }
   },
 
