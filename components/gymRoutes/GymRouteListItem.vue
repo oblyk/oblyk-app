@@ -17,13 +17,13 @@
       style="position: absolute; top: 5px; right: 5px; z-index: 0"
     >
       <span
-        v-if="MD_myAscentRepetitionCount && MD_myAscentRepetitionCount > 0"
+        v-if="MD_myAscentRepetitionCount && MD_myAscentRepetitionCount > 0 && MD_myAscentStatus.value !== 'repetition'"
         class="d-inline-block"
-        :style="`color: ${MM_myAscentColorBuilder(0.25)}; position: relative`"
+        :style="`color: ${MM_myAscentColorBuilder(0.5)}; position: relative`"
       >
         <v-icon
           size="80"
-          :color="MM_myAscentColorBuilder(0.15)"
+          :color="MM_myAscentColorBuilder(0.4)"
         >
           {{ mdiSync }}
         </v-icon>
@@ -36,7 +36,7 @@
       <v-icon
         v-if="MD_myAscentRopingStatus"
         size="80"
-        :color="MM_myAscentColorBuilder(0.2)"
+        :color="MM_myAscentColorBuilder(0.4)"
       >
         {{ MD_myAscentRopingStatus.icon }}
       </v-icon>

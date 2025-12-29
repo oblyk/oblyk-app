@@ -84,6 +84,7 @@ export const MyAscentStatusMixin = {
         }
 
         // Set repetition Count
+        this.MD_myAscentRepetitionCount = 0
         for (const ascent of this.MD_myAscents) {
           if (ascent.ascent_status === 'repetition') {
             this.MD_myAscentRepetitionCount += 1
