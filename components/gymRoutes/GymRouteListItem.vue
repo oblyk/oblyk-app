@@ -16,6 +16,23 @@
       v-if="MD_myAscentStatus"
       style="position: absolute; top: 5px; right: 5px; z-index: 0"
     >
+      <span
+        v-if="MD_myAscentRepetitionCount && MD_myAscentRepetitionCount > 0"
+        class="d-inline-block"
+        :style="`color: ${MM_myAscentColorBuilder(0.25)}; position: relative`"
+      >
+        <v-icon
+          size="80"
+          :color="MM_myAscentColorBuilder(0.15)"
+        >
+          {{ mdiSync }}
+        </v-icon>
+        <strong
+          style="position: absolute; top: 45px; left: 54px; font-size: 1.4em"
+        >
+          x{{ MD_myAscentRepetitionCount }}
+        </strong>
+      </span>
       <v-icon
         v-if="MD_myAscentRopingStatus"
         size="80"
@@ -131,7 +148,7 @@
 </template>
 
 <script>
-import { mdiCheckAll, mdiHeart, mdiComment, mdiPlayBox } from '@mdi/js'
+import { mdiCheckAll, mdiHeart, mdiComment, mdiPlayBox, mdiSync } from '@mdi/js'
 import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 import { MyAscentStatusMixin } from '~/mixins/MyAscentStatusMixin'
 import GymRouteGradeAndPoint from '~/components/gymRoutes/partial/GymRouteGradeAndPoint'
@@ -186,7 +203,8 @@ export default {
       mdiCheckAll,
       mdiHeart,
       mdiComment,
-      mdiPlayBox
+      mdiPlayBox,
+      mdiSync
     }
   },
 

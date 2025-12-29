@@ -29,6 +29,7 @@ export const MyAscentStatusMixin = {
       MD_myAscents: this.gymRoute?.my_ascents,
       MD_myAscentStatus: null,
       MD_myAscentRopingStatus: null,
+      MD_myAscentRepetitionCount: 0,
 
       mdiCropSquare,
       mdiCheckboxMarkedCircle,
@@ -81,9 +82,17 @@ export const MyAscentStatusMixin = {
         } else {
           this.MD_myAscentRopingStatus = null
         }
+
+        // Set repetition Count
+        for (const ascent of this.MD_myAscents) {
+          if (ascent.ascent_status === 'repetition') {
+            this.MD_myAscentRepetitionCount += 1
+          }
+        }
       } else {
         this.MD_myAscentStatus = null
         this.MD_myAscentRopingStatus = null
+        this.MD_myAscentRepetitionCount = 0
       }
     },
 
