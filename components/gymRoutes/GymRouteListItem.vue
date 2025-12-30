@@ -77,15 +77,10 @@
       </v-list-item-title>
       <v-list-item-subtitle class="d-flex">
         <div class="mr-auto">
-          <small
-            v-if="gymRoute.dismounted_at !== null"
-            class="font-weight-bold red--text"
-          >
-            {{ $t('components.gymRoute.dismounted') }}
-          </small>
-          <small v-if="gymRoute.anchor_number">
+          <small v-if="gymRoute.anchor_number" class="d-block">
             {{ $t('models.gymRoute.anchor_number') }}{{ gymRoute.anchor_number }}
           </small>
+          <gym-route-climbing-simple-style-icons :gym-route="gymRoute" />
         </div>
         <div>
           <!-- Likes -->
@@ -153,10 +148,12 @@ import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 import { MyAscentStatusMixin } from '~/mixins/MyAscentStatusMixin'
 import GymRouteGradeAndPoint from '~/components/gymRoutes/partial/GymRouteGradeAndPoint'
 import GymRouteAvatar from '~/components/gymRoutes/GymRouteAvatar'
+import GymRouteClimbingSimpleStyleIcons from '~/components/gymRoutes/partial/GymRouteClimbingSimpleStyleIcons'
 
 export default {
   name: 'GymRouteListItem',
   components: {
+    GymRouteClimbingSimpleStyleIcons,
     GymRouteAvatar,
     GymRouteGradeAndPoint
   },

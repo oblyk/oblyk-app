@@ -1,8 +1,9 @@
 <template>
   <div :class="inputStyle === 'button' ? 'd-inline-block' : ''">
-    <div @click="focusInput">
+    <div @click="openModal">
       <v-select
         v-if="inputStyle === 'Select'"
+        ref="colorInput"
         v-model="selectedColors"
         outlined
         readonly
@@ -12,7 +13,7 @@
         :hide-details="hideDetails"
         chips
         :prepend-inner-icon="prependInnerIcon"
-        @focus="focusInput"
+        @focus="openModal"
       >
         <template #selection="{ attrs, item, selected }">
           <v-chip
@@ -58,9 +59,10 @@
     <v-dialog
       v-model="colorModal"
       width="450"
+      persistent
       :fullscreen="$vuetify.breakpoint.mobile"
     >
-      <v-card>
+      <v-card class="d-flex flex-column">
         <v-card-title
           :class="$vuetify.breakpoint.mobile ? 'px-2' : 'px-4'"
           v-text="colorsLimit > 1 ? $t('components.input.colorMulti', { colorsLimit: colorsLimit }) : $t('components.input.colorSingle')"
@@ -90,10 +92,18 @@
             </p>
           </v-sheet>
         </v-card-text>
-        <v-card-actions>
-          <v-spacer />
+        <v-card-actions
+          class="mt-auto"
+        >
           <v-btn
             text
+            @click.prevent="closeModal"
+          >
+            {{ $t('actions.close') }}
+          </v-btn>
+          <v-spacer />
+          <v-btn
+            elevation="0"
             color="primary"
             @click.prevent="closeModal"
           >
@@ -166,7 +176,7 @@ export default {
   data () {
     return {
       colorModal: false,
-      delayClose: false,
+      openable: true,
       selectedColors: this.value,
 
       mdiCircle,
@@ -229,17 +239,18 @@ export default {
       return this.selectedColors && this.selectedColors.includes(color.value) ? `${hoverable} --active` : `${hoverable} --inactive`
     },
 
-    focusInput () {
-      if (!this.delayClose && !this.colorModal) {
-        this.colorModal = true
-      } else {
-        this.delayClose = false
+    openModal () {
+      if (!this.openable) {
+        return false
       }
+      this.colorModal = true
     },
 
     closeModal () {
-      this.delayClose = true
+      this.openable = false
+      setTimeout(() => { this.openable = true }, 200)
       this.colorModal = false
+      this.$refs.colorInput.focus()
     }
   }
 }

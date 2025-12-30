@@ -215,5 +215,17 @@ class GymApi extends BaseApi {
       }
     })
   }
+
+  routesByStyles (gymId, params) {
+    return this.axios.request({
+      method: 'GET',
+      url: `${this.baseUrl}/gyms/${gymId}/routes_by_styles.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
+      params
+    })
+  }
 }
 export default GymApi

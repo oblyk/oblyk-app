@@ -1,7 +1,7 @@
 <template>
   <div>
     <div
-      v-for="(style, styleIndex) in styles"
+      v-for="(style, styleIndex) in MD_ClimbingStyles"
       :key="`style-bouldering-${styleIndex}`"
       class="border-bottom py-1"
     >

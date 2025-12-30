@@ -1,20 +1,18 @@
 <template>
   <div>
     <spinner v-if="loadingGymSector" />
-
-    <v-container v-if="!loadingGymSector">
-      <v-row justify="center">
-        <v-col class="global-form-width">
-          <h2 class="mb-4">
-            {{ $t('components.gymRoute.addNew') }}
-          </h2>
-          <gym-route-form
-            :gym-sector="gymSector"
-            submit-methode="post"
-          />
-        </v-col>
-      </v-row>
-    </v-container>
+    <div v-else>
+      <page-header
+        :title="$t('components.gymRoute.addNew')"
+        :back-to="gymSector.spacePath"
+      />
+      <v-container>
+        <gym-route-form
+          :gym-sector="gymSector"
+          submit-methode="post"
+        />
+      </v-container>
+    </div>
   </div>
 </template>
 
@@ -22,10 +20,11 @@
 import Spinner from '@/components/layouts/Spiner'
 import { GymSectorConcern } from '@/concerns/GymSectorConcern'
 import GymRouteForm from '@/components/gymRoutes/forms/GymRouteForm'
+import PageHeader from '~/components/layouts/PageHeader.vue'
 
 export default {
   meta: { orphanRoute: true },
-  components: { GymRouteForm, Spinner },
+  components: { PageHeader, GymRouteForm, Spinner },
   mixins: [GymSectorConcern],
 
   i18n: {

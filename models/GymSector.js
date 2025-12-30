@@ -18,6 +18,10 @@ export default class GymSector extends ActiveData {
     return `/gyms/${this.gym.id}/${this.gym.slug_name}/spaces/${this.gym_space.id}/${this.gym_space.slug_name}/sectors/${this.id}`
   }
 
+  get spacePath () {
+    return `/gyms/${this.gym.id}/${this.gym.slug_name}/spaces/${this.gym_space.id}/${this.gym_space.slug_name}`
+  }
+
   get hasPolygon () {
     return this.polygon !== null
   }

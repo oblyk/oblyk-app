@@ -1,75 +1,114 @@
 <template>
-  <v-select
-    v-model="climbingStyles"
-    :items="favoriteClimbingStyles || climbingStyleList"
-    outlined
-    chips
-    :label="label || $t('components.input.climbingStyle')"
-    item-text="text"
-    item-value="value"
-    multiple
-    :prepend-inner-icon="icon"
-    :disabled="loadingClimbingStyle"
-    :loading="loadingClimbingStyle"
-    @change="onChange"
-  >
-    <template #selection="data">
-      <v-chip
-        v-bind="data.attrs"
-        :input-value="data.selected"
-        close
-        @click="data.select"
-        @click:close="remove(data.item)"
-      >
-        <v-icon
-          left
-          :color="data.item.color"
+  <div>
+    <v-select
+      ref="indoorClimbingStyleInput"
+      v-model="climbingStylesValue"
+      :items="favoriteClimbingStyles || MD_ClimbingStyles"
+      outlined
+      chips
+      :label="label || $t('components.input.climbingStyle')"
+      item-text="text"
+      item-value="value"
+      multiple
+      :prepend-inner-icon="icon"
+      :disabled="loadingClimbingStyle"
+      :loading="loadingClimbingStyle"
+      :hide-details="hideDetails"
+      readonly
+      @click="openModal"
+      @focus="openModal"
+    >
+      <template #selection="data">
+        <v-chip
+          v-bind="data.attrs"
+          :input-value="data.selected"
         >
-          {{ data.item.icon }}
-        </v-icon>
-        {{ data.item.text }}
-      </v-chip>
-    </template>
-    <template #item="data">
-      <template v-if="typeof data.item !== 'object'">
-        <v-list-item-content v-text="data.item" />
+          <v-icon
+            left
+            :color="data.item.color"
+          >
+            {{ data.item.icon }}
+          </v-icon>
+          {{ data.item.text }}
+        </v-chip>
       </template>
-      <template v-else>
-        <v-list-item-content>
-          <v-list-item-title>
-            <v-icon
-              size="35"
-              class="mr-3"
-              left
-              :color="data.item.color"
-            >
-              {{ data.item.icon }}
-            </v-icon>
-            {{ data.item.text }}
-          </v-list-item-title>
-        </v-list-item-content>
-      </template>
-    </template>
-  </v-select>
+    </v-select>
+    <v-dialog
+      v-model="styleModal"
+      max-width="450"
+      persistent
+      :fullscreen="$vuetify.breakpoint.mobile"
+    >
+      <v-card class="d-flex flex-column">
+        <v-sheet
+          class="pa-4 v-card__title"
+          style="position: sticky; top: 0; z-index: 1"
+        >
+          <v-icon left>
+            {{ icon }}
+          </v-icon>
+          {{ $t('components.gymClimbingStyles.whichStyle') }}
+        </v-sheet>
+        <v-card-text>
+          <div v-if="favoriteStyles.length > 0">
+            <p class="font-weight-medium pl-2 mb-1 mt-2">
+              {{ $t('common.myFavorites') }}
+            </p>
+            <climbing-style-btn
+              v-for="(favoriteStyle, favoriteStyleIndex) in favoriteStyles"
+              :key="`favorite-style-index-${favoriteStyleIndex}`"
+              :climbing-style="favoriteStyle"
+              :style-list="climbingStylesValue"
+              @input="addStyle"
+            />
+          </div>
+          <p
+            v-if="favoriteStyles.length > 0"
+            class="font-weight-medium pl-2 mb-1 mt-4"
+          >
+            {{ $t('common.others') }}
+          </p>
+          <climbing-style-btn
+            v-for="(otherStyle, otherStyleIndex) in othersStyles"
+            :key="`other-style-index-${otherStyleIndex}`"
+            :climbing-style="otherStyle"
+            :style-list="climbingStylesValue"
+            @input="addStyle"
+          />
+        </v-card-text>
+        <v-sheet
+          class="pa-4 mt-auto d-flex"
+          style="position: sticky; bottom: 0"
+        >
+          <v-btn
+            text
+            @click.prevent="closeModal"
+          >
+            {{ $t('actions.close') }}
+          </v-btn>
+          <v-btn
+            color="primary"
+            elevation="0"
+            class="ml-auto"
+            @click.prevent="closeModal"
+          >
+            {{ $t('actions.ok') }}
+          </v-btn>
+        </v-sheet>
+      </v-card>
+    </v-dialog>
+  </div>
 </template>
 
 <script>
-import {
-  oblykClimbingStyleBoulder,
-  oblykClimbingStyleCoordination,
-  oblykClimbingStyleEndurance,
-  oblykClimbingStyleFinger,
-  oblykClimbingStyleGrip,
-  oblykClimbingStylePhysics,
-  oblykClimbingStyleResistance,
-  oblykClimbingStyleSmallPeople,
-  oblykClimbingStyleTallPeople,
-  oblykClimbingStyleTechnical
-} from '~/assets/oblyk-icons'
+import { ClimbingStylesMixin } from '~/mixins/ClimbingStylesMixin'
 import GymClimbingStyleApi from '~/services/oblyk-api/GymClimbingStyleApi'
+import ClimbingStyleBtn from '~/components/forms/ClimbingStyleBtn.vue'
 
 export default {
   name: 'IndoorClimbingStylesInput',
+  components: { ClimbingStyleBtn },
+  mixins: [ClimbingStylesMixin],
   props: {
     value: {
       type: Array,
@@ -107,21 +146,13 @@ export default {
 
   data () {
     return {
+      styleModal: false,
+      openable: true,
       loadingClimbingStyle: true,
-      climbingStyleList: [
-        { text: this.$t('models.climbingStyle.boulder'), value: 'boulder', icon: oblykClimbingStyleBoulder, color: null },
-        { text: this.$t('models.climbingStyle.endurance'), value: 'endurance', icon: oblykClimbingStyleEndurance, color: null },
-        { text: this.$t('models.climbingStyle.resistance'), value: 'resistance', icon: oblykClimbingStyleResistance, color: null },
-        { text: this.$t('models.climbingStyle.technical'), value: 'technical', icon: oblykClimbingStyleTechnical, color: null },
-        { text: this.$t('models.climbingStyle.physics'), value: 'physics', icon: oblykClimbingStylePhysics, color: null },
-        { text: this.$t('models.climbingStyle.finger'), value: 'finger', icon: oblykClimbingStyleFinger, color: null },
-        { text: this.$t('models.climbingStyle.grip'), value: 'grip', icon: oblykClimbingStyleGrip, color: null },
-        { text: this.$t('models.climbingStyle.coordination'), value: 'coordination', icon: oblykClimbingStyleCoordination, color: null },
-        { text: this.$t('models.climbingStyle.tall_people'), value: 'tall_people', icon: oblykClimbingStyleTallPeople, color: null },
-        { text: this.$t('models.climbingStyle.small_people'), value: 'small_people', icon: oblykClimbingStyleSmallPeople, color: null }
-      ],
-      climbingStyles: this.value,
-      gymClimbingStyles: {}
+      climbingStylesValue: this.value,
+      gymClimbingStyles: {},
+      favoriteStyles: [],
+      othersStyles: []
     }
   },
 
@@ -134,7 +165,7 @@ export default {
       const favoris = []
       const others = []
       const items = []
-      for (const climbingStyle of this.climbingStyleList) {
+      for (const climbingStyle of this.MD_ClimbingStyles) {
         const gymStyle = this.gymClimbingStyles[this.climbingType]?.find(style => style.style === climbingStyle.value)
         if (gymStyle) {
           climbingStyle.color = gymStyle.color
@@ -162,7 +193,7 @@ export default {
 
   watch: {
     value () {
-      this.climbingStyles = this.value
+      this.climbingStylesValue = this.value
     }
   },
 
@@ -177,6 +208,15 @@ export default {
         .all(this.gym.id)
         .then((resp) => {
           this.gymClimbingStyles = resp.data
+          for (const climbingStyle of this.MD_ClimbingStyles) {
+            const gymStyle = this.gymClimbingStyles[this.climbingType]?.find(style => style.style === climbingStyle.value)
+            if (gymStyle) {
+              climbingStyle.color = gymStyle.color
+              this.favoriteStyles.push(climbingStyle)
+            } else {
+              this.othersStyles.push(climbingStyle)
+            }
+          }
         })
         .finally(() => {
           this.loadingClimbingStyle = false
@@ -184,14 +224,38 @@ export default {
     },
 
     onChange () {
-      this.$emit('input', this.climbingStyles)
+      this.$emit('input', this.climbingStylesValue)
+    },
+
+    addStyle (styleValue) {
+      if (this.climbingStylesValue.includes(styleValue)) {
+        const styleIndex = this.climbingStylesValue.indexOf(styleValue)
+        this.climbingStylesValue.splice(styleIndex, 1)
+      } else {
+        this.climbingStylesValue.push(styleValue)
+      }
+      this.$emit('input', this.climbingStylesValue)
+    },
+
+    openModal () {
+      if (!this.openable) {
+        return false
+      }
+      this.styleModal = true
     },
 
     remove (item) {
-      const index = this.climbingStyles.indexOf(item.value)
+      const index = this.climbingStylesValue.indexOf(item.value)
       if (index >= 0) {
-        this.climbingStyles.splice(index, 1)
+        this.climbingStylesValue.splice(index, 1)
       }
+    },
+
+    closeModal () {
+      this.openable = false
+      setTimeout(() => { this.openable = true }, 200)
+      this.styleModal = false
+      this.$refs.indoorClimbingStyleInput.focus()
     }
   }
 }

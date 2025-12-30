@@ -1,11 +1,13 @@
 <template>
   <div>
-    <!-- Sort sector select -->
+    <!-- MULTI SELECT, SORT, FILTERS OR ADD ROUTES -->
     <v-sheet
+      id="sort-and-filter-gym-routes"
       class="d-flex mb-2 py-1 px-2 border-bottom"
-      style="position: sticky; z-index: 1"
-      :style="$vuetify.breakpoint.mobile ? 'top: 64px' : 'top: 0px'"
+      style="position: sticky; z-index: 1;"
+      :style="$vuetify.breakpoint.mobile ? 'top: 64px; scroll-margin-top: 64px' : 'top: 0px'"
     >
+      <!-- SWITCH MULTI SELECTION BTN -->
       <v-btn
         v-if="$auth.loggedIn"
         icon
@@ -17,15 +19,28 @@
           {{ mdiCheckboxMultipleMarkedOutline }}
         </v-icon>
       </v-btn>
+
+      <!-- SORT ROUTE -->
       <gym-space-route-sort
         v-model="sort"
         class="flex-grow-1"
         :gym="gym"
         :gym-space="gymSpace"
       />
+
+      <!-- FILTER BTN -->
+      <gym-routes-filter-btn
+        :gym="gym"
+        :gym-space="gymSpace"
+        :filter-callback="pushFilter"
+        :active="filters.length > 0"
+        class="ml-auto pr-2"
+      />
+
+      <!-- ADD ROUTES GLOBAL BTN -->
       <div
         v-if="currentUserIsGymAdmin() && gymAuthCan(gym, 'manage_opening')"
-        class="ml-auto px-2"
+        class="pr-2"
       >
         <v-btn
           text
@@ -42,17 +57,30 @@
     </v-sheet>
 
     <div class="px-2">
-      <!-- Show highlighted sector -->
-      <v-alert
-        v-if="showSectorsToast"
-        text
-        dense
-        color="primary"
-        dismissible
-        @input="closeSectorFilter"
+      <div
+        v-if="haveFilters"
+        class="mb-2"
       >
-        <span v-html="$t('components.gymSpace.showSector', { name: showSectorName })" />
-      </v-alert>
+        <strong>
+          {{ $t('common.filters') }} :
+        </strong>
+        <template v-for="filter in filters">
+          <v-chip
+            :key="`filter-${filter.filterKey}`"
+            close
+            class="mr-1"
+            @click:close="removeFilter(filter)"
+          >
+            <v-icon
+              v-if="filter.icon"
+              left
+            >
+              {{ filter.icon }}
+            </v-icon>
+            {{ filter.text }}
+          </v-chip>
+        </template>
+      </div>
 
       <!-- Load routes -->
       <div v-if="loadingRoutes">
@@ -63,17 +91,18 @@
       <div
         v-if="!loadingRoutes"
         id="gym-routes-list"
+        style="min-height: 100vh"
       >
         <gym-sector-separator
-          v-if="showSectorsToast && sort.column === 'sector'"
-          :gym-sector="{ id: showSectorId, name: showSectorName }"
+          v-if="filteredSector && sort.column === 'sector'"
+          :gym-sector="{ id: filteredSector.id, name: filteredSector.name }"
           :gym="gym"
           :gym-space="gymSpace"
           :show-plan-options="gymSpace !== null"
         />
 
         <!-- If I have no routes -->
-        <div v-if="!showSectorsToast && gymSpace && sort.column === 'sector' && gymRoutes.length === 0 && currentUserIsGymAdmin()">
+        <div v-if="!haveFilters && gymSpace && sort.column === 'sector' && gymRoutes.length === 0 && currentUserIsGymAdmin()">
           <gym-sector-separator
             v-for="(allSector, allSectorIndex) in gymSpace.gym_sectors"
             :key="`space-sector-index-${allSectorIndex}`"
@@ -90,7 +119,7 @@
         >
           <!-- Gym Sector separator -->
           <div
-            v-if="!showSectorsToast && sort.column === 'sector' && (routeIndex === 0 || route.gym_sector_id !== gymRoutes[routeIndex - 1].gym_sector_id)"
+            v-if="!haveFilters && sort.column === 'sector' && (routeIndex === 0 || route.gym_sector_id !== gymRoutes[routeIndex - 1].gym_sector_id)"
           >
             <gym-sector-separator
               v-for="(spaceSector, spaceSectorIndex) in sectorsBetween(routeIndex)"
@@ -115,7 +144,6 @@
             v-model="selectedRoutes"
             :highlight-sectors="showPlanOptions"
             :gym-route="route"
-            :gym="gym"
             class="mb-1"
             :multiple-selection="multipleSelection"
             :switch-multi-selection="switchMultiSelection"
@@ -123,7 +151,7 @@
         </div>
 
         <!-- Load last sector on space after last route -->
-        <div v-if="!showSectorsToast && noMoreDataToLoad && gymSpace && sort.column === 'sector' && gymRoutes.length > 0 && currentUserIsGymAdmin()">
+        <div v-if="!haveFilters && noMoreDataToLoad && gymSpace && sort.column === 'sector' && gymRoutes.length > 0 && currentUserIsGymAdmin()">
           <gym-sector-separator
             v-for="(allSector, allSectorIndex) in lastSectors()"
             :key="`space-sector-index-${allSectorIndex}`"
@@ -170,7 +198,9 @@
 <script>
 import {
   mdiSourceBranchPlus,
-  mdiCheckboxMultipleMarkedOutline
+  mdiCheckboxMultipleMarkedOutline,
+  mdiTextureBox,
+  mdiFilter
 } from '@mdi/js'
 import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
 import { LoadingMoreHelpers } from '~/mixins/LoadingMoreHelpers'
@@ -186,10 +216,12 @@ import GymSectorSeparator from '~/components/gymRoutes/listByGroup/GymSectorSepa
 import OpenedAtSeparator from '~/components/gymRoutes/listByGroup/OpenedAtSeparator'
 import AscentGymMultiCheckDialog from '~/components/ascentGymRoutes/AscentGymMultiCheckDialog'
 import AscentGymMultiCheckSuccessModal from '~/components/ascentGymRoutes/AscentGymMultiCheckSuccessModal'
+import GymRoutesFilterBtn from '~/components/gymRoutes/partial/GymRoutesFilterBtn'
 
 export default {
   name: 'GymSpaceRouteList',
   components: {
+    GymRoutesFilterBtn,
     AscentGymMultiCheckSuccessModal,
     AscentGymMultiCheckDialog,
     OpenedAtSeparator,
@@ -221,17 +253,17 @@ export default {
   data () {
     return {
       sort: { column: 'opened_at', direction: 'asc', dismounted: false },
+      filters: [],
       gymRoutes: [],
       loadingRoutes: true,
       firstLoaded: false,
-      showSectorId: null,
-      showSectorName: null,
       selectedRoutes: [],
       multipleSelection: false,
       ascentsAddedCount: 0,
 
       mdiCheckboxMultipleMarkedOutline,
-      mdiSourceBranchPlus
+      mdiSourceBranchPlus,
+      mdiFilter
     }
   },
 
@@ -239,19 +271,23 @@ export default {
     GymSector () {
       return GymSector
     },
-    showSectorsToast () {
-      return this.showSectorId !== null
+    filteredSector () {
+      for (const filter of this.filters) {
+        if (filter.type === 'sector') {
+          return { id: filter.value, name: filter.text }
+        }
+      }
+      return false
+    },
+
+    haveFilters () {
+      return this.filters && this.filters.length > 0
     }
   },
 
   watch: {
     sort () {
-      this.showSectorId = null
-      this.showSectorName = null
-      this.loadingRoutes = true
-      this.gymRoutes = []
-      this.resetLoadMorePageNumber()
-      this.getRoutes()
+      this.reloadRoutes()
     },
 
     gymSpace () {
@@ -269,10 +305,7 @@ export default {
     })
 
     this.$root.$on('reloadSpaceRoutes', () => {
-      this.loadingRoutes = true
-      this.gymRoutes = []
-      this.resetLoadMorePageNumber()
-      this.getRoutes()
+      this.reloadRoutes()
     })
 
     this.sort.column = localStorage.getItem('gym_route_sort_column') || 'sector'
@@ -288,31 +321,32 @@ export default {
   },
 
   methods: {
-    getRoutes (sectorId = null, scrollToRouteListe = false) {
+    getRoutes () {
       const gymRouteApi = new GymRouteApi(this.$axios, this.$auth)
       let promise
       this.moreIsBeingLoaded()
+      const filters = this.filters.map((filter) => { return { type: filter.type, value: filter.value } })
 
       if (this.gymSpace) {
         promise = gymRouteApi
           .paginatedRoutesInSpace(
             this.gymSpace.gym.id,
             this.gymSpace.id,
-            sectorId,
             this.sort.column,
             this.sort.direction,
             this.page,
-            this.sort.dismounted
+            this.sort.dismounted,
+            filters
           )
       } else {
         promise = gymRouteApi
           .paginatedRoutesInGym(
             this.gym.id,
-            sectorId,
             this.sort.column,
             this.sort.direction,
             this.page,
-            this.sort.dismounted
+            this.sort.dismounted,
+            filters
           )
       }
 
@@ -322,14 +356,6 @@ export default {
             this.$localforage.gymRoutes.setItem(route.id, route)
             this.gymRoutes.push(new GymRoute({ attributes: route }))
           }
-
-          if (scrollToRouteListe) {
-            setTimeout(() => {
-              const gymRouteList = document.querySelector('#gym-routes-list')
-              gymRouteList.scrollIntoView({ behavior: 'smooth' })
-            }, 300)
-          }
-
           this.successLoadingMore(resp)
         })
         .catch((err) => {
@@ -343,26 +369,29 @@ export default {
         })
     },
 
-    filterBySector (sectorId, sectorName) {
+    reloadRoutes () {
       this.loadingRoutes = true
-      this.showSectorId = sectorId
-      this.showSectorName = sectorName
       this.gymRoutes = []
-      this.sort.column = 'sector'
-      this.sort.direction = 'asc'
       this.resetLoadMorePageNumber()
-      this.getRoutes(sectorId, true)
+      this.getRoutes(false)
     },
 
-    closeSectorFilter () {
-      this.$root.$emit('setMapView')
-      this.showSectorId = null
-      this.showSectorName = null
-      this.gymRoutes = []
-      this.sort.column = localStorage.getItem('gym_route_sort_column') || 'sector'
-      this.sort.direction = localStorage.getItem('gym_route_sort_direction') || 'asc'
-      this.resetLoadMorePageNumber()
-      this.getRoutes()
+    filterBySector (sectorId, sectorName) {
+      this.sort.column = 'sector'
+      this.sort.direction = 'asc'
+      this.pushFilter({
+        type: 'sector',
+        value: sectorId,
+        text: sectorName,
+        icon: mdiTextureBox
+      })
+      setTimeout(() => {
+        if (this.$vuetify.breakpoint.mobile) {
+          document.querySelector('#sort-and-filter-gym-routes').scrollIntoView({ top: 0, behavior: 'smooth' })
+        } else {
+          document.querySelector('.gym-space-left-side').scrollTo({ top: 0, behavior: 'smooth' })
+        }
+      }, 300)
     },
 
     dismountRoutes (gymId, spaceId, sectorId) {
@@ -437,6 +466,43 @@ export default {
       this.ascentsAddedCount = ascentsCount
       this.multipleSelection = false
       this.$refs.ascentGymMultiCheckSuccessModal.toggleModal(true)
+    },
+
+    pushFilter (filter, reload = true) {
+      const filterKey = `${filter.type}.${filter.value}`
+      for (const currentFilter of this.filters) {
+        // Deduplicate filters
+        if (filterKey === currentFilter.filterKey) {
+          return false
+        }
+        // Only one type by filters
+        if (filter.type === currentFilter.type) {
+          this.removeFilter(currentFilter, false)
+        }
+      }
+      this.filters.push({
+        filterKey,
+        value: filter.value,
+        type: filter.type,
+        text: filter.text,
+        icon: filter.icon
+      })
+      if (reload) {
+        this.reloadRoutes()
+      }
+    },
+
+    removeFilter (filter, reload = true) {
+      if (filter.type === 'sector' && reload === true) {
+        this.$root.$emit('setMapView')
+        this.sort.column = localStorage.getItem('gym_route_sort_column') || 'sector'
+        this.sort.direction = localStorage.getItem('gym_route_sort_direction') || 'asc'
+      }
+      this.filters = this.filters.filter(currentFilter => currentFilter.filterKey !== filter.filterKey)
+
+      if (reload) {
+        this.reloadRoutes()
+      }
     }
   }
 }

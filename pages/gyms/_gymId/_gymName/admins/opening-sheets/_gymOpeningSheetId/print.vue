@@ -69,7 +69,7 @@
                 :size="18"
                 :color="cell.icon_color"
               >
-                {{ styles.filter((icon) => icon.value === style)[0].icon }}
+                {{ MC_ClimbingStylesByStyle[style].icon }}
               </v-icon>
             </td>
           </tr>
@@ -88,7 +88,7 @@
             color="rgb(0,0,0)"
             :size="18"
           >
-            {{ styles.filter((icon) => icon.value === style)[0].icon }}
+            {{ MC_ClimbingStylesByStyle[style].icon }}
           </v-icon>
           {{ $t(`models.climbingStyle.${style}`) }}
         </p>

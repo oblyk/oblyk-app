@@ -139,7 +139,7 @@
           <v-sheet class="rounded mb-2 py-1 px-2">
             {{ $t('components.openingSheet.style') }} :
             <v-btn
-              v-for="(style, styleIndex) in styles"
+              v-for="(style, styleIndex) in MD_ClimbingStyles"
               :key="`style-index-${styleIndex}`"
               :title="$t(`models.climbingStyle.${style.value}`)"
               icon
@@ -223,7 +223,7 @@
                         :small="sheet.row_json[rowIndex].routes[cellIndex - 1].climbing_styles.length > 1"
                         :dark="darkFieldColor(sheet.row_json[rowIndex].routes[cellIndex - 1] ? sheet.row_json[rowIndex].routes[cellIndex - 1].hold_color : null)"
                       >
-                        {{ styles.filter((icon) => icon.value === style)[0].icon }}
+                        {{ MC_ClimbingStylesByStyle[style].icon }}
                       </v-icon>
                     </div>
                   </div>

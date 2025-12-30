@@ -18,20 +18,20 @@
           small
           :color="styleColor(style)"
         >
-          {{ climbingDataByStyles[style].icon }}
+          {{ MC_ClimbingStylesByStyle[style].icon }}
         </v-icon>
-        {{ climbingDataByStyles[style].text }}
+        {{ MC_ClimbingStylesByStyle[style].text }}
       </v-chip>
     </span>
   </div>
 </template>
 
 <script>
-import { ClimbingStylesHelpers } from '~/mixins/ClimbingStylesHelpers'
+import { ClimbingStylesMixin } from '~/mixins/ClimbingStylesMixin'
 
 export default {
   name: 'GymRouteClimbingStyles',
-  mixins: [ClimbingStylesHelpers],
+  mixins: [ClimbingStylesMixin],
   props: {
     gymRoute: {
       type: Object,

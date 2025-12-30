@@ -1,7 +1,7 @@
 import BaseApi from '~/services/oblyk-api/BaseApi'
 
 class GymRouteApi extends BaseApi {
-  paginatedRoutesInGym (gymId, sectorId, orderBy, direction, page, dismounted = false) {
+  paginatedRoutesInGym (gymId, orderBy, direction, page, dismounted = false, filters = null) {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/gyms/${gymId}/gym_routes/paginated.json`,
@@ -9,11 +9,11 @@ class GymRouteApi extends BaseApi {
         Authorization: this.authToken(),
         HttpApiAccessToken: this.apiAccessToken
       },
-      params: { order_by: orderBy, direction, page, gym_sector_id: sectorId, dismounted }
+      params: { order_by: orderBy, direction, page, dismounted, filters }
     })
   }
 
-  paginatedRoutesInSpace (gymId, spaceId, sectorId, orderBy, direction, page, dismounted = false) {
+  paginatedRoutesInSpace (gymId, spaceId, orderBy, direction, page, dismounted = false, filters = null) {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/gyms/${gymId}/gym_spaces/${spaceId}/gym_routes/paginated.json`,
@@ -21,7 +21,7 @@ class GymRouteApi extends BaseApi {
         Authorization: this.authToken(),
         HttpApiAccessToken: this.apiAccessToken
       },
-      params: { order_by: orderBy, direction, page, gym_sector_id: sectorId, dismounted }
+      params: { order_by: orderBy, direction, page, dismounted, filters }
     })
   }
 

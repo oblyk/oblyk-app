@@ -62,6 +62,13 @@
         </svg>
       </v-sheet>
     </v-sheet>
+    <small
+      v-if="gymRoute.dismounted_at !== null"
+      style="position: absolute; top: 24px; left: 7px; transform: rotate(-25deg); border: solid red 2px; font-size: 0.6em; border-radius: 5px"
+      class="red--text font-weight-black d-block pa-1 text-uppercase text-no-wrap"
+    >
+      {{ $t('components.gymRoute.dismounted') }}
+    </small>
   </div>
 </template>
 <script>

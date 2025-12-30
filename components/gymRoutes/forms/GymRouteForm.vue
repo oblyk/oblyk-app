@@ -201,7 +201,9 @@
             icon="Bookmark"
             :multiple="true"
             :colors-limit="2"
+            hide-details
             :prepend-inner-icon="mdiTag"
+            class="mb-5"
           />
 
           <!-- Hold colors -->
@@ -210,9 +212,11 @@
             v-model="data.hold_colors"
             :label="$t('models.gymRoute.hold_colors')"
             icon="Circle"
+            hide-details
             :multiple="true"
             :prepend-inner-icon="mdiChartBubble"
             :colors-limit="2"
+            class="mb-5"
           />
         </div>
       </div>
@@ -222,7 +226,9 @@
         v-model="data.gym_opener_ids"
         :gym="gymSector.gym"
         :icon="mdiScrewdriver"
+        hide-details
         :with-deactivated-opener="isEditingForm()"
+        class="mb-5"
       />
 
       <!-- Tags -->
@@ -235,6 +241,8 @@
           :climbing-type="data.climbing_type"
           :icon="mdiPaletteSwatchOutline"
           :label="multiPitch ? $t('models.gymRoute.styles_by_section', { index: index + 1 }) : $t('models.gymRoute.styles')"
+          hide-details
+          class="mb-5"
         />
       </div>
 
@@ -313,18 +321,11 @@
         />
       </div>
 
-      <div>
-        <v-btn
-          icon
-          @click="$router.go(-1)"
-        >
-          <v-icon>{{ mdiArrowLeft }}</v-icon>
-        </v-btn>
+      <div class="text-right">
         <v-btn
           :loading="addingRoute"
           elevation="0"
           color="primary"
-          class="float-right"
           @click="submit"
         >
           {{ $t(submitText()) }}

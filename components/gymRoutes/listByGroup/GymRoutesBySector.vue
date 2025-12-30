@@ -42,7 +42,6 @@
           <gym-route-list-item
             :key="`gym-route-card-${routeIndex}`"
             :gym-route="route"
-            :gym="gym"
             class="mb-1"
           />
         </template>

@@ -127,6 +127,19 @@
             </template>
             <template
               v-once
+              #[`item.styles`]="{ item }"
+            >
+              <v-icon
+                v-for="(style, styleIndex) in item.styles"
+                :key="`stye-index-${styleIndex}-${item.id}`"
+                small
+                :title="MC_ClimbingStylesByStyle[style].text"
+              >
+                {{ MC_ClimbingStylesByStyle[style].icon }}
+              </v-icon>
+            </template>
+            <template
+              v-once
               #[`item.openedAt`]="{ item }"
             >
               <v-btn
@@ -435,6 +448,7 @@ import GymRouteInfo from '~/components/gymRoutes/GymRouteInfo'
 import OpeningSheetDialog from '~/components/gymOpeningSheets/OpeningSheetDialog'
 import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 import AscentGymRouteIcon from '~/components/ascentGymRoutes/AscentGymRouteIcon'
+import { ClimbingStylesMixin } from '~/mixins/ClimbingStylesMixin'
 
 export default {
   name: 'GymRoutesTable',
@@ -447,7 +461,7 @@ export default {
     Note,
     GymRouteTagAndHold
   },
-  mixins: [DateHelpers, GymRolesHelpers, ImageVariantHelpers],
+  mixins: [DateHelpers, GymRolesHelpers, ImageVariantHelpers, ClimbingStylesMixin],
   props: {
     gym: {
       type: Object,
@@ -521,6 +535,13 @@ export default {
         },
         {
           order: 6,
+          text: this.$t('models.gymRoute.styles'),
+          align: 'start',
+          sortable: false,
+          value: 'styles'
+        },
+        {
+          order: 7,
           text: this.$t('models.gymRoute.openers'),
           align: 'start',
           sortable: true,
@@ -528,7 +549,7 @@ export default {
           value: 'opener'
         },
         {
-          order: 7,
+          order: 8,
           text: this.$t('models.gymRoute.opened_at'),
           align: 'start',
           sortable: true,
@@ -538,7 +559,7 @@ export default {
           value: 'openedAt'
         },
         {
-          order: 9,
+          order: 10,
           text: this.$t('models.gymRoute.gym_sector_id'),
           align: 'start',
           sortable: true,
@@ -547,7 +568,7 @@ export default {
           value: 'sector'
         },
         {
-          order: 11,
+          order: 12,
           text: this.$t('models.gymRoute.ascents'),
           align: 'start',
           sortable: true,
@@ -556,7 +577,7 @@ export default {
           value: 'ascentsCount'
         },
         {
-          order: 12,
+          order: 13,
           text: this.$t('models.gymRoute.likes_count'),
           align: 'start',
           sortable: true,
@@ -565,7 +586,7 @@ export default {
           value: 'likesCount'
         },
         {
-          order: 13,
+          order: 14,
           text: this.$t('models.gymRoute.difficulty_appreciation'),
           align: 'start',
           sortable: true,
@@ -582,7 +603,7 @@ export default {
         // Add anchor column
         if (!haveAnchor && route.anchor_number !== null) {
           headers.push({
-            order: 8,
+            order: 9,
             text: this.$t('models.gymRoute.anchor_number'),
             align: 'start',
             sortable: true,
@@ -621,7 +642,7 @@ export default {
       // Is user can be manage route
       if (this.canManageOpening) {
         headers.push({
-          order: 14,
+          order: 15,
           text: '',
           align: 'center',
           sortable: false,
@@ -634,7 +655,7 @@ export default {
       if (this.showSpaceColumn) {
         headers.push(
           {
-            order: 10,
+            order: 11,
             text: this.$t('models.gymRoute.gym_space_id'),
             align: 'start',
             sortable: true,
@@ -714,6 +735,12 @@ export default {
 
     formatRoutes () {
       for (const route of this.routes) {
+        const styles = []
+        for (const section of route.sections) {
+          for (const style of section.styles) {
+            styles.push(style)
+          }
+        }
         this.tableRoutes.push(
           {
             id: route.id,
@@ -726,6 +753,7 @@ export default {
             grade: route.grade_to_s,
             point_to_s: route.points_to_s,
             points: route.points,
+            styles,
             anchorNumber: route.anchor_number,
             sector: route.gym_sector.name,
             gym_space: {

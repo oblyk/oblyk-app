@@ -92,9 +92,9 @@
           class="climbing-style"
         >
           <v-icon :color="styleColor(style)">
-            {{ climbingDataByStyles[style].icon }}
+            {{ MC_ClimbingStylesByStyle[style].icon }}
           </v-icon>
-          {{ climbingDataByStyles[style].text }}
+          {{ MC_ClimbingStylesByStyle[style].text }}
         </span>
       </p>
     </div>
@@ -112,7 +112,7 @@
 <script>
 
 import { DateHelpers } from '~/mixins/DateHelpers'
-import { ClimbingStylesHelpers } from '~/mixins/ClimbingStylesHelpers'
+import { ClimbingStylesMixin } from '~/mixins/ClimbingStylesMixin'
 import GradeStyleTagAndHold from '~/components/gymLabelTemplates/GradeStyles/GradeStyleTagAndHold'
 import GradeStyleDiagonalLabel from '~/components/gymLabelTemplates/GradeStyles/GradeStyleDiagonalLabel'
 import GradeStyleCircleLabel from '~/components/gymLabelTemplates/GradeStyles/GradeStyleCircleLabel'
@@ -126,7 +126,7 @@ export default {
     GradeStyleDiagonalLabel,
     GradeStyleTagAndHold
   },
-  mixins: [DateHelpers, ClimbingStylesHelpers],
+  mixins: [DateHelpers, ClimbingStylesMixin],
   props: {
     gymLabelTemplate: {
       type: Object,

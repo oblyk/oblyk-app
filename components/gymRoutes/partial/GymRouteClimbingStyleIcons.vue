@@ -7,18 +7,18 @@
         class="mr-1"
         :color="styleColor(style)"
       >
-        {{ climbingDataByStyles[style].icon }}
+        {{ MC_ClimbingStylesByStyle[style].icon }}
       </v-icon>
     </template>
   </div>
 </template>
 
 <script>
-import { ClimbingStylesHelpers } from '~/mixins/ClimbingStylesHelpers'
+import { ClimbingStylesMixin } from '~/mixins/ClimbingStylesMixin'
 
 export default {
   name: 'GymRouteClimbingStyleIcons',
-  mixins: [ClimbingStylesHelpers],
+  mixins: [ClimbingStylesMixin],
   props: {
     gymRoute: {
       type: Object,

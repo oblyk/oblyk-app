@@ -12,31 +12,13 @@
       multiple
       outlined
       :prepend-inner-icon="icon"
+      :disabled="loadingOpener"
       :loadin="loadingOpener"
-      @change="onChange()"
-      @focus="onFocus"
-    >
-      <template
-        v-if="gymAuthCan(gym, 'manage_opener')"
-        #append-outer
-      >
-        <v-tooltip bottom>
-          <template #activator="{ on }">
-            <v-btn
-              tabindex="-1"
-              class="mt-n2"
-              icon
-              @click="addOpenerModal = true"
-            >
-              <v-icon v-on="on">
-                {{ mdiAccountPlus }}
-              </v-icon>
-            </v-btn>
-          </template>
-          {{ $t('components.input.gymAddOpener') }}
-        </v-tooltip>
-      </template>
-    </v-select>
+      readonly
+      :hide-details="hideDetails"
+      @click="openModal"
+      @focus="openModal"
+    />
 
     <v-dialog
       v-model="addOpenerModal"
@@ -55,6 +37,79 @@
         </v-card-text>
       </v-card>
     </v-dialog>
+
+    <v-dialog
+      v-model="openerModal"
+      max-width="450"
+      persistent
+      :fullscreen="$vuetify.breakpoint.mobile"
+    >
+      <v-card class="d-flex flex-column">
+        <v-card-text class="px-0">
+          <v-sheet
+            style="position: sticky; top: 0"
+            class="pa-4 rounded"
+          >
+            <v-text-field
+              v-model="openerQuery"
+              :label="$t('components.input.searchOpener')"
+              hide-details
+              dense
+              clearable
+              outlined
+              :prepend-inner-icon="icon"
+            />
+          </v-sheet>
+          <div class="overflow-y-auto px-4">
+            <opener-btn
+              v-for="(opener, openerIndex) in filteredOpenersList"
+              :key="`opener-index-${openerIndex}`"
+              :opener="opener"
+              :opener-list="openers"
+              @input="addOpener"
+            />
+            <p
+              v-if="filteredOpenersList.length === 0"
+              class="text-center font-italic"
+            >
+              {{ $t('components.input.noOpeners') }}
+            </p>
+            <v-btn
+              v-if="gymAuthCan(gym, 'manage_opener')"
+              outlined
+              block
+              text
+              class="mt-5"
+              @click="openAddOpenerModal"
+            >
+              <v-icon left>
+                {{ mdiAccountPlus }}
+              </v-icon>
+              {{ $t('actions.addOpener') }}
+            </v-btn>
+          </div>
+        </v-card-text>
+        <v-sheet
+          class="pa-4 mt-auto d-flex"
+          style="position: sticky; bottom: 0"
+        >
+          <v-btn
+            text
+            @click.prevent="closeModal"
+          >
+            {{ $t('actions.close') }}
+          </v-btn>
+          <v-btn
+            color="primary"
+            elevation="0"
+            class="ml-auto"
+            @click.prevent="closeModal"
+          >
+            {{ $t('actions.ok') }}
+          </v-btn>
+        </v-sheet>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 
@@ -63,10 +118,11 @@ import { mdiAccountPlus } from '@mdi/js'
 import GymOpenerApi from '~/services/oblyk-api/GymOpenerApi'
 import GymOpenerForm from '~/components/gyms/forms/GymOpenerForm.vue'
 import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
+import OpenerBtn from '~/components/forms/OpenerBtn.vue'
 
 export default {
   name: 'GymOpenerInput',
-  components: { GymOpenerForm },
+  components: { OpenerBtn, GymOpenerForm },
   mixins: [GymRolesHelpers],
   props: {
     value: {
@@ -84,17 +140,40 @@ export default {
     withDeactivatedOpener: {
       type: Boolean,
       default: false
+    },
+    hideDetails: {
+      type: Boolean,
+      default: false
     }
   },
 
   data () {
     return {
       loadingOpener: true,
+      openable: true,
       openersList: [],
       openers: this.value,
+      openerModal: false,
       addOpenerModal: false,
+      openerQuery: null,
 
       mdiAccountPlus
+    }
+  },
+
+  computed: {
+    filteredOpenersList () {
+      if (this.openerQuery === null || this.openerQuery === '') {
+        return this.openersList
+      }
+
+      const openers = []
+      for (const open of this.openersList) {
+        if (open.text.toLowerCase().includes(this.openerQuery.toLowerCase())) {
+          openers.push(open)
+        }
+      }
+      return openers
     }
   },
 
@@ -132,8 +211,36 @@ export default {
       this.$emit('input', this.openers)
     },
 
-    onFocus () {
-      this.$refs.gymOpenerInput.isMenuActive = true
+    addOpener (openerValue) {
+      if (this.openers.includes(openerValue)) {
+        const openerIndex = this.openers.indexOf(openerValue)
+        this.openers.splice(openerIndex, 1)
+      } else {
+        this.openers.push(openerValue)
+      }
+      this.$emit('input', this.openers)
+    },
+
+    openModal () {
+      this.openerQuery = null
+      if (!this.openable) {
+        return false
+      }
+      this.openerModal = true
+    },
+
+    openAddOpenerModal () {
+      this.openable = false
+      setTimeout(() => { this.openable = true }, 200)
+      this.openerModal = false
+      this.addOpenerModal = true
+    },
+
+    closeModal () {
+      this.openable = false
+      setTimeout(() => { this.openable = true }, 200)
+      this.openerModal = false
+      this.$refs.gymOpenerInput.focus()
     }
   }
 }
