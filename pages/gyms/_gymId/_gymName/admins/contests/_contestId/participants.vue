@@ -269,8 +269,6 @@
           </div>
         </v-card>
       </v-dialog>
-
-      <!-- Tombola Modal -->
     </div>
 
     <v-sheet class="mt-2 pa-4 rounded">
@@ -458,6 +456,7 @@ export default {
           token: participant.token,
           affiliation: participant.affiliation,
           wave: participant.contest_wave?.name,
+          synchronise_with_ffme_contest: participant.synchronise_with_ffme_contest ? 'oui' : null,
           contest_team_name: contestTeamName,
           category: participant.contest_category.name,
           genre: participant.genre ? this.$t(`models.genres.${participant.genre}`) : '-',
@@ -511,6 +510,16 @@ export default {
             align: 'start',
             sortable: true,
             value: 'contest_team_name'
+          }
+        )
+      }
+      if (this.contest.ffme_contest_id) {
+        headers.push(
+          {
+            text: 'Vertical Series',
+            align: 'start',
+            sortable: true,
+            value: 'synchronise_with_ffme_contest'
           }
         )
       }

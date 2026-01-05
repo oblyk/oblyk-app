@@ -79,6 +79,21 @@
           bordered
           small
         />
+        <div
+          v-if="contest.ffme_contest_id"
+          class="border py-2 pl-4 d-flex rounded mt-2 align-center"
+        >
+          <div class="mr-3">
+            <v-img
+              :src="$vuetify.theme.dark ? '/images/vertical_series_white.png' : '/images/vertical_series_black.png'"
+              width="85px"
+              contain
+            />
+          </div>
+          <div>
+            Contest connecté aux Vertical Series de la FFME.
+          </div>
+        </div>
         <client-only>
           <div
             v-if="!token"
@@ -206,6 +221,16 @@
               <p class="text--disabled">
                 {{ $t('components.contest.codeIsSaved') }}
               </p>
+
+              <!-- MY VERTICAL SERIES -->
+              <contest-my-vertical-series
+                v-if="contestParticipant && contest.ffme_contest_id"
+                :contest-participant="contestParticipant"
+                :contest="contest"
+                :update-participant-callback="updateParticipant"
+                class="mb-4"
+              />
+
               <div class="text-right">
                 <v-btn
                   text
@@ -240,17 +265,20 @@
 import {
   mdiMapMarker,
   mdiCheckboxMarkedOutline,
-  mdiInformationOutline
+  mdiInformationOutline,
+  mdiCheckBold
 } from '@mdi/js'
+import { oblykFfmeVerticalSeries } from '~/assets/oblyk-icons'
 import { DateHelpers } from '~/mixins/DateHelpers'
 import MarkdownText from '~/components/ui/MarkdownText'
 import GymSmallCard from '~/components/gyms/GymSmallCard'
-import ContestSubscribeForm from '~/components/contests/forms/ContestSubscribeForm.vue'
+import ContestSubscribeForm from '~/components/contests/forms/ContestSubscribeForm'
 import ContestParticipantApi from '~/services/oblyk-api/ContestParticipantApi'
-import CopyBtn from '~/components/ui/CopyBtn.vue'
+import CopyBtn from '~/components/ui/CopyBtn'
+import ContestMyVerticalSeries from '~/components/contests/ContestMyVerticalSeries'
 
 export default {
-  components: { CopyBtn, ContestSubscribeForm, GymSmallCard, MarkdownText },
+  components: { ContestMyVerticalSeries, CopyBtn, ContestSubscribeForm, GymSmallCard, MarkdownText },
   meta: { orphanRoute: true },
   mixins: [DateHelpers],
   layout: 'contest',
@@ -274,10 +302,20 @@ export default {
       authentificationToken: null,
       loadingAuthenticate: false,
       authenticateFailed: false,
+      contestParticipant: null,
+      myCompetSynchronisation: false,
 
       mdiMapMarker,
       mdiCheckboxMarkedOutline,
-      mdiInformationOutline
+      mdiInformationOutline,
+      oblykFfmeVerticalSeries,
+      mdiCheckBold
+    }
+  },
+
+  mounted () {
+    if (this.token) {
+      this.getMyParticipant()
     }
   },
 
@@ -287,6 +325,7 @@ export default {
       this.updateToken(token)
       this.subscribeDialog = false
       this.$store.dispatch('contestToken/setContestToken', { contestId: this.contest.id, token })
+      this.getMyParticipant()
       if (goToExplain) {
         setTimeout(() => {
           const explainToken = document.querySelector('#token-explain')
@@ -297,6 +336,7 @@ export default {
 
     resetToken () {
       this.token = null
+      this.contestParticipant = null
       this.$store.dispatch('contestToken/resetToken', this.contest.id)
     },
 
@@ -327,6 +367,22 @@ export default {
         behavior: 'smooth'
       })
       this.$router.push(`${this.contest.path}/my-contest`)
+    },
+
+    getMyParticipant () {
+      new ContestParticipantApi(this.$axios, this.$auth)
+        .participant(
+          this.contest.gym_id,
+          this.contest.id,
+          this.token
+        )
+        .then((resp) => {
+          this.contestParticipant = resp.data
+        })
+    },
+
+    updateParticipant (participant) {
+      this.contestParticipant = participant
     }
   }
 }

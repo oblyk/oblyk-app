@@ -33,19 +33,5 @@ class UserApplicationApi extends BaseApi {
       }
     })
   }
-
-  createFfmeMyCompet (data) {
-    return this.axios.request({
-      method: 'POST',
-      url: `${this.baseUrl}/current_users/user_application_ffme_my_compets.json`,
-      headers: {
-        HttpApiAccessToken: this.apiAccessToken,
-        Authorization: this.authToken()
-      },
-      data: {
-        application: data
-      }
-    })
-  }
 }
 export default UserApplicationApi

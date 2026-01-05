@@ -39,7 +39,7 @@
               FFME My Compet
             </p>
             <p class="mb-0 text--disabled">
-              Connectez-vous avec votre licence FFME et participer à la Ligue 2 !
+              Connectez-vous avec votre licence FFME et participez aux Vertical Series !
             </p>
           </div>
           <v-btn
@@ -47,7 +47,7 @@
             elevation="0"
             small
             block
-            to="/home/settings/applications/new/ffme-my-compet"
+            to="/home/settings/applications/new/my-compet"
           >
             {{ $t('actions.associate') }}
           </v-btn>

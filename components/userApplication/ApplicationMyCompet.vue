@@ -79,7 +79,7 @@ import {
 } from '@mdi/js'
 import UserApplicationApi from '~/services/oblyk-api/UserApplicationApi'
 export default {
-  name: 'ApplicationFfmeMyCompet',
+  name: 'ApplicationMyCompet',
   props: {
     application: {
       type: Object,

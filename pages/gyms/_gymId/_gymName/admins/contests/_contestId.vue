@@ -141,6 +141,14 @@
                   </v-chip>
                 </p>
               </div>
+
+              <!-- FFME CONTEST CARD -->
+              <ffme-contest-card
+                ref="ffmeContestCard"
+                :contest="contest"
+              />
+
+              <!-- CONTEST ARCHIVED -->
               <v-alert
                 v-if="contest.archived_at !== null"
                 text
@@ -164,6 +172,8 @@
                   </v-btn>
                 </div>
               </v-alert>
+
+              <!-- UNPUBLISH CONTEST -->
               <v-alert
                 v-if="contest.draft && contest.archived_at === null"
                 text
@@ -264,14 +274,14 @@
                     </v-list-item-title>
                   </v-list-item>
                   <v-divider />
-                  <v-list-item>
+                  <v-list-item @click="openFfmeContestForm">
                     <v-list-item-icon>
                       <v-icon>
-                        {{ mdiTrophyAward }}
+                        {{ oblykFfmeVerticalSeries }}
                       </v-icon>
                     </v-list-item-icon>
                     <v-list-item-title>
-                      Contest FFME
+                      Vertical Series By FFME
                     </v-list-item-title>
                   </v-list-item>
                   <v-divider />
@@ -579,20 +589,23 @@ import {
   mdiGavel,
   mdiFileDocumentOutline
 } from '@mdi/js'
+import { oblykFfmeVerticalSeries } from '~/assets/oblyk-icons'
 import { ContestConcern } from '~/concerns/ContestConcern'
 import { DateHelpers } from '~/mixins/DateHelpers'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 import Spinner from '~/components/layouts/Spiner'
 import DescriptionLine from '~/components/ui/DescriptionLine'
 import MarkdownText from '~/components/ui/MarkdownText'
-import ContestForm from '~/components/contests/forms/ContestForm.vue'
-import ContestBannerForm from '~/components/contests/forms/ContestBannerForm.vue'
+import ContestForm from '~/components/contests/forms/ContestForm'
+import ContestBannerForm from '~/components/contests/forms/ContestBannerForm'
 import ContestApi from '~/services/oblyk-api/ContestApi'
 import ToolApi from '~/services/oblyk-api/ToolApi'
-import ContestTombola from '~/components/contests/ContestTombola.vue'
-import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
+import ContestTombola from '~/components/contests/ContestTombola'
+import FfmeContestCard from '~/components/ffmeContests/FfmeContestCard'
 
 export default {
   components: {
+    FfmeContestCard,
     ContestTombola,
     ContestBannerForm,
     ContestForm,
@@ -632,7 +645,8 @@ export default {
       mdiChartLine,
       mdiGavel,
       mdiFileDocumentOutline,
-      mdiTrophyAward
+      mdiTrophyAward,
+      oblykFfmeVerticalSeries
     }
   },
 
@@ -669,6 +683,10 @@ export default {
 
     openEditModal () {
       this.editModal = true
+    },
+
+    openFfmeContestForm () {
+      this.$refs.ffmeContestCard.openModal()
     },
 
     draft (draft) {

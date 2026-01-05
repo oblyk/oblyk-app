@@ -335,6 +335,8 @@
         <p class="font-weight-bold text-decoration-underline mb-3">
           Pour finir, votre contact :
         </p>
+
+        <!-- EMAIL FIELD -->
         <v-text-field
           v-model="data.email"
           outlined
@@ -343,25 +345,26 @@
           class="required-field"
           :label="$t('models.contestParticipant.email')"
         />
-        <v-checkbox
-          v-if="$auth.loggedIn"
-          v-model="data.save_user"
-          label="Enregistrer mon inscription sur mon compte Oblyk"
-        />
-        <v-checkbox
-          v-if="!$auth.loggedIn && !needAuthentification"
-          v-model="data.create_account"
-          label="Me créer un compte sur Oblyk pour renseigner et consulter mes résultats plus facilement (facultatif)"
-        />
-        <div
-          v-if="needAuthentification"
-          class="border rounded pa-4 mt-5"
-        >
-          <p>
-            <span class="red--text">Vous avez déjà un compte Oblyk à l'adresse <strong>{{ data.email }}</strong></span><br>
-            👉 Connectez-vous pour lié votre participation à votre compte
-          </p>
-          <div class="text-center">
+
+        <!-- CONNECT USER -->
+        <div class="border rounded pa-2 pt-1 mt-4">
+          <v-checkbox
+            v-model="data.save_user"
+            class="mt-0"
+            hide-details
+            :label="$auth.loggedIn ? 'Enregistrer mon inscription sur mon compte Oblyk' : 'Me créer un compte sur Oblyk pour renseigner et consulter mes résultats plus facilement'"
+          />
+          <div
+            v-if="data.save_user && !$auth.loggedIn"
+            class="text-center mt-2"
+          >
+            <v-btn
+              color="primary"
+              elevation="0"
+              @click="signUpModal = true"
+            >
+              Créer un compte
+            </v-btn>
             <v-btn
               color="primary"
               elevation="0"
@@ -370,84 +373,172 @@
               Me Connecter
             </v-btn>
           </div>
-          <div class="text-center mt-4">
-            <v-btn
-              text
-              outlined
-              @click="noLinkedAccount"
-            >
-              <v-icon left>
-                {{ mdiArrowLeft }}
-              </v-icon>
-              Retour
-            </v-btn>
-          </div>
-          <v-dialog
-            v-model="signInModal"
-            width="500"
+          <div
+            v-if="data.save_user && $auth.loggedIn"
+            class="green--text pt-1"
           >
-            <v-card>
-              <v-card-title>
-                Me connecter
-              </v-card-title>
-              <div class="pa-4">
-                <sign-in-form
-                  :callback="successSignIn"
-                  :suggest-email="data.email"
-                  :suggest-password="data.password"
-                  :go-back-btn="false"
+            <v-icon left color="green" class="vertical-align-text-bottom">
+              {{ mdiCheckBold }}
+            </v-icon>
+            Vous êtes connecté·e
+          </div>
+        </div>
+
+        <!-- FFME CONTEST -->
+        <div
+          v-if="contest.ffme_contest_id"
+          class="rounded border pa-2 pt-1 mt-4"
+        >
+          <v-checkbox
+            v-model="data.synchronise_with_ffme_contest"
+            :disabled="!$auth.loggedIn || !data.save_user"
+            :hide-details="$auth.loggedIn && data.save_user"
+            class="mt-0"
+            hint="Vous devez valider la case précédente pour participer aux Vertical Series"
+            persistent-hint
+            @click="getMyCompet"
+          >
+            <template #label>
+              Je souhaites participer aux
+              <v-chip class="pa-1 px-2 mx-1" small>
+                <img
+                  :src="$vuetify.theme.dark ? '/images/vertical_series_white.png' : '/images/vertical_series_black.png'"
+                  height="12"
+                  alt="Logo Vertical Series"
+                  class="mr-1"
+                >
+                Vertical Series
+              </v-chip>
+              par la FFME
+            </template>
+          </v-checkbox>
+          <div v-if="data.synchronise_with_ffme_contest">
+            <div
+              v-if="loadingMyCompetApp"
+              class="pl-1 pt-2"
+            >
+              <v-progress-circular
+                indeterminate
+                :size="10"
+                :width="2"
+                class="mr-2"
+                color="#743ad5"
+              />
+              vérification association à la FFME ...
+            </div>
+            <div v-else>
+              <div v-if="myCompet" class="green--text pt-1">
+                <v-icon left color="green" class="vertical-align-text-bottom">
+                  {{ mdiCheckBold }}
+                </v-icon>
+                Association FFME <strong>ok</strong>, licence {{ myCompet.ffme_licence_number }}
+              </div>
+              <div
+                v-else
+                class="pt-2"
+              >
+                <user-application-my-compet-form
+                  submit-methode="post"
+                  :callback="ffmeAssociationCallback"
                 />
               </div>
-            </v-card>
-          </v-dialog>
+            </div>
+          </div>
         </div>
 
-        <v-alert
-          v-if="successAuthentification"
-          text
-          type="success"
-        >
-          Connexion réussi !<br>
-          Cliquer sur <strong>M'INSCRIRE</strong> pour finaliser votre inscription au contest
-        </v-alert>
-
-        <div v-if="data.create_account && !needAuthentification && !$auth.loggedIn">
-          <v-text-field
-            v-model="data.password"
-            outlined
-            :label="$t('models.user.password')"
-            :type="showPassword ? 'text' : 'password'"
-            required
-            :append-icon="showPassword ? mdiEyeOff : mdiEye"
-            class="required-field"
-            :hint="$t('models.password.rules')"
-            persistent-hint
-            @click:append="showPassword = !showPassword"
-          />
-          <v-text-field
-            v-model="data.password_confirmation"
-            outlined
-            :label="$t('models.user.confirm_password')"
-            :type="showPasswordConfirmation ? 'text' : 'password'"
-            required
-            :append-icon="showPasswordConfirmation ? mdiEyeOff : mdiEye"
-            class="required-field"
-            @click:append="showPasswordConfirmation = !showPasswordConfirmation"
-          />
-        </div>
-        <div
-          v-if="!needAuthentification"
-          class="text-right mt-2"
-        >
+        <!-- FINAL SUBSCRIBE BTN -->
+        <div class="text-right mt-2">
           <v-btn
             color="primary"
             elevation="0"
+            :disabled="!canFinalize"
             :loading="subscribing"
             @click="submit"
           >
             M'inscrire
           </v-btn>
         </div>
+
+        <!-- SIGN IN MODAL -->
+        <v-dialog
+          v-model="signInModal"
+          width="500"
+        >
+          <v-card>
+            <v-card-title>
+              Me connecter
+            </v-card-title>
+            <div class="pa-4">
+              <sign-in-form
+                :callback="successSignIn"
+                :suggest-email="data.email"
+                :suggest-password="data.password"
+                :go-back-btn="false"
+              />
+            </div>
+          </v-card>
+        </v-dialog>
+
+        <!-- SIGN UP MODAL -->
+        <v-dialog
+          v-model="signUpModal"
+          width="500"
+        >
+          <v-card>
+            <v-card-title>
+              Créer un compte
+            </v-card-title>
+            <div class="pa-4">
+              <v-text-field
+                v-model="data.email"
+                outlined
+                required
+                class="required-field"
+                :label="$t('models.contestParticipant.email')"
+              />
+              <v-text-field
+                v-model="data.password"
+                outlined
+                :label="$t('models.user.password')"
+                :type="showPassword ? 'text' : 'password'"
+                required
+                :append-icon="showPassword ? mdiEyeOff : mdiEye"
+                class="required-field"
+                :hint="$t('models.password.rules')"
+                persistent-hint
+                @click:append="showPassword = !showPassword"
+              />
+              <v-text-field
+                v-model="data.password_confirmation"
+                outlined
+                :label="$t('models.user.confirm_password')"
+                :type="showPasswordConfirmation ? 'text' : 'password'"
+                required
+                :append-icon="showPasswordConfirmation ? mdiEyeOff : mdiEye"
+                class="required-field"
+                @click:append="showPasswordConfirmation = !showPasswordConfirmation"
+              />
+            </div>
+            <v-card-actions>
+              <v-btn
+                text
+                @click="signUpModal = false"
+              >
+                Annuler
+              </v-btn>
+              <v-btn
+                color="primary"
+                :loading="loadingCreateAccount"
+                elevation="0"
+                :disabled="data.password === null || data.password !== data.password_confirmation"
+                class="ml-auto"
+                @click="createAccount"
+              >
+                Créer mon compte
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
       </v-stepper-content>
     </v-stepper-items>
   </v-stepper>
@@ -464,19 +555,23 @@ import {
   mdiMagnify,
   mdiRadioboxBlank,
   mdiRadioboxMarked,
-  mdiAccountMultiplePlus
+  mdiAccountMultiplePlus,
+  mdiCheckBold
 } from '@mdi/js'
-import GenreInput from '~/components/forms/GenreInput'
 import { FormHelpers } from '~/mixins/FormHelpers'
-import ContestParticipantApi from '~/services/oblyk-api/ContestParticipantApi'
 import { DateHelpers } from '~/mixins/DateHelpers'
-import DateOfBirthSelectInput from '~/components/forms/DateOfBirthSelectInput'
-import SignInForm from '~/components/sessions/SignInForm'
+import GenreInput from '~/components/forms/GenreInput'
+import SessionApi from '~/services/oblyk-api/SessionApi'
 import ContestTeamApi from '~/services/oblyk-api/ContestTeamApi'
+import ContestParticipantApi from '~/services/oblyk-api/ContestParticipantApi'
+import UserApplicationMyCompetApi from '~/services/oblyk-api/UserApplicationMyCompetApi'
+import SignInForm from '~/components/sessions/SignInForm'
+import DateOfBirthSelectInput from '~/components/forms/DateOfBirthSelectInput'
+import UserApplicationMyCompetForm from '~/components/userApplication/forms/UserApplicationMyCompetForm'
 
 export default {
   name: 'ContestSubscribeForm',
-  components: { SignInForm, DateOfBirthSelectInput, GenreInput },
+  components: { UserApplicationMyCompetForm, SignInForm, DateOfBirthSelectInput, GenreInput },
   mixins: [FormHelpers, DateHelpers],
 
   props: {
@@ -509,6 +604,10 @@ export default {
       createTeamForm: false,
       newTeamName: null,
       loadingCreateTeam: false,
+      loadingMyCompetApp: false,
+      myCompet: null,
+      signUpModal: false,
+      loadingCreateAccount: false,
       data: {
         id: this.contestParticipant?.id,
         first_name: this.contestParticipant?.first_name,
@@ -520,8 +619,8 @@ export default {
         contest_category_id: this.contestParticipant?.contest_category_id,
         contest_wave_id: this.contestParticipant?.contest_wave_id,
         contest_team_id: this.contestParticipant?.contest_team_id || null,
-        create_account: false,
-        save_user: true,
+        save_user: false,
+        synchronise_with_ffme_contest: false,
         password: null,
         password_confirmation: null,
         contest_id: this.contest.id,
@@ -537,7 +636,8 @@ export default {
       mdiMagnify,
       mdiRadioboxBlank,
       mdiRadioboxMarked,
-      mdiAccountMultiplePlus
+      mdiAccountMultiplePlus,
+      mdiCheckBold
     }
   },
 
@@ -571,6 +671,19 @@ export default {
         }
       }
       return teams
+    },
+
+    canFinalize () {
+      if (this.data.email === null || this.data.email === '' || this.data.email === undefined) {
+        return false
+      }
+      if (this.data.save_user && !this.$auth.loggedIn) {
+        return false
+      }
+      if (this.contest.ffme_contest_id && this.data.synchronise_with_ffme_contest && this.myCompet === null) {
+        return false
+      }
+      return true
     }
   },
 
@@ -579,6 +692,15 @@ export default {
       if (this.subscribeStep === 3) {
         this.getTeams()
       }
+    },
+
+    data: {
+      handler () {
+        if (this.data.save_user === false || this.data.save_user === null) {
+          this.data.synchronise_with_ffme_contest = false
+        }
+      },
+      deep: true
     }
   },
 
@@ -590,6 +712,7 @@ export default {
       this.data.date_of_birth ||= user.date_of_birth
       this.data.genre ||= user.genre
       this.data.email ||= user.email
+      this.data.save_user = true
     }
   },
 
@@ -688,16 +811,9 @@ export default {
       return true
     },
 
-    noLinkedAccount () {
-      this.needAuthentification = false
-      this.data.create_account = false
-      this.data.save_user = false
-    },
-
     successSignIn () {
-      this.needAuthentification = false
-      this.successAuthentification = true
-      this.data.create_account = false
+      this.data.email = this.$auth.user.email
+      this.signInModal = false
       this.data.save_user = true
     },
 
@@ -713,6 +829,61 @@ export default {
         })
         .finally(() => {
           this.loadingTeams = false
+        })
+    },
+
+    getMyCompet () {
+      if (!this.$auth.loggedIn) {
+        return false
+      }
+      this.loadingMyCompetApp = true
+      new UserApplicationMyCompetApi(this.$axios, this.$auth)
+        .find()
+        .then((resp) => {
+          this.myCompet = resp.data
+        })
+        .finally(() => {
+          setTimeout(() => {
+            this.loadingMyCompetApp = false
+          }, 700)
+        })
+    },
+
+    ffmeAssociationCallback (myCompet) {
+      this.myCompet = myCompet
+    },
+
+    createAccount () {
+      this.loadingCreateAccount = true
+      new SessionApi(this.$axios, this.$auth)
+        .signUp({
+          email: this.data.email,
+          first_name: this.data.first_name,
+          last_name: this.data.last_name,
+          password: this.data.password,
+          password_confirmation: this.data.password_confirmation,
+          date_of_birth: this.data.date_of_birth,
+          genre: this.data.genre
+        })
+        .then(() => {
+          this.$auth.loginWith('local', {
+            data: {
+              email: this.data.email,
+              password: this.data.password,
+              oblyk_full_name: null
+            }
+          }).then(() => {
+            // Connect to Notification Channel
+            this.$cable.subscribe({ channel: 'NotificationChannel' })
+            this.$cable.subscribe({ channel: 'FetchUserChannel' })
+            this.loadingCreateAccount = false
+            this.signUpModal = false
+            this.data.save_user = true
+          })
+        })
+        .catch((err) => {
+          this.loadingCreateAccount = false
+          this.$root.$emit('alertFromApiError', err, 'user')
         })
     },
 

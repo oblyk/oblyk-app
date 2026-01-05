@@ -6,8 +6,8 @@
     />
     <div v-else>
       <template v-for="(application, applicationIndex) in applications">
-        <application-ffme-my-compet
-          v-if="application.type === 'UserApplicationFfmeMyCompet'"
+        <application-my-compet
+          v-if="application.type === 'UserApplicationMyCompet'"
           :key="`application-index-${applicationIndex}`"
           :application="application"
           :get-application-callback="getApplications"
@@ -27,11 +27,11 @@
 <script>
 import UserApplicationApi from '~/services/oblyk-api/UserApplicationApi'
 import UserApplication from '~/models/UserApplication'
-import ApplicationFfmeMyCompet from '~/components/userApplication/ApplicationFfmeMyCompet.vue'
+import ApplicationMyCompet from '~/components/userApplication/ApplicationMyCompet'
 
 export default {
   name: 'UserApplicationUserList',
-  components: { ApplicationFfmeMyCompet },
+  components: { ApplicationMyCompet },
   props: {
     user: {
       type: Object,

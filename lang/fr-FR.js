@@ -2815,6 +2815,15 @@ export default {
       capacity: 'Capacité maximum',
       capacityExplain: 'Laissez vide si vous ne voulez pas appliquer de limite'
     },
+    ffmeContest: {
+      status: 'État',
+      statusSteps: {
+        draft: 'Brouillon',
+        create_on_my_compet: 'Contest créé sur MyCompet',
+        result_sent: 'Résultat envoyé',
+        result_resent: 'Résultat ré envoyé'
+      }
+    },
     ages: {
       all: 'Tous les âges',
       U8: 'Moins de 8 ans',

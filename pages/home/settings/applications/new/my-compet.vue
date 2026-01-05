@@ -6,11 +6,10 @@
     />
     <v-container class="pt-6">
       <h3 class="mb-3">
-        Associer mon compte à MyCompet
+        Associer mon compte Oblyk à MyCompet
       </h3>
-      <ffme-my-compet-form
+      <user-application-my-compet-form
         v-if="currentUser"
-        :user="currentUser"
         submit-methode="post"
       />
       <v-skeleton-loader
@@ -23,11 +22,11 @@
 <script>
 import { mdiArrowLeft } from '@mdi/js'
 import { CurrentUserConcern } from '~/concerns/CurrentUserConcern'
-import FfmeMyCompetForm from '~/components/userApplication/forms/FfmeMyCompetForm.vue'
-import PageHeader from '~/components/layouts/PageHeader.vue'
+import PageHeader from '~/components/layouts/PageHeader'
+import UserApplicationMyCompetForm from '~/components/userApplication/forms/UserApplicationMyCompetForm'
 
 export default {
-  components: { PageHeader, FfmeMyCompetForm },
+  components: { UserApplicationMyCompetForm, PageHeader },
   mixins: [CurrentUserConcern],
   middleware: ['auth'],
 

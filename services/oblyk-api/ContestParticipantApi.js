@@ -137,5 +137,27 @@ class ContestParticipantApi extends BaseApi {
       }
     })
   }
+
+  linkToAuthUser (gymId, contestId, participantId) {
+    return this.axios.request({
+      method: 'PUT',
+      url: `${this.baseUrl}/gyms/${gymId}/contests/${contestId}/contest_participants/${participantId}/link_to_current_user.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
+    })
+  }
+
+  synchroniseParticipantWithFfmeContest (gymId, contestId, participantId) {
+    return this.axios.request({
+      method: 'PUT',
+      url: `${this.baseUrl}/gyms/${gymId}/contests/${contestId}/contest_participants/${participantId}/synchronise_participant_with_ffme_contest.json`,
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
+    })
+  }
 }
 export default ContestParticipantApi

@@ -7,7 +7,7 @@
       hide-details
       outlined
     />
-    <div class="text-right mb-4 mt-2">
+    <div class="text-right mt-2">
       <v-btn
         text
         outlined
@@ -28,21 +28,22 @@
     </div>
   </v-form>
 </template>
+
 <script>
 import { FormHelpers } from '~/mixins/FormHelpers'
-import UserApplicationApi from '~/services/oblyk-api/UserApplicationApi'
+import UserApplicationMyCompetApi from '~/services/oblyk-api/UserApplicationMyCompetApi'
 
 export default {
-  name: 'FfmeMyCompetForm',
+  name: 'UserApplicationMyCompetForm',
   mixins: [FormHelpers],
   props: {
     userApplication: {
       type: Object,
       default: null
     },
-    user: {
-      type: Object,
-      required: true
+    callback: {
+      type: Function,
+      default: null
     }
   },
 
@@ -60,10 +61,14 @@ export default {
   methods: {
     submit () {
       this.submitForm = true
-      const promise = (this.isEditingForm()) ? new UserApplicationApi(this.$axios, this.$auth).update(this.data) : new UserApplicationApi(this.$axios, this.$auth).createFfmeMyCompet(this.data)
+      const promise = (this.isEditingForm()) ? new UserApplicationMyCompetApi(this.$axios, this.$auth).update(this.data) : new UserApplicationMyCompetApi(this.$axios, this.$auth).create(this.data)
       promise
-        .then(() => {
-          this.$router.push('/home/settings/applications')
+        .then((resp) => {
+          if (this.callback) {
+            this.callback(resp.data)
+          } else {
+            this.$router.push('/home/settings/applications')
+          }
         })
         .catch((err) => {
           this.$root.$emit('alertFromApiError', err, 'UserApplication')
