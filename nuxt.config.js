@@ -149,7 +149,7 @@ export default {
       lang: 'fr',
       theme_color: '#121212',
       background_color: '#121212',
-      orientation: 'any',
+      orientation: 'natural',
       scope: `${process.env.VUE_APP_OBLYK_APP_URL}`,
       start_url: `${process.env.VUE_APP_OBLYK_APP_URL}?standalone=true`,
       related_applications: [
