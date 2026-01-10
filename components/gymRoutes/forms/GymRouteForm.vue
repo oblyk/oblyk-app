@@ -14,6 +14,13 @@
         :change-callback="onChangeLevelPreset"
       />
 
+      <!-- Gym sub level -->
+      <gym-route-sub-level-input
+        v-model="data.sub_level"
+        :gym-levels="gymLevels"
+        :climbing-type="data.climbing_type"
+      />
+
       <!-- Route name -->
       <v-row :class="cragRoute.name ? 'mb-0' : 'mb-4'">
         <v-col
@@ -481,6 +488,7 @@ import {
 import { FormHelpers } from '@/mixins/FormHelpers'
 import { HoldColorsHelpers } from '@/mixins/HoldColorsHelpers'
 import { DateHelpers } from '@/mixins/DateHelpers'
+import { GradeMixin } from '~/mixins/GradeMixin'
 import Spinner from '@/components/layouts/Spiner'
 import GymRouteApi from '~/services/oblyk-api/GymRouteApi'
 import ColorInput from '@/components/forms/ColorInput'
@@ -489,19 +497,20 @@ import CragRouteApi from '~/services/oblyk-api/CragRouteApi'
 import CragRoute from '@/models/CragRoute'
 import MarkdownInput from '@/components/forms/MarkdownInput'
 import GymOpenerInput from '~/components/forms/GymOpenerInput'
-import DatePickerMenuInput from '~/components/forms/DatePickerMenuInput.vue'
-import IndoorClimbingStylesInput from '~/components/forms/IndoorClimbingStyleInput.vue'
-import GymRouteTagAndHold from '~/components/gymRoutes/partial/GymRouteTagAndHold.vue'
+import DatePickerMenuInput from '~/components/forms/DatePickerMenuInput'
+import IndoorClimbingStylesInput from '~/components/forms/IndoorClimbingStyleInput'
+import GymRouteTagAndHold from '~/components/gymRoutes/partial/GymRouteTagAndHold'
 import GymLevelApi from '~/services/oblyk-api/GymLevelApi'
 import GymLevel from '~/models/GymLevel'
-import GymRouteLevelInput from '~/components/forms/GymRouteLevelInput.vue'
-import { GradeMixin } from '~/mixins/GradeMixin'
-const GymRouteThumbnailForm = () => import('~/components/gymRoutes/forms/GymRouteThumbnailForm.vue')
-const GymRoutePictureForm = () => import('~/components/gymRoutes/forms/GymRoutePictureForm.vue')
+import GymRouteLevelInput from '~/components/forms/GymRouteLevelInput'
+import GymRouteSubLevelInput from '~/components/forms/GymRouteSubLevelInput'
+const GymRouteThumbnailForm = () => import('~/components/gymRoutes/forms/GymRouteThumbnailForm')
+const GymRoutePictureForm = () => import('~/components/gymRoutes/forms/GymRoutePictureForm')
 
 export default {
   name: 'GymRouteForm',
   components: {
+    GymRouteSubLevelInput,
     GymRouteLevelInput,
     GymRouteTagAndHold,
     IndoorClimbingStylesInput,
@@ -559,6 +568,7 @@ export default {
         opened_at: this.gymRoute?.opened_at || this.ISODateToday(),
         climbing_type: this.gymRoute?.climbing_type || this.gymSector.climbing_type || 'sport_climbing',
         anchor_number: this.gymRoute?.anchor_number,
+        sub_level: this.gymRoute?.sub_level,
         gym_space_id: this.gymSector.gym_space.id,
         gym_sector_id: null,
         gym_id: this.gymSector.gym.id,

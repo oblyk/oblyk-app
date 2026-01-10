@@ -28,6 +28,22 @@
                 :gym-level="data.sport_climbing"
                 @input="changes = true"
               />
+              <v-checkbox
+                v-model="data.sport_climbing.sub_level_enabled"
+                label="Activer les sous niveaux pour la voie"
+                @input="changes = true"
+              />
+              <v-text-field
+                v-if="data.sport_climbing.sub_level_enabled"
+                v-model="data.sport_climbing.sub_level_max"
+                label="Nombre de sous niveau"
+                type="number"
+                outlined
+                persistent-hint
+                hint="Nous conseillons 3 ou 5 niveaux"
+                :rules="[rules.subLevel]"
+                @input="changes = true"
+              />
             </div>
             <p
               v-else
@@ -65,6 +81,22 @@
                 :gym-level="data.bouldering"
                 @input="changes = true"
               />
+              <v-checkbox
+                v-model="data.bouldering.sub_level_enabled"
+                label="Activer les sous niveaux pour le bloc"
+                @input="changes = true"
+              />
+              <v-text-field
+                v-if="data.bouldering.sub_level_enabled"
+                v-model="data.bouldering.sub_level_max"
+                label="Nombre de sous niveau"
+                type="number"
+                outlined
+                persistent-hint
+                :rules="[rules.subLevel]"
+                hint="Nous conseillons 3 ou 5 niveaux"
+                @input="changes = true"
+              />
             </div>
             <p
               v-else
@@ -100,6 +132,22 @@
                 v-model="data.pan.levels"
                 hide-details
                 :gym-level="data.pan"
+                @input="changes = true"
+              />
+              <v-checkbox
+                v-model="data.pan.sub_level_enabled"
+                label="Activer les sous niveaux pour le pan"
+                @input="changes = true"
+              />
+              <v-text-field
+                v-if="data.pan.sub_level_enabled"
+                v-model="data.bouldering.sub_level_max"
+                label="Nombre de sous niveau"
+                type="number"
+                outlined
+                persistent-hint
+                hint="Nous conseillons 3 ou 5 niveaux"
+                :rules="[rules.subLevel]"
                 @input="changes = true"
               />
             </div>
@@ -162,22 +210,32 @@ export default {
           enabled: this.gymLevels.sport_climbing.enabled,
           grade_system: this.gymLevels.sport_climbing.grade_system,
           level_representation: this.gymLevels.sport_climbing.level_representation,
-          levels: this.gymLevels.sport_climbing.levels
+          levels: this.gymLevels.sport_climbing.levels,
+          sub_level_enabled: this.gymLevels.sport_climbing.sub_level_enabled,
+          sub_level_max: this.gymLevels.sport_climbing.sub_level_max
         },
         bouldering: {
           climbing_type: 'bouldering',
           enabled: this.gymLevels.bouldering.enabled,
           grade_system: this.gymLevels.bouldering.grade_system,
           level_representation: this.gymLevels.bouldering.level_representation,
-          levels: this.gymLevels.bouldering.levels
+          levels: this.gymLevels.bouldering.levels,
+          sub_level_enabled: this.gymLevels.bouldering.sub_level_enabled,
+          sub_level_max: this.gymLevels.bouldering.sub_level_max
         },
         pan: {
           climbing_type: 'pan',
           enabled: this.gymLevels.pan.enabled,
           grade_system: this.gymLevels.pan.grade_system,
           level_representation: this.gymLevels.pan.level_representation,
-          levels: this.gymLevels.pan.levels
+          levels: this.gymLevels.pan.levels,
+          sub_level_enabled: this.gymLevels.pan.sub_level_enabled,
+          sub_level_max: this.gymLevels.pan.sub_level_max
         }
+      },
+
+      rules: {
+        subLevel: value => (value >= 1 && value <= 5) || 'Doit être compris entre 1 et 5'
       }
     }
   },

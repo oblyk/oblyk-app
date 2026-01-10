@@ -233,6 +233,23 @@
                 class="rounded-sm py-1"
               />
             </v-col>
+
+            <!-- Route sub level -->
+            <v-col
+              v-if="route.sub_level > 0"
+              cols="6"
+              class="my-1"
+            >
+              <description-line
+                :icon="mdiChiliMild"
+                :item-title="$t('models.gymRoute.intensity')"
+                class="rounded-sm py-1"
+              >
+                <template #content>
+                  <gym-route-sub-level-scale :gym-route="gymRoute" />
+                </template>
+              </description-line>
+            </v-col>
           </v-row>
 
           <!-- Difficulty appreciation -->
@@ -367,6 +384,7 @@ import {
   mdiCalendar,
   mdiTextureBox,
   mdiBolt,
+  mdiChiliMild,
   mdiPound,
   mdiMap,
   mdiGauge,
@@ -389,6 +407,7 @@ import GymCreateYourAccount from '~/components/gyms/GymCreateYourAccount'
 import GymRouteApi from '~/services/oblyk-api/GymRouteApi'
 import GymRoute from '~/models/GymRoute'
 import GymRouteTagAndHoldV2 from '~/components/gymRoutes/partial/GymRouteTagAndHoldV2'
+import GymRouteSubLevelScale from '~/components/gymRoutes/GymRouteSubLevelScale'
 
 const GymRouteVideoList = () => import('@/components/gymRoutes/GymRouteVideoList')
 const CommentList = () => import('@/components/comments/CommentList')
@@ -397,6 +416,7 @@ const MarkdownText = () => import('@/components/ui/MarkdownText')
 export default {
   name: 'GymRouteInfo',
   components: {
+    GymRouteSubLevelScale,
     GymRouteTagAndHoldV2,
     GymCreateYourAccount,
     GymRouteVideoList,
@@ -454,7 +474,8 @@ export default {
       mdiGauge,
       mdiArrowRight,
       mdiShield,
-      mdiInformation
+      mdiInformation,
+      mdiChiliMild
     }
   },
 

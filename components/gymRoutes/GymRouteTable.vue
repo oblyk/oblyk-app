@@ -140,6 +140,15 @@
             </template>
             <template
               v-once
+              #[`item.subLevel`]="{ item }"
+            >
+              <gym-route-sub-level-scale
+                v-if="item.subLevel"
+                :gym-route="{ sub_level: item.subLevel, sub_level_max: item.subLevelMax }"
+              />
+            </template>
+            <template
+              v-once
               #[`item.openedAt`]="{ item }"
             >
               <v-btn
@@ -435,6 +444,8 @@ import {
 } from '@mdi/js'
 import { DateHelpers } from '@/mixins/DateHelpers'
 import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
+import { ClimbingStylesMixin } from '~/mixins/ClimbingStylesMixin'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 import GymApi from '~/services/oblyk-api/GymApi'
 import GymRoute from '@/models/GymRoute'
 import GymRouteTagAndHold from '@/components/gymRoutes/partial/GymRouteTagAndHold'
@@ -446,13 +457,13 @@ import GymSpace from '~/models/GymSpace'
 import DownToCloseDialog from '~/components/ui/DownToCloseDialog'
 import GymRouteInfo from '~/components/gymRoutes/GymRouteInfo'
 import OpeningSheetDialog from '~/components/gymOpeningSheets/OpeningSheetDialog'
-import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 import AscentGymRouteIcon from '~/components/ascentGymRoutes/AscentGymRouteIcon'
-import { ClimbingStylesMixin } from '~/mixins/ClimbingStylesMixin'
+import GymRouteSubLevelScale from '~/components/gymRoutes/GymRouteSubLevelScale'
 
 export default {
   name: 'GymRoutesTable',
   components: {
+    GymRouteSubLevelScale,
     AscentGymRouteIcon,
     OpeningSheetDialog,
     GymRouteInfo,
@@ -599,6 +610,7 @@ export default {
       let haveAnchor = false
       let haveName = false
       let haveGrade = false
+      let haveSubLevel = false
       for (const route of this.routes) {
         // Add anchor column
         if (!haveAnchor && route.anchor_number !== null) {
@@ -613,6 +625,21 @@ export default {
           })
           haveAnchor = true
         }
+
+        // Add subLevel column
+        if (!haveSubLevel && route.sub_level > 0) {
+          headers.push({
+            order: 4.1,
+            text: this.$t('models.gymRoute.intensity'),
+            align: 'start',
+            sortable: true,
+            cellClass: 'text-no-wrap',
+            class: 'text-no-wrap',
+            value: 'subLevel'
+          })
+          haveSubLevel = true
+        }
+
         // Add name column
         if (!haveName && route.name !== null) {
           headers.push({
@@ -625,6 +652,7 @@ export default {
           })
           haveName = true
         }
+
         // Add grade column
         if (!haveGrade && route.grade_to_s !== null) {
           headers.push({
@@ -754,6 +782,8 @@ export default {
             point_to_s: route.points_to_s,
             points: route.points,
             styles,
+            subLevel: route.sub_level,
+            subLevelMax: route.sub_level_max,
             anchorNumber: route.anchor_number,
             sector: route.gym_sector.name,
             gym_space: {

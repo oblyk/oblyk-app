@@ -71,8 +71,16 @@
         <div class="mr-auto text-truncate">
           {{ gymRoute.name }}
         </div>
-        <div class="pt-1">
-          <gym-route-grade-and-point :gym-route="gymRoute" />
+        <div class="pt-1 text-no-wrap">
+          <gym-route-grade-and-point
+            :gym-route="gymRoute"
+            inline
+          />
+          <gym-route-sub-level
+            v-if="gymRoute.sub_level"
+            class="ml-1"
+            :gym-route="gymRoute"
+          />
         </div>
       </v-list-item-title>
       <v-list-item-subtitle class="d-flex">
@@ -149,10 +157,12 @@ import { MyAscentStatusMixin } from '~/mixins/MyAscentStatusMixin'
 import GymRouteGradeAndPoint from '~/components/gymRoutes/partial/GymRouteGradeAndPoint'
 import GymRouteAvatar from '~/components/gymRoutes/GymRouteAvatar'
 import GymRouteClimbingSimpleStyleIcons from '~/components/gymRoutes/partial/GymRouteClimbingSimpleStyleIcons'
+import GymRouteSubLevel from '~/components/gymRoutes/GymRouteSubLevel.vue'
 
 export default {
   name: 'GymRouteListItem',
   components: {
+    GymRouteSubLevel,
     GymRouteClimbingSimpleStyleIcons,
     GymRouteAvatar,
     GymRouteGradeAndPoint

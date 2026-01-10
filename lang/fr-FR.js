@@ -2605,7 +2605,10 @@ export default {
       styles: 'Styles',
       grade_by_section: 'Cotation L.%{index}',
       anchor_number: 'Relais n°',
-      fixedPoints: 'Donner un nombre de points fixe'
+      fixedPoints: 'Donner un nombre de points fixe',
+      intensity: 'Intensité',
+      difficulty: 'Difficulté',
+      sub_level: 'Sous niveau'
     },
     gymGrade: {
       name: 'Nom du système',
