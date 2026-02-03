@@ -217,6 +217,7 @@ import OpenedAtSeparator from '~/components/gymRoutes/listByGroup/OpenedAtSepara
 import AscentGymMultiCheckDialog from '~/components/ascentGymRoutes/AscentGymMultiCheckDialog'
 import AscentGymMultiCheckSuccessModal from '~/components/ascentGymRoutes/AscentGymMultiCheckSuccessModal'
 import GymRoutesFilterBtn from '~/components/gymRoutes/partial/GymRoutesFilterBtn'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 
 export default {
   name: 'GymSpaceRouteList',
@@ -282,6 +283,10 @@ export default {
 
     haveFilters () {
       return this.filters && this.filters.length > 0
+    },
+
+    activeGymSectorId () {
+      return this.$route.query.sector
     }
   },
 
@@ -292,14 +297,16 @@ export default {
 
     gymSpace () {
       this.getRoutes()
+    },
+
+    activeGymSectorId () {
+      if (this.activeGymSectorId) {
+        this.filterBySector(this.activeGymSectorId)
+      }
     }
   },
 
   mounted () {
-    this.$root.$on('filterBySector', (gymSectorId, sectorName) => {
-      this.filterBySector(gymSectorId, sectorName)
-    })
-
     this.$root.$on('dismountGymRoutesInSector', (gymId, spaceId, sectorId) => {
       this.dismountRoutes(gymId, spaceId, sectorId)
     })
@@ -310,11 +317,14 @@ export default {
 
     this.sort.column = localStorage.getItem('gym_route_sort_column') || 'sector'
     this.sort.direction = localStorage.getItem('gym_route_sort_direction') || 'asc'
-    this.getRoutes()
+    if (this.activeGymSectorId) {
+      this.filterBySector(this.activeGymSectorId)
+    } else {
+      this.getRoutes()
+    }
   },
 
   beforeDestroy () {
-    this.$root.$off('filterBySector')
     this.$root.$off('dismountGymRoutesInSector')
     this.$root.$off('reloadSpaceRoutes')
     this.$localforage.gymRoutes.clear()
@@ -376,22 +386,26 @@ export default {
       this.getRoutes(false)
     },
 
-    filterBySector (sectorId, sectorName) {
-      this.sort.column = 'sector'
-      this.sort.direction = 'asc'
-      this.pushFilter({
-        type: 'sector',
-        value: sectorId,
-        text: sectorName,
-        icon: mdiTextureBox
-      })
-      setTimeout(() => {
-        if (this.$vuetify.breakpoint.mobile) {
-          document.querySelector('#sort-and-filter-gym-routes').scrollIntoView({ top: 0, behavior: 'smooth' })
-        } else {
-          document.querySelector('.gym-space-left-side').scrollTo({ top: 0, behavior: 'smooth' })
-        }
-      }, 300)
+    filterBySector (sectorId, sectorName = null) {
+      new OblykApi(this.$axios, this.$auth)
+        .get(`/gyms/${this.gym.id}/gym_spaces/${this.gymSpace.id}/gym_sectors/${sectorId}`)
+        .then((resp) => {
+          this.sort.column = 'sector'
+          this.sort.direction = 'asc'
+          this.pushFilter({
+            type: 'sector',
+            value: sectorId,
+            text: resp.data.name,
+            icon: mdiTextureBox
+          })
+          setTimeout(() => {
+            if (this.$vuetify.breakpoint.mobile) {
+              document.querySelector('#sort-and-filter-gym-routes').scrollIntoView({ top: 0, behavior: 'smooth' })
+            } else {
+              document.querySelector('.gym-space-left-side').scrollTo({ top: 0, behavior: 'smooth' })
+            }
+          }, 300)
+        })
     },
 
     dismountRoutes (gymId, spaceId, sectorId) {
@@ -497,6 +511,9 @@ export default {
         this.$root.$emit('setMapView')
         this.sort.column = localStorage.getItem('gym_route_sort_column') || 'sector'
         this.sort.direction = localStorage.getItem('gym_route_sort_direction') || 'asc'
+        const query = { ...this.$route.query } || {}
+        delete query.sector
+        this.$router.push({ path: this.$route.path, query })
       }
       this.filters = this.filters.filter(currentFilter => currentFilter.filterKey !== filter.filterKey)
 

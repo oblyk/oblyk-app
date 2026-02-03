@@ -2,8 +2,8 @@
   <v-sheet class="pa-2" rounded>
     <v-btn
       :to="`${gymRoute.path}/edit`"
-      outlined
-      text
+      elevation="0"
+      color="primary"
       small
     >
       <v-icon left>
@@ -40,13 +40,29 @@
 
     <div class="mt-1">
       <p class="mb-0 font-weight-bold">
+        <small>Publication</small>
+      </p>
+      <v-btn
+        outlined
+        text
+        small
+        @click="addToPublication"
+      >
+        <v-icon left>
+          {{ oblykArdoisePlus }}
+        </v-icon>
+        {{ $t('actions.addToMyPublication') }}
+      </v-btn>
+    </div>
+
+    <div class="mt-1">
+      <p class="mb-0 font-weight-bold">
         <small>Photo</small>
       </p>
       <v-btn
         :to="`${gymRoute.path}/picture`"
         outlined
         text
-        x-small
       >
         <v-icon left small>
           {{ mdiCamera }}
@@ -58,7 +74,6 @@
         v-if="gymRoute.gym_route_cover.attachments.picture.attached"
         outlined
         text
-        x-small
         @click="deletePicture()"
       >
         <v-icon left small>
@@ -72,7 +87,6 @@
         :to="`${gymRoute.path}/thumbnail`"
         outlined
         text
-        x-small
       >
         <v-icon left small>
           {{ mdiCrop }}
@@ -80,15 +94,24 @@
         {{ $t('actions.defineThumbnail') }}
       </v-btn>
     </div>
+
+    <add-gym-routes-to-publication-modal
+      ref="addGymRoutesToPublicationModal"
+      :gym="gymRoute.gym"
+      post-added-method="closeModal"
+    />
   </v-sheet>
 </template>
 
 <script>
 import { mdiPencil, mdiCamera, mdiCrop, mdiBackburger, mdiCameraOff, mdiForwardburger } from '@mdi/js'
+import { oblykArdoisePlus } from '~/assets/oblyk-icons'
 import GymRouteApi from '~/services/oblyk-api/GymRouteApi'
+import AddGymRoutesToPublicationModal from '~/components/gymRoutes/AddGymRoutesToPublicationModal'
 
 export default {
   name: 'GymRouteActionBtn',
+  components: { AddGymRoutesToPublicationModal },
   props: {
     gymRoute: {
       type: Object,
@@ -107,7 +130,8 @@ export default {
       mdiCrop,
       mdiBackburger,
       mdiCameraOff,
-      mdiForwardburger
+      mdiForwardburger,
+      oblykArdoisePlus
     }
   },
 
@@ -153,6 +177,10 @@ export default {
             this.$root.$emit('alertFromApiError', err, 'gymRoute')
           })
       }
+    },
+
+    addToPublication () {
+      this.$refs.addGymRoutesToPublicationModal.openDialog([this.gymRoute.id])
     }
   }
 }

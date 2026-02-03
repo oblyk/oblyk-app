@@ -3,76 +3,81 @@
     <v-card
       link
       flat
-      :to="linkable ? cragRoute.path : null"
+      :class="bordered ? 'border' : null"
+      :to="linkable ? cragRoute.app_path : null"
     >
-      <v-list-item
-        :three-line="!small"
-        :two-line="small"
-      >
-        <v-list-item-avatar
-          :size="small ? 45 : 70"
-          :class="small ? 'mt-1 mb-1' : ''"
-        >
-          <v-avatar
-            :size="small ? 45 : 70"
-            tile
-          >
-            <v-img
-              v-if="cragRoute.photo.attachments.picture.attached"
-              :src="imageVariant(cragRoute.photo.attachments.picture, { fit: 'crop', height: 100, width: 100 })"
+      <v-list-item>
+        <crag-route-avatar
+          :crag-route="cragRoute"
+          base-font-size="1rem"
+          class="mr-2"
+        />
+        <v-list-item-content>
+          <v-list-item-title>
+            <climbing-style-icon
+              :climbing-style="cragRoute.climbing_type"
+              small
+              class="vertical-align-text-top"
+              style="padding-top: 3px"
             />
-            <v-icon
-              v-else
-              size="35"
-              class="px-1"
-            >
-              {{ mdiSourceBranch }}
-            </v-icon>
-          </v-avatar>
-        </v-list-item-avatar>
-        <v-list-item-content :class="small ? 'pt-2 pb-0' : ''">
-          <v-list-item-title class="font-weight-bold">
-            <span
-              :class="cragRoute.climbing_type"
-              class="climbs-pastille vertical-align-middle"
-            >
+            <client-only>
               <ascent-crag-route-status-icon
                 v-if="$auth.loggedIn"
                 :crag-route="cragRoute"
+                class="mb-1"
               />
-              {{ cragRoute.grade_to_s }} -
-              {{ cragRoute.name }}
-            </span>
-          </v-list-item-title>
-          <v-list-item-subtitle :class="small ? 'mt-0 mb-3' : 'mt-n3 mb-4'">
-            <v-chip
+            </client-only>
+            {{ cragRoute.name }}
+            <crag-route-note
+              :route="cragRoute"
+              class="mb-1"
+            />
+            <v-icon
+              v-if="cragRoute.photos_count > 0"
+              :title="$tc('components.photo.countInfos', cragRoute.photos_count, { count: cragRoute.photos_count } )"
               small
-              outlined
-              class=""
+              class="ml-3"
             >
-              <v-icon
-                small
-                left
-              >
-                {{ climbIcons[cragRoute.climbing_type] }}
-              </v-icon>
-              {{ $t(`models.climbs.${cragRoute.climbing_type}`) }}
-            </v-chip>
-            <v-chip
+              {{ mdiCamera }}
+            </v-icon>
+            <v-icon
+              v-if="cragRoute.videos_count > 0"
+              :title="$tc('components.video.countInfos', cragRoute.videos_count, { count: cragRoute.videos_count } )"
+              small
+              class="ml-3"
+            >
+              {{ mdiFilmstrip }}
+            </v-icon>
+            <v-icon
+              v-if="cragRoute.comments_count > 0"
+              :title="$tc('components.comment.countInfos', cragRoute.comments_count, { count: cragRoute.comments_count } )"
+              small
+              class="ml-3"
+            >
+              {{ mdiComment }}
+            </v-icon>
+            <small
               v-if="cragRoute.ascents_count > 0"
-              small
-              outlined
-              class=""
+              class="ml-2 d-inline-block rounded border py-1 px-2"
+              :title="$tc('components.ascent.countInfos', cragRoute.ascents_count, { count: cragRoute.ascents_count } )"
             >
+              {{ cragRoute.ascents_count }}
               <v-icon
+                class="vertical-align-sub"
                 small
-                left
               >
                 {{ mdiCheckAll }}
               </v-icon>
-              {{ cragRoute.ascents_count }}
-            </v-chip>
-            {{ cragRoute.Crag.name }}, {{ cragRoute.Crag.city }}
+            </small>
+          </v-list-item-title>
+          <v-list-item-subtitle class="span-comma">
+            {{ cragRoute.crag.name }}
+            <span v-if="cragRoute.crag_sector">
+              / {{ cragRoute.crag_sector.name }}
+            </span>
+            <span v-if="cragRoute.opener">
+              {{ $t('common.by') }} {{ cragRoute.opener }}
+            </span>
           </v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
@@ -81,22 +86,16 @@
 </template>
 
 <script>
-import { mdiSourceBranch, mdiCheckAll } from '@mdi/js'
-import {
-  oblykClimbAid,
-  oblykClimbBoulder,
-  oblykClimbDeepWater,
-  oblykClimbMultiPitch,
-  oblykClimbSportClimbing,
-  oblykClimbTrad,
-  oblykClimbViaFerrata
-} from '~/assets/oblyk-icons'
-import AscentCragRouteStatusIcon from '@/components/ascentCragRoutes/AscentCragRouteStatusIcon'
+import { mdiCheckAll, mdiCamera, mdiFilmstrip, mdiComment } from '@mdi/js'
 import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
+import AscentCragRouteStatusIcon from '@/components/ascentCragRoutes/AscentCragRouteStatusIcon'
+import ClimbingStyleIcon from '~/components/crags/ClimbingStyleIcon'
+import CragRouteAvatar from '~/components/cragRoutes/partial/CragRouteAvatar'
+import CragRouteNote from '~/components/cragRoutes/partial/CragRouteNote'
 
 export default {
   name: 'CragRouteSmallCard',
-  components: { AscentCragRouteStatusIcon },
+  components: { CragRouteNote, ClimbingStyleIcon, CragRouteAvatar, AscentCragRouteStatusIcon },
   mixins: [ImageVariantHelpers],
   props: {
     cragRoute: {
@@ -111,23 +110,19 @@ export default {
     small: {
       type: Boolean,
       default: false
+    },
+    bordered: {
+      type: Boolean,
+      default: false
     }
   },
 
   data () {
     return {
-      climbIcons: {
-        aid_climbing: oblykClimbAid,
-        bouldering: oblykClimbBoulder,
-        deep_water: oblykClimbDeepWater,
-        multi_pitch: oblykClimbMultiPitch,
-        sport_climbing: oblykClimbSportClimbing,
-        trad_climbing: oblykClimbTrad,
-        via_ferrata: oblykClimbViaFerrata
-      },
-
-      mdiSourceBranch,
-      mdiCheckAll
+      mdiCheckAll,
+      mdiCamera,
+      mdiFilmstrip,
+      mdiComment
     }
   }
 }

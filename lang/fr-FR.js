@@ -15,6 +15,7 @@ export default {
     apply: 'Appliquer',
     editSector: 'Modifier le secteur',
     editSpace: "Modifier l'espace",
+    editDraft: 'Éditer le brouillon',
     printSector: 'Imprimer le secteur',
     create: 'Créer',
     delete: 'Supprimer',
@@ -43,6 +44,8 @@ export default {
     changeLogo: 'Changer le logo',
     changePlan: 'Changer le plan',
     change3dPlan: 'Changer le 3D',
+    changeMyBanner: 'Changer mon bandeau',
+    changeMyAvatar: 'Changer mon avatar',
     edit3d: 'Éditer le 3D',
     createNewSpace: 'Créer un nouvel espace',
     addSector: 'Ajouter un secteur',
@@ -110,10 +113,12 @@ export default {
     changeCover: 'Changer la couverture',
     addLink: 'Ajouter un lien',
     addComment: 'Ajouter un commentaire',
+    writeComment: 'Écrire un commentaire',
     addOpinion: 'Ajouter mon avis',
     editComment: 'Éditer le commentaire',
     editInformation: 'Éditer les informations',
     reportProblem: 'Signaler un problème',
+    addToMyWebsite: 'Intégrer à mon site',
     newSheet: 'Nouvelle fiche',
     addVideo: 'Ajouter une vidéo',
     editVideo: 'Éditer la vidéo',
@@ -139,7 +144,10 @@ export default {
     print: 'Imprimer',
     use: 'Utiliser',
     cancelRequest: 'Annuler la demande',
+    write: 'Écrire',
+    preview: 'Prévisualiser',
     writeMessage: 'Écrire un message',
+    writeSignboard: 'Écrire un écriteau',
     newConversation: 'Nouvelle conversation',
     addAlert: 'Ajouter une alerte',
     publish: 'Publier',
@@ -147,7 +155,7 @@ export default {
     writeAnArticle: 'Écrire un article',
     addCrag: 'Ajouter une falaise',
     addGym: 'Ajouter une salle',
-    readMore: 'Lire plus',
+    readMore: 'Lire la suite',
     writeNewsletter: 'Écrire une newsletter',
     send: 'Envoyer',
     subscribeMe: "M'inscrire",
@@ -168,6 +176,7 @@ export default {
     editNote: 'Modifier la note',
     next: 'Suivant',
     back: 'Retour',
+    choose: 'Choisir',
     authenticateMe: "M'authentifier",
     otherRegistration: 'Autre inscription',
     entryResult: 'Renseigner mes résultats',
@@ -176,7 +185,8 @@ export default {
     follow: 'Suivre',
     followed: 'Suivie',
     takeCapture: 'Faire la miniature',
-    reset: 'Reset'
+    reset: 'Reset',
+    addToMyPublication: 'Ajouter à ma publication'
   },
   colors: {
     noColor: 'Toutes',
@@ -316,6 +326,27 @@ export default {
     backToGuidebook: 'Retour au topo',
     ascSort: 'Tri croissant',
     descSort: 'Tri décroissant',
+    edition: 'Édition',
+    copiedLink: 'Lien copié',
+    iframeCodeToCopy: 'Code à copier sur votre site',
+    drafts: 'Brouillons',
+    draft: 'Brouillon',
+    updatedAt: 'Mise à jour le %{date}',
+    signboards: 'Écriteaux',
+    environments: 'Environnements',
+    figures: {
+      countries: '%{count} pays | %{count} pays',
+      crags: '%{count} site | %{count} sites',
+      cragRoutes: '%{count} ligne | %{count} lignes',
+      climbers: '%{count} grimpeur ou grimpeuse | %{count} grimpeurs et grimpeuses',
+      gyms: '%{count} salle | %{count} salles',
+      gymGuideBooks: '%{count} topo | %{count} topos',
+      regions: '%{count} région | %{count} régions',
+      ascents: '%{count} croix | %{count} croix',
+      additionalAscents: "pas d'ascension | une ascension | %{count} ascensions",
+      meters: '%{count} mètre grimpé | %{count} mètres grimpés',
+      max_grade: '%{grade} max'
+    },
     months: {
       '01': '01 - Janvier',
       '02': '02 - Février',
@@ -708,7 +739,7 @@ export default {
       placeholder: 'Chercher une ville, un lieu, etc.'
     },
     markdown: {
-      tips: '<strong>Tips :</strong> Utilise la <a>notation markdown</a> pour plus de style!',
+      tips: '<strong>Tips :</strong> Utilise la <a class="deep-purple--text">notation markdown</a> pour plus de style!',
       modalTitle: 'La notation markdown',
       explain: {
         whatIsIt: 'Le Markdown est un langage de balisage léger. Il permet grâce à des symboles simples de styliser un texte.',
@@ -793,7 +824,8 @@ export default {
         request_for_follow_up: '%{name} demande à vous suivre',
         new_article: 'Nouvel article ! %{name}',
         new_like: '%{name} aime votre %{type}',
-        new_reply: "%{name} a répondu à l'un de vos commentaires"
+        new_reply: "%{name} a répondu à l'un de vos commentaires",
+        new_publication: 'Nouvelle publication de %{name}'
       }
     },
     country: {
@@ -955,7 +987,8 @@ export default {
       nearbyClimbingGyms: 'Salles les plus proches',
       welcome: 'Bienvenue sur Oblyk indoor !',
       addFavoriteGym: 'Ajouter des salles à vos favoris pour les retrouver ici !',
-      welcomeParagraphe: '<strong>Rejoignez-nous</strong> pour <strong>suivre votre salle</strong>, voir les <strong>dernières ouvertures</strong>, <strong>suivre votre progression</strong> et bien plus !'
+      welcomeParagraphe: '<strong>Rejoignez-nous</strong> pour <strong>suivre votre salle</strong>, voir les <strong>dernières ouvertures</strong>, <strong>suivre votre progression</strong> et bien plus !',
+      createMyIndoorGuideBook: 'Créer le topo de ma salle'
     },
     outdoor: {
       moreOutdoor: "Plus d'outdoor",
@@ -1376,6 +1409,7 @@ export default {
       mountRoutes: 'Monter la ligne | Monter les %{count} lignes',
       printRoutes: 'Imprimer la ligne | Imprimer les %{count} lignes',
       exportRoutes: 'Exporter la ligne | Exporter les %{count} lignes',
+      addPublicationRoutes: 'Ajouter (%{count}) à mon ardoise',
       openingSheetForRoutes: "Créer une fiche d'ouverture",
       missingInformation: 'Il manque quelques informations sur votre salle, comme :',
       addYourLogo: 'Ajouter votre logo',
@@ -1385,6 +1419,8 @@ export default {
       labelTemplate: 'Les étiquettes',
       labelTemplateExplain: 'Paramètres des étiquettes à imprimer aux pieds de vos voies et blocs.',
       commentAndVideo: 'Commentaires & Vidéos',
+      publications: 'Ardoise',
+      thePublications: "l'Ardoise",
       comments: 'Commentaires',
       videos: 'Vidéos',
       myCommunity: 'Ma communauté',
@@ -1490,7 +1526,8 @@ export default {
       removeSectorPolygonConfirm: 'Êtes-vous sûr·e de supprimer le tracé du secteur sur le plan ?',
       clicOnPlan: 'Cliquez sur la carte, ou déplacez les poignées blanches pour éditer le tracé du secteur sur le plan.',
       clicOnFinish: 'Une fois fini, cliquez sur Terminer',
-      viewOnMap: 'Centrer le plan sur ce secteur'
+      viewOnMap: 'Centrer le plan sur ce secteur',
+      addToPublication: '%{name} ajouté à votre publication'
     },
     gymRoute: {
       addNew: 'Ajouter une nouvelle ligne',
@@ -1522,6 +1559,7 @@ export default {
       anchorSuggestion: 'Suggestion de relais',
       dismountedAt: 'Ligne démontée le %{date}',
       dismounted: 'Démonté',
+      addToPublicationCount: 'Une ligne ajoutée à votre publication | %{count} lignes ajoutées à votre publication',
       sorts: {
         opened_at: "Trier par date d'ouverture",
         sector: 'Trier par secteur',
@@ -1586,6 +1624,7 @@ export default {
       title: 'Session du %{date}',
       ascentsAt: 'Mes croix du %{date}',
       climbingPlaces: "Les lieux où j'ai grimpé",
+      climbingPlacesGuest: 'Les lieux de grimpe',
       climbingPartners: "Les personnes avec qui j'ai grimpé",
       ascentsByColorsAndGrade: 'Mes croix par cotation et couleur',
       editComment: 'Éditer mon commentaire',
@@ -1593,7 +1632,8 @@ export default {
       myIndoorSession: 'Mes sessions indoor',
       myOutdoorSession: 'Mes sessions outdoor',
       count: 'Aucune session | Une session | %{count} sessions',
-      empty: "Vous n'avez pas encore de session de grimpe.<br>Ajoutez des croix à votre carnet pour voir vos sessions !"
+      empty: "Vous n'avez pas encore de session de grimpe.<br>Ajoutez des croix à votre carnet pour voir vos sessions !",
+      guestEmpty: "Il n'y a pas encore de session de grimpe."
     },
     logBook: {
       inFewFigures: 'En quelques chiffres',
@@ -1620,16 +1660,6 @@ export default {
       },
       climbingItems: {
         all: "Tous les types d'escalade"
-      },
-      figures: {
-        countries: '%{count} pays | %{count} pays',
-        crags: '%{count} site | %{count} sites',
-        gyms: '%{count} salle | %{count} salles',
-        regions: '%{count} région | %{count} régions',
-        ascents: '%{count} croix | %{count} croix',
-        additionalAscents: "pas d'ascension | une ascension | %{count} ascensions",
-        meters: '%{count} mètre grimpé | %{count} mètres grimpés',
-        max_grade: '%{grade} max'
       }
     },
     word: {
@@ -1649,6 +1679,7 @@ export default {
       noComment: "Il n'y a pas de commentaire ici pour l'instant",
       climbersComments: 'Commentaires des grimpeur·euse·s',
       seeReplies: 'Voir une réponse | Voir %{count} réponses',
+      replies: 'Réponses',
       moderate: "Ce commentaire a été supprimé par l'équipe de modération"
     },
     report: {
@@ -1702,7 +1733,7 @@ export default {
       changePassword: 'Changer mon mot de passe',
       privacyParameters: 'Paramètres de confidentialité',
       partnerSearch: 'Recherche de partenaire',
-      upcomingContests: 'Contests à venir',
+      upcomingContests: 'Mes contests',
       notificationSetting: 'Paramètre des notifications',
       otherSetting: 'Autres paramètres',
       successfulEditMessage: 'Votre profil a été mis à jour',
@@ -1836,6 +1867,12 @@ export default {
         comments: 'Commentaires'
       }
     },
+    fastAccess: {
+      title: 'Accès rapide',
+      myGym: 'Ma salle ...',
+      myCrag: 'Ma falaise ...',
+      helper: '* Suivez votre salle et des falaises pour les voir ici.'
+    },
     deleteAccount: {
       title: 'Supprimer mon compte',
       paragraph1: 'La suppression de votre compte est <strong class="red--text">irréversible</strong> et <strong class="red--text">immédiate</strong>.',
@@ -1850,6 +1887,16 @@ export default {
       noAscents: "Tes ami·e·s n'ont pas encore complété leur carnet de croix.",
       followYourFriends: 'Suis tes ami·es pour voir leur dernières réalisations.',
       addSubscribesBtn: 'Mes Abonnements'
+    },
+    friendAscents: {
+      title: 'Les dernières croix des potes !',
+      followYourMates: 'Suivez vos potes',
+      forSeeTheirLastAscents: 'pour voir leurs dernières réalisations !',
+      releasedAtIs: {
+        today: 'Auj. !',
+        yesterday: 'Hier',
+        this_week: 'Cette sem.'
+      }
     },
     like: {
       like: 'Like',
@@ -1883,6 +1930,73 @@ export default {
         articles: 'Articles',
         subscribes: 'Abonnements',
         localInfos: 'Infos locales'
+      }
+    },
+    publication: {
+      draftInProgress: "J'ai un brouillon en cours ! | J'ai %{count} brouillons en cours !",
+      noPublicationIMyFeed: "Suivez des salles, des falaises, des topos ou d'autres grimpeurs et grimpeuses pour voir les dernières actualités ici !",
+      shareSomething: 'Partager quelque chose',
+      autoRemove: 'Les brouillons sont automatiquement supprimés après deux semaines sans modification.',
+      newMessage: 'Nouveau message',
+      placeholder: {
+        Gym: 'Partager une nouvelle ouverture ? Un contest ? Un nettoyage de falaises ?',
+        User: "Partager un récit d'escalade ? Une reflexion sur la grimpe ?",
+        Crag: "Écrire sur : une nidification ? Une prise cassée ? La fermeture d'un secteur ?",
+        GuideBookPaper: 'Écrire sur : une nouvelle version ? Un réapprovisionnement ? Un erratum ?'
+      },
+      regulations: {
+        title: 'Règlement',
+        intro: {
+          Gym: "Les publications vous permettes de partager à vos grimpeurs et grimpeuses les dernières ouvertures, prévenir d'un contest, organiser un nettoyage de printemps en falaise, etc.",
+          User: "Les publications vous permettes de partager à vos amis et amies vos récits d'escalades, une réfléxion sur la grimpe, organiser une sortie, etc.",
+          Crag: "Publier sur un site d'escalade vous permettez de partager aux grimpeurs et grimpeuses de ce site des informations d'intérêt général, comme : une prise cassée, la fermeture du site, une nidification, etc.",
+          GuideBookPaper: "Publier sur un topo vous permettez de partager aux grimpeurs et grimpeuses des informations d'intérêt général, comme : un erratum, la publication d'une nouvelle version ou un réapprovisionnement."
+        },
+        body: 'Nous nous gardons le droit de supprimer, sans préavis, toutes publications racistes, misogynes, homophobes, discriminantes, ou plus généralement qui ne respect pas le droit Français, ainsi que les publications publicitaires.',
+        limitation: 'Afin de favoriser la qualité à la quantité, vous ne pouvez pas publier plus de %{count} publication(s) par jour.',
+        thanks: 'Merci de votre compréhension.'
+      },
+      Gym: {
+        title: "L'ardoise",
+        noPublication: "%{name} n'as pas encore écrit sur son ardoise, reviens plus tard !",
+        writeLabel: 'Écrire sur mon ardoise ?',
+        subject: {
+          create: 'Salle ajouté le %{date}',
+          new_video: 'Une nouvelle vidéo ajoutée la semaine du %{week_date} | %{count} nouvelles vidéos ajoutées la semaine du %{week_date}'
+        }
+      },
+      User: {
+        title: 'Activités',
+        myPublicationFeed: 'Mes actualités',
+        noPublication: "%{name} n'as encore rien partagé, reviens plus tard !",
+        writeLabel: 'Partager quelque choses ?'
+      },
+      Crag: {
+        title: "Le panneau d'infos",
+        noPublication: "%{name} n'as pas encore d'actualité, reviens plus tard !",
+        writeLabel: 'Écrire une actualité sur %{name} ?',
+        subject: {
+          create: 'Site ajouté le %{date}',
+          new_alert: 'Nouvelle alerte créée le %{date}',
+          new_guide_book_web: 'Nouveau topo web ajouté le %{date}',
+          new_guide_book_pdf: 'Nouveau topo PDF ajouté le %{date}',
+          new_crag_routes: 'Une nouvelle ligne ajoutée la semaine du %{week_date} | %{count} nouvelles lignes ajoutées la semaine du %{week_date}',
+          new_photo: 'Une nouvelle photo ajoutée la semaine du %{week_date} | %{count} nouvelles photos ajoutées la semaine du %{week_date}',
+          new_video: 'Une nouvelle vidéo ajoutée la semaine du %{week_date} | %{count} nouvelles vidéos ajoutées la semaine du %{week_date}'
+        }
+      },
+      GuideBookPaper: {
+        title: "Le panneau d'infos",
+        noPublication: "%{name} n'as pas encore d'information, reviens plus tard !",
+        writeLabel: 'Écrire une information sur %{name} ?',
+        subject: {
+          create: 'Topo ajouté le %{date}'
+        }
+      },
+      Article: {
+        subject: {
+          create: 'Nouvel article écrit le %{date}'
+        }
       }
     },
     messenger: {
@@ -2178,7 +2292,8 @@ export default {
       greater_than_or_equal_to: 'doit être plus grand',
       must_be_specified: 'doit être renseigné(e)',
       cannot_be_odd: 'ne peut pas être impair',
-      must_have_a_minimum_or_maximum_age_specified: 'doit avoir un age minimum ou maximum de renseigné'
+      must_have_a_minimum_or_maximum_age_specified: 'doit avoir un age minimum ou maximum de renseigné',
+      posting_limit_for_today: "Vous avez atteinte votre limite de publication pour aujourd'hui"
     }
   },
   models: {
@@ -3203,6 +3318,7 @@ export default {
     },
     emailNotifications: {
       new_message: "J'ai un message non lu",
+      new_publication: 'Il y une nouvelle publication',
       request_for_follow_up: 'On demande à me suivre',
       new_article: 'Il y a un nouvel article'
     }

@@ -61,8 +61,8 @@
 import { mdiEyeOff, mdiEye } from '@mdi/js'
 import SubmitForm from '@/components/forms/SubmitForm'
 import RequiredExplained from '~/components/forms/RequiredExplained'
-import NotificationApi from '~/services/oblyk-api/NotificationApi'
 import CurrentUserApi from '~/services/oblyk-api/CurrentUserApi'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 
 export default {
   name: 'SignInForm',
@@ -121,8 +121,8 @@ export default {
         this.$cable.subscribe({ channel: 'FetchUserChannel' })
 
         // Get unread notification
-        await new NotificationApi(this.$axios, this.$auth)
-          .unreadCount()
+        await new OblykApi(this.$axios, this.$auth)
+          .get('/notifications/unread_count')
           .then((resp) => {
             this.$store.dispatch('notification/changeNotificationStatus', resp.data > 0)
           })

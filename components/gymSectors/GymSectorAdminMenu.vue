@@ -61,6 +61,18 @@
           </v-list-item-title>
         </v-list-item>
 
+        <v-list-item
+          link
+          :to="`${gymSector.path}/add-to-publication`"
+        >
+          <v-list-item-icon>
+            <v-icon>{{ oblykArdoisePlus }}</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title>
+            Ajouter à ma publication
+          </v-list-item-title>
+        </v-list-item>
+
         <!-- Edit polyline -->
         <v-list-item
           v-if="showPlanOptions && gymAuthCan(gym, 'manage_space')"
@@ -129,6 +141,7 @@ import {
   mdiPrinter,
   mdiArrowUpBoldHexagonOutline
 } from '@mdi/js'
+import { oblykArdoisePlus } from '~/assets/oblyk-icons'
 import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
 import GymSectorApi from '~/services/oblyk-api/GymSectorApi'
 import PrintLabelDialog from '~/components/gymLabelTemplates/PrintLabelDialog'
@@ -166,7 +179,8 @@ export default {
       mdiVectorSquareRemove,
       mdiSourceBranchPlus,
       mdiPrinter,
-      mdiArrowUpBoldHexagonOutline
+      mdiArrowUpBoldHexagonOutline,
+      oblykArdoisePlus
     }
   },
 

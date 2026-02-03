@@ -16,8 +16,8 @@
 <script>
 import { FormHelpers } from '@/mixins/FormHelpers'
 import SubmitForm from '@/components/forms/SubmitForm'
-import CommentApi from '~/services/oblyk-api/CommentApi'
 import MarkdownInput from '@/components/forms/MarkdownInput'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 
 export default {
   name: 'CommentForm',
@@ -62,7 +62,9 @@ export default {
   methods: {
     submit () {
       this.submitOverlay = true
-      const promise = (this.isEditingForm()) ? new CommentApi(this.$axios, this.$auth).update(this.data) : new CommentApi(this.$axios, this.$auth).create(this.data)
+      const promise = this.isEditingForm()
+        ? new OblykApi(this.$axios, this.$auth).put(`/comments/${this.data.id}`, { comment: this.data })
+        : new OblykApi(this.$axios, this.$auth).post('/comments', { comment: this.data })
 
       promise
         .then(() => {

@@ -15,6 +15,7 @@ export default {
     apply: 'Apply',
     editSector: 'Edit sector',
     editSpace: 'Edit space',
+    editDraft: 'Edit draft',
     printSector: 'Print sector',
     create: 'Create',
     delete: 'Delete',
@@ -43,6 +44,8 @@ export default {
     changeLogo: 'Change logo',
     changePlan: 'Change plan',
     change3dPlan: 'Change 3D',
+    changeMyBanner: 'Change my banner',
+    changeMyAvatar: 'Change my avatar',
     edit3d: 'Edit 3D',
     createNewSpace: 'Create a new space',
     addSector: 'Add sector',
@@ -110,10 +113,12 @@ export default {
     changeCover: 'Change cover',
     addLink: 'Add link',
     addComment: 'Add comment',
+    writeComment: 'Write comment',
     addOpinion: 'Add my opinion',
     editComment: 'Edit comment',
     editInformation: 'Edit information',
     reportProblem: 'Report a problem',
+    addToMyWebsite: 'Add to my website',
     newSheet: 'New sheet',
     addVideo: 'Add video',
     editVideo: 'Edit video',
@@ -139,7 +144,10 @@ export default {
     print: 'Print',
     use: 'Use',
     cancelRequest: 'Cancel request',
+    write: 'Write',
+    preview: 'Preview',
     writeMessage: 'Write message',
+    writeSignboard: 'Write a signboard',
     newConversation: 'New conversation',
     addAlert: 'Add alert',
     publish: 'Publish',
@@ -168,6 +176,7 @@ export default {
     editNote: 'Edit note',
     next: 'Next',
     back: 'Back',
+    choose: 'Choose',
     authenticateMe: 'Authenticate',
     otherRegistration: 'Other registration',
     entryResult: 'Enter my results',
@@ -176,7 +185,8 @@ export default {
     follow: 'Follow',
     followed: 'Followed',
     takeCapture: 'Take thumbnail',
-    reset: 'Reset'
+    reset: 'Reset',
+    addToMyPublication: 'Add to my publication'
   },
   colors: {
     noColor: 'All',
@@ -315,6 +325,27 @@ export default {
     backToGuidebook: 'Back to guidebook',
     ascSort: 'Ascending sort',
     descSort: 'Descending sort',
+    edition: 'Edition',
+    copiedLink: 'Copied link',
+    iframeCodeToCopy: 'Code to copy onto your website',
+    drafts: 'Drafts',
+    draft: 'Draft',
+    updatedAt: 'Updated at %{date}',
+    signboards: 'Signboards',
+    environments: 'Environments',
+    figures: {
+      countries: '%{count} country | %{count} countries',
+      crags: '%{count} crag | %{count} crags',
+      cragRoutes: '%{count} route | %{count} routes',
+      climbers: '%{count} climber | %{count} climbers',
+      gyms: '%{count} gym | %{count} gyms',
+      gymGuideBooks: '%{count} guide | %{count} guides',
+      regions: '%{count} region | %{count} regions',
+      ascents: '%{count} ascent | %{count} ascents',
+      additionalAscents: 'no ascents | one ascent | %{count} ascents',
+      meters: '%{count} meter climbed | %{count} meters climbed',
+      max_grade: '%{grade} max'
+    },
     months: {
       '01': '01 - January',
       '02': '02 - February',
@@ -707,7 +738,7 @@ export default {
       placeholder: 'Search for a city, a place, etc.'
     },
     markdown: {
-      tips: '<strong>Tips:</strong> use <a>markdown notation</a> for more style!',
+      tips: '<strong>Tips:</strong> use <a class="deep-purple--text">markdown notation</a> for more style!',
       modalTitle: 'The Markdown notation',
       explain: {
         whatIsIt: 'Markdown is a light markup language. It allows using simple symbols to stylize a text.',
@@ -792,7 +823,8 @@ export default {
         request_for_follow_up: '%{name} asks to follow you',
         new_article: 'New article! %{name}',
         new_like: '%{name} likes your %{type}',
-        new_reply: '%{name} has replied to one of your comments'
+        new_reply: '%{name} has replied to one of your comments',
+        new_publication: 'New publication of %{name}'
       }
     },
     country: {
@@ -954,7 +986,8 @@ export default {
       nearbyClimbingGyms: 'Nearby climbing gyms',
       welcome: 'Welcome to Oblyk Indoor!',
       addFavoriteGym: 'Add climbing gym to your favorites to find them here!',
-      welcomeParagraphe: '<strong>Join us</strong> to <strong>track your gym</strong>, see the <strong>latest openings</strong>, <strong>monitor your progress</strong>, and much more!'
+      welcomeParagraphe: '<strong>Join us</strong> to <strong>track your gym</strong>, see the <strong>latest openings</strong>, <strong>monitor your progress</strong>, and much more!',
+      createMyIndoorGuideBook: 'Create a guide to my gym'
     },
     outdoor: {
       moreOutdoor: 'More outdoor',
@@ -1143,7 +1176,7 @@ export default {
     },
     area: {
       description: '<strong>%{name}</strong> is a grouping of %{crags} climbing crags.<br>These crags contain in total %{routes} routes, ranging from <strong>%{min}</strong> to <strong>%{max}</strong>',
-      groupTitle: '%{count} Crags grouping',
+      groupTitle: '%{count} Crags regroupement',
       type: 'Crags group',
       new: 'New crag area',
       addCragInArea: 'Add crag',
@@ -1375,6 +1408,7 @@ export default {
       mountRoutes: 'Open %{count} line | Open %{count} lines',
       printRoutes: 'Print line | Print %{count} lines',
       exportRoutes: 'Export line | Export %{count} lines',
+      addPublicationRoutes: 'Add (%{count}) to my black board',
       openingSheetForRoutes: 'Create opening sheet',
       missingInformation: 'Some information about your gym is missing, like:',
       addYourLogo: 'Add logo',
@@ -1384,6 +1418,8 @@ export default {
       labelTemplate: 'Labels',
       labelTemplateExplain: 'Set the labels to be printed at the foot of your routes and boulders.',
       commentAndVideo: 'Comments & Videos',
+      publications: 'Blackboard',
+      thePublications: 'The blackboard',
       comments: 'Comments',
       videos: 'Videos',
       myCommunity: 'My community',
@@ -1489,7 +1525,8 @@ export default {
       removeSectorPolygonConfirm: 'Are you sure you are deleting the drawing on the plan?',
       clicOnPlan: 'Click on the map, or move the white handles to edit the plot of the area on the map.',
       clicOnFinish: 'Once finished, click on finish',
-      viewOnMap: 'Focus the plan on this area'
+      viewOnMap: 'Focus the plan on this area',
+      addToPublication: '%{name} added to your post'
     },
     gymRoute: {
       addNew: 'Add a new route',
@@ -1521,6 +1558,7 @@ export default {
       anchorSuggestion: 'Anchor suggestion',
       dismountedAt: 'Line taken down at %{date}',
       dismounted: 'Removed',
+      addToPublicationCount: 'One route added to your publication | %{count} routes added to your publication',
       sorts: {
         opened_at: 'Sort by opening date',
         sector: 'Sort by sector',
@@ -1592,7 +1630,8 @@ export default {
       myIndoorSession: 'My indoor sessions',
       myOutdoorSession: 'My outdoor sessions',
       count: 'No sessions | One session | %{count} sessions',
-      empty: "You don't have a climbing session yet.<br>Add ascents to your logbook to see your sessions!"
+      empty: "You don't have a climbing session yet.<br>Add ascents to your logbook to see your sessions!",
+      guestEmpty: 'There are no climbing sessions yet.'
     },
     logBook: {
       inFewFigures: 'In a few figures',
@@ -1619,16 +1658,6 @@ export default {
       },
       climbingItems: {
         all: 'All types of climbing'
-      },
-      figures: {
-        countries: '%{count} country | %{count} countries',
-        crags: '%{count} crag | %{count} crags',
-        gyms: '%{count} gym | %{count} gyms',
-        regions: '%{count} region | %{count} regions',
-        ascents: '%{count} ascent | %{count} ascents',
-        additionalAscents: 'no ascents | one ascent | %{count} ascents',
-        meters: '%{count} meter climbed | %{count} meters climbed',
-        max_grade: '%{grade} max'
       }
     },
     word: {
@@ -1648,6 +1677,7 @@ export default {
       noComment: 'There is no comment here for the moment',
       climbersComments: 'Comments from climbers',
       seeReplies: 'See a reply | See %{count} replies',
+      replies: 'Replies',
       moderate: 'This comment has been removed by the moderation team'
     },
     report: {
@@ -1701,7 +1731,7 @@ export default {
       changePassword: 'Change password',
       privacyParameters: 'Privacy parameters',
       partnerSearch: 'Partner search',
-      upcomingContests: 'Upcoming contests',
+      upcomingContests: 'My contests',
       otherSetting: 'Other settings',
       notificationSetting: 'Notifications parameters',
       successfulEditMessage: 'Your profile has been updated',
@@ -1835,6 +1865,12 @@ export default {
         comments: 'Comments'
       }
     },
+    fastAccess: {
+      title: 'Fast access',
+      myGym: 'My gym...',
+      myCrag: 'My crag...',
+      helper: '* Follow your climbing gym and yours crags to see them here.'
+    },
     deleteAccount: {
       title: 'Delete my account',
       paragraph1: 'Deletion of your account is <strong class="red--text">irreversible</strong> and <strong class="red--text">immediate</strong>.',
@@ -1849,6 +1885,16 @@ export default {
       noAscents: 'Your friends have not yet completed their logbook',
       followYourFriends: 'Follow your friends to see their latest achievements.',
       addSubscribesBtn: 'My Subscriptions'
+    },
+    friendAscents: {
+      title: 'The latest posts from friends!',
+      followYourMates: 'Follow your mates',
+      forSeeTheirLastAscents: 'to see their latest ascents!',
+      releasedAtIs: {
+        today: 'Today!',
+        yesterday: 'Yesterday',
+        this_week: 'This week'
+      }
     },
     like: {
       like: 'Like',
@@ -1882,6 +1928,72 @@ export default {
         articles: 'Articles',
         subscribes: 'Subscriptions',
         localInfos: 'Local infos'
+      }
+    },
+    publication: {
+      draftInProgress: 'I have one draft in progress! | I have %{count} drafts in progress!',
+      noPublicationIMyFeed: 'Follow climbing areas, cliffs, guidebooks, or other climbers to see the latest news here!',
+      shareSomething: 'Share something',
+      autoRemove: 'Drafts are automatically deleted after two weeks without changes.',
+      newMessage: 'New message',
+      placeholder: {
+        Gym: 'Share a new route? A competition? A cliff clean-up?',
+        User: 'Share a climbing story? A reflection on climbing?',
+        Crag: 'Write about : a nesting issue? A broken hold? The closure of an sector?',
+        GuideBookPaper: 'Write about : a new version? A restock? A correction?'
+      },
+      regulations: {
+        title: 'Regulations',
+        intro: {
+          Gym: 'These posts allow you to share the latest route openings with your climbers, announce a competition, organise a spring clean-up at the crag, and so on.',
+          User: 'Posts allow you to share your climbing stories and thoughts on the crag with your friends, organise a climb, and more.',
+          Crag: 'Posting on a crag allows you to share information of general interest with the climbers on that crag, such as: a broken hold, the closure of sector, birds nesting, etc.',
+          GuideBookPaper: 'Posting on a guidebook allows you to share information of general interest with climbers, such as: a correction, the publication of a new edition, or a restock.'
+        },
+        body: 'We reserve the right to remove, without prior notice, any posts that are racist, misogynistic, homophobic, discriminatory, or, more generally, that do not comply with French law, as well as any advertising posts.',
+        limitation: 'To prioritise quality over quantity, you cannot post more than %{count} posts per day.',
+        thanks: 'Thank you for your understanding.'
+      },
+      Gym: {
+        title: 'Blackboard',
+        noPublication: "%{name}  hasn't written on his blackboard yet, come back later. ",
+        writeLabel: 'Write on my blackboard?',
+        subject: {
+          create: 'Gym added on %{date}',
+          new_video: 'One video added during the week of %{week_date} | %{count} videos added during the week of %{week_date}'
+        }
+      },
+      User: {
+        title: 'Activities',
+        noPublication: "%{name} hasn't shared anything yet, come back later!",
+        writeLabel: 'Share something?'
+      },
+      Crag: {
+        title: 'Information board',
+        noPublication: "%{name} doesn't have any news yet, please come back later.",
+        writeLabel: 'Write a news on %{name}?',
+        subject: {
+          create: 'Crag added on %{date}',
+          new_alert: 'New alert created on %{date}',
+          new_guide_book_web: 'New web climbing guide added on %{date}',
+          new_guide_book_pdf: 'New PDF climbing guide added on %{date}',
+          new_crag_routes: 'One route added during the week of %{week_date} | %{count} routes added during the week of %{week_date}',
+          new_photo: 'One picture added during the week of %{week_date} | %{count} pictures added during the week of %{week_date}',
+          new_video: 'One video added during the week of %{week_date} | %{count} videos added during the week of %{week_date}'
+        }
+      },
+      GuideBookPaper: {
+        title: 'Information board',
+        noPublication: "%{name} doesn't have any information yet, please come back later!",
+        writeLabel: 'Write information about %{name} ?',
+        subject: {
+          create: 'Guide book add on %{date}'
+        }
+      },
+      Article: {
+        subject: {
+          create: 'New article written on %{date}'
+        }
       }
     },
     messenger: {
@@ -2177,7 +2289,8 @@ export default {
       greater_than_or_equal_to: 'must be bigger',
       must_be_specified: 'must be specified',
       cannot_be_odd: 'cannot be odd',
-      must_have_a_minimum_or_maximum_age_specified: 'must have a minimum or maximum age specified'
+      must_have_a_minimum_or_maximum_age_specified: 'must have a minimum or maximum age specified',
+      posting_limit_for_today: 'You have reached your posting limit for today'
     }
   },
   models: {
@@ -3188,6 +3301,7 @@ export default {
     },
     emailNotifications: {
       new_message: 'I have an unread message',
+      new_publication: 'There is a new publication',
       request_for_follow_up: 'They ask to follow me',
       new_article: 'There is a new article'
     }

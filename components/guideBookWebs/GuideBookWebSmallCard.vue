@@ -21,7 +21,7 @@
               {{ guideBookWeb.name }}
               <client-only>
                 <v-btn
-                  v-if="$auth.loggedIn && $auth.user.uuid === guideBookWeb.creator.uuid"
+                  v-if="$auth.loggedIn && $auth.user.uuid === guideBookWeb.user.uuid"
                   icon
                   :to="`${guideBookWeb.path}/edit?redirect_to=${$route.fullPath}`"
                 >

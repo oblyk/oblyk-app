@@ -81,7 +81,7 @@
         :class="labelDisableEvent ? 'pointer-event-insensitive' : null"
         :style="highlightSectorId === sector.id ? `background-color: ${gymSpace.sectors_color || 'rgb(0,0,0)'}; color: ${gymSpace.text_contrast_color}` : 'color: black'"
         @mousemove="highlightSector(sector)"
-        @click="$root.$emit('filterBySector', sector.id, sector.name)"
+        @click="filterBySector(sector.id)"
       >
         {{ sector.name }}
       </div>
@@ -127,6 +127,23 @@ export default {
 
       mdiCamera,
       mdiAxisZRotateCounterclockwise
+    }
+  },
+
+  computed: {
+    queryGymSectorId () {
+      return this.$route.query.sector
+    }
+  },
+
+  watch: {
+    queryGymSectorId () {
+      if (this.queryGymSectorId) {
+        this.highlightSectorId = this.queryGymSectorId
+        this.highlightSector({ id: this.highlightSectorId }, { render: true })
+      } else {
+        this.unHighlightSector({ render: true })
+      }
     }
   },
 
@@ -346,25 +363,31 @@ export default {
         const intersects = this.raycaster.intersectObjects(this.sectorBoundingBoxes)
         if (intersects.length > 0) {
           const sector = intersects[0].object.userData.sector
-          this.$root.$emit('filterBySector', sector.id, sector.name)
+          this.filterBySector(sector.id)
         }
       }
     },
 
+    filterBySector (sectorId) {
+      const query = { ...this.$route.query } || {}
+      query.sector = sectorId
+      this.$router.push({ path: this.$route.path, query })
+    },
+
     unHighlightSector (options = { render: true }) {
       this.highlightSectorId = null
-      this.sectorBoundingBoxes.forEach((boxSector) => { boxSector.visible = false })
-      this.sectorLineSegments.forEach((boxSector) => { boxSector.visible = false })
+      this.sectorBoundingBoxes.forEach((boxSector) => { boxSector.visible = this.queryGymSectorId === boxSector.userData.sector.id })
+      this.sectorLineSegments.forEach((boxSector) => { boxSector.visible = this.queryGymSectorId === boxSector.userData.sector.id })
       if (options.render) { this.renderScene() }
     },
 
     highlightSector (sector, options = { render: true }) {
       this.unHighlightSector({ render: false })
       this.sectorBoundingBoxes.forEach((boxSector) => {
-        boxSector.visible = boxSector.userData.sector.id === sector.id
+        boxSector.visible = boxSector.userData.sector.id === sector.id || this.queryGymSectorId === boxSector.userData.sector.id
       })
       this.sectorLineSegments.forEach((lineSector) => {
-        lineSector.visible = lineSector.userData.sector.id === sector.id
+        lineSector.visible = lineSector.userData.sector.id === sector.id || this.queryGymSectorId === lineSector.userData.sector.id
       })
       this.highlightSectorId = sector.id
       if (options.render) { this.renderScene() }

@@ -197,6 +197,10 @@ export default {
     switchMultiSelection: {
       type: Function,
       default: null
+    },
+    bordered: {
+      type: Boolean,
+      default: false
     }
   },
 
@@ -272,15 +276,10 @@ export default {
       } else if (this.clickCallback) {
         this.clickCallback(this.gymRoute)
       } else {
-        const query = {}
+        const query = { ...this.$route.query } || {}
         if (!this.activeRoute) { query.route = this.gymRoute.id }
-        const path = this.relativePath ? this.$route.path : this.gymRoute.gymSpacePath
-        this.$router.push(
-          {
-            path,
-            query
-          }
-        )
+        const path = this.relativePath ? this.$route.path : this.gymRoute.gym_space_app_path
+        this.$router.push({ path, query })
       }
     },
 

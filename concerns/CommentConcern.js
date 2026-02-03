@@ -1,4 +1,4 @@
-import Comment from '@/models/Comment'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 
 export const CommentConcern = {
   data () {
@@ -15,10 +15,10 @@ export const CommentConcern = {
   methods: {
     getComment () {
       this.loadingComment = true
-      new Comment({ axios: this.$axios, auth: this.$auth })
-        ._find(this.$route.params.commentId)
+      new OblykApi(this.$axios, this.$auth)
+        .get(`/comments/${this.$route.params.commentId}`)
         .then((resp) => {
-          this.comment = resp
+          this.comment = resp.data
         })
         .catch((err) => {
           this.$root.$emit('alertFromApiError', err, 'comment')

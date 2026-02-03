@@ -6,6 +6,7 @@
     <v-switch
       v-if="!loadingNewsletterSubscribe"
       v-model="subscribeToNewsletter"
+      color="#31994e"
       :label="$t('components.user.receiveNewsletter')"
     />
   </div>

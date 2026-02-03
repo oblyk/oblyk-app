@@ -9,8 +9,9 @@
       :auto-grow="autoGrow"
       :rows="rows"
       :autofocus="autofocus"
+      :disabled="disabled"
       @focus="showTips = true"
-      @blur="showTips = false"
+      @blur="onBlur"
       @input="onChange"
     />
     <v-dialog
@@ -73,6 +74,18 @@ export default {
     autofocus: {
       type: Boolean,
       default: false
+    },
+    disabled: {
+      type: Boolean,
+      default: false
+    },
+    blurCallback: {
+      type: Function,
+      default: null
+    },
+    persistentHint: {
+      type: Boolean,
+      default: false
     }
   },
 
@@ -86,7 +99,7 @@ export default {
 
   computed: {
     tipsClass () {
-      return this.showTips ? 'tips-show' : 'tips-hide'
+      return this.showTips || this.persistentHint ? 'tips-show' : 'tips-hide'
     }
   },
 
@@ -99,6 +112,13 @@ export default {
   methods: {
     onChange () {
       this.$emit('input', this.body)
+    },
+
+    onBlur () {
+      this.showTips = false
+      if (this.blurCallback) {
+        this.blurCallback()
+      }
     }
   }
 }

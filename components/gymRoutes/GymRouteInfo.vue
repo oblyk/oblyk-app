@@ -512,7 +512,10 @@ export default {
     showSector () {
       this.closeGymRouteCard()
       this.$root.$emit('setMapViewOnSector', this.route.gym_sector_id)
-      this.$root.$emit('filterBySector', this.route.gym_sector_id, this.route.gym_sector.name)
+      const query = { ...this.$route.query } || {}
+      query.sector = this.route.gym_sector_id
+      this.$router.push({ path: this.$route.path, query })
+      this.activeSector(this.route.gym_sector_id)
     },
 
     loadCommentsList (entries, observer) {

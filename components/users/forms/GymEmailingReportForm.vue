@@ -20,6 +20,7 @@
           v-model="gymAdministrator.email_report"
           :label="gymAdministrator.gym.name"
           hide-details
+          color="#31994e"
           :disabled="updateAdministrator.includes(gymAdministrator.id)"
           @change="switchGymAdministrator(gymAdministrator.id)"
         />
