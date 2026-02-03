@@ -16,7 +16,7 @@
           class="rounded pa-2 mb-4"
         >
           <gym-route-list-item
-            :gym-route="comment.commentable_type === 'GymRoute' ? gymRouteToObject(comment.commentable) : gymRouteToObject(comment.commentable.gym_route)"
+            :gym-route="comment.commentable_type === 'GymRoute' ? comment.commentable : comment.commentable.gym_route"
             :click-callback="getGymRoute"
             class="mb-1 border pl-1"
           />
@@ -73,17 +73,16 @@ import { mdiCommentMultipleOutline } from '@mdi/js'
 import { GymFetchConcern } from '~/concerns/GymFetchConcern'
 import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
 import { LoadingMoreHelpers } from '~/mixins/LoadingMoreHelpers'
-import GymApi from '~/services/oblyk-api/GymApi'
-import Comment from '~/models/Comment'
-import GymRoute from '~/models/GymRoute'
+import GymAdministratorApi from '~/services/oblyk-api/GymAdministratorApi'
 import GymRouteApi from '~/services/oblyk-api/GymRouteApi'
+import GymRoute from '~/models/GymRoute'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 import Spinner from '~/components/layouts/Spiner'
 import CommentCard from '~/components/comments/CommentCard'
 import GymRouteListItem from '~/components/gymRoutes/GymRouteListItem'
 import LoadingMore from '~/components/layouts/LoadingMore'
 import DownToCloseDialog from '~/components/ui/DownToCloseDialog'
 import GymRouteInfo from '~/components/gymRoutes/GymRouteInfo'
-import GymAdministratorApi from '~/services/oblyk-api/GymAdministratorApi'
 
 export default {
   components: {
@@ -159,23 +158,22 @@ export default {
   methods: {
     getComments () {
       this.moreIsBeingLoaded()
-      new GymApi(this.$axios, this.$auth)
-        .comments(this.$route.params.gymId, this.page)
+      new OblykApi(this.$axios, this.$auth)
+        .get(`/gyms/${this.$route.params.gymId}/comments`, { page: this.page })
         .then((resp) => {
-          this.comments = []
           for (const comment of resp.data) {
-            this.comments.push(new Comment({ attributes: comment }))
+            this.comments.push(comment)
           }
           this.successLoadingMore(resp)
+        })
+        .catch((err) => {
+          this.$root.$emit('alertFromApiError', err, 'comment')
+          this.failureToLoadingMore()
         })
         .finally(() => {
           this.loadingComments = false
           this.finallyMoreIsLoaded()
         })
-    },
-
-    gymRouteToObject (route) {
-      return new GymRoute({ attributes: route })
     },
 
     closeGymRouteModal () {

@@ -68,6 +68,35 @@
         </v-btn>
       </template>
     </v-snackbar>
+
+    <!-- Global app SnackBar -->
+    <v-snackbar
+      v-model="showAppSnackbar"
+      text
+      :color="appSnackbar.color"
+    >
+      {{ appSnackbar.message }}
+      <template #action="{ attrs }">
+        <v-btn
+          v-if="appSnackbar.to"
+          text
+          outlined
+          v-bind="attrs"
+          @click="goToAppSnackbarTo"
+        >
+          {{ appSnackbar.to.text }}
+        </v-btn>
+        <v-btn
+          v-else
+          text
+          outlined
+          v-bind="attrs"
+          @click="showAppSnackbar = false"
+        >
+          {{ $t('actions.close') }}
+        </v-btn>
+      </template>
+    </v-snackbar>
   </v-app>
 </template>
 
@@ -104,8 +133,13 @@ export default {
     return {
       drawer: false,
       readyToUpdatePwa: false,
+      showAppSnackbar: false,
 
       watchLocationId: null,
+      globalSnackbar: {
+        color: 'success',
+        text: ''
+      },
 
       mdiGift
     }
@@ -114,6 +148,10 @@ export default {
   computed: {
     localizationActivated () {
       return this.$store.getters['geolocation/localizationActivated']
+    },
+
+    appSnackbar () {
+      return this.$store.getters['appSnackbarPusher/appSnackbar']
     }
   },
 
@@ -124,6 +162,10 @@ export default {
       } else if (this.watchLocationId !== null) {
         this.deactivateWatchGeolocation()
       }
+    },
+
+    '$store.state.appSnackbarPusher.pushKey' () {
+      this.showAppSnackbar = true
     },
 
     '$route' () {
@@ -296,6 +338,11 @@ export default {
         environnement = null
       }
       this.$store.dispatch('oblykEnvironment/changeOblykEnvironment', environnement)
+    },
+
+    goToAppSnackbarTo () {
+      this.$router.push(this.appSnackbar.to.path)
+      this.showAppSnackbar = false
     }
   }
 }

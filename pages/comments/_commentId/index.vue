@@ -44,6 +44,11 @@
           :gym-route="commentableObject"
           :relative-path="false"
         />
+        <publication-card
+          v-if="comment.commentable_type === 'Publication'"
+          :publication="commentableObject"
+          bordered
+        />
         <comment-card
           v-if="comment.commentable_type === 'Comment'"
           :comment="commentableObject"
@@ -67,8 +72,8 @@ import CragRoute from '~/models/CragRoute'
 import GuideBookPaper from '~/models/GuideBookPaper'
 import Area from '~/models/Area'
 import Gym from '~/models/Gym'
-import Comment from '~/models/Comment'
 import GymRoute from '~/models/GymRoute'
+const PublicationCard = () => import('~/components/publications/PublicationCard')
 const GymRouteListItem = () => import('~/components/gymRoutes/GymRouteListItem')
 const GymSmallCard = () => import('~/components/gyms/GymSmallCard')
 const AreaSmallCard = () => import('~/components/areas/AreaSmallCard')
@@ -80,8 +85,9 @@ const CragSmallCard = () => import('~/components/crags/CragSmallCard')
 
 export default {
   components: {
-    GymRouteListItem,
     CommentCard,
+    PublicationCard,
+    GymRouteListItem,
     GymSmallCard,
     AreaSmallCard,
     GuideBookPaperSmallCard,
@@ -126,11 +132,13 @@ export default {
       } else if (this.comment.commentable_type === 'Gym') {
         return new Gym({ attributes: this.comment.commentable })
       } else if (this.comment.commentable_type === 'Comment') {
-        return new Comment({ attributes: this.comment.commentable })
+        return this.comment.commentable
       } else if (this.comment.commentable_type === 'GymRoute') {
         return new GymRoute({ attributes: this.comment.commentable })
       } else if (this.comment.commentable_type === 'Ascent' && this.comment.commentable.gym_route_id !== null) {
         return new GymRoute({ attributes: this.comment.commentable.gym_route })
+      } else if (this.comment.commentable_type === 'Publication') {
+        return this.comment.commentable
       } else {
         return null
       }

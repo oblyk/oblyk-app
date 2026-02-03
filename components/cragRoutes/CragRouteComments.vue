@@ -79,11 +79,10 @@
 
 <script>
 import { mdiCommentAccount, mdiCommentPlus } from '@mdi/js'
-import CommentApi from '~/services/oblyk-api/CommentApi'
-import Comment from '@/models/Comment'
+import { DateHelpers } from '@/mixins/DateHelpers'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 import CommentCard from '@/components/comments/CommentCard'
 import Note from '@/components/notes/Note'
-import { DateHelpers } from '@/mixins/DateHelpers'
 const MarkdownText = () => import('@/components/ui/MarkdownText')
 
 export default {
@@ -121,12 +120,15 @@ export default {
   methods: {
     getComments () {
       this.loadingComments = true
-      new CommentApi(this.$axios, this.$auth)
-        .allInCommentable('CragRoute', this.cragRoute.id)
+      new OblykApi(this.$axios, this.$auth)
+        .get(
+          '/comments',
+          { commentable_type: 'CragRoute', commentable_id: this.cragRoute.id }
+        )
         .then((resp) => {
           this.comments = []
           for (const comment of resp.data) {
-            this.comments.push(new Comment({ attributes: comment }))
+            this.comments.push(comment)
           }
           this.fullComments()
         })

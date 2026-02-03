@@ -15,6 +15,7 @@ export default {
     apply: 'Apply',
     editSector: 'Edit sector',
     editSpace: 'Edit space',
+    editDraft: 'Edit draft',
     printSector: 'Print sector',
     create: 'Create',
     delete: 'Delete',
@@ -110,10 +111,12 @@ export default {
     changeCover: 'Change cover',
     addLink: 'Add link',
     addComment: 'Add comment',
+    writeComment: 'Write comment',
     addOpinion: 'Add my opinion',
     editComment: 'Edit comment',
     editInformation: 'Edit information',
     reportProblem: 'Report a problem',
+    addToMyWebsite: 'Add to my website',
     newSheet: 'New sheet',
     addVideo: 'Add video',
     editVideo: 'Edit video',
@@ -139,7 +142,9 @@ export default {
     print: 'Print',
     use: 'Use',
     cancelRequest: 'Cancel request',
+    write: 'Write',
     writeMessage: 'Write message',
+    writeSignboard: 'Write a signboard',
     newConversation: 'New conversation',
     addAlert: 'Add alert',
     publish: 'Publish',
@@ -168,6 +173,7 @@ export default {
     editNote: 'Edit note',
     next: 'Next',
     back: 'Back',
+    choose: 'Choose',
     authenticateMe: 'Authenticate',
     otherRegistration: 'Other registration',
     entryResult: 'Enter my results',
@@ -176,7 +182,8 @@ export default {
     follow: 'Follow',
     followed: 'Followed',
     takeCapture: 'Take thumbnail',
-    reset: 'Reset'
+    reset: 'Reset',
+    addToMyPublication: 'Add to my publication'
   },
   colors: {
     noColor: 'All',
@@ -315,6 +322,11 @@ export default {
     backToGuidebook: 'Back to guidebook',
     ascSort: 'Ascending sort',
     descSort: 'Descending sort',
+    edition: 'Edition',
+    copiedLink: 'Copied link',
+    iframeCodeToCopy: 'Code to copy onto your website',
+    drafts: 'Drafts',
+    signboards: 'Signboards',
     months: {
       '01': '01 - January',
       '02': '02 - February',
@@ -707,7 +719,7 @@ export default {
       placeholder: 'Search for a city, a place, etc.'
     },
     markdown: {
-      tips: '<strong>Tips:</strong> use <a>markdown notation</a> for more style!',
+      tips: '<strong>Tips:</strong> use <a class="deep-purple--text">markdown notation</a> for more style!',
       modalTitle: 'The Markdown notation',
       explain: {
         whatIsIt: 'Markdown is a light markup language. It allows using simple symbols to stylize a text.',
@@ -1143,7 +1155,7 @@ export default {
     },
     area: {
       description: '<strong>%{name}</strong> is a grouping of %{crags} climbing crags.<br>These crags contain in total %{routes} routes, ranging from <strong>%{min}</strong> to <strong>%{max}</strong>',
-      groupTitle: '%{count} Crags grouping',
+      groupTitle: '%{count} Crags regroupement',
       type: 'Crags group',
       new: 'New crag area',
       addCragInArea: 'Add crag',
@@ -1375,6 +1387,7 @@ export default {
       mountRoutes: 'Open %{count} line | Open %{count} lines',
       printRoutes: 'Print line | Print %{count} lines',
       exportRoutes: 'Export line | Export %{count} lines',
+      addPublicationRoutes: 'Add (%{count}) to my black board',
       openingSheetForRoutes: 'Create opening sheet',
       missingInformation: 'Some information about your gym is missing, like:',
       addYourLogo: 'Add logo',
@@ -1384,6 +1397,8 @@ export default {
       labelTemplate: 'Labels',
       labelTemplateExplain: 'Set the labels to be printed at the foot of your routes and boulders.',
       commentAndVideo: 'Comments & Videos',
+      publications: 'Blackboard',
+      thePublications: 'The blackboard',
       comments: 'Comments',
       videos: 'Videos',
       myCommunity: 'My community',
@@ -1489,7 +1504,8 @@ export default {
       removeSectorPolygonConfirm: 'Are you sure you are deleting the drawing on the plan?',
       clicOnPlan: 'Click on the map, or move the white handles to edit the plot of the area on the map.',
       clicOnFinish: 'Once finished, click on finish',
-      viewOnMap: 'Focus the plan on this area'
+      viewOnMap: 'Focus the plan on this area',
+      addToPublication: '%{name} added to your post'
     },
     gymRoute: {
       addNew: 'Add a new route',
@@ -1521,6 +1537,7 @@ export default {
       anchorSuggestion: 'Anchor suggestion',
       dismountedAt: 'Line taken down at %{date}',
       dismounted: 'Removed',
+      addToPublicationCount: 'One route added to your publication | %{count} routes added to your publication',
       sorts: {
         opened_at: 'Sort by opening date',
         sector: 'Sort by sector',
@@ -1648,6 +1665,7 @@ export default {
       noComment: 'There is no comment here for the moment',
       climbersComments: 'Comments from climbers',
       seeReplies: 'See a reply | See %{count} replies',
+      replies: 'Replies',
       moderate: 'This comment has been removed by the moderation team'
     },
     report: {
@@ -1882,6 +1900,53 @@ export default {
         articles: 'Articles',
         subscribes: 'Subscriptions',
         localInfos: 'Local infos'
+      }
+    },
+    publication: {
+      draftInProgress: 'I have one draft in progress! | I have %{count} drafts in progress!',
+      noPublicationIMyFeed: 'Follow climbing areas, cliffs, guidebooks, or other climbers to see the latest news here!',
+      shareSomething: 'Share something',
+      autoRemove: 'Drafts are automatically deleted after two weeks without changes.',
+      Gym: {
+        title: 'Blackboard',
+        noPublication: "%{name}  hasn't written on his blackboard yet, come back later. ",
+        writeLabel: 'Write on my blackboard?',
+        subject: {
+          create: 'Gym added on %{date}',
+          new_video: 'One video added during the week of %{week_date} | %{count} videos added during the week of %{week_date}'
+        }
+      },
+      User: {
+        title: 'Activities',
+        noPublication: "%{name} hasn't shared anything yet, come back later!",
+        writeLabel: 'Share something?'
+      },
+      Crag: {
+        title: 'Information board',
+        noPublication: "%{name} doesn't have any news yet, please come back later.",
+        writeLabel: 'Write a news on %{name}?',
+        subject: {
+          create: 'Crag added on %{date}',
+          new_alert: 'New alert created on %{date}',
+          new_guide_book_web: 'New web climbing guide added on %{date}',
+          new_guide_book_pdf: 'New PDF climbing guide added on %{date}',
+          new_crag_routes: 'One route added during the week of %{week_date} | %{count} routes added during the week of %{week_date}',
+          new_photo: 'One picture added during the week of %{week_date} | %{count} pictures added during the week of %{week_date}',
+          new_video: 'One video added during the week of %{week_date} | %{count} videos added during the week of %{week_date}'
+        }
+      },
+      GuideBookPaper: {
+        title: 'Information board',
+        noPublication: "%{name} doesn't have any information yet, please come back later!",
+        writeLabel: 'Write information about %{name} ?',
+        subject: {
+          create: 'Guide book add on %{date}'
+        }
+      },
+      Article: {
+        subject: {
+          create: 'New article written on %{date}'
+        }
       }
     },
     messenger: {

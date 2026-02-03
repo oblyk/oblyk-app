@@ -1,7 +1,8 @@
 <template>
-  <div
-    class="oblyk-alert"
-    :class="`oblyk-alert-${alert.alert_type}`"
+  <v-alert
+    :icon="false"
+    text
+    :type="alertType()"
   >
     <div class="d-flex">
       <div
@@ -45,7 +46,7 @@
         </v-btn>
       </div>
     </client-only>
-  </div>
+  </v-alert>
 </template>
 
 <script>
@@ -83,32 +84,21 @@ export default {
             this.getAlerts()
           })
       }
+    },
+
+    alertType () {
+      if (this.alert.alert_type === 'good') {
+        return 'success'
+      } else if (this.alert.alert_type === 'warning') {
+        return 'warning'
+      } else if (this.alert.alert_type === 'info') {
+        return 'info'
+      } else if (this.alert.alert_type === 'bad') {
+        return 'error'
+      } else if (this.alert.alert_type === 'omega_roc') {
+        return 'warning'
+      }
     }
   }
 }
 </script>
-
-<style scoped lang="scss">
-.oblyk-alert {
-  border-left-style: solid;
-  border-width: 4px;
-  padding: 1px 15px;
-  &.oblyk-alert-good {
-    border-color: #4caf50;
-    color: #388e3c;
-  }
-  &.oblyk-alert-warning {
-    border-color: #ffc107;
-  }
-  &.oblyk-alert-omega_roc {
-    border-color: #f5aa34;
-  }
-  &.oblyk-alert-info {
-    border-color: #03a9f4;
-  }
-  &.oblyk-alert-bad {
-    border-color: #d32f2f;
-    color: #ef5350;
-  }
-}
-</style>

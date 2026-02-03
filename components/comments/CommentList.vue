@@ -76,10 +76,8 @@
 
 <script>
 import { mdiCommentPlus } from '@mdi/js'
-import CommentApi from '~/services/oblyk-api/CommentApi'
-import Comment from '@/models/Comment'
 import CommentCard from '@/components/comments/CommentCard'
-import GymRouteApi from '~/services/oblyk-api/GymRouteApi'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 const CommentForm = () => import('@/components/comments/forms/CommentForm')
 
 export default {
@@ -135,17 +133,15 @@ export default {
     getComments () {
       this.loadingComments = true
       this.commentFormDialog = false
-      let promise = null
-      if (this.gymRouteOptions) {
-        promise = new GymRouteApi(this.$axios, this.$auth).comments(this.gymRouteOptions.gymId, this.gymRouteOptions.gymRouteId)
-      } else {
-        promise = new CommentApi(this.$axios, this.$auth).allInCommentable(this.commentableType, this.commentableId)
-      }
+      const promise = this.gymRouteOptions
+        ? new OblykApi(this.$axios, this.$auth).get(`/gyms/${this.gymRouteOptions.gymId}/gym_routes/${this.gymRouteOptions.gymRouteId}/comments`)
+        : new OblykApi(this.$axios, this.$auth).get('/comments', { commentable_type: this.commentableType, commentable_id: this.commentableId })
+
       promise
         .then((resp) => {
           this.comments = []
           for (const comment of resp.data) {
-            this.comments.push(new Comment({ attributes: comment }))
+            this.comments.push(comment)
           }
         })
         .catch((err) => {

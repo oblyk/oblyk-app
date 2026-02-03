@@ -24,7 +24,7 @@
           />
         </client-only>
         {{ route.name }}
-        <grade-route-note
+        <crag-route-note
           :route="route"
           class="mb-1"
         />
@@ -71,7 +71,7 @@
           <v-icon x-small>
             {{ mdiTextureBox }}
           </v-icon>
-          {{ route.CragSector.name }}
+          {{ route.crag_sector.name }}
         </span>
         <span v-if="route.height">
           {{ route.height }} {{ $t('common.meters') }}
@@ -92,14 +92,14 @@
 
 <script>
 import { mdiCamera, mdiFilmstrip, mdiComment, mdiTextureBox, mdiCheckAll } from '@mdi/js'
-import GradeRouteNote from '@/components/cragRoutes/partial/CragRouteNote'
-import CragRouteAvatar from '@/components/cragRoutes/partial/CragRouteAvatar'
 import AscentCragRouteStatusIcon from '@/components/ascentCragRoutes/AscentCragRouteStatusIcon'
-import ClimbingStyleIcon from '~/components/crags/ClimbingStyleIcon.vue'
+import ClimbingStyleIcon from '~/components/crags/ClimbingStyleIcon'
+import CragRouteAvatar from '@/components/cragRoutes/partial/CragRouteAvatar'
+import CragRouteNote from '~/components/cragRoutes/partial/CragRouteNote'
 
 export default {
   name: 'CragRouteListItem',
-  components: { ClimbingStyleIcon, AscentCragRouteStatusIcon, CragRouteAvatar, GradeRouteNote },
+  components: { CragRouteNote, ClimbingStyleIcon, AscentCragRouteStatusIcon, CragRouteAvatar },
   props: {
     route: { type: Object, required: true },
     callback: {

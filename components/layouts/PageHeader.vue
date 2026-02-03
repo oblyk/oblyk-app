@@ -37,6 +37,7 @@
         </div>
         <v-tabs
           v-if="links"
+          :key="`refresh-key-${refreshKey}`"
           class="page-header-sheet-tabs"
           height="30"
           :color="iconColors[oblykEnvironment] || 'primary'"
@@ -49,7 +50,7 @@
           >
             <v-icon
               v-if="link.icon"
-              left
+              :left="link.title !== null"
               small
             >
               {{ link.icon }}
@@ -91,6 +92,10 @@ export default {
     fluidContainer: {
       type: Boolean,
       default: false
+    },
+    refreshKey: {
+      type: Number,
+      default: 0
     }
   },
 

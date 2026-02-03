@@ -6,7 +6,10 @@
   />
 </template>
 <script>
+import { mdiInformation } from '@mdi/js'
+import { oblykOutdoorPanel } from '~/assets/oblyk-icons'
 import PageHeader from '~/components/layouts/PageHeader'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 
 export default {
   name: 'GuideBookPaperPageHeader',
@@ -18,12 +21,25 @@ export default {
     }
   },
 
+  data () {
+    return {
+      unreadPublicationCount: 0
+    }
+  },
+
   computed: {
     headerLinks () {
       return [
         {
           to: this.guideBookPaper.path,
-          title: this.$t('components.guideBookPaper.tabs.info')
+          title: null,
+          icon: mdiInformation
+        },
+        {
+          to: `${this.guideBookPaper.path}/publications`,
+          title: null,
+          badge: this.unreadPublicationCount,
+          icon: oblykOutdoorPanel
         },
         {
           to: `${this.guideBookPaper.path}/points-of-sale`,
@@ -53,6 +69,22 @@ export default {
 
     backTo () {
       return this.$store.getters['oblykEnvironment/getPreviousHubs'](this.$route.path, this.guideBookPaper.path)
+    }
+  },
+
+  mounted () {
+    if (this.$auth.loggedIn) {
+      this.getUnreadPublication()
+    }
+  },
+
+  methods: {
+    getUnreadPublication () {
+      new OblykApi(this.$axios, this.$auth)
+        .get('/publication_views/unread_count', { publishable_type: 'GuideBookPaper', publishable_id: this.guideBookPaper.id })
+        .then((resp) => {
+          this.unreadPublicationCount = resp.data
+        })
     }
   }
 }

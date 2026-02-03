@@ -19,15 +19,6 @@ export default class Photo extends ActiveData {
     return `/photos/${this.illustrable.type}/${this.illustrable.id}/${this.id}`
   }
 
-  get copy () {
-    const copies = []
-    if (this.copyright_by) { copies.push('BY') }
-    if (this.copyright_nc) { copies.push('NC') }
-    if (this.copyright_nd) { copies.push('ND') }
-
-    return copies.join(' - ')
-  }
-
   get Creator () {
     return new User(this.creator)
   }

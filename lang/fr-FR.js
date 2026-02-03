@@ -15,6 +15,7 @@ export default {
     apply: 'Appliquer',
     editSector: 'Modifier le secteur',
     editSpace: "Modifier l'espace",
+    editDraft: 'Éditer le brouillon',
     printSector: 'Imprimer le secteur',
     create: 'Créer',
     delete: 'Supprimer',
@@ -110,10 +111,12 @@ export default {
     changeCover: 'Changer la couverture',
     addLink: 'Ajouter un lien',
     addComment: 'Ajouter un commentaire',
+    writeComment: 'Écrire un commentaire',
     addOpinion: 'Ajouter mon avis',
     editComment: 'Éditer le commentaire',
     editInformation: 'Éditer les informations',
     reportProblem: 'Signaler un problème',
+    addToMyWebsite: 'Intégrer à mon site',
     newSheet: 'Nouvelle fiche',
     addVideo: 'Ajouter une vidéo',
     editVideo: 'Éditer la vidéo',
@@ -139,7 +142,9 @@ export default {
     print: 'Imprimer',
     use: 'Utiliser',
     cancelRequest: 'Annuler la demande',
+    write: 'Écrire',
     writeMessage: 'Écrire un message',
+    writeSignboard: 'Écrire un écriteau',
     newConversation: 'Nouvelle conversation',
     addAlert: 'Ajouter une alerte',
     publish: 'Publier',
@@ -147,7 +152,7 @@ export default {
     writeAnArticle: 'Écrire un article',
     addCrag: 'Ajouter une falaise',
     addGym: 'Ajouter une salle',
-    readMore: 'Lire plus',
+    readMore: 'Lire la suite',
     writeNewsletter: 'Écrire une newsletter',
     send: 'Envoyer',
     subscribeMe: "M'inscrire",
@@ -168,6 +173,7 @@ export default {
     editNote: 'Modifier la note',
     next: 'Suivant',
     back: 'Retour',
+    choose: 'Choisir',
     authenticateMe: "M'authentifier",
     otherRegistration: 'Autre inscription',
     entryResult: 'Renseigner mes résultats',
@@ -176,7 +182,8 @@ export default {
     follow: 'Suivre',
     followed: 'Suivie',
     takeCapture: 'Faire la miniature',
-    reset: 'Reset'
+    reset: 'Reset',
+    addToMyPublication: 'Ajouter à ma publication'
   },
   colors: {
     noColor: 'Toutes',
@@ -316,6 +323,11 @@ export default {
     backToGuidebook: 'Retour au topo',
     ascSort: 'Tri croissant',
     descSort: 'Tri décroissant',
+    edition: 'Édition',
+    copiedLink: 'Lien copié',
+    iframeCodeToCopy: 'Code à copier sur votre site',
+    drafts: 'Brouillons',
+    signboards: 'Écriteaux',
     months: {
       '01': '01 - Janvier',
       '02': '02 - Février',
@@ -708,7 +720,7 @@ export default {
       placeholder: 'Chercher une ville, un lieu, etc.'
     },
     markdown: {
-      tips: '<strong>Tips :</strong> Utilise la <a>notation markdown</a> pour plus de style!',
+      tips: '<strong>Tips :</strong> Utilise la <a class="deep-purple--text">notation markdown</a> pour plus de style!',
       modalTitle: 'La notation markdown',
       explain: {
         whatIsIt: 'Le Markdown est un langage de balisage léger. Il permet grâce à des symboles simples de styliser un texte.',
@@ -1376,6 +1388,7 @@ export default {
       mountRoutes: 'Monter la ligne | Monter les %{count} lignes',
       printRoutes: 'Imprimer la ligne | Imprimer les %{count} lignes',
       exportRoutes: 'Exporter la ligne | Exporter les %{count} lignes',
+      addPublicationRoutes: 'Ajouter (%{count}) à mon ardoise',
       openingSheetForRoutes: "Créer une fiche d'ouverture",
       missingInformation: 'Il manque quelques informations sur votre salle, comme :',
       addYourLogo: 'Ajouter votre logo',
@@ -1385,6 +1398,8 @@ export default {
       labelTemplate: 'Les étiquettes',
       labelTemplateExplain: 'Paramètres des étiquettes à imprimer aux pieds de vos voies et blocs.',
       commentAndVideo: 'Commentaires & Vidéos',
+      publications: 'Ardoise',
+      thePublications: "l'Ardoise",
       comments: 'Commentaires',
       videos: 'Vidéos',
       myCommunity: 'Ma communauté',
@@ -1490,7 +1505,8 @@ export default {
       removeSectorPolygonConfirm: 'Êtes-vous sûr·e de supprimer le tracé du secteur sur le plan ?',
       clicOnPlan: 'Cliquez sur la carte, ou déplacez les poignées blanches pour éditer le tracé du secteur sur le plan.',
       clicOnFinish: 'Une fois fini, cliquez sur Terminer',
-      viewOnMap: 'Centrer le plan sur ce secteur'
+      viewOnMap: 'Centrer le plan sur ce secteur',
+      addToPublication: '%{name} ajouté à votre publication'
     },
     gymRoute: {
       addNew: 'Ajouter une nouvelle ligne',
@@ -1522,6 +1538,7 @@ export default {
       anchorSuggestion: 'Suggestion de relais',
       dismountedAt: 'Ligne démontée le %{date}',
       dismounted: 'Démonté',
+      addToPublicationCount: 'Une ligne ajoutée à votre publication | %{count} lignes ajoutées à votre publication',
       sorts: {
         opened_at: "Trier par date d'ouverture",
         sector: 'Trier par secteur',
@@ -1649,6 +1666,7 @@ export default {
       noComment: "Il n'y a pas de commentaire ici pour l'instant",
       climbersComments: 'Commentaires des grimpeur·euse·s',
       seeReplies: 'Voir une réponse | Voir %{count} réponses',
+      replies: 'Réponses',
       moderate: "Ce commentaire a été supprimé par l'équipe de modération"
     },
     report: {
@@ -1883,6 +1901,53 @@ export default {
         articles: 'Articles',
         subscribes: 'Abonnements',
         localInfos: 'Infos locales'
+      }
+    },
+    publication: {
+      draftInProgress: "J'ai un brouillon en cours ! | J'ai %{count} brouillons en cours !",
+      noPublicationIMyFeed: "Suivez des salles, des falaises, des topos ou d'autres grimpeurs et grimpeuses pour voir les dernières actualités ici !",
+      shareSomething: 'Partager quelque chose',
+      autoRemove: 'Les brouillons sont automatiquement supprimés après deux semaines sans modification.',
+      Gym: {
+        title: "L'ardoise",
+        noPublication: "%{name} n'as pas encore écrit sur son ardoise, reviens plus tard !",
+        writeLabel: 'Écrire sur mon ardoise ?',
+        subject: {
+          create: 'Salle ajouté le %{date}',
+          new_video: 'Une nouvelle vidéo ajoutée la semaine du %{week_date} | %{count} nouvelles vidéos ajoutées la semaine du %{week_date}'
+        }
+      },
+      User: {
+        title: 'Activités',
+        noPublication: "%{name} n'as encore rien partagé, reviens plus tard !",
+        writeLabel: 'Partager quelque choses ?'
+      },
+      Crag: {
+        title: "Le panneau d'infos",
+        noPublication: "%{name} n'as pas encore d'actualité, reviens plus tard !",
+        writeLabel: 'Écrire une actualité sur %{name} ?',
+        subject: {
+          create: 'Site ajouté le %{date}',
+          new_alert: 'Nouvelle alerte créée le %{date}',
+          new_guide_book_web: 'Nouveau topo web ajouté le %{date}',
+          new_guide_book_pdf: 'Nouveau topo PDF ajouté le %{date}',
+          new_crag_routes: 'Une nouvelle ligne ajoutée la semaine du %{week_date} | %{count} nouvelles lignes ajoutées la semaine du %{week_date}',
+          new_photo: 'Une nouvelle photo ajoutée la semaine du %{week_date} | %{count} nouvelles photos ajoutées la semaine du %{week_date}',
+          new_video: 'Une nouvelle vidéo ajoutée la semaine du %{week_date} | %{count} nouvelles vidéos ajoutées la semaine du %{week_date}'
+        }
+      },
+      GuideBookPaper: {
+        title: "Le panneau d'infos",
+        noPublication: "%{name} n'as pas encore d'information, reviens plus tard !",
+        writeLabel: 'Écrire une information sur %{name} ?',
+        subject: {
+          create: 'Topo ajouté le %{date}'
+        }
+      },
+      Article: {
+        subject: {
+          create: 'Nouvel article écrit le %{date}'
+        }
       }
     },
     messenger: {

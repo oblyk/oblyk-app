@@ -39,7 +39,7 @@
         :fill-color="testColour || gymSpace.sectors_color || 'rgb(49, 153, 78)'"
         :color="testColour || gymSpace.sectors_color || 'rgb(49, 153, 78)'"
         :lat-lngs="sector.jsonPolygon"
-        @click="filterBySector(sector.id, sector.name)"
+        @click="filterBySector(sector.id)"
       />
     </editable-map>
   </div>
@@ -109,6 +109,20 @@ export default {
 
     bounds () {
       return [[0, 0], [this.gymSpaceData.scheme_height / 6, this.gymSpaceData.scheme_width / 6]]
+    },
+
+    activeGymSectorId () {
+      return this.$route.query.sector
+    }
+  },
+
+  watch: {
+    activeGymSectorId () {
+      if (this.activeGymSectorId) {
+        this.activeSector(this.activeGymSectorId)
+      } else {
+        this.clearSectorSelection()
+      }
     }
   },
 
@@ -132,6 +146,12 @@ export default {
     this.$root.$on('setTestColour', (color) => {
       this.testColour = color
     })
+
+    if (this.activeGymSectorId) {
+      setTimeout(() => {
+        this.activeSector(this.activeGymSectorId)
+      }, 500)
+    }
   },
 
   beforeDestroy () {
@@ -274,8 +294,10 @@ export default {
         })
     },
 
-    filterBySector (sectorId, sectorName) {
-      this.$root.$emit('filterBySector', sectorId, sectorName)
+    filterBySector (sectorId) {
+      const query = { ...this.$route.query } || {}
+      query.sector = sectorId
+      this.$router.push({ path: this.$route.path, query })
       this.activeSector(sectorId)
     }
   }

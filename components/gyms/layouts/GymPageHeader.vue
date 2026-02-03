@@ -4,6 +4,7 @@
     :back-to="backTo || '/indoor'"
     :links="headerLinks"
     :fluid-container="fluid"
+    :refresh-key="unreadPublicationCount"
   >
     <template #title>
       <h1 class="text-h6 font-weight-black text-no-wrap">
@@ -22,10 +23,12 @@
   </page-header>
 </template>
 <script>
-import { mdiShield, mdiSourceBranch, mdiTrophy } from '@mdi/js'
+import { mdiShield, mdiSourceBranch, mdiTrophy, mdiInformationOutline } from '@mdi/js'
+import { oblykArdoise } from '~/assets/oblyk-icons'
 import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
 import PageHeader from '~/components/layouts/PageHeader'
 import SubscribeBtn from '~/components/forms/SubscribeBtn'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 
 export default {
   name: 'GymPageHeader',
@@ -40,17 +43,26 @@ export default {
 
   data () {
     return {
-      URLBackTo: null
+      URLBackTo: null,
+      unreadPublicationCount: 0
     }
   },
 
   computed: {
     headerLinks () {
-      const links = []
-      links.push({
-        to: this.gym.path,
-        title: this.$t('components.gym.tabs.info')
-      })
+      const links = [
+        {
+          to: this.gym.path,
+          title: null,
+          icon: mdiInformationOutline
+        },
+        {
+          to: `${this.gym.path}/publications`,
+          title: null,
+          badge: this.unreadPublicationCount,
+          icon: oblykArdoise
+        }
+      ]
 
       if (this.gym.optimal_spaces_path) {
         links.push({
@@ -85,11 +97,11 @@ export default {
     },
 
     fluid () {
-      return this.$route.path.search(`${this.gym.path}/spaces`) === 0
+      return this.$route.path.search(`${this.gym.path}/spaces`) === 0 || this.$route.path.search(`${this.gym.path}/admins`) === 0
     },
 
     backTo () {
-      const likeHubPath = this.$route.path.search(`${this.gym.path}/spaces`) === 0
+      const likeHubPath = this.$route.path.search(`${this.gym.path}/spaces`) === 0 || this.$route.path.search(`${this.gym.path}/admins`) === 0
       return this.URLBackTo || this.$store.getters['oblykEnvironment/getPreviousHubs'](this.$route.path, this.gym.path, likeHubPath)
     }
   },
@@ -101,6 +113,19 @@ export default {
       const url = new URL(window.location.href)
       url.searchParams.delete('back_to')
       window.history.replaceState({}, '', url.toString())
+    }
+    if (this.$auth.loggedIn) {
+      this.getUnreadPublication()
+    }
+  },
+
+  methods: {
+    getUnreadPublication () {
+      new OblykApi(this.$axios, this.$auth)
+        .get('/publication_views/unread_count', { publishable_type: 'Gym', publishable_id: this.gym.id })
+        .then((resp) => {
+          this.unreadPublicationCount = resp.data
+        })
     }
   }
 }

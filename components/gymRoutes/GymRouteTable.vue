@@ -300,6 +300,14 @@
                 {{ $tc('components.gymAdmin.printRoutes', routeSelected.length, { count: routeSelected.length }) }}
               </v-list-item-title>
             </v-list-item>
+            <v-list-item @click="addToPublicationCollection">
+              <v-list-item-icon>
+                <v-icon>{{ oblykArdoise }}</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>
+                {{ $t('components.gymAdmin.addPublicationRoutes', { count: routeSelected.length }) }}
+              </v-list-item-title>
+            </v-list-item>
             <v-list-item @click="exportCollection()">
               <v-list-item-icon>
                 <v-icon>{{ mdiTableArrowRight }}</v-icon>
@@ -406,6 +414,12 @@
       :gym="gym"
     />
 
+    <!-- Add routes to publication Dialog -->
+    <add-gym-routes-to-publication-modal
+      ref="addGymRoutesToPublicationModal"
+      :gym="gym"
+    />
+
     <!-- Popup for gym route -->
     <down-to-close-dialog
       ref="GymRouteDialog"
@@ -442,6 +456,7 @@ import {
   mdiFileRefreshOutline,
   mdiArrowUpBoldHexagonOutline
 } from '@mdi/js'
+import { oblykArdoise } from '~/assets/oblyk-icons'
 import { DateHelpers } from '@/mixins/DateHelpers'
 import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
 import { ClimbingStylesMixin } from '~/mixins/ClimbingStylesMixin'
@@ -459,11 +474,13 @@ import GymRouteInfo from '~/components/gymRoutes/GymRouteInfo'
 import OpeningSheetDialog from '~/components/gymOpeningSheets/OpeningSheetDialog'
 import AscentGymRouteIcon from '~/components/ascentGymRoutes/AscentGymRouteIcon'
 import GymRouteSubLevelScale from '~/components/gymRoutes/GymRouteSubLevelScale'
+import AddGymRoutesToPublicationModal from '~/components/gymRoutes/AddGymRoutesToPublicationModal'
 
 export default {
   name: 'GymRoutesTable',
   components: {
     GymRouteSubLevelScale,
+    AddGymRoutesToPublicationModal,
     AscentGymRouteIcon,
     OpeningSheetDialog,
     GymRouteInfo,
@@ -510,7 +527,8 @@ export default {
       mdiMagnify,
       mdiEyeOutline,
       mdiFileRefreshOutline,
-      mdiArrowUpBoldHexagonOutline
+      mdiArrowUpBoldHexagonOutline,
+      oblykArdoise
     }
   },
 
@@ -860,6 +878,14 @@ export default {
           routeIds
         }
       )
+    },
+
+    addToPublicationCollection () {
+      const routeIds = []
+      for (const route of this.routeSelected) {
+        routeIds.push(route.id)
+      }
+      this.$refs.addGymRoutesToPublicationModal.openDialog(routeIds)
     },
 
     exportCollection () {

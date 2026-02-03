@@ -61,20 +61,13 @@
             </v-col>
 
             <v-col cols="12" md="6">
-              <h3 class="mt-4 mt-md-0">
-                <v-icon
-                  color="primary"
-                  class="mr-2 mb-2"
-                >
-                  {{ mdiBullhornOutline }}
-                </v-icon>
-                {{ $t('components.user.cardsTitle.whatsNew') }}
-              </h3>
               <!-- Feed -->
-              <div v-intersect="loadFeed">
-                <feed
-                  v-if="feed"
-                  feed-api="CurrentUserApi"
+              <div v-intersect="loadPublications">
+                <publication-list
+                  v-if="showPublication"
+                  :publishable="currentUser"
+                  publishable-type="User"
+                  my-feed
                 />
               </div>
             </v-col>
@@ -89,7 +82,7 @@
 </template>
 
 <script>
-import { mdiBullhornOutline, mdiAccountMultipleCheckOutline, mdiTerrain } from '@mdi/js'
+import { mdiAccountMultipleCheckOutline, mdiTerrain } from '@mdi/js'
 import { oblykPartner, oblykIndoor } from '~/assets/oblyk-icons'
 import { CurrentUserConcern } from '~/concerns/CurrentUserConcern'
 import Spinner from '~/components/layouts/Spiner'
@@ -99,16 +92,16 @@ import AvatarMissing from '~/components/users/notificationCard/AvatarMissing'
 import SubscribesAscentsCard from '~/components/users/SubscribesAscentsCard'
 import AddSubscribesCard from '~/components/users/AddSubscribesCard'
 import MyUpcomingContests from '~/components/users/MyUpcomingContests'
+const PublicationList = () => import('~/components/publications/PublicationList')
 const CragRouteDrawer = () => import('~/components/cragRoutes/CragRouteDrawer')
-const Feed = () => import('~/components/feeds/Feed')
 
 export default {
   components: {
+    PublicationList,
     MyUpcomingContests,
     AddSubscribesCard,
     SubscribesAscentsCard,
     CragRouteDrawer,
-    Feed,
     AvatarMissing,
     BannerMissing,
     UserHead,
@@ -119,10 +112,9 @@ export default {
 
   data () {
     return {
-      feed: false,
+      showPublication: false,
 
       mdiTerrain,
-      mdiBullhornOutline,
       mdiAccountMultipleCheckOutline,
       oblykPartner,
       oblykIndoor
@@ -147,9 +139,9 @@ export default {
   },
 
   methods: {
-    loadFeed (entries, observer) {
+    loadPublications (entries, observer) {
       if (entries[0].isIntersecting) {
-        this.feed = true
+        this.showPublication = true
       }
     }
   }
