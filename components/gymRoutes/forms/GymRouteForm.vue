@@ -608,6 +608,14 @@ export default {
     }
   },
 
+  watch: {
+    multiPitch (newVal) {
+      if (!newVal && this.data.sections.length > 1) {
+        this.data.sections.splice(1)
+      }
+    }
+  },
+
   mounted () {
     this.getGymLevels()
     this.multiPitch = this.data.sections.length > 1
