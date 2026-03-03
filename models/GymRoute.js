@@ -31,7 +31,7 @@ export default class GymRoute extends ActiveData {
 
   get hasStyles () {
     let styleCounter = 0
-    for (const section of this.sections) {
+    for (const section of this.sections ?? []) {
       styleCounter += section?.styles?.length || 0
     }
     return styleCounter > 0

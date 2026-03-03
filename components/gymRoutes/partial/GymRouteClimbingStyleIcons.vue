@@ -2,7 +2,7 @@
   <div class="d-inline-bloc">
     <template v-for="section in gymRoute.sections">
       <v-icon
-        v-for="(style, styleIndex) in section.styles"
+        v-for="(style, styleIndex) in section.styles ?? []"
         :key="`style-${styleIndex}`"
         class="mr-1"
         :color="styleColor(style)"

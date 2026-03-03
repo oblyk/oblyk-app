@@ -764,8 +764,8 @@ export default {
     formatRoutes () {
       for (const route of this.routes) {
         const styles = []
-        for (const section of route.sections) {
-          for (const style of section.styles) {
+        for (const section of route.sections ?? []) {
+          for (const style of section.styles ?? []) {
             styles.push(style)
           }
         }

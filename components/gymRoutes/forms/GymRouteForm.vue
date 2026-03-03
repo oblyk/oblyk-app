@@ -572,7 +572,7 @@ export default {
         gym_space_id: this.gymSector.gym_space.id,
         gym_sector_id: null,
         gym_id: this.gymSector.gym.id,
-        sections: this.gymRoute?.sections || [{ grade: null, height: null, styles: [] }]
+        sections: this.gymRoute?.sections ?? [{ grade: null, height: null, styles: [] }]
       },
       climbingGymList: [
         { text: this.$t('models.climbs.sport_climbing'), value: 'sport_climbing' },
