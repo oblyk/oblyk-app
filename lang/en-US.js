@@ -354,7 +354,7 @@ export default {
         noLimite: 'In Oblyk there are no limits, no premium account, no ads, no sponsored link, everything free! 😉',
         freeBut: "If it is free and Oblyk doesn't get any money, does it mean it is a zero cost project?",
         unfortunately: 'Unfortunately no, as every website, Oblyk needs to be hosted in a data center and rent a domain name to exist.<br>And that is not free…',
-        extraEuro: "If you have some money to spend, you like the work done and want to encourage Oblyk development, you can make a donation 😉<br>It is for us a priceless help! You will help us continue the development and ensure its future 😉",
+        extraEuro: 'If you have some money to spend, you like the work done and want to encourage Oblyk development, you can make a donation 😉<br>It is for us a priceless help! You will help us continue the development and ensure its future 😉',
         thanks: 'Thank you in advance for your generosity!'
       },
       thanks: {
