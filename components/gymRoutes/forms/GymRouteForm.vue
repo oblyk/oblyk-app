@@ -715,7 +715,7 @@ export default {
     },
 
     addPitch () {
-      this.data.sections.push({ grade: null, height: null })
+      this.data.sections.push({ grade: null, height: null, styles: [] })
     },
 
     removePitch () {
