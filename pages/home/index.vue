@@ -8,7 +8,7 @@
 
         <!-- Get localization -->
         <client-only>
-          <div class="text-right mt-n11 d-none d-md-block">
+          <div class="text-right mt-n11 d-none d-md-block mb-3">
             <v-btn to="/outdoor" class="rounded-pill" text outlined>
               <v-icon left color="#31994e">
                 {{ mdiTerrain }}
