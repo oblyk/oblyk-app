@@ -8,7 +8,7 @@
         L.{{ sectionIndex + 1 }} :
       </span>
       <v-chip
-        v-for="(style, styleIndex) in section.styles"
+        v-for="(style, styleIndex) in section.styles ?? []"
         :key="`style-${styleIndex}`"
         small
         class="mr-2"

@@ -28,8 +28,8 @@ export default {
   methods: {
     icons () {
       const styles = []
-      for (const section of this.gymRoute.sections) {
-        for (const style of section.styles) {
+      for (const section of this.gymRoute.sections ?? []) {
+        for (const style of section.styles ?? []) {
           styles.push(style)
         }
       }
