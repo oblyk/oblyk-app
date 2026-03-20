@@ -1,5 +1,21 @@
 <template>
-  <div class="oblyk-markdown-text-area" v-html="markedText()" />
+  <div>
+    <div
+      class="oblyk-markdown-text-area"
+      v-html="markedText"
+    />
+    <div
+      v-if="!showMore && textIsTooLong"
+      class="oblyk-markdown-show-more"
+    >
+      <small
+        class="font-weight-medium hoverable blue--text text--darken-1"
+        @click="showMore = true"
+      >
+        {{ $t('actions.readMore') }}
+      </small>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -11,12 +27,33 @@ export default {
     text: {
       type: String,
       required: true
+    },
+    truncate: {
+      type: Number,
+      default: null
     }
   },
 
-  methods: {
+  data () {
+    return {
+      showMore: false
+    }
+  },
+
+  computed: {
+    textIsTooLong () {
+      return this.truncate !== null && this.text.length > this.truncate
+    },
+
     markedText () {
-      return marked.parse(this.text, { breaks: true })
+      let text = this.text
+      if (this.textIsTooLong && !this.showMore) {
+        text = this.text.substring(0, this.truncate).split(' ')
+        text.pop()
+        text = text.join(' ')
+        text = `${text}...`
+      }
+      return marked.parse(text, { breaks: true })
     }
   }
 }

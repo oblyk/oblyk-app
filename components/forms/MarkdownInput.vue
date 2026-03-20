@@ -3,13 +3,15 @@
     <v-textarea
       v-model="body"
       outlined
+      :rules="counter !== null ? rules : []"
       :label="label"
-      hide-details
+      :hide-details="!counter"
       :placeholder="placeholder"
       :auto-grow="autoGrow"
       :rows="rows"
       :autofocus="autofocus"
       :disabled="disabled"
+      :counter="counter"
       @focus="showTips = true"
       @blur="onBlur"
       @input="onChange"
@@ -86,11 +88,18 @@ export default {
     persistentHint: {
       type: Boolean,
       default: false
+    },
+    counter: {
+      type: Number,
+      default: null
     }
   },
 
   data () {
     return {
+      rules: [
+        v => v.length <= this.counter || this.$t('errors.rules.max_characters', { count: this.counter })
+      ],
       markdownModal: false,
       showTips: false,
       body: this.value

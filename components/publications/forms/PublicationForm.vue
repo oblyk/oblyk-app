@@ -57,6 +57,7 @@
           :disabled="loadingSaveDraft"
           :hide-detail="false"
           persistent-hint
+          :counter="data.body.length > 3500 ? 4000 : null"
           :placeholder="$t(`components.publication.placeholder.${publishableType}`)"
           auto-grow
         />
@@ -294,6 +295,9 @@ export default {
             this.data.id = publication.id
             this.lastSaveAt = publication.last_updated_at
             this.editingPublication = publication
+          })
+          .catch((err) => {
+            this.$root.$emit('alertFromApiError', err, 'publication')
           })
           .finally(() => {
             this.loadingSaveDraft = false

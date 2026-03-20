@@ -2258,6 +2258,7 @@ export default {
   },
   errors: {
     rules: {
+      max_characters: 'Max %{count} characters',
       email_or_password_suite_not_find: 'No account found for the given password and email',
       is_required: 'is required',
       is_mandatory: 'is mandatory',
@@ -2290,7 +2291,8 @@ export default {
       must_be_specified: 'must be specified',
       cannot_be_odd: 'cannot be odd',
       must_have_a_minimum_or_maximum_age_specified: 'must have a minimum or maximum age specified',
-      posting_limit_for_today: 'You have reached your posting limit for today'
+      posting_limit_for_today: 'You have reached your posting limit for today',
+      too_long: 'is too long'
     }
   },
   models: {
@@ -2333,6 +2335,9 @@ export default {
       email: 'Email',
       password: 'Password',
       password_confirmation: 'Password confirmation'
+    },
+    publication: {
+      body: 'Message'
     },
     crag: {
       name: 'Name',

@@ -150,7 +150,10 @@
         v-if="publication.body"
         class="py-1"
       >
-        <markdown-text :text="publication.body" />
+        <markdown-text
+          :text="publication.body"
+          truncate="500"
+        />
       </div>
 
       <!-- GENERATED PUBLICATION -->
