@@ -1869,7 +1869,7 @@ export default {
       title: 'Fast access',
       myGym: 'My gym...',
       myCrag: 'My crag...',
-      helper: '* Follow your climbing gym and yours crags to see them here.'
+      helper: '* Follow your climbing gym and crag to see them here'
     },
     deleteAccount: {
       title: 'Delete my account',

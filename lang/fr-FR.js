@@ -1871,7 +1871,7 @@ export default {
       title: 'Accès rapide',
       myGym: 'Ma salle ...',
       myCrag: 'Ma falaise ...',
-      helper: '* Suivez votre salle et des falaises pour les voir ici.'
+      helper: '* Suivez votre salle et votre falaise pour les voir ici.'
     },
     deleteAccount: {
       title: 'Supprimer mon compte',
