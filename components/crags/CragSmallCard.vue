@@ -1,55 +1,53 @@
 <template>
-  <div>
-    <v-card
-      :link="linkable"
-      flat
-      :class="bindClass"
-      :to="linkable && !callback ? crag.path : null"
-      @click="callback ? callback(crag) : null"
+  <v-card
+    :link="linkable"
+    flat
+    :class="bindClass"
+    :to="linkable && !callback ? crag.app_path : null"
+    @click="callback ? callback(crag) : null"
+  >
+    <v-list-item
+      :three-line="!small"
+      :two-line="small"
     >
-      <v-list-item
-        :three-line="!small"
-        :two-line="small"
+      <v-list-item-avatar
+        :size="small ? 45 : 70"
+        :class="small ? 'mt-1 mb-1' : ''"
       >
-        <v-list-item-avatar
+        <v-avatar
           :size="small ? 45 : 70"
-          :class="small ? 'mt-1 mb-1' : ''"
+          tile
         >
-          <v-avatar
-            :size="small ? 45 : 70"
-            tile
+          <v-img
+            v-if="crag.attachments.cover.attached"
+            :src="imageVariant(crag.attachments.cover, { fit: 'crop', height: 100, width: 100 })"
+          />
+          <v-icon
+            v-else
+            class="px-1 mt-n1"
           >
-            <v-img
-              v-if="crag.photo.attachments.picture.attached"
-              :src="imageVariant(crag.photo.attachments.picture, { fit: 'crop', height: 100, width: 100 })"
-            />
-            <v-icon
-              v-else
-              class="px-1 mt-n1"
-            >
-              {{ mdiTerrain }}
-            </v-icon>
-          </v-avatar>
-        </v-list-item-avatar>
-        <v-list-item-content :class="small ? 'pt-1 pb-0' : ''">
-          <v-list-item-title class="font-weight-bold">
-            <span class="vertical-align-middle">
-              {{ crag.name }}
-            </span>
-          </v-list-item-title>
-          <v-list-item-subtitle :class="small ? 'mb-2' : 'mt-n3 mb-4'">
-            {{ crag.country }}, {{ crag.city }}
-            <client-only>
-              <cite v-if="IAmGeolocated"> - {{ $t('common.is') }} {{ distance }} km</cite>
-            </client-only>
-          </v-list-item-subtitle>
-        </v-list-item-content>
-        <v-list-item-action>
-          <subscribe-btn subscribe-type="Crag" :subscribe-id="crag.id" :large="false" />
-        </v-list-item-action>
-      </v-list-item>
-    </v-card>
-  </div>
+            {{ mdiTerrain }}
+          </v-icon>
+        </v-avatar>
+      </v-list-item-avatar>
+      <v-list-item-content :class="small ? 'pt-1 pb-0' : ''">
+        <v-list-item-title class="font-weight-bold">
+          <span class="vertical-align-middle">
+            {{ crag.name }}
+          </span>
+        </v-list-item-title>
+        <v-list-item-subtitle :class="small ? 'mb-2' : 'mt-n3 mb-4'">
+          {{ crag.country }}, {{ crag.city }}
+          <client-only>
+            <cite v-if="IAmGeolocated"> - {{ $t('common.is') }} {{ distance }} km</cite>
+          </client-only>
+        </v-list-item-subtitle>
+      </v-list-item-content>
+      <v-list-item-action v-if="subscribable">
+        <subscribe-btn subscribe-type="Crag" :subscribe-id="crag.id" :large="false" />
+      </v-list-item-action>
+    </v-list-item>
+  </v-card>
 </template>
 
 <script>
@@ -79,6 +77,10 @@ export default {
     bordered: {
       type: Boolean,
       default: false
+    },
+    subscribable: {
+      type: Boolean,
+      default: true
     },
     callback: {
       type: Function,

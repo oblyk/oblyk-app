@@ -1,30 +1,24 @@
 <template>
-  <div class="d-inline">
-    <small
-      v-if="initialLikeCount && likeCount !== null && likeCount > 0"
-      class="font-weight-bold"
-      :class="dark ? 'white--text' : ''"
-    >
-      {{ likeCount }}
-    </small>
-    <v-btn
-      :disabled="!$auth.loggedIn"
-      class="vertical-align-sub ml-n1"
-      icon
+  <v-btn
+    :disabled="!$auth.loggedIn"
+    :small="small"
+    :dark="dark"
+    text
+    :icon="icon"
+    :title="iLikeIt ? $t('components.like.IAlreadyIt') : $t('actions.like')"
+    :loading="requesting"
+    @click.prevent="likeOrUnlike"
+  >
+    {{ likeCount }}
+    <v-icon
+      :class="likeCount > 0 ? 'ml-1' : null"
       :small="small"
-      :dark="dark"
-      :title="iLikeIt ? $t('components.like.IAlreadyIt') : $t('actions.like')"
-      :loading="requesting"
-      @click.prevent="likeOrUnlike"
+      :size="iconSize"
+      :color="iLikeIt ? 'red' : 'primary'"
     >
-      <v-icon
-        :small="small"
-        :color="iLikeIt ? 'red' : null"
-      >
-        {{ iLikeIt ? mdiHeart : mdiHeartOutline }}
-      </v-icon>
-    </v-btn>
-  </div>
+      {{ iLikeIt ? mdiHeart : mdiHeartOutline }}
+    </v-icon>
+  </v-btn>
 </template>
 
 <script>
@@ -54,13 +48,21 @@ export default {
     small: {
       type: Boolean,
       default: true
+    },
+    iconSize: {
+      type: [String, Number],
+      default: null
+    },
+    icon: {
+      type: Boolean,
+      default: false
     }
   },
 
   data () {
     return {
       requesting: false,
-      likeCount: this.initialLikeCount,
+      likeCount: this.initialLikeCount || null,
 
       mdiHeart,
       mdiHeartOutline

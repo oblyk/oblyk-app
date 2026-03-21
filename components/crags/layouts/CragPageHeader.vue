@@ -23,7 +23,10 @@
   </page-header>
 </template>
 <script>
+import { mdiInformationOutline } from '@mdi/js'
+import { oblykOutdoorPanel } from '~/assets/oblyk-icons'
 import PageHeader from '~/components/layouts/PageHeader'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 const SubscribeBtn = () => import('~/components/forms/SubscribeBtn')
 
 export default {
@@ -36,6 +39,12 @@ export default {
     }
   },
 
+  data () {
+    return {
+      unreadPublicationCount: 0
+    }
+  },
+
   computed: {
     headerLinks () {
       const mediaCount = this.crag.all_photos_count + this.crag.all_videos_count
@@ -43,7 +52,14 @@ export default {
       return [
         {
           to: this.crag.path,
-          title: this.$t('components.crag.tabs.info')
+          title: null,
+          icon: mdiInformationOutline
+        },
+        {
+          to: `${this.crag.path}/publications`,
+          title: null,
+          badge: this.unreadPublicationCount,
+          icon: oblykOutdoorPanel
         },
         {
           to: `${this.crag.path}/routes`,
@@ -74,6 +90,22 @@ export default {
 
     backTo () {
       return this.$store.getters['oblykEnvironment/getPreviousHubs'](this.$route.path, this.crag.path)
+    }
+  },
+
+  mounted () {
+    if (this.$auth.loggedIn) {
+      this.getUnreadPublication()
+    }
+  },
+
+  methods: {
+    getUnreadPublication () {
+      new OblykApi(this.$axios, this.$auth)
+        .get('/publication_views/unread_count', { publishable_type: 'Crag', publishable_id: this.crag.id })
+        .then((resp) => {
+          this.unreadPublicationCount = resp.data
+        })
     }
   }
 }

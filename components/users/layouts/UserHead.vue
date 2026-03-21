@@ -3,7 +3,6 @@
     <v-img
       dark
       class="user-header-banner"
-      gradient="to bottom, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.8) 100%"
       :lazy-src="imageVariant(user.attachments.banner, { fit: 'scale-down', width: 720, height: 720 })"
       :src="imageVariant(user.attachments.banner, { fit: 'scale-down', width: 720, height: 720 })"
       :srcset="`
@@ -11,24 +10,7 @@
         ${imageVariant(user.attachments.banner, { fit: 'scale-down', width: 1080, height: 1080 })} 960w,
         ${imageVariant(user.attachments.banner, { fit: 'scale-down', width: 1920, height: 1920 })} 1200w`
       "
-    >
-      <div
-        v-if="itsMe"
-        class="user-header-banner-action"
-      >
-        <v-btn
-          small
-          icon
-          class="update-banner-btn"
-          :to="`${user.currentUserPath}/settings/banner`"
-          :title="$t('actions.changeBanner')"
-        >
-          <v-icon small>
-            {{ mdiImageEdit }}
-          </v-icon>
-        </v-btn>
-      </div>
-    </v-img>
+    />
     <div class="user-header-title d-flex">
       <div class="user-header-avatar-area">
         <v-avatar
@@ -42,22 +24,6 @@
             :alt="`logo ${user.full_name}`"
           />
         </v-avatar>
-        <div
-          v-if="itsMe"
-          class="user-header-avatar-action"
-        >
-          <v-btn
-            icon
-            small
-            class="update-avatar-btn"
-            :title="$t('actions.changeAvatar')"
-            :to="`${user.currentUserPath}/settings/avatar`"
-          >
-            <v-icon small color="white">
-              {{ mdiImageEdit }}
-            </v-icon>
-          </v-btn>
-        </div>
       </div>
       <div>
         <h1>
@@ -130,7 +96,7 @@
 </template>
 
 <script>
-import { mdiImageEdit, mdiDotsVertical } from '@mdi/js'
+import { mdiDotsVertical } from '@mdi/js'
 import { DateHelpers } from '@/mixins/DateHelpers'
 import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 
@@ -148,7 +114,6 @@ export default {
     return {
       avatarPictureDialog: false,
 
-      mdiImageEdit,
       mdiDotsVertical
     }
   },
@@ -160,7 +125,7 @@ export default {
   }
 }
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 .user-header-banner {
   height: 300px;
   border-radius: 15px;

@@ -1,19 +1,15 @@
 <template>
-  <v-row>
-    <v-col
-      cols="12"
-      md="2"
-      class="pr-0 pb-0"
-    >
+  <div :class="columnMode ? null : 'd-md-flex'">
+    <div class="text-no-wrap">
       <p
-        :class="$vuetify.breakpoint.mobile ? 'mb-1 font-italic pl-1' : 'border-bottom mb-1 font-italic'"
+        class="mb-1 font-italic pr-3"
+        :class="$vuetify.breakpoint.mobile || columnMode ? 'pl-1' : 'border-bottom'"
       >
         {{ dateFromToday(climbingSession.session_date) }}
       </p>
-    </v-col>
-    <v-col
-      cols="12"
-      md="9"
+    </div>
+    <div
+      class="flex-grow-1"
       :class="$vuetify.breakpoint.mobile ? 'pt-1' : 'pl-0'"
     >
       <v-hover v-slot="{ hover }">
@@ -27,7 +23,8 @@
             :active="loadingSessionDetail"
             color="primary"
           />
-          <!-- Climbing Session resume -->
+
+          <!-- CLIMBING SESSION RESUME -->
           <div
             v-if="!sessionDetail"
             class="mt-2 mt-4 px-4"
@@ -137,18 +134,23 @@
                 bordered
               />
             </div>
-            <p class="text-right mb-0 text--disabled">
+            <p
+              v-if="climbingSession.for_current_user"
+              class="text-right mb-0 text--disabled"
+            >
               <small>{{ $t('common.at') }} {{ humanizeDate(climbingSession.session_date) }}</small>
             </p>
           </div>
 
-          <!-- Climbing session detail -->
+          <!-- CLIMBING SESSION DETAIL -->
           <div
             v-if="sessionDetail"
             class="py-3 px-4"
           >
             <h3 class="">
-              {{ $t('components.climbingSession.title', { date: humanizeDate(sessionDetail.session_date) }) }}
+              <span v-if="climbingSession.for_current_user">
+                {{ $t('components.climbingSession.title', { date: humanizeDate(sessionDetail.session_date) }) }}
+              </span>
               <v-btn
                 icon
                 class="float-right"
@@ -168,20 +170,20 @@
           </div>
         </v-sheet>
       </v-hover>
-    </v-col>
-  </v-row>
+    </div>
+  </div>
 </template>
 
 <script>
 import { mdiCircle, mdiClose } from '@mdi/js'
 import { DateHelpers } from '~/mixins/DateHelpers'
 import { GradeMixin } from '~/mixins/GradeMixin'
-import MarkdownText from '~/components/ui/MarkdownText.vue'
-import CragSmallCard from '~/components/crags/CragSmallCard.vue'
-import GymSmallCard from '~/components/gyms/GymSmallCard.vue'
-import ClimbingSessionApi from '~/services/oblyk-api/ClimbingSessionApi'
 import ClimbingSession from '~/models/ClimbingSession'
-import ClimbingSessionDetail from '~/components/climbingSessions/ClimbingSessionDetail.vue'
+import OblykApi from '~/services/oblyk-api/OblykApi'
+import MarkdownText from '~/components/ui/MarkdownText'
+import CragSmallCard from '~/components/crags/CragSmallCard'
+import GymSmallCard from '~/components/gyms/GymSmallCard'
+import ClimbingSessionDetail from '~/components/climbingSessions/ClimbingSessionDetail'
 
 export default {
   name: 'ClimbingSessionItem',
@@ -199,6 +201,10 @@ export default {
     cragReferences: {
       type: Array,
       required: true
+    },
+    columnMode: {
+      type: Boolean,
+      default: false
     }
   },
 
@@ -243,8 +249,11 @@ export default {
       if (this.sessionDetail) { return null }
 
       this.loadingSessionDetail = true
-      new ClimbingSessionApi(this.$axios, this.$auth)
-        .find(this.climbingSession.session_date)
+      new OblykApi(this.$axios, this.$auth)
+        .get(
+          `/current_users/climbing_sessions/${this.climbingSession.session_date}`,
+          { user_id: this.climbingSession.user_id }
+        )
         .then((resp) => {
           this.sessionDetail = new ClimbingSession({ attributes: resp.data })
         })

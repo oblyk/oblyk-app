@@ -23,17 +23,18 @@
     />
 
     <!-- Real favorite -->
-    <div class="border --current-color-border rounded mb-7 px-3 py-1">
+    <div class="border --current-color-border rounded mb-7 px-3 py-1 d-flex align-center">
       <like-btn
         ref="btnLike"
         class="vertical-align-sub"
         :likeable-id="gymRoute.id"
         likeable-type="GymRoute"
         :small="false"
+        icon
         @click.stop=""
       />
       <strong
-        class="hoverable"
+        class="hoverable ml-1"
         @click="$refs.btnLike.likeOrUnlike()"
       >
         {{ $t('components.like.isRealFavorite') }}

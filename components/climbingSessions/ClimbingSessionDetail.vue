@@ -1,28 +1,29 @@
 <template>
   <div>
-    <div
-      v-if="sessionDetail.description"
-      class="mt-2 mb-5"
-    >
-      <p class="mb-1 subtitle-2">
-        <v-icon left small color="primary" class="vertical-align-text-top">
-          {{ mdiText }}
-        </v-icon>
-        {{ $t('components.ascentCragRoute.myCommentaire') }}
-      </p>
-      <markdown-text
-        :text="sessionDetail.description"
-        class="px-3 pt-2 pb-1 rounded-sm back-app-color"
-      />
-      <div class="text-right pt-1">
-        <edit-climbing-session-btn
-          :climbing-session="sessionDetail"
-          :callback="getClimbingSession"
+    <div v-if="climbingSession.for_current_user">
+      <div
+        v-if="sessionDetail.description"
+        class="mt-2 mb-5"
+      >
+        <p class="mb-1 subtitle-2">
+          <v-icon left small color="primary" class="vertical-align-text-top">
+            {{ mdiText }}
+          </v-icon>
+          {{ $t('components.ascentCragRoute.myCommentaire') }}
+        </p>
+        <markdown-text
+          :text="sessionDetail.description"
+          class="px-3 pt-2 pb-1 rounded-sm back-app-color"
         />
+        <div class="text-right pt-1">
+          <edit-climbing-session-btn
+            :climbing-session="sessionDetail"
+            :callback="getClimbingSession"
+          />
+        </div>
       </div>
-    </div>
-    <div v-if="!sessionDetail.description">
       <edit-climbing-session-btn
+        v-if="!sessionDetail.description"
         :climbing-session="climbingSession"
         :callback="getClimbingSession"
       />
@@ -30,7 +31,10 @@
 
     <!-- Ascents -->
     <div class="mt-4">
-      <p class="pb-1 mb-1 subtitle-2">
+      <p
+        v-if="climbingSession.for_current_user"
+        class="pb-1 mb-1 subtitle-2"
+      >
         <v-icon left small color="primary" class="vertical-align-text-top">
           {{ mdiCheckAll }}
         </v-icon>
@@ -91,7 +95,7 @@
         <v-icon left small color="primary" class="vertical-align-text-top">
           {{ mdiMapMarker }}
         </v-icon>
-        {{ $t('components.climbingSession.climbingPlaces') }}
+        {{ $t(`components.climbingSession.${climbingSession.for_current_user ? 'climbingPlaces' : 'climbingPlacesGuest'}`) }}
       </p>
       <crag-small-card
         v-for="(crag, cragIndex) in crags"

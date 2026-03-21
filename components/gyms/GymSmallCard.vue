@@ -52,7 +52,7 @@
             </client-only>
           </v-list-item-subtitle>
         </v-list-item-content>
-        <v-list-item-action>
+        <v-list-item-action v-if="subscribable">
           <subscribe-btn
             subscribe-type="Gym"
             :subscribe-id="gym.id"
@@ -98,6 +98,10 @@ export default {
     callback: {
       type: Function,
       default: null
+    },
+    subscribable: {
+      type: Boolean,
+      default: true
     }
   },
 

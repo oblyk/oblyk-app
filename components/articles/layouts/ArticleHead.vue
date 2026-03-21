@@ -24,6 +24,7 @@
             class="ml-1"
             :likeable-id="article.id"
             likeable-type="Article"
+            dark
             :initial-like-count="article.likes_count"
           />
           <span

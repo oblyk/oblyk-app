@@ -10,7 +10,10 @@
       </h1>
 
       <!-- Load notification -->
-      <spinner v-if="loadingNotification" />
+      <v-skeleton-loader
+        v-if="loadingNotification"
+        type="list-item-avatar-two-line"
+      />
 
       <!-- Notification list -->
       <div v-else>
@@ -59,16 +62,14 @@
 
 <script>
 import { mdiBellCheck } from '@mdi/js'
-import Notification from '@/models/Notification'
-import NotificationApi from '@/services/oblyk-api/NotificationApi'
-import Spinner from '@/components/layouts/Spiner'
+import { LoadingMoreHelpers } from '~/mixins/LoadingMoreHelpers'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 import NotificationItemList from '@/components/notifications/NotificationItemList'
 import LoadingMore from '@/components/layouts/LoadingMore'
-import { LoadingMoreHelpers } from '~/mixins/LoadingMoreHelpers'
 import PageHeader from '~/components/layouts/PageHeader'
 
 export default {
-  components: { PageHeader, LoadingMore, NotificationItemList, Spinner },
+  components: { PageHeader, LoadingMore, NotificationItemList },
   mixins: [LoadingMoreHelpers],
 
   data () {
@@ -102,12 +103,12 @@ export default {
   },
 
   methods: {
-    getAllNotification (page = 1) {
-      new NotificationApi(this.$axios, this.$auth)
-        .all(page, 'false')
+    getAllNotification () {
+      new OblykApi(this.$axios, this.$auth)
+        .get('/notifications', { page: this.page, unread_only: false })
         .then((resp) => {
           for (const notification of resp.data) {
-            this.notifications.push(new Notification({ attributes: notification }))
+            this.notifications.push(notification)
           }
           this.successLoadingMore(resp)
         })
@@ -121,8 +122,7 @@ export default {
     },
 
     markedAllAsRead () {
-      new NotificationApi(this.$axios, this.$auth)
-        .readAll()
+      new OblykApi(this.$axios, this.$auth).put('/notifications/read_all')
     }
   }
 }

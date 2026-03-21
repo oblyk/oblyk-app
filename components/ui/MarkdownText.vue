@@ -1,5 +1,21 @@
 <template>
-  <div class="oblyk-markdown-text-area" v-html="markedText()" />
+  <div>
+    <div
+      class="oblyk-markdown-text-area"
+      v-html="markedText"
+    />
+    <div
+      v-if="!showMore && textIsTooLong"
+      class="oblyk-markdown-show-more"
+    >
+      <small
+        class="font-weight-medium hoverable blue--text text--darken-1"
+        @click="showMore = true"
+      >
+        {{ $t('actions.readMore') }}
+      </small>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -11,12 +27,33 @@ export default {
     text: {
       type: String,
       required: true
+    },
+    truncate: {
+      type: Number,
+      default: null
     }
   },
 
-  methods: {
+  data () {
+    return {
+      showMore: false
+    }
+  },
+
+  computed: {
+    textIsTooLong () {
+      return this.truncate !== null && this.text.length > this.truncate
+    },
+
     markedText () {
-      return marked.parse(this.text, { breaks: true })
+      let text = this.text
+      if (this.textIsTooLong && !this.showMore) {
+        text = this.text.substring(0, this.truncate).split(' ')
+        text.pop()
+        text = text.join(' ')
+        text = `${text}...`
+      }
+      return marked.parse(text, { breaks: true })
     }
   }
 }
@@ -24,28 +61,48 @@ export default {
 
 <style lang="scss">
 .oblyk-markdown-text-area {
-  h1 {font-size: 1.3em }
-  h2 {font-size: 1.2em }
-  h3 {font-size: 1.1em }
-  h4 {font-size: 1em }
+  h1 { font-size: 1.3em }
+  h2 { font-size: 1.2em }
+  h3 { font-size: 1.1em }
+  h4 { font-size: 1em }
   table {
     width: 100%;
     margin-bottom: 0.5em;
     border-collapse: collapse;
+    border-style: solid;
+    border-color: rgba( 150, 150, 150, 0.2);
+    border-width: 1px;
     th {
+      padding: 1px 5px;
       border-bottom-style: solid;
+      border-color: rgba( 150, 150, 150, 0.2);
       border-width: 2px;
     }
     td {
+      padding: 1px 5px;
       border-bottom-style: solid;
+      border-color: rgba( 150, 150, 150, 0.2);
       border-width: 1px;
     }
   }
-  p:last-child {
+  p {
+    margin-bottom: 0.2em;
+  }
+  *:last-child {
     margin-bottom: 0;
+    padding-bottom: 0;
   }
   img {
     max-width: 100%;
+  }
+  ul li:has(input[type="checkbox"]) {
+    list-style: none;
+  }
+  ul:has(li input[type="checkbox"]) {
+    padding-left: 12px;
+  }
+  ul {
+    margin-bottom: 0.2em;
   }
 }
 </style>

@@ -1,105 +1,27 @@
 <template>
-  <v-sheet class="pa-4 rounded">
-    <div v-if="loadingAscents">
-      <v-skeleton-loader type="list-item-avatar" />
-    </div>
-    <div v-else>
-      <div
-        v-if="ascents.length > 0"
-        :class="collapse ? 'subscribes-ascents-collapsed' : ''"
+  <div :class="collapse ? 'subscribes-ascents-collapsed' : null">
+    <climbing-session session-type="SubscribesClimbingSession" />
+    <div
+      v-if="collapse"
+      class="show-more-subscribes-ascents"
+    >
+      <v-btn
+        text
+        @click="collapse = false"
       >
-        <div>
-          <div
-            v-for="(ascent, ascentIndex) in ascents"
-            :key="`ascent-index-${ascentIndex}`"
-          >
-            <p
-              v-if="ascentIndex === 0 || ascent.user.id !== ascents[ascentIndex -1].user.id"
-              class="mb-0"
-              :class="ascentIndex !== 0 ? 'mt-5' : ''"
-            >
-              <strong
-                class="hoverable primary--text"
-                @click="getClimber(ascent.user)"
-              >
-                {{ ascent.user.first_name }}
-              </strong>
-              <span :title="humanizeDate(ascent.history.created_at)">
-                {{ dateFromNow(ascent.history.created_at) }}
-              </span>
-            </p>
-            <crag-route-small-line :route="cragRouteToObject(ascent.crag_route)" />
-            <div
-              v-if="!ascent.private_comment"
-              class="pl-16 ml-5 mb-2"
-            >
-              <p class="mb-0">
-                {{ ascent.comment }}
-              </p>
-              <note
-                v-if="ascent.note !== null"
-                :note="ascent.note"
-              />
-            </div>
-          </div>
-          <div
-            v-if="!noMoreAscents"
-            class="text-center"
-          >
-            <v-btn
-              text
-              :loading="loadingMoreAscents"
-              @click="getSubscribesAscents"
-            >
-              {{ $t('components.subscribesAscents.nextAscents') }}
-            </v-btn>
-          </div>
-        </div>
-        <div
-          v-if="collapse"
-          class="show-more-subscribes-ascents"
-        >
-          <v-btn
-            text
-            @click="collapse = false"
-          >
-            {{ $t('actions.see') }}
-          </v-btn>
-        </div>
-        <down-to-close-dialog
-          ref="climberDialog"
-          v-model="climberDialog"
-          wait-signal
-        >
-          <user-card
-            v-if="!loadingClimber"
-            :user="climber"
-          />
-        </down-to-close-dialog>
-      </div>
-      <div v-else>
-        <p class="text-center font-italic mb-0">
-          {{ $t('components.subscribesAscents.noAscents') }}
-        </p>
-      </div>
+        {{ $t('actions.see') }}
+      </v-btn>
     </div>
-  </v-sheet>
+  </div>
 </template>
 
 <script>
-import CurrentUserApi from '~/services/oblyk-api/CurrentUserApi'
-import CragRoute from '~/models/CragRoute'
-import CragRouteSmallLine from '~/components/cragRoutes/CragRouteSmallLine'
 import { DateHelpers } from '~/mixins/DateHelpers'
-import User from '~/models/User'
-import Note from '~/components/notes/Note'
-import DownToCloseDialog from '~/components/ui/DownToCloseDialog'
-import UserApi from '~/services/oblyk-api/UserApi'
-import UserCard from '~/components/users/UserCard'
+import ClimbingSession from '~/components/climbingSessions/ClimbingSession'
 
 export default {
   name: 'SubscribesAscentsCard',
-  components: { UserCard, DownToCloseDialog, Note, CragRouteSmallLine },
+  components: { ClimbingSession },
   mixins: [DateHelpers],
   props: {
     user: {
@@ -110,67 +32,13 @@ export default {
 
   data () {
     return {
-      loadingAscents: true,
-      loadingMoreAscents: false,
-      noMoreAscents: false,
-      page: 1,
-      ascents: [],
-      collapse: true,
-      climber: null,
-      loadingClimber: false,
-      climberDialog: false
-    }
-  },
-
-  mounted () {
-    this.getSubscribesAscents()
-  },
-
-  methods: {
-    getSubscribesAscents () {
-      if (this.page !== 1) { this.loadingMoreAscents = true }
-
-      new CurrentUserApi(this.$axios, this.$auth)
-        .subscribesAscents(this.page)
-        .then((resp) => {
-          if (resp.data.length < 25) { this.noMoreAscents = true }
-          for (const ascent of resp.data) {
-            this.ascents.push(ascent)
-          }
-          this.page += 1
-        })
-        .finally(() => {
-          this.loadingAscents = false
-          this.loadingMoreAscents = false
-        })
-    },
-
-    cragRouteToObject (cragRoute) {
-      return new CragRoute({ attributes: cragRoute })
-    },
-
-    userToObject (user) {
-      return new User({ attributes: user })
-    },
-
-    getClimber (user) {
-      this.loadingClimber = true
-      this.climberDialog = true
-      new UserApi(this.$axios, this.$auth)
-        .find(user.slug_name)
-        .then((resp) => {
-          this.climber = this.userToObject(resp.data)
-          this.$refs.climberDialog.signal()
-        })
-        .finally(() => {
-          this.loadingClimber = false
-        })
+      collapse: true
     }
   }
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .subscribes-ascents-collapsed {
   .show-more-subscribes-ascents {
     display: none;

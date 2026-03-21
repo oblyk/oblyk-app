@@ -51,7 +51,7 @@
             <v-icon small left>
               {{ mdiCheckAll }}
             </v-icon>
-            {{ $tc('components.logBook.figures.ascents', crag.ascents_count, { count: crag.ascents_count }) }}
+            {{ $tc('common.figures.ascents', crag.ascents_count, { count: crag.ascents_count }) }}
           </v-chip>
         </p>
       </div>

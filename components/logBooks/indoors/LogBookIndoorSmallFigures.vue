@@ -37,10 +37,10 @@
           </div>
           <div v-else>
             <p class="mb-0">
-              {{ $tc('components.logBook.figures.additionalAscents', figures.last_28_days.ascents, { count: figures.last_28_days.ascents }) }}
+              {{ $tc('common.figures.additionalAscents', figures.last_28_days.ascents, { count: figures.last_28_days.ascents }) }}
             </p>
             <p class="mb-0">
-              {{ $tc('components.logBook.figures.gyms', figures.last_28_days.gyms, { count: figures.last_28_days.gyms }) }}
+              {{ $tc('common.figures.gyms', figures.last_28_days.gyms, { count: figures.last_28_days.gyms }) }}
             </p>
             <p class="mb-0">
               <v-chip

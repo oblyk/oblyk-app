@@ -279,7 +279,9 @@ export default {
     closeGymRouteModal () {
       this.gymRoute = null
       this.gymRouteDialog = false
-      this.$router.push({ path: this.$route.path })
+      const query = { ...this.$route.query } || {}
+      delete query.route
+      this.$router.push({ path: this.$route.path, query })
     }
   }
 }

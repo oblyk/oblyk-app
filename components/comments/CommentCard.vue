@@ -1,119 +1,124 @@
 <template>
-  <div
-    class="pa-2"
-    :class="!isMainComment ? 'border-left pl-5 py-0' : null"
-  >
+  <div :class="!isMainComment ? 'py-0' : 'pa-2'">
     <owner-label
       :history="dataComment.history"
-      :owner="dataComment.creator"
+      :owner="dataComment.user"
       :edit-path="`${dataComment.path}/edit?redirect_to=${redirectTo}`"
       :reports="{ type: 'Comment', id: dataComment.id }"
       :delete-function="deleteComment"
     />
-    <markdown-text
-      v-if="dataComment.body && !dataComment.moderated"
-      :text="dataComment.body"
-    />
-    <p
-      v-if="dataComment.moderated"
-      class="text-center text--disabled my-3"
-    >
-      {{ $t('components.comment.moderate') }}
-    </p>
-    <v-chip
-      v-if="newComment"
-      color="red"
-      dark
-      x-small
-    >
-      New
-    </v-chip>
-    <client-only>
-      <div class="d-flex align-center">
-        <div
-          v-if="dataComment.comments_count && dataComment.comments_count - comments.length > 0 && !noMoreReplyComments && !loadingComments"
-        >
-          <v-chip
-            text
-            outlined
-            small
-            @click="getReplyComments"
-          >
-            {{ $tc('components.comment.seeReplies', dataComment.comments_count, { count: dataComment.comments_count - comments.length }) }}
-          </v-chip>
-        </div>
-        <div class="ml-auto">
-          <v-btn
-            v-if="moderable && !dataComment.moderated"
-            text
-            outlined
-            small
-            color="red"
-            :loading="loadingModerate"
-            @click="moderate()"
-          >
-            {{ $t('actions.delete') }}
-          </v-btn>
-          <v-btn
-            v-if="$auth.loggedIn && (isMainComment || isMainReply) && !dataComment.moderated"
-            v-model="showReply"
-            text
-            :icon="!isMainComment"
-            @click="openReplyForm"
-          >
-            <span v-if="isMainComment">
-              {{ $t('actions.reply') }}
-            </span>
-            <v-icon :right="isMainComment">
-              {{ showReply ? mdiClose : mdiReply }}
-            </v-icon>
-          </v-btn>
-          <like-btn
-            v-if="!dataComment.moderated"
-            class="align-end"
-            :initial-like-count="dataComment.likes_count"
-            :likeable-id="dataComment.id"
-            likeable-type="Comment"
-          />
-        </div>
-      </div>
-    </client-only>
-
-    <div v-if="isMainComment || isMainReply">
-      <!-- Reply comments list -->
-      <div class="comments-reply-card">
-        <comment-card
-          v-for="(replyComment, commentIndex) in comments"
-          :key="`comment-index${commentIndex}`"
-          :comment="replyComment"
-          class="mt-2"
-          :moderable="moderable"
-          :last-read="lastRead"
-        />
-      </div>
-
-      <!-- Load more reply comments -->
+    <div class="pl-10">
+      <markdown-text
+        v-if="dataComment.body && !dataComment.moderated"
+        :text="dataComment.body"
+      />
+      <p
+        v-if="dataComment.moderated"
+        class="text-center text--disabled my-3"
+      >
+        {{ $t('components.comment.moderate') }}
+      </p>
+      <v-chip
+        v-if="newComment"
+        color="red"
+        dark
+        x-small
+      >
+        New
+      </v-chip>
       <client-only>
-        <div v-if="$auth.loggedIn">
-          <!-- Reply form -->
-          <v-text-field
-            v-if="showReply"
-            ref="replyTextField"
-            v-model="replyData.body"
-            class="mt-2"
-            :loading="loadingReply"
-            rows="1"
-            dense
-            outlined
-            :append-icon="mdiSend"
-            @click:append="sendReply"
-          />
+        <div class="d-flex align-center">
+          <div v-if="dataComment.comments_count && dataComment.comments_count - comments.length > 0 && !noMoreReplyComments && !loadingComments">
+            <v-chip
+              text
+              outlined
+              small
+              @click="getReplyComments"
+            >
+              {{ $tc('components.comment.seeReplies', dataComment.comments_count, { count: dataComment.comments_count - comments.length }) }}
+            </v-chip>
+          </div>
+          <div v-if="dataComment.comments_count && comments.length > 0">
+            <small class="text-decoration-underline vertical-align-text-top">
+              {{ $t('components.comment.replies') }} :
+            </small>
+          </div>
+          <div class="ml-auto">
+            <v-btn
+              v-if="moderable && !dataComment.moderated"
+              text
+              outlined
+              small
+              color="red"
+              :loading="loadingModerate"
+              @click="moderate()"
+            >
+              {{ $t('actions.delete') }}
+            </v-btn>
+            <like-btn
+              v-if="!dataComment.moderated"
+              :initial-like-count="dataComment.likes_count"
+              :likeable-id="dataComment.id"
+              likeable-type="Comment"
+            />
+            <v-btn
+              v-if="$auth.loggedIn && (isMainComment || isMainReply) && !dataComment.moderated"
+              v-model="showReply"
+              text
+              small
+              @click="openReplyForm"
+            >
+              <span v-if="isMainComment">
+                {{ $t('actions.reply') }}
+              </span>
+              <v-icon
+                color="primary"
+                size="18"
+                :right="isMainComment"
+              >
+                {{ showReply ? mdiClose : mdiReply }}
+              </v-icon>
+            </v-btn>
+          </div>
         </div>
       </client-only>
 
-      <!-- Loading comment -->
-      <div v-if="loadingComments" class="text-center">
-        <v-progress-circular indeterminate />
+      <div v-if="isMainComment || isMainReply">
+        <!-- Reply comments list -->
+        <div class="comments-reply-card">
+          <comment-card
+            v-for="(replyComment, commentIndex) in comments"
+            :key="`comment-index${commentIndex}`"
+            :comment="replyComment"
+            class="mt-2"
+            :moderable="moderable"
+            :last-read="lastRead"
+          />
+        </div>
+
+        <!-- Load more reply comments -->
+        <client-only>
+          <div v-if="$auth.loggedIn">
+            <!-- Reply form -->
+            <v-text-field
+              v-if="showReply"
+              ref="replyTextField"
+              v-model="replyData.body"
+              class="mt-2"
+              :loading="loadingReply"
+              rows="1"
+              dense
+              outlined
+              :append-icon="mdiSend"
+              @click:append="sendReply"
+            />
+          </div>
+        </client-only>
+
+        <!-- Loading comment -->
+        <div v-if="loadingComments" class="text-center">
+          <v-progress-circular indeterminate />
+        </div>
       </div>
     </div>
   </div>
@@ -121,11 +126,10 @@
 
 <script>
 import { mdiReply, mdiSend, mdiClose } from '@mdi/js'
-import OwnerLabel from '@/components/users/OwnerLabel'
-import CommentApi from '~/services/oblyk-api/CommentApi'
-import LikeBtn from '~/components/forms/LikeBtn'
-import Comment from '~/models/Comment'
 import { DateHelpers } from '~/mixins/DateHelpers'
+import OwnerLabel from '@/components/users/OwnerLabel'
+import LikeBtn from '~/components/forms/LikeBtn'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 const MarkdownText = () => import('@/components/ui/MarkdownText')
 
 export default {
@@ -208,8 +212,8 @@ export default {
 
     deleteComment () {
       if (confirm(this.$t('common.areYouSurDeleteComment'))) {
-        new CommentApi(this.$axios, this.$auth)
-          .delete(this.dataComment.id)
+        new OblykApi(this.$axios, this.$auth)
+          .delete(`/comments/${this.dataComment.id}`)
           .then(() => {
             if (this.getComments) {
               this.getComments()
@@ -226,10 +230,10 @@ export default {
       if (this.dataComment.commentable_type === 'Comment') {
         this.replyData.reply_to_comment_id = this.dataComment.commentable_id
       }
-      new CommentApi(this.$axios, this.$auth)
-        .create(this.replyData)
+      new OblykApi(this.$axios, this.$auth)
+        .post('/comments', { comment: this.replyData })
         .then((resp) => {
-          this.comments.push(new Comment({ attributes: resp.data }))
+          this.comments.push(resp.data)
         })
         .finally(() => {
           this.showReply = false
@@ -239,8 +243,8 @@ export default {
 
     getReplyComments () {
       this.loadingComments = true
-      new CommentApi(this.$axios, this.$auth)
-        .comments(this.dataComment.id, this.replyCommentsPage)
+      new OblykApi(this.$axios, this.$auth)
+        .get(`/comments/${this.dataComment.id}/comments`, { page: this.replyCommentsPage })
         .then((resp) => {
           if (resp.data.length < 5) {
             this.noMoreReplyComments = true
@@ -248,7 +252,7 @@ export default {
           const commentIds = this.comments.map(comment => comment.id)
           for (const comment of resp.data) {
             if (!commentIds.includes(comment.id)) {
-              this.comments.push(new Comment({ attributes: comment }))
+              this.comments.push(comment)
             }
           }
         })
@@ -259,10 +263,10 @@ export default {
     },
 
     getComment () {
-      new CommentApi(this.$axios, this.$auth)
-        .find(this.dataComment.id)
+      new OblykApi(this.$axios, this.$auth)
+        .get(`/comments/${this.dataComment.id}`)
         .then((resp) => {
-          this.dataComment = new Comment({ attributes: resp.data })
+          this.dataComment = resp.data
         })
         .finally(() => {
           this.loadingModerate = false
@@ -272,8 +276,8 @@ export default {
     moderate () {
       if (confirm(this.$t('common.areYouSurDeleteComment'))) {
         this.loadingModerate = true
-        new CommentApi(this.$axios, this.$auth)
-          .moderateByGymAdministrator(this.dataComment.id)
+        new OblykApi(this.$axios, this.$auth)
+          .delete(`/comments/${this.dataComment.id}/moderate_by_gym_administrator`)
           .then(() => {
             this.getComment()
           })

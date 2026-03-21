@@ -9,6 +9,7 @@
           :likeable-id="gymRoute.id"
           likeable-type="GymRoute"
           :small="false"
+          icon
         />
         <div class="rounded-pill sheet-background-color mx-1">
           <v-menu>

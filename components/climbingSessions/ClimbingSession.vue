@@ -6,6 +6,7 @@
       :climbing-session="session"
       :gym-references="gyms"
       :crag-references="crags"
+      :column-mode="columnMode"
       class="mb-7"
     />
     <loading-more
@@ -17,19 +18,19 @@
     <p
       v-if="sessions.length === 0 && !loadingClimbingSessions"
       class="text-center mt-4"
-      v-html="$t('components.climbingSession.empty')"
+      v-html="guestMode ? $t('components.climbingSession.guestEmpty') : $t('components.climbingSession.empty')"
     />
   </div>
 </template>
 
 <script>
 import { LoadingMoreHelpers } from '@/mixins/LoadingMoreHelpers'
-import LoadingMore from '~/components/layouts/LoadingMore.vue'
-import ClimbingSessionApi from '~/services/oblyk-api/ClimbingSessionApi'
+import LoadingMore from '~/components/layouts/LoadingMore'
+import ClimbingSessionItem from '~/components/climbingSessions/ClimbingSessionItem'
 import ClimbingSession from '~/models/ClimbingSession'
-import ClimbingSessionItem from '~/components/climbingSessions/ClimbingSessionItem.vue'
 import Crag from '~/models/Crag'
 import Gym from '~/models/Gym'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 
 export default {
   name: 'ClimbingSession',
@@ -40,6 +41,14 @@ export default {
     filters: {
       type: Object,
       default: null
+    },
+    columnMode: {
+      type: Boolean,
+      default: false
+    },
+    guestMode: {
+      type: Boolean,
+      default: false
     }
   },
 
@@ -47,7 +56,7 @@ export default {
     return {
       sessions: [],
       loadingClimbingSessions: true,
-      climbingSessionApi: new ClimbingSessionApi(this.$axios, this.$auth),
+      climbingSessionApi: new OblykApi(this.$axios, this.$auth),
       crags: [],
       gyms: [],
 
@@ -84,7 +93,17 @@ export default {
       this.moreIsBeingLoaded()
 
       this.climbingSessionApi
-        .list(this.page, this.filters)
+        .get(
+          '/current_users/climbing_sessions',
+          {
+            page: this.page,
+            gym_ids: this.filters?.gym_ids,
+            crag_ids: this.filters?.crag_ids,
+            only_crag: this.filters?.only_crag || false,
+            only_gym: this.filters?.only_gym || false,
+            user_uuid: this.filters?.user_uuid
+          }
+        )
         .then((resp) => {
           // Parse climbing session
           for (const session of resp.data.sessions) {

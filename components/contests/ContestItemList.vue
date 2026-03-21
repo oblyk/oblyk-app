@@ -1,6 +1,7 @@
 <template>
   <v-list-item
     :to="callback ? null : contestPath()"
+    :class="bordered ? 'rounded border' : null"
     @click="callback ? callback(contest) : null"
   >
     <v-list-item-avatar
@@ -76,6 +77,10 @@ export default {
     archived: {
       type: Boolean,
       default: false
+    },
+    bordered: {
+      type: Boolean,
+      default: false
     }
   },
 
@@ -87,7 +92,7 @@ export default {
 
   methods: {
     contestPath () {
-      const path = this.publicPath ? this.contest.path : this.contest.adminPath
+      const path = this.publicPath ? this.contest.app_path : this.contest.app_admin_path
       const token = this.withToken ? `?token=${this.withToken}` : ''
       return `${path}${token}`
     }

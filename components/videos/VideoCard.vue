@@ -36,7 +36,6 @@
         :reports="{ type: 'Video', id: video.id }"
       />
       <like-btn
-        class="align-end"
         :likeable-id="video.id"
         likeable-type="Video"
         :initial-like-count="video.likes_count"
