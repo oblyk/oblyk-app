@@ -3,7 +3,6 @@
     <v-img
       dark
       class="user-header-banner"
-      gradient="to bottom, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.8) 100%"
       :lazy-src="imageVariant(user.attachments.banner, { fit: 'scale-down', width: 720, height: 720 })"
       :src="imageVariant(user.attachments.banner, { fit: 'scale-down', width: 720, height: 720 })"
       :srcset="`

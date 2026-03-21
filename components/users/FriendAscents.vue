@@ -108,19 +108,31 @@
           :src="imageVariant(modalUser.attachments.banner, { fit: 'crop', width: 720, height: 720 })"
         >
           <v-card-title class="d-flex">
-            <div>
+            <div class="d-flex align-items-center">
               <v-avatar
                 v-if="modalUser.attachments.avatar.attached"
-                size="40"
+                size="60"
                 class="mr-2"
               >
                 <v-img
                   :src="imageVariant(modalUser.attachments.avatar, { fit: 'crop', width: 100, height: 100 })"
                   alt="avatar"
-                  size="40"
+                  size="60"
                 />
               </v-avatar>
-              {{ modalTitle }}
+              <div>
+                <div>
+                  {{ modalTitle }}
+                </div>
+                <v-chip
+                  :to="modalUser.app_path"
+                  x-small
+                  outlined
+                  class="mt-n6"
+                >
+                  {{ $t('actions.see') }}
+                </v-chip>
+              </div>
             </div>
             <v-btn
               icon

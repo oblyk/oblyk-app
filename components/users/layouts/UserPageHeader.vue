@@ -6,7 +6,10 @@
   />
 </template>
 <script>
+import { mdiInformation } from '@mdi/js'
+import { oblykOutdoorPanel } from '~/assets/oblyk-icons'
 import PageHeader from '~/components/layouts/PageHeader'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 
 export default {
   name: 'UserPageHeader',
@@ -18,13 +21,26 @@ export default {
     }
   },
 
+  data () {
+    return {
+      unreadPublicationCount: 0
+    }
+  },
+
   computed: {
     headerLinks () {
       const mediaCount = this.user.photos_count + this.user.videos_count
       return [
         {
           to: this.user.userPath,
-          title: this.$t('components.user.tabs.profile')
+          title: null,
+          icon: mdiInformation
+        },
+        {
+          to: `${this.user.app_path}/publications`,
+          title: null,
+          badge: this.unreadPublicationCount,
+          icon: oblykOutdoorPanel
         },
         {
           to: `${this.user.userPath}/ascents/outdoor`,
@@ -50,6 +66,22 @@ export default {
 
     backTo () {
       return this.$store.getters['oblykEnvironment/getPreviousHubs'](this.$route.path, this.user.userPath)
+    }
+  },
+
+  mounted () {
+    if (this.$auth.loggedIn) {
+      this.getUnreadPublication()
+    }
+  },
+
+  methods: {
+    getUnreadPublication () {
+      new OblykApi(this.$axios, this.$auth)
+        .get('/publication_views/unread_count', { publishable_type: 'User', publishable_id: this.user.id })
+        .then((resp) => {
+          this.unreadPublicationCount = resp.data
+        })
     }
   }
 }

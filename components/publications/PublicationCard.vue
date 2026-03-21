@@ -152,7 +152,7 @@
       >
         <markdown-text
           :text="publication.body"
-          truncate="500"
+          :truncate="500"
         />
       </div>
 

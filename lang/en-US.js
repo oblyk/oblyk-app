@@ -1932,10 +1932,10 @@ export default {
     },
     publication: {
       draftInProgress: 'I have one draft in progress! | I have %{count} drafts in progress!',
-      noPublicationIMyFeed: 'Follow climbing areas, cliffs, guidebooks, or other climbers to see the latest news here!',
       shareSomething: 'Share something',
       autoRemove: 'Drafts are automatically deleted after two weeks without changes.',
       newMessage: 'New message',
+      youCannotSee: "You cannot see %{name}'s posts",
       placeholder: {
         Gym: 'Share a new route? A competition? A cliff clean-up?',
         User: 'Share a climbing story? A reflection on climbing?',
@@ -1966,6 +1966,11 @@ export default {
       User: {
         title: 'Activities',
         noPublication: "%{name} hasn't shared anything yet, come back later!",
+        writeLabel: 'Share something?'
+      },
+      CurrentUser: {
+        title: 'My news',
+        noPublication: 'Follow climbing areas, cliffs, guidebooks, or other climbers to see the latest news here!',
         writeLabel: 'Share something?'
       },
       Crag: {

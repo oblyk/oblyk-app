@@ -26,14 +26,14 @@
     <!-- PUBLICATION TITLE -->
     <div class="mb-3 d-flex">
       <p
-        v-if="publishableType === 'User'"
+        v-if="publishableType === 'CurrentUser'"
         class="mb-n2"
       >
         <small class="font-weight-medium">
           <v-icon color="primary" left small class="vertical-align-sub">
             {{ boardIcon[publishableType] }}
           </v-icon>
-          {{ $t(`components.publication.User.myPublicationFeed`) }}
+          {{ $t(`components.publication.CurrentUser.title`) }}
         </small>
       </p>
       <h3
@@ -102,16 +102,7 @@
         v-if="publications.length === 0 && !loadingPublications"
         class="text-center text--disabled font-italic pa-4 rounded"
       >
-        <p
-          v-if="myFeed"
-          class="mb-0"
-        >
-          {{ $t('components.publication.noPublicationIMyFeed') }}
-        </p>
-        <p
-          v-else
-          class="mb-0"
-        >
+        <p class="mb-0">
           {{ $t(`components.publication.${publishableType}.noPublication`, { name: publishableName }) }}
         </p>
       </v-sheet>
@@ -138,10 +129,6 @@ export default {
     publishableType: {
       type: String,
       required: true
-    },
-    myFeed: {
-      type: Boolean,
-      required: false
     }
   },
 
@@ -165,6 +152,9 @@ export default {
   },
 
   computed: {
+    myFeed () {
+      return this.publishableType === 'CurrentUser'
+    },
     canWrite () {
       if (!this.$auth.loggedIn) {
         return false
@@ -172,7 +162,7 @@ export default {
       if (['Crag', 'GuideBookPaper'].includes(this.publishableType)) {
         return true
       }
-      if (this.publishableType === 'User' && this.publishable.id === this.$auth.user.id) {
+      if (this.publishableType === 'CurrentUser') {
         return true
       }
       if (this.publishableType === 'Gym') {
@@ -182,7 +172,7 @@ export default {
     },
 
     publishableName () {
-      if (this.publishableType === 'User') {
+      if (['User', 'CurrentUser'].includes(this.publishableType)) {
         return this.publishable.first_name
       } else {
         return this.publishable.name
@@ -190,7 +180,7 @@ export default {
     },
 
     newPublicationUrl () {
-      if (this.publishableType === 'User') {
+      if (this.publishableType === 'CurrentUser') {
         return '/home/publications/new'
       } else {
         return `${this.publishable.app_path}/publications/new`
@@ -244,6 +234,11 @@ export default {
     },
 
     getDrafts () {
+      if (this.publishableType === 'User') {
+        this.loadingDrafts = false
+        return false
+      }
+
       this.loadingDrafts = true
       new OblykApi(this.$axios, this.$auth)
         .get(

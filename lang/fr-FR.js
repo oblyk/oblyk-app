@@ -1934,10 +1934,10 @@ export default {
     },
     publication: {
       draftInProgress: "J'ai un brouillon en cours ! | J'ai %{count} brouillons en cours !",
-      noPublicationIMyFeed: "Suivez des salles, des falaises, des topos ou d'autres grimpeurs et grimpeuses pour voir les dernières actualités ici !",
       shareSomething: 'Partager quelque chose',
       autoRemove: 'Les brouillons sont automatiquement supprimés après deux semaines sans modification.',
       newMessage: 'Nouveau message',
+      youCannotSee: 'Vous ne pouvez pas voir les publications de %{name}',
       placeholder: {
         Gym: 'Partager une nouvelle ouverture ? Un contest ? Un nettoyage de falaises ?',
         User: "Partager un récit d'escalade ? Une reflexion sur la grimpe ?",
@@ -1967,8 +1967,12 @@ export default {
       },
       User: {
         title: 'Activités',
-        myPublicationFeed: 'Mes actualités',
         noPublication: "%{name} n'as encore rien partagé, reviens plus tard !",
+        writeLabel: 'Partager quelque choses ?'
+      },
+      CurrentUser: {
+        title: 'Mes actualités',
+        noPublication: "Suivez des salles, des falaises, des topos ou d'autres grimpeurs et grimpeuses pour voir les dernières actualités ici !",
         writeLabel: 'Partager quelque choses ?'
       },
       Crag: {

@@ -34,8 +34,7 @@
                 <publication-list
                   v-if="showPublication"
                   :publishable="currentUser"
-                  publishable-type="User"
-                  my-feed
+                  publishable-type="CurrentUser"
                 />
               </div>
             </div>
