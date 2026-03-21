@@ -18,12 +18,12 @@
     </div>
     <div
       v-else
-      class="overflow-x-auto text-no-wrap"
+      class="overflow-x-auto text-no-wrap scroll-snap-type-x-mandatory"
     >
       <div
         v-for="(user, userIndex) in users"
         :key="`user-index-${userIndex}`"
-        class="text-center d-inline-block mr-1 hoverable"
+        class="text-center d-inline-block mr-1 hoverable --snap-align-start"
         style="width: 65px"
         @click="showClimbingSession(user)"
       >

@@ -1,29 +1,28 @@
 <template>
   <div v-if="publication.attachables_count > 0 && videos.length > 0">
-    <v-carousel
-      v-model="slide"
-      height="auto"
-      hide-delimiter-background
-      :show-arrows="false"
-      :hide-delimiters="videos.length === 1"
+    <oblyk-carousel
+      :show-arrow="$vuetify.breakpoint.mobile"
+      :show-arrows-on-hover="!$vuetify.breakpoint.mobile"
     >
-      <v-carousel-item
+      <oblyk-carousel-item
         v-for="(video, videoIndex) in videos"
         :key="`video-index-${videoIndex}`"
       >
         <video-carousel-item :video="video" />
-      </v-carousel-item>
-    </v-carousel>
+      </oblyk-carousel-item>
+    </oblyk-carousel>
   </div>
 </template>
 
 <script>
 import { mdiCircleMedium } from '@mdi/js'
 import VideoCarouselItem from '~/components/videos/VideoCarouselItem'
+import OblykCarousel from '~/components/ui/OblykCarousel.vue'
+import OblykCarouselItem from '~/components/ui/OblykCarouselItem.vue'
 
 export default {
   name: 'PublicationAttachmentVideos',
-  components: { VideoCarouselItem },
+  components: { OblykCarouselItem, OblykCarousel, VideoCarouselItem },
   props: {
     publication: {
       type: Object,

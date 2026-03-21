@@ -181,9 +181,9 @@
       </div>
 
       <!-- ATTACHMENTS -->
-      <div v-if="publication.attachables_count > 0">
+      <div v-if="bottomAttachmentsCount">
         <publication-attachment-list
-          v-if="!publication.generated || publication.attachables_count <= 3 || showAttachments"
+          v-if="!publication.generated || bottomAttachmentsCount <= 3 || showAttachments"
           :publication="publication"
           class="my-1"
         />
@@ -427,6 +427,17 @@ export default {
       } else {
         return `${this.publication.publishable.app_path}/publications/${this.publication.id}/edit`
       }
+    },
+
+    bottomAttachmentsCount () {
+      let count = 0
+      for (const attachmentType in this.publication.attachable_types_count) {
+        if (['Photo', 'Video'].includes(attachmentType)) {
+          continue
+        }
+        count += this.publication.attachable_types_count[attachmentType]
+      }
+      return count
     }
   },
 

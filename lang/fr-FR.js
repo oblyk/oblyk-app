@@ -1981,12 +1981,12 @@ export default {
         writeLabel: 'Écrire une actualité sur %{name} ?',
         subject: {
           create: 'Site ajouté le %{date}',
-          new_alert: 'Nouvelle alerte créée le %{date}',
-          new_guide_book_web: 'Nouveau topo web ajouté le %{date}',
-          new_guide_book_pdf: 'Nouveau topo PDF ajouté le %{date}',
-          new_crag_routes: 'Une nouvelle ligne ajoutée la semaine du %{week_date} | %{count} nouvelles lignes ajoutées la semaine du %{week_date}',
-          new_photo: 'Une nouvelle photo ajoutée la semaine du %{week_date} | %{count} nouvelles photos ajoutées la semaine du %{week_date}',
-          new_video: 'Une nouvelle vidéo ajoutée la semaine du %{week_date} | %{count} nouvelles vidéos ajoutées la semaine du %{week_date}'
+          new_alert: 'Alerte créée le %{date}',
+          new_guide_book_web: 'Topo web ajouté le %{date}',
+          new_guide_book_pdf: 'Topo PDF ajouté le %{date}',
+          new_crag_routes: 'Une ligne ajoutée la semaine du %{week_date} | %{count} lignes ajoutées la semaine du %{week_date}',
+          new_photo: 'Une photo ajoutée la semaine du %{week_date} | %{count} photos ajoutées la semaine du %{week_date}',
+          new_video: 'Une vidéo ajoutée la semaine du %{week_date} | %{count} vidéos ajoutées la semaine du %{week_date}'
         }
       },
       GuideBookPaper: {

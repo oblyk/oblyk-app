@@ -1979,9 +1979,9 @@ export default {
         writeLabel: 'Write a news on %{name}?',
         subject: {
           create: 'Crag added on %{date}',
-          new_alert: 'New alert created on %{date}',
-          new_guide_book_web: 'New web climbing guide added on %{date}',
-          new_guide_book_pdf: 'New PDF climbing guide added on %{date}',
+          new_alert: 'Alert created on %{date}',
+          new_guide_book_web: 'Web climbing guide added on %{date}',
+          new_guide_book_pdf: 'PDF climbing guide added on %{date}',
           new_crag_routes: 'One route added during the week of %{week_date} | %{count} routes added during the week of %{week_date}',
           new_photo: 'One picture added during the week of %{week_date} | %{count} pictures added during the week of %{week_date}',
           new_video: 'One video added during the week of %{week_date} | %{count} videos added during the week of %{week_date}'

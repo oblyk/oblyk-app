@@ -201,6 +201,11 @@ export default {
 }
 </script>
 <style lang="scss">
+.oblyk-navigation-drawer {
+  .v-navigation-drawer__content {
+    scrollbar-width: none;
+  }
+}
 .oblyk-app-drawer {
   padding-bottom: 50px;
   .oblyk-app-drawer-header {

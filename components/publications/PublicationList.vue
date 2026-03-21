@@ -143,7 +143,8 @@ export default {
         Gym: oblykArdoise,
         Crag: oblykOutdoorPanel,
         GuideBookPaper: oblykOutdoorPanel,
-        User: oblykOutdoorPanel
+        User: oblykOutdoorPanel,
+        CurrentUser: oblykOutdoorPanel
       },
 
       mdiPenPlus,
