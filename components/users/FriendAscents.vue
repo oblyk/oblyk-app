@@ -126,6 +126,7 @@
                 </div>
                 <v-chip
                   :to="modalUser.app_path"
+                  dark
                   x-small
                   outlined
                   class="mt-n6"
