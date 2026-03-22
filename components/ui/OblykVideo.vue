@@ -7,7 +7,8 @@
       ref="videoPlayer"
       class="oblyk-video-player"
       :style="`aspect-ratio: ${aspectRatio}`"
-      preload="metadata"
+      preload="none"
+      :poster="video.thumbnail_url"
       playsinline
       :controls="fullScreen"
       :muted="muted"
