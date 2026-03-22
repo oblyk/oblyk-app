@@ -145,9 +145,16 @@ export default {
 
   methods: {
     initVideoPlayer () {
-      if (this.video.video_metadata) {
-        this.aspectRatio = this.video.video_metadata.display_aspect_ratio.join(' / ')
-        this.duration = this.video.video_metadata.duration
+      if (![undefined, null].includes(this.video.video_metadata)) {
+        if (this.video.video_metadata.width === undefined || this.video.video_metadata.height === undefined) {
+          this.aspectRatio = '4 / 3'
+        } else {
+          const ratio = this.video.video_metadata.width / this.video.video_metadata.height
+          this.aspectRatio = [ratio, '1'].join(' / ')
+        }
+        if (this.video.video_metadata.duration !== undefined) {
+          this.duration = this.video.video_metadata.duration
+        }
       } else {
         this.workInProgress = true
         this.aspectRatio = ' 4 / 3'
