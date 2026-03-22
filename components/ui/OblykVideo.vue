@@ -3,12 +3,18 @@
     class="oblyk-video"
     :class="rounded ? 'rounded-sm' : null"
   >
+    <v-img
+      v-if="thumbnail"
+      :src="video.thumbnail_url"
+      :style="`aspect-ratio: ${aspectRatio}`"
+    />
     <video
       ref="videoPlayer"
       class="oblyk-video-player"
+      :class="thumbnail ? 'd-none' : null"
       :style="`aspect-ratio: ${aspectRatio}`"
       preload="none"
-      :poster="video.thumbnail_url"
+      :poster="thumbnail ? null : video.thumbnail_url"
       playsinline
       :controls="fullScreen"
       :muted="muted"
@@ -122,6 +128,7 @@ export default {
 
   data () {
     return {
+      thumbnail: true,
       play: false,
       fullScreen: false,
       currentTime: 0,
@@ -164,6 +171,7 @@ export default {
     },
 
     playVideo () {
+      this.thumbnail = false
       this.$refs.videoPlayer.play()
       this.ended = false
       this.play = true
