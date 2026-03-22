@@ -1947,37 +1947,37 @@ export default {
       regulations: {
         title: 'Règlement',
         intro: {
-          Gym: "Les publications vous permettes de partager à vos grimpeurs et grimpeuses les dernières ouvertures, prévenir d'un contest, organiser un nettoyage de printemps en falaise, etc.",
-          User: "Les publications vous permettes de partager à vos amis et amies vos récits d'escalades, une réfléxion sur la grimpe, organiser une sortie, etc.",
-          Crag: "Publier sur un site d'escalade vous permettez de partager aux grimpeurs et grimpeuses de ce site des informations d'intérêt général, comme : une prise cassée, la fermeture du site, une nidification, etc.",
-          GuideBookPaper: "Publier sur un topo vous permettez de partager aux grimpeurs et grimpeuses des informations d'intérêt général, comme : un erratum, la publication d'une nouvelle version ou un réapprovisionnement."
+          Gym: "Les publications vous permettent de partager à vos grimpeurs et grimpeuses les dernières ouvertures, prévenir d'un contest, organiser un nettoyage de printemps en falaise, etc.",
+          User: "Les publications vous permettent de partager à vos amis et amies vos récits d'escalades, une réflexion sur la grimpe, organiser une sortie, etc.",
+          Crag: "Publier sur un site d'escalade vous permet de partager aux grimpeurs et grimpeuses de ce site des informations d'intérêt général, comme : une prise cassée, la fermeture du site, une nidification, etc.",
+          GuideBookPaper: "Publier sur un topo vous permet de partager aux grimpeurs et grimpeuses des informations d'intérêt général, comme : un erratum, la publication d'une nouvelle version ou un réapprovisionnement."
         },
-        body: 'Nous nous gardons le droit de supprimer, sans préavis, toutes publications racistes, misogynes, homophobes, discriminantes, ou plus généralement qui ne respect pas le droit Français, ainsi que les publications publicitaires.',
+        body: 'Nous nous gardons le droit de supprimer, sans préavis, toutes les publications racistes, misogynes, homophobes, discriminantes, ou plus généralement qui ne respectent pas le droit français, ainsi que les publications publicitaires.',
         limitation: 'Afin de favoriser la qualité à la quantité, vous ne pouvez pas publier plus de %{count} publication(s) par jour.',
         thanks: 'Merci de votre compréhension.'
       },
       Gym: {
         title: "L'ardoise",
-        noPublication: "%{name} n'as pas encore écrit sur son ardoise, reviens plus tard !",
+        noPublication: "%{name} n'a pas encore écrit sur son ardoise, reviens plus tard !",
         writeLabel: 'Écrire sur mon ardoise ?',
         subject: {
-          create: 'Salle ajouté le %{date}',
+          create: 'Salle ajoutée le %{date}',
           new_video: 'Une nouvelle vidéo ajoutée la semaine du %{week_date} | %{count} nouvelles vidéos ajoutées la semaine du %{week_date}'
         }
       },
       User: {
         title: 'Activités',
-        noPublication: "%{name} n'as encore rien partagé, reviens plus tard !",
-        writeLabel: 'Partager quelque choses ?'
+        noPublication: "%{name} n'a encore rien partagé, reviens plus tard !",
+        writeLabel: 'Partager quelque chose ?'
       },
       CurrentUser: {
         title: 'Mes actualités',
         noPublication: "Suivez des salles, des falaises, des topos ou d'autres grimpeurs et grimpeuses pour voir les dernières actualités ici !",
-        writeLabel: 'Partager quelque choses ?'
+        writeLabel: 'Partager quelque chose ?'
       },
       Crag: {
         title: "Le panneau d'infos",
-        noPublication: "%{name} n'as pas encore d'actualité, reviens plus tard !",
+        noPublication: "%{name} n'a pas encore d'actualité, reviens plus tard !",
         writeLabel: 'Écrire une actualité sur %{name} ?',
         subject: {
           create: 'Site ajouté le %{date}',
@@ -1991,7 +1991,7 @@ export default {
       },
       GuideBookPaper: {
         title: "Le panneau d'infos",
-        noPublication: "%{name} n'as pas encore d'information, reviens plus tard !",
+        noPublication: "%{name} n'a pas encore d'information, reviens plus tard !",
         writeLabel: 'Écrire une information sur %{name} ?',
         subject: {
           create: 'Topo ajouté le %{date}'
@@ -2265,7 +2265,7 @@ export default {
   },
   errors: {
     rules: {
-      max_characters: 'Maximum %{count} characters',
+      max_characters: 'Maximum %{count} caractères',
       email_or_password_suite_not_find: "Pas de compte trouvé pour le mot de passe et l'e-mail donnés",
       is_required: 'est requis(e)',
       is_mandatory: 'est obligatoire',
@@ -2298,7 +2298,7 @@ export default {
       must_be_specified: 'doit être renseigné(e)',
       cannot_be_odd: 'ne peut pas être impair',
       must_have_a_minimum_or_maximum_age_specified: 'doit avoir un age minimum ou maximum de renseigné',
-      posting_limit_for_today: "Vous avez atteinte votre limite de publication pour aujourd'hui",
+      posting_limit_for_today: "Vous avez atteint votre limite de publication pour aujourd'hui",
       too_long: 'est trop long'
     }
   },
@@ -2945,7 +2945,7 @@ export default {
         draft: 'Brouillon',
         create_on_my_compet: 'Contest créé sur MyCompet',
         result_sent: 'Résultat envoyé',
-        result_resent: 'Résultat ré envoyé'
+        result_resent: 'Résultat renvoyé'
       }
     },
     ages: {
@@ -3327,7 +3327,7 @@ export default {
     },
     emailNotifications: {
       new_message: "J'ai un message non lu",
-      new_publication: 'Il y une nouvelle publication',
+      new_publication: 'Il y a une nouvelle publication',
       request_for_follow_up: 'On demande à me suivre',
       new_article: 'Il y a un nouvel article'
     }
