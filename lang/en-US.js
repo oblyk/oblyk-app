@@ -73,6 +73,7 @@ export default {
     dismountAllRoutes: 'Take down all routes',
     createAndPicture: 'Create + Picture',
     finish: 'Finish',
+    replay: 'Replay',
     filter: 'Filter',
     refresh: 'Refresh',
     textCopied: 'Text copied',
@@ -1707,6 +1708,7 @@ export default {
       addWarning: '<u>Note :</u> Photographs or screenshots of the guidebook are not permitted.<br>Thank you for your understanding.'
     },
     video: {
+      workInProgress: 'Optimisation in progress...',
       countInfos: 'One video posted | %{count} videos posted',
       title: 'Videos',
       videoOf: 'Video of',

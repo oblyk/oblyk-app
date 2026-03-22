@@ -73,6 +73,7 @@ export default {
     dismountAllRoutes: 'Démonter toutes les lignes',
     createAndPicture: 'Créer + Photo',
     finish: 'Terminer',
+    replay: 'Rejouer',
     filter: 'Filtrer',
     refresh: 'Rafraîchir',
     textCopied: 'Texte copié',
@@ -1709,6 +1710,7 @@ export default {
       addWarning: '<u>Note :</u> Les photos ou captures de topo ne sont pas autorisées.<br>Merci de votre compréhension.'
     },
     video: {
+      workInProgress: 'Optimisation en cours ...',
       countInfos: 'Une vidéo postée | %{count} vidéos postées',
       title: 'Vidéos',
       videoOf: 'Vidéo de',

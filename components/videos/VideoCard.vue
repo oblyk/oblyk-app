@@ -4,23 +4,12 @@
       v-if="video.video_service !== 'oblyk_video'"
       v-html="video.embedded_code"
     />
-    <div
+    <oblyk-video
       v-else
-      style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;"
-    >
-      <video
-        style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;"
-        controls
-      >
-        <source
-          :src="video.oblyk_video.path"
-          :type="video.oblyk_video.content_type"
-        >
-        <p>
-          {{ $t('components.video.notSupportVideo') }}
-        </p>
-      </video>
-    </div>
+      :video="video"
+      rounded
+      class="mb-1"
+    />
     <div
       v-if="video.description"
       class="caption mb-2"
@@ -59,10 +48,11 @@ import { DateHelpers } from '~/mixins/DateHelpers'
 import OwnerLabel from '@/components/users/OwnerLabel'
 import VideoApi from '~/services/oblyk-api/VideoApi'
 import LikeBtn from '~/components/forms/LikeBtn'
+import OblykVideo from '~/components/ui/OblykVideo'
 
 export default {
   name: 'VideoCard',
-  components: { LikeBtn, OwnerLabel },
+  components: { OblykVideo, LikeBtn, OwnerLabel },
   mixins: [DateHelpers],
   props: {
     video: {
