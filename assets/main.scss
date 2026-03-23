@@ -455,10 +455,14 @@ strong {
 
 .theme--dark {
   .page-header-sheet {
+    background-color: #121212;
+    .v-tabs .v-tabs-bar {
+      background-color: #121212;
+    }
     .page-header-sheet-content {
       h1 {
         &:before {
-          background: linear-gradient(90deg,rgba(0, 0, 0, 0) 0%, #1e1e1e 90%);
+          background: linear-gradient(90deg,rgba(0, 0, 0, 0) 0%, #121212 90%);
         }
       }
     }
