@@ -378,12 +378,10 @@ export default {
   data () {
     return {
       loadingAction: false,
-      gym: this.publication.gym,
-      user: this.publication.user,
       showComments: false,
       iframeDialog: false,
       iframeCode: null,
-      title: `Publication de ${this.publication.owner_name}`,
+      title: `Publication de ${this.publication.publishable.name}`,
       url: `${process.env.VUE_APP_OBLYK_APP_URL}/publications/${this.publication.id}`,
       embedHref: `${process.env.VUE_APP_OBLYK_APP_URL}${this.publication.publishable.app_path}/publications`,
       copied: false,
