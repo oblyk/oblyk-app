@@ -1804,7 +1804,7 @@ export default {
       waitingFollowers: 'Un·e abonné·e attend votre confirmation | %{count} abonné·es attendent votre confirmation',
       explainLocalization: 'Active la localisation pour accéder rapidement aux sites, salles et grimpeurs autour de toi.',
       emptyLogbook: "%{name} n'a pas de croix dans son carnet",
-      seeMyPublicProfile: 'Voir mon profil public',
+      seeMyPublicProfile: 'Ma page public',
       updateEmailReport: 'Mes inscriptions aux rapports mensuels de mes salles',
       mutualFriend: '1 ami·e en commun | %{count} ami·es en commun',
       youMayBeFamiliarWith: 'Vous pourriez connaître ...',

@@ -7,25 +7,6 @@
     </v-list-item>
     <v-divider />
 
-    <!-- Notification -->
-    <v-list-item :to="`/notifications`">
-      <v-list-item-icon>
-        <v-badge
-          :value="haveNewNotification"
-          color="red"
-          dot
-          overlap
-        >
-          <v-icon>
-            {{ mdiBell }}
-          </v-icon>
-        </v-badge>
-      </v-list-item-icon>
-      <v-list-item-title>
-        {{ $t('components.layout.appBar.user.notification') }}
-      </v-list-item-title>
-    </v-list-item>
-
     <!-- Messenger -->
     <v-list-item to="/home/messenger">
       <v-list-item-icon>
@@ -74,11 +55,22 @@
       </v-list-item-title>
     </v-list-item>
     <v-divider />
+    <v-list-item :to="`/climbers/${$auth.user.slug_name}`">
+      <v-list-item-icon>
+        <v-icon>
+          {{ mdiEarth }}
+        </v-icon>
+      </v-list-item-icon>
+      <v-list-item-title>
+        {{ $t('components.user.seeMyPublicProfile') }}
+      </v-list-item-title>
+    </v-list-item>
+    <v-divider />
   </div>
 </template>
 
 <script>
-import { mdiForum, mdiAccountCircle, mdiPanorama, mdiCog, mdiBell } from '@mdi/js'
+import { mdiForum, mdiAccountCircle, mdiPanorama, mdiCog, mdiEarth } from '@mdi/js'
 
 export default {
   name: 'AppBarProfil',
@@ -89,13 +81,7 @@ export default {
       mdiAccountCircle,
       mdiPanorama,
       mdiCog,
-      mdiBell
-    }
-  },
-
-  computed: {
-    haveNewNotification () {
-      return this.$store.state.notification.newNotification
+      mdiEarth
     }
   }
 }

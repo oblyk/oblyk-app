@@ -1802,7 +1802,7 @@ export default {
       waitingFollowers: 'One subscriber is waiting for your confirmation | %{count} subscribers are waiting for your confirmation',
       explainLocalization: 'Activate the location to quickly access the crags, gyms and climbers around you.',
       emptyLogbook: '%{name} has no ascents in their logbook',
-      seeMyPublicProfile: 'See my public profile',
+      seeMyPublicProfile: 'My public profile',
       updateEmailReport: "My subscriptions to my climbing gyms' monthly reports",
       mutualFriend: '1 mutual friend | %{count} mutual friends',
       youMayBeFamiliarWith: 'You may be familiar with ...',

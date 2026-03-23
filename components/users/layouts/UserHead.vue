@@ -33,44 +33,6 @@
           <small class="text--disabled">
             @{{ user.slug_name }}
           </small>
-          <v-menu v-if="itsMe">
-            <template #activator="{ on, attrs }">
-              <v-btn
-                icon
-                x-small
-                v-bind="attrs"
-                v-on="on"
-              >
-                <v-icon small>
-                  {{ mdiDotsVertical }}
-                </v-icon>
-              </v-btn>
-            </template>
-            <v-list>
-              <v-list-item :to="`${user.userPath}`">
-                <v-list-item-title>
-                  {{ $t('components.user.seeMyPublicProfile') }}
-                </v-list-item-title>
-              </v-list-item>
-              <v-divider />
-              <v-list-item :to="`${user.currentUserPath}/settings/general`">
-                <v-list-item-title>
-                  {{ $t('actions.editMyProfile') }}
-                </v-list-item-title>
-              </v-list-item>
-              <v-list-item :to="`${user.currentUserPath}/settings/avatar`">
-                <v-list-item-title>
-                  {{ $t('actions.changeAvatar') }}
-                </v-list-item-title>
-              </v-list-item>
-              <v-list-item :to="`${user.currentUserPath}/settings/banner`">
-                <v-list-item-title>
-                  {{ $t('actions.changeBanner') }}
-                </v-list-item-title>
-              </v-list-item>
-            </v-list>
-          </v-menu>
-
           <v-btn
             text
             x-small
