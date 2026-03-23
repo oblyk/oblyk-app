@@ -12,9 +12,13 @@
         {{ $t('components.loadMore.loadMore') }}
       </span>
     </v-btn>
-    <div v-if="skeletonType === 'photos'">
+    <div v-if="$slots.customSkeleton">
+      <slot name="customSkeleton" />
+    </div>
+    <div v-else-if="skeletonType === 'photos'">
       <v-skeleton-loader
         type="image"
+        class="rounded-0"
         style="aspect-ratio: 1"
         tile
         width="100%"
@@ -23,7 +27,7 @@
     <div v-else>
       <v-skeleton-loader
         v-if="loadingMore"
-        class="mx-auto"
+        class="mx-auto rounded-0"
         :type="skeletonType"
       />
     </div>

@@ -96,8 +96,19 @@
         :get-function="getPublications"
         :loading-more="loadingMoreData"
         :no-more-data="noMoreDataToLoad"
-        skeleton-type="list-item-three-line"
-      />
+      >
+        <template #customSkeleton>
+          <v-sheet
+            v-for="skeletonIndex in 2"
+            :key="`skeleton-index-${skeletonIndex}`"
+            class="pt-2 rounded mb-3"
+          >
+            <v-skeleton-loader type="list-item-avatar" class="mb-3" />
+            <v-skeleton-loader type="paragraph" class="mx-3 rounded-0" />
+            <v-skeleton-loader type="actions" />
+          </v-sheet>
+        </template>
+      </loading-more>
       <v-sheet
         v-if="publications.length === 0 && !loadingPublications"
         class="text-center text--disabled font-italic pa-4 rounded"
