@@ -1941,8 +1941,8 @@ export default {
       placeholder: {
         Gym: 'Share a new route? A competition? A cliff clean-up?',
         User: 'Share a climbing story? A reflection on climbing?',
-        Crag: 'Write about : a nesting issue? A broken hold? The closure of an sector?',
-        GuideBookPaper: 'Write about : a new version? A restock? A correction?'
+        Crag: 'Write about: a nesting issue? A broken hold? The closure of a sector?',
+        GuideBookPaper: 'Write about: a new version? A restock? A correction?'
       },
       regulations: {
         title: 'Regulations',
@@ -1958,7 +1958,7 @@ export default {
       },
       Gym: {
         title: 'Blackboard',
-        noPublication: "%{name}  hasn't written on his blackboard yet, come back later. ",
+        noPublication: "%{name} hasn't written on their blackboard yet, come back later.",
         writeLabel: 'Write on my blackboard?',
         subject: {
           create: 'Gym added on %{date}',
@@ -1978,7 +1978,7 @@ export default {
       Crag: {
         title: 'Information board',
         noPublication: "%{name} doesn't have any news yet, please come back later.",
-        writeLabel: 'Write a news on %{name}?',
+        writeLabel: 'Write news about %{name}?',
         subject: {
           create: 'Crag added on %{date}',
           new_alert: 'Alert created on %{date}',
@@ -1992,9 +1992,9 @@ export default {
       GuideBookPaper: {
         title: 'Information board',
         noPublication: "%{name} doesn't have any information yet, please come back later!",
-        writeLabel: 'Write information about %{name} ?',
+        writeLabel: 'Write information about %{name}?',
         subject: {
-          create: 'Guide book add on %{date}'
+          create: 'Guide book added on %{date}'
         }
       },
       Article: {
