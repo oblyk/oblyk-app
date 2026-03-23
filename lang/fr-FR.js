@@ -1964,7 +1964,7 @@ export default {
         writeLabel: 'Écrire sur mon ardoise ?',
         subject: {
           create: 'Salle ajoutée le %{date}',
-          new_video: 'Une nouvelle vidéo ajoutée la semaine du %{week_date} | %{count} nouvelles vidéos ajoutées la semaine du %{week_date}'
+          new_video: 'Une nouvelle vidéo posté le %{date} | %{count} nouvelles vidéos postées le %{date}'
         }
       },
       User: {
@@ -1987,8 +1987,8 @@ export default {
           new_guide_book_web: 'Topo web ajouté le %{date}',
           new_guide_book_pdf: 'Topo PDF ajouté le %{date}',
           new_crag_routes: 'Une ligne ajoutée la semaine du %{week_date} | %{count} lignes ajoutées la semaine du %{week_date}',
-          new_photo: 'Une photo ajoutée la semaine du %{week_date} | %{count} photos ajoutées la semaine du %{week_date}',
-          new_video: 'Une vidéo ajoutée la semaine du %{week_date} | %{count} vidéos ajoutées la semaine du %{week_date}'
+          new_photo: 'Une photo ajoutée le %{date} | %{count} photos ajoutées le %{date}',
+          new_video: 'Une vidéo ajoutée le %{date} | %{count} vidéos ajoutées le %{date}'
         }
       },
       GuideBookPaper: {

@@ -1962,7 +1962,7 @@ export default {
         writeLabel: 'Write on my blackboard?',
         subject: {
           create: 'Gym added on %{date}',
-          new_video: 'One video added during the week of %{week_date} | %{count} videos added during the week of %{week_date}'
+          new_video: 'One video posted on %{week_date} | %{count} videos posted on %{week_date}'
         }
       },
       User: {
@@ -1985,8 +1985,8 @@ export default {
           new_guide_book_web: 'Web climbing guide added on %{date}',
           new_guide_book_pdf: 'PDF climbing guide added on %{date}',
           new_crag_routes: 'One route added during the week of %{week_date} | %{count} routes added during the week of %{week_date}',
-          new_photo: 'One picture added during the week of %{week_date} | %{count} pictures added during the week of %{week_date}',
-          new_video: 'One video added during the week of %{week_date} | %{count} videos added during the week of %{week_date}'
+          new_photo: 'One picture added during the week of %{date} | %{count} pictures added during the week of %{date}',
+          new_video: 'One video added during the week of %{date} | %{count} videos added during the week of %{date}'
         }
       },
       GuideBookPaper: {
