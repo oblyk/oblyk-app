@@ -3,6 +3,7 @@
     :title="guideBookPaper.name"
     :back-to="backTo || '/outdoor'"
     :links="headerLinks"
+    :refresh-key="unreadPublicationCount"
   />
 </template>
 <script>

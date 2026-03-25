@@ -3,6 +3,7 @@
     :title="user.full_name"
     :back-to="backTo || '/community'"
     :links="headerLinks"
+    :refresh-key="unreadPublicationCount"
   />
 </template>
 <script>

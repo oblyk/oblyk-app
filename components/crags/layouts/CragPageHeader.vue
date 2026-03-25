@@ -3,6 +3,7 @@
     :title="crag.name"
     :back-to="backTo || '/outdoor'"
     :links="headerLinks"
+    :refresh-key="unreadPublicationCount"
   >
     <template #title>
       <h1 class="text-h6 font-weight-black text-no-wrap">
