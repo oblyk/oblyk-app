@@ -5,20 +5,33 @@ class OblykApi {
     this.axios = axios
     this.auth = auth
     this.apiAccessToken = process.env.VUE_APP_OBLYK_API_ACCESS_TOKEN
+    this.tokenApiRequest = null
   }
 
-  get (url, params = {}) {
+  get (url, params = {}, options = {}) {
     return new Promise((resolve, reject) => {
+      const requestOptions = this.mergeOptions(options)
+
+      // Construct request url, param, methode, etc.
+      const request = {
+        url: `${process.env.VUE_APP_OBLYK_API_URL}/api/v1${url}.json`,
+        headers: {
+          Authorization: this.auth.loggedIn ? this.auth.$storage.getUniversal('_token.local') : null,
+          HttpApiAccessToken: this.apiAccessToken
+        },
+        method: 'GET',
+        params
+      }
+
+      // If request is cancelable, we include cancel token to request options
+      if (requestOptions.cancelable) {
+        const CancelToken = this.axios.CancelToken
+        this.tokenApiRequest = CancelToken.source()
+        request.cancelToken = this.tokenApiRequest.token
+      }
+
       this.axios
-        .request({
-          url: `${process.env.VUE_APP_OBLYK_API_URL}/api/v1${url}.json`,
-          headers: {
-            Authorization: this.auth.loggedIn ? this.auth.$storage.getUniversal('_token.local') : null,
-            HttpApiAccessToken: this.apiAccessToken
-          },
-          method: 'GET',
-          params
-        })
+        .request(request)
         .then((response) => {
           if (response.data?.json_type === 'jsonapi.org') {
             resolve({ data: new Jsona().deserialize(response.data) })
@@ -67,6 +80,19 @@ class OblykApi {
           reject(error)
         })
     })
+  }
+
+  cancelApiRequest () {
+    if (this.tokenApiRequest) {
+      this.tokenApiRequest.cancel()
+    }
+  }
+
+  mergeOptions (options) {
+    const defaultOptions = {
+      cancelable: false
+    }
+    return { ...defaultOptions, ...options }
   }
 }
 

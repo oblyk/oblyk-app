@@ -11,7 +11,7 @@
     <v-card-text>
       <spinner v-if="loadingArticles" :full-height="false" />
       <div v-if="!loadingArticles">
-        <article-feed-card
+        <article-card
           v-for="article in articles"
           :key="article.id"
           :article="article"
@@ -29,11 +29,11 @@ import { mdiNewspaperVariantMultiple } from '@mdi/js'
 import Spinner from '@/components/layouts/Spiner'
 import CragApi from '~/services/oblyk-api/CragApi'
 import Article from '@/models/Article'
-import ArticleFeedCard from '@/components/articles/ArticleFeedCard'
+import ArticleCard from '~/components/articles/ArticleCard'
 
 export default {
   name: 'CragArticles',
-  components: { ArticleFeedCard, Spinner },
+  components: { ArticleCard, Spinner },
   props: {
     crag: {
       type: Object,

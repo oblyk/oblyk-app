@@ -2,7 +2,7 @@
   <div>
     <spinner v-if="loadingVersions" />
 
-    <v-container v-if="!loadingVersions">
+    <v-container v-else>
       <close-form />
       <div
         v-for="(versionItem, versionIndex) in version.versions"
@@ -22,7 +22,7 @@
         </p>
         <div class="pl-5">
           <div
-            v-for="(change, changeIndex) in version.changes"
+            v-for="(change, changeIndex) in versionItem.changes"
             :key="`version-${versionIndex}-${changeIndex}`"
           >
             <table
@@ -74,12 +74,7 @@ import { mdiArrowRight } from '@mdi/js'
 import { DateHelpers } from '@/mixins/DateHelpers'
 import Spinner from '@/components/layouts/Spiner'
 import CloseForm from '@/components/forms/CloseForm'
-import WordApi from '@/services/oblyk-api/WordApi'
-import CragApi from '@/services/oblyk-api/CragApi'
-import GuideBookPaperApi from '@/services/oblyk-api/GuideBookPaperApi'
-import GymApi from '@/services/oblyk-api/GymApi'
-import CragSectorApi from '@/services/oblyk-api/CragSectorApi'
-import CragRouteApi from '@/services/oblyk-api/CragRouteApi'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 
 export default {
   name: 'VersionsView',
@@ -88,11 +83,11 @@ export default {
 
   data () {
     return {
-      mdiArrowRight,
       version: {},
       loadingVersions: true,
       versionType: this.$route.params.versionType,
-      versionId: this.$route.params.versionId
+
+      mdiArrowRight
     }
   },
 
@@ -111,19 +106,19 @@ export default {
 
   methods: {
     getVersion () {
-      if (this.versionType === 'word') {
-        new WordApi(this.$axios, this.$auth).versions(this.versionId).then((resp) => { this.version = resp.data }).finally(() => { this.loadingVersions = false })
-      } else if (this.versionType === 'crag') {
-        new CragApi(this.$axios, this.$auth).versions(this.versionId).then((resp) => { this.version = resp.data }).finally(() => { this.loadingVersions = false })
-      } else if (this.versionType === 'cragSector') {
-        new CragSectorApi(this.$axios, this.$auth).versions(this.versionId).then((resp) => { this.version = resp.data }).finally(() => { this.loadingVersions = false })
-      } else if (this.versionType === 'cragRoute') {
-        new CragRouteApi(this.$axios, this.$auth).versions(this.versionId).then((resp) => { this.version = resp.data }).finally(() => { this.loadingVersions = false })
-      } else if (this.versionType === 'guideBookPaper') {
-        new GuideBookPaperApi(this.$axios, this.$auth).versions(this.versionId).then((resp) => { this.version = resp.data }).finally(() => { this.loadingVersions = false })
-      } else if (this.versionType === 'gym') {
-        new GymApi(this.$axios, this.$auth).versions(this.versionId).then((resp) => { this.version = resp.data }).finally(() => { this.loadingVersions = false })
+      const objectId = this.$route.params.versionId
+      const apiUrl = {
+        word: `/public/words/${objectId}/versions`,
+        crag: `/public/crags/${objectId}/versions`,
+        cragSector: `/public/crag_sectors/${objectId}/versions`,
+        cragRoute: `/public/crag_routes/${objectId}/versions`,
+        guideBookPaper: `/public/guide_book_papers/${objectId}/versions`,
+        gym: `/gyms/${objectId}/versions`
       }
+      new OblykApi(this.$axios, this.$auth)
+        .get(apiUrl[this.versionType])
+        .then((resp) => { this.version = resp.data })
+        .finally(() => { this.loadingVersions = false })
     },
 
     changeValue (change, key) {

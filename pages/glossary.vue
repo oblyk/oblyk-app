@@ -1,13 +1,19 @@
 <template>
   <div>
-    <v-container v-if="loadingGlossary" class="glossary-width">
+    <v-container
+      v-if="loadingGlossary"
+      style="max-width: 700px;"
+    >
       <v-skeleton-loader
         class="mx-auto mb-3"
         type="list-item-three-line"
       />
     </v-container>
 
-    <v-container v-if="!loadingGlossary" class="glossary-width">
+    <v-container
+      v-else
+      style="max-width: 700px;"
+    >
       <v-row>
         <v-col>
           <h1>
@@ -87,11 +93,10 @@
 </template>
 <script>
 import { LoadingMoreHelpers } from '@/mixins/LoadingMoreHelpers'
-import WordApi from '@/services/oblyk-api/WordApi'
-import Word from '@/models/Word'
 import WordCard from '@/components/words/WordCard'
 import LoadingMore from '@/components/layouts/LoadingMore'
 import AppFooter from '@/components/layouts/AppFooter'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 
 export default {
   components: { AppFooter, LoadingMore, WordCard },
@@ -108,7 +113,7 @@ export default {
       searchTimeOut: null,
       searchResults: [],
       words: [],
-      wordApi: null
+      oblykApi: null
     }
   },
 
@@ -144,11 +149,11 @@ export default {
   methods: {
     getGlossary () {
       this.moreIsBeingLoaded()
-      new WordApi(this.$axios, this.$auth)
-        .all(this.page)
+      new OblykApi(this.$axios, this.$auth)
+        .get('/public/words', { page: this.page })
         .then((resp) => {
           for (const word of resp.data) {
-            this.glossary.push(new Word({ attributes: word }))
+            this.glossary.push(word)
           }
           this.successLoadingMore(resp)
         })
@@ -181,17 +186,17 @@ export default {
     },
 
     getSearch () {
-      this.wordApi = this.wordApi || new WordApi(this.$axios, this.$auth)
+      this.oblykApi = this.oblykApi || new OblykApi(this.$axios, this.$auth)
 
       // cancel previous search
-      this.wordApi.cancelSearch()
+      this.oblykApi.cancelApiRequest()
 
-      this.wordApi
-        .search(this.searchWord)
+      this.oblykApi
+        .get('/public/words/search', { query: this.searchWord }, { cancelable: true })
         .then((resp) => {
           this.searchResults = []
           for (const word of resp.data) {
-            this.searchResults.push(new Word({ attributes: word }))
+            this.searchResults.push(word)
           }
           this.previousSearchWord = this.searchWord
         })
@@ -207,8 +212,3 @@ export default {
   }
 }
 </script>
-<style lang="scss" scoped>
-.glossary-width {
-  max-width: 700px;
-}
-</style>

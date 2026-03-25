@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-container class="article-feed-container">
+    <v-container style="max-width: 900px; min-height: calc(100vh - 420px);">
       <client-only>
         <div
           v-if="$auth.loggedIn && $auth.user.super_admin"
@@ -17,7 +17,18 @@
           </v-btn>
         </div>
       </client-only>
-      <feed feed-api="Article" />
+      <v-skeleton-loader
+        v-if="$fetchState.pending"
+        type="card-avatar"
+      />
+      <div v-else>
+        <article-card
+          v-for="(article, articleIndex) in articles"
+          :key="`article-index-${articleIndex}`"
+          :article="article"
+          class="mb-2"
+        />
+      </div>
     </v-container>
     <app-footer />
   </div>
@@ -25,14 +36,17 @@
 
 <script>
 import { mdiFountainPenTip } from '@mdi/js'
-import Feed from '@/components/feeds/Feed'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 import AppFooter from '@/components/layouts/AppFooter'
+import ArticleCard from '~/components/articles/ArticleCard'
 
 export default {
-  components: { AppFooter, Feed },
+  components: { ArticleCard, AppFooter },
 
   data () {
     return {
+      articles: [],
+
       mdiFountainPenTip
     }
   },
@@ -50,6 +64,14 @@ export default {
     }
   },
 
+  async fetch () {
+    await new OblykApi(this.$axios, this.$auth)
+      .get('/articles')
+      .then((resp) => {
+        this.articles = resp.data
+      })
+  },
+
   head () {
     return {
       title: this.$t('metaTitle'),
@@ -63,10 +85,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.article-feed-container {
-  max-width: 900px;
-  min-height: calc(100vh - 420px);
-}
-</style>

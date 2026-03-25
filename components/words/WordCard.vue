@@ -1,7 +1,7 @@
 <template>
   <v-card
     :link="presentation"
-    :to="presentation ? word.path : null"
+    :to="presentation ? word.app_path : null"
     :flat="flat"
   >
     <v-card-title
@@ -30,7 +30,7 @@
       >
         <v-spacer />
         <v-btn
-          :to="`${word.path}/edit`"
+          :to="`${word.app_path}/edit`"
           right
           text
           color="primary"

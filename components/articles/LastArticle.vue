@@ -13,11 +13,11 @@
     </div>
     <div v-else>
       <div class="last-article-container">
-        <simple-feed-card
-          v-for="(article, index) in articles"
-          :key="`article-card-${index}`"
-          class="mb-4"
-          :feed="article"
+        <article-card
+          v-for="(article, articleIndex) in articles"
+          :key="`article-index-${articleIndex}`"
+          :article="article"
+          class="mb-2"
         />
         <div class="text-right">
           <v-btn
@@ -34,12 +34,12 @@
 </template>
 
 <script>
-import SimpleFeedCard from '@/components/feeds/SimpleFeedCard'
-import ArticleApi from '~/services/oblyk-api/ArticleApi'
+import OblykApi from '~/services/oblyk-api/OblykApi'
+import ArticleCard from '~/components/articles/ArticleCard'
 
 export default {
   name: 'LastArticle',
-  components: { SimpleFeedCard },
+  components: { ArticleCard },
 
   data () {
     return {
@@ -54,8 +54,8 @@ export default {
 
   methods: {
     getLastArticles () {
-      new ArticleApi(this.$axios, this.$auth)
-        .last()
+      new OblykApi(this.$axios, this.$auth)
+        .get('/articles', { page: 1, per_page: 3 })
         .then((resp) => {
           this.articles = resp.data
         })

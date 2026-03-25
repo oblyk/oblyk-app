@@ -64,12 +64,6 @@
           </v-icon>
           {{ $t('components.search.tabs.user') }}
         </v-tab>
-        <v-tab @click="changeCollection(['Word'])">
-          <v-icon left>
-            {{ mdiFormatLetterCase }}
-          </v-icon>
-          {{ $t('components.search.tabs.word') }}
-        </v-tab>
       </v-tabs>
     </div>
 
@@ -89,7 +83,6 @@
             <guide-book-paper-small-card v-if="result.className === 'GuideBookPaper'" :guide-book-paper="result" />
             <user-small-card v-if="result.className === 'User'" :user="result" :small="true" />
             <crag-route-small-card v-if="result.className === 'CragRoute'" :crag-route="result" :small="true" />
-            <word-card v-if="result.className === 'Word'" :flat="true" :small="true" :word="result" />
           </div>
           <loading-more
             v-if="!searching"
@@ -238,14 +231,12 @@ import Area from '@/models/Area'
 import Gym from '@/models/Gym'
 import User from '@/models/User'
 import GuideBookPaper from '@/models/GuideBookPaper'
-import Word from '@/models/Word'
 import SearchApi from '~/services/oblyk-api/SearchApi'
 import CragRoute from '@/models/CragRoute'
 import CragSmallCard from '@/components/crags/CragSmallCard'
 import GymSmallCard from '@/components/gyms/GymSmallCard'
 import UserSmallCard from '@/components/users/UserSmallCard'
 import GuideBookPaperSmallCard from '@/components/guideBookPapers/GuideBookPaperSmallCard'
-import WordCard from '@/components/words/WordCard'
 import CragRouteSmallCard from '@/components/cragRoutes/CragRouteSmallCard'
 import AreaSmallCard from '@/components/areas/AreaSmallCard'
 import Spinner from '~/components/layouts/Spiner'
@@ -258,7 +249,6 @@ export default {
     Spinner,
     AreaSmallCard,
     CragRouteSmallCard,
-    WordCard,
     GuideBookPaperSmallCard,
     UserSmallCard,
     GymSmallCard,
@@ -407,7 +397,6 @@ export default {
             if (result.result_type === 'GuideBookPaper') { this.results[data.query].results.push(new GuideBookPaper({ attributes: result.result_object })) }
             if (result.result_type === 'User') { this.results[data.query].results.push(new User({ attributes: result.result_object })) }
             if (result.result_type === 'CragRoute') { this.results[data.query].results.push(new CragRoute({ attributes: result.result_object })) }
-            if (result.result_type === 'Word') { this.results[data.query].results.push(new Word({ attributes: result.result_object })) }
             if (result.result_type === 'Area') { this.results[data.query].results.push(new Area({ attributes: result.result_object })) }
           }
           if (data.results.length < 25) {

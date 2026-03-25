@@ -21,14 +21,6 @@ class CragSectorApi extends BaseApi {
     })
   }
 
-  versions (cragSectorId) {
-    return this.axios.request({
-      method: 'GET',
-      url: `${this.baseUrl}/public/crag_sectors/${cragSectorId}/versions.json`,
-      headers: { HttpApiAccessToken: this.apiAccessToken }
-    })
-  }
-
   photos (cragSectorId, page = 1) {
     return this.axios.request({
       method: 'GET',

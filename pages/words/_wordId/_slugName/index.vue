@@ -1,10 +1,10 @@
 <template>
   <div>
     <page-header
-      :title="word?.name"
+      :title="word?.name ?? '...'"
       back-to="/glossary"
     />
-    <v-container class="glossary-width">
+    <v-container style="max-width: 700px; min-height: calc(100vh - 420px);">
       <v-row>
         <v-col>
           <div v-if="$fetchState.pending">
@@ -36,10 +36,3 @@ export default {
   mixins: [WordConcern]
 }
 </script>
-
-<style lang="scss" scoped>
-.glossary-width {
-  max-width: 700px;
-  min-height: calc(100vh - 420px);
-}
-</style>

@@ -31,11 +31,34 @@
           </v-card>
         </v-col>
       </v-row>
-
-      <h2 class="mt-16">
+      <h2 class="mb-4 text-center mt-16">
         {{ $t('common.pages.enrichOblyk.lastActivity') }}
       </h2>
-      <feed feed-api="OblykActivityApi" />
+      <div style="max-width: 430px" class="mx-auto">
+        <publication-card
+          v-for="(publication, publicationIndex) in publications"
+          :key="`publication-index-${publicationIndex}`"
+          :publication="publication"
+          class="mb-3"
+        />
+        <loading-more
+          :get-function="getContributions"
+          :loading-more="loadingMoreData"
+          :no-more-data="noMoreDataToLoad"
+        >
+          <template #customSkeleton>
+            <v-sheet
+              v-for="skeletonIndex in 2"
+              :key="`skeleton-index-${skeletonIndex}`"
+              class="pt-2 rounded mb-3"
+            >
+              <v-skeleton-loader type="list-item-avatar" class="mb-3" />
+              <v-skeleton-loader type="paragraph" class="mx-3 rounded-0" />
+              <v-skeleton-loader type="actions" />
+            </v-sheet>
+          </template>
+        </loading-more>
+      </div>
     </v-container>
     <app-footer />
   </div>
@@ -44,13 +67,20 @@
 <script>
 import { mdiTerrain, mdiOfficeBuildingMarkerOutline } from '@mdi/js'
 import AppFooter from '~/components/layouts/AppFooter'
-import Feed from '~/components/feeds/Feed'
+import OblykApi from '~/services/oblyk-api/OblykApi'
+import { LoadingMoreHelpers } from '~/mixins/LoadingMoreHelpers'
+import PublicationCard from '~/components/publications/PublicationCard.vue'
+import LoadingMore from '~/components/layouts/LoadingMore.vue'
 
 export default {
-  components: { Feed, AppFooter },
+  components: { LoadingMore, PublicationCard, AppFooter },
+  mixins: [LoadingMoreHelpers],
 
   data () {
     return {
+      loadingPublication: false,
+      publications: [],
+
       mdiTerrain,
       mdiOfficeBuildingMarkerOutline
     }
@@ -70,6 +100,31 @@ export default {
   head () {
     return {
       title: this.$t('metaTitle')
+    }
+  },
+
+  mounted () {
+    this.getContributions()
+  },
+
+  methods: {
+    getContributions () {
+      this.moreIsBeingLoaded()
+      new OblykApi(this.$axios, this.$auth)
+        .get('/last_contributions', { page: this.page, per_page: 5 })
+        .then((resp) => {
+          for (const publication of resp.data) {
+            this.publications.push(publication)
+          }
+          this.successLoadingMore(resp, 5)
+        })
+        .catch(() => {
+          this.failureToLoadingMore()
+        })
+        .finally(() => {
+          this.loadingPublications = false
+          this.finallyMoreIsLoaded()
+        })
     }
   }
 }

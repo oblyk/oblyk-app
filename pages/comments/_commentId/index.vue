@@ -23,7 +23,7 @@
           v-if="comment.commentable_type === 'CragRoute'"
           :crag-route="commentableObject"
         />
-        <article-feed-card
+        <article-card
           v-if="comment.commentable_type === 'Article'"
           :article="commentableObject"
         />
@@ -80,7 +80,7 @@ const AreaSmallCard = () => import('~/components/areas/AreaSmallCard')
 const GuideBookPaperSmallCard = () => import('~/components/guideBookPapers/GuideBookPaperSmallCard')
 const CragRouteSmallCard = () => import('~/components/cragRoutes/CragRouteSmallCard')
 const CragSectorSmallCard = () => import('~/components/cragSectors/CragSectorSmallCard')
-const ArticleFeedCard = () => import('~/components/articles/ArticleFeedCard')
+const ArticleCard = () => import('~/components/articles/ArticleCard')
 const CragSmallCard = () => import('~/components/crags/CragSmallCard')
 
 export default {
@@ -93,7 +93,7 @@ export default {
     GuideBookPaperSmallCard,
     CragRouteSmallCard,
     CragSectorSmallCard,
-    ArticleFeedCard,
+    ArticleCard,
     CragSmallCard
   },
   mixins: [CommentConcern],

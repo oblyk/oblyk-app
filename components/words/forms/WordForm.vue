@@ -22,10 +22,9 @@
 <script>
 import { FormHelpers } from '@/mixins/FormHelpers'
 import SubmitForm from '@/components/forms/SubmitForm'
-import WordApi from '~/services/oblyk-api/WordApi'
 import CloseForm from '@/components/forms/CloseForm'
-import Word from '@/models/Word'
 import MarkdownInput from '@/components/forms/MarkdownInput'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 
 export default {
   name: 'WordForm',
@@ -42,9 +41,9 @@ export default {
   data () {
     return {
       data: {
-        id: (this.word || {}).id,
-        name: (this.word || {}).name,
-        definition: (this.word || {}).definition
+        id: this.word?.id,
+        name: this.word?.name,
+        definition: this.word?.definition
       }
     }
   },
@@ -52,12 +51,13 @@ export default {
   methods: {
     submit () {
       this.submitOverlay = true
-      const promise = (this.isEditingForm()) ? new WordApi(this.$axios, this.$auth).update(this.data) : new WordApi(this.$axios, this.$auth).create(this.data)
+      const promise = (this.isEditingForm())
+        ? new OblykApi(this.$axios, this.$auth).put(`/public/words/${this.word.id}`, this.data)
+        : new OblykApi(this.$axios, this.$auth).post('/public/words', this.data)
 
       promise
         .then((resp) => {
-          const word = new Word({ attributes: resp.data })
-          this.$router.push(word.path)
+          this.$router.push(resp.data.app_path)
         })
         .catch((err) => {
           this.$root.$emit('alertFromApiError', err, 'word')

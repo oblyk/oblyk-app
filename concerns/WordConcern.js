@@ -1,4 +1,4 @@
-import Word from '@/models/Word'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 
 export const WordConcern = {
   data () {
@@ -31,11 +31,10 @@ export const WordConcern = {
   },
 
   async fetch () {
-    this.word = await new Word({
-      axios: this.$axios,
-      auth: this.$auth
-    })._find(
-      this.$route.params.wordId
-    )
+    await new OblykApi(this.$axios, this.$auth)
+      .get(`/public/words/${this.$route.params.wordId}`)
+      .then((resp) => {
+        this.word = resp.data
+      })
   }
 }

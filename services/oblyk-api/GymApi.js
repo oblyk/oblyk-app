@@ -17,14 +17,6 @@ class GymApi extends BaseApi {
     })
   }
 
-  versions (gymId) {
-    return this.axios.request({
-      method: 'GET',
-      url: `${this.baseUrl}/gyms/${gymId}/versions.json`,
-      headers: { HttpApiAccessToken: this.apiAccessToken }
-    })
-  }
-
   routesCount (gymId) {
     return this.axios.request({
       method: 'GET',

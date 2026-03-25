@@ -24,14 +24,6 @@ class GuideBookPaperApi extends BaseApi {
     })
   }
 
-  versions (guideBookPaperId) {
-    return this.axios.request({
-      method: 'GET',
-      url: `${this.baseUrl}/public/guide_book_papers/${guideBookPaperId}/versions.json`,
-      headers: { HttpApiAccessToken: this.apiAccessToken }
-    })
-  }
-
   search (query) {
     const CancelToken = this.axios.CancelToken
     this.tokenSearchSource = CancelToken.source()

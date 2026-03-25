@@ -133,14 +133,6 @@ class CragRouteApi extends BaseApi {
     })
   }
 
-  versions (cragRouteId) {
-    return this.axios.request({
-      method: 'GET',
-      url: `${this.baseUrl}/public/crag_routes/${cragRouteId}/versions.json`,
-      headers: { HttpApiAccessToken: this.apiAccessToken }
-    })
-  }
-
   photos (cragRouteId, page = 1) {
     return this.axios.request({
       method: 'GET',
