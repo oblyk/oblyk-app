@@ -25,9 +25,9 @@
 <script>
 import { FormHelpers } from '@/mixins/FormHelpers'
 import SubmitForm from '@/components/forms/SubmitForm'
-import AlertApi from '~/services/oblyk-api/AlertApi'
 import CloseForm from '@/components/forms/CloseForm'
 import MarkdownInput from '@/components/forms/MarkdownInput'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 
 export default {
   name: 'AlertForm',
@@ -44,11 +44,11 @@ export default {
     return {
       redirectTo: null,
       data: {
-        id: (this.alert || {}).id,
-        description: (this.alert || {}).description,
-        alert_type: (this.alert || {}).alert_type,
-        alertable_type: (this.alert || {}).alertable_type || this.$route.params.alertableType,
-        alertable_id: (this.alert || {}).alertable_id || this.$route.params.alertableId
+        id: this.alert?.id,
+        description: this.alert?.description,
+        alert_type: this.alert?.alert_type,
+        alertable_type: this.alert?.alertable_type ?? this.$route.params.alertableType,
+        alertable_id: this.alert?.alertable_id ?? this.$route.params.alertableId
       },
       alertTypes: [
         { value: 'good', text: this.$t('components.alert.types.good') },
@@ -68,7 +68,9 @@ export default {
   methods: {
     submit () {
       this.submitOverlay = true
-      const promise = (this.isEditingForm()) ? new AlertApi(this.$axios, this.$auth).update(this.data) : new AlertApi(this.$axios, this.$auth).create(this.data)
+      const promise = this.isEditingForm()
+        ? new OblykApi(this.$axios, this.$auth).put(`/alerts/${this.data.id}`, this.data)
+        : new OblykApi(this.$axios, this.$auth).post('/alerts', this.data)
 
       promise
         .then(() => {

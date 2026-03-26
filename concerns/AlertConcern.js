@@ -1,4 +1,4 @@
-import Alert from '@/models/Alert'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 
 export const AlertConcern = {
   data () {
@@ -15,10 +15,10 @@ export const AlertConcern = {
   methods: {
     getAlert () {
       this.loadingAlert = true
-      new Alert({ axios: this.$axios, auth: this.$auth })
-        ._find(this.$route.params.alertId)
+      new OblykApi(this.$axios, this.$auth)
+        .get(`/alerts/${this.$route.params.alertId}`)
         .then((resp) => {
-          this.alert = resp
+          this.alert = resp.data
         })
         .catch((err) => {
           this.$root.$emit('alertFromApiError', err, 'alert')

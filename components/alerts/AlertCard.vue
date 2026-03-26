@@ -38,7 +38,7 @@
 
         <v-btn
           icon
-          :to="`${alert.path}/edit?redirect_to=${$route.fullPath}`"
+          :to="`${alert.app_path}/edit?redirect_to=${$route.fullPath}`"
         >
           <v-icon small>
             {{ mdiPencil }}
@@ -51,7 +51,7 @@
 
 <script>
 import { mdiDelete, mdiPencil } from '@mdi/js'
-import AlertApi from '~/services/oblyk-api/AlertApi'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 const MarkdownText = () => import('@/components/ui/MarkdownText')
 
 export default {
@@ -78,8 +78,8 @@ export default {
   methods: {
     deleteAlert () {
       if (confirm(this.$t('actions.areYouSur'))) {
-        new AlertApi(this.$axios, this.$auth)
-          .delete(this.alert.id)
+        new OblykApi(this.$axios, this.$auth)
+          .delete(`/alerts/${this.alert.id}`)
           .then(() => {
             this.getAlerts()
           })

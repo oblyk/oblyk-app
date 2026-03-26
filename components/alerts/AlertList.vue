@@ -12,8 +12,7 @@
 
 <script>
 import AlertCard from '@/components/alerts/AlertCard'
-import AlertApi from '~/services/oblyk-api/AlertApi'
-import Alert from '@/models/Alert'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 
 export default {
   name: 'AlertList',
@@ -42,14 +41,17 @@ export default {
   methods: {
     getAlerts () {
       this.alerts = []
-      new AlertApi(this.$axios, this.$auth)
-        .all(
-          this.objectType,
-          this.objectId
+      new OblykApi(this.$axios, this.$auth)
+        .get(
+          '/alerts',
+          {
+            alertable_type: this.objectType,
+            alertable_id: this.objectId
+          }
         )
         .then((resp) => {
           for (const alert of resp.data) {
-            this.alerts.push(new Alert({ attributes: alert }))
+            this.alerts.push(alert)
           }
         })
     }
