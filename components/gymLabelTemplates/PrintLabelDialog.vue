@@ -4,9 +4,9 @@
     width="450"
   >
     <v-card>
-      <v-card-title class="d-flex">
+      <v-card-title class="pl-2 d-flex">
         <div>
-          <v-icon left>
+          <v-icon left color="primary">
             {{ mdiPrinter }}
           </v-icon>
           {{ $t('actions.print') }}
@@ -121,13 +121,56 @@
           </v-btn>
         </div>
       </div>
+      <v-card-title class="mt-4 px-2 d-flex">
+        <div>
+          <v-icon color="primary" left>
+            {{ mdiDotsCircle }}
+          </v-icon>
+          Modèle communautaire
+        </div>
+        <v-chip
+          small
+          color="blue"
+          dark
+          class="ml-auto"
+        >
+          <v-icon small left>
+            {{ mdiFlask }}
+          </v-icon>
+          Beta
+        </v-chip>
+      </v-card-title>
+      <v-card-text class="pa-2">
+        <v-list-item class="border rounded-sm">
+          <v-list-item-avatar>
+            <v-img contain src="/images/disc-chart.png" alt="Impression en disque" />
+          </v-list-item-avatar>
+          <v-list-item-content>
+            <v-list-item-title>Impression en disque</v-list-item-title>
+            <v-list-item-subtitle>Disque de 14cm de diamètre</v-list-item-subtitle>
+          </v-list-item-content>
+          <v-list-item-action>
+            <v-btn
+              :loading="loadingDisk"
+              large
+              icon
+              @click="getCommunityDisk"
+            >
+              <v-icon>
+                {{ mdiDownload }}
+              </v-icon>
+            </v-btn>
+          </v-list-item-action>
+        </v-list-item>
+      </v-card-text>
     </v-card>
   </v-dialog>
 </template>
 
 <script>
-import { mdiPrinter, mdiClose } from '@mdi/js'
+import { mdiPrinter, mdiClose, mdiFlask, mdiDotsCircle, mdiDownload } from '@mdi/js'
 import GymLabelTemplate from '~/models/GymLabelTemplate'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 
 export default {
   name: 'PrintLabelDialog',
@@ -151,6 +194,7 @@ export default {
       routeIds: [],
       groupBy: 'sector',
       sortBy: 'grade.asc',
+      loadingDisk: false,
       routesByPage: 7,
 
       sortItems: [
@@ -163,7 +207,10 @@ export default {
       ],
 
       mdiPrinter,
-      mdiClose
+      mdiClose,
+      mdiFlask,
+      mdiDotsCircle,
+      mdiDownload
     }
   },
 
@@ -229,6 +276,26 @@ export default {
       const route = this.$router.resolve({ path: `${label.path}/print`, query })
       window.open(route.href, '_blank')
       this.dialog = false
+    },
+
+    getCommunityDisk () {
+      this.loadingDisk = true
+      const params = this.routeIds.length > 0 ? { ids: this.routeIds } : { sector_id: this.sectorId }
+      new OblykApi(this.$axios, this.$auth)
+        .get(`/gyms/${this.gym.id}/gym_community_labels/disc_chart`, params)
+        .then((resp) => {
+          const filename = resp.headers['x-filename']
+          const blob = new Blob([resp.data], { type: 'application/pdf' })
+          const url = window.URL.createObjectURL(blob)
+          const link = document.createElement('a')
+          link.href = url
+          link.download = filename
+          link.click()
+          window.URL.revokeObjectURL(url)
+        })
+        .finally(() => {
+          this.loadingDisk = false
+        })
     }
   }
 }
