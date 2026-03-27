@@ -89,14 +89,14 @@ import L from 'leaflet'
 import { LControl, LControlZoom, LGeoJson, LTileLayer } from 'vue2-leaflet'
 import { EditableMap, EditablePolyline } from 'vue2-leaflet-editable'
 import { FormHelpers } from '@/mixins/FormHelpers'
-import ApproachApi from '@/services/oblyk-api/ApproachApi'
+import { MapMarkerHelpers } from '@/mixins/MapMarkerHelpers'
+import { MapPopupHelpers } from '@/mixins/MapPopupHelpers'
 import Spinner from '@/components/layouts/Spiner'
 import SubmitForm from '@/components/forms/SubmitForm'
 import LeafletLayerSelector from '@/components/maps/leafletControls/LeafletLayerSelector'
 import 'leaflet/dist/leaflet.css'
-import { MapMarkerHelpers } from '@/mixins/MapMarkerHelpers'
-import { MapPopupHelpers } from '@/mixins/MapPopupHelpers'
 import ApproachTypeInput from '@/components/forms/ApproachTypeInput'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 
 export default {
   name: 'ApproachFrom',
@@ -142,11 +142,11 @@ export default {
       geoJsons: [],
       newApproachPolyline: null,
       data: {
-        id: (this.approach || {}).id,
-        description: (this.approach || {}).description,
-        polyline: (this.approach || {}).polyline,
-        approach_type: (this.approach || {}).approach_type,
-        crag_id: (this.approach || {}).crag_id || this.crag.id
+        id: this.approach?.id,
+        description: this.approach?.description,
+        polyline: this.approach?.polyline,
+        approach_type: this.approach?.approach_type,
+        crag_id: this.approach?.crag_id ?? this.crag.id
       },
       layerIndex: 0,
       layers: [
@@ -226,13 +226,16 @@ export default {
         }
       }
 
-      const promise = (this.isEditingForm()) ? new ApproachApi(this.$axios, this.$auth).update(this.data) : new ApproachApi(this.$axios, this.$auth).create(this.data)
+      const promise = this.isEditingForm()
+        ? new OblykApi(this.$axios, this.$auth).put(`/public/crags/${this.data.crag_id}/approaches/${this.data.id}`, this.data)
+        : new OblykApi(this.$axios, this.$auth).post(`/public/crags/${this.data.crag_id}/approaches`, this.data)
+
       promise
         .then((resp) => {
           if (this.callback) {
             this.callback(resp.data)
           } else {
-            this.$router.push(`${this.crag.path}/maps`)
+            this.$router.push(`${this.crag.app_path}/maps`)
           }
         })
         .catch((err) => {
@@ -253,11 +256,11 @@ export default {
 
     getGeoJsonAround () {
       this.loadingGeoJson = true
-      const approachId = (this.isEditingForm() ? this.approach.id : null)
-      new ApproachApi(this.$axios, this.$auth)
-        .geoJsonAround(
-          this.data.crag_id,
-          approachId
+      const approachId = this.isEditingForm() ? this.approach.id : null
+      new OblykApi(this.$axios, this.$auth)
+        .get(
+          `/public/crags/${this.data.crag_id}/approaches/geo_json_around`,
+          { exclude_id: approachId }
         )
         .then((resp) => {
           this.geoJsons = { features: resp.data.features }

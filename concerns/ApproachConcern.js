@@ -1,4 +1,4 @@
-import Approach from '@/models/Approach'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 
 export const ApproachConcern = {
   data () {
@@ -8,12 +8,10 @@ export const ApproachConcern = {
   },
 
   async fetch () {
-    this.approach = await new Approach({
-      axios: this.$axios,
-      auth: this.$auth
-    })._find(
-      this.$route.params.cragId,
-      this.$route.params.approachId
-    )
+    await new OblykApi(this.$axios, this.$auth)
+      .get(`/public/crags/${this.$route.params.cragId}/approaches/${this.$route.params.approachId}`)
+      .then((resp) => {
+        this.approach = resp.data
+      })
   }
 }

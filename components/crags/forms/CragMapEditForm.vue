@@ -353,17 +353,17 @@ import 'leaflet/dist/leaflet.css'
 import { LControl, LControlZoom, LGeoJson, LTileLayer } from 'vue2-leaflet'
 import { EditableMap, EditablePolyline } from 'vue2-leaflet-editable'
 import { oblykReverseRockBar } from '~/assets/oblyk-icons'
-import LeafletLayerSelector from '~/components/maps/leafletControls/LeafletLayerSelector.vue'
-import CragApi from '~/services/oblyk-api/CragApi'
 import { MapMarkerHelpers } from '~/mixins/MapMarkerHelpers'
 import { MapPopupHelpers } from '~/mixins/MapPopupHelpers'
-import ParkForm from '~/components/parks/forms/ParkForm.vue'
-import ParkApi from '~/services/oblyk-api/ParkApi'
 import { MapDrawingHelpers } from '~/mixins/MapDrawingHelpers'
-import ApproachFrom from '~/components/approaches/forms/ApproachForm.vue'
-import ApproachApi from '~/services/oblyk-api/ApproachApi'
-import RockBarFrom from '~/components/rockBars/forms/RockBarForm.vue'
+import LeafletLayerSelector from '~/components/maps/leafletControls/LeafletLayerSelector'
+import CragApi from '~/services/oblyk-api/CragApi'
+import ParkForm from '~/components/parks/forms/ParkForm'
+import ParkApi from '~/services/oblyk-api/ParkApi'
+import ApproachFrom from '~/components/approaches/forms/ApproachForm'
+import RockBarFrom from '~/components/rockBars/forms/RockBarForm'
 import RockBarApi from '~/services/oblyk-api/RockBarApi'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 
 export default {
   name: 'CragMapEditForm',
@@ -733,8 +733,8 @@ export default {
 
     getApproach (id) {
       this.approachLoading = true
-      new ApproachApi(this.$axios, this.$auth)
-        .find(this.crag.id, id)
+      new OblykApi(this.$axios, this.$auth)
+        .get(`/public/crags/${this.crag.id}/approaches/${id}`)
         .then((resp) => {
           this.approachDataRecovered ||= {}
           this.approachDataRecovered.id = resp.data.id

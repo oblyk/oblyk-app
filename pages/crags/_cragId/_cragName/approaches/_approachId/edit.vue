@@ -7,7 +7,7 @@
         </h2>
         <client-only>
           <approach-from
-            :crag="approach.Crag"
+            :crag="approach.crag"
             :approach="approach"
             submit-methode="put"
           />

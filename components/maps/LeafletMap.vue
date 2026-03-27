@@ -716,12 +716,12 @@ import { MapMarkerHelpers } from '@/mixins/MapMarkerHelpers'
 import LeafletLayerSelector from '@/components/maps/leafletControls/LeafletLayerSelector'
 import LeafletLegend from '@/components/maps/leafletControls/LeafletLegend'
 import LeafletLocalizationCenter from '~/components/maps/leafletControls/LeafletLocalizationCenter'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 import CragApi from '~/services/oblyk-api/CragApi'
 import GymApi from '~/services/oblyk-api/GymApi'
 import CragSectorApi from '~/services/oblyk-api/CragSectorApi'
 import PlaceOfSaleApi from '~/services/oblyk-api/PlaceOfSaleApi'
 import ParkApi from '~/services/oblyk-api/ParkApi'
-import ApproachApi from '~/services/oblyk-api/ApproachApi'
 import UserApi from '~/services/oblyk-api/UserApi'
 import OsmNominatim from '~/services/osm-nominatim'
 import RockBarApi from '~/services/oblyk-api/RockBarApi'
@@ -1429,50 +1429,34 @@ export default {
     },
 
     getData (properties) {
-      let apiService = null
-      let primaryId = null
-      let secondaryId = null
+      let promise = null
 
       // Select right api service
       if (properties.type === 'Crag') {
-        primaryId = properties.id
-        apiService = new CragApi(this.$axios, this.$auth)
+        promise = new CragApi(this.$axios, this.$auth).find(properties.id)
       } else if (properties.type === 'Gym') {
-        primaryId = properties.id
-        apiService = new GymApi(this.$axios, this.$auth)
+        promise = new GymApi(this.$axios, this.$auth).find(properties.id)
       } else if (properties.type === 'CragSector') {
-        primaryId = properties.id
-        apiService = new CragSectorApi(this.$axios, this.$auth)
+        promise = new CragSectorApi(this.$axios, this.$auth).find(properties.id)
       } else if (properties.type === 'RockBar') {
-        primaryId = properties.crag_id
-        secondaryId = properties.id
-        apiService = new RockBarApi(this.$axios, this.$auth)
+        promise = new RockBarApi(this.$axios, this.$auth).find(properties.crag_id, properties.id)
       } else if (properties.type === 'GuideBookPaper') {
-        primaryId = properties.id
-        apiService = new GuideBookPaperApi(this.$axios, this.$auth)
+        promise = new GuideBookPaperApi(this.$axios, this.$auth).find(properties.id)
       } else if (properties.type === 'PlaceOfSale') {
-        primaryId = properties.guide_book_paper_id
-        secondaryId = properties.id
-        apiService = new PlaceOfSaleApi(this.$axios, this.$auth)
+        promise = new PlaceOfSaleApi(this.$axios, this.$auth).find(properties.guide_book_paper_id, properties.id)
       } else if (properties.type === 'Park') {
-        primaryId = properties.crag_id
-        secondaryId = properties.id
-        apiService = new ParkApi(this.$axios, this.$auth)
+        promise = new ParkApi(this.$axios, this.$auth).find(properties.crag_id, properties.id)
       } else if (properties.type === 'Approach') {
-        primaryId = properties.crag_id
-        secondaryId = properties.id
-        apiService = new ApproachApi(this.$axios, this.$auth)
+        promise = new OblykApi(this.$axios, this.$auth).get(`/public/crags/${properties.crag_id}/approaches/${properties.id}`)
       } else if (properties.type === 'PartnerUser') {
-        primaryId = properties.uuid
-        apiService = new UserApi(this.$axios, this.$auth)
+        promise = new UserApi(this.$axios, this.$auth).find(properties.uuid)
       } else {
         return false
       }
 
       // Get data
       return new Promise((resolve, reject) => {
-        apiService
-          .find(primaryId, secondaryId)
+        promise
           .then((resp) => {
             resolve(resp.data)
           })

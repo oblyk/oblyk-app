@@ -6,7 +6,6 @@ import Gym from '@/models/Gym'
 import PlaceOfSale from '@/models/PlaceOfSale'
 import CragSector from '@/models/CragSector'
 import Park from '@/models/Park'
-import Approach from '@/models/Approach'
 import RockBar from '~/models/RockBar'
 import GuideBookPaper from '~/models/GuideBookPaper'
 
@@ -314,9 +313,7 @@ export const MapPopupHelpers = {
       return popup
     },
 
-    approachPopup (data) {
-      const approach = new Approach({ attributes: data })
-
+    approachPopup (approach) {
       const popup = document.createElement('div')
 
       let approachTypePart = ''

@@ -11,7 +11,7 @@
             outlined
             small
             color="primary"
-            :to="`${crag.path}/maps/edit`"
+            :to="`${crag.app_path}/maps/edit`"
           >
             <v-icon left>
               {{ mdiParking }}
@@ -23,7 +23,7 @@
             outlined
             small
             color="primary"
-            :to="`${crag.path}/maps/edit`"
+            :to="`${crag.app_path}/maps/edit`"
           >
             <v-icon left>
               {{ mdiWalk }}
@@ -65,7 +65,7 @@
             v-if="$auth.loggedIn"
             outlined
             text
-            :to="`${crag.path}/maps/edit`"
+            :to="`${crag.app_path}/maps/edit`"
           >
             {{ $t('actions.editMapElements') }}
           </v-btn>
@@ -114,9 +114,8 @@
 <script>
 import { mdiParking, mdiWalk, mdiMap } from '@mdi/js'
 import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
-import ApproachApi from '~/services/oblyk-api/ApproachApi'
-import Approach from '~/models/Approach'
 import ApproachCard from '~/components/approaches/ApproachCard'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 
 export default {
   name: 'CragMapDetailsView',
@@ -197,11 +196,11 @@ export default {
 
   methods: {
     getApproaches () {
-      new ApproachApi(this.$axios, this.$auth)
-        .all(this.crag.id)
+      new OblykApi(this.$axios, this.$auth)
+        .get(`/public/crags/${this.crag.id}/approaches`)
         .then((resp) => {
           for (const approach of resp.data) {
-            this.approaches.push(new Approach({ attributes: approach }))
+            this.approaches.push(approach)
           }
         })
     }
