@@ -102,10 +102,10 @@ export default {
       selectedUser: null,
       data: {
         id: this.gymAdministrator?.id,
-        requested_email: this.gymAdministrator?.requested_email || null,
+        requested_email: this.gymAdministrator?.requested_email ?? null,
         gym_id: this.gym.id,
-        roles: this.gymAdministrator?.roles || [],
-        email_report: this.gymAdministrator?.email_report === null ? true : this.gymAdministrator?.email_report
+        roles: this.gymAdministrator?.roles ?? [],
+        email_report: this.gymAdministrator?.email_report ?? true
       },
       roles: [
         { text: this.$t('models.role.analyste'), value: 'analyste' },
