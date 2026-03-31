@@ -1804,7 +1804,7 @@ export default {
       waitingFollowers: 'Un·e abonné·e attend votre confirmation | %{count} abonné·es attendent votre confirmation',
       explainLocalization: 'Active la localisation pour accéder rapidement aux sites, salles et grimpeurs autour de toi.',
       emptyLogbook: "%{name} n'a pas de croix dans son carnet",
-      seeMyPublicProfile: 'Ma page public',
+      seeMyPublicProfile: 'Ma page publique',
       updateEmailReport: 'Mes inscriptions aux rapports mensuels de mes salles',
       mutualFriend: '1 ami·e en commun | %{count} ami·es en commun',
       youMayBeFamiliarWith: 'Vous pourriez connaître ...',
@@ -1964,7 +1964,7 @@ export default {
         writeLabel: 'Écrire sur mon ardoise ?',
         subject: {
           create: 'Salle ajoutée le %{date}',
-          new_video: 'Une nouvelle vidéo posté le %{date} | %{count} nouvelles vidéos postées le %{date}'
+          new_video: 'Une nouvelle vidéo postée le %{date} | %{count} nouvelles vidéos postées le %{date}'
         }
       },
       User: {
