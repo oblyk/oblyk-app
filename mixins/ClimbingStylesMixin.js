@@ -18,12 +18,19 @@ import {
   oblykPrecision,
   oblykPromptness,
   oblykSensation,
+  oblykBasic,
   oblykU10,
+  oblykU11,
   oblykU12,
+  oblykU13,
   oblykU14,
+  oblykU15,
   oblykU16,
+  oblykU17,
   oblykU18,
+  oblykU19,
   oblykU8,
+  oblykU9,
   oblykVolume
 } from '~/assets/oblyk-icons'
 
@@ -51,12 +58,19 @@ export const ClimbingStylesMixin = {
         { value: 'dynamic', icon: oblykDynamic, text: this.$t('models.climbingStyle.dynamic'), color: null },
         { value: 'complex', icon: oblykComplex, text: this.$t('models.climbingStyle.complex'), color: null },
         { value: 'sensation', icon: oblykSensation, text: this.$t('models.climbingStyle.sensation'), color: null },
+        { value: 'basic', icon: oblykBasic, text: this.$t('models.climbingStyle.basic'), color: null },
         { value: 'u8', icon: oblykU8, text: this.$t('models.climbingStyle.u8'), color: null },
+        { value: 'u9', icon: oblykU9, text: this.$t('models.climbingStyle.u9'), color: null },
         { value: 'u10', icon: oblykU10, text: this.$t('models.climbingStyle.u10'), color: null },
+        { value: 'u11', icon: oblykU11, text: this.$t('models.climbingStyle.u11'), color: null },
         { value: 'u12', icon: oblykU12, text: this.$t('models.climbingStyle.u12'), color: null },
+        { value: 'u13', icon: oblykU13, text: this.$t('models.climbingStyle.u13'), color: null },
         { value: 'u14', icon: oblykU14, text: this.$t('models.climbingStyle.u14'), color: null },
+        { value: 'u15', icon: oblykU15, text: this.$t('models.climbingStyle.u15'), color: null },
         { value: 'u16', icon: oblykU16, text: this.$t('models.climbingStyle.u16'), color: null },
-        { value: 'u18', icon: oblykU18, text: this.$t('models.climbingStyle.u18'), color: null }
+        { value: 'u17', icon: oblykU17, text: this.$t('models.climbingStyle.u17'), color: null },
+        { value: 'u18', icon: oblykU18, text: this.$t('models.climbingStyle.u18'), color: null },
+        { value: 'u19', icon: oblykU19, text: this.$t('models.climbingStyle.u19'), color: null }
       ]
     }
   },

@@ -96,7 +96,7 @@
       <p>
         {{ $t('common.pages.grade.regexpExplain') }}
       </p>
-      <code>^((([1-9][abc]?)|(B[0-9]|B1[0-6])|(E[0-9]|E1[0-1])|(PD|AD|D|TD|ED|ABO)|([I]{1,3}|IV|V[III]{0,3}|IX|X[III]{0,3})|(M|D|VD|S|HS|VS|HVS)|(VB|V[0-9]|V1[0-9]|V20)|(A[0-6])|(5\.[0-9]|5\.1[0-5][abcd]))(\+|\-|\/\-|\/\+|\?|\+\/\?|\-\/\?|\+\/b|\+\/c)?|\?)$</code>
+      <code>^((([1-9][abc]?)|(B[0-9]|B1[0-6])|(E[0-9]|E1[0-1])|(F|PD|AD|D|TD|ED|ABO)|([I]{1,3}|IV|V[III]{0,3}|IX|X[III]{0,3})|(M|D|VD|S|HS|VS|HVS)|(VB|V[0-9]|V1[0-9]|V20)|(A[0-6])|(5\.[0-9]|5\.1[0-5][abcd]))(\+|\-|\/\-|\/\+|\?|\+\/\?|\-\/\?|\+\/b|\+\/c)?|\?)$</code>
     </v-container>
     <app-footer />
   </div>
@@ -119,7 +119,7 @@ export default {
         { value: 5, fr: '1c', en: null, usa_r: null, usa_b: null, de_r: null, pd: null, mp: null, trad: null, rgb: 'rgb(221,17,180)' },
         { value: 6, fr: '1c+', en: null, usa_r: null, usa_b: null, de_r: null, pd: null, mp: null, trad: null, rgb: 'rgb(212,0,170)' },
 
-        { value: 7, fr: '2a', en: null, usa_r: '5.2', usa_b: null, de_r: 'III-', pd: null, mp: null, trad: null, rgb: 'rgb(134,205,222)' },
+        { value: 7, fr: '2a', en: null, usa_r: '5.2', usa_b: null, de_r: 'III-', pd: null, mp: 'F', trad: null, rgb: 'rgb(134,205,222)' },
         { value: 8, fr: '2a+', en: null, usa_r: null, usa_b: null, de_r: null, pd: null, mp: null, trad: null, rgb: 'rgb(119,198,218)' },
         { value: 9, fr: '2b', en: 'D', usa_r: '5.3', usa_b: null, de_r: 'III', pd: null, mp: null, trad: null, rgb: 'rgb(103,191,213)' },
         { value: 10, fr: '2b+', en: null, usa_r: null, usa_b: null, de_r: null, pd: null, mp: null, trad: null, rgb: 'rgb(87,184,209)' },

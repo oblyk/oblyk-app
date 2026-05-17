@@ -3009,12 +3009,19 @@ export default {
       dynamic: 'Dynamic',
       complex: 'Complex',
       sensation: 'Sensation',
+      basic: 'Basic',
       u8: 'U8',
+      u9: 'U9',
       u10: 'U10',
+      u11: 'U11',
       u12: 'U12',
+      u13: 'U13',
       u14: 'U14',
+      u15: 'U15',
       u16: 'U16',
-      u18: 'U18'
+      u17: 'U17',
+      u18: 'U18',
+      u19: 'U19'
     },
     word: {
       name: 'Word',
