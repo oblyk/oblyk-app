@@ -17,6 +17,17 @@
         {{ mdiArrowUpBoldHexagonOutline }}
       </v-icon>
     </v-tab>
+
+    <v-tab to="cross-statistics">
+      {{ $t('components.gym.tabs.crossStatistics') }}
+      <v-icon
+        v-if="gym.plan !== 'full_package'"
+        right
+        color="deep-purple accent-4"
+      >
+        {{ mdiArrowUpBoldHexagonOutline }}
+      </v-icon>
+    </v-tab>
   </v-tabs>
 </template>
 

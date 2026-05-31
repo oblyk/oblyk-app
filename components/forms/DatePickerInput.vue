@@ -12,6 +12,7 @@
         outlined
         :label="label"
         readonly
+        :dense="dense"
         :class="required ? 'required-field' : ''"
         :clearable="!required"
         :hide-details="hideDetails"
@@ -68,6 +69,10 @@ export default {
       default: false
     },
     required: {
+      type: Boolean,
+      default: false
+    },
+    dense: {
       type: Boolean,
       default: false
     }

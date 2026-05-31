@@ -17,6 +17,7 @@ export default {
     editSpace: "Modifier l'espace",
     editDraft: 'Éditer le brouillon',
     printSector: 'Imprimer le secteur',
+    invert: 'Inverser',
     create: 'Créer',
     delete: 'Supprimer',
     remove: 'Retirer',
@@ -1334,6 +1335,7 @@ export default {
         admin: 'Admin',
         tables: 'Tables',
         statistics: 'Statistiques',
+        crossStatistics: 'Tableau croisée',
         followers: 'Abonné·es'
       },
       firstSpaceTitle: 'Avant de créer votre premier espace…',
@@ -1475,6 +1477,21 @@ export default {
       averageLike: 'Likes / ouvertures',
       likedRatio: 'Des lignes sont likées',
       onAverage: 'En moyenne'
+    },
+    gymCrossTable: {
+      numberOf: 'Nombre de ...',
+      by: 'Par ...',
+      items: {
+        sector: 'Secteur',
+        anchor: 'Relais',
+        style: 'Style',
+        comment: 'Nombre de commentaire',
+        number_of_ascension: "Nombre d'ascension",
+        like: 'Nombre de like',
+        grade: 'Cotation',
+        level: 'Niveau (couleur)',
+        opener: 'Ouvreur·euse'
+      }
     },
     gymAdministrator: {
       guest_by_email: 'Renseigner le mail du membre à inviter :',

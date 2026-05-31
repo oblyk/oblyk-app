@@ -16,6 +16,7 @@
         :placeholder="$t('date.format_dd_mm_yyyy')"
         :prepend-inner-icon="icon"
         :dense="dense"
+        :disabled="disabled"
         :hide-details="hideDetails"
         v-bind="attrs"
         v-on="on"
@@ -51,6 +52,10 @@ export default {
       default: false
     },
     dense: {
+      type: Boolean,
+      default: false
+    },
+    disabled: {
       type: Boolean,
       default: false
     }

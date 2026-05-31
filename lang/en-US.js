@@ -17,6 +17,7 @@ export default {
     editSpace: 'Edit space',
     editDraft: 'Edit draft',
     printSector: 'Print sector',
+    invert: 'Invert',
     create: 'Create',
     delete: 'Delete',
     remove: 'Remove',
@@ -1333,6 +1334,7 @@ export default {
         admin: 'Admin',
         tables: 'Tables',
         statistics: 'Statistics',
+        crossStatistics: 'Cross table',
         followers: 'Followers'
       },
       firstSpaceTitle: 'Before creating your first space…',
@@ -1474,6 +1476,21 @@ export default {
       averageLike: 'Like / routes',
       likedRatio: 'Routes are liked',
       onAverage: 'On average'
+    },
+    gymCrossTable: {
+      numberOf: 'Number of...',
+      by: 'By...',
+      items: {
+        sector: 'Sector',
+        anchor: 'Anchor',
+        style: 'Style',
+        comment: 'Number of comment',
+        number_of_ascension: 'Number of ascension',
+        like: 'Number of like',
+        grade: 'Grade',
+        level: 'Level (color)',
+        opener: 'Rout setter'
+      }
     },
     gymAdministrator: {
       guest_by_email: 'Enter the email address of the member you wish to invite:',
