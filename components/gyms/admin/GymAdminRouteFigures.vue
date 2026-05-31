@@ -52,32 +52,63 @@
         </v-icon>
         {{ $t('components.gymAdmin.table') }}
       </v-btn>
-      <v-btn
-        v-if="gym.plan === 'full_package'"
-        elevation="0"
-        color="primary"
-        :to="`${gym.adminPath}/routes/statistics`"
-      >
-        <v-icon left>
-          {{ mdiChartBar }}
-        </v-icon>
-        {{ $t('components.gymAdmin.statistic') }}
-      </v-btn>
-      <v-btn
-        v-else
-        elevation="0"
-        outlined
-        text
-        :to="`${gym.adminPath}/routes/statistics`"
-      >
-        <v-icon
-          left
-          color="deep-purple accent-4"
-        >
-          {{ mdiArrowUpBoldHexagonOutline }}
-        </v-icon>
-        {{ $t('components.gymAdmin.statistic') }}
-      </v-btn>
+      <v-menu>
+        <template #activator="{ on, attrs }">
+          <v-btn
+            class="ml-2"
+            elevation="0"
+            color="primary"
+            v-bind="attrs"
+            v-on="on"
+          >
+            <v-icon left>
+              {{ mdiChartBar }}
+            </v-icon>
+            {{ $t('components.gymAdmin.statistic') }}
+            <v-icon
+              v-if="gym.plan !== 'full_package'"
+              right
+              color="deep-purple lighten-3"
+            >
+              {{ mdiArrowUpBoldHexagonOutline }}
+            </v-icon>
+          </v-btn>
+        </template>
+        <v-list>
+          <v-list-item :to="`${gym.adminPath}/routes/statistics`">
+            <v-list-item-icon>
+              <v-icon>
+                {{ mdiChartBar }}
+              </v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>
+                {{ $t('components.gymAdmin.statistic') }}
+              </v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item :to="`${gym.adminPath}/routes/cross-statistics`">
+            <v-list-item-icon>
+              <v-icon>
+                {{ mdiTablePivot }}
+              </v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>
+                {{ $t('components.gym.tabs.crossStatistics') }}
+                <v-chip
+                  small
+                  dark
+                  color="blue darken-2"
+                  class="ml-1 font-weight-bold"
+                >
+                  new
+                </v-chip>
+              </v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
+      </v-menu>
     </v-card-actions>
   </v-card>
 </template>
@@ -89,7 +120,8 @@ import {
   mdiChartBar,
   mdiDotsVertical,
   mdiFileRefreshOutline,
-  mdiArrowUpBoldHexagonOutline
+  mdiArrowUpBoldHexagonOutline,
+  mdiTablePivot
 } from '@mdi/js'
 import GymApi from '~/services/oblyk-api/GymApi'
 
@@ -111,7 +143,8 @@ export default {
       mdiChartBar,
       mdiDotsVertical,
       mdiFileRefreshOutline,
-      mdiArrowUpBoldHexagonOutline
+      mdiArrowUpBoldHexagonOutline,
+      mdiTablePivot
     }
   },
 
