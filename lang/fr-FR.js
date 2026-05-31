@@ -1335,7 +1335,7 @@ export default {
         admin: 'Admin',
         tables: 'Tables',
         statistics: 'Statistiques',
-        crossStatistics: 'Tableau croisée',
+        crossStatistics: 'Tableau croisé',
         followers: 'Abonné·es'
       },
       firstSpaceTitle: 'Avant de créer votre premier espace…',

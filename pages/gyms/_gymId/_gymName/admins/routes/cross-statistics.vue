@@ -288,7 +288,7 @@ export default {
   i18n: {
     messages: {
       fr: {
-        metaTitle: '%{name} - Statistiques croisées'
+        metaTitle: '%{name} - Tableau croisé'
       },
       en: {
         metaTitle: '%{name} - Cross statistics'
