@@ -20,6 +20,9 @@
 
     <v-tab to="cross-statistics">
       {{ $t('components.gym.tabs.crossStatistics') }}
+      <v-chip small color="blue darken-2" dark class="px-2 ml-1 font-weight-bold">
+        new
+      </v-chip>
       <v-icon
         v-if="gym.plan !== 'full_package'"
         right

@@ -1,21 +1,10 @@
 <template>
   <v-card class="full-height d-flex flex-column justify-space-between">
-    <v-card-title class="d-flex">
+    <v-card-title>
       <v-icon left>
         {{ oblykArdoise }}
       </v-icon>
       {{ $t('components.gymAdmin.publications') }}
-      <v-chip
-        dark
-        color="blue darken-2"
-        class="ml-auto"
-        small
-      >
-        <v-icon small left>
-          {{ mdiCreation }}
-        </v-icon>
-        NEW
-      </v-chip>
     </v-card-title>
     <v-card-text class="text-center pt-5 pb-7 d-flex justify-space-around">
       <div>
@@ -62,7 +51,7 @@
 </template>
 
 <script>
-import { mdiNoteText, mdiGreasePencil, mdiCreation } from '@mdi/js'
+import { mdiNoteText, mdiGreasePencil } from '@mdi/js'
 import { oblykArdoise } from '~/assets/oblyk-icons'
 import GymApi from '~/services/oblyk-api/GymApi'
 
@@ -82,8 +71,7 @@ export default {
 
       mdiNoteText,
       mdiGreasePencil,
-      oblykArdoise,
-      mdiCreation
+      oblykArdoise
     }
   },
 
