@@ -92,8 +92,8 @@
               #[`item.points`]="{ item }"
             >
               <span
-                :class="item.points ? '' : 'font-italic'"
-                :style="item.points ? '' : 'opacity: 0.60'"
+                :class="item.points.points ? '' : 'font-italic'"
+                :style="item.points.points ? '' : 'opacity: 0.60'"
               >
                 {{ item.point_to_s }}
               </span>
@@ -548,10 +548,11 @@ export default {
           order: 2,
           text: this.$t('models.gymRoute.colors'),
           align: 'start',
-          sortable: false,
+          sortable: true,
           filterable: false,
           class: 'text-no-wrap',
-          value: 'color'
+          value: 'color',
+          sort: (a, b) => a.order - b.order
         },
         {
           order: 4,
@@ -560,13 +561,14 @@ export default {
           sortable: true,
           filterable: false,
           class: 'text-no-wrap',
-          value: 'points'
+          value: 'points',
+          sort: (a, b) => a.points_to_s - b.points_to_s
         },
         {
           order: 6,
           text: this.$t('models.gymRoute.styles'),
           align: 'start',
-          sortable: false,
+          sortable: true,
           value: 'styles'
         },
         {
@@ -791,6 +793,7 @@ export default {
           {
             id: route.id,
             color: {
+              order: route.level_index,
               id: route.id,
               hold_colors: route.hold_colors,
               tag_colors: route.tag_colors
@@ -798,7 +801,10 @@ export default {
             name: route.name,
             grade: route.grade_to_s,
             point_to_s: route.points_to_s,
-            points: route.points,
+            points: {
+              points: route.points,
+              points_to_s: route.points_to_s
+            },
             styles,
             subLevel: route.sub_level,
             subLevelMax: route.sub_level_max,
