@@ -158,7 +158,6 @@ export default {
     addCrag: 'Add crag',
     addGym: 'Add climbing gym',
     readMore: 'Read more',
-    writeNewsletter: 'Write newsletter',
     send: 'Send',
     subscribeMe: 'Subscribe',
     unsubscribeMe: 'Unsubscribe',

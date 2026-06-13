@@ -31,7 +31,7 @@
 <script>
 import { FormHelpers } from '@/mixins/FormHelpers'
 import SubmitForm from '@/components/forms/SubmitForm'
-import NewsletterApi from '~/services/oblyk-api/NewsletterApi'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 
 export default {
   name: 'NewsletterSubscribeForm',
@@ -56,8 +56,8 @@ export default {
         subscribe: this.data
       }
 
-      new NewsletterApi(this.$axios, this.$auth)
-        .subscribe(data)
+      new OblykApi(this.$axios, this.$auth)
+        .post('/subscribes', data)
         .then(() => {
           this.$router.push({
             path: '/newsletters/successful-subscribe',

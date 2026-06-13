@@ -40,16 +40,6 @@
       <v-subheader inset>
         {{ $t('components.layout.appDrawer.subHeaders.admin') }}
       </v-subheader>
-      <v-list-item to="/newsletters">
-        <v-list-item-icon>
-          <v-icon>
-            {{ mdiEmailMultiple }}
-          </v-icon>
-        </v-list-item-icon>
-        <v-list-item-title>
-          {{ $t('components.newsletter.title') }}
-        </v-list-item-title>
-      </v-list-item>
       <v-list-item to="/gym-administrations">
         <v-list-item-icon>
           <v-icon>

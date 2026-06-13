@@ -31,7 +31,7 @@
 <script>
 import { FormHelpers } from '@/mixins/FormHelpers'
 import SubmitForm from '@/components/forms/SubmitForm'
-import NewsletterApi from '~/services/oblyk-api/NewsletterApi'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 
 export default {
   name: 'NewsletterUnsubscribeForm',
@@ -62,8 +62,8 @@ export default {
         subscribe: this.data
       }
 
-      new NewsletterApi(this.$axios, this.$auth)
-        .unsubscribe(data)
+      new OblykApi(this.$axios, this.$auth)
+        .delete('/subscribes', data)
         .then(() => {
           this.$router.push('/newsletters/successful-unsubscribe')
         })

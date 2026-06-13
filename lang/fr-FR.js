@@ -158,7 +158,6 @@ export default {
     addCrag: 'Ajouter une falaise',
     addGym: 'Ajouter une salle',
     readMore: 'Lire la suite',
-    writeNewsletter: 'Écrire une newsletter',
     send: 'Envoyer',
     subscribeMe: "M'inscrire",
     unsubscribeMe: 'Me désinscrire',

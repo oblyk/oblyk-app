@@ -14,7 +14,7 @@
 
 <script>
 import CurrentUserApi from '~/services/oblyk-api/CurrentUserApi'
-import NewsletterApi from '~/services/oblyk-api/NewsletterApi'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 
 export default {
   name: 'NewsletterSubscribeSwitchForm',
@@ -65,16 +65,16 @@ export default {
     },
 
     unsubscribe () {
-      new NewsletterApi(this.$axios, this.$auth)
-        .unsubscribe({ email: this.user.email })
+      new OblykApi(this.$axios, this.$auth)
+        .delete('/subscribes', { email: this.user.email })
         .then(() => {
           this.$root.$emit('alertSimpleSuccess', this.$t('components.user.youAreUnsubscribedToTheNewsletter'))
         })
     },
 
     subscribe () {
-      new NewsletterApi(this.$axios, this.$auth)
-        .subscribe({ email: this.user.email })
+      new OblykApi(this.$axios, this.$auth)
+        .post('/subscribes', { email: this.user.email })
         .then(() => {
           this.$root.$emit('alertSimpleSuccess', this.$t('components.user.youAreSubscribedToTheNewsletter'))
         })
