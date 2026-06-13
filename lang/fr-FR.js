@@ -1589,28 +1589,6 @@ export default {
         comments_count: 'Trier par nombre de commentaires'
       }
     },
-    gymGrade: {
-      noSystem: "Aucun système de difficulté n'est renseigné pour l'instant",
-      add: 'Ajouter un système de difficulté',
-      explain: 'Les systèmes de difficulté ont pour but de vous faciliter la tâche de renseignement de vos lignes par la suite.',
-      whichIdentificationSystem: "Comment j'identifie une ligne ?",
-      whichGradeSystem: "Comment je connais la difficulté d'une ligne ?",
-      whichPointSystem: "Est-ce que j'utilise un système de points ?",
-      system: 'Système',
-      typeOfSystem: 'Type de système',
-      value: 'Valeur',
-      exampleTitle: "Exemple de la représentation d'une ligne sur le topo"
-    },
-    gymGradeLine: {
-      colors: {
-        hold: 'Couleur des prises',
-        tag: 'Couleur des étiquettes'
-      },
-      hints: {
-        grade: 'Exemple: 6a, 7a, 7c+, etc.',
-        points: 'Exemple: 500, 50, 200, etc.'
-      }
-    },
     contest: {
       title: 'Les contests',
       information: 'Information',
@@ -2768,28 +2746,6 @@ export default {
       intensity: 'Intensité',
       difficulty: 'Difficulté',
       sub_level: 'Sous niveau'
-    },
-    gymGrade: {
-      name: 'Nom du système',
-      difficulty_by_grade: "Système de cotation 'normal' <cite>(7a, 6b+, etc.)</cite>.",
-      difficulty_by_level: 'Système de niveau <cite>(jaune, vert, bleu, etc.)</cite>.',
-      tag_color: 'Par des étiquettes.',
-      hold_color: 'Par la couleur de prise.',
-      point_system_type: 'Type de système par point',
-      point_system_types: {
-        fix: 'Un nombre de points fixe donné par le niveau <cite>(50pts, 500pts, etc.)</cite>',
-        divisible: "1000pt / divisé par le nombre d'ascensions",
-        none: 'Pas de système de point'
-      }
-    },
-    gymGradeLine: {
-      name: 'Nom du niveau',
-      colors: 'Couleurs',
-      order: 'Ordre',
-      grade_text: 'Cotation moyenne de ce niveau',
-      points: 'Points pour ce niveau',
-      fixedPoints: 'Voulez-vous imposer un nombre de points fixes pour ce niveau ?',
-      fixedPointsExplain: 'Recommandé uniquement si vous utilisez un système de classement par points fixes (1)'
     },
     roles: {
       manage_team_member: "Les membres de l'équipe",

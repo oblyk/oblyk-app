@@ -1588,28 +1588,6 @@ export default {
         comments_count: 'Sort by number of comments'
       }
     },
-    gymGrade: {
-      noSystem: 'No system of difficulty is currently reported.',
-      add: 'Add a difficulty system',
-      explain: 'The purpose of the difficulty systems is to make it easier for you to fill in your routes afterwards.',
-      whichIdentificationSystem: 'How do I identify a route?',
-      whichGradeSystem: 'How do I know the difficulty of a route?',
-      whichPointSystem: 'Do I use a point system?',
-      system: 'System',
-      typeOfSystem: 'Type of system',
-      value: 'Value',
-      exampleTitle: 'Example of the representation of a line on the guidebook'
-    },
-    gymGradeLine: {
-      colors: {
-        hold: 'Hold colors',
-        tag: 'Tag colors'
-      },
-      hints: {
-        grade: 'Example: 6a, 7a, 7c+, etc.',
-        points: 'Example: 500, 50, 200, etc.'
-      }
-    },
     contest: {
       title: 'Contests',
       information: 'Information',
@@ -2766,28 +2744,6 @@ export default {
       intensity: 'Intensity',
       difficulty: 'Difficulty',
       sub_level: 'Sub level'
-    },
-    gymGrade: {
-      name: 'System name',
-      difficulty_by_grade: "'Normal' grade system <cite>(7a, 6b+, etc.)</cite>.",
-      difficulty_by_level: 'Level system <cite>(yellow, green, blue, etc.)</cite>.',
-      tag_color: 'There are tags at the start of the routes.',
-      hold_color: 'Holds are of the same colour within a route.',
-      point_system_type: 'Type of system per point',
-      point_system_types: {
-        fix: 'Grade system by points <cite>(50pts, 500pts, etc.)</cite>',
-        divisible: 'Scoring system by division of points <cite>(1000 pts / number of ascents)</cite>',
-        none: 'No point system'
-      }
-    },
-    gymGradeLine: {
-      name: 'Level name',
-      colors: 'Colors',
-      order: 'Order',
-      grade_text: 'Average rating of this level',
-      points: 'Points for this level',
-      fixedPoints: 'Do you want to impose a fixed number of points for this level?',
-      fixedPointsExplain: 'Recommended only if you use a fixed-point grading system (1)'
     },
     roles: {
       manage_team_member: 'Team member',
