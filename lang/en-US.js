@@ -10,6 +10,7 @@ export default {
     new: 'New',
     move: 'Move',
     add: 'Add',
+    integrate: 'Integrate',
     associate: 'Associate',
     addSpace: 'Add space',
     apply: 'Apply',
@@ -80,6 +81,7 @@ export default {
     textCopied: 'Text copied',
     shareOn: 'Share on',
     share: 'Share',
+    suggest: 'Suggest',
     backToName: 'Back to %{name}',
     addMember: 'Add member',
     addOpener: 'Add route setter',
@@ -1429,6 +1431,23 @@ export default {
       noVideos: "You'll see your climbers' videos here when they post one!",
       assets: 'Assets',
       openingSheet: 'Opening sheets'
+    },
+    gymAdminFooter: {
+      documentation: {
+        body: 'Find out how to create your guidebook, organise a contest, fine-tune your settings, and more.'
+      },
+      integration: {
+        title: 'Integrate my guidebook',
+        body: 'Integrate your guidebook directly on your website or on a pad at the entrance of your gym!'
+      },
+      suggestion: {
+        title: 'A suggestion?',
+        body: 'Do you have an improvement suggestion, or have you found a bug?'
+      },
+      roadmap: {
+        title: 'Roadmap',
+        body: 'Check out the upcoming developments, and those that are underway.'
+      }
     },
     gymClimbingStyles: {
       title: 'Climbing styles in my gym',

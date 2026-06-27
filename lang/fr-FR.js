@@ -10,6 +10,7 @@ export default {
     new: 'Nouveau',
     move: 'Déplacer',
     add: 'Ajouter',
+    integrate: 'Intégrer',
     associate: 'Associer',
     addSpace: 'Ajouter un espace',
     apply: 'Appliquer',
@@ -80,6 +81,7 @@ export default {
     textCopied: 'Texte copié',
     shareOn: 'Partager sur',
     share: 'Partager',
+    suggest: 'Suggérer',
     backToName: 'Retour à %{name}',
     addMember: 'Ajouter un membre',
     addOpener: 'Ajouter un·e ouvreur·euse',
@@ -1430,6 +1432,23 @@ export default {
       noVideos: 'Vous verrez les vidéos de vos grimpeurs et grimpeuses ici quand ils/elles en auront posté !',
       assets: 'Décorations',
       openingSheet: "Fiche d'ouvertures"
+    },
+    gymAdminFooter: {
+      documentation: {
+        body: 'Apprenez comment faire votre topo, organiser un contest, gérer finement vos paramètres, etc.'
+      },
+      integration: {
+        title: 'Intégrer mon topo',
+        body: "Intégrer votre topo directement sur votre site internet ou sur une tablette à l'accueil de votre salle !"
+      },
+      suggestion: {
+        title: 'Une suggestion ?',
+        body: "Vous avez une suggestion d'amélioration, vous avez trouvé un bug ?"
+      },
+      roadmap: {
+        title: 'Roadmap',
+        body: 'Consulter les développements à venir, et ceux qui sont cours.'
+      }
     },
     gymClimbingStyles: {
       title: "Les styles d'escalade de ma salle",
