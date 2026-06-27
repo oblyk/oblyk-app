@@ -97,7 +97,7 @@ export default {
       this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true })
       this.renderer.shadowMap.enabled = true
       this.renderer.shadowMap.type = THREE.PCFSoftShadowMap
-      this.renderer.setPixelRatio(window.devicePixelRatio)
+      this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
       this.renderer.setSize(this.TDArea.offsetWidth, this.TDArea.offsetHeight)
 
       // Load files

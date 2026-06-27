@@ -227,7 +227,7 @@ export default {
 
       // Renderer
       this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, logarithmicDepthBuffer: true })
-      this.renderer.setPixelRatio(window.devicePixelRatio)
+      this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
       this.renderer.setSize(this.TDArea.offsetWidth, this.TDArea.offsetHeight)
 
       // Load GLTF file
@@ -454,13 +454,17 @@ export default {
       }
       space.traverse((child) => {
         if (child.isMesh) {
-          const color = child.material.color
-          const colorR = Math.round(color.r * 255 * (1 - intensity) + colorFiltre.r)
-          const colorG = Math.round(color.g * 255 * (1 - intensity) + colorFiltre.g)
-          const colorB = Math.round(color.b * 255 * (1 - intensity) + colorFiltre.b)
-          const newRgbColor = `rgb(${colorR}, ${colorG}, ${colorB})`
-          const newColor = new THREE.Color(newRgbColor)
-          child.material = new THREE.MeshBasicMaterial({ color: newColor })
+          // Reuse or create the highlight material once per mesh
+          if (!child.userData.highlightMaterial) {
+            const color = child.material.color
+            const colorR = Math.round(color.r * 255 * (1 - intensity) + colorFiltre.r)
+            const colorG = Math.round(color.g * 255 * (1 - intensity) + colorFiltre.g)
+            const colorB = Math.round(color.b * 255 * (1 - intensity) + colorFiltre.b)
+            const newRgbColor = `rgb(${colorR}, ${colorG}, ${colorB})`
+            const newColor = new THREE.Color(newRgbColor)
+            child.userData.highlightMaterial = new THREE.MeshBasicMaterial({ color: newColor })
+          }
+          child.material = child.userData.highlightMaterial
         }
       })
       this.renderScene()
@@ -537,13 +541,17 @@ export default {
       }
       asset.traverse((child) => {
         if (child.isMesh) {
-          const color = child.material.color
-          const colorR = Math.round(color.r * 255 * (1 - intensity) + colorFiltre.r)
-          const colorG = Math.round(color.g * 255 * (1 - intensity) + colorFiltre.g)
-          const colorB = Math.round(color.b * 255 * (1 - intensity) + colorFiltre.b)
-          const newRgbColor = `rgb(${colorR}, ${colorG}, ${colorB})`
-          const newColor = new THREE.Color(newRgbColor)
-          child.material = new THREE.MeshBasicMaterial({ color: newColor })
+          // Reuse or create the highlight material once per mesh
+          if (!child.userData.highlightMaterial) {
+            const color = child.material.color
+            const colorR = Math.round(color.r * 255 * (1 - intensity) + colorFiltre.r)
+            const colorG = Math.round(color.g * 255 * (1 - intensity) + colorFiltre.g)
+            const colorB = Math.round(color.b * 255 * (1 - intensity) + colorFiltre.b)
+            const newRgbColor = `rgb(${colorR}, ${colorG}, ${colorB})`
+            const newColor = new THREE.Color(newRgbColor)
+            child.userData.highlightMaterial = new THREE.MeshBasicMaterial({ color: newColor })
+          }
+          child.material = child.userData.highlightMaterial
         }
       })
       this.renderScene()
@@ -613,11 +621,16 @@ export default {
     updateLabelsPosition () {
       const tempV = new THREE.Vector3()
       this.spaces.forEach((space) => {
-        const box = new THREE.Box3().setFromObject(space)
-        const size = new THREE.Vector3()
-        const center = new THREE.Vector3()
-        box.getSize(size)
-        box.getCenter(center)
+        if (!space.userData.cacheBox) {
+          const box = new THREE.Box3().setFromObject(space)
+          const size = new THREE.Vector3()
+          const center = new THREE.Vector3()
+          box.getSize(size)
+          box.getCenter(center)
+          space.userData.cacheBox = { size, center }
+        }
+        const { size, center: rawCenter } = space.userData.cacheBox
+        const center = rawCenter.clone()
         let centerX, centerZ, centerY
         if (space.userData.space.three_d_label_options) {
           centerX = space.userData.space.three_d_label_options.x === null ? 50 : space.userData.space.three_d_label_options.x

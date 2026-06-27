@@ -113,6 +113,9 @@ export const ThreeJsMixin = {
             child.material.dispose()
           }
         }
+        if (child.userData.highlightMaterial) {
+          child.userData.highlightMaterial.dispose()
+        }
       })
 
       object = null
@@ -128,15 +131,16 @@ export const ThreeJsMixin = {
 
       if (this.scene !== null) {
         this.scene.traverse((object) => {
-          if (!object.isMesh) {
-            return
+          if (object.geometry) {
+            object.geometry.dispose()
           }
-          object.geometry.dispose()
-          if (object.material.isMaterial) {
-            this.cleanMaterial(object.material)
-          } else {
-            for (const material of object.material) {
-              this.cleanMaterial(material)
+          if (object.material) {
+            if (Array.isArray(object.material)) {
+              for (const material of object.material) {
+                this.cleanMaterial(material)
+              }
+            } else {
+              this.cleanMaterial(object.material)
             }
           }
         })
@@ -199,8 +203,10 @@ export const ThreeJsMixin = {
       if (!this.autoRotate) {
         this.orbitControls.autoRotate = true
         this.orbitControls.autoRotateSpeed = autoRotateSpeed
+        this.orbitControls.removeEventListener('change', this.renderScene)
         this.animate()
       } else if (this.animationId !== null) {
+        this.orbitControls.addEventListener('change', this.renderScene)
         cancelAnimationFrame(this.animationId)
       }
       this.autoRotate = !this.autoRotate

@@ -257,7 +257,7 @@ export default {
       // Renderer
       this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true })
       this.renderer.shadowMap.enabled = true
-      this.renderer.setPixelRatio(window.devicePixelRatio)
+      this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
       this.renderer.setSize(this.TDArea.offsetWidth, this.TDArea.offsetHeight)
 
       // Load files
@@ -600,7 +600,17 @@ export default {
       boundingBox.visible = false
       boundingBox.rotateX(THREE.MathUtils.degToRad(90))
       boundingBox.translateZ(-sector.three_d_elevated)
-      boundingBox.userData = { sector: { id: sector.id, three_d_label_options: sector.three_d_label_options, three_d_elevated: sector.three_d_elevated } }
+
+      const box = new THREE.Box3().setFromObject(boundingBox)
+      const size = new THREE.Vector3()
+      const center = new THREE.Vector3()
+      box.getSize(size)
+      box.getCenter(center)
+
+      boundingBox.userData = {
+        sector: { id: sector.id, three_d_label_options: sector.three_d_label_options, three_d_elevated: sector.three_d_elevated },
+        cacheBox: { size, center }
+      }
       this.sectorBoundingBoxes.push(boundingBox)
       this.scene.add(boundingBox)
 
@@ -740,11 +750,8 @@ export default {
     updateLabelsPosition () {
       const tempV = new THREE.Vector3()
       this.sectorBoundingBoxes.forEach((sector) => {
-        const box = new THREE.Box3().setFromObject(sector)
-        const size = new THREE.Vector3()
-        const center = new THREE.Vector3()
-        box.getSize(size)
-        box.getCenter(center)
+        const { size, center: rawCenter } = sector.userData.cacheBox
+        const center = rawCenter.clone()
         let centerX, centerZ, gapY
         if (sector.userData.sector.three_d_label_options) {
           centerX = sector.userData.sector.three_d_label_options.x === null ? 50 : sector.userData.sector.three_d_label_options.x
