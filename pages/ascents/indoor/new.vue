@@ -86,7 +86,7 @@
               block
               outlined
               text
-              :to="selectedGym.path"
+              :to="selectedGym.app_path"
             >
               <v-icon
                 color="primary"
@@ -102,7 +102,7 @@
               block
               outlined
               text
-              to="`/home/ascents/indoor"
+              to="/home/ascents/indoor"
             >
               <v-icon
                 color="primary"
@@ -205,7 +205,7 @@ export default {
 
     gymFormSearch (gym) {
       if (gym.gym_spaces_count > 0) {
-        this.$router.push(`${gym.path}/spaces`)
+        this.$router.push(gym.app_first_spaces_path)
       } else {
         this.selectedGym = gym
       }

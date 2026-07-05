@@ -131,7 +131,7 @@
             />
           </v-tab-item>
           <v-tab-item value="cragRoute" class="pt-2">
-            <crag-route-search-form
+            <crag-route-search
               :linkable-result="false"
               :callback="addCragRoute"
             />
@@ -156,13 +156,13 @@ import { oblykIndoor } from '~/assets/oblyk-icons'
 import OblykApi from '~/services/oblyk-api/OblykApi'
 import CragSearchForm from '~/components/crags/forms/CragSearchForm'
 import GymSearchForm from '~/components/gyms/forms/GymSearchForm'
-import CragRouteSearchForm from '~/components/cragRoutes/forms/CragRouteSearchForm'
 import ContestItemList from '~/components/contests/ContestItemList'
 import GymSpaceListItem from '~/components/gymSpaces/GymSpaceListItem'
+import CragRouteSearch from '~/components/cragRoutes/partial/CragRouteSearch'
 
 export default {
   name: 'PublicationAttachmentsModal',
-  components: { GymSpaceListItem, ContestItemList, CragRouteSearchForm, GymSearchForm, CragSearchForm },
+  components: { CragRouteSearch, GymSpaceListItem, ContestItemList, GymSearchForm, CragSearchForm },
 
   props: {
     publishable: {

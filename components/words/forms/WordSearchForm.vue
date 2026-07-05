@@ -1,33 +1,26 @@
 <template>
   <div>
     <v-text-field
-      ref="GuideBookPaperSearchForm"
+      ref="WordSearchForm"
       v-model="query"
-      :label="$t(labelKey)"
+      :label="$t('components.word.searchDefinition')"
       outlined
       clearable
       hide-details
       @keyup="search()"
       @click:clear="clearSearch()"
-      @focus="scrollToElement"
     />
 
     <div v-if="searchResults.length > 0">
-      <p class="mt-1 mb-0">
+      <p class="mt-1 mb-1">
         {{ $tc('common.resultsCount', resultsMeta.total_count, { count: resultsMeta.total_count }) }}
       </p>
-      <div
-        v-for="guideBookPaper in searchResults"
-        :key="guideBookPaper.id"
-      >
-        <div @click="callback ? callback(guideBookPaper) : null">
-          <guide-book-paper-small-card
-            :guide-book-paper="guideBookPaper"
-            :linkable="linkableResult"
-            class="mt-3"
-          />
-        </div>
-      </div>
+      <word-card
+        v-for="(word, wordIndex) in searchResults"
+        :key="`crag-index-${wordIndex}`"
+        :word="word"
+        class="mb-4"
+      />
       <loading-more
         :get-function="nextPage"
         :loading-more="loadingMoreData"
@@ -40,31 +33,14 @@
 
 <script>
 import { LoadingMoreHelpers } from '~/mixins/LoadingMoreHelpers'
-import GuideBookPaperSmallCard from '@/components/guideBookPapers/GuideBookPaperSmallCard'
-import LoadingMore from '~/components/layouts/LoadingMore'
 import OblykApi from '~/services/oblyk-api/OblykApi'
+import LoadingMore from '~/components/layouts/LoadingMore'
+import WordCard from '~/components/words/WordCard.vue'
 
 export default {
-  name: 'GuideBookPaperSearchForm',
-  components: { LoadingMore, GuideBookPaperSmallCard },
+  name: 'WordSearchForm',
+  components: { WordCard, LoadingMore },
   mixins: [LoadingMoreHelpers],
-  props: {
-    linkableResult: {
-      type: Boolean,
-      required: false,
-      default: true
-    },
-
-    callback: {
-      type: Function,
-      default: null
-    },
-
-    labelKey: {
-      type: String,
-      default: 'components.guideBookPaper.searchGuideBookPaper'
-    }
-  },
 
   data () {
     return {
@@ -100,7 +76,7 @@ export default {
       }
       this.searchTimeOut = setTimeout(() => {
         this.apiSearch()
-      }, 300)
+      }, 500)
     },
 
     apiSearch (page = 1, reset = true) {
@@ -109,8 +85,8 @@ export default {
       this.oblykApi.cancelApiRequest()
       this.oblykApi
         .get(
-          '/public/guide_book_papers/search',
-          { query: this.cleanQuery, page },
+          '/public/words/search',
+          { query: this.cleanQuery },
           { cancelable: true }
         )
         .then((resp) => {
@@ -119,15 +95,15 @@ export default {
             this.searchResults = []
           }
           this.resultsMeta = resp.meta
-          for (const guideBookPaper of resp.data) {
-            this.searchResults.push(guideBookPaper)
+          for (const word of resp.data) {
+            this.searchResults.push(word)
           }
           this.previousQuery = this.query
           this.successLoadingMore(resp)
         })
         .catch((err) => {
           if (err.response !== undefined) {
-            this.$root.$emit('alertFromApiError', err, 'guideBookPaper')
+            this.$root.$emit('alertFromApiError', err, 'crag')
           }
           this.failureToLoadingMore()
         })
@@ -150,13 +126,6 @@ export default {
       this.resultsMeta = null
       this.previousQuery = null
       this.query = null
-    },
-
-    scrollToElement () {
-      if (window.innerWidth < 600) {
-        const element = this.$refs.GuideBookPaperSearchForm.$el
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' })
-      }
     }
   }
 }

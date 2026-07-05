@@ -1,6 +1,6 @@
 <template>
   <nuxt-link
-    :to="crag.path"
+    :to="crag.app_path"
     class="discrete-link"
   >
     <v-img

@@ -34,7 +34,10 @@ class OblykApi {
         .request(request)
         .then((response) => {
           if (response.data?.json_type === 'jsonapi.org') {
-            resolve({ data: new Jsona().deserialize(response.data) })
+            resolve({
+              data: new Jsona().deserialize(response.data),
+              meta: response.data.meta
+            })
           } else {
             resolve(response)
           }

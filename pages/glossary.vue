@@ -21,16 +21,7 @@
           </h1>
 
           <!-- Search -->
-          <v-text-field
-            v-model="searchWord"
-            :label="$t('components.word.searchDefinition')"
-            outlined
-            :loading="searching"
-            clearable
-            hide-details
-            @keyup="search()"
-            @click:clear="onSearch = false"
-          />
+          <word-search-form />
 
           <!-- add new word -->
           <client-only>
@@ -48,58 +39,51 @@
           </client-only>
 
           <!-- Glossary list -->
-          <div v-if="!onSearch">
-            <div v-for="(word, index) in glossary" :key="word.id">
-              <p
-                v-if="index === 0 || (glossary[index - 1].name.charAt(0).toUpperCase() !== word.name.charAt(0).toUpperCase())"
+          <div
+            v-for="(word, wordIndex) in glossary"
+            :key="`word-index-${wordIndex}`"
+          >
+            <p
+              v-if="wordIndex === 0 || (glossary[wordIndex - 1].name.charAt(0).toUpperCase() !== word.name.charAt(0).toUpperCase())"
+            >
+              <v-alert
+                dense
+                text
+                class="d-inline-block mb-0 mt-3"
               >
-                <v-alert
-                  dense
-                  text
-                  class="d-inline-block mb-0 mt-3"
-                >
-                  {{ word.name.charAt(0).toUpperCase() }}
-                </v-alert>
-              </p>
+                {{ word.name.charAt(0).toUpperCase() }}
+              </v-alert>
+            </p>
 
-              <word-card
-                :word="word"
-                class="mb-4"
-              />
-            </div>
-
-            <loading-more
-              :get-function="getGlossary"
-              :loading-more="loadingMoreData"
-              :no-more-data="noMoreDataToLoad"
-              skeleton-type="list-item-three-line"
+            <word-card
+              :word="word"
+              class="mb-4"
             />
           </div>
 
-          <!-- Search results list -->
-          <div v-if="onSearch">
-            <div v-for="word in searchResults" :key="`result-${word.id}`">
-              <word-card
-                :word="word"
-                class="mb-4"
-              />
-            </div>
-          </div>
+          <loading-more
+            :get-function="getGlossary"
+            :loading-more="loadingMoreData"
+            :no-more-data="noMoreDataToLoad"
+            skeleton-type="list-item-three-line"
+          />
         </v-col>
       </v-row>
     </v-container>
     <app-footer v-if="noMoreDataToLoad" />
   </div>
 </template>
+
 <script>
 import { LoadingMoreHelpers } from '@/mixins/LoadingMoreHelpers'
 import WordCard from '@/components/words/WordCard'
 import LoadingMore from '@/components/layouts/LoadingMore'
 import AppFooter from '@/components/layouts/AppFooter'
 import OblykApi from '~/services/oblyk-api/OblykApi'
+import WordSearchForm from '~/components/words/forms/WordSearchForm.vue'
 
 export default {
-  components: { AppFooter, LoadingMore, WordCard },
+  components: { WordSearchForm, AppFooter, LoadingMore, WordCard },
   mixins: [LoadingMoreHelpers],
 
   data () {
@@ -107,13 +91,7 @@ export default {
       glossary: [],
       loadingGlossary: true,
       searching: false,
-      onSearch: false,
-      searchWord: '',
-      previousSearchWord: null,
-      searchTimeOut: null,
-      searchResults: [],
-      words: [],
-      oblykApi: null
+      words: []
     }
   },
 
@@ -164,49 +142,6 @@ export default {
         .finally(() => {
           this.loadingGlossary = false
           this.finallyMoreIsLoaded()
-        })
-    },
-
-    search () {
-      if (this.previousSearchWord === this.searchWord) {
-        this.searching = false
-        return
-      }
-
-      this.onSearch = true
-      this.searching = true
-
-      if (this.searchTimeOut) {
-        clearTimeout(this.searchTimeOut)
-        this.searchTimeOut = null
-      }
-      this.searchTimeOut = setTimeout(() => {
-        this.getSearch()
-      }, 500)
-    },
-
-    getSearch () {
-      this.oblykApi = this.oblykApi || new OblykApi(this.$axios, this.$auth)
-
-      // cancel previous search
-      this.oblykApi.cancelApiRequest()
-
-      this.oblykApi
-        .get('/public/words/search', { query: this.searchWord }, { cancelable: true })
-        .then((resp) => {
-          this.searchResults = []
-          for (const word of resp.data) {
-            this.searchResults.push(word)
-          }
-          this.previousSearchWord = this.searchWord
-        })
-        .catch((err) => {
-          if (err.response !== undefined) {
-            this.$root.$emit('alertFromApiError', err, 'word')
-          }
-        })
-        .finally(() => {
-          this.searching = false
         })
     }
   }

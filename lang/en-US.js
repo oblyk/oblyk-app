@@ -336,6 +336,7 @@ export default {
     updatedAt: 'Updated at %{date}',
     signboards: 'Signboards',
     environments: 'Environments',
+    resultsCount: 'One result | %{count} results',
     figures: {
       countries: '%{count} country | %{count} countries',
       crags: '%{count} crag | %{count} crags',

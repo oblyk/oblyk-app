@@ -33,13 +33,48 @@
         </v-row>
       </v-card-title>
       <v-card-subtitle>
-        <v-row>
-          <v-col>
-            <crag-route-search
-              v-model="query"
-              :crag-sector="cragSector"
-              :crag="crag"
-            />
+        <v-row class="align-center">
+          <v-col
+            cols="12"
+            md="4"
+            lg="3"
+          >
+            <v-btn
+              text
+              block
+              x-large
+              outlined
+              @click="openSearchDialog()"
+            >
+              <v-icon left>
+                {{ mdiMagnify }}
+              </v-icon>
+              {{ $t('components.cragRoute.searchRoute') }}
+            </v-btn>
+            <v-dialog
+              v-model="searchRouteDialog"
+              max-width="500"
+            >
+              <v-card class="pt-4">
+                <crag-route-search
+                  ref="cragRouteSearchInput"
+                  class="px-3"
+                  :crag-sector="cragSector"
+                  :crag="crag"
+                  :callback="cragRouteCallback"
+                />
+                <v-card-actions>
+                  <v-spacer />
+                  <v-btn
+                    color="primary"
+                    text
+                    @click="searchRouteDialog = false"
+                  >
+                    {{ $t('actions.close') }}
+                  </v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-dialog>
           </v-col>
           <v-col v-if="showRouteSort">
             <crag-route-sort v-model="routeSort" />
@@ -129,7 +164,7 @@
 </template>
 
 <script>
-import { mdiSourceBranch } from '@mdi/js'
+import { mdiSourceBranch, mdiMagnify } from '@mdi/js'
 import { LoadingMoreHelpers } from '@/mixins/LoadingMoreHelpers'
 import CragRouteApi from '~/services/oblyk-api/CragRouteApi'
 import CragRoute from '@/models/CragRoute'
@@ -187,6 +222,7 @@ export default {
 
   data () {
     return {
+      searchRouteDialog: false,
       query: null,
       routeSort: 'difficulty_desc',
       loadingRoutes: true,
@@ -195,7 +231,8 @@ export default {
       cragSectorId: null,
       disableLoadingMore: false,
 
-      mdiSourceBranch
+      mdiSourceBranch,
+      mdiMagnify
     }
   },
 
@@ -280,6 +317,13 @@ export default {
           this.loadingRoutes = false
           this.finallyMoreIsLoaded()
         })
+    },
+
+    openSearchDialog () {
+      this.searchRouteDialog = true
+      setTimeout(() => {
+        this.$refs.cragRouteSearchInput.giveFocus()
+      }, 150)
     }
   }
 }

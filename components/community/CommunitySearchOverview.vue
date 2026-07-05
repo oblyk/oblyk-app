@@ -27,20 +27,9 @@
         </div>
         <div class="d-flex pl-3 pr-2 align-center full-height" style="margin-top: -45px">
           <div class="search-icon">
-            <v-icon
-              v-if="!searching"
-              color="#007b8b"
-            >
+            <v-icon color="#007b8b">
               {{ oblykPartner }}
             </v-icon>
-            <v-progress-circular
-              v-else
-              indeterminate
-              color="#007b8b"
-              size="19"
-              width="3"
-              class="mr-1"
-            />
           </div>
           <input
             ref="searchField"
@@ -106,12 +95,26 @@
         class="mt-3"
       >
         <div v-if="$auth.loggedIn">
+          <p
+            v-if="resultsMeta"
+            class="mt-n3 mb-2 font-weight-medium"
+          >
+            <small>
+              {{ $tc('common.resultsCount', resultsMeta.total_count, { count: resultsMeta.total_count.toLocaleString() }) }}
+            </small>
+          </p>
           <user-small-card
             v-for="(user, userIndex) in searchResults"
             :key="`user-community-${userIndex}`"
             small
             :user="user"
             class="mb-1"
+          />
+          <loading-more
+            :get-function="nextPage"
+            :loading-more="loadingMoreData"
+            :no-more-data="noMoreDataToLoad"
+            skeleton-type="list-item-avatar"
           />
         </div>
         <v-sheet
@@ -145,19 +148,22 @@
 </template>
 <script>
 import { mdiClose, mdiMapSearch } from '@mdi/js'
+import { oblykPartner } from '~/assets/oblyk-icons'
+import { LoadingMoreHelpers } from '~/mixins/LoadingMoreHelpers'
 import SuggestedFriends from '~/components/users/SuggestedFriends'
 import UserSmallCard from '~/components/users/UserSmallCard'
-import { oblykPartner } from '~/assets/oblyk-icons'
 import CommonApi from '~/services/oblyk-api/CommonApi'
-import UserApi from '~/services/oblyk-api/UserApi'
-import User from '~/models/User'
+import LoadingMore from '~/components/layouts/LoadingMore'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 
 export default {
   name: 'CommunitySearchOverview',
   components: {
+    LoadingMore,
     UserSmallCard,
     SuggestedFriends
   },
+  mixins: [LoadingMoreHelpers],
 
   data () {
     return {
@@ -165,6 +171,7 @@ export default {
       searching: false,
       onSearch: false,
       searchResults: [],
+      resultsMeta: null,
       previousQuery: null,
       userApi: null,
       climbersCount: '...',
@@ -178,6 +185,10 @@ export default {
   computed: {
     haveQuery () {
       return !(this.query === null || this.query === '')
+    },
+
+    cleanQuery () {
+      return this.query?.trim()
     }
   },
 
@@ -214,30 +225,49 @@ export default {
       }
       this.searchTimeOut = setTimeout(() => {
         this.apiSearch()
-      }, 500)
+      }, 300)
     },
 
-    apiSearch () {
-      this.userApi = this.userApi || new UserApi(this.$axios, this.$auth)
-
-      this.userApi.cancelSearch()
-      this.userApi
-        .search(this.query)
+    apiSearch (page = 1, reset = true) {
+      this.moreIsBeingLoaded()
+      this.oblykApi = this.oblykApi || new OblykApi(this.$axios, this.$auth)
+      this.oblykApi.cancelApiRequest()
+      this.oblykApi
+        .get(
+          '/users/search',
+          { query: this.cleanQuery, page },
+          { cancelable: true }
+        )
         .then((resp) => {
-          this.searchResults = []
+          if (reset) {
+            this.resetLoadMorePageNumber()
+            this.searchResults = []
+          }
+          this.resultsMeta = resp.meta
           for (const user of resp.data) {
-            this.searchResults.push(new User({ attributes: user }))
+            this.searchResults.push(user)
           }
           this.previousQuery = this.query
+          this.successLoadingMore(resp)
         })
         .catch((err) => {
           if (err.response !== undefined) {
             this.$root.$emit('alertFromApiError', err, 'user')
           }
+          this.failureToLoadingMore()
         })
         .finally(() => {
           this.searching = false
+          this.finallyMoreIsLoaded()
         })
+    },
+
+    nextPage () {
+      let page = 1
+      if (this.resultsMeta) {
+        page = this.resultsMeta.next_page
+      }
+      this.apiSearch(page, false)
     }
   }
 }

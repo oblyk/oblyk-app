@@ -337,6 +337,7 @@ export default {
     updatedAt: 'Mise à jour le %{date}',
     signboards: 'Écriteaux',
     environments: 'Environnements',
+    resultsCount: 'Un résultat | %{count} résultats',
     figures: {
       countries: '%{count} pays | %{count} pays',
       crags: '%{count} site | %{count} sites',

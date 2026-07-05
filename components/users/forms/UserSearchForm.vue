@@ -5,7 +5,6 @@
       v-model="query"
       :label="$t('components.user.searchUser')"
       outlined
-      :loading="searching"
       clearable
       hide-details
       @keyup="search()"
@@ -13,36 +12,45 @@
       @focus="scrollToElement"
     />
     <slot />
-    <div
-      v-for="user in searchResults"
-      :key="user.id"
-    >
-      <div @click="callback ? callback(user) : null">
-        <user-small-card
-          :small="true"
-          :subscribable="false"
-          :user="user"
-          :linkable="linkableResult"
-          class="mt-3"
-        />
+    <div v-if="searchResults.length > 0">
+      <p class="mt-1 mb-0">
+        {{ $tc('common.resultsCount', resultsMeta.total_count, { count: resultsMeta.total_count }) }}
+      </p>
+      <div
+        v-for="user in searchResults"
+        :key="user.id"
+      >
+        <div @click="callback ? callback(user) : null">
+          <user-small-card
+            :small="true"
+            :subscribable="false"
+            :user="user"
+            :linkable="linkableResult"
+            class="mt-3"
+          />
+        </div>
       </div>
+      <loading-more
+        :get-function="nextPage"
+        :loading-more="loadingMoreData"
+        :no-more-data="noMoreDataToLoad"
+        skeleton-type="list-item-three-line"
+      />
     </div>
   </div>
 </template>
 
 <script>
-import UserApi from '~/services/oblyk-api/UserApi'
-import User from '@/models/User'
+import { LoadingMoreHelpers } from '~/mixins/LoadingMoreHelpers'
 import UserSmallCard from '@/components/users/UserSmallCard'
+import LoadingMore from '~/components/layouts/LoadingMore'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 
 export default {
   name: 'UserSearchForm',
-  components: { UserSmallCard },
+  components: { LoadingMore, UserSmallCard },
+  mixins: [LoadingMoreHelpers],
   props: {
-    value: {
-      type: String,
-      default: null
-    },
     linkableResult: {
       type: Boolean,
       required: false,
@@ -60,14 +68,15 @@ export default {
       searching: false,
       onSearch: false,
       searchResults: [],
+      resultsMeta: null,
       previousQuery: null,
-      userApi: null
+      oblykApi: null
     }
   },
 
-  watch: {
-    value () {
-      this.query = this.value
+  computed: {
+    cleanQuery () {
+      return this.query?.trim()
     }
   },
 
@@ -87,30 +96,56 @@ export default {
       }
       this.searchTimeOut = setTimeout(() => {
         this.apiSearch()
-      }, 500)
+      }, 300)
     },
 
-    apiSearch () {
-      this.userApi = this.userApi || new UserApi(this.$axios, this.$auth)
-
-      this.userApi.cancelSearch()
-      this.userApi
-        .search(this.query)
+    apiSearch (page = 1, reset = true) {
+      this.moreIsBeingLoaded()
+      this.oblykApi = this.oblykApi || new OblykApi(this.$axios, this.$auth)
+      this.oblykApi.cancelApiRequest()
+      this.oblykApi
+        .get(
+          '/users/search',
+          { query: this.cleanQuery, page },
+          { cancelable: true }
+        )
         .then((resp) => {
-          this.searchResults = []
+          if (reset) {
+            this.resetLoadMorePageNumber()
+            this.searchResults = []
+          }
+          this.resultsMeta = resp.meta
           for (const user of resp.data) {
-            this.searchResults.push(new User({ attributes: user }))
+            this.searchResults.push(user)
           }
           this.previousQuery = this.query
+          this.successLoadingMore(resp)
         })
         .catch((err) => {
           if (err.response !== undefined) {
             this.$root.$emit('alertFromApiError', err, 'user')
           }
+          this.failureToLoadingMore()
         })
         .finally(() => {
           this.searching = false
+          this.finallyMoreIsLoaded()
         })
+    },
+
+    nextPage () {
+      let page = 1
+      if (this.resultsMeta) {
+        page = this.resultsMeta.next_page
+      }
+      this.apiSearch(page, false)
+    },
+
+    clearSearch () {
+      this.searchResults = []
+      this.resultsMeta = null
+      this.previousQuery = null
+      this.query = null
     },
 
     scrollToElement () {
@@ -118,11 +153,6 @@ export default {
         const element = this.$refs.UserSearchForm.$el
         element.scrollIntoView({ behavior: 'smooth', block: 'start' })
       }
-    },
-
-    clearSearch () {
-      this.onSearch = false
-      this.searchResults = []
     }
   }
 }

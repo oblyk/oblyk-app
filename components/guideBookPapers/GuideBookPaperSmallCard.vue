@@ -4,7 +4,7 @@
       link
       flat
       class="hoverable-card"
-      :to="linkable ? guideBookPaper.path : null"
+      :to="linkable ? guideBookPaper.app_path : null"
     >
       <v-list-item
         :two-line="small"
@@ -40,15 +40,7 @@
               </v-icon>
               {{ guideBookPaper.follows_count }}
             </v-chip>
-            <v-icon
-              v-if="guideBookPaper.fundingAttributes.displayed"
-              small
-              class="mx-1 vertical-align-sub"
-              :color="guideBookPaper.fundingAttributes.color"
-              :title="$t(guideBookPaper.fundingAttributes.labelKey)"
-            >
-              {{ fundingIcon() }}
-            </v-icon>
+            <guide-book-paper-funding-icon :guide-book-paper="guideBookPaper" />
             {{ guideBookPaper.author }}, {{ guideBookPaper.editor }}, {{ guideBookPaper.publication_year }}
           </v-list-item-subtitle>
         </v-list-item-content>
@@ -72,13 +64,14 @@
 </template>
 
 <script>
-import { mdiBookshelf, mdiCurrencyUsdOff, mdiHandCoin, mdiHelpCircleOutline } from '@mdi/js'
-import SubscribeBtn from '@/components/forms/SubscribeBtn'
+import { mdiBookshelf } from '@mdi/js'
 import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
+import SubscribeBtn from '@/components/forms/SubscribeBtn'
+import GuideBookPaperFundingIcon from '~/components/guideBookPapers/GuideBookPaperFundingIcon'
 
 export default {
   name: 'GuideBookPaperSmallCard',
-  components: { SubscribeBtn },
+  components: { GuideBookPaperFundingIcon, SubscribeBtn },
   mixins: [ImageVariantHelpers],
   props: {
     guideBookPaper: {
@@ -98,22 +91,7 @@ export default {
 
   data () {
     return {
-      mdiBookshelf,
-      mdiCurrencyUsdOff,
-      mdiHandCoin,
-      mdiHelpCircleOutline
-    }
-  },
-
-  methods: {
-    fundingIcon () {
-      if (this.guideBookPaper.funding_status === 'contributes_to_financing') {
-        return mdiHandCoin
-      } else if (this.guideBookPaper.funding_status === 'not_contributes_to_financing') {
-        return mdiCurrencyUsdOff
-      } else {
-        return mdiHelpCircleOutline
-      }
+      mdiBookshelf
     }
   }
 }

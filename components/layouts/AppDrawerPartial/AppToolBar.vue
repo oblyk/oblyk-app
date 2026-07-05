@@ -52,9 +52,38 @@
         <localization-btn />
       </div>
 
-      <div>
-        <global-search-dialog />
-      </div>
+      <v-menu
+        bottom
+        left
+      >
+        <template #activator="{ on, attrs }">
+          <v-btn
+            icon
+            aria-label="select language"
+            class="select-oblyk-language"
+            v-bind="attrs"
+            v-on="on"
+          >
+            <v-avatar size="24">
+              <v-img :src="`/images/flags/${lang}-circle.png`" cover alt="langage flag" />
+            </v-avatar>
+          </v-btn>
+        </template>
+        <v-list>
+          <v-list-item
+            v-for="language in languages"
+            :key="language.value"
+            @click="changeLocale(language.value)"
+          >
+            <v-list-item-avatar size="24">
+              <v-img :src="`/images/flags/${language.value}-circle.png`" cover alt="langage flag" />
+            </v-list-item-avatar>
+            <v-list-item-content>
+              {{ language.text }}
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
+      </v-menu>
     </div>
   </v-list-item>
 </template>
@@ -69,14 +98,12 @@ import LazyHydrate from 'vue-lazy-hydration'
 import NotificationAppBar from '~/components/layouts/partial/NotificationAppBar'
 import AppBarProfil from '~/components/layouts/partial/AppBarProfile'
 import LoginLogoutBtn from '~/components/layouts/partial/LoginLogoutBtn'
-import GlobalSearchDialog from '~/components/searches/GlobalSearchDialog'
 import LocalizationBtn from '~/components/layouts/partial/LocalizationBtn'
 
 export default {
   name: 'AppToolBar',
   components: {
     LocalizationBtn,
-    GlobalSearchDialog,
     LoginLogoutBtn,
     AppBarProfil,
     NotificationAppBar,
@@ -85,6 +112,18 @@ export default {
   data () {
     return {
       dark: false,
+      lang: null,
+      languages: [
+        {
+          value: 'fr',
+          text: 'Français'
+        },
+        {
+          value: 'en',
+          text: 'English'
+        }
+      ],
+
       mdiWeatherSunny,
       mdiWeatherNight,
       mdiAccountCircleOutline
@@ -100,6 +139,16 @@ export default {
 
   mounted () {
     this.dark = this.$store.getters['theme/getTheme'] === 'dark'
+    this.lang = this.$i18n.locale
+  },
+
+  methods: {
+    changeLocale (lang) {
+      this.lang = lang
+      this.$vuetify.lang.current = this.lang
+      this.$i18n.setLocaleCookie(this.lang)
+      this.$i18n.setLocale(this.lang)
+    }
   }
 }
 </script>

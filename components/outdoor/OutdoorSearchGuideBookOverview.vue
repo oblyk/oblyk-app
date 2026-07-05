@@ -4,7 +4,6 @@
       <outdoor-search-field
         ref="outdoorSearchField"
         search-type="guideBook"
-        :searching="searching"
         class="mx-auto"
         @input="search"
       />
@@ -84,6 +83,14 @@
         v-if="haveQuery"
         class="mt-3"
       >
+        <p
+          v-if="resultsMeta"
+          class="mt-n3 mb-2 font-weight-medium"
+        >
+          <small>
+            {{ $tc('common.resultsCount', resultsMeta.total_count, { count: resultsMeta.total_count.toLocaleString() }) }}
+          </small>
+        </p>
         <guide-book-paper-small-card
           v-for="(guideBook, guideBookIndex) in searchResults"
           :key="`guide-book-outdoor-${guideBookIndex}`"
@@ -91,26 +98,36 @@
           :guide-book-paper="guideBook"
           class="mb-1"
         />
+        <loading-more
+          :get-function="nextPage"
+          :loading-more="loadingMoreData"
+          :no-more-data="noMoreDataToLoad"
+          skeleton-type="list-item-avatar"
+        />
       </div>
     </v-container>
   </div>
 </template>
+
 <script>
 import { mdiMap, mdiMapSearch } from '@mdi/js'
+import { LoadingMoreHelpers } from '~/mixins/LoadingMoreHelpers'
 import OutdoorSearchField from '~/components/outdoor/OutdoorSearchField'
 import GuideBookPapersByPopularity from '~/components/guideBookPapers/GuideBookPapersByPopularity'
 import GuideBookPaperSmallCard from '~/components/guideBookPapers/GuideBookPaperSmallCard'
 import CommonApi from '~/services/oblyk-api/CommonApi'
-import GuideBookPaperApi from '~/services/oblyk-api/GuideBookPaperApi'
-import GuideBookPaper from '~/models/GuideBookPaper'
+import OblykApi from '~/services/oblyk-api/OblykApi'
+import LoadingMore from '~/components/layouts/LoadingMore.vue'
 
 export default {
   name: 'OutdoorSearchGuideBookOverview',
   components: {
+    LoadingMore,
     GuideBookPaperSmallCard,
     GuideBookPapersByPopularity,
     OutdoorSearchField
   },
+  mixins: [LoadingMoreHelpers],
 
   data () {
     return {
@@ -118,6 +135,7 @@ export default {
       searching: false,
       onSearch: false,
       searchResults: [],
+      resultsMeta: null,
       previousQuery: null,
       guideBookApi: null,
       guideBooksCount: '...',
@@ -131,6 +149,10 @@ export default {
   computed: {
     haveQuery () {
       return !(this.query === null || this.query === '')
+    },
+
+    cleanQuery () {
+      return this.query?.trim()
     }
   },
 
@@ -167,30 +189,49 @@ export default {
       }
       this.searchTimeOut = setTimeout(() => {
         this.apiSearch()
-      }, 500)
+      }, 300)
     },
 
-    apiSearch () {
-      this.guideBookApi = this.guideBookApi || new GuideBookPaperApi(this.$axios, this.$auth)
-
-      this.guideBookApi.cancelSearch()
-      this.guideBookApi
-        .search(this.query)
+    apiSearch (page = 1, reset = true) {
+      this.moreIsBeingLoaded()
+      this.oblykApi = this.oblykApi || new OblykApi(this.$axios, this.$auth)
+      this.oblykApi.cancelApiRequest()
+      this.oblykApi
+        .get(
+          '/public/guide_book_papers/search',
+          { query: this.cleanQuery, page },
+          { cancelable: true }
+        )
         .then((resp) => {
-          this.searchResults = []
+          if (reset) {
+            this.resetLoadMorePageNumber()
+            this.searchResults = []
+          }
+          this.resultsMeta = resp.meta
           for (const guideBookPaper of resp.data) {
-            this.searchResults.push(new GuideBookPaper({ attributes: guideBookPaper }))
+            this.searchResults.push(guideBookPaper)
           }
           this.previousQuery = this.query
+          this.successLoadingMore(resp)
         })
         .catch((err) => {
           if (err.response !== undefined) {
-            this.$root.$emit('alertFromApiError', err, 'guideBookPaper')
+            this.$root.$emit('alertFromApiError', err, 'crag')
           }
+          this.failureToLoadingMore()
         })
         .finally(() => {
           this.searching = false
+          this.finallyMoreIsLoaded()
         })
+    },
+
+    nextPage () {
+      let page = 1
+      if (this.resultsMeta) {
+        page = this.resultsMeta.next_page
+      }
+      this.apiSearch(page, false)
     }
   }
 }

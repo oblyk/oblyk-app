@@ -3,65 +3,24 @@
     class="oblyk-app-drawer"
     :class="`oblyk-app-drawer-${oblykEnvironment}`"
   >
-    <v-list-item>
-      <v-row class="oblyk-app-drawer-header">
-        <v-col
-          class="pl-1"
-          @click="startAnimation()"
-        >
-          <nuxt-link
-            to="/"
-            class="discrete-link"
-          >
-            <animate-oblyk-logo
-              :animate="loading"
-              :color="environmentColor"
-            />
-            <div class="d-inline-block oblyk-app-drawer-title">
-              <p>
-                Oblyk
-              </p>
-              <small>
-                Climbing Community
-              </small>
-            </div>
-          </nuxt-link>
-        </v-col>
-        <v-col class="oblyk-langage-col v-card__actions">
-          <v-spacer />
-          <v-menu
-            bottom
-            left
-          >
-            <template #activator="{ on, attrs }">
-              <v-btn
-                icon
-                fab
-                aria-label="select language"
-                class="select-oblyk-language"
-                v-bind="attrs"
-                v-on="on"
-              >
-                {{ lang }}
-                <v-icon>
-                  {{ mdiMenuDown }}
-                </v-icon>
-              </v-btn>
-            </template>
-            <v-list>
-              <v-list-item
-                v-for="language in languages"
-                :key="language.value"
-                @click="changeLocale(language.value)"
-              >
-                <v-list-item-content>
-                  {{ language.text }}
-                </v-list-item-content>
-              </v-list-item>
-            </v-list>
-          </v-menu>
-        </v-col>
-      </v-row>
+    <v-list-item
+      to="/"
+      @click="startAnimation()"
+    >
+      <div class="oblyk-app-drawer-header">
+        <animate-oblyk-logo
+          :animate="loading"
+          :color="environmentColor"
+        />
+        <div class="d-inline-block oblyk-app-drawer-title">
+          <p>
+            Oblyk
+          </p>
+          <small>
+            Climbing Community
+          </small>
+        </div>
+      </div>
     </v-list-item>
 
     <!-- If user is connected -->
@@ -120,7 +79,7 @@
 </template>
 
 <script>
-import { mdiMenuDown, mdiPlus } from '@mdi/js'
+import { mdiPlus } from '@mdi/js'
 import AppDrawerUser from '~/components/layouts/AppDrawerPartial/AppDrawerUser'
 import AppDrawerAccount from '~/components/layouts/AppDrawerPartial/AppDrawerAccount'
 import AppToolBar from '~/components/layouts/AppDrawerPartial/AppToolBar'
@@ -147,20 +106,8 @@ export default {
 
   data () {
     return {
-      lang: null,
       loading: false,
-      languages: [
-        {
-          value: 'fr',
-          text: 'Français'
-        },
-        {
-          value: 'en',
-          text: 'English'
-        }
-      ],
 
-      mdiMenuDown,
       mdiPlus
     }
   },
@@ -181,18 +128,7 @@ export default {
     }
   },
 
-  mounted () {
-    this.lang = this.$i18n.locale
-  },
-
   methods: {
-    changeLocale (lang) {
-      this.lang = lang
-      this.$vuetify.lang.current = this.lang
-      this.$i18n.setLocaleCookie(this.lang)
-      this.$i18n.setLocale(this.lang)
-    },
-
     startAnimation () {
       this.loading = true
       setTimeout(() => { this.loading = false }, 1500)

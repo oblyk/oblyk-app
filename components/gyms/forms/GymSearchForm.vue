@@ -7,11 +7,10 @@
           v-model="query"
           :label="$t(label)"
           outlined
-          :loading="searching"
           clearable
           hide-details
           @keyup="search()"
-          @click:clear="onSearch = false"
+          @click:clear="clearSearch()"
           @focus="scrollToElement"
         />
       </v-col>
@@ -37,31 +36,44 @@
       </v-col>
     </v-row>
 
-    <div
-      v-for="gym in searchResults"
-      :key="gym.id"
-    >
-      <div @click="callback ? callback(gym) : null">
+    <div v-if="searchResults.length > 0">
+      <p class="mt-1 mb-0">
+        {{ $tc('common.resultsCount', resultsMeta.total_count, { count: resultsMeta.total_count }) }}
+      </p>
+      <div
+        v-for="(gym, gymIndex) in searchResults"
+        :key="`gym-index-${gymIndex}`"
+      >
         <gym-small-card
           :gym="gym"
           :linkable="linkableResult"
+          :callback="callback"
           class="mt-3"
           :small="true"
         />
       </div>
+      <loading-more
+        v-if="searchMode === 'query'"
+        :get-function="nextPage"
+        :loading-more="loadingMoreData"
+        :no-more-data="noMoreDataToLoad"
+        skeleton-type="list-item-three-line"
+      />
     </div>
   </div>
 </template>
 
 <script>
 import { mdiTarget } from '@mdi/js'
-import GymApi from '~/services/oblyk-api/GymApi'
-import Gym from '@/models/Gym'
+import { LoadingMoreHelpers } from '~/mixins/LoadingMoreHelpers'
 import GymSmallCard from '@/components/gyms/GymSmallCard'
+import OblykApi from '~/services/oblyk-api/OblykApi'
+import LoadingMore from '~/components/layouts/LoadingMore.vue'
 
 export default {
   name: 'GymSearchForm',
-  components: { GymSmallCard },
+  components: { LoadingMore, GymSmallCard },
+  mixins: [LoadingMoreHelpers],
   props: {
     linkableResult: {
       type: Boolean,
@@ -92,8 +104,10 @@ export default {
       loadingLocalization: false,
       onSearch: false,
       searchResults: [],
+      resultsMeta: null,
       previousQuery: null,
-      gymApi: null,
+      oblykApi: null,
+      searchMode: 'query',
 
       mdiTarget
     }
@@ -115,50 +129,83 @@ export default {
       }
       this.searchTimeOut = setTimeout(() => {
         this.apiSearch()
-      }, 500)
+      }, 150)
     },
 
-    apiSearch () {
-      this.gymApi = this.gymApi || new GymApi(this.$axios, this.$auth)
-
-      this.gymApi.cancelSearch()
-      this.gymApi
-        .search(this.query)
+    apiSearch (page = 1, reset = true) {
+      this.moreIsBeingLoaded()
+      this.searchMode = 'query'
+      this.oblykApi = this.oblykApi || new OblykApi(this.$axios, this.$auth)
+      this.oblykApi.cancelApiRequest()
+      this.oblykApi
+        .get(
+          '/gyms/search',
+          { query: this.query, page },
+          { cancelable: true }
+        )
         .then((resp) => {
-          this.searchResults = []
+          if (reset) {
+            this.resetLoadMorePageNumber()
+            this.searchResults = []
+          }
+          this.resultsMeta = resp.meta
           for (const gym of resp.data) {
-            this.searchResults.push(new Gym({ attributes: gym }))
+            this.searchResults.push(gym)
           }
-          this.previousQuery = this.query
+          this.previousQuery = resp.meta.query
           if (this.usedCallback !== null) {
-            this.usedCallback(this.query)
+            this.usedCallback(resp.meta.query)
           }
+          this.successLoadingMore(resp)
         })
         .catch((err) => {
           if (err.response !== undefined) {
             this.$root.$emit('alertFromApiError', err, 'gym')
           }
+          this.failureToLoadingMore()
         })
         .finally(() => {
           this.searching = false
+          this.finallyMoreIsLoaded()
         })
     },
 
-    aroundMe () {
-      this.loadingLocalization = true
+    nextPage () {
+      let page = 1
+      if (this.resultsMeta) {
+        page = this.resultsMeta.next_page
+      }
+      this.apiSearch(page, false)
+    },
+
+    clearSearch () {
       this.searchResults = []
+      this.resultsMeta = null
+      this.previousQuery = null
+      this.query = null
+    },
+
+    aroundMe () {
+      this.searchMode = 'aroundMe'
+      this.loadingLocalization = true
+      const distance = 20
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
           (position) => {
-            new GymApi(this.$axios, this.$auth)
-              .gymsAround(
-                position.coords.latitude,
-                position.coords.longitude
-              )
+            new OblykApi(this.$axios, this.$auth)
+              .get('/gyms/gyms_around', {
+                latitude: position.coords.latitude,
+                longitude: position.coords.longitude,
+                distance
+              })
               .then((resp) => {
+                this.searchResults = []
+                this.resultsMeta = {
+                  total_count: resp.data.length
+                }
                 this.onSearch = true
                 for (const gym of resp.data) {
-                  this.searchResults.push(new Gym({ attributes: gym }))
+                  this.searchResults.push(gym)
                 }
               })
               .finally(() => {

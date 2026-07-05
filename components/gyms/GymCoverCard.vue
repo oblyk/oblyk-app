@@ -1,6 +1,6 @@
 <template>
   <nuxt-link
-    :to="gym.guideBookPath"
+    :to="gym.app_first_spaces_path"
     class="discrete-link"
   >
     <v-img

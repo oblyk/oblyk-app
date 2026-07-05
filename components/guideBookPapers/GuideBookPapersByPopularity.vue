@@ -30,7 +30,6 @@ import { LoadingMoreHelpers } from '~/mixins/LoadingMoreHelpers'
 import LoadingMore from '~/components/layouts/LoadingMore'
 import GuideBookPaperSmallCard from '~/components/guideBookPapers/GuideBookPaperSmallCard'
 import GuideBookPaperApi from '~/services/oblyk-api/GuideBookPaperApi'
-import GuideBookPaper from '~/models/GuideBookPaper'
 
 export default {
   name: 'GuideBookPapersByPopularity',
@@ -56,7 +55,7 @@ export default {
         .all(null, this.page, null, { order: 'popularity' })
         .then((resp) => {
           for (const guideBook of resp.data) {
-            this.guideBookPapers.push(new GuideBookPaper({ attributes: guideBook }))
+            this.guideBookPapers.push(guideBook)
           }
           this.successLoadingMore(resp)
         })

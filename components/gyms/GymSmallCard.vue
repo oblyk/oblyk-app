@@ -141,9 +141,9 @@ export default {
     path () {
       if (this.linkable) {
         if (this.goToSpaces) {
-          return this.gym.guideBookPath
+          return this.gym.app_first_spaces_path
         } else {
-          return this.gym.path
+          return this.gym.app_path
         }
       } else {
         return null

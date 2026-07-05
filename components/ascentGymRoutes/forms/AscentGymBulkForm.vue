@@ -33,14 +33,14 @@
 
     <!-- Climbing type -->
     <div
-      v-if="gym.climbableTypes.length > 1"
+      v-if="gym.climbable_types.length > 1"
       class="my-4"
     >
       <p class="mb-1">
         {{ $t('components.logBook.climbingType') }} ?
       </p>
       <v-sheet
-        v-for="(climbingStyle, climbingStyleIndex) in gym.climbableTypes"
+        v-for="(climbingStyle, climbingStyleIndex) in gym.climbable_types"
         :key="`climbing-style-index-${climbingStyleIndex}`"
         class="pa-2 rounded-sm activable-v-sheet d-inline-block mr-2"
         :class="data.climbingType === climbingStyle ? '--active' : '--inactive'"
@@ -262,7 +262,7 @@ export default {
       keepDefaultHeight: true,
       data: {
         ascentsBy: 'grade',
-        climbingType: this.gym.climbableTypes[0],
+        climbingType: this.gym.climbable_types[0],
         description: null,
         released_at: this.ISODateToday(),
         ascents: [
@@ -295,14 +295,14 @@ export default {
   },
 
   mounted () {
-    this.height = this.gym.climbableTypes[0] === 'sport_climbing' ? 10 : 4
+    this.height = this.gym.climbable_types[0] === 'sport_climbing' ? 10 : 4
     this.intiByPreferences()
   },
 
   methods: {
     clickOnBtn () {
       if (this.haveSpaces) {
-        this.$router.push(this.gym.firstSpacePath)
+        this.$router.push(this.gym.app_first_spaces_path)
       } else {
         this.ascentsModal = true
       }
@@ -364,7 +364,7 @@ export default {
       this.keepDefaultHeight = true
       this.data = {
         ascentsBy: 'grade',
-        climbingType: this.gym.climbableTypes[0],
+        climbingType: this.gym.climbable_types[0],
         description: null,
         released_at: this.ISODateToday(),
         ascents: [

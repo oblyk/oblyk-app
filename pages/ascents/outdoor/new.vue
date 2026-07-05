@@ -72,7 +72,7 @@
                 outlined
                 color="primary"
                 small
-                :to="crag.path"
+                :to="crag.app_path"
               >
                 {{ crag.name }}
               </v-btn>

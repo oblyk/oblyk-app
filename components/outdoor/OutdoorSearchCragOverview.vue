@@ -4,7 +4,6 @@
       <outdoor-search-field
         ref="outdoorSearchField"
         search-type="crag"
-        :searching="searching"
         class="mx-auto"
         @input="search"
       />
@@ -70,11 +69,25 @@
         v-if="haveQuery"
         class="mt-3"
       >
+        <p
+          v-if="resultsMeta"
+          class="mt-n3 mb-2 font-weight-medium"
+        >
+          <small>
+            {{ $tc('common.resultsCount', resultsMeta.total_count, { count: resultsMeta.total_count.toLocaleString() }) }}
+          </small>
+        </p>
         <crag-cover-card
           v-for="(crag, cragIndex) in searchResults"
           :key="`crag-outdoor-${cragIndex}`"
           :crag="crag"
           class="mb-1"
+        />
+        <loading-more
+          :get-function="nextPage"
+          :loading-more="loadingMoreData"
+          :no-more-data="noMoreDataToLoad"
+          skeleton-type="list-item-avatar"
         />
       </div>
     </v-container>
@@ -82,20 +95,23 @@
 </template>
 <script>
 import { mdiMap, mdiMapSearch } from '@mdi/js'
+import { LoadingMoreHelpers } from '~/mixins/LoadingMoreHelpers'
 import OutdoorSearchField from '~/components/outdoor/OutdoorSearchField'
 import CragCoverCard from '~/components/crags/CragCoverCard'
 import CragsByPopularity from '~/components/crags/CragsByPopularity'
 import CommonApi from '~/services/oblyk-api/CommonApi'
-import CragApi from '~/services/oblyk-api/CragApi'
-import Crag from '~/models/Crag'
+import OblykApi from '~/services/oblyk-api/OblykApi'
+import LoadingMore from '~/components/layouts/LoadingMore'
 
 export default {
   name: 'OutdoorSearchCragOverview',
   components: {
+    LoadingMore,
     CragsByPopularity,
     CragCoverCard,
     OutdoorSearchField
   },
+  mixins: [LoadingMoreHelpers],
 
   data () {
     return {
@@ -103,6 +119,7 @@ export default {
       searching: false,
       onSearch: false,
       searchResults: [],
+      resultsMeta: null,
       previousQuery: null,
       cragApi: null,
       cragsCount: '...',
@@ -115,6 +132,10 @@ export default {
   computed: {
     haveQuery () {
       return !(this.query === null || this.query === '')
+    },
+
+    cleanQuery () {
+      return this.query?.trim()
     }
   },
 
@@ -151,30 +172,49 @@ export default {
       }
       this.searchTimeOut = setTimeout(() => {
         this.apiSearch()
-      }, 500)
+      }, 300)
     },
 
-    apiSearch () {
-      this.cragApi = this.cragApi || new CragApi(this.$axios, this.$auth)
-
-      this.cragApi.cancelSearch()
-      this.cragApi
-        .search(this.query)
+    apiSearch (page = 1, reset = true) {
+      this.moreIsBeingLoaded()
+      this.oblykApi = this.oblykApi || new OblykApi(this.$axios, this.$auth)
+      this.oblykApi.cancelApiRequest()
+      this.oblykApi
+        .get(
+          '/public/crags/search',
+          { query: this.cleanQuery, page },
+          { cancelable: true }
+        )
         .then((resp) => {
-          this.searchResults = []
+          if (reset) {
+            this.resetLoadMorePageNumber()
+            this.searchResults = []
+          }
+          this.resultsMeta = resp.meta
           for (const crag of resp.data) {
-            this.searchResults.push(new Crag({ attributes: crag }))
+            this.searchResults.push(crag)
           }
           this.previousQuery = this.query
+          this.successLoadingMore(resp)
         })
         .catch((err) => {
           if (err.response !== undefined) {
             this.$root.$emit('alertFromApiError', err, 'crag')
           }
+          this.failureToLoadingMore()
         })
         .finally(() => {
           this.searching = false
+          this.finallyMoreIsLoaded()
         })
+    },
+
+    nextPage () {
+      let page = 1
+      if (this.resultsMeta) {
+        page = this.resultsMeta.next_page
+      }
+      this.apiSearch(page, false)
     }
   }
 }

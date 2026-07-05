@@ -1,26 +1,55 @@
 <template>
-  <v-text-field
-    ref="cragRouteSearchInput"
-    v-model="query"
-    outlined
-    :prepend-inner-icon="icon"
-    :loading="searching"
-    :hide-details="hideDetail"
-    :tabindex="tabindex"
-    clearable
-    :label="$t(labelKey)"
-    @keyup="search"
-    @click:clear="clearSearch"
-  />
+  <div>
+    <v-text-field
+      ref="cragRouteSearchInput"
+      v-model="query"
+      outlined
+      :prepend-inner-icon="icon"
+      :hide-details="hideDetail"
+      :tabindex="tabindex"
+      clearable
+      :label="$t(labelKey)"
+      @keyup="search"
+      @click:clear="clearSearch"
+    />
+    <div v-if="searchResults.length > 0">
+      <p class="mt-1 mb-0">
+        {{ $tc('common.resultsCount', resultsMeta.total_count, { count: resultsMeta.total_count }) }}
+      </p>
+      <div
+        v-for="(cragRoute, cragRouteIndex) in searchResults"
+        :key="`crag-route-index-${cragRouteIndex}`"
+      >
+        <crag-route-list-item
+          :route="cragRoute"
+          :callback="callback"
+          class="mt-3"
+        />
+      </div>
+      <loading-more
+        :get-function="nextPage"
+        :loading-more="loadingMoreData"
+        :no-more-data="noMoreDataToLoad"
+        skeleton-type="list-item-three-line"
+      />
+    </div>
+  </div>
 </template>
 
 <script>
 import { mdiMagnify } from '@mdi/js'
-import CragRoute from '@/models/CragRoute'
-import CragRouteApi from '~/services/oblyk-api/CragRouteApi'
+import { LoadingMoreHelpers } from '~/mixins/LoadingMoreHelpers'
+import LoadingMore from '~/components/layouts/LoadingMore'
+import OblykApi from '~/services/oblyk-api/OblykApi'
+import CragRouteListItem from '~/components/cragRoutes/CragRouteListItem'
 
 export default {
   name: 'CragRouteSearch',
+  components: {
+    CragRouteListItem,
+    LoadingMore
+  },
+  mixins: [LoadingMoreHelpers],
   props: {
     value: {
       type: String,
@@ -50,6 +79,14 @@ export default {
       type: String,
       default: 'searchCragRoutesResults'
     },
+    linkableResult: {
+      type: Boolean,
+      default: false
+    },
+    callback: {
+      type: Function,
+      default: null
+    },
     tabindex: {
       type: Number,
       default: null
@@ -58,25 +95,27 @@ export default {
 
   data () {
     return {
-      query: this.value,
+      query: null,
       searching: false,
       onSearch: false,
       searchResults: [],
+      resultsMeta: null,
       previousQuery: null,
+      oblykApi: null,
 
       mdiMagnify
+    }
+  },
+
+  computed: {
+    cleanQuery () {
+      return this.query?.trim()
     }
   },
 
   watch: {
     value () {
       this.query = this.value
-    },
-
-    query () {
-      if (this.query === '' || this.query === null) {
-        this.clearSearch()
-      }
     }
   },
 
@@ -93,10 +132,6 @@ export default {
   methods: {
     giveFocus () {
       this.$refs.cragRouteSearchInput.focus()
-    },
-
-    clearSearch () {
-      this.$root.$emit('reloadCragRouteList')
     },
 
     search () {
@@ -116,34 +151,65 @@ export default {
       }
       this.searchTimeOut = setTimeout(() => {
         this.apiSearch()
-      }, 500)
+      }, 300)
     },
 
-    apiSearch () {
-      let promise
-      if (this.cragSector) {
-        promise = new CragRouteApi(this.$axios, this.$auth).searchInSector(this.cragSector.id, this.query)
-      } else {
-        promise = new CragRouteApi(this.$axios, this.$auth).searchInCrag(this.crag.id, this.query)
-      }
+    apiSearch (page = 1, reset = true) {
+      this.moreIsBeingLoaded()
+      this.oblykApi = this.oblykApi || new OblykApi(this.$axios, this.$auth)
+      this.oblykApi.cancelApiRequest()
 
-      promise
+      let url
+      if (this.cragSector) {
+        url = `/public/crag_sectors/${this.cragSector.id}/crag_routes/search`
+      } else if (this.crag) {
+        url = `/public/crags/${this.crag.id}/crag_routes/search`
+      } else {
+        url = '/public/crag_routes/search'
+      }
+      this.oblykApi
+        .get(
+          url,
+          { query: this.cleanQuery, page },
+          { cancelable: true }
+        )
         .then((resp) => {
-          this.searchResults = []
+          if (reset) {
+            this.resetLoadMorePageNumber()
+            this.searchResults = []
+          }
+          this.resultsMeta = resp.meta
           for (const cragRoute of resp.data) {
-            this.searchResults.push(new CragRoute({ attributes: cragRoute }))
+            this.searchResults.push(cragRoute)
           }
           this.previousQuery = this.query
-          this.$root.$emit(this.eventTrigger, this.searchResults)
+          this.successLoadingMore(resp)
         })
         .catch((err) => {
           if (err.response !== undefined) {
             this.$root.$emit('alertFromApiError', err, 'cragRoute')
           }
+          this.failureToLoadingMore()
         })
         .finally(() => {
           this.searching = false
+          this.finallyMoreIsLoaded()
         })
+    },
+
+    nextPage () {
+      let page = 1
+      if (this.resultsMeta) {
+        page = this.resultsMeta.next_page
+      }
+      this.apiSearch(page, false)
+    },
+
+    clearSearch () {
+      this.searchResults = []
+      this.resultsMeta = null
+      this.previousQuery = null
+      this.query = null
     }
   }
 }

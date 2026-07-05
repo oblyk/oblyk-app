@@ -101,7 +101,10 @@ export default {
   name: 'CragRouteListItem',
   components: { CragRouteNote, ClimbingStyleIcon, AscentCragRouteStatusIcon, CragRouteAvatar },
   props: {
-    route: { type: Object, required: true },
+    route: {
+      type: Object,
+      required: true
+    },
     callback: {
       type: Function,
       default: null

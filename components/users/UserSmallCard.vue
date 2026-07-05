@@ -5,7 +5,7 @@
       flat
       class="hoverable-card"
       :class="bordered ? 'border' : ''"
-      :to="linkable ? user.userPath : null"
+      :to="linkable ? user.app_path : null"
       @click="callback ? callback(user) : null"
     >
       <v-list-item two-line>
