@@ -1,6 +1,6 @@
 <template>
   <v-card
-    :to="town.path"
+    :to="town.app_path"
     link
     flat
   >
