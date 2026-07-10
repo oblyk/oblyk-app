@@ -92,9 +92,9 @@ export default {
 
       if (this.cragSectorId === 0) {
         if (this.crag) {
-          this.router.push(this.crag.path)
+          this.router.push(`${this.crag.app_path}/routes`)
         } else {
-          this.$router.push((this.cragSector.Crag.path))
+          this.$router.push(`${this.cragSector.crag.app_path}/routes`)
         }
       } else {
         for (const sector of this.cragSectors) {

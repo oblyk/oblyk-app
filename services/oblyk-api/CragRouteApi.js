@@ -18,36 +18,6 @@ class CragRouteApi extends BaseApi {
     })
   }
 
-  allInCrag (cragId, page = 1, orderBy = 'difficulty_desc') {
-    return this.axios.request({
-      method: 'GET',
-      url: `${this.baseUrl}/public/crags/${cragId}/crag_routes.json`,
-      headers: {
-        Authorization: this.authToken(),
-        HttpApiAccessToken: this.apiAccessToken
-      },
-      params: {
-        order_by: orderBy,
-        page
-      }
-    })
-  }
-
-  allInCragSector (cragSectorId, page = 1, orderBy = 'difficulty_desc') {
-    return this.axios.request({
-      method: 'GET',
-      url: `${this.baseUrl}/public/crag_sectors/${cragSectorId}/crag_routes.json`,
-      headers: {
-        Authorization: this.authToken(),
-        HttpApiAccessToken: this.apiAccessToken
-      },
-      params: {
-        order_by: orderBy,
-        page
-      }
-    })
-  }
-
   search (query) {
     return this.axios.request({
       method: 'GET',

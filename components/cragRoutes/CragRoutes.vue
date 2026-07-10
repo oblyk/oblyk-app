@@ -166,8 +166,8 @@
 <script>
 import { mdiSourceBranch, mdiMagnify } from '@mdi/js'
 import { LoadingMoreHelpers } from '@/mixins/LoadingMoreHelpers'
-import CragRouteApi from '~/services/oblyk-api/CragRouteApi'
 import CragRoute from '@/models/CragRoute'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 import CragRouteListItem from '@/components/cragRoutes/CragRouteListItem'
 import LoadingMore from '@/components/layouts/LoadingMore'
 import AddSectorOrRouteBtn from '@/components/cragRoutes/partial/AddSectorOrRouteBtn'
@@ -295,10 +295,16 @@ export default {
     getRoutes (sectorIdFilter = null) {
       let promise
       if (this.crag && sectorIdFilter === null) {
-        promise = new CragRouteApi(this.$axios, this.$auth).allInCrag(this.crag.id, this.page, this.routeSort)
+        promise = new OblykApi(this.$axios, this.$auth).get(
+          `/public/crags/${this.crag.id}/crag_routes`,
+          { order_by: this.routeSort || 'difficulty_desc', page: this.page }
+        )
       } else if (this.cragSector || sectorIdFilter) {
         const sectorId = this.cragSector ? this.cragSector.id : sectorIdFilter
-        promise = new CragRouteApi(this.$axios, this.$auth).allInCragSector(sectorId, this.page, this.routeSort)
+        promise = new OblykApi(this.$axios, this.$auth).get(
+          `/public/crag_sectors/${sectorId}/crag_routes`,
+          { order_by: this.routeSort || 'difficulty_desc', page: this.page }
+        )
       }
 
       this.moreIsBeingLoaded()
