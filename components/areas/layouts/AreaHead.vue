@@ -32,7 +32,7 @@
           <client-only>
             <share-btn
               :title="area.name"
-              :url="area.path"
+              :url="area.app_path"
               :icon="false"
             />
             <v-menu offset-y>
@@ -50,7 +50,7 @@
                 </v-btn>
               </template>
               <v-list>
-                <v-list-item :to="`${area.path}/edit`">
+                <v-list-item :to="`${area.app_path}/edit`">
                   <v-list-item-icon>
                     <v-icon>
                       {{ mdiPencil }}

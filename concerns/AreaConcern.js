@@ -1,5 +1,5 @@
-import Area from '@/models/Area'
 import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 
 export const AreaConcern = {
   mixins: [ImageVariantHelpers],
@@ -25,7 +25,7 @@ export const AreaConcern = {
       }
     },
     areaMetaUrl () {
-      return `${process.env.VUE_APP_OBLYK_APP_URL}${this.area?.path}`
+      return `${process.env.VUE_APP_OBLYK_APP_URL}${this.area?.app_path}`
     }
   },
 
@@ -79,11 +79,10 @@ export const AreaConcern = {
   },
 
   async fetch () {
-    this.area = await new Area({
-      axios: this.$axios,
-      auth: this.$auth
-    })._find(
-      this.$route.params.areaId
-    )
+    await new OblykApi(this.$axios, this.$auth)
+      .get(`/public/areas/${this.$route.params.areaId}`)
+      .then((resp) => {
+        this.area = resp.data
+      })
   }
 }

@@ -23,7 +23,7 @@
 
 <script>
 import { mdiMap } from '@mdi/js'
-import AreaApi from '@/services/oblyk-api/AreaApi'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 const LeafletMap = () => import('@/components/maps/LeafletMap')
 
 export default {
@@ -49,8 +49,11 @@ export default {
 
   methods: {
     getGeoJson () {
-      new AreaApi(this.$axios, this.$auth)
-        .geoJson(this.area.id)
+      new OblykApi(this.$axios, this.$auth)
+        .get(
+          `/public/areas/${this.area.id}/geo_json`,
+          { minimalistic: true }
+        )
         .then((resp) => {
           this.geoJsons = { features: resp.data.features }
           setTimeout(() => {

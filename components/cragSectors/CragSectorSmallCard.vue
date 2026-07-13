@@ -3,7 +3,7 @@
     <v-card
       link
       flat
-      :to="linkable ? cragSector.path : null"
+      :to="linkable ? cragSector.app_path : null"
     >
       <v-list-item three-line>
         <v-list-item-avatar
@@ -31,7 +31,7 @@
             >
               Secteur
             </v-alert>
-            {{ cragSector.Crag.name }}, {{ cragSector.Crag.city }}
+            {{ cragSector.grag.name }}, {{ cragSector.crag.city }}
           </v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>

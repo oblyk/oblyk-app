@@ -12,7 +12,7 @@
         <v-btn
           text
           outlined
-          :to="`${area.path}/add-crag`"
+          :to="`${area.app_path}/add-crag`"
           color="primary"
         >
           <v-icon
@@ -29,7 +29,7 @@
 
 <script>
 import { mdiDelete, mdiTerrain } from '@mdi/js'
-import AreaApi from '~/services/oblyk-api/AreaApi'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 import CragsTable from '~/components/crags/CragsTable'
 
 export default {
@@ -56,8 +56,11 @@ export default {
   methods: {
     removeCrag (crag) {
       if (confirm(this.$t('actions.areYouSur'))) {
-        new AreaApi(this.$axios, this.$auth)
-          .removeCrag(this.area.id, crag.id)
+        new OblykApi(this.$axios, this.$auth)
+          .delete(
+            `/public/areas/${this.area.id}/remove_crag`,
+            { area: { crag_id: crag.id } }
+          )
           .then(() => {
             this.$router.go(0)
           })

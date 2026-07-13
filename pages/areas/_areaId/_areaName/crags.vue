@@ -14,8 +14,8 @@
 </template>
 
 <script>
-import AreaApi from '@/services/oblyk-api/AreaApi'
 import AreaCrags from '@/components/areas/AreaCrags'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 
 export default {
   components: { AreaCrags },
@@ -63,13 +63,13 @@ export default {
         { hid: 'og:title', property: 'og:title', content: this.areaCragsMetaTitle },
         { hid: 'description', name: 'description', content: this.areaCragsMetaDescription },
         { hid: 'og:description', property: 'og:description', content: this.areaCragsMetaDescription },
-        { hid: 'og:url', property: 'og:url', content: `${process.env.VUE_APP_OBLYK_APP_URL}${this.area?.path}/crags` }
+        { hid: 'og:url', property: 'og:url', content: `${process.env.VUE_APP_OBLYK_APP_URL}${this.area?.app_path}/crags` }
       ]
     }
   },
 
   created () {
-    this.$store.dispatch('oblykEnvironment/pushHubs', { hub: this.area.path, page: this.$route.path })
+    this.$store.dispatch('oblykEnvironment/pushHubs', { hub: this.area.app_path, page: this.$route.path })
   },
 
   mounted () {
@@ -80,8 +80,8 @@ export default {
     getCrags () {
       this.crags = []
       this.loadingCrags = true
-      new AreaApi(this.$axios, this.$auth)
-        .cragsFigures(this.$route.params.areaId)
+      new OblykApi(this.$axios, this.$auth)
+        .get(`/public/areas/${this.$route.params.areaId}/crags_figures`)
         .then((resp) => {
           this.crags = resp.data
         })

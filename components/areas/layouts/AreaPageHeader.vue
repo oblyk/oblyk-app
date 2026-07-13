@@ -22,23 +22,23 @@ export default {
     headerLinks () {
       return [
         {
-          to: this.area.path,
+          to: this.area.app_path,
           title: this.$t('components.area.tabs.info')
         },
         {
-          to: `${this.area.path}/crags`,
+          to: `${this.area.app_path}/crags`,
           title: this.$t('components.area.tabs.crags'),
           badge: this.area.crags_count > 0 ? this.area.crags_count : null
         },
         {
-          to: `${this.area.path}/photos`,
+          to: `${this.area.app_path}/photos`,
           title: this.$t('components.area.tabs.photos')
         }
       ]
     },
 
     backTo () {
-      return this.$store.getters['oblykEnvironment/getPreviousHubs'](this.$route.path, this.area.path)
+      return this.$store.getters['oblykEnvironment/getPreviousHubs'](this.$route.path, this.area.app_path)
     }
   }
 }

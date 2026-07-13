@@ -61,8 +61,8 @@ export default {
 
   methods: {
     clickOnBtn () {
-      if (this.gym.optimal_spaces_path) {
-        this.$router.push(this.gym.firstSpacePath)
+      if (this.gym.public_guide_book) {
+        this.$router.push(this.gym.app_paths.public_space)
       } else {
         this.ascentsModal = true
       }

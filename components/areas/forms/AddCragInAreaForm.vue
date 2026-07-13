@@ -12,7 +12,7 @@
 import { FormHelpers } from '@/mixins/FormHelpers'
 import CragSearchForm from '@/components/crags/forms/CragSearchForm'
 import OverlayForm from '@/components/forms/OverlayForm'
-import AreaApi from '~/services/oblyk-api/AreaApi'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 
 export default {
   name: 'AddCragInAreaForm',
@@ -30,10 +30,13 @@ export default {
     addCrag (crag) {
       this.submitOverlay = true
 
-      new AreaApi(this.$axios, this.$auth)
-        .addCrag(this.area.id, crag.id)
+      new OblykApi(this.$axios, this.$auth)
+        .post(
+          `/public/areas/${this.area.id}/add_crag`,
+          { area: { crag_id: crag.id } }
+        )
         .then(() => {
-          this.$router.push(`${this.area.path}/crags`)
+          this.$router.push(`${this.area.app_path}/crags`)
         })
         .catch((err) => {
           this.$root.$emit('alertFromApiError', err, 'area')

@@ -26,7 +26,7 @@
                 </p>
                 <p class="mb-0 text-truncate">
                   <v-btn
-                    v-if="gym.have_guide_book"
+                    v-if="gym.public_guide_book"
                     x-small
                     elevation="0"
                     class="px-1 font-weight-medium"
@@ -126,7 +126,7 @@ export default {
 
     gymPath (gym) {
       if (this.goToSpaces) {
-        return gym.guideBookPath
+        return gym.app_paths.public_space
       } else {
         return gym.path
       }

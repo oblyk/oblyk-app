@@ -85,15 +85,9 @@
 <script>
 import { LoadingMoreHelpers } from '@/mixins/LoadingMoreHelpers'
 import PhotoThumbnail from '@/components/photos/PhotoThumbnail'
-import UserApi from '~/services/oblyk-api/UserApi'
 import Photo from '@/models/Photo'
 import LoadingMore from '@/components/layouts/LoadingMore'
-import AreaApi from '~/services/oblyk-api/AreaApi'
-import CragSectorApi from '~/services/oblyk-api/CragSectorApi'
-import CragRouteApi from '~/services/oblyk-api/CragRouteApi'
-import CragApi from '~/services/oblyk-api/CragApi'
-import GuideBookPaperApi from '~/services/oblyk-api/GuideBookPaperApi'
-import CurrentUserApi from '~/services/oblyk-api/CurrentUserApi'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 const LightBox = () => import('@/components/photos/LightBox')
 
 export default {
@@ -168,34 +162,19 @@ export default {
 
   methods: {
     getPhotos () {
-      let promise
-
-      if (this.galleryType === 'User') {
-        promise = new UserApi(this.$axios, this.$auth)
-      } else if (this.galleryType === 'Area') {
-        promise = new AreaApi(this.$axios, this.$auth)
-      } else if (this.galleryType === 'CragSector') {
-        promise = new CragSectorApi(this.$axios, this.$auth)
-      } else if (this.galleryType === 'CragRoute') {
-        promise = new CragRouteApi(this.$axios, this.$auth)
-      } else if (this.galleryType === 'Crag') {
-        promise = new CragApi(this.$axios, this.$auth)
-      } else if (this.galleryType === 'GuideBookPaper') {
-        promise = new GuideBookPaperApi(this.$axios, this.$auth)
-      } else if (this.galleryType === 'CurrentUser') {
-        promise = new CurrentUserApi(this.$axios, this.$auth)
-      } else if (this.galleryType === 'Feed') {
-        for (const photo of this.preloadPhotos) {
-          this.photos.push(new Photo({ attributes: photo }))
-        }
-        this.loadingGallery = false
-        this.noMoreDataToLoad = true
-        return
+      const urls = {
+        User: `/users/${this.galleryId}/photos`,
+        Area: `/public/areas/${this.galleryId}/photos`,
+        CragSector: `/public/crag_sectors/${this.galleryId}/photos`,
+        CragRoute: `/public/crag_routes/${this.galleryId}/photos`,
+        Crag: `/public/crags/${this.galleryId}/photos`,
+        GuideBookPaper: `/public/guide_book_papers/${this.galleryId}/photos`,
+        CurrentUser: '/current_users/photos'
       }
 
       this.moreIsBeingLoaded()
-      promise
-        .photos(this.galleryId, this.page)
+      new OblykApi(this.$axios, this.$auth)
+        .get(urls[this.galleryType], { page: this.page })
         .then((resp) => {
           for (const photo of resp.data) {
             this.photos.push(new Photo({ attributes: photo }))

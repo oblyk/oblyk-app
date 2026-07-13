@@ -1,6 +1,5 @@
 import ActiveData from '@/models/ActiveData'
 import CragApi from '~/services/oblyk-api/CragApi'
-import Area from '@/models/Area'
 
 export default class Crag extends ActiveData {
   toJSON () {
@@ -56,7 +55,7 @@ export default class Crag extends ActiveData {
   get Areas () {
     const areas = []
     for (const area of (this.areas || [])) {
-      areas.push(new Area({ attributes: area }))
+      areas.push(area)
     }
     return areas
   }

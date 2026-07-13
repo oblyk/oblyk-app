@@ -66,7 +66,7 @@
       </div>
     </v-card-text>
     <v-card-text
-      v-if="gym.optimal_spaces_path"
+      v-if="gym.app_paths.public_space"
       class="text-center"
     >
       <v-btn
@@ -76,7 +76,7 @@
         outlined
         large
         class="font-weight-black"
-        :to="gym.spacePath"
+        :to="gym.app_paths.public_space"
       >
         <v-icon size="25" left class="mr-3">
           {{ mdiSourceBranch }}

@@ -17,8 +17,7 @@
 <script>
 import { FormHelpers } from '@/mixins/FormHelpers'
 import SubmitForm from '@/components/forms/SubmitForm'
-import AreaApi from '~/services/oblyk-api/AreaApi'
-import Area from '@/models/Area'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 
 export default {
   name: 'AreaForm',
@@ -34,8 +33,8 @@ export default {
   data () {
     return {
       data: {
-        id: (this.area || {}).id,
-        name: (this.area || {}).name
+        id: this.area?.id,
+        name: this.area?.name
       }
     }
   },
@@ -43,12 +42,13 @@ export default {
   methods: {
     submit () {
       this.submitOverlay = true
-      const promise = (this.isEditingForm()) ? new AreaApi(this.$axios, this.$auth).update(this.data) : new AreaApi(this.$axios, this.$auth).create(this.data)
+      const promise = this.isEditingForm()
+        ? new OblykApi(this.$axios, this.$auth).put(`/public/areas/${this.data.id}`, { area: this.data })
+        : new OblykApi(this.$axios, this.$auth).post('/public/areas', { area: this.data })
 
       promise
         .then((resp) => {
-          const area = new Area({ attributes: resp.data })
-          this.$router.push(area.path)
+          this.$router.push(resp.data.app_path)
         })
         .catch((err) => {
           this.$root.$emit('alertFromApiError', err, 'area')

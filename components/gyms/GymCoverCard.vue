@@ -1,6 +1,6 @@
 <template>
   <nuxt-link
-    :to="gym.app_first_spaces_path"
+    :to="gym.app_paths.public_space"
     class="discrete-link"
   >
     <v-img
@@ -21,7 +21,7 @@
           </p>
           <p class="mb-0 text-truncate">
             <v-btn
-              v-if="gym.optimal_spaces_path"
+              v-if="gym.app_paths.public_space"
               x-small
               elevation="0"
               color="primary"

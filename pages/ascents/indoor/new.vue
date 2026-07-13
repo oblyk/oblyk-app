@@ -204,8 +204,8 @@ export default {
     },
 
     gymFormSearch (gym) {
-      if (gym.gym_spaces_count > 0) {
-        this.$router.push(gym.app_first_spaces_path)
+      if (gym.public_guide_book) {
+        this.$router.push(gym.app_paths.public_space)
       } else {
         this.selectedGym = gym
       }

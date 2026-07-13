@@ -39,7 +39,7 @@ export default {
   },
 
   created () {
-    this.$store.dispatch('oblykEnvironment/pushHubs', { hub: this.area.path, page: this.$route.path })
+    this.$store.dispatch('oblykEnvironment/pushHubs', { hub: this.area.app_path, page: this.$route.path })
   }
 }
 </script>

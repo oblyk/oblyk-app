@@ -3,7 +3,7 @@
     <v-card
       link
       flat
-      :to="linkable ? area.path : null"
+      :to="linkable ? area.app_path : null"
     >
       <v-list-item three-line>
         <v-list-item-avatar

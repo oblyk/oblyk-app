@@ -300,14 +300,6 @@ export default {
   },
 
   methods: {
-    clickOnBtn () {
-      if (this.haveSpaces) {
-        this.$router.push(this.gym.app_first_spaces_path)
-      } else {
-        this.ascentsModal = true
-      }
-    },
-
     addAscent () {
       this.data.ascents.push({
         height: this.height,

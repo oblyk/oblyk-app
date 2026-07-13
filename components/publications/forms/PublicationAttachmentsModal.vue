@@ -65,7 +65,7 @@
               <v-btn
                 color="primary"
                 elevation="0"
-                :to="publishable.app_first_spaces_path"
+                :to="publishable.app_paths.admin_space"
               >
                 <v-icon left>
                   {{ mdiSourceBranch }}
@@ -82,7 +82,7 @@
               <v-btn
                 color="primary"
                 elevation="0"
-                :to="publishable.app_first_spaces_path"
+                :to="publishable.app_paths.admin_space"
               >
                 <v-icon left>
                   {{ mdiSourceBranch }}

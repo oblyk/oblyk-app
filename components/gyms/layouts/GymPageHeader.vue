@@ -64,9 +64,9 @@ export default {
         }
       ]
 
-      if (this.gym.optimal_spaces_path) {
+      if (this.gym.app_paths.public_space) {
         links.push({
-          to: `${this.gym.path}${this.gym.optimal_spaces_path}`,
+          to: `${this.gym.app_paths.public_space}`,
           title: this.$t('components.gym.tabs.guideBook'),
           exactPath: false,
           icon: mdiSourceBranch

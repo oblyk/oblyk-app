@@ -72,7 +72,7 @@ export default {
         {
           hid: 'og:url',
           property: 'og:url',
-          content: `${process.env.VUE_APP_OBLYK_APP_URL}${this.area?.path}/photos`
+          content: `${process.env.VUE_APP_OBLYK_APP_URL}${this.area?.app_path}/photos`
         }
       ]
     }

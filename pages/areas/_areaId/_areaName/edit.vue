@@ -2,7 +2,7 @@
   <div>
     <page-header
       :title="area?.name || '...'"
-      :back-to="area?.path"
+      :back-to="area?.app_path || ''"
     />
     <v-container v-if="area">
       <v-row justify="center">

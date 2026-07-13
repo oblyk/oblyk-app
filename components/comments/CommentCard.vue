@@ -3,7 +3,7 @@
     <owner-label
       :history="dataComment.history"
       :owner="dataComment.user"
-      :edit-path="`${dataComment.path}/edit?redirect_to=${redirectTo}`"
+      :edit-path="`${dataComment.app_path}/edit?redirect_to=${redirectTo}`"
       :reports="{ type: 'Comment', id: dataComment.id }"
       :delete-function="deleteComment"
     />

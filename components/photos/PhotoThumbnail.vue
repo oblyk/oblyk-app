@@ -119,16 +119,8 @@
 <script>
 import { mdiFlag, mdiPanorama, mdiDelete, mdiPencil, mdiDotsVertical } from '@mdi/js'
 import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
-import CragApi from '~/services/oblyk-api/CragApi'
-import Crag from '@/models/Crag'
-import CragSectorApi from '~/services/oblyk-api/CragSectorApi'
-import CragSector from '@/models/CragSector'
-import CragRouteApi from '~/services/oblyk-api/CragRouteApi'
-import CragRoute from '@/models/CragRoute'
-import AreaApi from '~/services/oblyk-api/AreaApi'
-import Area from '@/models/Area'
-import PhotoApi from '~/services/oblyk-api/PhotoApi'
 import LikeBtn from '~/components/forms/LikeBtn'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 
 export default {
   name: 'PhotoThumbnail',
@@ -191,46 +183,34 @@ export default {
 
     defineAsBanner () {
       this.updatingBanner = true
-      let promise
+      let url
+      let data
 
       if (this.environnementType === 'cragRoute') {
-        promise = new CragRouteApi(this.$axios, this.$auth).update({
-          photo_id: this.photo.id,
-          crag_id: this.environnementObject.crag.id,
-          id: this.environnementObject.id
-        })
+        url = `/public/crags/${this.environnementObject.crag.id}/crag_routes/${this.environnementObject.id}`
+        data = { crag_route: { photo_id: this.photo.id } }
       } else if (this.environnementType === 'cragSector') {
-        promise = new CragSectorApi(this.$axios, this.$auth).update({
-          photo_id: this.photo.id,
-          crag_id: this.environnementObject.crag.id,
-          id: this.environnementObject.id
-        })
+        url = `/public/crags/${this.environnementObject.crag.id}/crag_sectors/${this.environnementObject.id}`
+        data = { crag_sector: { photo_id: this.photo.id } }
       } else if (this.environnementType === 'crag') {
-        promise = new CragApi(this.$axios, this.$auth).update({
-          photo_id: this.photo.id,
-          id: this.environnementObject.id
-        })
+        url = `/public/crags/${this.environnementObject.id}`
+        data = { crag: { photo_id: this.photo.id } }
       } else if (this.environnementType === 'area') {
-        promise = new AreaApi(this.$axios, this.$auth).update({
-          photo_id: this.photo.id,
-          id: this.environnementObject.id
-        })
+        url = `/public/areas/${this.environnementObject.id}`
+        data = { area: { photo_id: this.photo.id } }
       }
 
-      promise
+      new OblykApi(this.$axios, this.$auth)
+        .put(url, data)
         .then((resp) => {
           if (this.environnementType === 'crag') {
-            const crag = new Crag({ attributes: resp.data })
-            this.$root.$emit('updateCragBannerSrc', crag.photo.attachments.picture)
+            this.$root.$emit('updateCragBannerSrc', resp.data.photo.attachments.picture)
           } else if (this.environnementType === 'cragSector') {
-            const cragSector = new CragSector({ attributes: resp.data })
-            this.$root.$emit('updateCragSectorBannerSrc', cragSector.photo.attachments.picture)
+            this.$root.$emit('updateCragSectorBannerSrc', resp.data.photo.attachments.picture)
           } else if (this.environnementType === 'cragRoute') {
-            const cragRoute = new CragRoute({ attributes: resp.data })
-            this.$root.$emit('updateCragRouteBannerSrc', cragRoute.photo.attachments.picture)
+            this.$root.$emit('updateCragRouteBannerSrc', resp.data.photo.attachments.picture)
           } else if (this.environnementType === 'area') {
-            const area = new Area({ attributes: resp.data })
-            this.$root.$emit('updateAreaBannerSrc', area.photo.attachments.picture)
+            this.$root.$emit('updateAreaBannerSrc', resp.data.photo.attachments.picture)
           }
         })
         .catch((err) => {
@@ -244,8 +224,8 @@ export default {
     deletePhoto () {
       if (confirm(this.$t('actions.areYouSur'))) {
         this.deletingPhoto = true
-        new PhotoApi(this.$axios, this.$auth)
-          .delete(this.photo.id)
+        new OblykApi(this.$axios, this.$auth)
+          .delete(`/photos/${this.photo.id}`)
           .then(() => {
             this.deleted = true
           })

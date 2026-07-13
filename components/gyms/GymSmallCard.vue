@@ -33,7 +33,7 @@
           </v-list-item-title>
           <v-list-item-subtitle :class="small ? 'mb-3' : 'mb-4'">
             <v-chip
-              v-if="gym.have_guide_book"
+              v-if="gym.public_guide_book"
               class="px-1 vertical-align-text-top"
               x-small
               pill
@@ -141,7 +141,7 @@ export default {
     path () {
       if (this.linkable) {
         if (this.goToSpaces) {
-          return this.gym.app_first_spaces_path
+          return this.gym.app_paths.public_space
         } else {
           return this.gym.app_path
         }

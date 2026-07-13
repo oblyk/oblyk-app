@@ -60,14 +60,12 @@
 <script>
 import { mdiPlus } from '@mdi/js'
 import { FormHelpers } from '@/mixins/FormHelpers'
-import CragApi from '~/services/oblyk-api/CragApi'
 import Spinner from '@/components/layouts/Spiner'
 import CloseForm from '@/components/forms/CloseForm'
 import OverlayForm from '@/components/forms/OverlayForm'
 import AreaSearchForm from '@/components/areas/forms/AreaSearchForm'
 import AreaSmallCard from '@/components/areas/AreaSmallCard'
-import Area from '@/models/Area'
-import AreaApi from '~/services/oblyk-api/AreaApi'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 
 export default {
   name: 'AddAreaOnCragForm',
@@ -95,11 +93,11 @@ export default {
   methods: {
     getAreAround () {
       this.loadingAroundAreas = true
-      new CragApi(this.$axios, this.$auth)
-        .areasAround(this.crag.id)
+      new OblykApi(this.$axios, this.$auth)
+        .get(`/public/crags/${this.crag.id}/areas_around`, null, { cancelable: true })
         .then((resp) => {
           for (const area of resp.data) {
-            this.aroundAreas.push(new Area({ attributes: area }))
+            this.aroundAreas.push(area)
           }
         })
         .catch((err) => {
@@ -111,8 +109,8 @@ export default {
     },
 
     addArea (area) {
-      new AreaApi(this.$axios, this.$auth)
-        .addCrag(area.id, this.crag.id)
+      new OblykApi(this.$axios, this.$auth)
+        .post(`/public/areas/${area.id}/add_crag`, { area: { crag_id: this.crag.id } })
         .then(() => {
           this.$router.push(this.crag.path)
         })

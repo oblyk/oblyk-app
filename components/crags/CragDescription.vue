@@ -157,9 +157,9 @@
               <template #content>
                 <div>
                   <nuxt-link
-                    v-for="area in crag.Areas"
+                    v-for="area in crag.areas"
                     :key="`area-${area.id}`"
-                    :to="area.path"
+                    :to="area.app_path"
                   >
                     <v-chip
                       small
