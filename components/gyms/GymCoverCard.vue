@@ -21,7 +21,7 @@
           </p>
           <p class="mb-0 text-truncate">
             <v-btn
-              v-if="gym.app_paths.public_space"
+              v-if="gym.public_guide_book"
               x-small
               elevation="0"
               color="primary"
