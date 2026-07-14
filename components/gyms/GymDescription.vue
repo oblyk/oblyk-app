@@ -66,7 +66,7 @@
       </div>
     </v-card-text>
     <v-card-text
-      v-if="gym.app_paths.public_space"
+      v-if="gym.public_guide_book"
       class="text-center"
     >
       <v-btn
