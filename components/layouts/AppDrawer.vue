@@ -5,6 +5,7 @@
   >
     <v-list-item
       to="/"
+      class="oblyk-community-drawer-item"
       @click="startAnimation()"
     >
       <div class="oblyk-app-drawer-header">
@@ -144,6 +145,9 @@ export default {
 }
 .oblyk-app-drawer {
   padding-bottom: 50px;
+  .oblyk-community-drawer-item {
+    background-color: transparent !important;
+  }
   .oblyk-app-drawer-header {
     padding-top: 5px;
     padding-bottom: 6px;

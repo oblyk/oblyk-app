@@ -10,8 +10,6 @@
 
     <div v-if="loadingLastAdded">
       <v-skeleton-loader
-        v-for="index in 3"
-        :key="`crag-photo-list-${index}`"
         type="image"
         class="d-inline-block mr-4"
         height="170"
@@ -76,8 +74,6 @@
 
     <div v-if="loadingLastAdded">
       <v-skeleton-loader
-        v-for="index in 3"
-        :key="`gym-list-${index}`"
         type="image"
         class="d-inline-block mr-4"
         height="170"

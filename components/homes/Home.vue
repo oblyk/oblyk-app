@@ -5,55 +5,46 @@
       <client-only>
         <home-box-create-account v-if="!$auth.loggedIn" />
       </client-only>
-      <lazy-hydrate when-visible>
-        <home-box-crag-info id="crag-information" class="home-boxes" />
-      </lazy-hydrate>
-      <lazy-hydrate when-visible>
-        <home-box-ascents-log id="logbook" class="home-boxes" />
-      </lazy-hydrate>
-      <lazy-hydrate when-visible>
-        <home-box-partner id="find-partner" class="home-boxes" />
-      </lazy-hydrate>
-      <lazy-hydrate when-visible>
-        <home-box-guide-book class="home-boxes" />
-      </lazy-hydrate>
-      <lazy-hydrate when-visible>
-        <home-box-indoor id="indoor" class="home-boxes" />
-      </lazy-hydrate>
-      <lazy-hydrate when-visible>
-        <last-article />
-      </lazy-hydrate>
-      <lazy-hydrate when-visible>
-        <home-last-added />
-      </lazy-hydrate>
-      <lazy-hydrate when-visible>
-        <home-box-figures />
-      </lazy-hydrate>
-      <lazy-hydrate
-        v-if="false"
-        when-visible
+      <home-box-crag-info id="crag-information" class="home-boxes" />
+      <home-box-ascents-log id="logbook" class="home-boxes" />
+      <home-box-partner id="find-partner" class="home-boxes" />
+      <home-box-guide-book class="home-boxes" />
+      <home-box-indoor id="indoor" class="home-boxes" />
+      <div
+        v-intersect="loadArticles"
+        style="min-height: 556px"
       >
-        <home-box-developer class="home-boxes" />
-      </lazy-hydrate>
+        <last-article v-if="showArticles" />
+      </div>
+      <div
+        v-intersect="loadLastAdded"
+        style="min-height: 788px"
+      >
+        <home-last-added v-if="showLastAdded" />
+      </div>
+      <div
+        v-intersect="loadFigures"
+        style="min-height: 423px"
+      >
+        <home-box-figures v-if="showFigures" />
+      </div>
     </v-container>
     <app-footer />
   </div>
 </template>
 
 <script>
-import LazyHydrate from 'vue-lazy-hydration'
 import HomeHeader from '~/components/homes/HomeHeader'
-const HomeBoxCreateAccount = () => import('~/components/homes/HomeBoxCreateAccount')
-const HomeBoxIndoor = () => import('~/components/homes/HomeBoxIndoor')
-const HomeLastAdded = () => import('~/components/homes/HomeLastAdded')
-const HomeBoxCragInfo = () => import('@/components/homes/HomeBoxCragInfo')
-const HomeBoxAscentsLog = () => import('@/components/homes/HomeBoxAscentsLog')
-const HomeBoxDeveloper = () => import('@/components/homes/HomeBoxDeveloper')
-const AppFooter = () => import('@/components/layouts/AppFooter')
-const HomeBoxPartner = () => import('@/components/homes/HomeBoxPartner')
-const HomeBoxGuideBook = () => import('@/components/homes/HomeBoxGuideBook')
-const HomeBoxFigures = () => import('@/components/homes/HomeBoxFigures')
+import HomeBoxIndoor from '~/components/homes/HomeBoxIndoor'
+import HomeBoxCragInfo from '@/components/homes/HomeBoxCragInfo'
+import HomeBoxAscentsLog from '@/components/homes/HomeBoxAscentsLog'
+import HomeBoxPartner from '@/components/homes/HomeBoxPartner'
+import HomeBoxGuideBook from '@/components/homes/HomeBoxGuideBook'
+import HomeBoxCreateAccount from '~/components/homes/HomeBoxCreateAccount'
 const LastArticle = () => import('@/components/articles/LastArticle')
+const HomeLastAdded = () => import('~/components/homes/HomeLastAdded')
+const HomeBoxFigures = () => import('@/components/homes/HomeBoxFigures')
+const AppFooter = () => import('@/components/layouts/AppFooter')
 
 export default {
   name: 'Home',
@@ -61,9 +52,7 @@ export default {
     HomeBoxCreateAccount,
     HomeBoxIndoor,
     HomeHeader,
-    LazyHydrate,
     HomeLastAdded,
-    HomeBoxDeveloper,
     LastArticle,
     HomeBoxFigures,
     HomeBoxGuideBook,
@@ -71,6 +60,34 @@ export default {
     HomeBoxAscentsLog,
     HomeBoxCragInfo,
     AppFooter
+  },
+
+  data () {
+    return {
+      showArticles: false,
+      showLastAdded: false,
+      showFigures: false
+    }
+  },
+
+  methods: {
+    loadArticles (entries, observer) {
+      if (entries[0].isIntersecting) {
+        this.showArticles = true
+      }
+    },
+
+    loadLastAdded (entries, observer) {
+      if (entries[0].isIntersecting) {
+        this.showLastAdded = true
+      }
+    },
+
+    loadFigures (entries, observer) {
+      if (entries[0].isIntersecting) {
+        this.showFigures = true
+      }
+    }
   }
 }
 </script>
