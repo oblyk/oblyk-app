@@ -29,7 +29,7 @@
           :key="`crag-index-${cragIndex}`"
           class="last-objects-item"
         >
-          <nuxt-link :to="crag.path">
+          <nuxt-link :to="crag.app_path">
             <v-img
               class="rounded"
               :src="imageVariant(crag.attachments.cover, { fit: 'scale-down', width: 720, height: 720 })"
@@ -93,7 +93,7 @@
           :key="`gym-index-${gymIndex}`"
           class="last-objects-item"
         >
-          <nuxt-link :to="gym.path">
+          <nuxt-link :to="gym.app_path">
             <v-img
               class="rounded"
               :src="imageVariant(gym.attachments.banner, { fit: 'scale-down', width: 720, height: 720 })"
@@ -157,13 +157,10 @@
 
 <script>
 import { mdiArrowRight, mdiTerrain, mdiOfficeBuildingMarker, mdiSourceBranch } from '@mdi/js'
-import CommonApi from '~/services/oblyk-api/CommonApi'
-import Crag from '~/models/Crag'
-import Gym from '~/models/Gym'
-import CragRoute from '~/models/CragRoute'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 import CragRouteDrawer from '~/components/cragRoutes/CragRouteDrawer'
 import CragRouteSmallLine from '~/components/cragRoutes/CragRouteSmallLine'
-import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 
 export default {
   name: 'HomeLastAdded',
@@ -191,18 +188,12 @@ export default {
 
   methods: {
     getLastAdded () {
-      new CommonApi(this.$axios, this.$auth)
-        .lastAdded()
+      new OblykApi(this.$axios, this.$auth)
+        .get('/last_added')
         .then((resp) => {
-          for (const crag of resp.data.crags) {
-            this.lastObjects.crags.push(new Crag({ attributes: crag }))
-          }
-          for (const cragRoute of resp.data.crag_routes) {
-            this.lastObjects.cragRoutes.push(new CragRoute({ attributes: cragRoute }))
-          }
-          for (const gym of resp.data.gyms) {
-            this.lastObjects.gyms.push(new Gym({ attributes: gym }))
-          }
+          this.lastObjects.crags = resp.data.crags
+          this.lastObjects.cragRoutes = resp.data.crag_routes
+          this.lastObjects.gyms = resp.data.gyms
         })
         .finally(() => {
           this.loadingLastAdded = false

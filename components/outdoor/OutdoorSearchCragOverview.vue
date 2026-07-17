@@ -99,7 +99,6 @@ import { LoadingMoreHelpers } from '~/mixins/LoadingMoreHelpers'
 import OutdoorSearchField from '~/components/outdoor/OutdoorSearchField'
 import CragCoverCard from '~/components/crags/CragCoverCard'
 import CragsByPopularity from '~/components/crags/CragsByPopularity'
-import CommonApi from '~/services/oblyk-api/CommonApi'
 import OblykApi from '~/services/oblyk-api/OblykApi'
 import LoadingMore from '~/components/layouts/LoadingMore'
 
@@ -149,8 +148,8 @@ export default {
     },
 
     getCounts () {
-      new CommonApi(this.$axios, this.$auth)
-        .microStats(['crags_count'])
+      new OblykApi(this.$axios, this.$auth)
+        .get('/micro_stats', { figures: ['crags_count'] })
         .then((resp) => {
           this.cragsCount = resp.data.crags_count
         })

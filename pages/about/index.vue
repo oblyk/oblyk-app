@@ -184,9 +184,9 @@
 
 <script>
 import { mdiHeart } from '@mdi/js'
-import CommonApi from '@/services/oblyk-api/CommonApi'
 import AppFooter from '@/components/layouts/AppFooter'
 import PageHeader from '~/components/layouts/PageHeader'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 
 export default {
   components: { PageHeader, AppFooter },
@@ -235,8 +235,8 @@ export default {
 
   methods: {
     getFigures () {
-      new CommonApi(this.$axios, this.$auth)
-        .figures()
+      new OblykApi(this.$axios, this.$auth)
+        .get('/figures')
         .then((resp) => {
           this.figures = resp.data
         })

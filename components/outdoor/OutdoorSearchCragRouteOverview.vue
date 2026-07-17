@@ -70,10 +70,9 @@ import OutdoorSearchField from '~/components/outdoor/OutdoorSearchField'
 import CragRouteDrawer from '~/components/cragRoutes/CragRouteDrawer'
 import CragRouteSmallCard from '~/components/cragRoutes/CragRouteSmallCard'
 import SuggestedCragRoutes from '~/components/cragRoutes/SuggestedCragRoutes'
-import CommonApi from '~/services/oblyk-api/CommonApi'
 import { LoadingMoreHelpers } from '~/mixins/LoadingMoreHelpers'
 import OblykApi from '~/services/oblyk-api/OblykApi'
-import LoadingMore from '~/components/layouts/LoadingMore.vue'
+import LoadingMore from '~/components/layouts/LoadingMore'
 
 export default {
   name: 'OutdoorSearchCragRouteOverview',
@@ -119,8 +118,8 @@ export default {
     },
 
     getCounts () {
-      new CommonApi(this.$axios, this.$auth)
-        .microStats(['crag_routes_count'])
+      new OblykApi(this.$axios, this.$auth)
+        .get('/micro_stats', { figures: ['crag_routes_count'] })
         .then((resp) => {
           this.cragRoutesCount = resp.data.crag_routes_count
         })

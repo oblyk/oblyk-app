@@ -44,10 +44,10 @@
           </v-icon>
           <nuxt-link
             class="text-decoration-none"
-            :to="route.Crag.path"
+            :to="route.crag.app_path"
             @click.stop=""
           >
-            {{ route.Crag.name }}
+            {{ route.crag.name }}
           </nuxt-link>
         </span>
         <span v-if="route.height">

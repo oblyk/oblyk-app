@@ -51,7 +51,7 @@
           <v-icon x-small>
             {{ mdiTerrain }}
           </v-icon>
-          {{ route.Crag.name }}
+          {{ route.crag.name }}
         </span>
         <span v-if="route.height">
           {{ route.height }} {{ $t('common.meters') }}

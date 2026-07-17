@@ -115,9 +115,8 @@ import { LoadingMoreHelpers } from '~/mixins/LoadingMoreHelpers'
 import OutdoorSearchField from '~/components/outdoor/OutdoorSearchField'
 import GuideBookPapersByPopularity from '~/components/guideBookPapers/GuideBookPapersByPopularity'
 import GuideBookPaperSmallCard from '~/components/guideBookPapers/GuideBookPaperSmallCard'
-import CommonApi from '~/services/oblyk-api/CommonApi'
 import OblykApi from '~/services/oblyk-api/OblykApi'
-import LoadingMore from '~/components/layouts/LoadingMore.vue'
+import LoadingMore from '~/components/layouts/LoadingMore'
 
 export default {
   name: 'OutdoorSearchGuideBookOverview',
@@ -166,8 +165,8 @@ export default {
     },
 
     getCounts () {
-      new CommonApi(this.$axios, this.$auth)
-        .microStats(['guide_book_papers_count'])
+      new OblykApi(this.$axios, this.$auth)
+        .get('/micro_stats', { figures: ['guide_book_papers_count'] })
         .then((resp) => {
           this.guideBooksCount = resp.data.guide_book_papers_count
         })

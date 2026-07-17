@@ -634,11 +634,10 @@ import {
   mdiDice5,
   mdiAccountMultiple
 } from '@mdi/js'
-import Gym from '~/models/Gym'
 import GymSmallCard from '~/components/gyms/GymSmallCard'
 import AppFooter from '~/components/layouts/AppFooter'
-import CommonApi from '~/services/oblyk-api/CommonApi'
 import PageHeader from '~/components/layouts/PageHeader'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 
 export default {
   components: { PageHeader, AppFooter, GymSmallCard },
@@ -730,12 +729,10 @@ export default {
     getExhibitionGyms () {
       this.loadingGyms = true
 
-      new CommonApi(this.$axios, this.$auth)
-        .activeGyms()
+      new OblykApi(this.$axios, this.$auth)
+        .get('/active_gyms')
         .then((resp) => {
-          for (const gym of resp.data) {
-            this.gyms.push(new Gym({ attributes: gym }))
-          }
+          this.gyms = resp.data
         })
         .finally(() => {
           this.loadingGyms = false

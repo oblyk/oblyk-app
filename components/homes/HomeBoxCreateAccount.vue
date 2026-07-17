@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import CommonApi from '~/services/oblyk-api/CommonApi'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 
 export default {
   name: 'HomeBoxCreateAccount',
@@ -42,8 +42,8 @@ export default {
 
   methods: {
     getClimberCount () {
-      new CommonApi(this.$axios, this.$auth)
-        .microStats(['climbers_count'])
+      new OblykApi(this.$axios, this.$auth)
+        .get('/micro_stats', { figures: ['climbers_count'] })
         .then((resp) => {
           const climber = resp.data.climbers_count
           this.climbersCount = Math.floor(climber / 100) * 100

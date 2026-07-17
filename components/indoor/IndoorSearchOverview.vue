@@ -102,7 +102,6 @@ import { oblykIndoor } from '~/assets/oblyk-icons'
 import { LoadingMoreHelpers } from '~/mixins/LoadingMoreHelpers'
 import GymsByPopularity from '~/components/gyms/GymsByPopularity'
 import GymCoverCard from '~/components/gyms/GymCoverCard'
-import CommonApi from '~/services/oblyk-api/CommonApi'
 import LoadingMore from '~/components/layouts/LoadingMore'
 import OblykApi from '~/services/oblyk-api/OblykApi'
 
@@ -148,8 +147,8 @@ export default {
     },
 
     getGymsCount () {
-      new CommonApi(this.$axios, this.$auth)
-        .microStats(['gyms_count'])
+      new OblykApi(this.$axios, this.$auth)
+        .get('/micro_stats', { figures: ['gyms_count'] })
         .then((resp) => {
           this.gymsCount = resp.data.gyms_count
         })

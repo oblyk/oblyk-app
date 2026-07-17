@@ -152,7 +152,6 @@ import { oblykPartner } from '~/assets/oblyk-icons'
 import { LoadingMoreHelpers } from '~/mixins/LoadingMoreHelpers'
 import SuggestedFriends from '~/components/users/SuggestedFriends'
 import UserSmallCard from '~/components/users/UserSmallCard'
-import CommonApi from '~/services/oblyk-api/CommonApi'
 import LoadingMore from '~/components/layouts/LoadingMore'
 import OblykApi from '~/services/oblyk-api/OblykApi'
 
@@ -203,8 +202,8 @@ export default {
     },
 
     getClimbersCount () {
-      new CommonApi(this.$axios, this.$auth)
-        .microStats(['climbers_count'])
+      new OblykApi(this.$axios, this.$auth)
+        .get('/micro_stats', { figures: ['climbers_count'] })
         .then((resp) => {
           this.climbersCount = resp.data.climbers_count
         })

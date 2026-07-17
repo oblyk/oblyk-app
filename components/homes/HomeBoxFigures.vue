@@ -177,7 +177,7 @@
 </template>
 
 <script>
-import CommonApi from '~/services/oblyk-api/CommonApi'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 
 export default {
   name: 'HomeBoxFigures',
@@ -206,8 +206,8 @@ export default {
 
   methods: {
     getFigures () {
-      new CommonApi(this.$axios, this.$auth)
-        .figures()
+      new OblykApi(this.$axios, this.$auth)
+        .get('/figures')
         .then((resp) => {
           this.figures = resp.data
         })
