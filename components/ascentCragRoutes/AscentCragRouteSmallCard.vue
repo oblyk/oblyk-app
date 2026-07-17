@@ -96,12 +96,12 @@
         </v-dialog>
       </div>
 
-      <div v-if="ascentCragRoute.CragRoute.sections_count > 1">
+      <div v-if="ascentCragRoute.crag_route.sections_count > 1">
         <p
-          v-if="ascentCragRoute.CragRoute.sections_count === ascentCragRoute.sections.length"
+          v-if="ascentCragRoute.crag_route.sections_count === ascentCragRoute.sections.length"
           class="text-decoration-underline"
         >
-          {{ $t('components.ascentCragRoute.iMadeCountPitch', { count: ascentCragRoute.CragRoute.sections_count }) }}
+          {{ $t('components.ascentCragRoute.iMadeCountPitch', { count: ascentCragRoute.crag_route.sections_count }) }}
         </p>
         <div v-else>
           <p class="mb-0 text-decoration-underline">
@@ -162,12 +162,10 @@ import { CragRouteHelpers } from '~/mixins/CragRouteHelpers'
 import AscentCragRouteStatusIcon from '@/components/ascentCragRoutes/AscentCragRouteStatusIcon'
 import Note from '@/components/notes/Note'
 import NoteClass from '@/models/Note'
-import AscentCragRouteApi from '~/services/oblyk-api/AscentCragRouteApi'
 import EditCragAscentBtn from '@/components/ascentCragRoutes/EditCragAscentBtn'
-import CurrentUserApi from '~/services/oblyk-api/CurrentUserApi'
 import UserSmallCard from '@/components/users/UserSmallCard'
-import User from '@/models/User'
 import Spinner from '@/components/layouts/Spiner'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 const MarkdownText = () => import('@/components/ui/MarkdownText')
 
 export default {
@@ -215,9 +213,9 @@ export default {
 
     deleteAscent () {
       if (confirm(this.$t('actions.areYouSur'))) {
-        new AscentCragRouteApi(this.$axios, this.$auth)
-          .delete(this.ascentCragRoute.id)
-          .then((resp) => {
+        new OblykApi(this.$axios, this.$auth)
+          .delete(`/ascent_crag_routes/${this.ascentCragRoute.id}`)
+          .then(() => {
             this.$auth.fetchUser().then(() => {
               this.$root.$emit('reloadAscentCragRoute')
             })
@@ -229,11 +227,12 @@ export default {
     },
 
     removeAscentUser (ascentUser) {
-      new AscentCragRouteApi(this.$axios, this.$auth)
-        .removeUser(
-          this.ascentCragRoute.id,
-          ascentUser.user.id
-        ).then(() => {
+      new OblykApi(this.$axios, this.$auth)
+        .delete(
+          `/ascent_crag_routes/${this.ascentCragRoute.id}/remove_ascent_user`,
+          { ascent_user: { user_id: ascentUser.user.id } }
+        )
+        .then(() => {
           this.$auth.fetchUser().then(() => {
             this.$root.$emit('reloadAscentCragRoute')
           })
@@ -244,10 +243,10 @@ export default {
     },
 
     addAscentUser (user) {
-      new AscentCragRouteApi(this.$axios, this.$auth)
-        .addUser(
-          this.ascentCragRoute.id,
-          user.id
+      new OblykApi(this.$axios, this.$auth)
+        .post(
+          `/ascent_crag_routes/${this.ascentCragRoute.id}/add_ascent_user`,
+          { ascent_user: { user_id: user.id } }
         )
         .then(() => {
           this.$root.$emit('reloadAscentCragRoute')
@@ -260,11 +259,11 @@ export default {
 
     getSubscribeUsers () {
       this.loadingSubscribes = true
-      new CurrentUserApi(this.$axios, this.$auth)
-        .subscribes()
+      new OblykApi(this.$axios, this.$auth)
+        .get('/current_users/subscribes')
         .then((resp) => {
           for (const subscribe of resp.data) {
-            this.subscribes.push(new User({ attributes: subscribe.followable_object }))
+            this.subscribes.push(subscribe.followable_object)
           }
         })
         .catch((err) => {

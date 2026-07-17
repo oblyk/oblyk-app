@@ -93,13 +93,13 @@ import { DateHelpers } from '@/mixins/DateHelpers'
 import { FormHelpers } from '@/mixins/FormHelpers'
 import { CragRouteHelpers } from '~/mixins/CragRouteHelpers'
 import SubmitForm from '@/components/forms/SubmitForm'
-import AscentCragRouteApi from '~/services/oblyk-api/AscentCragRouteApi'
 import RopingStatusInput from '@/components/forms/RopingStatusInput'
 import AscentStatusInput from '@/components/forms/AscentStatusInput'
 import DatePickerInput from '@/components/forms/DatePickerInput'
 import NoteInput from '@/components/forms/NoteInput'
 import MarkdownInput from '@/components/forms/MarkdownInput'
 import HardnessStatusInput from '@/components/forms/HardnessStatusInput'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 
 export default {
   name: 'AscentCragRouteForm',
@@ -161,7 +161,9 @@ export default {
   methods: {
     submit () {
       this.submitOverlay = true
-      const promise = (this.isEditingForm()) ? new AscentCragRouteApi(this.$axios, this.$auth).update(this.data) : new AscentCragRouteApi(this.$axios, this.$auth).create(this.data)
+      const promise = this.isEditingForm()
+        ? new OblykApi(this.$axios, this.$auth).put(`/ascent_crag_routes/${this.data.id}`, { ascent_crag_route: this.data })
+        : new OblykApi(this.$axios, this.$auth).post('/ascent_crag_routes', { ascent_crag_route: this.data })
 
       promise
         .then(() => {

@@ -31,12 +31,11 @@
 
 <script>
 import { DateHelpers } from '@/mixins/DateHelpers'
-import AscentCragRouteApi from '~/services/oblyk-api/AscentCragRouteApi'
-import AscentCragRoute from '@/models/AscentCragRoute'
 import AscentCragRouteSmallCard from '@/components/ascentCragRoutes/AscentCragRouteSmallCard'
 import AddCragAscentBtn from '@/components/ascentCragRoutes/AddCragAscentBtn'
 import AddInTickListBtn from '@/components/tickLists/forms/AddInTickListBtn'
 import RemoveFromTickListBtn from '@/components/tickLists/forms/RemoveFromTickListBtn'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 
 export default {
   name: 'CragRouteAscent',
@@ -78,12 +77,10 @@ export default {
     getAscents () {
       this.loadingAscents = true
       this.ascents = []
-      new AscentCragRouteApi(this.$axios, this.$auth)
-        .all(this.cragRoute.id)
+      new OblykApi(this.$axios, this.$auth)
+        .get('/ascent_crag_routes', { crag_route_id: this.cragRoute.id })
         .then((resp) => {
-          for (const ascent of resp.data) {
-            this.ascents.push(new AscentCragRoute({ attributes: ascent }))
-          }
+          this.ascents = resp.data
         })
         .catch((err) => {
           this.$root.$emit('alertFromApiError', err, 'ascentCragRouteApi')

@@ -9,18 +9,42 @@ class OblykApi {
   }
 
   get (url, params = {}, options = {}) {
+    return this.exec('GET', url, params, options)
+  }
+
+  put (url, data = {}, options = {}) {
+    return this.exec('PUT', url, data, options)
+  }
+
+  post (url, data = {}, options = {}) {
+    return this.exec('POST', url, data, options)
+  }
+
+  delete (url, data = {}, options = {}) {
+    return this.exec('DELETE', url, data, options)
+  }
+
+  exec (method, url, data = {}, options = {}) {
     return new Promise((resolve, reject) => {
       const requestOptions = this.mergeOptions(options)
 
-      // Construct request url, param, methode, etc.
       const request = {
-        url: `${process.env.VUE_APP_OBLYK_API_URL}/api/v1${url}.json`,
+        url: `${process.env.VUE_APP_OBLYK_API_URL}/api/v1${url}${requestOptions.format}`,
         headers: {
           Authorization: this.auth.loggedIn ? this.auth.$storage.getUniversal('_token.local') : null,
           HttpApiAccessToken: this.apiAccessToken
         },
-        method: 'GET',
-        params
+        method
+      }
+
+      if (method === 'GET') {
+        request.params = data
+      } else {
+        request.data = data
+      }
+
+      if (requestOptions.responseType) {
+        request.responseType = requestOptions.responseType
       }
 
       // If request is cancelable, we include cancel token to request options
@@ -32,46 +56,6 @@ class OblykApi {
 
       this.axios
         .request(request)
-        .then((response) => {
-          if (response.data?.json_type === 'jsonapi.org') {
-            resolve({
-              data: new Jsona().deserialize(response.data),
-              meta: response.data.meta
-            })
-          } else {
-            resolve(response)
-          }
-        })
-        .catch((error) => {
-          reject(error)
-        })
-    })
-  }
-
-  put (url, data = {}) {
-    return this.exec('PUT', url, data)
-  }
-
-  post (url, data = {}) {
-    return this.exec('POST', url, data)
-  }
-
-  delete (url, data = {}) {
-    return this.exec('DELETE', url, data)
-  }
-
-  exec (method, url, data = {}) {
-    return new Promise((resolve, reject) => {
-      this.axios
-        .request({
-          url: `${process.env.VUE_APP_OBLYK_API_URL}/api/v1${url}.json`,
-          headers: {
-            Authorization: this.auth.loggedIn ? this.auth.$storage.getUniversal('_token.local') : null,
-            HttpApiAccessToken: this.apiAccessToken
-          },
-          method,
-          data
-        })
         .then((response) => {
           if (response.data?.json_type === 'jsonapi.org') {
             resolve({ data: new Jsona().deserialize(response.data) })
@@ -93,7 +77,8 @@ class OblykApi {
 
   mergeOptions (options) {
     const defaultOptions = {
-      cancelable: false
+      cancelable: false,
+      format: '.json'
     }
     return { ...defaultOptions, ...options }
   }

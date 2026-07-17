@@ -264,9 +264,8 @@ import AscentCragRouteForm from '~/components/ascentCragRoutes/forms/AscentCragR
 import CragRoutes from '~/components/cragRoutes/CragRoutes'
 import MyFollowedCrags from '~/components/users/MyFollowedCrags'
 import CragRouteDrawer from '~/components/cragRoutes/CragRouteDrawer'
-import AscentCragRouteApi from '~/services/oblyk-api/AscentCragRouteApi'
-import AscentCragRoute from '~/models/AscentCragRoute'
 import PageHeader from '~/components/layouts/PageHeader'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 
 export default {
   meta: { orphanRoute: true },
@@ -399,12 +398,10 @@ export default {
     getAscents (cragRouteId) {
       this.loadingAscents = true
       this.ascents = []
-      new AscentCragRouteApi(this.$axios, this.$auth)
-        .all(cragRouteId)
+      new OblykApi(this.$axios, this.$auth)
+        .get('/ascent_crag_routes', { crag_route_id: cragRouteId })
         .then((resp) => {
-          for (const ascent of resp.data) {
-            this.ascents.push(new AscentCragRoute({ attributes: ascent }))
-          }
+          this.ascents = resp.data
         })
         .catch((err) => {
           this.$root.$emit('alertFromApiError', err, 'ascentCragRouteApi')

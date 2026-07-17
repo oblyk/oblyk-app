@@ -46,7 +46,7 @@
 
 <script>
 import { mdiCheckAll, mdiCodeBrackets } from '@mdi/js'
-import AscentCragRouteApi from '~/services/oblyk-api/AscentCragRouteApi'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 
 export default {
   name: 'ExportAscentsOrProjectsForm',
@@ -68,8 +68,12 @@ export default {
         this.exportingProjects = true
       }
 
-      new AscentCragRouteApi(this.$axios, this.$auth)
-        .export(type)
+      new OblykApi(this.$axios, this.$auth)
+        .get(
+          '/ascent_crag_routes/export',
+          { type },
+          { format: '.csv', responseType: 'blob' }
+        )
         .then((resp) => {
           const url = window.URL.createObjectURL(new Blob([resp.data]))
           const link = document.createElement('a')

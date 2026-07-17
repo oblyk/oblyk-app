@@ -1,4 +1,4 @@
-import AscentCragRoute from '@/models/AscentCragRoute'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 
 export const AscentCragRouteConcern = {
   data () {
@@ -8,11 +8,10 @@ export const AscentCragRouteConcern = {
   },
 
   async fetch () {
-    this.ascentCragRoute = await new AscentCragRoute({
-      axios: this.$axios,
-      auth: this.$auth
-    })._find(
-      this.$route.params.ascentCragRouteId
-    )
+    await new OblykApi(this.$axios, this.$auth)
+      .get(`/ascent_crag_routes/${this.$route.params.ascentCragRouteId}`)
+      .then((resp) => {
+        this.ascentCragRoute = resp.data
+      })
   }
 }
