@@ -64,7 +64,7 @@ export default {
         data: formData
       })
         .then(() => {
-          this.$router.push(this.article.path)
+          this.$router.push(this.article.app_path)
         })
         .catch((err) => {
           this.$root.$emit('alertFromApiError', err, 'article')

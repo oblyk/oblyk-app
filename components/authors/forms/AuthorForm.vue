@@ -23,9 +23,9 @@
 <script>
 import { FormHelpers } from '@/mixins/FormHelpers'
 import SubmitForm from '@/components/forms/SubmitForm'
-import AuthorApi from '~/services/oblyk-api/AuthorApi'
 import CloseForm from '@/components/forms/CloseForm'
 import MarkdownInput from '@/components/forms/MarkdownInput'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 
 export default {
   name: 'AuthorForm',
@@ -42,9 +42,9 @@ export default {
     return {
       redirectTo: null,
       data: {
-        id: (this.author || {}).id,
-        name: (this.author || {}).name,
-        description: (this.author || {}).description
+        id: this.author?.id,
+        name: this.author?.name,
+        description: this.author?.description
       }
     }
   },
@@ -57,7 +57,9 @@ export default {
   methods: {
     submit () {
       this.submitOverlay = true
-      const promise = (this.isEditingForm()) ? new AuthorApi(this.$axios, this.$auth).update(this.data) : new AuthorApi(this.$axios, this.$auth).create(this.data)
+      const promise = this.isEditingForm()
+        ? new OblykApi(this.$axios, this.$auth).put(`/authors/${this.data.id}`, { author: this.data })
+        : new OblykApi(this.$axios, this.$auth).post('/authors', { author: this.data })
 
       promise
         .then(() => {

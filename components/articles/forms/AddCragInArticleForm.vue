@@ -14,7 +14,7 @@ import { FormHelpers } from '@/mixins/FormHelpers'
 import CragSearchForm from '@/components/crags/forms/CragSearchForm'
 import CloseForm from '@/components/forms/CloseForm'
 import OverlayForm from '@/components/forms/OverlayForm'
-import ArticleApi from '~/services/oblyk-api/ArticleApi'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 
 export default {
   name: 'AddCragInArticleForm',
@@ -32,10 +32,13 @@ export default {
     addCrag (crag) {
       this.submitOverlay = true
 
-      new ArticleApi(this.$axios, this.$auth)
-        .addCrag(this.article.id, crag.id)
+      new OblykApi(this.$axios, this.$auth)
+        .post(
+          `/articles/${this.article.id}/add_crag`,
+          { article: { crag_id: crag.id } }
+        )
         .then(() => {
-          this.$router.push(this.article.path)
+          this.$router.push(this.article.app_path)
         })
         .catch((err) => {
           this.$root.$emit('alertFromApiError', err, 'article')

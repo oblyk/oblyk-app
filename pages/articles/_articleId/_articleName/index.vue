@@ -83,12 +83,12 @@ import { ArticleConcern } from '@/concerns/ArticleConcern'
 import ArticleHead from '@/components/articles/layouts/ArticleHead'
 import ArticleFooter from '@/components/articles/layouts/ArticleFooter'
 import CommentList from '@/components/comments/CommentList'
-import ArticleApi from '@/services/oblyk-api/ArticleApi'
 import AboutAuthorCard from '@/components/authors/AboutAuthorCard'
 import ArticleCrags from '@/components/articles/ArticleCrags'
 import ArticleGuideBookPapers from '@/components/articles/ArticleGuideBookPapers'
 import AppFooter from '@/components/layouts/AppFooter'
 import PageHeader from '~/components/layouts/PageHeader'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 
 export default {
   components: {
@@ -122,7 +122,7 @@ export default {
 
   mounted () {
     setTimeout(() => {
-      new ArticleApi(this.$axios, this.$auth).view(this.article.id)
+      new OblykApi(this.$axios, this.$auth).post(`/articles/${this.article.id}/view`)
     }, 5000)
   },
 

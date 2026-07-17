@@ -1,6 +1,6 @@
 import { DateHelpers } from '@/mixins/DateHelpers'
-import Article from '@/models/Article'
 import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 
 export const ArticleConcern = {
   mixins: [DateHelpers, ImageVariantHelpers],
@@ -21,7 +21,7 @@ export const ArticleConcern = {
     },
     articleMetaUrl () {
       if (this.article) {
-        return `${process.env.VUE_APP_OBLYK_APP_URL}${this.article.path}`
+        return `${process.env.VUE_APP_OBLYK_APP_URL}${this.article.app_path}`
       }
     },
     articleMetaPublishTime () {
@@ -98,11 +98,10 @@ export const ArticleConcern = {
   },
 
   async fetch () {
-    this.article = await new Article({
-      axios: this.$axios,
-      auth: this.$auth
-    })._find(
-      this.$route.params.articleId
-    )
+    await new OblykApi(this.$axios, this.$auth)
+      .get(`/articles/${this.$route.params.articleId}`)
+      .then((resp) => {
+        this.article = resp.data
+      })
   }
 }

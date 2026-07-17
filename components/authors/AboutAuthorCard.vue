@@ -12,7 +12,7 @@
         class="ml-auto"
       >
         <v-btn
-          :to="`${article.Author.path}/edit?redirect_to=${$route.fullPath}`"
+          :to="`${article.author.app_path}/edit?redirect_to=${$route.fullPath}`"
           icon
         >
           <v-icon small>
@@ -20,7 +20,7 @@
           </v-icon>
         </v-btn>
         <v-btn
-          :to="`${article.Author.path}/cover?redirect_to=${$route.fullPath}`"
+          :to="`${article.author.app_path}/cover?redirect_to=${$route.fullPath}`"
           icon
         >
           <v-icon small>

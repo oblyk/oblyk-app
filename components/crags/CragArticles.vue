@@ -27,9 +27,8 @@
 <script>
 import { mdiNewspaperVariantMultiple } from '@mdi/js'
 import Spinner from '@/components/layouts/Spiner'
-import CragApi from '~/services/oblyk-api/CragApi'
-import Article from '@/models/Article'
 import ArticleCard from '~/components/articles/ArticleCard'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 
 export default {
   name: 'CragArticles',
@@ -57,13 +56,10 @@ export default {
   methods: {
     getArticles () {
       this.loadingArticles = true
-      new CragApi(this.$axios, this.$auth)
-        .articles(this.crag.id)
+      new OblykApi(this.$axios, this.$auth)
+        .get(`/public/crags/${this.crag.id}/articles`)
         .then((resp) => {
-          this.articles = []
-          for (const article of resp.data) {
-            this.articles.push(new Article({ attributes: article }))
-          }
+          this.articles = resp.data
         })
         .catch((err) => {
           this.$root.$emit('alertFromApiError', err, 'articles')

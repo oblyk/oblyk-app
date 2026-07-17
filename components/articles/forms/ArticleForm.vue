@@ -68,9 +68,8 @@
 <script>
 import { FormHelpers } from '@/mixins/FormHelpers'
 import SubmitForm from '@/components/forms/SubmitForm'
-import ArticleApi from '~/services/oblyk-api/ArticleApi'
 import CloseForm from '@/components/forms/CloseForm'
-import Article from '@/models/Article'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 
 export default {
   name: 'ArticleForm',
@@ -87,11 +86,11 @@ export default {
     return {
       redirectTo: null,
       data: {
-        id: (this.article || {}).id,
-        name: (this.article || {}).name,
-        author_id: (this.article || {}).author_id,
-        description: (this.article || {}).description,
-        body: (this.article || {}).body
+        id: this.article?.id,
+        name: this.article?.name,
+        author_id: this.article?.author_id,
+        description: this.article?.description,
+        body: this.article?.body
       }
     }
   },
@@ -99,15 +98,16 @@ export default {
   methods: {
     submit () {
       this.submitOverlay = true
-      const promise = (this.isEditingForm()) ? new ArticleApi(this.$axios, this.$auth).update(this.data) : new ArticleApi(this.$axios, this.$auth).create(this.data)
+      const promise = this.isEditingForm()
+        ? new OblykApi(this.$axios, this.$auth).put(`/articles/${this.data.id}`, { article: this.data })
+        : new OblykApi(this.$axios, this.$auth).post('/articles', { article: this.data })
 
       promise
         .then((resp) => {
           if (this.isEditingForm()) {
             this.$root.$emit('alertSimpleSuccess', this.$t('components.article.articleUpdate'))
           } else {
-            const article = new Article({ attributes: resp.data })
-            this.$router.push(article.path)
+            this.$router.push(resp.data.app_path)
           }
         })
         .catch((err) => {

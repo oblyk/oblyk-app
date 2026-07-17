@@ -38,7 +38,7 @@
           </span>
           <share-btn
             :title="article.name"
-            :url="article.path"
+            :url="article.app_path"
           />
           <client-only>
             <div

@@ -14,7 +14,7 @@
     <v-list>
       <!-- Edit article -->
       <v-list-item
-        :to="`${article.path}/edit`"
+        :to="`${article.app_path}/edit`"
       >
         <v-list-item-icon>
           <v-icon>{{ mdiPencil }}</v-icon>
@@ -26,7 +26,7 @@
 
       <!-- Add crag -->
       <v-list-item
-        :to="`${article.path}/add-crags`"
+        :to="`${article.app_path}/add-crags`"
       >
         <v-list-item-icon>
           <v-icon>{{ mdiTerrain }}</v-icon>
@@ -38,7 +38,7 @@
 
       <!-- Add guide book -->
       <v-list-item
-        :to="`${article.path}/add-guide-books`"
+        :to="`${article.app_path}/add-guide-books`"
       >
         <v-list-item-icon>
           <v-icon>{{ mdiBookOpenVariant }}</v-icon>
@@ -50,7 +50,7 @@
 
       <!-- Article photos list -->
       <v-list-item
-        :to="`${article.path}/photos`"
+        :to="`${article.app_path}/photos`"
       >
         <v-list-item-icon>
           <v-icon>{{ mdiImageMultiple }}</v-icon>
@@ -62,7 +62,7 @@
 
       <!-- Change article cover -->
       <v-list-item
-        :to="`${article.path}/cover`"
+        :to="`${article.app_path}/cover`"
       >
         <v-list-item-icon>
           <v-icon>{{ mdiPanorama }}</v-icon>
@@ -103,7 +103,7 @@
 
 <script>
 import { mdiCog, mdiPencil, mdiTerrain, mdiBookOpenVariant, mdiImageMultiple, mdiPanorama, mdiEye, mdiEyeOff } from '@mdi/js'
-import ArticleApi from '~/services/oblyk-api/ArticleApi'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 
 export default {
   name: 'ArticleActionMenu',
@@ -129,11 +129,11 @@ export default {
 
   methods: {
     publishArticle () {
-      new ArticleApi(this.$axios, this.$auth).publish(this.article.id)
+      new OblykApi(this.$axios, this.$auth).put(`/articles/${this.article.id}/publish`)
     },
 
     unPublishArticle () {
-      new ArticleApi(this.$axios, this.$auth).unPublish(this.article.id)
+      new OblykApi(this.$axios, this.$auth).put(`/articles/${this.article.id}/un_publish`)
     }
   }
 }

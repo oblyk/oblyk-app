@@ -16,7 +16,7 @@ import { FormHelpers } from '@/mixins/FormHelpers'
 import CloseForm from '@/components/forms/CloseForm'
 import OverlayForm from '@/components/forms/OverlayForm'
 import GuideBookPaperSearchForm from '@/components/guideBookPapers/forms/GuideBookPaperSearchForm'
-import ArticleApi from '~/services/oblyk-api/ArticleApi'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 
 export default {
   name: 'AddGuideBookInArticleForm',
@@ -31,10 +31,13 @@ export default {
 
   methods: {
     addGuideBookPaper (guideBookPaper) {
-      new ArticleApi(this.$axios, this.$auth)
-        .addGuideBookPaper(this.article.id, guideBookPaper.id)
+      new OblykApi(this.$axios, this.$auth)
+        .post(
+          `/articles/${this.article.id}/add_guide_book_paper`,
+          { article: { guide_book_paper_id: guideBookPaper.id } }
+        )
         .then(() => {
-          this.$router.push(this.article.path)
+          this.$router.push(this.article.app_path)
         })
         .catch((err) => {
           this.$root.$emit('alertFromApiError', err, 'article')

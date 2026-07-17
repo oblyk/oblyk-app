@@ -1,4 +1,4 @@
-import Author from '@/models/Author'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 
 export const AuthorConcern = {
   data () {
@@ -15,10 +15,10 @@ export const AuthorConcern = {
   methods: {
     getAuthor () {
       this.loadingAuthor = true
-      new Author({ axios: this.$axios, auth: this.$auth })
-        ._find(this.$route.params.authorId)
+      new OblykApi(this.$axios, this.$auth)
+        .get(`/authors/${this.$route.params.authorId}`)
         .then((resp) => {
-          this.author = resp
+          this.author = resp.data
         })
         .catch((err) => {
           this.$root.$emit('authorFromApiError', err, 'author')

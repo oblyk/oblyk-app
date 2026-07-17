@@ -17,9 +17,8 @@
 
 <script>
 import { mdiBookOpenVariant } from '@mdi/js'
-import ArticleApi from '~/services/oblyk-api/ArticleApi'
 import GuideBookPaperSmallCard from '@/components/guideBookPapers/GuideBookPaperSmallCard'
-import GuideBookPaper from '@/models/GuideBookPaper'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 
 export default {
   name: 'ArticleGuideBookPapers',
@@ -44,12 +43,10 @@ export default {
 
   methods: {
     getArticleCrags () {
-      new ArticleApi(this.$axios, this.$auth)
-        .guideBookPapers(this.article.id)
+      new OblykApi(this.$axios, this.$auth)
+        .get(`/articles/${this.article.id}/guide_book_papers`)
         .then((resp) => {
-          for (const guideBookPaper of resp.data) {
-            this.guideBookPapers.push(new GuideBookPaper({ attributes: guideBookPaper }))
-          }
+          this.guideBookPapers = resp.data
         })
     }
   }

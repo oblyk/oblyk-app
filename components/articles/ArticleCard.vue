@@ -27,7 +27,7 @@
           class="text-right"
         >
           <v-btn
-            :to="article.path"
+            :to="article.app_path"
             text
             small
             color="primary"

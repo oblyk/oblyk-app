@@ -48,10 +48,10 @@
 
 <script>
 import { mdiImagePlus, mdiPencil } from '@mdi/js'
-import ArticleApi from '@/services/oblyk-api/ArticleApi'
+import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 import Photo from '@/models/Photo'
 import Spinner from '@/components/layouts/Spiner'
-import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 
 export default {
   components: { Spinner },
@@ -80,8 +80,8 @@ export default {
   methods: {
     getArticlePhotos () {
       this.loadingArticlePhotos = true
-      new ArticleApi(this.$axios, this.$auth)
-        .photos(this.articleId)
+      new OblykApi(this.$axios, this.$auth)
+        .get(`/articles/${this.articleId}/photos`)
         .then((resp) => {
           for (const photo of resp.data) {
             this.photos.push(new Photo({ attributes: photo }))

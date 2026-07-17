@@ -18,8 +18,7 @@
 <script>
 import { mdiTerrain } from '@mdi/js'
 import CragSmallCard from '@/components/crags/CragSmallCard'
-import ArticleApi from '~/services/oblyk-api/ArticleApi'
-import Crag from '@/models/Crag'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 
 export default {
   name: 'ArticleCrags',
@@ -44,12 +43,10 @@ export default {
 
   methods: {
     getArticleCrags () {
-      new ArticleApi(this.$axios, this.$auth)
-        .crags(this.article.id)
+      new OblykApi(this.$axios, this.$auth)
+        .get(`/articles/${this.article.id}/crags`)
         .then((resp) => {
-          for (const crag of resp.data) {
-            this.crags.push(new Crag({ attributes: crag }))
-          }
+          this.crags = resp.data
         })
     }
   }
