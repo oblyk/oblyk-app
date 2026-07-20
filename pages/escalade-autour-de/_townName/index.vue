@@ -292,12 +292,12 @@
 import LazyHydrate from 'vue-lazy-hydration'
 import { mdiMagnify, mdiTerrain, mdiBookshelf, mdiOfficeBuildingMarker, mdiMap } from '@mdi/js'
 import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
-import TownApi from '~/services/oblyk-api/TownApi'
 import AppFooter from '~/components/layouts/AppFooter'
 import TownDescription from '~/components/towns/TownDescription'
 import CragsTable from '~/components/crags/CragsTable'
 import Spinner from '~/components/layouts/Spiner'
 import PageHeader from '~/components/layouts/PageHeader'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 const TownSearchForm = () => import('~/components/towns/forms/TownSearchForm')
 const LeafletMap = () => import('~/components/maps/LeafletMap')
 
@@ -334,11 +334,8 @@ export default {
   },
 
   async fetch () {
-    await new TownApi(
-      this.$axios,
-      this.$store
-    )
-      .find(this.$route.params.townName)
+    await new OblykApi(this.$axios, this.$auth)
+      .get(`/public/towns/${this.$route.params.townName}`)
       .then((resp) => {
         this.town = resp.data
       })
@@ -392,11 +389,11 @@ export default {
     getGeoJson () {
       this.geoJsonIsLoad = true
       this.loadingGeoJson = true
-      new TownApi(
+      new OblykApi(
         this.$axios,
         this.$store
       )
-        .geoJson(this.$route.params.townName)
+        .get(`/public/towns/${this.$route.params.townName}/geo_json`)
         .then((resp) => {
           this.geoJsons = { features: resp.data.features }
           if (resp.data.features.length > 0) {

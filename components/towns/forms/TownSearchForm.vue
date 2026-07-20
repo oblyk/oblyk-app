@@ -71,11 +71,9 @@
 
 <script>
 import { mdiTarget } from '@mdi/js'
-import TownCard from '~/components/towns/TownCard'
-import TownApi from '~/services/oblyk-api/TownApi'
-import Town from '~/models/Town'
-import LoadingMore from '~/components/layouts/LoadingMore.vue'
 import { LoadingMoreHelpers } from '~/mixins/LoadingMoreHelpers'
+import TownCard from '~/components/towns/TownCard'
+import LoadingMore from '~/components/layouts/LoadingMore.vue'
 import OblykApi from '~/services/oblyk-api/OblykApi'
 
 export default {
@@ -154,9 +152,7 @@ export default {
             this.searchResults = []
           }
           this.resultsMeta = resp.meta
-          for (const town of resp.data) {
-            this.searchResults.push(town)
-          }
+          this.searchResults = resp.data
           this.previousQuery = this.query
           this.successLoadingMore(resp)
         })
@@ -193,20 +189,17 @@ export default {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
           (position) => {
-            new TownApi(this.$axios, this.$auth)
-              .geoSearch(
-                position.coords.latitude,
-                position.coords.longitude
+            new OblykApi(this.$axios, this.$auth)
+              .get(
+                '/public/towns/geo_search',
+                { latitude: position.coords.latitude, longitude: position.coords.longitude }
               )
               .then((resp) => {
-                this.searchResults = []
                 this.resultsMeta = {
                   total_count: resp.data.length
                 }
                 this.onSearch = true
-                for (const town of resp.data) {
-                  this.searchResults.push(new Town({ attributes: town }))
-                }
+                this.searchResults = resp.data
               })
               .finally(() => {
                 this.loadingLocalization = false
