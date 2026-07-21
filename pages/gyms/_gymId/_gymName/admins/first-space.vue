@@ -10,7 +10,7 @@
           right
           exact-path
           class="mr-2"
-          :to="gym.adminPath"
+          :to="gym.app_paths.admin"
         >
           <v-icon>
             {{ mdiArrowLeft }}
@@ -30,7 +30,7 @@
           outlined
           elevation="0"
           color="primary"
-          :to="`${gym.spacePath}/new`"
+          :to="`${gym.app_path}/spaces/new`"
         >
           {{ $t('actions.okIChose') }}
         </v-btn>
@@ -38,7 +38,7 @@
           elevation="0"
           color="primary"
           class="ml-auto"
-          :to="`${gym.adminPath}/levels`"
+          :to="`${gym.app_paths.admin}/levels`"
         >
           {{ $t('components.gym.difficultySystem') }}
         </v-btn>
@@ -98,7 +98,7 @@ export default {
     },
 
     firstSpaceMetaUrl () {
-      return `${process.env.VUE_APP_OBLYK_APP_URL}${this.gym?.path}/first-space`
+      return `${process.env.VUE_APP_OBLYK_APP_URL}${this.gym?.app_path}/admins/first-space`
     }
   }
 }
