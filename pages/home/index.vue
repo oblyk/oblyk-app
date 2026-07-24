@@ -42,11 +42,12 @@
 
           <!-- RIGHT SIDE BAR, ONLY ON DESKTOP -->
           <v-col
+            v-intersect="loadDesktopRightSideBar"
             cols="5"
             class="d-none d-md-block"
           >
             <div style="position: sticky; top: 70px;">
-              <dashboard-desktop-sidebar v-if="!$vuetify.breakpoint.mobile" />
+              <dashboard-desktop-sidebar v-if="showDesktopRightSideBar" />
             </div>
           </v-col>
         </v-row>
@@ -80,7 +81,8 @@ export default {
 
   data () {
     return {
-      showPublication: false
+      showPublication: false,
+      showDesktopRightSideBar: false
     }
   },
 
@@ -105,6 +107,12 @@ export default {
     loadPublications (entries, observer) {
       if (entries[0].isIntersecting) {
         this.showPublication = true
+      }
+    },
+
+    loadDesktopRightSideBar (entries, observer) {
+      if (entries[0].isIntersecting) {
+        this.showDesktopRightSideBar = true
       }
     }
   }
