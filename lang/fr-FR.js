@@ -943,6 +943,7 @@ export default {
       resetPasswordError: 'Adresse mail invalide ou sans compte associé',
       newPasswordError: 'Le lien a expiré, ou les deux mots de passe ne sont pas identiques',
       createAccountForWatch: 'Créez-vous un compte pour voir le profil de %{name} !',
+      sessionExpired: 'Votre session a expiré.',
       me: 'Moi',
       privacy: 'Confidentialité',
       guideBook: 'Les topos',

@@ -3,6 +3,7 @@ export default function ({ $axios, redirect, $auth }) {
     const code = parseInt(error.response && error.response.status)
     if (code === 401) {
       if ($auth.loggedIn) {
+        // Get new token and new refresh token
         await $auth.refreshTokens()
 
         const newToken = $auth.$storage.getUniversal('_token.local')
@@ -11,10 +12,13 @@ export default function ({ $axios, redirect, $auth }) {
           return $axios.request(error.config)
         } else {
           await $auth.logout('local')
-          window.location.reload()
+          window.location.href = '/errors/session-expired'
         }
       }
       redirect('/sign-in')
+    } else if (code === 403 && error.response.data.error === 'broken_refresh_token') {
+      await $auth.logout('local')
+      window.location.href = '/errors/session-expired'
     } else if (code === 403) {
       if (error.response.data.need) {
         const need = error.response.data.need

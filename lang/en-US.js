@@ -942,6 +942,7 @@ export default {
       resetPasswordError: 'Invalid email address or without associated account',
       newPasswordError: 'The link has expired, or the two passwords are not identical',
       createAccountForWatch: "Create an account to view %{name}'s profile!",
+      sessionExpired: 'Your session has expired.',
       me: 'Me',
       privacy: 'Privacy',
       guideBook: 'Guidebooks',
