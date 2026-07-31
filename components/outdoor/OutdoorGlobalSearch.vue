@@ -113,7 +113,7 @@
         />
         <outdoor-search-crag-route-overview
           v-if="mode === 'dialog' && searchType === 'CragRoute'"
-          ref="outdoorSearchCragRouteBookOverview"
+          ref="outdoorSearchCragRouteOverview"
         />
       </v-card>
     </v-dialog>

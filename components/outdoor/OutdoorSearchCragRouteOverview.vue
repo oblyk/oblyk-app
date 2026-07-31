@@ -4,7 +4,6 @@
       <outdoor-search-field
         ref="outdoorSearchField"
         search-type="cragRoute"
-        :searching="searching"
         class="mx-auto"
         @input="search"
       />
