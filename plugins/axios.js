@@ -1,18 +1,30 @@
 export default function ({ $axios, redirect, $auth }) {
   $axios.onError(async (error) => {
     const code = parseInt(error.response && error.response.status)
+    const originalRequest = error.config
+
     if (code === 401) {
+      // If this query has already been run, we stop there
+      if (originalRequest._retriedAfterRefresh) {
+        await $auth.logout('local')
+        window.location.href = '/errors/session-expired'
+        return
+      }
+
       if ($auth.loggedIn) {
+        originalRequest._retriedAfterRefresh = true
+
         // Get new token and new refresh token
         await $auth.refreshTokens()
 
         const newToken = $auth.$storage.getUniversal('_token.local')
         if (newToken) {
-          error.config.headers.Authorization = `Bearer ${newToken}`
-          return $axios.request(error.config)
+          originalRequest.headers.Authorization = newToken
+          return $axios.request(originalRequest)
         } else {
           await $auth.logout('local')
           window.location.href = '/errors/session-expired'
+          return
         }
       }
       redirect('/sign-in')

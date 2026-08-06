@@ -40,8 +40,9 @@ export default {
   mounted () {
     this.$vuetify.theme.dark = this.$store.getters['theme/getTheme'] === 'dark'
     if (this.$auth.loggedIn) {
-      this.$auth.fetchUser()
-      this.connectChannel()
+      this.$auth.fetchUser().then(() => {
+        this.connectChannel()
+      })
     }
   },
 

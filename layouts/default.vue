@@ -194,10 +194,11 @@ export default {
       this.activateWatchGeolocation()
     }
     if (this.$auth.loggedIn) {
-      this.$auth.fetchUser()
-      this.connectChannel()
-      this.getUnreadNotification()
-      this.getLikes()
+      this.$auth.fetchUser().then(() => {
+        this.connectChannel()
+        this.getUnreadNotification()
+        this.getLikes()
+      })
     }
   },
 
