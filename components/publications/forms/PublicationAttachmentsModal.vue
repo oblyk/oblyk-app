@@ -47,7 +47,10 @@
               </v-list>
             </div>
           </v-tab-item>
-          <v-tab-item value="gymRoutes">
+          <v-tab-item
+            v-if="publishableType === 'Gym'"
+            value="gymRoutes"
+          >
             <v-alert color="blue" text>
               Pour ajouter des voies ou blocs à votre publication, rendez vous sur votre topo ou sur le tableau des voies, chercher les voies que vous souhaitez ajouter et ajouter les à votre publication
             </v-alert>
@@ -74,7 +77,10 @@
               </v-btn>
             </div>
           </v-tab-item>
-          <v-tab-item value="gymSector">
+          <v-tab-item
+            v-if="publishableType === 'Gym'"
+            value="gymSector"
+          >
             <v-alert color="blue" text>
               Pour ajouter un secteur à votre publication, rendez vous sur votre topo, cliquez sur le secteur à partager et ajoutez le à votre publication
             </v-alert>
@@ -91,7 +97,10 @@
               </v-btn>
             </div>
           </v-tab-item>
-          <v-tab-item value="gymSpace">
+          <v-tab-item
+            v-if="publishableType === 'Gym'"
+            value="gymSpace"
+          >
             <v-skeleton-loader v-if="loadingGymSpaces" type="list-item-avatar-two-line" />
             <div v-else>
               <gym-space-list-item
@@ -104,7 +113,10 @@
               />
             </div>
           </v-tab-item>
-          <v-tab-item value="contest">
+          <v-tab-item
+            v-if="publishableType === 'Gym'"
+            value="contest"
+          >
             <v-skeleton-loader v-if="loadingContests" type="list-item-avatar-two-line" />
             <div v-else>
               <contest-item-list
