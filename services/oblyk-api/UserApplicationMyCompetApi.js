@@ -6,8 +6,8 @@ class UserApplicationMyCompetApi extends BaseApi {
       method: 'GET',
       url: `${this.baseUrl}/current_users/user_application_my_compets.json`,
       headers: {
-        HttpApiAccessToken: this.apiAccessToken,
-        Authorization: this.authToken()
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
       }
     })
   }
@@ -17,8 +17,8 @@ class UserApplicationMyCompetApi extends BaseApi {
       method: 'POST',
       url: `${this.baseUrl}/current_users/user_application_my_compets.json`,
       headers: {
-        HttpApiAccessToken: this.apiAccessToken,
-        Authorization: this.authToken()
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
       },
       data: {
         application: data

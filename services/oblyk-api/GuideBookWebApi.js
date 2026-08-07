@@ -5,7 +5,10 @@ class GuideBookWebApi extends BaseApi {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/public/guide_book_webs.json`,
-      headers: { HttpApiAccessToken: this.apiAccessToken }
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
     })
   }
 
@@ -13,7 +16,10 @@ class GuideBookWebApi extends BaseApi {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/public/guide_book_webs/${id}.json`,
-      headers: { HttpApiAccessToken: this.apiAccessToken }
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
     })
   }
 

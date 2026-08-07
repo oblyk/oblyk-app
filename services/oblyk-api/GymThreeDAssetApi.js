@@ -5,7 +5,10 @@ class GymThreeDAssetApi extends BaseApi {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/gyms/${gymId}/gym_three_d_assets.json`,
-      headers: { HttpApiAccessToken: this.apiAccessToken }
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
     })
   }
 
@@ -13,7 +16,10 @@ class GymThreeDAssetApi extends BaseApi {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/gyms/${gymId}/gym_three_d_assets/${id}.json`,
-      headers: { HttpApiAccessToken: this.apiAccessToken }
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
     })
   }
 

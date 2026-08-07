@@ -6,6 +6,7 @@ class ColorSystemApi extends BaseApi {
       method: 'GET',
       url: `${this.baseUrl}/color_systems/${id}.json`,
       headers: {
+        Authorization: this.authToken(),
         HttpApiAccessToken: this.apiAccessToken
       }
     })
@@ -16,6 +17,7 @@ class ColorSystemApi extends BaseApi {
       method: 'GET',
       url: gymId !== null ? `${this.baseUrl}/gyms/${gymId}/color_systems.json` : `${this.baseUrl}/color_systems.json`,
       headers: {
+        Authorization: this.authToken(),
         HttpApiAccessToken: this.apiAccessToken
       }
     })

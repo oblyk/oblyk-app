@@ -17,7 +17,10 @@ class ContestStageStepApi extends BaseApi {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/gyms/${gymId}/contests/${contestId}/contest_stages/${stageId}/contest_stage_steps/${stepId}.json`,
-      headers: { HttpApiAccessToken: this.apiAccessToken }
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
     })
   }
 

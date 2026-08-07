@@ -5,7 +5,10 @@ class LocalityApi extends BaseApi {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/localities/${id}.json`,
-      headers: { HttpApiAccessToken: this.apiAccessToken }
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
     })
   }
 
@@ -14,8 +17,8 @@ class LocalityApi extends BaseApi {
       method: 'GET',
       url: `${this.baseUrl}/localities/geo_json.json`,
       headers: {
-        HttpApiAccessToken: this.apiAccessToken,
-        Authorization: this.authToken()
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
       }
     })
   }
@@ -25,8 +28,8 @@ class LocalityApi extends BaseApi {
       method: 'GET',
       url: `${this.baseUrl}/localities/${id}/climbers.json`,
       headers: {
-        HttpApiAccessToken: this.apiAccessToken,
-        Authorization: this.authToken()
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
       },
       params: {
         level: filters.level,

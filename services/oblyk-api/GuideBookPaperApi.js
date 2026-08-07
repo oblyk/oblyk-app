@@ -5,7 +5,10 @@ class GuideBookPaperApi extends BaseApi {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/public/guide_book_papers.json`,
-      headers: { HttpApiAccessToken: this.apiAccessToken },
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
       params: {
         ids,
         page,
@@ -20,7 +23,10 @@ class GuideBookPaperApi extends BaseApi {
       method: 'GET',
       url: `${this.baseUrl}/public/guide_book_papers/grouped.json`,
       params: { group, direction },
-      headers: { HttpApiAccessToken: this.apiAccessToken }
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
     })
   }
 
@@ -32,7 +38,10 @@ class GuideBookPaperApi extends BaseApi {
       method: 'GET',
       url: `${this.baseUrl}/public/guide_book_papers/search.json?query=${query}`,
       cancelToken: this.tokenSearchSource.token,
-      headers: { HttpApiAccessToken: this.apiAccessToken }
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
     })
   }
 
@@ -40,7 +49,10 @@ class GuideBookPaperApi extends BaseApi {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/public/guide_book_papers/around.json`,
-      headers: { HttpApiAccessToken: this.apiAccessToken },
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
       params: {
         lat,
         lng,
@@ -54,7 +66,10 @@ class GuideBookPaperApi extends BaseApi {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/public/guide_book_papers/${id}/crags.json`,
-      headers: { HttpApiAccessToken: this.apiAccessToken }
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
     })
   }
 
@@ -62,7 +77,10 @@ class GuideBookPaperApi extends BaseApi {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/public/guide_book_papers/${id}/crags_figures.json`,
-      headers: { HttpApiAccessToken: this.apiAccessToken }
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
     })
   }
 
@@ -70,7 +88,10 @@ class GuideBookPaperApi extends BaseApi {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/public/guide_book_papers/${id}/articles.json`,
-      headers: { HttpApiAccessToken: this.apiAccessToken }
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
     })
   }
 
@@ -78,7 +99,10 @@ class GuideBookPaperApi extends BaseApi {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/public/guide_book_papers/${id}/geo_json.json`,
-      headers: { HttpApiAccessToken: this.apiAccessToken },
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
       params: {
         minimalistic
       }
@@ -89,7 +113,10 @@ class GuideBookPaperApi extends BaseApi {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/public/guide_book_papers/geo_index.json`,
-      headers: { HttpApiAccessToken: this.apiAccessToken }
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
     })
   }
 
@@ -97,7 +124,10 @@ class GuideBookPaperApi extends BaseApi {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/public/guide_book_papers/${id}/photos.json`,
-      headers: { HttpApiAccessToken: this.apiAccessToken },
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
       params: {
         page
       }
@@ -108,7 +138,10 @@ class GuideBookPaperApi extends BaseApi {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/public/guide_book_papers/${id}/links.json`,
-      headers: { HttpApiAccessToken: this.apiAccessToken }
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
     })
   }
 
@@ -116,7 +149,10 @@ class GuideBookPaperApi extends BaseApi {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/public/guide_book_papers/${id}/place_of_sales.json`,
-      headers: { HttpApiAccessToken: this.apiAccessToken }
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
     })
   }
 
@@ -124,7 +160,10 @@ class GuideBookPaperApi extends BaseApi {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/public/guide_book_papers/${id}/alternatives.json`,
-      headers: { HttpApiAccessToken: this.apiAccessToken }
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
     })
   }
 
@@ -132,7 +171,10 @@ class GuideBookPaperApi extends BaseApi {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/public/guide_book_papers/${id}.json`,
-      headers: { HttpApiAccessToken: this.apiAccessToken }
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
     })
   }
 

@@ -5,7 +5,10 @@ class ParkApi extends BaseApi {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/public/crags/${cragId}/parks.json`,
-      headers: { HttpApiAccessToken: this.apiAccessToken }
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
     })
   }
 
@@ -13,7 +16,10 @@ class ParkApi extends BaseApi {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/public/crags/${cragId}/parks/geo_json_around.json`,
-      headers: { HttpApiAccessToken: this.apiAccessToken },
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
       params: {
         exclude_id: parkId,
         minimalistic
@@ -25,7 +31,10 @@ class ParkApi extends BaseApi {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/public/crags/${cragId}/parks/${parkId}.json`,
-      headers: { HttpApiAccessToken: this.apiAccessToken }
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
     })
   }
 

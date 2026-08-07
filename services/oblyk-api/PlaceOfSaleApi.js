@@ -5,7 +5,10 @@ class PlaceOfSaleApi extends BaseApi {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/public/guide_book_papers/${guideBookPaperId}/place_of_sales/${placeOfSaleId}.json`,
-      headers: { HttpApiAccessToken: this.apiAccessToken }
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
     })
   }
 

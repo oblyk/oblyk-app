@@ -5,7 +5,10 @@ class DepartmentApi extends BaseApi {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/public/countries/${country}/departments.json`,
-      headers: { HttpApiAccessToken: this.apiAccessToken }
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
     })
   }
 
@@ -13,7 +16,10 @@ class DepartmentApi extends BaseApi {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/public/countries/${country}/departments/${department}.json`,
-      headers: { HttpApiAccessToken: this.apiAccessToken }
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
     })
   }
 
@@ -21,7 +27,10 @@ class DepartmentApi extends BaseApi {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/public/countries/${country}/departments/${department}/route_figures.json`,
-      headers: { HttpApiAccessToken: this.apiAccessToken }
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
     })
   }
 
@@ -29,7 +38,10 @@ class DepartmentApi extends BaseApi {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/public/countries/${country}/departments/${department}/geo_json.json`,
-      headers: { HttpApiAccessToken: this.apiAccessToken },
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
       params: {
         gyms: filters.gyms,
         crags: filters.crags,

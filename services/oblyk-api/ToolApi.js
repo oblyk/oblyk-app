@@ -5,7 +5,10 @@ class ToolApi extends BaseApi {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/tools/qr_coder.json`,
-      headers: { HttpApiAccessToken: this.apiAccessToken },
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
       params: {
         message: params.message
       }

@@ -17,8 +17,8 @@ class UserApplicationApi extends BaseApi {
       method: 'GET',
       url: `${this.baseUrl}/current_users/${userApplicationId}.json`,
       headers: {
-        HttpApiAccessToken: this.apiAccessToken,
-        Authorization: this.authToken()
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
       }
     })
   }
@@ -28,8 +28,8 @@ class UserApplicationApi extends BaseApi {
       method: 'DELETE',
       url: `${this.baseUrl}/current_users/user_applications/${userApplicationId}.json`,
       headers: {
-        HttpApiAccessToken: this.apiAccessToken,
-        Authorization: this.authToken()
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
       }
     })
   }

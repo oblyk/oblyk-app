@@ -5,7 +5,10 @@ class LikeApi extends BaseApi {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/likes.json`,
-      headers: { HttpApiAccessToken: this.apiAccessToken },
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
       params: {
         likeable_type: likeableType,
         likeable_id: likeableId
@@ -17,7 +20,10 @@ class LikeApi extends BaseApi {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/likes/${likeId}.json`,
-      headers: { HttpApiAccessToken: this.apiAccessToken }
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
     })
   }
 

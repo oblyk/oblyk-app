@@ -6,6 +6,7 @@ class GymLabelFontApi extends BaseApi {
       method: 'GET',
       url: `${this.baseUrl}/gym_label_fonts.json`,
       headers: {
+        Authorization: this.authToken(),
         HttpApiAccessToken: this.apiAccessToken
       }
     })

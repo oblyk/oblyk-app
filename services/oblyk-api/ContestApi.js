@@ -17,6 +17,7 @@ class ContestApi extends BaseApi {
       method: 'GET',
       url: `${this.baseUrl}/contests/opens.json`,
       headers: {
+        Authorization: this.authToken(),
         HttpApiAccessToken: this.apiAccessToken
       }
     })
@@ -26,7 +27,10 @@ class ContestApi extends BaseApi {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/gyms/${gymId}/contests/${contestId}.json`,
-      headers: { HttpApiAccessToken: this.apiAccessToken }
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
     })
   }
 

@@ -5,7 +5,10 @@ class PhotoApi extends BaseApi {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/photos.json`,
-      headers: { HttpApiAccessToken: this.apiAccessToken },
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
       params: {
         photo_ids: photoIds
       }
@@ -16,7 +19,10 @@ class PhotoApi extends BaseApi {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/photos/${photoId}.json`,
-      headers: { HttpApiAccessToken: this.apiAccessToken }
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
     })
   }
 

@@ -5,7 +5,10 @@ class LinkApi extends BaseApi {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/links.json`,
-      headers: { HttpApiAccessToken: this.apiAccessToken },
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      },
       params: {
         linkable_type: linkableType,
         linkable_id: linkableId
@@ -17,7 +20,10 @@ class LinkApi extends BaseApi {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/links/${linkId}.json`,
-      headers: { HttpApiAccessToken: this.apiAccessToken }
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
     })
   }
 

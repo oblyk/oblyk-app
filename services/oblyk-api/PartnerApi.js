@@ -5,7 +5,10 @@ class PartnerApi extends BaseApi {
     return this.axios.request({
       method: 'GET',
       url: `${this.baseUrl}/partners/figures.json`,
-      headers: { HttpApiAccessToken: this.apiAccessToken }
+      headers: {
+        Authorization: this.authToken(),
+        HttpApiAccessToken: this.apiAccessToken
+      }
     })
   }
 
