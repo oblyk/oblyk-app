@@ -1,5 +1,11 @@
 <template>
   <div>
+    <p
+      v-if="privateIndoorAscents"
+      class="text-center font-italic"
+    >
+      {{ $t('components.user.privateLogBook', { name: scoreAndUser.user.first_name }) }}
+    </p>
     <v-list>
       <v-list-item
         v-for="(ascent, ascentIndex) in ascents"
@@ -68,11 +74,10 @@
 import { mdiCheckAll } from '@mdi/js'
 import { LoadingMoreHelpers } from '~/mixins/LoadingMoreHelpers'
 import { DateHelpers } from '~/mixins/DateHelpers'
-import AscentGymRouteApi from '~/services/oblyk-api/AscentGymRouteApi'
-import AscentGymRoute from '~/models/AscentGymRoute'
 import AscentGymRouteIcon from '~/components/ascentGymRoutes/AscentGymRouteIcon'
 import LoadingMore from '~/components/layouts/LoadingMore'
 import GymRouteAvatar from '~/components/gymRoutes/GymRouteAvatar'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 
 export default {
   name: 'AscentGymRoutePoints',
@@ -104,6 +109,7 @@ export default {
   data () {
     return {
       ascents: [],
+      privateIndoorAscents: false,
       firstLoadingAscents: true,
 
       mdiCheckAll
@@ -138,11 +144,17 @@ export default {
         params.end_date = this.toDateTime(this.date).endOf('month').toISODate()
       }
 
-      new AscentGymRouteApi(this.$axios, this.$auth)
-        .points(params)
+      new OblykApi(this.$axios, this.$auth)
+        .get('/ascent_gym_routes/points', params)
         .then((resp) => {
+          if (resp.data.error === 'private_indoor_ascents') {
+            this.privateIndoorAscents = true
+            this.failureToLoadingMore()
+            return
+          }
+
           for (const ascent of resp.data) {
-            this.ascents.push(new AscentGymRoute({ attributes: ascent }))
+            this.ascents.push(ascent)
           }
           this.successLoadingMore(resp)
         })
