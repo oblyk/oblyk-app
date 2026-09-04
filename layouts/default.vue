@@ -231,7 +231,9 @@ export default {
       new OblykApi(this.$axios, this.$auth)
         .get('/notifications/unread_count')
         .then((resp) => {
-          this.$store.dispatch('notification/changeNotificationStatus', resp.data > 0)
+          if (resp?.data) {
+            this.$store.dispatch('notification/changeNotificationStatus', resp.data > 0)
+          }
         })
     },
 
@@ -239,7 +241,9 @@ export default {
       new CurrentUserApi(this.$axios, this.$auth)
         .likes()
         .then((resp) => {
-          this.$store.dispatch('likes/storeLikes', resp.data)
+          if (resp?.data) {
+            this.$store.dispatch('likes/storeLikes', resp.data)
+          }
         })
     },
 
