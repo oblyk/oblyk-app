@@ -163,12 +163,12 @@ export default {
       new OblykApi(this.$axios, this.$auth)
         .get('/fast_accesses')
         .then((resp) => {
-          this.cragsCount = resp.data.follows_count.Crag ?? 0
-          this.gymsCount = resp.data.follows_count.Gym ?? 0
+          this.cragsCount = resp.data?.follows_count?.Crag ?? 0
+          this.gymsCount = resp.data?.follows_count?.Gym ?? 0
 
-          this.crag = resp.data.crag
-          this.gym = resp.data.gym
-          this.contests = resp.data.contests
+          this.crag = resp.data?.crag
+          this.gym = resp.data?.gym
+          this.contests = resp?.data?.contests ?? []
         })
         .finally(() => {
           this.loading = false

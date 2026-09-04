@@ -281,7 +281,7 @@ export default {
           { publishable_type: this.publishableType, publishable_id: this.publishable.id }
         )
 
-      methode.then((resp) => { this.unreadCount = resp.data })
+      methode.then((resp) => { this.unreadCount = resp?.data ?? 0 })
     }
   }
 }
