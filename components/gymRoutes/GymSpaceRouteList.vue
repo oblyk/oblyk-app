@@ -28,6 +28,12 @@
         :gym-space="gymSpace"
       />
 
+      <!-- RANDOM ROUTE BTN -->
+      <gym-random-route
+        :gym="gym"
+        :gym-space="gymSpace"
+      />
+
       <!-- FILTER BTN -->
       <gym-routes-filter-btn
         :gym="gym"
@@ -217,11 +223,13 @@ import OpenedAtSeparator from '~/components/gymRoutes/listByGroup/OpenedAtSepara
 import AscentGymMultiCheckDialog from '~/components/ascentGymRoutes/AscentGymMultiCheckDialog'
 import AscentGymMultiCheckSuccessModal from '~/components/ascentGymRoutes/AscentGymMultiCheckSuccessModal'
 import GymRoutesFilterBtn from '~/components/gymRoutes/partial/GymRoutesFilterBtn'
+import GymRandomRoute from '~/components/gymRoutes/partial/GymRandomRoute'
 import OblykApi from '~/services/oblyk-api/OblykApi'
 
 export default {
   name: 'GymSpaceRouteList',
   components: {
+    GymRandomRoute,
     GymRoutesFilterBtn,
     AscentGymMultiCheckSuccessModal,
     AscentGymMultiCheckDialog,
