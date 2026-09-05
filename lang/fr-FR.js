@@ -1106,7 +1106,16 @@ export default {
         difficulty_asc: 'Du plus facile au plus dur',
         name: 'Par nom',
         note: 'Par note'
-      }
+      },
+      randomRoute: 'Voie aléatoire',
+      randomRouteTitle: 'Tirer une voie au hasard',
+      randomRouteExplain: 'Choisissez une fourchette de cotations, nous vous proposerons une voie au hasard sur ce site.',
+      minGrade: 'Niveau mini',
+      maxGrade: 'Niveau maxi',
+      pickRandom: 'Tirer au sort',
+      pickAgain: 'Retirer au sort',
+      noRouteInRange: 'Aucune voie trouvée dans cette fourchette de niveaux.',
+      minMaxError: 'Le niveau mini doit être inférieur ou égal au niveau maxi.'
     },
     cragsTable: {
       crags: 'Sites',
@@ -1608,7 +1617,16 @@ export default {
         ascents_count: 'Trier par nombre de réalisations',
         likes_count: 'Trier par nombre de likes',
         comments_count: 'Trier par nombre de commentaires'
-      }
+      },
+      randomRoute: 'Ligne aléatoire',
+      randomRouteTitle: 'Tirer une ligne au hasard',
+      randomRouteExplain: 'Choisissez une fourchette de cotations, nous vous proposerons une ligne au hasard dans cet espace.',
+      minGrade: 'Niveau mini',
+      maxGrade: 'Niveau maxi',
+      pickRandom: 'Tirer au sort',
+      pickAgain: 'Retirer au sort',
+      noRouteInRange: 'Aucune ligne trouvée dans cette fourchette de niveaux.',
+      minMaxError: 'Le niveau mini doit être inférieur ou égal au niveau maxi.'
     },
     contest: {
       title: 'Les contests',

@@ -1105,7 +1105,16 @@ export default {
         difficulty_asc: 'From the easiest to the hardest',
         name: 'By name',
         note: 'By note'
-      }
+      },
+      randomRoute: 'Random route',
+      randomRouteTitle: 'Pick a random route',
+      randomRouteExplain: 'Choose a grade range, we will suggest a random route on this crag.',
+      minGrade: 'Min grade',
+      maxGrade: 'Max grade',
+      pickRandom: 'Pick randomly',
+      pickAgain: 'Pick again',
+      noRouteInRange: 'No route found in this grade range.',
+      minMaxError: 'Min grade must be lower than or equal to max grade.'
     },
     cragsTable: {
       crags: 'Crags',
@@ -1607,7 +1616,16 @@ export default {
         ascents_count: 'Sort by number of ascents',
         likes_count: 'Sort by number of likes',
         comments_count: 'Sort by number of comments'
-      }
+      },
+      randomRoute: 'Random line',
+      randomRouteTitle: 'Pick a random line',
+      randomRouteExplain: 'Choose a grade range, we will suggest a random line in this space.',
+      minGrade: 'Min grade',
+      maxGrade: 'Max grade',
+      pickRandom: 'Pick randomly',
+      pickAgain: 'Pick again',
+      noRouteInRange: 'No line found in this grade range.',
+      minMaxError: 'Min grade must be lower than or equal to max grade.'
     },
     contest: {
       title: 'Contests',
