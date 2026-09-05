@@ -71,8 +71,18 @@ export default {
       siteId: process.env.VUE_APP_MATOMO_SITE_ID
     }],
     // https://github.com/nuxt-community/robots-module
-    '@nuxtjs/robots'
+    '@nuxtjs/robots',
+    // Sentry js monitoring
+    '@nuxtjs/sentry'
   ],
+
+  sentry: {
+    dsn: process.env.VUE_APP_SENTRY_DNS,
+    disabled: process.env.VUE_APP_SENTRY_DISABLED === 'true',
+    config: {
+      environment: process.env.VUE_APP_SENTRY_ENVIRONMENT || 'local'
+    }
+  },
 
   robots: () => {
     return {
