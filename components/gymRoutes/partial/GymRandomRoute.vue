@@ -127,12 +127,32 @@ export default {
   },
 
   methods: {
+    routeGradeValues (route) {
+      const values = []
+      if (route.grade_gap && (route.grade_gap.min_grade_value || route.grade_gap.max_grade_value)) {
+        if (route.grade_gap.min_grade_value) {
+          values.push(Number(route.grade_gap.min_grade_value))
+        }
+        if (route.grade_gap.max_grade_value) {
+          values.push(Number(route.grade_gap.max_grade_value))
+        }
+      }
+      for (const section of route.sections || []) {
+        if (section.grade_value !== null && section.grade_value !== undefined) {
+          values.push(Number(section.grade_value))
+        }
+      }
+      return values
+    },
+
     routeMinValue (route) {
-      return route.grade_gap?.min_grade_value ?? route.grade_gap?.max_grade_value ?? null
+      const values = this.routeGradeValues(route)
+      return values.length > 0 ? Math.min(...values) : null
     },
 
     routeMaxValue (route) {
-      return route.grade_gap?.max_grade_value ?? route.grade_gap?.min_grade_value ?? null
+      const values = this.routeGradeValues(route)
+      return values.length > 0 ? Math.max(...values) : null
     },
 
     routeInRange (route) {
