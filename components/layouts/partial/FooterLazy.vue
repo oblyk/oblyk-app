@@ -73,6 +73,16 @@
           </v-icon>
           {{ $t('components.layout.footer.reportProblem') }}
         </nuxt-link>
+        <nuxt-link
+          class="d-block"
+          :to="`/errors/debug`"
+          rel="nofollow"
+        >
+          <v-icon small left>
+            {{ mdiBug }}
+          </v-icon>
+          {{ $t('components.layout.footer.debug') }}
+        </nuxt-link>
       </v-col>
 
       <!-- Follow us -->
@@ -175,7 +185,8 @@ import {
   mdiDatabase,
   mdiOpenInNew,
   mdiInstagram,
-  mdiCookie
+  mdiCookie,
+  mdiBug
 } from '@mdi/js'
 
 export default {
@@ -191,7 +202,8 @@ export default {
       mdiDatabase,
       mdiOpenInNew,
       mdiInstagram,
-      mdiCookie
+      mdiCookie,
+      mdiBug
     }
   },
 

@@ -2181,7 +2181,8 @@ export default {
         apiAndDevelopers: 'API & Developers',
         guidesAndFeatures: 'Guides & Features',
         data: 'Data',
-        climbInFrance: 'Climb in France'
+        climbInFrance: 'Climb in France',
+        debug: 'Debug'
       },
       errors: {
         404: {

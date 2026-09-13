@@ -2183,7 +2183,8 @@ export default {
         apiAndDevelopers: 'API & Développeurs',
         guidesAndFeatures: 'Topos & Fonctionnalités',
         data: 'Données',
-        climbInFrance: 'Escalade en France'
+        climbInFrance: 'Escalade en France',
+        debug: 'Debug'
       },
       errors: {
         404: {
