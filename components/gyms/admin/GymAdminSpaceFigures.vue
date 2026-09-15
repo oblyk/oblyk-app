@@ -77,7 +77,7 @@ export default {
 
   computed: {
     newSpacePath () {
-      return this.gym.gym_spaces.length === 0 ? `${this.gym.adminPath}/first-space` : `${this.gym.spacePath}/new`
+      return this.gym.gym_spaces.length === 0 ? `${this.gym.adminPath}/first-space` : `${this.gym.path}/spaces/new`
     }
   }
 }
