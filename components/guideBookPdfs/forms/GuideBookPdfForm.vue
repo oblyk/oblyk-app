@@ -31,6 +31,7 @@
       v-model="file"
       outlined
       truncate-length="15"
+      accept="application/pdf"
       :placeholder="$t('actions.browse')"
     />
 
@@ -105,10 +106,10 @@ export default {
           })
       } else {
         const formData = new FormData()
-        formData.append('guide_book_pdf[description]', this.data.description)
-        formData.append('guide_book_pdf[name]', this.data.name)
-        formData.append('guide_book_pdf[author]', this.data.author)
-        formData.append('guide_book_pdf[publication_year]', this.data.publication_year)
+        formData.append('guide_book_pdf[description]', this.data.description ?? '')
+        formData.append('guide_book_pdf[name]', this.data.name ?? '')
+        formData.append('guide_book_pdf[author]', this.data.author ?? '')
+        formData.append('guide_book_pdf[publication_year]', this.data.publication_year ?? '')
         formData.append('guide_book_pdf[crag_id]', this.data.crag_id)
         formData.append('guide_book_pdf[pdf_file]', this.file)
         const url = `${this.baseUrl}/public/guide_book_pdfs.json`

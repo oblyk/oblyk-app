@@ -18,13 +18,24 @@
             <span class="vertical-align-middle">
               {{ guideBookPdf.name }}
               <client-only>
-                <v-btn
-                  v-if="$auth.loggedIn && $auth.user.uuid === guideBookPdf.creator.uuid"
-                  icon
-                  :to="`${guideBookPdf.path}/edit?redirect_to=${$route.fullPath}`"
+                <div
+                  v-if="$auth.loggedIn && ($auth.user.uuid === guideBookPdf.creator.uuid || $auth.user.super_admin)"
+                  class="d-inline-block"
                 >
-                  <v-icon small>{{ mdiPencil }}</v-icon>
-                </v-btn>
+                  <v-btn
+                    icon
+                    :to="`${guideBookPdf.path}/edit?redirect_to=${$route.fullPath}`"
+                  >
+                    <v-icon small>{{ mdiPencil }}</v-icon>
+                  </v-btn>
+                  <v-btn
+                    icon
+                    :loading="loadingDelete"
+                    @click="deleteGuideBookPdf()"
+                  >
+                    <v-icon small>{{ mdiTrashCan }}</v-icon>
+                  </v-btn>
+                </div>
               </client-only>
             </span>
           </v-list-item-title>
@@ -55,7 +66,8 @@
 </template>
 
 <script>
-import { mdiPencil, mdiFilePdfBox } from '@mdi/js'
+import { mdiPencil, mdiFilePdfBox, mdiTrashCan } from '@mdi/js'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 
 export default {
   name: 'GuideBookPdfSmallCard',
@@ -63,13 +75,38 @@ export default {
     guideBookPdf: {
       type: Object,
       required: true
+    },
+    deleteCallback: {
+      type: Function,
+      default: null
     }
   },
 
   data () {
     return {
+      loadingDelete: false,
+
       mdiPencil,
-      mdiFilePdfBox
+      mdiFilePdfBox,
+      mdiTrashCan
+    }
+  },
+
+  methods: {
+    deleteGuideBookPdf () {
+      if (confirm(this.$t('common.areYouSurToDelete'))) {
+        this.loadingDelete = true
+        new OblykApi(this.$axios, this.$auth)
+          .delete(`/public/guide_book_pdfs/${this.guideBookPdf.id}`)
+          .then(() => {
+            if (this.deleteCallback) {
+              this.deleteCallback()
+            }
+          })
+          .finally(() => {
+            this.loadingDelete = false
+          })
+      }
     }
   }
 }

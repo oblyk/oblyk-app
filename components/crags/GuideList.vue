@@ -24,7 +24,7 @@
         </div>
 
         <div v-if="guide.className === 'GuideBookPdf'">
-          <guide-book-pdf-small-card :guide-book-pdf="guide" />
+          <guide-book-pdf-small-card :guide-book-pdf="guide" :delete-callback="getGuides" />
         </div>
       </div>
 
@@ -56,7 +56,7 @@
 </template>
 
 <script>
-import CragApi from '~/services/oblyk-api/CragApi'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 import GuideBookPaper from '@/models/GuideBookPaper'
 import GuideBookPdf from '@/models/GuideBookPdf'
 import GuideBookWeb from '@/models/GuideBookWeb'
@@ -102,9 +102,10 @@ export default {
 
   methods: {
     getGuides () {
+      this.guides = []
       this.loadingGuides = true
-      new CragApi(this.$axios, this.$auth)
-        .guides(this.crag.id)
+      new OblykApi(this.$axios, this.$auth)
+        .get(`/public/crags/${this.crag.id}/guides`)
         .then((resp) => {
           this.guides_count = resp.data.length
           let loop = 0
