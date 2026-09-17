@@ -1868,7 +1868,7 @@ export default {
         indoor_ascents: 'Your <strong>indoor send-list</strong> can be consulted by <strong>climbers connected</strong> to Oblyk.'
       },
       private_explain: {
-        profile: 'Your profile can <strong>only be viewed by climbers connected</strong> to Oblyk.<br>You must <strong>manually accept</strong> climbers who want to follow you.',
+        profile: 'Your profile can <strong>only be viewed by climbers connected</strong> to Oblyk.<br>You must <strong>manually accept</strong> climbers who want to follow you.<br><strong>You no longer appear in gym rankings.</strong>',
         outdoor_ascents: 'Your outdoor send-list can <strong>only be consulted by your subscribers.</strong>',
         indoor_ascents: 'Your indoor send-list can <strong>only be consulted by your subscribers.</strong>'
       },
