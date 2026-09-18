@@ -79,6 +79,16 @@
           <v-col v-if="showRouteSort">
             <crag-route-sort v-model="routeSort" />
           </v-col>
+          <v-col
+            cols="12"
+            md="4"
+            lg="3"
+          >
+            <crag-random-route
+              :crag="crag"
+              :crag-sector="cragSector"
+            />
+          </v-col>
           <v-col>
             <crag-sector-selector
               v-model="cragSectorId"
@@ -174,11 +184,13 @@ import AddSectorOrRouteBtn from '@/components/cragRoutes/partial/AddSectorOrRout
 import CragSectorSelector from '@/components/cragRoutes/partial/CragSectorSelector'
 import CragRouteSort from '@/components/cragRoutes/partial/CragRouteSort'
 import CragRouteSearch from '@/components/cragRoutes/partial/CragRouteSearch'
+import CragRandomRoute from '@/components/cragRoutes/partial/CragRandomRoute'
 import CragRouteFigures from '@/components/cragRoutes/CragRouteFigures'
 
 export default {
   name: 'CragRoutes',
   components: {
+    CragRandomRoute,
     CragRouteFigures,
     CragRouteSearch,
     CragRouteSort,
