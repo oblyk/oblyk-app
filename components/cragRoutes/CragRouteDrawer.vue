@@ -13,6 +13,7 @@
         :crag-route="cragRoute"
       />
       <div class="pr-3 pl-3 pt-1">
+        <crag-grade-protection-action-required :crag="cragRoute.crag" :get-routes-callback="getCragRoute" />
         <crag-route-description :crag-route="cragRoute" />
         <client-only>
           <crag-route-ascent
@@ -50,10 +51,12 @@ import CragRoutePhotos from '@/components/cragRoutes/CragRoutePhotos'
 import CragRouteVideos from '@/components/cragRoutes/CragRouteVideos'
 import CragRouteAscent from '@/components/cragRoutes/CragRouteAscent'
 import VersionInformation from '~/components/ui/VersionInformation'
+import CragGradeProtectionActionRequired from '~/components/crags/CragGradeProtectionActionRequired'
 
 export default {
   name: 'CragRouteDrawer',
   components: {
+    CragGradeProtectionActionRequired,
     VersionInformation,
     CragRouteAscent,
     CragRouteVideos,

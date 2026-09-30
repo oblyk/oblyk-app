@@ -1097,7 +1097,7 @@ export default {
       removePitch: 'Supprimer une longueur',
       routeAdded: "Ligne : '%{name}' ajoutée",
       pointCount: 'Un point | %{count} points',
-      mustBeLogin: '<span class="font-weight-bold">Connectez-vous</span> ou <span class="font-weight-bold">créez-vous un compte</span> pour <span class="font-weight-bold">voir le nom des voies</span> et bien plus !',
+      mustBeLogin: '<span class="font-weight-bold">Connectez-vous</span> ou <span class="font-weight-bold">créez-vous un compte</span> pour <span class="font-weight-bold">voir les cotations des voies</span> et bien plus !',
       tips: '<strong>Tips</strong> : utiliser <kbd>tab</kbd> pour naviguer, <kbd>espace</kbd> pour ouvrir les listes',
       similarRoute: 'Une ligne ressemble | {count} lignes ressemblent',
       newRouteWarning: "Avant d'ajouter une nouvelle voie, assurez-vous que celle-ci soit prête à être publique. Par exemple : être présente dans un topo officiel, ou que vous ayez l'autorisation de l'ouvreur, ouvreuse.",
@@ -1106,6 +1106,26 @@ export default {
         difficulty_asc: 'Du plus facile au plus dur',
         name: 'Par nom',
         note: 'Par note'
+      }
+    },
+    protectionGrade: {
+      title: 'Vous ne voyez pas les cotations ?',
+      level_1: {
+        explain: 'Connectez-vous, ou créez vous un compte pour voir les cotations du site %{name}.'
+      },
+      level_2: {
+        explain: 'Vous devez posséder le topo pour voir les cotations du site "%{name}".',
+        label: "Je comprends l'importance des topos dans l'entretien des falaises, et <u>je déclare sur l'honneur</u> posséder le topo du site <strong>\"%{name}\"</strong>.",
+        action: 'Je possède le topo',
+        tanks: 'Merci !'
+      },
+      level_3: {
+        whichGuideBooks: 'Quels topos possédez-vous ?',
+        label: 'Je possède l\'un des topos du site "%{name}"',
+        explain: 'Vous devez posséder le topo pour voir les cotations du site "%{name}".',
+        myAnswer: 'Ma résponse',
+        goodAnswer: 'Bonne réponse !',
+        badAnswer: 'Mauvaise réponse...'
       }
     },
     cragsTable: {
@@ -2317,7 +2337,8 @@ export default {
       cannot_be_odd: 'ne peut pas être impair',
       must_have_a_minimum_or_maximum_age_specified: 'doit avoir un age minimum ou maximum de renseigné',
       posting_limit_for_today: "Vous avez atteint votre limite de publication pour aujourd'hui",
-      too_long: 'est trop long'
+      too_long: 'est trop long',
+      bad_answer: 'Mauvaise réponse'
     }
   },
   models: {

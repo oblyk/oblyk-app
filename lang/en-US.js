@@ -1096,7 +1096,7 @@ export default {
       removePitch: 'Remove pitch',
       routeAdded: "Route: '%{name}' added",
       pointCount: 'One point | %{count} points',
-      mustBeLogin: '<span class="font-weight-bold">Log in</span> or <span class="font-weight-bold">create an account</span> to <span class="font-weight-bold">see route names</span> and much more!',
+      mustBeLogin: '<span class="font-weight-bold">Log in</span> or <span class="font-weight-bold">create an account</span> to <span class="font-weight-bold">see route grades</span> and much more!',
       tips: '<strong>Tips</strong>: use <kbd>tab</kbd> to navigate, <kbd>space</kbd> to open lists',
       similarRoute: 'One route looks like | {count} routes look like',
       newRouteWarning: 'Before adding a new route, ensure that it is ready to be made public. For example: it should be included in an official guidebook, or you should have the permission of the person who opened it.',
@@ -1105,6 +1105,26 @@ export default {
         difficulty_asc: 'From the easiest to the hardest',
         name: 'By name',
         note: 'By note'
+      }
+    },
+    protectionGrade: {
+      title: "Can't see the grades?",
+      level_1: {
+        explain: 'Log in or create an account to view the grades on the crag %{name}.'
+      },
+      level_2: {
+        explain: 'You must have the guidebook to see the grades for the "%{name}" crag.',
+        label: 'I understand the importance of guidebooks in crag maintenance, and <u>I hereby declare on my honor</u> that I own the guidebook for the crag <strong>"%{name}"</strong>.',
+        action: 'I have the guidebook',
+        tanks: 'Thanks !'
+      },
+      level_3: {
+        whichGuideBooks: 'What guidebooks do you have?',
+        label: 'I have one of the guidebooks from the “%{name}” crag.',
+        explain: 'You must have the guidebook to view the ratings for the “%{name}” crag.',
+        myAnswer: 'My response',
+        goodAnswer: 'Good answer!',
+        badAnswer: 'Wrong answer...'
       }
     },
     cragsTable: {
@@ -2315,7 +2335,8 @@ export default {
       cannot_be_odd: 'cannot be odd',
       must_have_a_minimum_or_maximum_age_specified: 'must have a minimum or maximum age specified',
       posting_limit_for_today: 'You have reached your posting limit for today',
-      too_long: 'is too long'
+      too_long: 'is too long',
+      bad_answer: 'Incorrect answer'
     }
   },
   models: {

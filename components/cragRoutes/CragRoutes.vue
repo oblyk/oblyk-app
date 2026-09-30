@@ -76,7 +76,7 @@
               </v-card>
             </v-dialog>
           </v-col>
-          <v-col v-if="showRouteSort">
+          <v-col v-if="showRouteSort && !currentCrag.current_user.grade_protection.need_level_up">
             <crag-route-sort v-model="routeSort" />
           </v-col>
           <v-col>
@@ -90,36 +90,19 @@
         </v-row>
       </v-card-subtitle>
 
-      <v-card-text>
-        <crag-route-figures
-          :crag="crag"
-          :crag-sector="cragSector"
-        />
-      </v-card-text>
-
       <client-only>
-        <v-sheet
-          v-if="!$auth.loggedIn"
-          class="rounded text-center pa-4 my-2 border mx-4"
-        >
-          <p class="mb-2" v-html="$t('components.cragRoute.mustBeLogin')" />
-          <div>
-            <v-btn
-              elevation="0"
-              color="primary"
-              :to="`/sign-in?redirect_to=${$route.fullPath}&back_to=${$route.fullPath}`"
-            >
-              {{ $t('actions.signIn') }}
-            </v-btn>
-            <v-btn
-              elevation="0"
-              color="primary"
-              :to="`/sign-up?redirect_to=${$route.fullPath}&back_to=${$route.fullPath}`"
-            >
-              {{ $t('actions.signUp') }}
-            </v-btn>
-          </div>
-        </v-sheet>
+        <v-card-text v-if="!currentCrag.current_user.grade_protection.need_level_up">
+          <crag-route-figures
+            :crag="crag"
+            :crag-sector="cragSector"
+          />
+        </v-card-text>
+
+        <!-- If need account, or declaration, or proof of purchase to unlock route grade -->
+        <crag-grade-protection-action-required
+          :crag="currentCrag"
+          :get-routes-callback="reloadRoutes"
+        />
       </client-only>
 
       <v-skeleton-loader
@@ -175,10 +158,12 @@ import CragSectorSelector from '@/components/cragRoutes/partial/CragSectorSelect
 import CragRouteSort from '@/components/cragRoutes/partial/CragRouteSort'
 import CragRouteSearch from '@/components/cragRoutes/partial/CragRouteSearch'
 import CragRouteFigures from '@/components/cragRoutes/CragRouteFigures'
+import CragGradeProtectionActionRequired from '~/components/crags/CragGradeProtectionActionRequired'
 
 export default {
   name: 'CragRoutes',
   components: {
+    CragGradeProtectionActionRequired,
     CragRouteFigures,
     CragRouteSearch,
     CragRouteSort,
@@ -230,6 +215,7 @@ export default {
       areaHeight: 0,
       cragSectorId: null,
       disableLoadingMore: false,
+      currentCrag: this.cragSector?.crag || this.crag,
 
       mdiSourceBranch,
       mdiMagnify

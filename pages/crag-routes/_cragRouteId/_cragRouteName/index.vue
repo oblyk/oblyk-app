@@ -16,6 +16,9 @@
       <v-card>
         <crag-route-head :crag-route="cragRoute" />
         <v-container>
+          <client-only>
+            <crag-grade-protection-action-required :crag="cragRoute.crag" />
+          </client-only>
           <crag-route-description :crag-route="cragRoute" />
         </v-container>
       </v-card>
@@ -82,9 +85,11 @@ import CragRouteVideos from '~/components/cragRoutes/CragRouteVideos'
 import CragRouteAscent from '~/components/cragRoutes/CragRouteAscent'
 import VersionInformation from '~/components/ui/VersionInformation'
 import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
+import CragGradeProtectionActionRequired from '~/components/crags/CragGradeProtectionActionRequired'
 
 export default {
   components: {
+    CragGradeProtectionActionRequired,
     VersionInformation,
     CragRouteAscent,
     CragRouteVideos,

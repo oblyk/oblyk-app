@@ -44,7 +44,7 @@
             {{ guideBookPaper.author }}, {{ guideBookPaper.editor }}, {{ guideBookPaper.publication_year }}
           </v-list-item-subtitle>
         </v-list-item-content>
-        <v-list-item-action>
+        <v-list-item-action v-if="subscribable">
           <client-only>
             <subscribe-btn
               subscribe-type="GuideBookPaper"
@@ -86,6 +86,10 @@ export default {
     small: {
       type: Boolean,
       default: false
+    },
+    subscribable: {
+      type: Boolean,
+      default: true
     }
   },
 

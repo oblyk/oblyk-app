@@ -1,5 +1,17 @@
 <template>
   <div
+    v-if="cragRoute.masked"
+    class="masked-grade"
+    :style="` height: ${size}px; width: ${size}px;`"
+  >
+    <div :style="` height: ${size}px; width: ${size}px;`" class="d-flex align-center justify-center">
+      <v-icon color="primary" :size="30">
+        {{ oblykLockGrade }}
+      </v-icon>
+    </div>
+  </div>
+  <div
+    v-else
     class="back-border-color-grade"
     :style="`
     background-image: linear-gradient(${gradeValueToColor(cragRoute.grade_gap.max_grade_value)} 50%, ${gradeValueToColor(cragRoute.grade_gap.min_grade_value)} 50%);
@@ -37,6 +49,7 @@
 </template>
 
 <script>
+import { oblykLockGrade } from '~/assets/oblyk-icons'
 import { GradeMixin } from '@/mixins/GradeMixin'
 
 export default {
@@ -59,11 +72,25 @@ export default {
       type: Number,
       default: 3
     }
+  },
+
+  data () {
+    return {
+      oblykLockGrade
+    }
   }
 }
 </script>
 
 <style lang="scss">
+.masked-grade {
+  display: inline-block;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  border-radius: 50%;
+  text-align: center;
+}
 .back-border-color-grade {
   display: inline-block;
   white-space: nowrap;
