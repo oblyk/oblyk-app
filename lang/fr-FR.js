@@ -1890,7 +1890,7 @@ export default {
         indoor_ascents: 'Votre <strong>carnet de croix indoor</strong> est consultable par les <strong>grimpeur·euse·s connecté·e·s</strong> à Oblyk.'
       },
       private_explain: {
-        profile: 'Votre profil est consultable <strong>uniquement par les grimpeur·euse·s connecté·e·s</strong> à Oblyk.<br>Vous devez <strong>accepter manuellement</strong> les grimpeur·euse·s qui veulent vous suivre.',
+        profile: 'Votre profil est consultable <strong>uniquement par les grimpeur·euse·s connecté·e·s</strong> à Oblyk.<br>Vous devez <strong>accepter manuellement</strong> les grimpeur·euse·s qui veulent vous suivre.<br><strong>Vous n\'apparaissez plus dans les classements des salles.</strong>',
         outdoor_ascents: 'Votre carnet de croix outdoor est <strong>consultable uniquement par vos abonné·es.</strong>',
         indoor_ascents: 'Votre carnet de croix indoor est <strong>consultable uniquement par vos abonné·es.</strong>'
       },
