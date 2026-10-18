@@ -1401,6 +1401,7 @@ export default {
       adminTitle: "Zone d'administration",
       publicPage: 'Page publique',
       GuideBookSettings: 'Paramètres topos',
+      GuideBook: 'Mon topo',
       GuideBookAndContest: 'Mon topo & Les contests',
       gestionSettings: 'Gestion',
       table: 'Tableau',
@@ -1413,6 +1414,7 @@ export default {
       openers: 'Les ouvreurs et ouvreuses',
       contests: 'Contests',
       championships: 'Championnats',
+      sprayWalls: 'Spray Walls',
       subscriptions: 'Abonnements',
       home: 'Tableau de bord',
       parameters: 'Paramètres',
@@ -1450,6 +1452,7 @@ export default {
       comments: 'Commentaires',
       videos: 'Vidéos',
       myCommunity: 'Ma communauté',
+      myCommunityAndContest: 'Ma communauté & Les Contests',
       noComments: 'Vous verrez les commentaires de vos grimpeurs et grimpeuses ici quand ils/elles en auront posté !',
       noVideos: 'Vous verrez les vidéos de vos grimpeurs et grimpeuses ici quand ils/elles en auront posté !',
       assets: 'Décorations',
@@ -1656,6 +1659,17 @@ export default {
       newResultsCount: '<strong>Un</strong> nouveau résultat ! | <strong>%{count}</strong> nouveaux résultats !',
       currentAndUpcoming: 'En cours & À venir',
       past: 'Passés'
+    },
+    sprayWallPipeline: {
+      status: {
+        initialised: 'Initialisation...',
+        queuing: 'Mise en queue...',
+        ai_running: 'Segmentation...',
+        holds_creating: 'Création des prises...',
+        completed: 'Fini',
+        failed: 'Échec',
+        cancelled: 'Annuler'
+      }
     },
     climbingSession: {
       list: 'Mes sessions',
@@ -2981,6 +2995,11 @@ export default {
       A50: 'Vétéran 2 (50 et +)',
       A60: 'Vétéran 3 (60 et +)'
     },
+    sprayWallRoutes: {
+      name: 'Nom de mon bloc',
+      foot_authorization: 'Règle particulière pour les pieds ?',
+      commentaire: 'Remarques'
+    },
     representationTypes: {
       '2d_picture': 'Image 2D',
       '3d': '3D'
@@ -2996,6 +3015,7 @@ export default {
       fun_climbing: 'Fun climbing',
       training_space: 'Espace entraînement',
       pan: 'Pan',
+      spray_wall: 'Spray Wall',
       speed_climbing: 'Vitesse'
     },
     gymTypes: {
@@ -3018,6 +3038,7 @@ export default {
       fun_climbing: 'FC',
       training_space: 'E',
       pan: 'P',
+      spray_wall: 'SW',
       speed_climbing: 'S'
     },
     climbingStyle: {

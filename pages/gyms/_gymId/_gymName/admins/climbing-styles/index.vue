@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container fluid>
     <spinner v-if="!gym" />
     <div v-else>
       <v-breadcrumbs :items="breadcrumbs" />
@@ -12,7 +12,7 @@
           v-for="climbingType in climbingTypes"
           :key="`climbing-type-${climbingType}`"
           cols="12"
-          md="4"
+          md="3"
         >
           <v-card>
             <v-card-title class="pb-2 border-bottom">
@@ -67,9 +67,9 @@
 <script>
 import { mdiArrowRight, mdiArrowLeft } from '@mdi/js'
 import { GymFetchConcern } from '~/concerns/GymFetchConcern'
-import Spinner from '~/components/layouts/Spiner.vue'
-import GymClimbingStylesForm from '~/components/gymClimbingStyles/forms/GymClimbingStylesForm.vue'
-import GymClimbingStyleApi from '~/services/oblyk-api/GymClimbingStyleApi'
+import Spinner from '~/components/layouts/Spiner'
+import GymClimbingStylesForm from '~/components/gymClimbingStyles/forms/GymClimbingStylesForm'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 
 export default {
   components: { GymClimbingStylesForm, Spinner },
@@ -84,7 +84,8 @@ export default {
       climbingTypes: [
         'sport_climbing',
         'bouldering',
-        'pan'
+        'pan',
+        'spray_wall'
       ],
 
       mdiArrowRight,
@@ -137,8 +138,8 @@ export default {
   methods: {
     getClimbingStyles () {
       this.loadingStyles = true
-      new GymClimbingStyleApi(this.$axios, this.$auth)
-        .all(this.$route.params.gymId)
+      new OblykApi(this.$axios, this.$auth)
+        .get(`/gyms/${this.$route.params.gymId}/gym_climbing_styles`)
         .then((resp) => {
           this.gymClimbingStyles = resp.data
         })

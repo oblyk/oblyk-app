@@ -20,7 +20,7 @@
           <v-icon class="mb-1" left>
             {{ mdiMapLegend }}
           </v-icon>
-          {{ $t('components.gymAdmin.GuideBookAndContest') }}
+          {{ $t('components.gymAdmin.GuideBook') }}
         </h4>
         <v-row>
           <v-col cols="12" md="6" lg="4" class="pa-2">
@@ -30,7 +30,7 @@
             <gym-admin-space-figures :gym="gym" />
           </v-col>
           <v-col cols="12" md="6" lg="4" class="pa-2">
-            <gym-admin-contests-figures :gym="gym" />
+            <gym-admin-spray-walls-figures :gym="gym" />
           </v-col>
         </v-row>
 
@@ -39,7 +39,7 @@
           <v-icon class="mb-1" left>
             {{ mdiAccountMultiple }}
           </v-icon>
-          {{ $t('components.gymAdmin.myCommunity') }}
+          {{ $t('components.gymAdmin.myCommunityAndContest') }}
         </h4>
         <v-row>
           <v-col cols="12" md="6" lg="4" class="pa-2">
@@ -47,6 +47,9 @@
           </v-col>
           <v-col cols="12" md="6" lg="4" class="pa-2">
             <gym-admin-publications-figures :gym="gym" />
+          </v-col>
+          <v-col cols="12" md="6" lg="4" class="pa-2">
+            <gym-admin-contests-figures :gym="gym" />
           </v-col>
         </v-row>
 
@@ -119,10 +122,12 @@ import GymAdminPublicationsFigures from '~/components/gyms/admin/GymAdminPublica
 import GymPageHeader from '~/components/gyms/layouts/GymPageHeader'
 import SkeletonLoaderPageHead from '~/components/layouts/SkeletonLoaderPageHead'
 import GymAdminFooter from '~/components/gyms/admin/GymAdminFooter'
+import GymAdminSprayWallsFigures from '~/components/gyms/admin/GymAdminSprayWallFigures.vue'
 
 export default {
   meta: { orphanRoute: true },
   components: {
+    GymAdminSprayWallsFigures,
     GymAdminFooter,
     SkeletonLoaderPageHead,
     GymPageHeader,

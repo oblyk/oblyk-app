@@ -1400,6 +1400,7 @@ export default {
       adminTitle: 'Administration area',
       publicPage: 'Public page',
       GuideBookSettings: 'Guidebooks settings',
+      GuideBook: 'My guidebook',
       GuideBookAndContest: 'My guidebook & Contests',
       gestionSettings: 'Management',
       table: 'Table',
@@ -1413,6 +1414,7 @@ export default {
       home: 'Dashboard',
       contests: 'Contests',
       championships: 'Championships',
+      sprayWalls: 'Spray Walls',
       subscriptions: 'Subscriptions',
       parameters: 'Parameters',
       rakingSystem: 'Ranking system',
@@ -1449,6 +1451,7 @@ export default {
       comments: 'Comments',
       videos: 'Videos',
       myCommunity: 'My community',
+      myCommunityAndContest: 'My community & Contests',
       noComments: "You'll see your climbers' comments here when they've posted some!",
       noVideos: "You'll see your climbers' videos here when they post one!",
       assets: 'Assets',
@@ -1655,6 +1658,17 @@ export default {
       newResultsCount: '<strong>One</strong> new result! | <strong>%{count}</strong> new results!',
       currentAndUpcoming: 'Current & Upcoming',
       past: 'Past'
+    },
+    sprayWallPipeline: {
+      status: {
+        initialised: 'Initialization...',
+        queuing: 'Queuing...',
+        ai_running: 'Segmentation...',
+        holds_creating: 'Creating holds...',
+        completed: 'Completed',
+        failed: 'Failed',
+        cancelled: 'Cancelled'
+      }
     },
     climbingSession: {
       list: 'My sessions',
@@ -2966,6 +2980,11 @@ export default {
       A50: 'Veteran 2 (50 and +)',
       A60: 'Veteran 3 (60 and +)'
     },
+    sprayWallRoutes: {
+      name: 'Name of my boulder',
+      foot_authorization: 'Special rule for feet ?',
+      commentaire: 'Comments'
+    },
     representationTypes: {
       '2d_picture': '2D image',
       '3d': '3D'
@@ -2981,6 +3000,7 @@ export default {
       fun_climbing: 'Fun Climbing',
       training_space: 'Training space',
       pan: 'Pan',
+      spray_wall: 'Spray Wall',
       speed_climbing: 'Speed Climbing'
     },
     gymTypes: {
@@ -3003,6 +3023,7 @@ export default {
       fun_climbing: 'FC',
       training_space: 'T',
       pan: 'P',
+      spray_wall: 'SW',
       speed_climbing: 'S'
     },
     climbingStyle: {

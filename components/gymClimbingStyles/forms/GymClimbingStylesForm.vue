@@ -107,8 +107,8 @@
 
 <script>
 import { mdiFormatColorFill } from '@mdi/js'
-import GymClimbingStyleApi from '~/services/oblyk-api/GymClimbingStyleApi'
 import { ClimbingStylesMixin } from '~/mixins/ClimbingStylesMixin'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 
 export default {
   name: 'GymClimbingStylesForm',
@@ -160,16 +160,20 @@ export default {
   methods: {
     change (style) {
       this.disabled = true
-      const promise = new GymClimbingStyleApi(this.$axios, this.$auth)
+      const promise = new OblykApi(this.$axios, this.$auth)
       const data = {
         gym_id: this.gym.id,
         climbing_type: this.climbingType,
         style
       }
       if (this.climbingStyles.includes(style)) {
-        promise.create(data).finally(() => { this.disabled = false })
+        promise
+          .post(`/gyms/${this.gym.id}/gym_climbing_styles`, { gym_climbing_style: data })
+          .finally(() => { this.disabled = false })
       } else {
-        promise.deactivate(data).finally(() => { this.disabled = false })
+        promise
+          .put(`/gyms/${this.gym.id}/gym_climbing_styles/deactivate`, { gym_climbing_style: data })
+          .finally(() => { this.disabled = false })
       }
     },
 
@@ -188,13 +192,16 @@ export default {
         return
       }
       this.changingColor = true
-      new GymClimbingStyleApi(this.$axios, this.$auth)
-        .create({
-          gym_id: this.gym.id,
-          climbing_type: this.climbingType,
-          style: this.colorModalStyle.value,
-          color: noColor ? null : this.computedNewColor
-        })
+      new OblykApi(this.$axios, this.$auth)
+        .post(
+          `/gyms/${this.gym.id}/gym_climbing_styles`,
+          {
+            gym_id: this.gym.id,
+            climbing_type: this.climbingType,
+            style: this.colorModalStyle.value,
+            color: noColor ? null : this.computedNewColor
+          }
+        )
         .then((resp) => {
           const data = resp.data
           let styleFound = false

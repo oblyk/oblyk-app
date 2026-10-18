@@ -102,8 +102,8 @@
 
 <script>
 import { ClimbingStylesMixin } from '~/mixins/ClimbingStylesMixin'
-import GymClimbingStyleApi from '~/services/oblyk-api/GymClimbingStyleApi'
-import ClimbingStyleBtn from '~/components/forms/ClimbingStyleBtn.vue'
+import ClimbingStyleBtn from '~/components/forms/ClimbingStyleBtn'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 
 export default {
   name: 'IndoorClimbingStylesInput',
@@ -204,8 +204,8 @@ export default {
   methods: {
     getGymClimbingStyle () {
       this.loadingClimbingStyle = true
-      new GymClimbingStyleApi(this.$axios, this.$auth)
-        .all(this.gym.id)
+      new OblykApi(this.$axios, this.$auth)
+        .get(`/gyms/${this.gym.id}/gym_climbing_styles`)
         .then((resp) => {
           this.gymClimbingStyles = resp.data
           for (const climbingStyle of this.MD_ClimbingStyles) {
