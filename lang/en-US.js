@@ -1652,7 +1652,9 @@ export default {
       capacityExplain: 'Indicate the maximum number of competitors.<br>Leave blank if there is no maximum.<br>You can then choose a total capacity per category.',
       subscriptionOpenExplain: 'Date from which the contest is public and competitors can register',
       startDateExplain: 'Date of the first stage of the contest',
-      newResultsCount: '<strong>One</strong> new result! | <strong>%{count}</strong> new results!'
+      newResultsCount: '<strong>One</strong> new result! | <strong>%{count}</strong> new results!',
+      currentAndUpcoming: 'Current & Upcoming',
+      past: 'Past'
     },
     climbingSession: {
       list: 'My sessions',

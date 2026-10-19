@@ -1653,7 +1653,9 @@ export default {
       capacityExplain: "Indiquez le nombre maximum de compétiteurs et compétitrices.<br>Laissez vide s'il n'y a pas de maximum.<br>Vous pourrez choisir une capacité totale par catégorie ensuite.",
       subscriptionOpenExplain: "Date à partir de laquelle le contest est public et que les compétiteurs et compétitrices peuvent s'inscrire",
       startDateExplain: 'Date de la première étape du contest',
-      newResultsCount: '<strong>Un</strong> nouveau résultat ! | <strong>%{count}</strong> nouveaux résultats !'
+      newResultsCount: '<strong>Un</strong> nouveau résultat ! | <strong>%{count}</strong> nouveaux résultats !',
+      currentAndUpcoming: 'En cours & À venir',
+      past: 'Passés'
     },
     climbingSession: {
       list: 'Mes sessions',

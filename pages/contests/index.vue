@@ -5,92 +5,49 @@
       back-to="/indoor"
     />
     <v-container>
-      <!-- Coming contest -->
-      <div v-if="isComingContests.length > 0">
-        <p class="font-weight-bold mb-1 mt-6">
-          {{ $t('common.coming') }}
-        </p>
-        <v-list class="rounded-sm">
-          <contest-item-list
-            v-for="(contest, contestIndex) in isComingContests"
-            :key="`is-coming-contest-index-${contestIndex}`"
-            :contest="contest"
-            :public-path="true"
-          />
-        </v-list>
-      </div>
-
-      <!-- Ongoing contest -->
-      <div v-if="ongoingContests.length > 0">
-        <p class="font-weight-bold mb-1 mt-6">
-          {{ $t('common.ongoing') }}
-        </p>
-        <v-list class="rounded-sm">
-          <contest-item-list
-            v-for="(contest, contestIndex) in ongoingContests"
-            :key="`ongoing-contest-index-${contestIndex}`"
-            :contest="contest"
-            :public-path="true"
-          />
-        </v-list>
-      </div>
-
-      <!-- Pasts contest -->
-      <div v-if="pastContests.length > 0">
-        <p class="font-weight-bold mb-1 mt-6">
-          {{ $t('common.past') }}
-        </p>
-        <v-list class="rounded-sm">
-          <contest-item-list
-            v-for="(contest, contestIndex) in pastContests"
-            :key="`past-contest-index-${contestIndex}`"
-            :contest="contest"
-            :public-path="true"
-          />
-        </v-list>
-      </div>
+      <v-btn
+        text
+        rounded
+        :color="tab === 0 ? 'deep-purple accent-2' : ''"
+        :class="tab === 0 ? 'v-btn--active' : ''"
+        @click="tab = 0"
+      >
+        {{ $t('components.contest.currentAndUpcoming') }}
+      </v-btn>
+      <v-btn
+        text
+        rounded
+        :color="tab === 1 ? 'deep-purple accent-2' : ''"
+        :class="tab === 1 ? 'v-btn--active' : ''"
+        @click="tab = 1"
+      >
+        {{ $t('components.contest.past') }}
+      </v-btn>
+      <v-tabs-items
+        v-model="tab"
+        class="rounded mt-2"
+      >
+        <v-tab-item>
+          <contest-public-list projection="upcoming" />
+        </v-tab-item>
+        <v-tab-item>
+          <contest-public-list projection="past" />
+        </v-tab-item>
+      </v-tabs-items>
     </v-container>
   </div>
 </template>
 
 <script>
-import ContestApi from '~/services/oblyk-api/ContestApi'
-import Contest from '~/models/Contest'
-import ContestItemList from '~/components/contests/ContestItemList'
 import PageHeader from '~/components/layouts/PageHeader'
+import ContestPublicList from '~/components/contests/ContestPublicList'
 
 export default {
-  components: { PageHeader, ContestItemList },
+  components: { ContestPublicList, PageHeader },
   data () {
     return {
-      loadingContest: true,
-      isComingContests: [],
-      ongoingContests: [],
-      pastContests: []
+      tab: 0
     }
-  },
-
-  async fetch () {
-    this.loadingContest = true
-    await new ContestApi(this.$axios, this.$auth)
-      .opens()
-      .then((resp) => {
-        this.isComingContests = []
-        this.ongoingContests = []
-        this.pastContests = []
-        for (const contest of resp.data.is_coming) {
-          this.isComingContests.push(new Contest({ attributes: contest }))
-        }
-        for (const contest of resp.data.ongoing) {
-          this.ongoingContests.push(new Contest({ attributes: contest }))
-        }
-        for (const contest of resp.data.past) {
-          this.pastContests.push(new Contest({ attributes: contest }))
-        }
-      })
-      .finally(() => {
-        this.loadingContest = false
-      })
   },
 
   i18n: {
