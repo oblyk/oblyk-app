@@ -142,7 +142,7 @@
             <v-icon size="20" left color="primary">
               {{ mdiAccountGroup }}
             </v-icon>
-            Détourez votre mur à plusieurs
+            Détourer votre mur à plusieurs
           </p>
           <p>
             Sur le <strong>Spray Wall Studio</strong> : les ajouts, suppressions et éditions sont synchronisés en temps réel !
