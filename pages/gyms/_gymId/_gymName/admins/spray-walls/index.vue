@@ -19,7 +19,7 @@
           <v-icon left>
             {{ mdiPlus }}
           </v-icon>
-          Créer un SprayWall
+          Créer un Spray Wall
         </v-btn>
       </div>
       <div v-if="loadingSprayWalls">

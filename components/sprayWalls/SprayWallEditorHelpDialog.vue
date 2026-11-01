@@ -51,7 +51,7 @@
             <tr>
               <td class="smallest-table-column px-0">
                 <v-chip small class="rounded-sm">
-                  supr
+                  Suppr
                 </v-chip>
               </td>
               <td class="pl-2">
@@ -75,7 +75,7 @@
                 </v-chip>
               </td>
               <td class="pl-2">
-                Enregister la nouvelle prise, ou sauvegarder la prise en cours d'édition
+                Enregistrer la nouvelle prise, ou sauvegarder la prise en cours d'édition
               </td>
             </tr>
           </tbody>
@@ -89,11 +89,11 @@
             Dans quel ordre procéder ?
           </p>
           <ol class="mb-3">
-            <li>Lancez la détéction des prises <v-icon>{{ mdiCreation }}</v-icon></li>
+            <li>Lancez la détection des prises <v-icon>{{ mdiCreation }}</v-icon></li>
             <li>Corrigez ou supprimez les prises mal détectées</li>
             <li>Ajoutez les prises vissées sur le mur et les volumes (ou vissées sur d'autres prises)</li>
-            <li>Vérifiez que vous n'en avait pas oublié avec le bouton <v-icon>{{ mdiCircleOpacity }}</v-icon></li>
-            <li>Finissez pas les volumes</li>
+            <li>Vérifiez que vous n'en avez pas oublié avec le bouton <v-icon>{{ mdiCircleOpacity }}</v-icon></li>
+            <li>Finissez par les volumes</li>
           </ol>
         </div>
 
@@ -102,7 +102,7 @@
             <v-icon size="20" left color="primary">
               {{ mdiVectorSquare }}
             </v-icon>
-            Combien de point pour une prise ?
+            Combien de points pour une prise ?
           </p>
           <p>
             Restez simple ! Quelques points autour d'une prise suffisent.
@@ -118,7 +118,7 @@
                 <v-icon size="20" color="red" left>
                   {{ mdiThumbDown }}
                 </v-icon>
-                Trop points
+                Trop de points
               </p>
             </v-col>
             <v-col cols="6" class="text-center">
@@ -142,10 +142,10 @@
             <v-icon size="20" left color="primary">
               {{ mdiAccountGroup }}
             </v-icon>
-            Détourer votre mur à plusieurs
+            Détourez votre mur à plusieurs
           </p>
           <p>
-            Sur le <strong>Spray Wall Studio</strong> : les ajouts, suppressions et éditions sont synchronisées en temps réel !
+            Sur le <strong>Spray Wall Studio</strong> : les ajouts, suppressions et éditions sont synchronisés en temps réel !
           </p>
         </div>
       </div>

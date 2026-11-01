@@ -8,7 +8,7 @@
         <v-icon color="green accent-2" class="mr-3" left>
           {{ mdiCreation }}
         </v-icon>
-        Détéction des prises
+        Détection des prises
         <v-btn class="ml-auto" icon @click="pipelinesDialog = false">
           <v-icon color="primary">
             {{ mdiClose }}
@@ -17,10 +17,10 @@
       </v-card-title>
       <v-card-text>
         <p>
-          La détéction des prises permet de détourer automatiquement la plus part des prises de votre Spray Wall.
+          La détection des prises permet de détourer automatiquement la plupart des prises de votre Spray Wall.
         </p>
         <p>
-          Une fois la détéction finis, passer en revu les prises générées, corrigez-les, et ajoutez les manquantes.
+          Une fois la détection terminée, passez en revue les prises générées, corrigez-les, et ajoutez les manquantes.
         </p>
         <div class="text-center">
           <v-btn
@@ -38,7 +38,7 @@
           </v-btn>
           <div class="pt-2">
             <small>
-              La détéction des prises peut prendre plusieurs minutes.
+              La détection des prises peut prendre plusieurs minutes.
             </small>
           </div>
         </div>

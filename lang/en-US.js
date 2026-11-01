@@ -2982,7 +2982,7 @@ export default {
     },
     sprayWallRoutes: {
       name: 'Name of my boulder',
-      foot_authorization: 'Special rule for feet ?',
+      foot_authorization: 'Special rule for feet?',
       commentaire: 'Comments'
     },
     representationTypes: {

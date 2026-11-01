@@ -1452,7 +1452,7 @@ export default {
       comments: 'Commentaires',
       videos: 'Vidéos',
       myCommunity: 'Ma communauté',
-      myCommunityAndContest: 'Ma communauté & Les Contests',
+      myCommunityAndContest: 'Ma communauté & les contests',
       noComments: 'Vous verrez les commentaires de vos grimpeurs et grimpeuses ici quand ils/elles en auront posté !',
       noVideos: 'Vous verrez les vidéos de vos grimpeurs et grimpeuses ici quand ils/elles en auront posté !',
       assets: 'Décorations',
@@ -1663,12 +1663,12 @@ export default {
     sprayWallPipeline: {
       status: {
         initialised: 'Initialisation...',
-        queuing: 'Mise en queue...',
+        queuing: 'En file d\'attente...',
         ai_running: 'Segmentation...',
         holds_creating: 'Création des prises...',
-        completed: 'Fini',
+        completed: 'Terminé',
         failed: 'Échec',
-        cancelled: 'Annuler'
+        cancelled: 'Annulé'
       }
     },
     climbingSession: {
