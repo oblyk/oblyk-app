@@ -48,7 +48,7 @@
           <v-icon left>
             {{ mdiVectorSquareEdit }}
           </v-icon>
-          SprayWall Studio
+          Spray Wall Studio
         </v-btn>
         <v-btn
           v-if="sprayWall.draft"

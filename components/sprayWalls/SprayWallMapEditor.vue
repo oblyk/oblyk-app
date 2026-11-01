@@ -46,7 +46,7 @@
           <div class="text-center">
             <animate-oblyk-logo color="rgb(255, 255, 255)" animate />
             <div class="white--text font-weight-medium">
-              Détéction des prises...
+              Détection des prises...
             </div>
           </div>
         </div>

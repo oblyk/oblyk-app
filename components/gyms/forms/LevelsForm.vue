@@ -37,13 +37,13 @@
                 <v-checkbox
                   v-model="data.sport_climbing.sub_level_enabled"
                   class="mt-0"
-                  label="Activer les sous niveaux pour la voie"
+                  label="Activer les sous-niveaux pour la voie"
                   @input="changes = true"
                 />
                 <v-text-field
                   v-if="data.sport_climbing.sub_level_enabled"
                   v-model="data.sport_climbing.sub_level_max"
-                  label="Nombre de sous niveau"
+                  label="Nombre de sous-niveaux"
                   type="number"
                   outlined
                   persistent-hint
@@ -99,13 +99,13 @@
                 <v-checkbox
                   v-model="data.bouldering.sub_level_enabled"
                   class="mt-0"
-                  label="Activer les sous niveaux pour le bloc"
+                  label="Activer les sous-niveaux pour le bloc"
                   @input="changes = true"
                 />
                 <v-text-field
                   v-if="data.bouldering.sub_level_enabled"
                   v-model="data.bouldering.sub_level_max"
-                  label="Nombre de sous niveau"
+                  label="Nombre de sous-niveaux"
                   type="number"
                   outlined
                   persistent-hint
@@ -161,13 +161,13 @@
                 <v-checkbox
                   v-model="data.pan.sub_level_enabled"
                   class="mt-0"
-                  label="Activer les sous niveaux pour le pan"
+                  label="Activer les sous-niveaux pour le pan"
                   @input="changes = true"
                 />
                 <v-text-field
                   v-if="data.pan.sub_level_enabled"
                   v-model="data.pan.sub_level_max"
-                  label="Nombre de sous niveau"
+                  label="Nombre de sous-niveaux"
                   type="number"
                   outlined
                   persistent-hint
@@ -219,13 +219,13 @@
                 <v-checkbox
                   v-model="data.spray_wall.sub_level_enabled"
                   class="mt-0"
-                  label="Activer les sous niveaux pour le Spray Wall"
+                  label="Activer les sous-niveaux pour le Spray Wall"
                   @input="changes = true"
                 />
                 <v-text-field
                   v-if="data.spray_wall.sub_level_enabled"
                   v-model="data.spray_wall.sub_level_max"
-                  label="Nombre de sous niveau"
+                  label="Nombre de sous-niveaux"
                   type="number"
                   outlined
                   persistent-hint

@@ -22,7 +22,7 @@
         </h3>
         <div>
           <p>
-            liste des blocs proposé par la communauté
+            liste des blocs proposés par la communauté
           </p>
           <v-btn
             v-if="sprayWall"

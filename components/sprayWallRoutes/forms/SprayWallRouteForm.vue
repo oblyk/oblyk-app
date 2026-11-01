@@ -108,7 +108,7 @@ export default {
           value: 'no_foot'
         },
         {
-          text: 'Petites prises autorisés (les cachous)',
+          text: 'Petites prises autorisées (les cachous)',
           value: 'free_cachou'
         },
         {

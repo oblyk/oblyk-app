@@ -1,5 +1,5 @@
 <template>
   <div>
-    Les srapywalls d'une salle
+    Les Spray Walls d'une salle
   </div>
 </template>
