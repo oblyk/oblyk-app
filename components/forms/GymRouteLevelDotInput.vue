@@ -1,6 +1,6 @@
 <template>
   <v-input
-    v-if="levels.levels"
+    v-if="levels.levels?.length > 0"
     :hide-details="hideDetail"
   >
     <fieldset class="full-width custom-fieldset border rounded mt-n1 pb-2 px-2">

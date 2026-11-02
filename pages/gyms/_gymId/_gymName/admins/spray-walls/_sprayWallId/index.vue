@@ -37,6 +37,9 @@
             </v-chip>
             <strong>
               {{ sprayWall.spray_wall_holds_count }} prises
+            </strong>,
+            <strong>
+              {{ sprayWall.spray_wall_routes_count }} blocs
             </strong>
           </p>
         </div>
@@ -52,7 +55,6 @@
         </v-btn>
         <v-btn
           v-if="sprayWall.draft"
-          style="background-color: rgba(255, 193, 7, 0.2)"
           outlined
           text
           :loading="loadingPublish"

@@ -52,7 +52,7 @@ export default {
       uploadPercentage: 0,
       data: {
         id: this.sprayWall?.id,
-        name: this.sprayWall?.name
+        name: this.sprayWall?.name || this.defaultName()
       }
     }
   },
@@ -104,6 +104,11 @@ export default {
             this.submitOverlay = false
           })
       }
+    },
+
+    defaultName () {
+      const date = new Date()
+      return `${this.$t('common.indexMonthsName')[date.getMonth()]} ${date.getFullYear()}`
     }
   }
 }

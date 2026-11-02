@@ -38,7 +38,7 @@
                   v-model="data.sport_climbing.sub_level_enabled"
                   class="mt-0"
                   label="Activer les sous niveaux pour la voie"
-                  @input="changes = true"
+                  @change="changes = true"
                 />
                 <v-text-field
                   v-if="data.sport_climbing.sub_level_enabled"
@@ -100,7 +100,7 @@
                   v-model="data.bouldering.sub_level_enabled"
                   class="mt-0"
                   label="Activer les sous niveaux pour le bloc"
-                  @input="changes = true"
+                  @change="changes = true"
                 />
                 <v-text-field
                   v-if="data.bouldering.sub_level_enabled"
@@ -162,7 +162,7 @@
                   v-model="data.pan.sub_level_enabled"
                   class="mt-0"
                   label="Activer les sous niveaux pour le pan"
-                  @input="changes = true"
+                  @change="changes = true"
                 />
                 <v-text-field
                   v-if="data.pan.sub_level_enabled"
@@ -220,7 +220,7 @@
                   v-model="data.spray_wall.sub_level_enabled"
                   class="mt-0"
                   label="Activer les sous niveaux pour le Spray Wall"
-                  @input="changes = true"
+                  @change="changes = true"
                 />
                 <v-text-field
                   v-if="data.spray_wall.sub_level_enabled"

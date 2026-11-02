@@ -23,6 +23,9 @@
         <spray-wall-route-form
           :spray-wall="sprayWall"
           :gym="gym"
+          :spray-wall-route-holds="sprayWallRouteHolds"
+          :spray-wall-route="sprayWallRoute"
+          :submit-methode="sprayWallRoute?.id ? 'put' : 'post'"
         />
       </v-card-text>
     </v-card>
@@ -45,6 +48,14 @@ export default {
     sprayWall: {
       type: Object,
       required: true
+    },
+    sprayWallRouteHolds: {
+      type: Array,
+      default: null
+    },
+    sprayWallRoute: {
+      type: Object,
+      default: null
     }
   },
 

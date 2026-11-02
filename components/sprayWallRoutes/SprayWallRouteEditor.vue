@@ -56,7 +56,7 @@
           v-for="(hold, routeHoldIndex) in routeHolds"
           :key="`selected-hold-index-${routeHoldIndex}`"
           :d="holdPath(hold)"
-          :stroke="holdColor(hold.holdType)"
+          :stroke="holdColor(hold.hold_type)"
           :class="selectedHold?.id === hold.id ? 'selected-hold' : 'unselected-hold'"
           :stroke-width="strokeWidth * (selectedHold?.id === hold.id ? 6 : 4)"
           stroke-linecap="round"
@@ -102,7 +102,10 @@
         color="deep-purple accent-3"
         @click="$refs.sprayWallRouteEditorDialog.openDialog()"
       >
-        Enregistrer mon bloc
+        <v-icon left>
+          {{ mdiContentSave }}
+        </v-icon>
+        {{ sprayWallRoute?.id ? $t('actions.edit') : $t('actions.add') }}
       </v-btn>
     </div>
 
@@ -127,7 +130,7 @@
       >
         <div
           class="hold-type-btn --start-hold"
-          :class="selectedHold.holdType === 'start' ? '--selected-hold-type' : ''"
+          :class="selectedHold.hold_type === 'start' ? '--selected-hold-type' : ''"
           @click.stop="pushHoldTo('start')"
         >
           <v-btn icon>
@@ -136,12 +139,12 @@
             </v-icon>
           </v-btn>
           <div class="button-label">
-            Départ
+            {{ $t('models.sprayWallRouteHolds.names.start') }}
           </div>
         </div>
         <div
           class="hold-type-btn --middle-hold"
-          :class="selectedHold.holdType === 'middle' ? '--selected-hold-type' : ''"
+          :class="selectedHold.hold_type === 'middle' ? '--selected-hold-type' : ''"
           @click.stop="pushHoldTo('middle')"
         >
           <v-btn icon>
@@ -150,12 +153,12 @@
             </v-icon>
           </v-btn>
           <div class="button-label">
-            Main
+            {{ $t('models.sprayWallRouteHolds.names.hand') }}
           </div>
         </div>
         <div
           class="hold-type-btn --foot-hold"
-          :class="selectedHold.holdType === 'foot' ? '--selected-hold-type' : ''"
+          :class="selectedHold.hold_type === 'foot' ? '--selected-hold-type' : ''"
           @click.stop="pushHoldTo('foot')"
         >
           <v-btn icon>
@@ -164,12 +167,12 @@
             </v-icon>
           </v-btn>
           <div class="button-label">
-            Pied
+            {{ $t('models.sprayWallRouteHolds.names.feet') }}
           </div>
         </div>
         <div
           class="hold-type-btn --top-hold"
-          :class="selectedHold.holdType === 'top' ? '--selected-hold-type' : ''"
+          :class="selectedHold.hold_type === 'top' ? '--selected-hold-type' : ''"
           @click.stop="pushHoldTo('top')"
         >
           <v-btn icon>
@@ -178,7 +181,7 @@
             </v-icon>
           </v-btn>
           <div class="button-label">
-            Top
+            {{ $t('models.sprayWallRouteHolds.names.top') }}
           </div>
         </div>
         <div class="hold-type-btn">
@@ -193,7 +196,7 @@
     <v-slide-y-transition>
       <div v-if="selectedHold === null" class="bottom-toolbar font-weight-bold text-center pa-1" style="line-height: 1em">
         <small>
-          Cliquez sur les prises pour les ajouter à votre bloc
+          {{ $t('models.sprayWallRoutes.clickOnHoldsForAdd') }}
         </small>
       </div>
     </v-slide-y-transition>
@@ -202,6 +205,8 @@
       ref="sprayWallRouteEditorDialog"
       :spray-wall="sprayWall"
       :gym="gym"
+      :spray-wall-route-holds="routeHolds"
+      :spray-wall-route="sprayWallRoute"
     />
   </div>
 </template>
@@ -213,7 +218,8 @@ import {
   mdiHandFrontRight,
   mdiFootPrint,
   mdiFlagCheckered,
-  mdiArrowLeft
+  mdiArrowLeft,
+  mdiContentSave
 } from '@mdi/js'
 import * as panzoom from 'panzoom'
 import { oblykStartHold } from '~/assets/oblyk-icons'
@@ -233,9 +239,9 @@ export default {
       type: Object,
       required: true
     },
-    sprayWallHolds: {
-      type: Array,
-      required: true
+    sprayWallRoute: {
+      type: Object,
+      default: null
     }
   },
 
@@ -251,6 +257,7 @@ export default {
       gesture: null,
       registrable: false,
       initialTransform: null,
+      sprayWallHolds: this.sprayWall.spray_wall_holds,
 
       mdiArrowCollapse,
       mdiClose,
@@ -258,7 +265,8 @@ export default {
       mdiFootPrint,
       oblykStartHold,
       mdiFlagCheckered,
-      mdiArrowLeft
+      mdiArrowLeft,
+      mdiContentSave
     }
   },
 
@@ -288,6 +296,7 @@ export default {
       this.scale = this.panzoom.getTransform().scale
     })
     this.recenter()
+    this.setSprayWallRouteHolds()
     this.setRegistrable()
   },
 
@@ -308,6 +317,17 @@ export default {
       this.selectedHold = null
     },
 
+    setSprayWallRouteHolds () {
+      if (this.sprayWallRoute === null) { return }
+
+      for (const routeHold of this.sprayWallRoute.spray_wall_route_holds || []) {
+        const index = this.sprayWallHolds.findIndex(item => parseInt(item.id) === parseInt(routeHold.spray_wall_hold.id))
+        const hold = this.sprayWallHolds[index]
+        hold.hold_type = routeHold.hold_type
+        this.routeHolds.push(hold)
+      }
+    },
+
     addHold (hold) {
       if (hold.id === this.selectedHold?.id) {
         this.deleteHold()
@@ -317,9 +337,9 @@ export default {
       const index = this.routeHolds.findIndex(item => item.id === hold.id)
       if (index === -1) {
         if (this.routeHolds.length === 0) {
-          hold.holdType = 'start'
+          hold.hold_type = 'start'
         } else {
-          hold.holdType ||= 'middle'
+          hold.hold_type ||= 'middle'
         }
         this.routeHolds.push(hold)
       }
@@ -328,8 +348,10 @@ export default {
     },
 
     pushHoldTo (type) {
-      const index = this.routeHolds.findIndex(item => item.id === this.selectedHold.id)
-      this.routeHolds[index].holdType = type
+      const mutationHold = { ...this.selectedHold }
+      mutationHold.hold_type = type
+      this.deleteHold()
+      this.addHold(mutationHold)
       this.selectedHold = null
       this.setRegistrable()
     },
@@ -354,8 +376,8 @@ export default {
     },
 
     setRegistrable () {
-      const startsHold = this.routeHolds.findIndex(item => item.holdType === 'start')
-      const topsHold = this.routeHolds.findIndex(item => item.holdType === 'top')
+      const startsHold = this.routeHolds.findIndex(item => item.hold_type === 'start')
+      const topsHold = this.routeHolds.findIndex(item => item.hold_type === 'top')
       this.registrable = startsHold !== -1 && topsHold !== -1
     },
 

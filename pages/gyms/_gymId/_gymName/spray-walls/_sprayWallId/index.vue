@@ -20,27 +20,34 @@
           </v-icon>
           Spray Wall
         </h3>
-        <div>
-          <p>
-            liste des blocs proposé par la communauté
-          </p>
+        <div v-if="!loadingSprayWall">
           <v-btn
-            v-if="sprayWall"
             block
+            outlined
+            color="deep-purple accent-3"
             :to="`${sprayWall.app_path}/spray-wall-routes/new`"
           >
+            <v-icon left>
+              {{ oblykAddHold }}
+            </v-icon>
             Proposer un bloc
           </v-btn>
+          <spray-wall-routes-list
+            :spray-wall="sprayWall"
+            :gym="gym"
+          />
         </div>
       </div>
     </div>
   </div>
 </template>
 <script>
-import { oblykSprayWall } from 'assets/oblyk-icons'
+import { oblykSprayWall, oblykAddHold } from 'assets/oblyk-icons'
 import OblykApi from '@/services/oblyk-api/OblykApi'
+import SprayWallRoutesList from '~/components/sprayWallRoutes/SprayWallRoutesList.vue'
 
 export default {
+  components: { SprayWallRoutesList },
   scrollToTop: true,
 
   props: {
@@ -55,7 +62,8 @@ export default {
       sprayWall: null,
       loadingSprayWall: true,
 
-      oblykSprayWall
+      oblykSprayWall,
+      oblykAddHold
     }
   },
 

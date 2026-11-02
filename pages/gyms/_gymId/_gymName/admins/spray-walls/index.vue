@@ -3,7 +3,7 @@
     <spinner v-if="!gym" />
     <div v-else>
       <v-breadcrumbs :items="breadcrumbs" />
-      <div class="d-flex mb-2">
+      <div class="d-md-flex mb-2">
         <h1>
           <v-icon left large color="primary">
             {{ oblykSprayWall }}
@@ -12,8 +12,9 @@
         </h1>
         <v-btn
           class="ml-auto"
-          text
-          outlined
+          color="deep-purple accent-3"
+          dark
+          elevation="0"
           :to="`${gym.adminPath}/spray-walls/new`"
         >
           <v-icon left>
@@ -25,44 +26,65 @@
       <div v-if="loadingSprayWalls">
         Chargement ...
       </div>
-      <v-list
-        v-else-if="sprayWalls.length > 0"
-        rounded
-      >
+      <div v-else-if="sprayWalls.length > 0">
         <v-list-item
           v-for="(sprayWall, sprayWallIndex) in sprayWalls"
           :key="`spray-wall-index-${sprayWallIndex}`"
+          class="rounded v-list--three-line v-sheet mb-2 pl-2 pr-0"
         >
-          <v-list-item-avatar tile size="50">
+          <v-list-item-avatar
+            tile
+            size="90"
+          >
             <v-img
               class="rounded-sm"
               :src="imageVariant(sprayWall.attachments.picture, { fit: 'scale-down', width: 720, height: 720 })"
-              max-width="50"
-              min-width="50"
+              max-width="90"
+              min-width="90"
             />
           </v-list-item-avatar>
           <v-list-item-content>
-            <v-list-item-title>{{ sprayWall.title }}</v-list-item-title>
-            <v-list-item-subtitle>
+            <v-list-item-title class="font-weight-bold">
+              {{ sprayWall.title }}
               <v-chip
                 v-if="sprayWall.draft"
                 color="amber"
-                small
+                x-small
               >
                 Brouillon
               </v-chip>
-              {{ sprayWall.spray_wall_holds_count }} prises
+            </v-list-item-title>
+            <v-list-item-subtitle>
+              {{ sprayWall.spray_wall_holds_count }} prises, {{ sprayWall.spray_wall_routes_count }} blocs
+            </v-list-item-subtitle>
+            <v-list-item-subtitle>
+              <v-btn
+                elevation="0"
+                :small="$vuetify.breakpoint.mobile"
+                :to="`${gym.adminPath}/spray-walls/${sprayWall.id}`"
+              >
+                <v-icon left>
+                  {{ oblykAddHold }}
+                </v-icon>
+                Admin
+              </v-btn>
+              <v-btn
+                elevation="0"
+                :small="$vuetify.breakpoint.mobile"
+                :to="sprayWall.app_path"
+              >
+                <v-icon
+                  left
+                  color="deep-purple accent-3"
+                >
+                  {{ oblykSprayWall }}
+                </v-icon>
+                Spray Wall
+              </v-btn>
             </v-list-item-subtitle>
           </v-list-item-content>
-          <v-list-item-action>
-            <v-btn icon :to="`${gym.adminPath}/spray-walls/${sprayWall.id}`">
-              <v-icon color="primary">
-                {{ mdiArrowRight }}
-              </v-icon>
-            </v-btn>
-          </v-list-item-action>
         </v-list-item>
-      </v-list>
+      </div>
       <p
         v-else
         class="text-center text--disabled"
@@ -74,8 +96,8 @@
 </template>
 
 <script>
-import { mdiArrowRight, mdiPlus } from '@mdi/js'
-import { oblykSprayWall } from '~/assets/oblyk-icons'
+import { mdiPlus, mdiPencil } from '@mdi/js'
+import { oblykSprayWall, oblykAddHold } from '~/assets/oblyk-icons'
 import { GymFetchConcern } from '~/concerns/GymFetchConcern'
 import Spinner from '~/components/layouts/Spiner'
 import OblykApi from '~/services/oblyk-api/OblykApi'
@@ -92,8 +114,9 @@ export default {
       loadingSprayWalls: true,
       sprayWalls: [],
 
-      mdiArrowRight,
+      mdiPencil,
       oblykSprayWall,
+      oblykAddHold,
       mdiPlus
     }
   },

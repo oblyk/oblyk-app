@@ -364,6 +364,7 @@ export default {
       11: '11 - November',
       12: '12 - December'
     },
+    indexMonthsName: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
     climbers: {
       long: '%{count} climber | %{count} climbers',
       longWithoutCount: 'climber | climbers',
@@ -2983,7 +2984,25 @@ export default {
     sprayWallRoutes: {
       name: 'Name of my boulder',
       foot_authorization: 'Special rule for feet ?',
-      commentaire: 'Comments'
+      commentaire: 'Comments',
+      boulderContents: 'My boulder has %{count} holds, including:',
+      clickOnHoldsForAdd: 'Click on the holds to add them to your boulder',
+      load: 'Loading the boulder creator...',
+      typeCounts: {
+        holds: 'One hold | %{count} holds',
+        strats: 'One start | %{count} starts',
+        middles: 'One hand | %{count} hands',
+        foot: 'One feet | %{count} foot',
+        tops: 'One top | %{count} tops'
+      }
+    },
+    sprayWallRouteHolds: {
+      names: {
+        start: 'Start',
+        hand: 'Hand',
+        feet: 'Feet',
+        top: 'Top'
+      }
     },
     representationTypes: {
       '2d_picture': '2D image',

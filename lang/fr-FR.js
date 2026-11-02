@@ -365,6 +365,7 @@ export default {
       11: '11 - Novembre',
       12: '12 - Décembre'
     },
+    indexMonthsName: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
     climbers: {
       long: '%{count} grimpeur ou grimpeuse | %{count} grimpeurs et grimpeuses',
       longWithoutCount: 'grimpeur ou grimpeuse | grimpeurs et grimpeuses',
@@ -2998,7 +2999,25 @@ export default {
     sprayWallRoutes: {
       name: 'Nom de mon bloc',
       foot_authorization: 'Règle particulière pour les pieds ?',
-      commentaire: 'Remarques'
+      commentaire: 'Remarques',
+      boulderContents: 'Mon bloc a %{count} prises, dont :',
+      clickOnHoldsForAdd: 'Cliquez sur les prises pour les ajouter à votre bloc',
+      load: 'Chargement du créateur de bloc...',
+      typeCounts: {
+        holds: 'Une prise | %{count} prises',
+        strats: 'Un départ | %{count} départs',
+        middles: 'Une main | %{count} mains',
+        foot: 'Un pied | %{count} pieds',
+        tops: 'Un top | %{count} tops'
+      }
+    },
+    sprayWallRouteHolds: {
+      names: {
+        start: 'Départ',
+        hand: 'Main',
+        feet: 'Pied',
+        top: 'Top'
+      }
     },
     representationTypes: {
       '2d_picture': 'Image 2D',
