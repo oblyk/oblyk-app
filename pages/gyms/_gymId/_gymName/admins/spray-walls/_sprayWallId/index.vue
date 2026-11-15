@@ -15,74 +15,91 @@
       />
       <div>
         <div>
-          <p class="mb-1">
+          <h3 class="mb-2">
+            <v-icon color="primary" left>
+              {{ oblykSprayWall }}
+            </v-icon>
             {{ sprayWall.title }}
-            <v-btn
-              icon
-              small
-              :to="`${sprayWall.admin_app_path}/edit`"
-            >
-              <v-icon small>
-                {{ mdiPencil }}
-              </v-icon>
-            </v-btn>
-          </p>
-          <p>
+          </h3>
+          <p class="mb-1">
             <v-chip
               v-if="sprayWall.draft"
               color="amber"
               small
             >
-              Brouillon
+              {{ $t('common.draft') }}
             </v-chip>
             <strong>
-              {{ sprayWall.spray_wall_holds_count }} prises
+              {{ $tc('common.holdsCount', sprayWall.spray_wall_holds_count, { count: sprayWall.spray_wall_holds_count }) }}
             </strong>,
             <strong>
               {{ sprayWall.spray_wall_routes_count }} blocs
             </strong>
           </p>
+          <p v-if="sprayWall.gym_sector">
+            Secteur :
+            <v-chip
+              :to="sprayWall.gym_sector.app_path"
+              small
+            >
+              {{ sprayWall.gym_sector.name }}
+            </v-chip>
+          </p>
         </div>
-        <v-btn
-          :to="`${sprayWall.admin_app_path}/studio`"
-          outlined
-          text
-        >
-          <v-icon left>
-            {{ mdiVectorSquareEdit }}
-          </v-icon>
-          SprayWall Studio
-        </v-btn>
-        <v-btn
-          v-if="sprayWall.draft"
-          outlined
-          text
-          :loading="loadingPublish"
-          @click="publish"
-        >
-          <v-icon left>
-            {{ mdiPublish }}
-          </v-icon>
-          Publier
-        </v-btn>
-        <v-btn
-          :to="sprayWall.app_path"
-          outlined
-          text
-        >
-          <v-icon left>
-            {{ oblykSprayWall }}
-          </v-icon>
-          Page publique
-        </v-btn>
+
+        <!-- ACTIONS -->
+        <div class="mt-4">
+          <v-btn
+            :to="`${sprayWall.admin_app_path}/edit`"
+            outlined
+            text
+          >
+            <v-icon left>
+              {{ mdiPencil }}
+            </v-icon>
+            {{ $t('actions.edit') }}
+          </v-btn>
+          <v-btn
+            :to="`${sprayWall.admin_app_path}/studio`"
+            outlined
+            text
+          >
+            <v-icon left>
+              {{ oblykAddHold }}
+            </v-icon>
+            {{ $t('components.sprayWall.studio') }}
+          </v-btn>
+          <v-btn
+            v-if="sprayWall.draft"
+            outlined
+            text
+            :loading="loadingPublish"
+            @click="publish"
+          >
+            <v-icon left>
+              {{ mdiPublish }}
+            </v-icon>
+            {{ $t('actions.publish') }}
+          </v-btn>
+          <v-btn
+            :to="sprayWall.app_path"
+            outlined
+            text
+          >
+            <v-icon left>
+              {{ oblykSprayWall }}
+            </v-icon>
+            Page publique
+          </v-btn>
+        </div>
       </div>
     </div>
   </v-container>
 </template>
 
 <script>
-import { mdiVectorSquareEdit, mdiPencil, mdiPublish } from '@mdi/js'
-import { oblykSprayWall } from 'assets/oblyk-icons'
+import { mdiPencil, mdiPublish } from '@mdi/js'
+import { oblykSprayWall, oblykAddHold } from 'assets/oblyk-icons'
 import { GymFetchConcern } from '~/concerns/GymFetchConcern'
 import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
 import OblykApi from '~/services/oblyk-api/OblykApi'
@@ -97,10 +114,10 @@ export default {
       sprayWall: null,
       loadingPublish: false,
 
-      mdiVectorSquareEdit,
       mdiPencil,
       mdiPublish,
-      oblykSprayWall
+      oblykSprayWall,
+      oblykAddHold
     }
   },
 

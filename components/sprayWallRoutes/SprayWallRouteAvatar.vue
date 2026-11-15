@@ -2,6 +2,7 @@
   <svg
     :viewBox="viewBox"
     class="spray-wall-route-avatar"
+    :class="darkTheme ? 'dark-theme-holds' : 'light-theme-holds'"
     preserveAspectRatio="xMidYMid meet"
     role="img"
     aria-label="Miniature du bloc"
@@ -20,7 +21,6 @@
 </template>
 
 <script>
-// ordre de dessin : les départs et tops passent au-dessus
 const PRIORITY = { middle: 0, foot: 1, start: 2, top: 3 }
 
 export default {
@@ -37,6 +37,10 @@ export default {
     crop: {
       type: Boolean,
       default: true
+    },
+    theme: {
+      type: String,
+      default: null
     }
   },
 
@@ -47,6 +51,14 @@ export default {
 
     height () {
       return this.sprayWall.picture_height
+    },
+
+    darkTheme () {
+      let dark = this.$vuetify.theme.dark
+      if (this.theme) {
+        dark = this.theme === 'dark'
+      }
+      return dark
     },
 
     holds () {
@@ -74,7 +86,6 @@ export default {
       const minY = Math.min(...ys)
       const maxY = Math.max(...ys)
 
-      // carré centré sur le bloc, avec marge, et un plancher pour ne pas sur-zoomer un bloc de 1 prise
       const size = Math.max(maxX - minX, maxY - minY, this.width * 0.15) * 1.2
       const cx = (minX + maxX) / 2
       const cy = (minY + maxY) / 2
@@ -90,14 +101,6 @@ export default {
   width: 100%;
   height: 100%;
   border-radius: 8px;
-  .spray-wall-hold-start {
-    fill: #FFEB3B;
-    stroke: #FFEB3B;
-  }
-  .spray-wall-hold-middle {
-    fill: rgb(50, 50, 50);
-    stroke: rgb(50, 50, 50);
-  }
   .spray-wall-hold-foot {
     fill: #00E676;
     stroke: #00E676;
@@ -106,9 +109,7 @@ export default {
     fill: #FF1744;
     stroke: #FF1744;
   }
-}
-.theme--dark {
-  .spray-wall-route-avatar {
+  &.dark-theme-holds {
     .spray-wall-hold-start {
       fill: #FFFF00;
       stroke: #FFFF00;
@@ -116,6 +117,16 @@ export default {
     .spray-wall-hold-middle {
       fill: #FFFFFF;
       stroke: #FFFFFF;
+    }
+  }
+  &.light-theme-holds {
+    .spray-wall-hold-start {
+      fill: #FFEB3B;
+      stroke: #FFEB3B;
+    }
+    .spray-wall-hold-middle {
+      fill: rgb(50, 50, 50);
+      stroke: rgb(50, 50, 50);
     }
   }
 }

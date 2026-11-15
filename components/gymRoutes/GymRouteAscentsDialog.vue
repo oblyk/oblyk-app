@@ -3,6 +3,7 @@
     ref="dialog"
     v-model="isOpen"
     wait-signal
+    environment="indoor"
   >
     <h3 class="text-h6">
       {{ $t('models.gymRoute.ascents') }}

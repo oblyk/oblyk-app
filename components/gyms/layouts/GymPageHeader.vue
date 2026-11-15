@@ -97,7 +97,7 @@ export default {
     },
 
     fluid () {
-      return this.$route.path.search(`${this.gym.path}/spaces`) === 0 || this.$route.path.search(`${this.gym.path}/admins`) === 0
+      return this.$route.path.search(`${this.gym.path}/spaces`) === 0 || this.$route.path.search(`${this.gym.path}/admins`) === 0 || this.$route.path.search(`${this.gym.path}/spray-walls`) === 0
     },
 
     backTo () {

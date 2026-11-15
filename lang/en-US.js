@@ -33,8 +33,11 @@ export default {
     hide: 'Hide',
     selectOrUnselect: 'select / unselect',
     search: 'Search',
+    detectHolds: 'Detect holds',
+    addHold: 'Add hold',
     addFilters: 'Add filters',
     deleteFilters: 'Remove filters',
+    suggestAProblem: 'Suggest a problem',
     createMyAccount: 'Create my account',
     createFreeAccount: 'Create my free account',
     changeBanner: 'Change banner',
@@ -311,6 +314,7 @@ export default {
     filters: 'Filters',
     map: 'Map',
     setting: 'Setting',
+    optional: 'Optional',
     new: '%{count} new | %{count} new',
     group: 'Group',
     coming: 'Coming soon',
@@ -337,6 +341,7 @@ export default {
     signboards: 'Signboards',
     environments: 'Environments',
     resultsCount: 'One result | %{count} results',
+    holdsCount: 'One hold | %{count} holds',
     figures: {
       countries: '%{count} country | %{count} countries',
       crags: '%{count} crag | %{count} crags',
@@ -733,6 +738,7 @@ export default {
       textAlign: 'Text alignment',
       colorPickerInput: 'Colour',
       countryCode: 'Country',
+      sectorLink: 'Link to a sector',
       colorSystem: {
         chooseOrder: 'Choose a colour ordering',
         usage: 'Already used %{count} times here',
@@ -1660,7 +1666,12 @@ export default {
       currentAndUpcoming: 'Current & Upcoming',
       past: 'Past'
     },
+    sprayWall: {
+      studio: 'Spray Wall Studio',
+      draft: 'This spray wall is a draft'
+    },
     sprayWallPipeline: {
+      detectingHolds: 'Detecting holds...',
       status: {
         initialised: 'Initialization...',
         queuing: 'Queuing...',
@@ -1669,6 +1680,16 @@ export default {
         completed: 'Completed',
         failed: 'Failed',
         cancelled: 'Cancelled'
+      }
+    },
+    sprayWallRoute: {
+      clickAroundHold: 'Click around a hold',
+      sorts: {
+        opened_at: 'Sort by opening date',
+        difficulty: 'Sort by difficulty',
+        ascents_count: 'Sort by number of ascents',
+        likes_count: 'Sort by number of likes',
+        comments_count: 'Sort by number of comments'
       }
     },
     climbingSession: {

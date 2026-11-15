@@ -25,9 +25,12 @@
         </div>
         <div
           v-if="loading"
-          class="text-center pb-10"
+          class="text-center pt-2 pb-4"
         >
-          {{ $t('common.loading') }}
+          <animate-oblyk-logo
+            animate
+            :color="environmentColor()"
+          />
         </div>
         <slot v-else />
       </v-sheet>
@@ -36,8 +39,24 @@
 </template>
 
 <script>
+// Offset (in px) left at the top when the sheet is open
+import AnimateOblykLogo from '~/components/layouts/AnimateOblykLogo.vue'
+
+const TOP_GAP = 50
+// Distance (in px) traveled by the sheet when it opens
+const SLIDE = 150
+// The distance (in px) by which the sheet moves back down before disappearing
+const NUDGE = 20
+// Color by environment
+const ENVIRONMENT_COLORS = {
+  community: '#007b8b',
+  outdoor: '#31994e',
+  indoor: '#743ad5'
+}
+
 export default {
   name: 'DownToCloseDialog',
+  components: { AnimateOblykLogo },
   props: {
     value: {
       type: Boolean,
@@ -58,6 +77,10 @@ export default {
     closeCallback: {
       type: Function,
       default: null
+    },
+    environment: {
+      type: String,
+      default: 'outdoor'
     }
   },
 
@@ -71,83 +94,150 @@ export default {
   },
 
   watch: {
-    value () {
-      if (this.value) {
-        this.animation('open')
+    value (val) {
+      if (val) {
+        this.open()
       } else {
-        this.animation('close')
+        this.hide(false)
       }
     }
   },
 
+  created () {
+    this.runId = 0
+    this.pendingSignal = false
+  },
+
   beforeDestroy () {
-    this.dialog = false
-    this.overlay = false
-    this.loading = true
-    this.readyToClose = false
+    this.runId++
   },
 
   methods: {
-    animation (type, callback = null, timeToClose = 100) {
-      if (
-        (type === 'close' && !this.dialog) ||
-        (type === 'open' && this.dialog)
-      ) {
-        return false
-      }
+    environmentColor () {
+      return ENVIRONMENT_COLORS[this.environment]
+    },
 
-      if (type === 'open') {
-        this.readyToClose = false
-        this.loading = true
-        this.overlay = true
-        this.dialog = true
-        setTimeout(() => {
-          this.$refs['down-to-close-overlay'].$el.querySelector('.v-overlay__content').scrollTo({ behavior: 'smooth', top: 150 })
-        }, 25)
-        if (!this.waitSignal) {
-          this.signal(callback)
+    getScroller () {
+      const overlay = this.$refs['down-to-close-overlay']
+      return overlay && overlay.$el
+        ? overlay.$el.querySelector('.v-overlay__content')
+        : null
+    },
+
+    nextFrame () {
+      return new Promise(resolve => requestAnimationFrame(() => resolve()))
+    },
+
+    waitScrollEnd (scroller, max = 600) {
+      return new Promise((resolve) => {
+        let idle = null
+        let cap = null
+        const done = () => {
+          clearTimeout(idle)
+          clearTimeout(cap)
+          scroller.removeEventListener('scroll', onScroll)
+          resolve()
         }
-      } else {
-        this.$refs['down-to-close-overlay'].$el.querySelector('.v-overlay__content').scrollTo({ behavior: 'smooth', top: 0 })
-        setTimeout(() => {
-          this.dialog = false
-          this.overlay = false
-          this.readyToClose = false
-          if (typeof callback === 'function') { callback() }
-        }, timeToClose)
-      }
+        const onScroll = () => {
+          clearTimeout(idle)
+          idle = setTimeout(done, 80)
+        }
+        scroller.addEventListener('scroll', onScroll, { passive: true })
+        cap = setTimeout(done, max)
+        idle = setTimeout(done, 120)
+      })
     },
 
-    signal (callback = null) {
-      setTimeout(() => {
-        this.loading = false
-        this.scroll(this.$refs['down-to-close-overlay'].$el)
-        if (typeof callback === 'function') { callback() }
-      }, 100)
+    smoothScrollTo (scroller, top, max) {
+      scroller.scrollTo({ top, behavior: 'smooth' })
+      return this.waitScrollEnd(scroller, max)
     },
 
-    topClose () {
-      if (this.readyToClose) {
-        this.animation('close', this.emitClose, 10)
+    reveal (scroller) {
+      const max = scroller.scrollHeight - scroller.clientHeight
+      const final = Math.max(0, Math.min(scroller.clientHeight - TOP_GAP, max))
+      scroller.scrollTo({ top: Math.max(0, final - SLIDE), behavior: 'auto' })
+      return this.smoothScrollTo(scroller, final)
+    },
+
+    async open () {
+      const id = ++this.runId
+      this.readyToClose = false
+      this.loading = true
+      this.overlay = true
+      this.dialog = true
+
+      await this.$nextTick()
+      if (id !== this.runId) { return }
+
+      if (!this.waitSignal || this.pendingSignal) {
+        await this.signal()
+        return
       }
+
+      const scroller = this.getScroller()
+      if (scroller) { this.reveal(scroller) }
+    },
+
+    async signal (callback = null) {
+      if (!this.dialog) {
+        this.pendingSignal = true
+        return
+      }
+      this.pendingSignal = false
+      const id = this.runId
+
+      this.loading = false
+      await this.$nextTick()
+
+      if (id !== this.runId) { return }
+      await this.nextFrame()
+
+      if (id !== this.runId) { return }
+
+      const scroller = this.getScroller()
+      if (!scroller) { return }
+
+      await this.reveal(scroller)
+      if (id !== this.runId) { return }
+
+      this.readyToClose = true
+      if (typeof callback === 'function') { callback() }
     },
 
     close () {
-      this.animation('close', this.emitClose)
+      this.hide(true)
+    },
+
+    async hide (emit) {
+      if (!this.dialog) { return }
+      const id = ++this.runId
+      this.readyToClose = false
+      this.pendingSignal = false
+
+      const scroller = this.getScroller()
+      if (scroller && scroller.scrollTop > 1) {
+        await this.smoothScrollTo(scroller, Math.max(0, scroller.scrollTop - NUDGE), 180)
+        if (id !== this.runId) { return }
+      }
+
+      this.dialog = false
+      this.overlay = false
+      if (emit) { this.emitClose() }
+    },
+
+    topClose (entries, observer, isIntersecting) {
+      const visible = entries && entries.length
+        ? entries[entries.length - 1].isIntersecting
+        : isIntersecting
+      if (visible && this.readyToClose) {
+        this.hide(true)
+      }
     },
 
     emitClose () {
       if (this.closeCallback) { this.closeCallback() }
       this.$emit('input', false)
-    },
-
-    scroll (el) {
-      setTimeout(() => {
-        el.querySelector('.v-overlay__content').scrollTo({ behavior: 'smooth', top: window.visualViewport.height - 50 })
-        setTimeout(() => {
-          this.readyToClose = true
-        }, 100)
-      }, 100)
     }
   }
 }
@@ -158,11 +248,13 @@ export default {
   .v-overlay__content {
     width: 100vw;
     height: 100vh;
+    height: 100dvh;
     overflow-y: auto;
     overscroll-behavior: none;
     .down-to-close-sheet {
       box-shadow: 0 7px 60px 20px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12);
       margin-top: 100vh;
+      margin-top: 100dvh;
       width: 100vw;
     }
   }

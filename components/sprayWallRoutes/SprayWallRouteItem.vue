@@ -2,6 +2,7 @@
   <v-list-item
     class="rounded-list-item pl-2"
     style="position: relative"
+    @click="openSprayWallRoute"
   >
     <v-list-item-avatar size="65" class="my-1">
       <v-avatar
@@ -34,18 +35,6 @@
         </div>
       </v-list-item-title>
       <v-list-item-subtitle class="d-flex">
-        <!-- TEMPORAIRE -->
-        <v-btn
-          v-if="sprayWallRoute.current_user.can_be_edit"
-          :to="`${sprayWallRoute.app_path}/edit`"
-          x-small
-          icon
-        >
-          <v-icon x-small>
-            {{ mdiPencil }}
-          </v-icon>
-        </v-btn>
-        <!-- END TEMPORAIRE -->
         <div class="mr-auto">
           <spray-wall-route-climbing-simple-style-icons :spray-wall-route="sprayWallRoute" />
         </div>
@@ -110,7 +99,7 @@
 </template>
 
 <script>
-import { mdiHeart, mdiPlayBox, mdiComment, mdiCheckAll, mdiPencil } from '@mdi/js'
+import { mdiHeart, mdiPlayBox, mdiComment, mdiCheckAll } from '@mdi/js'
 import SprayWallRouteAvatar from '~/components/sprayWallRoutes/SprayWallRouteAvatar'
 import GymRouteGradeAndPoint from '~/components/gymRoutes/partial/GymRouteGradeAndPoint'
 import GymRouteSubLevel from '~/components/gymRoutes/GymRouteSubLevel'
@@ -132,6 +121,10 @@ export default {
     sprayWallRoute: {
       type: Object,
       required: true
+    },
+    absolutePath: {
+      type: Boolean,
+      default: false
     }
   },
 
@@ -140,17 +133,26 @@ export default {
       mdiHeart,
       mdiPlayBox,
       mdiComment,
-      mdiCheckAll,
-      mdiPencil
+      mdiCheckAll
     }
   },
 
   computed: {
     itemStyle () {
-      if (this.sprayWallRoute.level_index) {
-        return `border-style: solid; border-width: 5px; border-color: ${this.sprayWallRoute.level_color}`
+      const color = this.sprayWallRoute.level_index ? this.sprayWallRoute.level_color : this.sprayWallRoute.grade_color
+      return `border-style: solid; border-width: 5px; border-color: ${color}`
+    }
+  },
+
+  methods: {
+    openSprayWallRoute () {
+      const query = { ...this.$route.query }
+      query.spray_wall_route = this.sprayWallRoute.id
+
+      if (this.absolutePath) {
+        this.$router.replace({ path: this.sprayWallRoute.app_path, query })
       } else {
-        return ''
+        this.$router.replace({ path: this.$route.path, query })
       }
     }
   }

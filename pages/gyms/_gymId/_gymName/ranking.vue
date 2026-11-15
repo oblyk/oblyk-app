@@ -256,6 +256,7 @@
       ref="dialog"
       v-model="dialog"
       wait-signal
+      environment="indoor"
     >
       <v-list-item v-if="ascentScoreAndUser">
         <v-list-item-avatar>

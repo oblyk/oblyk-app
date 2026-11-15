@@ -56,7 +56,7 @@
         </div>
 
         <div class="pa-2">
-          <gym-space-selector :gym="gym" />
+          <gym-space-selector :gym="gym" all-gym />
 
           <contest-up-coming
             v-if="gym.upcoming_contests.length > 0"
@@ -81,6 +81,7 @@
       padding-x="px-2"
       :close-callback="closeGymRouteModal"
       wait-signal
+      environment="indoor"
     >
       <gym-route-info
         v-if="!loadingGymRoute && gymRoute"

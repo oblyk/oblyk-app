@@ -34,7 +34,6 @@
           :lat-lngs="pointsToLatLngs(hold.points)"
           @click="selectHold(hold)"
         />
-        <!-- :interactive="!(editingMode || addingMode)" -->
       </editable-map>
 
       <!-- Pipelines overlay -->
@@ -46,7 +45,7 @@
           <div class="text-center">
             <animate-oblyk-logo color="rgb(255, 255, 255)" animate />
             <div class="white--text font-weight-medium">
-              Détéction des prises...
+              {{ $t('components.sprayWallPipeline.detectingHolds') }}
             </div>
           </div>
         </div>
@@ -70,10 +69,10 @@
         </v-btn>
         <div class="mx-2 py-1">
           <div class="font-weight-bold">
-            Spray Wall Studio
+            {{ $t('components.sprayWall.studio') }}
           </div>
           <div class="mt-n1 text--disabled">
-            {{ sprayWallHolds.length || 0 }} prises
+            {{ $tc('common.holdsCount', sprayWallHolds.length, { count: sprayWallHolds.length }) }}
           </div>
         </div>
       </v-card>
@@ -94,7 +93,7 @@
           <v-icon left>
             {{ mdiCreation }}
           </v-icon>
-          Détecter les prises
+          {{ $t('actions.detectHolds') }}
         </v-btn>
       </v-card>
 
@@ -128,10 +127,10 @@
           <v-icon left>
             {{ oblykAddHold }}
           </v-icon>
-          Ajouter une prise
+          {{ $t('actions.addHold') }}
         </v-btn>
         <small v-if="addingMode" class="text--disabled">
-          Cliquez autour d'une prise
+          {{ $t('components.sprayWallRoute.clickAroundHold') }}
         </small>
       </v-card>
 
@@ -192,7 +191,7 @@
             <v-icon left>
               {{ mdiContentSave }}
             </v-icon>
-            Sauvegarder
+            {{ $t('actions.save') }}
           </v-btn>
         </v-card>
         <v-card class="pa-1 mr-1">
@@ -212,6 +211,20 @@
 
     <!-- TOOL BOX LEFT SIDE -->
     <div class="spray-wall-editor-toolbar --right-side d-flex">
+      <v-card class="pa-1 mr-1">
+        <v-btn
+          v-model="enableMouseDrag"
+          text
+          :color="enableMouseDrag ? 'deep-purple accent-3' : null"
+          style="min-width: 36px"
+          class="px-0"
+          @click="toggleEnableDrag"
+        >
+          <v-icon color="primary">
+            {{ enableMouseDrag ? mdiHandBackRight : mdiHandBackRightOff }}
+          </v-icon>
+        </v-btn>
+      </v-card>
       <v-card class="pa-1 mr-1">
         <v-btn
           v-model="holdMasked"
@@ -265,9 +278,11 @@ import {
   mdiCreation,
   mdiHelp,
   mdiClose,
-  mdiCircleOpacity
+  mdiCircleOpacity,
+  mdiHandBackRight,
+  mdiHandBackRightOff
 } from '@mdi/js'
-import { CRS } from 'leaflet'
+import { CRS, point } from 'leaflet'
 import { LImageOverlay } from 'vue2-leaflet'
 import { EditableMap, EditablePolygon } from 'vue2-leaflet-editable'
 import { oblykAddHold } from '~/assets/oblyk-icons'
@@ -278,7 +293,7 @@ import SprayWallPipelineCard from '~/components/sprayWallPipelines/SprayWallPipe
 import SprayWallEditorPipelineDialog from '~/components/sprayWalls/SprayWallEditorPipelineDialog'
 import AnimateOblykLogo from '~/components/layouts/AnimateOblykLogo'
 import SprayWallEditorHelpDialog from '~/components/sprayWalls/SprayWallEditorHelpDialog'
-import SprayWallHoldSvg from '~/components/sprayWallHolds/SprayWallHoldSvg.vue'
+import SprayWallHoldSvg from '~/components/sprayWallHolds/SprayWallHoldSvg'
 
 export default {
   name: 'SprayWallMapEditor',
@@ -325,7 +340,11 @@ export default {
       deletingHold: false,
       runningPipeline: false,
       holdMasked: false,
+      enableMouseDrag: true,
+      tempDrag: false,
 
+      mdiHandBackRight,
+      mdiHandBackRightOff,
       mdiPlus,
       mdiContentSave,
       mdiTrashCan,
@@ -341,7 +360,7 @@ export default {
 
   computed: {
     url () {
-      return this.imageVariant(this.sprayWall.attachments.picture, { fit: 'scale-down', height: 2000, width: 2000 })
+      return this.imageVariant(this.sprayWall.attachments.picture, { fit: 'scale-down', height: 4000, width: 4000 })
     },
 
     bounds () {
@@ -370,6 +389,12 @@ export default {
     }
   },
 
+  watch: {
+    enableMouseDrag (enabled) {
+      this.applyMapDrag(enabled)
+    }
+  },
+
   mounted () {
     this.setPictureMap()
     window.addEventListener('keydown', this.onKey)
@@ -380,6 +405,7 @@ export default {
 
   beforeDestroy () {
     window.removeEventListener('keydown', this.onKey)
+    this.pictureMap?.getContainer().removeEventListener('mousedown', this.onMapMouseDown, true)
   },
 
   methods: {
@@ -437,6 +463,7 @@ export default {
       this.selectedHold = null
       this.addingMode = false
       this.editingMode = false
+      this.enableMouseDrag = true
     },
 
     selectHold (hold) {
@@ -453,6 +480,8 @@ export default {
     setPictureMap () {
       this.pictureMap = this.$refs.pictureMap.mapObject
       this.setPictureMapView()
+      this.patchEditableClickTolerance()
+      this.pictureMap.getContainer().addEventListener('mousedown', this.onMapMouseDown, true)
     },
 
     setPictureMapView () {
@@ -467,6 +496,10 @@ export default {
 
     toggleMask () {
       this.holdMasked = !this.holdMasked
+    },
+
+    toggleEnableDrag () {
+      this.enableMouseDrag = !this.enableMouseDrag
     },
 
     toLatLng ([nx, ny]) {
@@ -500,6 +533,7 @@ export default {
           this.drawingHoldPolygon.enableEdit()
         }, 150)
         this.editingMode = true
+        this.enableMouseDrag = false
       } else {
         this.addHold()
       }
@@ -507,6 +541,7 @@ export default {
 
     cancelEdit () {
       this.editingMode = false
+      this.enableMouseDrag = true
       if (this.drawingHoldPolygon !== null) {
         this.drawingHoldPolygon.disableEdit()
       }
@@ -515,9 +550,11 @@ export default {
     addHold () {
       this.cancelEdit()
       this.selectedHold = null
+      this.enableMouseDrag = false
       if (this.addingMode && this.drawingHoldPolygon._latlngs[0]?.length >= 3) {
         this.saveHold().then(() => {
           this.addingMode = true
+          this.enableMouseDrag = false
           this.drawingHoldPolygon = this.pictureMap.editTools.startPolygon()
         })
       } else {
@@ -546,17 +583,30 @@ export default {
             if (this.addingMode) {
               this.drawingHoldPolygon.remove()
             }
-          })
-          .catch((err) => {
-            reject(err)
-          })
-          .finally(() => {
             this.addingMode = false
             this.editingMode = false
             this.savingHold = false
+            this.enableMouseDrag = true
             resolve()
           })
+          .catch((err) => {
+            this.addingMode = false
+            this.editingMode = false
+            this.savingHold = false
+            this.enableMouseDrag = true
+            reject(err)
+          })
       })
+    },
+
+    applyMapDrag (enabled = this.enableMouseDrag) {
+      if (!this.pictureMap) { return }
+
+      if (enabled) {
+        this.pictureMap.dragging.enable()
+      } else {
+        this.pictureMap.dragging.disable()
+      }
     },
 
     deleteHold () {
@@ -572,6 +622,52 @@ export default {
         .finally(() => {
           this.deletingHold = false
         })
+    },
+
+    onMapMouseDown (e) {
+      if (this.enableMouseDrag || this.tempDrag) { return }
+
+      const middleClick = e.button === 1
+      const ctrlClick = e.button === 0 && (e.ctrlKey || e.metaKey)
+      if (!middleClick && !ctrlClick) { return }
+
+      if (middleClick) { e.preventDefault() }
+
+      this.tempDrag = true
+      this.pictureMap.dragging.enable()
+      window.addEventListener('mouseup', this.onTempDragEnd, { once: true })
+    },
+
+    onTempDragEnd () {
+      this.tempDrag = false
+      this.applyMapDrag()
+    },
+
+    patchEditableClickTolerance () {
+      const editTools = this.pictureMap?.editTools
+      if (!editTools || editTools.__clickTolerancePatched) { return }
+      editTools.__clickTolerancePatched = true
+
+      editTools.onMouseup = (e) => {
+        const mouseDown = editTools._mouseDown
+        const editor = editTools._drawingEditor
+
+        if (mouseDown && editor) {
+          editor.onDrawingMouseUp(e)
+          if (editTools._drawingEditor === editor && !this.tempDrag) {
+            const origin = point(mouseDown.originalEvent.clientX, mouseDown.originalEvent.clientY)
+            const current = point(e.originalEvent.clientX, e.originalEvent.clientY)
+            const ratio = window.devicePixelRatio || 1
+            const tolerance = this.enableMouseDrag ? 9 * ratio : 50 * ratio
+
+            if (current.distanceTo(origin) < tolerance) {
+              editor.onDrawingClick(e)
+            }
+          }
+        }
+
+        editTools._mouseDown = null
+      }
     }
   }
 }

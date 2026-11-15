@@ -70,6 +70,7 @@
         padding-x="px-2"
         :close-callback="closeGymRouteModal"
         wait-signal
+        environment="indoor"
       >
         <gym-route-info
           v-if="!loadingGymRoute && gymRoute"

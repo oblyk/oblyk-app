@@ -1,7 +1,7 @@
 <template>
   <span>
     <v-icon
-      v-for="(level, levelIndex) in gymRoute.sub_level_max"
+      v-for="(level, levelIndex) in parseInt(gymRoute.sub_level_max)"
       :key="`level-${levelIndex}`"
       :color="gymRoute.sub_level >= level ? colors[gymRoute.sub_level_max][gymRoute.sub_level - 1] : 'rgba(150, 150, 150, 0.3)'"
       size="17"

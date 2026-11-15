@@ -34,16 +34,18 @@
               :key="`style-index-${style}`"
               outlined
               style="margin: 2px"
-              class="pr-1"
               @click="pushStyleFilter(style)"
             >
               <v-icon left>
                 {{ MC_ClimbingStylesByStyle[style].icon }}
               </v-icon>
               {{ MC_ClimbingStylesByStyle[style].text }}
-              <strong class="ml-2 px-2 rounded back-app-color">
+              <v-avatar
+                right
+                class="back-app-color"
+              >
                 {{ styleCount }}
-              </strong>
+              </v-avatar>
             </v-chip>
           </div>
         </v-card-text>

@@ -40,19 +40,25 @@
         {{ $t('actions.addLine') }}
       </v-btn>
     </div>
+    <spray-wall-list-item
+      v-for="(sprayWall, sprayWallIndex) in sprayWalls"
+      :key="`spray-wall-index-${sprayWallIndex}`"
+      :spray-wall="sprayWall"
+    />
   </div>
 </template>
 
 <script>
 import { mdiTextureBox, mdiImageFilterCenterFocusStrong, mdiSourceBranchPlus } from '@mdi/js'
 import { GymRolesHelpers } from '~/mixins/GymRolesHelpers'
-import GymSectorAdminMenu from '~/components/gymSectors/GymSectorAdminMenu'
 import GymSector from '~/models/GymSector'
 import GymSectorApi from '~/services/oblyk-api/GymSectorApi'
+import GymSectorAdminMenu from '~/components/gymSectors/GymSectorAdminMenu'
+import SprayWallListItem from '~/components/sprayWalls/SprayWallListItem'
 
 export default {
   name: 'GymSectorSeparator',
-  components: { GymSectorAdminMenu },
+  components: { SprayWallListItem, GymSectorAdminMenu },
   mixins: [GymRolesHelpers],
   props: {
     gymSector: {
@@ -81,6 +87,18 @@ export default {
       mdiTextureBox,
       mdiImageFilterCenterFocusStrong,
       mdiSourceBranchPlus
+    }
+  },
+
+  computed: {
+    sprayWalls () {
+      const sprayWalls = []
+      for (const sprayWall of this.gym?.active_spray_walls || []) {
+        if (sprayWall.gym_sector_id === parseInt(this.gymSector.id)) {
+          sprayWalls.push(sprayWall)
+        }
+      }
+      return sprayWalls
     }
   },
 

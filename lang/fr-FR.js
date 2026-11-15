@@ -33,8 +33,11 @@ export default {
     hide: 'Cacher',
     selectOrUnselect: 'sélectionner / désélectionner',
     search: 'Chercher',
+    detectHolds: 'Détecter les prises',
+    addHold: 'Ajouter une prise',
     addFilters: 'Ajouter des filtres',
     deleteFilters: 'Supprimer les filtres',
+    suggestAProblem: 'Proposer un bloc',
     createMyAccount: 'Créer mon compte',
     createFreeAccount: 'Créer mon compte gratuit',
     changeBanner: 'Changer le bandeau',
@@ -311,6 +314,7 @@ export default {
     filters: 'Filtres',
     map: 'Carte',
     setting: 'Réglage',
+    optional: 'Facultatif',
     new: '%{count} nouveau | %{count} nouveaux',
     group: 'Groupe',
     coming: 'À venir',
@@ -338,6 +342,7 @@ export default {
     signboards: 'Écriteaux',
     environments: 'Environnements',
     resultsCount: 'Un résultat | %{count} résultats',
+    holdsCount: 'Une prise | %{count} prises',
     figures: {
       countries: '%{count} pays | %{count} pays',
       crags: '%{count} site | %{count} sites',
@@ -369,6 +374,7 @@ export default {
     climbers: {
       long: '%{count} grimpeur ou grimpeuse | %{count} grimpeurs et grimpeuses',
       longWithoutCount: 'grimpeur ou grimpeuse | grimpeurs et grimpeuses',
+      coma: 'grimpeur, grimpeuse | grimpeurs, grimpeuses',
       short: '%{count} grimpeur·euse | %{count} grimpeurs·euses',
       shortWithoutCount: 'grimpeur·euse | grimpeurs·euses'
     },
@@ -734,6 +740,7 @@ export default {
       textAlign: 'Alignement du texte',
       colorPickerInput: 'Couleur',
       countryCode: 'Pays',
+      sectorLink: 'Lier à un secteur',
       colorSystem: {
         chooseOrder: 'Choisissez un ordre de couleur',
         usage: 'Déjà utilisé %{count} fois ici',
@@ -1661,7 +1668,12 @@ export default {
       currentAndUpcoming: 'En cours & À venir',
       past: 'Passés'
     },
+    sprayWall: {
+      studio: 'Spray Wall Studio',
+      draft: 'Ce spray wall est en brouillon'
+    },
     sprayWallPipeline: {
+      detectingHolds: 'Détéction des prises...',
       status: {
         initialised: 'Initialisation...',
         queuing: 'Mise en queue...',
@@ -1670,6 +1682,16 @@ export default {
         completed: 'Fini',
         failed: 'Échec',
         cancelled: 'Annuler'
+      }
+    },
+    sprayWallRoute: {
+      clickAroundHold: "Cliquez autour d'une prise",
+      sorts: {
+        opened_at: "Trier par date d'ouverture",
+        difficulty: 'Trier par difficulté',
+        ascents_count: 'Trier par nombre de réalisations',
+        likes_count: 'Trier par nombre de likes',
+        comments_count: 'Trier par nombre de commentaires'
       }
     },
     climbingSession: {

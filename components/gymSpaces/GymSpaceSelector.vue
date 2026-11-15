@@ -15,7 +15,7 @@
         <nuxt-link
           :to="`/gyms/${gym.id}/${gym.slug_name}/spaces`"
           class="gym-space-block text-center discrete-link"
-          :class="selectedGymSpaceId === null ? 'active' : 'inactive'"
+          :class="allGym ? 'active' : 'inactive'"
         >
           <v-avatar
             size="70"
@@ -29,7 +29,10 @@
               :src="imageVariant(gym.attachments.logo, { fit: 'scale-down', height: 100, width: 100 })"
             />
           </v-avatar>
-          <p class="text-truncate text-center mb-0">
+          <p
+            class="text-truncate text-center mb-0"
+            :class="allGym ? 'font-weight-bold deep-purple--text text--accent-3' : ''"
+          >
             <small>
               Salle
             </small>
@@ -51,17 +54,17 @@
             v-for="(space, gymSpaceIndex) in group.gym_spaces"
             :id="`gym-space-selector-${space.id}`"
             :key="`grouped-gym-space-index-${gymSpaceIndex}`"
-            :to="space.path"
+            :to="space.app_path"
             class="gym-space-block text-center discrete-link"
-            :class="selectedGymSpaceId === space.id ? 'active' : 'inactive'"
+            :class="parseInt(selectedGymSpaceId) === space.id ? 'active' : 'inactive'"
           >
             <v-avatar
               size="70"
               class="gym-space-avatar"
             >
               <v-img
-                v-if="space.pictureAttachment"
-                :src="imageVariant(space.pictureAttachment, { fit: 'scale-down', height: 100, width: 100 })"
+                v-if="space.attachments.avatar.attached"
+                :src="imageVariant(space.attachments.avatar, { fit: 'scale-down', height: 100, width: 100 })"
                 height="62"
                 width="62"
                 contain
@@ -75,7 +78,7 @@
             </v-avatar>
             <p
               class="text-truncate text-center mb-0"
-              :class="selectedGymSpaceId === space.id ? 'font-weight-bold' : ''"
+              :class="parseInt(selectedGymSpaceId) === space.id ? 'font-weight-bold deep-purple--text text--accent-3' : ''"
             >
               <small>
                 {{ space.name }}
@@ -89,17 +92,17 @@
           v-for="(space, gymSpaceIndex) in ungroupedSpaces"
           :id="`gym-space-selector-${space.id}`"
           :key="`ungrouped-gym-space-index-${gymSpaceIndex}`"
-          :to="space.path"
+          :to="space.app_path"
           class="gym-space-block text-center discrete-link"
-          :class="selectedGymSpaceId === space.id ? 'active' : 'inactive'"
+          :class="parseInt(selectedGymSpaceId) === space.id ? 'active' : 'inactive'"
         >
           <v-avatar
             size="70"
             class="gym-space-avatar"
           >
             <v-img
-              v-if="space.pictureAttachment"
-              :src="imageVariant(space.pictureAttachment, { fit: 'scale-down', height: 100, width: 100 })"
+              v-if="space.attachments.avatar.attached"
+              :src="imageVariant(space.attachments.avatar, { fit: 'scale-down', height: 100, width: 100 })"
               height="62"
               width="62"
               contain
@@ -113,7 +116,7 @@
           </v-avatar>
           <p
             class="text-truncate text-center mb-0"
-            :class="selectedGymSpaceId === space.id ? 'font-weight-bold' : ''"
+            :class="parseInt(selectedGymSpaceId) === space.id ? 'font-weight-bold deep-purple--text text--accent-3' : ''"
           >
             <v-chip
               v-if="space.draft"
@@ -128,6 +131,49 @@
             </small>
           </p>
         </nuxt-link>
+
+        <!-- Spray Walls -->
+        <nuxt-link
+          v-for="(wall, sprayWallIndex) in sprayWalls"
+          :id="`spray-wall-selector-${wall.id}`"
+          :key="`spray-wall-index-${sprayWallIndex}`"
+          :to="wall.app_path"
+          class="gym-space-block text-center discrete-link"
+          :class="parseInt(selectedSprayWallId) === wall.id ? 'active' : 'inactive'"
+        >
+          <v-avatar
+            size="70"
+            class="gym-space-avatar"
+          >
+            <v-img
+              v-if="wall.attachments.picture.attached"
+              :src="imageVariant(wall.attachments.picture, { fit: 'scale-down', height: 720, width: 720 })"
+              height="62"
+              width="62"
+              cover
+            />
+            <v-icon
+              v-else
+              size="40"
+            >
+              {{ oblykSprayWall }}
+            </v-icon>
+          </v-avatar>
+          <p
+            class="text-truncate text-center mb-0"
+            :class="parseInt(selectedSprayWallId) === wall.id ? 'font-weight-bold deep-purple--text text--accent-3' : ''"
+          >
+            <v-icon
+              x-small
+              :color="parseInt(selectedSprayWallId) === wall.id ? 'deep-purple accent-3' : 'primary'"
+            >
+              {{ oblykSprayWall }}
+            </v-icon>
+            <small>
+              {{ wall.name }}
+            </small>
+          </p>
+        </nuxt-link>
       </div>
     </div>
   </div>
@@ -135,17 +181,25 @@
 
 <script>
 import { mdiMapOutline } from '@mdi/js'
+import { oblykSprayWall } from '~/assets/oblyk-icons'
 import { ImageVariantHelpers } from '~/mixins/ImageVariantHelpers'
-import GymSpaceApi from '~/services/oblyk-api/GymSpaceApi'
-import GymSpace from '~/models/GymSpace'
+import OblykApi from '~/services/oblyk-api/OblykApi'
 
 export default {
   name: 'GymSpaceSelector',
   mixins: [ImageVariantHelpers],
   props: {
-    gymSpace: {
-      type: Object,
+    selectedGymSpaceId: {
+      type: [Number, String],
       default: null
+    },
+    selectedSprayWallId: {
+      type: [Number, String],
+      default: null
+    },
+    allGym: {
+      type: Boolean,
+      default: false
     },
     gym: {
       type: Object,
@@ -155,13 +209,14 @@ export default {
 
   data () {
     return {
-      selectedGymSpaceId: this.gymSpace?.id || null,
       gymSpaces: [],
       loadingGymSpaces: true,
       groups: [],
       ungroupedSpaces: [],
+      sprayWalls: [],
 
-      mdiMapOutline
+      mdiMapOutline,
+      oblykSprayWall
     }
   },
 
@@ -175,14 +230,11 @@ export default {
       this.gymSpaces = []
       this.groups = []
       this.ungroupedSpaces = []
-      new GymSpaceApi(this.$axios, this.$auth)
-        .groups(this.gym.id)
+      new OblykApi(this.$axios, this.$auth)
+        .get(`/gyms/${this.gym.id}/gym_spaces/groups`)
         .then((resp) => {
           for (const group of resp.data.grouped_spaces) {
-            const spaces = []
-            for (const space of group.gym_spaces) {
-              spaces.push(new GymSpace({ attributes: space }))
-            }
+            const spaces = group.gym_spaces
             this.groups.push({
               name: group.name,
               id: group.id,
@@ -190,15 +242,24 @@ export default {
               gym_spaces: spaces
             })
           }
-          for (const space of resp.data.ungrouped_spaces) {
-            this.ungroupedSpaces.push(new GymSpace({ attributes: space }))
-          }
+          this.ungroupedSpaces = resp.data.ungrouped_spaces
+          this.sprayWalls = resp.data.spray_walls
           this.loadingGymSpaces = false
           if (this.selectedGymSpaceId) {
             setTimeout(() => {
               const spaceElement = document.querySelector(`#gym-space-selector-${this.selectedGymSpaceId}`)
               const savedScroll = localStorage.getItem(`gym-space-selector-scroll-${this.gym.id}`) || null
               const scrollLeft = savedScroll !== null ? savedScroll : spaceElement.scrollLeft
+              document.querySelector('#gym-spaces-selector-overflow').scrollTo({
+                left: scrollLeft
+              })
+            }, 100)
+          }
+          if (this.selectedSprayWallId) {
+            setTimeout(() => {
+              const sprayWallElement = document.querySelector(`#spray-wall-selector-${this.selectedSprayWallId}`)
+              const savedScroll = localStorage.getItem(`gym-space-selector-scroll-${this.gym.id}`) || null
+              const scrollLeft = savedScroll !== null ? savedScroll : sprayWallElement.scrollLeft
               document.querySelector('#gym-spaces-selector-overflow').scrollTo({
                 left: scrollLeft
               })
@@ -270,13 +331,13 @@ export default {
     }
     .active {
       .gym-space-avatar {
-        border-color: rgb(65, 65, 65);
+        border-color: #651FFF;
         background-color: rgb(240, 240, 245);
       }
     }
     .gym-space-avatar {
       &:hover {
-        border-color: rgb(65, 65, 65) !important;
+        border-color: #651FFF !important;
         background-color: rgb(240, 240, 245);
       }
     }
@@ -292,14 +353,14 @@ export default {
     }
     .active {
       .gym-space-avatar {
-        border-color: rgb(255, 255, 255);
+        border-color: #651FFF;
         background: rgba(255, 255, 255, 0.2);
       }
     }
     .gym-space-avatar {
       &:hover {
         background: rgba(255, 255, 255, 0.2) !important;
-        border-color: rgb(255, 255, 255) !important;
+        border-color: #651FFF !important;
       }
     }
   }

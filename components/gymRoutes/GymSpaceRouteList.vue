@@ -121,15 +121,16 @@
           <div
             v-if="!haveFilters && sort.column === 'sector' && (routeIndex === 0 || route.gym_sector_id !== gymRoutes[routeIndex - 1].gym_sector_id)"
           >
-            <gym-sector-separator
-              v-for="(spaceSector, spaceSectorIndex) in sectorsBetween(routeIndex)"
-              :key="`space-sector-index${spaceSectorIndex}`"
-              :gym-sector="spaceSector"
-              :gym="gym"
-              :gym-space="gymSpace || route.gym_space"
-              :class="routeIndex !== 0 ? 'mt-5' : ''"
-              :show-plan-options="gymSpace !== null"
-            />
+            <template v-for="(spaceSector, spaceSectorIndex) in sectorsBetween(routeIndex)">
+              <gym-sector-separator
+                :key="`space-sector-index${spaceSectorIndex}`"
+                :gym-sector="spaceSector"
+                :gym="gym"
+                :gym-space="gymSpace || route.gym_space"
+                :class="routeIndex !== 0 ? 'mt-5' : ''"
+                :show-plan-options="gymSpace !== null"
+              />
+            </template>
           </div>
 
           <!-- Open at Separator -->

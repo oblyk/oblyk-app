@@ -42,7 +42,7 @@
       <gym-space-selector
         v-if="gym.gym_spaces.length > 1"
         class="mt-2 px-1"
-        :gym-space="gymSpace"
+        :selected-gym-space-id="gymSpace.id"
         :gym="gymSpace.gym"
       />
 

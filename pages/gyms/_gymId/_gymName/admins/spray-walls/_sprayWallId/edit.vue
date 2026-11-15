@@ -7,6 +7,7 @@
     <div v-else>
       <spray-wall-form
         :spray-wall="sprayWall"
+        :gym="gym"
         submit-methode="put"
         style="max-width: 600px"
         class="mx-auto"

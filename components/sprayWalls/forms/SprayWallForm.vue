@@ -18,6 +18,11 @@
         :placeholder="$t('actions.browse')"
       />
 
+      <gym-sector-select-input
+        v-model="data.gym_sector_id"
+        :gym="gym"
+      />
+
       <submit-form
         :overlay="submitOverlay"
         :progressable="true"
@@ -33,13 +38,18 @@ import { FormHelpers } from '@/mixins/FormHelpers'
 import { AppConcern } from '@/concerns/AppConcern'
 import SubmitForm from '@/components/forms/SubmitForm'
 import OblykApi from '~/services/oblyk-api/OblykApi'
+import GymSectorSelectInput from '~/components/forms/GymSectorSelectInput.vue'
 
 export default {
   name: 'SprayWallForm',
-  components: { SubmitForm },
+  components: { GymSectorSelectInput, SubmitForm },
   mixins: [FormHelpers, AppConcern],
 
   props: {
+    gym: {
+      type: Object,
+      default: null
+    },
     sprayWall: {
       type: Object,
       default: null
@@ -52,7 +62,8 @@ export default {
       uploadPercentage: 0,
       data: {
         id: this.sprayWall?.id,
-        name: this.sprayWall?.name || this.defaultName()
+        name: this.sprayWall?.name || this.defaultName(),
+        gym_sector_id: this.sprayWall?.gym_sector_id
       }
     }
   },
@@ -79,6 +90,7 @@ export default {
         const formData = new FormData()
         formData.append('spray_wall[picture]', this.file)
         formData.append('spray_wall[name]', this.data.name)
+        formData.append('spray_wall[gym_sector_id]', this.data.gym_sector_id)
 
         const url = `${this.baseUrl}/gyms/${this.$route.params.gymId}/spray_walls.json`
         this.$axios.$request({
