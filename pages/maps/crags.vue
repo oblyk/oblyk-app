@@ -10,6 +10,7 @@
     <div class="flex-grow-1">
       <client-only>
         <leaflet-map
+          v-if="isMounted"
           map-style="outdoor"
           :geo-jsons="geoJsons"
           :latitude-force="latitude"
@@ -38,6 +39,7 @@ export default {
 
   data () {
     return {
+      isMounted: false,
       geoJsons: null,
       latitude: null,
       longitude: null,
@@ -75,6 +77,7 @@ export default {
   },
 
   mounted () {
+    this.isMounted = true
     this.$store.dispatch('oblykEnvironment/clearHubs')
     this.$store.dispatch('oblykEnvironment/pushHubs', { hub: this.$route.path, page: this.$route.path })
     const urlParams = new URLSearchParams(window.location.search)
