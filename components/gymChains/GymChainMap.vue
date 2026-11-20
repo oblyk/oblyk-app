@@ -9,6 +9,7 @@
     <v-card-text>
       <client-only>
         <leaflet-map
+          v-if="isMounted"
           class="gym-chain-map"
           :track-location="false"
           :geo-jsons="geoJsons"
@@ -39,12 +40,14 @@ export default {
   data () {
     return {
       geoJsons: null,
+      isMounted: false,
 
       mdiMap
     }
   },
 
   mounted () {
+    this.isMounted = true
     this.getGeoJson()
   },
 

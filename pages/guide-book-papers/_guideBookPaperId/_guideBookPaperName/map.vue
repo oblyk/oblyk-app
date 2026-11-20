@@ -2,6 +2,7 @@
   <div class="guide-book-paper-map">
     <client-only>
       <leaflet-map
+        v-if="isMounted"
         map-style="outdoor"
         :geo-jsons="geoJsons"
         :clustered="false"
@@ -29,6 +30,7 @@ export default {
 
   data () {
     return {
+      isMounted: false,
       geoJsons: null,
       guideBookPaperMetaTitle: this.$t('metaTitle', {
         name: this.guideBookPaper?.name
@@ -85,6 +87,7 @@ export default {
   },
 
   mounted () {
+    this.isMounted = true
     this.getGeoJson()
   },
 

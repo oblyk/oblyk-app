@@ -40,6 +40,7 @@
               class="my-location-map mt-4"
             >
               <leaflet-map
+                v-if="isMounted"
                 class="my-location-map"
                 :latitude-force="latitude"
                 :longitude-force="longitude"
@@ -92,6 +93,7 @@ export default {
 
   data () {
     return {
+      isMounted: false,
       showModal: false,
       showMap: false,
       activatedLocalization: false,
@@ -133,6 +135,7 @@ export default {
   },
 
   mounted () {
+    this.isMounted = true
     this.activatedLocalization = this.$store.state.geolocation.status === 'activate'
     this.$root.$on('ShowLocalizationPopup', (show) => { this.showModal = show })
   },

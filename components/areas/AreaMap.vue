@@ -9,6 +9,7 @@
     <v-card-text>
       <client-only>
         <leaflet-map
+          v-if="isMounted"
           class="area-map"
           :track-location="false"
           :geo-jsons="geoJsons"
@@ -38,12 +39,15 @@ export default {
 
   data () {
     return {
-      mdiMap,
-      geoJsons: null
+      isMounted: false,
+      geoJsons: null,
+
+      mdiMap
     }
   },
 
   mounted () {
+    this.isMounted = true
     this.getGeoJson()
   },
 

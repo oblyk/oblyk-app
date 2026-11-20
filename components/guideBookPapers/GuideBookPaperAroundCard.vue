@@ -111,6 +111,7 @@
               <div class="guide-book-around-map">
                 <client-only>
                   <leaflet-map
+                    v-if="isMounted"
                     class="rounded"
                     map-style="outdoor"
                     :geo-jsons="geoJson"
@@ -181,12 +182,14 @@ export default {
 
   data () {
     return {
+      isMounted: false,
+      openCard: false,
+      cragListLimite: 5,
+
       mdiBookshelf,
       mdiCurrencyUsdOff,
       mdiHandCoin,
-      mdiHelpCircleOutline,
-      openCard: false,
-      cragListLimite: 5
+      mdiHelpCircleOutline
     }
   },
 
@@ -213,6 +216,10 @@ export default {
         }, 1000)
       }
     }
+  },
+
+  mounted () {
+    this.isMounted = true
   },
 
   methods: {

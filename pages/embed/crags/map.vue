@@ -2,6 +2,7 @@
   <client-only>
     <div style="width: 100%; height: 100%;">
       <leaflet-map
+        v-if="isMounted"
         map-style="outdoor"
         :geo-jsons="geoJsons"
         :latitude-force="latitude"
@@ -36,6 +37,7 @@ export default {
 
   data () {
     return {
+      isMounted: false,
       geoJsons: null,
       latitude: null,
       longitude: null,
@@ -45,6 +47,7 @@ export default {
   },
 
   mounted () {
+    this.isMounted = true
     this.getGeoJson()
     const urlParams = new URLSearchParams(window.location.search)
     this.latitude = urlParams.get('lat')
