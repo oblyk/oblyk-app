@@ -70,6 +70,24 @@ namespace :app do
     end
   end
 
+  desc 'Stop all systemd instances'
+  task :stop do
+    on release_roles('app') do
+      fetch(:app_ports).each do |port|
+        execute :sudo, :systemctl, 'stop', "#{fetch(:systemd_service)}@#{port}"
+      end
+    end
+  end
+
+  desc 'Start all systemd instances'
+  task :start do
+    on release_roles('app') do
+      fetch(:app_ports).each do |port|
+        execute :sudo, :systemctl, 'start', "#{fetch(:systemd_service)}@#{port}"
+      end
+    end
+  end
+
   desc 'Status of systemd instances'
   task :status do
     on release_roles('app') do
