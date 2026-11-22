@@ -64,6 +64,7 @@
           {{ $t('components.layout.footer.apiAndDevelopers') }}
         </nuxt-link>
         <nuxt-link
+          v-if="showReportAProblemPath"
           class="d-block"
           :to="`/report-problem?redirect_to=${$route.fullPath}`"
           rel="nofollow"
@@ -204,6 +205,12 @@ export default {
       mdiInstagram,
       mdiCookie,
       mdiBug
+    }
+  },
+
+  computed: {
+    showReportAProblemPath () {
+      return !this.$route.fullPath.includes('/report-problem')
     }
   },
 
